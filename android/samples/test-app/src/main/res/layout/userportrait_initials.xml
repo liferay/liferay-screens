@@ -2,7 +2,8 @@
 <com.liferay.mobile.screens.testapp.customviews.UserPortraitInitialsView
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent" android:layout_height="match_parent"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
 	android:padding="10dp"
 	>
 
@@ -29,8 +30,8 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:gravity="center"
-		tools:text="TT"
 		android:textAlignment="center"
+		tools:text="TT"
 		style="@style/TextAppearance.AppCompat.Title"
 		/>
 
@@ -43,6 +44,6 @@
 		android:contentDescription="@string/add_icon_user_portrait_content_description"
 		android:src="@android:drawable/ic_input_add"
 		android:visibility="invisible"
-	/>
+		/>
 
 </com.liferay.mobile.screens.testapp.customviews.UserPortraitInitialsView>
