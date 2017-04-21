@@ -58,5 +58,7 @@
 	<integer>42184</integer>
 	<key>webContentDisplayArticleId</key>
 	<string>41983</string>
+	<key>portletDisplayUrl</key>
+	<string>http://192.168.0.160:8080/web/portletdisplay/gallery</string>
 </dict>
 </plist>
