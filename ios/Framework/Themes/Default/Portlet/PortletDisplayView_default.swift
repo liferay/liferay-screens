@@ -15,12 +15,15 @@ import UIKit
 import WebKit
 
 
-open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewModel {
+open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewModel, WKUIDelegate {
 
+	open var jsFile: String?
 
 	//MARK: Outlets
 
 	open var webView: WKWebView?
+
+	open var userContentController: WKUserContentController?
 
 
 	//MARK: BaseScreenletView
@@ -46,6 +49,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 		webView?.injectCookies()
 		webView?.injectViewportMetaTag()
+		webView?.uiDelegate = self
 
 		addWebView()
 	}
@@ -64,6 +68,23 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		set {
 			webView?.load(URLRequest(url: newValue!))
 		}
+	}
+
+
+	public var injectedJsFile: String? {
+		get {
+			return self.injectedJsFile
+		}
+		set {
+			webView?.loadJs(file: newValue!)
+		}
+	}
+
+
+	//MARK: WKUIDelegate
+
+	public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+		completionHandler()
 	}
 
 

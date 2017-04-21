@@ -40,6 +40,19 @@ extension WKWebView {
 
 		configuration.userContentController.addUserScript(addMetaScript)
 	}
+
+	public func loadJs(file: String) {
+		func loadJs(file: String,
+		            at injectionTime: WKUserScriptInjectionTime = .atDocumentEnd,
+		            forMainFrameOnly: Bool = true) {
+
+			let path = Bundle.main.path(forResource: file, ofType: "js")
+			let js = try! String(contentsOfFile: path!)
+
+			configuration.userContentController.addUserScript(WKUserScript(
+				source: js, injectionTime: injectionTime, forMainFrameOnly: forMainFrameOnly))
+		}
+	}
 }
 
 extension WKWebViewConfiguration {
