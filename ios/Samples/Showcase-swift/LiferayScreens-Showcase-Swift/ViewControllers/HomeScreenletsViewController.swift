@@ -23,7 +23,7 @@ class HomeScreenletsViewController: UITableViewController {
 		3: [NSLocalizedString("files-screenlets", comment: "Files"), "AudioDisplayScreenlet", "ImageDisplayScreenlet", "PdfDisplayScreenlet",
 			"VideoDisplayScreenlet", "FileDisplayScreenlet"],
 		4: [NSLocalizedString("others-screenlets", comment: "Others"), "UserPortraitScreenlet", "RatingScreenlet", "ImageGalleryScreenlet",
-			"BlogDisplayScreenlet"],
+			"BlogDisplayScreenlet", "PortletDisplayScreenlet"],
 		5: ["WebContent", "WebContentDisplayScreenlet", "WebContentListScreenlet"]
 	]
 	
