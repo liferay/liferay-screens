@@ -72,7 +72,7 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 	/// Call this method to load the portlet.
 	open func load() {
 		if let url = portletUrl, url != "" {
-			let url = URL(fileURLWithPath: url)
+			let url = URL(string: url)
 			portletDisplayViewModel?.portletUrl = url
 		}
 	}
@@ -80,7 +80,7 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 	/// Call this method to load the portlet with a custom Javascript file.
 	open func load(withJsFile jsFile: String) {
 		if let url = portletUrl, url != "" {
-			portletDisplayViewModel?.portletUrl = URL(fileURLWithPath: url)
+			portletDisplayViewModel?.portletUrl = URL(string: url)
 			portletDisplayViewModel?.injectedJsFile = jsFile
 		}
 	}
