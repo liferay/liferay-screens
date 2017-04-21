@@ -71,17 +71,29 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 
 	/// Call this method to load the portlet.
 	open func load() {
-		if let url = portletUrl, url != "" {
-			let url = URL(string: url)
-			portletDisplayViewModel?.portletUrl = url
+		guard let url = portletUrl, url != "" else {
+			self.portletDisplayDelegate?.screenlet?(self, onPortletError: NSError.errorWithCause(
+				.invalidServerResponse, message: "Could not portlet content."))
+			return
 		}
+
+		portletDisplayViewModel?.portletUrl = URL(string: url)
+
+		self.portletDisplayDelegate?.screenlet?(self, onPortletUrlResponse: "URL: \(url)")
 	}
 
 	/// Call this method to load the portlet with a custom Javascript file.
-	open func load(withJsFile jsFile: String) {
-		if let url = portletUrl, url != "" {
-			portletDisplayViewModel?.portletUrl = URL(string: url)
-			portletDisplayViewModel?.injectedJsFile = jsFile
+	public func load(withJsFile jsFile: String) {
+		guard let url = portletUrl, url != "" else {
+			self.portletDisplayDelegate?.screenlet?(self, onPortletError: NSError.errorWithCause(
+				.invalidServerResponse, message: "Could not portlet content."))
+			return
 		}
+
+		portletDisplayViewModel?.portletUrl = URL(string: url)
+		portletDisplayViewModel?.injectedJsFile = jsFile
+
+		self.portletDisplayDelegate?.screenlet?(self,
+			onPortletUrlResponse: "URL: \(url) and JS: \(jsFile).js")
 	}
 }
