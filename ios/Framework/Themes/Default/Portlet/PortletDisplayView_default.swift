@@ -17,13 +17,11 @@ import WebKit
 
 open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewModel, WKUIDelegate {
 
+	//MARK: Public properties
+
 	open var jsFile: String?
 
-	//MARK: Outlets
-
 	open var webView: WKWebView?
-
-	open var userContentController: WKUserContentController?
 
 
 	//MARK: BaseScreenletView
@@ -62,21 +60,19 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 	//MARK: PortletDisplayViewModel
 
 	open var portletUrl: URL? {
-		get {
-			return self.portletUrl
-		}
-		set {
-			webView?.load(URLRequest(url: newValue!))
+		didSet {
+			if let url = portletUrl {
+				webView?.load(URLRequest(url: url))
+			}
 		}
 	}
 
 
 	public var injectedJsFile: String? {
-		get {
-			return self.injectedJsFile
-		}
-		set {
-			webView?.loadJs(file: newValue!)
+		didSet {
+			if let js = injectedJsFile {
+				webView?.loadJs(file: js)
+			}
 		}
 	}
 
