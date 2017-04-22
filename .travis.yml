@@ -28,7 +28,7 @@ script:
    if [ "$PLATFORM" = Android ]; then
         cd android
         sh gradlew clean
-        sh gradlew assembleTravisci
+        sh gradlew assemble
         sh gradlew test
      elif [ "$PLATFORM" = iOS ]; then
          cd ios/Framework
