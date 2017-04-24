@@ -8,12 +8,37 @@
 
 ## Overview
 
-This repository contains the Liferay Screens source code, in addition to several example projects that illustrate how Screens is used. For detailed instructions on developing mobile apps with Screens, see the Screens documentation for [Android](https://dev.liferay.com/develop/tutorials/-/knowledge_base/6-2/android-apps-with-liferay-screens) and [iOS](https://dev.liferay.com/develop/tutorials/-/knowledge_base/6-2/ios-apps-with-liferay-screens) on the Liferay Developer Network (LDN). 
+This repository contains the Liferay Screens source code, in addition to several example projects that illustrate how Screens is used. For detailed instructions on developing mobile apps with Screens, see the Screens documentation for [Android](https://dev.liferay.com/develop/tutorials/-/knowledge_base/7-0/android-apps-with-liferay-screens) and [iOS](https://dev.liferay.com/develop/tutorials/-/knowledge_base/7-0/ios-apps-with-liferay-screens) on the Liferay Developer Network (LDN). 
 
 Brief descriptions of this repository's contents are listed here:
 
 - `android`: the Liferay Screens for Android codebase, View Sets, and example projects.
 - `ios`: the Liferay Screens for iOS codebase, Themes, and example projects.
+
+For now, the available screenlets are:
+
+* **Login Screenlet**: Signs users in to a Liferay instance.
+* **Sign Up Screenlet**: Registers new users in a Liferay instance.
+* **Forgot Password Screenlet**: Sends emails containing a new password or password reset link to users.
+* **User Portrait Screenlet**: Shows the user's portrait picture.
+* **DDL Form Screenlet**: Presents dynamic forms to be filled out by users and submitted back to the server.
+* **DDL List Screenlet**: Shows a list of records based on a pre-existing DDL in a Liferay instance.
+* **Asset List Screenlet**: Shows a list of assets managed by [Liferay's Asset Framework](https://dev.liferay.com/develop/tutorials/-/knowledge_base/7-0/asset-framework). This includes web content, blog entries, documents, and more.
+* **Web Content Display Screenlet**: Shows the web content's HTML or structured content. This Screenlet uses the features available in [Web Content Management](/discover/portal/-/knowledge_base/7-0/creating-web-content).
+* **Web Content List Screenlet**: Shows a list of web contents from a folder, usually based on a pre-existing `DDMStructure`.
+* **Image Gallery Screenlet**: Shows a list of images from a folder. This Screenlet also lets users upload and delete images.
+* **Rating Screenlet**: Shows the rating for an asset. This Screenlet also lets the user update or delete the rating.
+* **Comment List Screenlet**: Shows a list of comments for an asset.
+* **Comment Display Screenlet**: Shows a single comment for an asset.
+* **Comment Add Screenlet**: Lets the user comment on an asset.
+* **Asset Display Screenlet**: Displays an asset. Currently, this Screenlet can display Documents and Media Library files (`DLFileEntry` entities), blogs articles (`BlogsEntry`  entities), and web content articles (`WebContent` entities). You can also use it to display custom assets.
+* **Blogs Entry Display Screenlet**: Shows a single blogs entry.
+* **Image Display Screenlet**: Shows a single image file from a Liferay instance's Documents and Media Library.
+* **Video Display Screenlet**: Shows a single video file from a Liferay instance's Documents and Media Library.
+* **Audio Display Screenlet**: Shows a single audio file from a Liferay instance's Documents and Media Library.
+* **PDF Display Screenlet**: Shows a single PDF file from a Liferay instance's Documents and Media Library.
+* **File Display Screenlet**: Shows a single file from a Liferay instance's Documents and Media Library. Use this Screenlet to display file types not covered by the other display Screenlets (e.g., DOC, PPT, XLS). Only available for iOS.
+
 
 ## Contributing
 
