@@ -1,7 +1,6 @@
 package com.liferay.mobile.screens.comment.display.interactor.delete;
 
 import com.liferay.mobile.screens.base.interactor.BaseCacheWriteInteractor;
-import com.liferay.mobile.screens.comment.connector.ScreensCommentConnector;
 import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
 import com.liferay.mobile.screens.comment.display.interactor.CommentDisplayInteractorListener;
 import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;

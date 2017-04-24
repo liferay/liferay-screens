@@ -37,6 +37,11 @@ public class DDMStructure implements Parcelable {
 	protected List<Field> fields = new ArrayList<>();
 	protected Locale locale = Locale.US;
 	protected boolean parsed;
+	private String description;
+	private String name;
+	private String structureKey;
+	private String structureId;
+	private Long classNameId;
 
 	public DDMStructure() {
 		super();
@@ -51,12 +56,22 @@ public class DDMStructure implements Parcelable {
 		Parcelable[] array = in.readParcelableArray(Field.class.getClassLoader());
 		fields = new ArrayList(Arrays.asList(array));
 		locale = (Locale) in.readSerializable();
+		description = in.readString();
+		name = in.readString();
+		structureKey = in.readString();
+		structureId = in.readString();
+		classNameId = in.readLong();
 	}
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		dest.writeParcelableArray(fields.toArray(new Field[fields.size()]), flags);
 		dest.writeSerializable(locale);
+		dest.writeString(description);
+		dest.writeString(name);
+		dest.writeString(structureKey);
+		dest.writeString(structureId);
+		dest.writeLong(classNameId);
 	}
 
 	@Override
@@ -90,6 +105,39 @@ public class DDMStructure implements Parcelable {
 		return null;
 	}
 
+	public void parse(JSONObject jsonObject) throws JSONException {
+
+		this.description = getSafeString(jsonObject, "descriptionCurrentValue");
+		this.name = getSafeString(jsonObject, "nameCurrentValue");
+		this.structureKey = getSafeString(jsonObject, "structureKey");
+		this.structureId = getSafeString(jsonObject, "structureId");
+		this.classNameId = getSafeLong(jsonObject, "classNameId");
+
+		if (jsonObject.has("xsd")) {
+			parse(jsonObject.getString("xsd"), new XSDParser());
+		} else {
+			parse(jsonObject.getString("definition"), new JsonParser());
+		}
+		parsed = true;
+	}
+
+	protected void parse(String content, DDMStructureParser parser) {
+		try {
+			Locale locale = this.locale == null ? LiferayLocale.getDefaultLocale() : this.locale;
+			fields = parser.parse(content, locale);
+		} catch (Exception e) {
+			fields = new ArrayList<>();
+		}
+	}
+
+	public String getSafeString(JSONObject jsonObject, String field) throws JSONException {
+		return jsonObject.has(field) ? jsonObject.getString(field) : "";
+	}
+
+	public Long getSafeLong(JSONObject jsonObject, String fieldName) throws JSONException {
+		return jsonObject.has(fieldName) ? jsonObject.getLong(fieldName) : null;
+	}
+
 	public List<Field> getFields() {
 		return fields;
 	}
@@ -106,21 +154,43 @@ public class DDMStructure implements Parcelable {
 		this.locale = locale;
 	}
 
-	public void parse(JSONObject jsonObject) throws JSONException {
-		if (jsonObject.has("xsd")) {
-			parse(jsonObject.getString("xsd"), new XSDParser());
-		} else {
-			parse(jsonObject.getString("definition"), new JsonParser());
-		}
-		parsed = true;
+	public String getName() {
+		return name;
 	}
 
-	protected void parse(String content, DDMStructureParser parser) {
-		try {
-			Locale locale = this.locale == null ? LiferayLocale.getDefaultLocale() : this.locale;
-			fields = parser.parse(content, locale);
-		} catch (Exception e) {
-			fields = new ArrayList<>();
-		}
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getStructureKey() {
+		return structureKey;
+	}
+
+	public void setStructureKey(String structureKey) {
+		this.structureKey = structureKey;
+	}
+
+	public String getStructureId() {
+		return structureId;
+	}
+
+	public void setStructureId(String structureId) {
+		this.structureId = structureId;
+	}
+
+	public Long getClassNameId() {
+		return classNameId;
+	}
+
+	public void setClassNameId(Long classNameId) {
+		this.classNameId = classNameId;
 	}
 }

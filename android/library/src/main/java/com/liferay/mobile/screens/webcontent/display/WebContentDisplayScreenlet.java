@@ -39,6 +39,7 @@ public class WebContentDisplayScreenlet
 
 	public static final String WEB_CONTENT_BY_ARTICLE_ID = "WEB_CONTENT_BY_ARTICLE_ID";
 	public static final String WEB_CONTENT_WITH_STRUCTURE = "WEB_CONTENT_WITH_STRUCTURE";
+	public WebView.HitTestResult result;
 	private Long templateId;
 	private String articleId;
 	private Long structureId;
@@ -46,7 +47,6 @@ public class WebContentDisplayScreenlet
 	private boolean javascriptEnabled;
 	private String labelFields;
 	private WebContentDisplayListener listener;
-	public WebView.HitTestResult result;
 
 	public WebContentDisplayScreenlet(Context context) {
 		super(context);

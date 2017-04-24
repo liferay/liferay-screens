@@ -27,8 +27,8 @@
 			android:id="@+id/comment_user_portrait"
 			android:layout_width="70dp"
 			android:layout_height="70dp"
-			liferay:autoLoad="false"
 			android:layout_alignParentLeft="true"
+			liferay:autoLoad="false"
 			liferay:cachePolicy="REMOTE_FIRST"
 			/>
 

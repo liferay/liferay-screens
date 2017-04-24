@@ -9,7 +9,7 @@ android {
 		targetSdkVersion rootProject.ext.targetSdkVersion
 		versionCode rootProject.ext.versionCode
 		versionName rootProject.ext.versionName
-		applicationId "com.liferay.mobile.screens.bankofwesteros"
+		applicationId 'com.liferay.mobile.screens.bankofwesteros'
 	}
 
 	buildTypes {
@@ -22,15 +22,6 @@ android {
 	packagingOptions {
 		exclude 'META-INF/LICENSE'
 		exclude 'META-INF/NOTICE'
-	}
-
-	productFlavors {
-		travisci {
-			minSdkVersion 21
-		}
-		vanilla {
-			minSdkVersion rootProject.ext.minSdkVersion
-		}
 	}
 }
 

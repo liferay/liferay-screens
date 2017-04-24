@@ -13,16 +13,31 @@
 		android:visibility="gone"
 		/>
 
-	<EditText
-		android:id="@+id/liferay_ddl_edit_text"
+	<RelativeLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:drawableEnd="@drawable/material_tinted_launch"
-		android:drawableRight="@drawable/material_tinted_launch"
-		android:hint="@string/hint_select"
-		android:inputType="date"
-		android:paddingBottom="5dp"
-		android:paddingTop="5dp"
-		/>
+		>
+
+		<EditText
+			android:id="@+id/liferay_ddl_edit_text"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignBottom="@+id/field_today"
+			android:layout_toLeftOf="@+id/field_today"
+			android:hint="@string/hint_select"
+			android:inputType="date"
+			/>
+
+
+		<ImageView
+			android:id="@+id/field_today"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:paddingBottom="3dp"
+			android:src="@drawable/material_tinted_launch"
+			/>
+
+	</RelativeLayout>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldSelectView>

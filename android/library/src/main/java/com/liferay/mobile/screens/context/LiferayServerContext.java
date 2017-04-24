@@ -127,8 +127,7 @@ public class LiferayServerContext {
 					public Response intercept(Chain chain) throws IOException {
 						Request originalRequest = chain.request();
 
-						Request.Builder newRequestBuilder
-							= originalRequest.newBuilder();
+						Request.Builder newRequestBuilder = originalRequest.newBuilder();
 
 						Request newRequest = authenticateRequestIfNeeded(newRequestBuilder);
 
@@ -147,8 +146,8 @@ public class LiferayServerContext {
 			public Response intercept(Chain chain) throws IOException {
 				Request originalRequest = chain.request();
 
-				Request.Builder newRequestBuilder
-					= originalRequest.newBuilder().cacheControl(CacheControl.FORCE_NETWORK);
+				Request.Builder newRequestBuilder =
+					originalRequest.newBuilder().cacheControl(CacheControl.FORCE_NETWORK);
 
 				Request newRequest = authenticateRequestIfNeeded(newRequestBuilder);
 
@@ -183,8 +182,7 @@ public class LiferayServerContext {
 			SessionContext.getAuthentication().authenticate(authRequest);
 
 			return authRequest.getHeaders();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			return new HashMap<>();
 		}
 	}

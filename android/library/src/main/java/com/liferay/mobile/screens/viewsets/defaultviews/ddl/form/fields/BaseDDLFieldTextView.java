@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields;
 
 import android.content.Context;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.View;
@@ -113,7 +114,12 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 
 	@Override
 	public void refresh() {
-		textEditText.setText(field.toFormattedString());
+		if (this.field.isReadOnly()) {
+			textEditText.setEnabled(false);
+			textEditText.setText(Html.fromHtml(field.toFormattedString()));
+		} else {
+			textEditText.setText(field.toFormattedString());
+		}
 	}
 
 	@Override
