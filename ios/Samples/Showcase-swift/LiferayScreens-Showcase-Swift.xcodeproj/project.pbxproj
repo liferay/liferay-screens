@@ -51,6 +51,8 @@
 		0B6148141DABF0AF004FAC7C /* WebContentListScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B6148121DABF0AF004FAC7C /* WebContentListScreenlet.storyboard */; };
 		0B6148181DABF643004FAC7C /* AssetDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B6148161DABF643004FAC7C /* AssetDisplayScreenlet.storyboard */; };
 		0B61481B1DABF672004FAC7C /* AssetDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B61481A1DABF672004FAC7C /* AssetDisplayViewController.swift */; };
+		0B6DC1C11EAF8515003FD583 /* WebContentDisplayView_customcss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6DC1C01EAF8515003FD583 /* WebContentDisplayView_customcss.swift */; };
+		0B6DC1C31EAF8F5F003FD583 /* WebContentDisplayView_customcss.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6DC1C21EAF8F5F003FD583 /* WebContentDisplayView_customcss.xib */; };
 		0BCAD3C21DD5F42200BB89EA /* VideoDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BCAD3C01DD5F42200BB89EA /* VideoDisplayScreenlet.storyboard */; };
 		0BCAD3C51DD5F42D00BB89EA /* AudioDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BCAD3C31DD5F42D00BB89EA /* AudioDisplayScreenlet.storyboard */; };
 		0BCAD3C81DD5F43B00BB89EA /* PdfDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BCAD3C61DD5F43B00BB89EA /* PdfDisplayScreenlet.storyboard */; };
@@ -121,6 +123,8 @@
 		0B6148131DABF0AF004FAC7C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/WebContentListScreenlet.storyboard; sourceTree = "<group>"; };
 		0B6148171DABF643004FAC7C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/AssetDisplayScreenlet.storyboard; sourceTree = "<group>"; };
 		0B61481A1DABF672004FAC7C /* AssetDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDisplayViewController.swift; sourceTree = "<group>"; };
+		0B6DC1C01EAF8515003FD583 /* WebContentDisplayView_customcss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContentDisplayView_customcss.swift; sourceTree = "<group>"; };
+		0B6DC1C21EAF8F5F003FD583 /* WebContentDisplayView_customcss.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebContentDisplayView_customcss.xib; sourceTree = "<group>"; };
 		0BCAD3C11DD5F42200BB89EA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/VideoDisplayScreenlet.storyboard; sourceTree = "<group>"; };
 		0BCAD3C41DD5F42D00BB89EA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/AudioDisplayScreenlet.storyboard; sourceTree = "<group>"; };
 		0BCAD3C71DD5F43B00BB89EA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/PdfDisplayScreenlet.storyboard; sourceTree = "<group>"; };
@@ -374,6 +378,8 @@
 				88CC3B011CC158C800E0AEB7 /* HtmlTableViewCell.xib */,
 				88CC3B041CC158E300E0AEB7 /* BookTableViewCell.swift */,
 				88CC3B051CC158E300E0AEB7 /* BookTableViewCell.xib */,
+				0B6DC1C01EAF8515003FD583 /* WebContentDisplayView_customcss.swift */,
+				0B6DC1C21EAF8F5F003FD583 /* WebContentDisplayView_customcss.xib */,
 			);
 			path = BookTheme;
 			sourceTree = "<group>";
@@ -511,6 +517,7 @@
 				0B6148111DABE8F2004FAC7C /* WebContentDisplayScreenlet.storyboard in Resources */,
 				0B6148181DABF643004FAC7C /* AssetDisplayScreenlet.storyboard in Resources */,
 				0B54FBC41DAD149D00E0EE0C /* DDLListScreenlet.storyboard in Resources */,
+				0B6DC1C31EAF8F5F003FD583 /* WebContentDisplayView_customcss.xib in Resources */,
 				0B54FB931DACE97600E0EE0C /* CommentListScreenlet.storyboard in Resources */,
 				88CC3AFD1CC153D900E0AEB7 /* WebContentDisplayView_book.xib in Resources */,
 				88DE2A991AD3DF7600714701 /* Localizable.strings in Resources */,
@@ -554,7 +561,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		7AE72E640B25C3017D6FAFE2 /* Embed Pods Frameworks */ = {
@@ -637,6 +644,7 @@
 				0B4C27591E42007E00F6B01D /* AssetDisplayWithPortletItemNameViewController.swift in Sources */,
 				0BCAD3CC1DD5F57A00BB89EA /* VideoDisplayViewController.swift in Sources */,
 				0BCAD3CA1DD5F51B00BB89EA /* AudioDisplayViewController.swift in Sources */,
+				0B6DC1C11EAF8515003FD583 /* WebContentDisplayView_customcss.swift in Sources */,
 				0B6147F81DABC853004FAC7C /* UIImageExtension.swift in Sources */,
 				88DE2A721AD3DDE600714701 /* AppDelegate.swift in Sources */,
 				0B575EE21E6F10F400A8B021 /* UserPortraitView_initials.swift in Sources */,
