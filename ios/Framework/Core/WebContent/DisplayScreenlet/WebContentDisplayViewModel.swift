@@ -24,5 +24,5 @@ import UIKit
 	/// Customize the WebContent html with custom CSS.
 	///
 	/// - Returns: css style
-	@objc optional func getCustomCssStyle() -> String
+	@objc optional func getCustomCssStyle() -> String?
 }

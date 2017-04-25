@@ -77,7 +77,7 @@ open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayVi
 
 	open var recordContent: DDLRecord?
 
-	open func getCustomCssStyle() -> String {
-		return ""
+	open func getCustomCssStyle() -> String? {
+		return nil
 	}
 }

@@ -20,7 +20,7 @@ open class WebContentDisplayView_customcss: WebContentDisplayView_default {
 
 	//MARK: WebContentDisplayViewModel
 
-	override open func getCustomCssStyle() -> String {
+	override open func getCustomCssStyle() -> String? {
 		return "<style>.MobileCSS {padding: 4%; width: 92%;} " +
 			".MobileCSS, .MobileCSS span, .MobileCSS p, .MobileCSS h1, .MobileCSS h2, .MobileCSS h3 { " +
 			"font-size: 110%; font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-weight: 200; } " +
