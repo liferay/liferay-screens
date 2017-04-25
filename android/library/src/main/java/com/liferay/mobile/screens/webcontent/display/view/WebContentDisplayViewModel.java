@@ -28,4 +28,11 @@ public interface WebContentDisplayViewModel extends BaseViewModel {
 	 * @param html {@link WebContent} content
 	 */
 	void showFinishOperation(WebContent html);
+
+	/**
+	 * Customize the {@link WebContent} html with custom CSS.
+	 *
+	 * @return css style
+	 */
+	String getCustomCssStyle();
 }
