@@ -31,6 +31,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		findViewById(R.id.user_portrait).setOnClickListener(this);
 		findViewById(R.id.web_content_display_screenlet).setOnClickListener(this);
 		findViewById(R.id.web_content_display_screenlet_structured).setOnClickListener(this);
+		findViewById(R.id.web_content_display_screenlet_custom_css).setOnClickListener(this);
 		findViewById(R.id.add_bookmark).setOnClickListener(this);
 		findViewById(R.id.journal_article_with_template).setOnClickListener(this);
 		findViewById(R.id.filtered_asset).setOnClickListener(this);
@@ -83,6 +84,9 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				break;
 			case R.id.web_content_display_screenlet_structured:
 				start(WebContentDisplayStructuredActivity.class);
+				break;
+			case R.id.web_content_display_screenlet_custom_css:
+				start(WebContentDisplayWithCustomCssActivity.class);
 				break;
 			case R.id.add_bookmark:
 				start(AddBookmarkActivity.class);
