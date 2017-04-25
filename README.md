@@ -15,7 +15,7 @@ Brief descriptions of this repository's contents are listed here:
 - `android`: the Liferay Screens for Android codebase, View Sets, and example projects.
 - `ios`: the Liferay Screens for iOS codebase, Themes, and example projects.
 
-For now, the available screenlets are:
+## Available Screenlets
 
 * **Login Screenlet** [[iOS](https://dev.liferay.com/develop/reference/-/knowledge_base/7-0/loginscreenlet-for-ios) / [Android](https://dev.liferay.com/develop/reference/-/knowledge_base/7-0/loginscreenlet-for-android)]: Signs users in to a Liferay instance.
 * **Sign Up Screenlet** [[iOS](https://dev.liferay.com/develop/reference/-/knowledge_base/7-0/signupscreenlet-for-ios) / [Android](https://dev.liferay.com/develop/reference/-/knowledge_base/7-0/signupscreenlet-for-android)]: Registers new users in a Liferay instance.
