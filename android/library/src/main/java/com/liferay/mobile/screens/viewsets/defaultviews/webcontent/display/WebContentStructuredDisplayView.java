@@ -41,6 +41,11 @@ public class WebContentStructuredDisplayView extends LinearLayout implements Web
 	}
 
 	@Override
+	public String getCustomCssStyle() {
+		return null;
+	}
+
+	@Override
 	public void showStartOperation(String actionName) {
 
 	}
