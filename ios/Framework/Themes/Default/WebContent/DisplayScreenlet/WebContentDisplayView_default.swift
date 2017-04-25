@@ -77,11 +77,14 @@ open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayVi
 			return ""
 		}
 		set {
-			let styledHtml = "<style>\(styles)</style><div class=\"MobileCSS\">\(newValue ?? "")</div>"
+			let styledHtml = "\(getCustomCssStyle() ?? "")<div class=\"MobileCSS\">\(newValue ?? "")</div>"
 			webView!.loadHTMLString(styledHtml, baseURL: URL(string:LiferayServerContext.server))
 		}
 	}
 
 	open var recordContent: DDLRecord?
 
+	open func getCustomCssStyle() -> String {
+		return ""
+	}
 }
