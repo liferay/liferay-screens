@@ -22,9 +22,11 @@ open class WebContentDisplayView_book: BaseScreenletView, WebContentDisplayViewM
 
 	override open var progressMessages: [String:ProgressMessages] {
 		return [
-			BaseScreenlet.DefaultAction :
-				[.working : LocalizedString("default", key: "webcontentdisplay-loading-message", obj: self),
-				.failure : LocalizedString("default", key: "webcontentdisplay-loading-error", obj: self)]]
+			BaseScreenlet.DefaultAction : [
+					.working : LocalizedString("default", key: "webcontentdisplay-loading-message", obj: self),
+					.failure : LocalizedString("default", key: "webcontentdisplay-loading-error", obj: self)
+			]
+		]
 	}
 
 
@@ -48,5 +50,4 @@ open class WebContentDisplayView_book: BaseScreenletView, WebContentDisplayViewM
 			authorLabel.text = recordContent?["author"]?.description
 		}
 	}
-
 }
