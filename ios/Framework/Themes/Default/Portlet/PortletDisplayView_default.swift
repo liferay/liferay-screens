@@ -17,6 +17,7 @@ import WebKit
 
 open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewModel, WKUIDelegate {
 
+
 	//MARK: Public properties
 
 	open var jsFile: String?
@@ -28,8 +29,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 	override open var progressMessages: [String: ProgressMessages] {
 		return [
-			BaseScreenlet.DefaultAction :
-				[
+			BaseScreenlet.DefaultAction : [
 					.working : LocalizedString(
 						"default", key: "portletdisplay-loading-message", obj: self),
 					.failure : LocalizedString(
