@@ -47,7 +47,7 @@ extension WKWebView {
 		let js = try! String(contentsOfFile: path!)
 
 		configuration.userContentController.addUserScript(
-			WKUserScript(source: js, injectionTime: .atDocumentEnd, forMainFrameOnly: true))
+			WKUserScript(source: js, injectionTime: .atDocumentEnd, forMainFrameOnly: false))
 	}
 }
 
