@@ -39,7 +39,6 @@
 		<activity android:name=".CustomInteractorActivity"/>
 		<activity android:name=".ListBookmarksActivity"/>
 		<activity android:name=".WebContentDisplayStructuredActivity"/>
-		<activity android:name=".WebContentDisplayWithCustomCssActivity"/>
 		<activity android:name=".WebContentListActivity"/>
 		<activity
 			android:name=".CommentsActivity"

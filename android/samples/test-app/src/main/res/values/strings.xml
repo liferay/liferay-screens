@@ -6,7 +6,6 @@
 	<string name="user_portrait">User Portrait</string>
 	<string name="webview">WebContent Display</string>
 	<string name="webview_structured">WebContent with DDMStructure</string>
-	<string name="webview_custom_css">WebContent with custom CSS</string>
 	<string name="webview_list">WebContent List</string>
 	<string name="asset_list">Asset List</string>
 	<string name="get_user">Get User</string>

@@ -58,12 +58,6 @@
 				/>
 
 			<Button
-				android:id="@+id/web_content_display_screenlet_custom_css"
-				android:text="@string/webview_custom_css"
-				style="@style/test_app_button"
-			/>
-
-			<Button
 				android:id="@+id/journal_article_with_template"
 				android:text="@string/journal_article_with_template"
 				style="@style/test_app_button"
