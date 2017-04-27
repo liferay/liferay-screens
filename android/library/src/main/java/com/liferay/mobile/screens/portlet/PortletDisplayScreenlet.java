@@ -160,6 +160,10 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 		this.listener = listener;
 	}
 
+	public void setJs(int jsFile) {
+		this.jsFile = jsFile;
+	}
+
 	private String readFromAssets(int filename) {
 		try {
 			InputStream in = getContext().getResources().openRawResource(filename);
