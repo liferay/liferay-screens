@@ -14,7 +14,6 @@
 
 package com.liferay.mobile.screens.portlet.view;
 
-import android.view.View;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 
 /**
@@ -26,6 +25,7 @@ public interface PortletDisplayViewModel extends BaseViewModel {
 	 * Called when portlet screenlet is ready to be displayed.
 	 *
 	 * @param url portlet url.
+	 * @param injectedJs custom Javascript to use in the portlet.
 	 */
-	void showFinishOperation(String url);
+	void showFinishOperation(String url, String injectedJs);
 }
