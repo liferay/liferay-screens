@@ -25,6 +25,9 @@ import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.portlet.view.PortletDisplayViewModel;
 import com.squareup.okhttp.HttpUrl;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 
 /**
@@ -37,6 +40,7 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	private boolean autoLoad;
 	private String url;
 	private PortletDisplayListener listener;
+	private int jsFile;
 
 	public PortletDisplayScreenlet(Context context) {
 		super(context);
@@ -63,7 +67,8 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 
 		HttpUrl portletUrl = HttpUrl.parse(url);
 		if (portletUrl != null) {
-			getViewModel().showFinishOperation(portletUrl.toString());
+			String js = readFromAssets(jsFile);
+			getViewModel().showFinishOperation(portletUrl.toString(), js != null ? js : "");
 		} else {
 			getViewModel().showFailedOperation(DEFAULT_ACTION, new MalformedURLException());
 		}
