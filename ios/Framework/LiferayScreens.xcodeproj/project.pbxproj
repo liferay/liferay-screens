@@ -147,6 +147,10 @@
 		0BBEDA2E1D5B230E00F8CB31 /* ImageGalleryGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBEDA2A1D5B230E00F8CB31 /* ImageGalleryGridCell.xib */; };
 		0BBEDA2F1D5B230E00F8CB31 /* ImageGalleryView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBEDA2B1D5B230E00F8CB31 /* ImageGalleryView_default.swift */; };
 		0BBEDA301D5B230E00F8CB31 /* ImageGalleryView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBEDA2C1D5B230E00F8CB31 /* ImageGalleryView_default.xib */; };
+		0BC700CC1EB20795006DD475 /* PortletDisplayView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC700CA1EB20795006DD475 /* PortletDisplayView_default.swift */; };
+		0BC700CD1EB20795006DD475 /* PortletDisplayView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC700CB1EB20795006DD475 /* PortletDisplayView_default.xib */; };
+		0BC700D11EB207B1006DD475 /* PortletDisplayScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC700CF1EB207B1006DD475 /* PortletDisplayScreenlet.swift */; };
+		0BC700D21EB207B1006DD475 /* PortletDisplayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC700D01EB207B1006DD475 /* PortletDisplayViewModel.swift */; };
 		0BCB4FB11D37C08B0023E2CA /* LRScreensddlrecordService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BCB4FAF1D37C08B0023E2CA /* LRScreensddlrecordService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0BCB4FB21D37C08B0023E2CA /* LRScreensddlrecordService_v70.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB4FB01D37C08B0023E2CA /* LRScreensddlrecordService_v70.m */; };
 		0BE1E0F31D364E96000A2678 /* SequenceType+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1E0F21D364E96000A2678 /* SequenceType+Screens.swift */; };
@@ -704,6 +708,10 @@
 		0BBEDA2A1D5B230E00F8CB31 /* ImageGalleryGridCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageGalleryGridCell.xib; sourceTree = "<group>"; };
 		0BBEDA2B1D5B230E00F8CB31 /* ImageGalleryView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryView_default.swift; sourceTree = "<group>"; };
 		0BBEDA2C1D5B230E00F8CB31 /* ImageGalleryView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageGalleryView_default.xib; sourceTree = "<group>"; };
+		0BC700CA1EB20795006DD475 /* PortletDisplayView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortletDisplayView_default.swift; sourceTree = "<group>"; };
+		0BC700CB1EB20795006DD475 /* PortletDisplayView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PortletDisplayView_default.xib; sourceTree = "<group>"; };
+		0BC700CF1EB207B1006DD475 /* PortletDisplayScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortletDisplayScreenlet.swift; sourceTree = "<group>"; };
+		0BC700D01EB207B1006DD475 /* PortletDisplayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortletDisplayViewModel.swift; sourceTree = "<group>"; };
 		0BCB4FAF1D37C08B0023E2CA /* LRScreensddlrecordService_v70.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensddlrecordService_v70.h; sourceTree = "<group>"; };
 		0BCB4FB01D37C08B0023E2CA /* LRScreensddlrecordService_v70.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensddlrecordService_v70.m; sourceTree = "<group>"; };
 		0BE1E0F21D364E96000A2678 /* SequenceType+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SequenceType+Screens.swift"; sourceTree = "<group>"; };
@@ -1359,6 +1367,24 @@
 			path = Grid;
 			sourceTree = "<group>";
 		};
+		0BC700C91EB20795006DD475 /* Portlet */ = {
+			isa = PBXGroup;
+			children = (
+				0BC700CA1EB20795006DD475 /* PortletDisplayView_default.swift */,
+				0BC700CB1EB20795006DD475 /* PortletDisplayView_default.xib */,
+			);
+			path = Portlet;
+			sourceTree = "<group>";
+		};
+		0BC700CE1EB207B1006DD475 /* Portlet */ = {
+			isa = PBXGroup;
+			children = (
+				0BC700CF1EB207B1006DD475 /* PortletDisplayScreenlet.swift */,
+				0BC700D01EB207B1006DD475 /* PortletDisplayViewModel.swift */,
+			);
+			path = Portlet;
+			sourceTree = "<group>";
+		};
 		0BF917861D76BE6900C86C85 /* Comment */ = {
 			isa = PBXGroup;
 			children = (
@@ -1721,6 +1747,7 @@
 				0B2180211D6C502000A23690 /* BlogsDisplay */,
 				0BF917B61D76BEA000C86C85 /* Comment */,
 				0B2C413F1D5A3C7C00764326 /* ImageGalleryScreenlet */,
+				0BC700C91EB20795006DD475 /* Portlet */,
 				881E61CB1ACBFC3400862B9E /* DDL */,
 				0B217FD61D6C4E9500A23690 /* FileDisplay */,
 				889125B91D549757006AFA08 /* Rating */,
@@ -2157,6 +2184,7 @@
 				0B5B5E731D5869DB0007D4B1 /* ImageGalleryScreenlet */,
 				0BB503171D37C04A00ABD6B3 /* Models */,
 				887F0D071B999CD90007AECE /* Offline */,
+				0BC700CE1EB207B1006DD475 /* Portlet */,
 				889125981D5479E6006AFA08 /* Rating */,
 				880ACA641B0224A0007AD007 /* Resources */,
 				8892C6951ACB2FDC00192232 /* Services */,
@@ -2594,6 +2622,7 @@
 				881E62311ACBFC3400862B9E /* UserPortraitView_default.xib in Resources */,
 				881E62391ACBFC3400862B9E /* DDLFieldDocumentlibraryPresenterViewController_default.xib in Resources */,
 				0B5B5EC81D5876A10007D4B1 /* default-placeholder-image.png in Resources */,
+				0BC700CD1EB20795006DD475 /* PortletDisplayView_default.xib in Resources */,
 				880ACA7F1B0224A0007AD007 /* signup-screenlet.strings in Resources */,
 				881E62371ACBFC3400862B9E /* DDLFieldDateTableCell_default.xib in Resources */,
 				0B2BBE761DC3699C00010F30 /* default-list-preview-imagegallery@2x.png in Resources */,
@@ -2675,7 +2704,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		B146147EA81C5DE8F28EACDF /* [CP] Copy Pods Resources */ = {
@@ -2720,7 +2749,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2810,6 +2839,7 @@
 				0B21800C1D6C4F6F00A23690 /* DDMField.swift in Sources */,
 				881E60C01ACBE43200862B9E /* KeyboardManager.swift in Sources */,
 				88F888551B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift in Sources */,
+				0BC700D21EB207B1006DD475 /* PortletDisplayViewModel.swift in Sources */,
 				889125B21D547A10006AFA08 /* LRScreensratingsentryService_v70.m in Sources */,
 				881E624B1ACBFC3400862B9E /* DDLListView_default.swift in Sources */,
 				889125AA1D5479E6006AFA08 /* LoadRatingsInteractor.swift in Sources */,
@@ -2864,12 +2894,14 @@
 				88A28EBA1B0DD1300040D7F6 /* NSBundle+Screens.swift in Sources */,
 				88AF68221CBF8AD200097014 /* WebContentLoadStructuredLiferayConnector.swift in Sources */,
 				88CA80711B25EF69004C1D59 /* BaseCredentialsStoreKeyChain.swift in Sources */,
+				0BC700CC1EB20795006DD475 /* PortletDisplayView_default.swift in Sources */,
 				8837FA781CAEF6AE00DCB1B4 /* WebContentDisplayLoadInteractor.swift in Sources */,
 				0B2180141D6C4F6F00A23690 /* DDMFieldUntyped.swift in Sources */,
 				88B8443A1C73D6C0007A447D /* ServerConnector.swift in Sources */,
 				0BF917A71D76BE6900C86C85 /* CommentLoadLiferayConnector.swift in Sources */,
 				0B217FE11D6C4E9500A23690 /* ImageDisplayView_default.swift in Sources */,
 				0BB5033D1D37C04A00ABD6B3 /* WebContent.swift in Sources */,
+				0BC700D11EB207B1006DD475 /* PortletDisplayScreenlet.swift in Sources */,
 				881E623C1ACBFC3400862B9E /* DDLFieldNumberTableCell_default.swift in Sources */,
 				887E069C1C6A4DF800CA3807 /* LRScreensjournalarticleService_v70.m in Sources */,
 				0B21801A1D6C4FEF00A23690 /* User.swift in Sources */,
