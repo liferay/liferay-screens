@@ -57,7 +57,7 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 	}
 
 	@Override
-	public void showFinishOperation(String url) {
+	public void showFinishOperation(String url, final String injectedJs) {
 		if (webView != null) {
 			webView.getSettings().setJavaScriptEnabled(true);
 			webView.addJavascriptInterface(new PortletDisplayInterface(getContext()), "android");
@@ -69,7 +69,7 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 				public void onPageFinished(WebView view, String url) {
 					view.setVisibility(VISIBLE);
 					progressBar.setVisibility(GONE);
-					webView.loadUrl("javascript:" + injectGalleryJS());
+					webView.loadUrl("javascript:" + injectedJs);
 				}
 			});
 		}
@@ -87,6 +87,10 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 		LiferayLogger.e("Error with portlet", e);
 	}
 
+	@Override
+	public void showFinishOperation(String actionName) {
+		throw new UnsupportedOperationException(
+			"showFinishOperation(String) is not supported." + " Use showFinishOperation(String, String) instead.");
 	}
 
 	@Override
