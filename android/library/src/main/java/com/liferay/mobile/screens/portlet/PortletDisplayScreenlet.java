@@ -154,4 +154,25 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	public void setListener(PortletDisplayListener listener) {
 		this.listener = listener;
 	}
+
+	private String readFromAssets(int filename) {
+		try {
+			InputStream in = getContext().getResources().openRawResource(filename);
+			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+			StringBuilder sb = new StringBuilder();
+			String mLine = reader.readLine();
+
+			while (mLine != null) {
+				sb.append(mLine);
+				mLine = reader.readLine();
+			}
+
+			reader.close();
+
+			return sb.toString();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }
