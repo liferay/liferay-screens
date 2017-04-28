@@ -54,6 +54,7 @@
 		0BC700C71EB20741006DD475 /* gallery.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BC700C51EB20741006DD475 /* gallery.js */; };
 		0BC700C81EB20741006DD475 /* PortletDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC700C61EB20741006DD475 /* PortletDisplayViewController.swift */; };
 		0BC700D61EB20915006DD475 /* PortletDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BC700D41EB20915006DD475 /* PortletDisplayScreenlet.storyboard */; };
+		0BC700DB1EB2425A006DD475 /* PortletDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC700DA1EB2425A006DD475 /* PortletDetailViewController.swift */; };
 		0BCAD3C21DD5F42200BB89EA /* VideoDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BCAD3C01DD5F42200BB89EA /* VideoDisplayScreenlet.storyboard */; };
 		0BCAD3C51DD5F42D00BB89EA /* AudioDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BCAD3C31DD5F42D00BB89EA /* AudioDisplayScreenlet.storyboard */; };
 		0BCAD3C81DD5F43B00BB89EA /* PdfDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BCAD3C61DD5F43B00BB89EA /* PdfDisplayScreenlet.storyboard */; };
@@ -127,6 +128,7 @@
 		0BC700C51EB20741006DD475 /* gallery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = gallery.js; sourceTree = "<group>"; };
 		0BC700C61EB20741006DD475 /* PortletDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortletDisplayViewController.swift; sourceTree = "<group>"; };
 		0BC700D51EB20915006DD475 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/PortletDisplayScreenlet.storyboard; sourceTree = "<group>"; };
+		0BC700DA1EB2425A006DD475 /* PortletDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortletDetailViewController.swift; sourceTree = "<group>"; };
 		0BCAD3C11DD5F42200BB89EA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/VideoDisplayScreenlet.storyboard; sourceTree = "<group>"; };
 		0BCAD3C41DD5F42D00BB89EA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/AudioDisplayScreenlet.storyboard; sourceTree = "<group>"; };
 		0BCAD3C71DD5F43B00BB89EA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/PdfDisplayScreenlet.storyboard; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 			children = (
 				0BC700C41EB20741006DD475 /* js */,
 				0BC700C61EB20741006DD475 /* PortletDisplayViewController.swift */,
+				0BC700DA1EB2425A006DD475 /* PortletDetailViewController.swift */,
 			);
 			path = Portlet;
 			sourceTree = "<group>";
@@ -672,6 +675,7 @@
 				0BCAD3CE1DD5F59D00BB89EA /* PdfDisplayViewController.swift in Sources */,
 				0B4C27591E42007E00F6B01D /* AssetDisplayWithPortletItemNameViewController.swift in Sources */,
 				0BCAD3CC1DD5F57A00BB89EA /* VideoDisplayViewController.swift in Sources */,
+				0BC700DB1EB2425A006DD475 /* PortletDetailViewController.swift in Sources */,
 				0BCAD3CA1DD5F51B00BB89EA /* AudioDisplayViewController.swift in Sources */,
 				0B6147F81DABC853004FAC7C /* UIImageExtension.swift in Sources */,
 				88DE2A721AD3DDE600714701 /* AppDelegate.swift in Sources */,
