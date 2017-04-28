@@ -15,7 +15,8 @@ import UIKit
 import WebKit
 
 
-open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewModel, WKUIDelegate {
+open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewModel, WKUIDelegate,
+	WKScriptMessageHandler {
 
 
 	//MARK: Public properties
@@ -85,6 +86,15 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 	public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
 		completionHandler()
+	}
+
+
+	//MARK: WKScriptMessageHandler
+
+	public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+		(screenlet as? PortletDisplayScreenlet)?.portletDisplayDelegate?.screenlet?(
+			screenlet as! PortletDisplayScreenlet, onScriptMessageHandler: message.name,
+				onScriptMessageBody: message.body as! String)
 	}
 
 
