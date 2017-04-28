@@ -48,6 +48,8 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 	/// The portlet URL to be displayed.
 	@IBInspectable open var portletUrl: String?
 
+	@IBInspectable open var scriptHandler: String?
+
 
 	//MARK: Public properties
 
@@ -77,6 +79,7 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 			return
 		}
 
+		portletDisplayViewModel?.scriptHandler = self.scriptHandler
 		portletDisplayViewModel?.portletUrl = URL(string: url)
 
 		self.portletDisplayDelegate?.screenlet?(self, onPortletUrlResponse: "URL: \(url)")
@@ -90,6 +93,7 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 			return
 		}
 
+		portletDisplayViewModel?.scriptHandler = self.scriptHandler
 		portletDisplayViewModel?.portletUrl = URL(string: url)
 		portletDisplayViewModel?.injectedJsFile = jsFile
 
