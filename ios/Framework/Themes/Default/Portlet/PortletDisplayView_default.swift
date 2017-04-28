@@ -72,6 +72,14 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		}
 	}
 
+	public var scriptHandler: String? {
+		didSet {
+			if let script = scriptHandler {
+				webView?.configuration.userContentController.add(self, name: script)
+			}
+		}
+	}
+
 
 	//MARK: WKUIDelegate
 
