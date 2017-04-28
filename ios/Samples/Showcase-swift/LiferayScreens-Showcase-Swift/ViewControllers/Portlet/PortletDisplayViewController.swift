@@ -48,4 +48,15 @@ class PortletDisplayViewController: UIViewController, PortletDisplayScreenletDel
 	func screenlet(_ screenlet: PortletDisplayScreenlet, onPortletError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
+
+	func screenlet(_ screenlet: PortletDisplayScreenlet, onScriptMessageHandler key: String,
+	               onScriptMessageBody body: String) {
+		//We can check what is the name of the message handler responsible for the action
+		performSegue(withIdentifier: "detail", sender: body)
+	}
+
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		let vc = segue.destination as? PortletDetailViewController
+		vc?.url = sender as! String
+	}
 }
