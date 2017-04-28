@@ -35,6 +35,16 @@ import UIKit
 	@objc optional func screenlet(_ screenlet: PortletDisplayScreenlet,
 	                              onPortletError error: NSError)
 
+	/// Called when we want to notify a message from the WKWebView used in the view.
+	///
+	/// - Parameters:
+	///   - screenlet: Portlet display screenlet instance.
+	///   - key: source message key.
+	///   - body: source message body.
+	@objc optional func screenlet(_ screenlet: PortletDisplayScreenlet,
+	                              onScriptMessageHandler key: String,
+	                              onScriptMessageBody body: String)
+
 }
 
 
