@@ -20,8 +20,6 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 	//MARK: Public properties
 
-	open var jsFile: String?
-
 	open var webView: WKWebView?
 
 
