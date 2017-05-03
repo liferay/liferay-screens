@@ -24,6 +24,7 @@ import android.webkit.WebView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.util.AssetReader;
 import com.liferay.mobile.screens.webcontent.WebContent;
 import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayBaseInteractor;
 import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayFromArticleIdInteractor;
@@ -47,6 +48,7 @@ public class WebContentDisplayScreenlet
 	private String labelFields;
 	private WebContentDisplayListener listener;
 	public WebView.HitTestResult result;
+	private int cssFile = R.raw.webcontent_default;
 
 	public WebContentDisplayScreenlet(Context context) {
 		super(context);
@@ -103,7 +105,8 @@ public class WebContentDisplayScreenlet
 			}
 		}
 
-		getViewModel().showFinishOperation(modifiedHtml);
+		String css = AssetReader.read(getContext(), cssFile);
+		getViewModel().showFinishOperation(modifiedHtml, css != null ? css : "");
 
 		return modifiedHtml;
 	}
@@ -158,6 +161,10 @@ public class WebContentDisplayScreenlet
 
 	public void setStructureId(Long structureId) {
 		this.structureId = structureId;
+	}
+
+	public void setCss(int cssFile) {
+		this.cssFile = cssFile;
 	}
 
 	/**
