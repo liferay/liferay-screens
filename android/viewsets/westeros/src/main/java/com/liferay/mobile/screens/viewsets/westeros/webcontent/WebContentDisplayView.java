@@ -52,7 +52,7 @@ public class WebContentDisplayView
 	}
 
 	@Override
-	public void showFinishOperation(WebContent webContent) {
+	public void showFinishOperation(WebContent webContent, String customCss) {
 		if (progressBar != null) {
 			progressBar.setVisibility(View.GONE);
 		}

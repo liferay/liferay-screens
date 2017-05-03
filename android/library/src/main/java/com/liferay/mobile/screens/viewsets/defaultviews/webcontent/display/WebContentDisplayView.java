@@ -74,7 +74,7 @@ public class WebContentDisplayView extends FrameLayout implements WebContentDisp
 	}
 
 	@Override
-	public void showFinishOperation(WebContent webContent) {
+	public void showFinishOperation(WebContent webContent, String customCSs) {
 		if (progressBar != null) {
 			progressBar.setVisibility(View.GONE);
 		}
