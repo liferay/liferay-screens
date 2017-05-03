@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0B1063161D49E7C9001D8DE3 /* WebContentListView_default-collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1063151D49E7C9001D8DE3 /* WebContentListView_default-collection.swift */; };
 		0B1063181D49E7DE001D8DE3 /* WebContentListView_default-collection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B1063171D49E7DE001D8DE3 /* WebContentListView_default-collection.xib */; };
+		0B139A831EB9EE1E00628D24 /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 0B139A821EB9EE1E00628D24 /* default.css */; };
 		0B147A191E78047C00EDE7B7 /* FileDisplayView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B147A181E78047C00EDE7B7 /* FileDisplayView_default.swift */; };
 		0B147A1B1E78049F00EDE7B7 /* FileDisplayView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B147A1A1E78049F00EDE7B7 /* FileDisplayView_default.xib */; };
 		0B1F30E61DA240460053424E /* UserPortrait_connector_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1F30E41DA23FB40053424E /* UserPortrait_connector_Test.swift */; };
@@ -574,6 +575,7 @@
 		039C3B21F16B559B9C196029 /* Pods_Screens_LiferayScreens.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Screens_LiferayScreens.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B1063151D49E7C9001D8DE3 /* WebContentListView_default-collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WebContentListView_default-collection.swift"; sourceTree = "<group>"; };
 		0B1063171D49E7DE001D8DE3 /* WebContentListView_default-collection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WebContentListView_default-collection.xib"; sourceTree = "<group>"; };
+		0B139A821EB9EE1E00628D24 /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
 		0B147A181E78047C00EDE7B7 /* FileDisplayView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDisplayView_default.swift; sourceTree = "<group>"; };
 		0B147A1A1E78049F00EDE7B7 /* FileDisplayView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileDisplayView_default.xib; sourceTree = "<group>"; };
 		0B1F30E41DA23FB40053424E /* UserPortrait_connector_Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortrait_connector_Test.swift; sourceTree = "<group>"; };
@@ -1048,6 +1050,14 @@
 				AD76E36E85BE8E49BD3D8E53 /* Pods-Screens-LiferayScreensTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		0B139A811EB9EE1500628D24 /* css */ = {
+			isa = PBXGroup;
+			children = (
+				0B139A821EB9EE1E00628D24 /* default.css */,
+			);
+			path = css;
 			sourceTree = "<group>";
 		};
 		0B1F30E31DA23F7F0053424E /* UserPortrait */ = {
@@ -1912,6 +1922,7 @@
 		8837FA5F1CAEF6AE00DCB1B4 /* DisplayScreenlet */ = {
 			isa = PBXGroup;
 			children = (
+				0B139A811EB9EE1500628D24 /* css */,
 				8837FA601CAEF6AE00DCB1B4 /* Connectors */,
 				8837FA691CAEF6AE00DCB1B4 /* WebContentDisplayLoadInteractor.swift */,
 				8837FA6A1CAEF6AE00DCB1B4 /* WebContentDisplayScreenlet.swift */,
@@ -2547,6 +2558,7 @@
 				881E62631ACBFC3400862B9E /* default-portrait-placeholder.png in Resources */,
 				881E62481ACBFC3400862B9E /* DDLFormView_default.xib in Resources */,
 				881E624F1ACBFC3400862B9E /* default-calendar.png in Resources */,
+				0B139A831EB9EE1E00628D24 /* default.css in Resources */,
 				881E62531ACBFC3400862B9E /* default-field-focused.png in Resources */,
 				881E62411ACBFC3400862B9E /* DDLFieldSelectTableCell_default.xib in Resources */,
 				0B217FEF1D6C4F0100A23690 /* AssetDisplayView_default.xib in Resources */,
