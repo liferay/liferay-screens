@@ -11,6 +11,16 @@ import WebKit
 
 extension WKWebView {
 
+	public func loadCss(file: String, extension ext: String = "css") -> String {
+
+		let string = Bundle.resourceInBundle(name: file, ofType: ext, currentClass: type(of:self)) {
+			(path, _) -> String? in
+
+			return try! String(contentsOfFile: path)
+		}
+		return string ?? ""
+	}
+
 	public func injectCookies() {
 		guard let authentication =
 			SessionContext.currentContext?.session.authentication as? LRCookieAuthentication else {
