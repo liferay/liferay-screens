@@ -74,13 +74,22 @@ open class WebContentDisplayScreenlet: BaseScreenlet {
 	/// The offline mode setting. The default value is remote-first.
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
-	// MARK: Public properties
+	// Custom css file to customize the WebContent
+	@IBInspectable open var customCss: String = "default"
+
+
+	//MARK: Public properties
 
 	open var webContentDisplayDelegate: WebContentDisplayScreenletDelegate? {
 		return delegate as? WebContentDisplayScreenletDelegate
 	}
 
-	// MARK: BaseScreenlet
+	open var webContentDisplayViewModel: WebContentDisplayViewModel? {
+		return screenletView as? WebContentDisplayViewModel
+	}
+
+
+	//MARK: BaseScreenlet
 
 	override open func onShow() {
 		if autoLoad && articleId != "" {
@@ -103,14 +112,14 @@ open class WebContentDisplayScreenlet: BaseScreenlet {
 				let modifiedHtml = self.webContentDisplayDelegate?.screenlet?(self,
 					onWebContentResponse: resultHtml)
 
-				(self.screenletView as! WebContentDisplayViewModel).htmlContent =
-					modifiedHtml ?? resultHtml
+				self.webContentDisplayViewModel?.customCss = self.customCss
+				self.webContentDisplayViewModel?.htmlContent = modifiedHtml ?? resultHtml
 			}
 			else if let resultRecord = interactor.resultRecord {
 				self.webContentDisplayDelegate?.screenlet?(self,
 					onRecordContentResponse: resultRecord)
 
-				(self.screenletView as! WebContentDisplayViewModel).recordContent = resultRecord
+				self.webContentDisplayViewModel?.recordContent = resultRecord
 			}
 		}
 

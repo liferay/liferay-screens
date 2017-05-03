@@ -20,6 +20,8 @@ open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayVi
 
 	open var webView: WKWebView?
 
+	open var injectedCss: String?
+
 	override open var progressMessages: [String:ProgressMessages] {
 		return [
 			BaseScreenlet.DefaultAction : [
@@ -70,18 +72,18 @@ open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayVi
 			return ""
 		}
 		set {
-			let styledHtml = "\(getCustomCssStyle() ?? "")<div class=\"MobileCSS\">\(newValue ?? "")</div>"
+			let styledHtml = "\(injectedCss ?? "")<div class=\"MobileCSS\">\(newValue ?? "")</div>"
 			webView!.loadHTMLString(styledHtml, baseURL: URL(string:LiferayServerContext.server))
 		}
 	}
 
 	open var recordContent: DDLRecord?
 
-	open func getCustomCssStyle() -> String? {
-		return "<style>.MobileCSS {padding: 4%; width: 92%;} " +
-			".MobileCSS, .MobileCSS span, .MobileCSS p, .MobileCSS h1, .MobileCSS h2, .MobileCSS h3 { " +
-			"font-size: 110%; font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-weight: 200; } " +
-			".MobileCSS img { width: 100% !important; } " +
-			".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }</style>"
+	open var customCss: String? {
+		didSet {
+			if let css = customCss {
+				injectedCss = webView?.loadCss(file: css)
+			}
+		}
 	}
 }

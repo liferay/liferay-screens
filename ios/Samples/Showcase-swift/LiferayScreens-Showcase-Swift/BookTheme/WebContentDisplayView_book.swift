@@ -50,4 +50,6 @@ open class WebContentDisplayView_book: BaseScreenletView, WebContentDisplayViewM
 			authorLabel.text = recordContent?["author"]?.description
 		}
 	}
+
+	open var customCss: String?
 }
