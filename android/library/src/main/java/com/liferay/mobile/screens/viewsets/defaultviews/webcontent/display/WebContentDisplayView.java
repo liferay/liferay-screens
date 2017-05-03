@@ -83,10 +83,7 @@ public class WebContentDisplayView extends FrameLayout implements WebContentDisp
 
 			LiferayLogger.i("article loaded: " + webContent);
 
-			String customCss = getCustomCssStyle();
-
-			String styledHtml = (customCss != null ? customCss : "")
-				+ "<div class=\"MobileCSS\">" + webContent.getHtml() + "</div>";
+			String styledHtml = customCSs + "<div class=\"MobileCSS\">" + webContent.getHtml() + "</div>";
 
 			//TODO check encoding
 			webView.loadDataWithBaseURL(LiferayServerContext.getServer(), styledHtml, "text/html", "utf-8", null);
@@ -181,17 +178,5 @@ public class WebContentDisplayView extends FrameLayout implements WebContentDisp
 				}
 			}
 		};
-	}
-
-	public String getCustomCssStyle() {
-		return "<style>"
-			+ ".MobileCSS {padding: 4%; width: 92%;} "
-			+ ".MobileCSS, .MobileCSS span, .MobileCSS p, .MobileCSS h1, "
-			+ ".MobileCSS h2, .MobileCSS h3{ "
-			+ "font-size: 110%; font-weight: 200;"
-			+ "font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;} "
-			+ ".MobileCSS img { width: 100% !important; } "
-			+ ".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }"
-			+ "</style>";
 	}
 }

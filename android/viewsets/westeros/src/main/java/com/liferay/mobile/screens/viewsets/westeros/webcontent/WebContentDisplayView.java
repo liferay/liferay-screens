@@ -29,16 +29,6 @@ import com.liferay.mobile.screens.webcontent.WebContent;
 public class WebContentDisplayView
 	extends com.liferay.mobile.screens.viewsets.defaultviews.webcontent.display.WebContentDisplayView {
 
-	private static final String STYLES = "<style>"
-		+ ".MobileCSS { margin: 0 auto; width:92%; color: white;} "
-		+ ".MobileCSS, .MobileCSS span, .MobileCSS p, .MobileCSS h1, "
-		+ ".MobileCSS h2, .MobileCSS h3{ "
-		+ "font-size: 110%; font-weight: 200;"
-		+ "font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;} "
-		+ ".MobileCSS img { width: 100% !important; } "
-		+ ".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }"
-		+ "</style>";
-
 	public WebContentDisplayView(Context context) {
 		super(context);
 	}
@@ -61,7 +51,7 @@ public class WebContentDisplayView
 
 			LiferayLogger.i("article loaded: " + webContent);
 
-			String styledHtml = STYLES + "<div class=\"MobileCSS\">" + webContent.getHtml() + "</div>";
+			String styledHtml = customCss + "<div class=\"MobileCSS\">" + webContent.getHtml() + "</div>";
 
 			//TODO check encoding
 			webView.loadDataWithBaseURL(LiferayServerContext.getServer(), styledHtml, "text/html", "utf-8", null);
