@@ -75,7 +75,7 @@ open class WebContentDisplayScreenlet: BaseScreenlet {
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
 	// Custom css file to customize the WebContent
-	@IBInspectable open var customCss: String = "default"
+	@IBInspectable open var customCssFile: String = "default"
 
 
 	//MARK: Public properties
@@ -112,7 +112,7 @@ open class WebContentDisplayScreenlet: BaseScreenlet {
 				let modifiedHtml = self.webContentDisplayDelegate?.screenlet?(self,
 					onWebContentResponse: resultHtml)
 
-				self.webContentDisplayViewModel?.customCss = self.customCss
+				self.webContentDisplayViewModel?.customCssFile = self.customCssFile
 				self.webContentDisplayViewModel?.htmlContent = modifiedHtml ?? resultHtml
 			}
 			else if let resultRecord = interactor.resultRecord {

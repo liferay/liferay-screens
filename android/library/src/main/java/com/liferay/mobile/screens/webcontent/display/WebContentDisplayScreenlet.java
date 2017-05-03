@@ -48,7 +48,7 @@ public class WebContentDisplayScreenlet
 	private String labelFields;
 	private WebContentDisplayListener listener;
 	public WebView.HitTestResult result;
-	private int cssFile = R.raw.webcontent_default;
+	private int customCssFile = R.raw.webcontent_default;
 
 	public WebContentDisplayScreenlet(Context context) {
 		super(context);
@@ -105,7 +105,7 @@ public class WebContentDisplayScreenlet
 			}
 		}
 
-		String css = AssetReader.read(getContext(), cssFile);
+		String css = AssetReader.read(getContext(), customCssFile);
 		getViewModel().showFinishOperation(modifiedHtml, css != null ? css : "");
 
 		return modifiedHtml;
@@ -163,8 +163,8 @@ public class WebContentDisplayScreenlet
 		this.structureId = structureId;
 	}
 
-	public void setCss(int cssFile) {
-		this.cssFile = cssFile;
+	public void setCustomCssFile(int customCssFile) {
+		this.customCssFile = customCssFile;
 	}
 
 	/**

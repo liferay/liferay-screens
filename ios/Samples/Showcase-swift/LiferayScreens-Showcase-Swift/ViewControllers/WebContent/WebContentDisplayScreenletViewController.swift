@@ -25,7 +25,7 @@ class WebContentDisplayScreenletViewController: UIViewController, WebContentDisp
 			screenlet.delegate = self
 			screenlet.articleId = self.articleId ??
 				LiferayServerContext.stringPropertyForKey("webContentDisplayArticleId")
-			screenlet.customCss = "custom"
+			screenlet.customCssFile = "custom"
 		}
 	}
 	

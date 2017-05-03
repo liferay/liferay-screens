@@ -79,9 +79,9 @@ open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayVi
 
 	open var recordContent: DDLRecord?
 
-	open var customCss: String? {
+	open var customCssFile: String? {
 		didSet {
-			if let css = customCss {
+			if let css = customCssFile {
 				injectedCss = webView?.loadCss(file: css)
 			}
 		}

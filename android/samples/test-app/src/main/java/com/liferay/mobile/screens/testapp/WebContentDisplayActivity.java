@@ -40,7 +40,7 @@ public class WebContentDisplayActivity extends ThemeActivity implements WebConte
 			screenlet.setArticleId(getIntent().getStringExtra("articleId"));
 		}
 
-		screenlet.setCss(R.raw.custom);
+		screenlet.setCustomCssFile(R.raw.custom);
 		screenlet.load();
 	}
 

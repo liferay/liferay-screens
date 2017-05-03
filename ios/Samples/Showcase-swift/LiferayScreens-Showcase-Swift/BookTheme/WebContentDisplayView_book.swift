@@ -51,5 +51,5 @@ open class WebContentDisplayView_book: BaseScreenletView, WebContentDisplayViewM
 		}
 	}
 
-	open var customCss: String?
+	open var customCssFile: String?
 }
