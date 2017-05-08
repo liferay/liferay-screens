@@ -25,6 +25,7 @@ public class PortletDisplayActivity extends ThemeActivity implements PortletDisp
 		}
 
 		screenlet.setJs(R.raw.gallery);
+		screenlet.setCss(R.raw.publisherlist);
 		screenlet.load();
 	}
 
