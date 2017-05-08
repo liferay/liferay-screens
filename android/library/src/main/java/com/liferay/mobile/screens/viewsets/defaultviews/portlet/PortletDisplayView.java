@@ -57,19 +57,19 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 	}
 
 	@Override
-	public void showFinishOperation(String url, final String injectedJs) {
+	public void showFinishOperation(String url, final String injectedJs, final String injectedCss) {
 		if (webView != null) {
 			webView.getSettings().setJavaScriptEnabled(true);
 			webView.addJavascriptInterface(new PortletDisplayInterface(getContext()), "android");
+
 			webView.loadUrl(url);
 
 			webView.setWebViewClient(new WebViewClient() {
-
 				@Override
 				public void onPageFinished(WebView view, String url) {
 					view.setVisibility(VISIBLE);
 					progressBar.setVisibility(GONE);
-					webView.loadUrl("javascript:" + injectedJs);
+					webView.loadUrl("javascript:" + injectedJs + " document.getElementsByTagName('html')[0].innerHTML += '<style>" + injectedCss + "</style>';");
 				}
 			});
 		}
