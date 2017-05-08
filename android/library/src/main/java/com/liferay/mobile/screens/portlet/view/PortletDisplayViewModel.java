@@ -27,5 +27,5 @@ public interface PortletDisplayViewModel extends BaseViewModel {
 	 * @param url portlet url.
 	 * @param injectedJs custom Javascript to use in the portlet.
 	 */
-	void showFinishOperation(String url, String injectedJs);
+	void showFinishOperation(String url, String injectedJs, String injectedCss);
 }
