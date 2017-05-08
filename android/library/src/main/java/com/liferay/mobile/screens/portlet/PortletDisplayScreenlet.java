@@ -41,6 +41,7 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	private String url;
 	private PortletDisplayListener listener;
 	private int jsFile;
+	private int cssFile;
 
 	public PortletDisplayScreenlet(Context context) {
 		super(context);
@@ -68,7 +69,8 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 		HttpUrl portletUrl = HttpUrl.parse(url);
 		if (portletUrl != null) {
 			String js = readFromAssets(jsFile);
-			getViewModel().showFinishOperation(portletUrl.toString(), js != null ? js : "");
+			String css = readFromAssets(cssFile);
+			getViewModel().showFinishOperation(portletUrl.toString(), js != null ? js : "", css != null ? css : "");
 		} else {
 			getViewModel().showFailedOperation(DEFAULT_ACTION, new MalformedURLException());
 		}
@@ -162,6 +164,10 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 
 	public void setJs(int jsFile) {
 		this.jsFile = jsFile;
+	}
+
+	public void setCss(int cssFile) {
+		this.cssFile = cssFile;
 	}
 
 	private String readFromAssets(int filename) {
