@@ -99,7 +99,7 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 	public func load(withJsFile jsFile: String) {
 		guard let url = portletUrl, url != "" else {
 			self.portletDisplayDelegate?.screenlet?(self, onPortletError: NSError.errorWithCause(
-				.invalidServerResponse, message: "Could not portlet content."))
+				.invalidServerResponse, message: "Could not load portlet content."))
 			return
 		}
 
