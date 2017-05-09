@@ -73,6 +73,14 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		}
 	}
 
+	public var injectedCssFile: String? {
+		didSet {
+			if let css = self.injectedCssFile {
+				wkWebView?.loadCss(file: css)
+			}
+		}
+	}
+
 	public var scriptHandler: String? {
 		didSet {
 			if let script = scriptHandler {
