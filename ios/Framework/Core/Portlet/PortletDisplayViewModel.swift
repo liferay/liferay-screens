@@ -22,6 +22,9 @@ import UIKit
 	// Injected JS to be used by the screenlet.
 	var injectedJsFile: String? { get set }
 
-	/// Script handler that will take messages from WKWebView
+	// Injected CSS to be used by the screenlet.
+	var injectedCssFile: String? { get set }
+
+	/// Script handler that will take messages from WKWebView.
 	var scriptHandler: String? { get set }
 }
