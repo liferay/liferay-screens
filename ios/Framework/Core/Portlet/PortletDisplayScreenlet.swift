@@ -58,6 +58,7 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 	/// The portlet URL to be displayed.
 	@IBInspectable open var portletUrl: String?
 
+	// Script handler that will take messages from WKWebView.
 	@IBInspectable open var scriptHandler: String?
 
 
@@ -109,5 +110,36 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 
 		self.portletDisplayDelegate?.screenlet?(self,
 			onPortletUrlResponse: "URL: \(url) and JS: \(jsFile).js")
+	}
+
+	/// Call this method to load the portlet with a custom css file.
+	public func load(withCssFile cssFile: String) {
+		guard let url = portletUrl, url != "" else {
+			self.portletDisplayDelegate?.screenlet?(self, onPortletError: NSError.errorWithCause(
+				.invalidServerResponse, message: "Could not load portlet content."))
+			return
+		}
+
+		portletDisplayViewModel?.portletUrl = URL(string: url)
+		portletDisplayViewModel?.injectedCssFile = cssFile
+
+		self.portletDisplayDelegate?.screenlet?(self,
+			onPortletUrlResponse: "URL: \(url) and CSS: \(cssFile).css")
+	}
+
+	/// Call this method to load the portlet with a custom Javascript file and a custom css file.
+	public func load(withJsFile jsFile: String, withCssFile cssFile: String) {
+		guard let url = portletUrl, url != "" else {
+			self.portletDisplayDelegate?.screenlet?(self, onPortletError: NSError.errorWithCause(
+				.invalidServerResponse, message: "Could not portlet content."))
+			return
+		}
+
+		portletDisplayViewModel?.portletUrl = URL(string: url)
+		portletDisplayViewModel?.injectedJsFile = jsFile
+		portletDisplayViewModel?.injectedCssFile = cssFile
+
+		self.portletDisplayDelegate?.screenlet?(self,
+			onPortletUrlResponse: "URL: \(url), JS: \(jsFile).js and CSS: \(cssFile).css")
 	}
 }
