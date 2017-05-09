@@ -63,11 +63,12 @@ extension WKWebView {
 			return try! String(contentsOfFile: path, encoding: String.Encoding.utf8)
 		}
 
-		let cssScript = "var html = document.getElementsByTagName(\"head\")[0];"
-			+ "head.innerHTML += \"<style>\(css ?? "")</style>\";"
+		let cssScript = "var style = document.createElement('style');"
+				+ "style.innerHTML = '\(css ?? "")';"
+				+ "document.head.appendChild(style);"
 
-		configuration.userContentController.addUserScript(WKUserScript(source: cssScript,
-				injectionTime: .atDocumentEnd, forMainFrameOnly: false))
+		configuration.userContentController.addUserScript(
+			WKUserScript(source: cssScript, injectionTime: .atDocumentEnd, forMainFrameOnly: false))
 	}
 }
 
