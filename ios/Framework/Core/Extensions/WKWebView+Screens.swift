@@ -42,12 +42,16 @@ extension WKWebView {
 	}
 
 	public func loadJs(file: String) {
-		//TODO Search js in all bundles
-		let path = Bundle.main.path(forResource: file, ofType: "js")
-		let js = try! String(contentsOfFile: path!)
 
-		configuration.userContentController.addUserScript(
-			WKUserScript(source: js, injectionTime: .atDocumentEnd, forMainFrameOnly: false))
+		let jsContent = Bundle.resourceInBundle(name: file, ofType: "js", currentClass: type(of:self)) {
+			(path, _) -> String? in
+
+			return try! String(contentsOfFile: path, encoding: String.Encoding.utf8)
+		}
+
+		if let js = jsContent {
+			configuration.userContentController.addUserScript(
+				WKUserScript(source: js, injectionTime: .atDocumentEnd, forMainFrameOnly: false))
 	}
 }
 
