@@ -52,6 +52,22 @@ extension WKWebView {
 		if let js = jsContent {
 			configuration.userContentController.addUserScript(
 				WKUserScript(source: js, injectionTime: .atDocumentEnd, forMainFrameOnly: false))
+		}
+	}
+
+	public func loadCss(file: String) {
+
+		let css = Bundle.resourceInBundle(name: file, ofType: "css", currentClass: type(of:self)) {
+			(path, _) -> String? in
+
+			return try! String(contentsOfFile: path, encoding: String.Encoding.utf8)
+		}
+
+		let cssScript = "var html = document.getElementsByTagName(\"head\")[0];"
+			+ "head.innerHTML += \"<style>\(css ?? "")</style>\";"
+
+		configuration.userContentController.addUserScript(WKUserScript(source: cssScript,
+				injectionTime: .atDocumentEnd, forMainFrameOnly: false))
 	}
 }
 
