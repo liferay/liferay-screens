@@ -21,7 +21,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 	//MARK: Public properties
 
-	open var webView: WKWebView?
+	open var wkWebView: WKWebView?
 
 
 	//MARK: BaseScreenletView
@@ -40,11 +40,11 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 	override open func onCreated() {
 		super.onCreated()
 
-		webView = WKWebView(frame: self.frame)
+		wkWebView = WKWebView(frame: self.frame)
 
-		webView?.injectCookies()
-		webView?.injectViewportMetaTag()
-		webView?.uiDelegate = self
+		wkWebView?.injectCookies()
+		wkWebView?.injectViewportMetaTag()
+		wkWebView?.uiDelegate = self
 
 		addWebView()
 	}
@@ -59,7 +59,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 	open var portletUrl: URL? {
 		didSet {
 			if let url = portletUrl {
-				webView?.load(URLRequest(url: url))
+				wkWebView?.load(URLRequest(url: url))
 			}
 		}
 	}
@@ -68,7 +68,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 	public var injectedJsFile: String? {
 		didSet {
 			if let js = injectedJsFile {
-				webView?.loadJs(file: js)
+				wkWebView?.loadJs(file: js)
 			}
 		}
 	}
@@ -76,7 +76,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 	public var scriptHandler: String? {
 		didSet {
 			if let script = scriptHandler {
-				webView?.configuration.userContentController.add(self, name: script)
+				wkWebView?.configuration.userContentController.add(self, name: script)
 			}
 		}
 	}
@@ -101,17 +101,17 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 	//MARK: Public methods
 
 	open func addWebView() {
-		webView?.translatesAutoresizingMaskIntoConstraints = false
+		wkWebView?.translatesAutoresizingMaskIntoConstraints = false
 
-		addSubview(webView!)
+		addSubview(wkWebView!)
 
-		let top = NSLayoutConstraint(item: webView!, attribute: .top, relatedBy: .equal,
+		let top = NSLayoutConstraint(item: wkWebView!, attribute: .top, relatedBy: .equal,
 		                             toItem: self, attribute: .top, multiplier: 1, constant: 0)
-		let bottom = NSLayoutConstraint(item: webView!, attribute: .bottom, relatedBy: .equal,
+		let bottom = NSLayoutConstraint(item: wkWebView!, attribute: .bottom, relatedBy: .equal,
 		                                toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
-		let leading = NSLayoutConstraint(item: webView!, attribute: .leading, relatedBy: .equal,
+		let leading = NSLayoutConstraint(item: wkWebView!, attribute: .leading, relatedBy: .equal,
 		                                 toItem: self, attribute: .leading, multiplier: 1, constant: 0)
-		let trailing = NSLayoutConstraint(item: webView!, attribute: .trailing, relatedBy: .equal,
+		let trailing = NSLayoutConstraint(item: wkWebView!, attribute: .trailing, relatedBy: .equal,
 		                                  toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
 
 		NSLayoutConstraint.activate([top, bottom, leading, trailing])
