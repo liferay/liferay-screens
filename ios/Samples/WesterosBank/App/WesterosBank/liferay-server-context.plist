@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>version</key>
-	<string>62</string>
+	<string>70</string>
 	<key>companyId</key>
-	<real>20155</real>
+	<integer>20116</integer>
 	<key>server</key>
-	<string>https://demo.liferay.com/screens</string>
+	<string>http://screens-demo.liferay.org.es</string>
 	<key>groupId</key>
-	<real>20525</real>
+	<integer>20147</integer>
 	<key>anonymousUsername</key>
 	<string>anonymous@liferay.com</string>
 	<key>anonymousPassword</key>
