@@ -60,7 +60,6 @@ public class VideoDisplayView extends BaseFileDisplayView {
 		progressBar.setVisibility(VISIBLE);
 		videoView.setVideoPath(url);
 		videoView.setMediaController(new MediaController(getContext()));
-		videoView.setZOrderOnTop(true);
 		videoView.requestFocus();
 		videoView.start();
 	}
