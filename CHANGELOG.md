@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 
 ### New Features
 * Create loadLoggedUserPortrait method in UserPortraitScreenlet
+* Expose Video events in the VideoDisplayScreenlet 
 
 ## iOS
 
