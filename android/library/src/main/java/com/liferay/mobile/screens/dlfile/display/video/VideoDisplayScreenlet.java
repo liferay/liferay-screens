@@ -16,7 +16,9 @@ package com.liferay.mobile.screens.dlfile.display.video;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import com.liferay.mobile.screens.asset.display.AssetDisplayListener;
 import com.liferay.mobile.screens.dlfile.display.BaseFileDisplayScreenlet;
+import com.liferay.mobile.screens.viewsets.defaultviews.dlfile.display.VideoDisplayView;
 
 /**
  * @author Sarai Díaz García
@@ -37,5 +39,9 @@ public class VideoDisplayScreenlet extends BaseFileDisplayScreenlet {
 
 	public VideoDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
+	}
+
+	public VideoDisplayScreenletListener getListener() {
+		return ((VideoDisplayScreenletListener) listener);
 	}
 }
