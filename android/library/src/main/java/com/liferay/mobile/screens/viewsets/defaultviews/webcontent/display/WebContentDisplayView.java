@@ -149,17 +149,16 @@ public class WebContentDisplayView extends FrameLayout
 			}
 			webView.setWebViewClient(getWebViewClientWithCustomHeader());
 			webView.setOnTouchListener(this);
-			webView.setWebViewClient(new WebViewClient() {
-				@Override
-				public boolean shouldOverrideUrlLoading(WebView view, String url) {
-					return ((WebContentDisplayScreenlet) getScreenlet()).onUrlClicked(url);
-				}
-			});
 		}
 	}
 
 	public WebViewClient getWebViewClientWithCustomHeader() {
 		return new WebViewClient() {
+
+			@Override
+			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+				return ((WebContentDisplayScreenlet) getScreenlet()).onUrlClicked(url);
+			}
 
 			@Override
 			public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
