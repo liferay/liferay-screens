@@ -24,10 +24,8 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.portlet.view.PortletDisplayViewModel;
+import com.liferay.mobile.screens.util.AssetReader;
 import com.squareup.okhttp.HttpUrl;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 
 /**
@@ -68,8 +66,9 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 
 		HttpUrl portletUrl = HttpUrl.parse(url);
 		if (portletUrl != null) {
-			String js = readFromAssets(jsFile);
-			String css = readFromAssets(cssFile);
+			String js = AssetReader.read(getContext(), jsFile);
+			String css = AssetReader.read(getContext(), cssFile);
+
 			getViewModel().showFinishOperation(portletUrl.toString(), js != null ? js : "", css != null ? css : "");
 		} else {
 			getViewModel().showFailedOperation(DEFAULT_ACTION, new MalformedURLException());
@@ -168,26 +167,5 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 
 	public void setCss(int cssFile) {
 		this.cssFile = cssFile;
-	}
-
-	private String readFromAssets(int filename) {
-		try {
-			InputStream in = getContext().getResources().openRawResource(filename);
-			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-			StringBuilder sb = new StringBuilder();
-			String mLine = reader.readLine();
-
-			while (mLine != null) {
-				sb.append(mLine);
-				mLine = reader.readLine();
-			}
-
-			reader.close();
-
-			return sb.toString();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 }
