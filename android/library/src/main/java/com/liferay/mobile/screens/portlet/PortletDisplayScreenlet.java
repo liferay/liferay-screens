@@ -40,6 +40,7 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	private PortletDisplayListener listener;
 	private int jsFile;
 	private int cssFile;
+	private boolean hasBiggerPagination;
 
 	public PortletDisplayScreenlet(Context context) {
 		super(context);
@@ -70,6 +71,8 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 			String css = AssetReader.read(getContext(), cssFile);
 
 			getViewModel().showFinishOperation(portletUrl.toString(), js != null ? js : "", css != null ? css : "");
+			getViewModel().setBiggerPagination(hasBiggerPagination);
+
 		} else {
 			getViewModel().showFailedOperation(DEFAULT_ACTION, new MalformedURLException());
 		}
@@ -100,6 +103,8 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 		autoLoad = typedArray.getBoolean(R.styleable.PortletDisplayScreenlet_autoLoad, true);
 
 		url = typedArray.getString(R.styleable.PortletDisplayScreenlet_url);
+
+		hasBiggerPagination = typedArray.getBoolean(R.styleable.PortletDisplayScreenlet_biggerPagination, true);
 
 		int layoutId = typedArray.getResourceId(R.styleable.PortletDisplayScreenlet_layoutId, getDefaultLayoutId());
 

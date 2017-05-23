@@ -13,6 +13,7 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.portlet.view.PortletDisplayViewModel;
+import com.liferay.mobile.screens.util.AssetReader;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.DetailImageActivity;
 
@@ -25,6 +26,7 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 	private BaseScreenlet screenlet;
 	private WebView webView;
 	private ProgressBar progressBar;
+	private boolean biggerPagination;
 
 	public PortletDisplayView(Context context) {
 		super(context);
@@ -69,7 +71,14 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 				public void onPageFinished(WebView view, String url) {
 					view.setVisibility(VISIBLE);
 					progressBar.setVisibility(GONE);
-					webView.loadUrl("javascript:document.getElementsByTagName('html')[0].innerHTML += '<style>" + injectedCss + "</style>';" + injectedJs);
+
+					String biggerPaginationStyle = "";
+
+					if (biggerPagination) {
+						biggerPaginationStyle = AssetReader.read(getContext(), R.raw.bigger_pagination);
+					}
+
+					webView.loadUrl("javascript:document.getElementsByTagName('html')[0].innerHTML += '<style>" + injectedCss + "</style>';" + biggerPaginationStyle + injectedJs);
 				}
 			});
 		}
@@ -85,6 +94,11 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 		}
 
 		LiferayLogger.e("Error with portlet", e);
+	}
+
+	@Override
+	public void setBiggerPagination(boolean biggerPagination) {
+		this.biggerPagination = biggerPagination;
 	}
 
 	@Override

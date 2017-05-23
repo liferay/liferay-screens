@@ -28,4 +28,11 @@ public interface PortletDisplayViewModel extends BaseViewModel {
 	 * @param injectedJs custom Javascript to use in the portlet.
 	 */
 	void showFinishOperation(String url, String injectedJs, String injectedCss);
+
+	/**
+	 * Call if the portlet has pagination and we want to increase its size.
+	 *
+	 * @param biggerPagination true if we want to increase, false otherwise.
+	 */
+	void setBiggerPagination(boolean biggerPagination);
 }
