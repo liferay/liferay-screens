@@ -105,8 +105,8 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 		}
 
 		portletDisplayViewModel?.scriptHandler = self.scriptHandler
-		portletDisplayViewModel?.portletUrl = URL(string: url)
 		portletDisplayViewModel?.injectedJsFile = jsFile
+		portletDisplayViewModel?.portletUrl = URL(string: url)
 
 		self.portletDisplayDelegate?.screenlet?(self,
 			onPortletUrlResponse: "URL: \(url) and JS: \(jsFile).js")
@@ -119,9 +119,8 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 				.invalidServerResponse, message: "Could not load portlet content."))
 			return
 		}
-
-		portletDisplayViewModel?.portletUrl = URL(string: url)
 		portletDisplayViewModel?.injectedCssFile = cssFile
+		portletDisplayViewModel?.portletUrl = URL(string: url)
 
 		self.portletDisplayDelegate?.screenlet?(self,
 			onPortletUrlResponse: "URL: \(url) and CSS: \(cssFile).css")
@@ -135,9 +134,9 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 			return
 		}
 
-		portletDisplayViewModel?.portletUrl = URL(string: url)
 		portletDisplayViewModel?.injectedJsFile = jsFile
 		portletDisplayViewModel?.injectedCssFile = cssFile
+		portletDisplayViewModel?.portletUrl = URL(string: url)
 
 		self.portletDisplayDelegate?.screenlet?(self,
 			onPortletUrlResponse: "URL: \(url), JS: \(jsFile).js and CSS: \(cssFile).css")
