@@ -64,8 +64,10 @@ extension WKWebView {
 		}
 
 		let cssScript = "var style = document.createElement('style');"
-				+ "style.innerHTML = '\(css ?? "")';"
-				+ "document.head.appendChild(style);"
+			+ "style.type = 'text/css';"
+			+ "style.innerHTML = '\(css?.replacingOccurrences(of: "\n", with: "") ?? "")';"
+			+ "var head = document.getElementsByTagName('head')[0];"
+			+ "head.appendChild(style);"
 
 		configuration.userContentController.addUserScript(
 			WKUserScript(source: cssScript, injectionTime: .atDocumentEnd, forMainFrameOnly: false))
