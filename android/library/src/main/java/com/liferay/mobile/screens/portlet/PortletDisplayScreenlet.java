@@ -67,10 +67,20 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 
 		HttpUrl portletUrl = HttpUrl.parse(url);
 		if (portletUrl != null) {
-			String js = AssetReader.read(getContext(), jsFile);
-			String css = AssetReader.read(getContext(), cssFile);
 
-			getViewModel().showFinishOperation(portletUrl.toString(), js != null ? js : "", css != null ? css : "");
+			String pureJs = AssetReader.read(getContext(), jsFile);
+			String js = "";
+			if (pureJs != null) {
+				js = pureJs.replace("\t", "").replace("\n", "");
+			}
+
+			String pureCss = AssetReader.read(getContext(), cssFile);
+			String css = "";
+			if (pureCss != null) {
+				css = pureCss.replace("\t", "").replace("\n", "");
+			}
+
+			getViewModel().showFinishOperation(portletUrl.toString(), js , css);
 			getViewModel().setBiggerPagination(hasBiggerPagination);
 
 		} else {
