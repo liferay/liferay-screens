@@ -78,7 +78,9 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 						biggerPaginationStyle = AssetReader.read(getContext(), R.raw.bigger_pagination);
 					}
 
-					webView.loadUrl("javascript:document.getElementsByTagName('html')[0].innerHTML += '<style>" + injectedCss + "</style>';" + biggerPaginationStyle + injectedJs);
+					//TODO check if it's mandatory to load css first and then js
+					webView.loadUrl("javascript:document.getElementsByTagName('html')[0].innerHTML += '<style>" +
+						injectedCss + "</style>';" + biggerPaginationStyle + injectedJs);
 				}
 			});
 		}
