@@ -18,6 +18,7 @@ import com.liferay.mobile.screens.portlet.view.PortletDisplayViewModel;
 import com.liferay.mobile.screens.util.AssetReader;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.DetailImageActivity;
+import java.util.List;
 
 /**
  * @author Sarai Díaz García

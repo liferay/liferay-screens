@@ -48,6 +48,12 @@ public class DetailImageActivity extends AppCompatActivity implements SwipeListe
 				imgSrcPosition = intent.getIntExtra("imgSrcPosition", -1);
 				String imgSrc = allImgSrc[imgSrcPosition];
 				Picasso.with(getApplicationContext()).load(imgSrc).into(detailedImageView);
+				Toast.makeText(DetailImageActivity.this, imgSrc, Toast.LENGTH_SHORT).show();
+				}
+
+				imgSrcPosition = intent.getIntExtra("imgSrcPosition", -1);
+				String imgSrc = allImgSrc[imgSrcPosition];
+				Picasso.with(getApplicationContext()).load(imgSrc).into(detailedImageView);
 			}
 		}
 
@@ -62,6 +68,9 @@ public class DetailImageActivity extends AppCompatActivity implements SwipeListe
 	}
 
 	@Override
+	public void onSwipeRight() {
+		Picasso.with(getApplicationContext()).load(allImgSrc[imgSrcPosition - 1]).into(detailedImageView);
+		imgSrcPosition--;
 	public void onSwipeRight() {
 		Picasso.with(getApplicationContext()).load(allImgSrc[imgSrcPosition - 1]).into(detailedImageView);
 		imgSrcPosition--;
