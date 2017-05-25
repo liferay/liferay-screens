@@ -1,10 +1,13 @@
 var cards = document.getElementsByClassName('card');
+var allImgSrc = [];
 
 for (let i = 0; i < cards.length; i++) {
+    allImgSrc[i] = cards[i].querySelector('img').src;
+
 	cards[i].addEventListener('click', function(event) {
-		let card = cards[i];
-		let imgSrc = card.querySelector('img').src;
 		event.stopPropagation();
-		android.showItem(imgSrc);
+
+		android.setAllImgSrc(allImgSrc);
+		android.showItem(i);
 	})
-}
+};

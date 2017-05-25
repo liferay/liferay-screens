@@ -16,6 +16,7 @@ import com.liferay.mobile.screens.portlet.view.PortletDisplayViewModel;
 import com.liferay.mobile.screens.util.AssetReader;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.DetailImageActivity;
+import java.util.List;
 
 /**
  * @author Sarai Díaz García
@@ -121,15 +122,22 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 
 	public class PortletDisplayInterface {
 		Context context;
+		String[] allImgSrc;
 
 		PortletDisplayInterface(Context c) {
 			context = c;
 		}
 
 		@JavascriptInterface
-		public void showItem(final String src) {
+		public void setAllImgSrc(String[] allImgSrc) {
+			this.allImgSrc = allImgSrc;
+		}
+
+		@JavascriptInterface
+		public void showItem(final int srcPosition) {
 			Intent intent = new Intent(getContext(), DetailImageActivity.class);
-			intent.putExtra(DetailImageActivity.GALLERY_SCREENLET_IMAGE_DETAILED_URL, src);
+			intent.putExtra("imgSrcPosition", srcPosition);
+			intent.putExtra("allImgSrc", allImgSrc);
 			Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
 			activity.startActivity(intent);
 		}
