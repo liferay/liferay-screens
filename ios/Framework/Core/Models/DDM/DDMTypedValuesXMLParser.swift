@@ -68,7 +68,7 @@ open class DDMTypedValuesXMLParser {
 			}
 		}
 
-		if createdFields.count > 0 {
+		if !createdFields.isEmpty {
 			createdStructure = DDMStructure(
 				fields: createdFields,
 				locale: locale,

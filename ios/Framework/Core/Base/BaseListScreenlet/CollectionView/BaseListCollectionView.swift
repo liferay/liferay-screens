@@ -337,11 +337,11 @@ open class BaseListCollectionView: BaseListView, UICollectionViewDataSource, UIC
 	}
 
 	internal func updateVisibleRows(_ visibleRows: [IndexPath]) {
-		if visibleRows.count > 0 {
-			collectionView!.reloadItems(at: visibleRows)
+		if visibleRows.isEmpty {
+			collectionView!.reloadData()
 		}
 		else {
-			collectionView!.reloadData()
+			collectionView!.reloadItems(at: visibleRows)
 		}
 	}
 

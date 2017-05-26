@@ -53,7 +53,7 @@ public class Liferay70AssetLoadByPortletItemNameConnector: AssetLoadByPortletIte
 					portletItemName: portletItemName!, locale: NSLocale.currentLocaleString,
 			max: 1) as? [[String: AnyObject]]
 
-			guard let assets = result, assets.isEmpty > 0, let asset = assets[0] as? [String: AnyObject] else {
+			guard let assets = result, !assets.isEmpty, let asset = assets[0] as? [String: AnyObject] else {
 				lastError = NSError.errorWithCause(.invalidServerResponse,
 				                                   message: "There was an error retrieving the asset.")
 				return

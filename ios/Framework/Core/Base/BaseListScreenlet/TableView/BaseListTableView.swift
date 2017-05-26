@@ -266,11 +266,11 @@ open class BaseListTableView: BaseListView, UITableViewDataSource, UITableViewDe
 	}
 
 	internal func updateVisibleRows(_ visibleRows: [IndexPath]) {
-		if visibleRows.count > 0 {
-			tableView!.reloadRows(at: visibleRows, with:.none)
+		if visibleRows.isEmpty {
+			tableView!.reloadData()
 		}
 		else {
-			tableView!.reloadData()
+			tableView!.reloadRows(at: visibleRows, with:.none)
 		}
 	}
 

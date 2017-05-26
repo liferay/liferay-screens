@@ -48,7 +48,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 
 					let attrs = result as! [String:AnyObject]
 
-					XCTAssertTrue(attrs.count > 0)
+					XCTAssertTrue(!attrs.isEmpty)
 					XCTAssertNotNil(attrs["emailAddress"])
 					XCTAssertEqual("test@liferay.com", attrs["emailAddress"] as? String)
 				}

@@ -152,7 +152,7 @@ open class DDMFieldStringWithOptions: DDMField {
 	override internal func doValidate() -> Bool {
 		let current = (currentValue as! [Option]?) ?? []
 
-		return !(required && current.count == 0)
+		return !(required && current.isEmpty)
 	}
 
 	override internal func onChangedCurrentValue() {

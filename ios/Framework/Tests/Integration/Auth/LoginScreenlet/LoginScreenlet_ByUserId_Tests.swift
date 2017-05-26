@@ -45,7 +45,7 @@ class LoginScreenlet_ByUserId_Tests: BaseLoginScreenletTestCase {
 
 					let attrs = result as! [String:AnyObject]
 
-					XCTAssertTrue(attrs.count > 0)
+					XCTAssertTrue(!attrs.isEmpty)
 					XCTAssertNotNil(attrs["userId"])
 					XCTAssertTrue(attrs["userId"] is Int)
 					XCTAssertEqual(123456, attrs["userId"] as? Int)

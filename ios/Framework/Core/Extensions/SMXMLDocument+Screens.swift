@@ -30,7 +30,7 @@ public extension SMXMLElement {
 		guard let children = self.children as? [SMXMLElement] else {
 			return nil
 		}
-		guard children.count > 0 else {
+		guard !children.isEmpty else {
 			return nil
 		}
 
@@ -54,7 +54,7 @@ public extension SMXMLDocument {
 		guard let children = self.children as? [SMXMLElement] else {
 			return nil
 		}
-		guard children.count > 0 else {
+		guard !children.isEmpty else {
 			return nil
 		}
 

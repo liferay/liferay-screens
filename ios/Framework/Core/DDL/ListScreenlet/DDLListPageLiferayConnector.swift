@@ -38,7 +38,7 @@ open class DDLListPageLiferayConnector: PaginationLiferayConnector {
 				return ValidationError("ddllist-screenlet", "undefined-recordset")
 			}
 
-			if viewModel.labelFields.count == 0 {
+			if viewModel.labelFields.isEmpty {
 				return ValidationError("ddllist-screenlet", "undefined-fields")
 			}
 		}

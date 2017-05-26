@@ -95,10 +95,10 @@ public typealias OfflineSynchronizer = (String, [String:AnyObject]) -> (@escapin
 	}
 
 	open func startSync() {
-		cacheManager.countPendingToSync { count in
-			self.delegate?.syncManager?(self, itemsCount: count)
+		cacheManager.countPendingToSync { totalCount in
+			self.delegate?.syncManager?(self, itemsCount: totalCount)
 
-			if count > 0 {
+			if totalCount > 0 {
 				self.cacheManager.pendingToSync({ (screenlet, key, attributes) -> Bool in
 					self.delegate?.syncManager?(self,
 						onItemSyncScreenlet: screenlet,

@@ -510,7 +510,7 @@ open class DDLFormScreenlet: BaseScreenlet {
 		}
 
 		if let failedUploads = failedDocumentFields {
-			if failedUploads.count > 0 {
+			if !failedUploads.isEmpty {
 				showHUDWithMessage(LocalizedString("ddlform-screenlet", key: "uploading-retry", obj: self),
 					forInteractor: interactor)
 

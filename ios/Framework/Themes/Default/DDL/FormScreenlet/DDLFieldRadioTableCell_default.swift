@@ -140,7 +140,7 @@ open class DDLFieldRadioTableCell_default: DDMFieldTableCell {
 		data.rectangleColor = radioColor
 		data.rectangleHeight = radioButtonWidth
 		data.rectangleWidth = radioButtonWidth
-		data.selected = (field.currentValue as! [DDMFieldStringWithOptions.Option]).filter {
+		data.selected = !(field.currentValue as! [DDMFieldStringWithOptions.Option]).filter {
 				if $0.name != nil {
 					return $0.name == option.name
 				}
@@ -148,7 +148,7 @@ open class DDLFieldRadioTableCell_default: DDMFieldTableCell {
 					return $0.label == option.label
 				}
 			}
-			.count > 0
+			.isEmpty
 
 		return data
 	}

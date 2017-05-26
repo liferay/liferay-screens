@@ -45,7 +45,7 @@ class LoginScreenlet_ByScreenName_Tests: BaseLoginScreenletTestCase {
 
 					let attrs = result as! [String:AnyObject]
 
-					XCTAssertTrue(attrs.count > 0)
+					XCTAssertTrue(!attrs.isEmpty)
 					XCTAssertNotNil(attrs["screenName"])
 					XCTAssertEqual("test", attrs["screenName"] as? String)
 				}

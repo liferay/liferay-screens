@@ -184,7 +184,7 @@ extension Bundle {
 
 			let objects = bundle.loadNibNamed(nibName, owner: currentClass, options: nil)
 
-			assert(objects == nil || objects!.count > 0, "Malformed xib \(nibName). Without objects")
+			assert(objects == nil || !objects!.isEmpty, "Malformed xib \(nibName). Without objects")
 
 			return objects![0] as AnyObject?
 		}

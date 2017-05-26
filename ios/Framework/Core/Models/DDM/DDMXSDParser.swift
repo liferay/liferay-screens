@@ -147,7 +147,7 @@ open class DDMXSDParser {
 				options.append(option)
 			}
 
-			return options.count == 0 ? nil : options
+			return options.isEmpty ? nil : options
 		}
 
 		if let localizedMetadata = findMetadataElement(dynamicElement,

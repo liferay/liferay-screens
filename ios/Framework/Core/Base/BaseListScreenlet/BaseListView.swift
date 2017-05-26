@@ -110,7 +110,7 @@ open class BaseListView: BaseScreenletView {
 	// MARK: Internal methods
 
 	internal func hasMoreRows(_ newRows: [String : [AnyObject]]) -> Bool {
-		if newRows.count == 0 {
+		if newRows.isEmpty {
 			return false
 		}
 
