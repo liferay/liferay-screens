@@ -14,11 +14,9 @@
 import UIKit
 import LRMobileSDK
 
-
 open class ForgotPasswordUserIdLiferay62Connector: ForgotPasswordBaseLiferayConnector {
 
-
-	//MARK: ForgotPasswordBaseLiferayConnector
+	// MARK: ForgotPasswordBaseLiferayConnector
 
 	override open func sendForgotPasswordRequest(_ session: LRSession) throws -> Bool {
 
@@ -35,11 +33,9 @@ open class ForgotPasswordUserIdLiferay62Connector: ForgotPasswordBaseLiferayConn
 
 }
 
-
 open class ForgotPasswordUserIdLiferay70Connector: ForgotPasswordBaseLiferayConnector {
 
-
-	//MARK: ForgotPasswordBaseLiferayConnector
+	// MARK: ForgotPasswordBaseLiferayConnector
 
 	override open func sendForgotPasswordRequest(_ session: LRSession) throws -> Bool {
 
@@ -53,5 +49,5 @@ open class ForgotPasswordUserIdLiferay70Connector: ForgotPasswordBaseLiferayConn
 
 		return true
 	}
-	
+
 }
