@@ -11,14 +11,13 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+// swiftlint:disable file_length
 import UIKit
 import QuartzCore
-
 
 /// The BaseScreenletDelegate protocol defines one method that you use to manage the
 /// BaseScreenlet events. This method is optional.
 @objc public protocol BaseScreenletDelegate: NSObjectProtocol {
-
 
 	/// Called when we want to return a custom interactor (use case) with the given action name.
 	///
@@ -33,24 +32,20 @@ import QuartzCore
 
 }
 
-
 /// BaseScreenlet is the base class from which all Screenlet classes must inherit.
 /// A screenlet is the container for a screenlet view.
 @IBDesignable open class BaseScreenlet: UIView {
 
-
-	//MARK: Static properties
+	// MARK: Static properties
 
 	open static let DefaultAction = "defaultAction"
 	open static let DefaultThemeName = "default"
 
-
-	//MARK: IBOutlets
+	// MARK: IBOutlets
 
 	@IBOutlet open weak var delegate: BaseScreenletDelegate?
 
-
-	//MARK: Inspectables
+	// MARK: Inspectables
 
 	@IBInspectable open var themeName: String? {
 		set {
@@ -72,8 +67,7 @@ import QuartzCore
 		}
 	}
 
-
-	//MARK: Public properties
+	// MARK: Public properties
 
 	open weak var screenletView: BaseScreenletView?
 
@@ -83,14 +77,13 @@ import QuartzCore
 		}
 	}
 
-
-	//MARK: Internal properties
+	// MARK: Internal properties
 
 	internal var isRunningOnInterfaceBuilder: Bool {
 		return _runningOnInterfaceBuilder
 	}
 
-	//MARK: Private properties
+	// MARK: Private properties
 
 	fileprivate var _themeName = BaseScreenlet.DefaultThemeName
 
@@ -100,12 +93,11 @@ import QuartzCore
 
 	fileprivate var _previewLayer: CALayer?
 
-	fileprivate var _runningInteractors = [String:[Interactor]]()
+	fileprivate var _runningInteractors = [String: [Interactor]]()
 
 	fileprivate var _progressPresenter: ProgressPresenter?
-	
-	
-	//MARK: Initializers
+
+	// MARK: Initializers
 
 	/// Initializer for instantiate screenlets from code with its frame and theme name.
 	///
@@ -114,9 +106,9 @@ import QuartzCore
 	///   - themeName: Name of the theme to be used. If nil, default theme will be used.
 	public init(frame: CGRect, themeName: String?) {
 		super.init(frame: frame)
-		
+
 		clipsToBounds = true
-		
+
 		self.themeName = themeName
 	}
 
@@ -128,8 +120,7 @@ import QuartzCore
 		super.init(coder: aDecoder)
 	}
 
-
-	//MARK: UIView
+	// MARK: UIView
 
 	override open func awakeFromNib() {
 		super.awakeFromNib()
@@ -158,8 +149,7 @@ import QuartzCore
 		}
 	}
 
-
-	//MARK: Interface Builder management methods
+	// MARK: Interface Builder management methods
 
 	override open func prepareForInterfaceBuilder() {
 		_runningOnInterfaceBuilder = true
@@ -169,8 +159,7 @@ import QuartzCore
 		updateCurrentPreviewImage()
 	}
 
-
-	//MARK: Internal methods
+	// MARK: Internal methods
 
 	internal func loadScreenletView() {
 		let view = createScreenletViewFromNib()
@@ -183,19 +172,19 @@ import QuartzCore
 			viewValue.screenlet = self
 			viewValue.presentingViewController = self.presentingViewController
 			viewValue.themeName = _themeName
-			
+
 			if let oldView = self.screenletView {
 				oldView.removeFromSuperview()
 			}
 
 			self._progressPresenter = viewValue.createProgressPresenter()
 			self.screenletView = viewValue
-			
+
 			viewValue.translatesAutoresizingMaskIntoConstraints = false
 
 			addSubview(viewValue)
 			sendSubview(toBack: viewValue)
-			
+
 			//Pin all edges from Screenlet View to the Screenlet's edges
 			let top = NSLayoutConstraint(item: viewValue, attribute: .top, relatedBy: .equal,
 			                             toItem: self, attribute: .top, multiplier: 1, constant: 0)
@@ -205,9 +194,9 @@ import QuartzCore
 			                                 toItem: self, attribute: .leading, multiplier: 1, constant: 0)
 			let trailing = NSLayoutConstraint(item: viewValue, attribute: .trailing, relatedBy: .equal,
 			                                  toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
-			
+
 			NSLayoutConstraint.activate([top, bottom, leading, trailing])
-			
+
 			viewValue.layoutIfNeeded()
 		}
 		else {
@@ -220,7 +209,7 @@ import QuartzCore
 	///
 	/// - Parameter themeName: Screenlet theme.
 	/// - Returns: Preview image.
-	internal func previewImageForTheme(_ themeName:String) -> UIImage? {
+	internal func previewImageForTheme(_ themeName: String) -> UIImage? {
 		let bundles = Bundle.allBundles(type(of: self))
 
 		for b in bundles {
@@ -236,8 +225,7 @@ import QuartzCore
 		return nil
 	}
 
-
-	//MARK: Templated/event methods: intended to be overwritten by children classes
+	// MARK: Templated/event methods: intended to be overwritten by children classes
 
 	/// onCreated is invoked after the screenlet is created.
 	/// Override this method to set custom values for the screenlet properties.
@@ -300,7 +288,6 @@ import QuartzCore
 	open func performDefaultAction() -> Bool {
 		return performAction(name: BaseScreenlet.DefaultAction, sender: nil)
 	}
-
 
 	/// onAction is invoked when an interaction should be started.
 	///
@@ -385,8 +372,7 @@ import QuartzCore
 	open func onFinishInteraction(_ result: AnyObject?, error: NSError?) {
 	}
 
-
-	//MARK: HUD methods
+	// MARK: HUD methods
 
 	/// showHUDWithMessage shows a HUD with the given message for the given use case.
 	///
@@ -395,7 +381,7 @@ import QuartzCore
 	///   - interactor: Interaction (use case).
 	open func showHUDWithMessage(_ message: String?,
 			forInteractor interactor: Interactor) {
-		
+
 		_progressPresenter?.showHUDInView(rootView(self),
 			message: message,
 			forInteractor: interactor)
@@ -410,23 +396,21 @@ import QuartzCore
 	open func hideHUDWithMessage(_ message: String?,
 			forInteractor interactor: Interactor,
 			withError error: NSError?) {
-		
+
 		_progressPresenter?.hideHUDFromView(rootView(self),
 			message: message,
 			forInteractor: interactor,
 			withError: error)
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	/// refreshTranslations refreshes all translations of the screenlet view.
 	open func refreshTranslations() {
 		screenletView?.onSetTranslations()
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func createScreenletViewFromNib() -> BaseScreenletView? {
 
@@ -478,9 +462,9 @@ import QuartzCore
 		return appliedTheme
 	}
 
-	fileprivate func rootView(_ currentView:UIView) -> UIView {
+	fileprivate func rootView(_ currentView: UIView) -> UIView {
 		if currentView.superview == nil {
-			return currentView;
+			return currentView
 		}
 
 		return rootView(currentView.superview!)
