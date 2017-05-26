@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc public protocol CommentListViewModel {
 
 	/// Call this method to add a new asset comment.

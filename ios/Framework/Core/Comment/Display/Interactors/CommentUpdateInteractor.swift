@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 open class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 
 	let commentId: Int64
@@ -22,8 +21,7 @@ open class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 
 	open var resultComment: Comment?
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	init(screenlet: CommentDisplayScreenlet, body: String) {
 		self.commentId = screenlet.commentId
@@ -39,8 +37,7 @@ open class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 		super.init(screenlet: nil)
 	}
 
-
-	//MARK: ServerConnectorInteractor
+	// MARK: ServerConnectorInteractor
 
 	override open func createConnector() -> CommentUpdateLiferayConnector? {
 		return LiferayServerContext.connectorFactory.createCommentUpdateConnector(
@@ -55,7 +52,7 @@ open class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 		}
 	}
 
-	//MARK: Cache methods
+	// MARK: Cache methods
 
 	override open func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
@@ -75,13 +72,12 @@ open class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 			"" as NSCoding,
 			[
 				"commentId": NSNumber(value: updateCon.commentId),
-				"body": updateCon.body as AnyObject,
+				"body": updateCon.body as AnyObject
 			],
 			nil)
 	}
 
-
-	//MARK: Interactor
+	// MARK: Interactor
 
 	override open func callOnSuccess() {
 		if cacheStrategy == .cacheFirst {
@@ -91,11 +87,11 @@ open class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 				value: "" as NSCoding,
 				attributes: [
 					"commentId": NSNumber(value: commentId),
-					"body": body as AnyObject,
+					"body": body as AnyObject
 				],
 				onCompletion: nil)
 		}
-		
+
 		super.callOnSuccess()
 	}
 

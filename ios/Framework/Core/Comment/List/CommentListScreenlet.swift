@@ -13,10 +13,9 @@
  */
 import UIKit
 
-
 /// The CommentListScreenletDelegate protocol defines some methods that you use to manage the
 /// CommentListScreenlet events. All of them are optional.
-@objc public protocol CommentListScreenletDelegate : BaseScreenletDelegate {
+@objc public protocol CommentListScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when the screenlet receives the comments.
 	///
@@ -81,13 +80,11 @@ import UIKit
 
 }
 
-
 /// Comment List Screenlet can list all the comments of an asset in a Liferay instance. It also 
 // lets the user update or delete comments.
 open class CommentListScreenlet: BaseListScreenlet, CommentDisplayScreenletDelegate {
 
-
-	//MARK: Inspectables
+	// MARK: Inspectables
 
 	/// The asset’s fully qualified class name. For example, a blog entry’s className is 
 	/// com.liferay.blogs.kernel.model.BlogsEntry. The className and classPK attributes are 
@@ -108,8 +105,7 @@ open class CommentListScreenlet: BaseListScreenlet, CommentDisplayScreenletDeleg
 		}
 	}
 
-
-	//MARK: Public properties
+	// MARK: Public properties
 
 	open var viewModel: CommentListViewModel? {
 		return screenletView as? CommentListViewModel
@@ -119,8 +115,7 @@ open class CommentListScreenlet: BaseListScreenlet, CommentDisplayScreenletDeleg
 		return delegate as? CommentListScreenletDelegate
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	/// Call this method to add a new asset comment.
 	///
@@ -143,8 +138,7 @@ open class CommentListScreenlet: BaseListScreenlet, CommentDisplayScreenletDeleg
 		viewModel?.updateComment(comment)
 	}
 
-
-	//MARK: BaseListScreenlet
+	// MARK: BaseListScreenlet
 
 	override open func onCreated() {
 		super.onCreated()
@@ -184,8 +178,7 @@ open class CommentListScreenlet: BaseListScreenlet, CommentDisplayScreenletDeleg
 				onSelectedComment: row as! Comment)
 	}
 
-
-	//MARK: CommentDisplayScreenletDelegate
+	// MARK: CommentDisplayScreenletDelegate
 
 	open func screenlet(
 			_ screenlet: CommentDisplayScreenlet,
@@ -214,5 +207,5 @@ open class CommentListScreenlet: BaseListScreenlet, CommentDisplayScreenletDeleg
 			onError error: NSError) {
 		commentListDelegate?.screenlet?(self, onCommentUpdate: comment, onError: error)
 	}
-	
+
 }

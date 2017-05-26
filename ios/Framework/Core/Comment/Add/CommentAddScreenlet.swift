@@ -13,10 +13,9 @@
  */
 import UIKit
 
-
 /// The CommentAddScreenletDelegate protocol defines some methods that you use to manage the
 /// CommentAddScreenlet events. All of them are optional.
-@objc public protocol CommentAddScreenletDelegate : BaseScreenletDelegate {
+@objc public protocol CommentAddScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when the screenlet adds a comment.
 	///
@@ -54,12 +53,10 @@ import UIKit
 
 }
 
-
 /// Comment Add Screenlet can add a comment to an asset in a Liferay instance.
 open class CommentAddScreenlet: BaseScreenlet {
 
-
-	//MARK: Inspectables
+	// MARK: Inspectables
 
 	/// The asset’s fully qualified class name. For example, a blog entry’s className is 
 	/// com.liferay.blogs.kernel.model.BlogsEntry. The className and classPK attributes are 
@@ -73,8 +70,7 @@ open class CommentAddScreenlet: BaseScreenlet {
 	/// The offline mode setting. The default value is remote-first.
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
-
-	//MARK: Public properties
+	// MARK: Public properties
 
 	open var commentAddDelegate: CommentAddScreenletDelegate? {
 		return delegate as? CommentAddScreenletDelegate
@@ -92,8 +88,7 @@ open class CommentAddScreenlet: BaseScreenlet {
 		}
 	}
 
-
-	//MARK: BaseScreenlet
+	// MARK: BaseScreenlet
 
 	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
 		if comment != nil {
@@ -102,8 +97,7 @@ open class CommentAddScreenlet: BaseScreenlet {
 		return createAddCommentInteractor()
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func createAddCommentInteractor() -> Interactor {
 		let interactor = CommentAddInteractor(screenlet: self, body: self.viewModel.body)
@@ -124,7 +118,7 @@ open class CommentAddScreenlet: BaseScreenlet {
 		interactor.onFailure = {
 			self.commentAddDelegate?.screenlet?(self, onAddCommentError: $0)
 		}
-		
+
 		return interactor
 	}
 

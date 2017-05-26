@@ -13,15 +13,13 @@
  */
 import UIKit
 
-
 open class CommentListPageLoadInteractor: BaseListPageLoadInteractor {
 
 	let className: String
 
 	let classPK: Int64
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(
 			screenlet: BaseListScreenlet,
@@ -35,8 +33,7 @@ open class CommentListPageLoadInteractor: BaseListPageLoadInteractor {
 		super.init(screenlet: screenlet, page: page, computeRowCount: computeRowCount)
 	}
 
-
-	//MARK: BaseListPageLoadInteractor
+	// MARK: BaseListPageLoadInteractor
 
 	override open func createListPageConnector() -> PaginationLiferayConnector {
 		let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
