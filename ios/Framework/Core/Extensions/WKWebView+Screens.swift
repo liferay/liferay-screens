@@ -45,7 +45,7 @@ extension WKWebView {
 extension WKWebViewConfiguration {
 	public static var noCacheConfiguration: WKWebViewConfiguration {
 		let config = WKWebViewConfiguration()
-		
+
 		if #available(iOS 9.0, *) {
 			config.websiteDataStore = WKWebsiteDataStore.nonPersistent()
 		}

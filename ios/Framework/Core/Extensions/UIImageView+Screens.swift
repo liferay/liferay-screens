@@ -16,7 +16,6 @@ import Kingfisher
 
 private var lr_lastURLKey: Void?
 
-
 extension UIImageView {
 
 	public var lr_webURL: URL? {
@@ -33,8 +32,7 @@ extension UIImageView {
 			optionsInfo: KingfisherOptionsInfo? = nil) {
 
 		var optionsInfo = optionsInfo ?? []
-		optionsInfo.append(.requestModifier(AnyModifier(modify: {
-			request -> URLRequest? in
+		optionsInfo.append(.requestModifier(AnyModifier(modify: { request -> URLRequest? in
 			guard let auth = SessionContext.currentContext?.session.authentication,
 				auth is LRCookieAuthentication else {
 
@@ -47,7 +45,7 @@ extension UIImageView {
 			return mutableRequest as URLRequest
 		})))
 
-		switch(ImageCache.screensOfflinePolicy) {
+		switch ImageCache.screensOfflinePolicy {
 
 		case CacheStrategyType.remoteOnly.rawValue:
 			var optionsInfoFinal = optionsInfo ?? []
@@ -64,9 +62,9 @@ extension UIImageView {
 					URL,
 					placeholder: placeholderImage,
 					options: optionsInfoFinal,
-					completionHandler: { (image, error, cacheType, imageURL) in
+					completionHandler: { (_, error, _, _) in
 
-						if (error != nil) {
+						if error != nil {
 							var optionsInfo = optionsInfo ?? []
 							optionsInfo.append(.onlyFromCache)
 

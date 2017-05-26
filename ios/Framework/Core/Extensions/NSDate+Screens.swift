@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 extension Date {
 
 	public init(millisecondsSince1970 millis: Double) {
@@ -29,7 +28,7 @@ extension Date {
 		let components = self.dateComponents()
 
 		switch (components.year ?? -1, components.month ?? -1, components.day ?? -1,
-		        components.hour ?? -1, components.minute ?? -1 , components.second ?? -1) {
+		        components.hour ?? -1, components.minute ?? -1, components.second ?? -1) {
 		case (1, _, _, _, _, _):
 			return LocalizedString("default", key: "time-last-year", obj: self as AnyObject)
 		case let (y, _, _, _, _, _) where y > 1:

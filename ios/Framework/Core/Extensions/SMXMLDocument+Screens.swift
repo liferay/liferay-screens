@@ -42,9 +42,8 @@ public extension SMXMLElement {
 
 		return nil
 	}
-	
-}
 
+}
 
 public extension SMXMLDocument {
 
@@ -64,9 +63,8 @@ public extension SMXMLDocument {
 				return foundChild
 			}
 		}
-		
+
 		return nil
 	}
 
 }
-
