@@ -13,8 +13,7 @@
  */
 import Foundation
 
-
-open class DDMFieldString : DDMField {
+open class DDMFieldString: DDMField {
 
 	override internal func doValidate() -> Bool {
 		var result = super.doValidate()

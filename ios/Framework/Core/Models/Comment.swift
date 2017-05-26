@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 @objc open class Comment: NSObject, NSCoding {
 
 	open static func plainBodyToHtml(_ plainBody: String) -> String {
@@ -102,7 +101,7 @@ import Foundation
 		aCoder.encode(self.attributes, forKey:"comment-attrs")
 	}
 
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(attributes: [String:AnyObject]) {
 		self.attributes = attributes

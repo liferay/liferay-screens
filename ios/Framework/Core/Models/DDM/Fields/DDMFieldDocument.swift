@@ -13,8 +13,7 @@
  */
 import UIKit
 
-
-open class DDMFieldDocument : DDMField {
+open class DDMFieldDocument: DDMField {
 
 	public enum UploadStatus: Hashable, Equatable {
 		case uploaded([String:AnyObject])
@@ -38,7 +37,7 @@ open class DDMFieldDocument : DDMField {
 				return 1
 			case .failed(_):
 				return 2
-			case .uploading(_,_):
+			case .uploading(_, _):
 				return 3
 			case .pending:
 				return 4
@@ -46,7 +45,6 @@ open class DDMFieldDocument : DDMField {
 		}
 
 	}
-
 
 	open var uploadStatus = UploadStatus.pending
 
@@ -81,8 +79,7 @@ open class DDMFieldDocument : DDMField {
 		return nil
 	}
 
-
-	//MARK: DDMField
+	// MARK: DDMField
 
 	public override init(attributes: [String:AnyObject], locale: Locale) {
 		super.init(attributes: attributes, locale: locale)
@@ -130,9 +127,8 @@ open class DDMFieldDocument : DDMField {
 		}
 	}
 
-
 	override internal func convert(fromString value: String?) -> AnyObject? {
-		var result:AnyObject?
+		var result: AnyObject?
 
 		if let valueString = value {
 			let data = valueString.data(using: String.Encoding.utf8,
@@ -213,8 +209,7 @@ open class DDMFieldDocument : DDMField {
 		return result
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func getStream(_ size: inout Int64) -> InputStream? {
 		var result: InputStream?
@@ -242,10 +237,9 @@ open class DDMFieldDocument : DDMField {
 
 }
 
+// MARK: Equatable
 
-//MARK: Equatable
-
-public func ==(
+public func == (
 		left: DDMFieldDocument.UploadStatus,
 		right: DDMFieldDocument.UploadStatus)
 		-> Bool {

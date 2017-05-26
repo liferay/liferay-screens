@@ -13,14 +13,12 @@
  */
 import Foundation
 
-
 public typealias JSONObject = [String:AnyObject]
 public typealias JSONArray = [AnyObject]
 
-
 open class DDMJSONParser {
 
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func parse(_ json: String, locale: Locale) -> [DDMField]? {
 		guard let data = json.data(using: String.Encoding.utf8) else {
@@ -38,8 +36,7 @@ open class DDMJSONParser {
 		return processDocument(jsonObject, locale: locale)
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func processDocument(_ json: JSONObject, locale: Locale) -> [DDMField]? {
 		guard let fields = json["fields"] as? [JSONObject] else {

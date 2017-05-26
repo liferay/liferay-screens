@@ -13,15 +13,13 @@
  */
 import Foundation
 
+@objc open class Asset: NSObject, NSCoding, MimeTypeable {
 
-@objc open class Asset : NSObject, NSCoding, MimeTypeable {
-
-	open let attributes :[String:AnyObject]
+	open let attributes: [String:AnyObject]
 
 	open let title: String
 
-
-	//MARK: MimeTypeable
+	// MARK: MimeTypeable
 
 	open var mimeType: String? {
 		return attributes["mimeType"]?.description
@@ -69,7 +67,7 @@ import Foundation
 		return attributes.debugDescription
 	}
 
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(attributes: [String:AnyObject]) {
 		self.attributes = attributes
@@ -89,11 +87,10 @@ import Foundation
 		super.init()
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func encode(with aCoder: NSCoder) {
 		aCoder.encode(attributes, forKey: "asset-attrs")
 	}
-	
+
 }

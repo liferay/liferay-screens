@@ -17,13 +17,12 @@ import Foundation
 	import SMXMLDocument
 #endif
 
-
 open class DDMTypedValuesXMLParser {
 
 	open var createdStructure: DDMStructure?
 
-	//MARK: Public methods
-	
+	// MARK: Public methods
+
 	open func parse(_ xml: String, structure: DDMStructure?) -> Int {
 		let data = xml.data(using: .utf8)
 
@@ -37,8 +36,7 @@ open class DDMTypedValuesXMLParser {
 		   structure: structure)
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func processDocument(_ document: SMXMLDocument, locale: Locale, structure: DDMStructure?) -> Int {
 		var count = 0
@@ -92,7 +90,6 @@ open class DDMTypedValuesXMLParser {
 			locale: locale,
 			version: LiferayServerContext.serverVersion)
 	}
-
 
 	fileprivate func getFieldValue(_ xmlElement: SMXMLElement,
 			locale: Locale,
@@ -175,7 +172,7 @@ open class DDMTypedValuesXMLParser {
 		return resultElement
 	}
 
-	fileprivate func childrenWithAttribute(_ attribute:String, value:String, parent:SMXMLElement) ->
+	fileprivate func childrenWithAttribute(_ attribute: String, value: String, parent: SMXMLElement) ->
 			[SMXMLElement] {
 
 		var result: [SMXMLElement] = []
@@ -191,7 +188,7 @@ open class DDMTypedValuesXMLParser {
 		return result
 	}
 
-	fileprivate func findElementWithAttribute(_ attribute:String, value:String, elements:[SMXMLElement])
+	fileprivate func findElementWithAttribute(_ attribute: String, value: String, elements: [SMXMLElement])
 			-> SMXMLElement? {
 		return elements.filter {
 			let attrValue = $0.attributeNamed(attribute)
