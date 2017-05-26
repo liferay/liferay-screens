@@ -13,11 +13,9 @@
  */
 import UIKit
 
-
 /// The DDLListScreenletDelegate protocol defines some methods that you use to manage the
 /// DDLListScreenlet events. All of them are optional.
-@objc public protocol DDLListScreenletDelegate : BaseScreenletDelegate {
-
+@objc public protocol DDLListScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when a page of contents is received. Note that this method may be called 
 	/// more than once; one call for each page received.
@@ -28,7 +26,6 @@ import UIKit
 	@objc optional func screenlet(_ screenlet: DDLListScreenlet,
 			onDDLListResponseRecords records: [DDLRecord])
 
-
 	/// Called when an error occurs in the process. 
 	/// The NSError object describes the error.
 	///
@@ -37,7 +34,6 @@ import UIKit
 	///   - error: Error in DDL list.
 	@objc optional func screenlet(_ screenlet: DDLListScreenlet,
 			onDDLListError error: NSError)
-
 
 	/// Called when an item in the list is selected.
 	///
@@ -56,8 +52,7 @@ import UIKit
 /// * Supports i18n in record values.
 open class DDLListScreenlet: BaseListScreenlet {
 
-
-	//MARK: Inspectables
+	// MARK: Inspectables
 
 	/// The ID of the user to filter records on. Records aren’t filtered if the userId is 0. 
 	/// The default value is 0.
@@ -76,8 +71,7 @@ open class DDLListScreenlet: BaseListScreenlet {
 	/// The offline mode setting. The default value is remote-first.
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
-
-	//MARK: Public properties
+	// MARK: Public properties
 
 	open var ddlListDelegate: DDLListScreenletDelegate? {
 		return delegate as? DDLListScreenletDelegate
@@ -87,8 +81,7 @@ open class DDLListScreenlet: BaseListScreenlet {
 		return screenletView as! DDLListViewModel
 	}
 
-
-	//MARK: BaseListScreenlet
+	// MARK: BaseListScreenlet
 
 	override open func onCreated() {
 		super.onCreated()
@@ -131,18 +124,17 @@ open class DDLListScreenlet: BaseListScreenlet {
 				onDDLSelectedRecord: row as! DDLRecord)
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func parseFields(_ fields: String?) -> [String] {
 		var result: [String] = []
 
 		if let fieldsValue = fields {
 			let dirtyFields = (fieldsValue as NSString).components(separatedBy: ",")
-			result = dirtyFields.map() {
+			result = dirtyFields.map {
 				$0.trimmingCharacters(in: .whitespaces)
 			}
-			result = result.filter() { return $0 != "" }
+			result = result.filter { return $0 != "" }
 		}
 
 		return result

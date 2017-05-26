@@ -13,10 +13,9 @@
  */
 import UIKit
 
-
 /// The DDLFormScreenletDelegate protocol defines some methods that you use to manage the
 /// DDLFormScreenlet events. All of them are optional.
-@objc public protocol DDLFormScreenletDelegate : BaseScreenletDelegate {
+@objc public protocol DDLFormScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when the form is loaded. The second parameter (record) 
 	/// contains only field definitions.
@@ -116,7 +115,6 @@ import UIKit
 
 }
 
-
 /// DDLFormScreenlet can be used to show a collection of fields so that a user can fill in their
 /// values. Initial or existing values may be shown in the fields.
 /// DDLFormScreenlet also supports the following features:
@@ -133,16 +131,14 @@ open class DDLFormScreenlet: BaseScreenlet {
 		case failed(NSError)
 	}
 
-
-	//MARK: Class properties
+	// MARK: Class properties
 
 	open class var LoadFormAction: String { return "load-form" }
 	open class var LoadRecordAction: String { return "load-record" }
 	open class var SubmitFormAction: String { return "submit-form" }
 	open class var UploadDocumentAction: String { return "upload-document" }
 
-
-	//MARK: Inspectables
+	// MARK: Inspectables
 
 	/// Specifies the identifier of a data definition for your site in Liferay.
 	@IBInspectable open var structureId: Int64 = 0
@@ -195,8 +191,7 @@ open class DDLFormScreenlet: BaseScreenlet {
 	/// Specifies the ddl form offline policy. The default is remote first.
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
-
-	//MARK: Public properties
+	// MARK: Public properties
 
 	open var ddlFormDelegate: DDLFormScreenletDelegate? {
 		return delegate as? DDLFormScreenletDelegate
@@ -210,20 +205,17 @@ open class DDLFormScreenlet: BaseScreenlet {
 		return !((screenletView as? DDLFormView)?.isRecordEmpty ?? true)
 	}
 
-
-	//MARK: Internal properties
+	// MARK: Internal properties
 
 	internal var formView: DDLFormView {
 		return screenletView as! DDLFormView
 	}
 
-
-	//MARK: Private properties
+	// MARK: Private properties
 
 	fileprivate var uploadStatus = UploadStatus.idle
 
-
-	//MARK: BaseScreenlet
+	// MARK: BaseScreenlet
 
 	override open func onCreated() {
 		formView.showSubmitButton = showSubmitButton
@@ -281,8 +273,7 @@ open class DDLFormScreenlet: BaseScreenlet {
 		return result
 	}
 
-
-	//MARK: Internal methods
+	// MARK: Internal methods
 
 	internal func createLoadFormInteractor() -> DDLFormLoadFormInteractor {
 		let interactor = DDLFormLoadFormInteractor(screenlet: self)
@@ -449,8 +440,7 @@ open class DDLFormScreenlet: BaseScreenlet {
 		return interactor
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	/// Performs LoadFormAction.
 	@discardableResult
@@ -476,8 +466,7 @@ open class DDLFormScreenlet: BaseScreenlet {
 		return performAction(name: DDLFormScreenlet.SubmitFormAction)
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func waitForInProgressUpload(_ interactor: Interactor) -> Bool {
 		switch uploadStatus {
@@ -509,7 +498,7 @@ open class DDLFormScreenlet: BaseScreenlet {
 	}
 
 	fileprivate func retryUploads(_ interactor: Interactor) {
-		let failedDocumentFields = formView.record?.fields.filter() {
+		let failedDocumentFields = formView.record?.fields.filter {
 			if let fieldUploadStatus = ($0 as? DDMFieldDocument)?.uploadStatus {
 				switch fieldUploadStatus {
 					case .failed(_): return true

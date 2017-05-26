@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 
 	let groupId: Int64
@@ -30,8 +29,7 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 
 	fileprivate var lastCacheKeyUsed: String?
 
-
-	//MARK: Class functions
+	// MARK: Class functions
 
 	class func cacheKey(_ recordId: Int64?) -> String {
 		if let recordId = recordId {
@@ -42,8 +40,7 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 		}
 	}
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	init(screenlet: BaseScreenlet?, record: DDLRecord) {
 		let formScreenlet = screenlet as! DDLFormScreenlet
@@ -76,8 +73,7 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 		super.init(screenlet: nil)
 	}
 
-
-	//MARK: ServerConnectorInteractor
+	// MARK: ServerConnectorInteractor
 
 	override func createConnector() -> DDLFormSubmitLiferayConnector {
 
@@ -115,8 +111,7 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 		}
 	}
 
-
-	//MARK: Cache methods
+	// MARK: Cache methods
 
 	override func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
@@ -140,8 +135,7 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 			nil)
 	}
 
-
-	//MARK: Interactor
+	// MARK: Interactor
 
 	override func callOnSuccess() {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
@@ -180,8 +174,7 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 		super.callOnSuccess()
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func cacheAttributes() -> [String:AnyObject] {
 		let attrs = ["record": record]
