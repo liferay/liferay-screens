@@ -13,7 +13,6 @@
  */
 import XCTest
 
-
 class DDLRecord_FieldValues_Tests: XCTestCase {
 
 	override func setUp() {
@@ -21,9 +20,9 @@ class DDLRecord_FieldValues_Tests: XCTestCase {
 	}
 
 	func test_ModelValues_ShouldBe_Read() {
-		let values = ["field1":"value1", "field2":"value2"]
+		let values = ["field1": "value1", "field2": "value2"]
 
-		let record = DDLRecord(dataAndAttributes: ["modelValues":values as AnyObject])
+		let record = DDLRecord(dataAndAttributes: ["modelValues": values as AnyObject])
 
 		XCTAssertEqual(2, record.fields.count)
 
@@ -35,13 +34,13 @@ class DDLRecord_FieldValues_Tests: XCTestCase {
 	}
 
 	func test_ModelValues_ShouldBe_Updated() {
-		let values = ["field1":"value1", "field2":"value2"]
+		let values = ["field1": "value1", "field2": "value2"]
 
-		let record = DDLRecord(dataAndAttributes: ["modelValues":values as AnyObject])
+		let record = DDLRecord(dataAndAttributes: ["modelValues": values as AnyObject])
 
 		record.updateCurrentValues(values: [
-			"field1":"new_value1" as AnyObject,  // update this field
-			"new_field3":"value3" as AnyObject])	// ignore this field
+			"field1": "new_value1" as AnyObject,  // update this field
+			"new_field3": "value3" as AnyObject])	// ignore this field
 
 		XCTAssertEqual(2, record.fields.count)
 
@@ -56,9 +55,9 @@ class DDLRecord_FieldValues_Tests: XCTestCase {
 	}
 
 	func test_ModelAttributes_ShouldBe_Read() {
-		let attributes = ["attr1":"attrvalue1"]
+		let attributes = ["attr1": "attrvalue1"]
 
-		let record = DDLRecord(dataAndAttributes: ["modelAttributes":attributes as AnyObject])
+		let record = DDLRecord(dataAndAttributes: ["modelAttributes": attributes as AnyObject])
 
 		XCTAssertEqual(1, record.attributes.count)
 		XCTAssertEqual("attrvalue1", record.attributes["attr1"] as? String)
@@ -67,13 +66,13 @@ class DDLRecord_FieldValues_Tests: XCTestCase {
 	func test_RecordId_ShouldBe_Read() {
 		let attributes = ["recordId": 123]
 
-		let record = DDLRecord(dataAndAttributes: ["modelAttributes":attributes as AnyObject])
+		let record = DDLRecord(dataAndAttributes: ["modelAttributes": attributes as AnyObject])
 
 		XCTAssertEqual(Int64(123), record.recordId!)
 	}
 
 	func test_fieldByName_Should_FindTheField() {
-		let record = DDLRecord(dataAndAttributes: ["modelValues":["field1":"value1", "field2":"value2"] as AnyObject])
+		let record = DDLRecord(dataAndAttributes: ["modelValues": ["field1": "value1", "field2": "value2"] as AnyObject])
 
 		let field = record.fieldBy(name: "field1")
 
@@ -84,7 +83,7 @@ class DDLRecord_FieldValues_Tests: XCTestCase {
 	}
 
 	func test_fieldByName_Should_FindTheField_WhenCaseInsensitive() {
-		let record = DDLRecord(dataAndAttributes: ["modelValues":["field1":"value1", "field2":"value2"] as AnyObject])
+		let record = DDLRecord(dataAndAttributes: ["modelValues": ["field1": "value1", "field2": "value2"] as AnyObject])
 
 		let field = record.fieldBy(name: "FIELD1")
 
@@ -95,7 +94,7 @@ class DDLRecord_FieldValues_Tests: XCTestCase {
 	}
 
 	func test_fieldByName_Should_FindReturnNil_WhenFieldDoesNotExist() {
-		let record = DDLRecord(dataAndAttributes: ["modelValues":["field1":"value1", "field2":"value2"] as AnyObject])
+		let record = DDLRecord(dataAndAttributes: ["modelValues": ["field1": "value1", "field2": "value2"] as AnyObject])
 
 		let field = record.fieldBy(name: "field33")
 

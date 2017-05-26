@@ -13,13 +13,11 @@
  */
 import XCTest
 
-
 class DDMXSDParser_i18n_Tests: XCTestCase {
 
 	fileprivate let spanishLocale = Locale(identifier: "es_ES")
 
-
-	//MARK: Checking full perfect match
+	// MARK: Checking full perfect match
 
 	func test_ParseElement_ShouldFindFullMatch_WhenExistingCompleteLocaleIsProvided() {
 		let fields = DDMXSDParser().parse(booleanFieldWithTranslationsXSD, locale: spanishLocale)
@@ -35,7 +33,7 @@ class DDMXSDParser_i18n_Tests: XCTestCase {
 		XCTAssertEqual("Primera etiqueta en 'es_ES'", stringField.options[0].label)
 	}
 
-	//MARK: Checking locale match providing language and country locales
+	// MARK: Checking locale match providing language and country locales
 
 	func test_ParseElement_ShouldFindNeutralLanguageMatch_WhenNoExistingCompleteLocaleIsProvided() {
 		let fields = DDMXSDParser().parse(booleanFieldWithTranslationsXSD, locale: Locale(identifier: "es_MX"))
@@ -71,8 +69,7 @@ class DDMXSDParser_i18n_Tests: XCTestCase {
 		XCTAssertEqual("Primera etiqueta en 'es_ES'", stringField.options[0].label)
 	}
 
-
-	//MARK: Checking locale match providing neutral language locale
+	// MARK: Checking locale match providing neutral language locale
 
 	func test_ParseElement_ShouldFindNeutralLanguageMatch_WhenExistingNeutralLanguageIsProvided() {
 		let fields = DDMXSDParser().parse(booleanFieldWithTranslationsXSD, locale: Locale(identifier: "es"))
@@ -115,8 +112,6 @@ class DDMXSDParser_i18n_Tests: XCTestCase {
 
 		XCTAssertEqual("First label in 'en_US'", stringField.options[0].label)
 	}
-
-
 
 	fileprivate let booleanFieldWithTranslationsXSD =
 		"<root available-locales=\"es_ES, es_AR, es, en_US, en_AU\" default-locale=\"es_ES\"> " +

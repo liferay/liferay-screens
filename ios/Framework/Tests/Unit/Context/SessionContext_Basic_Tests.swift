@@ -13,7 +13,6 @@
  */
 import XCTest
 
-
 class SessionContext_Basic_Tests: XCTestCase {
 
 	override func tearDown() {
@@ -40,7 +39,7 @@ class SessionContext_Basic_Tests: XCTestCase {
 		SessionContext.loginWithBasic(
 				username: "username",
 				password: "password",
-				userAttributes: ["key":"value" as AnyObject])
+				userAttributes: ["key": "value" as AnyObject])
 
 		XCTAssertEqual("value", (SessionContext.currentContext?.user.attributes["key"] as? String ?? ""))
 	}
@@ -95,7 +94,7 @@ class SessionContext_Basic_Tests: XCTestCase {
 		SessionContext.loginWithBasic(
 				username: "username",
 				password: "password",
-				userAttributes: ["k":"v" as AnyObject])
+				userAttributes: ["k": "v" as AnyObject])
 
 		SessionContext.logout()
 

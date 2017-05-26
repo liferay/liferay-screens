@@ -13,10 +13,9 @@
  */
 import XCTest
 
-
-@objc class TestLoginScreenletDelegate : NSObject, LoginScreenletDelegate {
-	var onCompleted: ((AnyObject) -> ())?
-	var onCredentialsStored: (() -> ())?
+@objc class TestLoginScreenletDelegate: NSObject, LoginScreenletDelegate {
+	var onCompleted: ((AnyObject) -> Void)?
+	var onCredentialsStored: (() -> Void)?
 
 	var credentialsSavedCalled = false
 	var credentialsLoadedCalled = false
