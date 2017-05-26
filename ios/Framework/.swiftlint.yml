@@ -1,0 +1,29 @@
+disabled_rules:
+  - force_cast
+  - force_try
+  - identifier_name
+  - vertical_parameter_alignment
+  - function_body_length
+  - todo
+  - type_body_length
+  - function_parameter_count
+  - type_name
+
+included:
+  - Core/
+  - Themes/
+  - Tests/
+
+statement_position:
+  statement_mode: uncuddled_else
+
+type_name:
+  max_length: 50
+
+large_tuple:
+  warning: 4
+  error: 5
+
+file_length:
+  warning: 600
+
