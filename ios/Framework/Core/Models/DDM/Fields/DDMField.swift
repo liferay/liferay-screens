@@ -104,7 +104,7 @@ import Foundation
 			dataType = editorType.defaultDataType
 		}
 
-		predefinedValue = attributes["predefinedValue"] ?? nil
+		predefinedValue = attributes["predefinedValue"]
 		if let predefinedValueStr = predefinedValue as? String {
 			predefinedValue = convert(fromString: predefinedValueStr)
 		}

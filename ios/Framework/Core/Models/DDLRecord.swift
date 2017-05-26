@@ -104,7 +104,7 @@ import Foundation
 	public init(dataAndAttributes: [String:AnyObject]) {
 		structure = nil
 
-		if let recordFields = (dataAndAttributes["modelValues"] ?? nil) as? [String:AnyObject] {
+		if let recordFields = dataAndAttributes["modelValues"] as? [String:AnyObject] {
 			let parsedFields = DDLUntypedValuesParser().parse(recordFields)
 		 	if parsedFields.isEmpty {
 				untypedValues = nil
@@ -117,7 +117,7 @@ import Foundation
 			untypedValues = nil
 		}
 
-		if let recordAttributes = (dataAndAttributes["modelAttributes"] ?? nil) as? [String:AnyObject] {
+		if let recordAttributes = dataAndAttributes["modelAttributes"] as? [String:AnyObject] {
 			attributes = recordAttributes
 		}
 
