@@ -13,15 +13,13 @@
  */
 import UIKit
 
-
-open class WebContentListPageLoadInteractor : BaseListPageLoadInteractor {
+open class WebContentListPageLoadInteractor: BaseListPageLoadInteractor {
 
 	fileprivate let groupId: Int64
 
 	fileprivate let folderId: Int64
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	init(screenlet: BaseListScreenlet,
 			page: Int,
@@ -35,8 +33,7 @@ open class WebContentListPageLoadInteractor : BaseListPageLoadInteractor {
 		super.init(screenlet: screenlet, page: page, computeRowCount: computeRowCount)
 	}
 
-
-	//MARK: BaseListPageLoadInteractor
+	// MARK: BaseListPageLoadInteractor
 
 	open override func createListPageConnector() -> PaginationLiferayConnector {
 		let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage

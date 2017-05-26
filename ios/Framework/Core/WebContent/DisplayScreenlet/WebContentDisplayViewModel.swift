@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc public protocol WebContentDisplayViewModel {
 
 	/// WebContent html to be displayed.
