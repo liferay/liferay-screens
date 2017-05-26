@@ -13,24 +13,20 @@
  */
 import UIKit
 
-
 open class DDLFieldNumberTableCell_default: DDLBaseFieldTextboxTableCell_default {
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet open var stepper: UIStepper?
 
+	// MARK: Actions
 
-	//MARK: Actions
-	
 	@IBAction fileprivate func stepperChanged(_ sender: AnyObject) {
 		field!.currentValue = NSDecimalNumber(value: stepper!.value as Double)
 		textField?.text = field!.currentValueAsString
 	}
 
-
-	//MARK: DDLBaseFieldTextboxTableCell
+	// MARK: DDLBaseFieldTextboxTableCell
 
 	override open func awakeFromNib() {
 		super.awakeFromNib()
@@ -70,8 +66,7 @@ open class DDLFieldNumberTableCell_default: DDLBaseFieldTextboxTableCell_default
 				replacementString: string)
 	}
 
-
-	//MARK: UITextFieldDelegate
+	// MARK: UITextFieldDelegate
 
 	open func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		return nextCellResponder(textField)

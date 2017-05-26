@@ -13,8 +13,7 @@
  */
 import UIKit
 
-
-open class SlideShowLayout : UICollectionViewFlowLayout {
+open class SlideShowLayout: UICollectionViewFlowLayout {
 
 	let DistanceBetweenCenters = CGFloat(250)
 	let ZoomFactor = CGFloat(0.3)
@@ -39,7 +38,7 @@ open class SlideShowLayout : UICollectionViewFlowLayout {
 
 	open override func layoutAttributesForElements(
 			in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-			
+
 		guard let attributesArray = super.layoutAttributesForElements(in: rect)
 		else {
 			return []
@@ -107,7 +106,7 @@ open class SlideShowLayout : UICollectionViewFlowLayout {
 		itemSize = CGSize(width: 200, height: 200)
 		scrollDirection = .horizontal
 		minimumLineSpacing = 50
-		minimumInteritemSpacing = 1000;
+		minimumInteritemSpacing = 1000
 	}
 
 	internal func setAttributes(attributes: UICollectionViewLayoutAttributes, visibleRect: CGRect) {

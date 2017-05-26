@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 open class CommentListView_default: BaseListTableView, CommentListViewModel {
 
 	let CommentCellId = "commentCell"
@@ -22,8 +21,7 @@ open class CommentListView_default: BaseListTableView, CommentListViewModel {
 		return screenlet as! CommentListScreenlet
 	}
 
-
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
 	override open func onShow() {
 		super.onShow()
@@ -34,8 +32,7 @@ open class CommentListView_default: BaseListTableView, CommentListViewModel {
 		return DefaultProgressPresenter()
 	}
 
-
-	//MARK: CommentListViewModel
+	// MARK: CommentListViewModel
 
 	open func addComment(_ comment: Comment) {
 		addRow(BaseListView.DefaultSection, element: comment)
@@ -72,8 +69,7 @@ open class CommentListView_default: BaseListTableView, CommentListViewModel {
 		}
 	}
 
-
-	//MARK: BaseListTableView
+	// MARK: BaseListTableView
 
 	override open func doRegisterCellNibs() {
 		let nib = Bundle.nibInBundles(
@@ -100,7 +96,7 @@ open class CommentListView_default: BaseListTableView, CommentListViewModel {
 		return CommentCellId
 	}
 
-	override open func doFillLoadedCell(row: Int, cell: UITableViewCell, object:AnyObject) {
+	override open func doFillLoadedCell(row: Int, cell: UITableViewCell, object: AnyObject) {
 		if let comment = object as? Comment, let commentCell = cell as? CommentTableViewCell_default {
 			commentCell.commentDisplayScreenlet?.comment = comment
 			cell.accessoryType = .none
@@ -120,16 +116,14 @@ open class CommentListView_default: BaseListTableView, CommentListViewModel {
 		}
 	}
 
-
-	//MARK: BaseListView
+	// MARK: BaseListView
 
 	open override func onClearRows(_ oldRows: [String : [AnyObject?]]) {
 		super.onClearRows(oldRows)
 		self.tableView?.tableFooterView = UIView()
 	}
 
-
-	//MARK: UITableViewDelegate
+	// MARK: UITableViewDelegate
 
 	open func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath)
 			-> CGFloat {
@@ -150,7 +144,7 @@ open class CommentListView_default: BaseListTableView, CommentListViewModel {
 	open func tableView(_ tableView: UITableView,
 			editActionsForRowAtIndexPath indexPath: IndexPath) -> [AnyObject]? {
 		let editRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.default,
-				title: "Edit", handler:{action, indexPath in
+				title: "Edit", handler: {_, indexPath in
 			let cell = tableView.cellForRow(at: indexPath) as? CommentTableViewCell_default
 			cell?.commentDisplayScreenlet?.editComment()
 			tableView.setEditing(false, animated: true)
@@ -158,13 +152,13 @@ open class CommentListView_default: BaseListTableView, CommentListViewModel {
 		editRowAction.backgroundColor = UIColor(red: 0, green: 0.7216, blue: 0.8784, alpha: 1.0)
 
 		let deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.default,
-				title: "Delete", handler:{action, indexPath in
+				title: "Delete", handler: {_, indexPath in
 			let cell = tableView.cellForRow(at: indexPath) as? CommentTableViewCell_default
 			cell?.commentDisplayScreenlet?.deleteComment()
 			tableView.setEditing(false, animated: true)
 		})
 		deleteRowAction.backgroundColor = UIColor(red: 0.7686, green: 0.2431, blue: 0, alpha: 1.0)
 
-		return [deleteRowAction, editRowAction];
+		return [deleteRowAction, editRowAction]
 	}
 }

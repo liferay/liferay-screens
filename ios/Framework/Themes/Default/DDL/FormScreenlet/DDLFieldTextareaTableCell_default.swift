@@ -13,11 +13,9 @@
  */
 import UIKit
 
-
 open class DDLFieldTextareaTableCell_default: DDMFieldTableCell, UITextViewDelegate {
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet open var textView: UITextView? {
 		didSet {
@@ -37,10 +35,9 @@ open class DDLFieldTextareaTableCell_default: DDMFieldTableCell, UITextViewDeleg
 	fileprivate var originalSeparatorY: CGFloat?
 	fileprivate var originalSeparatorDistance: CGFloat?
 
+	// MARK: DDMFieldTableCell
 
-	//MARK: DDMFieldTableCell
-
-	override open var canBecomeFirstResponder : Bool {
+	override open var canBecomeFirstResponder: Bool {
 		return textView!.canBecomeFirstResponder
 	}
 
@@ -101,11 +98,9 @@ open class DDLFieldTextareaTableCell_default: DDMFieldTableCell, UITextViewDeleg
 	override open func onPostValidation(_ valid: Bool) {
 		super.onPostValidation(valid)
 
-
 	}
 
-
-	//MARK: UITextViewDelegate
+	// MARK: UITextViewDelegate
 
 	open func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
 		let heightLabelOffset: CGFloat =

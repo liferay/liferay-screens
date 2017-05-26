@@ -18,63 +18,47 @@ import UIKit
 	import DTPickerPresenter
 #endif
 
-
 open class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableCell_default {
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet open var progress: MDRadialProgressView?
 
-
-	//MARK: Constants
+	// MARK: Constants
 
 	fileprivate let presenterViewController =
 		DDMFieldDocumentlibraryPresenterViewController_default()
 
 	fileprivate let completedColor = [
-			DDMFieldDocument.UploadStatus.uploading(0,0) :
-					DefaultThemeBasicBlue,
-			DDMFieldDocument.UploadStatus.uploaded([:]) :
-					UIColor(red:90/255.0, green:212/255.0, blue:39/255.0, alpha:1),
-			DDMFieldDocument.UploadStatus.failed(nil) :
-					UIColor(red:1, green:0, blue:0, alpha:1)
+			DDMFieldDocument.UploadStatus.uploading(0, 0): DefaultThemeBasicBlue,
+			DDMFieldDocument.UploadStatus.uploaded([:]): UIColor(red:90/255.0, green:212/255.0, blue:39/255.0, alpha:1),
+			DDMFieldDocument.UploadStatus.failed(nil): UIColor(red:1, green:0, blue:0, alpha:1)
 		]
 
 	fileprivate let incompletedColor = [
-			DDMFieldDocument.UploadStatus.uploading(0,0) :
-					UIColor(red:176/255.0, green:238/255.0, blue:1.0, alpha:0.87),
-			DDMFieldDocument.UploadStatus.failed(nil) :
-					UIColor(red:1, green:0, blue:0, alpha:1)
+			DDMFieldDocument.UploadStatus.uploading(0, 0): UIColor(red:176/255.0, green:238/255.0, blue:1.0, alpha:0.87),
+			DDMFieldDocument.UploadStatus.failed(nil): UIColor(red:1, green:0, blue:0, alpha:1)
 		]
 
 	fileprivate let centerColor = [
-			DDMFieldDocument.UploadStatus.uploading(0,0) :
-					UIColor(red:240/255.0, green:1, blue:1.0, alpha:0.87),
-			DDMFieldDocument.UploadStatus.uploaded([:]) :
-					UIColor(red:240/255.0, green:1, blue:1, alpha:1),
-			DDMFieldDocument.UploadStatus.failed(nil) :
-					UIColor(red:1, green:220/255.0, blue:200/255.0, alpha:1)
+			DDMFieldDocument.UploadStatus.uploading(0, 0): UIColor(red:240/255.0, green:1, blue:1.0, alpha:0.87),
+			DDMFieldDocument.UploadStatus.uploaded([:]): UIColor(red:240/255.0, green:1, blue:1, alpha:1),
+			DDMFieldDocument.UploadStatus.failed(nil): UIColor(red:1, green:220/255.0, blue:200/255.0, alpha:1)
 		]
 
 	fileprivate let labelColor = [
-			DDMFieldDocument.UploadStatus.uploading(0,0) :
-					DefaultThemeBasicBlue,
-			DDMFieldDocument.UploadStatus.uploaded([:]) :
-					UIColor.clear,
-			DDMFieldDocument.UploadStatus.failed(nil) :
-					UIColor.clear
+			DDMFieldDocument.UploadStatus.uploading(0, 0): DefaultThemeBasicBlue,
+			DDMFieldDocument.UploadStatus.uploaded([:]): UIColor.clear,
+			DDMFieldDocument.UploadStatus.failed(nil): UIColor.clear
 		]
 
-
-	//MARK: Actions
+	// MARK: Actions
 
 	@IBAction fileprivate func chooseButtonAction(_ sender: AnyObject) {
 		textField!.becomeFirstResponder()
 	}
 
-
-	//MARK: DDLBaseFieldTextboxTableCell
+	// MARK: DDLBaseFieldTextboxTableCell
 
 	override open func onChangedField() {
 		super.onChangedField()
@@ -131,8 +115,7 @@ open class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableCel
 	    }
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func setProgress(_ field: DDMFieldDocument) {
 		let theme = progress!.theme!
@@ -169,7 +152,7 @@ open class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableCel
 
 		if image != nil || url != nil {
 			field!.currentValue = image ?? url as AnyObject?
-			
+
 			textField?.text = field?.currentValueAsLabel
 
 			formView?.userAction(

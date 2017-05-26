@@ -19,7 +19,7 @@ open class ImageGallerySlideshowCell: UICollectionViewCell {
 
 	fileprivate var placeholderImage: UIImage?
 
-	open var imageUrl: String  {
+	open var imageUrl: String {
 		get {
 			return ""
 		}
@@ -42,7 +42,7 @@ open class ImageGallerySlideshowCell: UICollectionViewCell {
 	open override func awakeFromNib() {
 		super.awakeFromNib()
 		slideshowImage?.kf.indicatorType = .activity
-		
+
 		placeholderImage = Bundle.imageInBundles(
 			name: "default-placeholder-image",
 			currentClass: type(of: self))

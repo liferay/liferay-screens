@@ -13,11 +13,9 @@
  */
 import UIKit
 
-
 open class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase {
 
-
-	//MARK: BaseListCollectionView
+	// MARK: BaseListCollectionView
 
 	override open func doConfigureCollectionView(_ collectionView: UICollectionView) {
 		collectionView.backgroundColor = .black
@@ -44,7 +42,7 @@ open class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase {
 
 	override open func doFillLoadedCell(indexPath: IndexPath,
 	                                                cell: UICollectionViewCell,
-	                                                object:AnyObject) {
+	                                                object: AnyObject) {
 
 		guard let imageCell = cell as? ImageGallerySlideshowCell,
 					let entry = object as? ImageEntry else {
@@ -66,15 +64,14 @@ open class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase {
 
 	override open func doGetCellId(indexPath: IndexPath,
 	                                           object: AnyObject?) -> String {
-		if let _ = object {
+		if object != nil {
 			return imageCellId
 		}
 
 		return super.doGetCellId(indexPath: indexPath, object: object)
 	}
 
-
-	//MARK: UICollectionViewDataSource
+	// MARK: UICollectionViewDataSource
 
 	open func collectionView(_ collectionView: UICollectionView,
 	                           layout collectionViewLayout: UICollectionViewLayout,

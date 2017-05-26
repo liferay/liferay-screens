@@ -13,18 +13,15 @@
  */
 import UIKit
 
-
 open class DDLFieldCheckboxTableCell_default: DDMFieldTableCell {
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet open var switchView: UISwitch?
-	
+
 	@IBOutlet open var label: UILabel?
 
-
-	//MARK: Actions
+	// MARK: Actions
 
 	@IBAction fileprivate func switchValueChanged(_ sender: AnyObject) {
 		field?.currentValue = switchView?.isOn as AnyObject?
@@ -35,10 +32,9 @@ open class DDLFieldCheckboxTableCell_default: DDMFieldTableCell {
 		}
 	}
 
+	// MARK: DDMFieldTableCell
 
-	//MARK: DDMFieldTableCell
-
-	override open var canBecomeFirstResponder : Bool {
+	override open var canBecomeFirstResponder: Bool {
 		return false
 	}
 

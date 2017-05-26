@@ -13,16 +13,13 @@
 */
 import WebKit
 
-
 open class FileDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	open var webView: WKWebView?
 
-
-	//MARK: FileDisplayViewModel
+	// MARK: FileDisplayViewModel
 
 	open var title: String? {
 		didSet {
@@ -39,8 +36,7 @@ open class FileDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 		}
 	}
 
-
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
 	open override func onCreated() {
 		super.onCreated()

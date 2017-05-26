@@ -13,16 +13,13 @@
  */
 import UIKit
 
+open class ImageUploadDetailView_default: ImageUploadDetailViewBase, UITextViewDelegate {
 
-open class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextViewDelegate {
-
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet weak var scrollView: UIScrollView!
 
 	@IBOutlet weak var hintLabel: UILabel!
-
 
 	//MARK ImageUploadDetailVeiewBase
 
@@ -38,7 +35,7 @@ open class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextView
 		}
 	}
 
-	//MARK: UIView
+	// MARK: UIView
 
 	override open func awakeFromNib() {
 		initialize()
@@ -50,9 +47,9 @@ open class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextView
 		descripText?.layer.cornerRadius = 4.0
 		descripText?.delegate = self
 
-		hintLabel?.text = LocalizedString("default",key: "imagegallery-description", obj: self)
+		hintLabel?.text = LocalizedString("default", key: "imagegallery-description", obj: self)
 
-		titleText?.placeholder = LocalizedString("default",key: "imagegallery-title", obj: self)
+		titleText?.placeholder = LocalizedString("default", key: "imagegallery-title", obj: self)
 
 		let dismissKeyboardGesture = UITapGestureRecognizer(
 			target: self,
@@ -87,8 +84,7 @@ open class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextView
 				self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func textViewDidBeginEditing(_ textView: UITextView) {
 		hintLabel.alpha = 0
@@ -115,8 +111,7 @@ open class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextView
 		}
 	}
 
-
-	//MARK: Notifications
+	// MARK: Notifications
 
 	open func keyboardWillShow(_ notification: Notification) {
 
