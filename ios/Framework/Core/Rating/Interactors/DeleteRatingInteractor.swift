@@ -14,7 +14,7 @@
 import UIKit
 
 open class DeleteRatingInteractor: ServerWriteConnectorInteractor {
-	
+
 	let className: String
 
 	let classPK: Int64
@@ -23,8 +23,7 @@ open class DeleteRatingInteractor: ServerWriteConnectorInteractor {
 
 	var resultRating: RatingEntry?
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	init(className: String, classPK: Int64, ratingsGroupCount: Int32) {
 		self.className = className
@@ -42,8 +41,7 @@ open class DeleteRatingInteractor: ServerWriteConnectorInteractor {
 		super.init(screenlet: screenlet)
 	}
 
-
-	//MARK: ServerConnectorInteractor
+	// MARK: ServerConnectorInteractor
 
 	override open func createConnector() -> ServerConnector? {
 		return LiferayServerContext.connectorFactory.createRatingDeleteConnector(
@@ -51,15 +49,14 @@ open class DeleteRatingInteractor: ServerWriteConnectorInteractor {
 			className: className,
 			ratingsGroupCount: ratingsGroupCount)
 	}
-	
+
 	override open func completedConnector(_ c: ServerConnector) {
 		if let deleteCon = c as? RatingDeleteLiferayConnector {
 			self.resultRating = deleteCon.resultRating
 		}
 	}
 
-
-	//MARK: Cache methods
+	// MARK: Cache methods
 
 	override open func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
@@ -82,8 +79,7 @@ open class DeleteRatingInteractor: ServerWriteConnectorInteractor {
 			nil)
 	}
 
-
-	//MARK: Interactor
+	// MARK: Interactor
 
 	override open func callOnSuccess() {
 		if cacheStrategy == .cacheFirst {
