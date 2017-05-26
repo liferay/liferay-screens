@@ -15,7 +15,6 @@ import UIKit
 import LROAuth
 import LRMobileSDK
 
-
 class LoginOAuthInteractor: Interactor, LRCallback {
 
 	var resultUserAttributes: [String:AnyObject]?
@@ -30,8 +29,7 @@ class LoginOAuthInteractor: Interactor, LRCallback {
 
 	var OAuthSession: LRSession?
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	init(screenlet: BaseScreenlet?,
 			consumerKey: String,
@@ -43,8 +41,7 @@ class LoginOAuthInteractor: Interactor, LRCallback {
 		super.init(screenlet: screenlet)
 	}
 
-
-	//MARK: Interactor
+	// MARK: Interactor
 
 	override func start() -> Bool {
 		if screenlet?.presentingViewController == nil {
@@ -62,8 +59,7 @@ class LoginOAuthInteractor: Interactor, LRCallback {
 		return requestToken()
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func requestToken() -> Bool {
 		LRRequestToken.requestToken(

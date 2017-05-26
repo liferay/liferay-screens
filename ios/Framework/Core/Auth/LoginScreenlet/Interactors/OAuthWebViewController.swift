@@ -78,5 +78,4 @@ class OAuthWebViewController: UIViewController, UIWebViewDelegate {
 		activityIndicator?.stopAnimating()
 	}
 
-
 }
