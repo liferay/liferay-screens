@@ -19,6 +19,9 @@ included:
   - Themes/
   - Tests/
 
+excluded:
+  - Pods/
+
 statement_position:
   statement_mode: uncuddled_else
 
