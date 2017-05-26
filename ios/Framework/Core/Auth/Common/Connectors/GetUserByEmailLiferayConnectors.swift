@@ -14,14 +14,12 @@
 import UIKit
 import LRMobileSDK
 
-
 open class GetUserByEmailLiferayConnector: GetUserBaseLiferayConnector {
 
 	open let companyId: Int64
 	open let emailAddress: String
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(companyId: Int64, emailAddress: String) {
 		self.companyId = companyId
@@ -30,8 +28,7 @@ open class GetUserByEmailLiferayConnector: GetUserBaseLiferayConnector {
 		super.init()
 	}
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -47,18 +44,15 @@ open class GetUserByEmailLiferayConnector: GetUserBaseLiferayConnector {
 
 }
 
-
 open class GetUserByEmailLiferay62Connector: GetUserByEmailLiferayConnector {
 
-
-	//MARK: GetUserByEmailLiferayConnector
+	// MARK: GetUserByEmailLiferayConnector
 
 	override public init(companyId: Int64, emailAddress: String) {
 		super.init(companyId: companyId, emailAddress: emailAddress)
 	}
 
-
-	//MARK: GetUserBaseLiferayConnector
+	// MARK: GetUserBaseLiferayConnector
 
 	override open func sendGetUserRequest(_ session: LRSession)
 		throws -> NSDictionary {
@@ -70,21 +64,18 @@ open class GetUserByEmailLiferay62Connector: GetUserByEmailLiferayConnector {
 			return try service?.getUserByEmailAddress(withCompanyId: companyId,
 				emailAddress: emailAddress) as NSDictionary? ?? [:]
 	}
-	
-}
 
+}
 
 open class GetUserByEmailLiferay70Connector: GetUserByEmailLiferayConnector {
 
-
-	//MARK: GetUserByEmailLiferayConnector
+	// MARK: GetUserByEmailLiferayConnector
 
 	override public init(companyId: Int64, emailAddress: String) {
 		super.init(companyId: companyId, emailAddress: emailAddress)
 	}
 
-
-	//MARK: GetUserBaseLiferayConnector
+	// MARK: GetUserBaseLiferayConnector
 
 	override open func sendGetUserRequest(_ session: LRSession)
 		throws -> NSDictionary {
@@ -96,5 +87,5 @@ open class GetUserByEmailLiferay70Connector: GetUserByEmailLiferayConnector {
 			return try service?.getUserByEmailAddress(withCompanyId: companyId,
 				emailAddress: emailAddress) as NSDictionary? ?? [:]
 	}
-	
+
 }
