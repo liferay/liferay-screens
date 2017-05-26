@@ -61,7 +61,7 @@ open class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_default
 		//Fill the textfield with the selected options (If we are editing an existing record)
 		textField?.text = selectedOptions.map { $0.label }
 					.sorted()
-					.reduce("", { $0 + " " + $1})
+					.reduce("", { $0 + " " + $1 })
 					.trim()
 
 		let tableView = createPresenterTableView(multipleSelection: field.multiple)

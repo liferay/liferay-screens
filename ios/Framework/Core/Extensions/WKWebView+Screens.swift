@@ -18,7 +18,7 @@ extension WKWebView {
 		}
 
 		let jsessionID = authentication.cookieHeader.characters.split(separator: ";")
-				.map(String.init).filter {$0.contains("JSESSIONID")}.first
+				.map(String.init).filter { $0.contains("JSESSIONID") }.first
 
 		if let jsessionID = jsessionID {
 			let script = WKUserScript(source: "document.cookie='\(jsessionID)'",

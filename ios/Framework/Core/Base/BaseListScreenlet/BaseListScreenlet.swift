@@ -94,7 +94,7 @@ open class BaseListScreenlet: BaseScreenlet {
 
 			self.onLoadPageResult(
 				page: interactor.page,
-				rows: interactor.resultPageContent?.map {$1}.flatMap {$0} ?? [],
+				rows: interactor.resultPageContent?.map { $1 }.flatMap { $0 } ?? [],
 				rowCount: self.baseListView.rowCount)
 
 			self.paginationInteractors.removeValue(forKey: interactor.page)

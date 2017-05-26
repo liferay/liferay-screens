@@ -162,7 +162,7 @@ open class BaseListTableView: BaseListView, UITableViewDataSource, UITableViewDe
 
 			if isLastSection && isLastRowForSection {
 				loadingRows = true
-				let lastRow = rows.values.reduce(0) {$0 + $1.count}
+				let lastRow = rows.values.reduce(0) { $0 + $1.count }
 				fetchPageForRow?(lastRow + 1)
 			}
 		}
