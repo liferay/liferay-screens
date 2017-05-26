@@ -13,10 +13,9 @@
  */
 import Foundation
 
-
 /// The BlogsEntryDisplayScreenletDelegate protocol defines some methods that you use to manage the
 /// BlogsEntryDisplayScreenlet events. All of them are optional.
-@objc public protocol BlogsEntryDisplayScreenletDelegate : BaseScreenletDelegate {
+@objc public protocol BlogsEntryDisplayScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when the Screenlet receives the BlogsEntry object.
 	///
@@ -36,13 +35,11 @@ import Foundation
 			onBlogEntryError error: NSError)
 }
 
-
 /// Blogs Entry Display Screenlet displays a single blog entry. Image Display Screenlet renders any
 /// header image the blogs entry may have.
 open class BlogsEntryDisplayScreenlet: BaseScreenlet {
 
-
-	//MARK: Inspectables
+	// MARK: Inspectables
 
 	/// The primary key of the blog entry (BlogsEntry).
 	@IBInspectable open var assetEntryId: Int64 = 0
@@ -58,8 +55,7 @@ open class BlogsEntryDisplayScreenlet: BaseScreenlet {
 	/// The offline mode setting. The default value is remote-first.
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
-
-	//MARK: Public properties
+	// MARK: Public properties
 
 	open var blogsEntryDisplayDelegate: BlogsEntryDisplayScreenletDelegate? {
 		return delegate as? BlogsEntryDisplayScreenletDelegate
@@ -75,8 +71,7 @@ open class BlogsEntryDisplayScreenlet: BaseScreenlet {
 		}
 	}
 
-
-	//MARK: BaseScreenlet
+	// MARK: BaseScreenlet
 
 	override open func onShow() {
 		if autoLoad {
@@ -122,8 +117,7 @@ open class BlogsEntryDisplayScreenlet: BaseScreenlet {
 		return interactor
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	/// Loads a blog entry in the screenlet.
 	///
