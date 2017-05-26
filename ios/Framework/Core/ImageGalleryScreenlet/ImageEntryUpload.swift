@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 @objc open class ImageEntryUpload: NSObject, NSCoding {
 
 	open let image: UIImage
@@ -29,9 +28,8 @@ import Foundation
 		self.notes = notes
 	}
 
+	// MARK: NSCoding
 
-	//MARK: NSCoding
-	
 	public required init?(coder aDecoder: NSCoder) {
 		image = (aDecoder.decodeObject(forKey: "image") as? UIImage)!
 		thumbnail = aDecoder.decodeObject(forKey: "thumbnail") as? UIImage
@@ -50,5 +48,5 @@ import Foundation
 		aCoder.encode(title, forKey: "title")
 		aCoder.encode(notes, forKey: "notes")
 	}
-	
+
 }

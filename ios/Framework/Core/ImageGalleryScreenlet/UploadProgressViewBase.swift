@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 public protocol UploadProgressViewBase {
 
 	func addUpload(_ thumbnail: UIImage?)
