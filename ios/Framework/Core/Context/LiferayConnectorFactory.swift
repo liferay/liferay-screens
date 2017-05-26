@@ -11,8 +11,8 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+// swiftlint:disable file_length
 import Foundation
-
 
 @objc(LiferayConnectorFactory)
 public protocol LiferayConnectorFactory {
@@ -109,28 +109,29 @@ public protocol LiferayConnectorFactory {
 		repositoryId: Int64,
 		folderId: Int64,
 		onProgress: DDLFormUploadLiferayConnector.OnProgress?) -> DDLFormUploadLiferayConnector
-	
+
 	func createAssetLoadByEntryIdConnector(_ entryId: Int64) -> AssetLoadByEntryIdLiferayConnector?
 
 	func createAssetLoadByClassPKConnector(_ className: String, classPK: Int64) -> AssetLoadByClassPKLiferayConnector?
 
-	func createAssetLoadByPortletItemNameConnector(portletItemName: String) -> AssetLoadByPortletItemNameLiferayConnector?
+	func createAssetLoadByPortletItemNameConnector(portletItemName: String)
+		-> AssetLoadByPortletItemNameLiferayConnector?
 
 	func createRatingLoadByEntryIdConnector(
 		entryId: Int64,
 		ratingsGroupCount: Int32) -> RatingLoadByEntryIdLiferayConnector?
-	
+
 	func createRatingLoadByClassPKConnector(
 		_ classPK: Int64,
 		className: String,
 		ratingsGroupCount: Int32) -> RatingLoadByClassPKLiferayConnector?
-	
+
 	func createRatingUpdateConnector(
 		classPK: Int64,
 		className: String,
 		score: Double,
 		ratingsGroupCount: Int32) -> RatingUpdateLiferayConnector?
-	
+
 	func createRatingDeleteConnector(
 		classPK: Int64,
 		className: String,
@@ -139,8 +140,8 @@ public protocol LiferayConnectorFactory {
 	func createImageGalleryDeleteConnector(_ imageEntryId: Int64) -> ImageGalleryDeleteConnector?
 
 	func createImageGalleryPageConnector(startRow: Int,
-			endRow:Int,
-			computeRowCount:Bool,
+			endRow: Int,
+			computeRowCount: Bool,
 			repositoryId: Int64,
 			folderId: Int64,
 			mimeTypes: [String]) -> ImageGalleryPageLiferayConnector?
@@ -178,7 +179,6 @@ public protocol LiferayConnectorFactory {
 		body: String) -> CommentUpdateLiferayConnector?
 
 }
-
 
 @objc(Liferay62ConnectorFactory)
 open class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
@@ -371,12 +371,15 @@ open class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 		return nil
 	}
 
-	open func createAssetLoadByClassPKConnector(_ className: String, classPK: Int64) -> AssetLoadByClassPKLiferayConnector? {
+	open func createAssetLoadByClassPKConnector(_ className: String, classPK: Int64)
+			-> AssetLoadByClassPKLiferayConnector? {
+
 		print("Unsupported connector in Liferay 6.2: AssetLoadByClassPKLiferayConnector")
 		return nil
 	}
 
-	public func createAssetLoadByPortletItemNameConnector(portletItemName: String) -> AssetLoadByPortletItemNameLiferayConnector? {
+	public func createAssetLoadByPortletItemNameConnector(portletItemName: String)
+			-> AssetLoadByPortletItemNameLiferayConnector? {
 		print("Unsupported connector in Liferay 6.2: AssetLoadByPortletItemNameLiferayConnector")
 		return nil
 	}
@@ -395,7 +398,7 @@ open class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 		print("Unsupported connector in Liferay 6.2: RatingLoadByClassPKLiferayConnector")
 		return nil
 	}
-	
+
 	open func createRatingUpdateConnector(
 			classPK: Int64,
 			className: String,
@@ -404,7 +407,7 @@ open class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 		print("Unsupported connector in Liferay 6.2: RatingUpdateLiferayConnector")
 		return nil
 	}
-	
+
 	open func createRatingDeleteConnector(
 			classPK: Int64,
 			className: String,
@@ -419,8 +422,8 @@ open class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 	}
 
 	open func createImageGalleryPageConnector(startRow: Int,
-			endRow:Int,
-			computeRowCount:Bool,
+			endRow: Int,
+			computeRowCount: Bool,
 			repositoryId: Int64,
 			folderId: Int64,
 			mimeTypes: [String]) -> ImageGalleryPageLiferayConnector? {
@@ -440,7 +443,7 @@ open class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 		print("Unsupported connector in Liferay 6.2: ImageGalleryUploadConnector")
 		return nil
 	}
-	
+
 	open func createCommentListPageConnector(
 			className: String,
 			classPK: Int64,
@@ -478,7 +481,6 @@ open class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 	}
 
 }
-
 
 @objc(Liferay70ConnectorFactory)
 open class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
@@ -665,7 +667,7 @@ open class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			folderId: folderId,
 			onProgress: onProgress)
 	}
-	
+
 	open func createRatingLoadByEntryIdConnector(
 			entryId: Int64,
 			ratingsGroupCount: Int32) -> RatingLoadByEntryIdLiferayConnector? {
@@ -673,7 +675,7 @@ open class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			entryId: entryId,
 			ratingsGroupCount: ratingsGroupCount)
 	}
-	
+
 	open func createRatingLoadByClassPKConnector(
 			_ classPK: Int64,
 			className: String,
@@ -683,7 +685,7 @@ open class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			className: className,
 			ratingsGroupCount: ratingsGroupCount)
 	}
-	
+
 	open func createRatingUpdateConnector(
 			classPK: Int64,
 			className: String,
@@ -695,7 +697,7 @@ open class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			score: score,
 			ratingsGroupCount: ratingsGroupCount)
 	}
-	
+
 	open func createRatingDeleteConnector(
 			classPK: Int64,
 			className: String,
@@ -711,8 +713,8 @@ open class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 	}
 
 	open func createImageGalleryPageConnector(startRow: Int,
-			endRow:Int,
-			computeRowCount:Bool,
+			endRow: Int,
+			computeRowCount: Bool,
 			repositoryId: Int64,
 			folderId: Int64,
 			mimeTypes: [String]) -> ImageGalleryPageLiferayConnector {
@@ -792,12 +794,14 @@ open class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 		return Liferay70AssetLoadByEntryIdConnector(entryId: entryId)
 	}
 
-	open func createAssetLoadByClassPKConnector(_ className: String, classPK: Int64) -> AssetLoadByClassPKLiferayConnector? {
+	open func createAssetLoadByClassPKConnector(_ className: String, classPK: Int64)
+			-> AssetLoadByClassPKLiferayConnector? {
 		return Liferay70AssetLoadByClassPKConnector(className: className, classPK: classPK)
 	}
 
-	public func createAssetLoadByPortletItemNameConnector(portletItemName: String) -> AssetLoadByPortletItemNameLiferayConnector? {
+	public func createAssetLoadByPortletItemNameConnector(portletItemName: String)
+			-> AssetLoadByPortletItemNameLiferayConnector? {
 		return Liferay70AssetLoadByPortletItemNameConnector(portletItemName: portletItemName)
 	}
-	
+
 }

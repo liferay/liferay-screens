@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 @objc public enum LiferayServerVersion: Int {
 
 	case v62 = 62
@@ -21,17 +20,15 @@ import Foundation
 
 }
 
-
 @objc open class LiferayServerContext: NSObject {
 
-	//MARK: Singleton type
+	// MARK: Singleton type
 
 	fileprivate struct StaticInstance {
 		static var serverProperties: NSMutableDictionary?
 	}
 
-
-	//MARK: Public properties
+	// MARK: Public properties
 
 	open class var server: String {
 		get {
@@ -103,66 +100,64 @@ import Foundation
 		}
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open class func setPropertyValue(_ value: AnyObject, forKey key: String) {
 		loadContextFile()
 		return StaticInstance.serverProperties![key] = value
 	}
-	
+
 	open class func propertyForKey(_ key: String) -> AnyObject {
 		loadContextFile()
-		
+
 		guard let value = StaticInstance.serverProperties?[key] else {
 			fatalError("Missing key \(key) on liferay-server-context.plist file")
 		}
-		
+
 		return value as AnyObject
 	}
-	
+
 	open class func numberPropertyForKey(_ key: String) -> NSNumber {
 		guard let value = propertyForKey(key) as? NSNumber else {
 			fatalError("Key \(key) is not a NSNumber")
 		}
-		
+
 		return value
 	}
-	
+
 	open class func longPropertyForKey(_ key: String) -> Int64 {
 		return numberPropertyForKey(key).int64Value
 	}
-	
+
 	open class func intPropertyForKey(_ key: String) -> Int {
 		return numberPropertyForKey(key).intValue
 	}
-	
+
 	open class func booleanPropertyForKey(_ key: String) -> Bool {
 		guard let value = propertyForKey(key) as? Bool else {
 			fatalError("Key \(key) is not a Boolean")
 		}
-		
+
 		return value
 	}
-	
+
 	open class func datePropertyForKey(_ key: String) -> Date {
 		guard let value = propertyForKey(key) as? Date else {
 			fatalError("Key \(key) is not a NSDate")
 		}
-		
+
 		return value
 	}
-	
+
 	open class func stringPropertyForKey(_ key: String) -> String {
 		guard let value = propertyForKey(key) as? String else {
 			fatalError("Key \(key) is not a String")
 		}
-		
+
 		return value
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate class func loadContextFile() {
 

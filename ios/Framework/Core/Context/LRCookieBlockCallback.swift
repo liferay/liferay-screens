@@ -14,7 +14,7 @@
 
 import Foundation
 
-@objc public class LRCookieBlockCallback : NSObject, LRCookieCallback {
+@objc public class LRCookieBlockCallback: NSObject, LRCookieCallback {
 
 	public func onSuccess(_ session: LRSession!) {
 		callback(session, nil)
@@ -29,5 +29,5 @@ import Foundation
 	init(callback: @escaping (LRSession?, Error?) -> Void) {
 		self.callback = callback
 	}
-	
+
 }

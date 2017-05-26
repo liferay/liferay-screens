@@ -31,8 +31,6 @@ import Foundation
 
 }
 
-
-
 @objc open class ScreensFactoryImpl: NSObject, ScreensFactory {
 
 	open func createSessionContext(
@@ -59,6 +57,5 @@ import Foundation
 			return CookieCredentialsStoreKeyChain()
 		}
 	}
-
 
 }
