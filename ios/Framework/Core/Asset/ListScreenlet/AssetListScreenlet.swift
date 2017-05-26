@@ -15,7 +15,7 @@ import UIKit
 
 /// The AssetListScreenletDelegate protocol defines some methods that you use to manage the
 /// AssetListScreenlet events. All of them are optional.
-@objc public protocol AssetListScreenletDelegate : BaseScreenletDelegate {
+@objc public protocol AssetListScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when a page of assets is received. Note that this method may be called 
 	/// more than once; one call for each page received.
@@ -45,15 +45,14 @@ import UIKit
 
 }
 
-
-/// The Asset List Screenlet can be used to show lists of [assets](https://dev.liferay.com/develop/tutorials/-/knowledge_base/7-0/asset-framework) from a Liferay instance.
+/// The Asset List Screenlet can be used to show lists of 
+/// [assets](https://dev.liferay.com/develop/tutorials/-/knowledge_base/7-0/asset-framework) from a Liferay instance.
 /// For example, you can use the Screenlet to show a scrollable collection of assets. 
-/// It also implements [fluent pagination](http://www.iosnomad.com/blog/2014/4/21/fluent-pagination) with configurable page size.
+/// It also implements [fluent pagination](http://www.iosnomad.com/blog/2014/4/21/fluent-pagination) 
+/// with configurable page size.
 open class AssetListScreenlet: BaseListScreenlet {
 
-
-	//MARK: Inspectables
-
+	// MARK: Inspectables
 
 	/// The ID of the site (group) where the asset is stored. If set to 0, the groupId specified in
 	/// LiferayServerContext is used. The default value is 0.
@@ -63,14 +62,15 @@ open class AssetListScreenlet: BaseListScreenlet {
 	/// Instance’s classname_ database table.
 	@IBInspectable open var classNameId: Int64 = 0
 
-	/// The name of the [configuration template](https://dev.liferay.com/discover/portal/-/knowledge_base/7-0/configuration-templates) you used in the Asset Publisher.
+	/// The name of the [configuration template]
+	/// (https://dev.liferay.com/discover/portal/-/knowledge_base/7-0/configuration-templates) 
+	/// you used in the Asset Publisher.
 	@IBInspectable open var portletItemName: String?
 
 	/// The offline mode setting. The default value is remote-first.
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
-
-	//MARK: Public properties
+	// MARK: Public properties
 
 	open var assetListDelegate: AssetListScreenletDelegate? {
 		return delegate as? AssetListScreenletDelegate
@@ -78,8 +78,7 @@ open class AssetListScreenlet: BaseListScreenlet {
 
 	open var customEntryQuery: [String:AnyObject]?
 
-
-	//MARK: BaseListScreenlet
+	// MARK: BaseListScreenlet
 
 	override open func createPageLoadInteractor(
 			page: Int,
