@@ -11,22 +11,4 @@ const addClickToCards = () => {
 	}
 }
 
-addClickToCards()
-
-window.Liferay = new Proxy(window.Liferay || {}, {
-	 set: function(target, name, value) {
-		if (name === "SPA") {
-			target[name] = new Proxy(value, {
-				 set: function(target, name, value) {
-					if (name === "app") {
-						value.events_.endNavigate.push({ fn: () => addClickToCards()})
-					}
-					target[name] = value
-				}
-			})
-		}
-		else {
-			target[name] = value
-		}
-	 }
-})
+window.Screens.addScreensScript(addClickToCards);

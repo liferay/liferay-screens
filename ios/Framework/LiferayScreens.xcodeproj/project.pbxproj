@@ -118,6 +118,7 @@
 		0B5B5EC81D5876A10007D4B1 /* default-placeholder-image.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5B5EC71D5876A10007D4B1 /* default-placeholder-image.png */; };
 		0B5F58C51DCC8C0500E3598A /* default-preview-assetdisplay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5F58C31DCC8C0500E3598A /* default-preview-assetdisplay@2x.png */; };
 		0B5F58C61DCC8C0500E3598A /* default-preview-commentlist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5F58C41DCC8C0500E3598A /* default-preview-commentlist@2x.png */; };
+		0B6402661EDC637300F6DC53 /* Screens.js in Resources */ = {isa = PBXBuildFile; fileRef = 0B6402651EDC637300F6DC53 /* Screens.js */; };
 		0B6463771D66EEB7007F3289 /* ImageUploadDetailView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6463761D66EEB7007F3289 /* ImageUploadDetailView_default.xib */; };
 		0B6463791D66F143007F3289 /* ImageUploadDetailView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6463781D66F143007F3289 /* ImageUploadDetailView_default.swift */; };
 		0B64637B1D66F172007F3289 /* UploadProgressView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B64637A1D66F172007F3289 /* UploadProgressView_default.swift */; };
@@ -672,6 +673,7 @@
 		0B5B5EC71D5876A10007D4B1 /* default-placeholder-image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-placeholder-image.png"; sourceTree = "<group>"; };
 		0B5F58C31DCC8C0500E3598A /* default-preview-assetdisplay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-assetdisplay@2x.png"; sourceTree = "<group>"; };
 		0B5F58C41DCC8C0500E3598A /* default-preview-commentlist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-preview-commentlist@2x.png"; sourceTree = "<group>"; };
+		0B6402651EDC637300F6DC53 /* Screens.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Screens.js; sourceTree = "<group>"; };
 		0B6463761D66EEB7007F3289 /* ImageUploadDetailView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageUploadDetailView_default.xib; sourceTree = "<group>"; };
 		0B6463781D66F143007F3289 /* ImageUploadDetailView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUploadDetailView_default.swift; sourceTree = "<group>"; };
 		0B64637A1D66F172007F3289 /* UploadProgressView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadProgressView_default.swift; sourceTree = "<group>"; };
@@ -1307,6 +1309,14 @@
 			path = Interactors;
 			sourceTree = "<group>";
 		};
+		0B6402641EDC635500F6DC53 /* js */ = {
+			isa = PBXGroup;
+			children = (
+				0B6402651EDC637300F6DC53 /* Screens.js */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
 		0B66FFCC1DAF83D900963DEB /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -1379,6 +1389,7 @@
 		0BC700CE1EB207B1006DD475 /* Portlet */ = {
 			isa = PBXGroup;
 			children = (
+				0B6402641EDC635500F6DC53 /* js */,
 				0BC700CF1EB207B1006DD475 /* PortletDisplayScreenlet.swift */,
 				0BC700D01EB207B1006DD475 /* PortletDisplayViewModel.swift */,
 			);
@@ -2606,6 +2617,7 @@
 				0B217FE21D6C4E9500A23690 /* ImageDisplayView_default.xib in Resources */,
 				881E62611ACBFC3400862B9E /* default-multiline-field.png in Resources */,
 				0BBEDA301D5B230E00F8CB31 /* ImageGalleryView_default.xib in Resources */,
+				0B6402661EDC637300F6DC53 /* Screens.js in Resources */,
 				888DF5B51ACC9FF100EB7DA1 /* LoginView_default.xib in Resources */,
 				881E62591ACBFC3400862B9E /* default-form-gradient-top.png in Resources */,
 				0BB467901D8707430044523E /* rating-screenlet.strings in Resources */,
@@ -2704,7 +2716,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		B146147EA81C5DE8F28EACDF /* [CP] Copy Pods Resources */ = {
@@ -2749,7 +2761,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
