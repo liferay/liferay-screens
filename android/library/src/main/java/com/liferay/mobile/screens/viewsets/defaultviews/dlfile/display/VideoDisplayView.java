@@ -59,10 +59,10 @@ public class VideoDisplayView extends BaseFileDisplayView {
 	}
 
 	private void loadVideo(String url) {
-		progressBar.setVisibility(VISIBLE);
+		progressBar.setVisibility(GONE);
+		videoView.setVisibility(VISIBLE);
 		videoView.setVideoPath(url);
 		videoView.setMediaController(new MediaController(getContext()));
-		videoView.setZOrderOnTop(true);
 		videoView.requestFocus();
 		videoView.start();
 	}
