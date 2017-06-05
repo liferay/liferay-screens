@@ -21,8 +21,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.portlet.interactor.PortletDisplayInteractor;
 import com.liferay.mobile.screens.portlet.view.PortletDisplayViewModel;
 import com.liferay.mobile.screens.util.AssetReader;
 import com.squareup.okhttp.HttpUrl;
@@ -32,7 +32,7 @@ import java.net.MalformedURLException;
  * @author Sarai Díaz García
  */
 
-public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewModel, Interactor>
+public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewModel, PortletDisplayInteractor>
 	implements PortletDisplayListener {
 
 	private boolean autoLoad;
@@ -124,6 +124,10 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	}
 
 	@Override
+	protected PortletDisplayInteractor createInteractor(String actionName) {
+		return new PortletDisplayInteractor();
+	}
+
 	public void error(Exception e, String userAction) {
 		getViewModel().showFailedOperation(userAction, e);
 
@@ -142,10 +146,6 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	}
 
 	// There is not need to fill these methods because there isn't interactor
-	@Override
-	protected Interactor createInteractor(String actionName) {
-		return null;
-	}
 
 	@Override
 	protected void onUserAction(String userActionName, Interactor interactor, Object... args) {
