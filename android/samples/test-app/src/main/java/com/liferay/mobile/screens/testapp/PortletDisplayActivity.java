@@ -1,6 +1,7 @@
 package com.liferay.mobile.screens.testapp;
 
 import android.os.Bundle;
+import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.portlet.PortletDisplayListener;
 import com.liferay.mobile.screens.portlet.PortletDisplayScreenlet;
 
@@ -37,5 +38,10 @@ public class PortletDisplayActivity extends ThemeActivity implements PortletDisp
 	@Override
 	public void onRetrievePortletSuccess(String url) {
 		info(getString(R.string.portlet_display_success));
+	}
+
+	@Override
+	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
+		info(getString(R.string.asset_received_info) + " " + assetEntry.getTitle());
 	}
 }

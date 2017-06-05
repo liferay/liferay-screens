@@ -16,16 +16,24 @@ package com.liferay.mobile.screens.portlet;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.annotation.IdRes;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.asset.AssetEntry;
+import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.dlfile.display.audio.AudioDisplayScreenlet;
+import com.liferay.mobile.screens.dlfile.display.image.ImageDisplayScreenlet;
+import com.liferay.mobile.screens.dlfile.display.pdf.PdfDisplayScreenlet;
+import com.liferay.mobile.screens.dlfile.display.video.VideoDisplayScreenlet;
 import com.liferay.mobile.screens.portlet.interactor.PortletDisplayInteractor;
 import com.liferay.mobile.screens.portlet.view.PortletDisplayViewModel;
 import com.liferay.mobile.screens.util.AssetReader;
 import java.net.MalformedURLException;
+import java.util.HashMap;
 
 /**
  * @author Sarai Díaz García
@@ -40,6 +48,11 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	private int jsFile;
 	private int cssFile;
 	private boolean hasBiggerPagination;
+	private HashMap<String, Integer> layouts = new HashMap<>();
+	private int imageLayout = R.layout.image_display_default;
+	private int videoLayout = R.layout.video_display_default;
+	private int audioLayout = R.layout.audio_display_default;
+	private int pdfLayout = R.layout.pdf_display_default;
 
 	public PortletDisplayScreenlet(Context context) {
 		super(context);
@@ -111,6 +124,16 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 
 	@Override
 	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
+		AssetDisplayScreenlet assetDisplayScreenlet = new AssetDisplayScreenlet(getContext());
+
+		getDLFileScreenletLayouts();
+
+		assetDisplayScreenlet.setLayouts(layouts);
+		assetDisplayScreenlet.load(assetEntry);
+
+		if (listener != null) {
+			listener.onRetrieveAssetSuccess(assetEntry);
+		}
 	}
 
 	@Override
@@ -189,5 +212,28 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 
 	public void setCss(int cssFile) {
 		this.cssFile = cssFile;
+	}
+
+	public void setImageLayout(@IdRes int imageLayout) {
+		this.imageLayout = imageLayout;
+	}
+
+	public void setVideoLayout(int videoLayout) {
+		this.videoLayout = videoLayout;
+	}
+
+	public void setAudioLayout(int audioLayout) {
+		this.audioLayout = audioLayout;
+	}
+
+	public void setPdfLayout(int pdfLayout) {
+		this.pdfLayout = pdfLayout;
+	}
+
+	private void getDLFileScreenletLayouts() {
+		layouts.put(ImageDisplayScreenlet.class.getName(), imageLayout);
+		layouts.put(VideoDisplayScreenlet.class.getName(), videoLayout);
+		layouts.put(AudioDisplayScreenlet.class.getName(), audioLayout);
+		layouts.put(PdfDisplayScreenlet.class.getName(), pdfLayout);
 	}
 }
