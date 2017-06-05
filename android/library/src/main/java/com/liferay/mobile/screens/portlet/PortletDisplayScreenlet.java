@@ -128,6 +128,12 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 		return new PortletDisplayInteractor();
 	}
 
+	@Override
+	protected void onUserAction(String userActionName, PortletDisplayInteractor interactor, Object... args) {
+		interactor.start(url);
+	}
+
+	@Override
 	public void error(Exception e, String userAction) {
 		getViewModel().showFailedOperation(userAction, e);
 
@@ -143,13 +149,6 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 		}
 
 		getViewModel().showFinishOperation(url);
-	}
-
-	// There is not need to fill these methods because there isn't interactor
-
-	@Override
-	protected void onUserAction(String userActionName, Interactor interactor, Object... args) {
-
 	}
 
 	public boolean isAutoLoad() {
