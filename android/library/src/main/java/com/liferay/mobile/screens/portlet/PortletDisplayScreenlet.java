@@ -102,6 +102,10 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	}
 
 	@Override
+	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
+	}
+
+	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray =
 			context.getTheme().obtainStyledAttributes(attributes, R.styleable.WebContentDisplayScreenlet, 0, 0);

@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.portlet;
 
+import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 
 /**
@@ -25,4 +26,9 @@ public interface PortletDisplayListener extends BaseCacheListener {
 	 * Called when the screenlet loads the portlet correctly.
 	 */
 	void onRetrievePortletSuccess(String url);
+
+	/**
+	 * Called when the asset is retrieved successfully.
+	 */
+	void onRetrieveAssetSuccess(AssetEntry assetEntry);
 }
