@@ -46,4 +46,9 @@ public class DLAppConnector62 implements DLAppConnector {
 	public void deleteFileEntry(long fileEntryId) throws Exception {
 
 	}
+
+	@Override
+	public JSONObject getFileEntry(long groupId, long folderId, String title) throws Exception {
+		return null;
+	}
 }
