@@ -84,13 +84,21 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 		}
 	}
 
+	public void loadAsset() {
+		performUserAction();
+	}
+
 	/**
 	 * Checks if there is a session created and if exists {@link #url} attribute.
 	 * Then calls {@link #load()} method.
 	 */
 	protected void autoLoad() {
 		if (SessionContext.isLoggedIn() && url != null) {
-			load();
+			if (url.contains("documents")) {
+				loadAsset();
+			} else {
+				load();
+			}
 		}
 	}
 
