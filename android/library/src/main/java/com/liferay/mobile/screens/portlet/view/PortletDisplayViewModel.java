@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.portlet.view;
 
+import android.view.View;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 
 /**
@@ -28,6 +29,13 @@ public interface PortletDisplayViewModel extends BaseViewModel {
 	 * @param injectedJs custom Javascript to use in the portlet.
 	 */
 	void showFinishOperation(String url, String injectedJs, String injectedCss);
+
+	/**
+	 * Called when asset child screenlet is ready to be displayed.
+	 *
+	 * @param view screenlet or custom view.
+	 */
+	void showFinishOperation(View view);
 
 	/**
 	 * Call if the portlet has pagination and we want to increase its size.
