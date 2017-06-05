@@ -28,7 +28,7 @@ public interface PortletDisplayViewModel extends BaseViewModel {
 	 * @param url portlet url.
 	 * @param injectedJs custom Javascript to use in the portlet.
 	 */
-	void showFinishOperation(String url, String injectedJs, String injectedCss);
+	void showFinishOperation(String url, String injectedJs);
 
 	/**
 	 * Called when asset child screenlet is ready to be displayed.
@@ -37,10 +37,4 @@ public interface PortletDisplayViewModel extends BaseViewModel {
 	 */
 	void showFinishOperation(View view);
 
-	/**
-	 * Call if the portlet has pagination and we want to increase its size.
-	 *
-	 * @param biggerPagination true if we want to increase, false otherwise.
-	 */
-	void setBiggerPagination(boolean biggerPagination);
 }

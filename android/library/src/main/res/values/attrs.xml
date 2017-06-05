@@ -294,7 +294,6 @@
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr format="string" name="url"/>
-		<attr format="boolean" name="biggerPagination"/>
 	</declare-styleable>
 
 </resources>

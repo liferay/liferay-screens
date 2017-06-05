@@ -47,7 +47,6 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	private PortletDisplayListener listener;
 	private int jsFile;
 	private int cssFile;
-	private boolean hasBiggerPagination;
 	private HashMap<String, Integer> layouts = new HashMap<>();
 	private int imageLayout = R.layout.image_display_default;
 	private int videoLayout = R.layout.video_display_default;
@@ -78,20 +77,17 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 		getViewModel().showStartOperation(DEFAULT_ACTION);
 		if (url != null) {
 
-			String pureJs = AssetReader.read(getContext(), jsFile);
-			String js = "";
-			if (pureJs != null) {
-				js = pureJs.replace("\t", "").replace("\n", "");
+			JavascriptInjector javascriptInjector = new JavascriptInjector(getContext());
+
+			if (jsFile != 0) {
+				javascriptInjector.addJsFile(jsFile, true);
 			}
 
-			String pureCss = AssetReader.read(getContext(), cssFile);
-			String css = "";
-			if (pureCss != null) {
-				css = pureCss.replace("\t", "").replace("\n", "");
+			if (cssFile != 0) {
+				javascriptInjector.addCss(cssFile);
 			}
 
-			getViewModel().showFinishOperation(url, js, css);
-			getViewModel().setBiggerPagination(hasBiggerPagination);
+			getViewModel().showFinishOperation(portletUrl.toString(), javascriptInjector.generateInjectableJs());
 		} else {
 			getViewModel().showFailedOperation(DEFAULT_ACTION, new MalformedURLException());
 		}
@@ -144,8 +140,6 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 		autoLoad = typedArray.getBoolean(R.styleable.PortletDisplayScreenlet_autoLoad, true);
 
 		url = typedArray.getString(R.styleable.PortletDisplayScreenlet_url);
-
-		hasBiggerPagination = typedArray.getBoolean(R.styleable.PortletDisplayScreenlet_biggerPagination, true);
 
 		int layoutId = typedArray.getResourceId(R.styleable.PortletDisplayScreenlet_layoutId, getDefaultLayoutId());
 
