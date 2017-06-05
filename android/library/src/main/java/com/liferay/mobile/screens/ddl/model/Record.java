@@ -18,10 +18,12 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.util.JSONUtil;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -52,6 +54,7 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 	private Long structureId;
 	private Long recordSetId;
 	private Long recordId;
+	private String recordSetName;
 
 	public Record() {
 		super();
@@ -75,10 +78,11 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 		structureId = (Long) in.readValue(Long.class.getClassLoader());
 		recordSetId = (Long) in.readValue(Long.class.getClassLoader());
 		recordId = (Long) in.readValue(Long.class.getClassLoader());
+		recordSetName = (String) in.readValue(String.class.getClassLoader());
 	}
 
 	public void refresh() {
-		for (Field f : getDDMStructure().getFields()) {
+		for (Field f : getFields()) {
 			Object fieldValue = getServerValue(f.getName());
 			if (fieldValue != null) {
 				f.setCurrentValue(f.convertFromString(fieldValue.toString()));
@@ -99,6 +103,7 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 		destination.writeValue(structureId);
 		destination.writeValue(recordSetId);
 		destination.writeValue(recordId);
+		destination.writeValue(recordSetName);
 	}
 
 	public long getRecordSetId() {
@@ -243,6 +248,103 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 		Long userId = JSONUtil.castToLong(getServerAttribute("userId"));
 		if (userId != null) {
 			creatorUserId = userId;
+		}
+	}
+
+	public void parsePages(JSONObject pagesObject) throws JSONException {
+
+		JSONArray pagesArray = pagesObject.getJSONArray("DDMFormLayoutPages");
+
+		for (int i = 0; i < pagesArray.length(); i++) {
+
+			JSONObject pageJsonObject = pagesArray.getJSONObject(i);
+
+			String title = getField(pageJsonObject, "title");
+			String description = getField(pageJsonObject, "description");
+
+			JSONArray rowsArray = pageJsonObject.getJSONArray("DDMFormLayoutRows");
+
+			List<Field> fields = new ArrayList<>();
+
+			for (int j = 0; j < rowsArray.length(); j++) {
+
+				JSONArray columnsArray = rowsArray.getJSONObject(j).getJSONArray("DDMFormLayoutColumns");
+
+				for (int k = 0; k < columnsArray.length(); k++) {
+
+					JSONArray fieldsArray = columnsArray.getJSONObject(k).getJSONArray("DDMFormFieldNames");
+
+					for (int l = 0; l < fieldsArray.length(); l++) {
+						String fieldName = fieldsArray.getString(l);
+						Field fieldByName = getFieldByName(fieldName);
+						if (fieldByName != null) {
+							fields.add(fieldByName);
+						}
+					}
+				}
+			}
+
+			pages.add(new Page(i, title, description, fields));
+		}
+	}
+
+	public String getField(JSONObject pageJsonObject, String title) throws JSONException {
+		JSONObject jsonObject = pageJsonObject.getJSONObject(title);
+		JSONObject values = jsonObject.getJSONObject("values");
+		return values.getString(values.keys().next());
+	}
+
+	private List<Page> pages = new ArrayList<>();
+
+	public List<Page> getPages() {
+		return pages;
+	}
+
+	public int getPage(Field field) {
+		for (int i = 0; i < pages.size(); i++) {
+			if (pages.get(i).getFields().contains(field)) {
+				return i;
+			}
+		}
+		return 0;
+	}
+
+	public void setRecordSetName(String recordSetName) {
+		this.recordSetName = recordSetName;
+	}
+
+	public String getRecordSetName() {
+		return recordSetName;
+	}
+
+	public static class Page {
+
+		private String title;
+		private String description;
+		private List<Field> fields;
+		private int number;
+
+		public Page() {
+			super();
+		}
+
+		public Page(int number, String title, String description, List<Field> fields) {
+			this.number = number;
+			this.title = title;
+			this.description = description;
+			this.fields = fields;
+		}
+
+		public List<Field> getFields() {
+			return fields;
+		}
+
+		public int getNumber() {
+			return number;
+		}
+
+		public String getTitle() {
+			return title;
 		}
 	}
 }

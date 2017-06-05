@@ -21,31 +21,19 @@ public class Cache {
 
 	public static <E extends CacheEvent> E getObject(final Class<E> aClass, final Long groupId, final Long userId,
 		final Locale locale, final String cacheKey) throws Exception {
-		return (E) doDatabaseOperation(groupId, userId, new Func1<E>() {
-			@Override
-			public E call(DB db) throws Exception {
-				return db.getObject(getFullId(aClass, locale, cacheKey, null), aClass);
-			}
-		});
+		return (E) doDatabaseOperation(groupId, userId,
+			db -> db.getObject(getFullId(aClass, locale, cacheKey, null), aClass));
 	}
 
 	public static <E extends CacheEvent> E getObject(final Class<E> aClass, Long groupId, Long userId, final String key)
 		throws Exception {
-		return (E) doDatabaseOperation(groupId, userId, new Func1<E>() {
-			@Override
-			public E call(DB db) throws Exception {
-				return db.getObject(key, aClass);
-			}
-		});
+		return (E) doDatabaseOperation(groupId, userId, db -> db.getObject(key, aClass));
 	}
 
 	public static <E extends CacheEvent> void storeObject(final E event, final Integer i) throws Exception {
-		doDatabaseOperation(event.getGroupId(), event.getUserId(), new Func1<Void>() {
-			@Override
-			public Void call(DB db) throws Exception {
-				db.put(getFullId(event.getClass(), event.getLocale(), event.getCacheKey(), i), event);
-				return null;
-			}
+		doDatabaseOperation(event.getGroupId(), event.getUserId(), db -> {
+			db.put(getFullId(event.getClass(), event.getLocale(), event.getCacheKey(), i), event);
+			return null;
 		});
 	}
 
@@ -54,45 +42,32 @@ public class Cache {
 	}
 
 	public static <E extends CacheEvent> void deleteObject(final E event) throws Exception {
-		doDatabaseOperation(event.getGroupId(), event.getUserId(), new Func1<Void>() {
-			@Override
-			public Void call(DB db) throws Exception {
-				db.del(getFullId(event.getClass(), event.getLocale(), event.getCacheKey(), null));
-				return null;
-			}
+		doDatabaseOperation(event.getGroupId(), event.getUserId(), db -> {
+			db.del(getFullId(event.getClass(), event.getLocale(), event.getCacheKey(), null));
+			return null;
 		});
 	}
 
 	public static String[] findKeys(final Class childClass, Long groupId, Long userId, final Locale locale,
 		final int startRow, final int limit) throws Exception {
-		return (String[]) doDatabaseOperation(groupId, userId, new Func1<String[]>() {
-			@Override
-			public String[] call(DB db) throws Exception {
-				return db.findKeys(getFullId(childClass, locale, null, null), startRow, limit);
-			}
-		});
+		return (String[]) doDatabaseOperation(groupId, userId,
+			db -> db.findKeys(getFullId(childClass, locale, null, null), startRow, limit));
 	}
 
 	public static boolean destroy(Long groupId, Long userId, final String className) throws Exception {
-		return (boolean) doDatabaseOperation(groupId, userId, new Func1<Boolean>() {
-			@Override
-			public Boolean call(DB db) throws Exception {
-				String[] keys = db.findKeys(className);
-				for (String key : keys) {
-					db.del(key);
-				}
-				return true;
+		return (boolean) doDatabaseOperation(groupId, userId, db -> {
+			String[] keys = db.findKeys(className);
+			for (String key : keys) {
+				db.del(key);
 			}
+			return true;
 		});
 	}
 
 	public static boolean destroy(Long groupId, Long userId) throws Exception {
-		return (boolean) doDatabaseOperation(groupId, userId, new Func1<Boolean>() {
-			@Override
-			public Boolean call(DB db) throws Exception {
-				db.destroy();
-				return true;
-			}
+		return (boolean) doDatabaseOperation(groupId, userId, db -> {
+			db.destroy();
+			return true;
 		});
 	}
 

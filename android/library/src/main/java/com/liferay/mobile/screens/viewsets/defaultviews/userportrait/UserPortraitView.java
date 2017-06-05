@@ -120,26 +120,20 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 	}
 
 	public Action1<Boolean> openCamera() {
-		return new Action1<Boolean>() {
-			@Override
-			public void call(Boolean result) {
-				if (result) {
-					((UserPortraitScreenlet) getScreenlet()).openCamera();
-				}
-				choseOriginDialog.dismiss();
+		return result -> {
+			if (result) {
+				((UserPortraitScreenlet) getScreenlet()).openCamera();
 			}
+			choseOriginDialog.dismiss();
 		};
 	}
 
 	public Action1<Boolean> openGallery() {
-		return new Action1<Boolean>() {
-			@Override
-			public void call(Boolean result) {
-				if (result) {
-					((UserPortraitScreenlet) getScreenlet()).openGallery();
-				}
-				choseOriginDialog.dismiss();
+		return result -> {
+			if (result) {
+				((UserPortraitScreenlet) getScreenlet()).openGallery();
 			}
+			choseOriginDialog.dismiss();
 		};
 	}
 

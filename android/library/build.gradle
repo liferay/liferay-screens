@@ -22,6 +22,10 @@ android {
 		exclude 'META-INF/LICENSE'
 		exclude 'META-INF/NOTICE'
 	}
+	compileOptions {
+		targetCompatibility 1.8
+		sourceCompatibility 1.8
+	}
 }
 
 dependencies {
@@ -45,8 +49,6 @@ dependencies {
 	compile libraries.rxpermissions
 	compile libraries.rxbinding
 
-	compile 'com.lsjwzh:recyclerviewpager:1.0.8'
-
 	testCompile libraries.junit
 	testCompile libraries.robolectric
 	testCompile libraries.mockito
@@ -55,6 +57,10 @@ dependencies {
 		exclude group: 'com.esotericsoftware.kryo', module: 'kryo'
 	}
 	compile libraries.kryo
+
+	compile 'com.google.code.gson:gson:2.8.0'
+
+	compile 'com.github.lsjwzh.RecyclerViewPager:lib:v1.1.2'
 }
 
 apply from: '../bintray.gradle'

@@ -2,7 +2,6 @@ package com.liferay.mobile.screens.viewsets.defaultviews.imagegallery;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.imagegallery.BaseDetailUploadView;
 
@@ -17,21 +16,13 @@ public class DefaultUploadDialog {
 		alert.setView(view);
 		alert.setCancelable(false);
 
-		alert.setNegativeButton(R.string.upload_detail_cancel_button, new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.dismiss();
-			}
-		});
+		alert.setNegativeButton(R.string.upload_detail_cancel_button, (dialog, which) -> dialog.dismiss());
 
-		alert.setPositiveButton(R.string.upload_detail_upload_button, new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				String title = view.getTitle();
-				String description = view.getDescription();
+		alert.setPositiveButton(R.string.upload_detail_upload_button, (dialog, which) -> {
+			String title = view.getTitle();
+			String description = view.getDescription();
 
-				view.finishActivityAndStartUpload(title, description, "");
-			}
+			view.finishActivityAndStartUpload(title, description, "");
 		});
 
 		return alert.create();

@@ -22,10 +22,18 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.ddl.form.EventProperty;
+import com.liferay.mobile.screens.ddl.form.EventType;
+import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.DateField;
+import com.liferay.mobile.screens.ddl.model.Field;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+import rx.Observable;
+import rx.functions.Func1;
+import rx.subjects.PublishSubject;
 
 /**
  * @author Silvio Santos
@@ -66,6 +74,7 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 
 		pickerDialog = new DatePickerDialog(getContext(), getDatePickerStyle(), this, year, month, day);
 
+		focusable.focusField();
 		pickerDialog.show();
 	}
 
@@ -79,10 +88,7 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 		getField().setCurrentValue(calendar.getTime());
 
 		refresh();
-	}
-
-	@Override
-	public void setPositionInParent(int position) {
+		focusable.clearFocus();
 	}
 
 	protected int getDatePickerStyle() {
@@ -96,6 +102,7 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 		// Avoid WindowLeak error on orientation changes
 		if (pickerDialog != null) {
 			pickerDialog.dismiss();
+			focusable.clearFocus();
 			pickerDialog = null;
 		}
 	}
@@ -103,6 +110,8 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
+
+		findViewById(R.id.field_today).setOnClickListener(this);
 
 		EditText editText = getTextEditText();
 		editText.setCursorVisible(false);
@@ -116,4 +125,15 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 		//not doing anything at the moment, because field is being set
 		//using the DatePickerDialog
 	}
+
+	@Override
+	public Observable<EventProperty> getObservable() {
+		return focusable.getObservable();
+	}
+
+	@Override
+	public void clearFocus(DDLFieldViewModel ddlFieldSelectView) {
+		focusable.clearFocus(ddlFieldSelectView);
+	}
+
 }

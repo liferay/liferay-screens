@@ -36,12 +36,14 @@ public class DDLFieldTextView extends BaseDDLFieldTextView<StringField> {
 	}
 
 	@Override
-	public void setPositionInParent(int position) {
-
+	protected void onTextChanged(String text) {
+		getField().setCurrentValue(text);
 	}
 
 	@Override
-	protected void onTextChanged(String text) {
-		getField().setCurrentValue(text);
+	protected void onFinishInflate() {
+		super.onFinishInflate();
+
+		textEditText.setOnFocusChangeListener(this);
 	}
 }

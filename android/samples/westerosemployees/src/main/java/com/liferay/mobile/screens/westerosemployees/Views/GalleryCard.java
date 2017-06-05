@@ -83,13 +83,9 @@ public class GalleryCard extends CommentsRatingsCard implements ImageGalleryList
 			.compose(rxPermissions.ensure(CAMERA, WRITE_EXTERNAL_STORAGE))
 			.subscribe(openCamera());
 
-		RxView.clicks(findViewById(R.id.upoad_button)).subscribe(new Action1<Void>() {
-			@Override
-			public void call(Void aVoid) {
-				uploadDetailView.finishActivityAndStartUpload(uploadDetailView.getTitle(),
-					uploadDetailView.getDescription(), "");
-			}
-		});
+		RxView.clicks(findViewById(R.id.upoad_button))
+			.subscribe(aVoid -> uploadDetailView.finishActivityAndStartUpload(uploadDetailView.getTitle(),
+				uploadDetailView.getDescription(), ""));
 	}
 
 	@Override
@@ -151,23 +147,17 @@ public class GalleryCard extends CommentsRatingsCard implements ImageGalleryList
 	}
 
 	private Action1<Boolean> openGallery() {
-		return new Action1<Boolean>() {
-			@Override
-			public void call(Boolean permissionAccepted) {
-				if (permissionAccepted) {
-					imageGalleryScreenlet.openGallery();
-				}
+		return permissionAccepted -> {
+			if (permissionAccepted) {
+				imageGalleryScreenlet.openGallery();
 			}
 		};
 	}
 
 	private Action1<Boolean> openCamera() {
-		return new Action1<Boolean>() {
-			@Override
-			public void call(Boolean permissionAccepted) {
-				if (permissionAccepted) {
-					imageGalleryScreenlet.openCamera();
-				}
+		return permissionAccepted -> {
+			if (permissionAccepted) {
+				imageGalleryScreenlet.openCamera();
 			}
 		};
 	}

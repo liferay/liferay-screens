@@ -21,8 +21,10 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.ddl.form.EventProperty;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.BooleanField;
+import rx.Observable;
 
 /**
  * @author Jose Manuel Navarro
@@ -33,6 +35,7 @@ public class DDLFieldCheckboxView extends LinearLayout
 	protected BooleanField field;
 	protected SwitchCompat switchCompat;
 	protected View parentView;
+	private Focusable focusable = new Focusable(this);
 
 	public DDLFieldCheckboxView(Context context) {
 		super(context);
@@ -87,13 +90,19 @@ public class DDLFieldCheckboxView extends LinearLayout
 	}
 
 	@Override
-	public void setPositionInParent(int position) {
+	public Observable<EventProperty> getObservable() {
+		return focusable.getObservable();
+	}
 
+	@Override
+	public void clearFocus(DDLFieldViewModel ddlFieldSelectView) {
+		clearFocus(ddlFieldSelectView);
 	}
 
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		field.setCurrentValue(isChecked);
+		focusable.focusField();
 	}
 
 	@Override

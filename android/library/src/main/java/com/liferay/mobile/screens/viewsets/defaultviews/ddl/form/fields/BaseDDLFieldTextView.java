@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields;
 
 import android.content.Context;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.View;
@@ -23,19 +24,23 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.ddl.form.EventProperty;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.Field;
+import rx.Observable;
 
 /**
  * @author Silvio Santos
  */
 public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
-	implements DDLFieldViewModel<T>, TextWatcher {
+	implements DDLFieldViewModel<T>, TextWatcher, View.OnFocusChangeListener {
 
 	protected TextView labelTextView;
 	protected EditText textEditText;
 	protected View parentView;
 	private T field;
+
+	protected Focusable focusable = new Focusable(this);
 
 	public BaseDDLFieldTextView(Context context) {
 		super(context);
@@ -109,11 +114,19 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 
 	@Override
 	public void onTextChanged(CharSequence text, int start, int before, int count) {
+		if (parentView != null) {
+			focusable.focusField();
+		}
 	}
 
 	@Override
 	public void refresh() {
-		textEditText.setText(field.toFormattedString());
+		if (this.field.isReadOnly()) {
+			textEditText.setEnabled(false);
+			textEditText.setText(Html.fromHtml(String.valueOf(field.toFormattedString())));
+		} else {
+			textEditText.setText(field.toFormattedString());
+		}
 	}
 
 	@Override
@@ -143,4 +156,23 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 	}
 
 	protected abstract void onTextChanged(String text);
+
+	@Override
+	public void onFocusChange(View v, boolean hasFocus) {
+		if (hasFocus) {
+			focusable.focusField();
+		} else {
+			focusable.clearFocus();
+		}
+	}
+
+	@Override
+	public Observable<EventProperty> getObservable() {
+		return focusable.getObservable();
+	}
+
+	@Override
+	public void clearFocus(DDLFieldViewModel ddlFieldSelectView) {
+		focusable.clearFocus(ddlFieldSelectView);
+	}
 }

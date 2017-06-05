@@ -15,9 +15,11 @@
 package com.liferay.mobile.screens.ddl.form.view;
 
 import com.liferay.mobile.screens.base.view.BaseViewModel;
+import com.liferay.mobile.screens.ddl.form.EventProperty;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 import java.util.Map;
+import rx.Observable;
 
 /**
  * @author Silvio Santos
@@ -81,4 +83,6 @@ public interface DDLFormViewModel extends BaseViewModel {
 	void showFinishOperation(String actionName, Object argument);
 
 	void showFailedOperation(String actionName, Exception e, Object argument);
+
+	Observable<EventProperty> getEventsObservable();
 }

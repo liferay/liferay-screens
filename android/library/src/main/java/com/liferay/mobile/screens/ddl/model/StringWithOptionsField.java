@@ -67,6 +67,9 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 
 		Object multipleValue = attributes.get("multiple");
 		multiple = (multipleValue != null) ? Boolean.valueOf(multipleValue.toString()) : false;
+		if ("checkbox_multiple".equals(attributes.get("type"))) {
+			multiple = true;
+		}
 
 		ArrayList<Option> predefinedOptions = convertFromString(getAttributeStringValue(attributes, "predefinedValue"));
 

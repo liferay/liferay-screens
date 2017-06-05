@@ -25,9 +25,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.ddl.form.EventProperty;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.StringWithOptionsField;
 import java.util.List;
+import rx.Observable;
 
 /**
  * @author Jose Manuel Navarro
@@ -37,6 +39,7 @@ public class DDLFieldRadioView extends RadioGroup
 
 	protected View parentView;
 	private StringWithOptionsField field;
+	private Focusable focusable = new Focusable(this);
 
 	public DDLFieldRadioView(Context context) {
 		super(context);
@@ -126,8 +129,13 @@ public class DDLFieldRadioView extends RadioGroup
 	}
 
 	@Override
-	public void setPositionInParent(int position) {
+	public Observable<EventProperty> getObservable() {
+		return focusable.getObservable();
+	}
 
+	@Override
+	public void clearFocus(DDLFieldViewModel ddlFieldSelectView) {
+		focusable.clearFocus(ddlFieldSelectView);
 	}
 
 	@Override
@@ -140,6 +148,8 @@ public class DDLFieldRadioView extends RadioGroup
 		} else {
 			field.clearOption(opt);
 		}
+
+		focusable.focusField();
 	}
 
 	@Override

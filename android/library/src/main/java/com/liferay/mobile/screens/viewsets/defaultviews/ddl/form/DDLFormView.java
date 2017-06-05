@@ -21,7 +21,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.ScrollView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
@@ -32,13 +31,15 @@ import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
+import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 import java.util.HashMap;
 import java.util.Map;
+import rx.Observable;
 
 /**
  * @author Silvio Santos
  */
-public class DDLFormView extends ScrollView implements DDLFormViewModel, View.OnClickListener {
+public class DDLFormView extends RecyclerViewPager implements DDLFormViewModel, View.OnClickListener {
 
 	private static final Map<Field.EditorType, Integer> DEFAULT_LAYOUT_IDS = new HashMap<>(16);
 
@@ -120,7 +121,7 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 
 			if (!isFieldValid && autoscroll && !scrolled) {
 				fieldView.requestFocus();
-				smoothScrollTo(0, fieldView.getTop());
+				//smoothScrollTo(0, fieldView.getTop());
 				scrolled = true;
 			}
 		}
@@ -155,6 +156,9 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 
 	@Override
 	public void showFinishOperation(String actionName, Object argument) {
+
+		setSinglePageFling(true);
+
 		hideProgressBar(actionName);
 		switch (actionName) {
 			case DDLFormScreenlet.LOAD_RECORD_ACTION:
@@ -209,6 +213,11 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 	}
 
 	@Override
+	public Observable getEventsObservable() {
+		return null;
+	}
+
+	@Override
 	public void showFormFields(Record record) {
 		fieldsContainerView.removeAllViews();
 		fieldsContainerView.setVisibility(INVISIBLE);
@@ -217,11 +226,8 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 			addFieldView(record.getField(i), i);
 		}
 
-		if (getDDLFormScreenlet().isShowSubmitButton()) {
-			submitButton.setVisibility(VISIBLE);
-		} else {
-			submitButton.setVisibility(INVISIBLE);
-		}
+		int visibility = getDDLFormScreenlet().isShowSubmitButton() ? VISIBLE : INVISIBLE;
+		submitButton.setVisibility(visibility);
 
 		DefaultAnimation.showViewWithReveal(fieldsContainerView);
 	}
@@ -262,20 +268,16 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 	}
 
 	protected void addFieldView(Field field, int position) {
-		int layoutId;
 
-		if (customLayoutIds.containsKey(field.getName())) {
-			layoutId = getCustomFieldLayoutId(field.getName());
-		} else {
-			layoutId = getFieldLayoutId(field.getEditorType());
-		}
+		boolean isACustomLayout = customLayoutIds.containsKey(field.getName());
+		int layoutId =
+			isACustomLayout ? getCustomFieldLayoutId(field.getName()) : getFieldLayoutId(field.getEditorType());
 
 		View view = LayoutInflater.from(getContext()).inflate(layoutId, this, false);
 		DDLFieldViewModel viewModel = (DDLFieldViewModel) view;
 
 		viewModel.setField(field);
 		viewModel.setParentView(this);
-		viewModel.setPositionInParent(position);
 
 		fieldsContainerView.addView(view);
 	}
@@ -301,5 +303,9 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 			}
 		}
 		return null;
+	}
+
+	public void clearFocusOfFields(DDLFieldViewModel ddlFieldViewModel) {
+
 	}
 }
