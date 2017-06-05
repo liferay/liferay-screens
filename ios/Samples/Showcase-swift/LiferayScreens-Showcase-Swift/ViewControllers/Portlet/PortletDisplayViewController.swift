@@ -34,9 +34,10 @@ class PortletDisplayViewController: UIViewController, PortletDisplayScreenletDel
 		super.viewDidLoad()
 
 		screenlet?.portletUrl = LiferayServerContext.stringPropertyForKey("portletDisplayUrl")
-		//screenlet?.scriptHandler = "gallery"
-		//screenlet?.load(withJsFile: "gallery")
-		screenlet?.load(withCssFile: "publisherlist")
+		screenlet?.scriptHandler = "gallery"
+		screenlet?.injectedJs = "gallery"
+		screenlet?.injectedCss = "publisherlist"
+		screenlet?.load()
 	}
 
 

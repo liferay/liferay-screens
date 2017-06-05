@@ -61,6 +61,12 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 	// Script handler that will take messages from WKWebView.
 	@IBInspectable open var scriptHandler: String?
 
+	// Script to inject in the WkWebView
+	@IBInspectable open var injectedCss: String?
+
+	// Css to inject in the WkWebView
+	@IBInspectable open var injectedJs: String?
+
 
 	//MARK: Public properties
 
@@ -91,54 +97,11 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 		}
 
 		portletDisplayViewModel?.scriptHandler = self.scriptHandler
-		portletDisplayViewModel?.portletUrl = URL(string: url)
-
-		self.portletDisplayDelegate?.screenlet?(self, onPortletUrlResponse: "URL: \(url)")
-	}
-
-	/// Call this method to load the portlet with a custom Javascript file.
-	public func load(withJsFile jsFile: String) {
-		guard let url = portletUrl, url != "" else {
-			self.portletDisplayDelegate?.screenlet?(self, onPortletError: NSError.errorWithCause(
-				.invalidServerResponse, message: "Could not load portlet content."))
-			return
-		}
-
-		portletDisplayViewModel?.scriptHandler = self.scriptHandler
-		portletDisplayViewModel?.injectedJsFile = jsFile
+		portletDisplayViewModel?.injectedJsFile = injectedJs
+		portletDisplayViewModel?.injectedCssFile = injectedCss
 		portletDisplayViewModel?.portletUrl = URL(string: url)
 
 		self.portletDisplayDelegate?.screenlet?(self,
-			onPortletUrlResponse: "URL: \(url) and JS: \(jsFile).js")
-	}
-
-	/// Call this method to load the portlet with a custom css file.
-	public func load(withCssFile cssFile: String) {
-		guard let url = portletUrl, url != "" else {
-			self.portletDisplayDelegate?.screenlet?(self, onPortletError: NSError.errorWithCause(
-				.invalidServerResponse, message: "Could not load portlet content."))
-			return
-		}
-		portletDisplayViewModel?.injectedCssFile = cssFile
-		portletDisplayViewModel?.portletUrl = URL(string: url)
-
-		self.portletDisplayDelegate?.screenlet?(self,
-			onPortletUrlResponse: "URL: \(url) and CSS: \(cssFile).css")
-	}
-
-	/// Call this method to load the portlet with a custom Javascript file and a custom css file.
-	public func load(withJsFile jsFile: String, withCssFile cssFile: String) {
-		guard let url = portletUrl, url != "" else {
-			self.portletDisplayDelegate?.screenlet?(self, onPortletError: NSError.errorWithCause(
-				.invalidServerResponse, message: "Could not portlet content."))
-			return
-		}
-
-		portletDisplayViewModel?.injectedJsFile = jsFile
-		portletDisplayViewModel?.injectedCssFile = cssFile
-		portletDisplayViewModel?.portletUrl = URL(string: url)
-
-		self.portletDisplayDelegate?.screenlet?(self,
-			onPortletUrlResponse: "URL: \(url), JS: \(jsFile).js and CSS: \(cssFile).css")
+				onPortletUrlResponse: "URL: \(url), JS: \(injectedJs).js and CSS: \(injectedCss)).css")
 	}
 }
