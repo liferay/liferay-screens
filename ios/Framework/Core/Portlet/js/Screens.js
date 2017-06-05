@@ -14,7 +14,6 @@ window.Screens = {
 // on SPA navigation
 window.Liferay.on('SPAReady', () => {
 	Liferay.SPA.app.on('endNavigate', () => {
-		window.webkit.messageHandlers.gallery.postMessage("test")
 		window.Screens.reloadScripts();
 	})
 })
