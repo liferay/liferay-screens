@@ -289,4 +289,8 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	public void setAutoLoad(boolean autoLoad) {
 		this.autoLoad = autoLoad;
 	}
+
+	public void setLayouts(HashMap<String, Integer> layouts) {
+		this.layouts = layouts;
+	}
 }
