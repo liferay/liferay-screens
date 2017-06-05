@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.AttributeSet;
+import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
@@ -16,7 +18,6 @@ import com.liferay.mobile.screens.portlet.view.PortletDisplayViewModel;
 import com.liferay.mobile.screens.util.AssetReader;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.DetailImageActivity;
-import java.util.List;
 
 /**
  * @author Sarai Díaz García
@@ -57,6 +58,15 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 		if (webView != null) {
 			webView.setVisibility(GONE);
 		}
+	}
+
+	@Override
+	public void showFinishOperation(View view) {
+		screenlet.addView(view, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+		webView.setVisibility(GONE);
+		progressBar.setVisibility(GONE);
+		screenlet.setVisibility(VISIBLE);
+		LiferayLogger.d("Asset display loaded successfully");
 	}
 
 	@Override
