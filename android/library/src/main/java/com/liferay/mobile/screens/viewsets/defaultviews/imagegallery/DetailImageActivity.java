@@ -38,7 +38,6 @@ public class DetailImageActivity extends AppCompatActivity implements SwipeListe
 
 				ImageEntry imageEntry = (ImageEntry) intent.getExtras().get(GALLERY_SCREENLET_IMAGE_DETAILED);
 				PicassoScreens.load(imageEntry.getImageUrl()).into(detailedImageView);
-
 			} else if (intent.hasExtra("imgSrcPosition")) {
 
 				if (intent.hasExtra("allImgSrc")) {
@@ -49,12 +48,11 @@ public class DetailImageActivity extends AppCompatActivity implements SwipeListe
 				String imgSrc = allImgSrc[imgSrcPosition];
 				Picasso.with(getApplicationContext()).load(imgSrc).into(detailedImageView);
 				Toast.makeText(DetailImageActivity.this, imgSrc, Toast.LENGTH_SHORT).show();
-				}
-
-				imgSrcPosition = intent.getIntExtra("imgSrcPosition", -1);
-				String imgSrc = allImgSrc[imgSrcPosition];
-				Picasso.with(getApplicationContext()).load(imgSrc).into(detailedImageView);
 			}
+
+			imgSrcPosition = intent.getIntExtra("imgSrcPosition", -1);
+			String imgSrc = allImgSrc[imgSrcPosition];
+			Picasso.with(getApplicationContext()).load(imgSrc).into(detailedImageView);
 		}
 
 		detailedImageView.setOnTouchListener(new OnSwipeTouchListener(this, this));
@@ -68,9 +66,6 @@ public class DetailImageActivity extends AppCompatActivity implements SwipeListe
 	}
 
 	@Override
-	public void onSwipeRight() {
-		Picasso.with(getApplicationContext()).load(allImgSrc[imgSrcPosition - 1]).into(detailedImageView);
-		imgSrcPosition--;
 	public void onSwipeRight() {
 		Picasso.with(getApplicationContext()).load(allImgSrc[imgSrcPosition - 1]).into(detailedImageView);
 		imgSrcPosition--;
