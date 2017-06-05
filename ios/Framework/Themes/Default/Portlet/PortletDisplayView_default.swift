@@ -44,6 +44,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 		wkWebView?.injectCookies()
 		wkWebView?.injectViewportMetaTag()
+		wkWebView?.loadJs(file: "Screens")
 		wkWebView?.uiDelegate = self
 
 		addWebView()
