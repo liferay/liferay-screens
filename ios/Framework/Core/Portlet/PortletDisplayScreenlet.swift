@@ -106,6 +106,10 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 	}
 
 	func configureInitialHtml(portletUrl: String) -> String {
+		// With WKWebView we are not able to load a page using a POST request, in order to work around we have to
+		// create a form with the parameters for the POST request and submit it to actually perform the request
+
+		// This html is a template to build the form
 		let html = Bundle.resourceInBundle(name: "index", ofType: "html", currentClass: type(of: self)) { path, _ in
 			return try! String(contentsOfFile: path, encoding: String.Encoding.utf8)
 		}
