@@ -31,7 +31,6 @@ import com.liferay.mobile.screens.dlfile.display.pdf.PdfDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.video.VideoDisplayScreenlet;
 import com.liferay.mobile.screens.portlet.interactor.PortletDisplayInteractor;
 import com.liferay.mobile.screens.portlet.view.PortletDisplayViewModel;
-import com.liferay.mobile.screens.util.AssetReader;
 import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.List;
@@ -131,6 +130,11 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 		if (listener != null) {
 			listener.onRetrieveAssetSuccess(assetEntry);
 		}
+	}
+
+	@Override
+	public void onScriptMessageHandler(String namespace, String arg) {
+
 	}
 
 	@Override

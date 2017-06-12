@@ -31,4 +31,12 @@ public interface PortletDisplayListener extends BaseCacheListener {
 	 * Called when the asset is retrieved successfully.
 	 */
 	void onRetrieveAssetSuccess(AssetEntry assetEntry);
+
+	/**
+	 * Called when we want to notify a message from the WKWebView used in the view.
+	 *
+	 * @param namespace source namespace key.
+	 * @param body source namespace body
+	 */
+	void onScriptMessageHandler(String namespace, String body);
 }
