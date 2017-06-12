@@ -34,6 +34,7 @@ import com.liferay.mobile.screens.portlet.view.PortletDisplayViewModel;
 import com.liferay.mobile.screens.util.AssetReader;
 import java.net.MalformedURLException;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author Sarai Díaz García
@@ -45,8 +46,8 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	private boolean autoLoad;
 	private String url;
 	private PortletDisplayListener listener;
-	private int jsFile;
-	private int cssFile;
+	private List<Integer> jsFiles;
+	private List<Integer> cssFiles;
 	private HashMap<String, Integer> layouts = new HashMap<>();
 	private int imageLayout = R.layout.image_display_default;
 	private int videoLayout = R.layout.video_display_default;
@@ -79,11 +80,11 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 
 			JavascriptInjector javascriptInjector = new JavascriptInjector(getContext());
 
-			if (jsFile != 0) {
+			for (int jsFile : jsFiles) {
 				javascriptInjector.addJsFile(jsFile, true);
 			}
 
-			if (cssFile != 0) {
+			for (int cssFile : cssFiles) {
 				javascriptInjector.addCss(cssFile);
 			}
 
@@ -200,12 +201,12 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 		this.listener = listener;
 	}
 
-	public void setJs(int jsFile) {
-		this.jsFile = jsFile;
+	public void setJsFiles(List<Integer> jsFiles) {
+		this.jsFiles = jsFiles;
 	}
 
-	public void setCss(int cssFile) {
-		this.cssFile = cssFile;
+	public void setCssFiles(List<Integer> cssFiles) {
+		this.cssFiles = cssFiles;
 	}
 
 	public void setImageLayout(@IdRes int imageLayout) {
