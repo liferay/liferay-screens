@@ -125,6 +125,7 @@
 		0B66FFCE1DAF83E900963DEB /* DefaultTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B66FFCD1DAF83E900963DEB /* DefaultTextField.swift */; };
 		0B76FE8E1E4DADA80002D27F /* CookieCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76FE8D1E4DADA80002D27F /* CookieCredentialsStoreKeyChain.swift */; };
 		0B7F45A21DA7BC5C00A3BDE3 /* ImageDisplayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7F45A11DA7BC5C00A3BDE3 /* ImageDisplayViewModel.swift */; };
+		0B81C1B21EEED7A900D7DCF6 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 0B81C1B11EEED7A900D7DCF6 /* index.html */; };
 		0B89C9951D58B01200A9EAE7 /* SyncManager+ImageGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B89C9941D58B01200A9EAE7 /* SyncManager+ImageGallery.swift */; };
 		0BB4678B1D8707280044523E /* comment-add-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BB467851D8707280044523E /* comment-add-screenlet.strings */; };
 		0BB4678C1D8707280044523E /* comment-display-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BB467871D8707280044523E /* comment-display-screenlet.strings */; };
@@ -680,6 +681,7 @@
 		0B66FFCD1DAF83E900963DEB /* DefaultTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTextField.swift; sourceTree = "<group>"; };
 		0B76FE8D1E4DADA80002D27F /* CookieCredentialsStoreKeyChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CookieCredentialsStoreKeyChain.swift; sourceTree = "<group>"; };
 		0B7F45A11DA7BC5C00A3BDE3 /* ImageDisplayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDisplayViewModel.swift; sourceTree = "<group>"; };
+		0B81C1B11EEED7A900D7DCF6 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		0B85DF921DDE19450015EDCF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/assetdisplay-screenlet.strings"; sourceTree = "<group>"; };
 		0B85DF931DDE1D9E0015EDCF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/assetlist-screenlet.strings"; sourceTree = "<group>"; };
 		0B85DF941DDE1DFA0015EDCF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/comment-add-screenlet.strings"; sourceTree = "<group>"; };
@@ -1325,6 +1327,14 @@
 			path = CustomViews;
 			sourceTree = "<group>";
 		};
+		0B81C1B01EEED7A900D7DCF6 /* html */ = {
+			isa = PBXGroup;
+			children = (
+				0B81C1B11EEED7A900D7DCF6 /* index.html */,
+			);
+			path = html;
+			sourceTree = "<group>";
+		};
 		0BB503171D37C04A00ABD6B3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -1389,6 +1399,7 @@
 		0BC700CE1EB207B1006DD475 /* Portlet */ = {
 			isa = PBXGroup;
 			children = (
+				0B81C1B01EEED7A900D7DCF6 /* html */,
 				0B6402641EDC635500F6DC53 /* js */,
 				0BC700CF1EB207B1006DD475 /* PortletDisplayScreenlet.swift */,
 				0BC700D01EB207B1006DD475 /* PortletDisplayViewModel.swift */,
@@ -2580,6 +2591,7 @@
 				881E625E1ACBFC3400862B9E /* default-lock-icon@2x.png in Resources */,
 				0B5F58C51DCC8C0500E3598A /* default-preview-assetdisplay@2x.png in Resources */,
 				881E62351ACBFC3400862B9E /* DDLFieldCheckboxTableCell_default.xib in Resources */,
+				0B81C1B21EEED7A900D7DCF6 /* index.html in Resources */,
 				881E623B1ACBFC3400862B9E /* DDLFieldDocumentlibraryTableCell_default.xib in Resources */,
 				0B2C41631D5A3C7C00764326 /* UploadProgressView_default.xib in Resources */,
 				881E624E1ACBFC3400862B9E /* default.strings in Resources */,
