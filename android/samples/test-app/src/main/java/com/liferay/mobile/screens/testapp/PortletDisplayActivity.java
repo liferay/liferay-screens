@@ -1,9 +1,13 @@
 package com.liferay.mobile.screens.testapp;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import com.liferay.mobile.screens.asset.AssetEntry;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.portlet.PortletDisplayListener;
 import com.liferay.mobile.screens.portlet.PortletDisplayScreenlet;
+import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,5 +56,18 @@ public class PortletDisplayActivity extends ThemeActivity implements PortletDisp
 	@Override
 	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
 		info(getString(R.string.asset_received_info) + " " + assetEntry.getTitle());
+	}
+
+	@Override
+	public void onScriptMessageHandler(String namespace, String body) {
+		if ("gallery".equals(namespace)) {
+			String[] allImgSrc = body.split(",");
+			int imgSrcPosition = Integer.parseInt(allImgSrc[allImgSrc.length - 1]);
+
+			Intent intent = new Intent(getApplicationContext(), DetailMediaGalleryActivity.class);
+			intent.putExtra("allImgSrc", allImgSrc);
+			intent.putExtra("imgSrcPosition", imgSrcPosition);
+			startActivity(intent);
+		}
 	}
 }
