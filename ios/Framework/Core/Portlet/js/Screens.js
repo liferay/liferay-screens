@@ -1,19 +1,33 @@
-window.Screens = {
+var screens = {
 	screensScripts_: [],
-	addScreensScript: (screensScript) => {
+	addScreensScript: function(screensScript) {
 		screensScript();
-		window.Screens.screensScripts_.push(screensScript);
+		this.screensScripts_.push(screensScript);
 	},
 
-	reloadScripts: () => {
-		window.Screens.screensScripts_.forEach(fn => fn());
+	reloadScripts: function() {
+		this.screensScripts_.forEach(fn => fn());
+	},
+
+	isAndroid: function() {
+		if (navigator.userAgent.indexOf('Android') !== -1) {
+			return false;
+		}
+		return true;
+	},
+
+	postMessage: function(namespace, message) {
+		if (this.isAndroid) {
+			android.postMessage(namespace, message);
+		}
+		else {
+			window.webkit.messageHandlers[namespace].postMessage(message);
+		}
 	}
 }
 
+window.Screens = Object.create(screens);
+
 // Attach a listener to the SPA application to add the Screens scripts
 // on SPA navigation
-window.Liferay.on('SPAReady', () => {
-	Liferay.SPA.app.on('endNavigate', () => {
-		window.Screens.reloadScripts();
-	})
-})
+window.Liferay.on('endNavigate', () => window.Screens.reloadScripts());
