@@ -87,7 +87,7 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 				javascriptInjector.addCss(cssFile);
 			}
 
-			getViewModel().showFinishOperation(url.toString(), javascriptInjector.generateInjectableJs());
+			getViewModel().showFinishOperation(url, javascriptInjector.generateInjectableJs());
 		} else {
 			getViewModel().showFailedOperation(DEFAULT_ACTION, new MalformedURLException());
 		}
