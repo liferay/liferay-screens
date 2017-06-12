@@ -90,18 +90,33 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 
 	/// Call this method to load the portlet.
 	open func load() {
-		guard let url = portletUrl, url != "" else {
+		guard let url = portletUrl, url != "", SessionContext.isLoggedIn else {
 			self.portletDisplayDelegate?.screenlet?(self, onPortletError: NSError.errorWithCause(
 				.invalidServerResponse, message: "Could not portlet content."))
 			return
 		}
 
+		let html = configureInitialHtml(portletUrl: url)
+
 		portletDisplayViewModel?.scriptHandler = self.scriptHandler
 		portletDisplayViewModel?.injectedJsFile = injectedJs
 		portletDisplayViewModel?.injectedCssFile = injectedCss
-		portletDisplayViewModel?.portletUrl = URL(string: url)
-
-		self.portletDisplayDelegate?.screenlet?(self,
-				onPortletUrlResponse: "URL: \(url), JS: \(injectedJs).js and CSS: \(injectedCss)).css")
+		portletDisplayViewModel?.initialHtml = html
 	}
+
+	func configureInitialHtml(portletUrl: String) -> String {
+		let html = Bundle.resourceInBundle(name: "index", ofType: "html", currentClass: type(of: self)) { path, _ in
+			return try! String(contentsOfFile: path, encoding: String.Encoding.utf8)
+		}
+
+		let username = SessionContext.currentContext?.basicAuthUsername ?? ""
+		let password = SessionContext.currentContext?.basicAuthPassword ?? ""
+
+		let portletUrlEscaped = portletUrl.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+
+		return html?.replacingOccurrences(of: "<portletUrl>", with: portletUrlEscaped!)
+			.replacingOccurrences(of: "<login>", with: username)
+			.replacingOccurrences(of: "<password>", with: password) ?? ""
+	}
+
 }

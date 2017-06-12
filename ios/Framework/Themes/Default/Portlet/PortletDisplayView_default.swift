@@ -57,14 +57,12 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 	//MARK: PortletDisplayViewModel
 
-	open var portletUrl: URL? {
+	public var initialHtml: String? {
 		didSet {
-			if let url = portletUrl {
-				wkWebView?.load(URLRequest(url: url))
-			}
+			let server = SessionContext.currentContext?.session.server ?? ""
+			wkWebView?.loadHTMLString(initialHtml!, baseURL: URL(string: server)!)
 		}
 	}
-
 
 	public var injectedJsFile: String? {
 		didSet {
@@ -125,4 +123,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 		NSLayoutConstraint.activate([top, bottom, leading, trailing])
 	}
+
+	
+}
 }

@@ -16,8 +16,7 @@ import UIKit
 
 @objc public protocol PortletDisplayViewModel {
 
-	/// Portlet URL to be displayed.
-	var portletUrl: URL? { get set }
+	var initialHtml: String? { get set }
 
 	// Injected JS to be used by the screenlet.
 	var injectedJsFile: String? { get set }
