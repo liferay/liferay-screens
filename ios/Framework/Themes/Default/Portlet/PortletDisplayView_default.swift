@@ -39,10 +39,8 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 	override open func onCreated() {
 		super.onCreated()
-
 		wkWebView = WKWebView(frame: self.frame)
 
-		wkWebView?.injectCookies()
 		wkWebView?.injectViewportMetaTag()
 		wkWebView?.loadJs(file: "Screens")
 		wkWebView?.uiDelegate = self
