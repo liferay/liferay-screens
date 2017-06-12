@@ -43,7 +43,7 @@ import UIKit
 	///   - body: source message body.
 	@objc optional func screenlet(_ screenlet: PortletDisplayScreenlet,
 	                              onScriptMessageHandler key: String,
-	                              onScriptMessageBody body: String)
+	                              onScriptMessageBody body: Any)
 
 }
 

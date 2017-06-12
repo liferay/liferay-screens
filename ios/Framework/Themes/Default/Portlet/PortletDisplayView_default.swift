@@ -88,7 +88,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 	public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
 		(screenlet as? PortletDisplayScreenlet)?.portletDisplayDelegate?.screenlet?(
 			screenlet as! PortletDisplayScreenlet, onScriptMessageHandler: message.name,
-				onScriptMessageBody: message.body as! String)
+				onScriptMessageBody: message.body)
 	}
 
 

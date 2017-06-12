@@ -52,7 +52,7 @@ class PortletDisplayViewController: UIViewController, PortletDisplayScreenletDel
 	}
 
 	func screenlet(_ screenlet: PortletDisplayScreenlet, onScriptMessageHandler key: String,
-	               onScriptMessageBody body: String) {
+	               onScriptMessageBody body: Any) {
 		//We can check what is the name of the message handler responsible for the action
 		performSegue(withIdentifier: "detail", sender: body)
 	}
