@@ -1,12 +1,12 @@
 function addClickToCards() {
 	var cards = document.getElementsByClassName('card');
-    var allImgSrc = [];
+    var allImgSrc = "";
 	for (let i = 0; i < cards.length; i++) {
-		allImgSrc[i] = cards[i].querySelector('img').src;
+		allImgSrc += cards[i].querySelector('img').src + ",";;
     	cards[i].addEventListener('click', function(event) {
+    	allImgSrc += i;
     	event.stopPropagation();
-    	android.setAllImgSrc(allImgSrc);
-    	android.showItem(i);
+    	android.postMessage("gallery", allImgSrc);
     })}
 }
 
