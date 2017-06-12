@@ -64,30 +64,17 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		}
 	}
 
-	public var injectedJsFile: String? {
-		didSet {
-			if let js = injectedJsFile {
-				wkWebView?.loadJs(file: js)
-			}
-		}
+	public func add(js: String) {
+		wkWebView?.loadJs(file: js)
 	}
 
-	public var injectedCssFile: String? {
-		didSet {
-			if let css = self.injectedCssFile {
-				wkWebView?.loadCss(file: css)
-			}
-		}
+	public func add(css: String) {
+		wkWebView?.loadCss(file: css)
 	}
 
-	public var scriptHandler: String? {
-		didSet {
-			if let script = scriptHandler {
-				wkWebView?.configuration.userContentController.add(self, name: script)
-			}
-		}
+	public func add(scriptHandler: String) {
+		wkWebView?.configuration.userContentController.add(self, name: scriptHandler)
 	}
-
 
 	//MARK: WKUIDelegate
 
@@ -124,6 +111,5 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		NSLayoutConstraint.activate([top, bottom, leading, trailing])
 	}
 
-	
-}
+
 }

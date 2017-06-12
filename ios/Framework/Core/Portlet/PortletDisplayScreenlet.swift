@@ -58,16 +58,6 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 	/// The portlet URL to be displayed.
 	@IBInspectable open var portletUrl: String?
 
-	// Script handler that will take messages from WKWebView.
-	@IBInspectable open var scriptHandler: String?
-
-	// Script to inject in the WkWebView
-	@IBInspectable open var injectedCss: String?
-
-	// Css to inject in the WkWebView
-	@IBInspectable open var injectedJs: String?
-
-
 	//MARK: Public properties
 
 	open var portletDisplayDelegate: PortletDisplayScreenletDelegate? {
@@ -88,6 +78,21 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 
 	//MARK: Public methods
 
+	// Inject CSS to be used by the screenlet.
+	open func add(css: String) {
+		portletDisplayViewModel?.add(css: css)
+	}
+
+	// Inject JS to be used by the screenlet.
+	open func add(js: String) {
+		portletDisplayViewModel?.add(js: js)
+	}
+
+	/// Add script handler that will take messages from WKWebView.
+	open func add(scriptHandler: String) {
+		portletDisplayViewModel?.add(scriptHandler: scriptHandler)
+	}
+
 	/// Call this method to load the portlet.
 	open func load() {
 		guard let url = portletUrl, url != "", SessionContext.isLoggedIn else {
@@ -97,10 +102,6 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 		}
 
 		let html = configureInitialHtml(portletUrl: url)
-
-		portletDisplayViewModel?.scriptHandler = self.scriptHandler
-		portletDisplayViewModel?.injectedJsFile = injectedJs
-		portletDisplayViewModel?.injectedCssFile = injectedCss
 		portletDisplayViewModel?.initialHtml = html
 	}
 
