@@ -1,8 +1,6 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.portlet;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.View;
 import android.webkit.JavascriptInterface;
@@ -13,10 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
-import com.liferay.mobile.screens.context.LiferayScreensContext;
+import com.liferay.mobile.screens.portlet.PortletDisplayScreenlet;
 import com.liferay.mobile.screens.portlet.view.PortletDisplayViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.DetailImageActivity;
 
 /**
  * @author Sarai Díaz García
@@ -71,7 +68,7 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 	public void showFinishOperation(String url, final String injectedJs) {
 		if (webView != null) {
 			webView.getSettings().setJavaScriptEnabled(true);
-			webView.addJavascriptInterface(new PortletDisplayInterface(getContext()), "android");
+			webView.addJavascriptInterface(new PortletDisplayInterface(), "android");
 
 			webView.loadUrl(url);
 			webView.setWebViewClient(new WebViewClient() {
@@ -121,26 +118,14 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 		this.screenlet = screenlet;
 	}
 
-	public class PortletDisplayInterface {
-		Context context;
-		String[] allImgSrc;
+	private class PortletDisplayInterface {
 
-		PortletDisplayInterface(Context c) {
-			context = c;
+		private PortletDisplayInterface() {
 		}
 
 		@JavascriptInterface
-		public void setAllImgSrc(String[] allImgSrc) {
-			this.allImgSrc = allImgSrc;
-		}
-
-		@JavascriptInterface
-		public void showItem(final int srcPosition) {
-			Intent intent = new Intent(getContext(), DetailImageActivity.class);
-			intent.putExtra("imgSrcPosition", srcPosition);
-			intent.putExtra("allImgSrc", allImgSrc);
-			Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
-			activity.startActivity(intent);
+		public void postMessage(String namespace, String body) {
+			((PortletDisplayScreenlet) getScreenlet()).getListener().onScriptMessageHandler(namespace, body);
 		}
 	}
 }
