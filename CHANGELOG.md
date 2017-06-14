@@ -22,6 +22,9 @@ All notable changes to this project will be documented in this file.
 ### Bugs
 * Fix error in material LoginView with cookie login
 
+### Bugs
+* Fix error in material LoginView with cookie login
+
 ## iOS
 
 ### Bugs
