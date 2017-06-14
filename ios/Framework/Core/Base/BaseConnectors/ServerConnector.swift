@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc open class ServerConnector: Operation {
 
 	fileprivate struct ConnectorsQueue {
@@ -39,8 +38,7 @@ import UIKit
 
 	internal var onComplete: ((ServerConnector) -> Void)?
 
-
-	//MARK: NSOperation
+	// MARK: NSOperation
 
 	open override func main() {
 		if self.isCancelled {
@@ -86,8 +84,7 @@ import UIKit
 		callOnComplete()
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 	@discardableResult
 	open func validateAndEnqueue(_ onComplete: ((ServerConnector) -> Void)? = nil) -> ValidationError? {
 		let error = validateData()
@@ -107,8 +104,7 @@ import UIKit
 		ConnectorsQueue.addConnector(self)
 	}
 
-
-	//MARK: Template methods
+	// MARK: Template methods
 
 	open func validateData() -> ValidationError? {
 		// Do not add any code here. Children classes may not call super

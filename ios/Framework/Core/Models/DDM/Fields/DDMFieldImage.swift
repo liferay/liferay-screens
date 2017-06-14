@@ -13,10 +13,9 @@
  */
 import UIKit
 
+open class DDMFieldImage: DDMField {
 
-open class DDMFieldImage : DDMField {
-
-	//MARK: DDMField
+	// MARK: DDMField
 
 	public override init(attributes: [String:AnyObject], locale: Locale) {
 		super.init(attributes: attributes, locale: locale)

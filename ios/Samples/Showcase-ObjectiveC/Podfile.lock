@@ -29,21 +29,21 @@ PODS:
   - CocoaLumberjack/Extensions (2.4.0):
     - CocoaLumberjack/Default
   - Cosmos (8.0.2)
-  - CryptoSwift (0.6.7)
+  - CryptoSwift (0.6.8)
   - DTPickerPresenter (0.2.0)
-  - KeychainAccess (3.0.1)
-  - Kingfisher (3.4.0)
-  - Liferay-iOS-SDK (7.0.8):
+  - KeychainAccess (3.0.2)
+  - Kingfisher (3.6.2)
+  - Liferay-iOS-SDK (7.0.9):
     - AFNetworking (= 2.6.3)
   - Liferay-OAuth (1.2.1):
     - Liferay-iOS-SDK (~> 7.0.4)
-  - LiferayScreens (2.1.0):
+  - LiferayScreens (2.1.2):
     - Cosmos (~> 8.0)
     - CryptoSwift (~> 0.6.0)
     - DTPickerPresenter (~> 0.2.0)
     - KeychainAccess (~> 3.0)
     - Kingfisher (~> 3.0)
-    - Liferay-iOS-SDK (~> 7.0.8)
+    - Liferay-iOS-SDK (~> 7.0.9)
     - Liferay-OAuth (~> 1.2.0)
     - MBProgressHUD (~> 0.9.1)
     - MDRadialProgress (~> 1.3.2)
@@ -119,13 +119,13 @@ SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   CocoaLumberjack: aa9dcab71bdf9eaf2a63bbd9ddc87863efe45457
   Cosmos: 007c0b8e33a85e5363911bdd933571bbe221f7ef
-  CryptoSwift: 685ae257941e5447474348a2b545583e1a16b573
+  CryptoSwift: f21ea03ed3a94e79d241648ce26652cd4810508a
   DTPickerPresenter: 1976573e3475534559b6ec1dad64b2ece16c966d
-  KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
-  Kingfisher: 5690cfb3d1bddf3a98d679a3a34d0b7294974ed2
-  Liferay-iOS-SDK: 1f8c5e53fd6b7c1c77144beabb92486892f36908
+  KeychainAccess: a986406022dfc7c634c691ad3bec670cc6a32002
+  Kingfisher: 2c94e72c6830622c71d06adf4ea024c37d316830
+  Liferay-iOS-SDK: 685856085adb6880c41c3e658777c0e5c7603f0f
   Liferay-OAuth: a9ff190558928bec8ebc18dd326b01bddd7e2968
-  LiferayScreens: 9831d07b008be2383797d3cc2cdfd4ec0acb4854
+  LiferayScreens: 73e113ae735423f3c911ea458f77fe231e7b087e
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MDRadialProgress: 1068574b9b4b870f64b605b07f734385bde5104d
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96

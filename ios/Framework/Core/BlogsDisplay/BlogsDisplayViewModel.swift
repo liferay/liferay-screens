@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc public protocol BlogsDisplayViewModel {
 
 	/// Blogs entry to be displayed.

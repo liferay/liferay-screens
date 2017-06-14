@@ -8,16 +8,15 @@
 
 	<ProgressBar
 		android:id="@+id/liferay_progress"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
+		android:layout_width="50dp"
+		android:layout_height="50dp"
 		android:layout_centerInParent="true"
-		android:visibility="invisible"
 		/>
 
 	<TextView
 		android:id="@+id/liferay_video_message"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="400dp"
 		android:layout_centerInParent="true"
 		/>
 
@@ -26,6 +25,8 @@
 		android:layout_width="match_parent"
 		android:layout_height="400dp"
 		android:layout_centerInParent="true"
+		android:background="@android:color/transparent"
+		android:visibility="gone"
 		/>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.dlfile.display.VideoDisplayView>

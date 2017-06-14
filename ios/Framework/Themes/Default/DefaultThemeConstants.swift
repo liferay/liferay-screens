@@ -13,11 +13,9 @@
  */
 import UIKit
 
-
-let DefaultThemeButtonCornerRadius:CGFloat = 4
+let DefaultThemeButtonCornerRadius: CGFloat = 4
 
 let DefaultThemeBasicBlue = UIColor(red: 0.0, green: 184.0/255.0, blue: 224.0/255.0, alpha: 0.87)
-
 
 func setButtonDefaultStyle(_ button: UIButton?) {
 	button?.layer.masksToBounds = true
@@ -35,4 +33,3 @@ public func setBasicAuthMethodStyles(
 		name: "default-\(basicAuthMethod.iconType)-icon",
 		currentClass: type(of: view))
 }
-

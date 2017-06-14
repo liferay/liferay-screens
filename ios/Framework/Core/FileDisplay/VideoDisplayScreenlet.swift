@@ -13,13 +13,11 @@
  */
 import Foundation
 
-
 ///Video Display Screenlet displays a video file from a Liferay instance’s Documents and Media 
 /// Library.
 open class VideoDisplayScreenlet: FileDisplayScreenlet {
 
-
-	//MARK: Inspectables
+	// MARK: Inspectables
 
 	/// Supported screenlet mime types. If the mime type not matches with the requested video mime
 	/// type, the video doesn't show in the screenlet.
@@ -27,8 +25,7 @@ open class VideoDisplayScreenlet: FileDisplayScreenlet {
 
 	let DefaultVideoMimeTypes = ["video/mp4", "video/3gp", "video/quicktime"]
 
-
-	//MARK: FileDisplayScreenlet
+	// MARK: FileDisplayScreenlet
 
 	override open var supportedMimeTypes: [String] {
 

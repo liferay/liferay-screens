@@ -13,10 +13,9 @@
  */
 import UIKit
 
-
 open class DDLFieldTextTableCell_default: DDLBaseFieldTextboxTableCell_default {
 
-	//MARK: DDLBaseFieldTextboxTableCell
+	// MARK: DDLBaseFieldTextboxTableCell
 
 	override open func textField(_ textField: UITextField,
 			shouldChangeCharactersIn range: NSRange,
@@ -32,8 +31,7 @@ open class DDLFieldTextTableCell_default: DDLBaseFieldTextboxTableCell_default {
 				replacementString: string)
 	}
 
-
-	//MARK: UITextFieldDelegate
+	// MARK: UITextFieldDelegate
 
 	open func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		return nextCellResponder(textField)

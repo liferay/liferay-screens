@@ -17,7 +17,6 @@ import Foundation
 	import SMXMLDocument
 #endif
 
-
 extension DDMField {
 
 	public enum DataType: String {
@@ -32,7 +31,7 @@ extension DDMField {
 		case DDMImage = "image"
 		case Unsupported = ""
 
-		public static func from(xmlElement:SMXMLElement) -> DataType {
+		public static func from(xmlElement: SMXMLElement) -> DataType {
 			return DataType(rawValue: xmlElement.attributeNamed("dataType") ?? "") ?? .Unsupported
 		}
 
@@ -40,8 +39,9 @@ extension DDMField {
 			return DataType(rawValue: (json["dataType"] as? String) ?? "") ?? .Unsupported
 		}
 
+		// swiftlint:disable cyclomatic_complexity
 		public func createField(
-				attributes:[String:AnyObject],
+				attributes: [String:AnyObject],
 				locale: Locale,
 				version: LiferayServerVersion)
 				-> DDMField? {
@@ -98,5 +98,5 @@ extension DDMField {
 		}
 
 	}
-
+	// swiftlint:enable cyclomatic_complexity
 }

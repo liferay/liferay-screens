@@ -13,17 +13,16 @@
  */
 import UIKit
 
-
 open class ImageGalleryCell: UITableViewCell {
 
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet fileprivate weak var imagePreview: UIImageView?
-	
+
 	@IBOutlet fileprivate weak var imageTitle: UILabel?
 
 	fileprivate var placeholderImage: UIImage?
-	
+
     open var title: String? {
         get {
             return imageTitle?.text
@@ -32,7 +31,7 @@ open class ImageGalleryCell: UITableViewCell {
             imageTitle?.text = newValue
         }
     }
-    
+
     open var imageUrl: String? {
         get {
             return ""
@@ -53,7 +52,7 @@ open class ImageGalleryCell: UITableViewCell {
 
     override open func awakeFromNib() {
         super.awakeFromNib()
-        
+
 		imagePreview?.kf.indicatorType = .activity
 
 		placeholderImage = Bundle.imageInBundles(
@@ -64,7 +63,7 @@ open class ImageGalleryCell: UITableViewCell {
 
 	override open func prepareForReuse() {
 		super.prepareForReuse()
-		
+
 		imagePreview?.image = placeholderImage
 	}
 }

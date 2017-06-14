@@ -14,7 +14,6 @@
 import UIKit
 import LiferayScreens
 
-
 public class SignUpView_flat7: SignUpView_default {
 
 	@IBOutlet private var titleLabel: UILabel?
@@ -25,7 +24,7 @@ public class SignUpView_flat7: SignUpView_default {
 	@IBOutlet private var emailAddressPlaceholder: UILabel?
 	@IBOutlet private var passwordPlaceholder: UILabel?
 
-	//MARK: SignUpView
+	// MARK: SignUpView
 
 	override public func onCreated() {
 		super.onCreated()
@@ -46,19 +45,17 @@ public class SignUpView_flat7: SignUpView_default {
 		signUpButton!.replaceAttributedTitle(LocalizedString("flat7", "signup-button", self),
 				forState: .Normal)
 
-		firstNameField!.placeholder = "";
-		lastNameField!.placeholder = "";
-		emailAddressField!.placeholder = "";
-		passwordField!.placeholder = "";
+		firstNameField!.placeholder = ""
+		lastNameField!.placeholder = ""
+		emailAddressField!.placeholder = ""
+		passwordField!.placeholder = ""
 	}
 
 	override public func createProgressPresenter() -> ProgressPresenter {
 		return Flat7ProgressPresenter()
 	}
 
-
-	//MARK: UITextFieldDelegate
-
+	// MARK: UITextFieldDelegate
 
 	internal func textField(textField: UITextField!,
 			shouldChangeCharactersInRange range: NSRange,

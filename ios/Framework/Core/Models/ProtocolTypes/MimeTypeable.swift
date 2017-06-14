@@ -13,13 +13,11 @@
  */
 import Foundation
 
-
 public protocol MimeTypeable {
 
 	var mimeType: String? { get }
 
 }
-
 
 public extension MimeTypeable {
 

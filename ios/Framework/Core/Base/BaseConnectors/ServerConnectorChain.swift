@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc open class ServerConnectorChain: ServerConnector {
 
 	fileprivate struct StreamConnectorsQueue {
@@ -36,8 +35,7 @@ import UIKit
 	open let headConnector: ServerConnector
 	open var currentConnector: ServerConnector
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(head: ServerConnector) {
 		headConnector = head
@@ -46,8 +44,7 @@ import UIKit
 		super.init()
 	}
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func createSession() -> LRSession? {
 		return headConnector.createSession()
@@ -79,8 +76,7 @@ import UIKit
 		self.onNextStep = nil
 	}
 
-	
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func doStep(
 		_ number: Int,

@@ -17,10 +17,9 @@ import UIKit
 	import DTPickerPresenter
 #endif
 
-
 open class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_default,
 		UITableViewDataSource, UITableViewDelegate {
-		
+
 	let rowHeight: CGFloat = 50
 
 	open var cellBackgroundColor: UIColor = DefaultThemeBasicBlue
@@ -31,8 +30,7 @@ open class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_default
 		return field?.currentValue as? [DDMFieldStringWithOptions.Option] ?? []
 	}
 
-
-	//MARK: UITableViewCell
+	// MARK: UITableViewCell
 
 	override open func  awakeFromNib() {
 		super.awakeFromNib()
@@ -42,8 +40,7 @@ open class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_default
 		}
 	}
 
-
-	//MARK: DDLBaseFieldTextboxTableCell
+	// MARK: DDLBaseFieldTextboxTableCell
 
 	override open func onChangedField() {
 		super.onChangedField()
@@ -55,17 +52,16 @@ open class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_default
 		}
 	}
 
+	// MARK: Private methods
 
-	//MARK: Private methods
-
-	fileprivate func setFieldPresenter(_ field:DDMFieldStringWithOptions) {
+	fileprivate func setFieldPresenter(_ field: DDMFieldStringWithOptions) {
 
 		options = field.options
 
 		//Fill the textfield with the selected options (If we are editing an existing record)
 		textField?.text = selectedOptions.map { $0.label }
 					.sorted()
-					.reduce("", { $0 + " " + $1})
+					.reduce("", { $0 + " " + $1 })
 					.trim()
 
 		let tableView = createPresenterTableView(multipleSelection: field.multiple)
@@ -98,8 +94,7 @@ open class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_default
 		return options.count
 	}
 
-
-	//MARK: UITableViewDataSource
+	// MARK: UITableViewDataSource
 
 	open func tableView(
 			_ tableView: UITableView,
@@ -124,8 +119,7 @@ open class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_default
 		return cell
 	}
 
-
-	//MARK: UITableViewDelegate
+	// MARK: UITableViewDelegate
 
 	open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		let selectedIndexPaths = tableView.indexPathsForSelectedRows

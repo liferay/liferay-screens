@@ -13,7 +13,6 @@
  */
 import XCTest
 
-
 class LoginScreenlet_ByScreenName_Tests: BaseLoginScreenletTestCase {
 
 	func test_Successful() {
@@ -32,7 +31,7 @@ class LoginScreenlet_ByScreenName_Tests: BaseLoginScreenletTestCase {
 				}
 			}
 			when("the request is sent and the response is received") {
-				self.screenlet!.delegate = TestLoginScreenletDelegate() { result in
+				self.screenlet!.delegate = TestLoginScreenletDelegate { result in
 					done("login response received", withResult: result)
 				}
 				self.screenlet!.performDefaultAction()
@@ -46,7 +45,7 @@ class LoginScreenlet_ByScreenName_Tests: BaseLoginScreenletTestCase {
 
 					let attrs = result as! [String:AnyObject]
 
-					XCTAssertTrue(attrs.count > 0)
+					XCTAssertTrue(!attrs.isEmpty)
 					XCTAssertNotNil(attrs["screenName"])
 					XCTAssertEqual("test", attrs["screenName"] as? String)
 				}

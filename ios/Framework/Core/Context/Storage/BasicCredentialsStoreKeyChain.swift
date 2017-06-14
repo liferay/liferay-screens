@@ -18,8 +18,7 @@ import UIKit
 	import KeychainAccess
 #endif
 
-
-open class BasicCredentialsStoreKeyChain : BaseCredentialsStoreKeyChain {
+open class BasicCredentialsStoreKeyChain: BaseCredentialsStoreKeyChain {
 
 	override open func storeAuth(keychain: Keychain, auth: LRAuthentication) {
 		let basicAuth = auth as! LRBasicAuthentication

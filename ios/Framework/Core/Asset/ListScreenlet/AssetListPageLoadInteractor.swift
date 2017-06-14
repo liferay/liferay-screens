@@ -13,8 +13,7 @@
  */
 import UIKit
 
-
-open class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
+open class AssetListPageLoadInteractor: BaseListPageLoadInteractor {
 
 	open var customEntryQuery: [String:AnyObject]?
 
@@ -38,8 +37,7 @@ open class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 		super.init(screenlet: screenlet, page: page, computeRowCount: computeRowCount)
 	}
 
-
-	//MARK: BaseListPageLoadInteractor
+	// MARK: BaseListPageLoadInteractor
 
 	override open func createListPageConnector() -> PaginationLiferayConnector {
 		let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
@@ -56,7 +54,7 @@ open class AssetListPageLoadInteractor : BaseListPageLoadInteractor {
 		connector.portletItemName = self.portletItemName
 		connector.customEntryQuery = self.customEntryQuery
 
-		return connector;
+		return connector
 	}
 
 	override open func convertResult(_ serverResult: [String:AnyObject]) -> AnyObject {

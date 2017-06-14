@@ -13,13 +13,11 @@
  */
 import UIKit
 
-
 class ForgotPasswordInteractor: ServerConnectorInteractor {
 
 	var resultPasswordSent: Bool?
 
-
-	//MARK: ServerConnectorInteractor
+	// MARK: ServerConnectorInteractor
 
 	override func createConnector() -> ForgotPasswordBaseLiferayConnector? {
 		let screenlet = self.screenlet as! ForgotPasswordScreenlet
@@ -58,8 +56,7 @@ class ForgotPasswordInteractor: ServerConnectorInteractor {
 		self.resultPasswordSent = (c as! ForgotPasswordBaseLiferayConnector).resultPasswordSent
 	}
 
-
-	//MARK: Interactor
+	// MARK: Interactor
 
 	override func interactionResult() -> AnyObject? {
 		return resultPasswordSent as AnyObject?

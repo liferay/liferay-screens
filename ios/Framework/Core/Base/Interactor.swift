@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc open class Interactor: NSObject {
 
 	open var actionName: String?
@@ -28,8 +27,7 @@ import UIKit
 
 	internal var cancelled = false
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(screenlet: BaseScreenlet?) {
 		self.screenlet = screenlet
@@ -41,8 +39,7 @@ import UIKit
 		self.init(screenlet: nil)
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func callOnSuccess() {
 		if !cancelled {
@@ -76,8 +73,7 @@ import UIKit
 		return nil
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func finishWithError(_ error: NSError?) {
 		screenlet?.endInteractor(self, error: error)

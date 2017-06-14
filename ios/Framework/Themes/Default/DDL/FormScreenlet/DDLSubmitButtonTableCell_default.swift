@@ -13,22 +13,19 @@
  */
 import UIKit
 
-
 open class DDLSubmitButtonTableCell_default: DDMFieldTableCell {
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet open var submitButton: UIButton?
 
-	//MARK: Actions
+	// MARK: Actions
 
 	@IBAction fileprivate func submitButtonAction(_ sender: AnyObject) {
 		formView!.userActionWithSender(sender)
 	}
 
-
-	//MARK: DDMFieldTableCell
+	// MARK: DDMFieldTableCell
 
 	override open func awakeFromNib() {
 		super.awakeFromNib()
@@ -40,7 +37,7 @@ open class DDLSubmitButtonTableCell_default: DDMFieldTableCell {
 				forState: .normal)
 	}
 
-	override open var canBecomeFirstResponder : Bool {
+	override open var canBecomeFirstResponder: Bool {
 		return false
 	}
 

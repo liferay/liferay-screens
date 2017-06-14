@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc public protocol CommentDisplayViewModel {
 
 	/// Comment entry to be displayed.

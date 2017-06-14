@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>server</key>
-	<string>http://screens-challenge.liferay.org.es</string>
+	<string>http://screens-demo.liferay.org.es</string>
 	<key>companyId</key>
-	<integer>20116</integer>
+	<real>20116</real>
 	<key>groupId</key>
 	<integer>43734</integer>
 	<key>anonymousUsername</key>
@@ -15,8 +15,8 @@
 	<key>galleryFolderId</key>
 	<integer>44059</integer>
 	<key>documentationPortletItemName</key>
-	<string>DocumentationWesteros</string>
+	<string>Docs</string>
 	<key>termsAndConditionsAssetEntryId</key>
-	<integer>44493</integer>
+	<real>44493</real>
 </dict>
 </plist>

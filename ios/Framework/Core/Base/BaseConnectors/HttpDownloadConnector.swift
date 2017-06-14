@@ -13,15 +13,13 @@
  */
 import UIKit
 
-
 open class HttpDownloadConnector: ServerConnector {
 
 	open var url: URL
 
 	open var resultUrl: URL?
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(url: URL) {
 		self.url = url
@@ -29,7 +27,7 @@ open class HttpDownloadConnector: ServerConnector {
 		super.init()
 	}
 
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func doRun(session: LRSession) {
 
@@ -45,8 +43,7 @@ open class HttpDownloadConnector: ServerConnector {
 			auth.authenticate(urlRequest)
 		}
 
-		session.downloadTask(with: urlRequest as URLRequest, completionHandler:
-			{ (_localURL, response, error) in
+		session.downloadTask(with: urlRequest as URLRequest, completionHandler: { (_localURL, response, error) in
 				if let error = error {
 					self.lastError = error as NSError?
 					self.resultUrl = nil
@@ -75,8 +72,7 @@ open class HttpDownloadConnector: ServerConnector {
 		_ = requestSemaphore.wait(timeout: .distantFuture)
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func moveTmpToCache(_ localPath: String, fileExtension: String) throws -> URL {
 

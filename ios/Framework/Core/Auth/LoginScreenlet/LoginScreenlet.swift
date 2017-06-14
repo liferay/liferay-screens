@@ -13,10 +13,9 @@
  */
 import UIKit
 
-
 /// The LoginScreenletDelegate protocol defines some methods that you use to manage the
 /// LoginScreenlet events. All of them are optional.
-@objc public protocol LoginScreenletDelegate : BaseScreenletDelegate {
+@objc public protocol LoginScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when login successfully completes.
 	/// The user attributes are passed as a dictionary of keys (String or NSStrings) 
@@ -56,11 +55,9 @@ import UIKit
 
 }
 
-
 open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 
-
-	//MARK: Inspectables
+	// MARK: Inspectables
 
 	/// Specifies the basic authentication option to use. You can set this attribute to email,
 	/// screenName or userId. This must match the server’s authentication option. If you don’t set 
@@ -96,8 +93,7 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 		}
 	}
 
-
-	//MARK: Public properties
+	// MARK: Public properties
 
 	open var challengeResolver: ChallengeResolver?
 
@@ -111,12 +107,11 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 
 	open var authType: AuthType = .basic
 
-
-	//MARK: BaseScreenlet
+	// MARK: BaseScreenlet
 
 	override open func onCreated() {
 		super.onCreated()
-		
+
 		(screenletView as? BasicAuthBasedType)?.basicAuthMethod = basicAuthMethod
 
 		copyAuthType()
@@ -124,7 +119,7 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 	}
 
 	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
-		
+
 		switch authType {
 		case .basic:
 			return createLoginBasicInteractor()
@@ -135,8 +130,7 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 		}
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	/// loadStoredCredentials loads credentials if exist in the current context.
 	///
@@ -157,12 +151,11 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 
 			return true
 		}
-		
+
 		return false
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func createLoginBasicInteractor() -> LoginBasicInteractor {
 		let interactor = LoginBasicInteractor(loginScreenlet: self)
@@ -213,7 +206,10 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 	}
 
 	fileprivate func createLoginCookieInteractor() -> LoginCookieInteractor {
-		let interactor = LoginCookieInteractor(screenlet: self, emailAddress: viewModel.userName!, password: viewModel.password!, challengeResolver: challengeResolver)
+		let interactor = LoginCookieInteractor(screenlet: self,
+				emailAddress: viewModel.userName ?? "",
+				password: viewModel.password ?? "",
+				challengeResolver: challengeResolver)
 
 		interactor.onSuccess = {
 			self.loginDelegate?.screenlet?(self,
@@ -230,10 +226,9 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 		interactor.onFailure = {
 			self.loginDelegate?.screenlet?(self, onLoginError: $0)
 		}
-		
+
 		return interactor
 	}
-
 
 	fileprivate func copyAuthType() {
 		(screenletView as? LoginViewModel)?.authType = StringFromAuthType(authType)

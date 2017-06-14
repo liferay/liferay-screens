@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 open class DDLFormRecordLoadLiferayConnector: ServerConnector {
 
 	open let recordId: Int64
@@ -22,8 +21,7 @@ open class DDLFormRecordLoadLiferayConnector: ServerConnector {
 	open var resultRecordAttributes: [String:AnyObject]?
 	open var resultRecordId: Int64?
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(recordId: Int64) {
 		self.recordId = recordId
@@ -31,8 +29,7 @@ open class DDLFormRecordLoadLiferayConnector: ServerConnector {
 		super.init()
 	}
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func doRun(session: LRSession) {
 		do {
@@ -68,8 +65,7 @@ open class DDLFormRecordLoadLiferayConnector: ServerConnector {
 		}
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func getRecord(_ session: LRSession, recordId: Int64, locale: String) throws -> [NSObject: AnyObject] {
 		return [:]
@@ -77,11 +73,9 @@ open class DDLFormRecordLoadLiferayConnector: ServerConnector {
 
 }
 
-
 open class Liferay62DDLFormRecordLoadConnector: DDLFormRecordLoadLiferayConnector {
 
-
-	//MARK: DDLFormRecordLoadLiferayConnector
+	// MARK: DDLFormRecordLoadLiferayConnector
 
 	override open func getRecord(_ session: LRSession, recordId: Int64, locale: String) throws -> [NSObject: AnyObject] {
 		let service = LRScreensddlrecordService_v62(session: session)
@@ -92,17 +86,15 @@ open class Liferay62DDLFormRecordLoadConnector: DDLFormRecordLoadLiferayConnecto
 
 }
 
-
 open class Liferay70DDLFormRecordLoadConnector: DDLFormRecordLoadLiferayConnector {
 
+	// MARK: DDLFormRecordLoadLiferayConnector
 
-	//MARK: DDLFormRecordLoadLiferayConnector
-	
 	override open func getRecord(_ session: LRSession, recordId: Int64, locale: String) throws ->  [NSObject : AnyObject] {
 		let service = LRScreensddlrecordService_v70(session: session)
 
 		return try service!.getDdlRecord(withDdlRecordId: recordId,
 			locale: NSLocale.currentLocaleString) as [NSObject: AnyObject]
 	}
-	
+
 }

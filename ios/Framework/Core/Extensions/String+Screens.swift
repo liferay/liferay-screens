@@ -17,7 +17,6 @@ import Foundation
 	import SMXMLDocument
 #endif
 
-
 extension String {
 
 	public func toSafeFilename() -> String {
@@ -27,7 +26,7 @@ extension String {
 
 		return regex.stringByReplacingMatches(in: self,
 			options: [],
-			range: NSMakeRange(0, self.characters.count),
+			range: NSRange(location: 0, length: self.characters.count),
 			withTemplate: "-")
 	}
 
@@ -86,7 +85,7 @@ extension String {
 
 			let attributes = attributes.copyAndMerge([
 				NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-				NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue,
+				NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue
 			])
 
 			return try! NSAttributedString(data: data, options: attributes, documentAttributes: nil)
@@ -96,14 +95,14 @@ extension String {
 	}
 
 	func toHexString(_ color: UIColor) -> String {
-		var r:CGFloat = 0
-		var g:CGFloat = 0
-		var b:CGFloat = 0
-		var a:CGFloat = 0
+		var r: CGFloat = 0
+		var g: CGFloat = 0
+		var b: CGFloat = 0
+		var a: CGFloat = 0
 
 		color.getRed(&r, green: &g, blue: &b, alpha: &a)
 
-		let rgb:Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
+		let rgb: Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
 
 		return NSString(format:"#%06x", rgb) as String
 	}

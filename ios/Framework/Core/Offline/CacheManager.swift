@@ -16,14 +16,12 @@ import YapDatabase
 import YapDatabase.YapDatabaseView
 import YapDatabase.YapDatabaseFilteredView
 
-
 public enum CacheStrategyType: String {
 	case remoteOnly = "remote-only"
 	case remoteFirst = "remote-first"
 	case cacheOnly = "cache-only"
 	case cacheFirst = "cache-first"
 }
-
 
 @objc open class CacheManager: NSObject {
 
@@ -53,16 +51,16 @@ public enum CacheStrategyType: String {
 		self.init(name: "\(session.serverName!)-\(userId)")
 	}
 
-	open func getString(collection: String, key: String, result: @escaping (String?) -> ()) {
+	open func getString(collection: String, key: String, result: @escaping (String?) -> Void) {
 		var value: AnyObject?
-		readConnection.asyncRead( { transaction in
+		readConnection.asyncRead({ transaction in
 				value = transaction.object(forKey: key, inCollection: collection) as AnyObject?
 			}, completionBlock: {
 				result((value as? NSObject)?.description)
 			})
 	}
 
-	open func getLocalFileURL(collection: String, key: String, result: @escaping (URL?) -> ()) {
+	open func getLocalFileURL(collection: String, key: String, result: @escaping (URL?) -> Void) {
 		var value: AnyObject?
 
 		readConnection.asyncRead({ transaction in
@@ -94,7 +92,7 @@ public enum CacheStrategyType: String {
 			})
 	}
 
-	open func getImage(collection: String, key: String, result: @escaping (UIImage?) -> ()) {
+	open func getImage(collection: String, key: String, result: @escaping (UIImage?) -> Void) {
 		var value: AnyObject?
 
 		readConnection.asyncRead({ transaction in
@@ -112,7 +110,7 @@ public enum CacheStrategyType: String {
 		})
 	}
 
-	open func getAny(collection: String, key: String, result: @escaping (AnyObject?) -> ()) {
+	open func getAny(collection: String, key: String, result: @escaping (AnyObject?) -> Void) {
 		var value: AnyObject?
 
 		readConnection.asyncRead ({ transaction in
@@ -125,7 +123,7 @@ public enum CacheStrategyType: String {
 	open func getAnyWithAttributes(
 			collection: String,
 			key: String,
-			result: @escaping (AnyObject?, [String:AnyObject]?) -> ()) {
+			result: @escaping (AnyObject?, [String:AnyObject]?) -> Void) {
 
 		getSomeWithAttributes(
 				collection: collection,
@@ -138,18 +136,18 @@ public enum CacheStrategyType: String {
 	open func getSomeWithAttributes(
 			collection: String,
 			keys: [String],
-			result: @escaping ([AnyObject?], [[String:AnyObject]?]) -> ()) {
+			result: @escaping ([AnyObject?], [[String:AnyObject]?]) -> Void) {
 
 		var objects = [AnyObject?]()
-		var attributes = [[String:AnyObject]?]()
+		var attributes = [[String: AnyObject]?]()
 
 		readConnection.asyncRead ({ transaction in
 			let keyCount = keys.count
 
 			objects = [AnyObject?](repeating: nil, count: keyCount)
-			attributes = [[String:AnyObject]?](repeating: nil, count: keyCount)
+			attributes = [[String: AnyObject]?](repeating: nil, count: keyCount)
 
-			for (i,k) in keys.enumerated() {
+			for (i, k) in keys.enumerated() {
 				objects[i] = transaction.object(forKey: k, inCollection: collection) as AnyObject?
 
 				let metadata = transaction.metadata(forKey: k, inCollection: collection) as? CacheMetadata
@@ -161,7 +159,7 @@ public enum CacheStrategyType: String {
 		})
 	}
 
-	open func getSome(collection: String, keys: [String], result: @escaping ([AnyObject?]) -> ()) {
+	open func getSome(collection: String, keys: [String], result: @escaping ([AnyObject?]) -> Void) {
 		var values = [AnyObject?]()
 
 		readConnection.asyncRead ({ transaction in
@@ -175,8 +173,7 @@ public enum CacheStrategyType: String {
 		})
 	}
 
-
-	open func getMetadata(collection: String, key: String, result: @escaping (CacheMetadata?) -> ()) {
+	open func getMetadata(collection: String, key: String, result: @escaping (CacheMetadata?) -> Void) {
 		var value: AnyObject?
 
 		readConnection.asyncRead ({ transaction in
@@ -191,7 +188,7 @@ public enum CacheStrategyType: String {
 			key: String,
 			value: NSCoding,
 			attributes: [String:AnyObject],
-			onCompletion: (() -> ())? = nil) {
+			onCompletion: (() -> Void)? = nil) {
 
 		// The item becomes clean (the opposite of dirty,
 		// that is: synchronized): updated 'sent' & 'received' dates
@@ -209,7 +206,7 @@ public enum CacheStrategyType: String {
 			key: String,
 			localFileURL: URL,
 			attributes: [String:AnyObject],
-			onCompletion: (() -> ())? = nil) {
+			onCompletion: (() -> Void)? = nil) {
 
 		guard localFileURL.isFileURL else {
 			onCompletion?()
@@ -233,7 +230,7 @@ public enum CacheStrategyType: String {
 			keys: [String],
 			values: [NSCoding],
 			attributes: [String:AnyObject],
-			onCompletion: (() -> ())? = nil) {
+			onCompletion: (() -> Void)? = nil) {
 
 		set(collection: collection,
 			keys: keys,
@@ -248,7 +245,7 @@ public enum CacheStrategyType: String {
 			key: String,
 			value: NSCoding,
 			attributes: [String:AnyObject],
-			onCompletion: (() -> ())? = nil) {
+			onCompletion: (() -> Void)? = nil) {
 
 		// The item becomes dirty: fresh received date but nil sent date
 		set(collection: collection,
@@ -265,18 +262,17 @@ public enum CacheStrategyType: String {
 			values: [NSCoding],
 			synchronized: Date?,
 			attributes: [String:AnyObject],
-			onCompletion: (() -> ())? = nil) {
+			onCompletion: (() -> Void)? = nil) {
 
 		assert(keys.count == values.count,
 			"Keys and values must have same number of elements")
-
 
 		writeConnection.asyncReadWrite ({ transaction in
 			let metadata = CacheMetadata(
 				synchronized: synchronized,
 				attributes: attributes)
 
-			for (i,k) in keys.enumerated() {
+			for (i, k) in keys.enumerated() {
 				transaction.setObject(values[i],
 					forKey: k,
 					inCollection: collection,
@@ -291,7 +287,7 @@ public enum CacheStrategyType: String {
 			collection: String,
 			key: String,
 			attributes: [String:AnyObject],
-			onCompletion: (() -> ())? = nil) {
+			onCompletion: (() -> Void)? = nil) {
 
 		setMetadata(collection: collection,
 			key: key,
@@ -305,7 +301,7 @@ public enum CacheStrategyType: String {
 			key: String,
 			synchronized: Date?,
 			attributes: [String:AnyObject],
-			onCompletion: (() -> ())? = nil) {
+			onCompletion: (() -> Void)? = nil) {
 
 		writeConnection.asyncReadWrite ({ transaction in
 			if transaction.hasObject(forKey: key, inCollection: collection) {
@@ -325,7 +321,7 @@ public enum CacheStrategyType: String {
 	open func remove(
 			collection: String,
 			key: String,
-			onCompletion: (() -> ())? = nil) {
+			onCompletion: (() -> Void)? = nil) {
 
 		writeConnection.asyncReadWrite ({ transaction in
 			transaction.removeObject(forKey: key, inCollection: collection)
@@ -334,15 +330,15 @@ public enum CacheStrategyType: String {
 		})
 	}
 
-	open func remove(collection: String, onCompletion: (() -> ())? = nil) {
+	open func remove(collection: String, onCompletion: (() -> Void)? = nil) {
 		writeConnection.asyncReadWrite ({ transaction in
 			transaction.removeAllObjects(inCollection: collection)
-		}, completionBlock:{
+		}, completionBlock: {
 			onCompletion?()
 		})
 	}
 
-	open func removeAll(_ onCompletion: (() -> ())? = nil) {
+	open func removeAll(_ onCompletion: (() -> Void)? = nil) {
 		writeConnection.asyncReadWrite ({ transaction in
 			transaction.removeAllObjectsInAllCollections()
 		}, completionBlock: {
@@ -350,7 +346,7 @@ public enum CacheStrategyType: String {
 		})
 	}
 
-	open func countPendingToSync(_ result: @escaping (UInt) -> ()) {
+	open func countPendingToSync(_ result: @escaping (UInt) -> Void) {
 		var value: UInt = 0
 
 		pendingToSyncTransaction ({ transaction in
@@ -362,13 +358,13 @@ public enum CacheStrategyType: String {
 
 	open func pendingToSync(
 			_ result: @escaping (String, String, [String:AnyObject]) -> Bool,
-			onCompletion: (() -> ())? = nil) {
+			onCompletion: (() -> Void)? = nil) {
 
 		pendingToSyncTransaction ({ transaction in
 			let groups = transaction?.allGroups() ?? [String]()
 			for group in groups {
-				transaction?.enumerateKeysAndMetadata(inGroup: group, with: [], using: {
-					(collection: String, key: String, metadata: Any, index: UInt, stop: UnsafeMutablePointer<ObjCBool>) in
+				transaction?.enumerateKeysAndMetadata(inGroup: group, with: [],
+				using: { (collection: String, key: String, metadata: Any, _, stop: UnsafeMutablePointer<ObjCBool>) in
 
 					dispatch_main(true) {
 						let cacheMetadata = metadata as! CacheMetadata
@@ -400,8 +396,8 @@ public enum CacheStrategyType: String {
 		return dbPath
 	}
 
-	open func registerPendingToSyncView(_ result: ((Bool) -> ())?) {
-		let grouping = YapDatabaseViewGrouping.withKeyBlock { (_, collection, key) in
+	open func registerPendingToSyncView(_ result: ((Bool) -> Void)?) {
+		let grouping = YapDatabaseViewGrouping.withKeyBlock { (_, collection, _) in
 			return collection
 		}
 
@@ -409,7 +405,6 @@ public enum CacheStrategyType: String {
 			//TODO sort by added date
 			return key1.compare(key2)
 		}
-
 
 		let filtering = YapDatabaseViewFiltering.withMetadataBlock({ (_, _, _, _, metadata) in
 			let cacheMetadata = metadata as? CacheMetadata
@@ -440,12 +435,11 @@ public enum CacheStrategyType: String {
 		}
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func pendingToSyncTransaction(
-			_ result: @escaping (YapDatabaseViewTransaction?) -> (),
-			onCompletion: @escaping () -> ()) {
+			_ result: @escaping (YapDatabaseViewTransaction?) -> Void,
+			onCompletion: @escaping () -> Void) {
 
 		if database.registeredExtension("pendingToSync") != nil {
 			readConnection.asyncRead ({ transaction in

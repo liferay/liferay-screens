@@ -14,7 +14,6 @@
 import UIKit
 import Cosmos
 
-
 open class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 
 	open var defaultRatingsGroupCount: Int32 {
@@ -24,11 +23,11 @@ open class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 	var emojis: [UIButton] = []
 	var labels: [UILabel] = []
 
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
 	override open func onCreated() {
-		emojis = subviews.map({$0 as? UIButton}).flatMap({$0})
-		labels = subviews.map({$0 as? UILabel}).flatMap({$0})
+		emojis = subviews.map({ $0 as? UIButton }).flatMap({ $0 })
+		labels = subviews.map({ $0 as? UILabel }).flatMap({ $0 })
 	}
 
 	override open func createProgressPresenter() -> ProgressPresenter {
@@ -37,14 +36,13 @@ open class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 
 	override open var progressMessages: [String:ProgressMessages] {
 		return [
-			RatingScreenlet.LoadRatingsAction : [.working : ""],
-			RatingScreenlet.UpdateRatingAction : [.working : ""],
-			RatingScreenlet.DeleteRatingAction : [.working : ""],
+			RatingScreenlet.LoadRatingsAction: [.working: ""],
+			RatingScreenlet.UpdateRatingAction: [.working: ""],
+			RatingScreenlet.DeleteRatingAction: [.working: ""]
 		]
 	}
 
-
-	//MARK: RatingViewModel
+	// MARK: RatingViewModel
 
 	open var ratingEntry: RatingEntry? {
 		didSet {
@@ -68,8 +66,7 @@ open class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 		}
 	}
 
-
-	//MARK: Internal methods
+	// MARK: Internal methods
 
 	func emojiClicked(_ sender: UIButton) {
 		userAction(

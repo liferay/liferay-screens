@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc public protocol SignUpViewModel {
 
 	/// User email address.

@@ -14,10 +14,9 @@
 import Foundation
 import Kingfisher
 
-
 /// The ImageGalleryScreenletDelegate protocol defines some methods that you use to manage the
 /// ImageGalleryScreenlet events. All of them are optional.
-@objc public protocol ImageGalleryScreenletDelegate : BaseScreenletDelegate {
+@objc public protocol ImageGalleryScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when a page of contents is received.
 	/// Note that this method may be called more than once: one call for each page received.
@@ -69,7 +68,7 @@ import Kingfisher
 	///   - imageEntryUpload: Image entry to be uploaded.
 	@objc optional func screenlet(_ screenlet: ImageGalleryScreenlet,
 			onImageUploadStart imageEntryUpload: ImageEntryUpload)
-							
+
 	/// Called when the image upload progress changes.
 	///
 	/// - Parameters:
@@ -112,21 +111,20 @@ import Kingfisher
 			onImageUploadDetailViewCreated view: ImageUploadDetailViewBase) -> Bool
 }
 
-
 /// Image Gallery Screenlet shows a list of images from a Documents and Media folder in a Liferay 
 /// instance. You can also use Image Gallery Screenlet to upload images to and delete images from 
-/// the same folder. The Screenlet implements [fluent pagination](http://www.iosnomad.com/blog/2014/4/21/fluent-pagination) with configurable page size, and supports i18n in asset values.
-open class ImageGalleryScreenlet : BaseListScreenlet {
+/// the same folder. The Screenlet implements [fluent pagination]
+/// (http://www.iosnomad.com/blog/2014/4/21/fluent-pagination) with configurable page size, 
+/// and supports i18n in asset values.
+open class ImageGalleryScreenlet: BaseListScreenlet {
 
-
-	//MARK: Static properties
+	// MARK: Static properties
 
 	open static let DeleteImageAction = "delete-image-action"
 	open static let UploadImageAction = "upload-image-action"
 	open static let EnqueueUploadAction = "enqueue-upload-action"
 
-
-	//MARK: Inspectables
+	// MARK: Inspectables
 
 	/// The ID of the Liferay instance’s Documents and Media repository that contains the image 
 	/// gallery.
@@ -149,8 +147,7 @@ open class ImageGalleryScreenlet : BaseListScreenlet {
 		}
 	}
 
-
-	//MARK: Public properties
+	// MARK: Public properties
 
 	open var imageGalleryDelegate: ImageGalleryScreenletDelegate? {
 		return delegate as? ImageGalleryScreenletDelegate
@@ -164,15 +161,13 @@ open class ImageGalleryScreenlet : BaseListScreenlet {
 
 	open let DefaultMimeTypes = ["image/png", "image/jpeg", "image/gif"]
 
-
-	//MARK: Internal properties
+	// MARK: Internal properties
 
 	internal var uploadsQueue = [ImageEntryUpload]()
 
 	internal var loadedOnce = false
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	/// Cancels all the uploads to the image gallery.
 	open func cancelUploads() {
@@ -258,8 +253,7 @@ open class ImageGalleryScreenlet : BaseListScreenlet {
 		}
 	}
 
-
-	//MARK: BaseScreenlet
+	// MARK: BaseScreenlet
 
 	override open func onCreated() {
 		super.onCreated()
@@ -316,8 +310,7 @@ open class ImageGalleryScreenlet : BaseListScreenlet {
 		}
 	}
 
-
-	//MARK: BaseListScreenlet
+	// MARK: BaseListScreenlet
 
 	override open  func onLoadPageError(page: Int, error: NSError) {
 		super.onLoadPageError(page: page, error: error)
@@ -354,8 +347,7 @@ open class ImageGalleryScreenlet : BaseListScreenlet {
 		return interactor
 	}
 
-
-	//MARK: Internal methods
+	// MARK: Internal methods
 
 	internal func createImageGalleryDeleteInteractor(
 			_ imageEntry: ImageEntry) -> ImageGalleryDeleteInteractor? {
@@ -403,7 +395,7 @@ open class ImageGalleryScreenlet : BaseListScreenlet {
 				imageUpload: imageUpload,
 				repositoryId: repositoryId,
 				folderId: folderId,
-				page: page) { (title, totalBytesSent, totalBytesToSend) in
+				page: page) { (_, totalBytesSent, totalBytesToSend) in
 
 			self.viewModel.onImageUploadProgress?(
 					totalBytesSent,
@@ -468,10 +460,9 @@ open class ImageGalleryScreenlet : BaseListScreenlet {
 		}
 
 		print("ERROR: Xib file doesn't found for \(uploadDetailViewName) and theme '\(themeName)'\n")
-		
+
 		return nil
 	}
-
 
 	internal func parseMimeTypes(_ mimeTypes: String) -> [String] {
 		return mimeTypes.characters.split(separator: ",").map(String.init)

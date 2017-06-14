@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 extension Sequence {
 	public func stoppableReduce<T>(_ initial: T, combine: (T, Self.Iterator.Element,
 		inout Bool) -> T) -> T {
@@ -22,7 +21,7 @@ extension Sequence {
 		var generator = self.makeIterator()
 		var currentValue = initial
 
-		while (!hasToStop) {
+		while !hasToStop {
 			guard let nextElement = generator.next()
 				else {
 					break

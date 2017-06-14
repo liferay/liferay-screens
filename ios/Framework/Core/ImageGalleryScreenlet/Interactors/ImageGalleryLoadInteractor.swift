@@ -13,8 +13,7 @@
  */
 import Foundation
 
-
-open class ImageGalleryLoadInteractor : BaseListPageLoadInteractor {
+open class ImageGalleryLoadInteractor: BaseListPageLoadInteractor {
 
 	open static let CacheKey = "image-gallery"
 
@@ -26,7 +25,7 @@ open class ImageGalleryLoadInteractor : BaseListPageLoadInteractor {
 
     public init(
 			screenlet: BaseListScreenlet,
-			page: Int, computeRowCount:Bool,
+			page: Int, computeRowCount: Bool,
 			repositoryId: Int64,
 			folderId: Int64,
 			mimeTypes: [String]) {
@@ -34,13 +33,12 @@ open class ImageGalleryLoadInteractor : BaseListPageLoadInteractor {
         self.repositoryId = repositoryId
         self.folderId = folderId
 		self.mimeTypes =  mimeTypes
-        
+
         super.init(screenlet: screenlet, page: page, computeRowCount: computeRowCount)
     }
 
+	// MARK: ServerConnectorInteractor
 
-	//MARK: ServerConnectorInteractor
-    
     override open func createConnector() -> PaginationLiferayConnector {
         let pager = (self.screenlet as! BaseListScreenlet).firstRowForPage
 
@@ -53,13 +51,12 @@ open class ImageGalleryLoadInteractor : BaseListPageLoadInteractor {
 				mimeTypes: mimeTypes)!
 	}
 
-
-	//MARK: BaseListPageLoadInteractor
+	// MARK: BaseListPageLoadInteractor
 
     override open func convertResult(_ serverResult: [String : AnyObject]) -> AnyObject {
         return ImageEntry(attributes:serverResult)
     }
-    
+
     override open func cacheKey(_ c: PaginationLiferayConnector) -> String {
         return "\(ImageGalleryLoadInteractor.CacheKey)-\(repositoryId)-\(folderId)"
     }

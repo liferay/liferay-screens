@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 open class ImageUploadDetailViewBase: UIView {
 
 	open var image: UIImage?
@@ -22,8 +21,7 @@ open class ImageUploadDetailViewBase: UIView {
 
 	open weak var screenlet: ImageGalleryScreenlet?
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet open weak var imagePreview: UIImageView?
 
@@ -31,8 +29,7 @@ open class ImageUploadDetailViewBase: UIView {
 
 	@IBOutlet open weak var descripText: UITextView?
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func startUpload() {
 		self.startUpload(
@@ -64,5 +61,5 @@ open class ImageUploadDetailViewBase: UIView {
 			image?.resizeImage(toWidth: 300, completion: actionClosure)
 		}
 	}
-	
+
 }

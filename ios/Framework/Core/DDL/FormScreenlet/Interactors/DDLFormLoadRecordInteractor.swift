@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 
 	let recordId: Int64
@@ -30,8 +29,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 
 	var resultFormUserId: Int64?
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	init(screenlet: BaseScreenlet?, recordId: Int64, structureId: Int64?) {
 		self.recordId = recordId
@@ -40,8 +38,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 		super.init(screenlet: screenlet)
 	}
 
-
-	//MARK: ServerConnectorInteractor
+	// MARK: ServerConnectorInteractor
 
 	override func createConnector() -> ServerConnector {
 		let connector: ServerConnector
@@ -113,8 +110,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
-
-	//MARK: Cache methods
+	// MARK: Cache methods
 
 	override func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
@@ -163,7 +159,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
-	override func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> ()) {
+	override func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> Void) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return
@@ -176,8 +172,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 
 			cacheManager.getSomeWithAttributes(
 					collection: ScreenletName(DDLFormScreenlet.self),
-					keys: ["structureId-\(structureId)", "recordId-\(recordId)"]) {
-				objects, attributes in
+					keys: ["structureId-\(structureId)", "recordId-\(recordId)"]) { objects, attributes in
 
 				if let recordForm = objects[0] as? DDLRecord,
 						let recordUserId = attributes[0]?["userId"]?.int64Value,
@@ -209,8 +204,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 			// load just record
 			cacheManager.getAnyWithAttributes(
 					collection: ScreenletName(DDLFormScreenlet.self),
-					key: "recordId-\(loadRecordCon.recordId)") {
-				object, attributes in
+					key: "recordId-\(loadRecordCon.recordId)") { object, attributes in
 
 				let record = attributes?["record"] as! DDLRecord
 

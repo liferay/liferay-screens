@@ -13,11 +13,9 @@
  */
 import UIKit
 
-
 #if LIFERAY_SCREENS_FRAMEWORK
 	import CryptoSwift
 #endif
-
 
 class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
@@ -66,8 +64,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
 	fileprivate let mode: DownloadMode
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	init(screenlet: BaseScreenlet?, portraitId: Int64, uuid: String, male: Bool) {
 		mode = DownloadMode.attributes(portraitId: portraitId, uuid: uuid, male: male)
@@ -93,8 +90,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		super.init(screenlet: screenlet)
 	}
 
-
-	//MARK: ServerConnectorInteractor
+	// MARK: ServerConnectorInteractor
 
 	override func createConnector() -> ServerConnector? {
 		switch mode {
@@ -140,8 +136,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
-
-	//MARK: Cache methods
+	// MARK: Cache methods
 
 	override func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
@@ -169,7 +164,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
-	override func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> ()) {
+	override func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> Void) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return
@@ -256,8 +251,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func toHttpConnector(_ c: ServerConnector) -> HttpConnector? {
 		return ((c as? ServerConnectorChain)?.currentConnector as? HttpConnector)
@@ -361,7 +355,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
 			return URL(string: url)
 		}
-		
+
 		return nil
 	}
 

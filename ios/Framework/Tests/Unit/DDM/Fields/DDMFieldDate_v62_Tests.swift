@@ -13,7 +13,6 @@
  */
 import XCTest
 
-
 class DDMFieldDate_v62_Tests: XCTestCase {
 
 	fileprivate let spanishLocale = Locale(identifier: "es_ES")
@@ -121,8 +120,7 @@ class DDMFieldDate_v62_Tests: XCTestCase {
 				dateFormatter.string(from: dateField.currentValue as! Date))
 	}
 
-
-	//MARK: CurrentValueAsLabel
+	// MARK: CurrentValueAsLabel
 
 	func test_currentValueAsLabel_ShouldReturnLocalizedValue_WhenEnglishLocaleIsUsed() {
 		let fields = DDMXSDParser().parse(requiredDateFieldXSD, locale: spanishLocale)

@@ -13,13 +13,11 @@
  */
 import UIKit
 
-
-open class BaseListCollectionView : BaseListView, UICollectionViewDataSource, UICollectionViewDelegate {
+open class BaseListCollectionView: BaseListView, UICollectionViewDataSource, UICollectionViewDelegate {
 
 	let defaultCellId = "liferay-screns-loadingMoreCellId"
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet open var collectionView: UICollectionView?
 
@@ -30,24 +28,24 @@ open class BaseListCollectionView : BaseListView, UICollectionViewDataSource, UI
 			updateRefreshControl()
 		}
 	}
-	
+
 	override open var progressMessages: [String:ProgressMessages] {
 		return [
-			BaseListScreenlet.LoadInitialPageAction : [
-				.working : LocalizedString("core", key: "base-list-loading-message", obj: self),
-				.failure : LocalizedString("core", key: "base-list-loading-error", obj: self)
+			BaseListScreenlet.LoadInitialPageAction: [
+				.working: LocalizedString("core", key: "base-list-loading-message", obj: self),
+				.failure: LocalizedString("core", key: "base-list-loading-error", obj: self)
 			]
 		]
 	}
 
-	//MARK: BaseListView
-	
+	// MARK: BaseListView
+
 	override open func onCreated() {
 		super.onCreated()
-		
+
 		collectionView?.delegate = self
 		collectionView?.dataSource = self
-		
+
 		doConfigureCollectionView(collectionView!)
 		doRegisterCellNibs()
 		doRegisterLoadMoreCell()
@@ -60,7 +58,7 @@ open class BaseListCollectionView : BaseListView, UICollectionViewDataSource, UI
 		layoutIfNeeded()
 		collectionView?.collectionViewLayout = doCreateLayout()
 	}
-	
+
 	override open func onChangedRows(_ oldRows: [String : [AnyObject?]]) {
 		super.onChangedRows(oldRows)
 
@@ -105,7 +103,7 @@ open class BaseListCollectionView : BaseListView, UICollectionViewDataSource, UI
 		}
 	}
 
-	//MARK: UICollectionViewDataSource
+	// MARK: UICollectionViewDataSource
 
 	open func collectionView(
 			_ collectionView: UICollectionView,
@@ -167,7 +165,7 @@ open class BaseListCollectionView : BaseListView, UICollectionViewDataSource, UI
 
 		let rowsForSection = rowsForSectionIndex(indexPath.section)
 
-		if let row:AnyObject = rowsForSection[indexPath.row] {
+		if let row: AnyObject = rowsForSection[indexPath.row] {
 			onSelectedRowClosure?(row)
 		}
 
@@ -188,7 +186,7 @@ open class BaseListCollectionView : BaseListView, UICollectionViewDataSource, UI
 
 			if isLastSection && isLastRowForSection {
 				loadingRows = true
-				let lastRow = rows.values.reduce(0) {$0 + $1.count}
+				let lastRow = rows.values.reduce(0) { $0 + $1.count }
 				fetchPageForRow?(lastRow + 1)
 			}
 		}
@@ -209,8 +207,7 @@ open class BaseListCollectionView : BaseListView, UICollectionViewDataSource, UI
 		return layout.itemSize
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func doConfigureCollectionView(_ collectionView: UICollectionView) {
 		collectionView.backgroundColor = .white
@@ -234,7 +231,7 @@ open class BaseListCollectionView : BaseListView, UICollectionViewDataSource, UI
 
 	open func doFillLoadedCell(
 			indexPath: IndexPath,
-			cell: UICollectionViewCell, object:AnyObject) {
+			cell: UICollectionViewCell, object: AnyObject) {
 
 	}
 
@@ -303,10 +300,9 @@ open class BaseListCollectionView : BaseListView, UICollectionViewDataSource, UI
 		}
 	}
 
+	// MARK: Internal methods
 
-	//MARK: Internal methods
-
-	internal func refreshControlBeginRefresh(_ sender:AnyObject?) {
+	internal func refreshControlBeginRefresh(_ sender: AnyObject?) {
 		dispatch_delayed(0.3) {
 			if !self.loadingRows {
 				self.moreRows = true
@@ -341,11 +337,11 @@ open class BaseListCollectionView : BaseListView, UICollectionViewDataSource, UI
 	}
 
 	internal func updateVisibleRows(_ visibleRows: [IndexPath]) {
-		if visibleRows.count > 0 {
-			collectionView!.reloadItems(at: visibleRows)
+		if visibleRows.isEmpty {
+			collectionView!.reloadData()
 		}
 		else {
-			collectionView!.reloadData()
+			collectionView!.reloadItems(at: visibleRows)
 		}
 	}
 

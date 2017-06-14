@@ -13,7 +13,6 @@
  */
 import XCTest
 
-
 class DDMXSDParser_Basic_Tests: XCTestCase {
 
 	fileprivate let spanishLocale = Locale(identifier: "es_ES")

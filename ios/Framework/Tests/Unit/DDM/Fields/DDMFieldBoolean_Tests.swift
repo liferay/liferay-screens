@@ -13,14 +13,12 @@
  */
 import XCTest
 
-
 class DDMFieldBoolean_Tests: XCTestCase {
 
 	fileprivate let spanishLocale = Locale(identifier: "es_ES")
 	fileprivate let usLocale = Locale(identifier: "en_US")
 
-
-	//MARK: ConvertFromString
+	// MARK: ConvertFromString
 
 	func test_ConvertFromString_ShouldReturnNil_WhenNilStringIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
@@ -31,7 +29,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 	func test_ConvertFromString_ShouldReturnBool_WhenTrueStringIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
 
-		let convertedValue:AnyObject? = boolField.convert(fromString: "true")
+		let convertedValue: AnyObject? = boolField.convert(fromString: "true")
 
 		XCTAssertNotNil(convertedValue)
 		XCTAssertTrue(convertedValue is Bool)
@@ -41,15 +39,14 @@ class DDMFieldBoolean_Tests: XCTestCase {
 	func test_ConvertFromString_ShouldReturnBool_WhenFalseStringIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
 
-		let convertedValue:AnyObject? = boolField.convert(fromString: "false")
+		let convertedValue: AnyObject? = boolField.convert(fromString: "false")
 
 		XCTAssertNotNil(convertedValue)
 		XCTAssertTrue(convertedValue is Bool)
 		XCTAssertFalse(convertedValue as! Bool)
 	}
 
-
-	//MARK: ConvertFromCurrentValue
+	// MARK: ConvertFromCurrentValue
 
 	func test_ConvertFromCurrentValue_ShouldReturnNil_WhenNilIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
@@ -74,7 +71,6 @@ class DDMFieldBoolean_Tests: XCTestCase {
 		XCTAssertNotNil(convertedValue)
 		XCTAssertEqual("false", convertedValue!)
 	}
-
 
 	//MARK CurrentValueAsString
 
@@ -101,7 +97,6 @@ class DDMFieldBoolean_Tests: XCTestCase {
 		XCTAssertNotNil(boolField.currentValueAsString)
 		XCTAssertEqual("false", boolField.currentValueAsString!)
 	}
-
 
 	//MARK CurrentValueAsLabel
 
@@ -166,8 +161,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 		XCTAssertTrue((boolField.currentValue as? Bool) ?? false)
 	}
 
-
-	//MARK: Parse
+	// MARK: Parse
 
 	func test_XSDParse_ShouldExtractValues() {
 		let xsd =
@@ -249,9 +243,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 		XCTAssertTrue(booleanField.showLabel)
 	}
 
-
-
-	//MARK: Validate
+	// MARK: Validate
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {
 		let xsd =

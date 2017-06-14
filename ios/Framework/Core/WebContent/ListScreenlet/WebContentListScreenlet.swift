@@ -13,10 +13,9 @@
  */
 import UIKit
 
-
 /// The WebContentListScreenletDelegate protocol defines some methods that you use to manage the
 /// WebContentListScreenlet events. All of them are optional.
-@objc public protocol WebContentListScreenletDelegate : BaseScreenletDelegate {
+@objc public protocol WebContentListScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when a page of contents is received.
 	/// Note that this method may be called more than once: one call for each page received.
@@ -46,14 +45,14 @@ import UIKit
 
 }
 
-
-/// Web Content List Screenlet can show lists of [web content](https://dev.liferay.com/discover/portal/-/knowledge_base/7-0/creating-web-content) from a Liferay instance. It can show
-// both basic and [structured web content](https://dev.liferay.com/discover/portal/-/knowledge_base/7-0/designing-uniform-content). The Screenlet also implements fluent pagination with
-// configurable page size, and supports i18n in asset values.
+/// Web Content List Screenlet can show lists of [web content]
+/// (https://dev.liferay.com/discover/portal/-/knowledge_base/7-0/creating-web-content) from a Liferay instance. It can 
+/// show both basic and [structured web content]
+/// (https://dev.liferay.com/discover/portal/-/knowledge_base/7-0/designing-uniform-content). The Screenlet also 
+/// implements fluent pagination with configurable page size, and supports i18n in asset values.
 open class WebContentListScreenlet: BaseListScreenlet {
 
-
-	//MARK: Inspectables
+	// MARK: Inspectables
 
 	/// The ID of the site (group) where the web content exists. If set to 0, the groupId 
 	/// specified in LiferayServerContext is used. The default value is 0.
@@ -66,15 +65,13 @@ open class WebContentListScreenlet: BaseListScreenlet {
 	/// The offline mode setting. The default value is remote-first.
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
-
-	//MARK: Public properties
+	// MARK: Public properties
 
 	open var webContentListDelegate: WebContentListScreenletDelegate? {
 		return delegate as? WebContentListScreenletDelegate
 	}
 
-
-	//MARK: BaseListScreenlet
+	// MARK: BaseListScreenlet
 
 	override open func createPageLoadInteractor(
 			page: Int,

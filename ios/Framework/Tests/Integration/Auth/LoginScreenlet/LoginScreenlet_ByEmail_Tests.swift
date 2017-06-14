@@ -13,7 +13,6 @@
  */
 import XCTest
 
-
 class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 
 	func test_Successful() {
@@ -35,7 +34,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 				}
 			}
 			when ("the request is sent and the response is received") {
-				self.screenlet!.delegate = TestLoginScreenletDelegate() { result in
+				self.screenlet!.delegate = TestLoginScreenletDelegate { result in
 					done("login response received", withResult: result)
 				}
 				self.screenlet!.performDefaultAction()
@@ -49,7 +48,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 
 					let attrs = result as! [String:AnyObject]
 
-					XCTAssertTrue(attrs.count > 0)
+					XCTAssertTrue(!attrs.isEmpty)
 					XCTAssertNotNil(attrs["emailAddress"])
 					XCTAssertEqual("test@liferay.com", attrs["emailAddress"] as? String)
 				}
@@ -115,7 +114,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 
 				self.screenlet!.performDefaultAction()
 			}
-			eventually ("the credentials should be stored", { result in
+			eventually ("the credentials should be stored", { _ in
 				assertThat ("the session mock is signaled") {
 					XCTAssertTrue(credentialsStoreMock.calledStoreCredential)
 					XCTAssertTrue(credentialsStoreMock.hasData)
@@ -151,7 +150,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 				}
 			}
 			when ("the request is sent and the response is received") {
-				self.screenlet!.delegate = TestLoginScreenletDelegate() { result in
+				self.screenlet!.delegate = TestLoginScreenletDelegate { result in
 					done("login response received", withResult: result)
 				}
 				self.screenlet!.performDefaultAction()
@@ -162,8 +161,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 
 					let error = result as! NSError
 
-					XCTAssertEqual("The operation couldn’t be completed. Authenticated access required"
-							, error.localizedDescription)
+					XCTAssertEqual("The operation couldn’t be completed. Authenticated access required", error.localizedDescription)
 
 				}
 				assertThat ("the session should not be established") {

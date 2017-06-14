@@ -13,12 +13,11 @@
  */
 import Foundation
 
-
 extension NSLocale {
 
 	public static var currentLanguageString: String {
 		get {
-			var preferredLanguage = Locale.preferredLanguages[0] 
+			var preferredLanguage = Locale.preferredLanguages[0]
 
 			preferredLanguage = preferredLanguage.substring(
 				to: preferredLanguage.characters.index(preferredLanguage.startIndex, offsetBy: 2))
@@ -67,6 +66,5 @@ extension NSLocale {
 
 		return Bundle(path: path)
 	}
-
 
 }

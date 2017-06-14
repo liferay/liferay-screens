@@ -14,19 +14,19 @@
 import UIKit
 import WebKit
 
-
 open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayViewModel {
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	open var webView: WKWebView?
 
 	override open var progressMessages: [String:ProgressMessages] {
 		return [
-			BaseScreenlet.DefaultAction :
-				[.working : LocalizedString("default", key: "webcontentdisplay-loading-message", obj: self),
-				.failure : LocalizedString("default", key: "webcontentdisplay-loading-error", obj: self)]]
+			BaseScreenlet.DefaultAction: [
+				.working: LocalizedString("default", key: "webcontentdisplay-loading-message", obj: self),
+				.failure: LocalizedString("default", key: "webcontentdisplay-loading-error", obj: self)
+			]
+		]
 	}
 
 	fileprivate let styles =
@@ -40,7 +40,7 @@ open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayVi
 		super.onCreated()
 
 		let config = WKWebViewConfiguration.noCacheConfiguration
-		
+
 		webView = WKWebView(frame: self.frame, configuration: config)
 
 		webView?.injectCookies()
@@ -70,7 +70,7 @@ open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayVi
 		return DefaultProgressPresenter()
 	}
 
-	//MARK: WebContentDisplayViewModel
+	// MARK: WebContentDisplayViewModel
 
 	open var htmlContent: String? {
 		get {

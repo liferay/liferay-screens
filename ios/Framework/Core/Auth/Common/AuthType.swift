@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc public enum AuthType: Int {
 
 	case basic = 1

@@ -16,7 +16,7 @@ import WebKit
 
 open class WebContentListView_default_collection: BaseListCollectionView {
 
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
 	override open func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
@@ -32,7 +32,6 @@ open class WebContentListView_default_collection: BaseListCollectionView {
 		layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
 		layout.scrollDirection = .horizontal
 
-
 		return layout
 	}
 
@@ -44,15 +43,15 @@ open class WebContentListView_default_collection: BaseListCollectionView {
 	override open func doFillLoadedCell(
 			indexPath: IndexPath,
 			cell: UICollectionViewCell,
-			object:AnyObject) {
-			
+			object: AnyObject) {
+
 		guard let cell = cell as? WebViewCell, let object = object as? WebContent
 			else {
 				return
 		}
 
 		cell.html = object.html ?? "No html available"
-		cell.layer.borderWidth = 1;
+		cell.layer.borderWidth = 1
 		cell.layer.borderColor = UIColor.black.cgColor
 	}
 
@@ -64,7 +63,7 @@ open class WebContentListView_default_collection: BaseListCollectionView {
 	}
 
 	override open func doGetCellId(indexPath: IndexPath, object: AnyObject?) -> String {
-		if let _ = object {
+		if object != nil {
 			return "cell"
 		}
 
@@ -72,8 +71,7 @@ open class WebContentListView_default_collection: BaseListCollectionView {
 	}
 }
 
-
-open class WebViewCell : UICollectionViewCell {
+open class WebViewCell: UICollectionViewCell {
 
 	fileprivate var webView: WKWebView?
 

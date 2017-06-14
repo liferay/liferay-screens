@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 extension Bundle {
 
 	public class func allBundles(_ currentClass: AnyClass) -> [Bundle] {
@@ -33,7 +32,7 @@ extension Bundle {
 	}
 
 	public class func discoverBundles() -> [Bundle] {
-		let allBundles = Bundle.allFrameworks 
+		let allBundles = Bundle.allFrameworks
 
 		return allBundles.filter {
 			let screensPrefix = "LiferayScreens"
@@ -44,7 +43,7 @@ extension Bundle {
 		}
 	}
 
-	//MARK: bundlesForX methods
+	// MARK: bundlesForX methods
 
 	public class func bundlesForDefaultTheme() -> [Bundle] {
 		return [bundleForName("LiferayScreens-default"), bundleForName("LiferayScreens-ee-default")]
@@ -74,7 +73,7 @@ extension Bundle {
 				.first
 		}
 
-		let components = ((Bundle.main.resourcePath ?? "") as NSString).pathComponents 
+		let components = ((Bundle.main.resourcePath ?? "") as NSString).pathComponents
 
 		if components.last == "Overlays" {
 			// running into IB
@@ -93,15 +92,13 @@ extension Bundle {
 
 	public class func bundleForNibName(_ name: String, currentClass: AnyClass) -> Bundle? {
 		return Bundle.allBundles(currentClass)
-			.filter{
+			.filter {
 				$0.path(forResource: name, ofType:"nib") != nil
 			}
 			.first
 	}
 
-
-
-	//MARK: xInBundles methods
+	// MARK: xInBundles methods
 
 	public class func imageInBundles(name: String, currentClass: AnyClass) -> UIImage? {
 		for bundle in allBundles(currentClass) {
@@ -112,7 +109,7 @@ extension Bundle {
 
 		return nil
 	}
-    
+
     public class func nibInBundles(name: String, currentClass: AnyClass) -> UINib? {
         return resourceInBundle(
             	name: name,
@@ -122,8 +119,7 @@ extension Bundle {
         }
     }
 
-
-	//MARK: xforTheme methods
+	// MARK: xforTheme methods
 
 	public class func viewForThemeOrDefault(
 			name: String,
@@ -188,24 +184,24 @@ extension Bundle {
 
 			let objects = bundle.loadNibNamed(nibName, owner: currentClass, options: nil)
 
-			assert(objects == nil || objects!.count > 0, "Malformed xib \(nibName). Without objects")
+			assert(objects == nil || !objects!.isEmpty, "Malformed xib \(nibName). Without objects")
 
 			return objects![0] as AnyObject?
 		}
 	}
-    
+
     public class func resourceInBundle<T>(
 			name: String,
 			ofType type: String,
 			currentClass: AnyClass,
-			resourceInit: (String , Bundle) -> T?) -> T? {
+			resourceInit: (String, Bundle) -> T?) -> T? {
 
         for bundle in allBundles(currentClass) {
             if let path = bundle.path(forResource: name, ofType: type) {
                 return resourceInit(path, bundle)
             }
         }
-        
+
         return nil
     }
 

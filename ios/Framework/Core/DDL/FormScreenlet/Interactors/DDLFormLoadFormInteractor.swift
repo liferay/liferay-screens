@@ -13,15 +13,13 @@
  */
 import UIKit
 
-
 class DDLFormLoadFormInteractor: ServerReadConnectorInteractor {
 
 	var resultRecord: DDLRecord?
 
 	var resultUserId: Int64?
 
-
-	//MARK: ServerConnectorInteractor
+	// MARK: ServerConnectorInteractor
 
 	override func createConnector() -> ServerConnector {
 		let screenlet = self.screenlet as! DDLFormScreenlet
@@ -36,8 +34,7 @@ class DDLFormLoadFormInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
-
-	//MARK: Cache methods
+	// MARK: Cache methods
 
 	override func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
@@ -57,7 +54,7 @@ class DDLFormLoadFormInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
-	override func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> ()) {
+	override func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> Void) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return
@@ -66,8 +63,7 @@ class DDLFormLoadFormInteractor: ServerReadConnectorInteractor {
 		if let loadCon = c as? DDLFormLoadLiferayConnector {
 			cacheManager.getAnyWithAttributes(
 					collection: ScreenletName(DDLFormScreenlet.self),
-					key: "structureId-\(loadCon.structureId)") {
-				record, attributes in
+					key: "structureId-\(loadCon.structureId)") { record, attributes in
 
 				loadCon.resultRecord = record as? DDLRecord
 				loadCon.resultUserId = attributes?["userId"]?.int64Value

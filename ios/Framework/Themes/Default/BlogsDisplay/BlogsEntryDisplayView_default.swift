@@ -13,11 +13,9 @@
  */
 import UIKit
 
-
 open class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewModel {
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet weak var imageDisplayScreenlet: ImageDisplayScreenlet?
 
@@ -32,7 +30,7 @@ open class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewMod
 	@IBOutlet weak var subtitleLabel: UILabel?
 
 	@IBOutlet weak var contentLabel: UILabel?
-	
+
 	@IBOutlet weak var imageHeightConstraint: NSLayoutConstraint?
 
 	open var headerImageHeight: CGFloat = 125.0
@@ -45,26 +43,23 @@ open class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewMod
 		return dateFormatter
 	}()
 
-	
-	//MARK: BlogsDisplayViewModel
+	// MARK: BlogsDisplayViewModel
 
 	open var blogsEntry: BlogsEntry? {
 		didSet {
-			if let _ = blogsEntry {
+			if blogsEntry != nil {
 				self.loadBlog()
 			}
 		}
 	}
 
-
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
 	override open func onSetTranslations() {
 		dateLabel?.text = LocalizedString("default", key: "blog-unknown-date", obj: self)
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func loadBlog() {
 		self.loadImage()
@@ -105,7 +100,8 @@ open class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewMod
 	}
 
 	open func loadContent() {
-		contentLabel?.attributedText = self.blogsEntry!.content.toHtmlTextWithAttributes(type(of: self).defaultAttributedTextAttributes())
+		contentLabel?.attributedText = self.blogsEntry!.content
+				.toHtmlTextWithAttributes(type(of: self).defaultAttributedTextAttributes())
 	}
 
 	open class func defaultAttributedTextAttributes() -> [String: NSObject] {

@@ -14,7 +14,6 @@
 import UIKit
 import LRMobileSDK
 
-
 public typealias ChallengeResolver = (URLAuthenticationChallenge,
 		(URLSession.AuthChallengeDisposition, URLCredential) -> Void) -> Void
 
@@ -29,7 +28,7 @@ open class LoginCookieInteractor: Interactor, LRCallback {
 
 	open var resultUserAttributes: [String:AnyObject]?
 
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(screenlet: BaseScreenlet?, companyId: Int64 = LiferayServerContext.companyId,
 			emailAddress: String, password: String, challengeResolver: ChallengeResolver? = nil) {
@@ -45,7 +44,7 @@ open class LoginCookieInteractor: Interactor, LRCallback {
 	open override func start() -> Bool {
 		let basicAuth = LRBasicAuthentication(username: emailAddress, password: password)
 		let session = LRSession(server: LiferayServerContext.server, authentication: basicAuth)
-		
+
 		let callback = LRCookieBlockCallback { (session, error) in
 			if let session = session {
 				self.onCookieSuccess(session)

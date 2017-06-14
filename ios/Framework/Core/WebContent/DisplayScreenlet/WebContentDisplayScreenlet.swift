@@ -13,10 +13,9 @@
  */
 import UIKit
 
-
 /// The WebContentDisplayScreenletDelegate protocol defines some methods that you use to manage the
 /// WebContentDisplayScreenlet events. All of them are optional.
-@objc public protocol WebContentDisplayScreenletDelegate : BaseScreenletDelegate {
+@objc public protocol WebContentDisplayScreenletDelegate: BaseScreenletDelegate {
 
 	///  Called when the web content’s HTML is received.
 	///
@@ -46,14 +45,12 @@ import UIKit
 
 }
 
-
 /// The Web Content Display Screenlet shows web content elements in your app, rendering the inner 
 /// HTML of the web content. The Screenlet also supports i18n, rendering contents differently 
 /// depending on the device’s current locale.
 open class WebContentDisplayScreenlet: BaseScreenlet {
 
-
-	//MARK: Inspectables
+	// MARK: Inspectables
 
 	/// The site (group) identifier where the asset is stored. If this value is 0, the groupId 
 	/// specified in LiferayServerContext is used.
@@ -77,15 +74,13 @@ open class WebContentDisplayScreenlet: BaseScreenlet {
 	/// The offline mode setting. The default value is remote-first.
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
-
-	//MARK: Public properties
+	// MARK: Public properties
 
 	open var webContentDisplayDelegate: WebContentDisplayScreenletDelegate? {
 		return delegate as? WebContentDisplayScreenletDelegate
 	}
 
-
-	//MARK: BaseScreenlet
+	// MARK: BaseScreenlet
 
 	override open func onShow() {
 		if autoLoad && articleId != "" {
@@ -126,8 +121,7 @@ open class WebContentDisplayScreenlet: BaseScreenlet {
 		return interactor
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	/// Loads a web content in the screenlet.
 	///
