@@ -13,10 +13,9 @@
 */
 import UIKit
 
-
 /// The PortletDisplayScreenletDelegate protocol defines some methods that you use to manage the
 /// PortletDisplayScreenlet events. All of them are optional.
-@objc public protocol PortletDisplayScreenletDelegate : BaseScreenletDelegate {
+@objc public protocol PortletDisplayScreenletDelegate: BaseScreenletDelegate {
 
 	///  Called when the portlet URL is received.
 	///
@@ -47,7 +46,6 @@ import UIKit
 
 }
 
-
 /// TODO Fill screenlet description
 open class PortletDisplayScreenlet: BaseScreenlet {
 
@@ -58,7 +56,7 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 	/// The portlet URL to be displayed.
 	@IBInspectable open var portletUrl: String?
 
-	//MARK: Public properties
+	// MARK: Public properties
 
 	open var portletDisplayDelegate: PortletDisplayScreenletDelegate? {
 		return delegate as? PortletDisplayScreenletDelegate
@@ -68,7 +66,7 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 		return screenletView as? PortletDisplayViewModel
 	}
 
-	//MARK: BaseScreenlet
+	// MARK: BaseScreenlet
 
 	override open func onShow() {
 		if autoLoad {
@@ -76,7 +74,7 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 		}
 	}
 
-	//MARK: Public methods
+	// MARK: Public methods
 
 	// Inject CSS to be used by the screenlet.
 	open func add(css: String) {

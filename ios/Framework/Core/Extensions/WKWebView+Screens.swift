@@ -43,8 +43,8 @@ extension WKWebView {
 
 	public func loadJs(file: String) {
 
-		let jsContent = Bundle.resourceInBundle(name: file, ofType: "js", currentClass: type(of:self)) {
-			(path, _) -> String? in
+		let jsContent = Bundle.resourceInBundle(name: file, ofType: "js",
+				currentClass: type(of:self)) { (path, _) -> String? in
 
 			return try! String(contentsOfFile: path, encoding: String.Encoding.utf8)
 		}
@@ -57,8 +57,8 @@ extension WKWebView {
 
 	public func loadCss(file: String) {
 
-		let css = Bundle.resourceInBundle(name: file, ofType: "css", currentClass: type(of:self)) {
-			(path, _) -> String? in
+		let css = Bundle.resourceInBundle(name: file, ofType: "css",
+				currentClass: type(of:self)) { (path, _) -> String? in
 
 			return try! String(contentsOfFile: path, encoding: String.Encoding.utf8)
 		}

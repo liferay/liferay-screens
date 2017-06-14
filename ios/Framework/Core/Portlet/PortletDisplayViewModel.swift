@@ -13,7 +13,6 @@
 */
 import UIKit
 
-
 @objc public protocol PortletDisplayViewModel {
 
 	var initialHtml: String? { get set }

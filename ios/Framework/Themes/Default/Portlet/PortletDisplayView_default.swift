@@ -14,24 +14,21 @@
 import UIKit
 import WebKit
 
-
 open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewModel, WKUIDelegate,
 	WKScriptMessageHandler {
 
-
-	//MARK: Public properties
+	// MARK: Public properties
 
 	open var wkWebView: WKWebView?
 
-
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
 	override open var progressMessages: [String: ProgressMessages] {
 		return [
-			BaseScreenlet.DefaultAction : [
-					.working : LocalizedString(
+			BaseScreenlet.DefaultAction: [
+					.working: LocalizedString(
 						"default", key: "portletdisplay-loading-message", obj: self),
-					.failure : LocalizedString(
+					.failure: LocalizedString(
 						"default", key: "portletdisplay-loading-error", obj: self)
 			]
 		]
@@ -52,8 +49,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		return DefaultProgressPresenter()
 	}
 
-
-	//MARK: PortletDisplayViewModel
+	// MARK: PortletDisplayViewModel
 
 	public var initialHtml: String? {
 		didSet {
@@ -74,23 +70,25 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		wkWebView?.configuration.userContentController.add(self, name: scriptHandler)
 	}
 
-	//MARK: WKUIDelegate
+	// MARK: WKUIDelegate
 
-	public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+	public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String,
+			initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+
 		completionHandler()
 	}
 
+	// MARK: WKScriptMessageHandler
 
-	//MARK: WKScriptMessageHandler
+	public func userContentController(_ userContentController: WKUserContentController,
+			didReceive message: WKScriptMessage) {
 
-	public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
 		(screenlet as? PortletDisplayScreenlet)?.portletDisplayDelegate?.screenlet?(
 			screenlet as! PortletDisplayScreenlet, onScriptMessageHandler: message.name,
 				onScriptMessageBody: message.body)
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func addWebView() {
 		wkWebView?.translatesAutoresizingMaskIntoConstraints = false
@@ -108,6 +106,5 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 		NSLayoutConstraint.activate([top, bottom, leading, trailing])
 	}
-
 
 }
