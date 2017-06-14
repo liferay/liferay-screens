@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.viewsets.material.auth.login;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
+import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -74,7 +75,12 @@ public class LoginView extends com.liferay.mobile.screens.viewsets.defaultviews.
 
 	@Override
 	protected void refreshLoginEditTextStyle() {
-		getLoginEditText().setInputType(getBasicAuthMethod().getInputType());
+		if (getBasicAuthMethod() != null) {
+			getLoginEditText().setInputType(getBasicAuthMethod().getInputType());
+		} else {
+			getLoginEditText().setInputType(InputType.TYPE_CLASS_TEXT);
+		}
+
 		drawableLogin.setImageResource(getLoginEditTextDrawableId());
 	}
 
