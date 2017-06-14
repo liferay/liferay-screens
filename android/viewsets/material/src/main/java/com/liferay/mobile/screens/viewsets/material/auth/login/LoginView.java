@@ -75,12 +75,7 @@ public class LoginView extends com.liferay.mobile.screens.viewsets.defaultviews.
 
 	@Override
 	protected void refreshLoginEditTextStyle() {
-		if (getBasicAuthMethod() != null) {
-			getLoginEditText().setInputType(getBasicAuthMethod().getInputType());
-		} else {
-			getLoginEditText().setInputType(InputType.TYPE_CLASS_TEXT);
-		}
-
+		getLoginEditText().setInputType(getBasicAuthMethod().getInputType());
 		drawableLogin.setImageResource(getLoginEditTextDrawableId());
 	}
 
