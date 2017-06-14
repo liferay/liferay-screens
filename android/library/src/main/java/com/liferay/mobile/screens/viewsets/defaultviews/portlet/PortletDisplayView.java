@@ -57,7 +57,8 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 
 	@Override
 	public void showFinishOperation(View view) {
-		screenlet.addView(view, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+		screenlet.addView(view, LinearLayout.LayoutParams.MATCH_PARENT,
+			LinearLayout.LayoutParams.MATCH_PARENT);
 		webView.setVisibility(GONE);
 		progressBar.setVisibility(GONE);
 		screenlet.setVisibility(VISIBLE);
@@ -65,12 +66,13 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 	}
 
 	@Override
-	public void showFinishOperation(String url, final String injectedJs) {
+	public void showFinishOperation(String url, String body, final String injectedJs) {
 		if (webView != null) {
 			webView.getSettings().setJavaScriptEnabled(true);
 			webView.addJavascriptInterface(new PortletDisplayInterface(), "android");
 
-			webView.loadUrl(url);
+			webView.postUrl(url, body.getBytes());
+
 			webView.setWebViewClient(new WebViewClient() {
 				@Override
 				public void onPageFinished(WebView view, String url) {

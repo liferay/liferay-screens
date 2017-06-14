@@ -20,10 +20,13 @@ import android.support.annotation.IdRes;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import com.liferay.mobile.android.auth.Authentication;
+import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.dlfile.display.audio.AudioDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.image.ImageDisplayScreenlet;
@@ -31,7 +34,9 @@ import com.liferay.mobile.screens.dlfile.display.pdf.PdfDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.video.VideoDisplayScreenlet;
 import com.liferay.mobile.screens.portlet.interactor.PortletDisplayInteractor;
 import com.liferay.mobile.screens.portlet.view.PortletDisplayViewModel;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 
@@ -39,7 +44,8 @@ import java.util.List;
  * @author Sarai Díaz García
  */
 
-public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewModel, PortletDisplayInteractor>
+public class PortletDisplayScreenlet
+	extends BaseScreenlet<PortletDisplayViewModel, PortletDisplayInteractor>
 	implements PortletDisplayListener {
 
 	private boolean autoLoad;
@@ -65,7 +71,8 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 		super(context, attrs, defStyleAttr);
 	}
 
-	public PortletDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+	public PortletDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr,
+		int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
@@ -77,6 +84,9 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 		getViewModel().showStartOperation(DEFAULT_ACTION);
 		if (url != null) {
 
+			String finalUrl = buildPortletUrl(url);
+			String body = buildBody();
+
 			JavascriptInjector javascriptInjector = new JavascriptInjector(getContext());
 
 			for (int jsFile : jsFiles) {
@@ -87,10 +97,36 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 				javascriptInjector.addCss(cssFile);
 			}
 
-			getViewModel().showFinishOperation(url, javascriptInjector.generateInjectableJs());
+			getViewModel().showFinishOperation(finalUrl, body,
+				javascriptInjector.generateInjectableJs());
 		} else {
 			getViewModel().showFailedOperation(DEFAULT_ACTION, new MalformedURLException());
 		}
+	}
+
+	public String buildPortletUrl(String url) {
+		try {
+			url = URLEncoder.encode(url, "UTF-8");
+			return String.format("%s/c/portal/login?redirect=%s", LiferayServerContext.getServer(),
+				url);
+		} catch (UnsupportedEncodingException e) {
+			return "";
+		}
+	}
+
+	public String buildBody() {
+		Authentication authentication = SessionContext.getAuthentication();
+
+		if (authentication instanceof BasicAuthentication) {
+			BasicAuthentication basicAuth = (BasicAuthentication) authentication;
+
+			String username = basicAuth.getUsername();
+			String password = basicAuth.getPassword();
+
+			return String.format("login=%s&password=%s", username, password);
+		}
+
+		return "";
 	}
 
 	public void loadAsset() {
@@ -139,14 +175,15 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray =
-			context.getTheme().obtainStyledAttributes(attributes, R.styleable.WebContentDisplayScreenlet, 0, 0);
+		TypedArray typedArray = context.getTheme()
+			.obtainStyledAttributes(attributes, R.styleable.WebContentDisplayScreenlet, 0, 0);
 
 		autoLoad = typedArray.getBoolean(R.styleable.PortletDisplayScreenlet_autoLoad, true);
 
 		url = typedArray.getString(R.styleable.PortletDisplayScreenlet_url);
 
-		int layoutId = typedArray.getResourceId(R.styleable.PortletDisplayScreenlet_layoutId, getDefaultLayoutId());
+		int layoutId = typedArray.getResourceId(R.styleable.PortletDisplayScreenlet_layoutId,
+			getDefaultLayoutId());
 
 		typedArray.recycle();
 
@@ -159,7 +196,8 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, PortletDisplayInteractor interactor, Object... args) {
+	protected void onUserAction(String userActionName, PortletDisplayInteractor interactor,
+		Object... args) {
 		interactor.start(url);
 	}
 
