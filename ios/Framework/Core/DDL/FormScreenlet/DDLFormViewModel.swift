@@ -13,14 +13,13 @@
  */
 import UIKit
 
-
 @objc public protocol DDLFormViewModel {
 
 	/// Show or hide the submit button of the form.
 	var showSubmitButton: Bool { get set }
 
 	/// Record to be loaded if exists.
-	var record: DDLRecord?  { get set }
+	var record: DDLRecord? { get set }
 
 	/// Gets if the record is empty or not.
 	var isRecordEmpty: Bool { get }

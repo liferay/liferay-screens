@@ -14,13 +14,11 @@
 import XCTest
 import UIKit
 
-
 class DDMFieldDocument_Tests: XCTestCase {
 
 	fileprivate let spanishLocale = Locale(identifier: "es_ES")
 
-
-	//MARK: Parse
+	// MARK: Parse
 
 	func test_XSDParse_ShouldExtractValues() {
 		let xsd =
@@ -81,9 +79,7 @@ class DDMFieldDocument_Tests: XCTestCase {
 		XCTAssertEqual("A Document", docField.label)
 	}
 
-
-
-	//MARK: Validate
+	// MARK: Validate
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
@@ -103,8 +99,7 @@ class DDMFieldDocument_Tests: XCTestCase {
 		XCTAssertFalse(docField.validate())
 	}
 
-
-	//MARK: MimeType
+	// MARK: MimeType
 
 	func test_MimeType_ShouldReturnNil_WhenCurrentValueIsEmpty() {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
@@ -132,14 +127,13 @@ class DDMFieldDocument_Tests: XCTestCase {
 		XCTAssertEqual("video/mpeg", docField.mimeType ?? "nil mimeType")
 	}
 
-
-	//MARK: Stream
+	// MARK: Stream
 
 	func test_Stream_ShouldReturnNil_WhenCurrentValueIsEmpty() {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as! DDMFieldDocument
 
-		var size:Int64 = 0
+		var size: Int64 = 0
 		XCTAssertNil(docField.getStream(&size))
 		XCTAssertEqual(Int64(0), size)
 	}
@@ -154,7 +148,7 @@ class DDMFieldDocument_Tests: XCTestCase {
 
 		docField.currentValue = image
 
-		var size:Int64 = 0
+		var size: Int64 = 0
 		let stream = docField.getStream(&size)
 		XCTAssertNotNil(stream)
 		XCTAssertEqual(imageLength, size)
@@ -172,14 +166,13 @@ class DDMFieldDocument_Tests: XCTestCase {
 
 		docField.currentValue = url as AnyObject?
 
-		var size:Int64 = 0
+		var size: Int64 = 0
 		let stream = docField.getStream(&size)
 		XCTAssertNotNil(stream)
 		XCTAssertEqual(imageLength.int64Value, size)
 	}
 
-
-	//MARK: currentValueAsLabel
+	// MARK: currentValueAsLabel
 
 	func test_CurrentValueAsLabel_ShouldReturnNil_WhenCurrentValueIsNil() {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
@@ -207,8 +200,7 @@ class DDMFieldDocument_Tests: XCTestCase {
 		XCTAssertEqual("A video has been selected", docField.currentValueAsLabel!)
 	}
 
-
-	//MARK: CurrentValueAsString
+	// MARK: CurrentValueAsString
 
 	func test_CurrentValueAsString_ShouldReturnNil_WhenUploadStatusIsPending() {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
@@ -223,7 +215,7 @@ class DDMFieldDocument_Tests: XCTestCase {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as! DDMFieldDocument
 
-		docField.uploadStatus = .uploading(1,10)
+		docField.uploadStatus = .uploading(1, 10)
 
 		XCTAssertNil(docField.currentValueAsString)
 	}
@@ -241,7 +233,7 @@ class DDMFieldDocument_Tests: XCTestCase {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as! DDMFieldDocument
 
-		let json:[String:AnyObject] = [
+		let json: [String:AnyObject] = [
 			"groupId": 1234 as AnyObject,
 			"uuid": "abcd" as AnyObject,
 			"version": "1.0" as AnyObject,
@@ -253,8 +245,7 @@ class DDMFieldDocument_Tests: XCTestCase {
 		XCTAssertEqual(expectedResult, docField.currentValueAsString!)
 	}
 
-
-	//MARK: UploadStatus
+	// MARK: UploadStatus
 
 	func test_UploadStatus_ShouldBeUploaded_WhenSetJSONTocurrentValueAsString() {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
@@ -266,11 +257,11 @@ class DDMFieldDocument_Tests: XCTestCase {
 
 		switch docField.uploadStatus {
 			case .uploaded(let uploadedAttributes):
-				let expectedJson:[String:AnyObject] = [
+				let expectedJson: [String:AnyObject] = [
 						"groupId": 1234 as AnyObject,
 						"uuid": "abcd" as AnyObject,
 						"version": "1.0" as AnyObject]
-				for (k,v) in expectedJson {
+				for (k, v) in expectedJson {
 					XCTAssertEqual("\(v)", "\(uploadedAttributes[k]!)")
 				}
 

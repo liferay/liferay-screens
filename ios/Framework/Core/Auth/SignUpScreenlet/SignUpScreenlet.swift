@@ -13,10 +13,9 @@
  */
 import UIKit
 
-
 /// The SignUpScreenletDelegate protocol defines some methods that you use to manage the
 /// SignUpScreenlet events. All of them are optional.
-@objc public protocol SignUpScreenletDelegate : BaseScreenletDelegate {
+@objc public protocol SignUpScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when sign up successfully completes.
 	/// The user attributes are passed as a dictionary of keys (String or NSStrings)
@@ -39,15 +38,13 @@ import UIKit
 
 }
 
-
 /// The Sign Up Screenlet creates a new user in your Liferay instance: a new user of your app 
 /// can become a new user in your portal. You can also use this Screenlet to save the credentials 
 /// of the new user in their keychain. This enables auto login for future sessions. The Screenlet 
 /// also supports navigation of form fields from the keyboard of the user’s device.
 open class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 
-
-	//MARK: Inspectables
+	// MARK: Inspectables
 
 	/// The user name, email address, or user ID (depending on the portal’s authentication method) 
 	/// to use for authenticating the request.
@@ -67,13 +64,11 @@ open class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 	/// If the value is 0, the company specified in LiferayServerContext is used.
 	@IBInspectable open var companyId: Int64 = 0
 
+	// MARK: Outlets
 
-	//MARK: Outlets
-	
 	@IBOutlet open weak var autoLoginDelegate: LoginScreenletDelegate?
 
-
-	//MARK: Public properties
+	// MARK: Public properties
 
 	open var signUpDelegate: SignUpScreenletDelegate? {
 		return delegate as? SignUpScreenletDelegate
@@ -83,8 +78,7 @@ open class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 		return screenletView as! SignUpViewModel
 	}
 
-
-	//MARK: BaseScreenlet
+	// MARK: BaseScreenlet
 
 	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
 
@@ -98,8 +92,7 @@ open class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 		}
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	/// Loads the current user throught editCurrentUser property.
 	///
@@ -111,9 +104,8 @@ open class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 		}
 		return false
 	}
-	
 
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func createSignUpConnectorInteractor() -> SignUpInteractor {
 		let interactor = SignUpInteractor(screenlet: self)
@@ -165,9 +157,9 @@ open class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 	}
 
 	fileprivate func doAutoLogin(_ userAttributes: [String:AnyObject]) {
-		let userNameKeys : [BasicAuthMethod:String] = [
-			.email : "emailAddress",
-			.screenName : "screenName",
+		let userNameKeys: [BasicAuthMethod:String] = [
+			.email: "emailAddress",
+			.screenName: "screenName",
 			.userId: "userId"
 		]
 

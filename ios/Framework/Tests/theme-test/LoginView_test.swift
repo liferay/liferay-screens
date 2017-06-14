@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 open class LoginView_test: LoginView_default {
 
 }

@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewPropertyAnimator;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordScreenlet;
 import com.liferay.mobile.screens.auth.login.LoginListener;
@@ -54,6 +55,9 @@ public class MainActivity extends CardActivity
 
 		LoginScreenlet loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
 		loginScreenlet.setListener(this);
+
+		((TextView) findViewById(R.id.liferay_login)).setText(getResources().getString(R.string.liferay_login));
+		((TextView) findViewById(R.id.liferay_password)).setText(getResources().getString(R.string.liferay_password));
 
 		ForgotPasswordScreenlet forgotPasswordScreenlet =
 			(ForgotPasswordScreenlet) findViewById(R.id.forgot_password_screenlet);

@@ -25,7 +25,7 @@ open class UserPortraitView_westeros: UserPortraitView_default {
 		portraitImage?.layer.cornerRadius = min(frame.size.width, frame.size.height) / 2
 	}
 
-	override open func loadPlaceholder() {
+	override open func loadPlaceholder(for user: User) {
 		self.portraitImage?.image = Bundle.imageInBundles(
 				name: "flat7-portrait-placeholder",
 				currentClass: type(of: self))

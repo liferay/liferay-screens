@@ -38,7 +38,7 @@
 			app:autoLoad="false"
 			app:cachePolicy="CACHE_FIRST"
 			app:layoutId="@layout/asset_list_westeros_documents"
-			app:portletItemName="DocumentationWesterosEmployees"
+			app:portletItemName="Docs"
 			/>
 
 	</RelativeLayout>

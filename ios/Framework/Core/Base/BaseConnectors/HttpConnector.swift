@@ -13,15 +13,13 @@
  */
 import UIKit
 
-
 open class HttpConnector: ServerConnector {
 
 	open var url: URL
 
 	open var resultData: Data?
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(url: URL) {
 		self.url = url
@@ -29,8 +27,7 @@ open class HttpConnector: ServerConnector {
 		super.init()
 	}
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func doRun(session: LRSession) {
 		let session = URLSession(configuration: .default)
@@ -45,8 +42,7 @@ open class HttpConnector: ServerConnector {
 			auth.authenticate(urlRequest)
 		}
 
-		session.dataTask(with: urlRequest as URLRequest, completionHandler:
-		{ (data, response, error) -> Void in
+		session.dataTask(with: urlRequest as URLRequest, completionHandler: { (data, _, error) -> Void in
 			if let error = error {
 				self.lastError = error as NSError?
 				self.resultData = nil

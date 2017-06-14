@@ -14,7 +14,6 @@
 import UIKit
 import LiferayScreens
 
-
 public class LoginView_flat7: LoginView_default {
 
 	@IBOutlet private var titleLabel: UILabel?
@@ -22,8 +21,7 @@ public class LoginView_flat7: LoginView_default {
 	@IBOutlet private var userNamePlaceholder: UILabel?
 	@IBOutlet private var passwordPlaceholder: UILabel?
 
-
-	//MARK: LoginView
+	// MARK: LoginView
 
 	override public func onCreated() {
 		super.onCreated()
@@ -42,22 +40,21 @@ public class LoginView_flat7: LoginView_default {
 
 		titleLabel!.text = LocalizedString("flat7", "login-title", self)
 		subtitleLabel!.text = LocalizedString("flat7", "login-subtitle", self)
-		userNamePlaceholder!.text = LocalizedString("flat7" ,"login-email", self)
+		userNamePlaceholder!.text = LocalizedString("flat7", "login-email", self)
 		passwordPlaceholder!.text = LocalizedString("flat7", "login-password", self)
 
 		loginButton!.replaceAttributedTitle(LocalizedString("flat7", "login-login", self),
 				forState: .Normal)
 
-		userNameField!.placeholder = "";
-		passwordField!.placeholder = "";
+		userNameField!.placeholder = ""
+		passwordField!.placeholder = ""
 	}
 
 	override public func createProgressPresenter() -> ProgressPresenter {
 		return Flat7ProgressPresenter()
 	}
 
-
-	//MARK: UITextFieldDelegate
+	// MARK: UITextFieldDelegate
 
 	internal func textField(textField: UITextField!,
 			shouldChangeCharactersInRange range: NSRange,

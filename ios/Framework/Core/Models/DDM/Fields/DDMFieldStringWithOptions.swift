@@ -13,8 +13,7 @@
  */
 import Foundation
 
-
-open class DDMFieldStringWithOptions : DDMField {
+open class DDMFieldStringWithOptions: DDMField {
 
 	open class Option: NSObject, NSCoding {
 
@@ -50,7 +49,6 @@ open class DDMFieldStringWithOptions : DDMField {
 
 	}
 
-
 	//FIXME: Multiple selection not supported yet
 	fileprivate(set) var multiple: Bool
 
@@ -59,7 +57,7 @@ open class DDMFieldStringWithOptions : DDMField {
 	override public init(attributes: [String:AnyObject], locale: Locale) {
 		multiple = Bool.from(any: attributes["multiple"] ?? "false" as AnyObject)
 
-		if let optionsArray = (attributes["options"] ?? nil) as? [[String:AnyObject]] {
+		if let optionsArray = attributes["options"] as? [[String:AnyObject]] {
 			for optionDict in optionsArray {
 				let label = optionDict["label"] as? String ?? ""
 				let name = optionDict["name"] as? String
@@ -88,8 +86,7 @@ open class DDMFieldStringWithOptions : DDMField {
 		aCoder.encode(options, forKey: "options")
 	}
 
-
-	//MARK: DDMField
+	// MARK: DDMField
 
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
 		var result = "["
@@ -142,7 +139,6 @@ open class DDMFieldStringWithOptions : DDMField {
 		return options as AnyObject?
 	}
 
-
 	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
 		if let currentOptions = currentValue as? [Option] {
 			if let firstOption = currentOptions.first {
@@ -156,7 +152,7 @@ open class DDMFieldStringWithOptions : DDMField {
 	override internal func doValidate() -> Bool {
 		let current = (currentValue as! [Option]?) ?? []
 
-		return !(required && current.count == 0)
+		return !(required && current.isEmpty)
 	}
 
 	override internal func onChangedCurrentValue() {
@@ -167,8 +163,7 @@ open class DDMFieldStringWithOptions : DDMField {
 		}
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func extractOptions(_ optionsString: String?) -> [String] {
 		var options = [String]()

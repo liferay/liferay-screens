@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 @objc open class FileEntry: Asset {
 
 	override open var url: String {
@@ -25,7 +24,7 @@ import Foundation
 
 	open var fileExtension: String? {
 		if let assetObject = attributes["object"] {
-			if let fileEntry = assetObject["fileEntry"] as? [String : AnyObject]{
+			if let fileEntry = assetObject["fileEntry"] as? [String : AnyObject] {
 				return fileEntry["extension"] as? String
 			}
 		}

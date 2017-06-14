@@ -13,10 +13,9 @@
  */
 import Foundation
 
-
 /// The FileDisplayScreenletDelegate protocol defines some methods that you use to manage the
 /// FileDisplayScreenlet events. All of them are optional.
-@objc public protocol FileDisplayScreenletDelegate : BaseScreenletDelegate {
+@objc public protocol FileDisplayScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when the screenlet receives the file.
 	///
@@ -34,19 +33,16 @@ import Foundation
 	@objc optional func screenlet(_ screenlet: FileDisplayScreenlet, onFileAssetError error: NSError)
 }
 
-
 /// File Display Screenlet shows a single file from a Liferay Portal instance’s Documents and Media
 /// Library. Use this Screenlet to display file types not covered by the other display Screenlets 
 /// (e.g., DOC, PPT, XLS).
 open class FileDisplayScreenlet: BaseScreenlet {
 
-
-	//MARK: Static properties
+	// MARK: Static properties
 
 	open static let LoadFileAction = "LoadFileAction"
 
-
-	//MARK: Inspectables
+	// MARK: Inspectables
 
 	/// The primary key of the file.
 	@IBInspectable open var assetEntryId: Int64 = 0
@@ -68,8 +64,7 @@ open class FileDisplayScreenlet: BaseScreenlet {
 	/// The offline mode setting. The default value is remote-first.
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
-
-	//MARK: Public properties
+	// MARK: Public properties
 
 	open var fileDisplayDelegate: FileDisplayScreenletDelegate? {
 		return delegate as? FileDisplayScreenletDelegate
@@ -84,9 +79,8 @@ open class FileDisplayScreenlet: BaseScreenlet {
 	}
 
 	open var fileEntry: FileEntry?
-	
 
-	//MARK: BaseScreenlet
+	// MARK: BaseScreenlet
 
 	override open func onShow() {
 		if autoLoad {
@@ -109,7 +103,7 @@ open class FileDisplayScreenlet: BaseScreenlet {
 		}
 	}
 
-	//MARK: Public methods
+	// MARK: Public methods
 
 	/// Call this method to load the file.
 	///
@@ -124,8 +118,7 @@ open class FileDisplayScreenlet: BaseScreenlet {
 		}
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func createLoadAssetInteractor() -> Interactor? {
 		let interactor: LoadAssetInteractor

@@ -9,6 +9,7 @@ import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.VideoView;
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.dlfile.display.video.VideoDisplayScreenlet;
 
 /**
  * @author Sarai Díaz García
@@ -43,9 +44,10 @@ public class VideoDisplayView extends BaseFileDisplayView {
 
 	@Override
 	public void loadFileEntry(String url) {
-		loadVideo(url);
 		loadPrepareListener();
 		loadErrorListener();
+		loadCompletionListener();
+		loadVideo(url);
 	}
 
 	@Override
@@ -57,10 +59,10 @@ public class VideoDisplayView extends BaseFileDisplayView {
 	}
 
 	private void loadVideo(String url) {
-		progressBar.setVisibility(VISIBLE);
+		progressBar.setVisibility(GONE);
+		videoView.setVisibility(VISIBLE);
 		videoView.setVideoPath(url);
 		videoView.setMediaController(new MediaController(getContext()));
-		videoView.setZOrderOnTop(true);
 		videoView.requestFocus();
 		videoView.start();
 	}
@@ -70,6 +72,7 @@ public class VideoDisplayView extends BaseFileDisplayView {
 			@Override
 			public void onPrepared(MediaPlayer mp) {
 				progressBar.setVisibility(GONE);
+				getScreenlet().getListener().onVideoPrepared();
 			}
 		});
 	}
@@ -80,8 +83,22 @@ public class VideoDisplayView extends BaseFileDisplayView {
 			public boolean onError(MediaPlayer mp, int what, int extra) {
 				progressBar.setVisibility(GONE);
 				message.setText(R.string.file_error);
+				getScreenlet().getListener().onVideoError(new MediaPlayerException(what, extra));
 				return false;
 			}
 		});
+	}
+
+	private void loadCompletionListener() {
+		videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+			@Override
+			public void onCompletion(MediaPlayer mp) {
+				getScreenlet().getListener().onVideoCompleted();
+			}
+		});
+	}
+
+	public VideoDisplayScreenlet getScreenlet() {
+		return (VideoDisplayScreenlet) super.getScreenlet();
 	}
 }

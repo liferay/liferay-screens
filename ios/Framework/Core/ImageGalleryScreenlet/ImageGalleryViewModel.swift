@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 @objc public protocol ImageGalleryViewModel {
 
 	/// Total images of the image gallery.
@@ -53,5 +52,5 @@ import Foundation
 
 	/// Returns the position of the first occurrence of a specified image entry.
 	@objc optional func indexOf(imageEntry: ImageEntry) -> Int
-			
+
 }

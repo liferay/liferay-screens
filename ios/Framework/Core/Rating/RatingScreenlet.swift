@@ -13,11 +13,10 @@
  */
 import UIKit
 
-
 /// The RatingScreenletDelegate protocol defines some methods that you use to manage the
 /// RatingScreenlet events. All of them are optional.
-@objc public protocol RatingScreenletDelegate : BaseScreenletDelegate {
-	
+@objc public protocol RatingScreenletDelegate: BaseScreenletDelegate {
+
 	/// Called when the ratings are received.
 	///
 	/// - Parameters:
@@ -49,23 +48,20 @@ import UIKit
 	///   - error: Error retrieving, updating or deleting asset's rating.
 	@objc optional func screenlet(_ screenlet: RatingScreenlet,
 	                        onRatingError error: NSError)
-	
-}
 
+}
 
 ///Rating Screenlet shows an asset’s rating. It also lets users update or delete the rating. 
 /// This Screenlet comes with different Themes that display ratings as thumbs, stars, and emojis.
 open class RatingScreenlet: BaseScreenlet {
 
-
-	//MARK: Static properties
+	// MARK: Static properties
 
 	open static let DeleteRatingAction = "deleteRating"
 	open static let UpdateRatingAction = "updateRating"
 	open static let LoadRatingsAction = "loadRatings"
 
-
-	//MARK: Inspectables
+	// MARK: Inspectables
 
 	/// The primary key of the asset with the rating to display.
 	@IBInspectable open var entryId: Int64 = 0
@@ -96,36 +92,34 @@ open class RatingScreenlet: BaseScreenlet {
 	/// The offline mode setting. The default value is remote-first.
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
-
-	//MARK: Public properties
+	// MARK: Public properties
 
 	open var ratingDisplayDelegate: RatingScreenletDelegate? {
 		return delegate as? RatingScreenletDelegate
 	}
-	
+
 	open var viewModel: RatingViewModel? {
 		return screenletView as? RatingViewModel
 	}
 
-
-	//MARK: BaseScreenlet
+	// MARK: BaseScreenlet
 
 	override open func prepareForInterfaceBuilder() {
 		setCustomDefaultThemeName()
 		super.prepareForInterfaceBuilder()
 	}
-	
+
 	override open func onPreCreate() {
 		setCustomDefaultThemeName()
 	}
-	
+
 	override open func onCreated() {
 		if let defaultRatingsGroupCount = viewModel?.defaultRatingsGroupCount, ratingsGroupCount == -1 {
 			ratingsGroupCount = defaultRatingsGroupCount
 		}
 		screenletView?.editable = self.editable
 	}
-	
+
 	override open func onShow() {
 		if autoLoad {
 			loadRatings()
@@ -160,8 +154,7 @@ open class RatingScreenlet: BaseScreenlet {
 		return performAction(name: RatingScreenlet.LoadRatingsAction, sender: nil)
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	/// Starts the request to load the asset's ratings.
 	///
@@ -171,8 +164,7 @@ open class RatingScreenlet: BaseScreenlet {
 		return self.performDefaultAction()
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func setCustomDefaultThemeName() {
 		if themeName == BaseScreenlet.DefaultThemeName {

@@ -14,18 +14,16 @@
 import UIKit
 import Cosmos
 
-
 open class RatingView_default_stars: BaseScreenletView, RatingViewModel {
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet weak var userRatingBar: CosmosView? {
 		didSet {
 			userRatingBar?.didFinishTouchingCosmos = {
 				let score = $0 / Double(self.userRatingBar!.settings.totalStars)
-				
-				if (self.selectedUserScore != NSNumber(value: score)) {
+
+				if self.selectedUserScore != NSNumber(value: score) {
 					self.selectedUserScore = score as NSNumber?
 					self.userAction(
 						name: RatingScreenlet.UpdateRatingAction,
@@ -34,31 +32,29 @@ open class RatingView_default_stars: BaseScreenletView, RatingViewModel {
 			}
 		}
 	}
-	
+
 	@IBOutlet weak var averageRatingBar: CosmosView?
-	
+
 	open var defaultRatingsGroupCount: Int32 = 1
 
 	fileprivate var selectedUserScore: NSNumber?
 
+	// MARK: BaseScreenletView
 
-	//MARK: BaseScreenletView
-	
 	override open func createProgressPresenter() -> ProgressPresenter {
 		return NetworkActivityIndicatorPresenter()
 	}
-	
+
 	override open var progressMessages: [String:ProgressMessages] {
 		return [
-			RatingScreenlet.LoadRatingsAction : [.working : ""],
-			RatingScreenlet.UpdateRatingAction : [.working : ""],
-			RatingScreenlet.DeleteRatingAction : [.working : ""],
+			RatingScreenlet.LoadRatingsAction: [.working: ""],
+			RatingScreenlet.UpdateRatingAction: [.working: ""],
+			RatingScreenlet.DeleteRatingAction: [.working: ""]
 		]
 	}
 
+	// MARK: RatingViewModel
 
-	//MARK: RatingViewModel
-	
 	open var ratingEntry: RatingEntry? {
 		didSet {
 			if let rating = ratingEntry {

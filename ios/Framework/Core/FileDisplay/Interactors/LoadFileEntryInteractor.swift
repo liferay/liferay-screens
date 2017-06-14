@@ -13,15 +13,13 @@
  */
 import UIKit
 
-
 class LoadFileEntryInteractor: ServerReadConnectorInteractor {
 
 	let fileEntry: FileEntry
 
 	var resultUrl: URL?
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	init(screenlet: BaseScreenlet, fileEntry: FileEntry) {
 		self.fileEntry = fileEntry
@@ -29,8 +27,7 @@ class LoadFileEntryInteractor: ServerReadConnectorInteractor {
 		super.init(screenlet: screenlet)
 	}
 
-
-	//MARK: ServerConnectorInteractor
+	// MARK: ServerConnectorInteractor
 
 	override func createConnector() -> ServerConnector? {
 		guard let url = URL(string: LiferayServerContext.server + fileEntry.url) else {
@@ -44,10 +41,9 @@ class LoadFileEntryInteractor: ServerReadConnectorInteractor {
 		resultUrl = (op as? HttpDownloadConnector)?.resultUrl as URL?
 	}
 
+	// MARK: Cache methods
 
-	//MARK: Cache methods
-
-	override func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> ()) {
+	override func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> Void) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return

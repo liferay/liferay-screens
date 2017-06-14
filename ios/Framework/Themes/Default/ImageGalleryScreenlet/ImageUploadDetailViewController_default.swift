@@ -13,23 +13,22 @@
  */
 import UIKit
 
-
 open class ImageUploadDetailViewController_default: UIViewController {
 
 	open var imageUploadDetailview: ImageUploadDetailViewBase?
 
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(imageUploadDetailview: ImageUploadDetailViewBase) {
 		super.init(nibName: nil, bundle: nil)
 		self.imageUploadDetailview = imageUploadDetailview
 	}
-	
+
 	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
 
-	//MARK: UIViewController
+	// MARK: UIViewController
 
     override open func viewDidLoad() {
         super.viewDidLoad()
@@ -41,18 +40,17 @@ open class ImageUploadDetailViewController_default: UIViewController {
 		addImageUploadView()
     }
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func addNavBarButtons() {
 		let uploadButton = UIBarButtonItem(
-				title: LocalizedString("default",key: "imagegallery-upload", obj: self),
+				title: LocalizedString("default", key: "imagegallery-upload", obj: self),
 				style: .plain,
 				target: self,
 				action: #selector(startUploadClick))
 
 		let cancelButton = UIBarButtonItem(
-				title: LocalizedString("default",key: "imagegallery-cancel", obj: self),
+				title: LocalizedString("default", key: "imagegallery-cancel", obj: self),
 				style: .plain,
 				target: self,
 				action: #selector(cancelClick))

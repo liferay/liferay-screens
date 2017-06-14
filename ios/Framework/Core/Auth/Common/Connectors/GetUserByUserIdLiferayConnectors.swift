@@ -14,13 +14,11 @@
 import UIKit
 import LRMobileSDK
 
-
 open class GetUserByUserIdLiferayConnector: GetUserBaseLiferayConnector {
 
 	open let userId: Int64
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(userId: Int64) {
 		self.userId = userId
@@ -28,8 +26,7 @@ open class GetUserByUserIdLiferayConnector: GetUserBaseLiferayConnector {
 		super.init()
 	}
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -45,18 +42,15 @@ open class GetUserByUserIdLiferayConnector: GetUserBaseLiferayConnector {
 
 }
 
-
 open class GetUserByUserIdLiferay62Connector: GetUserByUserIdLiferayConnector {
 
-
-	//MARK: GetUserByUserIdLiferayConnector
+	// MARK: GetUserByUserIdLiferayConnector
 
 	override public init(userId: Int64) {
 		super.init(userId: userId)
 	}
 
-
-	//MARK: GetUserBaseLiferayConnector
+	// MARK: GetUserBaseLiferayConnector
 
 	override open func sendGetUserRequest(_ session: LRSession)
 		throws -> NSDictionary {
@@ -65,22 +59,19 @@ open class GetUserByUserIdLiferay62Connector: GetUserByUserIdLiferayConnector {
 
 			return try service?.getUserById(withUserId: userId) as NSDictionary? ?? [:]
 	}
-	
-}
 
+}
 
 open class GetUserByUserIdLiferay70Connector: GetUserByUserIdLiferayConnector {
 
-
-	//MARK: GetUserByUserIdLiferayConnector
+	// MARK: GetUserByUserIdLiferayConnector
 
 	override public init(userId: Int64) {
 		super.init(userId: userId)
 	}
 
+	// MARK: GetUserBaseLiferayConnector
 
-	//MARK: GetUserBaseLiferayConnector
-	
 	override open func sendGetUserRequest(_ session: LRSession)
 		throws -> NSDictionary {
 
@@ -88,5 +79,5 @@ open class GetUserByUserIdLiferay70Connector: GetUserByUserIdLiferayConnector {
 
 			return try service?.getUserById(withUserId: userId) as NSDictionary? ?? [:]
 	}
-	
+
 }

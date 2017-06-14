@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc public protocol UserPortraitViewModel {
 
 	/// User portrait image to be displayed.

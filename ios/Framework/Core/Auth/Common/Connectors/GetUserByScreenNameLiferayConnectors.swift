@@ -14,14 +14,12 @@
 import UIKit
 import LRMobileSDK
 
-
 open class GetUserByScreenNameLiferayConnector: GetUserBaseLiferayConnector {
 
 	open let companyId: Int64
 	open let screenName: String
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(companyId: Int64, screenName: String) {
 		self.companyId = companyId
@@ -30,8 +28,7 @@ open class GetUserByScreenNameLiferayConnector: GetUserBaseLiferayConnector {
 		super.init()
 	}
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -47,18 +44,15 @@ open class GetUserByScreenNameLiferayConnector: GetUserBaseLiferayConnector {
 
 }
 
-
 open class GetUserByScreenNameLiferay62Connector: GetUserByScreenNameLiferayConnector {
 
-
-	//MARK: GetUserByScreenNameLiferayConnector
+	// MARK: GetUserByScreenNameLiferayConnector
 
 	override public init(companyId: Int64, screenName: String) {
 		super.init(companyId: companyId, screenName: screenName)
 	}
 
-
-	//MARK: GetUserBaseLiferayConnector
+	// MARK: GetUserBaseLiferayConnector
 
 	override open func sendGetUserRequest(_ session: LRSession)
 		throws -> NSDictionary {
@@ -70,21 +64,18 @@ open class GetUserByScreenNameLiferay62Connector: GetUserByScreenNameLiferayConn
 			return try service?.getUserByScreenName(withCompanyId: companyId,
 				screenName: screenName) as NSDictionary? ?? [:]
 	}
-	
-}
 
+}
 
 open class GetUserByScreenNameLiferay70Connector: GetUserByScreenNameLiferayConnector {
 
-
-	//MARK: GetUserByScreenNameLiferayConnector
+	// MARK: GetUserByScreenNameLiferayConnector
 
 	override public init(companyId: Int64, screenName: String) {
 		super.init(companyId: companyId, screenName: screenName)
 	}
 
-
-	//MARK: GetUserBaseLiferayConnector
+	// MARK: GetUserBaseLiferayConnector
 
 	override open func sendGetUserRequest(_ session: LRSession)
 		throws -> NSDictionary {
@@ -96,5 +87,5 @@ open class GetUserByScreenNameLiferay70Connector: GetUserByScreenNameLiferayConn
 			return try service?.getUserByScreenName(withCompanyId: companyId,
 				screenName: screenName) as NSDictionary? ?? [:]
 	}
-	
+
 }

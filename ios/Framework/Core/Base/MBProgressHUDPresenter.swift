@@ -24,13 +24,11 @@ import Foundation
 	case autoclose_TouchClosable
 }
 
-
 @objc public enum ProgressSpinnerMode: Int {
 	case indeterminateSpinner
 	case determinateSpinner
 	case noSpinner
 }
-
 
 @objc open class MBProgressHUDPresenter: NSObject, ProgressPresenter {
 
@@ -46,14 +44,18 @@ import Foundation
 			instance = nil
 		}
 	}
-	
-	open func hideHUDFromView(_ view: UIView?, message: String?, forInteractor interactor: Interactor, withError error: NSError?) {
+
+	open func hideHUDFromView(_ view: UIView?,
+			message: String?,
+			forInteractor interactor: Interactor,
+			withError error: NSError?) {
+
 		if message != nil {
 			dispatch_main {
 				if self.instance == nil {
 					self.instance = MBProgressHUD.showAdded(to: view, animated:true)
 				}
-				
+
 				self.configureAndShowHUD(self.instance!,
 					message: message,
 					closeMode: error == nil ? .autoclose_TouchClosable : .manualClose_TouchClosable,
@@ -64,13 +66,13 @@ import Foundation
 			hideHud()
 		}
 	}
-	
+
 	open func showHUDInView(_ view: UIView, message: String?, forInteractor interactor: Interactor) {
 		dispatch_main {
 			if self.instance == nil {
 				self.instance = MBProgressHUD.showAdded(to: view, animated:true)
 			}
-			
+
 			self.configureAndShowHUD(self.instance!,
 				message: message,
 				closeMode: .manualClose,
@@ -78,14 +80,13 @@ import Foundation
 		}
 	}
 
+	// MARK: PRIVATE METHODS
 
-	//MARK: PRIVATE METHODS
-	
 	open func hideHud() {
 		if self.instance == nil {
 			return
 		}
-		
+
 		dispatch_main {
 			self.instance!.hide(true)
 			self.instance = nil
@@ -136,12 +137,11 @@ import Foundation
 		}
 	}
 
-
-	open func rootView(_ currentView:UIView) -> UIView {
+	open func rootView(_ currentView: UIView) -> UIView {
 		if currentView.superview == nil {
-			return currentView;
+			return currentView
 		}
-		
+
 		return rootView(currentView.superview!)
 	}
 

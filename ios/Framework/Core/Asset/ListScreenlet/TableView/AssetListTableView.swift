@@ -13,13 +13,11 @@
  */
 import UIKit
 
-
 open class AssetListTableView: BaseListTableView {
 
+	// MARK: BaseListTableView
 
-	//MARK: BaseListTableView
-
-	override open func doFillLoadedCell(row: Int, cell: UITableViewCell, object:AnyObject) {
+	override open func doFillLoadedCell(row: Int, cell: UITableViewCell, object: AnyObject) {
 		// Apply cell style in the theme
 	}
 

@@ -14,7 +14,7 @@
 import UIKit
 
 open class UpdateRatingInteractor: ServerWriteConnectorInteractor {
-	
+
 	let className: String
 
 	let classPK: Int64
@@ -25,8 +25,7 @@ open class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 
 	var resultRating: RatingEntry?
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	init(className: String, classPK: Int64, score: Double?, ratingsGroupCount: Int32) {
 		self.className = className
@@ -50,9 +49,8 @@ open class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 		super.init(screenlet: screenlet)
 	}
 
+	// MARK: ServerConnectorInteractor
 
-	//MARK: ServerConnectorInteractor
-	
 	override open func createConnector() -> ServerConnector? {
 		return LiferayServerContext.connectorFactory.createRatingUpdateConnector(
 			classPK: classPK,
@@ -60,15 +58,14 @@ open class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 			score: score,
 			ratingsGroupCount: ratingsGroupCount)
 	}
-	
+
 	override open func completedConnector(_ c: ServerConnector) {
 		if let updateCon = c as? RatingUpdateLiferayConnector {
 			self.resultRating = updateCon.resultRating
 		}
 	}
 
-
-	//MARK: Cache methods
+	// MARK: Cache methods
 
 	override open func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
@@ -87,13 +84,12 @@ open class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 				"className": className as AnyObject,
 				"classPK": NSNumber(value: classPK as Int64),
 				"ratingsGroupCount": Int(ratingsGroupCount) as AnyObject,
-				"score": NSNumber(value: score as Double),
+				"score": NSNumber(value: score as Double)
 			],
 			nil)
 	}
 
-
-	//MARK: Interactor
+	// MARK: Interactor
 
 	override open func callOnSuccess() {
 		if cacheStrategy == .cacheFirst {
@@ -105,7 +101,7 @@ open class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 					"className": className as AnyObject,
 					"classPK": NSNumber(value: classPK as Int64),
 					"ratingsGroupCount": Int(ratingsGroupCount) as AnyObject,
-					"score": NSNumber(value: score as Double),
+					"score": NSNumber(value: score as Double)
 				],
 				onCompletion: nil)
 		}

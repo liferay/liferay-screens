@@ -13,11 +13,9 @@
  */
 import UIKit
 
-
 open class LoginByScreenNameLiferay62Connector: GetUserByScreenNameLiferay62Connector {
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(companyId: Int64, screenName: String, password: String) {
 		super.init(companyId: companyId, screenName: screenName)
@@ -26,8 +24,7 @@ open class LoginByScreenNameLiferay62Connector: GetUserByScreenNameLiferay62Conn
 		self.password = password
 	}
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func postRun() {
 		if lastError == nil {
@@ -42,11 +39,9 @@ open class LoginByScreenNameLiferay62Connector: GetUserByScreenNameLiferay62Conn
 
 }
 
-
 open class LoginByScreenNameLiferay70Connector: GetUserByScreenNameLiferay70Connector {
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(companyId: Int64, screenName: String, password: String) {
 		super.init(companyId: companyId, screenName: screenName)
@@ -55,8 +50,7 @@ open class LoginByScreenNameLiferay70Connector: GetUserByScreenNameLiferay70Conn
 		self.password = password
 	}
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func postRun() {
 		if lastError == nil {
@@ -68,5 +62,5 @@ open class LoginByScreenNameLiferay70Connector: GetUserByScreenNameLiferay70Conn
 		SessionContext.logout()
 		return super.createSession()
 	}
-	
+
 }

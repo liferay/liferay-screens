@@ -13,8 +13,7 @@
  */
 import Foundation
 
-
-open class DDMFieldNumber : DDMField {
+open class DDMFieldNumber: DDMField {
 
 	open var maximumDecimalDigits = 2
 	open var minimumDecimalDigits = 2
@@ -23,8 +22,7 @@ open class DDMFieldNumber : DDMField {
 		return dataType != DataType.DDMInteger
 	}
 
-
-	//MARK: DDMField
+	// MARK: DDMField
 
 	override internal func convert(fromString value: String?) -> AnyObject? {
 		if let value = value {
@@ -83,13 +81,12 @@ open class DDMFieldNumber : DDMField {
 
 	override internal func onChangedCurrentValue() {
 		if !isDecimal && currentValue is NSInteger == false {
-			let decimal = (currentValue as! NSNumber).doubleValue 
+			let decimal = (currentValue as! NSNumber).doubleValue
 			currentValue = NSNumber(value: decimal + 0.5 as Double).intValue as AnyObject?
 		}
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func formatNumber(_ number: NSNumber?, locale: Locale) -> String? {
 		if number == nil {

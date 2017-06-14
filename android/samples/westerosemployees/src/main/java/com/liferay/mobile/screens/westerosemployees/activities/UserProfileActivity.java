@@ -56,8 +56,7 @@ public class UserProfileActivity extends WesterosActivity
 			emailText = (TextView) view.findViewById(R.id.user_email_text);
 			screenNameText = (TextView) view.findViewById(R.id.user_screen_name_text);
 
-			userPortraitScreenlet.setUserId(user.getId());
-			userPortraitScreenlet.load();
+			userPortraitScreenlet.loadLoggedUserPortrait();
 
 			userNameText.setText(user.getFirstName() + " " + user.getLastName());
 			jobTitleText.setText(user.getJobTitle());

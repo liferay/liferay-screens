@@ -19,7 +19,7 @@ open class ImageGalleryGridCell: UICollectionViewCell {
 
 	fileprivate var placeholderImage: UIImage?
 
-	open var imageUrl: String  {
+	open var imageUrl: String {
 		get {
 			return ""
 		}
@@ -42,7 +42,7 @@ open class ImageGalleryGridCell: UICollectionViewCell {
 
 	open override func awakeFromNib() {
 		super.awakeFromNib()
-		
+
 		previewImage?.clipsToBounds = true
 		previewImage?.kf.indicatorType = .activity
 

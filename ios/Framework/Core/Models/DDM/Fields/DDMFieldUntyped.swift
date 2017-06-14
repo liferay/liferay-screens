@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 open class DDMFieldUntyped: DDMField {
 
 	public init(name: String, value: AnyObject, locale: Locale) {

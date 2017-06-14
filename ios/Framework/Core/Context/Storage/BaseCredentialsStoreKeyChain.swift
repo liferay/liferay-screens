@@ -18,8 +18,7 @@ import UIKit
 	import KeychainAccess
 #endif
 
-
-@objc open class BaseCredentialsStoreKeyChain : NSObject, CredentialsStore {
+@objc open class BaseCredentialsStoreKeyChain: NSObject, CredentialsStore {
 
 	open var authentication: LRAuthentication?
 	open var userAttributes: [String:AnyObject]?

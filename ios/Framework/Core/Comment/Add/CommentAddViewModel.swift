@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc public protocol CommentAddViewModel {
 
 	/// Comment content for new entry.

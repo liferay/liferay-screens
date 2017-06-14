@@ -13,15 +13,13 @@
  */
 import UIKit
 
-
 open class CommentLoadInteractor: ServerReadConnectorInteractor {
 
 	let commentId: Int64
 
 	open var resultComment: Comment?
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	override init(screenlet: BaseScreenlet?) {
 		let commentScreenlet = screenlet as! CommentDisplayScreenlet
@@ -31,8 +29,7 @@ open class CommentLoadInteractor: ServerReadConnectorInteractor {
 		super.init(screenlet: screenlet)
 	}
 
-
-	//MARK: ServerConnectorInteractor
+	// MARK: ServerConnectorInteractor
 
 	override open func createConnector() -> CommentLoadLiferayConnector? {
 		return LiferayServerContext.connectorFactory.createCommentLoadConnector(
@@ -50,9 +47,9 @@ open class CommentLoadInteractor: ServerReadConnectorInteractor {
 		self.resultComment = comment
 	}
 
-	//MARK: Cache methods
+	// MARK: Cache methods
 
-	override open func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> ()) {
+	override open func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> Void) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return

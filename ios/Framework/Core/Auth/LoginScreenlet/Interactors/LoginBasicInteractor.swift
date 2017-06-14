@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 open class LoginBasicInteractor: ServerConnectorInteractor {
 
 	open let companyId: Int64
@@ -30,8 +29,7 @@ open class LoginBasicInteractor: ServerConnectorInteractor {
 
 	open var resultUserAttributes: [String:AnyObject]?
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(loginScreenlet: LoginScreenlet) {
 		companyId = loginScreenlet.companyId != 0
@@ -92,8 +90,7 @@ open class LoginBasicInteractor: ServerConnectorInteractor {
 		super.init(screenlet: nil)
 	}
 
-	
-	//MARK: ServerConnectorInteractor
+	// MARK: ServerConnectorInteractor
 
 	override open func createConnector() -> GetUserBaseLiferayConnector? {
 		let connector: GetUserBaseLiferayConnector?

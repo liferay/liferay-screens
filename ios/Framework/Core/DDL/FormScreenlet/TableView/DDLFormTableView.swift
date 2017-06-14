@@ -13,12 +13,10 @@
  */
 import UIKit
 
-
 open class DDLFormTableView: DDLFormView,
 		UITableViewDataSource, UITableViewDelegate, KeyboardLayoutable {
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet open var tableView: UITableView?
 
@@ -28,7 +26,7 @@ open class DDLFormTableView: DDLFormView,
 				registerFieldCells()
 			}
 
-			forEachField() {
+			forEachField {
 				self.registerCustomEditor($0)
 				self.resetCellHeightForField($0)
 			}
@@ -45,14 +43,13 @@ open class DDLFormTableView: DDLFormView,
 
 	internal var firstCellResponder: UIResponder?
 
-	internal var cellHeights: [String : (registered:CGFloat, current:CGFloat)] = [:]
+	internal var cellHeights: [String : (registered: CGFloat, current: CGFloat)] = [:]
 	internal var submitButtonHeight: CGFloat = 0.0
 
 	internal var originalFrame: CGRect?
 	internal var keyboardManager = KeyboardManager()
 
-
-	//MARK: DDLFormView
+	// MARK: DDLFormView
 
 	override open func refresh() {
 		tableView!.reloadData()
@@ -117,8 +114,7 @@ open class DDLFormTableView: DDLFormView,
 		}
 	}
 
-
-	//MARK: KeyboardLayoutable
+	// MARK: KeyboardLayoutable
 
 	open func layoutWhenKeyboardShown(_ keyboardHeight: CGFloat,
 			animation:(time: NSNumber, curve: NSNumber)) {
@@ -192,8 +188,7 @@ open class DDLFormTableView: DDLFormView,
 		}
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func layoutWhenKeyboardHidden() {
 		if let originalFrameValue = originalFrame {
@@ -202,8 +197,7 @@ open class DDLFormTableView: DDLFormView,
 		}
 	}
 
-
-	//MARK: UITableViewDataSource
+	// MARK: UITableViewDataSource
 
 	open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if isRecordEmpty {
@@ -217,7 +211,7 @@ open class DDLFormTableView: DDLFormView,
 			cellForRowAt indexPath: IndexPath)
 			-> UITableViewCell {
 
-		var cell:DDMFieldTableCell?
+		var cell: DDMFieldTableCell?
 		let row = indexPath.row
 
 		if row == record!.fields.count {
@@ -258,11 +252,10 @@ open class DDLFormTableView: DDLFormView,
 		return (row == record!.fields.count) ? submitButtonHeight : cellHeightForField(getField(row)!)
 	}
 
-
-	//MARK: Internal methods
+	// MARK: Internal methods
 
 	internal func registerFieldCells() {
-		let bundles = Bundle.allBundles(type(of: self));
+		let bundles = Bundle.allBundles(type(of: self))
 
 		for fieldEditor in DDMField.Editor.all() {
 			for bundle in bundles {
@@ -293,7 +286,7 @@ open class DDLFormTableView: DDLFormView,
 
 	@discardableResult
 	internal func registerCustomEditor(_ field: DDMField) -> Bool {
-		let bundles = Bundle.allBundles(type(of: self));
+		let bundles = Bundle.allBundles(type(of: self))
 
 		for bundle in bundles {
 			if let cellView = registerEditorCellInBundle(bundle,

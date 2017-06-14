@@ -13,7 +13,6 @@
 */
 import Foundation
 
-
 @objc public class Flat7ProgressPresenter: MBProgressHUDPresenter {
 
 	override public init() {
@@ -23,4 +22,3 @@ import Foundation
 	}
 
 }
-

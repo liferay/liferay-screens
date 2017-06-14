@@ -13,15 +13,13 @@
  */
 import UIKit
 
-
 open class AssetLoadByEntryIdLiferayConnector: ServerConnector, LoadAssetConnector {
 
 	open let entryId: Int64
 
 	open var resultAsset: Asset?
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(entryId: Int64) {
 		self.entryId = entryId
@@ -29,7 +27,7 @@ open class AssetLoadByEntryIdLiferayConnector: ServerConnector, LoadAssetConnect
 		super.init()
 	}
 
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -46,8 +44,7 @@ open class AssetLoadByEntryIdLiferayConnector: ServerConnector, LoadAssetConnect
 
 open class Liferay70AssetLoadByEntryIdConnector: AssetLoadByEntryIdLiferayConnector {
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func doRun(session: LRSession) {
 		resultAsset = nil

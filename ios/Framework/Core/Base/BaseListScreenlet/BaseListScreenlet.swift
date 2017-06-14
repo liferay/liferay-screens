@@ -13,19 +13,16 @@
  */
 import UIKit
 
-
 /// BaseListScreenlet is the base class from which all list Screenlet classes must inherit.
 /// A screenlet is the container for a screenlet view.
 open class BaseListScreenlet: BaseScreenlet {
 
-
-	//MARK: Class properties
+	// MARK: Class properties
 
 	open class var LoadInitialPageAction: String { return "load-initial-page" }
 	open class var LoadPageAction: String { return "load-page" }
 
-
-	//MARK: Inspectables
+	// MARK: Inspectables
 
 	/// Whether the asset automatically loads when the Screenlet appears in the app’s UI.
 	/// The default value is true.
@@ -48,33 +45,29 @@ open class BaseListScreenlet: BaseScreenlet {
 	/// Comparator to sort the page results.
 	@IBInspectable open var obcClassName: String = ""
 
-
-	//MARK: Public properties
+	// MARK: Public properties
 
 	open var baseListView: BaseListView {
 		return screenletView as! BaseListView
 	}
 
+	// MARK: Internal properties
 
-	//MARK: Internal properties
-	
 	internal var streamMode = false
 
+	// MARK: Private properties
 
-	//MARK: Private properties
-	
 	fileprivate var paginationInteractors: [Int:BaseListPageLoadInteractor] = [:]
-	
-	
-	//MARK: BaseScreenlet
-	
+
+	// MARK: BaseScreenlet
+
 	override open func onCreated() {
 		baseListView.onSelectedRowClosure = onSelectedRow
 		baseListView.fetchPageForRow = loadPageForRow
 
 		updateRefreshClosure()
 	}
-	
+
 	override open func onShow() {
 		if !isRunningOnInterfaceBuilder {
 			if autoLoad {
@@ -82,19 +75,18 @@ open class BaseListScreenlet: BaseScreenlet {
 			}
 		}
 	}
-	
+
 	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
 		let page = (sender as? Int) ?? 0
 
 		let interactor = createPageLoadInteractor(
 			page: page,
 			computeRowCount: (page == 0))
-		
-		
+
 		paginationInteractors[page] = interactor
 
 		interactor.obcClassName = (obcClassName == "") ? nil : obcClassName
-		
+
 		interactor.onSuccess = {
 			self.baseListView.setRows(interactor.resultAllPagesContent!, newRows: interactor.resultPageContent!,
 			                          rowCount: interactor.resultRowCount ?? self.baseListView.rowCount,
@@ -102,34 +94,33 @@ open class BaseListScreenlet: BaseScreenlet {
 
 			self.onLoadPageResult(
 				page: interactor.page,
-				rows: interactor.resultPageContent?.map {$1}.flatMap {$0} ?? [],
+				rows: interactor.resultPageContent?.map { $1 }.flatMap { $0 } ?? [],
 				rowCount: self.baseListView.rowCount)
-			
+
 			self.paginationInteractors.removeValue(forKey: interactor.page)
 		}
-		
+
 		interactor.onFailure = {
 			self.onLoadPageError(page: interactor.page, error: $0)
-			
+
 			self.paginationInteractors.removeValue(forKey: interactor.page)
 		}
-		
+
 		return interactor
 	}
-	
+
 	override open func onAction(name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
-		
+
 		if name == BaseListScreenlet.LoadInitialPageAction {
 			// clear list while it's loading
 			self.baseListView.clearRows()
 		}
-		
+
 		return super.onAction(name: name, interactor: interactor, sender: sender)
 	}
-	
-	
-	//MARK: Public methods
-	
+
+	// MARK: Public methods
+
 	/// Starts the request to load the list of records.
 	/// The list is shown when the response is received.
 	///
@@ -140,22 +131,22 @@ open class BaseListScreenlet: BaseScreenlet {
 		streamMode = false
 		return performAction(name: BaseListScreenlet.LoadInitialPageAction, sender: nil)
 	}
-	
+
 	/// Start the request to load the proper page for the given row.
 	///
 	/// - Parameter row: Item row.
 	open func loadPageForRow(_ row: Int) {
 		let page = pageFromRow(row)
-		
+
 		// make sure we don't create two interactors for the same page
 		synchronized(paginationInteractors as AnyObject) {
 			if self.paginationInteractors.index(forKey: page) == nil {
-				
+
 				self.performAction(name: BaseListScreenlet.LoadPageAction, sender: page as AnyObject?)
 			}
 		}
 	}
-	
+
 	/// Gets the page from the given row.
 	///
 	/// - Parameter row: Item row.
@@ -164,10 +155,10 @@ open class BaseListScreenlet: BaseScreenlet {
 		if row < firstPageSize {
 			return 0
 		}
-		
+
 		return ((row - firstPageSize) / pageSize) + 1
 	}
-	
+
 	/// Gets the first row for the given page.
 	///
 	/// - Parameter page: Page number.
@@ -176,11 +167,10 @@ open class BaseListScreenlet: BaseScreenlet {
 		if page == 0 {
 			return 0
 		}
-		
+
 		return firstPageSize + (page - 1) * pageSize
 	}
-	
-	
+
 	/// Prepares the page to be loaded in the list.
 	/// This method is intended to be overridden by children classes.
 	///
@@ -191,10 +181,10 @@ open class BaseListScreenlet: BaseScreenlet {
 	open func createPageLoadInteractor(
 			page: Int,
 			computeRowCount: Bool) -> BaseListPageLoadInteractor {
-			
+
 		fatalError("createPageLoadInteractor must be overriden")
 	}
-	
+
 	/// Shows the error during page loading.
 	/// This method is intended to be overridden by children classes.
 	///
@@ -204,7 +194,7 @@ open class BaseListScreenlet: BaseScreenlet {
 	open func onLoadPageError(page: Int, error: NSError) {
 		print("ERROR: Load page error \(page) -> \(error)\n")
 	}
-	
+
 	/// Gets the information about one page results.
 	/// Call this method if you want to render the results.
 	///
@@ -214,16 +204,15 @@ open class BaseListScreenlet: BaseScreenlet {
 	///   - rowCount: Row count.
 	open func onLoadPageResult(page: Int, rows: [AnyObject], rowCount: Int) {
 	}
-	
+
 	/// Gets the information about one row.
 	/// Call this method if you want to know what item list was selected.
 	///
 	/// - Parameter row: Selected row.
-	open func onSelectedRow(_ row:AnyObject) {
+	open func onSelectedRow(_ row: AnyObject) {
 	}
 
-
-	//MARK: Internal methods
+	// MARK: Internal methods
 
 	internal func updateRefreshClosure() {
 

@@ -13,7 +13,6 @@
  */
 import XCTest
 
-
 class LiferayServerContext_Load_Tests: XCTestCase {
 
 	func test_Properties_ShouldLoadFromRightPlistFile() {

@@ -14,9 +14,7 @@
 import UIKit
 import LiferayScreens
 
-
 public let Flat7ThemeBasicGreen = UIColor(red: 39.0/255, green: 174.0/255, blue: 97.0/255, alpha: 1)
-
 
 public func setFlat7ButtonBackground(button: UIButton?) {
 	let stretchableImage = UIImage(
@@ -26,7 +24,7 @@ public func setFlat7ButtonBackground(button: UIButton?) {
 
 	if let stretchableImageValue = stretchableImage {
 		let backgroundImage = stretchableImageValue.resizableImageWithCapInsets(
-				UIEdgeInsetsMake(19, 19, 19, 19),
+				UIEdgeInsets(top: 19, left: 19, bottom: 19, right: 19),
 				resizingMode: UIImageResizingMode.Stretch)
 
 		button?.setBackgroundImage(backgroundImage, forState: UIControlState.Normal)
@@ -34,5 +32,3 @@ public func setFlat7ButtonBackground(button: UIButton?) {
 		button?.backgroundColor = UIColor.clearColor()
 	}
 }
-
-

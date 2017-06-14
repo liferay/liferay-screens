@@ -13,32 +13,30 @@
  */
 import UIKit
 
-
 open class DDLFormView_default: DDLFormTableView {
 
 	override open var progressMessages: [String:ProgressMessages] {
 		return [
-			DDLFormScreenlet.LoadFormAction : [
-				.working : LocalizedString("default", key: "ddlform-loading-message", obj: self),
-				.failure : LocalizedString("default", key: "ddlform-loading-error", obj: self)
+			DDLFormScreenlet.LoadFormAction: [
+				.working: LocalizedString("default", key: "ddlform-loading-message", obj: self),
+				.failure: LocalizedString("default", key: "ddlform-loading-error", obj: self)
 			],
-			DDLFormScreenlet.LoadRecordAction : [
-				.working : LocalizedString("default", key: "ddlform-loading-record-message", obj: self),
-				.failure : LocalizedString("default", key: "ddlform-loading-record-error", obj: self)
+			DDLFormScreenlet.LoadRecordAction: [
+				.working: LocalizedString("default", key: "ddlform-loading-record-message", obj: self),
+				.failure: LocalizedString("default", key: "ddlform-loading-record-error", obj: self)
 			],
-			DDLFormScreenlet.SubmitFormAction : [
-				.working : LocalizedString("default", key: "ddlform-submitting-message", obj: self),
-				.failure : LocalizedString("default", key: "ddlform-submitting-error", obj: self),
-				.success : LocalizedString("default", key: "ddlform-submitted", obj: self)
+			DDLFormScreenlet.SubmitFormAction: [
+				.working: LocalizedString("default", key: "ddlform-submitting-message", obj: self),
+				.failure: LocalizedString("default", key: "ddlform-submitting-error", obj: self),
+				.success: LocalizedString("default", key: "ddlform-submitted", obj: self)
 			],
-			DDLFormScreenlet.UploadDocumentAction : [
-				.failure : LocalizedString("default", key: "ddlform-uploading-error", obj: self)
+			DDLFormScreenlet.UploadDocumentAction: [
+				.failure: LocalizedString("default", key: "ddlform-uploading-error", obj: self)
 			]
 		]
 	}
 
-
-	//MARK: DDLFormTableView 
+	// MARK: DDLFormTableView 
 
 	override open func onCreated() {
 		super.onCreated()

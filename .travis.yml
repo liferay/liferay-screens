@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode8.2
+osx_image: xcode8.3
 rvm: 2.0.0
 
 env:
@@ -34,8 +34,8 @@ script:
          cd ios/Framework
          pod install --repo-update
          set -o pipefail
-         xcodebuild clean build build-for-testing -workspace LiferayScreens.xcworkspace -scheme LiferayScreens -destination "id=E40727B3-41FB-4D6E-B4CB-BFA87109EB12" | xcpretty
-         xcodebuild test-without-building -workspace LiferayScreens.xcworkspace -scheme LiferayScreens -destination "id=E40727B3-41FB-4D6E-B4CB-BFA87109EB12" | xcpretty
+         xcodebuild clean build build-for-testing -workspace LiferayScreens.xcworkspace -scheme LiferayScreens -destination "platform=iOS Simulator,name=iPhone 7" | xcpretty
+         xcodebuild test-without-building -workspace LiferayScreens.xcworkspace -scheme LiferayScreens -destination "platform=iOS Simulator,name=iPhone 7" | xcpretty
     elif [ "${DANGER}" -eq 1 ]; then
          gem install danger --version '~> 4.0' && danger
     fi

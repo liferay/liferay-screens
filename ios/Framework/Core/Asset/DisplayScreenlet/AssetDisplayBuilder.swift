@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc open class AssetDisplayBuilder: NSObject {
 
 	open class func createScreenlet(_ frame: CGRect, asset: Asset, themeName: String? = nil)

@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 open class AssetLoadByClassPKLiferayConnector: ServerConnector, LoadAssetConnector {
 
 	open let className: String
@@ -21,8 +20,7 @@ open class AssetLoadByClassPKLiferayConnector: ServerConnector, LoadAssetConnect
 
 	open var resultAsset: Asset?
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(className: String, classPK: Int64) {
 		self.className = className
@@ -31,7 +29,7 @@ open class AssetLoadByClassPKLiferayConnector: ServerConnector, LoadAssetConnect
 		super.init()
 	}
 
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -51,8 +49,7 @@ open class AssetLoadByClassPKLiferayConnector: ServerConnector, LoadAssetConnect
 
 open class Liferay70AssetLoadByClassPKConnector: AssetLoadByClassPKLiferayConnector {
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func doRun(session: LRSession) {
 		resultAsset = nil
@@ -60,7 +57,8 @@ open class Liferay70AssetLoadByClassPKConnector: AssetLoadByClassPKLiferayConnec
 		let service = LRScreensassetentryService_v70(session: session)
 
 		do {
-			let result = try service?.getAssetEntry(withClassName: className, classPK: classPK, locale: NSLocale.currentLocaleString)
+			let result = try service?.getAssetEntry(withClassName: className, classPK: classPK,
+				locale: NSLocale.currentLocaleString)
 
 			resultAsset = Asset(attributes: result as! [String:AnyObject])
 			lastError = nil

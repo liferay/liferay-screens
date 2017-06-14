@@ -20,12 +20,15 @@ import Foundation
 		setNetworkActivityIndicatorVisible(true)
 	}
 
-	open func hideHUDFromView(_ view: UIView?, message: String?, forInteractor interactor: Interactor, withError error: NSError?) {
+	open func hideHUDFromView(_ view: UIView?, message: String?, forInteractor interactor: Interactor,
+			withError error: NSError?) {
+
 		setNetworkActivityIndicatorVisible(false)
 	}
-	
+
 	fileprivate func setNetworkActivityIndicatorVisible(_ visible: Bool) {
 		NetworkActivityIndicatorPresenter.numberOfVisibilityCalls += visible ? 1 : -1
-		UIApplication.shared.isNetworkActivityIndicatorVisible = NetworkActivityIndicatorPresenter.numberOfVisibilityCalls > 0
+		UIApplication.shared.isNetworkActivityIndicatorVisible =
+				NetworkActivityIndicatorPresenter.numberOfVisibilityCalls > 0
 	}
 }

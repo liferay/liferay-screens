@@ -13,11 +13,9 @@
  */
 import UIKit
 
-
 open class UploadProgressView_default: UIView, UploadProgressViewBase {
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet weak fileprivate var previewImage: UIImageView?
 
@@ -35,26 +33,23 @@ open class UploadProgressView_default: UIView, UploadProgressViewBase {
 		addShadow()
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func addShadow() {
-		layer.masksToBounds = false;
-		layer.shadowOffset = CGSize(width: 0, height: 0);
-		layer.shadowRadius = 5;
-		layer.shadowOpacity = 0.3;
+		layer.masksToBounds = false
+		layer.shadowOffset = CGSize(width: 0, height: 0)
+		layer.shadowRadius = 5
+		layer.shadowOpacity = 0.3
 	}
 
-
-	//MARK: Actions
+	// MARK: Actions
 
 	@IBAction func cancelButton() {
 		cancelClosure?()
 		hide()
 	}
 
-
-	//MARK: UploadProgressViewBase
+	// MARK: UploadProgressViewBase
 
 	open func setProgress(_ progress: Float) {
 		progressView?.progress = progress
@@ -93,15 +88,14 @@ open class UploadProgressView_default: UIView, UploadProgressViewBase {
 	}
 
 	open func hide() {
-		UIView.animate(withDuration: 0.5 , animations: {
+		UIView.animate(withDuration: 0.5, animations: {
 			self.alpha = 0
 		}, completion: { _ in
 			self.removeFromSuperview()
 		})
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func updateInformationText() {
 		if uploadsCount == 1 {

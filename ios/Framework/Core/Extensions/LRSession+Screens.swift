@@ -17,7 +17,6 @@ import Foundation
 	import LRMobileSDK
 #endif
 
-
 extension LRSession {
 
 	public var serverName: String? {

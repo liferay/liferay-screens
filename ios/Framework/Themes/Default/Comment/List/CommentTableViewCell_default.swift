@@ -13,11 +13,9 @@
  */
 import UIKit
 
-
 open class CommentTableViewCell_default: UITableViewCell {
 
+	// MARK: Outlets
 
-	//MARK: Outlets
-	
 	@IBOutlet open weak var commentDisplayScreenlet: CommentDisplayScreenlet?
 }

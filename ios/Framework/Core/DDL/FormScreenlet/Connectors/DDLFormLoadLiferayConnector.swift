@@ -14,7 +14,6 @@
 import UIKit
 import LRMobileSDK
 
-
 open class DDLFormLoadLiferayConnector: ServerConnector {
 
 	open let structureId: Int64
@@ -22,8 +21,7 @@ open class DDLFormLoadLiferayConnector: ServerConnector {
 	open var resultRecord: DDLRecord?
 	open var resultUserId: Int64?
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(structureId: Int64) {
 		self.structureId = structureId
@@ -33,11 +31,9 @@ open class DDLFormLoadLiferayConnector: ServerConnector {
 
 }
 
-
 open class Liferay62DDLFormLoadConnector: DDLFormLoadLiferayConnector {
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func doRun(session: LRSession) {
 		let service = LRDDMStructureService_v62(session: session)
@@ -68,15 +64,13 @@ open class Liferay62DDLFormLoadConnector: DDLFormLoadLiferayConnector {
 			resultUserId = nil
 		}
 	}
-	
-}
 
+}
 
 open class Liferay70DDLFormLoadConnector: DDLFormLoadLiferayConnector {
 
+	// MARK: ServerConnector
 
-	//MARK: ServerConnector
-	
 	override open func doRun(session: LRSession) {
 		let service = LRDDMStructureService_v7(session: session)
 
@@ -106,6 +100,5 @@ open class Liferay70DDLFormLoadConnector: DDLFormLoadLiferayConnector {
 			resultUserId = nil
 		}
 	}
-	
-}
 
+}

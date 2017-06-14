@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 //TODO unit tests
 
 open class DDLUntypedValuesParser {
@@ -22,7 +21,7 @@ open class DDLUntypedValuesParser {
 	}
 
 	open func parse(_ values: [String:AnyObject]) -> [DDMField] {
-		var result:[DDMField] = []
+		var result: [DDMField] = []
 
 		let locale = Locale(identifier: NSLocale.currentLocaleString)
 

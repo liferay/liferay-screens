@@ -13,13 +13,11 @@
  */
 import XCTest
 
-
 class DDMFieldNumber_Tests: XCTestCase {
 
 	fileprivate let spanishLocale = Locale(identifier: "es_ES")
 
-
-	//MARK: parse
+	// MARK: parse
 
 	func test_XSDParse_ShouldExtractValues_WhenFieldIsInteger() {
 		let fields = DDMXSDParser().parse(integerXSD, locale: spanishLocale)
@@ -57,7 +55,6 @@ class DDMFieldNumber_Tests: XCTestCase {
 		XCTAssertEqualWithAccuracy(Float(16.05),
 			(numberField.predefinedValue as! NSDecimalNumber).floatValue, accuracy: 0.001)
 	}
-
 
 	func test_XSDParse_ShouldExtractPredefinedValueValues_WhenFieldIsInteger() {
 		let fields = DDMXSDParser().parse(integerXSD, locale: spanishLocale)
@@ -104,7 +101,6 @@ class DDMFieldNumber_Tests: XCTestCase {
 			(numberField.predefinedValue as! NSDecimalNumber).floatValue, accuracy: 0.001)
 	}
 
-
 	func test_JSONParse_ShouldExtractPredefinedValueValues_WhenFieldIsInteger() {
 		let fields = DDMJSONParser().parse(integerJSON, locale: spanishLocale)
 		let numberField = fields![0] as! DDMFieldNumber
@@ -113,9 +109,7 @@ class DDMFieldNumber_Tests: XCTestCase {
 		XCTAssertEqual(NSInteger(16), numberField.predefinedValue as? NSInteger)
 	}
 
-
-
-	//MARK: currentValue
+	// MARK: currentValue
 
 	func test_CurrentValue_ShouldTruncateDecimal_WhenOriginalNumberIsInteger() {
 		let fields = DDMXSDParser().parse(integerXSD, locale: spanishLocale)
@@ -126,8 +120,7 @@ class DDMFieldNumber_Tests: XCTestCase {
 		XCTAssertEqual(NSInteger(1), numberField.currentValue as? NSInteger)
 	}
 
-
-	//MARK: currentValueAsString
+	// MARK: currentValueAsString
 
 	func test_CurrentValueAsString_ShouldBeValid_WhenNumberIsInteger() {
 		let fields = DDMXSDParser().parse(integerXSD, locale: spanishLocale)
@@ -192,8 +185,7 @@ class DDMFieldNumber_Tests: XCTestCase {
 			(numberField.currentValue as! NSDecimalNumber).floatValue, accuracy: 0.001)
 	}
 
-
-	//MARK: currentValueAsLabel
+	// MARK: currentValueAsLabel
 
 	func test_CurrentValueAsLabel_ShouldBeLocalizedToSpanish_WhenNumberIsDecimal() {
 		let fields = DDMXSDParser().parse(decimalXSD, locale: spanishLocale)
@@ -225,8 +217,7 @@ class DDMFieldNumber_Tests: XCTestCase {
 			(numberField.currentValue! as! NSNumber).floatValue, accuracy: 0.001)
 	}
 
-
-	//MARK: validate
+	// MARK: validate
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsNil() {
 		let xsd =
@@ -254,7 +245,6 @@ class DDMFieldNumber_Tests: XCTestCase {
 		XCTAssertTrue(numberField.currentValue == nil)
 		XCTAssertFalse(numberField.validate())
 	}
-
 
 	fileprivate let decimalXSD =
 			"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +

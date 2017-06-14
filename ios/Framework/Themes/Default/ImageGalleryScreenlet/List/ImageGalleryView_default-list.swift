@@ -14,8 +14,7 @@
 import Foundation
 import AFNetworking
 
-
-open class ImageGalleryView_default_list : BaseListTableView, ImageGalleryViewModel {
+open class ImageGalleryView_default_list: BaseListTableView, ImageGalleryViewModel {
 
 	open var uploadProgressView: UploadProgressViewBase? {
 		get {
@@ -27,11 +26,10 @@ open class ImageGalleryView_default_list : BaseListTableView, ImageGalleryViewMo
 	}
 
 	open weak var _uploadView: UIView?
-    
+
     internal let imageCellId = "ImageCellId"
 
-
-	//MARK: ImageGalleryViewModel
+	// MARK: ImageGalleryViewModel
 
 	open var totalEntries: Int {
 		return rowCount
@@ -96,7 +94,7 @@ open class ImageGalleryView_default_list : BaseListTableView, ImageGalleryViewMo
 
 		addSubview(_uploadView!)
 
-		let views = ["view" : self, "uploadView" : _uploadView!]
+		let views = ["view": self, "uploadView": _uploadView!]
 
 		let constraintH = NSLayoutConstraint.constraints(
 			withVisualFormat: "H:|-(5)-[uploadView]-(5)-|",
@@ -115,7 +113,7 @@ open class ImageGalleryView_default_list : BaseListTableView, ImageGalleryViewMo
 
 		UIView.animate(withDuration: 0.5, animations: {
 			self._uploadView?.alpha = 1
-		}) 
+		})
 
 		uploadProgressView?.cancelClosure = { [weak self] in
 			(self?.screenlet as? ImageGalleryScreenlet)?.cancelUploads()
@@ -138,29 +136,28 @@ open class ImageGalleryView_default_list : BaseListTableView, ImageGalleryViewMo
 
 	open func indexOf(imageEntry: ImageEntry) -> Int {
 		for (_, sectionEntries) in rows {
-			if let idx = sectionEntries.index(where: {$0 as! ImageEntry == imageEntry}) {
-				return idx;
+			if let idx = sectionEntries.index(where: { $0 as! ImageEntry == imageEntry }) {
+				return idx
 			}
 		}
 
 		return -1
 	}
 
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
     override open func onCreated() {
         super.onCreated()
         tableView?.rowHeight = 110
     }
-    
+
     override open func createProgressPresenter() -> ProgressPresenter {
         return DefaultProgressPresenter()
     }
 
+	// MARK: BaseListTableView
 
-	//MARK: BaseListTableView
-
-    override open func doFillLoadedCell(row: Int, cell: UITableViewCell, object:AnyObject) {
+    override open func doFillLoadedCell(row: Int, cell: UITableViewCell, object: AnyObject) {
         guard let imageCell = cell as? ImageGalleryCell, let entry = object as? ImageEntry else {
             return
         }
@@ -173,33 +170,33 @@ open class ImageGalleryView_default_list : BaseListTableView, ImageGalleryViewMo
 		}
         imageCell.title = entry.title
     }
-    
+
     override open func doFillInProgressCell(row: Int, cell: UITableViewCell) {
         cell.textLabel?.text = "..."
         cell.accessoryType = .none
-        
+
         if let image = Bundle.imageInBundles(
             name: "default-hourglass",
             currentClass: type(of: self)) {
-            
+
             cell.accessoryView = UIImageView(image: image)
             cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
         }
     }
-    
+
     override open func doGetCellId(row: Int, object: AnyObject?) -> String {
-        if let _ = object {
+        if object != nil {
             return imageCellId
         }
-        
+
         return super.doGetCellId(row: row, object: object)
     }
-    
+
     override open func doRegisterCellNibs() {
         if let imageGalleryCellNib = Bundle.nibInBundles(
             name: "ImageGalleryCell",
             currentClass: type(of: self)) {
-            
+
             tableView?.register(imageGalleryCellNib, forCellReuseIdentifier: imageCellId)
         }
     }

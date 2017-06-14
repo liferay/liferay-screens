@@ -14,7 +14,6 @@
 import UIKit
 import LRMobileSDK
 
-
 open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 
 	open var groupId: Int64?
@@ -22,8 +21,7 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 	open var portletItemName: String?
 	open var customEntryQuery: [String:AnyObject]?
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -76,7 +74,7 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 		}
 	}
 
-	//MARK: PaginationLiferayConnector
+	// MARK: PaginationLiferayConnector
 
 	override open func doAddPageRowsServiceCall(
 			session: LRBatchSession,
@@ -101,8 +99,7 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 		doGetRowCount(session: session, entryQuery: entryQueryWrapper!)
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func doGetEntries(_ session: LRSession, rowCount: Int32) throws -> [[String:AnyObject]]? {
 		return nil
@@ -117,27 +114,28 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 	open func configureEntryQuery() -> [String:AnyObject] {
 		var entryQuery = (customEntryQuery != nil)
 			? customEntryQuery!
-			: [String:AnyObject]()
+			: [String: AnyObject]()
 
 		let defaultValues = [
-			"classNameIds" : NSNumber(value: classNameId! as Int64),
-			"groupIds" : NSNumber(value: groupId! as Int64),
-			"visible" : true
+			"classNameIds": NSNumber(value: classNameId! as Int64),
+			"groupIds": NSNumber(value: groupId! as Int64),
+			"visible": true
 		]
 
 		let finalValues = self.handleUserVisibleFlag(defaultValues)
 
-		for (k,v) in finalValues {
+		// swiftlint:disable for_where
+		for (k, v) in finalValues {
 			if entryQuery[k] == nil {
 				entryQuery[k] = v
 			}
 		}
+		// swiftlint:enable for_where
 
 		return entryQuery
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	/// AssetListScreenlet only list Asset with visible attribute set to true. But User objects have it by
 	/// default in false. So this method update this attribute of entryQuery values to list
@@ -147,7 +145,7 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 	///
 	/// - returns: final values for entryQuery.
 	fileprivate func handleUserVisibleFlag(_ values: [String : AnyObject]) -> [String : AnyObject] {
-		if (classNameId == AssetClasses.getClassNameId(AssetClassNameKey_User)) {
+		if classNameId == AssetClasses.getClassNameId(AssetClassNameKey_User) {
 			var newValues = values
 
 			newValues["visible"] = false as AnyObject?
@@ -160,8 +158,7 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 
 open class Liferay62AssetListPageConnector: AssetListPageLiferayConnector {
 
-
-	//MARK: AssetListPageLiferayConnector
+	// MARK: AssetListPageLiferayConnector
 
 	override open func doGetEntries(_ session: LRSession, rowCount: Int32) throws -> [[String:AnyObject]]? {
 		let service = LRScreensassetentryService_v62(session: session)
@@ -195,12 +192,10 @@ open class Liferay62AssetListPageConnector: AssetListPageLiferayConnector {
 
 }
 
-
 open class Liferay70AssetListPageConnector: AssetListPageLiferayConnector {
 
+	// MARK: AssetListPageLiferayConnector
 
-	//MARK: AssetListPageLiferayConnector
-	
 	override open func doGetEntries(_ session: LRSession, rowCount: Int32) throws -> [[String:AnyObject]]? {
 		let service = LRScreensassetentryService_v70(session: session)
 
@@ -234,5 +229,5 @@ open class Liferay70AssetListPageConnector: AssetListPageLiferayConnector {
 		catch _ as NSError {
 		}
 	}
-	
+
 }

@@ -13,10 +13,9 @@
  */
 import UIKit
 
-
 open class DDLFormView: BaseScreenletView, DDLFormViewModel {
 
-	//MARK: DDLFormViewModel
+	// MARK: DDLFormViewModel
 
 	open var showSubmitButton = true
 
@@ -26,8 +25,7 @@ open class DDLFormView: BaseScreenletView, DDLFormViewModel {
 		return (record == nil) ? true : record!.fields.isEmpty
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func refresh() {
 	}
@@ -36,7 +34,7 @@ open class DDLFormView: BaseScreenletView, DDLFormViewModel {
 		var firstError: ValidationError?
 		var firstFailedField: DDMField?
 
-		forEachField() {
+		forEachField {
 			if !$0.validate() {
 				if firstFailedField == nil {
 					firstFailedField = $0
@@ -64,13 +62,12 @@ open class DDLFormView: BaseScreenletView, DDLFormViewModel {
 		return (record == nil) ? nil : record!.fields.index(of: field)
 	}
 
+	// MARK: Internal methods
 
-	//MARK: Internal methods
-
-	internal func changeDocumentUploadStatus(_ field:DDMFieldDocument) {
+	internal func changeDocumentUploadStatus(_ field: DDMFieldDocument) {
 	}
 
-	internal func forEachField(_ body:(DDMField) -> Void) {
+	internal func forEachField(_ body: (DDMField) -> Void) {
 		if let recordValue = record {
 			for field in recordValue.fields {
 				body(field)
@@ -78,7 +75,7 @@ open class DDLFormView: BaseScreenletView, DDLFormViewModel {
 		}
 	}
 
-	internal func showField(_ field:DDMField) {
+	internal func showField(_ field: DDMField) {
 	}
 
 }

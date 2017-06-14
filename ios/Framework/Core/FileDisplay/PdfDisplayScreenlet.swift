@@ -13,12 +13,10 @@
  */
 import Foundation
 
-
 /// PDF Display Screenlet displays a PDF file from a Liferay Instance’s Documents and Media Library.
 open class PdfDisplayScreenlet: FileDisplayScreenlet {
 
-
-	//MARK: Inspectables
+	// MARK: Inspectables
 
 	/// Supported screenlet mime types. If the mime type not matches with the requested pdf mime
 	/// type, the pdf doesn't show in the screenlet.
@@ -26,8 +24,7 @@ open class PdfDisplayScreenlet: FileDisplayScreenlet {
 
 	let DefaultPdfMimeTypes = ["application/pdf"]
 
-
-	//MARK: FileDisplayScreenlet
+	// MARK: FileDisplayScreenlet
 
 	override open var supportedMimeTypes: [String] {
 

@@ -13,10 +13,9 @@
  */
 import UIKit
 
-
 /// The CommentDisplayScreenletDelegate protocol defines some methods that you use to manage the
 /// CommentDisplayScreenlet events. All of them are optional.
-@objc public protocol CommentDisplayScreenletDelegate : BaseScreenletDelegate {
+@objc public protocol CommentDisplayScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when the screenlet loads the comment.
 	///
@@ -73,19 +72,16 @@ import UIKit
 
 }
 
-
 /// Comment Display Screenlet can show one comment of an asset in a Liferay instance. It also lets 
 /// the user update or delete the comment.
 open class CommentDisplayScreenlet: BaseScreenlet {
 
-	
-	//MARK: Static properties
+	// MARK: Static properties
 
 	open static let DeleteAction = "deleteAction"
 	open static let UpdateAction = "updateAction"
 
-
-	//MARK: Inspectables
+	// MARK: Inspectables
 
 	/// The primary key of the comment to display.
 	@IBInspectable open var commentId: Int64 = 0
@@ -104,8 +100,7 @@ open class CommentDisplayScreenlet: BaseScreenlet {
 		}
 	}
 
-
-	//MARK: Public properties
+	// MARK: Public properties
 
 	open var commentDisplayDelegate: CommentDisplayScreenletDelegate? {
 		return delegate as? CommentDisplayScreenletDelegate
@@ -124,8 +119,7 @@ open class CommentDisplayScreenlet: BaseScreenlet {
 		}
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	/// Loads the comment in the screenlet.
 	open func load() {
@@ -142,8 +136,7 @@ open class CommentDisplayScreenlet: BaseScreenlet {
 		viewModel.editComment()
 	}
 
-
-	//MARK: BaseScreenlet
+	// MARK: BaseScreenlet
 
 	override open func onCreated() {
 		super.onCreated()
@@ -172,8 +165,7 @@ open class CommentDisplayScreenlet: BaseScreenlet {
 		}
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func createCommentLoadInteractor() -> Interactor {
 		let interactor = CommentLoadInteractor(screenlet: self)

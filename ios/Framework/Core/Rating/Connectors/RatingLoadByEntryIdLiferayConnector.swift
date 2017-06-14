@@ -15,14 +15,13 @@ import UIKit
 import LRMobileSDK
 
 open class RatingLoadByEntryIdLiferayConnector: ServerConnector {
-	
+
 	open let entryId: Int64
 	open let ratingsGroupCount: Int32
-	
+
 	open var resultRating: RatingEntry?
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(entryId: Int64, ratingsGroupCount: Int32) {
 		self.entryId = entryId
@@ -30,12 +29,11 @@ open class RatingLoadByEntryIdLiferayConnector: ServerConnector {
 		super.init()
 	}
 
+	// MARK: ServerConnector
 
-	//MARK: ServerConnector
-	
 	open override func validateData() -> ValidationError? {
 		let error = super.validateData()
-		
+
 		if error == nil {
 			if entryId == 0 {
 				return ValidationError("rating-screenlet", "undefined-entryId")
@@ -44,20 +42,19 @@ open class RatingLoadByEntryIdLiferayConnector: ServerConnector {
 				return ValidationError("rating-screenlet", "wrong-ratingsGroupCount")
 			}
 		}
-		
+
 		return error
 	}
-	
+
 }
 
 open class Liferay70RatingLoadByEntryIdConnector: RatingLoadByEntryIdLiferayConnector {
 
-	
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func doRun(session: LRSession) {
 		let service = LRScreensratingsentryService_v70(session: session)
-		
+
 		do {
 			let result = try service?.getRatingsEntries(withAssetEntryId: entryId, ratingsLength: ratingsGroupCount)
 			lastError = nil
@@ -68,6 +65,5 @@ open class Liferay70RatingLoadByEntryIdConnector: RatingLoadByEntryIdLiferayConn
 			resultRating = nil
 		}
 	}
-	
-}
 
+}

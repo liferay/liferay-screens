@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 @objc open class DefaultProgressPresenter: MBProgressHUDPresenter {
 
 	override public init() {

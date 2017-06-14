@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 open class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGalleryViewModel {
 
 	open var uploadProgressView: UploadProgressViewBase? {
@@ -29,8 +28,7 @@ open class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGalleryV
 
 	internal let imageCellId = "ImageCellId"
 
-
-	//MARK: ImageGalleryViewModel
+	// MARK: ImageGalleryViewModel
 
 	open var totalEntries: Int {
 		return rowCount
@@ -100,16 +98,15 @@ open class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGalleryV
 
 	open func indexOf(imageEntry: ImageEntry) -> Int {
 		for (_, sectionEntries) in rows {
-			if let idx = sectionEntries.index(where: {$0 as! ImageEntry == imageEntry}) {
-				return idx;
+			if let idx = sectionEntries.index(where: { $0 as! ImageEntry == imageEntry }) {
+				return idx
 			}
 		}
 
 		return -1
 	}
 
-
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
 	open override func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
@@ -130,7 +127,7 @@ open class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGalleryV
 
 		addSubview(uploadView)
 
-		let views = ["view" : self, "uploadView" : uploadView]
+		let views = ["view": self, "uploadView": uploadView]
 
 		let constraintH = NSLayoutConstraint.constraints(
 				withVisualFormat: "H:|-(5)-[uploadView]-(5)-|",
@@ -149,7 +146,7 @@ open class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGalleryV
 
 		UIView.animate(withDuration: 0.2, animations: {
 			uploadView.alpha = 1
-		}) 
+		})
 
 		uploadProgressView?.cancelClosure = { [weak self] in
 			(self?.screenlet as? ImageGalleryScreenlet)?.cancelUploads()
