@@ -14,7 +14,7 @@
 import Foundation
 import LRMobileSDK
 
-open class ImageGalleryUploadConnector : UploadFileConnector {
+open class ImageGalleryUploadConnector: UploadFileConnector {
 
 	open let repositoryId: Int64
 	open let folderId: Int64
@@ -23,8 +23,7 @@ open class ImageGalleryUploadConnector : UploadFileConnector {
 	open let descrip: String
 	open let changeLog: String
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(repositoryId: Int64,
 			folderId: Int64,
@@ -51,24 +50,23 @@ open class ImageGalleryUploadConnector : UploadFileConnector {
 			onUploadedBytes: onUploadBytes)
 	}
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func validateData() -> ValidationError? {
 		var error = super.validateData()
 
 		if error == nil {
 			if repositoryId < 0 {
-				error = ValidationError("imagegallery-screenlet","undefined-repositoryid")
+				error = ValidationError("imagegallery-screenlet", "undefined-repositoryid")
 			}
 			else if folderId < 0 {
-				error = ValidationError("imagegallery-screenlet","undefined-folderid")
+				error = ValidationError("imagegallery-screenlet", "undefined-folderid")
 			}
 		}
 
 		return error
 	}
-	
+
 }
 
 open class Liferay70ImageGalleryUploadConnector: ImageGalleryUploadConnector {
@@ -76,7 +74,7 @@ open class Liferay70ImageGalleryUploadConnector: ImageGalleryUploadConnector {
 	override open func doSendFile(_ session: LRSession, data: LRUploadData) throws {
 		let service = LRDLAppService_v7(session: session)
 
-		let serviceContext = LRJSONObjectWrapper(jsonObject: ["addGuestPermissions":true])
+		let serviceContext = LRJSONObjectWrapper(jsonObject: ["addGuestPermissions": true])
 		try service?.addFileEntry(withRepositoryId: repositoryId,
 				folderId: folderId,
 			 	sourceFileName: fileName,

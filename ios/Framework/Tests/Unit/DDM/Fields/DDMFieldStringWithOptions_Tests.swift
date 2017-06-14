@@ -13,13 +13,11 @@
  */
 import XCTest
 
-
 class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 	fileprivate let spanishLocale = Locale(identifier: "es_ES")
 
-
-	//MARK: Parse
+	// MARK: Parse
 
 	func test_XSDParse_ShouldExtractValues() {
 		let fields = DDMXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
@@ -150,7 +148,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 		XCTAssertEqual("Option 2", predefinedOptions[1].label)
 	}
 
-	//MARK: CurrentValue
+	// MARK: CurrentValue
 
 	func test_CurrentValue_ShouldBeTheSameAsPredefinedValue_WhenTheParsingIsDone() {
 		let fields = DDMXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
@@ -165,7 +163,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 		XCTAssertEqual(currentOptions.count, predefinedOptions.count)
 
-		for (index,option) in currentOptions.enumerated() {
+		for (index, option) in currentOptions.enumerated() {
 			let predefinedOption = predefinedOptions[index]
 
 			XCTAssertEqual(option.label, predefinedOption.label)
@@ -202,8 +200,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 		XCTAssertTrue((stringField.currentValue as! [DDMFieldStringWithOptions.Option]).isEmpty)
 	}
 
-
-	//MARK: CurrentValueAsString
+	// MARK: CurrentValueAsString
 
 	func test_CurrentValueAsString_ShouldContainTheArrayOfValues() {
 		let fields = DDMXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
@@ -279,8 +276,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 		XCTAssertEqual("[]", stringField.currentValueAsString!)
 	}
 
-
-	//MARK: CurrentValueAsLabel
+	// MARK: CurrentValueAsLabel
 
 	func test_CurrentValueAsLabel_ShouldContainTheLabelOfSelectedOption() {
 		let fields = DDMXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
@@ -312,8 +308,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 		XCTAssertEqual("[\"value 3\"]", stringField.currentValueAsString!)
 	}
 
-
-	//MARK: Validate
+	// MARK: Validate
 
 	func test_Validate_ShouldFail_WhenRequiredValueIsEmptyString() {
 		let fields = DDMXSDParser().parse(selectWithPredefinedValuesXSD, locale: spanishLocale)
@@ -373,7 +368,6 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 		XCTAssertEqual("[\"value 3\", \"value 1\"]", stringField.currentValueAsString)
 	}
-
 
 	fileprivate let selectWithPredefinedValuesXSD =
 		"<root available-locales=\"en_US\" default-locale=\"en_US\"> " +

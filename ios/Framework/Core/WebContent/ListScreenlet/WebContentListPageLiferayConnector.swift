@@ -14,14 +14,12 @@
 import UIKit
 import LRMobileSDK
 
-
 open class WebContentListPageLiferayConnector: PaginationLiferayConnector {
 
 	open let groupId: Int64
 	open let folderId: Int64
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	init(startRow: Int, endRow: Int, computeRowCount: Bool, groupId: Int64, folderId: Int64) {
 		self.groupId = groupId
@@ -34,8 +32,7 @@ open class WebContentListPageLiferayConnector: PaginationLiferayConnector {
 
 open class Liferay62WebContentListPageConnector: WebContentListPageLiferayConnector {
 
-
-	//MARK: PaginationLiferayConnector
+	// MARK: PaginationLiferayConnector
 
 	override open func doAddPageRowsServiceCall(
 			session: LRBatchSession,
@@ -67,18 +64,16 @@ open class Liferay62WebContentListPageConnector: WebContentListPageLiferayConnec
 
 }
 
-
 open class Liferay70WebContentListPageConnector: WebContentListPageLiferayConnector {
 
+	// MARK: PaginationLiferayConnector
 
-	//MARK: PaginationLiferayConnector
-	
 	override open func doAddPageRowsServiceCall(
 			session: LRBatchSession,
 			startRow: Int,
 			endRow: Int,
 			obc: LRJSONObjectWrapper?) {
-			
+
 		do {
 			let service = LRJournalArticleService_v7(session: session)
 			try service?.getArticlesWithGroupId(groupId,

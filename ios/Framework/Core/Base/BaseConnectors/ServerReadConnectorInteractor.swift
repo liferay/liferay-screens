@@ -13,11 +13,9 @@
  */
 import UIKit
 
-
 open class ServerReadConnectorInteractor: ServerConnectorInteractor {
 
-
-	//MARK: ServerConnectorInteractor
+	// MARK: ServerConnectorInteractor
 
 	override open func getCacheStrategyImpl(_ strategyType: CacheStrategyType) -> CacheStrategy {
 		switch strategyType {
@@ -39,8 +37,7 @@ open class ServerReadConnectorInteractor: ServerConnectorInteractor {
 		}
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func createStrategyReadRemoteOnly() -> CacheStrategy {
 		return createStrategy(

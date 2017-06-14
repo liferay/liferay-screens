@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc public protocol FileDisplayViewModel {
 
 	/// File URL to be displayed.

@@ -13,11 +13,10 @@
  */
 import UIKit
 
-
 /// The AssetDisplayScreenletDelegate protocol defines some methods that you use to manage the
 /// AssetDisplayScreenlet events. All of them are optional.
-@objc public protocol AssetDisplayScreenletDelegate : BaseScreenletDelegate {
-	
+@objc public protocol AssetDisplayScreenletDelegate: BaseScreenletDelegate {
+
 	///  Called when the screenlet receives the asset.
 	///
 	/// - Parameters:
@@ -25,7 +24,7 @@ import UIKit
 	///   - asset: Asset object.
 	@objc optional func screenlet(_ screenlet: AssetDisplayScreenlet,
 	                        onAssetResponse asset: Asset)
-	
+
 	/// Called when an error occurs in the process.
 	/// The NSError object describes the error.
 	///
@@ -56,15 +55,13 @@ import UIKit
 	@objc optional func screenlet(_ screenlet: AssetDisplayScreenlet, onAsset asset: Asset) -> UIView?
 }
 
-
 /// Asset Display Screenlet can display an asset from a Liferay instance. The Screenlet can 
 /// currently display Documents and Media files (DLFileEntry images, videos, audio files, and PDFs),
 /// blogs entries (BlogsEntry) and web content articles (WebContent). 
 /// Asset Display Screenlet can also display your custom asset types.
 open class AssetDisplayScreenlet: BaseScreenlet {
 
-
-	//MARK: Inspectables
+	// MARK: Inspectables
 
 	/// The primary key of the asset.
 	@IBInspectable open var assetEntryId: Int64 = 0
@@ -88,8 +85,7 @@ open class AssetDisplayScreenlet: BaseScreenlet {
 	/// The offline mode setting. The default value is remote-first.
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
-
-	//MARK: Public properties
+	// MARK: Public properties
 
 	open var assetDisplayDelegate: AssetDisplayScreenletDelegate? {
 		return delegate as? AssetDisplayScreenletDelegate
@@ -119,15 +115,14 @@ open class AssetDisplayScreenlet: BaseScreenlet {
 		}
 	}
 
-	
-	//MARK: BaseScreenlet
-	
+	// MARK: BaseScreenlet
+
 	override open func onShow() {
 		if autoLoad {
 			load()
 		}
 	}
-	
+
 	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
 		let interactor: LoadAssetInteractor
 
@@ -147,16 +142,15 @@ open class AssetDisplayScreenlet: BaseScreenlet {
 		interactor.onSuccess = {
 			self.assetEntry = interactor.asset
 		}
-		
+
 		interactor.onFailure = {
 			self.assetDisplayDelegate?.screenlet?(self, onAssetError: $0)
 		}
-		
+
 		return interactor
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	/// Call this method to load the asset.
 	///
@@ -205,7 +199,7 @@ open class AssetDisplayScreenlet: BaseScreenlet {
 			else {
 				screenlet.fileEntry = FileEntry(attributes: asset.attributes)
 			}
-			
+
 			screenlet.load()
 		}
 		else if let screenlet = innerScreenlet as? BlogsEntryDisplayScreenlet {

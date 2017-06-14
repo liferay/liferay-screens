@@ -17,11 +17,9 @@ import UIKit
 	import TNRadioButtonGroup
 #endif
 
-
 open class DDLFieldRadioTableCell_default: DDMFieldTableCell {
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet open var label: UILabel?
 
@@ -31,19 +29,19 @@ open class DDLFieldRadioTableCell_default: DDMFieldTableCell {
 
 	open var radioGroup: TNRadioButtonGroup?
 
-	open var radioColor : UIColor {
+	open var radioColor: UIColor {
 		return DefaultThemeBasicBlue
 	}
 
-	open var radioTextColor : UIColor {
+	open var radioTextColor: UIColor {
 		return UIColor.black
 	}
 
-	open var invalidRadioColor : UIColor {
+	open var invalidRadioColor: UIColor {
 		return UIColor.red
 	}
 
-	open var invalidRadioTextColor : UIColor {
+	open var invalidRadioTextColor: UIColor {
 		return UIColor.red
 	}
 
@@ -57,10 +55,9 @@ open class DDLFieldRadioTableCell_default: DDMFieldTableCell {
 		}
 	}
 
+	// MARK: DDMFieldTableCell
 
-	//MARK: DDMFieldTableCell
-
-	override open var canBecomeFirstResponder : Bool {
+	override open var canBecomeFirstResponder: Bool {
 		return false
 	}
 
@@ -100,11 +97,10 @@ open class DDLFieldRadioTableCell_default: DDMFieldTableCell {
 		}
 	}
 
+	// MARK: Public methods
 
-	//MARK: Public methods
-	
 	open func createRadioButtons(_ field: DDMFieldStringWithOptions) {
-		var radioButtons:[AnyObject] = []
+		var radioButtons: [AnyObject] = []
 
 		for option in field.options {
 			let data = createRadioButtonData(field, option: option)
@@ -144,7 +140,7 @@ open class DDLFieldRadioTableCell_default: DDMFieldTableCell {
 		data.rectangleColor = radioColor
 		data.rectangleHeight = radioButtonWidth
 		data.rectangleWidth = radioButtonWidth
-		data.selected = (field.currentValue as! [DDMFieldStringWithOptions.Option]).filter {
+		data.selected = !(field.currentValue as! [DDMFieldStringWithOptions.Option]).filter {
 				if $0.name != nil {
 					return $0.name == option.name
 				}
@@ -152,12 +148,12 @@ open class DDLFieldRadioTableCell_default: DDMFieldTableCell {
 					return $0.label == option.label
 				}
 			}
-			.count > 0
+			.isEmpty
 
 		return data
 	}
 
-	open dynamic func radioButtonSelected(_ notification:Notification) {
+	open dynamic func radioButtonSelected(_ notification: Notification) {
 		if let stringField = field as? DDMFieldStringWithOptions {
 			stringField.currentValue = radioGroup!.selectedRadioButton!.data.labelText as AnyObject?
 

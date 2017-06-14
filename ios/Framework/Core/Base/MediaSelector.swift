@@ -14,7 +14,7 @@
 import UIKit
 import MobileCoreServices
 
-@objc public enum LiferayMediaType : Int {
+@objc public enum LiferayMediaType: Int {
 	case camera
 	case video
 	case image
@@ -38,7 +38,7 @@ import MobileCoreServices
 			types: [LiferayMediaType : String],
 			cancelMessage: String,
 			alertTitle: String? = nil,
-			selectedMediaClosure: SelectedMediaClosure)  {
+			selectedMediaClosure: SelectedMediaClosure) {
 
 		self.viewController = viewController
 		self.types = types
@@ -64,7 +64,7 @@ import MobileCoreServices
 				preferredStyle: alertMode)
 
 		if types.keys.contains(.camera) {
-			let action = UIAlertAction(title: types[.camera], style: .default) { (action) in
+			let action = UIAlertAction(title: types[.camera], style: .default) { (_) in
 				self.pickerController.sourceType = .camera
 				self.viewController?.present(self.pickerController, animated: true) {}
 			}
@@ -73,7 +73,7 @@ import MobileCoreServices
 		}
 
 		if types.keys.contains(.video) {
-			let action = UIAlertAction(title: types[.video], style: .default) { (action) in
+			let action = UIAlertAction(title: types[.video], style: .default) { (_) in
 				self.pickerController.sourceType = .savedPhotosAlbum
 				self.pickerController.mediaTypes = [kUTTypeMovie as NSString as String]
 				self.viewController?.present(self.pickerController, animated: true) {}
@@ -83,7 +83,7 @@ import MobileCoreServices
 		}
 
 		if types.keys.contains(.image) {
-			let action = UIAlertAction(title: types[.image], style: .default) { (action) in
+			let action = UIAlertAction(title: types[.image], style: .default) { (_) in
 				self.pickerController.sourceType = .savedPhotosAlbum
 				self.viewController?.present(self.pickerController, animated: true) {}
 			}
@@ -92,7 +92,7 @@ import MobileCoreServices
 		}
 
 		if types.keys.contains(.imageEdited) {
-			let action = UIAlertAction(title: types[.imageEdited], style: .default) { (action) in
+			let action = UIAlertAction(title: types[.imageEdited], style: .default) { (_) in
 				self.pickerController.sourceType = .savedPhotosAlbum
 				self.pickerController.allowsEditing = true
 				self.viewController?.present(self.pickerController, animated: true) {}
@@ -111,7 +111,6 @@ import MobileCoreServices
 
 		viewController?.present(alert, animated: true) {}
 	}
-
 
 	open func imagePickerController(
 		_ picker: UIImagePickerController,
@@ -133,12 +132,11 @@ import MobileCoreServices
 	}
 
 	fileprivate func showErrorIfAbsentKeys() {
-		if (Bundle.main.object(forInfoDictionaryKey: "NSPhotoLibraryUsageDescription") == nil ||
-			Bundle.main.object(forInfoDictionaryKey: "NSCameraUsageDescription") == nil) {
+		if Bundle.main.object(forInfoDictionaryKey: "NSPhotoLibraryUsageDescription") == nil ||
+			Bundle.main.object(forInfoDictionaryKey: "NSCameraUsageDescription") == nil {
 
 			print(LocalizedString("core", key: "NSPhotoLibraryUsageDescription-key-not-present",
 				obj: type(of: self)))
 		}
 	}
 }
-

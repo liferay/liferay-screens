@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 @objc open class DDMField: NSObject, NSCoding {
 
 	open var onPostValidation: ((Bool) -> Void)?
@@ -25,7 +24,7 @@ import Foundation
 		}
 	}
 
-	open var currentValueAsString:String? {
+	open var currentValueAsString: String? {
 		get {
 			return convert(fromCurrentValue: currentValue)
 		}
@@ -70,7 +69,6 @@ import Foundation
 
 	open var currentLocale: Locale
 
-
 	internal(set) var dataType: DataType
 	internal(set) var editorType: Editor
 
@@ -84,7 +82,6 @@ import Foundation
 	internal(set) var repeatable: Bool
 	internal(set) var required: Bool
 	internal(set) var showLabel: Bool
-
 
 	public init(attributes: [String:AnyObject], locale: Locale) {
 		dataType = DataType(rawValue: valueAsString(attributes, key:"dataType")) ?? .Unsupported
@@ -107,7 +104,7 @@ import Foundation
 			dataType = editorType.defaultDataType
 		}
 
-		predefinedValue = attributes["predefinedValue"] ?? nil
+		predefinedValue = attributes["predefinedValue"]
 		if let predefinedValueStr = predefinedValue as? String {
 			predefinedValue = convert(fromString: predefinedValueStr)
 		}
@@ -175,21 +172,21 @@ import Foundation
 		return valid
 	}
 
-	//MARK: Internal methods
+	// MARK: Internal methods
 
 	internal func doValidate() -> Bool {
 		return true
 	}
 
-	internal func convert(fromString value:String?) -> AnyObject? {
+	internal func convert(fromString value: String?) -> AnyObject? {
 		return value as AnyObject?
 	}
 
-	internal func convert(fromLabel value:String?) -> AnyObject? {
+	internal func convert(fromLabel value: String?) -> AnyObject? {
 		return value as AnyObject?
 	}
 
-	internal func convert(fromCurrentValue value:AnyObject?) -> String? {
+	internal func convert(fromCurrentValue value: AnyObject?) -> String? {
 		if let value = value {
 			return "\(value)"
 		}
@@ -197,7 +194,7 @@ import Foundation
 		return nil
 	}
 
-	internal func convertToLabel(fromCurrentValue value:AnyObject?) -> String? {
+	internal func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
 		if let value = value {
 			return "\(value)"
 		}
@@ -210,15 +207,13 @@ import Foundation
 
 }
 
+// MARK: Equatable
 
-//MARK: Equatable
-
-public func ==(left: DDMField, right: DDMField) -> Bool {
+public func == (left: DDMField, right: DDMField) -> Bool {
 	return left.name == right.name
 }
 
-
-//MARK: Util func
+// MARK: Util func
 
 private func valueAsString(_ dict: [String:AnyObject], key: String) -> String {
 	return dict[key] as? String ?? ""

@@ -18,8 +18,7 @@ open class CommentListPageLiferayConnector: PaginationLiferayConnector {
 	open let className: String
 	open let classPK: Int64
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(
 			className: String,
@@ -33,8 +32,7 @@ open class CommentListPageLiferayConnector: PaginationLiferayConnector {
 		super.init(startRow: startRow, endRow: endRow, computeRowCount: true)
 	}
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -55,8 +53,7 @@ open class CommentListPageLiferayConnector: PaginationLiferayConnector {
 
 open class Liferay70CommentListPageConnector: CommentListPageLiferayConnector {
 
-
-	//MARK: PaginationLiferayConnector
+	// MARK: PaginationLiferayConnector
 
 	open override func doAddPageRowsServiceCall(
 			session: LRBatchSession,

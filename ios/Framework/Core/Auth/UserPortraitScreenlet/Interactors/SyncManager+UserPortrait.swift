@@ -18,7 +18,7 @@ extension SyncManager {
 	func userPortraitSynchronizer(
 			_ key: String,
 			attributes: [String:AnyObject])
-			-> (@escaping Signal) -> () {
+			-> (@escaping Signal) -> Void {
 
 		return { signal in
 			let userId = attributes["userId"]!.int64Value
@@ -32,7 +32,7 @@ extension SyncManager {
 						screenlet: nil,
 						userId: userId!,
 						image: image)
-					
+
 					self.prepareInteractorForSync(interactor,
 						key: key,
 						attributes: attributes,

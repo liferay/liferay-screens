@@ -13,40 +13,39 @@
  */
 import UIKit
 
+@objc open class RatingEntry: NSObject, NSCoding {
 
-@objc open class RatingEntry : NSObject, NSCoding {
-	
 	open let attributes: [String:AnyObject]
-	
+
 	open var totalCount: Int {
 		return attributes["totalCount"]! as! Int
 	}
-	
+
 	open var average: Double {
 		return attributes["average"]! as! Double
 	}
-	
+
 	open var userScore: Double {
 		return attributes["userScore"]! as! Double
 	}
-	
+
 	open var classPK: Int64 {
 		return attributes["classPK"]!.int64Value
 	}
-	
+
 	open var className: String {
 		return attributes["className"]! as! String
 	}
-	
+
 	open var ratings: [Int] {
 		return attributes["ratings"]! as! [Int]
 	}
-	
+
 	open func encode(with aCoder: NSCoder) {
 		aCoder.encode(self.attributes, forKey:"rating-attrs")
 	}
 
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(attributes: [String:AnyObject]) {
 		self.attributes = attributes

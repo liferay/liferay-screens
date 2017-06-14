@@ -13,16 +13,14 @@
  */
 import Foundation
 
-
 /// Image Display Screenlet displays an image file from a Liferay instance’s Documents and Media 
 /// Library.
 open class ImageDisplayScreenlet: FileDisplayScreenlet {
 
-
-	//MARK: Inspectables
+	// MARK: Inspectables
 
 	/// Image placeholder if the requested image cannot be loaded.
-	@IBInspectable open var placeholder: UIImage?  {
+	@IBInspectable open var placeholder: UIImage? {
 		didSet {
 			imageDisplayViewModel?.placeholder = placeholder
 		}
@@ -32,8 +30,7 @@ open class ImageDisplayScreenlet: FileDisplayScreenlet {
 	/// type, the image doesn't show in the screenlet.
 	@IBInspectable open var mimeTypes: String = ""
 
-
-	//MARK: Public properties
+	// MARK: Public properties
 
 	open var imageDisplayViewModel: ImageDisplayViewModel? {
 		return screenletView as? ImageDisplayViewModel
@@ -53,8 +50,7 @@ open class ImageDisplayScreenlet: FileDisplayScreenlet {
 
 	let DefaultImageMimeTypes = ["image/png", "image/jpeg", "image/gif"]
 
-
-	//MARK: FileDisplayScreenlet
+	// MARK: FileDisplayScreenlet
 
 	override open var supportedMimeTypes: [String] {
 
@@ -62,11 +58,11 @@ open class ImageDisplayScreenlet: FileDisplayScreenlet {
 				mimeTypes.characters.split(separator: ",").map(String.init)
 	}
 
-	//MARK: BaseScreenlet
+	// MARK: BaseScreenlet
 
 	override open func onCreated() {
 		super.onCreated()
-		
+
 		imageDisplayViewModel?.imageMode = imageMode
 		imageDisplayViewModel?.placeholder = placeholder
 		imageDisplayViewModel?.placeholderImageMode = placeholderImageMode

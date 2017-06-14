@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc public protocol RatingViewModel {
 
 	/// Number of possible rating values available for the user in the view.

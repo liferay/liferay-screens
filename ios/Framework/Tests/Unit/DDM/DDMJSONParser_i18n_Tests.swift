@@ -13,13 +13,11 @@
  */
 import XCTest
 
-
 class DDMJSONParser_i18n_Tests: XCTestCase {
 
 	fileprivate let spanishLocale = Locale(identifier: "es_ES")
 
-
-	//MARK: Checking full perfect match
+	// MARK: Checking full perfect match
 
 	func test_ParseElement_ShouldFindFullMatch_WhenExistingCompleteLocaleIsProvided() {
 		let fields = DDMJSONParser().parse(booleanFieldWithTranslationsJSON, locale: spanishLocale)
@@ -35,7 +33,7 @@ class DDMJSONParser_i18n_Tests: XCTestCase {
 		XCTAssertEqual("Primera etiqueta en 'es_ES'", stringField.options[0].label)
 	}
 
-	//MARK: Checking locale match providing language and country locales
+	// MARK: Checking locale match providing language and country locales
 
 	func test_ParseElement_ShouldFindNeutralLanguageMatch_WhenNoExistingCompleteLocaleIsProvided() {
 		let fields = DDMJSONParser().parse(booleanFieldWithTranslationsJSON, locale: Locale(identifier: "es_MX"))
@@ -73,8 +71,7 @@ class DDMJSONParser_i18n_Tests: XCTestCase {
 		XCTAssertEqual("Primera etiqueta en 'es_ES'", stringField.options[0].label)
 	}
 
-
-	//MARK: Checking locale match providing neutral language locale
+	// MARK: Checking locale match providing neutral language locale
 
 	func test_ParseElement_ShouldFindNeutralLanguageMatch_WhenExistingNeutralLanguageIsProvided() {
 		let fields = DDMJSONParser().parse(booleanFieldWithTranslationsJSON, locale: Locale(identifier: "es"))
@@ -123,8 +120,6 @@ class DDMJSONParser_i18n_Tests: XCTestCase {
 			(stringField.options[0].label == "First label in 'en_US'") ||
 			(stringField.options[0].label == "First label in 'en_AU'"))
 	}
-
-
 
 	fileprivate let booleanFieldWithTranslationsJSON =
 		"{\"availableLanguageIds\": [\"es_ES\", \"es_AR\", \"es\", \"en_US\", \"en_AU\"]," +

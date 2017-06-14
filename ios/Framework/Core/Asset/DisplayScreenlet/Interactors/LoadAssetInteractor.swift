@@ -13,12 +13,10 @@
  */
 import UIKit
 
-
 public protocol LoadAssetConnector {
 
 	var resultAsset: Asset? { get set }
 }
-
 
 open class LoadAssetInteractor: ServerReadConnectorInteractor {
 
@@ -32,8 +30,7 @@ open class LoadAssetInteractor: ServerReadConnectorInteractor {
 
 	open var asset: Asset?
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public convenience init(screenlet: BaseScreenlet, assetEntryId: Int64) {
 		self.init(screenlet: screenlet,
@@ -69,8 +66,7 @@ open class LoadAssetInteractor: ServerReadConnectorInteractor {
 		super.init(screenlet: screenlet)
 	}
 
-	
-	//MARK: ServerConnectorInteractor
+	// MARK: ServerConnectorInteractor
 
 	override open func createConnector() -> ServerConnector? {
 		if let assetEntryId = self.assetEntryId {
@@ -78,8 +74,10 @@ open class LoadAssetInteractor: ServerReadConnectorInteractor {
 		}
 		else if let className = self.className, let classPK = self.classPK {
 			return LiferayServerContext.connectorFactory.createAssetLoadByClassPKConnector(className, classPK: classPK)
-		} else if let portletItemName = self.portletItemName {
-			return LiferayServerContext.connectorFactory.createAssetLoadByPortletItemNameConnector(portletItemName: portletItemName)
+		}
+		else if let portletItemName = self.portletItemName {
+			return LiferayServerContext.connectorFactory
+					.createAssetLoadByPortletItemNameConnector(portletItemName: portletItemName)
 		}
 
 		return nil
@@ -89,9 +87,9 @@ open class LoadAssetInteractor: ServerReadConnectorInteractor {
 		asset = (c as? LoadAssetConnector)?.resultAsset
 	}
 
-	//MARK: Cache methods
+	// MARK: Cache methods
 
-	override open func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> ()) {
+	override open func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> Void) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return

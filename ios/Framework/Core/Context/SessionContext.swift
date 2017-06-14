@@ -18,7 +18,6 @@ import Foundation
 	import LROAuth
 #endif
 
-
 @objc open class SessionContext: NSObject {
 
 	open static var currentContext: SessionContext?
@@ -54,8 +53,7 @@ import Foundation
 		super.init()
 	}
 
-
-	//MARK: Public properties
+	// MARK: Public properties
 
 	open class var isLoggedIn: Bool {
 		return currentContext?.session != nil
@@ -84,7 +82,6 @@ import Foundation
 
 		return nil
 	}
-
 
 	//MARK Public methods
 
@@ -171,7 +168,9 @@ import Foundation
 
 		LRCookieSignIn.signIn(with: session, callback: LRCookieBlockCallback { session, error in
 			if let session = session {
-				SessionContext.loginWithCookie(authentication: session.authentication as! LRCookieAuthentication, userAttributes: [:])
+				SessionContext.loginWithCookie(authentication: session.authentication as! LRCookieAuthentication,
+						userAttributes: [:])
+
 				callback.callback(session, nil)
 			}
 			else {
@@ -184,7 +183,7 @@ import Foundation
 		return LRSession(session: session)
 	}
 
-	open func relogin(_ completed: (([String:AnyObject]?) -> ())?) -> Bool {
+	open func relogin(_ completed: (([String:AnyObject]?) -> Void)?) -> Bool {
 		if session.authentication is LRBasicAuthentication {
 			return reloginBasic(completed)
 		}
@@ -195,7 +194,7 @@ import Foundation
 		return false
 	}
 
-	open func reloginBasic(_ completed: (([String:AnyObject]?) -> ())?) -> Bool {
+	open func reloginBasic(_ completed: (([String:AnyObject]?) -> Void)?) -> Bool {
 		guard let userName = self.basicAuthUsername,
 				let password = self.basicAuthPassword else {
 			completed?(nil)
@@ -214,7 +213,7 @@ import Foundation
 		}
 	}
 
-	open func reloginOAuth(_ completed: (([String:AnyObject]?) -> ())?) -> Bool {
+	open func reloginOAuth(_ completed: (([String:AnyObject]?) -> Void)?) -> Bool {
 		guard let auth = self.session.authentication as? LROAuth else {
 			completed?(nil)
 			return false
@@ -232,7 +231,7 @@ import Foundation
 		}
 	}
 
-	open func refreshUserAttributes(_ completed: (([String:AnyObject]?) -> ())?) -> Bool {
+	open func refreshUserAttributes(_ completed: (([String:AnyObject]?) -> Void)?) -> Bool {
 		let session = self.createRequestSession()
 
 		session.callback = LRBlockCallback(
@@ -245,7 +244,7 @@ import Foundation
 
 				completed?(attributes)
 			},
-			failure: { err in
+			failure: { _ in
 				completed?(nil)
 		})
 
@@ -260,12 +259,12 @@ import Foundation
 
 			_ = try? srv?.getCurrentUser()
 		}
-		
+
 		return true
 	}
 
 	open class func logout() {
-		if let _ = SessionContext.currentContext?.session.authentication as? LRCookieAuthentication {
+		if SessionContext.currentContext?.session.authentication as? LRCookieAuthentication != nil {
 			HTTPCookieStorage.shared.removeCookies(since: .distantPast)
 		}
 		SessionContext.currentContext = nil
@@ -308,7 +307,6 @@ import Foundation
 
 		return true
 	}
-
 
 	// Deprecated. Will be removed in next version
 	open class func createSessionFromCurrentSession() -> LRSession? {

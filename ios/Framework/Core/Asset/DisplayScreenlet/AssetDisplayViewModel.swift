@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc public protocol AssetDisplayViewModel {
 
 	/// Asset to be displayed.

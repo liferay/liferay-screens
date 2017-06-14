@@ -13,11 +13,9 @@
  */
 import XCTest
 
-
 class DDMTypedValuesXMLParser_Basic_Tests: XCTestCase {
 
 	fileprivate let defaultLocale = Locale(identifier: "en_US")
-
 
 	func test_Parse_ShouldReturnNil_WhenStructureIsInvalid() {
 		let structure = DDMStructure(xsd: "this-is-an-invalid-xml", locale: defaultLocale)

@@ -13,10 +13,9 @@
  */
 import UIKit
 
-
 /// The ForgotPasswordScreenletDelegate protocol defines some methods that you use to manage the
 /// ForgotPasswordScreenlet events. All of them are optional.
-@objc public protocol ForgotPasswordScreenletDelegate : BaseScreenletDelegate {
+@objc public protocol ForgotPasswordScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when a password reset email is successfully sent.
 	///
@@ -46,8 +45,7 @@ import UIKit
 ///	* User id
 open class ForgotPasswordScreenlet: BaseScreenlet, BasicAuthBasedType, AnonymousBasicAuthType {
 
-
-	//MARK: Inspectables
+	// MARK: Inspectables
 
 	/// The user name, email address, or userId (depending on the portal’s authentication method) 
 	/// to use for authenticating the request.
@@ -68,8 +66,7 @@ open class ForgotPasswordScreenlet: BaseScreenlet, BasicAuthBasedType, Anonymous
 	/// If the value is 0, the company specified in LiferayServerContext is used.
 	@IBInspectable var companyId: Int64 = 0
 
-
-	//MARK: Public properties
+	// MARK: Public properties
 
 	open var forgotPasswordDelegate: ForgotPasswordScreenletDelegate? {
 		return delegate as? ForgotPasswordScreenletDelegate
@@ -84,8 +81,7 @@ open class ForgotPasswordScreenlet: BaseScreenlet, BasicAuthBasedType, Anonymous
 		set {}
 	}
 
-
-	//MARK: BaseScreenlet
+	// MARK: BaseScreenlet
 
 	override open func onCreated() {
 		super.onCreated()
@@ -113,4 +109,3 @@ open class ForgotPasswordScreenlet: BaseScreenlet, BasicAuthBasedType, Anonymous
 	}
 
 }
-

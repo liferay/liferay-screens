@@ -37,7 +37,7 @@ open class DDMFieldTableCell: UITableViewCell {
 		}
 	}
 
-	open var isLastCell:Bool {
+	open var isLastCell: Bool {
 		var result = false
 
 		if let indexPathValue = indexPath {
@@ -59,16 +59,14 @@ open class DDMFieldTableCell: UITableViewCell {
 		return tableView!.frame.contains(cellRect)
 	}
 
-
-	//MARK: UITableViewCell
+	// MARK: UITableViewCell
 
 	override open func awakeFromNib() {
 		let simpleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(DDMFieldTableCell.simpleTapDetected))
 		addGestureRecognizer(simpleTapRecognizer)
 	}
 
-
-	//MARK: Internal methods
+	// MARK: Internal methods
 
 	open func onChangedField() {
 	}
@@ -94,8 +92,8 @@ open class DDMFieldTableCell: UITableViewCell {
 		return height
 	}
 
-	internal func nextCell(_ indexPath:IndexPath) -> UITableViewCell? {
-		var result:UITableViewCell?
+	internal func nextCell(_ indexPath: IndexPath) -> UITableViewCell? {
+		var result: UITableViewCell?
 
 		var row = indexPath.row
 		let section = indexPath.section
@@ -115,7 +113,7 @@ open class DDMFieldTableCell: UITableViewCell {
 		return result
 	}
 
-	internal func nextCellResponder(_ currentView:UIView) -> Bool {
+	internal func nextCellResponder(_ currentView: UIView) -> Bool {
 		var result = false
 
 		if let currentTextInput = currentView as? UITextInput {
@@ -140,7 +138,7 @@ open class DDMFieldTableCell: UITableViewCell {
 				default: ()
 			}
 		}
-		
+
 		return result
 	}
 
@@ -151,7 +149,7 @@ open class DDMFieldTableCell: UITableViewCell {
 		formView?.endEditing(true)
 	}
 
-	internal func moveSubviewsVertically(_ offsetY:CGFloat) {
+	internal func moveSubviewsVertically(_ offsetY: CGFloat) {
 		for subview in contentView.subviews {
 			if offsetY == 0.0 {
 				subview.transform = CGAffineTransform.identity

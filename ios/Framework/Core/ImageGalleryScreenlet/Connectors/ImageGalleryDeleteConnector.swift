@@ -14,40 +14,37 @@
 import Foundation
 import LRMobileSDK
 
-open class ImageGalleryDeleteConnector : ServerConnector {
+open class ImageGalleryDeleteConnector: ServerConnector {
 
 	open let imageEntryId: Int64
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(imageEntryId: Int64) {
 		self.imageEntryId = imageEntryId
 		super.init()
 	}
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	open override func validateData() -> ValidationError? {
 		let error = super.validateData()
 
 		if error == nil {
 			if imageEntryId < 0 {
-				return ValidationError("imagegallery-screenlet","undefined-imageentryid")
+				return ValidationError("imagegallery-screenlet", "undefined-imageentryid")
 			}
 		}
 
 		return error
 	}
-	
+
 }
 
 open class Liferay70ImageGalleryDeleteConnector: ImageGalleryDeleteConnector {
 
+	// MARK: ServerConnector
 
-	//MARK: ServerConnector
-	
 	open override func doRun(session: LRSession) {
 		let service = LRDLAppService_v7(session: session)
 
@@ -59,5 +56,3 @@ open class Liferay70ImageGalleryDeleteConnector: ImageGalleryDeleteConnector {
 	}
 
 }
-
-

@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 @objc open class BlogsEntry: Asset {
 
 	open var blogsEntry: [String:AnyObject]? {
@@ -53,13 +52,13 @@ import Foundation
 		return int64Value("coverImageFileEntryId") ?? 0
 	}
 
-	//MARK: MimeTypeable
+	// MARK: MimeTypeable
 
 	override open var mimeType: String? {
 		return "text/html"
 	}
 
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func int64Value(_ key: String) -> Int64? {
 		return blogsEntry?[key]?.int64Value

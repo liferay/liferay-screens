@@ -14,10 +14,9 @@
 import XCTest
 import UIKit
 
-
 class BaseScreenlet_Basic_Tests: XCTestCase {
 
-	var screenlet:SignUpScreenlet?
+	var screenlet: SignUpScreenlet?
 
 	override func setUp() {
 		super.setUp()

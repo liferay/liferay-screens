@@ -17,7 +17,6 @@ import Foundation
 	import SMXMLDocument
 #endif
 
-
 extension DDMField {
 
 	public enum Editor: String {

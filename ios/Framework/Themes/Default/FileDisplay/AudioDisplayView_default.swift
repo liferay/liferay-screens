@@ -14,15 +14,13 @@
 import UIKit
 import AVFoundation
 
-
 open class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
 	open var volume: Float = 0.5
-	
+
 	open var numberOfLoops = -1
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet weak var view: UIView?
 
@@ -43,7 +41,7 @@ open class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 				for: .normal)
 		}
 	}
-	
+
 	@IBOutlet weak var sliderVolume: UISlider? {
 		didSet {
 			sliderVolume?.setThumbImage(
@@ -60,8 +58,7 @@ open class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
 	@IBOutlet weak var titleLabel: UILabel?
 
-
-	//MARK: FileDisplayViewModel
+	// MARK: FileDisplayViewModel
 
 	open var url: URL? {
 		didSet {
@@ -99,15 +96,13 @@ open class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
 	open var duration: Timer?
 
-
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
 	override open func onHide() {
 		audio?.stop()
 	}
 
-
-	//MARK: Actions
+	// MARK: Actions
 
 	@IBAction func pauseAction() {
 		audio?.pause()
@@ -146,13 +141,12 @@ open class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 	@IBAction func moveRewindAction() {
 		changeCurrentTime(-5, slider: false)
 	}
-	
+
 	@IBAction func moveForwardAction() {
 		changeCurrentTime(5, slider: false)
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func updateView(_ play: Bool) {
 		self.pauseButton?.isHidden = !play
@@ -186,8 +180,7 @@ open class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 		pauseButton?.isHidden = true
 	}
 
-
-	//MARK: Internal methods
+	// MARK: Internal methods
 
 	func updateProgress() {
 		self.sliderDuration?.setValue(Float(audio!.currentTime), animated: true)

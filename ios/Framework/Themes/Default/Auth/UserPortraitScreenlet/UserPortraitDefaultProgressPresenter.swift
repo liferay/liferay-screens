@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 @objc open class UserPortraitDefaultProgressPresenter: DefaultProgressPresenter {
 
 	fileprivate weak var spinner: UIActivityIndicatorView?
@@ -23,9 +22,10 @@ import Foundation
 
 		super.init()
 	}
-	
-	override open func hideHUDFromView(_ view: UIView?, message: String?, forInteractor interactor: Interactor, withError error: NSError?) {
-		
+
+	override open func hideHUDFromView(_ view: UIView?, message: String?, forInteractor interactor: Interactor,
+			withError error: NSError?) {
+
 		if error != nil {
 			showSpinner(false)
 			super.hideHUDFromView(view, message: message, forInteractor: interactor, withError: error)
@@ -40,7 +40,7 @@ import Foundation
 			}
 		}
 	}
-	
+
 	open override func showHUDInView(_ view: UIView, message: String?, forInteractor interactor: Interactor) {
 		showSpinner(true)
 	}

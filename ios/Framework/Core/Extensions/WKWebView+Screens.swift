@@ -18,7 +18,7 @@ extension WKWebView {
 		}
 
 		let jsessionID = authentication.cookieHeader.characters.split(separator: ";")
-				.map(String.init).filter {$0.contains("JSESSIONID")}.first
+				.map(String.init).filter { $0.contains("JSESSIONID") }.first
 
 		if let jsessionID = jsessionID {
 			let script = WKUserScript(source: "document.cookie='\(jsessionID)'",
@@ -45,7 +45,7 @@ extension WKWebView {
 extension WKWebViewConfiguration {
 	public static var noCacheConfiguration: WKWebViewConfiguration {
 		let config = WKWebViewConfiguration()
-		
+
 		if #available(iOS 9.0, *) {
 			config.websiteDataStore = WKWebsiteDataStore.nonPersistent()
 		}

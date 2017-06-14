@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc public protocol AnonymousBasicAuthType {
 
 	var anonymousApiUserName: String? { get set }
@@ -21,19 +20,17 @@ import UIKit
 
 }
 
-
 @objc public protocol BasicAuthBasedType {
 
 	var basicAuthMethod: String? { get set }
 
 }
 
-
 public enum BasicAuthMethod: String {
 
-	case email = "email"
-	case screenName = "screenName"
-	case userId = "userId"
+	case email
+	case screenName
+	case userId
 
 	public static func all() -> [BasicAuthMethod] {
 		return [.email, .screenName, .userId]
@@ -85,4 +82,3 @@ public enum BasicAuthMethod: String {
 	}
 
 }
-

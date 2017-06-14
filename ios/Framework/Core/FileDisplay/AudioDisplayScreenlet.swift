@@ -13,13 +13,11 @@
  */
 import Foundation
 
-
 /// Audio Display Screenlet displays an audio file from a Liferay instance’s Documents and Media 
 ///Library.
 open class AudioDisplayScreenlet: FileDisplayScreenlet {
 
-	
-	//MARK: Inspectables
+	// MARK: Inspectables
 
 	/// Supported screenlet mime types. If the mime type not matches with the requested audio mime
 	/// type, the audio doesn't show in the screenlet.
@@ -27,8 +25,7 @@ open class AudioDisplayScreenlet: FileDisplayScreenlet {
 
 	let DefaultAudioMimeTypes = ["audio/mpeg", "audio/mpeg3", "audio/wav"]
 
-
-	//MARK: FileDisplayScreenlet
+	// MARK: FileDisplayScreenlet
 
 	override open var supportedMimeTypes: [String] {
 

@@ -13,7 +13,6 @@
 */
 import UIKit
 
-
 public class AssetLoadByPortletItemNameLiferayConnector: ServerConnector, LoadAssetConnector {
 
 	public let portletItemName: String?
@@ -26,7 +25,7 @@ public class AssetLoadByPortletItemNameLiferayConnector: ServerConnector, LoadAs
 		super.init()
 	}
 
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override public func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -53,8 +52,8 @@ public class Liferay70AssetLoadByPortletItemNameConnector: AssetLoadByPortletIte
 					groupId: LiferayServerContext.groupId,
 					portletItemName: portletItemName!, locale: NSLocale.currentLocaleString,
 			max: 1) as? [[String: AnyObject]]
-			
-			guard let assets = result, assets.count > 0 , let asset = assets[0] as? [String: AnyObject] else {
+
+			guard let assets = result, !assets.isEmpty, let asset = assets[0] as? [String: AnyObject] else {
 				lastError = NSError.errorWithCause(.invalidServerResponse,
 				                                   message: "There was an error retrieving the asset.")
 				return

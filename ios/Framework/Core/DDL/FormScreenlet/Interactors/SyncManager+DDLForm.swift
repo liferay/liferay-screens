@@ -18,9 +18,9 @@ extension SyncManager {
 	func formSynchronizer(
 			key: String,
 			attributes: [String:AnyObject])
-			-> (@escaping Signal) -> () {
+			-> (@escaping Signal) -> Void {
 
-		let recordSynchronizer = { (signal: @escaping Signal) -> () in
+		let recordSynchronizer = { (signal: @escaping Signal) -> Void in
 			let record = attributes["record"] as! DDLRecord
 
 			if record.recordId != nil {
@@ -41,11 +41,11 @@ extension SyncManager {
 			}
 		}
 
-		let documentSynchronizer = { (signal: @escaping Signal) -> () in
+		let documentSynchronizer = { (signal: @escaping Signal) -> Void in
 			// Do nothing. 
 			// When the record is sync-ed the documents will be sync-ed too
 			// Notify as this entry is finished
-			dispatch_main() {
+			dispatch_main {
 				self.delegate?.syncManager?(self,
 					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet.self),
 					completedKey: key, attributes: attributes)
@@ -159,7 +159,7 @@ extension SyncManager {
 		}
 	}
 
-	private func loadRecord(_ recordId: Int64, result: @escaping (DDLRecord?) -> ()) {
+	private func loadRecord(_ recordId: Int64, result: @escaping (DDLRecord?) -> Void) {
 		let c = LiferayServerContext.connectorFactory.createDDLFormRecordLoadConnector(recordId)
 
 		c.validateAndEnqueue {
@@ -170,7 +170,6 @@ extension SyncManager {
 				let remoteRecord = DDLRecord(
 					data: recordData,
 					attributes: recordAttributes)
-
 
 				result(remoteRecord)
 			}
@@ -215,7 +214,7 @@ extension SyncManager {
 		interactor.cacheStrategy = .remoteFirst
 
 		if !interactor.start() {
-			dispatch_main() {
+			dispatch_main {
 				self.delegate?.syncManager?(self,
 					onItemSyncScreenlet: ScreenletName(DDLFormScreenlet.self),
 					failedKey: key,
@@ -280,9 +279,9 @@ extension SyncManager {
 					// TODO retry?
 					signal()
 				}
-				
+
 				if !interactor.start() {
-					dispatch_main() {
+					dispatch_main {
 						self.delegate?.syncManager?(self,
 							onItemSyncScreenlet: ScreenletName(DDLFormScreenlet.self),
 							failedKey: recordKey,
@@ -294,7 +293,7 @@ extension SyncManager {
 				}
 			}
 			else {
-				dispatch_main() {
+				dispatch_main {
 					self.delegate?.syncManager?(self,
 						onItemSyncScreenlet: ScreenletName(DDLFormScreenlet.self),
 						failedKey: recordKey,

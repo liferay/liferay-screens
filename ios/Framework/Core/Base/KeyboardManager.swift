@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 public protocol KeyboardLayoutable {
 
 	func layoutWhenKeyboardShown(_ keyboardHeight: CGFloat, animation:(time: NSNumber, curve: NSNumber))
@@ -21,14 +20,12 @@ public protocol KeyboardLayoutable {
 	func layoutWhenKeyboardHidden()
 }
 
-
 open class KeyboardManager {
 
 	fileprivate struct StaticData {
 		static var currentHeight: CGFloat?
 		static var visible = false
 	}
-
 
 	open class var currentHeight: CGFloat? {
 		get {
@@ -47,9 +44,7 @@ open class KeyboardManager {
 	open class var defaultHeight: CGFloat { return 253 }
 	open class var defaultAutocorrectionBarHeight: CGFloat { return 38 }
 
-
 	fileprivate var layoutable: KeyboardLayoutable?
-
 
 	public init() {
 	}
@@ -84,8 +79,7 @@ open class KeyboardManager {
 				object: nil)
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate dynamic func keyboardShown(_ notification: Notification?) {
 		let value = notification!.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue

@@ -14,7 +14,6 @@
 import UIKit
 import LRMobileSDK
 
-
 open class UploadUserPortraitLiferayConnector: ServerConnector {
 
 	fileprivate let userId: Int64
@@ -25,8 +24,7 @@ open class UploadUserPortraitLiferayConnector: ServerConnector {
 	fileprivate let maxSize = 300 * 1024
 	fileprivate var fileTooLarge = false
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(userId: Int64, image: UIImage) {
 		self.userId = userId
@@ -35,8 +33,7 @@ open class UploadUserPortraitLiferayConnector: ServerConnector {
 		super.init()
 	}
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -63,11 +60,10 @@ open class UploadUserPortraitLiferayConnector: ServerConnector {
 		}
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func reduceImage(_ src: UIImage, factor: Double) -> Data? {
-		if (src.size.width < 100 && src.size.height < 100) || factor < 0.1  {
+		if (src.size.width < 100 && src.size.height < 100) || factor < 0.1 {
 			return nil
 		}
 
@@ -82,19 +78,16 @@ open class UploadUserPortraitLiferayConnector: ServerConnector {
 		return nil
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func uploadBytes(_ imageBytes: Data, withSession session: LRSession) {
 	}
 
 }
 
-
 open class Liferay62UploadUserPortraitConnector: UploadUserPortraitLiferayConnector {
 
-
-	//MARK: UploadUserPortraitLiferayConnector
+	// MARK: UploadUserPortraitLiferayConnector
 
 	override open func uploadBytes(_ imageBytes: Data, withSession session: LRSession) {
 		let service = LRUserService_v62(session: session)
@@ -116,13 +109,12 @@ open class Liferay62UploadUserPortraitConnector: UploadUserPortraitLiferayConnec
 			lastError = error
 		}
 	}
-	
+
 }
 
 open class Liferay70UploadUserPortraitConnector: UploadUserPortraitLiferayConnector {
 
-
-	//MARK: UploadUserPortraitLiferayConnector
+	// MARK: UploadUserPortraitLiferayConnector
 
 	override open func uploadBytes(_ imageBytes: Data, withSession session: LRSession) {
 		let service = LRUserService_v7(session: session)
@@ -144,5 +136,5 @@ open class Liferay70UploadUserPortraitConnector: UploadUserPortraitLiferayConnec
 			lastError = error
 		}
 	}
-	
+
 }

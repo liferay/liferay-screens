@@ -13,11 +13,9 @@
  */
 import UIKit
 
-
 open class LoginByEmailLiferay62Connector: GetUserByEmailLiferay62Connector {
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(companyId: Int64, emailAddress: String, password: String) {
 		super.init(companyId: companyId, emailAddress: emailAddress)
@@ -26,8 +24,7 @@ open class LoginByEmailLiferay62Connector: GetUserByEmailLiferay62Connector {
 		self.password = password
 	}
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func postRun() {
 		if lastError == nil {
@@ -42,11 +39,9 @@ open class LoginByEmailLiferay62Connector: GetUserByEmailLiferay62Connector {
 
 }
 
-
 open class LoginByEmailLiferay70Connector: GetUserByEmailLiferay70Connector {
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(companyId: Int64, emailAddress: String, password: String) {
 		super.init(companyId: companyId, emailAddress: emailAddress)
@@ -55,8 +50,7 @@ open class LoginByEmailLiferay70Connector: GetUserByEmailLiferay70Connector {
 		self.password = password
 	}
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func postRun() {
 		if lastError == nil {

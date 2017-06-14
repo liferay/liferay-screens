@@ -17,11 +17,9 @@ import UIKit
 	import DTPickerPresenter
 #endif
 
-
 open class DDLFieldDateTableCell_default: DDLBaseFieldTextboxTableCell_default {
 
-
-	//MARK: UITableViewCell
+	// MARK: UITableViewCell
 
 	override open func awakeFromNib() {
 		super.awakeFromNib()
@@ -31,7 +29,7 @@ open class DDLFieldDateTableCell_default: DDLBaseFieldTextboxTableCell_default {
 		}
 	}
 
-	//MARK: DDLBaseFieldTextboxTableCell
+	// MARK: DDLBaseFieldTextboxTableCell
 
 	override open func onChangedField() {
 		super.onChangedField()
@@ -45,16 +43,15 @@ open class DDLFieldDateTableCell_default: DDLBaseFieldTextboxTableCell_default {
 		}
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func setFieldPresenter(_ field: DDMField) {
 
-		func onChange(_ selectedDate:Date?) {
+		func onChange(_ selectedDate: Date?) {
 			field.currentValue = selectedDate as AnyObject?
 			textField!.text = field.currentValueAsLabel
 
-			let fullRange = NSMakeRange(0, (textField!.text!).characters.count)
+			let fullRange = NSRange(location: 0, length: textField!.text!.characters.count)
 
 			_ = textField(textField!,
 				shouldChangeCharactersIn: fullRange,

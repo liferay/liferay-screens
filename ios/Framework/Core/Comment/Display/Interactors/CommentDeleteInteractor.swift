@@ -13,13 +13,11 @@
  */
 import UIKit
 
-
 open class CommentDeleteInteractor: ServerWriteConnectorInteractor {
 
 	let commentId: Int64
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	override public init(screenlet: BaseScreenlet?) {
 		self.commentId = (screenlet as! CommentDisplayScreenlet).commentId
@@ -33,14 +31,14 @@ open class CommentDeleteInteractor: ServerWriteConnectorInteractor {
 		super.init(screenlet: nil)
 	}
 
-	//MARK: ServerConnectorInteractor
+	// MARK: ServerConnectorInteractor
 
 	override open func createConnector() -> CommentDeleteLiferayConnector? {
 		return LiferayServerContext.connectorFactory.createCommentDeleteConnector(
 			commentId: commentId)
 	}
 
-	//MARK: Cache methods
+	// MARK: Cache methods
 
 	override open func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
@@ -59,8 +57,7 @@ open class CommentDeleteInteractor: ServerWriteConnectorInteractor {
 			nil)
 	}
 
-
-	//MARK: Interactor
+	// MARK: Interactor
 
 	override open func callOnSuccess() {
 		if cacheStrategy == .cacheFirst {
@@ -71,9 +68,8 @@ open class CommentDeleteInteractor: ServerWriteConnectorInteractor {
 				attributes: ["commentId": NSNumber(value: commentId)],
 				onCompletion: nil)
 		}
-		
+
 		super.callOnSuccess()
 	}
-
 
 }

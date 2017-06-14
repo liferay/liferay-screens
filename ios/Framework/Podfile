@@ -6,8 +6,15 @@ abstract_target "Screens" do
 	use_frameworks!
 	podspec :path => '../../LiferayScreens.podspec'
 
+	pod 'SwiftLint'
+
 	target 'LiferayScreens'
 	target 'LiferayScreensTests' do 
 		pod 'Nocilla'
 	end
+
+	post_install do |installer|
+        %x( cd .. && cp hooks/pre-push ../.git/hooks/)
+        %x( chmod +x ../../.git/hooks/pre-push )
+    end
 end

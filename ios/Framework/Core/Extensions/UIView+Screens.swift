@@ -13,18 +13,16 @@
  */
 import UIKit
 
-
 /*
  * Delayed show and hide
  */
 extension UIView {
 
-	fileprivate var defaultHideDelay:Double {
+	fileprivate var defaultHideDelay: Double {
 		return 0.3
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	public func changeVisibility(visible: Bool) {
 		changeVisibility(visible: visible, delay: defaultHideDelay)

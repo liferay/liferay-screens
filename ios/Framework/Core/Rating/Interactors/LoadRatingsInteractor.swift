@@ -14,7 +14,7 @@
 import UIKit
 
 open class LoadRatingsInteractor: ServerReadConnectorInteractor {
-	
+
 	let entryId: Int64?
 
 	let className: String?
@@ -59,8 +59,7 @@ open class LoadRatingsInteractor: ServerReadConnectorInteractor {
 		          ratingsGroupCount: ratingsGroupCount)
 	}
 
-
-	//MARK: ServerConnectorInteractor
+	// MARK: ServerConnectorInteractor
 
 	override open func createConnector() -> ServerConnector? {
 		if let entryId = self.entryId {
@@ -75,7 +74,7 @@ open class LoadRatingsInteractor: ServerReadConnectorInteractor {
 
 		return nil
 	}
-	
+
 	override open func completedConnector(_ c: ServerConnector) {
 		if let loadCon = c as? RatingLoadByEntryIdLiferayConnector {
 			self.resultRating = loadCon.resultRating
@@ -85,9 +84,9 @@ open class LoadRatingsInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
-	//MARK: Cache methods
+	// MARK: Cache methods
 
-	override open func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> ()) {
+	override open func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> Void) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return
@@ -148,8 +147,7 @@ open class LoadRatingsInteractor: ServerReadConnectorInteractor {
 			])
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func cacheKey() -> String {
 		if let entryId = self.entryId {

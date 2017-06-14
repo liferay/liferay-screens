@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 extension UIButton {
 
 	public func replaceAttributedTitle(_ title: String, forState state: UIControlState) {
@@ -22,7 +21,7 @@ extension UIButton {
 					attributedString: attributedTitle)
 
 			formattedString.replaceCharacters(
-					in: NSMakeRange(0, formattedString.length),
+					in: NSRange(location: 0, length: formattedString.length),
 					with: title)
 
 			self.setAttributedTitle(formattedString, for: state)

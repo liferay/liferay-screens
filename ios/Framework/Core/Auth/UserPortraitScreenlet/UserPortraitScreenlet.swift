@@ -13,10 +13,9 @@
  */
 import UIKit
 
-
 /// The UserPortraitScreenletDelegate protocol defines some methods that you use to manage the 
 /// UserPortraitScreenlet events. All of them are optional.
-@objc public protocol UserPortraitScreenletDelegate : BaseScreenletDelegate {
+@objc public protocol UserPortraitScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when an image is received from the server. You can then apply image filters 
 	/// (grayscale, for example) and return the new image. You can return the original image 
@@ -57,19 +56,16 @@ import UIKit
 			onUserPortraitUploadError error: NSError)
 }
 
-
 /// The UserPortraitScreenlet shows the user’s portrait from Liferay instance.
 /// If the user doesn’t have a portrait configured, a default placeholder image is shown.
 open class UserPortraitScreenlet: BaseScreenlet {
 
-
-	//MARK: Class properties
+	// MARK: Class properties
 
 	open class var LoadPortrait: String { return "load-portrait" }
 	open class var UploadPortrait: String { return "upload-portrait" }
 
-
-	//MARK: Inspectables
+	// MARK: Inspectables
 
 	/// The size in pixels for the portrait’s border. The default value is 1.
 	/// Set this to 0 if you want to hide the border.
@@ -99,8 +95,7 @@ open class UserPortraitScreenlet: BaseScreenlet {
 	/// is remote first.
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
-
-	//MARK: Public properties
+	// MARK: Public properties
 
 	open var userPortraitDelegate: UserPortraitScreenletDelegate? {
 		return self.delegate as? UserPortraitScreenletDelegate
@@ -114,13 +109,11 @@ open class UserPortraitScreenlet: BaseScreenlet {
 		return loadedUserId
 	}
 
-
-	//MARK: Private properties
+	// MARK: Private properties
 
 	fileprivate var loadedUserId: Int64?
 
-
-	//MARK: BaseScreenlet
+	// MARK: BaseScreenlet
 
 	override open func onCreated() {
 		super.onCreated()
@@ -147,8 +140,7 @@ open class UserPortraitScreenlet: BaseScreenlet {
 		}
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	/// Loads the user portrait that correspond to the user logged.
 	///
@@ -243,8 +235,7 @@ open class UserPortraitScreenlet: BaseScreenlet {
 		setPortraitImage(nil)
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func setPortraitImage(_ image: UIImage?) {
 		viewModel.image = image
@@ -289,7 +280,7 @@ open class UserPortraitScreenlet: BaseScreenlet {
 			self.loadedUserId = nil
 			self.setPortraitImage(nil)
 		}
-		
+
 		return downloadInteractor
 	}
 

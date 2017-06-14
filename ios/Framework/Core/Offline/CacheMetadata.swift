@@ -14,8 +14,7 @@
 import Foundation
 import YapDatabase
 
-
-@objc open class CacheMetadata : NSObject, NSCoding {
+@objc open class CacheMetadata: NSObject, NSCoding {
 
 	open let synchronized: Date?
 	open let attributes: [String:AnyObject]

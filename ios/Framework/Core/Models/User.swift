@@ -13,11 +13,10 @@
  */
 import Foundation
 
-
 @objc open class User: NSObject, NSCoding {
 
 	open let attributes: [String:AnyObject]
-	
+
 	open var firstName: String {
 		return stringAttribute("firstName")
 	}
@@ -50,8 +49,7 @@ import Foundation
 		return int64Attribute("userId")
 	}
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(attributes: [String : AnyObject]) {
 		self.attributes = attributes
@@ -65,8 +63,7 @@ import Foundation
 		super.init()
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func int64Attribute(_ key: String) -> Int64 {
 		return attributes[key]?.int64Value ?? 0
