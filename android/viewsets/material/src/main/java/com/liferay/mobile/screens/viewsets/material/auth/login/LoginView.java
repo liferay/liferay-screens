@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.viewsets.material.auth.login;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
+import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
