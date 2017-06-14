@@ -196,7 +196,7 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 		loginViewModel.setAuthenticationType(authenticationType);
 
-		if (authenticationType.equals(AuthenticationType.BASIC)) {
+		if (authenticationType.equals(AuthenticationType.BASIC) || authenticationType.equals(AuthenticationType.COOKIE)) {
 			int basicAuthMethodId = typedArray.getInt(R.styleable.LoginScreenlet_basicAuthMethod, 0);
 
 			basicAuthMethod = BasicAuthMethod.getValue(basicAuthMethodId);
