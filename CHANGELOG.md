@@ -17,6 +17,9 @@ All notable changes to this project will be documented in this file.
 * Create loadLoggedUserPortrait method in UserPortraitScreenlet
 * Expose Video events in the VideoDisplayScreenlet 
 
+### Bugs
+* Fix error in material LoginView with cookie login
+
 ## iOS
 
 ### Bugs
