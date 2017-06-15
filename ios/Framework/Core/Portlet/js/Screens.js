@@ -28,6 +28,19 @@ var screens = {
 
 window.Screens = Object.create(screens);
 
-// Attach a listener to the SPA application to add the Screens scripts
-// on SPA navigation
-window.Liferay.on('endNavigate', () => window.Screens.reloadScripts());
+window.Liferay.on('endNavigate', () => {
+	window.Screens.reloadScripts();
+});
+
+
+// Attach a proxy to the Liferay object so we can inject our custom session 
+window.Liferay = new Proxy(window.Liferay, {
+	set: function(target, name, value) {
+		if (name === "Session") {
+			target[name] = new Liferay.SessionBase({ autoExtend: true, sessionLength: 30 * 60, warningLength: 60 });
+		}
+		else {
+			target[name] = value;
+	    }
+	}
+});
