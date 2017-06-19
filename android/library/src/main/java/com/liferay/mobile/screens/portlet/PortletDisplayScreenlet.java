@@ -89,6 +89,8 @@ public class PortletDisplayScreenlet
 
 			JavascriptInjector javascriptInjector = new JavascriptInjector(getContext());
 
+			javascriptInjector.addJsFile(R.raw.screens);
+
 			for (int jsFile : jsFiles) {
 				javascriptInjector.addJsFile(jsFile, true);
 			}

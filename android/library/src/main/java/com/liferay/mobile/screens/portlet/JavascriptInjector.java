@@ -21,8 +21,6 @@ public class JavascriptInjector {
 		this.scripts = new TreeMap<>();
 		this.navigationFreeScripts = new ArrayList<>();
 		this.context = context.getApplicationContext();
-
-		addJsFile(R.raw.screens);
 	}
 
 	public void addJs(String js) {
