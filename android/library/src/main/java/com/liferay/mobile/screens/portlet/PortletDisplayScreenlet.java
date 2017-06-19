@@ -198,8 +198,7 @@ public class PortletDisplayScreenlet
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, PortletDisplayInteractor interactor,
-		Object... args) {
+	protected void onUserAction(String userActionName, PortletDisplayInteractor interactor, Object... args) {
 		interactor.start(url);
 	}
 
