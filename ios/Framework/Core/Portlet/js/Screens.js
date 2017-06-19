@@ -10,14 +10,14 @@ var screens = {
 	},
 
 	isAndroid: function() {
-		if (navigator.userAgent.indexOf('Android') !== -1) {
+		if (navigator.userAgent.indexOf('Android') === -1) {
 			return false;
 		}
 		return true;
 	},
 
 	postMessage: function(namespace, message) {
-		if (this.isAndroid) {
+		if (this.isAndroid()) {
 			android.postMessage(namespace, message);
 		}
 		else {
