@@ -23,6 +23,24 @@ var screens = {
 		else {
 			window.webkit.messageHandlers[namespace].postMessage(message);
 		}
+	},
+
+	listPortlets: function() {
+		let portlets = window.Liferay.Portlet.list;
+
+		let parsedPortlets = portlets.map(portlet => {
+			let portletSplitted = portlet.split('_');
+			let length = portletSplitted.length;
+			if (length >= 3 && portletSplitted[length - 2] === 'INSTANCE') {
+				return portletSplitted.slice(0, length - 2).join('_');
+			}
+			else {
+				return portlet;
+			}
+		})
+		.filter((x, idx, arr) => arr.indexOf(x) === idx);
+
+		this.postMessage("screensInternal", parsedPortlets);
 	}
 }
 
