@@ -51,8 +51,8 @@ public class PortletDisplayScreenlet
 	private boolean autoLoad;
 	private String url;
 	private PortletDisplayListener listener;
-	private List<Integer> jsFiles;
-	private List<Integer> cssFiles;
+	private List<Integer> jsFiles = new ArrayList<>();
+	private List<Integer> cssFiles = new ArrayList<>();
 	private HashMap<String, Integer> layouts = new HashMap<>();
 	private int imageLayout = R.layout.image_display_default;
 	private int videoLayout = R.layout.video_display_default;
