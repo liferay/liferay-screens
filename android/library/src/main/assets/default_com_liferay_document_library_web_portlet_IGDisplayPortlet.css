@@ -1,4 +1,3 @@
-/* Bigger pagination */
 .pagination {
     font-size: 14pt;
 }
@@ -10,8 +9,6 @@
 .pagination > li > a {
     padding: 10px 20px;
 }
-
-/* Customize */
 
 .card {
     border: 2px solid gray;
