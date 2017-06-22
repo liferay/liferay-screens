@@ -35,7 +35,8 @@ public class JavascriptInjector {
 	}
 
 	public void addJsFile(int jsFile, boolean isNavigationFreeScript) {
-		String jsFileContent = AssetReader.read(context, jsFile);
+		AssetReader assetReader = new AssetReader(context);
+		String jsFileContent = assetReader.read(jsFile);
 		String parsed = parseScript(jsFileContent);
 
 		addScript(parsed, isNavigationFreeScript);
@@ -54,7 +55,8 @@ public class JavascriptInjector {
 	}
 
 	public void addCss(int cssFile) {
-		String cssFileContent = AssetReader.read(context, cssFile);
+		AssetReader assetReader = new AssetReader(context);
+		String cssFileContent = assetReader.read(cssFile);
 		String cssScript = "let style = document.createElement('style');"
 			+ "style.type = 'text/css';"
 			+ "style.innerHTML='"
