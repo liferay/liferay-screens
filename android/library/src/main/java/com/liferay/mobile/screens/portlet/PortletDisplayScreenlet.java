@@ -34,9 +34,11 @@ import com.liferay.mobile.screens.dlfile.display.pdf.PdfDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.video.VideoDisplayScreenlet;
 import com.liferay.mobile.screens.portlet.interactor.PortletDisplayInteractor;
 import com.liferay.mobile.screens.portlet.view.PortletDisplayViewModel;
+import com.liferay.mobile.screens.util.AssetReader;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -171,8 +173,27 @@ public class PortletDisplayScreenlet
 	}
 
 	@Override
-	public void onScriptMessageHandler(String namespace, String arg) {
+	public void onScriptMessageHandler(String namespace, String body) {
+		if ("screensInternal".equals(namespace)) {
+			String[] portlets = body.split(",");
+			for (String portlet : portlets) {
+				String fileName = getLayoutTheme() + "_" + portlet;
 
+				AssetReader assetReader = new AssetReader(getContext());
+
+				String jsContent = assetReader.read(fileName + ".js");
+				String cssContent = assetReader.read(fileName + ".css");
+
+				JavascriptInjector javascriptInjector = new JavascriptInjector(getContext());
+
+				javascriptInjector.addCss(cssContent);
+				javascriptInjector.addJs(jsContent, true);
+
+				getViewModel().injectJavascript(javascriptInjector.generateInjectableJs());
+			}
+		} else {
+			getListener().onScriptMessageHandler(namespace, body);
+		}
 	}
 
 	@Override

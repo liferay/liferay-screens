@@ -127,7 +127,7 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 
 		@JavascriptInterface
 		public void postMessage(String namespace, String body) {
-			((PortletDisplayScreenlet) getScreenlet()).getListener().onScriptMessageHandler(namespace, body);
+			((PortletDisplayScreenlet) getScreenlet()).onScriptMessageHandler(namespace, body);
 		}
 	}
 }
