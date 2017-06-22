@@ -1,13 +1,10 @@
 package com.liferay.mobile.screens.testapp;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import com.liferay.mobile.screens.asset.AssetEntry;
-import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.portlet.PortletDisplayListener;
 import com.liferay.mobile.screens.portlet.PortletDisplayScreenlet;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,11 +30,7 @@ public class PortletDisplayActivity extends ThemeActivity implements PortletDisp
 			screenlet.setUrl(getIntent().getStringExtra("url"));
 		}
 
-		jsFiles.add(R.raw.gallery);
-		screenlet.setJsFiles(jsFiles);
-
-		cssFiles.add(R.raw.bigger_pagination);
-		cssFiles.add(R.raw.gallery_custom);
+		cssFiles.add(R.raw.portletcss);
 		screenlet.setCssFiles(cssFiles);
 
 		screenlet.load();
