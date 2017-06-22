@@ -83,10 +83,14 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 				public void onPageCommitVisible(WebView view, String url) {
 					super.onPageCommitVisible(view, url);
 
+					webView.loadUrl(injectedJs);
+
+					if (loadPortlets) {
+						webView.loadUrl("javascript:window.Screens.listPortlets()");
+					}
+
 					view.setVisibility(VISIBLE);
 					progressBar.setVisibility(GONE);
-
-					webView.loadUrl(injectedJs);
 				}
 			});
 		}
