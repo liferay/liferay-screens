@@ -25,24 +25,44 @@ import java.io.InputStreamReader;
 
 public class AssetReader {
 
-	public static String read(Context context, int filename) {
+	private Context context;
+
+	public AssetReader(Context context) {
+		this.context = context;
+	}
+
+	public String read(int fileId) {
 		try {
-			InputStream in = context.getResources().openRawResource(filename);
-			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-			StringBuilder sb = new StringBuilder();
-			String mLine = reader.readLine();
-
-			while (mLine != null) {
-				sb.append(mLine);
-				mLine = reader.readLine();
-			}
-
-			reader.close();
-
-			return sb.toString();
+			InputStream in = context.getResources().openRawResource(fileId);
+			return getFileContent(in);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return "";
 		}
+	}
+
+	public String read(String filename) {
+		try {
+			InputStream in = context.getResources().getAssets().open(filename);
+			return getFileContent(in);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "";
+		}
+	}
+
+	private String getFileContent(InputStream inputStream) throws Exception {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+		StringBuilder sb = new StringBuilder();
+		String mLine = reader.readLine();
+
+		while (mLine != null) {
+			sb.append(mLine);
+			mLine = reader.readLine();
+		}
+
+		reader.close();
+
+		return sb.toString();
 	}
 }
