@@ -24,6 +24,8 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 	private BaseScreenlet screenlet;
 	private WebView webView;
 	private ProgressBar progressBar;
+	//TODO this property must be calculated
+	private boolean loadPortlets = true;
 
 	public PortletDisplayView(Context context) {
 		super(context);
@@ -63,6 +65,16 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 		progressBar.setVisibility(GONE);
 		screenlet.setVisibility(VISIBLE);
 		LiferayLogger.d("Asset display loaded successfully");
+	}
+
+	@Override
+	public void injectJavascript(final String js) {
+		webView.post(new Runnable() {
+			@Override
+			public void run() {
+				webView.loadUrl(js);
+			}
+		});
 	}
 
 	@Override

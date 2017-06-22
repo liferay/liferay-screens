@@ -15,7 +15,9 @@
 package com.liferay.mobile.screens.portlet.view;
 
 import android.view.View;
+import android.webkit.WebView;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
+import com.liferay.mobile.screens.portlet.JavascriptInjector;
 
 /**
  * @author Sarai Díaz García
@@ -37,4 +39,10 @@ public interface PortletDisplayViewModel extends BaseViewModel {
 	 */
 	void showFinishOperation(View view);
 
+	/**
+	 * Called this method to inject generated javascript in portlet {@link WebView}.
+	 *
+	 * @param js generated javascript from {@link JavascriptInjector}.
+	 */
+	void injectJavascript(String js);
 }
