@@ -1,7 +1,6 @@
 package com.liferay.mobile.screens.portlet;
 
 import android.content.Context;
-import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.util.AssetReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,7 @@ public class JavascriptInjector {
 	}
 
 	public void addJs(String js, boolean isNavigationFreeScript) {
-		addScript(parseScript(js), false);
+		addScript(parseScript(js), isNavigationFreeScript);
 	}
 
 	public void addJsFile(int jsFile, boolean isNavigationFreeScript) {
