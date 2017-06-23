@@ -41,36 +41,11 @@ extension WKWebView {
 		configuration.userContentController.addUserScript(addMetaScript)
 	}
 
-	public func loadJs(file: String) {
-
-		let jsContent = Bundle.resourceInBundle(name: file, ofType: "js",
-				currentClass: type(of:self)) { (path, _) -> String? in
-
-			return try! String(contentsOfFile: path, encoding: String.Encoding.utf8)
-		}
-
-		if let js = jsContent {
-			configuration.userContentController.addUserScript(
-				WKUserScript(source: js, injectionTime: .atDocumentEnd, forMainFrameOnly: false))
-		}
-	}
-
-	public func loadCss(file: String) {
-
-		let css = Bundle.resourceInBundle(name: file, ofType: "css",
-				currentClass: type(of:self)) { (path, _) -> String? in
-
-			return try! String(contentsOfFile: path, encoding: String.Encoding.utf8)
-		}
-
-		let cssScript = "var style = document.createElement('style');"
-			+ "style.type = 'text/css';"
-			+ "style.innerHTML = '\(css?.replacingOccurrences(of: "\n", with: "") ?? "")';"
-			+ "var head = document.getElementsByTagName('head')[0];"
-			+ "head.appendChild(style);"
+	public func loadScript(js: String,
+		injectionTime: WKUserScriptInjectionTime = .atDocumentEnd, forMainFrameOnly: Bool = false) {
 
 		configuration.userContentController.addUserScript(
-			WKUserScript(source: cssScript, injectionTime: .atDocumentEnd, forMainFrameOnly: false))
+				WKUserScript(source: js, injectionTime: injectionTime, forMainFrameOnly: forMainFrameOnly))
 	}
 }
 
