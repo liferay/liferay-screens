@@ -205,4 +205,12 @@ extension Bundle {
         return nil
     }
 
+	public class func loadFile(name: String, ofType type: String, currentClass: AnyClass) -> String? {
+		let content = resourceInBundle(name: name, ofType: type, currentClass: currentClass) { (path, _) in
+			return try? String(contentsOfFile: path, encoding: String.Encoding.utf8)
+		}
+
+		return content
+	}
+
 }
