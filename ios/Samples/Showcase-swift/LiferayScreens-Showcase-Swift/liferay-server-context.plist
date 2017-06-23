@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>server</key>
-	<string>http://screens-demo.liferay.org.es/</string>
+	<string>http://localhost:8080</string>
 	<key>version</key>
 	<integer>70</integer>
 	<key>companyId</key>
-	<integer>20116</integer>
+	<real>20113</real>
 	<key>groupId</key>
 	<real>41905</real>
 	<key>anonymousUsername</key>
@@ -59,6 +59,6 @@
 	<key>webContentDisplayArticleId</key>
 	<string>41983</string>
 	<key>portletDisplayUrl</key>
-	<string>http://192.168.0.160:8080/web/portletdisplay/gallery</string>
+	<string>/web/porletdisplay/gallery</string>
 </dict>
 </plist>

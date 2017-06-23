@@ -33,9 +33,9 @@ class PortletDisplayViewController: UIViewController, PortletDisplayScreenletDel
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		screenlet?.portletUrl = LiferayServerContext.stringPropertyForKey("portletDisplayUrl")
-		screenlet?.add(js: "gallery")
-		screenlet?.add(css: "bigger_pagination")
+		let portletUrl = LiferayServerContext.stringPropertyForKey("portletDisplayUrl")
+
+		screenlet?.configuration = LocalScriptsConfiguration(portletUrl: portletUrl, cssFiles: ["bigger_pagination"], jsFiles: ["gallery"])
 		screenlet?.add(scriptHandler: "gallery")
 		screenlet?.load()
 	}
