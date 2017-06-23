@@ -1,7 +1,6 @@
 var screens = {
 	screensScripts_: [],
 	addScreensScript: function(screensScript) {
-		screensScript();
 		this.screensScripts_.push(screensScript);
 	},
 
