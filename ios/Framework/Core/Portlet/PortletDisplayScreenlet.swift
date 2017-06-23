@@ -49,12 +49,14 @@ import UIKit
 /// TODO Fill screenlet description
 open class PortletDisplayScreenlet: BaseScreenlet {
 
+	let internalName = "screensInternal"
+
 	/// Whether the content should be retrieved from the portal as soon as the Screenlet appears.
 	/// The default value is true.
 	@IBInspectable open var autoLoad: Bool = true
 
 	/// The portlet URL to be displayed.
-	@IBInspectable open var portletUrl: String?
+	open var configuration: PortletConfiguration?
 
 	// MARK: Public properties
 
@@ -62,8 +64,8 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 		return delegate as? PortletDisplayScreenletDelegate
 	}
 
-	open var portletDisplayViewModel: PortletDisplayViewModel? {
-		return screenletView as? PortletDisplayViewModel
+	open var portletDisplayViewModel: PortletDisplayViewModel {
+		return screenletView as! PortletDisplayViewModel
 	}
 
 	// MARK: BaseScreenlet
@@ -76,31 +78,42 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 
 	// MARK: Public methods
 
-	// Inject CSS to be used by the screenlet.
-	open func add(css: String) {
-		portletDisplayViewModel?.add(css: css)
-	}
-
-	// Inject JS to be used by the screenlet.
-	open func add(js: String) {
-		portletDisplayViewModel?.add(js: js)
+	open func handleScriptHandler(key: String, body: Any) {
+		if (key == internalName) {
+			handleInternal(message: body)
+		}
+		else {
+			portletDisplayDelegate?.screenlet?(self,
+				onScriptMessageHandler: key, onScriptMessageBody: body)
+		}
 	}
 
 	/// Add script handler that will take messages from WKWebView.
 	open func add(scriptHandler: String) {
-		portletDisplayViewModel?.add(scriptHandler: scriptHandler)
+		portletDisplayViewModel.add(scriptHandler: scriptHandler)
 	}
 
 	/// Call this method to load the portlet.
 	open func load() {
-		guard let url = portletUrl, url != "", SessionContext.isLoggedIn else {
+		guard let configuration = configuration, SessionContext.isLoggedIn else {
 			self.portletDisplayDelegate?.screenlet?(self, onPortletError: NSError.errorWithCause(
-				.invalidServerResponse, message: "Could not portlet content."))
+				.invalidServerResponse, message: "Could not load portlet content."))
 			return
 		}
 
-		let html = configureInitialHtml(portletUrl: url)
-		portletDisplayViewModel?.initialHtml = html
+		let screensScript = Bundle.loadFile(name: "Screens", ofType: "js", currentClass: type(of: self))!
+
+		portletDisplayViewModel.add(scriptHandler: internalName)
+		portletDisplayViewModel.add(injectableScript: JsScript(js: screensScript))
+
+		portletDisplayViewModel.add(injectableScripts: configuration.loadScripts())
+
+		let html = configureInitialHtml(portletUrl: configuration.portletUrl)
+		portletDisplayViewModel.initialHtml = html
+	}
+
+	func handleInternal(message: Any) {
+
 	}
 
 	func configureInitialHtml(portletUrl: String) -> String {

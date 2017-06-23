@@ -17,11 +17,12 @@ import UIKit
 
 	var initialHtml: String? { get set }
 
-	// Inject CSS to be used by the screenlet.
-	func add(css: String)
-
 	// Inject JS to be used by the screenlet.
-	func add(js: String)
+	func add(injectableScripts: [InjectableScript])
+
+	func add(injectableScript: InjectableScript)
+
+	func inject(injectableScript: InjectableScript)
 
 	/// Add script handler that will take messages from WKWebView.
 	func add(scriptHandler: String)

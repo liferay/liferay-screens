@@ -14,12 +14,14 @@
 import UIKit
 import WebKit
 
-open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewModel, WKUIDelegate,
+open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewModel, WKUIDelegate, WKNavigationDelegate,
 	WKScriptMessageHandler {
 
 	// MARK: Public properties
 
-	open var wkWebView: WKWebView?
+	open lazy var wkWebView: WKWebView = WKWebView(frame: self.frame)
+
+	var initialNavigation: WKNavigation?
 
 	// MARK: BaseScreenletView
 
@@ -36,11 +38,10 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 	override open func onCreated() {
 		super.onCreated()
-		wkWebView = WKWebView(frame: self.frame)
+		wkWebView.injectViewportMetaTag()
 
-		wkWebView?.injectViewportMetaTag()
-		wkWebView?.loadJs(file: "Screens")
-		wkWebView?.uiDelegate = self
+		wkWebView.uiDelegate = self
+		wkWebView.navigationDelegate = self
 
 		addWebView()
 	}
@@ -54,20 +55,24 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 	public var initialHtml: String? {
 		didSet {
 			let server = SessionContext.currentContext?.session.server ?? ""
-			wkWebView?.loadHTMLString(initialHtml!, baseURL: URL(string: server)!)
+			initialNavigation = wkWebView.loadHTMLString(initialHtml!, baseURL: URL(string: server)!)
 		}
 	}
 
-	public func add(js: String) {
-		wkWebView?.loadJs(file: js)
+	public func add(injectableScripts: [InjectableScript]) {
+		injectableScripts.forEach { add(injectableScript: $0) }
 	}
 
-	public func add(css: String) {
-		wkWebView?.loadCss(file: css)
+	public func add(injectableScript: InjectableScript) {
+		wkWebView.loadScript(js: injectableScript.content)
+	}
+
+	public func inject(injectableScript: InjectableScript) {
+
 	}
 
 	public func add(scriptHandler: String) {
-		wkWebView?.configuration.userContentController.add(self, name: scriptHandler)
+		wkWebView.configuration.userContentController.add(self, name: scriptHandler)
 	}
 
 	// MARK: WKUIDelegate
@@ -78,33 +83,42 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		completionHandler()
 	}
 
+	public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+		guard let initialNavigation = initialNavigation, initialNavigation != navigation
+		else { return }
+		
+//		webView.evaluateJavaScript("window.Screens.listPortlets()", completionHandler: nil)
+	}
+
 	// MARK: WKScriptMessageHandler
 
 	public func userContentController(_ userContentController: WKUserContentController,
 			didReceive message: WKScriptMessage) {
 
-		(screenlet as? PortletDisplayScreenlet)?.portletDisplayDelegate?.screenlet?(
-			screenlet as! PortletDisplayScreenlet, onScriptMessageHandler: message.name,
-				onScriptMessageBody: message.body)
+		(screenlet as? PortletDisplayScreenlet)?.handleScriptHandler(key: message.name, body: message.body)
 	}
 
 	// MARK: Public methods
 
 	open func addWebView() {
-		wkWebView?.translatesAutoresizingMaskIntoConstraints = false
+		wkWebView.translatesAutoresizingMaskIntoConstraints = false
 
-		addSubview(wkWebView!)
+		addSubview(wkWebView)
 
-		let top = NSLayoutConstraint(item: wkWebView!, attribute: .top, relatedBy: .equal,
+		let top = NSLayoutConstraint(item: wkWebView, attribute: .top, relatedBy: .equal,
 		                             toItem: self, attribute: .top, multiplier: 1, constant: 0)
-		let bottom = NSLayoutConstraint(item: wkWebView!, attribute: .bottom, relatedBy: .equal,
+		let bottom = NSLayoutConstraint(item: wkWebView, attribute: .bottom, relatedBy: .equal,
 		                                toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
-		let leading = NSLayoutConstraint(item: wkWebView!, attribute: .leading, relatedBy: .equal,
+		let leading = NSLayoutConstraint(item: wkWebView, attribute: .leading, relatedBy: .equal,
 		                                 toItem: self, attribute: .leading, multiplier: 1, constant: 0)
-		let trailing = NSLayoutConstraint(item: wkWebView!, attribute: .trailing, relatedBy: .equal,
+		let trailing = NSLayoutConstraint(item: wkWebView, attribute: .trailing, relatedBy: .equal,
 		                                  toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
 
 		NSLayoutConstraint.activate([top, bottom, leading, trailing])
+	}
+
+	func handleInternalMessage(_ message: Any) {
+
 	}
 
 }
