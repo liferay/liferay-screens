@@ -86,7 +86,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 	public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
 		guard let initialNavigation = initialNavigation, initialNavigation != navigation
 		else { return }
-		
+
 //		webView.evaluateJavaScript("window.Screens.listPortlets()", completionHandler: nil)
 	}
 

@@ -79,7 +79,7 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 	// MARK: Public methods
 
 	open func handleScriptHandler(key: String, body: Any) {
-		if (key == internalName) {
+		if key == internalName {
 			handleInternal(message: body)
 		}
 		else {

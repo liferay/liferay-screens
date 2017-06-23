@@ -14,7 +14,6 @@
 
 import Foundation
 
-
 public protocol PortletConfiguration {
 	var portletUrl: String { get }
 
