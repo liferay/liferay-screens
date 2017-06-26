@@ -44,7 +44,8 @@ public class DetailMediaGalleryActivity extends AppCompatActivity implements Swi
 			allImgSrc = intent.getStringArrayExtra("allImgSrc");
 			imgSrcPosition = intent.getIntExtra("imgSrcPosition", -1);
 			String imgSrc = allImgSrc[imgSrcPosition];
-			Picasso.with(getApplicationContext()).load(imgSrc).into(detailedImageView);
+
+			loadImage(imgSrc);
 		}
 
 		detailedImageView.setOnTouchListener(new OnSwipeTouchListener(this, this));
@@ -52,13 +53,17 @@ public class DetailMediaGalleryActivity extends AppCompatActivity implements Swi
 
 	@Override
 	public void onSwipeLeft() {
-		Picasso.with(getApplicationContext()).load(allImgSrc[imgSrcPosition + 1]).into(detailedImageView);
+		loadImage(allImgSrc[imgSrcPosition + 1]);
 		imgSrcPosition++;
 	}
 
 	@Override
 	public void onSwipeRight() {
-		Picasso.with(getApplicationContext()).load(allImgSrc[imgSrcPosition - 1]).into(detailedImageView);
+		loadImage(allImgSrc[imgSrcPosition - 1]);
 		imgSrcPosition--;
+	}
+
+	private void loadImage(String url) {
+		Picasso.with(getApplicationContext()).load(url).into(detailedImageView);
 	}
 }
