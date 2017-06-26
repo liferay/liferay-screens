@@ -45,9 +45,9 @@ public class RemoteJsScript: InjectableScript {
 		content = "var script = document.createElement('script');"
 			+ "script.language = 'javascript';"
 			+ "script.type = 'text/javascript';"
-			+ "script.src = '\(url)'"
+			+ "script.src = '\(url)';"
 			+ "var body = document.getElementsByTagName('body')[0];"
-			+ "head.appendChild(script);"
+			+ "body.appendChild(script);"
 
 	}
 }
