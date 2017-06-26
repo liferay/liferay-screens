@@ -160,8 +160,9 @@ public class PortletDisplayScreenlet
 
 	@Override
 	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
-		AssetDisplayScreenlet assetDisplayScreenlet = new AssetDisplayScreenlet(getContext());
 
+		AssetDisplayScreenlet assetDisplayScreenlet = new AssetDisplayScreenlet(getContext());
+		assetDisplayScreenlet.render(R.layout.asset_display_default);
 		getDLFileScreenletLayouts();
 
 		assetDisplayScreenlet.setLayouts(layouts);
