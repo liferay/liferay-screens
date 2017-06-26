@@ -168,6 +168,8 @@ public class PortletDisplayScreenlet
 		assetDisplayScreenlet.setLayouts(layouts);
 		assetDisplayScreenlet.load(assetEntry);
 
+		getViewModel().showFinishOperation(assetDisplayScreenlet);
+
 		if (listener != null) {
 			listener.onRetrieveAssetSuccess(assetEntry);
 		}
