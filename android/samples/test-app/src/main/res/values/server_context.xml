@@ -62,6 +62,5 @@
 	<string name="default_class_name_id_user">20087</string>
 
 	<!-- PortletDisplayScreenlet values -->
-	<string name="liferay_portlet_url">http://192.168.50.202:8080/web/portletdisplay/gallery
-	</string>
+	<string name="liferay_portlet_url">/web/guest/gallery</string>
 </resources>
