@@ -31,12 +31,17 @@ dependencies {
 	compile libraries.design
 	compile libraries.exif
 	compile libraries.recyclerView
-	compile libraries.sdk
+	compile(libraries.sdk) {
+		exclude group: 'com.google.android', module: 'android'
+	}
 	compile(libraries.push) {
 		exclude group: 'com.google.android.gms', module: 'play-services'
+		exclude group: 'com.google.android', module: 'android'
 	}
 	compile libraries.gms
-	compile libraries.oauth
+	compile(libraries.oauth) {
+		exclude group: 'com.google.android', module: 'android'
+	}
 
 	compile libraries.eventbus
 	compile libraries.picasso
