@@ -13,8 +13,6 @@ import java.util.List;
  */
 public class PortletDisplayActivity extends ThemeActivity implements PortletDisplayListener {
 
-	private PortletDisplayScreenlet screenlet;
-	private List<Integer> jsFiles = new ArrayList<>();
 	private List<Integer> cssFiles = new ArrayList<>();
 
 	@Override
@@ -23,7 +21,7 @@ public class PortletDisplayActivity extends ThemeActivity implements PortletDisp
 
 		setContentView(R.layout.portlet_display);
 
-		screenlet = (PortletDisplayScreenlet) findViewById(R.id.portlet_display_screenlet);
+		PortletDisplayScreenlet screenlet = (PortletDisplayScreenlet) findViewById(R.id.portlet_display_screenlet);
 		screenlet.setListener(this);
 
 		if (getIntent().getStringExtra("url") != null) {
