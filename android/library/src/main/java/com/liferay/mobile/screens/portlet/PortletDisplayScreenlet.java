@@ -198,8 +198,9 @@ public class PortletDisplayScreenlet
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray = context.getTheme()
-			.obtainStyledAttributes(attributes, R.styleable.WebContentDisplayScreenlet, 0, 0);
+
+		TypedArray typedArray =
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.PortletDisplayScreenlet, 0, 0);
 
 		autoLoad = typedArray.getBoolean(R.styleable.PortletDisplayScreenlet_autoLoad, true);
 
