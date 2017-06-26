@@ -49,7 +49,18 @@ public class PortletDisplayInteractor extends BaseCacheReadInteractor<PortletDis
 
 	private JSONObject getAsset(Object... args) throws Exception {
 		DLAppConnector connector = ServiceProvider.getInstance().getDLAppConnector(getSession());
-		// TODO extract groupId, folderId and title from args[0] (url)
-		return connector.getFileEntry(20147, 0, "83.png");
+
+		String url = (String) args[0];
+
+		String documents = "/documents/";
+		int beginGroup = url.indexOf(documents) + documents.length();
+		int beginFolder = url.indexOf("/", beginGroup);
+		int beginName = url.indexOf("/", beginFolder + 1);
+		int endName = url.indexOf("/", beginName + 1);
+		String groupId = url.substring(beginGroup, beginFolder);
+		String folderId = url.substring(beginFolder + 1, beginName);
+		String name = url.substring(beginName + 1, endName).replace("+", " ");
+
+		return connector.getFileEntry(Long.valueOf(groupId), Long.valueOf(folderId), name);
 	}
 }
