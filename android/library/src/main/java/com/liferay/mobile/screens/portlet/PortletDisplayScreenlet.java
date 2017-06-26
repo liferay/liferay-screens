@@ -46,8 +46,7 @@ import java.util.List;
  * @author Sarai Díaz García
  */
 
-public class PortletDisplayScreenlet
-	extends BaseScreenlet<PortletDisplayViewModel, PortletDisplayInteractor>
+public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewModel, PortletDisplayInteractor>
 	implements PortletDisplayListener {
 
 	private boolean autoLoad;
@@ -73,8 +72,7 @@ public class PortletDisplayScreenlet
 		super(context, attrs, defStyleAttr);
 	}
 
-	public PortletDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr,
-		int defStyleRes) {
+	public PortletDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
@@ -101,8 +99,7 @@ public class PortletDisplayScreenlet
 				javascriptInjector.addCss(cssFile);
 			}
 
-			getViewModel().showFinishOperation(finalUrl, body,
-				javascriptInjector.generateInjectableJs());
+			getViewModel().showFinishOperation(finalUrl, body, javascriptInjector.generateInjectableJs());
 		} else {
 			getViewModel().showFailedOperation(DEFAULT_ACTION, new MalformedURLException());
 		}
@@ -111,8 +108,7 @@ public class PortletDisplayScreenlet
 	public String buildPortletUrl(String url) {
 		try {
 			url = URLEncoder.encode(url, "UTF-8");
-			return String.format("%s/c/portal/login?redirect=%s", LiferayServerContext.getServer(),
-				url);
+			return String.format("%s/c/portal/login?redirect=%s", LiferayServerContext.getServer(), url);
 		} catch (UnsupportedEncodingException e) {
 			return "";
 		}
@@ -209,8 +205,7 @@ public class PortletDisplayScreenlet
 
 		url = typedArray.getString(R.styleable.PortletDisplayScreenlet_url);
 
-		int layoutId = typedArray.getResourceId(R.styleable.PortletDisplayScreenlet_layoutId,
-			getDefaultLayoutId());
+		int layoutId = typedArray.getResourceId(R.styleable.PortletDisplayScreenlet_layoutId, getDefaultLayoutId());
 
 		typedArray.recycle();
 

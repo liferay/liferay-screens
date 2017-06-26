@@ -59,11 +59,12 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 
 	@Override
 	public void showFinishOperation(View view) {
-		screenlet.addView(view, LinearLayout.LayoutParams.MATCH_PARENT,
-			LinearLayout.LayoutParams.MATCH_PARENT);
+		screenlet.addView(view, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+		screenlet.setVisibility(VISIBLE);
+
 		webView.setVisibility(GONE);
 		progressBar.setVisibility(GONE);
-		screenlet.setVisibility(VISIBLE);
+
 		LiferayLogger.d("Asset display loaded successfully");
 	}
 
@@ -128,8 +129,8 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 
 	@Override
 	public void showFinishOperation(String actionName) {
-		throw new UnsupportedOperationException("showFinishOperation(String) is not supported."
-			+ " Use showFinishOperation(String, String) instead.");
+		throw new UnsupportedOperationException(
+			"showFinishOperation(String) is not supported." + " Use showFinishOperation(String, String) instead.");
 	}
 
 	@Override
