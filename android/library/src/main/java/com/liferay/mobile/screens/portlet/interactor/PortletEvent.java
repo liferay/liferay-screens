@@ -5,6 +5,10 @@ import org.json.JSONObject;
 
 public class PortletEvent extends CacheEvent {
 
+	public PortletEvent() {
+		super();
+	}
+
 	public PortletEvent(JSONObject jsonObject) {
 		super(jsonObject);
 	}
