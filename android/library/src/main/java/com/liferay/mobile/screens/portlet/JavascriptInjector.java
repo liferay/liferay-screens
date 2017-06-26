@@ -43,11 +43,14 @@ public class JavascriptInjector {
 	}
 
 	public void addJsUrl(String jsUrl, boolean isNavigationFreeScript) {
-		String jsScript = "<script src='"
-			+ jsUrl
-			+ "'></script>";
+		String jsScript =  "var script = document.createElement('script');"
+			+ "script.language = 'javascript';"
+			+ "script.type = 'text/javascript';"
+			+ "script.src = '" + jsUrl + "';"
+			+ "var body = document.getElementsByTagName('body')[0];"
+			+ "body.appendChild(script);";
 
-		addScript(jsScript, isNavigationFreeScript);
+		addScript(jsScript, false);
 	}
 
 	public void addCss(String css) {
@@ -77,9 +80,12 @@ public class JavascriptInjector {
 	}
 
 	public void addCssUrl(String cssUrl) {
-		String cssScript = "<link rel='stylesheet'' type='text/css' href='"
-			+ cssUrl
-			+ "'/>";
+		String cssScript = "var link = document.createElement('link');"
+			+ "link.type = 'text/css';"
+			+ "link.rel = 'stylesheet';"
+			+ "link.href = '" + cssUrl + "';"
+			+ "var head = document.getElementsByTagName('head')[0];"
+			+ "head.appendChild(link);";
 
 		addScript(cssScript, false);
 	}
