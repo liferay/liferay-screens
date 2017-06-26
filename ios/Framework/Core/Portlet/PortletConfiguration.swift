@@ -14,79 +14,91 @@
 
 import Foundation
 
-public protocol PortletConfiguration {
-	var portletUrl: String { get }
+public class PortletConfiguration {
 
-	func loadScripts() -> [InjectableScript]
-}
-
-public class LocalScriptsConfiguration: PortletConfiguration {
 	public let portletUrl: String
-	let cssFiles: [String]
-	let jsFiles: [String]
+	public let scripts: [InjectableScript]
+	public let automaticMode: Bool
 
-	public init(portletUrl: String, cssFiles: [String] = [], jsFiles: [String] = []) {
+
+	public init(portletUrl: String, scripts: [InjectableScript], automaticMode: Bool) {
 		self.portletUrl = portletUrl
-		self.cssFiles = cssFiles
-		self.jsFiles = jsFiles
+		self.scripts = scripts
+		self.automaticMode = automaticMode
 	}
 
-	public func loadScripts() -> [InjectableScript] {
-		return loadCssScripts() + loadJsScripts()
-	}
+	public class Builder {
+		let portletUrl: String
+		var localJs: [String]
+		var localCss: [String]
+		var remoteJs: [String]
+		var remoteCss: [String]
+		var automaticMode: Bool
 
-	private func loadCssScripts() -> [InjectableScript] {
-		let cssScripts = cssFiles.map { name in
-				Bundle.loadFile(name: name, ofType: "css", currentClass: type(of: self))
+		public init(portletUrl: String) {
+			self.portletUrl = portletUrl
+			self.localJs = []
+			self.localCss = []
+			self.remoteJs = []
+			self.remoteCss = []
+			self.automaticMode = false
+		}
+
+		public func addLocalJs(fileName: String) -> Self {
+			self.localJs.append(fileName)
+			return self
+		}
+
+		public func addLocalCss(fileName: String) -> Self {
+			self.localCss.append(fileName)
+			return self
+		}
+
+		public func addRemoteJs(url: String) -> Self {
+			self.remoteJs.append(url)
+			return self
+		}
+
+		public func addRemoteCss(url: String) -> Self {
+			self.remoteCss.append(url)
+			return self
+		}
+
+		public func setAutomaticModeOn() -> Self {
+			self.automaticMode = true
+			return self
+		}
+
+		public func load() -> PortletConfiguration {
+			let localJsScripts: [InjectableScript] = localJs.map(loadLocalJsContent).map(JsScript.init)
+			let localCssScripts: [InjectableScript] = localCss.map(loadLocalCssContent).map(CssScript.init)
+			let remoteJsScripts: [InjectableScript] = remoteJs.map(RemoteJsScript.init)
+			let remoteCssScripts: [InjectableScript] = remoteCss.map(RemoteCssScript.init)
+
+			let allScripts: [InjectableScript] = localJsScripts + localCssScripts + remoteJsScripts + remoteCssScripts
+
+			return PortletConfiguration(portletUrl: portletUrl, scripts: allScripts, automaticMode: automaticMode)
+		}
+
+		private func loadLocalCssContent(fileName: String) -> String {
+			guard let content = Bundle.loadFile(name: fileName,
+				ofType: "css", currentClass: type(of: self)) else {
+					print("file named \(fileName) not found")
+					return ""
 			}
-			.flatMap { $0 }
-			.map { css -> InjectableScript in
-				CssScript(css: css)
+			
+			return content
+		}
+
+		private func loadLocalJsContent(fileName: String) -> String {
+		 	guard let content = Bundle.loadFile(name: fileName,
+				ofType: "js", currentClass: type(of: self)) else {
+				print("file named \(fileName) not found")
+				return ""
 			}
 
-		return cssScripts
+			return content
+		}
 	}
 
-	private func loadJsScripts() -> [InjectableScript] {
-		let jsScripts = jsFiles.map { name in
-				Bundle.loadFile(name: name, ofType: "js", currentClass: type(of: self))
-			}
-			.flatMap { $0 }
-			.map { css -> InjectableScript in
-				JsScript(js: css)
-			}
-
-		return jsScripts
-	}
-}
-
-public class AutomaticScriptsConfiguration: PortletConfiguration {
-	public let portletUrl: String
-
-	public init(portletUrl: String) {
-		self.portletUrl = portletUrl
-	}
-
-	public func loadScripts() -> [InjectableScript] {
-		return []
-	}
-}
-
-public class RemoteScriptsConfiguration: PortletConfiguration {
-	public let portletUrl: String
-	let jsUrls: [String]
-	let cssUrls: [String]
-
-	public init(portletUrl: String, jsUrls: [String], cssUrls: [String]) {
-		self.portletUrl = portletUrl
-		self.jsUrls = jsUrls
-		self.cssUrls = cssUrls
-	}
-
-	public func loadScripts() -> [InjectableScript] {
-		let jsScripts: [InjectableScript] = jsUrls.map(RemoteJsScript.init)
-		let cssScripts: [InjectableScript] = cssUrls.map(RemoteCssScript.init)
-
-		return jsScripts + cssScripts
-	}
 }

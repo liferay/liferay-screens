@@ -105,8 +105,11 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 
 		portletDisplayViewModel.add(scriptHandler: internalName)
 		portletDisplayViewModel.add(injectableScript: JsScript(js: screensScript))
+		portletDisplayViewModel.add(injectableScripts: configuration.scripts)
 
-		portletDisplayViewModel.add(injectableScripts: configuration.loadScripts())
+		if configuration.automaticMode {
+			portletDisplayViewModel.automaticMode = true
+		}
 
 		let html = configureInitialHtml(portletUrl: configuration.portletUrl)
 		portletDisplayViewModel.initialHtml = html

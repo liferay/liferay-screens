@@ -19,6 +19,8 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 	// MARK: Public properties
 
+	open var automaticMode = false
+
 	open lazy var wkWebView: WKWebView = WKWebView(frame: self.frame)
 
 	var initialNavigation: WKNavigation?
@@ -68,7 +70,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 	}
 
 	public func inject(injectableScript: InjectableScript) {
-
+		wkWebView.evaluateJavaScript(injectableScript.content, completionHandler: nil)
 	}
 
 	public func add(scriptHandler: String) {
