@@ -161,7 +161,7 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 
 	@Override
 	public void onScriptMessageHandler(String namespace, String body) {
-		if ("screensInternal".equals(namespace)) {
+		if ("screensInternal".equals(namespace) && portletConfiguration.automaticMode) {
 			String[] portlets = body.split(",");
 			for (String portlet : portlets) {
 				String fileName = getLayoutTheme() + "_" + portlet;

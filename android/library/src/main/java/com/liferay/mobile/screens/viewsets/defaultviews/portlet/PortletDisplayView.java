@@ -24,8 +24,7 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 	private BaseScreenlet screenlet;
 	private WebView webView;
 	private ProgressBar progressBar;
-	//TODO this property must be calculated
-	private boolean loadPortlets = true;
+	private boolean automaticMode;
 
 	public PortletDisplayView(Context context) {
 		super(context);
@@ -105,7 +104,7 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 	private void render(WebView view, String injectedJs) {
 		webView.loadUrl(injectedJs);
 
-		if (loadPortlets) {
+		if (automaticMode) {
 			webView.loadUrl("javascript:window.Screens.listPortlets()");
 		}
 
@@ -139,6 +138,11 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 	@Override
 	public void setScreenlet(BaseScreenlet screenlet) {
 		this.screenlet = screenlet;
+	}
+
+	@Override
+	public void setAutomaticMode(boolean automaticMode) {
+		this.automaticMode = automaticMode;
 	}
 
 	private class PortletDisplayInterface {

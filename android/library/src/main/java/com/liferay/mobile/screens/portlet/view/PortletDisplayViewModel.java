@@ -45,4 +45,12 @@ public interface PortletDisplayViewModel extends BaseViewModel {
 	 * @param js generated javascript from {@link JavascriptInjector}.
 	 */
 	void injectJavascript(String js);
+
+	/**
+	 * Called this method to set the automatic mode to inject the css and js files
+	 * from visible portlets automatically if exists.
+	 *
+	 * @param automaticMode if the proper css and js files must be injected or not.
+	 */
+	void setAutomaticMode(boolean automaticMode);
 }
