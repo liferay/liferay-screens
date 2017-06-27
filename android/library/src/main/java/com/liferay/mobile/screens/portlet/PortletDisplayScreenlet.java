@@ -38,22 +38,17 @@ import com.liferay.mobile.screens.util.AssetReader;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * @author Sarai Díaz García
  */
-
 public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewModel, PortletDisplayInteractor>
 	implements PortletDisplayListener {
 
 	private boolean autoLoad;
 	private String url;
 	private PortletDisplayListener listener;
-	private List<Integer> jsFiles = new ArrayList<>();
-	private List<Integer> cssFiles = new ArrayList<>();
 	private HashMap<String, Integer> layouts = new HashMap<>();
 	private int imageLayout = R.layout.image_display_default;
 	private int videoLayout = R.layout.video_display_default;
@@ -90,14 +85,6 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 			JavascriptInjector javascriptInjector = new JavascriptInjector(getContext());
 
 			javascriptInjector.addJsFile(R.raw.screens);
-
-			for (int jsFile : jsFiles) {
-				javascriptInjector.addJsFile(jsFile, true);
-			}
-
-			for (int cssFile : cssFiles) {
-				javascriptInjector.addCss(cssFile);
-			}
 
 			getViewModel().showFinishOperation(finalUrl, body, javascriptInjector.generateInjectableJs());
 		} else {
@@ -264,12 +251,6 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 		this.listener = listener;
 	}
 
-	public void setJsFiles(List<Integer> jsFiles) {
-		this.jsFiles = jsFiles;
-	}
-
-	public void setCssFiles(List<Integer> cssFiles) {
-		this.cssFiles = cssFiles;
 	}
 
 	public void setImageLayout(@IdRes int imageLayout) {

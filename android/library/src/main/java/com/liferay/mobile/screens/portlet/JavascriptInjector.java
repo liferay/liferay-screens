@@ -92,7 +92,6 @@ public class JavascriptInjector {
 
 	public String generateInjectableJs() {
 		StringBuilder injectableJs = new StringBuilder();
-		StringBuilder functionCalls = new StringBuilder();
 
 		injectableJs.append("javascript:(function(){");
 

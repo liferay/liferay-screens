@@ -5,15 +5,11 @@ import android.os.Bundle;
 import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.portlet.PortletDisplayListener;
 import com.liferay.mobile.screens.portlet.PortletDisplayScreenlet;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Sarai Díaz García
  */
 public class PortletDisplayActivity extends ThemeActivity implements PortletDisplayListener {
-
-	private List<Integer> cssFiles = new ArrayList<>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +24,6 @@ public class PortletDisplayActivity extends ThemeActivity implements PortletDisp
 			screenlet.setUrl(getIntent().getStringExtra("url"));
 		}
 
-		cssFiles.add(R.raw.portletcss);
-		screenlet.setCssFiles(cssFiles);
 
 		screenlet.load();
 	}

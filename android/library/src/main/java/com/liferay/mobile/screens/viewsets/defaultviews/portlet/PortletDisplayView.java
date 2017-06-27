@@ -97,8 +97,6 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 					super.onPageCommitVisible(view, url);
 
 					render(view, injectedJs);
-
-
 				}
 			});
 		}
