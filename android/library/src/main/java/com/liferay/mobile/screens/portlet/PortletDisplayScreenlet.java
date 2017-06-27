@@ -33,6 +33,7 @@ import com.liferay.mobile.screens.dlfile.display.image.ImageDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.pdf.PdfDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.video.VideoDisplayScreenlet;
 import com.liferay.mobile.screens.portlet.interactor.PortletDisplayInteractor;
+import com.liferay.mobile.screens.portlet.util.InjectableScript;
 import com.liferay.mobile.screens.portlet.view.PortletDisplayViewModel;
 import com.liferay.mobile.screens.util.AssetReader;
 import java.io.UnsupportedEncodingException;
@@ -89,6 +90,10 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 
 			if (portletConfiguration.automaticMode) {
 				getViewModel().setAutomaticMode(true);
+			}
+
+			for (InjectableScript script : portletConfiguration.scripts) {
+				javascriptInjector.addJs(script.getContent());
 			}
 
 			getViewModel().showFinishOperation(finalUrl, body, javascriptInjector.generateInjectableJs());
