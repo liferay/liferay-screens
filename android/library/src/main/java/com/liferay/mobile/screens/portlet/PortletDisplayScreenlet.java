@@ -54,6 +54,7 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	private int videoLayout = R.layout.video_display_default;
 	private int audioLayout = R.layout.audio_display_default;
 	private int pdfLayout = R.layout.pdf_display_default;
+	private PortletConfiguration portletConfiguration;
 
 	public PortletDisplayScreenlet(Context context) {
 		super(context);
@@ -125,7 +126,7 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	 * Then calls {@link #load()} method.
 	 */
 	protected void autoLoad() {
-		if (SessionContext.isLoggedIn() && url != null) {
+		if (portletConfiguration != null && SessionContext.isLoggedIn() && url != null) {
 			if (url.contains("documents")) {
 				loadAsset();
 			} else {
@@ -251,6 +252,8 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 		this.listener = listener;
 	}
 
+	public void setPortletConfiguration(PortletConfiguration portletConfiguration) {
+		this.portletConfiguration = portletConfiguration;
 	}
 
 	public void setImageLayout(@IdRes int imageLayout) {
