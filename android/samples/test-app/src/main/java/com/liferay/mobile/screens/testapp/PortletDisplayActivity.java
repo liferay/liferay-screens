@@ -3,6 +3,7 @@ package com.liferay.mobile.screens.testapp;
 import android.content.Intent;
 import android.os.Bundle;
 import com.liferay.mobile.screens.asset.AssetEntry;
+import com.liferay.mobile.screens.portlet.PortletConfiguration;
 import com.liferay.mobile.screens.portlet.PortletDisplayListener;
 import com.liferay.mobile.screens.portlet.PortletDisplayScreenlet;
 
@@ -18,13 +19,20 @@ public class PortletDisplayActivity extends ThemeActivity implements PortletDisp
 		setContentView(R.layout.portlet_display);
 
 		PortletDisplayScreenlet screenlet = (PortletDisplayScreenlet) findViewById(R.id.portlet_display_screenlet);
-		screenlet.setListener(this);
 
 		if (getIntent().getStringExtra("url") != null) {
 			screenlet.setUrl(getIntent().getStringExtra("url"));
 		}
 
+		PortletConfiguration portletConfiguration = new PortletConfiguration.Builder()
+			.addLocalCss("portlet.css")
+			.addRawCss(R.raw.portletcss)
+			.setAutomaticModeOn()
+			.load();
 
+		screenlet.setPortletConfiguration(portletConfiguration);
+
+		screenlet.setListener(this);
 		screenlet.load();
 	}
 
