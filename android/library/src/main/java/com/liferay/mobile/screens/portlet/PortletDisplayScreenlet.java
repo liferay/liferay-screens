@@ -87,6 +87,10 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 
 			javascriptInjector.addJsFile(R.raw.screens);
 
+			if (portletConfiguration.automaticMode) {
+				getViewModel().setAutomaticMode(true);
+			}
+
 			getViewModel().showFinishOperation(finalUrl, body, javascriptInjector.generateInjectableJs());
 		} else {
 			getViewModel().showFailedOperation(DEFAULT_ACTION, new MalformedURLException());

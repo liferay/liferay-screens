@@ -24,7 +24,7 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 	private BaseScreenlet screenlet;
 	private WebView webView;
 	private ProgressBar progressBar;
-	private boolean automaticMode;
+	private boolean automaticMode = false;
 
 	public PortletDisplayView(Context context) {
 		super(context);
