@@ -21,7 +21,7 @@ import Foundation
 public class JsScript: InjectableScript {
 	public let content: String
 
-	init(js: String) {
+	public init(js: String) {
 		content = js
 	}
 }
@@ -29,7 +29,7 @@ public class JsScript: InjectableScript {
 public class CssScript: InjectableScript {
 	public let content: String
 
-	init(css: String) {
+	public init(css: String) {
 		content = "var style = document.createElement('style');"
 			+ "style.type = 'text/css';"
 			+ "style.innerHTML = '\(css.replacingOccurrences(of: "\n", with: ""))';"
@@ -41,7 +41,7 @@ public class CssScript: InjectableScript {
 public class RemoteJsScript: InjectableScript {
 	public let content: String
 
-	init(url: String) {
+	public init(url: String) {
 		content = "var script = document.createElement('script');"
 			+ "script.language = 'javascript';"
 			+ "script.type = 'text/javascript';"
@@ -55,7 +55,7 @@ public class RemoteJsScript: InjectableScript {
 public class RemoteCssScript: InjectableScript {
 	public let content: String
 
-	init(url: String) {
+	public init(url: String) {
 		content = "var link = document.createElement('link');"
 			+ "link.type = 'text/css';"
 			+ "link.rel = 'stylesheet';"
