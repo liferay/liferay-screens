@@ -93,7 +93,7 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 		let message = body[1]
 
 		if key.hasPrefix(internalNamespace) {
-			handleInternal(key: String, message: message)
+			handleInternal(key: key, message: message)
 		}
 		else {
 			portletDisplayDelegate?.screenlet?(self,
@@ -161,18 +161,16 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 		// create a form with the parameters for the POST request and submit it to actually perform the request
 
 		// This html is a template to build the form
-		let html = Bundle.resourceInBundle(name: "index", ofType: "html", currentClass: type(of: self)) { path, _ in
-			return try! String(contentsOfFile: path, encoding: String.Encoding.utf8)
-		}
+		let html = Bundle.loadFile(name: "index", ofType: "html", currentClass: type(of: self))!
 
 		let username = SessionContext.currentContext?.basicAuthUsername ?? ""
 		let password = SessionContext.currentContext?.basicAuthPassword ?? ""
 
 		let portletUrlEscaped = portletUrl.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
 
-		return html?.replacingOccurrences(of: "<portletUrl>", with: portletUrlEscaped!)
+		return html.replacingOccurrences(of: "<portletUrl>", with: portletUrlEscaped!)
 			.replacingOccurrences(of: "<login>", with: username)
-			.replacingOccurrences(of: "<password>", with: password) ?? ""
+			.replacingOccurrences(of: "<password>", with: password)
 	}
 
 }
