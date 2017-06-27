@@ -35,8 +35,16 @@ class PortletDisplayViewController: UIViewController, PortletDisplayScreenletDel
 
 		let portletUrl = LiferayServerContext.stringPropertyForKey("portletDisplayUrl")
 
-		screenlet?.configuration = LocalScriptsConfiguration(portletUrl: portletUrl, cssFiles: ["bigger_pagination"], jsFiles: ["gallery"])
-		screenlet?.add(scriptHandler: "gallery")
+//		screenlet?.configuration = LocalScriptsConfiguration(portletUrl: portletUrl, cssFiles: ["bigger_pagination"], jsFiles: ["gallery"])
+//		screenlet?.configuration = RemoteScriptsConfiguration(portletUrl: portletUrl, jsUrls: [""], cssUrls: ["http://localhost:8000/css/bigger_pagination.css"])
+
+		let configuration = PortletConfiguration.Builder(portletUrl: portletUrl)
+				.setAutomaticModeOn()
+				.addLocalCss(fileName: "bigger_pagination")
+				.load()
+
+		screenlet?.configuration = configuration
+
 		screenlet?.load()
 	}
 
@@ -55,6 +63,14 @@ class PortletDisplayViewController: UIViewController, PortletDisplayScreenletDel
 	               onScriptMessageBody body: Any) {
 		//We can check what is the name of the message handler responsible for the action
 		performSegue(withIdentifier: "detail", sender: body)
+	}
+
+	func screenlet(_ screenlet: PortletDisplayScreenlet, jsFor portlet: String) -> InjectableScript? {
+		if portlet == "com_liferay_document_library_web_portlet_IGDisplayPortlet" {
+			return JsScript(js: Bundle.loadFile(name: "gallery", ofType: "js", currentClass: type(of: self))!)
+		}
+
+		return nil
 	}
 
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

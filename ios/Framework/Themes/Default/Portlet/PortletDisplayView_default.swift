@@ -24,6 +24,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 	open lazy var wkWebView: WKWebView = WKWebView(frame: self.frame)
 
 	var initialNavigation: WKNavigation?
+	var progressPresenter = DefaultProgressPresenter()
 
 	// MARK: BaseScreenletView
 
@@ -49,16 +50,15 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		addWebView()
 	}
 
-	override open func createProgressPresenter() -> ProgressPresenter {
-		return DefaultProgressPresenter()
-	}
-
 	// MARK: PortletDisplayViewModel
 
 	public var initialHtml: String? {
 		didSet {
 			let server = SessionContext.currentContext?.session.server ?? ""
 			initialNavigation = wkWebView.loadHTMLString(initialHtml!, baseURL: URL(string: server)!)
+
+			progressPresenter.showHUDInView(self, message: LocalizedString(
+				"default", key: "portletdisplay-loading-message", obj: self), forInteractor: Interactor())
 		}
 	}
 
@@ -89,6 +89,8 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 	public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation) {
 		guard let initialNavigation = initialNavigation, initialNavigation != navigation
 		else { return }
+
+		progressPresenter.hideHud()
 
 		if automaticMode {
 			webView.evaluateJavaScript("window.Screens.listPortlets()", completionHandler: nil)

@@ -6,11 +6,10 @@ const addClickToCards = () => {
 			let card = cards[i];
 			let imgSrc = card.querySelector('img').src;
 			event.stopPropagation();
-								  window.webkit.messageHandlers.gallery.postMessage(imgSrc);
+			window.Screens.postMessage("gallery", imgSrc);
 		})
 	}
 }
-
 
 addClickToCards();
 
