@@ -20,7 +20,7 @@ var screens = {
 			android.postMessage(namespace, message);
 		}
 		else {
-			window.webkit.messageHandlers[namespace].postMessage(message);
+			window.webkit.messageHandlers.screensDefault.postMessage([namespace, message]);
 		}
 	},
 
@@ -37,9 +37,9 @@ var screens = {
 				return portlet;
 			}
 		})
-		.filter((x, idx, arr) => arr.indexOf(x) === idx);
+		.filter((x, idx, arr) => arr.indexOf(x) === idx).join(',');
 
-		this.postMessage("screensInternal", parsedPortlets);
+		this.postMessage("screensInternal.listPortlets", parsedPortlets);
 	}
 }
 

@@ -85,11 +85,13 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		completionHandler()
 	}
 
-	public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+	public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation) {
 		guard let initialNavigation = initialNavigation, initialNavigation != navigation
 		else { return }
 
-//		webView.evaluateJavaScript("window.Screens.listPortlets()", completionHandler: nil)
+		if automaticMode {
+			webView.evaluateJavaScript("window.Screens.listPortlets()", completionHandler: nil)
+		}
 	}
 
 	// MARK: WKScriptMessageHandler

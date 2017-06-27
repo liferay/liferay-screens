@@ -44,12 +44,19 @@ import UIKit
 	                              onScriptMessageHandler key: String,
 	                              onScriptMessageBody body: Any)
 
+
+	@objc optional func screenlet(_ screenlet: PortletDisplayScreenlet,
+	                              cssFor portlet: String) -> InjectableScript?
+	@objc optional func screenlet(_ screenlet: PortletDisplayScreenlet,
+	                              jsFor portlet: String) -> InjectableScript?
+
 }
 
 /// TODO Fill screenlet description
 open class PortletDisplayScreenlet: BaseScreenlet {
 
-	let internalName = "screensInternal"
+	let internalNamespace = "screensInternal"
+	let defaultNamespace = "screensDefault"
 
 	/// Whether the content should be retrieved from the portal as soon as the Screenlet appears.
 	/// The default value is true.
@@ -79,18 +86,19 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 	// MARK: Public methods
 
 	open func handleScriptHandler(key: String, body: Any) {
-		if key == internalName {
-			handleInternal(message: body)
+		guard let body = body as? [Any],
+			let key = body[0] as? String
+			else { return }
+
+		let message = body[1]
+
+		if key.hasPrefix(internalNamespace) {
+			handleInternal(key: String, message: message)
 		}
 		else {
 			portletDisplayDelegate?.screenlet?(self,
-				onScriptMessageHandler: key, onScriptMessageBody: body)
+				onScriptMessageHandler: key, onScriptMessageBody: message)
 		}
-	}
-
-	/// Add script handler that will take messages from WKWebView.
-	open func add(scriptHandler: String) {
-		portletDisplayViewModel.add(scriptHandler: scriptHandler)
 	}
 
 	/// Call this method to load the portlet.
@@ -103,7 +111,9 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 
 		let screensScript = Bundle.loadFile(name: "Screens", ofType: "js", currentClass: type(of: self))!
 
-		portletDisplayViewModel.add(scriptHandler: internalName)
+		portletDisplayViewModel.add(scriptHandler: internalNamespace)
+		portletDisplayViewModel.add(scriptHandler: defaultNamespace)
+
 		portletDisplayViewModel.add(injectableScript: JsScript(js: screensScript))
 		portletDisplayViewModel.add(injectableScripts: configuration.scripts)
 
@@ -115,8 +125,35 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 		portletDisplayViewModel.initialHtml = html
 	}
 
-	func handleInternal(message: Any) {
+	func handleInternal(key: String, message: Any) {
+		if key.hasSuffix("listPortlets") {
+			guard let portletsString = message as? String else { return }
 
+			let portlets = portletsString.components(separatedBy: ",")
+
+			for portlet in portlets {
+				var js = portletDisplayDelegate?.screenlet?(self, jsFor: portlet)
+				var css = portletDisplayDelegate?.screenlet?(self, cssFor: portlet)
+
+				let fileName = "\(themeName!)_\(portlet)"
+
+				if js == nil {
+					js = Bundle.loadFile(name: fileName, ofType: "js", currentClass: type(of: self)).map(JsScript.init)
+				}
+
+				if css == nil {
+					css = Bundle.loadFile(name: fileName, ofType: "css", currentClass: type(of: self)).map(CssScript.init)
+				}
+
+				if let js = js {
+					portletDisplayViewModel.inject(injectableScript: js)
+				}
+
+				if let css = css {
+					portletDisplayViewModel.inject(injectableScript: css)
+				}
+			}
+		}
 	}
 
 	func configureInitialHtml(portletUrl: String) -> String {
