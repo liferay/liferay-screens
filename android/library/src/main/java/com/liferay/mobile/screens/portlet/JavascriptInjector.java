@@ -42,17 +42,6 @@ public class JavascriptInjector {
 		addScript(parsed, isNavigationFreeScript);
 	}
 
-	public void addJsUrl(String jsUrl, boolean isNavigationFreeScript) {
-		String jsScript =  "var script = document.createElement('script');"
-			+ "script.language = 'javascript';"
-			+ "script.type = 'text/javascript';"
-			+ "script.src = '" + jsUrl + "';"
-			+ "var body = document.getElementsByTagName('body')[0];"
-			+ "body.appendChild(script);";
-
-		addScript(jsScript, false);
-	}
-
 	public void addCss(String css) {
 		String styleScript = "let style = document.createElement('style');"
 			+ "style.type = 'text/css';"
@@ -63,31 +52,6 @@ public class JavascriptInjector {
 			+ "head.appendChild(style);";
 
 		addScript(styleScript, false);
-	}
-
-	public void addCss(int cssFile) {
-		AssetReader assetReader = new AssetReader(context);
-		String cssFileContent = assetReader.read(cssFile);
-		String cssScript = "let style = document.createElement('style');"
-			+ "style.type = 'text/css';"
-			+ "style.innerHTML='"
-			+ parseScript(cssFileContent)
-			+ "';"
-			+ "let head = document.getElementsByTagName('head')[0];"
-			+ "head.appendChild(style);";
-
-		addScript(cssScript, false);
-	}
-
-	public void addCssUrl(String cssUrl) {
-		String cssScript = "var link = document.createElement('link');"
-			+ "link.type = 'text/css';"
-			+ "link.rel = 'stylesheet';"
-			+ "link.href = '" + cssUrl + "';"
-			+ "var head = document.getElementsByTagName('head')[0];"
-			+ "head.appendChild(link);";
-
-		addScript(cssScript, false);
 	}
 
 	public String generateInjectableJs() {
@@ -131,4 +95,3 @@ public class JavascriptInjector {
 		return "function " + functionName + "() {" + script + "}";
 	}
 }
-
