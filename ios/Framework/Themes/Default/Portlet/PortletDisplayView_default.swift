@@ -15,7 +15,7 @@ import UIKit
 import WebKit
 
 open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewModel, WKUIDelegate, WKNavigationDelegate,
-	WKScriptMessageHandler {
+	WKScriptMessageHandler, UIScrollViewDelegate {
 
 	// MARK: Public properties
 
@@ -44,6 +44,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 		wkWebView.uiDelegate = self
 		wkWebView.navigationDelegate = self
+		wkWebView.scrollView.delegate = self
 
 		addWebView()
 	}
@@ -94,6 +95,11 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		}
 	}
 
+	func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+		return nil
+	}
+
+
 	// MARK: WKScriptMessageHandler
 
 	public func userContentController(_ userContentController: WKUserContentController,
@@ -120,9 +126,4 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 		NSLayoutConstraint.activate([top, bottom, leading, trailing])
 	}
-
-	func handleInternalMessage(_ message: Any) {
-
-	}
-
 }
