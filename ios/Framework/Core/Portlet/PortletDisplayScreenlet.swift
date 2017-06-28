@@ -13,8 +13,8 @@
 */
 import UIKit
 
-/// The PortletDisplayScreenletDelegate protocol defines some methods that you use to manage the
-/// PortletDisplayScreenlet events. All of them are optional.
+/// The PortletDisplayScreenletDelegate protocol defines some methods that you use to
+/// manage the PortletDisplayScreenlet events. All of them are optional.
 @objc public protocol PortletDisplayScreenletDelegate: BaseScreenletDelegate {
 
 	///  Called when the portlet URL is received.
@@ -68,7 +68,9 @@ import UIKit
 
 }
 
-/// TODO Fill screenlet description
+/// Portlet Display Screenlet can display a Liferay page (with one or more portlets
+/// inside). With this screenlet you can inject custom css and js files to customize
+/// your view.
 open class PortletDisplayScreenlet: BaseScreenlet {
 
 	let internalNamespace = "screensInternal"
@@ -81,6 +83,7 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 	/// The portlet URL to be displayed.
 	open var configuration: PortletConfiguration?
 
+
 	// MARK: Public properties
 
 	open var portletDisplayDelegate: PortletDisplayScreenletDelegate? {
@@ -91,6 +94,7 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 		return screenletView as! PortletDisplayViewModel
 	}
 
+
 	// MARK: BaseScreenlet
 
 	override open func onShow() {
@@ -98,6 +102,7 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 			load()
 		}
 	}
+
 
 	// MARK: Public methods
 
