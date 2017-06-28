@@ -44,9 +44,25 @@ import UIKit
 	                              onScriptMessageHandler key: String,
 	                              onScriptMessageBody body: Any)
 
-
+	/// Called this method when we want to search the css file to inject in the portlet
+	/// when the automaticMode in PortletConfiguration is on.
+	/// It's not necessary the same filename as the portlet. For example:
+	/// Portlet name: "com_liferay_document_library_web_portlet_IGDisplayPortlet"
+	/// Filename: gallery.css
+	/// - Parameters:
+	///	  - portlet: name of the internal portlet.
+	/// - Returns: injectable script.
 	@objc optional func screenlet(_ screenlet: PortletDisplayScreenlet,
 	                              cssFor portlet: String) -> InjectableScript?
+
+	/// Called this method when we want to search the js file to inject in the portlet
+	/// when the automaticMode in PortletConfiguration is on.
+	/// It's not necessary the same filename as the portlet. For example:
+	/// Portlet name: "com_liferay_document_library_web_portlet_IGDisplayPortlet"
+	/// Filename: gallery.js
+	/// - Parameters:
+	///	  - portlet: name of the internal portlet.
+	/// - Returns: injectable script.
 	@objc optional func screenlet(_ screenlet: PortletDisplayScreenlet,
 	                              jsFor portlet: String) -> InjectableScript?
 
