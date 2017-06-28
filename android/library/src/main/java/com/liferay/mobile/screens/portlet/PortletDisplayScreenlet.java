@@ -33,7 +33,9 @@ import com.liferay.mobile.screens.dlfile.display.image.ImageDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.pdf.PdfDisplayScreenlet;
 import com.liferay.mobile.screens.dlfile.display.video.VideoDisplayScreenlet;
 import com.liferay.mobile.screens.portlet.interactor.PortletDisplayInteractor;
+import com.liferay.mobile.screens.portlet.util.CssScript;
 import com.liferay.mobile.screens.portlet.util.InjectableScript;
+import com.liferay.mobile.screens.portlet.util.JsScript;
 import com.liferay.mobile.screens.portlet.view.PortletDisplayViewModel;
 import com.liferay.mobile.screens.util.AssetReader;
 import java.io.UnsupportedEncodingException;
@@ -171,26 +173,21 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 
 	@Override
 	public void onScriptMessageHandler(String namespace, String body) {
-		if ("screensInternal".equals(namespace) && portletConfiguration.automaticMode) {
-			String[] portlets = body.split(",");
-			for (String portlet : portlets) {
-				String fileName = getLayoutTheme() + "_" + portlet;
-
-				AssetReader assetReader = new AssetReader(getContext());
-
-				String jsContent = assetReader.read(fileName + ".js");
-				String cssContent = assetReader.read(fileName + ".css");
-
-				JavascriptInjector javascriptInjector = new JavascriptInjector(getContext());
-
-				javascriptInjector.addCss(cssContent);
-				javascriptInjector.addJs(jsContent, true);
-
-				getViewModel().injectJavascript(javascriptInjector.generateInjectableJs());
-			}
+		if (namespace.startsWith("screensInternal")) {
+			handleInternal(namespace, body);
 		} else {
 			getListener().onScriptMessageHandler(namespace, body);
 		}
+	}
+
+	@Override
+	public InjectableScript cssForPortlet(String portlet) {
+		return getListener().cssForPortlet(portlet);
+	}
+
+	@Override
+	public InjectableScript jsForPortlet(String portlet) {
+		return getListener().jsForPortlet(portlet);
 	}
 
 	@Override
@@ -287,5 +284,39 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 		layouts.put(VideoDisplayScreenlet.class.getName(), videoLayout);
 		layouts.put(AudioDisplayScreenlet.class.getName(), audioLayout);
 		layouts.put(PdfDisplayScreenlet.class.getName(), pdfLayout);
+	}
+
+	private void handleInternal(String namespace, String body) {
+		if (namespace.endsWith("listPortlets")) {
+			String[] portlets = body.split(",");
+
+			for (String portlet : portlets) {
+
+				InjectableScript js = listener.jsForPortlet(portlet);
+				InjectableScript css = listener.cssForPortlet(portlet);
+
+				String fileName = getLayoutTheme() + "_" + portlet;
+
+				if (js == null) {
+					js = new JsScript(new AssetReader(getContext()).read(fileName));
+				}
+
+				if (css == null) {
+					css = new CssScript(new AssetReader(getContext()).read(fileName));
+				}
+
+				JavascriptInjector javascriptInjector = new JavascriptInjector(getContext());
+
+				if (!"".equals(js.getContent())) {
+					javascriptInjector.addJs(js.getContent(), true);
+				}
+
+				if (!"".equals(css.getContent())) {
+					javascriptInjector.addCss(css.getContent());
+				}
+
+				getViewModel().injectJavascript(javascriptInjector.generateInjectableJs());
+			}
+		}
 	}
 }

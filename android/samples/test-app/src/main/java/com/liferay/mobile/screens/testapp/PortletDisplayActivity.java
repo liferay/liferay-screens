@@ -6,6 +6,9 @@ import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.portlet.PortletConfiguration;
 import com.liferay.mobile.screens.portlet.PortletDisplayListener;
 import com.liferay.mobile.screens.portlet.PortletDisplayScreenlet;
+import com.liferay.mobile.screens.portlet.util.InjectableScript;
+import com.liferay.mobile.screens.portlet.util.JsScript;
+import com.liferay.mobile.screens.util.AssetReader;
 
 /**
  * @author Sarai Díaz García
@@ -62,5 +65,23 @@ public class PortletDisplayActivity extends ThemeActivity implements PortletDisp
 			intent.putExtra("imgSrcPosition", imgSrcPosition);
 			startActivity(intent);
 		}
+	}
+
+	@Override
+	public InjectableScript cssForPortlet(String portlet) {
+		if ("com_liferay_document_library_web_portlet_IGDisplayPortlet".equals(portlet)) {
+			return new JsScript(new AssetReader(getApplicationContext()).read("gallery.css"));
+		}
+
+		return null;
+	}
+
+	@Override
+	public InjectableScript jsForPortlet(String portlet) {
+		if ("com_liferay_document_library_web_portlet_IGDisplayPortlet".equals(portlet)) {
+			return new JsScript(new AssetReader(getApplicationContext()).read("gallery.js"));
+		}
+
+		return null;
 	}
 }
