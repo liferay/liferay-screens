@@ -24,19 +24,18 @@ public class PortletDisplayActivity extends ThemeActivity implements PortletDisp
 		PortletDisplayScreenlet screenlet = (PortletDisplayScreenlet) findViewById(R.id.portlet_display_screenlet);
 
 		if (getIntent().getStringExtra("url") != null) {
-			screenlet.setUrl(getIntent().getStringExtra("url"));
+			PortletConfiguration portletConfiguration = new PortletConfiguration.Builder(getIntent().getStringExtra("url"))
+				.addLocalCss("portlet.css")
+				.addRawCss(R.raw.portletcss)
+				.disableTheme()
+				.load();
+
+			screenlet.setPortletConfiguration(portletConfiguration);
+
+			screenlet.setListener(this);
+			screenlet.load();
 		}
 
-		PortletConfiguration portletConfiguration = new PortletConfiguration.Builder()
-			.addLocalCss("portlet.css")
-			.addRawCss(R.raw.portletcss)
-			.disableTheme()
-			.load();
-
-		screenlet.setPortletConfiguration(portletConfiguration);
-
-		screenlet.setListener(this);
-		screenlet.load();
 	}
 
 	@Override

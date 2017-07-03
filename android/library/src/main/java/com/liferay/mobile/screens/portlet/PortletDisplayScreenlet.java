@@ -50,7 +50,6 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	implements PortletDisplayListener {
 
 	private boolean autoLoad;
-	private String url;
 	private PortletDisplayListener listener;
 	private HashMap<String, Integer> layouts = new HashMap<>();
 	private int imageLayout = R.layout.image_display_default;
@@ -81,20 +80,20 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	 */
 	public void load() {
 		getViewModel().showStartOperation(DEFAULT_ACTION);
-		if (url != null) {
+		if (portletConfiguration != null) {
 
-			String finalUrl = buildPortletUrl(url);
+			String finalUrl = buildPortletUrl(portletConfiguration.getPortletUrl());
 			String body = buildBody();
 
 			JavascriptInjector javascriptInjector = new JavascriptInjector(getContext());
 
 			javascriptInjector.addJsFile(R.raw.screens);
 
-			if (!portletConfiguration.theme) {
+			if (!portletConfiguration.isThemeEnabled()) {
 				getViewModel().setTheme(false);
 			}
 
-			for (InjectableScript script : portletConfiguration.scripts) {
+			for (InjectableScript script : portletConfiguration.getScripts()) {
 				javascriptInjector.addJs(script.getContent());
 			}
 
@@ -133,13 +132,13 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	}
 
 	/**
-	 * Checks if there is a session created and if exists {@link #url} and
+	 * Checks if there is a session created and if exists {@link #portletConfiguration} and
 	 * {@link #portletConfiguration} attributes.
 	 * Then calls {@link #load()} method.
 	 */
 	protected void autoLoad() {
-		if (SessionContext.isLoggedIn() && portletConfiguration != null && url != null) {
-			if (url.contains("documents")) {
+		if (SessionContext.isLoggedIn() && portletConfiguration != null && portletConfiguration.getPortletUrl() != null) {
+			if (portletConfiguration.getPortletUrl().contains("documents")) {
 				loadAsset();
 			} else {
 				load();
@@ -198,8 +197,6 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 
 		autoLoad = typedArray.getBoolean(R.styleable.PortletDisplayScreenlet_autoLoad, true);
 
-		url = typedArray.getString(R.styleable.PortletDisplayScreenlet_url);
-
 		int layoutId = typedArray.getResourceId(R.styleable.PortletDisplayScreenlet_layoutId, getDefaultLayoutId());
 
 		typedArray.recycle();
@@ -214,7 +211,7 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 
 	@Override
 	protected void onUserAction(String userActionName, PortletDisplayInteractor interactor, Object... args) {
-		interactor.start(url);
+		interactor.start(portletConfiguration.getPortletUrl());
 	}
 
 	@Override
@@ -241,14 +238,6 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 
 	public void setAutoLoad(boolean autoLoad) {
 		this.autoLoad = autoLoad;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
 	}
 
 	public PortletDisplayListener getListener() {

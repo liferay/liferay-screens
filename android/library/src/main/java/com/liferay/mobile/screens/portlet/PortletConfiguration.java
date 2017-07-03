@@ -29,39 +29,60 @@ import java.util.List;
  */
 public class PortletConfiguration {
 
-	public String portletUrl;
-	public List<InjectableScript> scripts;
-	public boolean theme;
+	private String portletUrl;
+	private List<InjectableScript> scripts;
+	private boolean isThemeEnabled;
 
-	public PortletConfiguration(String portletUrl, List<InjectableScript> scripts, boolean theme) {
+	public PortletConfiguration(String portletUrl, List<InjectableScript> scripts, boolean isThemeEnabled) {
 		this.portletUrl = portletUrl;
 		this.scripts = scripts;
-		this.theme = theme;
+		this.isThemeEnabled = isThemeEnabled;
+	}
+
+	public String getPortletUrl() {
+		return portletUrl;
+	}
+
+	public List<InjectableScript> getScripts() {
+		return scripts;
+	}
+
+	public boolean isThemeEnabled() {
+		return isThemeEnabled;
 	}
 
 	public static class Builder {
 
 		private String portletUrl;
-		private List<String> localJs = new ArrayList<>();
-		private List<String> localCss = new ArrayList<>();
-		private List<String> remoteJs = new ArrayList<>();
-		private List<String> remoteCss = new ArrayList<>();
-		private List<Integer> localRawCss = new ArrayList<>();
-		private List<Integer> localRawJs = new ArrayList<>();
-		private boolean theme;
+		private List<String> localJs;
+		private List<String> localCss;
+		private List<String> remoteJs;
+		private List<String> remoteCss;
+		private List<Integer> localRawJs;
+		private List<Integer> localRawCss;
+		private boolean isThemeEnabled;
 
-		public Builder() {
+		public Builder(String portletUrl) {
 			super();
+
+			this.portletUrl = portletUrl;
+			localJs = new ArrayList<>();
+			localCss = new ArrayList<>();
+			remoteJs = new ArrayList<>();
+			remoteCss = new ArrayList<>();
+			localRawJs = new ArrayList<>();
+			localRawCss = new ArrayList<>();
+			this.isThemeEnabled = true;
 		}
 
 		public Builder(String portletUrl, List<String> localJs, List<String> localCss,
-			List<String> remoteJs, List<String> remoteCss, boolean theme) {
+			List<String> remoteJs, List<String> remoteCss, boolean isThemeEnabled) {
 			this.portletUrl = portletUrl;
 			this.localJs = localJs;
 			this.localCss = localCss;
 			this.remoteJs = remoteJs;
 			this.remoteCss = remoteCss;
-			this.theme = theme;
+			this.isThemeEnabled = isThemeEnabled;
 		}
 
 		public Builder addLocalJs(String fileName) {
@@ -95,7 +116,7 @@ public class PortletConfiguration {
 		}
 
 		public Builder disableTheme() {
-			this.theme = false;
+			this.isThemeEnabled = false;
 			return this;
 		}
 
@@ -127,7 +148,7 @@ public class PortletConfiguration {
 				allScripts.add(new JsScript(loadLocalContent(rawJs)));
 			}
 
-			return new PortletConfiguration(portletUrl, allScripts, theme);
+			return new PortletConfiguration(portletUrl, allScripts, isThemeEnabled);
 		}
 
 		private String loadLocalContent(String fileName) {
