@@ -31,12 +31,12 @@ public class PortletConfiguration {
 
 	public String portletUrl;
 	public List<InjectableScript> scripts;
-	public boolean automaticMode;
+	public boolean theme;
 
-	public PortletConfiguration(String portletUrl, List<InjectableScript> scripts, boolean automaticMode) {
+	public PortletConfiguration(String portletUrl, List<InjectableScript> scripts, boolean theme) {
 		this.portletUrl = portletUrl;
 		this.scripts = scripts;
-		this.automaticMode = automaticMode;
+		this.theme = theme;
 	}
 
 	public static class Builder {
@@ -48,20 +48,20 @@ public class PortletConfiguration {
 		private List<String> remoteCss = new ArrayList<>();
 		private List<Integer> localRawCss = new ArrayList<>();
 		private List<Integer> localRawJs = new ArrayList<>();
-		private boolean automaticMode;
+		private boolean theme;
 
 		public Builder() {
 			super();
 		}
 
 		public Builder(String portletUrl, List<String> localJs, List<String> localCss,
-			List<String> remoteJs, List<String> remoteCss, boolean automaticMode) {
+			List<String> remoteJs, List<String> remoteCss, boolean theme) {
 			this.portletUrl = portletUrl;
 			this.localJs = localJs;
 			this.localCss = localCss;
 			this.remoteJs = remoteJs;
 			this.remoteCss = remoteCss;
-			this.automaticMode = automaticMode;
+			this.theme = theme;
 		}
 
 		public Builder addLocalJs(String fileName) {
@@ -94,8 +94,8 @@ public class PortletConfiguration {
 			return this;
 		}
 
-		public Builder setAutomaticModeOn() {
-			this.automaticMode = true;
+		public Builder disableTheme() {
+			this.theme = false;
 			return this;
 		}
 
@@ -127,7 +127,7 @@ public class PortletConfiguration {
 				allScripts.add(new JsScript(loadLocalContent(rawJs)));
 			}
 
-			return new PortletConfiguration(portletUrl, allScripts, automaticMode);
+			return new PortletConfiguration(portletUrl, allScripts, theme);
 		}
 
 		private String loadLocalContent(String fileName) {

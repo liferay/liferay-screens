@@ -30,7 +30,7 @@ public class PortletDisplayActivity extends ThemeActivity implements PortletDisp
 		PortletConfiguration portletConfiguration = new PortletConfiguration.Builder()
 			.addLocalCss("portlet.css")
 			.addRawCss(R.raw.portletcss)
-			.setAutomaticModeOn()
+			.disableTheme()
 			.load();
 
 		screenlet.setPortletConfiguration(portletConfiguration);

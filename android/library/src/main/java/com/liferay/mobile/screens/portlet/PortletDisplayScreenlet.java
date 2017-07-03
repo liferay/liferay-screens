@@ -90,8 +90,8 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 
 			javascriptInjector.addJsFile(R.raw.screens);
 
-			if (portletConfiguration.automaticMode) {
-				getViewModel().setAutomaticMode(true);
+			if (!portletConfiguration.theme) {
+				getViewModel().setTheme(false);
 			}
 
 			for (InjectableScript script : portletConfiguration.scripts) {

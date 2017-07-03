@@ -50,7 +50,7 @@ public interface PortletDisplayViewModel extends BaseViewModel {
 	 * Called this method to set the automatic mode to inject the css and js files
 	 * from visible portlets automatically if exists.
 	 *
-	 * @param automaticMode if the proper css and js files must be injected or not.
+	 * @param theme if the proper css and js files must be injected or not.
 	 */
-	void setAutomaticMode(boolean automaticMode);
+	void setTheme(boolean theme);
 }

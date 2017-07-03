@@ -45,7 +45,7 @@ public interface PortletDisplayListener extends BaseCacheListener {
 
 	/**
 	 * Called this method when we want to search the css file to inject in the portlet
-	 * when the {@link PortletConfiguration#automaticMode} is on.
+	 * when the {@link PortletConfiguration#theme} is on.
 	 * It's not necessary the same filename as the portlet. For example:
 	 * Portlet name: "com_liferay_document_library_web_portlet_IGDisplayPortlet"
 	 * Filename: gallery.css
@@ -57,7 +57,7 @@ public interface PortletDisplayListener extends BaseCacheListener {
 
 	/**
 	 * Called this method when we want to search the js file to inject in the portlet
-	 * when the {@link PortletConfiguration#automaticMode} is on.
+	 * when the {@link PortletConfiguration#theme} is on.
 	 * It's not necessary the same filename as the portlet. For example:
 	 * Portlet name: "com_liferay_document_library_web_portlet_IGDisplayPortlet"
 	 * Filename: gallery.js
