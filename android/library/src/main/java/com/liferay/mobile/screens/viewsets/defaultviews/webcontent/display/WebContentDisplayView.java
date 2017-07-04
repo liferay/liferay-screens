@@ -83,7 +83,8 @@ public class WebContentDisplayView extends FrameLayout implements WebContentDisp
 
 			LiferayLogger.i("article loaded: " + webContent);
 
-			String styledHtml = customCSs + "<div class=\"MobileCSS\">" + webContent.getHtml() + "</div>";
+			String styledHtml = "<style>" + customCSs + "</style>"
+				+ "<div class=\"MobileCSS\">" + webContent.getHtml() + "</div>";
 
 			//TODO check encoding
 			webView.loadDataWithBaseURL(LiferayServerContext.getServer(), styledHtml, "text/html", "utf-8", null);
