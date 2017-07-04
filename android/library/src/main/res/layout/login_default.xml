@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.viewsets.defaultviews.auth.login.LoginView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.liferay.mobile.screens.viewsets.defaultviews.auth.login.LoginView
+	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:liferay="http://schemas.android.com/apk/res-auto"
 	style="@style/default_screenlet"
 	>

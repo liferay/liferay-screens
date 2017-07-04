@@ -18,6 +18,9 @@ All notable changes to this project will be documented in this file.
 * Expose Video events in the VideoDisplayScreenlet 
 * Allow developers override injected CSS in WebContentDisplayScreenlet
 
+### Bugs
+* Fix error in material LoginView with cookie login
+
 ## iOS
 
 ### Bugs
