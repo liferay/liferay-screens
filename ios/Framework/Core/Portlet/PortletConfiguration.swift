@@ -43,22 +43,22 @@ public class PortletConfiguration {
 			self.isThemeEnabled = true
 		}
 
-		public func addLocalJs(fileName: String) -> Self {
-			self.localJs.append(fileName)
+		public func addJs(localFile: String) -> Self {
+			self.localJs.append(localFile)
 			return self
 		}
 
-		public func addLocalCss(fileName: String) -> Self {
-			self.localCss.append(fileName)
+		public func addCss(localFile: String) -> Self {
+			self.localCss.append(localFile)
 			return self
 		}
 
-		public func addRemoteJs(url: String) -> Self {
+		public func addJs(url: String) -> Self {
 			self.remoteJs.append(url)
 			return self
 		}
 
-		public func addRemoteCss(url: String) -> Self {
+		public func addCss(url: String) -> Self {
 			self.remoteCss.append(url)
 			return self
 		}

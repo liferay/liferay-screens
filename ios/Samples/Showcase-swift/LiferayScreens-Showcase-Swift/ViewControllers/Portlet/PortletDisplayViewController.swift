@@ -39,7 +39,7 @@ class PortletDisplayViewController: UIViewController, PortletDisplayScreenletDel
 //		screenlet?.configuration = RemoteScriptsConfiguration(portletUrl: portletUrl, jsUrls: [""], cssUrls: ["http://localhost:8000/css/bigger_pagination.css"])
 
 		let configuration = PortletConfiguration.Builder(portletUrl: portletUrl)
-				.addLocalCss(fileName: "bigger_pagination")
+				.addCss(localFile: "bigger_pagination")
 				.load()
 
 		screenlet?.configuration = configuration
