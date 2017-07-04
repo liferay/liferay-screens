@@ -17,7 +17,7 @@ import UIKit
 
 	var initialHtml: String? { get set }
 
-	var automaticMode: Bool { get set }
+	var isThemeEnabled: Bool { get set }
 
 	// Inject JS to be used by the screenlet.
 	func add(injectableScripts: [InjectableScript])

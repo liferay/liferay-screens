@@ -138,9 +138,7 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 		portletDisplayViewModel.add(injectableScript: JsScript(js: screensScript))
 		portletDisplayViewModel.add(injectableScripts: configuration.scripts)
 
-		if configuration.automaticMode {
-			portletDisplayViewModel.automaticMode = true
-		}
+		portletDisplayViewModel.isThemeEnabled = configuration.isThemeEnabled
 
 		let html = configureInitialHtml(portletUrl: configuration.portletUrl)
 		portletDisplayViewModel.initialHtml = html

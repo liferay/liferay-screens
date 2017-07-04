@@ -19,7 +19,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 	// MARK: Public properties
 
-	open var automaticMode = false
+	open var isThemeEnabled = false
 
 	open lazy var wkWebView: WKWebView = WKWebView(frame: self.frame)
 
@@ -92,7 +92,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 		progressPresenter.hideHud()
 
-		if automaticMode {
+		if isThemeEnabled {
 			webView.evaluateJavaScript("window.Screens.listPortlets()", completionHandler: nil)
 		}
 	}

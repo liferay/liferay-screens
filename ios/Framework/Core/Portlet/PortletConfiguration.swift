@@ -18,13 +18,12 @@ public class PortletConfiguration {
 
 	public let portletUrl: String
 	public let scripts: [InjectableScript]
-	public let automaticMode: Bool
+	public let isThemeEnabled: Bool
 
-
-	public init(portletUrl: String, scripts: [InjectableScript], automaticMode: Bool) {
+	public init(portletUrl: String, scripts: [InjectableScript], isThemeEnabled: Bool) {
 		self.portletUrl = portletUrl
 		self.scripts = scripts
-		self.automaticMode = automaticMode
+		self.isThemeEnabled = isThemeEnabled
 	}
 
 	public class Builder {
@@ -33,7 +32,7 @@ public class PortletConfiguration {
 		var localCss: [String]
 		var remoteJs: [String]
 		var remoteCss: [String]
-		var automaticMode: Bool
+		var isThemeEnabled: Bool
 
 		public init(portletUrl: String) {
 			self.portletUrl = portletUrl
@@ -41,7 +40,7 @@ public class PortletConfiguration {
 			self.localCss = []
 			self.remoteJs = []
 			self.remoteCss = []
-			self.automaticMode = false
+			self.isThemeEnabled = true
 		}
 
 		public func addLocalJs(fileName: String) -> Self {
@@ -64,8 +63,8 @@ public class PortletConfiguration {
 			return self
 		}
 
-		public func setAutomaticModeOn() -> Self {
-			self.automaticMode = true
+		public func disableTheme() -> Self {
+			self.isThemeEnabled = false
 			return self
 		}
 
@@ -77,7 +76,7 @@ public class PortletConfiguration {
 
 			let allScripts: [InjectableScript] = localJsScripts + localCssScripts + remoteJsScripts + remoteCssScripts
 
-			return PortletConfiguration(portletUrl: portletUrl, scripts: allScripts, automaticMode: automaticMode)
+			return PortletConfiguration(portletUrl: portletUrl, scripts: allScripts, isThemeEnabled: isThemeEnabled)
 		}
 
 		private func loadLocalCssContent(fileName: String) -> String {
