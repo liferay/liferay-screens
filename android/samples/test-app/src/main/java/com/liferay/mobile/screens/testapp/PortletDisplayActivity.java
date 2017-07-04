@@ -27,7 +27,6 @@ public class PortletDisplayActivity extends ThemeActivity implements PortletDisp
 			PortletConfiguration portletConfiguration = new PortletConfiguration.Builder(getIntent().getStringExtra("url"))
 				.addLocalCss("portlet.css")
 				.addRawCss(R.raw.portletcss)
-				.disableTheme()
 				.load();
 
 			screenlet.setPortletConfiguration(portletConfiguration);
