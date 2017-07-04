@@ -86,16 +86,16 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 			webView.postUrl(url, body.getBytes());
 
 			webView.setWebViewClient(new WebViewClient() {
+
+				boolean isLoaded = false;
+
 				@Override
 				public void onPageFinished(WebView view, String url) {
 					super.onPageFinished(view, url);
-				}
-
-				@Override
-				public void onPageCommitVisible(WebView view, String url) {
-					super.onPageCommitVisible(view, url);
-
-					render(view, injectedJs);
+					if (!isLoaded) {
+						render(view, injectedJs);
+						isLoaded = true;
+					}
 				}
 			});
 		}
