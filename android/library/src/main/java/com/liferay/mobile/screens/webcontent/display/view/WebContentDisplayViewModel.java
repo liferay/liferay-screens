@@ -27,5 +27,5 @@ public interface WebContentDisplayViewModel extends BaseViewModel {
 	 *
 	 * @param html {@link WebContent} content
 	 */
-	void showFinishOperation(WebContent html);
+	void showFinishOperation(WebContent html, String customCss);
 }
