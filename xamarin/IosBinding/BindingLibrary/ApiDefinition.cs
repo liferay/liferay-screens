@@ -6,61 +6,98 @@ using UIKit;
 
 namespace BindingLibrary
 {
-    // The first step to creating a binding is to add your native library ("libNativeLibrary.a")
-    // to the project by right-clicking (or Control-clicking) the folder containing this source
-    // file and clicking "Add files..." and then simply select the native library (or libraries)
-    // that you want to bind.
-    //
-    // When you do that, you'll notice that MonoDevelop generates a code-behind file for each
-    // native library which will contain a [LinkWith] attribute. VisualStudio auto-detects the
-    // architectures that the native library supports and fills in that information for you,
-    // however, it cannot auto-detect any Frameworks or other system libraries that the
-    // native library may depend on, so you'll need to fill in that information yourself.
-    //
-    // Once you've done that, you're ready to move on to binding the API...
-    //
-    //
-    // Here is where you'd define your API definition for the native Objective-C library.
-    //
-    // For example, to bind the following Objective-C class:
-    //
-    //     @interface Widget : NSObject {
-    //     }
-    //
-    // The C# binding would look like this:
-    //
-    //     [BaseType (typeof (NSObject))]
-    //     interface Widget {
-    //     }
-    //
-    // To bind Objective-C properties, such as:
-    //
-    //     @property (nonatomic, readwrite, assign) CGPoint center;
-    //
-    // You would add a property definition in the C# interface like so:
-    //
-    //     [Export ("center")]
-    //     CGPoint Center { get; set; }
-    //
-    // To bind an Objective-C method, such as:
-    //
-    //     -(void) doSomething:(NSObject *)object atIndex:(NSInteger)index;
-    //
-    // You would add a method definition to the C# interface like so:
-    //
-    //     [Export ("doSomething:atIndex:")]
-    //     void DoSomething (NSObject object, int index);
-    //
-    // Objective-C "constructors" such as:
-    //
-    //     -(id)initWithElmo:(ElmoMuppet *)elmo;
-    //
-    // Can be bound as:
-    //
-    //     [Export ("initWithElmo:")]
-    //     IntPtr Constructor (ElmoMuppet elmo);
-    //
-    // For more information, see http://docs.xamarin.com/ios/advanced_topics/binding_objective-c_types
-    //
+	// @interface LoginScreenlet : BaseScreenlet <BasicAuthBasedType>
+	[BaseType(typeof(BaseScreenlet))]
+	interface LoginScreenlet //: IBasicAuthBasedType
+	{
+		// @property (copy, nonatomic) NSString * _Nullable basicAuthMethod;
+		[NullAllowed, Export("basicAuthMethod")]
+		string BasicAuthMethod { get; set; }
+
+		// @property (nonatomic) BOOL saveCredentials;
+		[Export("saveCredentials")]
+		bool SaveCredentials { get; set; }
+
+		// @property (nonatomic) int64_t companyId;
+		[Export("companyId")]
+		long CompanyId { get; set; }
+
+		// @property (copy, nonatomic) NSString * _Nonnull OAuthConsumerKey;
+		[Export("OAuthConsumerKey")]
+		string OAuthConsumerKey { get; set; }
+
+		// @property (copy, nonatomic) NSString * _Nonnull OAuthConsumerSecret;
+		[Export("OAuthConsumerSecret")]
+		string OAuthConsumerSecret { get; set; }
+
+		// @property (copy, nonatomic) NSString * _Nonnull loginMode;
+		[Export("loginMode")]
+		string LoginMode { get; set; }
+
+		// @property (copy, nonatomic) void (^ _Nullable)(NSURLAuthenticationChallenge * _Nonnull, void (^ _Nonnull)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nonnull)) challengeResolver;
+		//[NullAllowed, Export("challengeResolver", ArgumentSemantic.Copy)]
+		//Action<NSURLAuthenticationChallenge, Action<NSURLSessionAuthChallengeDisposition, NSURLCredential>> ChallengeResolver { get; set; }
+
+		[Wrap("WeakLoginDelegate")]
+		[NullAllowed]
+		LoginScreenletDelegate LoginDelegate { get; }
+
+		// @property (readonly, nonatomic, strong) id<LoginScreenletDelegate> _Nullable loginDelegate;
+		[NullAllowed, Export("loginDelegate", ArgumentSemantic.Strong)]
+		NSObject WeakLoginDelegate { get; }
+
+		// @property (readonly, nonatomic, strong) id<LoginViewModel> _Nonnull viewModel;
+		//[Export("viewModel", ArgumentSemantic.Strong)]
+		//LoginViewModel ViewModel { get; }
+
+		// @property (nonatomic) enum AuthType authType;
+		[Export("authType", ArgumentSemantic.Assign)]
+		AuthType AuthType { get; set; }
+
+		// -(void)onCreated;
+		[Export("onCreated")]
+		void OnCreated();
+
+		// -(Interactor * _Nullable)createInteractorWithName:(NSString * _Nonnull)name sender:(id _Nullable)sender __attribute__((warn_unused_result));
+		[Export("createInteractorWithName:sender:")]
+		[return: NullAllowed]
+		Interactor CreateInteractorWithName(string name, [NullAllowed] NSObject sender);
+
+		// -(BOOL)loadStoredCredentials __attribute__((warn_unused_result));
+		[Export("loadStoredCredentials")]
+		[Verify(MethodToProperty)]
+		bool LoadStoredCredentials { get; }
+
+		// -(instancetype _Nonnull)initWithFrame:(CGRect)frame themeName:(NSString * _Nullable)themeName __attribute__((objc_designated_initializer));
+		[Export("initWithFrame:themeName:")]
+		[DesignatedInitializer]
+		IntPtr Constructor(CGRect frame, [NullAllowed] string themeName);
+
+		// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
+		[Export("initWithCoder:")]
+		[DesignatedInitializer]
+		IntPtr Constructor(NSCoder aDecoder);
+	}
+
+	// @protocol LoginScreenletDelegate <BaseScreenletDelegate>
+	[Protocol, Model]
+	interface LoginScreenletDelegate : IBaseScreenletDelegate
+	{
+		// @optional -(void)screenlet:(BaseScreenlet * _Nonnull)screenlet onLoginResponseUserAttributes:(NSDictionary<NSString *,id> * _Nonnull)attributes;
+		[Export("screenlet:onLoginResponseUserAttributes:")]
+		void OnLoginResponseUserAttributes(BaseScreenlet screenlet, NSDictionary<NSString, NSObject> attributes);
+
+		// @optional -(void)screenlet:(BaseScreenlet * _Nonnull)screenlet onLoginError:(NSError * _Nonnull)error;
+		[Export("screenlet:onLoginError:")]
+		void OnLoginError(BaseScreenlet screenlet, NSError error);
+
+		// @optional -(void)screenlet:(BaseScreenlet * _Nonnull)screenlet onCredentialsSavedUserAttributes:(NSDictionary<NSString *,id> * _Nonnull)attributes;
+		[Export("screenlet:onCredentialsSavedUserAttributes:")]
+		void OnCredentialsSavedUserAttributes(BaseScreenlet screenlet, NSDictionary<NSString, NSObject> attributes);
+
+		// @optional -(void)screenlet:(LoginScreenlet * _Nonnull)screenlet onCredentialsLoadedUserAttributes:(NSDictionary<NSString *,id> * _Nonnull)attributes;
+		[Export("screenlet:onCredentialsLoadedUserAttributes:")]
+		void OnCredentialsLoadedUserAttributes(LoginScreenlet screenlet, NSDictionary<NSString, NSObject> attributes);
+	}
 }
 
