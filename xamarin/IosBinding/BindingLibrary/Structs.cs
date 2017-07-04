@@ -4,7 +4,7 @@ using ObjCRuntime;
 namespace BindingLibrary
 {
 [Native]
-public enum AuthType : nint
+public enum AuthType : ulong
 {
     Basic = 1,
     OAuth = 2,
@@ -12,7 +12,7 @@ public enum AuthType : nint
 }
 
 [Native]
-public enum LiferayMediaType : nint
+public enum LiferayMediaType : ulong
 {
     Camera = 0,
     Video = 1,
@@ -21,14 +21,14 @@ public enum LiferayMediaType : nint
 }
 
 [Native]
-public enum LiferayServerVersion : nint
+public enum LiferayServerVersion : ulong
 {
     LiferayServerVersionV62 = 62,
     LiferayServerVersionV70 = 70
 }
 
 [Native]
-public enum ProgressCloseMode : nint
+public enum ProgressCloseMode : ulong
 {
     ManualClose = 0,
     ManualClose_TouchClosable = 1,
@@ -37,7 +37,7 @@ public enum ProgressCloseMode : nint
 }
 
 [Native]
-public enum ProgressMessageType : nint
+public enum ProgressMessageType : ulong
 {
     Working = 0,
     Failure = 1,
@@ -45,7 +45,7 @@ public enum ProgressMessageType : nint
 }
 
 [Native]
-public enum ProgressSpinnerMode : nint
+public enum ProgressSpinnerMode : ulong
 {
     IndeterminateSpinner = 0,
     DeterminateSpinner = 1,
@@ -53,7 +53,7 @@ public enum ProgressSpinnerMode : nint
 }
 
 [Native]
-public enum SyncConflictResolution : nint
+public enum SyncConflictResolution : ulong
 {
     UseRemote = 0,
     UseLocal = 1,
