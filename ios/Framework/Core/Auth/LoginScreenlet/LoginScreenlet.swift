@@ -15,7 +15,8 @@ import UIKit
 
 /// The LoginScreenletDelegate protocol defines some methods that you use to manage the
 /// LoginScreenlet events. All of them are optional.
-@objc public protocol LoginScreenletDelegate: BaseScreenletDelegate {
+@objc(LoginScreenletDelegate)
+public protocol LoginScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when login successfully completes.
 	/// The user attributes are passed as a dictionary of keys (String or NSStrings) 
@@ -55,6 +56,7 @@ import UIKit
 
 }
 
+@objc(LoginScreenlet)
 open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 
 	// MARK: Inspectables

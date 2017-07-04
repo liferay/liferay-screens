@@ -34,6 +34,7 @@ import QuartzCore
 
 /// BaseScreenlet is the base class from which all Screenlet classes must inherit.
 /// A screenlet is the container for a screenlet view.
+@objc(BaseScreenlet)
 @IBDesignable open class BaseScreenlet: UIView {
 
 	// MARK: Static properties
