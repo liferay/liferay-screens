@@ -5,7 +5,9 @@ var screens = {
 	},
 
 	reloadScripts: function() {
-		this.screensScripts_.forEach(fn => fn());
+		this.screensScripts_.forEach(function(scripts) {
+		    scripts();
+		});
 	},
 
 	isAndroid: function() {
@@ -25,11 +27,11 @@ var screens = {
 	},
 
 	listPortlets: function() {
-		let portlets = window.Liferay.Portlet.list;
+		var portlets = window.Liferay.Portlet.list;
 
-		let parsedPortlets = portlets.map(portlet => {
-			let portletSplitted = portlet.split('_');
-			let length = portletSplitted.length;
+		var parsedPortlets = portlets.map(function(portlet) {
+			var portletSplitted = portlet.split('_');
+			var length = portletSplitted.length;
 			if (length >= 3 && portletSplitted[length - 2] === 'INSTANCE') {
 				return portletSplitted.slice(0, length - 2).join('_');
 			}
@@ -37,7 +39,10 @@ var screens = {
 				return portlet;
 			}
 		})
-		.filter((x, idx, arr) => arr.indexOf(x) === idx).join(',');
+		.filter(function(x, idx, arr) {
+		    return arr.indexOf(x) === idx
+		})
+		.join(',');
 
 		this.postMessage("screensInternal.listPortlets", parsedPortlets);
 	}
@@ -45,10 +50,9 @@ var screens = {
 
 window.Screens = Object.create(screens);
 
-window.Liferay.on('endNavigate', () => {
+window.Liferay.on('endNavigate', function() {
 	window.Screens.reloadScripts();
 });
-
 
 /*Attach a proxy to the Liferay object so we can inject our custom session*/
 window.Liferay = new Proxy(window.Liferay, {

@@ -57,12 +57,12 @@ public class JavascriptInjector {
 	}
 
 	public void addCss(String css) {
-		String styleScript = "let style = document.createElement('style');"
+		String styleScript = "var style = document.createElement('style');"
 			+ "style.type = 'text/css';"
 			+ "style.innerHTML='"
 			+ parseScript(css)
 			+ "';"
-			+ "let head = document.getElementsByTagName('head')[0];"
+			+ "var head = document.getElementsByTagName('head')[0];"
 			+ "head.appendChild(style);";
 
 		addScript(styleScript, false);
