@@ -4,7 +4,7 @@ using UIKit;
 
 namespace iOsSample
 {
-    public partial class ViewController : UIViewController
+    public partial class ViewController : UIViewController, BindingLibrary.ILoginScreenletDelegate
     {
         protected ViewController(IntPtr handle) : base(handle)
         {
@@ -13,6 +13,7 @@ namespace iOsSample
 
         public override void ViewDidLoad()
         {
+            
             base.ViewDidLoad();
             // Perform any additional setup after loading the view, typically from a nib.
         }
