@@ -281,8 +281,13 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 
 			for (String portlet : portlets) {
 
-				InjectableScript js = listener.jsForPortlet(portlet);
-				InjectableScript css = listener.cssForPortlet(portlet);
+				InjectableScript js = null;
+				InjectableScript css = null;
+
+				if (listener != null) {
+					js = listener.jsForPortlet(portlet);
+					css = listener.cssForPortlet(portlet);
+				}
 
 				String fileName = getLayoutTheme() + "_" + portlet;
 
@@ -296,11 +301,11 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 
 				JavascriptInjector javascriptInjector = new JavascriptInjector(getContext());
 
-				if (!"".equals(js.getContent())) {
+				if (js != null && !js.getContent().isEmpty()) {
 					javascriptInjector.addJs(js.getContent(), true);
 				}
 
-				if (!"".equals(css.getContent())) {
+				if (css != null && !css.getContent().isEmpty()) {
 					javascriptInjector.addCss(css.getContent());
 				}
 
