@@ -137,7 +137,9 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	 * Then calls {@link #load()} method.
 	 */
 	protected void autoLoad() {
-		if (SessionContext.isLoggedIn() && portletConfiguration != null && portletConfiguration.getPortletUrl() != null) {
+		if (SessionContext.isLoggedIn() && portletConfiguration != null
+				&& portletConfiguration.getPortletUrl() != null) {
+
 			if (portletConfiguration.getPortletUrl().contains("documents")) {
 				loadAsset();
 			} else {
