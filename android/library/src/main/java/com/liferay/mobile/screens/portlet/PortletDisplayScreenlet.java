@@ -292,11 +292,17 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 				String fileName = getLayoutTheme() + "_" + portlet;
 
 				if (js == null) {
-					js = new JsScript(new AssetReader(getContext()).read(fileName));
+					String content = new AssetReader(getContext()).read(fileName);
+					if (!content.isEmpty()) {
+						js = new JsScript(content);
+					}
 				}
 
 				if (css == null) {
-					css = new CssScript(new AssetReader(getContext()).read(fileName));
+					String content = new AssetReader(getContext()).read(fileName);
+					if (!content.isEmpty()) {
+						css = new CssScript(content);
+					}
 				}
 
 				JavascriptInjector javascriptInjector = new JavascriptInjector(getContext());

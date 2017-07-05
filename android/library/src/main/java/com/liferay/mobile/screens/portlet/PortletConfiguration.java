@@ -125,11 +125,17 @@ public class PortletConfiguration {
 			List<InjectableScript> allScripts = new ArrayList<>();
 
 			for (String js : localJs) {
-				allScripts.add(new JsScript(loadLocalContent(js)));
+				String content = loadLocalContent(js);
+				if (!content.isEmpty()) {
+					allScripts.add(new JsScript(loadLocalContent(js)));
+				}
 			}
 
 			for (String css : localCss) {
-				allScripts.add(new CssScript(loadLocalContent(css)));
+				String content = loadLocalContent(css);
+				if (!content.isEmpty()) {
+					allScripts.add(new CssScript(loadLocalContent(css)));
+				}
 			}
 
 			for (String rJs : remoteJs) {
@@ -141,11 +147,17 @@ public class PortletConfiguration {
 			}
 
 			for (int rawCss : localRawCss) {
-				allScripts.add(new CssScript(loadLocalContent(rawCss)));
+				String content = loadLocalContent(rawCss);
+				if (!content.isEmpty()) {
+					allScripts.add(new CssScript(loadLocalContent(rawCss)));
+				}
 			}
 
 			for (int rawJs : localRawJs) {
-				allScripts.add(new JsScript(loadLocalContent(rawJs)));
+				String content = loadLocalContent(rawJs);
+				if (!content.isEmpty()) {
+					allScripts.add(new JsScript(content));
+				}
 			}
 
 			return new PortletConfiguration(portletUrl, allScripts, isThemeEnabled);
