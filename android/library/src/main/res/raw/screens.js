@@ -55,13 +55,8 @@ window.Liferay.on('endNavigate', function() {
 });
 
 /*Attach a proxy to the Liferay object so we can inject our custom session*/
-window.Liferay = new Proxy(window.Liferay, {
-	set: function(target, name, value) {
-
-		if (name === "Session") {
-			target[name] = new Liferay.SessionBase({ autoExtend: true, sessionLength: 4 * 60, warningLength: 60 });
-		}
-
-		target[name] = value;
-	}
+Object.defineProperty(window.Liferay, 'Session', {
+  sessionValue: 0,
+  get: function() { return this.sessionValue },
+  set: function(newValue) { this.sessionValue = new Liferay.SessionBase({ autoExtend: true, sessionLength: 3 * 60, warningLength: 60 }); }
 });
