@@ -36,5 +36,8 @@ script:
          xcodebuild clean build build-for-testing -workspace LiferayScreens.xcworkspace -scheme LiferayScreens -destination "platform=iOS Simulator,name=iPhone 7" | xcpretty
          xcodebuild test-without-building -workspace LiferayScreens.xcworkspace -scheme LiferayScreens -destination "platform=iOS Simulator,name=iPhone 7" | xcpretty
     elif [ "${DANGER}" -eq 1 ]; then
-         gem install danger --version '~> 4.0' && danger
+         brew install swiftlint
+         gem install danger 
+         gem install danger-swiftlint
+         danger
     fi
