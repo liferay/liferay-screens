@@ -154,7 +154,10 @@
     <Compile Include="ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="LoginView_test.cs" />
+    <Compile Include="LoginView_test_.cs" />
+    <Compile Include="LoginView_test_.designer.cs">
+      <DependentUpon>LoginView_test_.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BindingLibrary\BindingLibrary.csproj">
