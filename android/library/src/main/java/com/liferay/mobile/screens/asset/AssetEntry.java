@@ -50,7 +50,7 @@ public class AssetEntry implements Parcelable {
 
 	protected AssetEntry(Parcel in, ClassLoader loader) {
 		values = new HashMap<>();
-
+		LiferayLogger.e("");
 		in.readMap(values, loader);
 	}
 

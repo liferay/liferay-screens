@@ -32,6 +32,7 @@ open class ImageUploadDetailView_default: ImageUploadDetailViewBase, UITextViewD
 	override open var imageTitle: String? {
 		didSet {
 			titleText?.text = imageTitle
+			print("hehehe")
 		}
 	}
 
