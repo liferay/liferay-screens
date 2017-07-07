@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿﻿﻿using System;
 using BindingLibrary;
 using Foundation;
 using UIKit;
@@ -14,11 +14,24 @@ namespace iOsSample
 
         public override void ViewDidLoad()
         {
-            
             base.ViewDidLoad();
             // Perform any additional setup after loading the  = this;view, typically from a nib.
             this.loginscrlet.PresentingViewController = this;
             this.loginscrlet.Delegate = this;
+
+            this.myButton.TouchDown += this.buttonpressed;
+        }
+
+        private void buttonpressed(object sender, EventArgs e)
+        {
+            if(this.loginscrlet.ThemeName=="default")
+            {
+                this.loginscrlet.ThemeName = "test";
+            }
+            else
+            {
+                this.loginscrlet.ThemeName = "default";
+            }
         }
 
         public override void DidReceiveMemoryWarning()
