@@ -24,8 +24,8 @@
                                 <subviews/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="77" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                <rect key="frame" x="150" y="583" width="46" height="30"/>
-                                <state key="normal" title="Button">
+                                <rect key="frame" x="150" y="583" width="106" height="30"/>
+                                <state key="normal" title="Change Theme">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
