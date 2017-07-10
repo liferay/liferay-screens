@@ -13,8 +13,16 @@ namespace ShowcaseiOS
     [Register ("ViewController")]
     partial class ViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        BindingLibrary.LoginScreenlet loginScreenlet { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (loginScreenlet != null) {
+                loginScreenlet.Dispose ();
+                loginScreenlet = null;
+            }
         }
     }
 }
