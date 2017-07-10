@@ -18,9 +18,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" customColorSpace="sRGB" colorSpace="calibratedWhite" white="1" alpha="1"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="3" translatesAutoresizingMaskIntoConstraints="NO">
+                            <view contentMode="scaleToFill" id="3" translatesAutoresizingMaskIntoConstraints="NO" customClass="LoginScreenlet">
                                 <rect key="frame" x="66" y="111" width="280" height="300"/>
-                                <color key="backgroundColor" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
+                                <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
                                 <constraints>
                                     <constraint id="12" firstItem="3" firstAttribute="width" constant="280"/>
                                     <constraint id="13" firstItem="3" firstAttribute="height" constant="300"/>
@@ -35,7 +35,9 @@
                             <constraint id="17" firstItem="8bC-Xf-vdC" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" constant="1"/>
                         </constraints>
                     </view>
-                    <connections/>
+                    <connections>
+                        <outlet property="loginScreenlet" destination="3" id="name-outlet-3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
