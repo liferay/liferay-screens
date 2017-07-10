@@ -14,13 +14,26 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" customColorSpace="sRGB" colorSpace="calibratedWhite" white="1" alpha="1"/>
-                        <subviews/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="3" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="66" y="111" width="280" height="300"/>
+                                <color key="backgroundColor" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
+                                <constraints>
+                                    <constraint id="12" firstItem="3" firstAttribute="width" constant="280"/>
+                                    <constraint id="13" firstItem="3" firstAttribute="height" constant="300"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <variation key="heightClass=regular-widthClass=compact">
                             <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
                         </variation>
+                        <constraints>
+                            <constraint id="16" firstItem="8bC-Xf-vdC" firstAttribute="centerY" secondItem="3" secondAttribute="centerY" constant="107"/>
+                            <constraint id="17" firstItem="8bC-Xf-vdC" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" constant="1"/>
+                        </constraints>
                     </view>
                     <connections/>
                 </viewController>
