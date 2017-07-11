@@ -27,14 +27,16 @@ namespace ShowcaseiOS
             // Release any cached data, images, etc that aren't in use.
         }
 
-		[Export("screenlet:onLoginResponseUserAttributes:")]
-        public void OnLoginResponseUserAttributes(BaseScreenlet screenlet, NSDictionary<NSString, NSObject> attributes) {
+        [Export("screenlet:onLoginResponseUserAttributes:")]
+        public void OnLoginResponseUserAttributes(BaseScreenlet screenlet, NSDictionary<NSString, NSObject> attributes)
+        {
             System.Diagnostics.Debug.WriteLine($"Login success {attributes}");
-		}
+        }
 
         [Export("screenlet:onLoginError:")]
-        public void OnLoginError(BaseScreenlet screenlet, NSError error) {
-			System.Diagnostics.Debug.WriteLine($"Login error {error.Description}");
-		}
+        public void OnLoginError(BaseScreenlet screenlet, NSError error)
+        {
+            System.Diagnostics.Debug.WriteLine($"Login error {error.Description}");
+        }
     }
 }

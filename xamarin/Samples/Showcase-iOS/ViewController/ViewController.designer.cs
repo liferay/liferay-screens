@@ -1,4 +1,4 @@
-// WARNING
+﻿// WARNING
 //
 // This file has been generated automatically by Visual Studio from the outlets and
 // actions declared in your storyboard file.
@@ -10,17 +10,18 @@ using System.CodeDom.Compiler;
 
 namespace ShowcaseiOS
 {
-    [Register ("ViewController")]
+    [Register("ViewController")]
     partial class ViewController
     {
         [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
+        [GeneratedCode("iOS Designer", "1.0")]
         BindingLibrary.LoginScreenlet loginScreenlet { get; set; }
 
-        void ReleaseDesignerOutlets ()
+        void ReleaseDesignerOutlets()
         {
-            if (loginScreenlet != null) {
-                loginScreenlet.Dispose ();
+            if (loginScreenlet != null)
+            {
+                loginScreenlet.Dispose();
                 loginScreenlet = null;
             }
         }
