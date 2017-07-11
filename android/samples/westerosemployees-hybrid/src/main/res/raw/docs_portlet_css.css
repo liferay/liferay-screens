@@ -1,0 +1,41 @@
+#wrapper {
+    padding-top: 0em;
+}
+
+.col-md-12 {
+    padding: 0px;
+}
+
+.portlet-decorate .portlet-content{
+    border: 0px;
+    margin-top: -50px;
+}
+
+.item-doc {
+    margin: 10px 0px;
+}
+
+.docs-image {
+    width: 36px;
+    height: 36px;
+    margin-right: 12px;
+}
+
+.name-doc{
+    font-size: 18px;
+    font-weight:600;
+}
+
+.lexicon-icon {
+    width: 12px;
+    height: 12px;
+    margin-right: 0px;
+}
+
+.separator{
+    height: 1px;
+    width: 120%;
+    margin-left: -10px;
+    margin-right: -10px;
+    background-color: #e0e0e6;
+}
