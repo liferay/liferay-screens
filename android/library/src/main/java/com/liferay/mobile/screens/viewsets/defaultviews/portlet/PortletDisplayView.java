@@ -92,7 +92,7 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 				@Override
 				public void onPageFinished(WebView view, String url) {
 					super.onPageFinished(view, url);
-					if (!isLoaded) {
+					if (!isLoaded && !url.contains("/c/portal/login")) {
 						render(view, injectedJs);
 						isLoaded = true;
 					}
