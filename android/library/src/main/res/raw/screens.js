@@ -54,9 +54,8 @@ window.Liferay.on('endNavigate', function() {
 	window.Screens.reloadScripts();
 });
 
-/*Attach a proxy to the Liferay object so we can inject our custom session*/
-Object.defineProperty(window.Liferay, 'Session', {
-  sessionValue: 0,
-  get: function() { return this.sessionValue },
-  set: function(newValue) { this.sessionValue = new Liferay.SessionBase({ autoExtend: true, sessionLength: 3 * 60, warningLength: 60 }); }
-});
+setInterval(function() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', window.location.origin + '/c/portal/extend_session');
+    xhr.send();
+}, 3 * 60 * 1000);
