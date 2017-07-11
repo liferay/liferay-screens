@@ -38,10 +38,28 @@
 			android:layout_alignParentBottom="true"
 			/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Image gallery"/>
+		<com.liferay.mobile.screens.portlet.PortletDisplayScreenlet
+			android:id="@+id/portlet_gallery"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_below="@id/gallery_title"
+			android:layout_above="@id/card_anchor"
+			/>
+
+		<com.liferay.mobile.screens.imagegallery.ImageGalleryScreenlet
+			android:id="@+id/gallery_screenlet"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_above="@id/card_anchor"
+			android:layout_below="@id/gallery_title"
+			android:visibility="gone"
+			app:autoLoad="false"
+			app:folderId="@string/folderId"
+			app:layoutId="@layout/gallery_westeros"
+			app:repositoryId="@string/liferay_group_id"
+			>
+		</com.liferay.mobile.screens.imagegallery.ImageGalleryScreenlet>
+
 
 		<com.liferay.mobile.screens.westerosemployees_hybrid.views.InnerDeck
 			android:layout_width="match_parent"

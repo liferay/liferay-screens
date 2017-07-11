@@ -20,49 +20,11 @@
 		style="@style/westeros_arrow"
 		/>
 
-	<View
-		android:id="@+id/card_anchor_comments"
-		android:layout_width="match_parent"
-		android:layout_height="60dp"
-		android:layout_alignParentBottom="true"
-		/>
-
-	<ScrollView
+	<com.liferay.mobile.screens.portlet.PortletDisplayScreenlet
+		android:id="@+id/portlet_gallery_item"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:layout_above="@id/card_anchor_comments"
-		android:layout_below="@id/gallery_detail_title"
-		android:orientation="vertical"
-		>
+		android:layout_below="@id/gallery_detail_title" />
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="vertical"
-			>
-
-			<TextView
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:text="Display Image"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Rating"/>
-
-		</LinearLayout>
-	</ScrollView>
-
-	<com.liferay.mobile.screens.westerosemployees_hybrid.views.Deck
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		>
-
-		<include
-			layout="@layout/card_comments_red"
-			/>
-
-	</com.liferay.mobile.screens.westerosemployees_hybrid.views.Deck>
 
 </RelativeLayout>
