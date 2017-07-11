@@ -7,22 +7,15 @@
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
+using UIKit;
 
 namespace ShowcaseiOS.ViewController
 {
-    [Register ("ViewController")]
-    partial class ViewController
+    [Register ("SelectOptionViewController")]
+    partial class SelectOptionViewController
     {
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        BindingLibrary.LoginScreenlet loginScreenlet { get; set; }
-
         void ReleaseDesignerOutlets ()
         {
-            if (loginScreenlet != null) {
-                loginScreenlet.Dispose ();
-                loginScreenlet = null;
-            }
         }
     }
 }

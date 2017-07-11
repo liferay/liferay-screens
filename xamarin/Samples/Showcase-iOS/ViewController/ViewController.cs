@@ -3,7 +3,7 @@ using Foundation;
 using System;
 using UIKit;
 
-namespace ShowcaseiOS
+namespace ShowcaseiOS.ViewController
 {
     public partial class ViewController : UIViewController, ILoginScreenletDelegate
     {
@@ -31,6 +31,11 @@ namespace ShowcaseiOS
         public void OnLoginResponseUserAttributes(BaseScreenlet screenlet, NSDictionary<NSString, NSObject> attributes)
         {
             System.Diagnostics.Debug.WriteLine($"Login success {attributes}");
+
+            UIStoryboard storyboard = UIStoryboard.FromName("SelectOption", null);
+            SelectOptionViewController viewController = 
+                (SelectOptionViewController) storyboard.InstantiateViewController("SelectOptionViewController");
+            this.PresentViewController(viewController, true, null);
         }
 
         [Export("screenlet:onLoginError:")]
