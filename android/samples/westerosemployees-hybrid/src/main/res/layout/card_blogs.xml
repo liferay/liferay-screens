@@ -31,10 +31,12 @@
 			style="@style/westeros_arrow"
 			/>
 
-		<TextView
+		<com.liferay.mobile.screens.portlet.PortletDisplayScreenlet
+			android:id="@+id/portlet_blogs"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:text="Blogs"/>
+			android:layout_below="@id/blogs_title"
+			/>
 
 	</RelativeLayout>
 

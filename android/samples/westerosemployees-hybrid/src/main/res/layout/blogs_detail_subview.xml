@@ -1,67 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:background="@drawable/westeros_button_ripple"
-	android:orientation="vertical"
-	>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/westeros_button_ripple"
+    android:orientation="vertical">
 
-	<TextView
-		android:id="@+id/blogs_detail_title"
-		android:tag="title"
-		android:text="@string/blogs"
-		style="@style/westeros_card_title_white"
-		/>
+    <TextView
+        android:id="@+id/blogs_detail_title"
+        style="@style/westeros_card_title_white"
+        android:tag="title"
+        android:text="@string/blogs" />
 
-	<ImageView
-		android:layout_alignParentStart="true"
-		android:src="@drawable/icon_left_white"
-		android:tag="@string/arrow_back_tag"
-		android:visibility="invisible"
-		style="@style/westeros_arrow"
-		/>
+    <ImageView
+        style="@style/westeros_arrow"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/icon_left_white"
+        android:tag="@string/arrow_back_tag"
+        android:visibility="invisible" />
 
-	<View
-		android:id="@+id/card_anchor"
-		android:layout_width="match_parent"
-		android:layout_height="60dp"
-		android:layout_alignParentBottom="true"
-		/>
+    <com.liferay.mobile.screens.portlet.PortletDisplayScreenlet
+        android:id="@+id/portlet_blog_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/blogs_detail_title" />
 
-	<ScrollView
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_above="@id/card_anchor"
-		android:layout_below="@id/blogs_detail_title"
-		android:orientation="vertical"
-		>
-
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="vertical"
-			>
-
-			<TextView
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:text="BLOG"/>
-
-			<TextView
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:text="RATING"/>
-
-		</LinearLayout>
-
-	</ScrollView>
-	<com.liferay.mobile.screens.westerosemployees_hybrid.views.Deck
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		>
-
-	</com.liferay.mobile.screens.westerosemployees_hybrid.views.Deck>
 </RelativeLayout>
