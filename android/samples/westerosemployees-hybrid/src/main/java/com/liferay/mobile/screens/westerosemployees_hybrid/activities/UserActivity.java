@@ -2,19 +2,27 @@ package com.liferay.mobile.screens.westerosemployees_hybrid.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.widget.TextView;
 
 import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.imagegallery.ImageGalleryScreenlet;
+import com.liferay.mobile.screens.portlet.PortletConfiguration;
+import com.liferay.mobile.screens.portlet.PortletDisplayListener;
+import com.liferay.mobile.screens.portlet.PortletDisplayScreenlet;
+import com.liferay.mobile.screens.portlet.util.InjectableScript;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.westerosemployees_hybrid.R;
+import com.liferay.mobile.screens.westerosemployees_hybrid.views.BlogsCard;
 
 import java.util.List;
 
 
-public class UserActivity extends WesterosActivity implements View.OnClickListener, BaseListListener<AssetEntry> {
+public class UserActivity extends WesterosActivity implements View.OnClickListener, BaseListListener<AssetEntry>, PortletDisplayListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +40,20 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 		userPortraitScreenlet.setOnClickListener(this);
 		userPortraitScreenlet.loadLoggedUserPortrait();
 
+        LastChangeDisplayScreenlet();
+
 		userNameTextView.setText(SessionContext.getCurrentUser().getFullName());
-	}
+    }
+
+    private void LastChangeDisplayScreenlet() {
+        PortletDisplayScreenlet portletDisplayScreenlet = (PortletDisplayScreenlet) findViewById(R.id.portlet_last_changes);
+        PortletConfiguration configuration = new PortletConfiguration.Builder("/web/guest/lastchanges").addRawCss(R.raw.last_changes_portlet_css).addRawJs(R.raw.last_changes_portlet_js).load();
+
+        portletDisplayScreenlet.setPortletConfiguration(configuration);
+        portletDisplayScreenlet.load();
+
+        portletDisplayScreenlet.setListener(this);
+    }
 
 	@Override
 	public void onBackPressed() {
@@ -60,15 +80,45 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 
 	@Override
 	public void onListItemSelected(AssetEntry element, View view) {
-		Intent intent = new Intent(this, ModalDetailActivity.class);
-		intent.putExtra("className", element.getClassName());
-		intent.putExtra("classPK", element.getClassPK());
-		intent.putExtra("mimeType", element.getMimeType());
-		startActivity(intent);
 	}
 
 	@Override
 	public void error(Exception e, String userAction) {
 
+	}
+
+	@Override
+	public void onRetrievePortletSuccess(String url) {
+
+	}
+
+	@Override
+	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
+
+	}
+
+	@Override
+	public void onScriptMessageHandler(String namespace, final String body) {
+		if("last-changes-item".equals(namespace)) {
+			new Handler(Looper.getMainLooper()).post(new Runnable() {
+				@Override
+				public void run() {
+					Intent intent = new Intent(UserActivity.this, ModalDetailActivity.class);
+					intent.putExtra("id", body);
+					startActivity(intent);
+				}
+			});
+		}
+
+	}
+
+	@Override
+	public InjectableScript cssForPortlet(String portlet) {
+		return null;
+	}
+
+	@Override
+	public InjectableScript jsForPortlet(String portlet) {
+		return null;
 	}
 }

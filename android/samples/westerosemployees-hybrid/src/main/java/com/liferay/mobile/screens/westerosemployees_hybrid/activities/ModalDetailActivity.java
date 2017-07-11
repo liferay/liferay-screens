@@ -8,30 +8,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.inputmethod.InputMethodManager;
 
 import com.liferay.mobile.screens.context.LiferayScreensContext;
+import com.liferay.mobile.screens.portlet.PortletConfiguration;
+import com.liferay.mobile.screens.portlet.PortletDisplayScreenlet;
 import com.liferay.mobile.screens.westerosemployees_hybrid.R;
-import com.liferay.mobile.screens.westerosemployees_hybrid.views.Card;
 
 public class ModalDetailActivity extends AppCompatActivity {
-
-	private Card commentAddCard;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		String className = getIntent().getStringExtra("className");
-		long classPK = getIntent().getLongExtra("classPK", 0);
-		String mimeType = getIntent().getStringExtra("mimeType");
-
-		findViews(className, mimeType);
+		setContentView(R.layout.blogs_detail_subview);
+		
+        portletDisplayScreenlet(getIntent().getStringExtra("id"));
 
 	}
 
-	private void findViews(String className, String mimeType) {
+	private void portletDisplayScreenlet(final String id){
+		PortletConfiguration configuration = new PortletConfiguration.Builder("/web/guest/detail?id=" + id).addRawCss(R.raw.detail_css).addRawJs(R.raw.detail_js).load();
 
+		PortletDisplayScreenlet portletDisplayScreenlet = (PortletDisplayScreenlet) findViewById(R.id.portlet_blog_item);
+		portletDisplayScreenlet.setPortletConfiguration(configuration);
+		portletDisplayScreenlet.load();
 
-		commentAddCard = (Card) findViewById(R.id.comment_add_card);
-	}
+    }
 
 	private void hideSoftKeyBoard() {
 		Activity activity = LiferayScreensContext.getActivityFromContext(this);

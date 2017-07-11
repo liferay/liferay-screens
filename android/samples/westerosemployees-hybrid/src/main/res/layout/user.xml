@@ -53,10 +53,11 @@
         android:layout_alignParentBottom="true"
         />
 
-    <TextView
+    <com.liferay.mobile.screens.portlet.PortletDisplayScreenlet
+        android:id="@+id/portlet_last_changes"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="News"/>
+        android:layout_below="@id/last_changes_text"/>
 
     <com.liferay.mobile.screens.westerosemployees_hybrid.views.UserDeck
         android:layout_width="match_parent"
