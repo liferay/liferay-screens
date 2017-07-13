@@ -13,7 +13,8 @@
  */
 import Foundation
 
-@objc public protocol ImageGalleryViewModel {
+@objc(ImageGalleryViewModel)
+public protocol ImageGalleryViewModel {
 
 	/// Total images of the image gallery.
 	var totalEntries: Int { get }

@@ -13,7 +13,8 @@
  */
 import UIKit
 
-@objc public protocol LoginViewModel: BasicAuthBasedType {
+@objc(LoginViewModel)
+public protocol LoginViewModel: BasicAuthBasedType {
 
 	/// Login username: can be email address, userId or screen name.
 	var userName: String? { get set }

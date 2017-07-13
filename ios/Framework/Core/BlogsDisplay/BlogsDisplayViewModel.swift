@@ -13,7 +13,8 @@
  */
 import UIKit
 
-@objc public protocol BlogsDisplayViewModel {
+@objc(BlogsDisplayViewModel)
+public protocol BlogsDisplayViewModel {
 
 	/// Blogs entry to be displayed.
 	var blogsEntry: BlogsEntry? { get set }

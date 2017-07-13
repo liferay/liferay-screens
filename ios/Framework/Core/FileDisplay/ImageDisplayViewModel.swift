@@ -13,7 +13,8 @@
  */
 import UIKit
 
-@objc public protocol ImageDisplayViewModel: FileDisplayViewModel {
+@objc(ImageDisplayViewModel)
+public protocol ImageDisplayViewModel: FileDisplayViewModel {
 
 	/// Image mode for the screenlet image. See UIViewContentMode enum for
 	/// knowing all the posible modes.

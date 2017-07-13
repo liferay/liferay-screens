@@ -13,7 +13,8 @@
  */
 import UIKit
 
-@objc public protocol AssetDisplayViewModel {
+@objc(AssetDisplayViewModel)
+public protocol AssetDisplayViewModel {
 
 	/// Asset to be displayed.
 	var asset: Asset? { get set }
