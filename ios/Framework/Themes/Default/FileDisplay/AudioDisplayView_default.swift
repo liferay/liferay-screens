@@ -14,6 +14,7 @@
 import UIKit
 import AVFoundation
 
+@objc(AudioDisplayView_default)
 open class AudioDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
 	open var volume: Float = 0.5

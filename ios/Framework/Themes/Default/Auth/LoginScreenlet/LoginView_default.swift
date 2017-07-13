@@ -13,6 +13,7 @@
  */
 import UIKit
 
+@objc(LoginView_default)
 open class LoginView_default: BaseScreenletView, LoginViewModel {
 
 	// MARK: Outlets

@@ -13,6 +13,7 @@
 */
 import WebKit
 
+@objc(FileDisplayView_default)
 open class FileDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
 	// MARK: Outlets

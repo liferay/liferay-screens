@@ -13,6 +13,7 @@
  */
 import UIKit
 
+@objc(AssetListView_default)
 open class AssetListView_default: AssetListTableView {
 
 	// MARK: BaseScreenletView

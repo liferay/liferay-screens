@@ -17,6 +17,7 @@ import UIKit
 	import TNRadioButtonGroup
 #endif
 
+@objc(DDLFieldRadioTableCell_default)
 open class DDLFieldRadioTableCell_default: DDMFieldTableCell {
 
 	// MARK: Outlets

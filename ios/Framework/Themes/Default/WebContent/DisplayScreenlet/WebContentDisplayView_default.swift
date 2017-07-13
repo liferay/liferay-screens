@@ -14,6 +14,7 @@
 import UIKit
 import WebKit
 
+@objc(WebContentDisplayView_default)
 open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayViewModel {
 
 	// MARK: Outlets

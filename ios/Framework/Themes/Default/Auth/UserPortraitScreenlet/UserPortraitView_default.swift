@@ -34,6 +34,7 @@ private func loadPlaceholderCache(_ done: ((UIImage?) -> Void)? = nil) {
 	}
 }
 
+@objc(UserPortraitView_default)
 open class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel,
 	UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 

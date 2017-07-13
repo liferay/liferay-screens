@@ -13,6 +13,7 @@
  */
 import UIKit
 
+@objc(ForgotPasswordView_default)
 open class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewModel {
 
 	// MARK: Outlets

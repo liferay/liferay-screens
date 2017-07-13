@@ -17,6 +17,7 @@ import UIKit
 	import DTPickerPresenter
 #endif
 
+@objc(DDLFieldSelectTableCell_default)
 open class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_default,
 		UITableViewDataSource, UITableViewDelegate {
 

@@ -16,6 +16,7 @@ import MobileCoreServices
 
 private let xibName = "DDLFieldDocumentlibraryPresenterViewController_default"
 
+@objc(DDMFieldDocumentlibraryPresenterViewController_default)
 open class DDMFieldDocumentlibraryPresenterViewController_default: UIViewController,
 		UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 

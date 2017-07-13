@@ -13,6 +13,7 @@
  */
 import UIKit
 
+@objc(SignUpView_default)
 open class SignUpView_default: BaseScreenletView, SignUpViewModel {
 
 	// MARK: Outlets

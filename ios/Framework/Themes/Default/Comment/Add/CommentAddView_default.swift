@@ -13,6 +13,7 @@
  */
 import UIKit
 
+@objc(CommentAddView_default)
 open class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 
 	// MARK: Outlets

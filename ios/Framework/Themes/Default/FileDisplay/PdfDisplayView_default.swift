@@ -13,6 +13,7 @@
  */
 import WebKit
 
+@objc(PdfDisplayView_default)
 open class PdfDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
 	// MARK: Outlets

@@ -13,6 +13,7 @@
  */
 import UIKit
 
+@objc(CommentTableViewCell_default)
 open class CommentTableViewCell_default: UITableViewCell {
 
 	// MARK: Outlets

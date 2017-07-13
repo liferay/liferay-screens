@@ -13,6 +13,7 @@
  */
 import UIKit
 
+@objc(WebContentListView_default)
 open class WebContentListView_default: WebContentListTableView {
 
 	// MARK: BaseScreenletView
