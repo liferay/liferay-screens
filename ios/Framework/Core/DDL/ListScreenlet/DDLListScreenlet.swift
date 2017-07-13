@@ -15,7 +15,8 @@ import UIKit
 
 /// The DDLListScreenletDelegate protocol defines some methods that you use to manage the
 /// DDLListScreenlet events. All of them are optional.
-@objc public protocol DDLListScreenletDelegate: BaseScreenletDelegate {
+@objc(DDLListScreenletDelegate)
+public protocol DDLListScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when a page of contents is received. Note that this method may be called 
 	/// more than once; one call for each page received.
@@ -50,6 +51,7 @@ import UIKit
 /// * Implements fluent pagination with configurable page size.
 /// * Allows filtering of records by creator.
 /// * Supports i18n in record values.
+@objc(DDLListScreenlet)
 open class DDLListScreenlet: BaseListScreenlet {
 
 	// MARK: Inspectables

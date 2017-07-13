@@ -15,7 +15,8 @@ import UIKit
 
 /// The WebContentListScreenletDelegate protocol defines some methods that you use to manage the
 /// WebContentListScreenlet events. All of them are optional.
-@objc public protocol WebContentListScreenletDelegate: BaseScreenletDelegate {
+@objc(WebContentListScreenletDelegate)
+public protocol WebContentListScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when a page of contents is received.
 	/// Note that this method may be called more than once: one call for each page received.
@@ -50,6 +51,7 @@ import UIKit
 /// show both basic and [structured web content]
 /// (https://dev.liferay.com/discover/portal/-/knowledge_base/7-0/designing-uniform-content). The Screenlet also 
 /// implements fluent pagination with configurable page size, and supports i18n in asset values.
+@objc(WebContentListScreenlet)
 open class WebContentListScreenlet: BaseListScreenlet {
 
 	// MARK: Inspectables

@@ -15,7 +15,8 @@ import Foundation
 
 /// The BlogsEntryDisplayScreenletDelegate protocol defines some methods that you use to manage the
 /// BlogsEntryDisplayScreenlet events. All of them are optional.
-@objc public protocol BlogsEntryDisplayScreenletDelegate: BaseScreenletDelegate {
+@objc(BlogsEntryDisplayScreenletDelegate)
+public protocol BlogsEntryDisplayScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when the Screenlet receives the BlogsEntry object.
 	///
@@ -37,6 +38,7 @@ import Foundation
 
 /// Blogs Entry Display Screenlet displays a single blog entry. Image Display Screenlet renders any
 /// header image the blogs entry may have.
+@objc(BlogsEntryDisplayScreenlet)
 open class BlogsEntryDisplayScreenlet: BaseScreenlet {
 
 	// MARK: Inspectables

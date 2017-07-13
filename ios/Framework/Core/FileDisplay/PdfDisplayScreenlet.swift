@@ -14,6 +14,7 @@
 import Foundation
 
 /// PDF Display Screenlet displays a PDF file from a Liferay Instance’s Documents and Media Library.
+@objc(PdfDisplayScreenlet)
 open class PdfDisplayScreenlet: FileDisplayScreenlet {
 
 	// MARK: Inspectables

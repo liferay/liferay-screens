@@ -16,7 +16,8 @@ import Kingfisher
 
 /// The ImageGalleryScreenletDelegate protocol defines some methods that you use to manage the
 /// ImageGalleryScreenlet events. All of them are optional.
-@objc public protocol ImageGalleryScreenletDelegate: BaseScreenletDelegate {
+@objc(ImageGalleryScreenletDelegate)
+public protocol ImageGalleryScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when a page of contents is received.
 	/// Note that this method may be called more than once: one call for each page received.
@@ -116,6 +117,7 @@ import Kingfisher
 /// the same folder. The Screenlet implements [fluent pagination]
 /// (http://www.iosnomad.com/blog/2014/4/21/fluent-pagination) with configurable page size, 
 /// and supports i18n in asset values.
+@objc(ImageGalleryScreenlet)
 open class ImageGalleryScreenlet: BaseListScreenlet {
 
 	// MARK: Static properties

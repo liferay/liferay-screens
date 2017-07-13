@@ -15,7 +15,8 @@ import UIKit
 
 /// The RatingScreenletDelegate protocol defines some methods that you use to manage the
 /// RatingScreenlet events. All of them are optional.
-@objc public protocol RatingScreenletDelegate: BaseScreenletDelegate {
+@objc(RatingScreenletDelegate)
+public protocol RatingScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when the ratings are received.
 	///
@@ -53,6 +54,7 @@ import UIKit
 
 ///Rating Screenlet shows an asset’s rating. It also lets users update or delete the rating. 
 /// This Screenlet comes with different Themes that display ratings as thumbs, stars, and emojis.
+@objc(RatingScreenlet)
 open class RatingScreenlet: BaseScreenlet {
 
 	// MARK: Static properties

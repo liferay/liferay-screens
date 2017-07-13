@@ -15,7 +15,8 @@ import UIKit
 
 /// The CommentAddScreenletDelegate protocol defines some methods that you use to manage the
 /// CommentAddScreenlet events. All of them are optional.
-@objc public protocol CommentAddScreenletDelegate: BaseScreenletDelegate {
+@objc(CommentAddScreenletDelegate)
+public protocol CommentAddScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when the screenlet adds a comment.
 	///
@@ -54,6 +55,7 @@ import UIKit
 }
 
 /// Comment Add Screenlet can add a comment to an asset in a Liferay instance.
+@objc(CommentAddScreenlet)
 open class CommentAddScreenlet: BaseScreenlet {
 
 	// MARK: Inspectables
