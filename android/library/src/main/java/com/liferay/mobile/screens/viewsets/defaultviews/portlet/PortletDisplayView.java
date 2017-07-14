@@ -25,6 +25,7 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 	private WebView webView;
 	private ProgressBar progressBar;
 	private boolean theme = true;
+	private String URL_LOGIN = "/c/portal/login";
 
 	public PortletDisplayView(Context context) {
 		super(context);
@@ -92,7 +93,7 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 				@Override
 				public void onPageFinished(WebView view, String url) {
 					super.onPageFinished(view, url);
-					if (!isLoaded && !url.contains("/c/portal/login")) {
+					if (!isLoaded && !url.contains(URL_LOGIN)) {
 						render(view, injectedJs);
 						isLoaded = true;
 					}
