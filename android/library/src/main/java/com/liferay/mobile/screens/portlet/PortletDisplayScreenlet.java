@@ -177,18 +177,28 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 		if (namespace.startsWith("screensInternal")) {
 			handleInternal(namespace, body);
 		} else {
-			getListener().onScriptMessageHandler(namespace, body);
+			if (listener != null) {
+				listener.onScriptMessageHandler(namespace, body);
+			}
 		}
 	}
 
 	@Override
 	public InjectableScript cssForPortlet(String portlet) {
-		return getListener().cssForPortlet(portlet);
+		if (listener != null) {
+			listener.cssForPortlet(portlet);
+		}
+
+		return null;
 	}
 
 	@Override
 	public InjectableScript jsForPortlet(String portlet) {
-		return getListener().jsForPortlet(portlet);
+		if (listener != null) {
+			listener.jsForPortlet(portlet);
+		}
+
+		return null;
 	}
 
 	@Override
