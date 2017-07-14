@@ -18,3 +18,6 @@ warn("Big PR") if git.lines_of_code > 500
 if git.modified_files.empty? && added_files.empty? && deleted_files.empty?
   fail "This PR has no changes at all, this is likely a developer issue."
 end
+
+swiftlint.directory = 'ios/Framework/'
+swiftlint.lint_files
