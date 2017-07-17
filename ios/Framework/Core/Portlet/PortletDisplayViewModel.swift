@@ -24,8 +24,6 @@ import UIKit
 
 	func inject(injectableScript: InjectableScript)
 
-	/// Add script handler that will take messages from WKWebView.
-	func add(scriptHandler: String)
 	func load(request: URLRequest)
 
 	func load(htmlString: String)

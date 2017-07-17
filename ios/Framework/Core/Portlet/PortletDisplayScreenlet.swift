@@ -74,7 +74,6 @@ import UIKit
 open class PortletDisplayScreenlet: BaseScreenlet {
 
 	let internalNamespace = "screensInternal"
-	let defaultNamespace = "screensDefault"
 
 	/// Whether the content should be retrieved from the portal as soon as the Screenlet appears.
 	/// The default value is true.
@@ -103,16 +102,9 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 		}
 	}
 
-
 	// MARK: Public methods
 
-	open func handleScriptHandler(key: String, body: Any) {
-		guard let body = body as? [Any],
-			let key = body[0] as? String
-			else { return }
-
-		let message = body[1]
-
+	open func handleScriptHandler(key: String, message: String) {
 		if key.hasPrefix(internalNamespace) {
 			handleInternal(key: key, message: message)
 		}
@@ -131,9 +123,6 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 		}
 
 		let screensScript = Bundle.loadFile(name: "Screens", ofType: "js", currentClass: type(of: self))!
-
-		portletDisplayViewModel.add(scriptHandler: internalNamespace)
-		portletDisplayViewModel.add(scriptHandler: defaultNamespace)
 
 		portletDisplayViewModel.add(injectableScript: JsScript(js: screensScript))
 		portletDisplayViewModel.add(injectableScripts: configuration.scripts)

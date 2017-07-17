@@ -17,6 +17,8 @@ import WebKit
 open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewModel, WKUIDelegate, WKNavigationDelegate,
 	WKScriptMessageHandler, UIScrollViewDelegate {
 
+	let defaultNamespace = "screensDefault"
+
 	// MARK: Public properties
 
 	open var isThemeEnabled = false
@@ -46,6 +48,8 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		wkWebView.uiDelegate = self
 		wkWebView.navigationDelegate = self
 		wkWebView.scrollView.delegate = self
+
+		wkWebView.configuration.userContentController.add(self, name: defaultNamespace)
 
 		addWebView()
 	}
@@ -80,8 +84,6 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 			"default", key: "portletdisplay-loading-message", obj: self), forInteractor: Interactor())
 	}
 
-	public func add(scriptHandler: String) {
-		wkWebView.configuration.userContentController.add(self, name: scriptHandler)
 	public func load(htmlString: String) {
 		let server = SessionContext.currentContext?.session.server ?? ""
 		initialNavigation = wkWebView.loadHTMLString(htmlString, baseURL: URL(string: server)!)
@@ -117,8 +119,8 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 	public func userContentController(_ userContentController: WKUserContentController,
 			didReceive message: WKScriptMessage) {
-
-		(screenlet as? PortletDisplayScreenlet)?.handleScriptHandler(key: message.name, body: message.body)
+		guard let body = message.body as? [String] else { return }
+		(screenlet as? PortletDisplayScreenlet)?.handleScriptHandler(key: body[0], message: body[1])
 	}
 
 	// MARK: Public methods
