@@ -1,0 +1,25 @@
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+#wrapper {
+    padding-top: 0em;
+}
+
+.col-md-12 {
+    padding: 0px;
+}
+
+.container-fluid-1280{
+    padding: 0px 0px 0px 15px;
+}
+
+.portlet-decorate .portlet-content{
+    border: 0px;
+    margin-top: -50px;
+}
+
+.portlet-content{
+    background: #FFF !important;
+}
