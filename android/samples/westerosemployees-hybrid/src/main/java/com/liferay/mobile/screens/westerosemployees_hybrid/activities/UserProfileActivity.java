@@ -18,10 +18,10 @@ public class UserProfileActivity extends WesterosActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_display);
 
-        userProfileChangeDisplayScreenlet();
+        loadUserProfile();
     }
 
-    private void userProfileChangeDisplayScreenlet() {
+    private void loadUserProfile() {
         PortletDisplayScreenlet portletDisplayScreenlet = (PortletDisplayScreenlet) findViewById(R.id.portlet_user_profile);
         PortletConfiguration configuration = new PortletConfiguration.Builder("/web/guest/userprofile").disableTheme().addRawCss(R.raw.user_profile_portlet_css).load();
 

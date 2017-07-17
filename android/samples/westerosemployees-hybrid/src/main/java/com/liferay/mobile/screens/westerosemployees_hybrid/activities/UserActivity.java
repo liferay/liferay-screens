@@ -38,12 +38,12 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 		userPortraitScreenlet.setOnClickListener(this);
 		userPortraitScreenlet.loadLoggedUserPortrait();
 
-        lastChangeDisplayScreenlet();
+        loadLastChanges();
 
 		userNameTextView.setText(SessionContext.getCurrentUser().getFullName());
     }
 
-    private void lastChangeDisplayScreenlet() {
+    private void loadLastChanges() {
         PortletDisplayScreenlet portletDisplayScreenlet = (PortletDisplayScreenlet) findViewById(R.id.portlet_last_changes);
         PortletConfiguration configuration = new PortletConfiguration.Builder("/web/guest/lastchanges").addRawCss(R.raw.last_changes_portlet_css).addRawJs(R.raw.last_changes_portlet_js).load();
 
