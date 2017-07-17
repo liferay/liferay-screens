@@ -94,6 +94,7 @@
 		0B3699E91E4C929900B82F81 /* LoginCookieInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3699E81E4C929900B82F81 /* LoginCookieInteractor.swift */; };
 		0B3B0C851EFBE8AF002EAA76 /* InjectableScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B0C841EFBE8AF002EAA76 /* InjectableScript.swift */; };
 		0B3B0C871EFD1375002EAA76 /* PortletConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B0C861EFD1375002EAA76 /* PortletConfiguration.swift */; };
+		0B4460851F176668007D12E5 /* ScreensCordovaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4460841F176668007D12E5 /* ScreensCordovaViewController.swift */; };
 		0B4C27521E40F83300F6B01D /* AssetLoadByPortletItemNameLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C27511E40F83300F6B01D /* AssetLoadByPortletItemNameLiferayConnector.swift */; };
 		0B5619FA1E7A7D3E00FDF397 /* WKWebView+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5619F91E7A7D3E00FDF397 /* WKWebView+Screens.swift */; };
 		0B5B5E571D5869BB0007D4B1 /* MediaSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E561D5869BB0007D4B1 /* MediaSelector.swift */; };
@@ -138,6 +139,9 @@
 		0BB5032D1D37C04A00ABD6B3 /* DDLRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB503191D37C04A00ABD6B3 /* DDLRecord.swift */; };
 		0BB5033D1D37C04A00ABD6B3 /* WebContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB5032B1D37C04A00ABD6B3 /* WebContent.swift */; };
 		0BB503961D38D74100ABD6B3 /* DDLRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB503191D37C04A00ABD6B3 /* DDLRecord.swift */; };
+		0BBE45711F1D0B8100812015 /* ScreensCordovaWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBE45701F1D0B8100812015 /* ScreensCordovaWebView.swift */; };
+		0BBE45731F1D0BC200812015 /* ScreensWKWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBE45721F1D0BC200812015 /* ScreensWKWebView.swift */; };
+		0BBE45751F1D0BFB00812015 /* ScreensWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBE45741F1D0BFB00812015 /* ScreensWebView.swift */; };
 		0BBEDA1A1D5B22FF00F8CB31 /* ImageGallerySlideshowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBEDA151D5B22FF00F8CB31 /* ImageGallerySlideshowCell.swift */; };
 		0BBEDA1B1D5B22FF00F8CB31 /* ImageGallerySlideshowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBEDA161D5B22FF00F8CB31 /* ImageGallerySlideshowCell.xib */; };
 		0BBEDA1C1D5B22FF00F8CB31 /* ImageGalleryView_default-slideshow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBEDA171D5B22FF00F8CB31 /* ImageGalleryView_default-slideshow.swift */; };
@@ -651,6 +655,7 @@
 		0B3699E81E4C929900B82F81 /* LoginCookieInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCookieInteractor.swift; sourceTree = "<group>"; };
 		0B3B0C841EFBE8AF002EAA76 /* InjectableScript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InjectableScript.swift; sourceTree = "<group>"; };
 		0B3B0C861EFD1375002EAA76 /* PortletConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortletConfiguration.swift; sourceTree = "<group>"; };
+		0B4460841F176668007D12E5 /* ScreensCordovaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreensCordovaViewController.swift; sourceTree = "<group>"; };
 		0B4C27511E40F83300F6B01D /* AssetLoadByPortletItemNameLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetLoadByPortletItemNameLiferayConnector.swift; sourceTree = "<group>"; };
 		0B5619F91E7A7D3E00FDF397 /* WKWebView+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebView+Screens.swift"; sourceTree = "<group>"; };
 		0B5B5E541D5868B80007D4B1 /* BaseListCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListCollectionView.swift; sourceTree = "<group>"; };
@@ -703,6 +708,9 @@
 		0BB503181D37C04A00ABD6B3 /* Asset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
 		0BB503191D37C04A00ABD6B3 /* DDLRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLRecord.swift; sourceTree = "<group>"; };
 		0BB5032B1D37C04A00ABD6B3 /* WebContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContent.swift; sourceTree = "<group>"; };
+		0BBE45701F1D0B8100812015 /* ScreensCordovaWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreensCordovaWebView.swift; sourceTree = "<group>"; };
+		0BBE45721F1D0BC200812015 /* ScreensWKWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreensWKWebView.swift; sourceTree = "<group>"; };
+		0BBE45741F1D0BFB00812015 /* ScreensWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreensWebView.swift; sourceTree = "<group>"; };
 		0BBEDA151D5B22FF00F8CB31 /* ImageGallerySlideshowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGallerySlideshowCell.swift; sourceTree = "<group>"; };
 		0BBEDA161D5B22FF00F8CB31 /* ImageGallerySlideshowCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageGallerySlideshowCell.xib; sourceTree = "<group>"; };
 		0BBEDA171D5B22FF00F8CB31 /* ImageGalleryView_default-slideshow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ImageGalleryView_default-slideshow.swift"; sourceTree = "<group>"; };
@@ -1272,6 +1280,15 @@
 			path = ImageGalleryScreenlet;
 			sourceTree = "<group>";
 		};
+		0B4460831F176655007D12E5 /* cordova */ = {
+			isa = PBXGroup;
+			children = (
+				0B4460841F176668007D12E5 /* ScreensCordovaViewController.swift */,
+				0BBE45701F1D0B8100812015 /* ScreensCordovaWebView.swift */,
+			);
+			path = cordova;
+			sourceTree = "<group>";
+		};
 		0B5B5E531D5868B80007D4B1 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1394,8 +1411,11 @@
 		0BC700C91EB20795006DD475 /* Portlet */ = {
 			isa = PBXGroup;
 			children = (
+				0B4460831F176655007D12E5 /* cordova */,
 				0BC700CA1EB20795006DD475 /* PortletDisplayView_default.swift */,
 				0BC700CB1EB20795006DD475 /* PortletDisplayView_default.xib */,
+				0BBE45721F1D0BC200812015 /* ScreensWKWebView.swift */,
+				0BBE45741F1D0BFB00812015 /* ScreensWebView.swift */,
 			);
 			path = Portlet;
 			sourceTree = "<group>";
@@ -2814,6 +2834,7 @@
 				0B3699E91E4C929900B82F81 /* LoginCookieInteractor.swift in Sources */,
 				881E622E1ACBFC3400862B9E /* SignUpView_default.swift in Sources */,
 				884F926A1D58D7D3002EE6B3 /* BaseListCollectionView.swift in Sources */,
+				0BBE45751F1D0BFB00812015 /* ScreensWebView.swift in Sources */,
 				0B5B5E871D5869DB0007D4B1 /* ImageGalleryScreenlet.swift in Sources */,
 				0BF917C81D76BEA000C86C85 /* CommentEditViewController_default.swift in Sources */,
 				887E05521C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.m in Sources */,
@@ -2933,6 +2954,7 @@
 				0B217FE11D6C4E9500A23690 /* ImageDisplayView_default.swift in Sources */,
 				0BB5033D1D37C04A00ABD6B3 /* WebContent.swift in Sources */,
 				0BC700D11EB207B1006DD475 /* PortletDisplayScreenlet.swift in Sources */,
+				0BBE45711F1D0B8100812015 /* ScreensCordovaWebView.swift in Sources */,
 				881E623C1ACBFC3400862B9E /* DDLFieldNumberTableCell_default.swift in Sources */,
 				887E069C1C6A4DF800CA3807 /* LRScreensjournalarticleService_v70.m in Sources */,
 				0B21801A1D6C4FEF00A23690 /* User.swift in Sources */,
@@ -3013,6 +3035,7 @@
 				881E61861ACBEE0B00862B9E /* DDLListPageLoadInteractor.swift in Sources */,
 				88B844C61C73D8F7007A447D /* DDLFormSubmitLiferayConnector.swift in Sources */,
 				0B217FE31D6C4E9500A23690 /* PdfDisplayView_default.swift in Sources */,
+				0B4460851F176668007D12E5 /* ScreensCordovaViewController.swift in Sources */,
 				0B5619FA1E7A7D3E00FDF397 /* WKWebView+Screens.swift in Sources */,
 				0BF917A41D76BE6900C86C85 /* CommentDisplayScreenlet.swift in Sources */,
 				0B217FBB1D6C4E6F00A23690 /* AssetClassNameIds.swift in Sources */,
@@ -3029,6 +3052,7 @@
 				0B66FFCE1DAF83E900963DEB /* DefaultTextField.swift in Sources */,
 				881E62321ACBFC3400862B9E /* DDLBaseFieldTextFieldTableCell_default.swift in Sources */,
 				881E61881ACBEE0B00862B9E /* DDLListViewModel.swift in Sources */,
+				0BBE45731F1D0BC200812015 /* ScreensWKWebView.swift in Sources */,
 				889125C61D549757006AFA08 /* RatingView_default-stars.swift in Sources */,
 				0B5B5E571D5869BB0007D4B1 /* MediaSelector.swift in Sources */,
 				881E60CD1ACBE56700862B9E /* BaseListPageLoadInteractor.swift in Sources */,
