@@ -1,0 +1,45 @@
+body{
+    background: #D6D6D6;
+}
+
+#wrapper {
+    padding-top: 0em;
+}
+
+.col-md-12 {
+    padding: 0px;
+}
+
+.portlet-decorate .portlet-content{
+    border: 0px;
+    margin-top: -50px;
+    background: #D6D6D6;
+}
+
+.user-img-container{
+    display:block;
+    margin:auto;
+    width:80px;
+    height:80px;
+    overflow: hidden;
+    border-radius: 10%;
+    border: 1px solid #E44740;
+}
+
+.user-img{
+    width:100%;
+    height:100%;
+}
+
+.user-fullname{
+    font-weight:900;
+    text-align: center;
+}
+
+.user-fields{
+    margin-left: 15px;
+}
+
+.red{
+    color: #E44740;
+}
