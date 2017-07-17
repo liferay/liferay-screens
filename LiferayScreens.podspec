@@ -72,4 +72,6 @@ Pod::Spec.new do |s|
 	# RatingBar
 	s.dependency 'Cosmos', '~> 8.0'
 
+	s.dependency 'Cordova', '~> 4.0'
+
 end
