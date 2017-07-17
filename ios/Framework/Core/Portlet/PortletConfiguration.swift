@@ -14,16 +14,22 @@
 
 import Foundation
 
-public class PortletConfiguration {
+@objc public class PortletConfiguration: NSObject {
+
+	@objc public enum WebType: Int {
+		case liferay, liferayLogged, other
+	}
 
 	public let portletUrl: String
 	public let scripts: [InjectableScript]
 	public let isThemeEnabled: Bool
+	public let webType: WebType
 
-	public init(portletUrl: String, scripts: [InjectableScript], isThemeEnabled: Bool) {
+	public init(portletUrl: String, scripts: [InjectableScript], isThemeEnabled: Bool, webType: WebType) {
 		self.portletUrl = portletUrl
 		self.scripts = scripts
 		self.isThemeEnabled = isThemeEnabled
+		self.webType = webType
 	}
 
 	public class Builder {
@@ -33,6 +39,7 @@ public class PortletConfiguration {
 		var remoteJs: [String]
 		var remoteCss: [String]
 		var isThemeEnabled: Bool
+		var webType: WebType
 
 		public init(portletUrl: String) {
 			self.portletUrl = portletUrl
@@ -41,6 +48,7 @@ public class PortletConfiguration {
 			self.remoteJs = []
 			self.remoteCss = []
 			self.isThemeEnabled = true
+			self.webType = .liferayLogged
 		}
 
 		public func addJs(localFile: String) -> Self {
@@ -68,6 +76,11 @@ public class PortletConfiguration {
 			return self
 		}
 
+		public func set(webType: WebType) -> Self {
+			self.webType = webType
+			return self
+		}
+
 		public func load() -> PortletConfiguration {
 			let localJsScripts: [InjectableScript] = localJs.map(loadLocalJsContent).map(JsScript.init)
 			let localCssScripts: [InjectableScript] = localCss.map(loadLocalCssContent).map(CssScript.init)
@@ -76,7 +89,7 @@ public class PortletConfiguration {
 
 			let allScripts: [InjectableScript] = localJsScripts + localCssScripts + remoteJsScripts + remoteCssScripts
 
-			return PortletConfiguration(portletUrl: portletUrl, scripts: allScripts, isThemeEnabled: isThemeEnabled)
+			return PortletConfiguration(portletUrl: portletUrl, scripts: allScripts, isThemeEnabled: isThemeEnabled, webType: webType)
 		}
 
 		private func loadLocalCssContent(fileName: String) -> String {
