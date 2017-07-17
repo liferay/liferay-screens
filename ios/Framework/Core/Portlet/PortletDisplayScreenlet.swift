@@ -140,8 +140,17 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 
 		portletDisplayViewModel.isThemeEnabled = configuration.isThemeEnabled
 
-		let html = configureInitialHtml(portletUrl: configuration.portletUrl)
-		portletDisplayViewModel.initialHtml = html
+
+		switch configuration.webType {
+			case .liferayLogged:
+				let html = configureInitialHtml(portletUrl: configuration.portletUrl)
+				portletDisplayViewModel.load(htmlString: html)
+			case .liferay:
+				portletDisplayViewModel.load(request: URLRequest(url: URL(string: configuration.portletUrl)!))
+			case .other:
+				portletDisplayViewModel.isThemeEnabled = false
+				portletDisplayViewModel.load(request: URLRequest(url: URL(string: configuration.portletUrl)!))
+		}
 	}
 
 	func handleInternal(key: String, message: Any) {

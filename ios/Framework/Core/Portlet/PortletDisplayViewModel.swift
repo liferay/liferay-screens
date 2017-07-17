@@ -15,8 +15,6 @@ import UIKit
 
 @objc public protocol PortletDisplayViewModel {
 
-	var initialHtml: String? { get set }
-
 	var isThemeEnabled: Bool { get set }
 
 	// Inject JS to be used by the screenlet.
@@ -28,5 +26,7 @@ import UIKit
 
 	/// Add script handler that will take messages from WKWebView.
 	func add(scriptHandler: String)
+	func load(request: URLRequest)
 
+	func load(htmlString: String)
 }

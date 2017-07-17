@@ -73,9 +73,20 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 	public func inject(injectableScript: InjectableScript) {
 		wkWebView.evaluateJavaScript(injectableScript.content, completionHandler: nil)
 	}
+	
+	public func load(request: URLRequest) {
+		initialNavigation = wkWebView.load(request)
+		progressPresenter.showHUDInView(self, message: LocalizedString(
+			"default", key: "portletdisplay-loading-message", obj: self), forInteractor: Interactor())
+	}
 
 	public func add(scriptHandler: String) {
 		wkWebView.configuration.userContentController.add(self, name: scriptHandler)
+	public func load(htmlString: String) {
+		let server = SessionContext.currentContext?.session.server ?? ""
+		initialNavigation = wkWebView.loadHTMLString(htmlString, baseURL: URL(string: server)!)
+		progressPresenter.showHUDInView(self, message: LocalizedString(
+			"default", key: "portletdisplay-loading-message", obj: self), forInteractor: Interactor())
 	}
 
 	// MARK: WKUIDelegate
