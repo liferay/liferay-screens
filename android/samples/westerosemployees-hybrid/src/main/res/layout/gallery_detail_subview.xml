@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
 	<TextView
 		android:id="@+id/gallery_detail_title"
@@ -18,7 +16,7 @@
 		android:tag="@string/arrow_back_tag"
 		android:visibility="invisible"
 		style="@style/westeros_arrow"
-		/>
+        android:layout_alignParentLeft="true" />
 
 	<com.liferay.mobile.screens.portlet.PortletDisplayScreenlet
 		android:id="@+id/portlet_gallery_item"

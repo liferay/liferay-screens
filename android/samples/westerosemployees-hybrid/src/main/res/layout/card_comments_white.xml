@@ -41,7 +41,7 @@
 		<TextView
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:text="Comment List"/>
+			android:text="@string/comment_list"/>
 
 		<com.liferay.mobile.screens.westerosemployees_hybrid.views.InnerDeck
 			android:layout_width="match_parent"
@@ -83,7 +83,7 @@
 					<TextView
 						android:layout_width="match_parent"
 						android:layout_height="match_parent"
-						android:text="Comment add"/>
+						android:text="@string/comment_add"/>
 
 				</RelativeLayout>
 

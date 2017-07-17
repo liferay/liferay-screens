@@ -34,7 +34,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 /**
  * @author Víctor Galán Grande
  */
-public class GalleryCard extends CommentsRatingsCard implements ImageGalleryListener, PortletDisplayListener {
+public class GalleryCard extends Card implements ImageGalleryListener, PortletDisplayListener {
 
 	private ImageGalleryScreenlet imageGalleryScreenlet;
     private BaseDetailUploadView uploadDetailView;

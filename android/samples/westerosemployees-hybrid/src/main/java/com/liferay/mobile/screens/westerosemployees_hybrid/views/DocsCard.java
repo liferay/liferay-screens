@@ -17,7 +17,7 @@ import com.liferay.mobile.screens.westerosemployees_hybrid.utils.CardState;
 /**
  * @author Víctor Galán Grande
  */
-public class DocsCard extends CommentsRatingsCard implements PortletDisplayListener {
+public class DocsCard extends Card implements PortletDisplayListener {
 
 	PortletDisplayScreenlet portletDisplayScreenlet;
 	private boolean loaded;

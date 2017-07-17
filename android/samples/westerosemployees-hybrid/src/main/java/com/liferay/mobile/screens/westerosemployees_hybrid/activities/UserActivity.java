@@ -10,14 +10,12 @@ import android.widget.TextView;
 import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.imagegallery.ImageGalleryScreenlet;
 import com.liferay.mobile.screens.portlet.PortletConfiguration;
 import com.liferay.mobile.screens.portlet.PortletDisplayListener;
 import com.liferay.mobile.screens.portlet.PortletDisplayScreenlet;
 import com.liferay.mobile.screens.portlet.util.InjectableScript;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.westerosemployees_hybrid.R;
-import com.liferay.mobile.screens.westerosemployees_hybrid.views.BlogsCard;
 
 import java.util.List;
 
@@ -40,12 +38,12 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 		userPortraitScreenlet.setOnClickListener(this);
 		userPortraitScreenlet.loadLoggedUserPortrait();
 
-        LastChangeDisplayScreenlet();
+        lastChangeDisplayScreenlet();
 
 		userNameTextView.setText(SessionContext.getCurrentUser().getFullName());
     }
 
-    private void LastChangeDisplayScreenlet() {
+    private void lastChangeDisplayScreenlet() {
         PortletDisplayScreenlet portletDisplayScreenlet = (PortletDisplayScreenlet) findViewById(R.id.portlet_last_changes);
         PortletConfiguration configuration = new PortletConfiguration.Builder("/web/guest/lastchanges").addRawCss(R.raw.last_changes_portlet_css).addRawJs(R.raw.last_changes_portlet_js).load();
 

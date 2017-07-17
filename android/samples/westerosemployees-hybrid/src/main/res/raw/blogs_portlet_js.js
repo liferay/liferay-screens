@@ -1,12 +1,12 @@
 function modifyItem() {
 
-    var items = document.querySelectorAll(".item-blog");
+    var blogItems = document.querySelectorAll(".item-blog");
 
-    for(var i = 0; i < items.length; i++) {
-        items[i].style = null;
-        addClick(items[i]);
-        if(i != items.length - 1){
-              addSeparator(items[i]);
+    for (var i = 0; i < blogItems.length; i++) {
+        blogItems[i].style = null;
+        addClick(blogItems[i]);
+        if (i != blogItems.length - 1){
+              addSeparator(blogItems[i]);
         }
     }
 }
@@ -18,10 +18,10 @@ function addClick(blogItem) {
      });
 }
 
-function addSeparator(item) {
+function addSeparator(blogItem) {
     var div = document.createElement('div');
     div.className = "separator";
-    item.appendChild(div);
+    blogItem.appendChild(div);
 }
 
 modifyItem();
