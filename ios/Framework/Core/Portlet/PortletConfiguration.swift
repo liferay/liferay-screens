@@ -23,12 +23,16 @@ import Foundation
 	public let portletUrl: String
 	public let scripts: [InjectableScript]
 	public let isThemeEnabled: Bool
+	public let isCordovaEnabled: Bool
 	public let webType: WebType
 
-	public init(portletUrl: String, scripts: [InjectableScript], isThemeEnabled: Bool, webType: WebType) {
+	public init(portletUrl: String, scripts: [InjectableScript], isThemeEnabled: Bool,
+		isCordovaEnabled: Bool, webType: WebType) {
+
 		self.portletUrl = portletUrl
 		self.scripts = scripts
 		self.isThemeEnabled = isThemeEnabled
+		self.isCordovaEnabled = isCordovaEnabled
 		self.webType = webType
 	}
 
@@ -39,6 +43,7 @@ import Foundation
 		var remoteJs: [String]
 		var remoteCss: [String]
 		var isThemeEnabled: Bool
+		var isCordovaEnabled: Bool
 		var webType: WebType
 
 		public init(portletUrl: String) {
@@ -48,6 +53,7 @@ import Foundation
 			self.remoteJs = []
 			self.remoteCss = []
 			self.isThemeEnabled = true
+			self.isCordovaEnabled = false
 			self.webType = .liferayLogged
 		}
 
@@ -76,6 +82,11 @@ import Foundation
 			return self
 		}
 
+		public func enableCordova() -> Self {
+			self.isCordovaEnabled = true
+			return self
+		}
+
 		public func set(webType: WebType) -> Self {
 			self.webType = webType
 			return self
@@ -89,7 +100,8 @@ import Foundation
 
 			let allScripts: [InjectableScript] = localJsScripts + localCssScripts + remoteJsScripts + remoteCssScripts
 
-			return PortletConfiguration(portletUrl: portletUrl, scripts: allScripts, isThemeEnabled: isThemeEnabled, webType: webType)
+			return PortletConfiguration(portletUrl: portletUrl, scripts: allScripts,
+					isThemeEnabled: isThemeEnabled, isCordovaEnabled: isCordovaEnabled, webType: webType)
 		}
 
 		private func loadLocalCssContent(fileName: String) -> String {

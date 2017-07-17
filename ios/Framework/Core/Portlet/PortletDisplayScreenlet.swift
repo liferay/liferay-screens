@@ -73,14 +73,19 @@ import UIKit
 /// your view.
 open class PortletDisplayScreenlet: BaseScreenlet {
 
-	let internalNamespace = "screensInternal"
+	let internalNamespace = "screensinternal"
 
 	/// Whether the content should be retrieved from the portal as soon as the Screenlet appears.
 	/// The default value is true.
 	@IBInspectable open var autoLoad: Bool = true
 
 	/// The portlet URL to be displayed.
-	open var configuration: PortletConfiguration?
+	open var configuration: PortletConfiguration? {
+		didSet {
+			guard let configuration = configuration else { return }
+			portletDisplayViewModel.configureView(with: configuration.isCordovaEnabled)
+		}
+	}
 
 
 	// MARK: Public properties
@@ -104,13 +109,13 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 
 	// MARK: Public methods
 
-	open func handleScriptHandler(key: String, message: String) {
-		if key.hasPrefix(internalNamespace) {
-			handleInternal(key: key, message: message)
+	open func handleScriptHandler(namespace: String, message: String) {
+		if namespace.hasPrefix(internalNamespace) {
+			handleInternal(namespace: namespace, message: message)
 		}
 		else {
 			portletDisplayDelegate?.screenlet?(self,
-				onScriptMessageHandler: key, onScriptMessageBody: message)
+				onScriptMessageHandler: namespace, onScriptMessageBody: message)
 		}
 	}
 
@@ -129,7 +134,6 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 
 		portletDisplayViewModel.isThemeEnabled = configuration.isThemeEnabled
 
-
 		switch configuration.webType {
 			case .liferayLogged:
 				let html = configureInitialHtml(portletUrl: configuration.portletUrl)
@@ -142,8 +146,8 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 		}
 	}
 
-	func handleInternal(key: String, message: Any) {
-		if key.hasSuffix("listPortlets") {
+	func handleInternal(namespace: String, message: Any) {
+		if namespace.hasSuffix("listportlets") {
 			guard let portletsString = message as? String else { return }
 
 			let portlets = portletsString.components(separatedBy: ",")

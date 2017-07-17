@@ -17,6 +17,8 @@ import UIKit
 
 	var isThemeEnabled: Bool { get set }
 
+	func configureView(with cordovaEnabled: Bool)
+
 	// Inject JS to be used by the screenlet.
 	func add(injectableScripts: [InjectableScript])
 
