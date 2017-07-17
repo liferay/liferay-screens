@@ -49,7 +49,7 @@ var screens = {
 		})
 		.filter((x, idx, arr) => arr.indexOf(x) === idx).join(',');
 
-		this.postMessage("screensInternal.listPortlets", parsedPortlets);
+		this.postMessage("screensinternal.listportlets", parsedPortlets);
 	}
 }
 
