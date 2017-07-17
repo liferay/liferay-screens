@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12121"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DocumentationViewController" customModule="WesterosEmployees_hybrid" customModuleProvider="target">
+            <connections>
+                <outlet property="portletDisplayScreenlet" destination="MIW-NX-StD" id="nBL-Ur-7sX"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="363" height="289"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" semanticContentAttribute="playback" translatesAutoresizingMaskIntoConstraints="NO" id="MIW-NX-StD" customClass="PortletDisplayScreenlet" customModule="LiferayScreens">
+                    <rect key="frame" x="0.0" y="0.0" width="363" height="289"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros_doc"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="MIW-NX-StD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="642-3c-dX6"/>
+                <constraint firstAttribute="bottom" secondItem="MIW-NX-StD" secondAttribute="bottom" id="MXA-jG-k9h"/>
+                <constraint firstAttribute="trailing" secondItem="MIW-NX-StD" secondAttribute="trailing" id="b2H-ti-284"/>
+                <constraint firstItem="MIW-NX-StD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="vfn-56-T1D"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="391.5" y="367.5"/>
+        </view>
+    </objects>
+</document>
