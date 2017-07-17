@@ -27,7 +27,7 @@ open class SignUpView_default: BaseScreenletView, SignUpViewModel {
 
 	@IBOutlet open var signUpButton: UIButton?
 
-	@IBOutlet open var scrollView: UIScrollView?
+	@IBOutlet open var scroll: UIScrollView?
 
 	// MARK: BaseScreenletView
 
