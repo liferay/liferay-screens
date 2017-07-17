@@ -42,14 +42,18 @@ public class BlogsCard extends Card implements PortletDisplayListener {
 	public ViewPropertyAnimator setState(CardState state) {
 		if (!loaded && state.equals(CardState.NORMAL)) {
 			loaded = true;
-			PortletConfiguration configuration = new PortletConfiguration.Builder("/web/guest/companynews").addRawCss(R.raw.blogs_portlet_css).addRawJs(R.raw.blogs_portlet_js).load();
-
-			portletDisplayScreenlet.setPortletConfiguration(configuration);
-			portletDisplayScreenlet.load();
-			portletDisplayScreenlet.setListener(this);
+			loadCompanyNews();
 		}
 
 		return super.setState(state);
+	}
+
+	private void loadCompanyNews() {
+		PortletConfiguration configuration = new PortletConfiguration.Builder("/web/guest/companynews").addRawCss(R.raw.blogs_portlet_css).addRawJs(R.raw.blogs_portlet_js).load();
+
+		portletDisplayScreenlet.setPortletConfiguration(configuration);
+		portletDisplayScreenlet.load();
+		portletDisplayScreenlet.setListener(this);
 	}
 
 	@Override

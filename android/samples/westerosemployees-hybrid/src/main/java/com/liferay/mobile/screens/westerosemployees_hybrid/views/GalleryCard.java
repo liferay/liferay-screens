@@ -58,19 +58,23 @@ public class GalleryCard extends Card implements ImageGalleryListener, PortletDi
 	public ViewPropertyAnimator setState(CardState state) {
 		if (!loaded && state.equals(CardState.NORMAL)) {
 			loaded = true;
-			PortletConfiguration configuration = new PortletConfiguration.Builder("/web/guest/gallery").addRawCss(R.raw.gallery_portlet_css).addRawJs(R.raw.gallery_portlet_js).load();
 
             uploadDetailView = (BaseDetailUploadView) findViewById(R.id.upload_detail_view);
             uploadImageCard = (Card) findViewById(R.id.upload_image_card);
 
-            portletDisplayScreenlet = (PortletDisplayScreenlet) findViewById(R.id.portlet_gallery);
-
-			portletDisplayScreenlet.setPortletConfiguration(configuration);
-			portletDisplayScreenlet.load();
-			portletDisplayScreenlet.setListener(this);
+			loadGallery();
 		}
 
 		return super.setState(state);
+	}
+
+	private void loadGallery() {
+		PortletConfiguration configuration = new PortletConfiguration.Builder("/web/guest/gallery").addRawCss(R.raw.gallery_portlet_css).addRawJs(R.raw.gallery_portlet_js).load();
+		portletDisplayScreenlet = (PortletDisplayScreenlet) findViewById(R.id.portlet_gallery);
+
+		portletDisplayScreenlet.setPortletConfiguration(configuration);
+		portletDisplayScreenlet.load();
+		portletDisplayScreenlet.setListener(this);
 	}
 
 	@Override

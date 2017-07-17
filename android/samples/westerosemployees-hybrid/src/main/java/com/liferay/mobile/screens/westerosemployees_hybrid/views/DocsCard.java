@@ -42,15 +42,19 @@ public class DocsCard extends Card implements PortletDisplayListener {
 	public ViewPropertyAnimator setState(CardState state) {
 		if (!loaded && state.equals(CardState.NORMAL)) {
 			loaded = true;
-			PortletConfiguration configuration = new PortletConfiguration.Builder("/web/guest/documents").addRawCss(R.raw.docs_portlet_css).addRawJs(R.raw.docs_portlet_js).load();
-
-            portletDisplayScreenlet.setPortletConfiguration(configuration);
-            portletDisplayScreenlet.load();
-            portletDisplayScreenlet.setListener(this);
+			loadDocuments();
 
 		}
 
 		return super.setState(state);
+	}
+
+	private void loadDocuments() {
+		PortletConfiguration configuration = new PortletConfiguration.Builder("/web/guest/documents").addRawCss(R.raw.docs_portlet_css).addRawJs(R.raw.docs_portlet_js).load();
+
+		portletDisplayScreenlet.setPortletConfiguration(configuration);
+		portletDisplayScreenlet.load();
+		portletDisplayScreenlet.setListener(this);
 	}
 
 	@Override
