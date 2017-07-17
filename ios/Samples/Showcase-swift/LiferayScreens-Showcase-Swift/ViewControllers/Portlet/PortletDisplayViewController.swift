@@ -27,7 +27,6 @@ class PortletDisplayViewController: UIViewController, PortletDisplayScreenletDel
 		}
 	}
 
-
 	//MARK: UIViewController
 
 	override func viewDidLoad() {
@@ -35,10 +34,9 @@ class PortletDisplayViewController: UIViewController, PortletDisplayScreenletDel
 
 		let portletUrl = LiferayServerContext.stringPropertyForKey("portletDisplayUrl")
 
-//		screenlet?.configuration = LocalScriptsConfiguration(portletUrl: portletUrl, cssFiles: ["bigger_pagination"], jsFiles: ["gallery"])
-//		screenlet?.configuration = RemoteScriptsConfiguration(portletUrl: portletUrl, jsUrls: [""], cssUrls: ["http://localhost:8000/css/bigger_pagination.css"])
-
 		let configuration = PortletConfiguration.Builder(portletUrl: portletUrl)
+				.set(webType: .liferayLogged)
+				.enableCordova()
 				.addCss(localFile: "bigger_pagination")
 				.load()
 
@@ -74,6 +72,6 @@ class PortletDisplayViewController: UIViewController, PortletDisplayScreenletDel
 
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		let vc = segue.destination as? PortletDetailViewController
-		vc?.url = sender as! String
+		vc?.url = "http://" + (sender as! String)
 	}
 }
