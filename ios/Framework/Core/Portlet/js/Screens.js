@@ -20,7 +20,17 @@ var screens = {
 			android.postMessage(namespace, message);
 		}
 		else {
-			window.webkit.messageHandlers.screensDefault.postMessage([namespace, message]);
+			if (window.webkit) {
+				window.webkit.messageHandlers.screensDefault.postMessage([namespace, message]);
+			}
+			else {
+				var iframe = document.createElement("IFRAME");
+				iframe.setAttribute("src", "screens-" + namespace + "://" + message);
+				document.documentElement.appendChild(iframe);
+				iframe.parentNode.removeChild(iframe);
+				iframe = null;
+				execIframe.contentWindow.location
+			}
 		}
 	},
 
