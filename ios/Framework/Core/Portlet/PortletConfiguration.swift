@@ -110,7 +110,7 @@ import Foundation
 					print("file named \(fileName) not found")
 					return ""
 			}
-			
+
 			return content
 		}
 

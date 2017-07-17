@@ -74,11 +74,10 @@ UIScrollViewDelegate {
 		jsCallHandler(body[0], body[1])
 	}
 
-
 	// MARK: WKNavigationDelegate
 
 	open func webView(_ webView: WKWebView, didFinish navigation: WKNavigation) {
 		onPageLoadFinished()
 	}
-	
+
 }

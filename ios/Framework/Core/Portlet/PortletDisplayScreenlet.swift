@@ -87,7 +87,6 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 		}
 	}
 
-
 	// MARK: Public properties
 
 	open var portletDisplayDelegate: PortletDisplayScreenletDelegate? {
@@ -97,7 +96,6 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 	open var portletDisplayViewModel: PortletDisplayViewModel {
 		return screenletView as! PortletDisplayViewModel
 	}
-
 
 	// MARK: BaseScreenlet
 

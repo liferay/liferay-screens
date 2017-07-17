@@ -11,134 +11,88 @@
 * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 * details.
 */
+
 import UIKit
 import WebKit
 
-open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewModel, WKUIDelegate, WKNavigationDelegate,
-	WKScriptMessageHandler, UIScrollViewDelegate {
-
-	let defaultNamespace = "screensDefault"
+open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewModel {
 
 	// MARK: Public properties
 
-	open var isThemeEnabled = false
-
-	open lazy var wkWebView: WKWebView = WKWebView(frame: self.frame)
-
-	var initialNavigation: WKNavigation?
 	var progressPresenter = DefaultProgressPresenter()
 
-	// MARK: BaseScreenletView
+	// MARK: PortletDisplayViewModel
 
-	override open var progressMessages: [String: ProgressMessages] {
-		return [
-			BaseScreenlet.DefaultAction: [
-					.working: LocalizedString(
-						"default", key: "portletdisplay-loading-message", obj: self),
-					.failure: LocalizedString(
-						"default", key: "portletdisplay-loading-error", obj: self)
-			]
-		]
-	}
+	open var isThemeEnabled = false
 
-	override open func onCreated() {
-		super.onCreated()
-		wkWebView.injectViewportMetaTag()
+	open var screensWebView: ScreensWebView?
 
-		wkWebView.uiDelegate = self
-		wkWebView.navigationDelegate = self
-		wkWebView.scrollView.delegate = self
-
-		wkWebView.configuration.userContentController.add(self, name: defaultNamespace)
+	open func configureView(with cordovaEnabled: Bool) {
+		if cordovaEnabled {
+			screensWebView = ScreensCordovaWebView(jsCallHandler: handleJsCalls, onPageLoadFinished: onPageLoadFinished)
+		}
+		else {
+			screensWebView = ScreensWKWebView(jsCallHandler: handleJsCalls, onPageLoadFinished: onPageLoadFinished)
+		}
 
 		addWebView()
 	}
 
-	// MARK: PortletDisplayViewModel
-
-	public var initialHtml: String? {
-		didSet {
-			let server = SessionContext.currentContext?.session.server ?? ""
-			initialNavigation = wkWebView.loadHTMLString(initialHtml!, baseURL: URL(string: server)!)
-
-			progressPresenter.showHUDInView(self, message: LocalizedString(
-				"default", key: "portletdisplay-loading-message", obj: self), forInteractor: Interactor())
-		}
-	}
-
-	public func add(injectableScripts: [InjectableScript]) {
+	open func add(injectableScripts: [InjectableScript]) {
 		injectableScripts.forEach { add(injectableScript: $0) }
 	}
 
-	public func add(injectableScript: InjectableScript) {
-		wkWebView.loadScript(js: injectableScript.content)
+	open func add(injectableScript: InjectableScript) {
+		screensWebView?.add(injectableScript: injectableScript)
 	}
 
-	public func inject(injectableScript: InjectableScript) {
-		wkWebView.evaluateJavaScript(injectableScript.content, completionHandler: nil)
-	}
-	
-	public func load(request: URLRequest) {
-		initialNavigation = wkWebView.load(request)
-		progressPresenter.showHUDInView(self, message: LocalizedString(
-			"default", key: "portletdisplay-loading-message", obj: self), forInteractor: Interactor())
+	open func inject(injectableScript: InjectableScript) {
+		screensWebView?.inject(injectableScript: injectableScript)
 	}
 
-	public func load(htmlString: String) {
-		let server = SessionContext.currentContext?.session.server ?? ""
-		initialNavigation = wkWebView.loadHTMLString(htmlString, baseURL: URL(string: server)!)
-		progressPresenter.showHUDInView(self, message: LocalizedString(
-			"default", key: "portletdisplay-loading-message", obj: self), forInteractor: Interactor())
+	open func load(request: URLRequest) {
+		showHud()
+		screensWebView?.load(request: request)
 	}
 
-	// MARK: WKUIDelegate
-
-	public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String,
-			initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
-
-		completionHandler()
+	open func load(htmlString: String) {
+		showHud()
+		screensWebView?.load(htmlString: htmlString)
 	}
-
-	public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation) {
-		guard let initialNavigation = initialNavigation, initialNavigation != navigation
-		else { return }
-
-		progressPresenter.hideHud()
-
-		if isThemeEnabled {
-			webView.evaluateJavaScript("window.Screens.listPortlets()", completionHandler: nil)
-		}
-	}
-
-	func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
-		return nil
-	}
-
-
-	// MARK: WKScriptMessageHandler
-
-	public func userContentController(_ userContentController: WKUserContentController,
-			didReceive message: WKScriptMessage) {
-		guard let body = message.body as? [String] else { return }
-		(screenlet as? PortletDisplayScreenlet)?.handleScriptHandler(key: body[0], message: body[1])
-	}
-
-	// MARK: Public methods
 
 	open func addWebView() {
-		wkWebView.translatesAutoresizingMaskIntoConstraints = false
+		guard let webView = screensWebView?.view else { return }
 
-		addSubview(wkWebView)
+		webView.translatesAutoresizingMaskIntoConstraints = false
 
-		let top = NSLayoutConstraint(item: wkWebView, attribute: .top, relatedBy: .equal,
+		addSubview(webView)
+
+		let top = NSLayoutConstraint(item: webView, attribute: .top, relatedBy: .equal,
 		                             toItem: self, attribute: .top, multiplier: 1, constant: 0)
-		let bottom = NSLayoutConstraint(item: wkWebView, attribute: .bottom, relatedBy: .equal,
+		let bottom = NSLayoutConstraint(item: webView, attribute: .bottom, relatedBy: .equal,
 		                                toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
-		let leading = NSLayoutConstraint(item: wkWebView, attribute: .leading, relatedBy: .equal,
+		let leading = NSLayoutConstraint(item: webView, attribute: .leading, relatedBy: .equal,
 		                                 toItem: self, attribute: .leading, multiplier: 1, constant: 0)
-		let trailing = NSLayoutConstraint(item: wkWebView, attribute: .trailing, relatedBy: .equal,
+		let trailing = NSLayoutConstraint(item: webView, attribute: .trailing, relatedBy: .equal,
 		                                  toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
 
 		NSLayoutConstraint.activate([top, bottom, leading, trailing])
+	}
+
+	open func onPageLoadFinished() {
+		progressPresenter.hideHud()
+		if isThemeEnabled {
+			let js = JsScript(js: "window.Screens.listPortlets()")
+			screensWebView?.inject(injectableScript: js)
+		}
+	}
+
+	open func handleJsCalls(namespace: String, message: String) {
+		(screenlet as? PortletDisplayScreenlet)?.handleScriptHandler(namespace: namespace, message: message)
+	}
+
+	open func showHud() {
+		progressPresenter.showHUDInView(self, message: LocalizedString(
+			"default", key: "portletdisplay-loading-message", obj: self), forInteractor: Interactor())
 	}
 }

@@ -14,7 +14,7 @@
 
 import Foundation
 import Cordova
-public class ScreensCordovaViewController : CDVViewController, UIWebViewDelegate {
+public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate {
 
 	var cdvDelegate: CDVUIWebViewNavigationDelegate?
 	weak var delegate: UIWebViewDelegate?
@@ -63,6 +63,3 @@ public class ScreensCordovaViewController : CDVViewController, UIWebViewDelegate
 		cdvDelegate?.webView(webView, didFailLoadWithError: error)
 	}
 }
-
-
-

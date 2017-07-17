@@ -55,7 +55,6 @@ import UIKit
 		cordovaVC.webViewEngine.loadHTMLString(htmlString, baseURL: URL(string: server)!)
 	}
 
-
 	open func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest,
 	                    navigationType: UIWebViewNavigationType) -> Bool {
 
@@ -105,9 +104,7 @@ import UIKit
 			.flatMap { $0 }
 			.map { try! String(contentsOfFile: $0) }
 			.joined(separator: "\n")
-		
-		
+
 		return JsScript(js: fullScript)
 	}
 }
-
