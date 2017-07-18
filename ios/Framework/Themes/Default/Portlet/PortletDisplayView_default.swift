@@ -29,10 +29,10 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 	open func configureView(with cordovaEnabled: Bool) {
 		if cordovaEnabled {
-			screensWebView = ScreensCordovaWebView(jsCallHandler: handleJsCalls, onPageLoadFinished: onPageLoadFinished)
+			screensWebView = ScreensCordovaWebView(jsCallHandler: handleJsCall, onPageLoadFinished: onPageLoadFinished)
 		}
 		else {
-			screensWebView = ScreensWKWebView(jsCallHandler: handleJsCalls, onPageLoadFinished: onPageLoadFinished)
+			screensWebView = ScreensWKWebView(jsCallHandler: handleJsCall, onPageLoadFinished: onPageLoadFinished)
 		}
 
 		addWebView()
@@ -99,8 +99,8 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		}
 	}
 
-	open func handleJsCalls(namespace: String, message: String) {
-		(screenlet as? PortletDisplayScreenlet)?.handleScriptHandler(namespace: namespace, message: message)
+	open func handleJsCall(namespace: String, message: String) {
+		(screenlet as? PortletDisplayScreenlet)?.handleJsCall(namespace: namespace, message: message)
 	}
 
 	open func showHud() {

@@ -17,7 +17,7 @@ import Foundation
 @objc public class PortletConfiguration: NSObject {
 
 	@objc public enum WebType: Int {
-		case liferay, liferayLogged, other
+		case liferay, liferayAuthenticated, other
 	}
 
 	public let portletUrl: String
@@ -54,7 +54,7 @@ import Foundation
 			self.remoteCss = []
 			self.isThemeEnabled = true
 			self.isCordovaEnabled = false
-			self.webType = .liferayLogged
+			self.webType = .liferayAuthenticated
 		}
 
 		public func addJs(localFile: String) -> Self {

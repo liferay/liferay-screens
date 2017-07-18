@@ -107,7 +107,7 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 
 	// MARK: Public methods
 
-	open func handleScriptHandler(namespace: String, message: String) {
+	open func handleJsCall(namespace: String, message: String) {
 		if namespace.hasPrefix(internalNamespace) {
 			handleInternal(namespace: namespace, message: message)
 		}
@@ -133,7 +133,7 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 		portletDisplayViewModel.isThemeEnabled = configuration.isThemeEnabled
 
 		switch configuration.webType {
-			case .liferayLogged:
+			case .liferayAuthenticated:
 				let html = configureInitialHtml(portletUrl: configuration.portletUrl)
 				portletDisplayViewModel.load(htmlString: html)
 			case .liferay:
