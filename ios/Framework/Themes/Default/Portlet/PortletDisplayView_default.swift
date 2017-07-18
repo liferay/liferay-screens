@@ -19,7 +19,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 	// MARK: Public properties
 
-	var progressPresenter = DefaultProgressPresenter()
+    var progressPresenter: ProgressPresenter?
 
 	// MARK: PortletDisplayViewModel
 
@@ -59,6 +59,18 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		showHud()
 		screensWebView?.load(htmlString: htmlString)
 	}
+    
+    // MARK: BaseScreenletView
+    
+    open override func onCreated() {
+        super.onCreated()
+        
+        self.progressPresenter = createProgressPresenter()
+    }
+    
+    open override func createProgressPresenter() -> ProgressPresenter {
+        return DefaultProgressPresenter()
+    }
 
 	open func addWebView() {
 		guard let webView = screensWebView?.view else { return }
@@ -80,7 +92,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 	}
 
 	open func onPageLoadFinished() {
-		progressPresenter.hideHud()
+        self.progressPresenter?.hideHUDFromView(self, message: nil, forInteractor: Interactor(), withError: nil)
 		if isThemeEnabled {
 			let js = JsScript(js: "window.Screens.listPortlets()")
 			screensWebView?.inject(injectableScript: js)
@@ -92,7 +104,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 	}
 
 	open func showHud() {
-		progressPresenter.showHUDInView(self, message: LocalizedString(
+		progressPresenter?.showHUDInView(self, message: LocalizedString(
 			"default", key: "portletdisplay-loading-message", obj: self), forInteractor: Interactor())
 	}
 }
