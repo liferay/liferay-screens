@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>server</key>
-	<string>http://screens-demo.liferay.org.es</string>
+	<string>http://localhost:8080</string>
 	<key>companyId</key>
 	<real>20116</real>
 	<key>groupId</key>
@@ -17,6 +17,6 @@
 	<key>documentationPortletItemName</key>
 	<string>Docs</string>
 	<key>termsAndConditionsAssetEntryId</key>
-	<real>44493</real>
+	<real>93678</real>
 </dict>
 </plist>

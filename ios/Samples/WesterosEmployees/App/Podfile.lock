@@ -119,7 +119,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   LiferayScreens:
-    :path: "../../../.."
+    :path: ../../../..
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
@@ -131,7 +131,7 @@ SPEC CHECKSUMS:
   Kingfisher: 5690cfb3d1bddf3a98d679a3a34d0b7294974ed2
   Liferay-iOS-SDK: 6b14cb23150d26289c36c4e9eee622bc1979a3d9
   Liferay-OAuth: a9ff190558928bec8ebc18dd326b01bddd7e2968
-  LiferayScreens: 73e113ae735423f3c911ea458f77fe231e7b087e
+  LiferayScreens: 63a26232733c8c56a078e6cb1498eb914b987022
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MDRadialProgress: 1068574b9b4b870f64b605b07f734385bde5104d
   MGSwipeTableCell: 616700eb0ffd1c611ba909066cb7fd739790a0a7
@@ -145,4 +145,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: c7e306ffd0ec58b8e908c4f25aa81f606520c7bd
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.2.1
