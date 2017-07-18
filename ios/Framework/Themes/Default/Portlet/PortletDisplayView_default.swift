@@ -77,6 +77,8 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 		webView.translatesAutoresizingMaskIntoConstraints = false
 
+		webView.backgroundColor = .clear
+		
 		addSubview(webView)
 
 		let top = NSLayoutConstraint(item: webView, attribute: .top, relatedBy: .equal,
