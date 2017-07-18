@@ -94,7 +94,7 @@ open class CardView: UIView, CAAnimationDelegate {
 			}
 		}
 	}
-	open var scrollView: UIScrollView = UIScrollView.newAutoLayout()
+	open var scroll: UIScrollView = UIScrollView.newAutoLayout()
 	open var cardContentView = UIView.newAutoLayout()
 	open var scrollContentView: UIView = UIView.newAutoLayout()
 
@@ -114,8 +114,8 @@ open class CardView: UIView, CAAnimationDelegate {
 
 	///Current page of the scroll view
 	var currentPage: Int {
-		let width = scrollView.frame.size.width
-		return lround(Double(scrollView.contentOffset.x) / Double(width))
+		let width = scroll.frame.size.width
+		return lround(Double(scroll.contentOffset.x) / Double(width))
 	}
 
 	///Number of pages
@@ -195,7 +195,7 @@ open class CardView: UIView, CAAnimationDelegate {
 			}
 		}
 		
-		scrollView.layoutIfNeeded()
+		scroll.layoutIfNeeded()
 	}
 
 	///Remove a page view from the card
@@ -225,10 +225,10 @@ open class CardView: UIView, CAAnimationDelegate {
 	/// - parameter page: index of the page to move to
 	open func moveToPage(_ page: Int, fromPage previousPage: Int) {
 		if delegate?.card?(self, onWillMoveToPage: page, fromPage: previousPage) ?? false {
-			let rect = CGRect(x: scrollView.frame.size.width * CGFloat(page),
-			                      y: 0, size: scrollView.frame.size)
+			let rect = CGRect(x: scroll.frame.size.width * CGFloat(page),
+			                      y: 0, size: scroll.frame.size)
 			
-			scrollView.scrollRectToVisible(rect, animated: true)
+			scroll.scrollRectToVisible(rect, animated: true)
 			
 			//If it's one of the first views, rotate arrow accordingly
 			if page < 2 {
@@ -276,15 +276,15 @@ open class CardView: UIView, CAAnimationDelegate {
 
 		//Add content view and scrollview
 		addSubview(cardContentView)
-		cardContentView.addSubview(scrollView)
-		scrollView.addSubview(scrollContentView)
+		cardContentView.addSubview(scroll)
+		scroll.addSubview(scrollContentView)
 
 		self.backgroundColor = backgroundColor
 
 		//Initialize scroll view
-		scrollView.bounces = true
-		scrollView.isScrollEnabled = false
-		scrollView.isPagingEnabled = false
+		scroll.bounces = true
+		scroll.isScrollEnabled = false
+		scroll.isPagingEnabled = false
 
 		setButton(buttonTitle, fontColor: fontColor)
 		setArrowImage(image)
@@ -361,7 +361,7 @@ open class CardView: UIView, CAAnimationDelegate {
 			relation: .lessThanOrEqual)
 
 		//Scrollview constraints
-		self.scrollView.autoPinEdgesToSuperviewEdges()
+		self.scroll.autoPinEdgesToSuperviewEdges()
 
 		//ScrollView content view constraints
 		self.scrollContentView.autoPinEdgesToSuperviewEdges()

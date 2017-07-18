@@ -83,7 +83,7 @@ class HomeViewController: UIViewController, PortletDisplayScreenletDelegate,
 
     func portletScreenlet() {
         let portletConfiguration = PortletConfiguration.Builder(portletUrl: "/web/guest/lastchanges").addCss(localFile: "last_changes").addJs(localFile: "last_changes").load()
-        portletDisplayScreenlet.themeName = "default"
+        portletDisplayScreenlet.themeName = "westeros"
         portletDisplayScreenlet.configuration = portletConfiguration
         portletDisplayScreenlet.load()
         portletDisplayScreenlet.delegate = self

@@ -63,7 +63,7 @@
                                         <rect key="frame" x="0.0" y="162" width="375" height="295"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros_news"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latest changes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YLw-JF-ukC">

@@ -24,7 +24,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="372" height="279"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros_blog"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros"/>
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
