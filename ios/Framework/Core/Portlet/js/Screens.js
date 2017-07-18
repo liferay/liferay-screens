@@ -55,6 +55,7 @@ var screens = {
 
 window.Screens = Object.create(screens);
 
+//FIXME - non liferay page
 window.Liferay.on('endNavigate', () => {
 	window.Screens.reloadScripts();
 });
