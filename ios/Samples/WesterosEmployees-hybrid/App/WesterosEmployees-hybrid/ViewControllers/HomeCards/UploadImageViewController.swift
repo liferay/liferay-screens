@@ -22,7 +22,7 @@ class UploadImageViewController: CardViewController,
 			imagePicker?.delegate = self
 		}
 	}
-
+  
 	///Called when an user has selected an image from a picker
 	var onImageSelected: ((UIImage) -> ())?
 
@@ -49,7 +49,7 @@ class UploadImageViewController: CardViewController,
 
 	//MARK: Init methods
 
-	convenience init() {
+    convenience init() {
 		self.init(nibName: "UploadImageViewController", bundle: nil)
 	}
 
@@ -70,6 +70,7 @@ class UploadImageViewController: CardViewController,
 			self.cardView?.changeToState(.minimized)
 		}
 		imagePicker?.dismiss(animated: true, completion: nil)
+        //self.cardView?.changeToState(.minimized)
 	}
 
 	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
