@@ -1,17 +1,17 @@
 function modifyItem() {
     
-    var items = document.querySelectorAll(".item_gallery");
+    var galleryItems = document.querySelectorAll(".item_gallery");
     
-    for(var i = 0; i < items.length; i++) {
-        addClick(items[i]);
+    for (var i = 0; i < galleryItems.length; i++) {
+        addClick(galleryItems[i]);
     }
 }
 
-function addClick(blogItem) {
-    var dataId = blogItem.getAttribute('data-id');
-    blogItem.addEventListener('click', function(event) {
-                              window.Screens.postMessage("gallery-item", dataId);
-                              });
-} 
+function addClick(galleryItems) {
+    var dataId = galleryItems.getAttribute('data-id');
+    galleryItems.addEventListener('click', function(event) {
+        window.Screens.postMessage("gallery-item", dataId);
+    });
+}
 
 modifyItem();
