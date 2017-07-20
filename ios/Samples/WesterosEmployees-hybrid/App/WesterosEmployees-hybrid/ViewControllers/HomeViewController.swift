@@ -81,7 +81,7 @@ class HomeViewController: UIViewController, PortletDisplayScreenletDelegate,
 
 	//MARK: UIViewController
 
-    func portletScreenlet() {
+    func loadPortletScreenlet() {
         let portletConfiguration = PortletConfiguration.Builder(portletUrl: "/web/guest/lastchanges").addCss(localFile: "last_changes").addJs(localFile: "last_changes").load()
         portletDisplayScreenlet.themeName = "westeros"
         portletDisplayScreenlet.configuration = portletConfiguration
@@ -228,7 +228,8 @@ class HomeViewController: UIViewController, PortletDisplayScreenletDelegate,
 
 	fileprivate func initializeHome() {
         
-        portletScreenlet()
+        loadPortletScreenlet()
+    
 
 		//Load user profile
 		let userId = SessionContext.currentContext!.user.userId

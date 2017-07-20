@@ -30,7 +30,7 @@ class DocumentationViewController: CardViewController, PortletDisplayScreenletDe
 		self.init(nibName: "DocumentationViewController", bundle: nil)
 	}
 
-    func portletScreenlet() {
+    func loadPortletScreenlet() {
         let portletConfiguration = PortletConfiguration.Builder(portletUrl: "/web/guest/documents").addCss(localFile: "docs").addJs(localFile: "docs").load()
         portletDisplayScreenlet.configuration = portletConfiguration
         portletDisplayScreenlet.load()
@@ -40,7 +40,7 @@ class DocumentationViewController: CardViewController, PortletDisplayScreenletDe
     //MARK: CardViewController
     override func pageWillAppear() {
         if !loaded {
-            portletScreenlet()
+            loadPortletScreenlet()
             loaded = true
         }
     }

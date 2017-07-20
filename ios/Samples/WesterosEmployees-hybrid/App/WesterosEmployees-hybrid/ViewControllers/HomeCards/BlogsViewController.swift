@@ -28,7 +28,7 @@ class BlogsViewController: CardViewController, PortletDisplayScreenletDelegate {
 		self.init(nibName: "BlogsViewController", bundle: nil)
 	}
     
-    func portletScreenlet() {
+    func loadPortletScreenlet() {
         let portletConfiguration = PortletConfiguration.Builder(portletUrl: "/web/guest/companynews").addCss(localFile: "blogs").addJs(localFile: "blogs").load()
         portletDisplayScreenlet.configuration = portletConfiguration
         portletDisplayScreenlet.load()
@@ -39,7 +39,7 @@ class BlogsViewController: CardViewController, PortletDisplayScreenletDelegate {
 	//MARK: CardViewController
 	override func pageWillAppear() {
 		if !loaded {
-			portletScreenlet()
+			loadPortletScreenlet()
 			loaded = true
 		}
 	}

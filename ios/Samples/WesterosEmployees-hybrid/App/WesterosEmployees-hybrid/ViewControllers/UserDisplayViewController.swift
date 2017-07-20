@@ -35,10 +35,10 @@ open class UserDisplayViewController: UIViewController {
 
 	open override func viewDidLoad() {
 		super.viewDidLoad()
-        portletScreenlet()
+        loadPortletScreenlet()
 	}
 
-    func portletScreenlet() {
+    func loadPortletScreenlet() {
         let portletConfiguration = PortletConfiguration.Builder(portletUrl: "/web/guest/userprofile").addCss(localFile: "user_profile").load()
         portletDisplayScreenlet.configuration = portletConfiguration
         portletDisplayScreenlet.load()
