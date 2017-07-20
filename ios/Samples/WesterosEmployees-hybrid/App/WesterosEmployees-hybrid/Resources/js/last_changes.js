@@ -38,8 +38,9 @@ function modifyItem() {
 
 function addClick(lastChangeItem) {
     var dataId = lastChangeItem.getAttribute('data-id');
+    var dataExtension = lastChangeItem.getAttribute('data-extension');
     lastChangeItem.addEventListener('click', function(event) {
-        window.Screens.postMessage("last-changes-item", dataId);
+        window.Screens.postMessage("last-changes-item", dataId + "|" + dataExtension);
     });
 }
 
