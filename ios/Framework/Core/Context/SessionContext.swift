@@ -83,7 +83,7 @@ import Foundation
 		return nil
 	}
 
-	//MARK Public methods
+	// MARK: Public methods
 
 	open class func createEphemeralBasicSession(
 			_ userName: String,
