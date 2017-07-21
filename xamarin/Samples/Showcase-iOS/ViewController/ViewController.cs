@@ -17,8 +17,8 @@ namespace ShowcaseiOS.ViewController
             base.ViewDidLoad();
             // Perform any additional setup after loading the view, typically from a nib.
 
-            this.loginScreenlet.PresentingViewController = this;
-            this.loginScreenlet.Delegate = this;
+            //this.loginScreenlet.PresentingViewController = this;
+            //this.loginScreenlet.Delegate = this;
         }
 
         public override void DidReceiveMemoryWarning()
@@ -27,21 +27,16 @@ namespace ShowcaseiOS.ViewController
             // Release any cached data, images, etc that aren't in use.
         }
 
-        [Export("screenlet:onLoginResponseUserAttributes:")]
-        public void OnLoginResponseUserAttributes(BaseScreenlet screenlet, NSDictionary<NSString, NSObject> attributes)
-        {
-            System.Diagnostics.Debug.WriteLine($"Login success {attributes}");
-
-            UIStoryboard storyboard = UIStoryboard.FromName("SelectOption", null);
-            SelectOptionViewController viewController = 
-                (SelectOptionViewController) storyboard.InstantiateViewController("SelectOptionViewController");
-            this.PresentViewController(viewController, true, null);
-        }
+        /* LoginScreenletDelegate */
 
         [Export("screenlet:onLoginError:")]
-        public void OnLoginError(BaseScreenlet screenlet, NSError error)
-        {
-            System.Diagnostics.Debug.WriteLine($"Login error {error.Description}");
+        public virtual void OnLoginError(BaseScreenlet screenlet, NSError error) {
+            System.Diagnostics.Debug.WriteLine(error.DebugDescription);
+        }
+
+        [Export("screenlet:onLoginResponseUserAttributes:")]
+        public virtual void OnLoginResponseUserAttributes(BaseScreenlet screenlet, NSDictionary<NSString, NSObject> attributes) {
+            System.Diagnostics.Debug.WriteLine(attributes);
         }
     }
 }
