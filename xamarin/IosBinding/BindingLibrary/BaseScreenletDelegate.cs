@@ -1,8 +1,5 @@
-﻿using System;
-using ObjCRuntime;
+﻿using ObjCRuntime;
 using Foundation;
-using UIKit;
-using CoreGraphics;
 
 namespace BindingLibrary
 {
