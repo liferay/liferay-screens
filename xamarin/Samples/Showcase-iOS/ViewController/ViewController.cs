@@ -17,8 +17,7 @@ namespace ShowcaseiOS.ViewController
             base.ViewDidLoad();
             // Perform any additional setup after loading the view, typically from a nib.
 
-            //this.loginScreenlet.PresentingViewController = this;
-            //this.loginScreenlet.Delegate = this;
+            this.loginScreenlet.Delegate = this;
         }
 
         public override void DidReceiveMemoryWarning()
