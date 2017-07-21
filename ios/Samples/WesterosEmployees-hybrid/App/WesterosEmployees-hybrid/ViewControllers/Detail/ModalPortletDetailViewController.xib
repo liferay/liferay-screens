@@ -57,6 +57,7 @@
                             </variation>
                         </view>
                     </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="d9H-mH-LSG" firstAttribute="leading" secondItem="dBo-Xf-6tR" secondAttribute="leading" id="47r-SW-Zpu"/>
                         <constraint firstAttribute="bottom" secondItem="d9H-mH-LSG" secondAttribute="bottom" id="FDg-aT-tFj"/>
@@ -70,7 +71,6 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="dBo-Xf-6tR" secondAttribute="trailing" id="4ji-Io-CDB"/>
                 <constraint firstItem="dBo-Xf-6tR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gEY-P9-I3U"/>

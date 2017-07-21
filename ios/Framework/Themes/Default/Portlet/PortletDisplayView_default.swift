@@ -99,7 +99,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
     open override func onCreated() {
         super.onCreated()
-
+        backgroundColor = .clear
         self.progressPresenter = createProgressPresenter()
     }
 
@@ -116,7 +116,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		guard let webView = screensWebView?.view else { return }
 
 		webView.translatesAutoresizingMaskIntoConstraints = false
-
+    
 		webView.backgroundColor = .clear
 
 		addSubview(webView)
