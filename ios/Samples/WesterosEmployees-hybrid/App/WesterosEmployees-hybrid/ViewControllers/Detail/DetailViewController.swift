@@ -38,6 +38,8 @@ class DetailViewController: CardViewController,
 	//MARK: View methods
 
 	@IBAction func goBackButtonClicked() {
+        portletDisplayScreenlet.themeName = "westeros"
+
 		dismiss(animated: true, completion: nil)
 	}
 
@@ -50,6 +52,8 @@ class DetailViewController: CardViewController,
 	//MARK: CardViewController
 	
 	override func pageWillDisappear() {
+        portletDisplayScreenlet.themeName = "westeros"
+        
 		//Hide comment card
 		self.cardDeck?.cards[safe: 0]?.changeToState(.minimized)
 	}
