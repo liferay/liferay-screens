@@ -4,7 +4,7 @@ using Foundation;
 using UIKit;
 using CoreGraphics;
 
-namespace BindingLibrary
+namespace LiferayScreens
 {
     // @interface BaseScreenletView : UIView <UITextFieldDelegate>
     [BaseType(typeof(UIView))]

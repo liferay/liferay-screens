@@ -1,7 +1,7 @@
 ﻿using System;
 using ObjCRuntime;
 
-namespace BindingLibrary
+namespace LiferayScreens
 {
     [Native]
     public enum AuthType : ulong

@@ -3,7 +3,7 @@ using ObjCRuntime;
 using Foundation;
 using CoreGraphics;
 
-namespace BindingLibrary
+namespace LiferayScreens
 {
     // @interface LoginScreenlet : BaseScreenlet <BasicAuthBasedType>
     [BaseType(typeof(BaseScreenlet))]

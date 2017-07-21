@@ -1,7 +1,7 @@
 ﻿using ObjCRuntime;
 using Foundation;
 
-namespace BindingLibrary
+namespace LiferayScreens
 {
     // @protocol LoginScreenletDelegate <BaseScreenletDelegate>
     [BaseType(typeof(BaseScreenletDelegate))]

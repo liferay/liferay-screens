@@ -4,7 +4,7 @@ using Foundation;
 using UIKit;
 using CoreGraphics;
 
-namespace BindingLibrary
+namespace LiferayScreens
 {
     [BaseType(typeof(UIView))]
     interface BaseScreenlet

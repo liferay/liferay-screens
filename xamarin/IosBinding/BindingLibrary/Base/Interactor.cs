@@ -2,7 +2,7 @@
 using ObjCRuntime;
 using Foundation;
 
-namespace BindingLibrary
+namespace LiferayScreens
 {
     // @interface Interactor : NSObject
     [BaseType(typeof(NSObject))]

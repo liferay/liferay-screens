@@ -4,7 +4,7 @@ using Foundation;
 using ObjCRuntime;
 using UIKit;
 
-namespace BindingLibrary
+namespace LiferayScreens
 {
 	// @interface LoginView_default : BaseScreenletView <LoginViewModel, BasicAuthBasedType>
 	[BaseType(typeof(BaseScreenletView))]
