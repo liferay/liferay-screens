@@ -1,4 +1,4 @@
-﻿using BindingLibrary;
+﻿using LiferayScreens;
 using Foundation;
 using System;
 using UIKit;
@@ -30,12 +30,12 @@ namespace ShowcaseiOS.ViewController
 
         [Export("screenlet:onLoginError:")]
         public virtual void OnLoginError(BaseScreenlet screenlet, NSError error) {
-            System.Diagnostics.Debug.WriteLine(error.DebugDescription);
+            System.Diagnostics.Debug.WriteLine($"Login failed: {error.Description}");
         }
 
         [Export("screenlet:onLoginResponseUserAttributes:")]
         public virtual void OnLoginResponseUserAttributes(BaseScreenlet screenlet, NSDictionary<NSString, NSObject> attributes) {
-            System.Diagnostics.Debug.WriteLine(attributes);
+            System.Diagnostics.Debug.WriteLine($"Login successful: {attributes}");
         }
     }
 }
