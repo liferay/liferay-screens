@@ -2,21 +2,23 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>userClassName</key>
+	<string>com.liferay.portal.kernel.model.User</string>
 	<key>server</key>
 	<string>http://localhost:8080</string>
 	<key>companyId</key>
 	<real>20116</real>
 	<key>groupId</key>
-	<integer>43734</integer>
+	<real>20143</real>
 	<key>anonymousUsername</key>
 	<string>anonymous1@liferay.com</string>
 	<key>anonymousPassword</key>
 	<string>anonymous1</string>
 	<key>galleryFolderId</key>
-	<integer>94601</integer>
+	<real>116488</real>
 	<key>documentationPortletItemName</key>
 	<string>Docs</string>
 	<key>termsAndConditionsAssetEntryId</key>
-	<real>93678</real>
+	<real>93672</real>
 </dict>
 </plist>
