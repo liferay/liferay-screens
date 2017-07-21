@@ -122,10 +122,5 @@
       <SmartLink>False</SmartLink>
     </NativeReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="SharpieGeneratedFiles\ApiDefinitions.cs" />
-    <None Include="SharpieGeneratedFiles\StructsAndEnums.cs" />
-    <None Include="SwiftClassifyGeneratedFiles\ApiDefinitionsNew.cs" />
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
 </Project>
