@@ -36,18 +36,21 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Auth\" />
+    <Folder Include="Auth\Login\" />
+    <Folder Include="Base\" />
+    <Folder Include="Themes\" />
+    <Folder Include="Themes\Default\" />
   </ItemGroup>
   <ItemGroup>
-    <ObjcBindingApiDefinition Include="LoginScreenlet.cs" />
-    <ObjcBindingApiDefinition Include="LoginScreenletDelegate.cs" />
-    <ObjcBindingApiDefinition Include="BaseScreenlet.cs" />
-    <ObjcBindingApiDefinition Include="BaseScreenletDelegate.cs" />
-    <ObjcBindingApiDefinition Include="Interactor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ObjcBindingApiDefinition Include="BaseScreenletView.cs" />
-    <ObjcBindingApiDefinition Include="LoginView_default.cs" />
+    <ObjcBindingApiDefinition Include="Auth\Login\LoginScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Auth\Login\LoginScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Base\BaseScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Base\BaseScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Base\BaseScreenletView.cs" />
+    <ObjcBindingApiDefinition Include="Base\Interactor.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\LoginView_default.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />
