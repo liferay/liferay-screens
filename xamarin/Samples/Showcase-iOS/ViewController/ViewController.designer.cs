@@ -15,7 +15,7 @@ namespace ShowcaseiOS.ViewController
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        BindingLibrary.LoginScreenlet loginScreenlet { get; set; }
+        LiferayScreens.LoginScreenlet loginScreenlet { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
