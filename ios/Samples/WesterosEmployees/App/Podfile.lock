@@ -28,6 +28,7 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.4.0):
     - CocoaLumberjack/Default
+  - Cordova (4.3.0)
   - Cosmos (8.0.2)
   - CryptoSwift (0.6.7)
   - DTPickerPresenter (0.2.0)
@@ -38,6 +39,7 @@ PODS:
   - Liferay-OAuth (1.2.1):
     - Liferay-iOS-SDK (~> 7.0.4)
   - LiferayScreens (2.1.2):
+    - Cordova (~> 4.0)
     - Cosmos (~> 8.0)
     - CryptoSwift (~> 0.6.0)
     - DTPickerPresenter (~> 0.2.0)
@@ -124,6 +126,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   CocoaLumberjack: aa9dcab71bdf9eaf2a63bbd9ddc87863efe45457
+  Cordova: 9dda9e4a521d8f0af561cba93e59f142ed7b306f
   Cosmos: 007c0b8e33a85e5363911bdd933571bbe221f7ef
   CryptoSwift: 685ae257941e5447474348a2b545583e1a16b573
   DTPickerPresenter: 1976573e3475534559b6ec1dad64b2ece16c966d
@@ -131,7 +134,7 @@ SPEC CHECKSUMS:
   Kingfisher: 5690cfb3d1bddf3a98d679a3a34d0b7294974ed2
   Liferay-iOS-SDK: 6b14cb23150d26289c36c4e9eee622bc1979a3d9
   Liferay-OAuth: a9ff190558928bec8ebc18dd326b01bddd7e2968
-  LiferayScreens: 63a26232733c8c56a078e6cb1498eb914b987022
+  LiferayScreens: dafff36a221e5c844bf5da41b624075c6df5e94d
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MDRadialProgress: 1068574b9b4b870f64b605b07f734385bde5104d
   MGSwipeTableCell: 616700eb0ffd1c611ba909066cb7fd739790a0a7

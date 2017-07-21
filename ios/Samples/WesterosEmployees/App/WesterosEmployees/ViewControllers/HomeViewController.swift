@@ -100,8 +100,10 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-
-		SessionContext.loadStoredCredentials()
+        
+        if SessionContext.currentContext?.session == nil {
+            SessionContext.loadStoredCredentials()
+        }
 		
 		if !SessionContext.isLoggedIn {
 			homeInitialized = false
