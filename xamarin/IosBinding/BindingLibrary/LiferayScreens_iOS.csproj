@@ -6,9 +6,9 @@
     <ProjectTypeGuids>{8FFB629D-F513-41CE-95D2-7ECE97B6EEEC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProjectGuid>{9A7BF9F5-5C02-4749-AB38-FE8D8C3D0C91}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>BindingLibrary</RootNamespace>
+    <RootNamespace>LiferayScreens</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>BindingLibrary</AssemblyName>
+    <AssemblyName>LiferayScreens_iOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
