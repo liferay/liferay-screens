@@ -32,7 +32,13 @@ class GalleryViewController: CardViewController, PortletDisplayScreenletDelegate
 	
 	//MARK: Outlets
 
-    @IBOutlet weak var portletDisplayScreenlet: PortletDisplayScreenlet!
+    @IBOutlet weak var portletDisplayScreenlet: PortletDisplayScreenlet! {
+        didSet {
+            let portletConfiguration = PortletConfiguration.Builder(portletUrl: "/web/guest/gallery").addCss(localFile: "gallery").addJs(localFile: "gallery").load()
+            portletDisplayScreenlet.configuration = portletConfiguration
+            portletDisplayScreenlet.delegate = self
+        }
+    }
 	
 
 	@IBOutlet weak var cardDeck: CardDeckView? {
@@ -50,10 +56,7 @@ class GalleryViewController: CardViewController, PortletDisplayScreenletDelegate
 	}
 
     func loadPortletScreenlet() {
-        let portletConfiguration = PortletConfiguration.Builder(portletUrl: "/web/guest/gallery").addCss(localFile: "gallery").addJs(localFile: "gallery").load()
-        portletDisplayScreenlet.configuration = portletConfiguration
         portletDisplayScreenlet.load()
-        portletDisplayScreenlet.delegate = self
     }
     
     //MARK: CardViewController
