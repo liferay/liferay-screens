@@ -7,7 +7,7 @@
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']/class[@name='SelectFileDialog']"/>
 
   <!--<remove-node path="/api/package[@name='com.liferay.mobile.screens.base']/class[@name='BaseScreenlet']" />-->
-  <!--<remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.form']/class[@name='DDLFormScreenlet']" />-->
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.form']/class[@name='DDLFormScreenlet']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.comment.display']/class[@name='CommentDisplayScreenlet']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.rating']/class[@name='RatingScreenlet']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.userportrait']/class[@name='UserPortraitScreenlet']" />

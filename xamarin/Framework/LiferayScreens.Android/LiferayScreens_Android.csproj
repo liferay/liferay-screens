@@ -38,22 +38,19 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Additions\DDLFormScreenlet.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Additions\Ddl\Model\DateField.cs" />
-    <Compile Include="Additions\Ddl\Model\BooleanField.cs" />
-    <Compile Include="Additions\Ddl\Model\StringWithOptionsField.cs" />
-    <Compile Include="Additions\Ddl\Model\StringField.cs" />
-    <Compile Include="Additions\Ddl\Model\NumberField.cs" />
-    <Compile Include="Additions\Ddl\Model\DocumentField.cs" />
-    <Compile Include="Additions\LoginScreenlet.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Additions\Viewsets.Defaultviews\Ddl\Form\Fields\DDLFieldRadioView.cs" />
-    <Compile Include="Additions\Viewsets.Defaultviews\Ddl\Form\Fields\DDLFieldCheckboxView.cs" />
-    <Compile Include="Additions\Viewsets.Defaultviews\Ddl\Form\Fields\CustomRatingNumberView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Additions\Auth\Login\LoginScreenlet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Additions\Viewset\Default\DDL\Form\CustomRatingNumberView.cs" />
+    <Compile Include="Additions\Viewset\Default\DDL\Form\DDLFieldCheckboxView.cs" />
+    <Compile Include="Additions\Viewset\Default\DDL\Form\DDLFieldRadioView.cs" />
+    <Compile Include="Additions\DDL\Form\Model\BooleanField.cs" />
+    <Compile Include="Additions\DDL\Form\Model\DateField.cs" />
+    <Compile Include="Additions\DDL\Form\Model\DocumentField.cs" />
+    <Compile Include="Additions\DDL\Form\Model\NumberField.cs" />
+    <Compile Include="Additions\DDL\Form\Model\StringField.cs" />
+    <Compile Include="Additions\DDL\Form\Model\StringWithOptionsField.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Jars\AboutJars.txt" />
@@ -86,6 +83,17 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\robolectric-3.1.4.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Additions\Auth\" />
+    <Folder Include="Additions\Auth\Login\" />
+    <Folder Include="Additions\Viewset\" />
+    <Folder Include="Additions\Viewset\Default\" />
+    <Folder Include="Additions\Viewset\Default\DDL\" />
+    <Folder Include="Additions\Viewset\Default\DDL\Form\" />
+    <Folder Include="Additions\DDL\" />
+    <Folder Include="Additions\DDL\Form\" />
+    <Folder Include="Additions\DDL\Form\Model\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
