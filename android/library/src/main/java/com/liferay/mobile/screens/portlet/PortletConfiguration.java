@@ -21,6 +21,7 @@ import com.liferay.mobile.screens.portlet.util.JsScript;
 import com.liferay.mobile.screens.portlet.util.RemoteCssScript;
 import com.liferay.mobile.screens.portlet.util.RemoteJsScript;
 import com.liferay.mobile.screens.util.AssetReader;
+import com.liferay.mobile.screens.viewsets.defaultviews.portlet.cordova.CordovaLifeCycleObserver;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,12 +35,19 @@ public class PortletConfiguration {
 	private List<InjectableScript> scripts;
 	private boolean isThemeEnabled;
 	private WebType webType;
+	private CordovaLifeCycleObserver observer;
+	private boolean isCordovaEnabled;
 
-	public PortletConfiguration(String portletUrl, List<InjectableScript> scripts, boolean isThemeEnabled) {
+	public PortletConfiguration(String portletUrl, List<InjectableScript> scripts,
+		boolean isThemeEnabled, WebType webType, CordovaLifeCycleObserver observer,
+		boolean isCordovaEnabled) {
+
 		this.portletUrl = portletUrl;
 		this.scripts = scripts;
 		this.isThemeEnabled = isThemeEnabled;
 		this.webType = webType;
+		this.observer = observer;
+		this.isCordovaEnabled = isCordovaEnabled;
 	}
 
 	public String getPortletUrl() {
@@ -58,6 +66,14 @@ public class PortletConfiguration {
 		return webType;
 	}
 
+	public CordovaLifeCycleObserver getObserver() {
+		return observer;
+	}
+
+	public boolean isCordovaEnabled() {
+		return isCordovaEnabled;
+	}
+
 	public static class Builder {
 
 		private String portletUrl;
@@ -69,6 +85,8 @@ public class PortletConfiguration {
 		private List<Integer> localRawCss;
 		private boolean isThemeEnabled;
 		private WebType webType;
+		private CordovaLifeCycleObserver observer;
+		private boolean isCordovaEnabled;
 
 		public Builder(String portletUrl) {
 			super();
@@ -81,6 +99,7 @@ public class PortletConfiguration {
 			localRawJs = new ArrayList<>();
 			localRawCss = new ArrayList<>();
 			this.isThemeEnabled = true;
+			this.isCordovaEnabled = false;
 			this.webType = WebType.LIFERAY_AUTHENTICATED;
 		}
 
@@ -92,6 +111,7 @@ public class PortletConfiguration {
 			this.remoteJs = remoteJs;
 			this.remoteCss = remoteCss;
 			this.isThemeEnabled = isThemeEnabled;
+			this.isCordovaEnabled = false;
 			this.webType = WebType.LIFERAY_AUTHENTICATED;
 		}
 
@@ -134,6 +154,13 @@ public class PortletConfiguration {
 			this.webType = webType;
 			return this;
 		}
+
+		public Builder enableCordova(CordovaLifeCycleObserver observer) {
+			this.observer = observer;
+			this.isCordovaEnabled = true;
+			return this;
+		}
+
 		public PortletConfiguration load() {
 
 			List<InjectableScript> allScripts = new ArrayList<>();
@@ -174,7 +201,8 @@ public class PortletConfiguration {
 				}
 			}
 
-			return new PortletConfiguration(portletUrl, allScripts, isThemeEnabled);
+			return new PortletConfiguration(portletUrl, allScripts, isThemeEnabled, webType,
+				observer, isCordovaEnabled);
 		}
 
 		private String loadLocalContent(String fileName) {
