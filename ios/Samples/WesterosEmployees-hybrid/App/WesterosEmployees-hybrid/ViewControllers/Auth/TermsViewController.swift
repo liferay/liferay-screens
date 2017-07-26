@@ -45,11 +45,10 @@ class TermsViewController: CardViewController, AssetDisplayScreenletDelegate {
         
         AssetClasses.set(AssetClassNameKey_JournalArticle, newClassName: "com.liferay.journal.model.JournalArticle")
         
-        AssetClasses.set(AssetClassNameKey_JournalArticle, newId: 29301)
+        AssetClasses.set(AssetClassNameKey_JournalArticle, newId: 29634)
 		
 		//Load article data into screenlet
-        self.assetDisplayScreenlet?.className = "com.liferay.journal.model.JournalArticle"
-		self.assetDisplayScreenlet?.classPK = 93670
+        self.assetDisplayScreenlet?.assetEntryId = LiferayServerContext.longPropertyForKey("termsAndConditionsAssetEntryId")
 		self.assetDisplayScreenlet?.load()
 	}
 

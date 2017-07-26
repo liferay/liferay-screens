@@ -31,7 +31,7 @@ class DocumentationViewController: CardViewController, PortletDisplayScreenletDe
 	}
 
     func loadPortletScreenlet() {
-        let portletConfiguration = PortletConfiguration.Builder(portletUrl: "/web/guest/documents").addCss(localFile: "docs").addJs(localFile: "docs").load()
+        let portletConfiguration = PortletConfiguration.Builder(portletUrl: "/web/westeros-hybrid/documents").addCss(localFile: "docs").addJs(localFile: "docs").load()
         portletDisplayScreenlet.configuration = portletConfiguration
         portletDisplayScreenlet.load()
         portletDisplayScreenlet.delegate = self

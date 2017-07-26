@@ -34,7 +34,7 @@ class GalleryViewController: CardViewController, PortletDisplayScreenletDelegate
 
     @IBOutlet weak var portletDisplayScreenlet: PortletDisplayScreenlet! {
         didSet {
-            let portletConfiguration = PortletConfiguration.Builder(portletUrl: "/web/guest/gallery").addCss(localFile: "gallery").addJs(localFile: "gallery").load()
+            let portletConfiguration = PortletConfiguration.Builder(portletUrl: "/web/westeros-hybrid/gallery").addCss(localFile: "gallery").addJs(localFile: "gallery").load()
             portletDisplayScreenlet.configuration = portletConfiguration
             portletDisplayScreenlet.delegate = self
         }

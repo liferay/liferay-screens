@@ -29,7 +29,7 @@ class BlogsViewController: CardViewController, PortletDisplayScreenletDelegate {
 	}
     
     func loadPortletScreenlet() {
-        let portletConfiguration = PortletConfiguration.Builder(portletUrl: "/web/guest/companynews").addCss(localFile: "blogs").addJs(localFile: "blogs").load()
+        let portletConfiguration = PortletConfiguration.Builder(portletUrl: "/web/westeros-hybrid/companynews").addCss(localFile: "blogs").addJs(localFile: "blogs").load()
         portletDisplayScreenlet.configuration = portletConfiguration
         portletDisplayScreenlet.load()
         portletDisplayScreenlet.delegate = self

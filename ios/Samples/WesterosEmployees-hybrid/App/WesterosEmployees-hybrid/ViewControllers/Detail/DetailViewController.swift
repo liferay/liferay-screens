@@ -44,7 +44,7 @@ class DetailViewController: CardViewController,
 	}
 
     func load(file: String, id: String) {
-        let portletConfiguration = PortletConfiguration.Builder(portletUrl: "/web/guest/detail?id=\(id)").addCss(localFile: file).addJs(localFile: file).load()
+        let portletConfiguration = PortletConfiguration.Builder(portletUrl: "/web/westeros-hybrid/detail?id=\(id)").addCss(localFile: file).addJs(localFile: file).load()
         portletDisplayScreenlet.configuration = portletConfiguration
         portletDisplayScreenlet.load()
     }

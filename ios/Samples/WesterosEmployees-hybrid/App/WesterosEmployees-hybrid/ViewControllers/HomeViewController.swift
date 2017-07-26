@@ -82,7 +82,7 @@ class HomeViewController: UIViewController, PortletDisplayScreenletDelegate,
 	//MARK: UIViewController
 
     func loadPortletScreenlet() {
-        let portletConfiguration = PortletConfiguration.Builder(portletUrl: "/web/guest/lastchanges").addCss(localFile: "last_changes").addJs(localFile: "last_changes").load()
+        let portletConfiguration = PortletConfiguration.Builder(portletUrl: "/web/westeros-hybrid/lastchanges").addCss(localFile: "last_changes").addJs(localFile: "last_changes").load()
         portletDisplayScreenlet.themeName = "westeros"
         portletDisplayScreenlet.configuration = portletConfiguration
         portletDisplayScreenlet.load()
