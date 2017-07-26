@@ -28,15 +28,18 @@ import java.util.List;
  * @author Sarai Díaz García
  */
 public class PortletConfiguration {
+	public enum WebType {LIFERAY_AUTHENTICATED, LIFERAY, CUSTOM}
 
 	private String portletUrl;
 	private List<InjectableScript> scripts;
 	private boolean isThemeEnabled;
+	private WebType webType;
 
 	public PortletConfiguration(String portletUrl, List<InjectableScript> scripts, boolean isThemeEnabled) {
 		this.portletUrl = portletUrl;
 		this.scripts = scripts;
 		this.isThemeEnabled = isThemeEnabled;
+		this.webType = webType;
 	}
 
 	public String getPortletUrl() {
@@ -51,6 +54,10 @@ public class PortletConfiguration {
 		return isThemeEnabled;
 	}
 
+	public WebType getWebType() {
+		return webType;
+	}
+
 	public static class Builder {
 
 		private String portletUrl;
@@ -61,6 +68,7 @@ public class PortletConfiguration {
 		private List<Integer> localRawJs;
 		private List<Integer> localRawCss;
 		private boolean isThemeEnabled;
+		private WebType webType;
 
 		public Builder(String portletUrl) {
 			super();
@@ -73,6 +81,7 @@ public class PortletConfiguration {
 			localRawJs = new ArrayList<>();
 			localRawCss = new ArrayList<>();
 			this.isThemeEnabled = true;
+			this.webType = WebType.LIFERAY_AUTHENTICATED;
 		}
 
 		public Builder(String portletUrl, List<String> localJs, List<String> localCss,
@@ -83,6 +92,7 @@ public class PortletConfiguration {
 			this.remoteJs = remoteJs;
 			this.remoteCss = remoteCss;
 			this.isThemeEnabled = isThemeEnabled;
+			this.webType = WebType.LIFERAY_AUTHENTICATED;
 		}
 
 		public Builder addLocalJs(String fileName) {
@@ -120,6 +130,10 @@ public class PortletConfiguration {
 			return this;
 		}
 
+		public Builder setWebType(WebType webType) {
+			this.webType = webType;
+			return this;
+		}
 		public PortletConfiguration load() {
 
 			List<InjectableScript> allScripts = new ArrayList<>();
