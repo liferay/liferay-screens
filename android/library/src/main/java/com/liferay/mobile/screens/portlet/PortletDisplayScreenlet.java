@@ -46,7 +46,8 @@ import java.util.HashMap;
 /**
  * @author Sarai Díaz García
  */
-public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewModel, PortletDisplayInteractor>
+public class PortletDisplayScreenlet
+	extends BaseScreenlet<PortletDisplayViewModel, PortletDisplayInteractor>
 	implements PortletDisplayListener {
 
 	private boolean autoLoad;
@@ -70,7 +71,8 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 		super(context, attrs, defStyleAttr);
 	}
 
-	public PortletDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+	public PortletDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr,
+		int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
@@ -89,15 +91,25 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 
 			javascriptInjector.addJsFile(R.raw.screens);
 
-			if (!portletConfiguration.isThemeEnabled()) {
-				getViewModel().setTheme(false);
+			if (portletConfiguration.isThemeEnabled() && !portletConfiguration.getWebType()
+				.equals(PortletConfiguration.WebType.CUSTOM)) {
+				getViewModel().setTheme(true);
 			}
 
 			for (InjectableScript script : portletConfiguration.getScripts()) {
 				javascriptInjector.addJs(script.getContent());
 			}
 
-			getViewModel().showFinishOperation(finalUrl, body, javascriptInjector.generateInjectableJs());
+			if (portletConfiguration.getWebType()
+				.equals(PortletConfiguration.WebType.LIFERAY_AUTHENTICATED)) {
+
+				getViewModel().showFinishOperation(finalUrl, body,
+					javascriptInjector.generateInjectableJs());
+
+			} else {
+				getViewModel().showFinishOperation(portletConfiguration.getPortletUrl(),
+					javascriptInjector.generateInjectableJs());
+			}
 		} else {
 			getViewModel().showFailedOperation(DEFAULT_ACTION, new MalformedURLException());
 		}
@@ -106,7 +118,8 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	public String buildPortletUrl(String url) {
 		try {
 			url = URLEncoder.encode(url, "UTF-8");
-			return String.format("%s/c/portal/login?redirect=%s", LiferayServerContext.getServer(), url);
+			return String.format("%s/c/portal/login?redirect=%s", LiferayServerContext.getServer(),
+				url);
 		} catch (UnsupportedEncodingException e) {
 			return "";
 		}
@@ -137,8 +150,9 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	 * Then calls {@link #load()} method.
 	 */
 	protected void autoLoad() {
-		if (SessionContext.isLoggedIn() && portletConfiguration != null
-				&& portletConfiguration.getPortletUrl() != null) {
+		if (SessionContext.isLoggedIn()
+			&& portletConfiguration != null
+			&& portletConfiguration.getPortletUrl() != null) {
 
 			if (portletConfiguration.getPortletUrl().contains("documents")) {
 				loadAsset();
@@ -204,12 +218,13 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
 
-		TypedArray typedArray =
-			context.getTheme().obtainStyledAttributes(attributes, R.styleable.PortletDisplayScreenlet, 0, 0);
+		TypedArray typedArray = context.getTheme()
+			.obtainStyledAttributes(attributes, R.styleable.PortletDisplayScreenlet, 0, 0);
 
 		autoLoad = typedArray.getBoolean(R.styleable.PortletDisplayScreenlet_autoLoad, true);
 
-		int layoutId = typedArray.getResourceId(R.styleable.PortletDisplayScreenlet_layoutId, getDefaultLayoutId());
+		int layoutId = typedArray.getResourceId(R.styleable.PortletDisplayScreenlet_layoutId,
+			getDefaultLayoutId());
 
 		typedArray.recycle();
 
@@ -222,7 +237,8 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, PortletDisplayInteractor interactor, Object... args) {
+	protected void onUserAction(String userActionName, PortletDisplayInteractor interactor,
+		Object... args) {
 		interactor.start(portletConfiguration.getPortletUrl());
 	}
 
@@ -262,6 +278,8 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 
 	public void setPortletConfiguration(PortletConfiguration portletConfiguration) {
 		this.portletConfiguration = portletConfiguration;
+		getViewModel().configureView(portletConfiguration.isCordovaEnabled(),
+			portletConfiguration.getObserver());
 	}
 
 	public void setImageLayout(@IdRes int imageLayout) {

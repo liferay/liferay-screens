@@ -18,6 +18,7 @@ import android.view.View;
 import android.webkit.WebView;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.portlet.JavascriptInjector;
+import com.liferay.mobile.screens.viewsets.defaultviews.portlet.cordova.CordovaLifeCycleObserver;
 
 /**
  * @author Sarai Díaz García
@@ -31,6 +32,14 @@ public interface PortletDisplayViewModel extends BaseViewModel {
 	 * @param injectedJs custom Javascript to use in the portlet.
 	 */
 	void showFinishOperation(String url, String body, String injectedJs);
+
+	/**
+	 * Called when portlet screenlet is ready to be displayed.
+	 *
+	 * @param url portlet url.
+	 * @param injectedJs custom Javascript to use in the portlet.
+	 */
+	void showFinishOperation(String url, String injectedJs);
 
 	/**
 	 * Called when asset child screenlet is ready to be displayed.
@@ -53,4 +62,7 @@ public interface PortletDisplayViewModel extends BaseViewModel {
 	 * @param theme if the proper css and js files must be injected or not.
 	 */
 	void setTheme(boolean theme);
+
+
+	void configureView(boolean isCordovaEnabled, CordovaLifeCycleObserver observer);
 }
