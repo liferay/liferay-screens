@@ -5,27 +5,34 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.portlet.PortletDisplayScreenlet;
 import com.liferay.mobile.screens.portlet.view.PortletDisplayViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
+import com.liferay.mobile.screens.viewsets.defaultviews.portlet.cordova.CordovaLifeCycleObserver;
+import com.liferay.mobile.screens.viewsets.defaultviews.portlet.cordova.ScreensCordovaWebView;
 
 /**
  * @author Sarai Díaz García
+ * @author Víctor Galán
  */
 
-public class PortletDisplayView extends FrameLayout implements PortletDisplayViewModel {
+public class PortletDisplayView extends FrameLayout implements PortletDisplayViewModel,
+	ScreensWebView.Listener {
 
 	private BaseScreenlet screenlet;
 	private WebView webView;
+	private ScreensWebView screensWebView;
 	private ProgressBar progressBar;
-	private boolean theme = true;
 	private String URL_LOGIN = "/c/portal/login";
+	private boolean theme;
+	private boolean isLoaded;
+	private String javaScriptToInject;
 
 	public PortletDisplayView(Context context) {
 		super(context);
@@ -43,9 +50,27 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		webView = (WebView) findViewById(R.id.liferay_portlet_webview);
 		progressBar = (ProgressBar) findViewById(R.id.liferay_portlet_progress);
 	}
+
+	@Override
+	protected void onAttachedToWindow() {
+		super.onAttachedToWindow();
+
+		if (screensWebView != null) {
+			screensWebView.onAttached();
+		}
+	}
+
+	@Override
+	protected void onDetachedFromWindow() {
+		super.onDetachedFromWindow();
+
+		if (screensWebView != null) {
+			screensWebView.onDetached();
+		}
+	}
+
 
 	@Override
 	public void showStartOperation(String actionName) {
@@ -79,38 +104,20 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 	}
 
 	@Override
-	public void showFinishOperation(String url, String body, final String injectedJs) {
+	public void showFinishOperation(String url, String body, String injectedJs) {
 		if (webView != null) {
-			webView.getSettings().setJavaScriptEnabled(true);
-			webView.addJavascriptInterface(new PortletDisplayInterface(), "android");
+			javaScriptToInject = injectedJs;
 
 			webView.postUrl(url, body.getBytes());
-
-			webView.setWebViewClient(new WebViewClient() {
-
-				boolean isLoaded = false;
-
-				@Override
-				public void onPageFinished(WebView view, String url) {
-					super.onPageFinished(view, url);
-					if (!isLoaded && !url.contains(URL_LOGIN)) {
-						render(view, injectedJs);
-						isLoaded = true;
-					}
-				}
-			});
-		}
 	}
 
-	private void render(WebView view, String injectedJs) {
-		webView.loadUrl(injectedJs);
+	@Override
+	public void showFinishOperation(String url, String injectedJs) {
+		if (webView != null) {
+			javaScriptToInject = injectedJs;
 
-		if (theme) {
-			webView.loadUrl("javascript:window.Screens.listPortlets()");
+			webView.loadUrl(url);
 		}
-
-		view.setVisibility(VISIBLE);
-		progressBar.setVisibility(GONE);
 	}
 
 	@Override
@@ -143,6 +150,49 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 
 	public void setTheme(boolean theme) {
 		this.theme = theme;
+	}
+
+	@Override
+	public void configureView(boolean isCordovaEnabled, CordovaLifeCycleObserver observer) {
+		if (isCordovaEnabled) {
+			screensWebView = new ScreensCordovaWebView(
+				LiferayScreensContext.getActivityFromContext(getContext()), observer);
+		}
+		else {
+			screensWebView = new ScreensNativeWebView(
+				LiferayScreensContext.getActivityFromContext(getContext()));
+		}
+
+		screensWebView.setListener(this);
+
+		webView = screensWebView.getView();
+		webView.setLayoutParams(new LinearLayout.LayoutParams(
+			LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+
+		webView.getSettings().setJavaScriptEnabled(true);
+
+		addView(webView);
+	}
+
+	@Override
+	public void onPageStarted() {
+		webView.addJavascriptInterface(new PortletDisplayInterface(), "android");
+	}
+
+	@Override
+	public void onPageFinished(String url) {
+		if (!isLoaded && !url.contains(URL_LOGIN)) {
+			isLoaded = true;
+
+			webView.loadUrl(javaScriptToInject);
+
+			if (theme) {
+				webView.loadUrl("javascript:window.Screens.listPortlets()");
+			}
+
+			webView.setVisibility(VISIBLE);
+			progressBar.setVisibility(GONE);
+		}
 	}
 
 	private class PortletDisplayInterface {
