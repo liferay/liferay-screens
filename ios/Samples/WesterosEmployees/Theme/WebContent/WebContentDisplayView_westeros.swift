@@ -17,7 +17,7 @@ import LiferayScreens
 open class WebContentDisplayView_westeros: WebContentDisplayView_default {
 
 	fileprivate let styles =
-		".MobileCSS {padding: 0% 4%; width: 92%; color: white;} " +
+		"body{background: #E44740;} .MobileCSS {padding: 0% 4%; width: 92%; color: white;} " +
 		".MobileCSS, .MobileCSS span, .MobileCSS p, .MobileCSS h1, .MobileCSS h2, .MobileCSS h3 { " +
 			"font-size: 110%; font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-weight: 200; } " +
 		".MobileCSS img { width: 100% !important; } " +
