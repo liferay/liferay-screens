@@ -69,7 +69,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDy-iV-fag" customClass="AssetListScreenlet" customModule="LiferayScreens">
                                         <rect key="frame" x="0.0" y="162" width="375" height="295"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="portletItemName" value="LastChangesItems"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="portletItemName" value="LastChanges"/>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
                                             <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros_news"/>
                                         </userDefinedRuntimeAttributes>
