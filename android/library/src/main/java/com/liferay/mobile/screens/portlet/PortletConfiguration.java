@@ -38,7 +38,7 @@ public class PortletConfiguration {
 	private CordovaLifeCycleObserver observer;
 	private boolean isCordovaEnabled;
 
-	public PortletConfiguration(String portletUrl, List<InjectableScrpipt> scripts,
+	public PortletConfiguration(String portletUrl, List<InjectableScript> scripts,
 		boolean isThemeEnabled, WebType webType, CordovaLifeCycleObserver observer,
 		boolean isCordovaEnabled) {
 

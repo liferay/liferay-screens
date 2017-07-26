@@ -109,6 +109,7 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 			javaScriptToInject = injectedJs;
 
 			webView.postUrl(url, body.getBytes());
+		}
 	}
 
 	@Override
