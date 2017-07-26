@@ -12,12 +12,4 @@
 		android:layout_gravity="center"
 		/>
 
-	<WebView
-		android:id="@+id/liferay_portlet_webview"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:background="@android:color/transparent"
-		android:visibility="gone"
-		/>
-
 </com.liferay.mobile.screens.viewsets.defaultviews.portlet.PortletDisplayView>
