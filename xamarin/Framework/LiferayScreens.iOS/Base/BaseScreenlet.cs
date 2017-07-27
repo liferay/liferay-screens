@@ -44,11 +44,6 @@ namespace LiferayScreens
         [DesignatedInitializer]
         IntPtr Constructor(CGRect frame, [NullAllowed] string themeName);
 
-        // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-        //[Export("initWithCoder:")]
-        //[DesignatedInitializer]
-        //IntPtr Constructor(NSCoder aDecoder);
-
         // -(void)awakeFromNib __attribute__((objc_requires_super));
         [Export("awakeFromNib")]
         //[RequiresSuper]

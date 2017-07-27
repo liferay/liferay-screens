@@ -8,7 +8,7 @@ namespace LiferayScreens
 {
 	// @interface LoginView_default : BaseScreenletView <LoginViewModel, BasicAuthBasedType>
 	[BaseType(typeof(BaseScreenletView))]
-	interface LoginView_default // : ILoginViewModel, IBasicAuthBasedType
+	interface LoginView_default : ILoginViewModel, IBasicAuthBasedType
 	{
 		// @property (nonatomic, weak) UITextField * _Nullable userNameField __attribute__((iboutlet));
 		[NullAllowed, Export("userNameField", ArgumentSemantic.Weak)]
@@ -71,10 +71,5 @@ namespace LiferayScreens
 		[Export("initWithFrame:")]
 		[DesignatedInitializer]
 		IntPtr Constructor(CGRect frame);
-
-		// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-		//[Export("initWithCoder:")]
-		//[DesignatedInitializer]
-		//IntPtr Constructor(NSCoder aDecoder);
 	}
 }

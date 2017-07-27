@@ -41,6 +41,7 @@
     <Folder Include="Base\" />
     <Folder Include="Themes\" />
     <Folder Include="Themes\Default\" />
+    <Folder Include="Auth\Common\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -51,6 +52,8 @@
     <ObjcBindingApiDefinition Include="Base\BaseScreenletView.cs" />
     <ObjcBindingApiDefinition Include="Base\Interactor.cs" />
     <ObjcBindingApiDefinition Include="Themes\Default\LoginView_default.cs" />
+    <ObjcBindingApiDefinition Include="Auth\Login\LoginViewModel.cs" />
+    <ObjcBindingApiDefinition Include="Auth\Common\BasicAuthBasedType.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />

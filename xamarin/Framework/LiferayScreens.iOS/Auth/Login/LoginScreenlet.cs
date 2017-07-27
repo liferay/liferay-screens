@@ -7,7 +7,7 @@ namespace LiferayScreens
 {
     // @interface LoginScreenlet : BaseScreenlet <BasicAuthBasedType>
     [BaseType(typeof(BaseScreenlet))]
-    interface LoginScreenlet //: IBasicAuthBasedType
+    interface LoginScreenlet : IBasicAuthBasedType
     {
         // @property (copy, nonatomic) NSString * _Nullable basicAuthMethod;
         [NullAllowed, Export("basicAuthMethod")]
@@ -46,8 +46,8 @@ namespace LiferayScreens
         NSObject WeakLoginDelegate { get; }
 
         // @property (readonly, nonatomic, strong) id<LoginViewModel> _Nonnull viewModel;
-        //[Export("viewModel", ArgumentSemantic.Strong)]
-        //LoginViewModel ViewModel { get; }
+        [Export("viewModel", ArgumentSemantic.Strong)]
+        ILoginViewModel ViewModel { get; }
 
         // @property (nonatomic) enum AuthType authType;
         [Export("authType", ArgumentSemantic.Assign)]
@@ -70,10 +70,5 @@ namespace LiferayScreens
         [Export("initWithFrame:themeName:")]
         [DesignatedInitializer]
         IntPtr Constructor(CGRect frame, [NullAllowed] string themeName);
-
-        // -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-        //[Export("initWithCoder:")]
-        //[DesignatedInitializer]
-        //IntPtr Constructor(NSCoder aDecoder);
     }
 }
