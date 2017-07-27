@@ -78,8 +78,10 @@ namespace BindingLibrary
         //IntPtr Constructor(NSCoder aDecoder);
     }
 
+    interface IBaseScreenletDelegate {}
+
     // @protocol LoginScreenletDelegate <BaseScreenletDelegate>
-    [BaseType(typeof(NSObject))]
+    [BaseType(typeof(BaseScreenletDelegate))]
     [Protocol, Model]
     interface LoginScreenletDelegate
     {
@@ -165,11 +167,11 @@ namespace BindingLibrary
 
 		[Wrap("WeakDelegate")]
 		[NullAllowed]
-		BaseScreenletDelegate Delegate { get; set; }
+        IBaseScreenletDelegate Delegate { get; set; }
 
 		// @property (nonatomic, weak) id<BaseScreenletDelegate> _Nullable delegate __attribute__((iboutlet));
 		[NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
-		NSObject WeakDelegate { get; set; }
+        IBaseScreenletDelegate WeakDelegate { get; set; }
 
 		// @property (copy, nonatomic) NSString * _Nullable themeName;
 		[NullAllowed, Export("themeName")]
@@ -278,8 +280,8 @@ namespace BindingLibrary
 
 	// @protocol BaseScreenletDelegate <NSObject>
 	[Protocol, Model]
-	[BaseType(typeof(NSObject), Name = "_TtP14LiferayScreens21BaseScreenletDelegate_")]
-	interface BaseScreenletDelegate
+    [BaseType(typeof(NSObject), Name = "_TtP14LiferayScreens21BaseScreenletDelegate_")]
+    interface BaseScreenletDelegate
 	{
 		// @optional -(Interactor * _Nullable)screenlet:(BaseScreenlet * _Nonnull)screenlet customInteractorForAction:(NSString * _Nonnull)customInteractorForAction withSender:(id _Nullable)withSender __attribute__((warn_unused_result));
 		[Export("screenlet:customInteractorForAction:withSender:")]

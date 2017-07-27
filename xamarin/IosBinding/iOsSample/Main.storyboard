@@ -14,36 +14,19 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="3" translatesAutoresizingMaskIntoConstraints="NO" customClass="LoginScreenlet">
-                                <rect key="frame" x="28" y="136" width="240" height="128"/>
+                            <view contentMode="scaleToFill" id="30" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" customClass="LoginScreenlet">
+                                <rect key="frame" x="53" y="33" width="240" height="618"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="3"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="6"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="3"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="6"/>
-                            </mask>
-                        </variation>
-                        <constraints>
-                            <constraint id="6" firstItem="wfy-db-euE" firstAttribute="top" secondItem="3" secondAttribute="bottom" constant="403"/>
-                        </constraints>
                     </view>
-                    <connections/>
+                    <connections>
+                        <outlet property="loginscrlet" destination="30" id="name-outlet-30"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
