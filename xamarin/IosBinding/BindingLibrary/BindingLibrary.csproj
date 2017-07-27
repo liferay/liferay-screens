@@ -38,10 +38,16 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
+    <ObjcBindingApiDefinition Include="IBaseScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="LoginScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="LoginScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="BaseScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="BaseScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Interactor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+    <ObjcBindingApiDefinition Include="BaseScreenletView.cs" />
     <ObjcBindingApiDefinition Include="LoginView_default.cs" />
   </ItemGroup>
   <ItemGroup>
