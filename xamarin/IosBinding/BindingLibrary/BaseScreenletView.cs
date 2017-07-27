@@ -7,7 +7,7 @@ using CoreGraphics;
 namespace BindingLibrary
 {
     // @interface BaseScreenletView : UIView <UITextFieldDelegate>
-    [BaseType(typeof(UIView), Name = "_TtC14LiferayScreens17BaseScreenletView")]
+    [BaseType(typeof(UIView))]
     interface BaseScreenletView : IUITextFieldDelegate
     {
         // @property (nonatomic, weak) BaseScreenlet * _Nullable screenlet;

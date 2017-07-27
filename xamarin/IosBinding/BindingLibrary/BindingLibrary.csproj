@@ -38,7 +38,6 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <ObjcBindingApiDefinition Include="IBaseScreenletDelegate.cs" />
     <ObjcBindingApiDefinition Include="LoginScreenlet.cs" />
     <ObjcBindingApiDefinition Include="LoginScreenletDelegate.cs" />
     <ObjcBindingApiDefinition Include="BaseScreenlet.cs" />

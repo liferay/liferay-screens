@@ -7,7 +7,7 @@ using UIKit;
 namespace BindingLibrary
 {
 	// @interface LoginView_default : BaseScreenletView <LoginViewModel, BasicAuthBasedType>
-	[BaseType(typeof(BaseScreenletView), Name = "_TtC14LiferayScreens17LoginView_default")]
+	[BaseType(typeof(BaseScreenletView))]
 	interface LoginView_default // : ILoginViewModel, IBasicAuthBasedType
 	{
 		// @property (nonatomic, weak) UITextField * _Nullable userNameField __attribute__((iboutlet));

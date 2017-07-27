@@ -1,7 +1,6 @@
 ﻿using System;
 using ObjCRuntime;
 using Foundation;
-using UIKit;
 using CoreGraphics;
 
 namespace BindingLibrary

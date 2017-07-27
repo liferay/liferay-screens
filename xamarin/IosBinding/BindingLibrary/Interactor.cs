@@ -7,7 +7,7 @@ using CoreGraphics;
 namespace BindingLibrary
 {
     // @interface Interactor : NSObject
-    [BaseType(typeof(NSObject), Name = "_TtC14LiferayScreens10Interactor")]
+    [BaseType(typeof(NSObject))]
     interface Interactor
     {
         // @property (copy, nonatomic) NSString * _Nullable actionName;
