@@ -39,7 +39,7 @@ open class UserDisplayViewController: UIViewController {
 	}
 
     func loadPortletScreenlet() {
-        let portletConfiguration = PortletConfiguration.Builder(portletUrl: "/web/westeros-hybrid/userprofile").addCss(localFile: "user_profile").load()
+        let portletConfiguration = PortletConfiguration.Builder(portletUrl: "/web/westeros-hybrid/userprofile").enableCordova().addCss(localFile: "user_profile").addJs(localFile: "user_profile").load()
         portletDisplayScreenlet.configuration = portletConfiguration
         portletDisplayScreenlet.load()
     }

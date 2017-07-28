@@ -121,6 +121,12 @@
 		4BCA1EDC1F1649730034F8E9 /* docs.css in Resources */ = {isa = PBXBuildFile; fileRef = 4BCA1EDB1F1649730034F8E9 /* docs.css */; };
 		4BCA1EDE1F1649A80034F8E9 /* last_changes.js in Resources */ = {isa = PBXBuildFile; fileRef = 4BCA1EDD1F1649A80034F8E9 /* last_changes.js */; };
 		4BCA1EE01F1649DC0034F8E9 /* last_changes.css in Resources */ = {isa = PBXBuildFile; fileRef = 4BCA1EDF1F1649DC0034F8E9 /* last_changes.css */; };
+		4BCCB9C91F2B1F660020EB56 /* user_profile.js in Resources */ = {isa = PBXBuildFile; fileRef = 4BCCB9C81F2B1F660020EB56 /* user_profile.js */; };
+		4BCCB9CB1F2B36170020EB56 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 4BCCB9CA1F2B36170020EB56 /* www */; };
+		4BCCB9CD1F2B362C0020EB56 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4BCCB9CC1F2B362C0020EB56 /* config.xml */; };
+		4BCCB9D61F2B36590020EB56 /* CFCallNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCCB9D11F2B36590020EB56 /* CFCallNumber.m */; };
+		4BCCB9D71F2B36590020EB56 /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BCCB9D41F2B36590020EB56 /* CDVDevice.m */; };
+		4BCCB9D81F2B36590020EB56 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 4BCCB9D51F2B36590020EB56 /* README */; };
 		4BEF0AF81F1781F800E2B453 /* PortletDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BEF0AF71F1781F800E2B453 /* PortletDetailViewController.xib */; };
 		4BEF0AFA1F1787D000E2B453 /* detail.css in Resources */ = {isa = PBXBuildFile; fileRef = 4BEF0AF91F1787D000E2B453 /* detail.css */; };
 		4BEF0AFC1F1787E500E2B453 /* detail.js in Resources */ = {isa = PBXBuildFile; fileRef = 4BEF0AFB1F1787E500E2B453 /* detail.js */; };
@@ -248,6 +254,14 @@
 		4BCA1EDB1F1649730034F8E9 /* docs.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = docs.css; path = css/docs.css; sourceTree = "<group>"; };
 		4BCA1EDD1F1649A80034F8E9 /* last_changes.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = last_changes.js; path = js/last_changes.js; sourceTree = "<group>"; };
 		4BCA1EDF1F1649DC0034F8E9 /* last_changes.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = last_changes.css; path = css/last_changes.css; sourceTree = "<group>"; };
+		4BCCB9C81F2B1F660020EB56 /* user_profile.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = user_profile.js; path = js/user_profile.js; sourceTree = "<group>"; };
+		4BCCB9CA1F2B36170020EB56 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
+		4BCCB9CC1F2B362C0020EB56 /* config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
+		4BCCB9D01F2B36590020EB56 /* CFCallNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFCallNumber.h; sourceTree = "<group>"; };
+		4BCCB9D11F2B36590020EB56 /* CFCallNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFCallNumber.m; sourceTree = "<group>"; };
+		4BCCB9D31F2B36590020EB56 /* CDVDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVDevice.h; sourceTree = "<group>"; };
+		4BCCB9D41F2B36590020EB56 /* CDVDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVDevice.m; sourceTree = "<group>"; };
+		4BCCB9D51F2B36590020EB56 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		4BEF0AF71F1781F800E2B453 /* PortletDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PortletDetailViewController.xib; sourceTree = "<group>"; };
 		4BEF0AF91F1787D000E2B453 /* detail.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = detail.css; path = css/detail.css; sourceTree = "<group>"; };
 		4BEF0AFB1F1787E500E2B453 /* detail.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = detail.js; path = js/detail.js; sourceTree = "<group>"; };
@@ -272,6 +286,7 @@
 		4B0BA0201F1606320083D523 = {
 			isa = PBXGroup;
 			children = (
+				4BCCB9CA1F2B36170020EB56 /* www */,
 				4B62FDEC1F1CC85A00B1FEA1 /* Theme */,
 				4B0BA02B1F1606320083D523 /* WesterosEmployees-hybrid */,
 				4B0BA02A1F1606320083D523 /* Products */,
@@ -302,6 +317,8 @@
 				4B0BA0CA1F1608590083D523 /* Misc */,
 				4B0BA0C21F1608390083D523 /* Resources */,
 				4B0BA0C01F16082B0083D523 /* liferay-server-context.plist */,
+				4BCCB9CE1F2B36590020EB56 /* Plugins */,
+				4BCCB9CC1F2B362C0020EB56 /* config.xml */,
 				4B0BA02C1F1606320083D523 /* AppDelegate.swift */,
 				4B0BA02E1F1606320083D523 /* ViewController.swift */,
 				4B0BA0301F1606320083D523 /* Main.storyboard */,
@@ -653,6 +670,7 @@
 				4BCA1ED91F1649520034F8E9 /* docs.js */,
 				4BCA1EDD1F1649A80034F8E9 /* last_changes.js */,
 				4BEF0AFB1F1787E500E2B453 /* detail.js */,
+				4BCCB9C81F2B1F660020EB56 /* user_profile.js */,
 			);
 			name = js;
 			sourceTree = "<group>";
@@ -669,6 +687,34 @@
 				4BEF0AF91F1787D000E2B453 /* detail.css */,
 			);
 			name = css;
+			sourceTree = "<group>";
+		};
+		4BCCB9CE1F2B36590020EB56 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				4BCCB9CF1F2B36590020EB56 /* call-number */,
+				4BCCB9D21F2B36590020EB56 /* cordova-plugin-device */,
+				4BCCB9D51F2B36590020EB56 /* README */,
+			);
+			path = Plugins;
+			sourceTree = "<group>";
+		};
+		4BCCB9CF1F2B36590020EB56 /* call-number */ = {
+			isa = PBXGroup;
+			children = (
+				4BCCB9D01F2B36590020EB56 /* CFCallNumber.h */,
+				4BCCB9D11F2B36590020EB56 /* CFCallNumber.m */,
+			);
+			path = "call-number";
+			sourceTree = "<group>";
+		};
+		4BCCB9D21F2B36590020EB56 /* cordova-plugin-device */ = {
+			isa = PBXGroup;
+			children = (
+				4BCCB9D31F2B36590020EB56 /* CDVDevice.h */,
+				4BCCB9D41F2B36590020EB56 /* CDVDevice.m */,
+			);
+			path = "cordova-plugin-device";
 			sourceTree = "<group>";
 		};
 		78E06AB3CB80078BFFF0524A /* Pods */ = {
@@ -723,6 +769,8 @@
 				TargetAttributes = {
 					4B0BA0281F1606320083D523 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = X9PX9V3BB5;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -755,6 +803,7 @@
 				4B0BA0EC1F1609A10083D523 /* Main.storyboard in Resources */,
 				4B0BA0EE1F1609A70083D523 /* Assets.xcassets in Resources */,
 				4BEF0AFA1F1787D000E2B453 /* detail.css in Resources */,
+				4BCCB9D81F2B36590020EB56 /* README in Resources */,
 				4B62FE641F1CC85B00B1FEA1 /* ImageGalleryView_westeros.xib in Resources */,
 				4B0BA0341F1606320083D523 /* Assets.xcassets in Resources */,
 				4B62FE521F1CC85B00B1FEA1 /* CommentAddView_westeros-white.xib in Resources */,
@@ -766,6 +815,7 @@
 				4B0BA0C11F16082B0083D523 /* liferay-server-context.plist in Resources */,
 				4BCA1ED61F1648F50034F8E9 /* blog.js in Resources */,
 				4B62FE381F1CC85B00B1FEA1 /* AssetDisplayView_westeros.xib in Resources */,
+				4BCCB9CD1F2B362C0020EB56 /* config.xml in Resources */,
 				4B62FE451F1CC85B00B1FEA1 /* BlogsEntryTableViewCell_westeros_news.xib in Resources */,
 				4B0BA0EA1F1609A10083D523 /* Auth.storyboard in Resources */,
 				4B62FE5E1F1CC85B00B1FEA1 /* CommentTableViewCell_westeros.xib in Resources */,
@@ -774,6 +824,7 @@
 				4B62FE5C1F1CC85B00B1FEA1 /* CommentListView_westeros.xib in Resources */,
 				4B0BA1281F1609F20083D523 /* BlogsViewController.xib in Resources */,
 				4BEF0AFC1F1787E500E2B453 /* detail.js in Resources */,
+				4BCCB9CB1F2B36170020EB56 /* www in Resources */,
 				4B62FE6B1F1CC85B00B1FEA1 /* Images.xcassets in Resources */,
 				4B0BA0F01F1609DD0083D523 /* UserProfile.storyboard in Resources */,
 				4B62FE3E1F1CC85B00B1FEA1 /* AssetListView_westeros_blog.xib in Resources */,
@@ -790,6 +841,7 @@
 				4B62FE481F1CC85B00B1FEA1 /* DocumentationTableViewCell_westeros_news.xib in Resources */,
 				4BCA1EC61F1647060034F8E9 /* gallery.js in Resources */,
 				4B62FE401F1CC85B00B1FEA1 /* AssetListView_westeros_doc.xib in Resources */,
+				4BCCB9C91F2B1F660020EB56 /* user_profile.js in Resources */,
 				4B62FE561F1CC85B00B1FEA1 /* CommentDisplayView_westeros-white.xib in Resources */,
 				4BEF0AF81F1781F800E2B453 /* PortletDetailViewController.xib in Resources */,
 				4B62FE421F1CC85B00B1FEA1 /* AssetListView_westeros_news.xib in Resources */,
@@ -893,6 +945,7 @@
 				4B62FE4B1F1CC85B00B1FEA1 /* LoginView_westeros.swift in Sources */,
 				4B62FE431F1CC85B00B1FEA1 /* BlogsEntryTableViewCell_westeros.swift in Sources */,
 				4B0BA1171F1609F20083D523 /* ForgotPaswordViewController.swift in Sources */,
+				4BCCB9D61F2B36590020EB56 /* CFCallNumber.m in Sources */,
 				4B0BA1231F1609F20083D523 /* DetailViewController.swift in Sources */,
 				4B0BA0E21F1609980083D523 /* CardViewController.swift in Sources */,
 				4B62FE5B1F1CC85B00B1FEA1 /* CommentListView_westeros.swift in Sources */,
@@ -908,6 +961,7 @@
 				4B0BA0CF1F1608590083D523 /* KeyboardListener.swift in Sources */,
 				4B62FE651F1CC85B00B1FEA1 /* ImageUploadDetailView_westeros.swift in Sources */,
 				4B0BA0D61F16098A0083D523 /* Westeros+CGRect.swift in Sources */,
+				4BCCB9D71F2B36590020EB56 /* CDVDevice.m in Sources */,
 				4B62FE511F1CC85B00B1FEA1 /* CommentAddView_westeros-white.swift in Sources */,
 				4B62FE631F1CC85B00B1FEA1 /* ImageGalleryView_westeros.swift in Sources */,
 				4B0BA1301F1609F20083D523 /* TourViewController.swift in Sources */,
@@ -1084,10 +1138,13 @@
 			baseConfigurationReference = 0D44B1DC5E4F4F23BFCE4E66 /* Pods-WesterosEmployees-hybrid.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = X9PX9V3BB5;
 				INFOPLIST_FILE = "WesterosEmployees-hybrid/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.WesterosEmployees-hybrid";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -1097,6 +1154,8 @@
 			baseConfigurationReference = 79D066B3A5388CFB0AB5D337 /* Pods-WesterosEmployees-hybrid.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = X9PX9V3BB5;
 				INFOPLIST_FILE = "WesterosEmployees-hybrid/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.WesterosEmployees-hybrid";

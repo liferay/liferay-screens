@@ -43,3 +43,20 @@ body{
 .red{
     color: #E44740;
 }
+
+button{
+    text-align: center;
+    position: fixed;
+    bottom: 10px;
+    margin-top: 35%;
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 2.6%;
+    width: 90%;
+    height: 60px;
+    box-shadow: none;
+    border-radius: 5px;
+    border: 0px;
+    background-color: #FFF;
+    color: #E44740;
+}

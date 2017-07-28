@@ -22,8 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m5o-Dc-FbM" customClass="PortletDisplayScreenlet" customModule="LiferayScreens">
-                                <rect key="frame" x="0.0" y="43" width="375" height="422"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="0.0" y="43" width="375" height="446"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros"/>
@@ -31,8 +30,10 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ygz-ZN-aHB">
                                 <rect key="frame" x="20" y="497" width="335" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.85728287700000005" green="0.18751269579999999" blue="0.1945410967" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="vRT-Fb-3Tf"/>
+                                </constraints>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment content="GO BACK">
@@ -57,8 +58,10 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sxx-oT-SUh">
                                 <rect key="frame" x="20" y="574" width="335" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.99997437" blue="0.99999129769999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="MTU-hY-lNg"/>
+                                </constraints>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment content="SIGN OUT">
@@ -83,6 +86,18 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.83914172649383545" green="0.83926308155059814" blue="0.8391152024269104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="m5o-Dc-FbM" firstAttribute="leading" secondItem="YJT-qG-ND2" secondAttribute="leading" id="QEg-XZ-OIA"/>
+                            <constraint firstItem="ygz-ZN-aHB" firstAttribute="top" secondItem="m5o-Dc-FbM" secondAttribute="bottom" constant="8" id="SQT-c6-UJR"/>
+                            <constraint firstItem="RWG-Yx-ODa" firstAttribute="top" secondItem="sxx-oT-SUh" secondAttribute="bottom" constant="33" id="V89-lx-IZe"/>
+                            <constraint firstAttribute="trailing" secondItem="sxx-oT-SUh" secondAttribute="trailing" constant="20" id="bwd-Bb-Th5"/>
+                            <constraint firstItem="m5o-Dc-FbM" firstAttribute="top" secondItem="Idb-0c-hfG" secondAttribute="bottom" constant="23" id="c8b-TO-eiN"/>
+                            <constraint firstAttribute="trailing" secondItem="ygz-ZN-aHB" secondAttribute="trailing" constant="20" id="qOt-5c-5vJ"/>
+                            <constraint firstItem="ygz-ZN-aHB" firstAttribute="leading" secondItem="YJT-qG-ND2" secondAttribute="leading" constant="20" id="rA4-ig-BVI"/>
+                            <constraint firstItem="sxx-oT-SUh" firstAttribute="top" secondItem="ygz-ZN-aHB" secondAttribute="bottom" constant="17" id="sin-jO-4IP"/>
+                            <constraint firstAttribute="trailing" secondItem="m5o-Dc-FbM" secondAttribute="trailing" id="sjy-5u-c0B"/>
+                            <constraint firstItem="sxx-oT-SUh" firstAttribute="leading" secondItem="YJT-qG-ND2" secondAttribute="leading" constant="20" id="zbx-fw-rkp"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="portletDisplayScreenlet" destination="m5o-Dc-FbM" id="mI8-AT-Adm"/>
