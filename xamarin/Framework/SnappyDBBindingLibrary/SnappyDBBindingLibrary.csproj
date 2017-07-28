@@ -41,8 +41,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Jars\AboutJars.txt" />
-    <None Include="Additions\AboutAdditions.txt" />
     <LibraryProjectZip Include="Jars\snappydb-lib-0.5.2.aar" />
   </ItemGroup>
   <ItemGroup>
