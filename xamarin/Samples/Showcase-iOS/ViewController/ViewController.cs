@@ -18,6 +18,8 @@ namespace ShowcaseiOS.ViewController
             // Perform any additional setup after loading the view, typically from a nib.
 
             this.loginScreenlet.Delegate = this;
+
+            SetDefaultValues();
         }
 
         public override void DidReceiveMemoryWarning()
@@ -36,6 +38,13 @@ namespace ShowcaseiOS.ViewController
         [Export("screenlet:onLoginResponseUserAttributes:")]
         public virtual void OnLoginResponseUserAttributes(BaseScreenlet screenlet, NSDictionary<NSString, NSObject> attributes) {
             System.Diagnostics.Debug.WriteLine($"Login successful: {attributes}");
+        }
+
+        /* Private methods */
+
+        void SetDefaultValues() {
+            this.loginScreenlet.ViewModel.UserName = "test@liferay.com";
+            this.loginScreenlet.ViewModel.Password = "test1";
         }
     }
 }
