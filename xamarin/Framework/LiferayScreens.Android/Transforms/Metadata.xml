@@ -1,0 +1,100 @@
+﻿<metadata>
+
+  <!--<remove-node  path="/api/package[@name='com.liferay.mobile.screens.ddl.model']/class[@name='Field']"/>-->
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.base.list.interactor']/class[@name='ListEvent']"/>
+
+  <!-- We must change visibility on interface SimpleFileDialogListener-->
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']/class[@name='SelectFileDialog']"/>
+
+  <!--<remove-node path="/api/package[@name='com.liferay.mobile.screens.base']/class[@name='BaseScreenlet']" />-->
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.form']/class[@name='DDLFormScreenlet']" />
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.comment.display']/class[@name='CommentDisplayScreenlet']" />
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.rating']/class[@name='RatingScreenlet']" />
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.userportrait']/class[@name='UserPortraitScreenlet']" />
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.asset.display']/class[@name='AssetDisplayScreenlet']" />
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.auth.forgotpassword']/class[@name='ForgotPasswordScreenlet']" />
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.auth.signup']/class[@name='SignUpScreenlet']" />
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.blogs']/class[@name='BlogsEntryDisplayScreenlet']" />
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.comment.add']/class[@name='CommentAddScreenlet']" />
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.audio']/class[@name='AudioDisplayScreenlet']" />
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.image']/class[@name='ImageDisplayScreenlet']" />
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.pdf']/class[@name='PdfDisplayScreenlet']" />
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.video']/class[@name='VideoDisplayScreenlet']" />
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.webcontent.display']/class[@name='WebContentDisplayScreenlet']" />
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.auth.login']/class[@name='LoginView']" />
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.base.interactor']/class[@name='BaseInteractor']"/>
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.imagegallery']/class[@name='ImageGalleryScreenlet']"/>
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.asset.list']/class[@name='AssetListScreenlet']"/>
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.comment.list']/class[@name='CommentListScreenlet']"/>
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.list']/class[@name='DDLListScreenlet']"/>
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.webcontent.list']/class[@name='WebContentListScreenlet']"/>
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.base.list']/class[@name='BaseListScreenlet']"/>
+  
+  <!-- Corrections for DDLFormScreenlet-->
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.ddl.form']
+        /class[@name='DDLFormScreenlet']
+  /method[@name='onUserAction']"/>
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.ddl.form']
+        /class[@name='DDLFormScreenlet']
+  /method[@name='createInteractor']"/>
+
+  <!-- Corrections BooleanField-->
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.ddl.model']
+                /class[@name='BooleanField']
+                /method[@name='convertFromString']"/>
+
+  <!-- Corrections DateField-->
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.ddl.model']
+                /class[@name='DateField']
+                /method[@name='convertFromString']"/>
+
+  <!-- Corrections DocumentField-->
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.model']
+               /class[@name='DocumentField']
+               /method[@name='convertFromString']"/>
+  
+  <!-- Corrections NumberField-->
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.model']
+               /class[@name='NumberField']
+               /method[@name='convertFromString']"/>
+  
+  <!-- Corrections StringField-->
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.model']
+               /class[@name='StringField']
+               /method[@name='convertFromString']"/>
+  
+  <!-- Corrections StringWithOptionsField-->
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.model']
+               /class[@name='StringWithOptionsField']
+               /method[@name='convertFromString']"/>
+
+  <!-- Corrections CustomRatingNumberView-->
+  <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']
+        /class[@name='CustomRatingNumberView']
+        /method[@name='getField' and count(parameter)=0]"
+    name="propertyName">FieldProperty</attr>
+  <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']
+        /class[@name='CustomRatingNumberView']
+        /method[@name='setField' and count(parameter)=1 and parameter[1][@type='com.liferay.mobile.screens.ddl.model.NumberField']]"
+      name="propertyName">FieldProperty</attr>
+  
+  <!-- Corrections DDLFieldCheckboxView-->
+  <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']
+        /class[@name='DDLFieldCheckboxView']
+        /method[@name='getField' and count(parameter)=0]"
+   name="propertyName">FieldProperty</attr>
+  <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']
+        /class[@name='DDLFieldCheckboxView']
+        /method[@name='setField' and count(parameter)=1 and parameter[1][@type='com.liferay.mobile.screens.ddl.model.NumberField']]"
+      name="propertyName">FieldProperty</attr>
+  
+  <!-- Corrections DDLFieldRadioView-->
+  <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']
+        /class[@name='DDLFieldRadioView']
+        /method[@name='getField' and count(parameter)=0]"
+   name="propertyName">FieldProperty</attr>
+  <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']
+        /class[@name='DDLFieldRadioView']
+        /method[@name='setField' and count(parameter)=1 and parameter[1][@type='com.liferay.mobile.screens.ddl.model.NumberField']]"
+      name="propertyName">FieldProperty</attr>
+</metadata>
