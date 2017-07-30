@@ -28,11 +28,20 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 	open var screensWebView: ScreensWebView?
 
 	open func configureView(with cordovaEnabled: Bool) {
+
+		let jsCallHandler: (String, String) -> Void = { [weak self] namespace, message in
+			self?.handleJsCall(namespace: namespace, message: message)
+		}
+
+		let onPageLoadFinishedHandler: () -> Void = { [weak self] in
+			self?.onPageLoadFinished()
+		}
+
 		if cordovaEnabled {
-			screensWebView = ScreensCordovaWebView(jsCallHandler: handleJsCall, onPageLoadFinished: onPageLoadFinished)
+			screensWebView = ScreensCordovaWebView(jsCallHandler: jsCallHandler, onPageLoadFinished: onPageLoadFinishedHandler)
 		}
 		else {
-			screensWebView = ScreensWKWebView(jsCallHandler: handleJsCall, onPageLoadFinished: onPageLoadFinished)
+			screensWebView = ScreensWKWebView(jsCallHandler: jsCallHandler, onPageLoadFinished: onPageLoadFinishedHandler)
 		}
 
 		addWebView()
@@ -67,6 +76,11 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
         
         self.progressPresenter = createProgressPresenter()
     }
+
+	open override func onDestroy() {
+		super.onDestroy()
+		screensWebView?.onDestroy?()
+	}
     
     open override func createProgressPresenter() -> ProgressPresenter {
         return DefaultProgressPresenter()

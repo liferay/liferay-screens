@@ -41,6 +41,8 @@ UIScrollViewDelegate {
 		wkWebView.configuration.userContentController.add(self, name: defaultNamespace)
 	}
 
+	}
+
 	open func add(injectableScript: InjectableScript) {
 		wkWebView.loadScript(js: injectableScript.content)
 	}
@@ -56,6 +58,10 @@ UIScrollViewDelegate {
 	open func load(htmlString: String) {
 		let server = SessionContext.currentContext?.session.server ?? ""
 		wkWebView.loadHTMLString(htmlString, baseURL: URL(string: server)!)
+	}
+
+	public func onDestroy() {
+		wkWebView.configuration.userContentController.removeScriptMessageHandler(forName: defaultNamespace)
 	}
 
 	// MARK: UIScrollViewDelegate
