@@ -1,3 +1,4 @@
+
 html, body {
     max-width: 100%;
     overflow-x: hidden;
@@ -22,4 +23,20 @@ html, body {
 
 .portlet-content{
     background: #FFF !important;
+}
+
+.row{
+    margin-left: -15px;
+    margin-right: 0px;
+}
+
+.item_gallery {
+    float:left;
+    position: relative;
+    width: 30%;
+    padding-bottom: 30%;
+    margin:1.66%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
