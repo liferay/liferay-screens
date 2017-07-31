@@ -69,7 +69,7 @@ public class GalleryCard extends Card implements ImageGalleryListener, PortletDi
 	}
 
 	private void loadGallery() {
-		PortletConfiguration configuration = new PortletConfiguration.Builder("/web/guest/gallery").addRawCss(R.raw.gallery_portlet_css).addRawJs(R.raw.gallery_portlet_js).load();
+		PortletConfiguration configuration = new PortletConfiguration.Builder("/web/westeros-hybrid/gallery").addRawCss(R.raw.gallery_portlet_css).addRawJs(R.raw.gallery_portlet_js).load();
 		portletDisplayScreenlet = (PortletDisplayScreenlet) findViewById(R.id.portlet_gallery);
 
 		portletDisplayScreenlet.setPortletConfiguration(configuration);
@@ -124,7 +124,7 @@ public class GalleryCard extends Card implements ImageGalleryListener, PortletDi
 			new Handler(Looper.getMainLooper()).post(new Runnable() {
 				@Override
 				public void run() {
-					PortletConfiguration configuration = new PortletConfiguration.Builder("/web/guest/detail?id=" + body).addRawCss(R.raw.detail_css).addRawJs(R.raw.detail_js).load();
+					PortletConfiguration configuration = new PortletConfiguration.Builder("/web/westeros-hybrid/detail?id=" + body).addRawCss(R.raw.detail_css).addRawJs(R.raw.detail_js).load();
 
 					PortletDisplayScreenlet portletDisplayScreenlet = (PortletDisplayScreenlet) findViewById(R.id.portlet_gallery_item);
 					portletDisplayScreenlet.setPortletConfiguration(configuration);

@@ -23,8 +23,14 @@ public class UserProfileActivity extends WesterosActivity
     }
 
     private void loadUserProfile() {
+
         PortletDisplayScreenlet portletDisplayScreenlet = (PortletDisplayScreenlet) findViewById(R.id.portlet_user_profile);
-        PortletConfiguration configuration = new PortletConfiguration.Builder("/web/guest/userprofile").disableTheme().addRawCss(R.raw.user_profile_portlet_css).load();
+        PortletConfiguration configuration = new PortletConfiguration.Builder("/web/westeros-hybrid/userprofile")
+                .disableTheme()
+                .addRawCss(R.raw.user_profile_portlet_css)
+                .addRawJs(R.raw.user_profile_portlet_js)
+                .load();
+
 
         portletDisplayScreenlet.setPortletConfiguration(configuration);
         portletDisplayScreenlet.load();

@@ -38,14 +38,19 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 		userPortraitScreenlet.setOnClickListener(this);
 		userPortraitScreenlet.loadLoggedUserPortrait();
 
-        loadLastChanges();
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				loadLastChanges();
+			}
+		}, 1000);
 
 		userNameTextView.setText(SessionContext.getCurrentUser().getFullName());
     }
 
     private void loadLastChanges() {
         PortletDisplayScreenlet portletDisplayScreenlet = (PortletDisplayScreenlet) findViewById(R.id.portlet_last_changes);
-        PortletConfiguration configuration = new PortletConfiguration.Builder("/web/guest/lastchanges").addRawCss(R.raw.last_changes_portlet_css).addRawJs(R.raw.last_changes_portlet_js).load();
+        PortletConfiguration configuration = new PortletConfiguration.Builder("/web/westeros-hybrid/lastchanges").addRawCss(R.raw.last_changes_portlet_css).addRawJs(R.raw.last_changes_portlet_js).load();
 
         portletDisplayScreenlet.setPortletConfiguration(configuration);
         portletDisplayScreenlet.load();

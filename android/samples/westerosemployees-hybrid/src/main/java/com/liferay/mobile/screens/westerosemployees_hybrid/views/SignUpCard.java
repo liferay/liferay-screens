@@ -1,6 +1,7 @@
 package com.liferay.mobile.screens.westerosemployees_hybrid.views;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -59,7 +60,7 @@ public class SignUpCard extends Card implements View.OnClickListener, WebContent
 	@Override
 	public void onClick(View v) {
 		if (!isTermsAndConditionLoaded) {
-			SessionContext.createBasicSession("test@liferay.com", "test");
+			SessionContext.createBasicSession(getResources().getString(R.string.liferay_anonymousApiUserName), getResources().getString(R.string.liferay_anonymousApiPassword));
 			isTermsAndConditionLoaded = true;
 			webContentDisplayScreenlet.load();
 		}

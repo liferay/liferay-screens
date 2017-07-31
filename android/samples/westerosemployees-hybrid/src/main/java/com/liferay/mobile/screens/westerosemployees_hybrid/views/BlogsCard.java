@@ -49,7 +49,7 @@ public class BlogsCard extends Card implements PortletDisplayListener {
 	}
 
 	private void loadCompanyNews() {
-		PortletConfiguration configuration = new PortletConfiguration.Builder("/web/guest/companynews").addRawCss(R.raw.blogs_portlet_css).addRawJs(R.raw.blogs_portlet_js).load();
+		PortletConfiguration configuration = new PortletConfiguration.Builder("/web/westeros-hybrid/companynews").addRawCss(R.raw.blogs_portlet_css).addRawJs(R.raw.blogs_portlet_js).load();
 
 		portletDisplayScreenlet.setPortletConfiguration(configuration);
 		portletDisplayScreenlet.load();
@@ -84,7 +84,7 @@ public class BlogsCard extends Card implements PortletDisplayListener {
             new Handler(Looper.getMainLooper()).post(new Runnable() {
                 @Override
                 public void run() {
-                    PortletConfiguration configuration = new PortletConfiguration.Builder("/web/guest/detail?id=" + body).addRawCss(R.raw.blog_portlet_css).addRawJs(R.raw.blog_portlet_js).load();
+                    PortletConfiguration configuration = new PortletConfiguration.Builder("/web/westeros-hybrid/detail?id=" + body).addRawCss(R.raw.blog_portlet_css).addRawJs(R.raw.blog_portlet_js).load();
 
                     PortletDisplayScreenlet portletDisplayScreenlet = (PortletDisplayScreenlet) findViewById(R.id.portlet_blog_item);
                     portletDisplayScreenlet.setPortletConfiguration(configuration);
