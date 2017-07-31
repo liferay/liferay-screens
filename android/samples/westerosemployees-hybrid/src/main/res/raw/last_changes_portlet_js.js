@@ -1,12 +1,11 @@
 function modifyItem() {
-
     var itemClassName = 'com.liferay.document.library.kernel.model.DLFileEntry';
 
     var urlIcons = {
-        pdf: "/documents/20143/56606/pdf.png/47038737-967d-578e-06ca-3b690d5c87b2?t=1499173758257",
-        img: "/documents/20143/56606/image.png/41daf5f2-e3b9-39fc-2db0-96d02963a88e?t=1499173747235",
-        mus: "/documents/20143/56606/music.png/3ebeeaa2-4164-d508-3f5f-b8842bef32c0?t=1499173711480",
-        def: "/documents/20143/56606/file.png/6939decf-8c2d-c195-81d4-b225403dd2f5?t=1499174224790"
+        pdf: '/documents/33300/39232/pdf.png/8c743026-cc37-07c3-1681-d7c9f4083b59',
+        img: '/documents/33300/39232/image.png/c9b5b54f-3996-756b-622b-fc02c56e0475',
+        mus: '/documents/33300/39232/music.png/f5ea120d-cbee-2a7c-b1e5-b249f84796c5',
+        def: '/documents/33300/39232/file.png/c48b31b9-e94a-866a-19d5-f8debacc9ec8'
     };
 
     var icons = {
@@ -19,13 +18,13 @@ function modifyItem() {
     };
 
 
-    var lastChangeItems = document.querySelectorAll(".item-last-changes");
+    var lastChangeItems = document.querySelectorAll('.item-last-changes');
 
     for (var i = 0; i < lastChangeItems.length; i++) {
 
         addClick(lastChangeItems[i]);
 
-        if (lastChangeItems[i].getAttribute('data-class-name') == itemClassName){
+        if (lastChangeItems[i].getAttribute('data-class-name') == itemClassName) {
             var ext = lastChangeItems[i].getAttribute('data-extension');
             lastChangeItems[i].getElementsByTagName('img')[0].src = icons[ext] || icons.def;
         }
@@ -37,16 +36,16 @@ function modifyItem() {
 }
 
 function addClick(lastChangeItem) {
-     var dataId = lastChangeItem.getAttribute('data-id');
-     lastChangeItem.addEventListener('click', function(event) {
-        window.Screens.postMessage("last-changes-item", dataId);
-     });
+    var dataId = lastChangeItem.getAttribute('data-id');
+    lastChangeItem.addEventListener('click', function(event) {
+        window.Screens.postMessage('last-changes-item', dataId);
+    });
 }
 
 
 function addSeparator(lastChangeItem) {
     var div = document.createElement('div');
-    div.className = "separator";
+    div.className = 'separator';
     lastChangeItem.appendChild(div);
 }
 
