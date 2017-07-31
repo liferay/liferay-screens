@@ -20,21 +20,16 @@ open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayVi
 
 	open var webView: WKWebView?
 
+	open var injectedCss: String?
+
 	override open var progressMessages: [String:ProgressMessages] {
 		return [
-			BaseScreenlet.DefaultAction: [
-				.working: LocalizedString("default", key: "webcontentdisplay-loading-message", obj: self),
-				.failure: LocalizedString("default", key: "webcontentdisplay-loading-error", obj: self)
+			BaseScreenlet.DefaultAction : [
+				.working : LocalizedString("default", key: "webcontentdisplay-loading-message", obj: self),
+				.failure : LocalizedString("default", key: "webcontentdisplay-loading-error", obj: self)
 			]
 		]
 	}
-
-	fileprivate let styles =
-		".MobileCSS {padding: 4%; width: 92%;} " +
-		".MobileCSS, .MobileCSS span, .MobileCSS p, .MobileCSS h1, .MobileCSS h2, .MobileCSS h3 { " +
-			"font-size: 110%; font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-weight: 200; } " +
-		".MobileCSS img { width: 100% !important; } " +
-		".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }"
 
 	open override func onCreated() {
 		super.onCreated()
@@ -77,11 +72,18 @@ open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayVi
 			return ""
 		}
 		set {
-			let styledHtml = "<style>\(styles)</style><div class=\"MobileCSS\">\(newValue ?? "")</div>"
+			let styledHtml = "<style>\(injectedCss ?? "")</style><div class=\"MobileCSS\">\(newValue ?? "")</div>"
 			webView!.loadHTMLString(styledHtml, baseURL: URL(string:LiferayServerContext.server))
 		}
 	}
 
 	open var recordContent: DDLRecord?
 
+	open var customCssFile: String? {
+		didSet {
+			if let css = customCssFile {
+				injectedCss = webView?.loadCss(file: css)
+			}
+		}
+	}
 }

@@ -83,7 +83,7 @@ import Foundation
 		return nil
 	}
 
-	//MARK Public methods
+	// MARK: Public methods
 
 	open class func createEphemeralBasicSession(
 			_ userName: String,
@@ -166,10 +166,12 @@ import Foundation
 			session = SessionContext.currentContext?.createRequestSession()
 		}
 
+		let currentAttrs = SessionContext.currentContext?.user.attributes ?? [:]
 		LRCookieSignIn.signIn(with: session, callback: LRCookieBlockCallback { session, error in
+
 			if let session = session {
 				SessionContext.loginWithCookie(authentication: session.authentication as! LRCookieAuthentication,
-						userAttributes: [:])
+						userAttributes: currentAttrs)
 
 				callback.callback(session, nil)
 			}

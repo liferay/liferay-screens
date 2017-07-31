@@ -22,26 +22,18 @@ import com.liferay.mobile.screens.webcontent.display.WebContentDisplayListener;
 import com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet;
 
 /**
- * @author Javier Gamarra
+ * @author Sarai Díaz García
  */
-public class WebContentDisplayActivity extends ThemeActivity implements WebContentDisplayListener {
+public class WebContentDisplayCustomCssActivity extends ThemeActivity implements WebContentDisplayListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		setContentView(R.layout.web_content_display);
+		setContentView(R.layout.web_content_display_customcss);
 
 		WebContentDisplayScreenlet screenlet =
 			(WebContentDisplayScreenlet) findViewById(R.id.web_content_display_screenlet);
 		screenlet.setListener(this);
-
-		if (getIntent().hasExtra("articleId")) {
-			screenlet.setArticleId(getIntent().getStringExtra("articleId"));
-		}
-
-		screenlet.setCustomCssFile(R.raw.custom);
-		screenlet.load();
 	}
 
 	@Override

@@ -1,3 +1,0 @@
-#!/bin/sh
-echo "Linting..."
-ios/Framework/Pods/SwiftLint/swiftlint lint --quiet --strict --path 'ios/Framework' --config 'ios/Framework/.swiftlint.yml'
