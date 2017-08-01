@@ -13,14 +13,16 @@
  */
 import UIKit
 
-@objc public protocol AnonymousBasicAuthType {
+@objc(AnonymousBasicAuthType)
+public protocol AnonymousBasicAuthType {
 
 	var anonymousApiUserName: String? { get set }
 	var anonymousApiPassword: String? { get set }
 
 }
 
-@objc public protocol BasicAuthBasedType {
+@objc(BasicAuthBasedType)
+public protocol BasicAuthBasedType {
 
 	var basicAuthMethod: String? { get set }
 
