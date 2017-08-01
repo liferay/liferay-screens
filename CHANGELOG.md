@@ -47,6 +47,9 @@ All notable changes to this project will be documented in this file.
 ### Documentation
 * Screenlets documentation improvements
 
+### Demo
+* Added Westeros Employees Hybrid
+
 ## Xamarin
 
 ### New Features
