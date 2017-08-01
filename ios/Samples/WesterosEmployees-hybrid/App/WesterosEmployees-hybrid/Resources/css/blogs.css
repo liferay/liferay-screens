@@ -1,4 +1,4 @@
-body{
+body {
     background: #E44740;
 }
 
@@ -10,50 +10,50 @@ body{
     padding: 0px;
 }
 
-.portlet-decorate .portlet-content{
+.portlet-decorate .portlet-content {
+    background: #E44740;
     border: 0px;
     margin-top: -50px;
-    background: #E44740;
 }
 
-.item-img-container{
+.item-img-container {
     background: #E44740;
-    width:75px;
-    height:75px;
-    overflow: hidden;
     border-radius: 50%;
+    height: 75px;
+    overflow: hidden;
+    width: 75px;
 }
 
-.item-img{
-    width:100%;
-    height:100%;
+.item-img {
+    height: 100%;
     margin 60px 0px;
+    width: 100%;
 }
 
-.item-text{
-    font-style:normal;
-    margin-left:15px;
-    margin-right:15px;
+.item-text {
     color: #FFF;
+    font-style: normal;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
-.item-title{
-    font-weight:900;
+.item-title {
     font-size: 18px;
+    font-weight: 900;
 }
 
-.item-author{
-    font-weight:400;
+.item-author {
+    font-weight: 400;
 }
 
 .lexicon-icon {
     color: #FFF;
 }
 
-.separator{
+.separator {
+    background-color: #e0e0e6;
     height: 1px;
-    width: 120%;
     margin-left: -10px;
     margin-right: -10px;
-    background-color: #e0e0e6;
+    width: 120%;
 }

@@ -1,9 +1,10 @@
-html, body {
+html,
+body {
     max-width: 100%;
     overflow-x: hidden;
 }
 
-body{
+body {
     margin: 0px;
 }
 
@@ -15,100 +16,106 @@ body{
     padding: 0px;
 }
 
-.portlet-content-editable{
+.portlet-content-editable {
     padding: 0px;
 }
 
-.portlet-decorate .portlet-content{
+.portlet-decorate .portlet-content {
+    background: #FFF;
     border: 0px;
     margin-top: -50px;
-    background: #FFF;
 }
 
-.img-content{
-    max-width: 100%;
-    height: 100%;
+.img-content {
     display: block;
+    height: 100%;
     margin: auto;
+    max-width: 100%;
 }
+
 
 /* Ratings */
 
-.taglib-ratings{
+.taglib-ratings {
     margin: 16px !important;
 }
 
-img{
+img {
     max-width: 100%;
 }
 
 a {
+    color: #E44740;
     font-size: 55px !important;
-    color: #E44740;
     text-decoration: none;
 }
-a:hover, a:focus {
-    color: #E44740;
-    text-decoration: none;
-}
+
+a:hover,
 a:focus {
-    outline: thin dotted;
-    outline: 5px auto -webkit-focus-ring-color;
-    outline-offset: -2px;
-}
-
-.taglib-ratings.stars .liferay-rating-vote, .taglib-ratings.stars .liferay-rating-score {
-    display: block;
-    padding-top: 10px;
-    padding-left: 0px;
-    font-size: 20px !important;
     color: #E44740;
+    text-decoration: none;
 }
 
-.rating-label{
+a:focus {
+    outline-offset: -2px;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline: thin dotted;
+}
+
+.taglib-ratings.stars .liferay-rating-vote,
+.taglib-ratings.stars .liferay-rating-score {
+    color: #E44740;
+    display: block;
+    font-size: 20px !important;
+    padding-left: 0px;
+    padding-top: 10px;
+}
+
+.rating-label {
     display: inline-block;
 }
 
+
 /* Blog */
 
-
 p {
-    margin: 0px 20px;
     font-size: 18px;
+    margin: 0px 20px;
 }
 
 
-.author-content{
+.author-content {
     margin-left: 20px;
 }
 
-.user-icon{
+.user-icon {
     border-radius: 0px;
     height: 50px;
     width: 50px;
 }
 
-.img-content-blog{
-    max-width: 100%;
-    height: 100%;
+.img-content-blog {
     display: block;
+    height: 100%;
     margin: auto;
+    max-width: 100%;
 }
 
-.img-blog{
+.img-blog {
     max-width: 100%;
 }
+
 
 /* PDF */
 
-button{
-    text-align: center;
-    margin-left: 5%;
-    width: 90%;
-    height: 40px;
-    box-shadow: none;
+button {
+    background-color: #E44740;
     border-radius: 5px;
     border: 0px;
-    background-color: #E44740;
+    box-shadow: none;
     color: #FFF;
+    height: 40px;
+    margin-left: 5%;
+    text-align: center;
+    width: 90%;
 }
