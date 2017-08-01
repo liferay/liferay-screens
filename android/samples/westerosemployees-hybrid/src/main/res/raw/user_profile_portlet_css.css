@@ -1,4 +1,4 @@
-body{
+body {
     background: #D6D6D6;
 }
 
@@ -10,54 +10,53 @@ body{
     padding: 0px;
 }
 
-.portlet-decorate .portlet-content{
+.portlet-decorate .portlet-content {
+    background: #D6D6D6;
     border: 0px;
     margin-top: -50px;
-    background: #D6D6D6;
 }
 
-.user-img-container{
-    display:block;
-    margin:auto;
-    width:80px;
-    height:80px;
-    overflow: hidden;
+.user-img-container {
     border-radius: 10%;
     border: 1px solid #E44740;
+    display: block;
+    height: 80px;
+    margin: auto;
+    overflow: hidden;
+    width: 80px;
 }
 
-.user-img{
-    width:100%;
-    height:100%;
+.user-img {
+    height: 100%;
+    width: 100%;
 }
 
-.user-fullname{
-    font-weight:900;
+.user-fullname {
+    font-weight: 900;
     text-align: center;
 }
 
-.user-fields{
+.user-fields {
     margin-left: 15px;
 }
 
-.red{
+.red {
     color: #E44740;
 }
 
-button{
-    text-align: center;
-    position: fixed;
-    bottom: 10px;
-    margin-bottom: 24%;
-    font-size: 16px;
-    font-weight: 600;
-    margin-left: 2.8%;
-    width: 88.5%;
-    height: 60px;
-    box-shadow: none;
+button {
+    background-color: #FFF;
     border-radius: 3px;
     border: 0px;
-    background-color: #FFF;
+    bottom: 10px;
+    box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.06) box-shadow: none;
     color: #E44740;
-    box-shadow: 0px 3px 0px 0px rgba(0,0,0,0.06)
+    font-size: 16px;
+    font-weight: 600;
+    height: 60px;
+    margin-bottom: 24%;
+    margin-left: 2.8%;
+    position: fixed;
+    text-align: center;
+    width: 88.5%;
 }

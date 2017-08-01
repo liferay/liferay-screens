@@ -1,5 +1,5 @@
-
-html, body {
+html,
+body {
     max-width: 100%;
     overflow-x: hidden;
 }
@@ -12,31 +12,31 @@ html, body {
     padding: 0px;
 }
 
-.container-fluid-1280{
+.container-fluid-1280 {
     padding: 0px 0px 0px 15px;
 }
 
-.portlet-decorate .portlet-content{
+.portlet-decorate .portlet-content {
     border: 0px;
     margin-top: -50px;
 }
 
-.portlet-content{
+.portlet-content {
     background: #FFF !important;
 }
 
-.row{
+.row {
     margin-left: -15px;
     margin-right: 0px;
 }
 
 .item_gallery {
-    float:left;
-    position: relative;
-    width: 30%;
-    padding-bottom: 30%;
-    margin:1.66%;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
+    float: left;
+    margin: 1.66%;
+    padding-bottom: 30%;
+    position: relative;
+    width: 30%;
 }
