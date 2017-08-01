@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4B0BA02D1F1606320083D523 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BA02C1F1606320083D523 /* AppDelegate.swift */; };
-		4B0BA02F1F1606320083D523 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B0BA02E1F1606320083D523 /* ViewController.swift */; };
 		4B0BA0321F1606320083D523 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BA0301F1606320083D523 /* Main.storyboard */; };
 		4B0BA0341F1606320083D523 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BA0331F1606320083D523 /* Assets.xcassets */; };
 		4B0BA0371F1606320083D523 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B0BA0351F1606320083D523 /* LaunchScreen.storyboard */; };
@@ -139,7 +138,6 @@
 		0D44B1DC5E4F4F23BFCE4E66 /* Pods-WesterosEmployees-hybrid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WesterosEmployees-hybrid.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WesterosEmployees-hybrid/Pods-WesterosEmployees-hybrid.debug.xcconfig"; sourceTree = "<group>"; };
 		4B0BA0291F1606320083D523 /* WesterosEmployees-hybrid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WesterosEmployees-hybrid.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B0BA02C1F1606320083D523 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4B0BA02E1F1606320083D523 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4B0BA0311F1606320083D523 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4B0BA0331F1606320083D523 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B0BA0361F1606320083D523 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -320,7 +318,6 @@
 				4BCCB9CE1F2B36590020EB56 /* Plugins */,
 				4BCCB9CC1F2B362C0020EB56 /* config.xml */,
 				4B0BA02C1F1606320083D523 /* AppDelegate.swift */,
-				4B0BA02E1F1606320083D523 /* ViewController.swift */,
 				4B0BA0301F1606320083D523 /* Main.storyboard */,
 				4B0BA0331F1606320083D523 /* Assets.xcassets */,
 				4B0BA0351F1606320083D523 /* LaunchScreen.storyboard */,
@@ -940,7 +937,6 @@
 				4B0BA1181F1609F20083D523 /* SignInViewController.swift in Sources */,
 				4B0BA1271F1609F20083D523 /* BlogsViewController.swift in Sources */,
 				4B62FE6C1F1CC85B00B1FEA1 /* WebContentDisplayView_westeros.swift in Sources */,
-				4B0BA02F1F1606320083D523 /* ViewController.swift in Sources */,
 				4B62FE5F1F1CC85B00B1FEA1 /* BorderedTextField.swift in Sources */,
 				4B62FE4B1F1CC85B00B1FEA1 /* LoginView_westeros.swift in Sources */,
 				4B62FE431F1CC85B00B1FEA1 /* BlogsEntryTableViewCell_westeros.swift in Sources */,
