@@ -21,26 +21,44 @@
                             <view contentMode="scaleToFill" id="70" translatesAutoresizingMaskIntoConstraints="NO" customClass="LoginScreenlet">
                                 <rect key="frame" x="69" y="107" width="277" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <subviews/>
                                 <constraints>
                                     <constraint id="84" firstItem="70" firstAttribute="height" constant="300"/>
                                     <constraint id="89" firstItem="70" firstAttribute="width" constant="277"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="95" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="77" y="415" width="260" height="30"/>
+                                <state key="normal" title="Did you forgot your password?">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ForgotPasswordButton_TouchUpInside:" destination="66" id="114" eventType="touchUpInside"/>
+                                </connections>
+                                <constraints>
+                                    <constraint id="101" firstItem="95" firstAttribute="width" constant="260"/>
+                                </constraints>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint id="82" firstItem="70" firstAttribute="centerX" secondItem="67" secondAttribute="centerX"/>
                             <constraint id="88" firstItem="70" firstAttribute="centerX" secondItem="67" secondAttribute="centerX"/>
                             <constraint id="90" firstItem="70" firstAttribute="top" secondItem="63" secondAttribute="bottom" constant="87"/>
                             <constraint id="91" firstItem="70" firstAttribute="centerX" secondItem="67" secondAttribute="centerX"/>
+                            <constraint id="99" firstItem="95" firstAttribute="top" secondItem="70" secondAttribute="bottom" constant="8"/>
+                            <constraint id="100" firstItem="95" firstAttribute="centerX" secondItem="67" secondAttribute="centerX"/>
+                            <constraint id="110" firstItem="95" firstAttribute="top" secondItem="70" secondAttribute="centerY" constant="158"/>
+                            <constraint id="113" firstItem="95" firstAttribute="top" secondItem="70" secondAttribute="bottom" constant="8"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="forgotPasswordButton" destination="95" id="name-outlet-95"/>
                         <outlet property="loginScreenlet" destination="70" id="name-outlet-70"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="68" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="464" y="100"/>
+            <point key="canvasLocation" x="1086" y="184"/>
         </scene>
     </scenes>
     <resources>
