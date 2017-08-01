@@ -16,13 +16,15 @@
 		android:tag="@string/arrow_back_tag"
 		android:visibility="invisible"
 		style="@style/westeros_arrow"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+		/>
 
 	<com.liferay.mobile.screens.portlet.PortletDisplayScreenlet
 		android:id="@+id/portlet_gallery_item"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:layout_below="@id/gallery_detail_title" />
+		android:layout_below="@id/gallery_detail_title"
+		/>
 
 
 </RelativeLayout>

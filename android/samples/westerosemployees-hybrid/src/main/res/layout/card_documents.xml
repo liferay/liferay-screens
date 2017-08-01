@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/westeros_white_shape_ripple"
-    android:elevation="8dp">
+    android:elevation="8dp"
+	>
 
 	<RelativeLayout
 		android:layout_width="match_parent"

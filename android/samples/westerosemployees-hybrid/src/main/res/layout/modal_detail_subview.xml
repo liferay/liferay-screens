@@ -10,7 +10,8 @@
         android:id="@+id/blogs_detail_title"
         style="@style/westeros_card_title_white"
         android:tag="title"
-        android:text="@string/blogs" />
+        android:text="@string/blogs"
+        />
 
     <ImageView
         style="@style/westeros_arrow"
@@ -18,12 +19,14 @@
         android:src="@drawable/icon_left_white"
         android:tag="@string/arrow_back_tag"
         android:visibility="invisible"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        />
 
     <com.liferay.mobile.screens.portlet.PortletDisplayScreenlet
         android:id="@+id/portlet_modal_item"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/blogs_detail_title" />
+        android:layout_below="@id/blogs_detail_title"
+        />
 
 </RelativeLayout>
