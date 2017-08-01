@@ -46,5 +46,15 @@ namespace ShowcaseiOS.ViewController
             this.loginScreenlet.ViewModel.UserName = "test@liferay.com";
             this.loginScreenlet.ViewModel.Password = "test1";
         }
+
+        /* Action methods */
+
+        partial void ForgotPasswordButton_TouchUpInside(UIButton sender)
+        {
+            System.Diagnostics.Debug.WriteLine($"Navigate to ForgotPasswordViewController");
+            UIStoryboard board = UIStoryboard.FromName("ForgotPassword", null);
+            ForgotPasswordViewController vc = (ForgotPasswordViewController) board.InstantiateViewController("ForgotPasswordViewController");
+            this.PresentViewController(vc, true, null);
+        }
     }
 }
