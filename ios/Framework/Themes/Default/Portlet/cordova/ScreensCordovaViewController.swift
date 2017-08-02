@@ -14,9 +14,15 @@
 
 import Foundation
 import Cordova
-public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate {
+import WebKit
+
+public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate, WKNavigationDelegate {
 
 	var cdvDelegate: CDVUIWebViewNavigationDelegate?
+	var initialNavigation: WKNavigation?
+	var wkdelegate: WKNavigationDelegate? {
+		return webViewEngine as? WKNavigationDelegate
+	}
 
 	let jsCallHandler: (String, String) -> Void
 	let onPageLoadFinished: (Error?) -> Void
@@ -74,5 +80,43 @@ public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate 
 	public func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
 		cdvDelegate?.webView(webView, didFailLoadWithError: error)
 		onPageLoadFinished(nil)
+	}
+
+
+	// MARK WKNavigationDelegate
+
+	public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+		wkdelegate?.webView?(webView, didStartProvisionalNavigation: navigation)
+	}
+
+	public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+		wkdelegate?.webView?(webView, didFinish: navigation)
+
+		if initialNavigation == nil || initialNavigation != navigation {
+			onPageLoadFinished(nil)
+		}
+	}
+
+	public func webView(_ webView: WKWebView,
+			didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+
+		wkdelegate?.webView?(webView, didStartProvisionalNavigation: navigation)
+		onPageLoadFinished(error)
+	}
+
+	public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+		wkdelegate?.webView?(webView, didFail: navigation, withError: error)
+		onPageLoadFinished(error)
+	}
+
+	public func webView(_ webView: WKWebView,
+			decidePolicyFor navigationAction: WKNavigationAction,
+			decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+
+		if navigationAction.request.url?.isFileURL ?? false {
+			decisionHandler(.cancel)
+		}
+
+		wkdelegate?.webView?(webView, decidePolicyFor: navigationAction, decisionHandler: decisionHandler)
 	}
 }
