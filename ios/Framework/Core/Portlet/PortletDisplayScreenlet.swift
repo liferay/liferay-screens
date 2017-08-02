@@ -79,6 +79,8 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 	/// The default value is true.
 	@IBInspectable open var autoLoad: Bool = true
 
+	@IBInspectable open var loggingEnabled: Bool = true
+
 	/// The portlet URL to be displayed.
 	open var configuration: PortletConfiguration? {
 		didSet {
@@ -124,6 +126,8 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 				.invalidServerResponse, message: "You need to specify a portlet configuration first"))
 			return
 		}
+
+		portletDisplayViewModel.isLoggingEnabled = loggingEnabled
 
 		let screensScript = Bundle.loadFile(name: "Screens", ofType: "js", currentClass: type(of: self))!
 

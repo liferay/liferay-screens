@@ -25,6 +25,8 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 	open var isThemeEnabled = false
 
+	open var isLoggingEnabled = true
+
 	open var screensWebView: ScreensWebView?
 
 	open func configureView(with cordovaEnabled: Bool) {
