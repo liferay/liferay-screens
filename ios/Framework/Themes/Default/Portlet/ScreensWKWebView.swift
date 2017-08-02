@@ -25,6 +25,9 @@ UIScrollViewDelegate {
 
 	let wkWebView: WKWebView
 
+	var scriptsToInject = [InjectableScript]()
+	var initialNavigation: WKNavigation?
+
 	let jsCallHandler: (String, String) -> Void
 	let onPageLoadFinished: (Error?) -> Void
 	let jsErrorHandler: (String) -> (Any?, Error?) -> Void
@@ -46,7 +49,7 @@ UIScrollViewDelegate {
 	}
 
 	open func add(injectableScript: InjectableScript) {
-		wkWebView.loadScript(js: injectableScript.content)
+		scriptsToInject.append(injectableScript)
 	}
 
 	open func inject(injectableScript: InjectableScript) {
@@ -59,7 +62,7 @@ UIScrollViewDelegate {
 
 	open func load(htmlString: String) {
 		let server = SessionContext.currentContext?.session.server ?? ""
-		wkWebView.loadHTMLString(htmlString, baseURL: URL(string: server)!)
+		initialNavigation = wkWebView.loadHTMLString(htmlString, baseURL: URL(string: server)!)
 	}
 
 	public func onDestroy() {
@@ -85,7 +88,16 @@ UIScrollViewDelegate {
 	// MARK: WKNavigationDelegate
 
 	open func webView(_ webView: WKWebView, didFinish navigation: WKNavigation) {
+		if initialNavigation == nil || initialNavigation != navigation {
+
+			scriptsToInject.forEach { script in
+				webView.evaluateJavaScript(script.content, completionHandler: jsErrorHandler(script.name))
+			}
+
 			onPageLoadFinished(nil)
+		}
+	}
+
 	public func webView(_ webView: WKWebView,
 	                    didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
 
