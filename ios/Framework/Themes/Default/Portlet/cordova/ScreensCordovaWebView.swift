@@ -84,6 +84,11 @@ import UIKit
 	}
 
 	open func loadCordovaPlugin() -> InjectableScript {
+		guard Bundle.main.path(forResource: "www/cordova", ofType: "js") != nil
+		else {
+			fatalError("If you enable cordova you have to add the cordova scripts to the project")
+		}
+
 		var jsPaths = [String]()
 
 		jsPaths.append("www/cordova.js")
