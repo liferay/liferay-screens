@@ -127,7 +127,7 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 
 		let screensScript = Bundle.loadFile(name: "Screens", ofType: "js", currentClass: type(of: self))!
 
-		portletDisplayViewModel.add(injectableScript: JsScript(js: screensScript))
+		portletDisplayViewModel.add(injectableScript: JsScript(name: "Screens.js", js: screensScript))
 		portletDisplayViewModel.add(injectableScripts: configuration.scripts)
 
 		portletDisplayViewModel.isThemeEnabled = configuration.isThemeEnabled
@@ -163,11 +163,17 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 				let fileName = "\(themeName!)_\(portlet)"
 
 				if js == nil {
-					js = Bundle.loadFile(name: fileName, ofType: "js", currentClass: type(of: self)).map(JsScript.init)
+					js = Bundle.loadFile(name: fileName, ofType: "js", currentClass: type(of: self))
+						.map { js in
+							JsScript(name: fileName, js: js)
+						}
 				}
 
 				if css == nil {
-					css = Bundle.loadFile(name: fileName, ofType: "css", currentClass: type(of: self)).map(CssScript.init)
+					css = Bundle.loadFile(name: fileName, ofType: "css", currentClass: type(of: self))
+						.map { css in
+							CssScript(name: fileName, css: css)
+						}
 				}
 
 				if let js = js {

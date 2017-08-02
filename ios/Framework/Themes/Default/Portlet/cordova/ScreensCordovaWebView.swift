@@ -105,6 +105,6 @@ import UIKit
 			.map { try! String(contentsOfFile: $0) }
 			.joined(separator: "\n")
 
-		return JsScript(js: fullScript)
+		return JsScript(name: "Cordova.js", js: fullScript)
 	}
 }

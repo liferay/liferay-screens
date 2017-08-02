@@ -15,52 +15,64 @@
 import Foundation
 
 @objc public protocol InjectableScript {
+	var name: String { get }
 	var content: String { get }
 }
 
-public class JsScript: InjectableScript {
+public class BaseScript: InjectableScript {
+	public let name: String
 	public let content: String
 
-	public init(js: String) {
-		content = js
+	fileprivate init(name: String, content: String) {
+		self.name = name
+		self.content = content
 	}
 }
 
-public class CssScript: InjectableScript {
-	public let content: String
+public class JsScript: BaseScript {
 
-	public init(css: String) {
-		content = "var style = document.createElement('style');"
+	public init(name: String, js: String) {
+		super.init(name: name, content: js)
+	}
+}
+
+public class CssScript: BaseScript {
+
+	public init(name: String, css: String) {
+		let content = "var style = document.createElement('style');"
 			+ "style.type = 'text/css';"
 			+ "style.innerHTML = '\(css.replacingOccurrences(of: "\n", with: ""))';"
 			+ "var head = document.getElementsByTagName('head')[0];"
 			+ "head.appendChild(style);"
+
+		super.init(name: name, content: content)
 	}
 }
 
-public class RemoteJsScript: InjectableScript {
-	public let content: String
+public class RemoteJsScript: BaseScript {
 
-	public init(url: String) {
-		content = "var script = document.createElement('script');"
+	public init(name: String, url: String) {
+		let content = "var script = document.createElement('script');"
 			+ "script.language = 'javascript';"
 			+ "script.type = 'text/javascript';"
 			+ "script.src = '\(url)';"
 			+ "var body = document.getElementsByTagName('body')[0];"
 			+ "body.appendChild(script);"
 
+		super.init(name: name, content: content)
 	}
 }
 
-public class RemoteCssScript: InjectableScript {
-	public let content: String
+public class RemoteCssScript: BaseScript {
 
-	public init(url: String) {
-		content = "var link = document.createElement('link');"
+	public init(name: String, url: String) {
+		let content = "var link = document.createElement('link');"
 			+ "link.type = 'text/css';"
 			+ "link.rel = 'stylesheet';"
 			+ "link.href = '\(url)';"
 			+ "var head = document.getElementsByTagName('head')[0];"
 			+ "head.appendChild(link);"
+
+		super.init(name: name, content: content)
 	}
 }

@@ -110,8 +110,8 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 	open func onPageLoadFinished() {
         self.progressPresenter?.hideHUDFromView(self, message: nil, forInteractor: Interactor(), withError: nil)
 		if isThemeEnabled {
-			let js = JsScript(js: "window.Screens.listPortlets()")
 			screensWebView?.inject(injectableScript: js)
+				let js = JsScript(name: "listPorlets", js: "window.Screens.listPortlets()")
 		}
 	}
 

@@ -93,10 +93,25 @@ import Foundation
 		}
 
 		public func load() -> PortletConfiguration {
-			let localJsScripts: [InjectableScript] = localJs.map(loadLocalJsContent).map(JsScript.init)
-			let localCssScripts: [InjectableScript] = localCss.map(loadLocalCssContent).map(CssScript.init)
-			let remoteJsScripts: [InjectableScript] = remoteJs.map(RemoteJsScript.init)
-			let remoteCssScripts: [InjectableScript] = remoteCss.map(RemoteCssScript.init)
+			let localJsScripts: [InjectableScript] = localJs
+				.map { fileName in
+					JsScript(name: fileName, js: loadLocalJsContent(fileName: fileName))
+				}
+
+			let localCssScripts: [InjectableScript] = localCss
+				.map { fileName in
+					CssScript(name: fileName, css: loadLocalCssContent(fileName: fileName))
+				}
+
+			let remoteJsScripts: [InjectableScript] = remoteJs
+				.map { url in
+					RemoteJsScript(name: url, url: url)
+				}
+
+			let remoteCssScripts: [InjectableScript] = remoteCss
+				.map { url in
+					RemoteCssScript(name: url, url: url)
+				}
 
 			let allScripts: [InjectableScript] = localJsScripts + localCssScripts + remoteJsScripts + remoteCssScripts
 
