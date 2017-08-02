@@ -63,22 +63,23 @@ var screens = {
 
 window.Screens = Object.create(screens);
 
-//FIXME - non liferay page
-window.Liferay.on("endNavigate", () => {
-  window.Screens.reloadScripts();
-});
+if (window.Liferay) {
+  window.Liferay.on("endNavigate", () => {
+    window.Screens.reloadScripts();
+  });
 
-// Attach a proxy to the Liferay object so we can inject our custom session
-window.Liferay = new Proxy(window.Liferay, {
-  set: function(target, name, value) {
-    if (name === "Session") {
-      target[name] = new Liferay.SessionBase({
-        autoExtend: true,
-        sessionLength: 5 * 60,
-        warningLength: 60
-      });
+  // Attach a proxy to the Liferay object so we can inject our custom session
+  window.Liferay = new Proxy(window.Liferay, {
+    set: function(target, name, value) {
+      if (name === "Session") {
+        target[name] = new Liferay.SessionBase({
+          autoExtend: true,
+          sessionLength: 5 * 60,
+          warningLength: 60
+        });
+      }
+
+      target[name] = value;
     }
-
-    target[name] = value;
-  }
-});
+  });
+}
