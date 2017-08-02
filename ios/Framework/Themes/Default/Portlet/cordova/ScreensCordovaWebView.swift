@@ -15,7 +15,7 @@
 import Foundation
 import UIKit
 
-@objc open class ScreensCordovaWebView: NSObject, ScreensWebView, UIWebViewDelegate {
+@objc open class ScreensCordovaWebView: NSObject, ScreensWebView {
 
 	open var view: UIView {
 		return cordovaVC.view
@@ -23,7 +23,8 @@ import UIKit
 
 	var scriptsToInject = [InjectableScript]()
 
-	lazy var cordovaVC: ScreensCordovaViewController = ScreensCordovaViewController(webViewDelegate: self)
+	lazy var cordovaVC: ScreensCordovaViewController = ScreensCordovaViewController(
+		jsCallHandler: self.jsCallHandler, onPageLoadFinished: {[weak self] error in self?.onPageLoad(error: error)})
 
 	let jsCallHandler: (String, String) -> Void
 	let onPageLoadFinished: (Error?) -> Void
@@ -51,25 +52,19 @@ import UIKit
 	}
 
 	open func load(request: URLRequest) {
-		cordovaVC.webViewEngine.load(request)
+		cordovaVC.load(request: request)
 	}
 
 	open func load(htmlString: String) {
-		let server = SessionContext.currentContext?.session.server ?? ""
-		cordovaVC.webViewEngine.loadHTMLString(htmlString, baseURL: URL(string: server)!)
+		cordovaVC.load(htmlString: htmlString)
 	}
 
-	open func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest,
-	                    navigationType: UIWebViewNavigationType) -> Bool {
-
-		if handleJsCalls(uri: request.url?.absoluteString ?? "") {
-			return true
+	open func onPageLoad(error: Error?) {
+		if error != nil {
+			onPageLoadFinished(error)
+			return
 		}
 
-		return false
-	}
-
-	open func webViewDidFinishLoad(_ webView: UIWebView) {
 		self.scriptsToInject.forEach { cordovaVC.inject(script: $0, completionHandler: jsErrorHandler($0.name)) }
 		self.onPageLoadFinished(nil)
 	}
