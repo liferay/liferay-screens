@@ -30,6 +30,7 @@ public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate 
 
 	public override func viewDidLoad() {
 		super.viewDidLoad()
+		register(ScreensBridgePlugin(webViewEngine: self.webViewEngine), withPluginName: "screensbridgeplugin")
 		cdvDelegate = CDVUIWebViewNavigationDelegate(enginePlugin: self.webViewEngine as! CDVPlugin)
 	}
 

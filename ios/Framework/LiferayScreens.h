@@ -28,5 +28,6 @@ FOUNDATION_EXPORT const unsigned char LiferayScreensVersionString[];
 #import <LiferayScreens/LRScreensddlrecordService_v70.h>
 #import <LiferayScreens/LRScreensjournalarticleService_v70.h>
 #import <LiferayScreens/LRScreensratingsentryService_v70.h>
+#import <LiferayScreens/ScreensBridgePlugin.h>
 
 @import YapDatabase;

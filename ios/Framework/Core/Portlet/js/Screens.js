@@ -20,16 +20,11 @@ var screens = {
 			android.postMessage(namespace, message);
 		}
 		else {
-			if (window.webkit) {
-				window.webkit.messageHandlers.screensDefault.postMessage([namespace, message]);
+			if (window.cordova) {
+				cordova.exec(null, null, "ScreensBridgePlugin", "postMessage", [namespace, message]);
 			}
-			else {
-				var iframe = document.createElement("IFRAME");
-				iframe.setAttribute("src", "screens-" + namespace + "://" + message);
-				document.documentElement.appendChild(iframe);
-				iframe.parentNode.removeChild(iframe);
-				iframe = null;
-				execIframe.contentWindow.location
+			else if (window.webkit) {
+				window.webkit.messageHandlers.screensDefault.postMessage([namespace, message]);
 			}
 		}
 	},

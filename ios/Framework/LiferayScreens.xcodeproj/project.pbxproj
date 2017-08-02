@@ -11,6 +11,8 @@
 		0B1063181D49E7DE001D8DE3 /* WebContentListView_default-collection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B1063171D49E7DE001D8DE3 /* WebContentListView_default-collection.xib */; };
 		0B147A191E78047C00EDE7B7 /* FileDisplayView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B147A181E78047C00EDE7B7 /* FileDisplayView_default.swift */; };
 		0B147A1B1E78049F00EDE7B7 /* FileDisplayView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B147A1A1E78049F00EDE7B7 /* FileDisplayView_default.xib */; };
+		0B1527341F2F8BFD00B60188 /* ScreensBridgePlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B1527321F2F8BFD00B60188 /* ScreensBridgePlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B1527351F2F8BFD00B60188 /* ScreensBridgePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1527331F2F8BFD00B60188 /* ScreensBridgePlugin.m */; };
 		0B1F30E61DA240460053424E /* UserPortrait_connector_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1F30E41DA23FB40053424E /* UserPortrait_connector_Test.swift */; };
 		0B1F30E81DA240F20053424E /* tinyImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1F30E71DA240F20053424E /* tinyImage.png */; };
 		0B217FB51D6C4E6F00A23690 /* AssetDisplayBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FA61D6C4E6F00A23690 /* AssetDisplayBuilder.swift */; };
@@ -588,6 +590,8 @@
 		0B1063171D49E7DE001D8DE3 /* WebContentListView_default-collection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WebContentListView_default-collection.xib"; sourceTree = "<group>"; };
 		0B147A181E78047C00EDE7B7 /* FileDisplayView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDisplayView_default.swift; sourceTree = "<group>"; };
 		0B147A1A1E78049F00EDE7B7 /* FileDisplayView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileDisplayView_default.xib; sourceTree = "<group>"; };
+		0B1527321F2F8BFD00B60188 /* ScreensBridgePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreensBridgePlugin.h; sourceTree = "<group>"; };
+		0B1527331F2F8BFD00B60188 /* ScreensBridgePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreensBridgePlugin.m; sourceTree = "<group>"; };
 		0B1F30E41DA23FB40053424E /* UserPortrait_connector_Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortrait_connector_Test.swift; sourceTree = "<group>"; };
 		0B1F30E71DA240F20053424E /* tinyImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tinyImage.png; sourceTree = "<group>"; };
 		0B217FA61D6C4E6F00A23690 /* AssetDisplayBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDisplayBuilder.swift; sourceTree = "<group>"; };
@@ -1285,6 +1289,8 @@
 			children = (
 				0B4460841F176668007D12E5 /* ScreensCordovaViewController.swift */,
 				0BBE45701F1D0B8100812015 /* ScreensCordovaWebView.swift */,
+				0B1527321F2F8BFD00B60188 /* ScreensBridgePlugin.h */,
+				0B1527331F2F8BFD00B60188 /* ScreensBridgePlugin.m */,
 			);
 			path = cordova;
 			sourceTree = "<group>";
@@ -2482,6 +2488,7 @@
 				889125B11D547A10006AFA08 /* LRScreensratingsentryService_v70.h in Headers */,
 				0B2C41661D5A3CF400764326 /* LRScreensddlrecordService_v62.h in Headers */,
 				887E05531C6A4DB000CA3807 /* LRScreensuserService_v62.h in Headers */,
+				0B1527341F2F8BFD00B60188 /* ScreensBridgePlugin.h in Headers */,
 				0BCB4FB11D37C08B0023E2CA /* LRScreensddlrecordService_v70.h in Headers */,
 				8892C67E1ACB2E3300192232 /* LiferayScreens.h in Headers */,
 				887E054D1C6A4DB000CA3807 /* LRScreensassetentryService_v62.h in Headers */,
@@ -2844,6 +2851,7 @@
 				0B5B5E8A1D5869DB0007D4B1 /* ImageGalleryDeleteInteractor.swift in Sources */,
 				0BBEDA261D5B230700F8CB31 /* ImageGalleryView_default-list.swift in Sources */,
 				0B2180081D6C4F6F00A23690 /* DDMTypedValuesXMLParser.swift in Sources */,
+				0B1527351F2F8BFD00B60188 /* ScreensBridgePlugin.m in Sources */,
 				887F0D0A1B999CD90007AECE /* CacheManager.swift in Sources */,
 				88AF68381CBFF58700097014 /* WebContentListPageLoadInteractor.swift in Sources */,
 				88DC31E21ACC18F10078C961 /* CredentialsStorage.swift in Sources */,
