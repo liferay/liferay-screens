@@ -16,11 +16,12 @@ import Foundation
 import Cordova
 import WebKit
 
+// swiftlint:disable weak_delegate
 public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate, WKNavigationDelegate {
 
 	var cdvDelegate: CDVUIWebViewNavigationDelegate?
 	var initialNavigation: WKNavigation?
-	var wkdelegate: WKNavigationDelegate? {
+	var wkDelegate: WKNavigationDelegate? {
 		return webViewEngine as? WKNavigationDelegate
 	}
 
@@ -44,7 +45,7 @@ public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate,
 	}
 
 	public func inject(script: InjectableScript, completionHandler: ((Any?, Error?) -> Void)?) {
-		
+
 		self.webViewEngine.evaluateJavaScript(script.content, completionHandler: completionHandler)
 	}
 
@@ -82,15 +83,14 @@ public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate,
 		onPageLoadFinished(nil)
 	}
 
-
-	// MARK WKNavigationDelegate
+	// MARK: WKNavigationDelegate
 
 	public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-		wkdelegate?.webView?(webView, didStartProvisionalNavigation: navigation)
+		wkDelegate?.webView?(webView, didStartProvisionalNavigation: navigation)
 	}
 
 	public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-		wkdelegate?.webView?(webView, didFinish: navigation)
+		wkDelegate?.webView?(webView, didFinish: navigation)
 
 		if initialNavigation == nil || initialNavigation != navigation {
 			onPageLoadFinished(nil)
@@ -100,12 +100,12 @@ public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate,
 	public func webView(_ webView: WKWebView,
 			didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
 
-		wkdelegate?.webView?(webView, didStartProvisionalNavigation: navigation)
+		wkDelegate?.webView?(webView, didStartProvisionalNavigation: navigation)
 		onPageLoadFinished(error)
 	}
 
 	public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-		wkdelegate?.webView?(webView, didFail: navigation, withError: error)
+		wkDelegate?.webView?(webView, didFail: navigation, withError: error)
 		onPageLoadFinished(error)
 	}
 
@@ -117,6 +117,6 @@ public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate,
 			decisionHandler(.cancel)
 		}
 
-		wkdelegate?.webView?(webView, decidePolicyFor: navigationAction, decisionHandler: decisionHandler)
+		wkDelegate?.webView?(webView, decidePolicyFor: navigationAction, decisionHandler: decisionHandler)
 	}
 }

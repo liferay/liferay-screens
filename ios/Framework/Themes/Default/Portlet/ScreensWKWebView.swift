@@ -18,7 +18,7 @@ import WebKit
 UIScrollViewDelegate {
 
 	let defaultNamespace = "screensDefault"
-	
+
 	open var view: UIView {
 		return wkWebView
 	}

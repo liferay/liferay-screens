@@ -24,7 +24,7 @@ import UIKit
 	var scriptsToInject = [InjectableScript]()
 
 	lazy var cordovaVC: ScreensCordovaViewController = ScreensCordovaViewController(
-		jsCallHandler: self.jsCallHandler, onPageLoadFinished: {[weak self] error in self?.onPageLoad(error: error)})
+		jsCallHandler: self.jsCallHandler, onPageLoadFinished: { [weak self] error in self?.onPageLoad(error: error) })
 
 	let jsCallHandler: (String, String) -> Void
 	let onPageLoadFinished: (Error?) -> Void
@@ -42,7 +42,7 @@ import UIKit
 		let plugin = loadCordovaPlugin()
 		self.scriptsToInject.append(plugin)
 	}
-	
+
 	open func add(injectableScript: InjectableScript) {
 		scriptsToInject.append(injectableScript)
 	}
@@ -93,7 +93,8 @@ import UIKit
 
 		jsPaths.append("www/cordova.js")
 
-		let directoryEnumerator = FileManager.default.enumerator(atPath: Bundle.main.path(forResource: "www/plugins", ofType: nil)!)
+		let directoryEnumerator = FileManager.default
+				.enumerator(atPath: Bundle.main.path(forResource: "www/plugins", ofType: nil)!)
 
 		while let path = directoryEnumerator?.nextObject() as? String {
 			if path.hasSuffix(".js") {

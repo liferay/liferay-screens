@@ -31,9 +31,9 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 	open func configureView(with cordovaEnabled: Bool) {
 		if screensWebView != nil {
-			return;
+			return
 		}
-		
+
 		let jsCallHandler: (String, String) -> Void = { [weak self] namespace, message in
 			self?.handleJsCall(namespace: namespace, message: message)
 		}
@@ -62,7 +62,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		}
 		else {
 			screensWebView = ScreensWKWebView(jsCallHandler: jsCallHandler,
-					jsErrorHandler: jsErrorHandler,onPageLoadFinished:
+					jsErrorHandler: jsErrorHandler, onPageLoadFinished:
 					onPageLoadFinishedHandler)
 		}
 
@@ -90,12 +90,12 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		showHud()
 		screensWebView?.load(htmlString: htmlString)
 	}
-    
+
     // MARK: BaseScreenletView
-    
+
     open override func onCreated() {
         super.onCreated()
-        
+
         self.progressPresenter = createProgressPresenter()
     }
 
@@ -103,7 +103,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		super.onDestroy()
 		screensWebView?.onDestroy?()
 	}
-    
+
     open override func createProgressPresenter() -> ProgressPresenter {
         return DefaultProgressPresenter()
     }
@@ -114,7 +114,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		webView.translatesAutoresizingMaskIntoConstraints = false
 
 		webView.backgroundColor = .clear
-		
+
 		addSubview(webView)
 
 		let top = NSLayoutConstraint(item: webView, attribute: .top, relatedBy: .equal,
