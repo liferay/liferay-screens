@@ -28,7 +28,10 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 	open var screensWebView: ScreensWebView?
 
 	open func configureView(with cordovaEnabled: Bool) {
-
+		if screensWebView != nil {
+			return;
+		}
+		
 		let jsCallHandler: (String, String) -> Void = { [weak self] namespace, message in
 			self?.handleJsCall(namespace: namespace, message: message)
 		}
