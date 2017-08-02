@@ -40,13 +40,28 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 		let onPageLoadFinishedHandler: () -> Void = { [weak self] in
 			self?.onPageLoadFinished()
+		let jsErrorHandler: (String) -> (Any?, Error?) -> Void = { [unowned self] scriptName in
+			return { _, error in
+				guard self.isLoggingEnabled else { return }
+				print("executed \(scriptName)")
+				if let error = error as NSError? {
+
+					if error.domain == "WKErrorDomain" && error.code != 5 {
+						print("\nError injecting \(scriptName): \(self.parseJavaScriptError(error))")
+					}
+				}
+			}
 		}
 
 		if cordovaEnabled {
-			screensWebView = ScreensCordovaWebView(jsCallHandler: jsCallHandler, onPageLoadFinished: onPageLoadFinishedHandler)
+			screensWebView = ScreensCordovaWebView(jsCallHandler: jsCallHandler,
+					jsErrorHandler: jsErrorHandler,
+					onPageLoadFinished: onPageLoadFinishedHandler)
 		}
 		else {
-			screensWebView = ScreensWKWebView(jsCallHandler: jsCallHandler, onPageLoadFinished: onPageLoadFinishedHandler)
+			screensWebView = ScreensWKWebView(jsCallHandler: jsCallHandler,
+					jsErrorHandler: jsErrorHandler,onPageLoadFinished:
+					onPageLoadFinishedHandler)
 		}
 
 		addWebView()
@@ -127,5 +142,12 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 	open func showHud() {
 		progressPresenter?.showHUDInView(self, message: LocalizedString(
 			"default", key: "portletdisplay-loading-message", obj: self), forInteractor: Interactor())
+	}
+
+	func parseJavaScriptError(_ error: NSError) -> String {
+		let lineNumber = error.userInfo["WKJavaScriptExceptionLineNumber"] ?? ""
+		let message = error.userInfo["WKJavaScriptExceptionMessage"] ?? ""
+
+		return "Line \(lineNumber), \(message)"
 	}
 }

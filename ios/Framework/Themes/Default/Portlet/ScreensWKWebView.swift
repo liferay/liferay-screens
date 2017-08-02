@@ -27,9 +27,13 @@ UIScrollViewDelegate {
 
 	let jsCallHandler: (String, String) -> Void
 	let onPageLoadFinished: () -> Void
+	let jsErrorHandler: (String) -> (Any?, Error?) -> Void
 
-	public required init(jsCallHandler: @escaping (String, String) -> Void, onPageLoadFinished: @escaping () -> Void) {
+	public required init(jsCallHandler: @escaping (String, String) -> Void,
+		jsErrorHandler: @escaping (String) -> (Any?, Error?) -> Void, onPageLoadFinished: @escaping () -> Void) {
+
 		self.jsCallHandler = jsCallHandler
+		self.jsErrorHandler = jsErrorHandler
 		self.onPageLoadFinished = onPageLoadFinished
 		self.wkWebView = WKWebView()
 
@@ -48,7 +52,7 @@ UIScrollViewDelegate {
 	}
 
 	open func inject(injectableScript: InjectableScript) {
-		wkWebView.evaluateJavaScript(injectableScript.content, completionHandler: nil)
+		wkWebView.evaluateJavaScript(injectableScript.content, completionHandler: jsErrorHandler(injectableScript.name))
 	}
 
 	open func load(request: URLRequest) {

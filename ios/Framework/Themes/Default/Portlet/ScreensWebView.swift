@@ -18,7 +18,8 @@ import UIKit
 
 	var view: UIView { get }
 
-	init(jsCallHandler: @escaping (String, String) -> Void, onPageLoadFinished: @escaping () -> Void)
+	init(jsCallHandler: @escaping (String, String) -> Void,
+	     jsErrorHandler: @escaping (String) -> (Any?, Error?) -> Void, onPageLoadFinished: @escaping () -> Void)
 
 	func add(injectableScript: InjectableScript)
 
