@@ -18,7 +18,7 @@ import WebKit
 UIScrollViewDelegate {
 
 	let defaultNamespace = "screensDefault"
-
+	
 	open var view: UIView {
 		return wkWebView
 	}
@@ -26,11 +26,11 @@ UIScrollViewDelegate {
 	let wkWebView: WKWebView
 
 	let jsCallHandler: (String, String) -> Void
-	let onPageLoadFinished: () -> Void
+	let onPageLoadFinished: (Error?) -> Void
 	let jsErrorHandler: (String) -> (Any?, Error?) -> Void
 
 	public required init(jsCallHandler: @escaping (String, String) -> Void,
-		jsErrorHandler: @escaping (String) -> (Any?, Error?) -> Void, onPageLoadFinished: @escaping () -> Void) {
+		jsErrorHandler: @escaping (String) -> (Any?, Error?) -> Void, onPageLoadFinished: @escaping (Error?) -> Void) {
 
 		self.jsCallHandler = jsCallHandler
 		self.jsErrorHandler = jsErrorHandler
@@ -43,8 +43,6 @@ UIScrollViewDelegate {
 		wkWebView.navigationDelegate = self
 		wkWebView.scrollView.delegate = self
 		wkWebView.configuration.userContentController.add(self, name: defaultNamespace)
-	}
-
 	}
 
 	open func add(injectableScript: InjectableScript) {
@@ -87,7 +85,21 @@ UIScrollViewDelegate {
 	// MARK: WKNavigationDelegate
 
 	open func webView(_ webView: WKWebView, didFinish navigation: WKNavigation) {
-		onPageLoadFinished()
+			onPageLoadFinished(nil)
+	public func webView(_ webView: WKWebView,
+	                    didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+
+		onPageLoadFinished(error)
+	}
+
+	public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+		onPageLoadFinished(error)
+	}
+
+	public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction,
+			decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+
+		decisionHandler(.allow)
 	}
 
 }

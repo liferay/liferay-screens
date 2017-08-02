@@ -38,8 +38,10 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 			self?.handleJsCall(namespace: namespace, message: message)
 		}
 
-		let onPageLoadFinishedHandler: () -> Void = { [weak self] in
-			self?.onPageLoadFinished()
+		let onPageLoadFinishedHandler: (Error?) -> Void = { [weak self] error in
+			self?.onPageLoadFinished(with: error)
+		}
+
 		let jsErrorHandler: (String) -> (Any?, Error?) -> Void = { [unowned self] scriptName in
 			return { _, error in
 				guard self.isLoggingEnabled else { return }
@@ -127,11 +129,23 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		NSLayoutConstraint.activate([top, bottom, leading, trailing])
 	}
 
-	open func onPageLoadFinished() {
-        self.progressPresenter?.hideHUDFromView(self, message: nil, forInteractor: Interactor(), withError: nil)
-		if isThemeEnabled {
-			screensWebView?.inject(injectableScript: js)
+	open func onPageLoadFinished(with error: Error?) {
+		if let error = error {
+			self.progressPresenter?
+				.hideHUDFromView(self,
+				message: LocalizedString("default", key: "portletdisplay-loading-error", obj: self),
+				forInteractor: Interactor(), withError: error as NSError?)
+
+			let screenlet = (self.screenlet as? PortletDisplayScreenlet)
+			screenlet?
+				.portletDisplayDelegate?.screenlet?(screenlet!, onPortletError: error as NSError)
+		}
+		else {
+			self.progressPresenter?.hideHUDFromView(self, message: nil, forInteractor: Interactor(), withError: nil)
+			if isThemeEnabled {
 				let js = JsScript(name: "listPorlets", js: "window.Screens.listPortlets()")
+				inject(injectableScript: js)
+			}
 		}
 	}
 

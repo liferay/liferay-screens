@@ -26,11 +26,11 @@ import UIKit
 	lazy var cordovaVC: ScreensCordovaViewController = ScreensCordovaViewController(webViewDelegate: self)
 
 	let jsCallHandler: (String, String) -> Void
-	let onPageLoadFinished: () -> Void
+	let onPageLoadFinished: (Error?) -> Void
 	let jsErrorHandler: (String) -> (Any?, Error?) -> Void
 
 	public required init(jsCallHandler: @escaping (String, String) -> Void,
-		jsErrorHandler: @escaping (String) -> (Any?, Error?) -> Void, onPageLoadFinished: @escaping () -> Void) {
+		jsErrorHandler: @escaping (String) -> (Any?, Error?) -> Void, onPageLoadFinished: @escaping (Error?) -> Void) {
 
 		self.jsCallHandler = jsCallHandler
 		self.jsErrorHandler = jsErrorHandler
@@ -70,8 +70,8 @@ import UIKit
 	}
 
 	open func webViewDidFinishLoad(_ webView: UIWebView) {
-		onPageLoadFinished()
 		self.scriptsToInject.forEach { cordovaVC.inject(script: $0, completionHandler: jsErrorHandler($0.name)) }
+		self.onPageLoadFinished(nil)
 	}
 
 	open func handleJsCalls(uri: String) -> Bool {
