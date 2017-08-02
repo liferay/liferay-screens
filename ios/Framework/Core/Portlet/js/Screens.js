@@ -44,7 +44,13 @@ var screens = {
 		})
 		.filter((x, idx, arr) => arr.indexOf(x) === idx).join(',');
 
-		this.postMessage("screensinternal.listportlets", parsedPortlets);
+		if (window.cordova) {
+			document.addEventListener('deviceready',
+				() => this.postMessage('screensinternal.listportlets', parsedPortlets), false);
+		}
+		else {
+			this.postMessage('screensinternal.listportlets', parsedPortlets);
+		}
 	}
 }
 
