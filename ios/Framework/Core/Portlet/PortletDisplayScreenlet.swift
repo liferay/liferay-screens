@@ -119,9 +119,9 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 
 	/// Call this method to load the portlet.
 	open func load() {
-		guard let configuration = configuration, SessionContext.isLoggedIn else {
+		guard let configuration = configuration else {
 			self.portletDisplayDelegate?.screenlet?(self, onPortletError: NSError.errorWithCause(
-				.invalidServerResponse, message: "Could not load portlet content."))
+				.invalidServerResponse, message: "You need to specify a portlet configuration first"))
 			return
 		}
 
@@ -134,6 +134,12 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 
 		switch configuration.webType {
 			case .liferayAuthenticated:
+				guard SessionContext.isLoggedIn else {
+					self.portletDisplayDelegate?.screenlet?(self, onPortletError: NSError.errorWithCause(
+						.abortedDueToPreconditions, message: "You have to be logged to use this web type"))
+					return
+				}
+
 				let html = configureInitialHtml(portletUrl: configuration.portletUrl)
 				portletDisplayViewModel.load(htmlString: html)
 			case .liferay:
