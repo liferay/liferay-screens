@@ -324,14 +324,14 @@ public class PortletDisplayScreenlet
 				if (js == null) {
 					String content = new AssetReader(getContext()).read(fileName);
 					if (!content.isEmpty()) {
-						js = new JsScript(content);
+						js = new JsScript(fileName, content);
 					}
 				}
 
 				if (css == null) {
 					String content = new AssetReader(getContext()).read(fileName);
 					if (!content.isEmpty()) {
-						css = new CssScript(content);
+						css = new CssScript(fileName, content);
 					}
 				}
 

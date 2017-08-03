@@ -19,6 +19,8 @@ package com.liferay.mobile.screens.portlet.util;
  */
 public interface InjectableScript {
 
+	String getName();
+
 	/**
 	 * Get file content.
 	 *

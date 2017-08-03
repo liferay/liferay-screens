@@ -19,14 +19,21 @@ package com.liferay.mobile.screens.portlet.util;
  */
 public class CssScript implements InjectableScript {
 
+	private String name;
 	private String content;
 
-	public CssScript(String css) {
+	public CssScript(String name, String css) {
+		this.name = name;
 		content = "var style = document.createElement('style');"
 			+ "style.type = 'text/css';"
 			+ "style.innerHTML = '" + css.replace("\n", "") + "';"
 			+ "var head = document.getElementsByTagName('head')[0];"
 			+ "head.appendChild(style);";
+	}
+
+	@Override
+	public String getName() {
+		return name;
 	}
 
 	@Override

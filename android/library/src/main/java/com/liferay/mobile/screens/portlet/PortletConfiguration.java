@@ -168,36 +168,36 @@ public class PortletConfiguration {
 			for (String js : localJs) {
 				String content = loadLocalContent(js);
 				if (!content.isEmpty()) {
-					allScripts.add(new JsScript(loadLocalContent(js)));
+					allScripts.add(new JsScript(js, loadLocalContent(js)));
 				}
 			}
 
 			for (String css : localCss) {
 				String content = loadLocalContent(css);
 				if (!content.isEmpty()) {
-					allScripts.add(new CssScript(loadLocalContent(css)));
+					allScripts.add(new CssScript(css, loadLocalContent(css)));
 				}
 			}
 
 			for (String rJs : remoteJs) {
-				allScripts.add(new RemoteJsScript(rJs));
+				allScripts.add(new RemoteJsScript(rJs, rJs));
 			}
 
 			for (String rCss : remoteCss) {
-				allScripts.add(new RemoteCssScript(rCss));
+				allScripts.add(new RemoteCssScript(rCss, rCss));
 			}
 
 			for (int rawCss : localRawCss) {
 				String content = loadLocalContent(rawCss);
 				if (!content.isEmpty()) {
-					allScripts.add(new CssScript(loadLocalContent(rawCss)));
+					allScripts.add(new CssScript("rawCss" + rawCss, loadLocalContent(rawCss)));
 				}
 			}
 
 			for (int rawJs : localRawJs) {
 				String content = loadLocalContent(rawJs);
 				if (!content.isEmpty()) {
-					allScripts.add(new JsScript(content));
+					allScripts.add(new JsScript("rawJs" + rawJs , content));
 				}
 			}
 

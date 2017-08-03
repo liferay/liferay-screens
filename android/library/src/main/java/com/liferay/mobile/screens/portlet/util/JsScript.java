@@ -19,10 +19,17 @@ package com.liferay.mobile.screens.portlet.util;
  */
 public class JsScript implements InjectableScript {
 
+	private String name;
 	private String content;
 
-	public JsScript(String js) {
+	public JsScript(String name, String js) {
+		this.name = name;
 		content = js;
+	}
+
+	@Override
+	public String getName() {
+		return name;
 	}
 
 	@Override
