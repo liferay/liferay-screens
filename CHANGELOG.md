@@ -16,14 +16,21 @@ All notable changes to this project will be documented in this file.
 ### New Features
 * Create loadLoggedUserPortrait method in UserPortraitScreenlet
 * Expose Video events in the VideoDisplayScreenlet 
+* Allow developers override injected CSS in WebContentDisplayScreenlet
+
+### Bugs
+* Fix error in material LoginView with cookie login
 
 ## iOS
 
 ### Bugs
 * Fix error in UserPortrait initials view: user lastname is required in Liferay 7.0 but is not in Liferay 6.2
+* Fix bug in Session context, user attributes were being removed when the cookie login was refreshed.
+* Fix retain cycle in BaseListScreenlet
 
 ### New Features
 * AssetDisplayScreenlet uses FileDisplayScreenlet for ppt, xls and doc files
+* Allow developers override injected CSS in WebContentDisplayScreenlet
 
 ### Refactor
 * Migrate from UIWebView to WKWebView

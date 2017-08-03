@@ -62,8 +62,13 @@ open class BaseListScreenlet: BaseScreenlet {
 	// MARK: BaseScreenlet
 
 	override open func onCreated() {
-		baseListView.onSelectedRowClosure = onSelectedRow
-		baseListView.fetchPageForRow = loadPageForRow
+		baseListView.onSelectedRowClosure = { [weak self] row in
+			self?.onSelectedRow(row)
+		}
+
+		baseListView.fetchPageForRow = { [weak self] page in
+			self?.loadPageForRow(page)
+		}
 
 		updateRefreshClosure()
 	}
@@ -216,7 +221,11 @@ open class BaseListScreenlet: BaseScreenlet {
 
 	internal func updateRefreshClosure() {
 
-		let refreshClosure: ((Void) -> Bool)? = refreshControl ? self.loadList : nil
+		let defaultClosure: (() -> Bool)? = { [weak self] in
+			return self?.loadList() ?? false
+		}
+
+		let refreshClosure: (() -> Bool)? = refreshControl ? defaultClosure : nil
 
 		if let screenletView = screenletView as? BaseListTableView {
 			screenletView.refreshClosure = refreshClosure

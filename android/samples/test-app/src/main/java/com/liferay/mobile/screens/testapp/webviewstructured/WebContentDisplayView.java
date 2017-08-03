@@ -26,8 +26,8 @@ public class WebContentDisplayView extends WebContentStructuredDisplayView {
 	}
 
 	@Override
-	public void showFinishOperation(WebContent webContent) {
-		super.showFinishOperation(webContent);
+	public void showFinishOperation(WebContent webContent, String customCss) {
+		super.showFinishOperation(webContent, customCss);
 
 		DDMStructure ddmStructure = webContent.getDDMStructure();
 

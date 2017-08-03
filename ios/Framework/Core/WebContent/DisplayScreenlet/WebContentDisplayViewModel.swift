@@ -21,4 +21,6 @@ import UIKit
 	/// DDLRecord content.
 	var recordContent: DDLRecord? { get set }
 
+	/// Customize the WebContent with custom css
+	var customCssFile: String? { get set }
 }

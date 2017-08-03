@@ -41,7 +41,7 @@ Pod::Spec.new do |s|
 	]
 
 	s.resource_bundle = {
-		'LiferayScreens-core' => 'ios/Framework/Core/**/*.{plist,lproj,js,html}',
+		'LiferayScreens-core' => 'ios/Framework/Core/**/*.{plist,lproj,js,html,css}',
 		'LiferayScreens-default' => 'ios/Framework/Themes/Default/**/*.{xib,png,plist,lproj}'
 	}
 	

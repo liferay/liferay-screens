@@ -32,7 +32,7 @@ public class WebContentStructuredDisplayView extends LinearLayout implements Web
 	}
 
 	@Override
-	public void showFinishOperation(WebContent webContent) {
+	public void showFinishOperation(WebContent webContent, String customCss) {
 		String value = getValueFromLabelFields(webContent);
 
 		if (contentField != null) {
