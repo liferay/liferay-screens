@@ -15,6 +15,7 @@ namespace ShowcaseAndroid
             SetContentView(Resource.Layout.MainView);
 
             FindViewById(Resource.Id.login_screenlet).SetOnClickListener(this);
+            FindViewById(Resource.Id.forgot_password_screenlet).SetOnClickListener(this);
         }
 
         /* IOnClickListener */
@@ -25,6 +26,9 @@ namespace ShowcaseAndroid
             {
                 case Resource.Id.login_screenlet:
                     StartActivity(typeof(LoginActivity));
+                    break;
+                case Resource.Id.forgot_password_screenlet:
+                    StartActivity(typeof(ForgotPasswordActivity));
                     break;
             }
         }
