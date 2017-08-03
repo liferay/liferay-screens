@@ -5,7 +5,7 @@ using Android.Views;
 
 namespace ShowcaseAndroid
 {
-    [Activity(Label = "MainActivity", MainLauncher = true)]
+    [Activity(MainLauncher = true)]
     public class MainActivity : AppCompatActivity, View.IOnClickListener
     {
 

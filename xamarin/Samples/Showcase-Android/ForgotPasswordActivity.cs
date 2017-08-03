@@ -5,7 +5,7 @@ using Com.Liferay.Mobile.Screens.Auth.Forgotpassword;
 
 namespace ShowcaseAndroid
 {
-    [Activity(Label = "ForgotPasswordActivity")]
+    [Activity]
     public class ForgotPasswordActivity : Activity, IForgotPasswordListener
     {
 
