@@ -21,6 +21,14 @@ module.exports = [
         "clobbers": [
             "NetworkActivityIndicator"
         ]
+    },
+	{
+        "id": "cordova-plugin-wkwebview-engine.ios-wkwebview-exec",
+        "file": "plugins/cordova-plugin-wkwebview-engine/src/www/ios/ios-wkwebview-exec.js",
+        "pluginId": "cordova-plugin-wkwebview-engine",
+        "clobbers": [
+            "cordova.exec"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -30,7 +38,8 @@ module.exports.metadata =
     "es6-promise-plugin": "4.1.0",
     "phonegap-plugin-battery-status": "1.0.0",
     "cordova-plugin-networkactivityindicator": "0.1.1",
-    "cordova-plugin-remote-injection": "0.5.2"
+    "cordova-plugin-remote-injection": "0.5.2",
+	"cordova-plugin-wkwebview-engine": "1.1.4-dev"
 };
 // BOTTOM OF METADATA
 });

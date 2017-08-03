@@ -35,9 +35,10 @@ class PortletDisplayViewController: UIViewController, PortletDisplayScreenletDel
 		let portletUrl = LiferayServerContext.stringPropertyForKey("portletDisplayUrl")
 
 		let configuration = PortletConfiguration.Builder(portletUrl: portletUrl)
-				.set(webType: .liferayLogged)
+				.set(webType: .liferayAuthenticated)
 				.enableCordova()
 				.addCss(localFile: "bigger_pagination")
+//				.addJs(localFile: "gallery")
 				.load()
 
 		screenlet?.configuration = configuration
@@ -64,7 +65,7 @@ class PortletDisplayViewController: UIViewController, PortletDisplayScreenletDel
 
 	func screenlet(_ screenlet: PortletDisplayScreenlet, jsFor portlet: String) -> InjectableScript? {
 		if portlet == "com_liferay_document_library_web_portlet_IGDisplayPortlet" {
-			return JsScript(js: Bundle.loadFile(name: "gallery", ofType: "js", currentClass: type(of: self))!)
+			return JsScript(name: "gallery.js", js: Bundle.loadFile(name: "gallery", ofType: "js", currentClass: type(of: self))!)
 		}
 
 		return nil

@@ -25,6 +25,9 @@
         <param name="ios-package" value="CDVRemoteInjectionPlugin" />
         <param name="onload" value="true" />
     </feature>
+	<feature name="CDVWKWebViewEngine">
+		<param name="ios-package" value="CDVWKWebViewEngine" />
+	</feature>
     <name>HelloCordova</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
@@ -53,4 +56,5 @@
     <preference name="PageLength" value="0" />
     <preference name="PaginationBreakingMode" value="page" />
     <preference name="PaginationMode" value="unpaginated" />
+	<preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
 </widget>
