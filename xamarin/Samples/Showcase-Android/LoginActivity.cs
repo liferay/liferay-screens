@@ -6,7 +6,7 @@ using Com.Liferay.Mobile.Screens.Context;
 
 namespace ShowcaseAndroid
 {
-    [Activity(Label = "LoginActivity")]
+    [Activity]
     public class LoginActivity : Activity, ILoginListener
     {
         LoginScreenlet loginScreenlet;
