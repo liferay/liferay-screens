@@ -155,7 +155,12 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 	}
 
 	func handleInternal(namespace: String, message: Any) {
-		if namespace.hasSuffix("listportlets") {
+		if namespace.hasSuffix("consoleMessage") {
+			if loggingEnabled {
+				print("Console message: \(message)");
+			}
+		}
+		else if namespace.hasSuffix("listportlets") {
 			guard let portletsString = message as? String else { return }
 
 			let portlets = portletsString.components(separatedBy: ",")

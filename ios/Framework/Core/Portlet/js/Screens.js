@@ -1,3 +1,11 @@
+const log = console.log;
+console.log = message => {
+  log(message);
+  if (window.Screens) {
+    window.Screens.postMessage("screensinternal.consoleMessage", message);
+  }
+};
+
 var screens = {
   screensScripts_: [],
   addScreensScript: function(screensScript) {
