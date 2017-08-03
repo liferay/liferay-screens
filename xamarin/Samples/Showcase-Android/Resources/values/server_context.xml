@@ -8,4 +8,8 @@
 	<!-- LoginScreenlet: Default user & password -->
     <string name="liferay_default_user_name">test@liferay.com</string>
     <string name="liferay_default_password">test1</string>
+
+	<!-- ForgotPasswordScreenlet -->
+    <string name="liferay_anonymousApiUserName">anonymous1@liferay.com</string>
+    <string name="liferay_anonymousApiPassword">anonymous1</string>
 </resources>
