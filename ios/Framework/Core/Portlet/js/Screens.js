@@ -20,10 +20,12 @@ var screens = {
       android.postMessage(namespace, message);
     } else {
       if (window.cordova) {
-        cordova.exec(null, null, "ScreensBridgePlugin", "postMessage", [
-          namespace,
-          message
-        ]);
+        document.addEventListener("deviceready", () => {
+          cordova.exec(null, null, "ScreensBridgePlugin", "postMessage", [
+            namespace,
+            message
+          ]);
+        });
       } else if (window.webkit) {
         window.webkit.messageHandlers.screensDefault.postMessage([
           namespace,
@@ -49,15 +51,7 @@ var screens = {
       .filter((x, idx, arr) => arr.indexOf(x) === idx)
       .join(",");
 
-    if (window.cordova) {
-      document.addEventListener(
-        "deviceready",
-        () => this.postMessage("screensinternal.listportlets", parsedPortlets),
-        false
-      );
-    } else {
-      this.postMessage("screensinternal.listportlets", parsedPortlets);
-    }
+    this.postMessage("screensinternal.listportlets", parsedPortlets);
   }
 };
 
