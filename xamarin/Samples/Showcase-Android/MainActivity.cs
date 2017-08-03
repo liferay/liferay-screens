@@ -1,12 +1,7 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Views;
-using Android.Widget;
-using Com.Liferay.Mobile.Screens.Auth.Login;
-using Com.Liferay.Mobile.Screens.Context;
-using Java.Lang;
 
 namespace ShowcaseAndroid
 {
