@@ -18,9 +18,9 @@ open class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMode
 
 	// MARK: Outlets
 
-	@IBOutlet open var userNameField: UITextField?
+	@IBOutlet open weak var userNameField: UITextField?
 
-	@IBOutlet open var requestPasswordButton: UIButton?
+	@IBOutlet open weak var requestPasswordButton: UIButton?
 
 	override open var progressMessages: [String:ProgressMessages] {
 		return [
