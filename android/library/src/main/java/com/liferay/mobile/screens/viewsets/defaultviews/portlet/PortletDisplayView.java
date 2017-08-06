@@ -12,27 +12,30 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.portlet.PortletDisplayScreenlet;
+import com.liferay.mobile.screens.portlet.util.InjectableScript;
 import com.liferay.mobile.screens.portlet.view.PortletDisplayViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.portlet.cordova.CordovaLifeCycleObserver;
 import com.liferay.mobile.screens.viewsets.defaultviews.portlet.cordova.ScreensCordovaWebView;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Sarai Díaz García
  * @author Víctor Galán
  */
 
-public class PortletDisplayView extends FrameLayout implements PortletDisplayViewModel,
-	ScreensWebView.Listener {
+public class PortletDisplayView extends FrameLayout
+	implements PortletDisplayViewModel, ScreensWebView.Listener {
 
 	private BaseScreenlet screenlet;
 	private WebView webView;
 	private ScreensWebView screensWebView;
 	private ProgressBar progressBar;
 	private String URL_LOGIN = "/c/portal/login";
+	private List<InjectableScript> scriptsToInject = new ArrayList<>();
 	private boolean theme;
 	private boolean isLoaded;
-	private String javaScriptToInject;
 
 	public PortletDisplayView(Context context) {
 		super(context);
@@ -71,7 +74,6 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 		}
 	}
 
-
 	@Override
 	public void showStartOperation(String actionName) {
 		if (progressBar != null) {
@@ -84,7 +86,8 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 
 	@Override
 	public void showFinishOperation(View view) {
-		screenlet.addView(view, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+		screenlet.addView(view, LinearLayout.LayoutParams.MATCH_PARENT,
+			LinearLayout.LayoutParams.MATCH_PARENT);
 		screenlet.setVisibility(VISIBLE);
 
 		webView.setVisibility(GONE);
@@ -94,29 +97,32 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 	}
 
 	@Override
-	public void injectJavascript(final String js) {
-		webView.post(new Runnable() {
-			@Override
-			public void run() {
-				webView.loadUrl(js);
-			}
-		});
+	public void injectScript(InjectableScript script) {
+		injectScript("window.currentFile = '" + script.getName() + "';");
+		injectScript(script.getContent());
 	}
 
 	@Override
-	public void showFinishOperation(String url, String body, String injectedJs) {
+	public void addScript(InjectableScript script) {
+		scriptsToInject.add(script);
+	}
+
+	public void injectScript(final String js) {
+		String wrapped = "javascript:(function() {" + js + "})()";
+		webView.loadUrl(wrapped);
+	}
+
+	@Override
+	public void postUrl(String url, String body) {
 		if (webView != null) {
-			javaScriptToInject = injectedJs;
 
 			webView.postUrl(url, body.getBytes());
 		}
 	}
 
 	@Override
-	public void showFinishOperation(String url, String injectedJs) {
+	public void loadUrl(String url) {
 		if (webView != null) {
-			javaScriptToInject = injectedJs;
-
 			webView.loadUrl(url);
 		}
 	}
@@ -135,8 +141,8 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 
 	@Override
 	public void showFinishOperation(String actionName) {
-		throw new UnsupportedOperationException(
-			"showFinishOperation(String) is not supported." + " Use showFinishOperation(String, String) instead.");
+		throw new UnsupportedOperationException("showFinishOperation(String) is not supported."
+			+ " Use showFinishOperation(String, String) instead.");
 	}
 
 	@Override
@@ -158,8 +164,7 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 		if (isCordovaEnabled) {
 			screensWebView = new ScreensCordovaWebView(
 				LiferayScreensContext.getActivityFromContext(getContext()), observer);
-		}
-		else {
+		} else {
 			screensWebView = new ScreensNativeWebView(
 				LiferayScreensContext.getActivityFromContext(getContext()));
 		}
@@ -167,8 +172,9 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 		screensWebView.setListener(this);
 
 		webView = screensWebView.getView();
-		webView.setLayoutParams(new LinearLayout.LayoutParams(
-			LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+		webView.setLayoutParams(
+			new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+				LinearLayout.LayoutParams.MATCH_PARENT));
 
 		webView.getSettings().setJavaScriptEnabled(true);
 
@@ -185,7 +191,9 @@ public class PortletDisplayView extends FrameLayout implements PortletDisplayVie
 		if (!isLoaded && !url.contains(URL_LOGIN)) {
 			isLoaded = true;
 
-			webView.loadUrl(javaScriptToInject);
+			for (InjectableScript script : scriptsToInject) {
+				injectScript(script);
+			}
 
 			if (theme) {
 				webView.loadUrl("javascript:window.Screens.listPortlets()");

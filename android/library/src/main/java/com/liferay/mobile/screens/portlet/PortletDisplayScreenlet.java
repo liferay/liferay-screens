@@ -87,9 +87,9 @@ public class PortletDisplayScreenlet
 			String finalUrl = buildPortletUrl(portletConfiguration.getPortletUrl());
 			String body = buildBody();
 
-			JavascriptInjector javascriptInjector = new JavascriptInjector(getContext());
+			String screensJs = new AssetReader(getContext()).read(R.raw.screens);
 
-			javascriptInjector.addJsFile(R.raw.screens);
+			getViewModel().addScript(new JsScript("Screens.js", screensJs));
 
 			if (portletConfiguration.isThemeEnabled() && !portletConfiguration.getWebType()
 				.equals(PortletConfiguration.WebType.CUSTOM)) {
@@ -97,18 +97,16 @@ public class PortletDisplayScreenlet
 			}
 
 			for (InjectableScript script : portletConfiguration.getScripts()) {
-				javascriptInjector.addJs(script.getContent());
+				getViewModel().addScript(script);
 			}
 
 			if (portletConfiguration.getWebType()
 				.equals(PortletConfiguration.WebType.LIFERAY_AUTHENTICATED)) {
 
-				getViewModel().showFinishOperation(finalUrl, body,
-					javascriptInjector.generateInjectableJs());
+				getViewModel().postUrl(finalUrl, body);
 
 			} else {
-				getViewModel().showFinishOperation(portletConfiguration.getPortletUrl(),
-					javascriptInjector.generateInjectableJs());
+				getViewModel().loadUrl(finalUrl);
 			}
 		} else {
 			getViewModel().showFailedOperation(DEFAULT_ACTION, new MalformedURLException());
@@ -335,18 +333,23 @@ public class PortletDisplayScreenlet
 					}
 				}
 
-				JavascriptInjector javascriptInjector = new JavascriptInjector(getContext());
-
 				if (js != null && !js.getContent().isEmpty()) {
-					javascriptInjector.addJs(js.getContent(), true);
+					injectScriptInMainThread(js);
 				}
 
 				if (css != null && !css.getContent().isEmpty()) {
-					javascriptInjector.addCss(css.getContent());
+					injectScriptInMainThread(css);
 				}
-
-				getViewModel().injectJavascript(javascriptInjector.generateInjectableJs());
 			}
 		}
+	}
+
+	private void injectScriptInMainThread(final InjectableScript script) {
+		LiferayScreensContext.getActivityFromContext(getContext()).runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				getViewModel().injectScript(script);
+			}
+		});
 	}
 }

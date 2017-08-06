@@ -17,7 +17,7 @@ package com.liferay.mobile.screens.portlet.view;
 import android.view.View;
 import android.webkit.WebView;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
-import com.liferay.mobile.screens.portlet.JavascriptInjector;
+import com.liferay.mobile.screens.portlet.util.InjectableScript;
 import com.liferay.mobile.screens.viewsets.defaultviews.portlet.cordova.CordovaLifeCycleObserver;
 
 /**
@@ -31,7 +31,7 @@ public interface PortletDisplayViewModel extends BaseViewModel {
 	 * @param url portlet url.
 	 * @param injectedJs custom Javascript to use in the portlet.
 	 */
-	void showFinishOperation(String url, String body, String injectedJs);
+	void postUrl(String url, String body);
 
 	/**
 	 * Called when portlet screenlet is ready to be displayed.
@@ -39,7 +39,7 @@ public interface PortletDisplayViewModel extends BaseViewModel {
 	 * @param url portlet url.
 	 * @param injectedJs custom Javascript to use in the portlet.
 	 */
-	void showFinishOperation(String url, String injectedJs);
+	void loadUrl(String url);
 
 	/**
 	 * Called when asset child screenlet is ready to be displayed.
@@ -53,7 +53,9 @@ public interface PortletDisplayViewModel extends BaseViewModel {
 	 *
 	 * @param js generated javascript from {@link JavascriptInjector}.
 	 */
-	void injectJavascript(String js);
+	void injectScript(InjectableScript script);
+
+	void addScript(InjectableScript script);
 
 	/**
 	 * Called this method to set the automatic mode to inject the css and js files
