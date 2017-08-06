@@ -85,18 +85,6 @@ public class PortletDisplayView extends FrameLayout
 	}
 
 	@Override
-	public void showFinishOperation(View view) {
-		screenlet.addView(view, LinearLayout.LayoutParams.MATCH_PARENT,
-			LinearLayout.LayoutParams.MATCH_PARENT);
-		screenlet.setVisibility(VISIBLE);
-
-		webView.setVisibility(GONE);
-		progressBar.setVisibility(GONE);
-
-		LiferayLogger.d("Asset display loaded successfully");
-	}
-
-	@Override
 	public void injectScript(InjectableScript script) {
 		injectScript("window.currentFile = '" + script.getName() + "';");
 		injectScript(script.getContent());

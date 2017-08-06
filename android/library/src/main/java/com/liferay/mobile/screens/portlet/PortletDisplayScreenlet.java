@@ -16,24 +16,17 @@ package com.liferay.mobile.screens.portlet;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.IdRes;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.asset.AssetEntry;
-import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.dlfile.display.audio.AudioDisplayScreenlet;
-import com.liferay.mobile.screens.dlfile.display.image.ImageDisplayScreenlet;
-import com.liferay.mobile.screens.dlfile.display.pdf.PdfDisplayScreenlet;
-import com.liferay.mobile.screens.dlfile.display.video.VideoDisplayScreenlet;
-import com.liferay.mobile.screens.portlet.interactor.PortletDisplayInteractor;
 import com.liferay.mobile.screens.portlet.util.CssScript;
 import com.liferay.mobile.screens.portlet.util.InjectableScript;
 import com.liferay.mobile.screens.portlet.util.JsScript;
@@ -43,23 +36,16 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URLEncoder;
-import java.util.HashMap;
 
 /**
  * @author Sarai Díaz García
  * @author Victor Galán Grande
  */
-public class PortletDisplayScreenlet
-	extends BaseScreenlet<PortletDisplayViewModel, PortletDisplayInteractor>
+public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewModel, Interactor>
 	implements PortletDisplayListener {
 
 	private boolean autoLoad;
 	private PortletDisplayListener listener;
-	private HashMap<String, Integer> layouts = new HashMap<>();
-	private int imageLayout = R.layout.image_display_default;
-	private int videoLayout = R.layout.video_display_default;
-	private int audioLayout = R.layout.audio_display_default;
-	private int pdfLayout = R.layout.pdf_display_default;
 	private PortletConfiguration portletConfiguration;
 	private boolean isLoggingEnabled = true;
 
@@ -108,7 +94,6 @@ public class PortletDisplayScreenlet
 				.equals(PortletConfiguration.WebType.LIFERAY_AUTHENTICATED)) {
 
 				getViewModel().postUrl(finalUrl, body);
-
 			} else {
 				getViewModel().loadUrl(finalUrl);
 			}
@@ -142,10 +127,6 @@ public class PortletDisplayScreenlet
 		return "";
 	}
 
-	public void loadAsset() {
-		performUserAction();
-	}
-
 	/**
 	 * Checks if there is a session created and if exists {@link #portletConfiguration} and
 	 * {@link #portletConfiguration} attributes.
@@ -156,11 +137,7 @@ public class PortletDisplayScreenlet
 			&& portletConfiguration != null
 			&& portletConfiguration.getPortletUrl() != null) {
 
-			if (portletConfiguration.getPortletUrl().contains("documents")) {
-				loadAsset();
-			} else {
-				load();
-			}
+			load();
 		}
 	}
 
@@ -172,20 +149,8 @@ public class PortletDisplayScreenlet
 	}
 
 	@Override
-	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
+	public void onRetrievePortletSuccess(String url) {
 
-		AssetDisplayScreenlet assetDisplayScreenlet = new AssetDisplayScreenlet(getContext());
-		assetDisplayScreenlet.render(R.layout.asset_display_default);
-		getDLFileScreenletLayouts();
-
-		assetDisplayScreenlet.setLayouts(layouts);
-		assetDisplayScreenlet.load(assetEntry);
-
-		getViewModel().showFinishOperation(assetDisplayScreenlet);
-
-		if (listener != null) {
-			listener.onRetrieveAssetSuccess(assetEntry);
-		}
 	}
 
 	@Override
@@ -234,14 +199,13 @@ public class PortletDisplayScreenlet
 	}
 
 	@Override
-	protected PortletDisplayInteractor createInteractor(String actionName) {
-		return new PortletDisplayInteractor();
+	protected Interactor createInteractor(String actionName) {
+		return null;
 	}
 
 	@Override
-	protected void onUserAction(String userActionName, PortletDisplayInteractor interactor,
-		Object... args) {
-		interactor.start(portletConfiguration.getPortletUrl());
+	protected void onUserAction(String userActionName, Interactor interactor, Object... args) {
+
 	}
 
 	@Override
@@ -251,15 +215,6 @@ public class PortletDisplayScreenlet
 		if (listener != null) {
 			listener.error(e, userAction);
 		}
-	}
-
-	@Override
-	public void onRetrievePortletSuccess(String url) {
-		if (listener != null) {
-			listener.onRetrievePortletSuccess(url);
-		}
-
-		getViewModel().showFinishOperation(url);
 	}
 
 	public boolean isAutoLoad() {
@@ -284,36 +239,12 @@ public class PortletDisplayScreenlet
 			portletConfiguration.getObserver());
 	}
 
-	public void setImageLayout(@IdRes int imageLayout) {
-		this.imageLayout = imageLayout;
-	}
-
-	public void setVideoLayout(int videoLayout) {
-		this.videoLayout = videoLayout;
-	}
-
-	public void setAudioLayout(int audioLayout) {
-		this.audioLayout = audioLayout;
-	}
-
-	public void setPdfLayout(int pdfLayout) {
-		this.pdfLayout = pdfLayout;
-	}
-
-	private void getDLFileScreenletLayouts() {
-		layouts.put(ImageDisplayScreenlet.class.getName(), imageLayout);
-		layouts.put(VideoDisplayScreenlet.class.getName(), videoLayout);
-		layouts.put(AudioDisplayScreenlet.class.getName(), audioLayout);
-		layouts.put(PdfDisplayScreenlet.class.getName(), pdfLayout);
-	}
-
 	private void handleInternal(String namespace, String body) {
-		if(namespace.endsWith("error") || namespace.endsWith("consoleMessage")) {
-			if(isLoggingEnabled) {
+		if (namespace.endsWith("error") || namespace.endsWith("consoleMessage")) {
+			if (isLoggingEnabled) {
 				LiferayLogger.d(body);
 			}
-		}
-		else if (namespace.endsWith("listPortlets")) {
+		} else if (namespace.endsWith("listPortlets")) {
 			String[] portlets = body.split(",");
 
 			for (String portlet : portlets) {

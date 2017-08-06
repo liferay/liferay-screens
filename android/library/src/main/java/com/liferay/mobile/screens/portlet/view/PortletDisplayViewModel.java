@@ -42,13 +42,6 @@ public interface PortletDisplayViewModel extends BaseViewModel {
 	void loadUrl(String url);
 
 	/**
-	 * Called when asset child screenlet is ready to be displayed.
-	 *
-	 * @param view screenlet or custom view.
-	 */
-	void showFinishOperation(View view);
-
-	/**
 	 * Called this method to inject generated javascript in portlet {@link WebView}.
 	 *
 	 * @param js generated javascript from {@link JavascriptInjector}.
