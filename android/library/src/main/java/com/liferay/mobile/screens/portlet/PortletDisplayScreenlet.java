@@ -26,6 +26,7 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.dlfile.display.audio.AudioDisplayScreenlet;
@@ -38,6 +39,7 @@ import com.liferay.mobile.screens.portlet.util.InjectableScript;
 import com.liferay.mobile.screens.portlet.util.JsScript;
 import com.liferay.mobile.screens.portlet.view.PortletDisplayViewModel;
 import com.liferay.mobile.screens.util.AssetReader;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URLEncoder;
@@ -45,6 +47,7 @@ import java.util.HashMap;
 
 /**
  * @author Sarai Díaz García
+ * @author Victor Galán Grande
  */
 public class PortletDisplayScreenlet
 	extends BaseScreenlet<PortletDisplayViewModel, PortletDisplayInteractor>
@@ -58,6 +61,7 @@ public class PortletDisplayScreenlet
 	private int audioLayout = R.layout.audio_display_default;
 	private int pdfLayout = R.layout.pdf_display_default;
 	private PortletConfiguration portletConfiguration;
+	private boolean isLoggingEnabled = true;
 
 	public PortletDisplayScreenlet(Context context) {
 		super(context);
@@ -304,7 +308,12 @@ public class PortletDisplayScreenlet
 	}
 
 	private void handleInternal(String namespace, String body) {
-		if (namespace.endsWith("listPortlets")) {
+		if(namespace.endsWith("error") || namespace.endsWith("consoleMessage")) {
+			if(isLoggingEnabled) {
+				LiferayLogger.d(body);
+			}
+		}
+		else if (namespace.endsWith("listPortlets")) {
 			String[] portlets = body.split(",");
 
 			for (String portlet : portlets) {
