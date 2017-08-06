@@ -8,7 +8,7 @@ import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
 
 public class CordovaEvent {
 
-	public enum CordovaEventType { PAGE_STARTED, PAGE_FINISHED }
+	public enum CordovaEventType { PAGE_STARTED, PAGE_FINISHED, ERROR }
 
 	private CordovaEventType eventType;
 	private String param;

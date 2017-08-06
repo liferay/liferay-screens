@@ -192,6 +192,11 @@ public class PortletDisplayView extends FrameLayout
 		}
 	}
 
+	@Override
+	public void onPageError(Exception e) {
+		((PortletDisplayScreenlet) getScreenlet()).error(e, PortletDisplayScreenlet.DEFAULT_ACTION);
+	}
+
 	private class PortletDisplayInterface {
 
 		private PortletDisplayInterface() {

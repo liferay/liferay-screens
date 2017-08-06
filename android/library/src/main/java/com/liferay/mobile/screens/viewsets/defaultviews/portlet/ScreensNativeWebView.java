@@ -1,7 +1,11 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.portlet;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Build;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -54,6 +58,26 @@ public class ScreensNativeWebView extends WebViewClient implements ScreensWebVie
 
 		if (listener != null) {
 			listener.onPageFinished(url);
+		}
+	}
+
+	@TargetApi(Build.VERSION_CODES.M)
+	@Override
+	public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
+		super.onReceivedError(view, request, error);
+
+		if (listener != null) {
+			listener.onPageError(new Exception(error.getDescription().toString()));
+		}
+	}
+
+	@Override
+	public void onReceivedError(WebView view, int errorCode, String description,
+		String failingUrl) {
+		super.onReceivedError(view, errorCode, description, failingUrl);
+
+		if (listener != null) {
+			listener.onPageError(new Exception(description));
 		}
 	}
 }
