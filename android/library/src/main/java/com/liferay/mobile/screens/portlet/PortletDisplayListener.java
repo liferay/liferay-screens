@@ -14,7 +14,6 @@
 
 package com.liferay.mobile.screens.portlet;
 
-import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 import com.liferay.mobile.screens.portlet.util.CssScript;
 import com.liferay.mobile.screens.portlet.util.InjectableScript;

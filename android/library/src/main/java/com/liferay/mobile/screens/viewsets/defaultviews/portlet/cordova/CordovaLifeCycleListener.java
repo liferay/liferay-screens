@@ -25,5 +25,4 @@ public interface CordovaLifeCycleListener {
 	void onSaveInstanceState(Bundle outState);
 
 	void onConfigurationChanged(Configuration newConfig);
-
 }

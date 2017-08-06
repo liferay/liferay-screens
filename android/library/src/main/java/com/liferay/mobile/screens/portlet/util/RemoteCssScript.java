@@ -27,7 +27,9 @@ public class RemoteCssScript implements InjectableScript {
 		content = "var link = document.createElement('link');"
 			+ "link.type = 'text/css';"
 			+ "link.rel = 'stylesheet';"
-			+ "link.href = '" + url + "';"
+			+ "link.href = '"
+			+ url
+			+ "';"
 			+ "var head = document.getElementsByTagName('head')[0];"
 			+ "head.appendChild(link);";
 	}

@@ -23,7 +23,5 @@ public interface ScreensWebView {
 		void onPageFinished(String url);
 
 		void onPageError(Exception e);
-
 	}
-
 }

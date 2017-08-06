@@ -26,7 +26,9 @@ public class CssScript implements InjectableScript {
 		this.name = name;
 		content = "var style = document.createElement('style');"
 			+ "style.type = 'text/css';"
-			+ "style.innerHTML = '" + css.replace("\n", "") + "';"
+			+ "style.innerHTML = '"
+			+ css.replace("\n", "")
+			+ "';"
 			+ "var head = document.getElementsByTagName('head')[0];"
 			+ "head.appendChild(style);";
 	}

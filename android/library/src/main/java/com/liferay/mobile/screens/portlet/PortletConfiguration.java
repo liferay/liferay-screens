@@ -29,15 +29,12 @@ import java.util.List;
  * @author Sarai Díaz García
  */
 public class PortletConfiguration {
-	public enum WebType {LIFERAY_AUTHENTICATED, LIFERAY, CUSTOM}
-
 	private String portletUrl;
 	private List<InjectableScript> scripts;
 	private boolean isThemeEnabled;
 	private WebType webType;
 	private CordovaLifeCycleObserver observer;
 	private boolean isCordovaEnabled;
-
 	public PortletConfiguration(String portletUrl, List<InjectableScript> scripts,
 		boolean isThemeEnabled, WebType webType, CordovaLifeCycleObserver observer,
 		boolean isCordovaEnabled) {
@@ -73,6 +70,8 @@ public class PortletConfiguration {
 	public boolean isCordovaEnabled() {
 		return isCordovaEnabled;
 	}
+
+	public enum WebType {LIFERAY_AUTHENTICATED, LIFERAY, CUSTOM}
 
 	public static class Builder {
 
@@ -197,7 +196,7 @@ public class PortletConfiguration {
 			for (int rawJs : localRawJs) {
 				String content = loadLocalContent(rawJs);
 				if (!content.isEmpty()) {
-					allScripts.add(new JsScript("rawJs" + rawJs , content));
+					allScripts.add(new JsScript("rawJs" + rawJs, content));
 				}
 			}
 

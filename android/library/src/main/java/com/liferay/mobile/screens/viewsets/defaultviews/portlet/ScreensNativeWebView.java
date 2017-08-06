@@ -13,7 +13,7 @@ import android.webkit.WebViewClient;
  * @author Víctor Galán Grande
  */
 
-public class ScreensNativeWebView extends WebViewClient implements ScreensWebView  {
+public class ScreensNativeWebView extends WebViewClient implements ScreensWebView {
 
 	private ScreensWebView.Listener listener;
 	private WebView webView;

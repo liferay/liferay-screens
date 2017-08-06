@@ -27,7 +27,9 @@ public class RemoteJsScript implements InjectableScript {
 		content = "var script = document.createElement('script');"
 			+ "script.language = 'javascript';"
 			+ "script.type = 'text/javascript';"
-			+ "script.src = '" + url + "';"
+			+ "script.src = '"
+			+ url
+			+ "';"
 			+ "var body = document.getElementsByTagName('body')[0];"
 			+ "body.appendChild(script);";
 	}

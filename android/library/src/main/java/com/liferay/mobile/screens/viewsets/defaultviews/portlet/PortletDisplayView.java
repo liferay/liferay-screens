@@ -2,7 +2,6 @@ package com.liferay.mobile.screens.viewsets.defaultviews.portlet;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.widget.FrameLayout;

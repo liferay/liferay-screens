@@ -14,7 +14,6 @@
 
 package com.liferay.mobile.screens.portlet.view;
 
-import android.view.View;
 import android.webkit.WebView;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
 import com.liferay.mobile.screens.portlet.util.InjectableScript;
@@ -57,7 +56,6 @@ public interface PortletDisplayViewModel extends BaseViewModel {
 	 * @param theme if the proper css and js files must be injected or not.
 	 */
 	void setTheme(boolean theme);
-
 
 	void configureView(boolean isCordovaEnabled, CordovaLifeCycleObserver observer);
 }

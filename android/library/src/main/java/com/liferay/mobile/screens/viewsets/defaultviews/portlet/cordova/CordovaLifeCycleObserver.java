@@ -3,7 +3,6 @@ package com.liferay.mobile.screens.viewsets.defaultviews.portlet.cordova;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import com.liferay.mobile.screens.viewsets.defaultviews.portlet.ScreensWebView;
 
 /**
  * @author Víctor Galán Grande
