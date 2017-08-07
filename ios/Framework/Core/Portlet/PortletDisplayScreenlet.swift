@@ -17,11 +17,10 @@ import UIKit
 /// manage the PortletDisplayScreenlet events. All of them are optional.
 @objc public protocol PortletDisplayScreenletDelegate: BaseScreenletDelegate {
 
-	///  Called when the portlet URL is received.
+	///  Called when the page is loaded.
 	///
 	/// - Parameters:
 	///   - screenlet: Portlet display screenlet instance.
-	///   - html: Portlet URL.
 	@objc optional func onPortletPageLoaded(_ screenlet: PortletDisplayScreenlet)
 
 	/// Called when an error occurs in the process.
@@ -40,11 +39,11 @@ import UIKit
 	///   - key: source message key.
 	///   - body: source message body.
 	@objc optional func screenlet(_ screenlet: PortletDisplayScreenlet,
-	                              onScriptMessageHandler key: String,
-	                              onScriptMessageBody body: Any)
+	                              onScriptMessageNamespace namespace: String,
+	                              onScriptMessage message: String)
 
-	/// Called this method when we want to search the css file to inject in the portlet
-	/// when the automaticMode in PortletConfiguration is on.
+	/// Called this method when we want to search the css file to inject into the page
+	/// when the isThemeEnabled flag in PortletConfiguration is on.
 	/// It's not necessary the same filename as the portlet. For example:
 	/// Portlet name: "com_liferay_document_library_web_portlet_IGDisplayPortlet"
 	/// Filename: gallery.css
@@ -54,8 +53,8 @@ import UIKit
 	@objc optional func screenlet(_ screenlet: PortletDisplayScreenlet,
 	                              cssFor portlet: String) -> InjectableScript?
 
-	/// Called this method when we want to search the js file to inject in the portlet
-	/// when the automaticMode in PortletConfiguration is on.
+	/// Called this method when we want to search the js file to inject into the page
+	/// when the isThemeEnabled in PortletConfiguration is on.
 	/// It's not necessary the same filename as the portlet. For example:
 	/// Portlet name: "com_liferay_document_library_web_portlet_IGDisplayPortlet"
 	/// Filename: gallery.js
@@ -114,11 +113,11 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 		}
 		else {
 			portletDisplayDelegate?.screenlet?(self,
-				onScriptMessageHandler: namespace, onScriptMessageBody: message)
+				onScriptMessageNamespace: namespace, onScriptMessage: message)
 		}
 	}
 
-	/// Call this method to load the portlet.
+	/// Loads the page specified in the configuraion.
 	open func load() {
 		guard let configuration = configuration else {
 			self.portletDisplayDelegate?.screenlet?(self, onPortletError: NSError.errorWithCause(

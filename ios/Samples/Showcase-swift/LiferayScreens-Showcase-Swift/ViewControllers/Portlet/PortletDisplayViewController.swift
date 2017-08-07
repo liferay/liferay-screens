@@ -57,10 +57,10 @@ class PortletDisplayViewController: UIViewController, PortletDisplayScreenletDel
 		LiferayLogger.logDelegateMessage(args: error)
 	}
 
-	func screenlet(_ screenlet: PortletDisplayScreenlet, onScriptMessageHandler key: String,
-	               onScriptMessageBody body: Any) {
+	func screenlet(_ screenlet: PortletDisplayScreenlet, onScriptMessageNamespace namespace: String, onScriptMessage message: String) {
+
 		//We can check what is the name of the message handler responsible for the action
-		performSegue(withIdentifier: "detail", sender: body)
+		performSegue(withIdentifier: "detail", sender: message)
 	}
 
 	func screenlet(_ screenlet: PortletDisplayScreenlet, jsFor portlet: String) -> InjectableScript? {

@@ -15,20 +15,33 @@ import UIKit
 
 @objc public protocol PortletDisplayViewModel {
 
+	/// Whether or not it has to look for portlets inside the page
 	var isThemeEnabled: Bool { get set }
 
+	/// Whether or not it should show log messages
 	var isLoggingEnabled: Bool { get set }
 
+	/// Used to create the WebView depending on the cordovaEnabled flag
+	///
+	/// - Parameter cordovaEnabled: it tell the view if it has to create a cordova WebView
 	func configureView(with cordovaEnabled: Bool)
 
-	// Inject JS to be used by the screenlet.
+	/// Add scripts to be injected when the page is loaded
 	func add(injectableScripts: [InjectableScript])
 
+	/// Add script to be injected when the page is loaded
 	func add(injectableScript: InjectableScript)
 
+	/// Inject script into the page
 	func inject(injectableScript: InjectableScript)
 
+	/// Loads the content of the WebView using the request received as argument
+	///
+	/// - Parameter request
 	func load(request: URLRequest)
 
+	/// Loads the content of the WebView using the html received as argument
+	///
+	/// - Parameter htmlString
 	func load(htmlString: String)
 }
