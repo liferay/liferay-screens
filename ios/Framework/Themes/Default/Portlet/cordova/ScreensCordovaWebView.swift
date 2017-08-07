@@ -24,14 +24,17 @@ import UIKit
 	var scriptsToInject = [InjectableScript]()
 
 	lazy var cordovaVC: ScreensCordovaViewController = ScreensCordovaViewController(
-		jsCallHandler: self.jsCallHandler, onPageLoadFinished: { [weak self] error in self?.onPageLoad(error: error) })
+		jsCallHandler: self.jsCallHandler, onPageLoadFinished: { [weak self] url, error in
+			self?.onPageLoad(url: url, error: error)
+		})
 
 	let jsCallHandler: (String, String) -> Void
-	let onPageLoadFinished: (Error?) -> Void
+	let onPageLoadFinished: (String, Error?) -> Void
 	let jsErrorHandler: (String) -> (Any?, Error?) -> Void
 
 	public required init(jsCallHandler: @escaping (String, String) -> Void,
-		jsErrorHandler: @escaping (String) -> (Any?, Error?) -> Void, onPageLoadFinished: @escaping (Error?) -> Void) {
+		jsErrorHandler: @escaping (String) -> (Any?, Error?) -> Void,
+		onPageLoadFinished: @escaping (String, Error?) -> Void) {
 
 		self.jsCallHandler = jsCallHandler
 		self.jsErrorHandler = jsErrorHandler
@@ -59,14 +62,14 @@ import UIKit
 		cordovaVC.load(htmlString: htmlString)
 	}
 
-	open func onPageLoad(error: Error?) {
+	open func onPageLoad(url: String, error: Error?) {
 		if error != nil {
-			onPageLoadFinished(error)
+			onPageLoadFinished(url, error)
 			return
 		}
 
 		self.scriptsToInject.forEach { cordovaVC.inject(script: $0, completionHandler: jsErrorHandler($0.name)) }
-		self.onPageLoadFinished(nil)
+		self.onPageLoadFinished(url, nil)
 	}
 
 	open func handleJsCalls(uri: String) -> Bool {

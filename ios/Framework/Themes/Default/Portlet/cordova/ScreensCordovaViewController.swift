@@ -26,9 +26,11 @@ public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate,
 	}
 
 	let jsCallHandler: (String, String) -> Void
-	let onPageLoadFinished: (Error?) -> Void
+	let onPageLoadFinished: (String, Error?) -> Void
 
-	public init(jsCallHandler: @escaping (String, String) -> Void, onPageLoadFinished: @escaping (Error?) -> Void) {
+	public init(jsCallHandler: @escaping (String, String) -> Void,
+		onPageLoadFinished: @escaping (String, Error?) -> Void) {
+
 		self.jsCallHandler = jsCallHandler
 		self.onPageLoadFinished = onPageLoadFinished
 		super.init(nibName: nil, bundle: nil)
@@ -80,7 +82,7 @@ public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate,
 
 	public func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
 		cdvDelegate?.webView(webView, didFailLoadWithError: error)
-		onPageLoadFinished(nil)
+		onPageLoadFinished(webView.request?.url?.absoluteString ?? "", nil)
 	}
 
 	// MARK: WKNavigationDelegate
@@ -93,7 +95,7 @@ public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate,
 		wkDelegate?.webView?(webView, didFinish: navigation)
 
 		if initialNavigation == nil || initialNavigation != navigation {
-			onPageLoadFinished(nil)
+			onPageLoadFinished(webView.url?.absoluteString ?? "", nil)
 		}
 	}
 
@@ -101,12 +103,12 @@ public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate,
 			didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
 
 		wkDelegate?.webView?(webView, didStartProvisionalNavigation: navigation)
-		onPageLoadFinished(error)
+		onPageLoadFinished(webView.url?.absoluteString ?? "", error)
 	}
 
 	public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
 		wkDelegate?.webView?(webView, didFail: navigation, withError: error)
-		onPageLoadFinished(error)
+		onPageLoadFinished(webView.url?.absoluteString ?? "", error)
 	}
 
 	public func webView(_ webView: WKWebView,

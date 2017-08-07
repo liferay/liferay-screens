@@ -29,11 +29,12 @@ UIScrollViewDelegate {
 	var initialNavigation: WKNavigation?
 
 	let jsCallHandler: (String, String) -> Void
-	let onPageLoadFinished: (Error?) -> Void
+	let onPageLoadFinished: (String, Error?) -> Void
 	let jsErrorHandler: (String) -> (Any?, Error?) -> Void
 
 	public required init(jsCallHandler: @escaping (String, String) -> Void,
-		jsErrorHandler: @escaping (String) -> (Any?, Error?) -> Void, onPageLoadFinished: @escaping (Error?) -> Void) {
+		jsErrorHandler: @escaping (String) -> (Any?, Error?) -> Void,
+		onPageLoadFinished: @escaping (String, Error?) -> Void) {
 
 		self.jsCallHandler = jsCallHandler
 		self.jsErrorHandler = jsErrorHandler
@@ -94,18 +95,18 @@ UIScrollViewDelegate {
 				webView.evaluateJavaScript(script.content, completionHandler: jsErrorHandler(script.name))
 			}
 
-			onPageLoadFinished(nil)
+			onPageLoadFinished(webView.url?.absoluteString ?? "", nil)
 		}
 	}
 
 	public func webView(_ webView: WKWebView,
 	                    didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
 
-		onPageLoadFinished(error)
+		onPageLoadFinished(webView.url?.absoluteString ?? "", error)
 	}
 
 	public func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-		onPageLoadFinished(error)
+		onPageLoadFinished(webView.url?.absoluteString ?? "", error)
 	}
 
 	public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction,

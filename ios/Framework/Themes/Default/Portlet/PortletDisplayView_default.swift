@@ -42,8 +42,8 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 			self?.handleJsCall(namespace: namespace, message: message)
 		}
 
-		let onPageLoadFinishedHandler: (Error?) -> Void = { [weak self] error in
-			self?.onPageLoadFinished(with: error)
+		let onPageLoadFinishedHandler: (String, Error?) -> Void = { [weak self] url, error in
+			self?.onPageLoadFinished(url: url, with: error)
 		}
 
 		let jsErrorHandler: (String) -> (Any?, Error?) -> Void = { [unowned self] scriptName in
@@ -133,7 +133,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		NSLayoutConstraint.activate([top, bottom, leading, trailing])
 	}
 
-	open func onPageLoadFinished(with error: Error?) {
+	open func onPageLoadFinished(url: String, with error: Error?) {
 		if let error = error {
 			self.progressPresenter?
 				.hideHUDFromView(self,
@@ -150,7 +150,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 				inject(injectableScript: js)
 			}
 
-			portletDisplayScreenlet.portletDisplayDelegate?.onPortletPageLoaded?(portletDisplayScreenlet)
+			portletDisplayScreenlet.portletDisplayDelegate?.onPortletPageLoaded?(portletDisplayScreenlet, url: url)
 		}
 	}
 

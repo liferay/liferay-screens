@@ -49,8 +49,8 @@ class PortletDisplayViewController: UIViewController, PortletDisplayScreenletDel
 
 	//MARK: PortletDisplayScreenletDelegate
 
-	func screenlet(_ screenlet: PortletDisplayScreenlet, onPortletUrlResponse url: String) {
-		LiferayLogger.logDelegateMessage(args: url as AnyObject?)
+	func onPortletPageLoaded(_ screenlet: PortletDisplayScreenlet, url: String) {
+		
 	}
 
 	func screenlet(_ screenlet: PortletDisplayScreenlet, onPortletError error: NSError) {

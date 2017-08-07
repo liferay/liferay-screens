@@ -21,7 +21,7 @@ import UIKit
 	///
 	/// - Parameters:
 	///   - screenlet: Portlet display screenlet instance.
-	@objc optional func onPortletPageLoaded(_ screenlet: PortletDisplayScreenlet)
+	@objc optional func onPortletPageLoaded(_ screenlet: PortletDisplayScreenlet, url: String)
 
 	/// Called when an error occurs in the process.
 	/// The NSError object describes the error.
