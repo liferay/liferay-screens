@@ -149,8 +149,10 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	}
 
 	@Override
-	public void onRetrievePortletSuccess(String url) {
-
+	public void onPageLoaded(String url) {
+		if (listener != null) {
+			listener.onPageLoaded(url);
+		}
 	}
 
 	@Override

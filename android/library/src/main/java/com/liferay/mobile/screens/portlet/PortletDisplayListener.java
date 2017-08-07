@@ -25,9 +25,9 @@ import com.liferay.mobile.screens.portlet.util.JsScript;
 public interface PortletDisplayListener extends BaseCacheListener {
 
 	/**
-	 * Called when the screenlet loads the portlet correctly.
+	 * Called when the screenlet loads the page correctly.
 	 */
-	void onRetrievePortletSuccess(String url);
+	void onPageLoaded(String url);
 
 	/**
 	 * Called when we want to notify a message from the WKWebView used in the view.

@@ -31,7 +31,7 @@ public class PortletDisplayView extends FrameLayout
 	private WebView webView;
 	private ScreensWebView screensWebView;
 	private ProgressBar progressBar;
-	private String URL_LOGIN = "/c/portal/login";
+	private static final String URL_LOGIN = "/c/portal/login";
 	private List<InjectableScript> scriptsToInject = new ArrayList<>();
 	private boolean theme;
 	private boolean isLoaded;
@@ -188,6 +188,8 @@ public class PortletDisplayView extends FrameLayout
 
 			webView.setVisibility(VISIBLE);
 			progressBar.setVisibility(GONE);
+
+			((PortletDisplayScreenlet) getScreenlet()).onPageLoaded(url);
 		}
 	}
 
