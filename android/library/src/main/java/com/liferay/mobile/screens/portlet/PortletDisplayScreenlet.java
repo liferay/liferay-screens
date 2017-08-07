@@ -109,6 +109,10 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 		}
 	}
 
+	public void injectScript(InjectableScript script) {
+		getViewModel().injectScript(script);
+	}
+
 	@Override
 	public void onPageLoaded(String url) {
 		if (listener != null) {
