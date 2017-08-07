@@ -25,37 +25,49 @@ import com.liferay.mobile.screens.viewsets.defaultviews.portlet.cordova.CordovaL
 public interface PortletDisplayViewModel extends BaseViewModel {
 
 	/**
-	 * Called when portlet screenlet is ready to be displayed.
+	 * Loads the url on the WebView using a POST request {@link WebView}
 	 *
-	 * @param url portlet url.
-	 * @param injectedJs custom Javascript to use in the portlet.
+	 * @param url page url.
+	 * @param body body of the post request
 	 */
 	void postUrl(String url, String body);
 
 	/**
-	 * Called when portlet screenlet is ready to be displayed.
+	 * Loads the url on the WebView {@link WebView}
 	 *
-	 * @param url portlet url.
-	 * @param injectedJs custom Javascript to use in the portlet.
+	 * @param url page url.
 	 */
 	void loadUrl(String url);
 
 	/**
-	 * Called this method to inject generated javascript in portlet {@link WebView}.
+	 * Inject script into the page loaded. This method only works when the page is loaded
 	 *
-	 * @param js generated javascript from {@link JavascriptInjector}.
+	 * @param script {@link InjectableScript}.
 	 */
 	void injectScript(InjectableScript script);
 
+	/**
+	 * Add script to be injected when the page is loaded
+	 *
+	 * @param script script to be injected after the page is loaded
+	 */
 	void addScript(InjectableScript script);
 
 	/**
-	 * Called this method to set the automatic mode to inject the css and js files
-	 * from visible portlets automatically if exists.
+	 * Enable the theme. This means that the screenlet will inject the css and js files
+	 * from visible portlets automatically if they exist.
 	 *
 	 * @param theme if the proper css and js files must be injected or not.
 	 */
 	void setTheme(boolean theme);
 
+	/**
+	 * Create the WebView. Depending on the isCordovaEnabled flag it will create a normal WebView or
+	 * a Cordova WebView.
+	 *
+	 * @param isCordovaEnabled whether or not cordova is enabled in the screenlet
+	 * @param observer special object that will notify the cordova webview about the activity
+	 * lifecycle methods
+	 */
 	void configureView(boolean isCordovaEnabled, CordovaLifeCycleObserver observer);
 }

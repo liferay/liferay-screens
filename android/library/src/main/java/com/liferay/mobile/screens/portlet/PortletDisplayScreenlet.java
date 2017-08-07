@@ -109,50 +109,6 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 		}
 	}
 
-	public String buildPortletUrl(String url) {
-		try {
-			url = URLEncoder.encode(url, "UTF-8");
-			return String.format("%s/c/portal/login?redirect=%s", LiferayServerContext.getServer(),
-				url);
-		} catch (UnsupportedEncodingException e) {
-			return "";
-		}
-	}
-
-	public String buildBody() {
-		Authentication authentication = SessionContext.getAuthentication();
-
-		if (authentication instanceof BasicAuthentication) {
-			BasicAuthentication basicAuth = (BasicAuthentication) authentication;
-
-			String username = basicAuth.getUsername();
-			String password = basicAuth.getPassword();
-
-			return String.format("login=%s&password=%s", username, password);
-		}
-
-		return "";
-	}
-
-	/**
-	 * Checks if there is a session created and if exists {@link #portletConfiguration} and
-	 * {@link #portletConfiguration} attributes.
-	 * Then calls {@link #load()} method.
-	 */
-	protected void autoLoad() {
-		if (portletConfiguration != null && portletConfiguration.getPortletUrl() != null) {
-
-			load();
-		}
-	}
-
-	@Override
-	protected void onScreenletAttached() {
-		if (autoLoad) {
-			autoLoad();
-		}
-	}
-
 	@Override
 	public void onPageLoaded(String url) {
 		if (listener != null) {
@@ -190,32 +146,6 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	}
 
 	@Override
-	protected View createScreenletView(Context context, AttributeSet attributes) {
-
-		TypedArray typedArray = context.getTheme()
-			.obtainStyledAttributes(attributes, R.styleable.PortletDisplayScreenlet, 0, 0);
-
-		autoLoad = typedArray.getBoolean(R.styleable.PortletDisplayScreenlet_autoLoad, true);
-
-		int layoutId = typedArray.getResourceId(R.styleable.PortletDisplayScreenlet_layoutId,
-			getDefaultLayoutId());
-
-		typedArray.recycle();
-
-		return LayoutInflater.from(context).inflate(layoutId, null);
-	}
-
-	@Override
-	protected Interactor createInteractor(String actionName) {
-		return null;
-	}
-
-	@Override
-	protected void onUserAction(String userActionName, Interactor interactor, Object... args) {
-
-	}
-
-	@Override
 	public void error(Exception e, String userAction) {
 		getViewModel().showFailedOperation(userAction, e);
 
@@ -244,6 +174,80 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 		this.portletConfiguration = portletConfiguration;
 		getViewModel().configureView(portletConfiguration.isCordovaEnabled(),
 			portletConfiguration.getObserver());
+	}
+
+	@Override
+	protected View createScreenletView(Context context, AttributeSet attributes) {
+
+		TypedArray typedArray = context.getTheme()
+			.obtainStyledAttributes(attributes, R.styleable.PortletDisplayScreenlet, 0, 0);
+
+		autoLoad = typedArray.getBoolean(R.styleable.PortletDisplayScreenlet_autoLoad, true);
+
+		int layoutId = typedArray.getResourceId(R.styleable.PortletDisplayScreenlet_layoutId,
+			getDefaultLayoutId());
+
+		typedArray.recycle();
+
+		return LayoutInflater.from(context).inflate(layoutId, null);
+	}
+
+	@Override
+	protected Interactor createInteractor(String actionName) {
+		return null;
+	}
+
+	@Override
+	protected void onUserAction(String userActionName, Interactor interactor, Object... args) {
+
+	}
+	
+	protected void autoLoad() {
+		if (portletConfiguration != null && portletConfiguration.getPortletUrl() != null) {
+
+			load();
+		}
+	}
+
+	@Override
+	protected void onScreenletAttached() {
+		if (autoLoad) {
+			autoLoad();
+		}
+	}
+
+	private void injectScriptInMainThread(final InjectableScript script) {
+		LiferayScreensContext.getActivityFromContext(getContext()).runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				getViewModel().injectScript(script);
+			}
+		});
+	}
+
+	private String buildPortletUrl(String url) {
+		try {
+			url = URLEncoder.encode(url, "UTF-8");
+			return String.format("%s/c/portal/login?redirect=%s", LiferayServerContext.getServer(),
+				url);
+		} catch (UnsupportedEncodingException e) {
+			return "";
+		}
+	}
+
+	private String buildBody() {
+		Authentication authentication = SessionContext.getAuthentication();
+
+		if (authentication instanceof BasicAuthentication) {
+			BasicAuthentication basicAuth = (BasicAuthentication) authentication;
+
+			String username = basicAuth.getUsername();
+			String password = basicAuth.getPassword();
+
+			return String.format("login=%s&password=%s", username, password);
+		}
+
+		return "";
 	}
 
 	private void handleInternal(String namespace, String body) {
@@ -289,14 +293,5 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 				}
 			}
 		}
-	}
-
-	private void injectScriptInMainThread(final InjectableScript script) {
-		LiferayScreensContext.getActivityFromContext(getContext()).runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				getViewModel().injectScript(script);
-			}
-		});
 	}
 }

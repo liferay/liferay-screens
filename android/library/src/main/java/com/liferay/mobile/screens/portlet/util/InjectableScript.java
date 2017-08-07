@@ -19,6 +19,11 @@ package com.liferay.mobile.screens.portlet.util;
  */
 public interface InjectableScript {
 
+	/**
+	 * Get the name of the script. Useful for debugging purposes
+	 *
+	 * @return name of the script
+	 */
 	String getName();
 
 	/**
