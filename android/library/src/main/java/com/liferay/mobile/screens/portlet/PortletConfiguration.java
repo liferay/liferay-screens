@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.portlet;
 
+import android.support.v4.util.Pair;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.portlet.util.CssScript;
 import com.liferay.mobile.screens.portlet.util.InjectableScript;
@@ -35,6 +36,7 @@ public class PortletConfiguration {
 	private WebType webType;
 	private CordovaLifeCycleObserver observer;
 	private boolean isCordovaEnabled;
+
 	public PortletConfiguration(String portletUrl, List<InjectableScript> scripts,
 		boolean isThemeEnabled, WebType webType, CordovaLifeCycleObserver observer,
 		boolean isCordovaEnabled) {
@@ -80,8 +82,8 @@ public class PortletConfiguration {
 		private List<String> localCss;
 		private List<String> remoteJs;
 		private List<String> remoteCss;
-		private List<Integer> localRawJs;
-		private List<Integer> localRawCss;
+		private List<Pair<Integer, String>> localRawJs;
+		private List<Pair<Integer, String>> localRawCss;
 		private boolean isThemeEnabled;
 		private WebType webType;
 		private CordovaLifeCycleObserver observer;
@@ -124,13 +126,13 @@ public class PortletConfiguration {
 			return this;
 		}
 
-		public Builder addRawCss(int rawCss) {
-			this.localRawCss.add(rawCss);
+		public Builder addRawCss(int rawCss, String name) {
+			this.localRawCss.add(new Pair<>(rawCss, name));
 			return this;
 		}
 
-		public Builder addRawJs(int rawJs) {
-			this.localRawJs.add(rawJs);
+		public Builder addRawJs(int rawJs, String name) {
+			this.localRawJs.add(new Pair<>(rawJs, name));
 			return this;
 		}
 
@@ -186,17 +188,17 @@ public class PortletConfiguration {
 				allScripts.add(new RemoteCssScript(rCss, rCss));
 			}
 
-			for (int rawCss : localRawCss) {
-				String content = loadLocalContent(rawCss);
+			for (Pair<Integer, String> pairCssName : localRawCss) {
+				String content = loadLocalContent(pairCssName.first);
 				if (!content.isEmpty()) {
-					allScripts.add(new CssScript("rawCss" + rawCss, loadLocalContent(rawCss)));
+					allScripts.add(new CssScript(pairCssName.second, content));
 				}
 			}
 
-			for (int rawJs : localRawJs) {
-				String content = loadLocalContent(rawJs);
+			for (Pair<Integer, String> pairJsName : localRawJs) {
+				String content = loadLocalContent(pairJsName.first);
 				if (!content.isEmpty()) {
-					allScripts.add(new JsScript("rawJs" + rawJs, content));
+					allScripts.add(new JsScript(pairJsName.second, content));
 				}
 			}
 
