@@ -62,5 +62,5 @@
 	<string name="default_class_name_id_user">20087</string>
 
 	<!-- PortletDisplayScreenlet values -->
-	<string name="liferay_portlet_url">/web/guest/gallery</string>
+	<string name="liferay_portlet_url">/web/portletdisplay-demo/gallery</string>
 </resources>
