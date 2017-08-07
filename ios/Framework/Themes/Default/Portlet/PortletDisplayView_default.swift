@@ -29,6 +29,10 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 	open var screensWebView: ScreensWebView?
 
+	open var portletDisplayScreenlet: PortletDisplayScreenlet {
+		return self.screenlet as! PortletDisplayScreenlet
+	}
+
 	open func configureView(with cordovaEnabled: Bool) {
 		if screensWebView != nil {
 			return
@@ -136,9 +140,8 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 				message: LocalizedString("default", key: "portletdisplay-loading-error", obj: self),
 				forInteractor: Interactor(), withError: error as NSError?)
 
-			let screenlet = (self.screenlet as? PortletDisplayScreenlet)
-			screenlet?
-				.portletDisplayDelegate?.screenlet?(screenlet!, onPortletError: error as NSError)
+			portletDisplayScreenlet
+				.portletDisplayDelegate?.screenlet?(portletDisplayScreenlet, onPortletError: error as NSError)
 		}
 		else {
 			self.progressPresenter?.hideHUDFromView(self, message: nil, forInteractor: Interactor(), withError: nil)
@@ -146,11 +149,13 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 				let js = JsScript(name: "listPorlets", js: "window.Screens.listPortlets()")
 				inject(injectableScript: js)
 			}
+
+			portletDisplayScreenlet.portletDisplayDelegate?.onPortletPageLoaded?(portletDisplayScreenlet)
 		}
 	}
 
 	open func handleJsCall(namespace: String, message: String) {
-		(screenlet as? PortletDisplayScreenlet)?.handleJsCall(namespace: namespace, message: message)
+		portletDisplayScreenlet.handleJsCall(namespace: namespace, message: message)
 	}
 
 	open func showHud() {
