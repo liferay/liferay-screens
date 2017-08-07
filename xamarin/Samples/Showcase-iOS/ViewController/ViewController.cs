@@ -54,7 +54,7 @@ namespace ShowcaseiOS.ViewController
             System.Diagnostics.Debug.WriteLine($"Navigate to ForgotPasswordViewController");
             UIStoryboard board = UIStoryboard.FromName("ForgotPassword", null);
             ForgotPasswordViewController vc = (ForgotPasswordViewController) board.InstantiateViewController("ForgotPasswordViewController");
-            this.PresentViewController(vc, true, null);
+            this.NavigationController.PushViewController(vc, true);
         }
     }
 }

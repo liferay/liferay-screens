@@ -17,7 +17,12 @@ namespace ShowcaseiOS.ViewController
             base.ViewDidLoad();
             // Perform any additional setup after loading the view, typically from a nib.
 
+            this.forgotPasswordScreenlet.AnonymousApiUserName = "anonymous1@liferay.com";
+            this.forgotPasswordScreenlet.AnonymousApiPassword = "anonymous1";
+
             this.forgotPasswordScreenlet.Delegate = this;
+
+            SetDefaultValues();
         }
 
         public override void DidReceiveMemoryWarning()
@@ -32,6 +37,12 @@ namespace ShowcaseiOS.ViewController
         public void OnForgotPasswordError(ForgotPasswordScreenlet screenlet, Foundation.NSError error)
         {
             System.Diagnostics.Debug.WriteLine($"Forgot password failed: {error.Description}");
+        }
+
+        /* Private methods */
+
+        void SetDefaultValues() {
+            this.forgotPasswordScreenlet.ViewModel.UserName = "test@liferay.com";
         }
     }
 }
