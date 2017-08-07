@@ -93,7 +93,14 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 			if (portletConfiguration.getWebType()
 				.equals(PortletConfiguration.WebType.LIFERAY_AUTHENTICATED)) {
 
-				getViewModel().postUrl(finalUrl, body);
+				if (SessionContext.isLoggedIn()) {
+					getViewModel().postUrl(finalUrl, body);
+				} else {
+					Exception exception = new Exception(
+						"You have to be logged to use the LIFERAY_AUTHENTICATED web type");
+					getViewModel().showFailedOperation(DEFAULT_ACTION, exception);
+					error(exception, DEFAULT_ACTION);
+				}
 			} else {
 				getViewModel().loadUrl(finalUrl);
 			}
@@ -133,9 +140,7 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	 * Then calls {@link #load()} method.
 	 */
 	protected void autoLoad() {
-		if (SessionContext.isLoggedIn()
-			&& portletConfiguration != null
-			&& portletConfiguration.getPortletUrl() != null) {
+		if (portletConfiguration != null && portletConfiguration.getPortletUrl() != null) {
 
 			load();
 		}
