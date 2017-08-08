@@ -27,6 +27,7 @@ All notable changes to this project will be documented in this file.
 * Fix error in UserPortrait initials view: user lastname is required in Liferay 7.0 but is not in Liferay 6.2
 * Fix bug in Session context, user attributes were being removed when the cookie login was refreshed.
 * Fix retain cycle in BaseListScreenlet
+* Update the cookie expired verification to work with new versions of the mobile sdk
 
 ### New Features
 * AssetDisplayScreenlet uses FileDisplayScreenlet for ppt, xls and doc files
