@@ -43,6 +43,7 @@
     <Folder Include="Themes\Default\" />
     <Folder Include="Auth\Common\" />
     <Folder Include="Auth\ForgotPassword\" />
+    <Folder Include="Auth\SignUp\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -60,6 +61,10 @@
     <ObjcBindingApiDefinition Include="Auth\ForgotPassword\ForgotPasswordViewModel.cs" />
     <ObjcBindingApiDefinition Include="Auth\Common\AnonymousBasicAuthType.cs" />
     <ObjcBindingApiDefinition Include="Auth\ForgotPassword\ForgotPasswordScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Auth\SignUp\SignUpScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Auth\SignUp\SignUpScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Auth\SignUp\SignUpViewModel.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\SignUpView_default.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />
