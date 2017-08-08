@@ -20,6 +20,7 @@ UIScrollViewDelegate {
 	let defaultNamespace = "screensDefault"
 
 	open var view: UIView {
+		wkWebView.scrollView.backgroundColor = .clear
 		return wkWebView
 	}
 
