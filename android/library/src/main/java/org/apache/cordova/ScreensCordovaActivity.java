@@ -33,8 +33,12 @@ public class ScreensCordovaActivity extends CordovaActivity {
 		this.launchUrl = parser.getLaunchUrl();
 		this.pluginEntries = parser.getPluginEntries();
 
-		this.pluginEntries.add(new PluginEntry("RemoteInjectionPlugin", "com.liferay.mobile.screens.viewsets.defaultviews.portlet.cordova.RemoteInjectionPlugin", true));
-		this.pluginEntries.add(new PluginEntry("ScreensCordovaPlugin", "com.liferay.mobile.screens.viewsets.defaultviews.portlet.cordova.ScreensCordovaPlugin", true));
+		this.pluginEntries.add(new PluginEntry("RemoteInjectionPlugin",
+			"com.liferay.mobile.screens.viewsets.defaultviews.portlet.cordova.RemoteInjectionPlugin",
+			true));
+		this.pluginEntries.add(new PluginEntry("ScreensCordovaPlugin",
+			"com.liferay.mobile.screens.viewsets.defaultviews.portlet.cordova.ScreensCordovaPlugin",
+			true));
 	}
 
 	protected CordovaWebViewEngine makeWebViewEngine() {
@@ -60,22 +64,21 @@ public class ScreensCordovaActivity extends CordovaActivity {
 
 	public void handlePause() {
 		LOG.d(TAG, "Paused the activity.");
-		if(this.appView != null) {
-			boolean keepRunning = this.keepRunning || this.cordovaInterface.activityResultCallback != null;
+		if (this.appView != null) {
+			boolean keepRunning =
+				this.keepRunning || this.cordovaInterface.activityResultCallback != null;
 			this.appView.handlePause(keepRunning);
 		}
-
 	}
 
 	public void onNewIntent(Intent intent) {
-		if(this.appView != null) {
+		if (this.appView != null) {
 			this.appView.onNewIntent(intent);
 		}
-
 	}
 
 	public void handleResume() {
-		if(this.appView != null) {
+		if (this.appView != null) {
 			activity.getWindow().getDecorView().requestFocus();
 			this.appView.handleResume(this.keepRunning);
 		}
@@ -83,23 +86,22 @@ public class ScreensCordovaActivity extends CordovaActivity {
 
 	public void handleStop() {
 		LOG.d(TAG, "Stopped the activity.");
-		if(this.appView != null) {
+		if (this.appView != null) {
 			this.appView.handleStop();
 		}
 	}
 
 	public void handleStart() {
 		LOG.d(TAG, "Started the activity.");
-		if(this.appView != null) {
+		if (this.appView != null) {
 			this.appView.handleStart();
 		}
 	}
 
 	public void handleDestroy() {
-		if(this.appView != null) {
+		if (this.appView != null) {
 			this.appView.handleDestroy();
 		}
-
 	}
 
 	public void onSaveInstanceState(Bundle outState) {
@@ -108,17 +110,16 @@ public class ScreensCordovaActivity extends CordovaActivity {
 
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
-		if(this.appView != null) {
+		if (this.appView != null) {
 			PluginManager pm = this.appView.getPluginManager();
-			if(pm != null) {
+			if (pm != null) {
 				pm.onConfigurationChanged(newConfig);
 			}
-
 		}
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {
-		if(this.appView != null) {
+		if (this.appView != null) {
 			this.appView.getPluginManager().postMessage("onCreateOptionsMenu", menu);
 		}
 
@@ -126,7 +127,7 @@ public class ScreensCordovaActivity extends CordovaActivity {
 	}
 
 	public boolean onPrepareOptionsMenu(Menu menu) {
-		if(this.appView != null) {
+		if (this.appView != null) {
 			this.appView.getPluginManager().postMessage("onPrepareOptionsMenu", menu);
 		}
 
@@ -134,20 +135,19 @@ public class ScreensCordovaActivity extends CordovaActivity {
 	}
 
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if(this.appView != null) {
+		if (this.appView != null) {
 			this.appView.getPluginManager().postMessage("onOptionsItemSelected", item);
 		}
 
 		return true;
 	}
 
-	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+	public void onRequestPermissionsResult(int requestCode, String[] permissions,
+		int[] grantResults) {
 		try {
 			this.cordovaInterface.onRequestPermissionResult(requestCode, permissions, grantResults);
 		} catch (JSONException ex) {
 			LOG.d(TAG, "JSONException: Parameters fed into the method are not valid");
-			ex.printStackTrace();
 		}
 	}
-
 }
