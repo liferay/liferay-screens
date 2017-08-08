@@ -16,30 +16,19 @@ var screens = {
 		this.screensScripts_.forEach(fn => fn());
 	},
 
-	isAndroid: function () {
-		if (navigator.userAgent.indexOf("Android") === -1) {
-			return false;
-		}
-		return true;
-	},
-
 	postMessage: function (namespace, message) {
-		if (this.isAndroid()) {
-			android.postMessage(namespace, message);
-		} else {
-			if (window.cordova) {
-				document.addEventListener("deviceready", () => {
-					cordova.exec(null, null, "ScreensBridgePlugin", "postMessage", [
-						namespace,
-						message
-					]);
-				});
-			} else if (window.webkit) {
-				window.webkit.messageHandlers.screensDefault.postMessage([
+		if (window.cordova) {
+			document.addEventListener("deviceready", () => {
+				cordova.exec(null, null, "ScreensBridgePlugin", "postMessage", [
 					namespace,
 					message
 				]);
-			}
+			});
+		} else if (window.webkit) {
+			window.webkit.messageHandlers.screensDefault.postMessage([
+				namespace,
+				message
+			]);
 		}
 	},
 
