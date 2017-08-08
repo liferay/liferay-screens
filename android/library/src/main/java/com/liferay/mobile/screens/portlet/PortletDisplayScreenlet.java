@@ -158,6 +158,14 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 		}
 	}
 
+	public boolean isLoggingEnabled() {
+		return isLoggingEnabled;
+	}
+
+	public void setLoggingEnabled(boolean loggingEnabled) {
+		isLoggingEnabled = loggingEnabled;
+	}
+
 	public boolean isAutoLoad() {
 		return autoLoad;
 	}
