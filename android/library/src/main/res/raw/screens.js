@@ -39,20 +39,8 @@ var screens = {
 		});
 	},
 
-	isAndroid: function() {
-		if (navigator.userAgent.indexOf('Android') === -1) {
-			return false;
-		}
-		return true;
-	},
-
 	postMessage: function(namespace, message) {
-		if (this.isAndroid()) {
-			android.postMessage(namespace, message);
-		}
-		else {
-			window.webkit.messageHandlers.screensDefault.postMessage([namespace, message]);
-		}
+		android.postMessage(namespace, message);
 	},
 
 	listPortlets: function() {
