@@ -117,6 +117,10 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 		}
 	}
 
+	open func inject(injectableScript: InjectableScript) {
+		self.portletDisplayViewModel.inject(injectableScript: injectableScript)
+	}
+
 	/// Loads the page specified in the configuraion.
 	open func load() {
 		guard let configuration = configuration else {
