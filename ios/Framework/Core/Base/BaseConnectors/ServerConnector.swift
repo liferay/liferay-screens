@@ -147,23 +147,22 @@ import UIKit
 	}
 
 	internal func canBeCookieExpiredError(session: LRSession) -> Bool {
-		if let auth = session.authentication {
-			if case .v62 = LiferayServerContext.serverVersion {
-				return canBeCookieExpiredError62(authentication: auth)
-			}
-			return lastError?.code == 403 &&
-				session.authentication.isKind(of: LRCookieAuthentication.self)
+		guard session.authentication as? LRCookieAuthentication != nil, let error = lastError else { return false }
 
+		if case .v62 = LiferayServerContext.serverVersion {
+			return error.code == 2 && error.domain.contains("mobile.sdk")
 		}
 
-		return false
-	}
-
-	internal func canBeCookieExpiredError62(authentication: LRAuthentication) -> Bool {
-		if let error = lastError {
-			return error.code == 2 && error.domain.contains("mobile.sdk") &&
-				authentication.isKind(of: LRCookieAuthentication.self)
+		// LRMobileSDK <= v7.0.9
+		if error.code == 403 {
+			return true
 		}
+
+		// LRMobileSDK > v7.0.9
+		if error.code == 2 && error.description.contains("SecurityException") {
+			return true
+		}
+
 		return false
 	}
 }
