@@ -78,42 +78,19 @@ public class PortletConfiguration {
 	public static class Builder {
 
 		private String portletUrl;
-		private List<String> localJs;
-		private List<String> localCss;
-		private List<String> remoteJs;
-		private List<String> remoteCss;
-		private List<Pair<Integer, String>> localRawJs;
-		private List<Pair<Integer, String>> localRawCss;
-		private boolean isThemeEnabled;
-		private WebType webType;
+		private List<String> localJs = new ArrayList<>();
+		private List<String> localCss = new ArrayList<>();
+		private List<String> remoteJs = new ArrayList<>();
+		private List<String> remoteCss = new ArrayList<>();
+		private List<Pair<Integer, String>> localRawJs = new ArrayList<>();
+		private List<Pair<Integer, String>> localRawCss = new ArrayList<>();
+		private boolean isThemeEnabled = true;
+		private WebType webType = WebType.LIFERAY_AUTHENTICATED;
 		private CordovaLifeCycleObserver observer;
 		private boolean isCordovaEnabled;
 
 		public Builder(String portletUrl) {
 			super();
-
-			this.portletUrl = portletUrl;
-			localJs = new ArrayList<>();
-			localCss = new ArrayList<>();
-			remoteJs = new ArrayList<>();
-			remoteCss = new ArrayList<>();
-			localRawJs = new ArrayList<>();
-			localRawCss = new ArrayList<>();
-			this.isThemeEnabled = true;
-			this.isCordovaEnabled = false;
-			this.webType = WebType.LIFERAY_AUTHENTICATED;
-		}
-
-		public Builder(String portletUrl, List<String> localJs, List<String> localCss,
-			List<String> remoteJs, List<String> remoteCss, boolean isThemeEnabled) {
-			this.portletUrl = portletUrl;
-			this.localJs = localJs;
-			this.localCss = localCss;
-			this.remoteJs = remoteJs;
-			this.remoteCss = remoteCss;
-			this.isThemeEnabled = isThemeEnabled;
-			this.isCordovaEnabled = false;
-			this.webType = WebType.LIFERAY_AUTHENTICATED;
 		}
 
 		public Builder addLocalJs(String fileName) {
