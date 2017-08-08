@@ -82,7 +82,7 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 			getViewModel().addScript(new JsScript("Screens.js", screensJs));
 
 			if (portletConfiguration.isThemeEnabled()
-				&& !PortletConfiguration.WebType.CUSTOM.equals(portletConfiguration.getWebType())) {
+				&& !PortletConfiguration.WebType.OTHER.equals(portletConfiguration.getWebType())) {
 				
 				getViewModel().setTheme(true);
 			}

@@ -73,7 +73,7 @@ public class PortletConfiguration {
 		return isCordovaEnabled;
 	}
 
-	public enum WebType {LIFERAY_AUTHENTICATED, LIFERAY, CUSTOM}
+	public enum WebType {LIFERAY_AUTHENTICATED, LIFERAY, OTHER}
 
 	public static class Builder {
 
