@@ -81,8 +81,9 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 
 			getViewModel().addScript(new JsScript("Screens.js", screensJs));
 
-			if (portletConfiguration.isThemeEnabled() && !portletConfiguration.getWebType()
-				.equals(PortletConfiguration.WebType.CUSTOM)) {
+			if (portletConfiguration.isThemeEnabled()
+				&& !PortletConfiguration.WebType.CUSTOM.equals(portletConfiguration.getWebType())) {
+				
 				getViewModel().setTheme(true);
 			}
 
@@ -90,8 +91,8 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 				getViewModel().addScript(script);
 			}
 
-			if (portletConfiguration.getWebType()
-				.equals(PortletConfiguration.WebType.LIFERAY_AUTHENTICATED)) {
+			if (PortletConfiguration.WebType.LIFERAY_AUTHENTICATED.equals(
+				portletConfiguration.getWebType())) {
 
 				if (SessionContext.isLoggedIn()) {
 					getViewModel().postUrl(finalUrl, body);
@@ -213,7 +214,7 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	protected void onUserAction(String userActionName, Interactor interactor, Object... args) {
 
 	}
-	
+
 	protected void autoLoad() {
 		if (portletConfiguration != null && portletConfiguration.getPortletUrl() != null) {
 
