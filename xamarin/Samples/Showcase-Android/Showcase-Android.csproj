@@ -97,46 +97,41 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="jakeWharton.RxbindingBindingLibrary">
-      <HintPath>packages\LiferayScreens.0.1.0-alpha2\lib\MonoAndroid403\jakeWharton.RxbindingBindingLibrary.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>packages\LiferayScreens.0.1.0-alpha3\lib\MonoAndroid403\jakeWharton.RxbindingBindingLibrary.dll</HintPath>
     </Reference>
     <Reference Include="LiferayScreens_Android">
-      <HintPath>packages\LiferayScreens.0.1.0-alpha2\lib\MonoAndroid403\LiferayScreens_Android.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>packages\LiferayScreens.0.1.0-alpha3\lib\MonoAndroid403\LiferayScreens_Android.dll</HintPath>
     </Reference>
     <Reference Include="rxAndroid.BindingLibrary">
-      <HintPath>packages\LiferayScreens.0.1.0-alpha2\lib\MonoAndroid403\rxAndroid.BindingLibrary.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>packages\LiferayScreens.0.1.0-alpha3\lib\MonoAndroid403\rxAndroid.BindingLibrary.dll</HintPath>
     </Reference>
     <Reference Include="SnappyDBBindingLibrary">
-      <HintPath>packages\LiferayScreens.0.1.0-alpha2\lib\MonoAndroid403\SnappyDBBindingLibrary.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>packages\LiferayScreens.0.1.0-alpha3\lib\MonoAndroid403\SnappyDBBindingLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Tbruyelle.RxpermissionsBindingLibrary">
-      <HintPath>packages\LiferayScreens.0.1.0-alpha2\lib\MonoAndroid403\Tbruyelle.RxpermissionsBindingLibrary.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>packages\LiferayScreens.0.1.0-alpha3\lib\MonoAndroid403\Tbruyelle.RxpermissionsBindingLibrary.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ForgotPasswordActivity.cs" />
+    <Compile Include="LoginActivity.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
-    <AndroidResource Include="Resources\mipmap-hdpi\Icon.png" />
-    <AndroidResource Include="Resources\mipmap-mdpi\Icon.png" />
-    <AndroidResource Include="Resources\mipmap-xhdpi\Icon.png" />
-    <AndroidResource Include="Resources\mipmap-xxhdpi\Icon.png" />
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\values\server_context.xml" />
     <AndroidResource Include="Resources\layout\LoginView.axml" />
+    <AndroidResource Include="Resources\layout\ForgotPasswordView.axml" />
+    <AndroidResource Include="Resources\layout\MainView.axml" />
+    <AndroidResource Include="Resources\drawable\liferay_icon.png" />
+    <AndroidResource Include="Resources\values\Styles.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
