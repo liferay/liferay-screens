@@ -32,11 +32,12 @@ public class ScreensCordovaWebView implements ScreensWebView, CordovaLifeCycleLi
 
 	public void onEvent(CordovaEvent event) {
 		if (listener != null) {
-			if (event.getEventType().equals(CordovaEvent.CordovaEventType.PAGE_STARTED)) {
+			CordovaEvent.CordovaEventType eventType = event.getEventType();
+			if (CordovaEvent.CordovaEventType.PAGE_STARTED.equals(eventType)) {
 				listener.onPageStarted();
-			} else if (event.getEventType().equals(CordovaEvent.CordovaEventType.PAGE_FINISHED)) {
+			} else if (CordovaEvent.CordovaEventType.PAGE_FINISHED.equals(eventType)) {
 				listener.onPageFinished(event.getParam());
-			} else if (event.getEventType().equals(CordovaEvent.CordovaEventType.ERROR)) {
+			} else if (CordovaEvent.CordovaEventType.ERROR.equals(eventType)) {
 				listener.onPageError(new Exception(event.getParam()));
 			}
 		}
