@@ -22,9 +22,9 @@ public class JsScript implements InjectableScript {
 	private String name;
 	private String content;
 
-	public JsScript(String name, String js) {
+	public JsScript(String name, String content) {
 		this.name = name;
-		content = js;
+		content = content;
 	}
 
 	@Override

@@ -60,14 +60,14 @@ public class DetailImageActivity extends AppCompatActivity implements SwipeListe
 
 	@Override
 	public void onSwipeLeft() {
-		Picasso.with(getApplicationContext()).load(allImgSrc[imgSrcPosition + 1]).into(detailedImageView);
+		PicassoScreens.load(allImgSrc[imgSrcPosition + 1]).into(detailedImageView);
 		imgSrcPosition++;
 
 	}
 
 	@Override
 	public void onSwipeRight() {
-		Picasso.with(getApplicationContext()).load(allImgSrc[imgSrcPosition - 1]).into(detailedImageView);
+		PicassoScreens.load(allImgSrc[imgSrcPosition - 1]).into(detailedImageView);
 		imgSrcPosition--;
 	}
 }
