@@ -3,6 +3,10 @@ a {
 	color: #ee783C;
 }
 
-* { font-size: 14pt; }
+* { 
+	font-size: 14pt; 
+}
 
-.portlet-title-text { text-decoration: line-through; }
+.portlet-title-text { 
+	text-decoration: line-through; 
+}
