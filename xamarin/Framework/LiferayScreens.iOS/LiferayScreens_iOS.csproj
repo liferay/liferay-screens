@@ -70,6 +70,10 @@
     <ObjcBindingCoreSource Include="Structs.cs" />
   </ItemGroup>
   <ItemGroup>
+    <NativeReference Include="..\DependentFrameworks\AFNetworking.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
     <NativeReference Include="..\DependentFrameworks\CocoaLumberjack.framework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
@@ -127,10 +131,6 @@
       <SmartLink>False</SmartLink>
     </NativeReference>
     <NativeReference Include="..\DependentFrameworks\YapDatabase.framework">
-      <Kind>Framework</Kind>
-      <SmartLink>False</SmartLink>
-    </NativeReference>
-    <NativeReference Include="..\DependentFrameworks\AFNetworking.framework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
     </NativeReference>

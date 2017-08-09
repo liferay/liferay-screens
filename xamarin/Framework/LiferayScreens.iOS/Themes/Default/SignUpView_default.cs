@@ -10,28 +10,28 @@ namespace LiferayScreens
     [BaseType(typeof(BaseScreenletView))]
     interface SignUpView_default : ISignUpViewModel
     {
-        // @property (nonatomic, strong) UITextField * _Nullable emailAddressField __attribute__((iboutlet));
-        [NullAllowed, Export("emailAddressField", ArgumentSemantic.Strong)]
+        // @property (nonatomic, weak) UITextField * _Nullable emailAddressField __attribute__((iboutlet));
+        [NullAllowed, Export("emailAddressField", ArgumentSemantic.Weak)]
         UITextField EmailAddressField { get; set; }
 
-        // @property (nonatomic, strong) UITextField * _Nullable passwordField __attribute__((iboutlet));
-        [NullAllowed, Export("passwordField", ArgumentSemantic.Strong)]
+        // @property (nonatomic, weak) UITextField * _Nullable passwordField __attribute__((iboutlet));
+        [NullAllowed, Export("passwordField", ArgumentSemantic.Weak)]
         UITextField PasswordField { get; set; }
 
-        // @property (nonatomic, strong) UITextField * _Nullable firstNameField __attribute__((iboutlet));
-        [NullAllowed, Export("firstNameField", ArgumentSemantic.Strong)]
+        // @property (nonatomic, weak) UITextField * _Nullable firstNameField __attribute__((iboutlet));
+        [NullAllowed, Export("firstNameField", ArgumentSemantic.Weak)]
         UITextField FirstNameField { get; set; }
 
-        // @property (nonatomic, strong) UITextField * _Nullable lastNameField __attribute__((iboutlet));
-        [NullAllowed, Export("lastNameField", ArgumentSemantic.Strong)]
+        // @property (nonatomic, weak) UITextField * _Nullable lastNameField __attribute__((iboutlet));
+        [NullAllowed, Export("lastNameField", ArgumentSemantic.Weak)]
         UITextField LastNameField { get; set; }
 
-        // @property (nonatomic, strong) UIButton * _Nullable signUpButton __attribute__((iboutlet));
-        [NullAllowed, Export("signUpButton", ArgumentSemantic.Strong)]
+        // @property (nonatomic, weak) UIButton * _Nullable signUpButton __attribute__((iboutlet));
+        [NullAllowed, Export("signUpButton", ArgumentSemantic.Weak)]
         UIButton SignUpButton { get; set; }
 
-        // @property (nonatomic, strong) UIScrollView * _Nullable scrollView __attribute__((iboutlet));
-        [NullAllowed, Export("scrollView", ArgumentSemantic.Strong)]
+        // @property (nonatomic, weak) UIScrollView * _Nullable scrollView __attribute__((iboutlet));
+        [NullAllowed, Export("scrollView", ArgumentSemantic.Weak)]
         UIScrollView ScrollView { get; set; }
 
         // -(void)onStartInteraction;
