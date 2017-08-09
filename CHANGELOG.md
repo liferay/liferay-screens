@@ -24,6 +24,7 @@ All notable changes to this project will be documented in this file.
 
 ### Bugs
 * Fix error in material LoginView with cookie login
+* All screenlets should have getter and setter for their listener property
 
 ## iOS
 

@@ -120,6 +120,10 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 		this.listener = listener;
 	}
 
+	public LoginListener getListener() {
+		return listener;
+	}
+
 	public BasicAuthMethod getAuthMethod() {
 		return basicAuthMethod;
 	}
