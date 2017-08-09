@@ -37,6 +37,8 @@ All notable changes to this project will be documented in this file.
 * AssetDisplayScreenlet uses FileDisplayScreenlet for ppt, xls and doc files
 * Allow developers override injected CSS in WebContentDisplayScreenlet
 * Add PortletDisplayScreenlet
+* Add name to classes annotated with @objc for Xamarin solutions
+* Remove module name in default views for Xamarin solutions
 
 ### Refactor
 * Migrate from UIWebView to WKWebView
