@@ -17,6 +17,10 @@ All notable changes to this project will be documented in this file.
 * Create loadLoggedUserPortrait method in UserPortraitScreenlet
 * Expose Video events in the VideoDisplayScreenlet 
 * Allow developers override injected CSS in WebContentDisplayScreenlet
+* Add PortletDisplayScreenlet
+
+### Bugs
+* Fix error in material LoginView with cookie login
 
 ### Bugs
 * Fix error in material LoginView with cookie login

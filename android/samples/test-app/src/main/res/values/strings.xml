@@ -45,6 +45,7 @@
 	<string name="list_comments">Comment List</string>
 	<string name="custom_interactor">Login with custom interactor</string>
 	<string name="list_bookmarks">List Bookmarks</string>
+	<string name="portlet_display">Portlet Display</string>
 	<string name="relogin">Relogin</string>
 	<string name="change_surname">Change Surname</string>
 	<string name="surname">Surname</string>

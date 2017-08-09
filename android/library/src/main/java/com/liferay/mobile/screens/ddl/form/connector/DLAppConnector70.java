@@ -46,4 +46,9 @@ public class DLAppConnector70 implements DLAppConnector {
 	public void deleteFileEntry(long fileEntryId) throws Exception {
 		dlAppService.deleteFileEntry(fileEntryId);
 	}
+
+	@Override
+	public JSONObject getFileEntry(long groupId, long folderId, String title) throws Exception {
+		return dlAppService.getFileEntry(groupId, folderId, title);
+	}
 }

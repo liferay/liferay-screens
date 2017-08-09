@@ -105,7 +105,7 @@ public class WebContentDisplayScreenlet
 			}
 		}
 
-		String css = AssetReader.read(getContext(), customCssFile);
+		String css = new AssetReader(getContext().getApplicationContext()).read(customCssFile);
 		getViewModel().showFinishOperation(modifiedHtml, css != null ? css : "");
 
 		return modifiedHtml;
