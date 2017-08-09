@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <scene sceneID="4">
+            <objects>
+                <viewController id="5" sceneMemberID="viewController" customClass="SignUpViewController" storyboardIdentifier="SignUpViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2"/>
+                        <viewControllerLayoutGuide type="bottom" id="3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="11" translatesAutoresizingMaskIntoConstraints="NO" customClass="SignUpScreenlet">
+                                <rect key="frame" x="44" y="110" width="327" height="516"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint id="22" firstItem="11" firstAttribute="height" constant="516"/>
+                                    <constraint id="23" firstItem="11" firstAttribute="width" constant="327"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="22"/>
+                                        <exclude reference="23"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="22"/>
+                                        <include reference="23"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                        </subviews>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="11"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="20"/>
+                                <exclude reference="21"/>
+                                <exclude reference="24"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="11"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="20"/>
+                                <include reference="21"/>
+                                <include reference="24"/>
+                            </mask>
+                        </variation>
+                        <constraints>
+                            <constraint id="20" firstItem="11" firstAttribute="centerX" secondItem="6" secondAttribute="centerX"/>
+                            <constraint id="21" firstItem="11" firstAttribute="centerY" secondItem="6" secondAttribute="centerY"/>
+                            <constraint id="24" firstItem="11" firstAttribute="top" secondItem="2" secondAttribute="bottom" constant="90"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="signUpScreenlet" destination="11" id="name-outlet-11"/>
+                    </connections>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <navigationItem title="SignUpScreenlet" id="32" key="navigationItem"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="238" y="189"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="img/Liferay-Screens.png" width="124" height="144"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedScreenMetrics key="destination" type="retina55"/>
+    </simulatedMetricsContainer>
+</document>

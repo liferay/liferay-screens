@@ -133,7 +133,7 @@
       <HintPath>packages\Xamarin.Swift3.UIKit.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.UIKit.dll</HintPath>
     </Reference>
     <Reference Include="LiferayScreens_iOS">
-      <HintPath>packages\LiferayScreens.0.1.0-alpha3\lib\Xamarin.iOS10\LiferayScreens_iOS.dll</HintPath>
+      <HintPath>packages\LiferayScreens.0.1.0-alpha4\lib\Xamarin.iOS10\LiferayScreens_iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +149,7 @@
     <InterfaceDefinition Include="Storyboard\LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Storyboard\Main.storyboard" />
     <InterfaceDefinition Include="Storyboard\ForgotPassword.storyboard" />
+    <InterfaceDefinition Include="Storyboard\SignUp.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -165,6 +166,10 @@
     <Compile Include="ViewController\ForgotPasswordViewController.cs" />
     <Compile Include="ViewController\ForgotPasswordViewController.designer.cs">
       <DependentUpon>ForgotPasswordViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\SignUpViewController.cs" />
+    <Compile Include="ViewController\SignUpViewController.designer.cs">
+      <DependentUpon>SignUpViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

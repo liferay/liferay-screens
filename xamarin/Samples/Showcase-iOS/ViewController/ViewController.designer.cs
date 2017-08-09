@@ -21,9 +21,17 @@ namespace ShowcaseiOS.ViewController
         [GeneratedCode ("iOS Designer", "1.0")]
         LiferayScreens.LoginScreenlet loginScreenlet { get; set; }
 
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton signUpButton { get; set; }
+
         [Action ("ForgotPasswordButton_TouchUpInside:")]
         [GeneratedCode ("iOS Designer", "1.0")]
         partial void ForgotPasswordButton_TouchUpInside (UIKit.UIButton sender);
+
+        [Action ("SignUpButton_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void SignUpButton_TouchUpInside (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {
@@ -35,6 +43,11 @@ namespace ShowcaseiOS.ViewController
             if (loginScreenlet != null) {
                 loginScreenlet.Dispose ();
                 loginScreenlet = null;
+            }
+
+            if (signUpButton != null) {
+                signUpButton.Dispose ();
+                signUpButton = null;
             }
         }
     }

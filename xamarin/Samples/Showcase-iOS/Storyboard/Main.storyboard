@@ -33,11 +33,24 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="ForgotPasswordButton_TouchUpInside:" destination="66" id="114" eventType="touchUpInside"/>
+                                    <action selector="ForgotPasswordButton_TouchUpInside:" destination="66" id="398" eventType="touchUpInside"/>
                                 </connections>
                                 <constraints>
                                     <constraint id="366" firstItem="95" firstAttribute="width" constant="260"/>
                                 </constraints>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="373" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="137" y="482" width="140" height="30"/>
+                                <state key="normal" title="Create an account">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <constraints>
+                                    <constraint id="376" firstItem="373" firstAttribute="width" constant="140"/>
+                                    <constraint id="377" firstItem="373" firstAttribute="height" constant="30"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="SignUpButton_TouchUpInside:" destination="66" id="409" eventType="touchUpInside"/>
+                                </connections>
                             </button>
                         </subviews>
                         <constraints>
@@ -45,11 +58,16 @@
                             <constraint id="362" firstItem="70" firstAttribute="top" secondItem="63" secondAttribute="bottom" constant="43"/>
                             <constraint id="364" firstItem="95" firstAttribute="top" secondItem="70" secondAttribute="bottom" constant="8"/>
                             <constraint id="365" firstItem="95" firstAttribute="centerX" secondItem="67" secondAttribute="centerX"/>
+                            <constraint id="374" firstItem="373" firstAttribute="centerX" secondItem="95" secondAttribute="centerX"/>
+                            <constraint id="375" firstItem="373" firstAttribute="centerX" secondItem="67" secondAttribute="centerX"/>
+                            <constraint id="378" firstItem="64" firstAttribute="top" secondItem="373" secondAttribute="bottom" constant="224"/>
+                            <constraint id="379" firstItem="373" firstAttribute="top" secondItem="95" secondAttribute="bottom" constant="37"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="forgotPasswordButton" destination="95" id="name-outlet-95"/>
                         <outlet property="loginScreenlet" destination="70" id="name-outlet-70"/>
+                        <outlet property="signUpButton" destination="373" id="name-outlet-373"/>
                     </connections>
                     <navigationItem title="Home" id="353" key="navigationItem"/>
                 </viewController>
