@@ -92,9 +92,9 @@ namespace LiferayScreens
         void OnFinishInteraction([NullAllowed] NSObject result, [NullAllowed] NSError error);
 
         // -(id<ProgressPresenter> _Nonnull)createProgressPresenter __attribute__((warn_unused_result));
-        //[Export("createProgressPresenter")]
-        //[Verify(MethodToProperty)]
-        //ProgressPresenter CreateProgressPresenter { get; }
+        [Export("createProgressPresenter")]
+        //[Verify(MethodToProperty)] 
+        ProgressPresenter CreateProgressPresenter { get; }
 
         // -(NSString * _Nullable)progressMessageForAction:(NSString * _Nonnull)actionName messageType:(enum ProgressMessageType)messageType __attribute__((warn_unused_result));
         [Export("progressMessageForAction:messageType:")]
