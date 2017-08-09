@@ -18,17 +18,17 @@ open class SignUpView_default: BaseScreenletView, SignUpViewModel {
 
 	// MARK: Outlets
 
-	@IBOutlet open var emailAddressField: UITextField?
+	@IBOutlet open weak var emailAddressField: UITextField?
 
-	@IBOutlet open var passwordField: UITextField?
+	@IBOutlet open weak var passwordField: UITextField?
 
-	@IBOutlet open var firstNameField: UITextField?
+	@IBOutlet open weak var firstNameField: UITextField?
 
-	@IBOutlet open var lastNameField: UITextField?
+	@IBOutlet open weak var lastNameField: UITextField?
 
-	@IBOutlet open var signUpButton: UIButton?
+	@IBOutlet open weak var signUpButton: UIButton?
 
-	@IBOutlet open var scroll: UIScrollView?
+	@IBOutlet open weak var scrollView: UIScrollView?
 
 	// MARK: BaseScreenletView
 
