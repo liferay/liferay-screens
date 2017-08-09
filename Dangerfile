@@ -19,5 +19,5 @@ if git.modified_files.empty? && added_files.empty? && deleted_files.empty?
   fail "This PR has no changes at all, this is likely a developer issue."
 end
 
-swiftlint.directory = 'ios/Framework/'
+swiftlint.directory = File.expand_path('ios/Framework/')
 swiftlint.lint_files
