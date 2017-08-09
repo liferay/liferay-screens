@@ -39,6 +39,12 @@ namespace ShowcaseiOS.ViewController
             System.Diagnostics.Debug.WriteLine($"Forgot password failed: {error.Description}");
         }
 
+        [Export("screenlet:onForgotPasswordSent:")]
+        public virtual void OnForgotPasswordSent(ForgotPasswordScreenlet screenlet, bool passwordSent)
+        {
+            System.Diagnostics.Debug.WriteLine($"Forgot password successful: {passwordSent}");
+        }
+
         /* Private methods */
 
         void SetDefaultValues()
