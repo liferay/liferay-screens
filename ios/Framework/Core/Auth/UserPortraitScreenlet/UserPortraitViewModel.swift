@@ -13,7 +13,8 @@
  */
 import UIKit
 
-@objc public protocol UserPortraitViewModel {
+@objc(UserPortraitViewModel)
+public protocol UserPortraitViewModel {
 
 	/// User portrait image to be displayed.
 	var image: UIImage? { get set }

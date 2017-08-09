@@ -15,7 +15,8 @@ import UIKit
 
 /// The CommentDisplayScreenletDelegate protocol defines some methods that you use to manage the
 /// CommentDisplayScreenlet events. All of them are optional.
-@objc public protocol CommentDisplayScreenletDelegate: BaseScreenletDelegate {
+@objc(CommentDisplayScreenletDelegate)
+public protocol CommentDisplayScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when the screenlet loads the comment.
 	///
@@ -74,6 +75,7 @@ import UIKit
 
 /// Comment Display Screenlet can show one comment of an asset in a Liferay instance. It also lets 
 /// the user update or delete the comment.
+@objc(CommentDisplayScreenlet)
 open class CommentDisplayScreenlet: BaseScreenlet {
 
 	// MARK: Static properties

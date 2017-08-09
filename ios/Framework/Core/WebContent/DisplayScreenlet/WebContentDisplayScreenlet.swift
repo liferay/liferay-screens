@@ -15,7 +15,8 @@ import UIKit
 
 /// The WebContentDisplayScreenletDelegate protocol defines some methods that you use to manage the
 /// WebContentDisplayScreenlet events. All of them are optional.
-@objc public protocol WebContentDisplayScreenletDelegate: BaseScreenletDelegate {
+@objc(WebContentDisplayScreenletDelegate)
+public protocol WebContentDisplayScreenletDelegate: BaseScreenletDelegate {
 
 	///  Called when the web content’s HTML is received.
 	///
@@ -48,6 +49,7 @@ import UIKit
 /// The Web Content Display Screenlet shows web content elements in your app, rendering the inner 
 /// HTML of the web content. The Screenlet also supports i18n, rendering contents differently 
 /// depending on the device’s current locale.
+@objc(WebContentDisplayScreenlet)
 open class WebContentDisplayScreenlet: BaseScreenlet {
 
 	// MARK: Inspectables

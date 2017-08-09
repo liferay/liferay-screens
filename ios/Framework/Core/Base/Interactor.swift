@@ -13,7 +13,8 @@
  */
 import UIKit
 
-@objc open class Interactor: NSObject {
+@objc(Interactor)
+open class Interactor: NSObject {
 
 	open var actionName: String?
 

@@ -15,6 +15,7 @@ import Foundation
 
 /// Image Display Screenlet displays an image file from a Liferay instance’s Documents and Media 
 /// Library.
+@objc(ImageDisplayScreenlet)
 open class ImageDisplayScreenlet: FileDisplayScreenlet {
 
 	// MARK: Inspectables

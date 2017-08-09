@@ -13,6 +13,7 @@
  */
 import UIKit
 
+@objc(ImageDisplayView_default)
 open class ImageDisplayView_default: BaseScreenletView, ImageDisplayViewModel {
 
 	// MARK: Outlets

@@ -15,6 +15,7 @@ import Foundation
 
 /// Audio Display Screenlet displays an audio file from a Liferay instance’s Documents and Media 
 ///Library.
+@objc(AudioDisplayScreenlet)
 open class AudioDisplayScreenlet: FileDisplayScreenlet {
 
 	// MARK: Inspectables

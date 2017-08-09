@@ -19,6 +19,7 @@ public enum CommentDisplayState_default {
 	case editing
 }
 
+@objc(CommentDisplayView_default)
 open class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewModel {
 
 	//Left/right UILabel padding

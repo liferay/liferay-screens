@@ -15,7 +15,8 @@ import Foundation
 
 /// The FileDisplayScreenletDelegate protocol defines some methods that you use to manage the
 /// FileDisplayScreenlet events. All of them are optional.
-@objc public protocol FileDisplayScreenletDelegate: BaseScreenletDelegate {
+@objc(FileDisplayScreenletDelegate)
+public protocol FileDisplayScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when the screenlet receives the file.
 	///
@@ -36,6 +37,7 @@ import Foundation
 /// File Display Screenlet shows a single file from a Liferay Portal instance’s Documents and Media
 /// Library. Use this Screenlet to display file types not covered by the other display Screenlets 
 /// (e.g., DOC, PPT, XLS).
+@objc(FileDisplayScreenlet)
 open class FileDisplayScreenlet: BaseScreenlet {
 
 	// MARK: Static properties

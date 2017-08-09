@@ -13,7 +13,8 @@
  */
 import UIKit
 
-@objc public protocol DDLFormViewModel {
+@objc(DDLFormViewModel)
+public protocol DDLFormViewModel {
 
 	/// Show or hide the submit button of the form.
 	var showSubmitButton: Bool { get set }

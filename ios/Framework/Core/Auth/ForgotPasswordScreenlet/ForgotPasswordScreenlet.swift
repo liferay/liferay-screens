@@ -15,7 +15,8 @@ import UIKit
 
 /// The ForgotPasswordScreenletDelegate protocol defines some methods that you use to manage the
 /// ForgotPasswordScreenlet events. All of them are optional.
-@objc public protocol ForgotPasswordScreenletDelegate: BaseScreenletDelegate {
+@objc(ForgotPasswordScreenletDelegate)
+public protocol ForgotPasswordScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when a password reset email is successfully sent.
 	///
@@ -43,6 +44,7 @@ import UIKit
 ///	* Email address
 ///	* Screen name
 ///	* User id
+@objc(ForgotPasswordScreenlet)
 open class ForgotPasswordScreenlet: BaseScreenlet, BasicAuthBasedType, AnonymousBasicAuthType {
 
 	// MARK: Inspectables

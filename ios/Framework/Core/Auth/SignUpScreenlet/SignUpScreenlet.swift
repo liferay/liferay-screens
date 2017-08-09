@@ -15,7 +15,8 @@ import UIKit
 
 /// The SignUpScreenletDelegate protocol defines some methods that you use to manage the
 /// SignUpScreenlet events. All of them are optional.
-@objc public protocol SignUpScreenletDelegate: BaseScreenletDelegate {
+@objc(SignUpScreenletDelegate)
+public protocol SignUpScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when sign up successfully completes.
 	/// The user attributes are passed as a dictionary of keys (String or NSStrings)
@@ -42,6 +43,7 @@ import UIKit
 /// can become a new user in your portal. You can also use this Screenlet to save the credentials 
 /// of the new user in their keychain. This enables auto login for future sessions. The Screenlet 
 /// also supports navigation of form fields from the keyboard of the user’s device.
+@objc(SignUpScreenlet)
 open class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 
 	// MARK: Inspectables

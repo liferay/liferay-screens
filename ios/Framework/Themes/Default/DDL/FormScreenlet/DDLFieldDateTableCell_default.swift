@@ -17,6 +17,7 @@ import UIKit
 	import DTPickerPresenter
 #endif
 
+@objc(DDLFieldDateTableCell_default)
 open class DDLFieldDateTableCell_default: DDLBaseFieldTextboxTableCell_default {
 
 	// MARK: UITableViewCell

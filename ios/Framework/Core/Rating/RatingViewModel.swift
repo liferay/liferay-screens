@@ -13,7 +13,8 @@
  */
 import UIKit
 
-@objc public protocol RatingViewModel {
+@objc(RatingViewModel)
+public protocol RatingViewModel {
 
 	/// Number of possible rating values available for the user in the view.
 	var defaultRatingsGroupCount: Int32 { get }

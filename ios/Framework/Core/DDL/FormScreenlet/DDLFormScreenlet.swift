@@ -15,7 +15,8 @@ import UIKit
 
 /// The DDLFormScreenletDelegate protocol defines some methods that you use to manage the
 /// DDLFormScreenlet events. All of them are optional.
-@objc public protocol DDLFormScreenletDelegate: BaseScreenletDelegate {
+@objc(DDLFormScreenletDelegate)
+public protocol DDLFormScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when the form is loaded. The second parameter (record) 
 	/// contains only field definitions.
@@ -123,6 +124,7 @@ import UIKit
 /// * Required values and validation for fields can be used.
 /// * Users can traverse the form fields from the keyboard.
 /// * Supports i18n in record values and labels.
+@objc(DDLFormScreenlet)
 open class DDLFormScreenlet: BaseScreenlet {
 
 	fileprivate enum UploadStatus {

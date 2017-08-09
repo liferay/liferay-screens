@@ -15,7 +15,8 @@ import UIKit
 
 /// The CommentListScreenletDelegate protocol defines some methods that you use to manage the
 /// CommentListScreenlet events. All of them are optional.
-@objc public protocol CommentListScreenletDelegate: BaseScreenletDelegate {
+@objc(CommentListScreenletDelegate)
+public protocol CommentListScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when the screenlet receives the comments.
 	///
@@ -82,6 +83,7 @@ import UIKit
 
 /// Comment List Screenlet can list all the comments of an asset in a Liferay instance. It also 
 // lets the user update or delete comments.
+@objc(CommentListScreenlet)
 open class CommentListScreenlet: BaseListScreenlet, CommentDisplayScreenletDelegate {
 
 	// MARK: Inspectables

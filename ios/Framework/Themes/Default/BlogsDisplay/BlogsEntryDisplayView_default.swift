@@ -13,6 +13,7 @@
  */
 import UIKit
 
+@objc(BlogsEntryDisplayView_default)
 open class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewModel {
 
 	// MARK: Outlets

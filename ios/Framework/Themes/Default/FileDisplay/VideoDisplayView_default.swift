@@ -15,6 +15,7 @@ import UIKit
 import AVFoundation
 import AVKit
 
+@objc(VideoDisplayView_default)
 open class VideoDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
 	// MARK: Outlets

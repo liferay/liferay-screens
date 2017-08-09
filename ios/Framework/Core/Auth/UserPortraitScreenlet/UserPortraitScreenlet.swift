@@ -15,7 +15,8 @@ import UIKit
 
 /// The UserPortraitScreenletDelegate protocol defines some methods that you use to manage the 
 /// UserPortraitScreenlet events. All of them are optional.
-@objc public protocol UserPortraitScreenletDelegate: BaseScreenletDelegate {
+@objc(UserPortraitScreenletDelegate)
+public protocol UserPortraitScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when an image is received from the server. You can then apply image filters 
 	/// (grayscale, for example) and return the new image. You can return the original image 
@@ -58,6 +59,7 @@ import UIKit
 
 /// The UserPortraitScreenlet shows the user’s portrait from Liferay instance.
 /// If the user doesn’t have a portrait configured, a default placeholder image is shown.
+@objc(UserPortraitScreenlet)
 open class UserPortraitScreenlet: BaseScreenlet {
 
 	// MARK: Class properties

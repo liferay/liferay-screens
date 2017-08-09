@@ -13,6 +13,7 @@
  */
 import UIKit
 
+@objc(CommentListView_default)
 open class CommentListView_default: BaseListTableView, CommentListViewModel {
 
 	let CommentCellId = "commentCell"

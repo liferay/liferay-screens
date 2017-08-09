@@ -15,6 +15,7 @@ import Foundation
 
 ///Video Display Screenlet displays a video file from a Liferay instance’s Documents and Media 
 /// Library.
+@objc(VideoDisplayScreenlet)
 open class VideoDisplayScreenlet: FileDisplayScreenlet {
 
 	// MARK: Inspectables

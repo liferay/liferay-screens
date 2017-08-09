@@ -15,7 +15,8 @@ import UIKit
 
 /// The AssetDisplayScreenletDelegate protocol defines some methods that you use to manage the
 /// AssetDisplayScreenlet events. All of them are optional.
-@objc public protocol AssetDisplayScreenletDelegate: BaseScreenletDelegate {
+@objc(AssetDisplayScreenletDelegate)
+public protocol AssetDisplayScreenletDelegate: BaseScreenletDelegate {
 
 	///  Called when the screenlet receives the asset.
 	///
@@ -59,6 +60,7 @@ import UIKit
 /// currently display Documents and Media files (DLFileEntry images, videos, audio files, and PDFs),
 /// blogs entries (BlogsEntry) and web content articles (WebContent). 
 /// Asset Display Screenlet can also display your custom asset types.
+@objc(AssetDisplayScreenlet)
 open class AssetDisplayScreenlet: BaseScreenlet {
 
 	// MARK: Inspectables

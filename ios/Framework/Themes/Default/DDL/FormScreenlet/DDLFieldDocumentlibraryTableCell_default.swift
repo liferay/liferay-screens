@@ -18,6 +18,7 @@ import UIKit
 	import DTPickerPresenter
 #endif
 
+@objc(DDLFieldDocumentlibraryTableCell_default)
 open class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableCell_default {
 
 	// MARK: Outlets
