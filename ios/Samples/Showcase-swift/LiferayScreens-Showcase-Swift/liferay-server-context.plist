@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>server</key>
-	<string>http://screens-demo.liferay.org.es/</string>
+	<string>http://screens-demo.liferay.org.es</string>
 	<key>version</key>
 	<integer>70</integer>
 	<key>companyId</key>
 	<integer>20116</integer>
 	<key>groupId</key>
-	<real>41905</real>
+	<real>20147</real>
 	<key>anonymousUsername</key>
 	<string>anonymous1@liferay.com</string>
 	<key>anonymousPassword</key>
@@ -58,5 +58,7 @@
 	<integer>42184</integer>
 	<key>webContentDisplayArticleId</key>
 	<string>41983</string>
+	<key>portletDisplayUrl</key>
+	<string>/web/portletdisplay-demo/gallery</string>
 </dict>
 </plist>

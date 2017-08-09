@@ -41,7 +41,7 @@ Pod::Spec.new do |s|
 	]
 
 	s.resource_bundle = {
-		'LiferayScreens-core' => 'ios/Framework/Core/**/*.{plist,lproj,css}',
+		'LiferayScreens-core' => 'ios/Framework/Core/**/*.{plist,lproj,js,html,css}',
 		'LiferayScreens-default' => 'ios/Framework/Themes/Default/**/*.{xib,png,plist,lproj}'
 	}
 	
@@ -71,5 +71,7 @@ Pod::Spec.new do |s|
 
 	# RatingBar
 	s.dependency 'Cosmos', '~> 8.0'
+
+	s.dependency 'Cordova', '~> 4.0'
 
 end

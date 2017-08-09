@@ -17,7 +17,7 @@ open class ImageUploadDetailView_default: ImageUploadDetailViewBase, UITextViewD
 
 	// MARK: Outlets
 
-	@IBOutlet weak var scrollView: UIScrollView!
+	@IBOutlet weak var scroll: UIScrollView!
 
 	@IBOutlet weak var hintLabel: UILabel!
 
@@ -55,7 +55,7 @@ open class ImageUploadDetailView_default: ImageUploadDetailViewBase, UITextViewD
 			target: self,
 			action: #selector(dismissKeyboard))
 
-		scrollView?.addGestureRecognizer(dismissKeyboardGesture)
+		scroll?.addGestureRecognizer(dismissKeyboardGesture)
 	}
 
 	override open func didMoveToWindow() {
@@ -118,22 +118,22 @@ open class ImageUploadDetailView_default: ImageUploadDetailViewBase, UITextViewD
 		let keyboardHeight =
 			(notification.userInfo![UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.height
 
-		var scrollNewFrame = scrollView.frame
+		var scrollNewFrame = scroll.frame
 		scrollNewFrame.size.height = frame.height - keyboardHeight
 
-		scrollView.frame = scrollNewFrame
+		scroll.frame = scrollNewFrame
 
-		let bottomOffset = CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.frame.height)
-		scrollView.setContentOffset(bottomOffset, animated: true)
+		let bottomOffset = CGPoint(x: 0, y: scroll.contentSize.height - scroll.frame.height)
+		scroll.setContentOffset(bottomOffset, animated: true)
 	}
 
 	open func keyboardWillHide(_ notification: Notification) {
 		let keyboardHeight =
 			(notification.userInfo![UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.height
 
-		var scrollNewFrame = scrollView.frame
+		var scrollNewFrame = scroll.frame
 		scrollNewFrame.size.height = frame.height + keyboardHeight
 
-		scrollView.frame = scrollNewFrame
+		scroll.frame = scrollNewFrame
 	}
 }

@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,10 +16,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rAF-tw-8TO">
+                    <rect key="frame" x="0.0" y="0.0" width="228" height="315"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oMl-W6-Jdh" userLabel="Content View">
+                            <rect key="frame" x="0.0" y="0.0" width="228" height="315"/>
                             <subviews>
                                 <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lf5-KV-kwV" customClass="DefaultTextField" customModule="LiferayScreens">
+                                    <rect key="frame" x="0.0" y="15" width="228" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="GWu-aF-DMf"/>
                                     </constraints>
@@ -24,6 +30,7 @@
                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" keyboardType="namePhonePad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 </textField>
                                 <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fgP-Xs-MLB" customClass="DefaultTextField" customModule="LiferayScreens">
+                                    <rect key="frame" x="0.0" y="79" width="228" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="Rl7-56-gr9"/>
                                     </constraints>
@@ -31,6 +38,7 @@
                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no" spellCheckingType="no" keyboardType="namePhonePad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 </textField>
                                 <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lQM-e9-Lbg" customClass="DefaultTextField" customModule="LiferayScreens">
+                                    <rect key="frame" x="0.0" y="143" width="228" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="jSC-Yx-17P"/>
                                     </constraints>
@@ -38,6 +46,7 @@
                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 </textField>
                                 <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XBk-dU-LXI" customClass="DefaultTextField" customModule="LiferayScreens">
+                                    <rect key="frame" x="0.0" y="207" width="228" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="44" id="mFu-5I-jPl"/>
                                     </constraints>
@@ -45,6 +54,7 @@
                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="send" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                 </textField>
                                 <button opaque="NO" tag="5" contentMode="scaleToFill" restorationIdentifier="signup-action" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kq3-Yb-Mpp">
+                                    <rect key="frame" x="0.0" y="271" width="228" height="44"/>
                                     <color key="backgroundColor" red="0.083623558282852173" green="0.66497266292572021" blue="0.84832382202148438" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
                                     <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                     <constraints>
@@ -108,7 +118,7 @@
                 <outlet property="firstNameField" destination="Lf5-KV-kwV" id="axR-9J-sbj"/>
                 <outlet property="lastNameField" destination="fgP-Xs-MLB" id="PDh-q8-WPJ"/>
                 <outlet property="passwordField" destination="XBk-dU-LXI" id="eXc-36-fmP"/>
-                <outlet property="scrollView" destination="rAF-tw-8TO" id="x9p-X3-UIl"/>
+                <outlet property="scroll" destination="rAF-tw-8TO" id="zYf-9Q-QKK"/>
                 <outlet property="signUpButton" destination="kq3-Yb-Mpp" id="1YT-Yq-dgS"/>
             </connections>
             <point key="canvasLocation" x="240" y="229.5"/>
