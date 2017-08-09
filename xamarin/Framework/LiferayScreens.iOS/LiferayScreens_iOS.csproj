@@ -65,6 +65,7 @@
     <ObjcBindingApiDefinition Include="Auth\SignUp\SignUpScreenletDelegate.cs" />
     <ObjcBindingApiDefinition Include="Auth\SignUp\SignUpViewModel.cs" />
     <ObjcBindingApiDefinition Include="Themes\Default\SignUpView_default.cs" />
+    <ObjcBindingApiDefinition Include="Base\ProgressPresenter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />

@@ -51,9 +51,9 @@ namespace LiferayScreens
         void OnSetTranslations();
 
         // -(id<ProgressPresenter> _Nonnull)createProgressPresenter __attribute__((warn_unused_result));
-        //[Export("createProgressPresenter")]
+        [Export("createProgressPresenter")]
         //[Verify(MethodToProperty)]
-        //ProgressPresenter CreateProgressPresenter { get; }
+        ProgressPresenter CreateProgressPresenter { get; }
 
         // @property (copy, nonatomic) NSString * _Nullable emailAddress;
         [NullAllowed, Export("emailAddress")]
