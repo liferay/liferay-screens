@@ -28,21 +28,24 @@ namespace ShowcaseiOS.ViewController
             // Release any cached data, images, etc that aren't in use.
         }
 
-        /* LoginScreenletDelegate */
+        /* ILoginScreenletDelegate */
 
         [Export("screenlet:onLoginError:")]
-        public virtual void OnLoginError(BaseScreenlet screenlet, NSError error) {
+        public virtual void OnLoginError(BaseScreenlet screenlet, NSError error)
+        {
             System.Diagnostics.Debug.WriteLine($"Login failed: {error.Description}");
         }
 
         [Export("screenlet:onLoginResponseUserAttributes:")]
-        public virtual void OnLoginResponseUserAttributes(BaseScreenlet screenlet, NSDictionary<NSString, NSObject> attributes) {
+        public virtual void OnLoginResponseUserAttributes(BaseScreenlet screenlet, NSDictionary<NSString, NSObject> attributes)
+        {
             System.Diagnostics.Debug.WriteLine($"Login successful: {attributes}");
         }
 
         /* Private methods */
 
-        void SetDefaultValues() {
+        void SetDefaultValues()
+        {
             this.loginScreenlet.ViewModel.UserName = "test@liferay.com";
             this.loginScreenlet.ViewModel.Password = "test1";
         }

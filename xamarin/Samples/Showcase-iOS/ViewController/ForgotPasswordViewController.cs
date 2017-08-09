@@ -31,7 +31,7 @@ namespace ShowcaseiOS.ViewController
             // Release any cached data, images, etc that aren't in use.
         }
 
-        /* ForgotPasswordScreenletDelegate */
+        /* IForgotPasswordScreenletDelegate */
 
         [Export("screenlet:onForgotPasswordError:")]
         public void OnForgotPasswordError(ForgotPasswordScreenlet screenlet, Foundation.NSError error)
@@ -41,7 +41,8 @@ namespace ShowcaseiOS.ViewController
 
         /* Private methods */
 
-        void SetDefaultValues() {
+        void SetDefaultValues()
+        {
             this.forgotPasswordScreenlet.ViewModel.UserName = "test@liferay.com";
         }
     }
