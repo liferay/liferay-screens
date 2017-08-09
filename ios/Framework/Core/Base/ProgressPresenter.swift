@@ -13,7 +13,9 @@
  */
 import Foundation
 
-@objc public protocol ProgressPresenter {
+
+@objc(ProgressPresenter)
+public protocol ProgressPresenter {
 
 	func showHUDInView(_ view: UIView,
 		message: String?,
