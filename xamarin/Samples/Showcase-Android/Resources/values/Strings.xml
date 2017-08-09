@@ -6,4 +6,5 @@
 	</string>
 	<string name="login">Login</string>
 	<string name="forgot_password">Forgot Password</string>
+	<string name="sign_up">Sign Up</string>
 </resources>

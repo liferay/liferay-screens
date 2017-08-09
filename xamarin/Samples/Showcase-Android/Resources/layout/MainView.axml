@@ -21,6 +21,10 @@
                 android:id="@+id/forgot_password_screenlet"
                 android:text="@string/forgot_password"
                 style="@style/test_app_button" />
+            <Button
+                android:id="@+id/sign_up_screenlet"
+                android:text="@string/sign_up"
+                style="@style/test_app_button" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
