@@ -32,6 +32,11 @@ All notable changes to this project will be documented in this file.
 ### Documentation
 * Screenlets documentation improvements
 
+## Xamarin
+
+### New Features
+- Auth screenlets bindings: LoginScreenlet, ForgotPasswordScreenlet, SignUpScreenlet
+
 # 2.1.2
 
 ## iOS
