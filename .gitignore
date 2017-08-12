@@ -23,3 +23,15 @@ Pods/
 .idea
 *.iml
 android/samples/addbookmarkscreenlet/local.properties
+*.suo
+**/*.framework/
+[Dd]ebug/
+[Rr]elease/
+**/Jars/
+**/bin/
+**/obj/
+xamarin/Framework/packages/
+*.[Cc]ache
+*.user
+*.userprefs
+*.nupkg

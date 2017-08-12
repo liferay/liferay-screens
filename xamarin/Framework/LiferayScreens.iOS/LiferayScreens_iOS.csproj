@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{8FFB629D-F513-41CE-95D2-7ECE97B6EEEC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{9A7BF9F5-5C02-4749-AB38-FE8D8C3D0C91}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>LiferayScreens</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>LiferayScreens_iOS</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Auth\" />
+    <Folder Include="Auth\Login\" />
+    <Folder Include="Base\" />
+    <Folder Include="Themes\" />
+    <Folder Include="Themes\Default\" />
+    <Folder Include="Auth\Common\" />
+    <Folder Include="Auth\ForgotPassword\" />
+    <Folder Include="Auth\SignUp\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <ObjcBindingApiDefinition Include="Auth\Login\LoginScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Auth\Login\LoginScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Base\BaseScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Base\BaseScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Base\BaseScreenletView.cs" />
+    <ObjcBindingApiDefinition Include="Base\Interactor.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\LoginView_default.cs" />
+    <ObjcBindingApiDefinition Include="Auth\Login\LoginViewModel.cs" />
+    <ObjcBindingApiDefinition Include="Auth\Common\BasicAuthBasedType.cs" />
+    <ObjcBindingApiDefinition Include="Auth\ForgotPassword\ForgotPasswordScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\ForgotPasswordView_default.cs" />
+    <ObjcBindingApiDefinition Include="Auth\ForgotPassword\ForgotPasswordViewModel.cs" />
+    <ObjcBindingApiDefinition Include="Auth\Common\AnonymousBasicAuthType.cs" />
+    <ObjcBindingApiDefinition Include="Auth\ForgotPassword\ForgotPasswordScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Auth\SignUp\SignUpScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Auth\SignUp\SignUpScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Auth\SignUp\SignUpViewModel.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\SignUpView_default.cs" />
+    <ObjcBindingApiDefinition Include="Base\ProgressPresenter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingCoreSource Include="Structs.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <NativeReference Include="..\DependentFrameworks\AFNetworking.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="..\DependentFrameworks\CocoaLumberjack.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="..\DependentFrameworks\Cosmos.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="..\DependentFrameworks\CryptoSwift.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="..\DependentFrameworks\DTPickerPresenter.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="..\DependentFrameworks\KeychainAccess.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="..\DependentFrameworks\Kingfisher.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="..\DependentFrameworks\LRMobileSDK.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="..\DependentFrameworks\LROAuth.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="..\DependentFrameworks\MBProgressHUD.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="..\DependentFrameworks\MDRadialProgress.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="..\DependentFrameworks\Reachability.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="..\DependentFrameworks\SMXMLDocument.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="..\DependentFrameworks\SQLCipher.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="..\DependentFrameworks\TNRadioButtonGroup.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="..\DependentFrameworks\YapDatabase.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="..\..\LiferayScreens.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
+</Project>
