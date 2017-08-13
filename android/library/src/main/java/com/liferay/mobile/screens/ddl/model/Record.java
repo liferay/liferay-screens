@@ -16,16 +16,19 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
 import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.util.JSONUtil;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * @author Jose Manuel Navarro
@@ -311,7 +314,7 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 		return 0;
 	}
 
-	public class Page {
+	public static class Page {
 
 		private final String title;
 		private final String description;

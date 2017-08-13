@@ -2,16 +2,19 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
 import com.liferay.mobile.screens.ddl.DDMStructureParser;
 import com.liferay.mobile.screens.ddl.JsonParser;
 import com.liferay.mobile.screens.ddl.XSDParser;
 import com.liferay.mobile.screens.util.LiferayLocale;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
@@ -37,6 +40,12 @@ public class DDMStructure implements Parcelable {
 	protected List<Field> fields = new ArrayList<>();
 	protected Locale locale = Locale.US;
 	protected boolean parsed;
+	private String description;
+	private String name;
+	private String structureKey;
+	private String structureId;
+	private Long classNameId;
+	private String classPK;
 
 	public DDMStructure() {
 		super();
@@ -107,9 +116,16 @@ public class DDMStructure implements Parcelable {
 	}
 
 	public void parse(JSONObject jsonObject) throws JSONException {
+		this.description = jsonObject.getString("descriptionCurrentValue");
+		this.name = jsonObject.getString("nameCurrentValue");
+		this.structureKey = jsonObject.getString("structureKey");
+		this.structureId = jsonObject.getString("structureId");
+		this.classNameId = jsonObject.getLong("classNameId");
+		this.classPK = "com.liferay.dynamic.data.mapping.model.DDMStructure";
 		if (jsonObject.has("xsd")) {
 			parse(jsonObject.getString("xsd"), new XSDParser());
-		} else {
+		}
+		else {
 			parse(jsonObject.getString("definition"), new JsonParser());
 		}
 		parsed = true;
@@ -119,7 +135,8 @@ public class DDMStructure implements Parcelable {
 		try {
 			Locale locale = this.locale == null ? LiferayLocale.getDefaultLocale() : this.locale;
 			fields = parser.parse(content, locale);
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			fields = new ArrayList<>();
 		}
 	}
