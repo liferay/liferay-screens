@@ -40,5 +40,12 @@
             android:text="@string/submit"
             android:visibility="gone" />
 
+        <Button
+            android:id="@+id/next_page_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="Next Page"
+            android:visibility="gone" />
     </RelativeLayout>
 </ScrollView>

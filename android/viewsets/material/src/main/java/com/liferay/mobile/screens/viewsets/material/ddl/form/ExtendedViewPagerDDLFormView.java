@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-
+import android.widget.TextView;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
@@ -19,12 +19,14 @@ import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.R;
-
+import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ExtendedViewPagerDDLFormView
-	extends ViewPagerDDLFormView {
+public class ExtendedViewPagerDDLFormView extends ViewPagerDDLFormView
+	implements RecyclerViewPager.OnPageChangedListener {
+
+	private int position = 0;
 
 	public ExtendedViewPagerDDLFormView(Context context) {
 		super(context);
@@ -42,6 +44,7 @@ public class ExtendedViewPagerDDLFormView
 	@SuppressLint("MissingSuperCall")
 	protected void onFinishInflate() {
 		setLayoutManager(new LinearLayoutManager(getContext(), HORIZONTAL, false));
+		addOnPageChangedListener(this);
 		setSinglePageFling(true);
 		setFocusable(true);
 		setFocusableInTouchMode(true);
@@ -81,18 +84,17 @@ public class ExtendedViewPagerDDLFormView
 		}
 	}
 
-//	@Override
-//	protected void adjustPositionX(int velocityX) {
-//
-//		boolean validPage = checkPage(position);
-//
-//		if (validPage || getCurrentPosition() < position) {
-//			super.adjustPositionX(velocityX);
-//		}
-//		else {
-//			this.smoothScrollToPosition(position);
-//		}
-//	}
+	@Override
+	protected void adjustPositionX(int velocityX) {
+
+		boolean validPage = checkPage(position);
+
+		if (validPage || getCurrentPosition() < position) {
+			super.adjustPositionX(velocityX);
+		} else {
+			this.smoothScrollToPosition(position);
+		}
+	}
 
 	@Override
 	public void onClick(View view) {
@@ -100,8 +102,14 @@ public class ExtendedViewPagerDDLFormView
 			if (getDDLFormScreenlet().validateForm()) {
 				getDDLFormScreenlet().submitForm();
 			}
-		}
-		else {
+		} else if (view.getId() == R.id.next_page_button) {
+
+			boolean validPage = checkPage(getCurrentPosition());
+
+			if (validPage) {
+				smoothScrollToPosition(getCurrentPosition() + 1);
+			}
+		} else {
 			getDDLFormScreenlet().startUpload((DocumentField) view.getTag());
 		}
 	}
@@ -139,6 +147,11 @@ public class ExtendedViewPagerDDLFormView
 			}
 		}
 		return true;
+	}
+
+	@Override
+	public void OnPageChanged(int oldPosition, int newPosition) {
+		position = newPosition;
 	}
 
 	@Override
@@ -207,6 +220,9 @@ public class ExtendedViewPagerDDLFormView
 		class HorizontalViewHolder extends RecyclerView.ViewHolder {
 
 			private final LinearLayout container;
+			private final TextView pageTitleTextView;
+			private final TextView pageNumberTextView;
+			private final Button nextPageButton;
 
 			HorizontalViewHolder(View itemView) {
 				super(itemView);
@@ -214,6 +230,10 @@ public class ExtendedViewPagerDDLFormView
 				container = (LinearLayout) itemView.findViewById(R.id.ddlfields_container);
 				submitButton = (Button) itemView.findViewById(R.id.liferay_form_submit);
 				submitButton.setOnClickListener(ExtendedViewPagerDDLFormView.this);
+				nextPageButton = (Button) itemView.findViewById(R.id.next_page_button);
+				nextPageButton.setOnClickListener(ExtendedViewPagerDDLFormView.this);
+				pageTitleTextView = (TextView) itemView.findViewById(R.id.page_title);
+				pageNumberTextView = (TextView) itemView.findViewById(R.id.page_number);
 			}
 
 			void paint(final Record.Page page) {
@@ -221,8 +241,8 @@ public class ExtendedViewPagerDDLFormView
 				for (Field field : page.getFields()) {
 
 					int fieldLayoutId = getFieldLayoutId(field.getEditorType());
-					View view =
-						LayoutInflater.from(getContext()).inflate(fieldLayoutId, ExtendedViewPagerDDLFormView.this, false);
+					View view = LayoutInflater.from(getContext())
+						.inflate(fieldLayoutId, ExtendedViewPagerDDLFormView.this, false);
 					DDLFieldViewModel viewModel = (DDLFieldViewModel) view;
 
 					viewModel.setField(field);
@@ -231,10 +251,16 @@ public class ExtendedViewPagerDDLFormView
 					container.addView(view);
 				}
 
+				pageTitleTextView.setText(page.getTitle());
+				if (getItemCount() > 1) {
+					String text = page.getNumber() + 1 + "/" + getItemCount();
+					pageNumberTextView.setText(text);
+				}
+
 				boolean isLastPage = page.getNumber() == record.getPages().size() - 1;
+				nextPageButton.setVisibility(!isLastPage ? VISIBLE : INVISIBLE);
 				submitButton.setVisibility(isLastPage ? VISIBLE : INVISIBLE);
 			}
 		}
 	}
-
 }
