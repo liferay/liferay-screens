@@ -28,3 +28,6 @@ dependencies {
 
 	compile project(':liferay-material-viewset')
 }
+
+apply from: '../../bintray.gradle'
+apply from: '../../install.gradle'
