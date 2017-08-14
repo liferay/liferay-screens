@@ -25,6 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -70,10 +71,6 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 		parseServerValues();
 	}
 
-	public Record(Locale locale) {
-		this(new HashMap<String, Object>(), locale);
-	}
-
 	private Record(Parcel in, ClassLoader loader) {
 		super(in, loader);
 		ddmStructure = in.readParcelable(DDMStructure.class.getClassLoader());
@@ -81,6 +78,8 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 		structureId = (Long) in.readValue(Long.class.getClassLoader());
 		recordSetId = (Long) in.readValue(Long.class.getClassLoader());
 		recordId = (Long) in.readValue(Long.class.getClassLoader());
+		Parcelable[] array = in.readParcelableArray(Page.class.getClassLoader());
+		pages = new ArrayList(Arrays.asList(array));
 	}
 
 	public void refresh() {
@@ -100,11 +99,13 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 	@Override
 	public void writeToParcel(Parcel destination, int flags) {
 		super.writeToParcel(destination, flags);
+
 		destination.writeParcelable(ddmStructure, flags);
 		destination.writeValue(creatorUserId);
 		destination.writeValue(structureId);
 		destination.writeValue(recordSetId);
 		destination.writeValue(recordId);
+		destination.writeParcelableArray(pages.toArray(new Field[pages.size()]), flags);
 	}
 
 	public long getRecordSetId() {
@@ -258,6 +259,8 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 
 	public void parsePages(JSONObject pagesObject) throws JSONException {
 
+		pages.clear();
+
 		JSONArray pagesArray = pagesObject.getJSONArray("DDMFormLayoutPages");
 
 		for (int i = 0; i < pagesArray.length(); i++) {
@@ -314,7 +317,7 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 		return 0;
 	}
 
-	public static class Page {
+	public static class Page implements Parcelable {
 
 		private final String title;
 		private final String description;
@@ -327,6 +330,44 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 			this.description = description;
 			this.fields = fields;
 		}
+
+		protected Page(Parcel in, ClassLoader classLoader) {
+			title = in.readString();
+			description = in.readString();
+			Parcelable[] array = in.readParcelableArray(Field.class.getClassLoader());
+			fields = new ArrayList(Arrays.asList(array));
+			number = in.readInt();
+		}
+
+		@Override
+		public void writeToParcel(Parcel dest, int flags) {
+			dest.writeString(title);
+			dest.writeString(description);
+			dest.writeParcelableArray(fields.toArray(new Field[fields.size()]), flags);
+			dest.writeInt(number);
+		}
+
+		@Override
+		public int describeContents() {
+			return 0;
+		}
+
+		public static final Parcelable.ClassLoaderCreator<Page> CREATOR = new ClassLoaderCreator<Page>() {
+			@Override
+			public Page createFromParcel(Parcel in, ClassLoader classLoader) {
+				return new Page(in, classLoader);
+			}
+
+			@Override
+			public Page createFromParcel(Parcel source) {
+				throw new AssertionError("constructor with classloader method should be called!");
+			}
+
+			@Override
+			public Page[] newArray(int size) {
+				return new Page[size];
+			}
+		};
 
 		public List<Field> getFields() {
 			return fields;
