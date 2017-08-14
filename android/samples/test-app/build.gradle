@@ -20,19 +20,6 @@ android {
 		}
 	}
 
-	packagingOptions {
-		exclude 'META-INF/LICENSE'
-		exclude 'META-INF/NOTICE'
-	}
-
-	productFlavors {
-		vanilla {
-			minSdkVersion rootProject.ext.minSdkVersion
-		}
-		travisci {
-			minSdkVersion 21
-		}
-	}
 }
 
 dependencies {
