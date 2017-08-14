@@ -58,7 +58,6 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 	private Long structureId;
 	private Long recordSetId;
 	private Long recordId;
-	private Long layoutId;
 
 	public Record() {
 		super();
@@ -80,6 +79,10 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 		recordId = (Long) in.readValue(Long.class.getClassLoader());
 		Parcelable[] array = in.readParcelableArray(Page.class.getClassLoader());
 		pages = new ArrayList(Arrays.asList(array));
+	}
+
+	public Record(Locale locale) {
+		this(new HashMap<String, Object>(), locale);
 	}
 
 	public void refresh() {
@@ -251,10 +254,6 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 		if (userId != null) {
 			creatorUserId = userId;
 		}
-	}
-
-	public long getLayoutId() {
-		return layoutId;
 	}
 
 	public void parsePages(JSONObject pagesObject) throws JSONException {
