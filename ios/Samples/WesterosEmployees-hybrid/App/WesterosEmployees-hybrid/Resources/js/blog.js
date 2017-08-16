@@ -1,12 +1,12 @@
 function modifyItem() {
-    
+
     var allLinks = document.getElementsByTagName('a');
     var allImages = document.getElementsByTagName('img');
-    
+
     for (var i = 0; i < allLinks.length; i++) {
-        allLinks[i].removeAttribute('href');
+        allLinks[i].removeAttribute('onclick');
     }
-    
+
     for (var i = 0; i < allImages.length; i++) {
         if (allImages[i].id != 'img-header') {
             imageToDiv(allImages[i]);
