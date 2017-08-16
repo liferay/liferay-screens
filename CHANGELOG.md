@@ -52,6 +52,7 @@ All notable changes to this project will be documented in this file.
 ### New Features
 - Auth screenlets bindings: LoginScreenlet, ForgotPasswordScreenlet, SignUpScreenlet
 - DDLFormScreenlet binding
+- Create demo apps: Showcase-Android and Showcase-iOS with auth screenlets examples
 
 # 2.1.2
 
