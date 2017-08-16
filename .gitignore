@@ -30,7 +30,7 @@ android/samples/addbookmarkscreenlet/local.properties
 **/Jars/
 **/bin/
 **/obj/
-xamarin/Framework/packages/
+xamarin/**/packages/
 *.[Cc]ache
 *.user
 *.userprefs
