@@ -7,25 +7,15 @@ namespace ShowcaseiOS.ViewController
 {
     public partial class ViewController : UIViewController, ILoginScreenletDelegate
     {
-        protected ViewController(IntPtr handle) : base(handle)
-        {
-            // Note: this .ctor should not contain any initialization logic.
-        }
+        protected ViewController(IntPtr handle) : base(handle) {}
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            // Perform any additional setup after loading the view, typically from a nib.
 
             this.loginScreenlet.Delegate = this;
 
             SetDefaultValues();
-        }
-
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-            // Release any cached data, images, etc that aren't in use.
         }
 
         /* ILoginScreenletDelegate */
@@ -50,7 +40,7 @@ namespace ShowcaseiOS.ViewController
             this.loginScreenlet.ViewModel.Password = "test1";
         }
 
-        /* Action methods */
+        /* Event methods */
 
         partial void ForgotPasswordButton_TouchUpInside(UIButton sender)
         {

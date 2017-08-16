@@ -7,15 +7,11 @@ namespace ShowcaseiOS.ViewController
 {
     public partial class SignUpViewController : UIViewController, ISignUpScreenletDelegate
     {
-        public SignUpViewController(IntPtr handle) : base(handle)
-        {
-            // Note: this .ctor should not contain any initialization logic.
-        }
+        public SignUpViewController(IntPtr handle) : base(handle) {}
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            // Perform any additional setup after loading the view, typically from a nib.
 
             this.signUpScreenlet.AnonymousApiUserName = "anonymous1@liferay.com";
             this.signUpScreenlet.AnonymousApiPassword = "anonymous1";
@@ -26,7 +22,6 @@ namespace ShowcaseiOS.ViewController
         public override void DidReceiveMemoryWarning()
         {
             base.DidReceiveMemoryWarning();
-            // Release any cached data, images, etc that aren't in use.
         }
 
         /* ISignUpScreenletDelegate */
