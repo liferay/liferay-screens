@@ -65,6 +65,7 @@ All notable changes to this project will be documented in this file.
 - DDLFormScreenlet binding
 - ImageGalleryScreenlet binding
 - UserPortraitScreenlet binding
+- Create demo apps: Showcase-Android and Showcase-iOS with auth screenlets examples
 
 # 2.1.2
 
