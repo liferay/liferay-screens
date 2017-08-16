@@ -34,6 +34,7 @@ body {
 }
 
 
+
 /* Ratings */
 
 .taglib-ratings {
@@ -76,6 +77,7 @@ a:focus {
 }
 
 
+
 /* Blog */
 
 p {
@@ -104,6 +106,7 @@ p {
 .img-blog {
     max-width: 100%;
 }
+
 
 
 /* PDF */
