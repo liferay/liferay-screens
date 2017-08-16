@@ -44,18 +44,19 @@ namespace ShowcaseiOS.ViewController
 
         partial void ForgotPasswordButton_TouchUpInside(UIButton sender)
         {
-            //FIX-ME
-            System.Diagnostics.Debug.WriteLine($"Navigate to ForgotPasswordViewController");
+            System.Diagnostics.Debug.WriteLine("Navigate to ForgotPasswordViewController");
             UIStoryboard board = UIStoryboard.FromName("ForgotPassword", null);
-            ForgotPasswordViewController vc = (ForgotPasswordViewController) board.InstantiateViewController("ForgotPasswordViewController");
+            ForgotPasswordViewController vc = (ForgotPasswordViewController) 
+                board.InstantiateViewController("ForgotPasswordViewController");
             this.NavigationController.PushViewController(vc, true);
         }
 
         partial void SignUpButton_TouchUpInside(UIButton sender)
         {
-            System.Diagnostics.Debug.WriteLine($"Navigate to SignUpViewController");
+            System.Diagnostics.Debug.WriteLine("Navigate to SignUpViewController");
             UIStoryboard board = UIStoryboard.FromName("SignUp", null);
-            SignUpViewController vc = (SignUpViewController) board.InstantiateViewController("SignUpViewController");
+            SignUpViewController vc = (SignUpViewController) 
+                board.InstantiateViewController("SignUpViewController");
             this.NavigationController.PushViewController(vc, true);
         }
     }
