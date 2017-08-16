@@ -7,15 +7,11 @@ namespace ShowcaseiOS.ViewController
 {
     public partial class ForgotPasswordViewController : UIViewController, IForgotPasswordScreenletDelegate
     {
-        public ForgotPasswordViewController(IntPtr handle) : base(handle)
-        {
-            // Note: this .ctor should not contain any initialization logic.
-        }
+        public ForgotPasswordViewController(IntPtr handle) : base(handle) {}
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            // Perform any additional setup after loading the view, typically from a nib.
 
             this.forgotPasswordScreenlet.AnonymousApiUserName = "anonymous1@liferay.com";
             this.forgotPasswordScreenlet.AnonymousApiPassword = "anonymous1";
@@ -28,7 +24,6 @@ namespace ShowcaseiOS.ViewController
         public override void DidReceiveMemoryWarning()
         {
             base.DidReceiveMemoryWarning();
-            // Release any cached data, images, etc that aren't in use.
         }
 
         /* IForgotPasswordScreenletDelegate */
