@@ -12,6 +12,8 @@ All notable changes to this project will be documented in this file.
 * Fix error in UserPortrait initials view: image doesn't show correctly because background was always on top
 * Fix error in cookie login, now its possible to use this login type with UserId and Screenname
 * Fix error in VideoDisplayScreenlet: video is not showing the first time its downloaded
+* Fix error in material LoginView with cookie login
+* All screenlets should have getter and setter for their listener property
 
 ### New Features
 * Create loadLoggedUserPortrait method in UserPortraitScreenlet
@@ -19,12 +21,8 @@ All notable changes to this project will be documented in this file.
 * Allow developers override injected CSS in WebContentDisplayScreenlet
 * Add PortletDisplayScreenlet
 
-### Bugs
-* Fix error in material LoginView with cookie login
-
-### Bugs
-* Fix error in material LoginView with cookie login
-* All screenlets should have getter and setter for their listener property
+### Refactor
+* Remove unused attribute in RatingsScreenlet 
 
 ## iOS
 
