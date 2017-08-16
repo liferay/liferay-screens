@@ -108,7 +108,7 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 		destination.writeValue(structureId);
 		destination.writeValue(recordSetId);
 		destination.writeValue(recordId);
-		destination.writeParcelableArray(pages.toArray(new Field[pages.size()]), flags);
+		destination.writeParcelableArray(pages.toArray(new Page[pages.size()]), flags);
 	}
 
 	public long getRecordSetId() {
