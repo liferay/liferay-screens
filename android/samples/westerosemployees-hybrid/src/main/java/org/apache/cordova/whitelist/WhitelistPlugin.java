@@ -36,15 +36,18 @@ public class WhitelistPlugin extends CordovaPlugin {
     // Used when instantiated via reflection by PluginManager
     public WhitelistPlugin() {
     }
+
     // These can be used by embedders to allow Java-configuration of whitelists.
     public WhitelistPlugin(Context context) {
         this(new Whitelist(), new Whitelist(), null);
         new CustomConfigXmlParser().parse(context);
     }
+
     public WhitelistPlugin(XmlPullParser xmlParser) {
         this(new Whitelist(), new Whitelist(), null);
         new CustomConfigXmlParser().parse(xmlParser);
     }
+
     public WhitelistPlugin(Whitelist allowedNavigations, Whitelist allowedIntents, Whitelist allowedRequests) {
         if (allowedRequests == null) {
             allowedRequests = new Whitelist();
@@ -55,6 +58,7 @@ public class WhitelistPlugin extends CordovaPlugin {
         this.allowedIntents = allowedIntents;
         this.allowedRequests = allowedRequests;
     }
+
     @Override
     public void pluginInitialize() {
         if (allowedNavigations == null) {
@@ -103,6 +107,7 @@ public class WhitelistPlugin extends CordovaPlugin {
                 }
             }
         }
+
         @Override
         public void handleEndTag(XmlPullParser xml) {
         }
