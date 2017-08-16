@@ -22,15 +22,17 @@ function modifyItem() {
 
     for (var i = 0; i < lastChangeItems.length; i++) {
 
-        addClick(lastChangeItems[i]);
+        var item = lastChangeItems[i];
 
-        if (lastChangeItems[i].getAttribute('data-class-name') == itemClassName) {
-            var ext = lastChangeItems[i].getAttribute('data-extension');
-            lastChangeItems[i].getElementsByTagName('img')[0].src = icons[ext] || icons.def;
+        addClick(item);
+
+        if (item.getAttribute('data-class-name') == itemClassName) {
+            var ext = item.getAttribute('data-extension');
+            item.getElementsByTagName('img')[0].src = icons[ext] || icons.def;
         }
 
         if (i != lastChangeItems.length - 1) {
-            addSeparator(lastChangeItems[i]);
+            addSeparator(item);
         }
     }
 }
