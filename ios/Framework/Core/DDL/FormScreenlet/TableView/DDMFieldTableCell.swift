@@ -13,6 +13,7 @@
  */
 import UIKit
 
+@objc(DDMFieldTableCell)
 open class DDMFieldTableCell: UITableViewCell {
 
 	open class func viewAsFieldCell(_ view: UIView?) -> DDMFieldTableCell? {
