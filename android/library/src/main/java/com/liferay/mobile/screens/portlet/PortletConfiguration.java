@@ -30,6 +30,7 @@ import java.util.List;
  * @author Sarai Díaz García
  */
 public class PortletConfiguration {
+
 	private String portletUrl;
 	private List<InjectableScript> scripts;
 	private boolean isThemeEnabled;
@@ -87,7 +88,7 @@ public class PortletConfiguration {
 		private boolean isThemeEnabled = true;
 		private WebType webType = WebType.LIFERAY_AUTHENTICATED;
 		private CordovaLifeCycleObserver observer;
-		private boolean isCordovaEnabled;
+		private boolean isCordovaEnabled = false;
 
 		public Builder(String portletUrl) {
 			super();
