@@ -13,7 +13,9 @@
  */
 import Foundation
 
-@objc open class ImageEntryUpload: NSObject, NSCoding {
+
+@objc(ImageEntryUpload)
+open class ImageEntryUpload: NSObject, NSCoding {
 
 	open let image: UIImage
 	open let thumbnail: UIImage?

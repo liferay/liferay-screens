@@ -13,6 +13,7 @@
  */
 import Foundation
 
+
 @objc(ImageGalleryViewModel)
 public protocol ImageGalleryViewModel {
 
