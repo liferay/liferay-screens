@@ -13,6 +13,7 @@
  */
 import UIKit
 
+
 @objc(UploadProgressView_default)
 open class UploadProgressView_default: UIView, UploadProgressViewBase {
 

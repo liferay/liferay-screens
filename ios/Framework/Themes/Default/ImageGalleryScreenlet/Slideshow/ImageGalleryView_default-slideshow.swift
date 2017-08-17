@@ -13,6 +13,8 @@
  */
 import UIKit
 
+
+@objc(ImageGalleryView_default_slideshow)
 open class ImageGalleryView_default_slideshow: ImageGalleryCollectionViewBase {
 
 	// MARK: BaseListCollectionView

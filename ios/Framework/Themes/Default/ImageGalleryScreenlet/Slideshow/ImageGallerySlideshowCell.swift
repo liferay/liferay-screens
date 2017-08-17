@@ -13,6 +13,8 @@
  */
 import UIKit
 
+
+@objc(ImageGallerySlideshowCell)
 open class ImageGallerySlideshowCell: UICollectionViewCell {
 
 	@IBOutlet fileprivate weak var slideshowImage: UIImageView?

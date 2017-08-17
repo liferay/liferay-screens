@@ -13,6 +13,8 @@
  */
 import UIKit
 
+
+@objc(ImageGalleryCollectionViewBase)
 open class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGalleryViewModel {
 
 	open var uploadProgressView: UploadProgressViewBase? {

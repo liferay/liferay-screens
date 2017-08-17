@@ -14,6 +14,8 @@
 import Foundation
 import AFNetworking
 
+
+@objc(ImageGalleryView_default_list)
 open class ImageGalleryView_default_list: BaseListTableView, ImageGalleryViewModel {
 
 	open var uploadProgressView: UploadProgressViewBase? {
