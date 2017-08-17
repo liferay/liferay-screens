@@ -13,6 +13,8 @@
  */
 import UIKit
 
+
+@objc(DDMFieldDocument)
 open class DDMFieldDocument: DDMField {
 
 	public enum UploadStatus: Hashable, Equatable {

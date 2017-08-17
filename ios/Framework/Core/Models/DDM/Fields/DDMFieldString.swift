@@ -13,6 +13,8 @@
  */
 import Foundation
 
+
+@objc(DDMFieldString)
 open class DDMFieldString: DDMField {
 
 	override internal func doValidate() -> Bool {

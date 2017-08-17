@@ -13,7 +13,9 @@
  */
 import Foundation
 
-@objc open class WebContent: Asset {
+
+@objc(WebContent)
+open class WebContent: Asset {
 
 	open let structure: DDMStructure?
 	open let structuredRecord: DDLRecord?

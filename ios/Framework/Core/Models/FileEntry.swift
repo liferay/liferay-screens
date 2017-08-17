@@ -13,7 +13,9 @@
  */
 import Foundation
 
-@objc open class FileEntry: Asset {
+
+@objc(FileEntry)
+open class FileEntry: Asset {
 
 	override open var url: String {
 		let obj = attributes["object"]

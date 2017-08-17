@@ -13,7 +13,9 @@
  */
 import UIKit
 
-@objc open class RatingEntry: NSObject, NSCoding {
+
+@objc(RatingEntry)
+open class RatingEntry: NSObject, NSCoding {
 
 	open let attributes: [String:AnyObject]
 

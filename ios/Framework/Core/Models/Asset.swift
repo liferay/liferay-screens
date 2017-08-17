@@ -13,7 +13,9 @@
  */
 import Foundation
 
-@objc open class Asset: NSObject, NSCoding, MimeTypeable {
+
+@objc(Asset)
+open class Asset: NSObject, NSCoding, MimeTypeable {
 
 	open let attributes: [String:AnyObject]
 

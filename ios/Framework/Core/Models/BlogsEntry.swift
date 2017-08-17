@@ -13,7 +13,9 @@
  */
 import Foundation
 
-@objc open class BlogsEntry: Asset {
+
+@objc(BlogsEntry)
+open class BlogsEntry: Asset {
 
 	open var blogsEntry: [String:AnyObject]? {
 		return attributes["object"]?["blogsEntry"] as? [String:AnyObject]
