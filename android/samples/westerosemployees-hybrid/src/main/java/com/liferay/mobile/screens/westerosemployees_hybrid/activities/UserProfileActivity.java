@@ -30,12 +30,13 @@ public class UserProfileActivity extends WesterosActivity
 
         observer = new CordovaLifeCycleObserver();
 
-        PortletDisplayScreenlet portletDisplayScreenlet = (PortletDisplayScreenlet) findViewById(R.id.portlet_user_profile);
+        PortletDisplayScreenlet portletDisplayScreenlet =
+                (PortletDisplayScreenlet) findViewById(R.id.portlet_user_profile);
+
         PortletConfiguration configuration = new PortletConfiguration.Builder("/web/westeros-hybrid/userprofile")
                 .enableCordova(observer)
-                .disableTheme()
-                .addRawCss(R.raw.user_profile_portlet_css)
-                .addRawJs(R.raw.user_profile_portlet_js)
+                .addRawCss(R.raw.user_profile_portlet_css, "user_profile_portlet_css.css")
+                .addRawJs(R.raw.user_profile_portlet_js, "user_profile_portlet_js.js")
                 .load();
 
 

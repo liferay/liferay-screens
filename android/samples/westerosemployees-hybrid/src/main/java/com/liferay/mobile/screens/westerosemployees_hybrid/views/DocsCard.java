@@ -50,7 +50,10 @@ public class DocsCard extends Card implements PortletDisplayListener {
 	}
 
 	private void loadDocuments() {
-		PortletConfiguration configuration = new PortletConfiguration.Builder("/web/westeros-hybrid/documents").addRawCss(R.raw.docs_portlet_css).addRawJs(R.raw.docs_portlet_js).load();
+		PortletConfiguration configuration = new PortletConfiguration.Builder("/web/westeros-hybrid/documents")
+				.addRawCss(R.raw.docs_portlet_css, "docs_portlet_css.css")
+				.addRawJs(R.raw.docs_portlet_js, "docs_portlet_js.js")
+				.load();
 
 		portletDisplayScreenlet.setPortletConfiguration(configuration);
 		portletDisplayScreenlet.load();
@@ -74,12 +77,7 @@ public class DocsCard extends Card implements PortletDisplayListener {
 	}
 
 	@Override
-	public void onRetrievePortletSuccess(String url) {
-
-	}
-
-	@Override
-	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
+	public void onPageLoaded(String url) {
 
 	}
 
@@ -89,9 +87,14 @@ public class DocsCard extends Card implements PortletDisplayListener {
 			new Handler(Looper.getMainLooper()).post(new Runnable() {
 				@Override
 				public void run() {
-                    PortletConfiguration configuration = new PortletConfiguration.Builder("/web/westeros-hybrid/detail?id=" + body).addRawCss(R.raw.detail_css).addRawJs(R.raw.detail_js).load();
+                    PortletConfiguration configuration = new PortletConfiguration.Builder("/web/westeros-hybrid/detail?id=" + body)
+							.addRawCss(R.raw.detail_css, "detail_css.css")
+							.addRawJs(R.raw.detail_js, "detail_js.js")
+							.load();
 
-                    PortletDisplayScreenlet portletDisplayScreenlet = (PortletDisplayScreenlet) findViewById(R.id.portlet_doc_item);
+                    PortletDisplayScreenlet portletDisplayScreenlet =
+							(PortletDisplayScreenlet) findViewById(R.id.portlet_doc_item);
+
                     portletDisplayScreenlet.setPortletConfiguration(configuration);
                     portletDisplayScreenlet.load();
 

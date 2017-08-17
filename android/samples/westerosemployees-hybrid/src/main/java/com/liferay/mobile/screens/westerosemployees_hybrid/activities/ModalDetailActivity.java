@@ -18,15 +18,20 @@ public class ModalDetailActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.blogs_detail_subview);
-		
+
         loadDetail(getIntent().getStringExtra("id"));
 
 	}
 
 	private void loadDetail(final String id){
-		PortletConfiguration configuration = new PortletConfiguration.Builder("/web/westeros-hybrid/detail?id=" + id).addRawCss(R.raw.detail_css).addRawJs(R.raw.detail_js).load();
+		PortletConfiguration configuration =
+                new PortletConfiguration.Builder("/web/westeros-hybrid/detail?id=" + id)
+                        .addRawCss(R.raw.detail_css, "detail_css.css")
+                        .addRawJs(R.raw.detail_js, "detail_js.js")
+                        .load();
 
-		PortletDisplayScreenlet portletDisplayScreenlet = (PortletDisplayScreenlet) findViewById(R.id.portlet_blog_item);
+		PortletDisplayScreenlet portletDisplayScreenlet =
+                (PortletDisplayScreenlet) findViewById(R.id.portlet_blog_item);
 		portletDisplayScreenlet.setPortletConfiguration(configuration);
 		portletDisplayScreenlet.load();
 
@@ -34,7 +39,8 @@ public class ModalDetailActivity extends AppCompatActivity {
 
 	private void hideSoftKeyBoard() {
 		Activity activity = LiferayScreensContext.getActivityFromContext(this);
-		InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+		InputMethodManager imm =
+                (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
 
 		if (imm.isAcceptingText()) {
 			IBinder windowToken = activity.getCurrentFocus().getWindowToken();

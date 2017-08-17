@@ -49,7 +49,10 @@ public class BlogsCard extends Card implements PortletDisplayListener {
 	}
 
 	private void loadCompanyNews() {
-		PortletConfiguration configuration = new PortletConfiguration.Builder("/web/westeros-hybrid/companynews").addRawCss(R.raw.blogs_portlet_css).addRawJs(R.raw.blogs_portlet_js).load();
+		PortletConfiguration configuration = new PortletConfiguration.Builder("/web/westeros-hybrid/companynews")
+				.addRawCss(R.raw.blogs_portlet_css, "blogs_portlet_css.css")
+				.addRawJs(R.raw.blogs_portlet_js, "blogs_portlet_js.js")
+				.load();
 
 		portletDisplayScreenlet.setPortletConfiguration(configuration);
 		portletDisplayScreenlet.load();
@@ -69,12 +72,7 @@ public class BlogsCard extends Card implements PortletDisplayListener {
 	}
 
 	@Override
-	public void onRetrievePortletSuccess(String url) {
-
-	}
-
-	@Override
-	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
+	public void onPageLoaded(String url) {
 
 	}
 
@@ -84,9 +82,14 @@ public class BlogsCard extends Card implements PortletDisplayListener {
             new Handler(Looper.getMainLooper()).post(new Runnable() {
                 @Override
                 public void run() {
-                    PortletConfiguration configuration = new PortletConfiguration.Builder("/web/westeros-hybrid/detail?id=" + body).addRawCss(R.raw.blog_portlet_css).addRawJs(R.raw.blog_portlet_js).load();
+                    PortletConfiguration configuration = new PortletConfiguration.Builder("/web/westeros-hybrid/detail?id=" + body)
+							.addRawCss(R.raw.blog_portlet_css, "blog_portlet_css.css")
+							.addRawJs(R.raw.blog_portlet_js, "blog_portlet_js.js")
+							.load();
 
-                    PortletDisplayScreenlet portletDisplayScreenlet = (PortletDisplayScreenlet) findViewById(R.id.portlet_blog_item);
+                    PortletDisplayScreenlet portletDisplayScreenlet =
+							(PortletDisplayScreenlet) findViewById(R.id.portlet_blog_item);
+
                     portletDisplayScreenlet.setPortletConfiguration(configuration);
                     portletDisplayScreenlet.load();
 

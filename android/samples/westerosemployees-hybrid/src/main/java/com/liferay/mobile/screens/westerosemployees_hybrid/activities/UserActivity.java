@@ -20,7 +20,8 @@ import com.liferay.mobile.screens.westerosemployees_hybrid.R;
 import java.util.List;
 
 
-public class UserActivity extends WesterosActivity implements View.OnClickListener, BaseListListener<AssetEntry>, PortletDisplayListener {
+public class UserActivity extends WesterosActivity implements View.OnClickListener,
+        BaseListListener<AssetEntry>, PortletDisplayListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,9 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 		TextView userNameTextView = (TextView) findViewById(R.id.liferay_username);
 		userNameTextView.setOnClickListener(this);
 
-		UserPortraitScreenlet userPortraitScreenlet = (UserPortraitScreenlet) findViewById(R.id.userscreenlet_home);
+		UserPortraitScreenlet userPortraitScreenlet =
+                (UserPortraitScreenlet) findViewById(R.id.userscreenlet_home);
+
 		userPortraitScreenlet.setOnClickListener(this);
 		userPortraitScreenlet.loadLoggedUserPortrait();
 
@@ -49,8 +52,15 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
     }
 
     private void loadLastChanges() {
-        PortletDisplayScreenlet portletDisplayScreenlet = (PortletDisplayScreenlet) findViewById(R.id.portlet_last_changes);
-        PortletConfiguration configuration = new PortletConfiguration.Builder("/web/westeros-hybrid/lastchanges").addRawCss(R.raw.last_changes_portlet_css).addRawJs(R.raw.last_changes_portlet_js).load();
+        PortletDisplayScreenlet portletDisplayScreenlet =
+                (PortletDisplayScreenlet) findViewById(R.id.portlet_last_changes);
+
+        PortletConfiguration configuration =
+                new PortletConfiguration.Builder("/web/westeros-hybrid/lastchanges")
+                        .addRawCss(R.raw.last_changes_portlet_css, "last_changes_portlet_css.css")
+                        .addRawJs(R.raw.last_changes_portlet_js, "last_changes_portlet_js.js")
+                        .disableTheme()
+                        .load();
 
         portletDisplayScreenlet.setPortletConfiguration(configuration);
         portletDisplayScreenlet.load();
@@ -83,6 +93,7 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 
 	@Override
 	public void onListItemSelected(AssetEntry element, View view) {
+
 	}
 
 	@Override
@@ -91,12 +102,7 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 	}
 
 	@Override
-	public void onRetrievePortletSuccess(String url) {
-
-	}
-
-	@Override
-	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
+	public void onPageLoaded(String url) {
 
 	}
 
