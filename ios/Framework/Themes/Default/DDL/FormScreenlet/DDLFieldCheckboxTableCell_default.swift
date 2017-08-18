@@ -13,6 +13,7 @@
  */
 import UIKit
 
+
 @objc(DDLFieldCheckboxTableCell_default)
 open class DDLFieldCheckboxTableCell_default: DDMFieldTableCell {
 
