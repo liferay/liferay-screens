@@ -46,10 +46,28 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	private boolean lastValidationResult = true;
 	private Locale currentLocale;
 	private Locale defaultLocale;
+	private String visibilityExpression;
+	private long ddmDataProviderInstanceId;
 	private List<Field> fields = new ArrayList<>();
 
 	public Field() {
 		super();
+	}
+
+	public String getVisibilityExpression() {
+		return visibilityExpression;
+	}
+
+	public void setVisibilityExpression(String visibilityExpression) {
+		this.visibilityExpression = visibilityExpression;
+	}
+
+	public long getDdmDataProviderInstanceId() {
+		return ddmDataProviderInstanceId;
+	}
+
+	public void setDdmDataProviderInstanceId(int ddmDataProviderInstanceId) {
+		this.ddmDataProviderInstanceId = ddmDataProviderInstanceId;
 	}
 
 	public Field(Map<String, Object> attributes, Locale currentLocale, Locale defaultLocale) {
@@ -68,6 +86,11 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		repeatable = Boolean.valueOf(getAttributeStringValue(attributes, "repeatable"));
 		required = Boolean.valueOf(getAttributeStringValue(attributes, "required"));
 		showLabel = Boolean.valueOf(getAttributeStringValue(attributes, "showLabel"));
+		visibilityExpression = getAttributeStringValue(attributes, "visibilityExpression");
+		String ddmDataProviderInstanceId = getAttributeStringValue(attributes, "ddmDataProviderInstanceId");
+		if (!"".equals(ddmDataProviderInstanceId)) {
+			this.ddmDataProviderInstanceId = Integer.valueOf(ddmDataProviderInstanceId);
+		}
 
 		String predefinedValue = getAttributeStringValue(attributes, "predefinedValue");
 		this.predefinedValue = convertFromString(predefinedValue);
@@ -103,6 +126,8 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		defaultLocale = (Locale) in.readSerializable();
 
 		lastValidationResult = (in.readInt() == 1);
+		visibilityExpression = in.readString();
+		ddmDataProviderInstanceId = in.readInt();
 	}
 
 	@Override
@@ -254,6 +279,8 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		destination.writeSerializable(defaultLocale);
 
 		destination.writeInt(lastValidationResult ? 1 : 0);
+		destination.writeString(visibilityExpression);
+		destination.writeLong(ddmDataProviderInstanceId);
 	}
 
 	public List<Field> getFields() {
