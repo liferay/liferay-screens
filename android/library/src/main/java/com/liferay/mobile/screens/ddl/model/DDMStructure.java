@@ -2,19 +2,16 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import com.liferay.mobile.screens.ddl.DDMStructureParser;
 import com.liferay.mobile.screens.ddl.JsonParser;
 import com.liferay.mobile.screens.ddl.XSDParser;
 import com.liferay.mobile.screens.util.LiferayLocale;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
@@ -124,8 +121,7 @@ public class DDMStructure implements Parcelable {
 		this.classPK = "com.liferay.dynamic.data.mapping.model.DDMStructure";
 		if (jsonObject.has("xsd")) {
 			parse(jsonObject.getString("xsd"), new XSDParser());
-		}
-		else {
+		} else {
 			parse(jsonObject.getString("definition"), new JsonParser());
 		}
 		parsed = true;
@@ -135,8 +131,7 @@ public class DDMStructure implements Parcelable {
 		try {
 			Locale locale = this.locale == null ? LiferayLocale.getDefaultLocale() : this.locale;
 			fields = parser.parse(content, locale);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			fields = new ArrayList<>();
 		}
 	}
