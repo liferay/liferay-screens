@@ -49,15 +49,15 @@ namespace LiferayScreens
         void LayoutWhenKeyboardHidden();
 
         // -(NSInteger)tableView:(UITableView * _Nonnull)tableView numberOfRowsInSection:(NSInteger)section __attribute__((warn_unused_result));
-        [Export("tableView:numberOfRowsInSection:")]
+        [Export("ddlFormTableView:numberOfRowsInSection:")]
         nint TableViewNumberOfRowsInSection(UITableView tableView, nint section);
 
         // -(UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath __attribute__((warn_unused_result));
-        [Export("tableView:cellForRowAtIndexPath:")]
+        [Export("ddlFormTableView:cellForRowAtIndexPath:")]
         UITableViewCell TableViewCellForRowAtIndexPath(UITableView tableView, NSIndexPath indexPath);
 
         // -(CGFloat)tableView:(UITableView * _Nonnull)tableView heightForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath __attribute__((warn_unused_result));
-        [Export("tableView:heightForRowAtIndexPath:")]
+        [Export("ddlFormTableView:heightForRowAtIndexPath:")]
         nfloat TableViewHeightForRowAtIndexPath(UITableView tableView, NSIndexPath indexPath);
 
         // -(instancetype _Nonnull)initWithFrame:(CGRect)frame __attribute__((objc_designated_initializer));
