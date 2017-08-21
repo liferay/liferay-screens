@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import org.json.JSONObject;
 
 /**
  * @author Jose Manuel Navarro
@@ -45,6 +46,7 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 		};
 	private ArrayList<Option> availableOptions;
 	private boolean multiple;
+	private DataProvider dataProvider;
 
 	public StringWithOptionsField() {
 		super();
@@ -82,10 +84,23 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 
 		availableOptions = (ArrayList<Option>) in.readSerializable();
 		multiple = in.readInt() == 1;
+		dataProvider = (DataProvider) in.readSerializable();
+	}
+
+	public void setAvailableOptions(ArrayList<Option> availableOptions) {
+		this.availableOptions = availableOptions;
 	}
 
 	public List<Option> getAvailableOptions() {
 		return availableOptions;
+	}
+
+	public DataProvider getDataProvider() {
+		return dataProvider;
+	}
+
+	public void setDataProvider(DataProvider dataProvider) {
+		this.dataProvider = dataProvider;
 	}
 
 	@Override
@@ -136,6 +151,7 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 
 		destination.writeSerializable(availableOptions);
 		destination.writeInt(multiple ? 1 : 0);
+		destination.writeSerializable(dataProvider);
 	}
 
 	public boolean isMultiple() {
@@ -258,11 +274,29 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 		return null;
 	}
 
+	public static class DataProvider implements Serializable {
+
+		public String url;
+		public String username;
+		public String password;
+		public String name;
+		public String value;
+
+		public DataProvider(String url, String username, String password, String name, String value) {
+			this.url = url;
+			this.username = username;
+			this.password = password;
+			this.name = name;
+			this.value = value;
+		}
+	}
+
 	public static class Option implements Serializable {
 
 		public String label;
 		public String name;
 		public String value;
+		public JSONObject data;
 
 		public Option() {
 			super();
@@ -273,9 +307,14 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 		}
 
 		public Option(String label, String name, String value) {
+			this(label, name, value, null);
+		}
+
+		public Option(String label, String name, String value, JSONObject data) {
 			this.label = label;
 			this.name = name;
 			this.value = value;
+			this.data = data;
 		}
 
 		@Override
