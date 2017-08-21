@@ -15,13 +15,17 @@
 package com.liferay.mobile.screens.viewsets.material.ddl.form;
 
 import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-
+import android.widget.ScrollView;
+import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
@@ -31,30 +35,40 @@ import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import static com.liferay.mobile.screens.ddl.model.Field.EditorType.CHECKBOX;
+import static com.liferay.mobile.screens.ddl.model.Field.EditorType.DATE;
+import static com.liferay.mobile.screens.ddl.model.Field.EditorType.DECIMAL;
+import static com.liferay.mobile.screens.ddl.model.Field.EditorType.DOCUMENT;
+import static com.liferay.mobile.screens.ddl.model.Field.EditorType.INTEGER;
+import static com.liferay.mobile.screens.ddl.model.Field.EditorType.NUMBER;
+import static com.liferay.mobile.screens.ddl.model.Field.EditorType.RADIO;
+import static com.liferay.mobile.screens.ddl.model.Field.EditorType.SELECT;
+import static com.liferay.mobile.screens.ddl.model.Field.EditorType.TEXT;
+import static com.liferay.mobile.screens.ddl.model.Field.EditorType.TEXT_AREA;
 
 /**
  * @author Silvio Santos
  */
-public class ViewPagerDDLFormView extends RecyclerViewPager implements DDLFormViewModel, View.OnClickListener {
+public class ViewPagerDDLFormView extends RecyclerViewPager
+	implements DDLFormViewModel, View.OnClickListener, RecyclerViewPager.OnPageChangedListener {
 
 	private static final Map<Field.EditorType, Integer> DEFAULT_LAYOUT_IDS = new HashMap<>(16);
 
 	static {
-		DEFAULT_LAYOUT_IDS.put(Field.EditorType.CHECKBOX, R.layout.ddlfield_checkbox_default);
-		DEFAULT_LAYOUT_IDS.put(Field.EditorType.DATE, R.layout.ddlfield_date_default);
-		DEFAULT_LAYOUT_IDS.put(Field.EditorType.NUMBER, R.layout.ddlfield_number_default);
-		DEFAULT_LAYOUT_IDS.put(Field.EditorType.INTEGER, R.layout.ddlfield_number_default);
-		DEFAULT_LAYOUT_IDS.put(Field.EditorType.DECIMAL, R.layout.ddlfield_number_default);
-		DEFAULT_LAYOUT_IDS.put(Field.EditorType.RADIO, R.layout.ddlfield_radio_default);
-		DEFAULT_LAYOUT_IDS.put(Field.EditorType.SELECT, R.layout.ddlfield_select_default);
-		DEFAULT_LAYOUT_IDS.put(Field.EditorType.TEXT, R.layout.ddlfield_text_default);
-		DEFAULT_LAYOUT_IDS.put(Field.EditorType.TEXT_AREA, R.layout.ddlfield_text_area_default);
-		DEFAULT_LAYOUT_IDS.put(Field.EditorType.DOCUMENT, R.layout.ddlfield_document_default);
+		DEFAULT_LAYOUT_IDS.put(CHECKBOX, R.layout.ddlfield_checkbox_default);
+		DEFAULT_LAYOUT_IDS.put(DATE, R.layout.ddlfield_date_default);
+		DEFAULT_LAYOUT_IDS.put(NUMBER, R.layout.ddlfield_number_default);
+		DEFAULT_LAYOUT_IDS.put(INTEGER, R.layout.ddlfield_number_default);
+		DEFAULT_LAYOUT_IDS.put(DECIMAL, R.layout.ddlfield_number_default);
+		DEFAULT_LAYOUT_IDS.put(RADIO, R.layout.ddlfield_radio_default);
+		DEFAULT_LAYOUT_IDS.put(SELECT, R.layout.ddlfield_select_default);
+		DEFAULT_LAYOUT_IDS.put(TEXT, R.layout.ddlfield_text_default);
+		DEFAULT_LAYOUT_IDS.put(TEXT_AREA, R.layout.ddlfield_text_area_default);
+		DEFAULT_LAYOUT_IDS.put(DOCUMENT, R.layout.ddlfield_document_default);
 	}
 
 	private final Map<Field.EditorType, Integer> layoutIds = new HashMap<>();
@@ -64,6 +78,7 @@ public class ViewPagerDDLFormView extends RecyclerViewPager implements DDLFormVi
 	protected ViewGroup fieldsContainerView;
 	protected Button submitButton;
 	private BaseScreenlet screenlet;
+	private int position;
 
 	public ViewPagerDDLFormView(Context context) {
 		super(context);
@@ -108,24 +123,42 @@ public class ViewPagerDDLFormView extends RecyclerViewPager implements DDLFormVi
 	}
 
 	@Override
-	public void showValidationResults(Map<Field, Boolean> fieldResults, boolean autoscroll) {
-		boolean scrolled = false;
+	public void showValidationResults(final Map<Field, Boolean> fieldResults, final boolean autoscroll) {
+		checkPage(fieldResults);
+	}
 
-		for (int i = 0; i < fieldsContainerView.getChildCount(); i++) {
-			View fieldView = fieldsContainerView.getChildAt(i);
+	private boolean checkPage(Map<Field, Boolean> fieldResults) {
+
+		LinearLayout container =
+			(LinearLayout) findViewById(com.liferay.mobile.screens.viewsets.R.id.ddlfields_container);
+
+		boolean pageInvalid = false;
+
+		for (int i = 0; i < container.getChildCount(); i++) {
+			View fieldView = container.getChildAt(i);
 			DDLFieldViewModel fieldViewModel = (DDLFieldViewModel) fieldView;
-			boolean isFieldValid = fieldResults.get(fieldViewModel.getField());
 
-			fieldView.clearFocus();
+			if (fieldViewModel != null && fieldViewModel.getField() != null && fieldResults.containsKey(
+				fieldViewModel.getField())) {
 
-			fieldViewModel.onPostValidation(isFieldValid);
+				boolean isFieldValid = fieldResults.get(fieldViewModel.getField());
 
-			if (!isFieldValid && autoscroll && !scrolled) {
-				fieldView.requestFocus();
-				//smoothScrollTo(0, fieldView.getTop());
-				scrolled = true;
+				fieldView.clearFocus();
+
+				fieldViewModel.onPostValidation(isFieldValid);
+
+				if (!isFieldValid) {
+					fieldView.requestFocus();
+
+					((ScrollView) findViewById(com.liferay.mobile.screens.viewsets.R.id.scroll_view)).smoothScrollTo(0,
+						fieldView.getTop() - 100);
+					//scrollBy(0, fieldView.getTop() - getScrollY());
+					//smoothScrollTo(0, fieldView.getTop());
+					pageInvalid = true;
+				}
 			}
 		}
+		return pageInvalid;
 	}
 
 	@Override
@@ -157,26 +190,15 @@ public class ViewPagerDDLFormView extends RecyclerViewPager implements DDLFormVi
 
 	@Override
 	public void showFinishOperation(String actionName, Object argument) {
-
-		setSinglePageFling(true);
-
-		hideProgressBar(actionName);
 		switch (actionName) {
 			case DDLFormScreenlet.LOAD_RECORD_ACTION:
 				LiferayLogger.i("loaded record");
 				showRecordValues();
 				break;
-			case DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION:
-				LiferayLogger.i("uploaded document");
-				DocumentField documentField = (DocumentField) argument;
-
-				findFieldView(documentField).refresh();
-				break;
 			case DDLFormScreenlet.LOAD_FORM_ACTION:
 			default:
 				LiferayLogger.i("loaded form");
 				Record record = (Record) argument;
-
 				showFormFields(record);
 				break;
 		}
@@ -199,44 +221,31 @@ public class ViewPagerDDLFormView extends RecyclerViewPager implements DDLFormVi
 
 	@Override
 	public void showFailedOperation(String actionName, Exception e, Object argument) {
-		hideProgressBar(actionName);
 		if (actionName.equals(DDLFormScreenlet.LOAD_FORM_ACTION)) {
 			LiferayLogger.e("error loading DDLForm", e);
-
 			clearFormFields();
-		}
-		else if (actionName.equals(DDLFormScreenlet.UPLOAD_DOCUMENT_ACTION)) {
-			LiferayLogger.e("error uploading", e);
-
-			DocumentField documentField = (DocumentField) argument;
-
-			findFieldView(documentField).refresh();
 		}
 	}
 
 	@Override
 	public void showFormFields(Record record) {
-		fieldsContainerView.removeAllViews();
-		fieldsContainerView.setVisibility(INVISIBLE);
-
-		for (int i = 0; i < record.getFieldCount(); ++i) {
-			addFieldView(record.getField(i), i);
-		}
-
-		int visibility = getDDLFormScreenlet().isShowSubmitButton() ? VISIBLE : INVISIBLE;
-		submitButton.setVisibility(visibility);
-
-		DefaultAnimation.showViewWithReveal(fieldsContainerView);
+		setAdapter(new HorizontalViewPagerAdapter(record));
 	}
 
 	@Override
 	public void onClick(View view) {
-		if (view.getId() == R.id.liferay_form_submit) {
+		if (view.getId() == com.liferay.mobile.screens.R.id.liferay_form_submit) {
 			if (getDDLFormScreenlet().validateForm()) {
 				getDDLFormScreenlet().submitForm();
 			}
-		}
-		else {
+		} else if (view.getId() == com.liferay.mobile.screens.viewsets.R.id.next_page_button) {
+
+			boolean validPage = checkPage(getCurrentPosition());
+
+			if (validPage) {
+				smoothScrollToPosition(getCurrentPosition() + 1);
+			}
+		} else {
 			getDDLFormScreenlet().startUpload((DocumentField) view.getTag());
 		}
 	}
@@ -249,8 +258,7 @@ public class ViewPagerDDLFormView extends RecyclerViewPager implements DDLFormVi
 	protected void hideProgressBar(String actionName) {
 		if (actionName.equals(DDLFormScreenlet.LOAD_FORM_ACTION)) {
 			loadingFormProgressBar.setVisibility(INVISIBLE);
-		}
-		else {
+		} else {
 			progressBar.setVisibility(INVISIBLE);
 		}
 	}
@@ -266,32 +274,16 @@ public class ViewPagerDDLFormView extends RecyclerViewPager implements DDLFormVi
 		return (DDLFormScreenlet) getScreenlet();
 	}
 
-	protected void addFieldView(Field field, int position) {
-
-		boolean isACustomLayout = customLayoutIds.containsKey(field.getName());
-		int layoutId =
-			isACustomLayout ? getCustomFieldLayoutId(field.getName()) : getFieldLayoutId(field.getEditorType());
-
-		View view = LayoutInflater.from(getContext()).inflate(layoutId, this, false);
-		DDLFieldViewModel viewModel = (DDLFieldViewModel) view;
-
-		viewModel.setField(field);
-		viewModel.setParentView(this);
-
-		fieldsContainerView.addView(view);
-	}
-
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		fieldsContainerView = (ViewGroup) findViewById(R.id.ddlfields_container);
-
-		submitButton = (Button) findViewById(R.id.liferay_form_submit);
-		submitButton.setOnClickListener(this);
-
-		progressBar = (ProgressBar) findViewById(R.id.ddlform_progress_bar);
-		loadingFormProgressBar = (ProgressBar) findViewById(R.id.ddlform_loading_screen_progress_bar);
+		setLayoutManager(new LinearLayoutManager(getContext(), HORIZONTAL, false));
+		addOnPageChangedListener(this);
+		setSinglePageFling(true);
+		setFocusable(true);
+		setFocusableInTouchMode(true);
+		setDescendantFocusability(FOCUS_BEFORE_DESCENDANTS);
 	}
 
 	private DDLFieldViewModel findFieldView(Field field) {
@@ -304,4 +296,128 @@ public class ViewPagerDDLFormView extends RecyclerViewPager implements DDLFormVi
 		return null;
 	}
 
+	@Override
+	protected void adjustPositionX(int velocityX) {
+
+		boolean validPage = checkPage(position);
+
+		if (validPage || getCurrentPosition() < position) {
+			super.adjustPositionX(velocityX);
+		} else {
+			this.smoothScrollToPosition(position);
+		}
+	}
+
+	private boolean checkPage(int currentPosition) {
+
+		Record record = getDDLFormScreenlet().getRecord();
+
+		Map<Field, Boolean> fieldResults = new HashMap<>(record.getFieldCount());
+		boolean result = true;
+
+		for (int i = 0; i < record.getFieldCount(); i++) {
+			Field field = record.getField(i);
+
+			if (record.getPages().get(currentPosition).getFields().contains(field)) {
+				boolean isFieldValid = field.isValid();
+				fieldResults.put(field, isFieldValid);
+				result &= isFieldValid;
+			}
+		}
+
+		showValidationResults(fieldResults, true);
+
+		return result;
+	}
+
+	public boolean quickCheck() {
+		Record record = getDDLFormScreenlet().getRecord();
+		for (Field field : record.getFields()) {
+			if (record.getPages().get(getCurrentPosition()).getFields().contains(field)) {
+				boolean isFieldValid = field.isValid();
+				if (!isFieldValid) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public void OnPageChanged(int oldPosition, int newPosition) {
+		position = newPosition;
+	}
+
+	private class HorizontalViewPagerAdapter
+		extends RecyclerView.Adapter<HorizontalViewPagerAdapter.HorizontalViewHolder> {
+
+		private final Record record;
+
+		HorizontalViewPagerAdapter(Record record) {
+			this.record = record;
+		}
+
+		@Override
+		public HorizontalViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+			View view = LayoutInflater.from(getContext())
+				.inflate(com.liferay.mobile.screens.viewsets.R.layout.ddl_page_layout, parent, false);
+			return new HorizontalViewHolder(view);
+		}
+
+		@Override
+		public void onBindViewHolder(HorizontalViewHolder holder, int position) {
+			holder.paint(record.getPages().get(position));
+		}
+
+		@Override
+		public int getItemCount() {
+			return record.getPages().size();
+		}
+
+		class HorizontalViewHolder extends RecyclerView.ViewHolder {
+
+			private final LinearLayout container;
+			private final TextView pageTitleTextView;
+			private final TextView pageNumberTextView;
+			private final Button nextPageButton;
+
+			HorizontalViewHolder(View itemView) {
+				super(itemView);
+
+				container = (LinearLayout) itemView.findViewById(R.id.ddlfields_container);
+				submitButton = (Button) itemView.findViewById(R.id.liferay_form_submit);
+				submitButton.setOnClickListener(ViewPagerDDLFormView.this);
+				nextPageButton = (Button) itemView.findViewById(R.id.next_page_button);
+				nextPageButton.setOnClickListener(ViewPagerDDLFormView.this);
+				pageTitleTextView = (TextView) itemView.findViewById(R.id.page_title);
+				pageNumberTextView = (TextView) itemView.findViewById(R.id.page_number);
+			}
+
+			void paint(final Record.Page page) {
+
+				for (Field field : page.getFields()) {
+
+					int fieldLayoutId = getFieldLayoutId(field.getEditorType());
+					View view =
+						LayoutInflater.from(getContext()).inflate(fieldLayoutId, ViewPagerDDLFormView.this, false);
+					DDLFieldViewModel viewModel = (DDLFieldViewModel) view;
+
+					viewModel.setField(field);
+					viewModel.setParentView(ViewPagerDDLFormView.this);
+
+					container.addView(view);
+				}
+
+				pageTitleTextView.setText(page.getTitle());
+				if (getItemCount() > 1) {
+					String text = page.getNumber() + 1 + "/" + getItemCount();
+					pageNumberTextView.setText(text);
+				}
+
+				boolean isLastPage = page.getNumber() == record.getPages().size() - 1;
+				nextPageButton.setVisibility(!isLastPage ? VISIBLE : INVISIBLE);
+				submitButton.setVisibility(isLastPage ? VISIBLE : INVISIBLE);
+			}
+		}
+	}
 }
