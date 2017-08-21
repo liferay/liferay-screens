@@ -24,7 +24,7 @@ public class JsScript implements InjectableScript {
 
 	public JsScript(String name, String content) {
 		this.name = name;
-		content = content;
+		this.content = content;
 	}
 
 	@Override

@@ -91,6 +91,7 @@ public class PortletConfiguration {
 
 		public Builder(String portletUrl) {
 			super();
+			this.portletUrl = portletUrl;
 		}
 
 		public Builder addLocalJs(String fileName) {
