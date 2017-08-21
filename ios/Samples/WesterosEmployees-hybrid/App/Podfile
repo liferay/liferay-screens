@@ -4,7 +4,7 @@ platform :ios, '8.0'
 use_frameworks!
 
 target "WesterosEmployees-hybrid" do
-	pod 'LiferayScreens', :git => 'https://github.com/liferay/liferay-screens', :branch => 'develop'
+    pod 'LiferayScreens', :path => '../../../..'
 
 	pod 'TPKeyboardAvoiding'
 	pod 'MGSwipeTableCell'
