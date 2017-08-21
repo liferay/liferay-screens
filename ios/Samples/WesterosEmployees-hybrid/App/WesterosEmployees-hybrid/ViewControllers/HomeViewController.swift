@@ -202,10 +202,10 @@ class HomeViewController: UIViewController, PortletDisplayScreenletDelegate,
     
     //MARK: PortletScreenletDelegate
     func screenlet(_ screenlet: PortletDisplayScreenlet,
-                   onScriptMessageHandler key: String,
-                   onScriptMessageBody body: Any) {
+                   onScriptMessageNamespace namespace: String,
+                   onScriptMessage message: String) {
         
-        let bodyArray = (body as! String).components(separatedBy: "|")
+        let bodyArray = message.components(separatedBy: "|")
         
         if bodyArray[1] != "blog"{
             let detail: DetailViewController? = DetailViewController(nibName: "ModalPortletDetailViewController")
@@ -230,7 +230,6 @@ class HomeViewController: UIViewController, PortletDisplayScreenletDelegate,
         
         loadPortletScreenlet()
     
-
 		//Load user profile
 		let userId = SessionContext.currentContext!.user.userId
 		if self.userPortraitScreenlet?.userId != userId {

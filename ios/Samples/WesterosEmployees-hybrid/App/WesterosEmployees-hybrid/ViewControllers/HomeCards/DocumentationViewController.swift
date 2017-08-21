@@ -47,9 +47,9 @@ class DocumentationViewController: CardViewController, PortletDisplayScreenletDe
 
     //MARK: PortletScreenletDelegate
     func screenlet(_ screenlet: PortletDisplayScreenlet,
-                   onScriptMessageHandler key: String,
-                   onScriptMessageBody body: Any) {
-        selectedFileEntry = body as? String
+                   onScriptMessageNamespace namespace: String,
+                   onScriptMessage message: String) {
+        selectedFileEntry = message
         cardView?.moveRight()
     }
     

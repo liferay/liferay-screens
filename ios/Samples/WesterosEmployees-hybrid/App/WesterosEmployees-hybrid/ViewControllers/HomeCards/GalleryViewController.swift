@@ -170,9 +170,9 @@ class GalleryViewController: CardViewController, PortletDisplayScreenletDelegate
     
     //MARK: PortletScreenletDelegate
     func screenlet(_ screenlet: PortletDisplayScreenlet,
-                   onScriptMessageHandler key: String,
-                   onScriptMessageBody body: Any) {
-        selectedImageEntry = body as? String
+                   onScriptMessageNamespace namespace: String,
+                   onScriptMessage message: String) {
+        selectedImageEntry = message
         cardView?.moveRight()
     }
 }

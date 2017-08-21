@@ -47,9 +47,9 @@ class BlogsViewController: CardViewController, PortletDisplayScreenletDelegate {
 
 	//MARK: PortletScreenletDelegate
     func screenlet(_ screenlet: PortletDisplayScreenlet,
-                   onScriptMessageHandler key: String,
-                   onScriptMessageBody body: Any) {
-        selectedBlogEntry = body as? String
+                   onScriptMessageNamespace namespace: String,
+                   onScriptMessage message: String) {
+        selectedBlogEntry = message
         cardView?.moveRight()
 	}
 
