@@ -83,7 +83,7 @@ public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate,
 
 	public func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
 		cdvDelegate?.webView(webView, didFailLoadWithError: error)
-		onPageLoadFinished(webView.request?.url?.absoluteString ?? "", nil)
+		onPageLoadFinished(webView.request?.url?.absoluteString ?? "", error)
 	}
 
 	// MARK: WKNavigationDelegate
