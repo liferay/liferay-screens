@@ -111,9 +111,12 @@
 		4B62FE6D1F1CC85B00B1FEA1 /* WebContentDisplayView_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B62FE361F1CC85B00B1FEA1 /* WebContentDisplayView_westeros.xib */; };
 		4BC4E4091F4B2066004B5763 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 4BC4E4081F4B2066004B5763 /* www */; };
 		4BC4E40B1F4B2084004B5763 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4BC4E40A1F4B2084004B5763 /* config.xml */; };
-		4BC4E4181F4B20EC004B5763 /* CallNumber.js in Resources */ = {isa = PBXBuildFile; fileRef = 4BC4E40F1F4B20EC004B5763 /* CallNumber.js */; };
-		4BC4E4191F4B20EC004B5763 /* device.js in Resources */ = {isa = PBXBuildFile; fileRef = 4BC4E4121F4B20EC004B5763 /* device.js */; };
-		4BC4E41A1F4B20EC004B5763 /* ios-wkwebview-exec.js in Resources */ = {isa = PBXBuildFile; fileRef = 4BC4E4171F4B20EC004B5763 /* ios-wkwebview-exec.js */; };
+		4BC4E42A1F4B2675004B5763 /* CFCallNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4E41E1F4B2675004B5763 /* CFCallNumber.m */; };
+		4BC4E42B1F4B2675004B5763 /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4E4211F4B2675004B5763 /* CDVDevice.m */; };
+		4BC4E42C1F4B2675004B5763 /* CDVWKProcessPoolFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4E4241F4B2675004B5763 /* CDVWKProcessPoolFactory.m */; };
+		4BC4E42D1F4B2675004B5763 /* CDVWKWebViewEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4E4261F4B2675004B5763 /* CDVWKWebViewEngine.m */; };
+		4BC4E42E1F4B2675004B5763 /* CDVWKWebViewUIDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC4E4281F4B2675004B5763 /* CDVWKWebViewUIDelegate.m */; };
+		4BC4E42F1F4B2675004B5763 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 4BC4E4291F4B2675004B5763 /* README */; };
 		4BCA1EC41F1646F40034F8E9 /* gallery.css in Resources */ = {isa = PBXBuildFile; fileRef = 4BCA1EC31F1646F40034F8E9 /* gallery.css */; };
 		4BCA1EC61F1647060034F8E9 /* gallery.js in Resources */ = {isa = PBXBuildFile; fileRef = 4BCA1EC51F1647060034F8E9 /* gallery.js */; };
 		4BCA1ECC1F1648140034F8E9 /* blogs.js in Resources */ = {isa = PBXBuildFile; fileRef = 4BCA1ECB1F1648140034F8E9 /* blogs.js */; };
@@ -243,9 +246,17 @@
 		4B62FE361F1CC85B00B1FEA1 /* WebContentDisplayView_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebContentDisplayView_westeros.xib; sourceTree = "<group>"; };
 		4BC4E4081F4B2066004B5763 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		4BC4E40A1F4B2084004B5763 /* config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
-		4BC4E40F1F4B20EC004B5763 /* CallNumber.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = CallNumber.js; sourceTree = "<group>"; };
-		4BC4E4121F4B20EC004B5763 /* device.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = device.js; sourceTree = "<group>"; };
-		4BC4E4171F4B20EC004B5763 /* ios-wkwebview-exec.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "ios-wkwebview-exec.js"; sourceTree = "<group>"; };
+		4BC4E41D1F4B2675004B5763 /* CFCallNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFCallNumber.h; sourceTree = "<group>"; };
+		4BC4E41E1F4B2675004B5763 /* CFCallNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFCallNumber.m; sourceTree = "<group>"; };
+		4BC4E4201F4B2675004B5763 /* CDVDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVDevice.h; sourceTree = "<group>"; };
+		4BC4E4211F4B2675004B5763 /* CDVDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVDevice.m; sourceTree = "<group>"; };
+		4BC4E4231F4B2675004B5763 /* CDVWKProcessPoolFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVWKProcessPoolFactory.h; sourceTree = "<group>"; };
+		4BC4E4241F4B2675004B5763 /* CDVWKProcessPoolFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVWKProcessPoolFactory.m; sourceTree = "<group>"; };
+		4BC4E4251F4B2675004B5763 /* CDVWKWebViewEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVWKWebViewEngine.h; sourceTree = "<group>"; };
+		4BC4E4261F4B2675004B5763 /* CDVWKWebViewEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVWKWebViewEngine.m; sourceTree = "<group>"; };
+		4BC4E4271F4B2675004B5763 /* CDVWKWebViewUIDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVWKWebViewUIDelegate.h; sourceTree = "<group>"; };
+		4BC4E4281F4B2675004B5763 /* CDVWKWebViewUIDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVWKWebViewUIDelegate.m; sourceTree = "<group>"; };
+		4BC4E4291F4B2675004B5763 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 		4BCA1EC31F1646F40034F8E9 /* gallery.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = gallery.css; path = css/gallery.css; sourceTree = "<group>"; };
 		4BCA1EC51F1647060034F8E9 /* gallery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = gallery.js; path = js/gallery.js; sourceTree = "<group>"; };
 		4BCA1ECB1F1648140034F8E9 /* blogs.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = blogs.js; path = js/blogs.js; sourceTree = "<group>"; };
@@ -313,7 +324,7 @@
 				4B0BA0CA1F1608590083D523 /* Misc */,
 				4B0BA0C21F1608390083D523 /* Resources */,
 				4B0BA0C01F16082B0083D523 /* liferay-server-context.plist */,
-				4BC4E40C1F4B20EC004B5763 /* plugins */,
+				4BC4E41B1F4B2675004B5763 /* Plugins */,
 				4BC4E40A1F4B2084004B5763 /* config.xml */,
 				4B0BA02C1F1606320083D523 /* AppDelegate.swift */,
 				4B0BA0301F1606320083D523 /* Main.storyboard */,
@@ -656,78 +667,46 @@
 			path = WebContent;
 			sourceTree = "<group>";
 		};
-		4BC4E40C1F4B20EC004B5763 /* plugins */ = {
+		4BC4E41B1F4B2675004B5763 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				4BC4E40D1F4B20EC004B5763 /* call-number */,
-				4BC4E4101F4B20EC004B5763 /* cordova-plugin-device */,
-				4BC4E4131F4B20EC004B5763 /* cordova-plugin-wkwebview-engine */,
+				4BC4E41C1F4B2675004B5763 /* call-number */,
+				4BC4E41F1F4B2675004B5763 /* cordova-plugin-device */,
+				4BC4E4221F4B2675004B5763 /* cordova-plugin-wkwebview-engine */,
+				4BC4E4291F4B2675004B5763 /* README */,
 			);
-			path = plugins;
+			path = Plugins;
 			sourceTree = "<group>";
 		};
-		4BC4E40D1F4B20EC004B5763 /* call-number */ = {
+		4BC4E41C1F4B2675004B5763 /* call-number */ = {
 			isa = PBXGroup;
 			children = (
-				4BC4E40E1F4B20EC004B5763 /* www */,
+				4BC4E41D1F4B2675004B5763 /* CFCallNumber.h */,
+				4BC4E41E1F4B2675004B5763 /* CFCallNumber.m */,
 			);
 			path = "call-number";
 			sourceTree = "<group>";
 		};
-		4BC4E40E1F4B20EC004B5763 /* www */ = {
+		4BC4E41F1F4B2675004B5763 /* cordova-plugin-device */ = {
 			isa = PBXGroup;
 			children = (
-				4BC4E40F1F4B20EC004B5763 /* CallNumber.js */,
-			);
-			path = www;
-			sourceTree = "<group>";
-		};
-		4BC4E4101F4B20EC004B5763 /* cordova-plugin-device */ = {
-			isa = PBXGroup;
-			children = (
-				4BC4E4111F4B20EC004B5763 /* www */,
+				4BC4E4201F4B2675004B5763 /* CDVDevice.h */,
+				4BC4E4211F4B2675004B5763 /* CDVDevice.m */,
 			);
 			path = "cordova-plugin-device";
 			sourceTree = "<group>";
 		};
-		4BC4E4111F4B20EC004B5763 /* www */ = {
+		4BC4E4221F4B2675004B5763 /* cordova-plugin-wkwebview-engine */ = {
 			isa = PBXGroup;
 			children = (
-				4BC4E4121F4B20EC004B5763 /* device.js */,
-			);
-			path = www;
-			sourceTree = "<group>";
-		};
-		4BC4E4131F4B20EC004B5763 /* cordova-plugin-wkwebview-engine */ = {
-			isa = PBXGroup;
-			children = (
-				4BC4E4141F4B20EC004B5763 /* src */,
+				4BC4E4231F4B2675004B5763 /* CDVWKProcessPoolFactory.h */,
+				4BC4E4241F4B2675004B5763 /* CDVWKProcessPoolFactory.m */,
+				4BC4E4251F4B2675004B5763 /* CDVWKWebViewEngine.h */,
+				4BC4E4261F4B2675004B5763 /* CDVWKWebViewEngine.m */,
+				4BC4E4271F4B2675004B5763 /* CDVWKWebViewUIDelegate.h */,
+				4BC4E4281F4B2675004B5763 /* CDVWKWebViewUIDelegate.m */,
 			);
 			path = "cordova-plugin-wkwebview-engine";
-			sourceTree = "<group>";
-		};
-		4BC4E4141F4B20EC004B5763 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				4BC4E4151F4B20EC004B5763 /* www */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		4BC4E4151F4B20EC004B5763 /* www */ = {
-			isa = PBXGroup;
-			children = (
-				4BC4E4161F4B20EC004B5763 /* ios */,
-			);
-			path = www;
-			sourceTree = "<group>";
-		};
-		4BC4E4161F4B20EC004B5763 /* ios */ = {
-			isa = PBXGroup;
-			children = (
-				4BC4E4171F4B20EC004B5763 /* ios-wkwebview-exec.js */,
-			);
-			path = ios;
 			sourceTree = "<group>";
 		};
 		4BCA1EC11F1646A80034F8E9 /* js */ = {
@@ -844,6 +823,7 @@
 				4B0BA0EC1F1609A10083D523 /* Main.storyboard in Resources */,
 				4B0BA0EE1F1609A70083D523 /* Assets.xcassets in Resources */,
 				4BEF0AFA1F1787D000E2B453 /* detail.css in Resources */,
+				4BC4E42F1F4B2675004B5763 /* README in Resources */,
 				4B62FE641F1CC85B00B1FEA1 /* ImageGalleryView_westeros.xib in Resources */,
 				4B0BA0341F1606320083D523 /* Assets.xcassets in Resources */,
 				4B62FE521F1CC85B00B1FEA1 /* CommentAddView_westeros-white.xib in Resources */,
@@ -851,7 +831,6 @@
 				4B62FE5D1F1CC85B00B1FEA1 /* CommentTableViewCell_westeros-white.xib in Resources */,
 				4B0BA1161F1609F20083D523 /* ForgotPasswordViewController.xib in Resources */,
 				4B62FE441F1CC85B00B1FEA1 /* BlogsEntryTableViewCell_westeros.xib in Resources */,
-				4BC4E4181F4B20EC004B5763 /* CallNumber.js in Resources */,
 				4BCA1EE01F1649DC0034F8E9 /* last_changes.css in Resources */,
 				4B0BA0C11F16082B0083D523 /* liferay-server-context.plist in Resources */,
 				4BCA1ED61F1648F50034F8E9 /* blog.js in Resources */,
@@ -885,7 +864,6 @@
 				4BCCB9C91F2B1F660020EB56 /* user_profile.js in Resources */,
 				4B62FE561F1CC85B00B1FEA1 /* CommentDisplayView_westeros-white.xib in Resources */,
 				4BEF0AF81F1781F800E2B453 /* PortletDetailViewController.xib in Resources */,
-				4BC4E41A1F4B20EC004B5763 /* ios-wkwebview-exec.js in Resources */,
 				4B62FE421F1CC85B00B1FEA1 /* AssetListView_westeros_news.xib in Resources */,
 				4BEF0B001F18BF0A00E2B453 /* ModalPortletBlogDetailViewController.xib in Resources */,
 				4BCA1ED81F1649200034F8E9 /* blog.css in Resources */,
@@ -911,7 +889,6 @@
 				4BCA1ECC1F1648140034F8E9 /* blogs.js in Resources */,
 				4B0BA0C81F1608390083D523 /* Avenir-Next.ttc in Resources */,
 				4B62FE671F1CC85B00B1FEA1 /* UploadProgressView_westeros.xib in Resources */,
-				4BC4E4191F4B20EC004B5763 /* device.js in Resources */,
 				4B62FE4E1F1CC85B00B1FEA1 /* SignUpView_westeros.xib in Resources */,
 				4B0BA11D1F1609F20083D523 /* TermsViewController.xib in Resources */,
 				4B0BA12E1F1609F20083D523 /* UploadImageViewController.xib in Resources */,
@@ -1023,6 +1000,8 @@
 				4B62FE611F1CC85B00B1FEA1 /* WesterosProgressPresenter.swift in Sources */,
 				4B0BA0F21F1609E90083D523 /* Westeros+Array.swift in Sources */,
 				4B62FE621F1CC85B00B1FEA1 /* WesterosThemeConstants.swift in Sources */,
+				4BC4E42D1F4B2675004B5763 /* CDVWKWebViewEngine.m in Sources */,
+				4BC4E42C1F4B2675004B5763 /* CDVWKProcessPoolFactory.m in Sources */,
 				4B62FE531F1CC85B00B1FEA1 /* CommentAddView_westeros.swift in Sources */,
 				4B62FE571F1CC85B00B1FEA1 /* CommentDisplayView_westeros.swift in Sources */,
 				4B0BA1311F1609F20083D523 /* UserDisplayViewController.swift in Sources */,
@@ -1038,12 +1017,15 @@
 				4B62FE5B1F1CC85B00B1FEA1 /* CommentListView_westeros.swift in Sources */,
 				4B62FE3D1F1CC85B00B1FEA1 /* AssetListView_westeros_blog.swift in Sources */,
 				4B0BA12D1F1609F20083D523 /* UploadImageViewController.swift in Sources */,
+				4BC4E42A1F4B2675004B5763 /* CFCallNumber.m in Sources */,
 				4B0BA1151F1609F20083D523 /* AuthViewController.swift in Sources */,
 				4B62FE3F1F1CC85B00B1FEA1 /* AssetListView_westeros_doc.swift in Sources */,
 				4B0BA02D1F1606320083D523 /* AppDelegate.swift in Sources */,
 				4B62FE391F1CC85B00B1FEA1 /* BlogsEntryDisplayView_westeros.swift in Sources */,
+				4BC4E42E1F4B2675004B5763 /* CDVWKWebViewUIDelegate.m in Sources */,
 				4B0BA11C1F1609F20083D523 /* TermsViewController.swift in Sources */,
 				4B0BA0CE1F1608590083D523 /* DefaultResources.swift in Sources */,
+				4BC4E42B1F4B2675004B5763 /* CDVDevice.m in Sources */,
 				4B0BA0D01F1608590083D523 /* WesterosCardView.swift in Sources */,
 				4B0BA0CF1F1608590083D523 /* KeyboardListener.swift in Sources */,
 				4B62FE651F1CC85B00B1FEA1 /* ImageUploadDetailView_westeros.swift in Sources */,
