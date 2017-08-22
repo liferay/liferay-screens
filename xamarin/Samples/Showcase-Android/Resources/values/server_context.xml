@@ -12,4 +12,9 @@
 	<!-- ForgotPasswordScreenlet and SignUpScreenlet -->
     <string name="liferay_anonymousApiUserName">anonymous1@liferay.com</string>
     <string name="liferay_anonymousApiPassword">anonymous1</string>
+
+	<!-- DDLFormScreenlet -->
+    <string name="liferay_structure_id">54341</string>
+    <string name="liferay_recordset_id">54345</string>
+	<string name="liferay_record_id">54351</string>
 </resources>
