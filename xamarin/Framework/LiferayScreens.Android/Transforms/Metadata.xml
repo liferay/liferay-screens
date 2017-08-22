@@ -19,7 +19,6 @@
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.webcontent.display']/class[@name='WebContentDisplayScreenlet']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.auth.login']/class[@name='LoginView']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.base.interactor']/class[@name='BaseInteractor']"/>
-  <remove-node path="/api/package[@name='com.liferay.mobile.screens.imagegallery']/class[@name='ImageGalleryScreenlet']"/>
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.asset.list']/class[@name='AssetListScreenlet']"/>
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.comment.list']/class[@name='CommentListScreenlet']"/>
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.list']/class[@name='DDLListScreenlet']"/>
