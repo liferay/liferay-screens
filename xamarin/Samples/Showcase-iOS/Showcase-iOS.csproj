@@ -153,6 +153,7 @@
     <Folder Include="Resources\" />
     <Folder Include="Resources\img\" />
     <Folder Include="ViewController\" />
+    <Folder Include="SelectScreenlets\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Storyboard\LaunchScreen.storyboard" />
@@ -185,6 +186,7 @@
     <Compile Include="ViewController\SelectScreenletViewController.designer.cs">
       <DependentUpon>SelectScreenletViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="SelectScreenlets\ScreenletsTableSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\img\Liferay-Screens.png" />
