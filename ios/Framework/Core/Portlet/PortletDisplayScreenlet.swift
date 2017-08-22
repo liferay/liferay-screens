@@ -69,6 +69,7 @@ import UIKit
 /// Portlet Display Screenlet can display a Liferay page (with one or more portlets
 /// inside). With this screenlet you can inject custom css and js files to customize
 /// your view.
+@objc(PortletDisplayScreenlet)
 open class PortletDisplayScreenlet: BaseScreenlet {
 
 	let internalNamespace = "screensinternal"

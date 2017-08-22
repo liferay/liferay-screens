@@ -15,6 +15,7 @@
 import UIKit
 import WebKit
 
+@objc(PortletDisplayView_default)
 open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewModel {
 
 	// MARK: Public properties
