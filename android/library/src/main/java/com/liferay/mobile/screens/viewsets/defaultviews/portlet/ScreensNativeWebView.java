@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Build;
+import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
@@ -21,6 +22,7 @@ public class ScreensNativeWebView extends WebViewClient implements ScreensWebVie
 	public ScreensNativeWebView(Context context) {
 		webView = new WebView(context);
 		webView.setWebViewClient(this);
+		webView.setWebChromeClient(new WebChromeClient());
 	}
 
 	@Override
