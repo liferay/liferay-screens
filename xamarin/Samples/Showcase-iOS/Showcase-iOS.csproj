@@ -161,6 +161,7 @@
     <InterfaceDefinition Include="Storyboard\ForgotPassword.storyboard" />
     <InterfaceDefinition Include="Storyboard\SignUp.storyboard" />
     <InterfaceDefinition Include="Storyboard\SelectScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\DDLFormScreenlet.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -187,6 +188,10 @@
       <DependentUpon>SelectScreenletViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="SelectScreenlets\ScreenletsTableSource.cs" />
+    <Compile Include="ViewController\DDLFormViewController.cs" />
+    <Compile Include="ViewController\DDLFormViewController.designer.cs">
+      <DependentUpon>DDLFormViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\img\Liferay-Screens.png" />
