@@ -13,12 +13,14 @@
  */
 import UIKit
 
+
 #if LIFERAY_SCREENS_FRAMEWORK
 	import LRMobileSDK
 	import KeychainAccess
 #endif
 
-@objc open class BaseCredentialsStoreKeyChain: NSObject, CredentialsStore {
+@objc(BaseCredentialsStoreKeyChain)
+open class BaseCredentialsStoreKeyChain: NSObject, CredentialsStore {
 
 	open var authentication: LRAuthentication?
 	open var userAttributes: [String:AnyObject]?

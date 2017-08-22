@@ -15,6 +15,7 @@
 import UIKit
 import QuartzCore
 
+
 /// The BaseScreenletDelegate protocol defines one method that you use to manage the
 /// BaseScreenlet events. This method is optional.
 @objc(BaseScreenletDelegate)

@@ -13,6 +13,8 @@
  */
 import UIKit
 
+
+@objc(BaseListTableView)
 open class BaseListTableView: BaseListView, UITableViewDataSource, UITableViewDelegate {
 
 	@IBOutlet open var tableView: UITableView?

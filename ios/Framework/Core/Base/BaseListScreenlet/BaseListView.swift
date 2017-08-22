@@ -13,6 +13,8 @@
  */
 import UIKit
 
+
+@objc(BaseListView)
 open class BaseListView: BaseScreenletView {
 
 	open static let DefaultSection = ""

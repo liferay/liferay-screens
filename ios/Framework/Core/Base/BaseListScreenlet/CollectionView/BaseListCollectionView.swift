@@ -13,6 +13,8 @@
  */
 import UIKit
 
+
+@objc(BaseListCollectionView)
 open class BaseListCollectionView: BaseListView, UICollectionViewDataSource, UICollectionViewDelegate {
 
 	let defaultCellId = "liferay-screns-loadingMoreCellId"
