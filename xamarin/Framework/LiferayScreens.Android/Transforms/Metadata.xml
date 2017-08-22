@@ -6,7 +6,6 @@
   <!-- We must change visibility on interface SimpleFileDialogListener-->
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']/class[@name='SelectFileDialog']"/>
 
-  <remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.form']/class[@name='DDLFormScreenlet']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.comment.display']/class[@name='CommentDisplayScreenlet']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.rating']/class[@name='RatingScreenlet']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.userportrait']/class[@name='UserPortraitScreenlet']" />
@@ -61,29 +60,37 @@
   <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']
         /class[@name='CustomRatingNumberView']
         /method[@name='getField' and count(parameter)=0]"
-    name="propertyName">FieldProperty</attr>
+	    name="propertyName">FieldProperty</attr>
   <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']
         /class[@name='CustomRatingNumberView']
         /method[@name='setField' and count(parameter)=1 and parameter[1][@type='com.liferay.mobile.screens.ddl.model.NumberField']]"
-      name="propertyName">FieldProperty</attr>
+        name="propertyName">FieldProperty</attr>
   
   <!-- Corrections DDLFieldCheckboxView-->
   <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']
         /class[@name='DDLFieldCheckboxView']
         /method[@name='getField' and count(parameter)=0]"
-   name="propertyName">FieldProperty</attr>
+        name="propertyName">FieldProperty</attr>
   <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']
         /class[@name='DDLFieldCheckboxView']
         /method[@name='setField' and count(parameter)=1 and parameter[1][@type='com.liferay.mobile.screens.ddl.model.NumberField']]"
-      name="propertyName">FieldProperty</attr>
+        name="propertyName">FieldProperty</attr>
   
   <!-- Corrections DDLFieldRadioView-->
   <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']
         /class[@name='DDLFieldRadioView']
         /method[@name='getField' and count(parameter)=0]"
-   name="propertyName">FieldProperty</attr>
+        name="propertyName">FieldProperty</attr>
   <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']
         /class[@name='DDLFieldRadioView']
         /method[@name='setField' and count(parameter)=1 and parameter[1][@type='com.liferay.mobile.screens.ddl.model.NumberField']]"
-      name="propertyName">FieldProperty</attr>
+        name="propertyName">FieldProperty</attr>
+
+  <!-- Corrections for DDLFormScreenlet-->
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.ddl.form']
+        /class[@name='DDLFormScreenlet']
+	    /method[@name='onUserAction']"/>
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.ddl.form']
+        /class[@name='DDLFormScreenlet']
+	    /method[@name='createInteractor']"/>
 </metadata>

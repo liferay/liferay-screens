@@ -44,6 +44,12 @@
     <Folder Include="Auth\Common\" />
     <Folder Include="Auth\ForgotPassword\" />
     <Folder Include="Auth\SignUp\" />
+    <Folder Include="DDL\" />
+    <Folder Include="DDL\Form\" />
+    <Folder Include="Models\" />
+    <Folder Include="Models\DDM\" />
+    <Folder Include="Themes\Default\Auth\" />
+    <Folder Include="Themes\Default\DDL\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -53,24 +59,38 @@
     <ObjcBindingApiDefinition Include="Base\BaseScreenletDelegate.cs" />
     <ObjcBindingApiDefinition Include="Base\BaseScreenletView.cs" />
     <ObjcBindingApiDefinition Include="Base\Interactor.cs" />
-    <ObjcBindingApiDefinition Include="Themes\Default\LoginView_default.cs" />
     <ObjcBindingApiDefinition Include="Auth\Login\LoginViewModel.cs" />
     <ObjcBindingApiDefinition Include="Auth\Common\BasicAuthBasedType.cs" />
     <ObjcBindingApiDefinition Include="Auth\ForgotPassword\ForgotPasswordScreenlet.cs" />
-    <ObjcBindingApiDefinition Include="Themes\Default\ForgotPasswordView_default.cs" />
     <ObjcBindingApiDefinition Include="Auth\ForgotPassword\ForgotPasswordViewModel.cs" />
     <ObjcBindingApiDefinition Include="Auth\Common\AnonymousBasicAuthType.cs" />
     <ObjcBindingApiDefinition Include="Auth\ForgotPassword\ForgotPasswordScreenletDelegate.cs" />
     <ObjcBindingApiDefinition Include="Auth\SignUp\SignUpScreenlet.cs" />
     <ObjcBindingApiDefinition Include="Auth\SignUp\SignUpScreenletDelegate.cs" />
     <ObjcBindingApiDefinition Include="Auth\SignUp\SignUpViewModel.cs" />
-    <ObjcBindingApiDefinition Include="Themes\Default\SignUpView_default.cs" />
     <ObjcBindingApiDefinition Include="Base\ProgressPresenter.cs" />
+    <ObjcBindingApiDefinition Include="DDL\Form\DDLFormScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="DDL\Form\DDLFormScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Models\DDM\DDMField.cs" />
+    <ObjcBindingApiDefinition Include="Models\DDLRecord.cs" />
+    <ObjcBindingApiDefinition Include="Models\DDM\DDMStructure.cs" />
+    <ObjcBindingApiDefinition Include="Models\DDM\DDMFieldDocument.cs" />
+    <ObjcBindingApiDefinition Include="DDL\Form\DDLFormViewModel.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Auth\ForgotPasswordView_default.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Auth\LoginView_default.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Auth\SignUpView_default.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\DDL\DDLFormView_default.cs" />
+    <ObjcBindingApiDefinition Include="DDL\Form\DDLFormTableView.cs" />
+    <ObjcBindingApiDefinition Include="DDL\Form\DDLFormView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />
   </ItemGroup>
   <ItemGroup>
+    <NativeReference Include="..\..\LiferayScreens.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
     <NativeReference Include="..\DependentFrameworks\AFNetworking.framework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
@@ -132,10 +152,6 @@
       <SmartLink>False</SmartLink>
     </NativeReference>
     <NativeReference Include="..\DependentFrameworks\YapDatabase.framework">
-      <Kind>Framework</Kind>
-      <SmartLink>False</SmartLink>
-    </NativeReference>
-    <NativeReference Include="..\..\LiferayScreens.framework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
     </NativeReference>
