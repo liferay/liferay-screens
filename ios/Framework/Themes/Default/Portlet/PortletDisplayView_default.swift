@@ -69,6 +69,8 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 			screensWebView = ScreensWKWebView(jsCallHandler: jsCallHandler,
 					jsErrorHandler: jsErrorHandler, onPageLoadFinished:
 					onPageLoadFinishedHandler)
+
+			(screensWebView as? ScreensWKWebView)?.viewController = screenlet?.presentingViewController
 		}
 
 		addWebView()

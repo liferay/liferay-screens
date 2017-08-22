@@ -25,9 +25,15 @@ UIScrollViewDelegate {
 	}
 
 	let wkWebView: WKWebView
+	lazy var uiDelegate: ScreensWKUIDelegate = ScreensWKUIDelegate(viewController: self.viewController)
 
 	var scriptsToInject = [InjectableScript]()
 	var initialNavigation: WKNavigation?
+	var viewController: UIViewController? {
+		didSet {
+			wkWebView.uiDelegate = self.uiDelegate
+		}
+	}
 
 	let jsCallHandler: (String, String) -> Void
 	let onPageLoadFinished: (String, Error?) -> Void
