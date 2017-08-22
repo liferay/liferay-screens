@@ -30,6 +30,12 @@ namespace ShowcaseiOS.ViewController
         public virtual void OnLoginResponseUserAttributes(BaseScreenlet screenlet, NSDictionary<NSString, NSObject> attributes)
         {
             System.Diagnostics.Debug.WriteLine($"Login successful: {attributes}");
+
+            System.Diagnostics.Debug.WriteLine("Navigate to SelectScreenletViewController");
+            UIStoryboard board = UIStoryboard.FromName("SelectScreenlet", null);
+            SelectScreenletViewController vc = (SelectScreenletViewController)
+                board.InstantiateViewController("SelectScreenletViewController");
+            this.NavigationController.PushViewController(vc, true);
         }
 
         /* Private methods */

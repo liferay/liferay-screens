@@ -159,6 +159,7 @@
     <InterfaceDefinition Include="Storyboard\Main.storyboard" />
     <InterfaceDefinition Include="Storyboard\ForgotPassword.storyboard" />
     <InterfaceDefinition Include="Storyboard\SignUp.storyboard" />
+    <InterfaceDefinition Include="Storyboard\SelectScreenlet.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -179,6 +180,10 @@
     <Compile Include="ViewController\SignUpViewController.cs" />
     <Compile Include="ViewController\SignUpViewController.designer.cs">
       <DependentUpon>SignUpViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\SelectScreenletViewController.cs" />
+    <Compile Include="ViewController\SelectScreenletViewController.designer.cs">
+      <DependentUpon>SelectScreenletViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
