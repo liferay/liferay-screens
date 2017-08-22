@@ -50,7 +50,7 @@ namespace ShowcaseiOS.ViewController
 
         partial void ForgotPasswordButton_TouchUpInside(UIButton sender)
         {
-            System.Diagnostics.Debug.WriteLine("Navigate to ForgotPasswordViewController");
+            System.Diagnostics.Debug.WriteLine("Navigate to ForgotPasswordScreenlet");
             UIStoryboard board = UIStoryboard.FromName("ForgotPassword", null);
             ForgotPasswordViewController vc = (ForgotPasswordViewController) 
                 board.InstantiateViewController("ForgotPasswordViewController");
@@ -59,7 +59,7 @@ namespace ShowcaseiOS.ViewController
 
         partial void SignUpButton_TouchUpInside(UIButton sender)
         {
-            System.Diagnostics.Debug.WriteLine("Navigate to SignUpViewController");
+            System.Diagnostics.Debug.WriteLine("Navigate to SignUpScreenlet");
             UIStoryboard board = UIStoryboard.FromName("SignUp", null);
             SignUpViewController vc = (SignUpViewController) 
                 board.InstantiateViewController("SignUpViewController");
