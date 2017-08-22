@@ -20,6 +20,7 @@ All notable changes to this project will be documented in this file.
 * Expose Video events in the VideoDisplayScreenlet 
 * Allow developers override injected CSS in WebContentDisplayScreenlet
 * Add PortletDisplayScreenlet
+* Show alerts in the PortletDisplayScreenlet
 
 ### Refactor
 * Remove unused attribute in RatingsScreenlet 
