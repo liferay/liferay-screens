@@ -8,12 +8,14 @@ namespace ShowcaseiOS.SelectScreenlets
     public class ScreenletsTableSource: UITableViewSource
     {
         protected string[] screenlets;
+        protected string[] viewControllers;
         protected string cellIdentifier = "TableCell";
         SelectScreenletViewController owner;
 
-        public ScreenletsTableSource(string[] data, SelectScreenletViewController owner)
+        public ScreenletsTableSource(string[] data, string[] vcs, SelectScreenletViewController owner)
         {
             screenlets = data;
+            viewControllers = vcs;
             this.owner = owner;
         }
 
@@ -42,9 +44,11 @@ namespace ShowcaseiOS.SelectScreenlets
 
         public override void RowSelected(UITableView tableView, Foundation.NSIndexPath indexPath)
         {
-            UIAlertController okAlertController = UIAlertController.Create("Row Selected", screenlets[indexPath.Row], UIAlertControllerStyle.Alert);
-            okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-            owner.PresentViewController(okAlertController, true, null);
+            System.Diagnostics.Debug.WriteLine($"Navigate to {screenlets[indexPath.Row]}");
+            UIStoryboard board = UIStoryboard.FromName(screenlets[indexPath.Row], null);
+            UIViewController vc = board.InstantiateViewController(viewControllers[indexPath.Row]);
+            owner.NavigationController.PushViewController(vc, true);
+
             tableView.DeselectRow(indexPath, true);
         }
     }
