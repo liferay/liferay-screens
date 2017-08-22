@@ -14,7 +14,7 @@
 
 import WebKit
 
-@objc open class ScreensWKUIDelegate : NSObject, WKUIDelegate {
+@objc open class ScreensWKUIDelegate: NSObject, WKUIDelegate {
 
 	weak var viewController: UIViewController?
 
@@ -56,7 +56,6 @@ import WebKit
 			completionHandler(false)
 			alert.dismiss(animated: true, completion: nil)
 		}
-
 
 		alert.addAction(okAction)
 		alert.addAction(cancelAction)

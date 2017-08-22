@@ -160,7 +160,7 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 	func handleInternal(namespace: String, message: Any) {
 		if namespace.hasSuffix("consoleMessage") {
 			if loggingEnabled {
-				print("Console message: \(message)");
+				print("Console message: \(message)")
 			}
 		}
 		else if namespace.hasSuffix("listportlets") {
