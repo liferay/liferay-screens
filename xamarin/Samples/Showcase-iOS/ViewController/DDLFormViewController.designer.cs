@@ -14,8 +14,16 @@ namespace ShowcaseiOS.ViewController
     [Register ("DDLFormViewController")]
     partial class DDLFormViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        LiferayScreens.DDLFormScreenlet ddlFormScreenlet { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (ddlFormScreenlet != null) {
+                ddlFormScreenlet.Dispose ();
+                ddlFormScreenlet = null;
+            }
         }
     }
 }

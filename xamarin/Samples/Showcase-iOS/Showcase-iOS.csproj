@@ -86,54 +86,70 @@
     <Reference Include="Xamarin.iOS" />
     <Reference Include="Xamarin.Swift3">
       <HintPath>packages\Xamarin.Swift3.3.0.1\lib\xamarinios10\Xamarin.Swift3.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Xamarin.Swift3.AVFoundation">
       <HintPath>packages\Xamarin.Swift3.AVFoundation.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.AVFoundation.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Xamarin.Swift3.CloudKit">
       <HintPath>packages\Xamarin.Swift3.CloudKit.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.CloudKit.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Xamarin.Swift3.Contacts">
       <HintPath>packages\Xamarin.Swift3.Contacts.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.Contacts.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Xamarin.Swift3.Core">
       <HintPath>packages\Xamarin.Swift3.Core.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.Core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Xamarin.Swift3.CoreAudio">
       <HintPath>packages\Xamarin.Swift3.CoreAudio.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.CoreAudio.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Xamarin.Swift3.CoreGraphics">
       <HintPath>packages\Xamarin.Swift3.CoreGraphics.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.CoreGraphics.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Xamarin.Swift3.CoreImage">
       <HintPath>packages\Xamarin.Swift3.CoreImage.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.CoreImage.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Xamarin.Swift3.CoreLocation">
       <HintPath>packages\Xamarin.Swift3.CoreLocation.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.CoreLocation.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Xamarin.Swift3.CoreMedia">
       <HintPath>packages\Xamarin.Swift3.CoreMedia.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.CoreMedia.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Xamarin.Swift3.Darwin">
       <HintPath>packages\Xamarin.Swift3.Darwin.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.Darwin.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Xamarin.Swift3.Dispatch">
       <HintPath>packages\Xamarin.Swift3.Dispatch.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.Dispatch.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Xamarin.Swift3.Foundation">
       <HintPath>packages\Xamarin.Swift3.Foundation.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.Foundation.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Xamarin.Swift3.ObjectiveC">
       <HintPath>packages\Xamarin.Swift3.ObjectiveC.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.ObjectiveC.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Xamarin.Swift3.QuartzCore">
       <HintPath>packages\Xamarin.Swift3.QuartzCore.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.QuartzCore.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Xamarin.Swift3.UIKit">
       <HintPath>packages\Xamarin.Swift3.UIKit.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.UIKit.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="LiferayScreens_iOS">
-      <HintPath>packages\LiferayScreens.0.1.0-beta\lib\Xamarin.iOS10\LiferayScreens_iOS.dll</HintPath>
+      <HintPath>packages\LiferayScreens.0.1.0-beta2\lib\Xamarin.iOS10\LiferayScreens_iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
