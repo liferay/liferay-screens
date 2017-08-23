@@ -35,6 +35,7 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 		didSet {
 			imageGalleryScreenlet?.delegate = self
 			imageGalleryScreenlet?.presentingViewController = self
+            imageGalleryScreenlet?.offlinePolicy = "cache-first"
 
 			imageGalleryScreenlet?.repositoryId = LiferayServerContext.groupId
 			imageGalleryScreenlet?.folderId =

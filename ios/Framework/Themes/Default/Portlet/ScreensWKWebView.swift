@@ -43,7 +43,8 @@ UIScrollViewDelegate {
 		self.wkWebView = WKWebView()
 
 		super.init()
-
+        
+        wkWebView.scrollView.backgroundColor = .clear
 		wkWebView.injectViewportMetaTag()
 		wkWebView.navigationDelegate = self
 		wkWebView.scrollView.delegate = self
