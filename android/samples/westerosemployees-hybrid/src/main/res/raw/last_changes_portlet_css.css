@@ -3,16 +3,16 @@ body {
 }
 
 #wrapper {
-    padding-top: 0em;
+    padding-top: 0;
 }
 
 .col-md-12 {
-    padding: 0px;
+    padding: 0;
 }
 
 .portlet-decorate .portlet-content {
     background: #D6D6D6;
-    border: 0px;
+    border: 0;
     margin-top: -50px;
 }
 
