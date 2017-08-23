@@ -1,36 +1,37 @@
 function modifyItem() {
     var allLinks = document.getElementsByTagName('a');
-    var allImg = document.getElementsByTagName('img');
+    var allImages = document.getElementsByTagName('img');
 
     for (var i = 0; i < allLinks.length; i++) {
         allLinks[i].removeAttribute('href');
     }
 
-    for (var i = 0; i < allImg.length; i++) {
-        if (allImg[i].id != 'img-header') {
-            imageToDiv(allImg[i]);
+    for (var j = 0; j < allImages.length; j++) {
+        if (allImages[j].id !== 'img-header') {
+            imageToDiv(allImages[j]);
         }
     }
 }
 
 modifyItem();
 
-function imageToDiv(allImg) {
-    var parent = allImg.parentNode;
-    var newSibling = buildImageWithDiv(allImg);
+function imageToDiv(img) {
+    var parent = img.parentNode;
+    var newSibling = buildImageWithDiv(img);
     insertAfter(parent, newSibling);
     deleteTag(parent);
 }
 
-function buildImageWithDiv(allImg) {
-    allImg.className += ' img-blog';
-    allImg.removeAttribute('height');
-    allImg.removeAttribute('width');
-    allImg.setAttribute('style', 'margin: 20px 0px;');
-    var newDiv = document.createElement('div');
-    newDiv.className += ' img-content-blog';
-    newDiv.appendChild(allImg);
-    return newDiv;
+function buildImageWithDiv(img) {
+    img.className += ' img-blog';
+    img.removeAttribute('height');
+    img.removeAttribute('width');
+    img.setAttribute('style', 'margin: 20px 0px;');
+
+    var div = document.createElement('div');
+    div.className += ' img-content-blog';
+    div.appendChild(img);
+    return div;
 }
 
 function insertAfter(parent, newSibling) {

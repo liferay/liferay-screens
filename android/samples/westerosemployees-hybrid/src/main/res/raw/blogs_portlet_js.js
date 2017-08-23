@@ -4,7 +4,7 @@ function modifyItem() {
     for (var i = 0; i < blogItems.length; i++) {
         blogItems[i].style = null;
         addClick(blogItems[i]);
-        if (i != blogItems.length - 1) {
+        if (i !== blogItems.length - 1) {
             addSeparator(blogItems[i]);
         }
     }

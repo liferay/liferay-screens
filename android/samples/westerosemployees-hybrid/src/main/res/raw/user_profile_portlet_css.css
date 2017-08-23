@@ -3,16 +3,16 @@ body {
 }
 
 #wrapper {
-    padding-top: 0em;
+    padding-top: 0;
 }
 
 .col-md-12 {
-    padding: 0px;
+    padding: 0;
 }
 
 .portlet-decorate .portlet-content {
     background: #D6D6D6;
-    border: 0px;
+    border: 0;
     margin-top: -50px;
 }
 
@@ -47,9 +47,10 @@ body {
 button {
     background-color: #FFF;
     border-radius: 3px;
-    border: 0px;
+    border: 0;
     bottom: 10px;
-    box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.06) box-shadow: none;
+    box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.06);
+    box-shadow: none;
     color: #E44740;
     font-size: 16px;
     font-weight: 600;

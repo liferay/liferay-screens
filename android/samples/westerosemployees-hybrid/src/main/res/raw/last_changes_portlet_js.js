@@ -22,15 +22,16 @@ function modifyItem() {
 
     for (var i = 0; i < lastChangeItems.length; i++) {
 
-        addClick(lastChangeItems[i]);
+        var lastChangeItem = lastChangeItems[i];
+        addClick(lastChangeItem);
 
-        if (lastChangeItems[i].getAttribute('data-class-name') == itemClassName) {
-            var ext = lastChangeItems[i].getAttribute('data-extension');
-            lastChangeItems[i].getElementsByTagName('img')[0].src = icons[ext] || icons.def;
+        if (lastChangeItem.getAttribute('data-class-name') === itemClassName) {
+            var ext = lastChangeItem.getAttribute('data-extension');
+            lastChangeItem.getElementsByTagName('img')[0].src = icons[ext] || icons.def;
         }
 
-        if (i != lastChangeItems.length - 1) {
-            addSeparator(lastChangeItems[i]);
+        if (i !== lastChangeItems.length - 1) {
+            addSeparator(lastChangeItem);
         }
     }
 }

@@ -6,9 +6,9 @@ function modifyItem() {
     }
 }
 
-function addClick(galleryItems) {
-    var dataId = galleryItems.getAttribute('data-id');
-    galleryItems.addEventListener('click', function(event) {
+function addClick(galleryItem) {
+    var dataId = galleryItem.getAttribute('data-id');
+    galleryItem.addEventListener('click', function(event) {
         window.Screens.postMessage('gallery-item', dataId);
     });
 }

@@ -18,28 +18,29 @@ function modifyItem() {
     var documentItems = document.querySelectorAll('.item-doc');
 
     for (var i = 0; i < documentItems.length; i++) {
-        addClick(documentItems[i]);
+        var item = documentItems[i];
+        addClick(item);
 
-        var ext = documentItems[i].getAttribute('data-extension');
-        documentItems[i].getElementsByTagName('img')[0].src = icons[ext] || icons.def;
+        var ext = item.getAttribute('data-extension');
+        item.getElementsByTagName('img')[0].src = icons[ext] || icons.def;
 
-        if (i != documentItems.length - 1) {
-            addSeparator(documentItems[i]);
+        if (i !== documentItems.length - 1) {
+            addSeparator(item);
         }
     }
 }
 
-function addClick(documentItems) {
-    var dataId = documentItems.getAttribute('data-id');
-    documentItems.addEventListener('click', function(event) {
+function addClick(item) {
+    var dataId = item.getAttribute('data-id');
+    item.addEventListener('click', function(event) {
         window.Screens.postMessage('doc-item', dataId);
     });
 }
 
-function addSeparator(documentItems) {
+function addSeparator(item) {
     var div = document.createElement('div');
     div.className = 'separator';
-    documentItems.appendChild(div);
+    item.appendChild(div);
 }
 
 modifyItem();
