@@ -96,8 +96,7 @@ public class UserPortraitLoadInteractor
 			if (portraitId == 0) {
 				// User doesn't have portrait
 				getListener().onUserWithoutPortrait(new User(userAttributes));
-			}
-			else {
+			} else {
 				UserPortraitUriBuilder userPortraitUriBuilder = new UserPortraitUriBuilder();
 				Uri uri =
 					userPortraitUriBuilder.getUserPortraitUri(LiferayServerContext.getServer(), true, portraitId, uuid);

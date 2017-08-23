@@ -8,9 +8,7 @@ import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
-
 import com.jakewharton.rxbinding.view.RxView;
-import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.imagegallery.BaseDetailUploadView;
 import com.liferay.mobile.screens.imagegallery.ImageGalleryListener;
@@ -23,9 +21,7 @@ import com.liferay.mobile.screens.portlet.util.InjectableScript;
 import com.liferay.mobile.screens.westerosemployees_hybrid.R;
 import com.liferay.mobile.screens.westerosemployees_hybrid.utils.CardState;
 import com.tbruyelle.rxpermissions.RxPermissions;
-
 import java.util.List;
-
 import rx.functions.Action1;
 
 import static android.Manifest.permission.CAMERA;
@@ -37,8 +33,8 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 public class GalleryCard extends Card implements ImageGalleryListener, PortletDisplayListener {
 
 	private ImageGalleryScreenlet imageGalleryScreenlet;
-    private BaseDetailUploadView uploadDetailView;
-    private Card uploadImageCard;
+	private BaseDetailUploadView uploadDetailView;
+	private Card uploadImageCard;
 	PortletDisplayScreenlet portletDisplayScreenlet;
 	private boolean loaded;
 
@@ -59,8 +55,8 @@ public class GalleryCard extends Card implements ImageGalleryListener, PortletDi
 		if (!loaded && state.equals(CardState.NORMAL)) {
 			loaded = true;
 
-            uploadDetailView = (BaseDetailUploadView) findViewById(R.id.upload_detail_view);
-            uploadImageCard = (Card) findViewById(R.id.upload_image_card);
+			uploadDetailView = (BaseDetailUploadView) findViewById(R.id.upload_detail_view);
+			uploadImageCard = (Card) findViewById(R.id.upload_image_card);
 
 			loadGallery();
 		}
@@ -69,10 +65,9 @@ public class GalleryCard extends Card implements ImageGalleryListener, PortletDi
 	}
 
 	private void loadGallery() {
-		PortletConfiguration configuration = new PortletConfiguration.Builder("/web/westeros-hybrid/gallery")
-				.addRawCss(R.raw.gallery_portlet_css, "gallery_portlet_css.css")
-				.addRawJs(R.raw.gallery_portlet_js, "gallery_portlet_js.js")
-				.load();
+		PortletConfiguration configuration =
+			new PortletConfiguration.Builder("/web/westeros-hybrid/gallery").addRawCss(R.raw.gallery_portlet_css,
+				"gallery_portlet_css.css").addRawJs(R.raw.gallery_portlet_js, "gallery_portlet_js.js").load();
 
 		portletDisplayScreenlet = (PortletDisplayScreenlet) findViewById(R.id.portlet_gallery);
 
@@ -84,27 +79,27 @@ public class GalleryCard extends Card implements ImageGalleryListener, PortletDi
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
-        imageGalleryScreenlet = (ImageGalleryScreenlet) findViewById(R.id.gallery_screenlet);
-        imageGalleryScreenlet.setListener(this);
+		imageGalleryScreenlet = (ImageGalleryScreenlet) findViewById(R.id.gallery_screenlet);
+		imageGalleryScreenlet.setListener(this);
 
-        Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
-        RxPermissions rxPermissions = new RxPermissions(activity);
+		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
+		RxPermissions rxPermissions = new RxPermissions(activity);
 
-        RxView.clicks(findViewById(R.id.gallery_button))
-                .compose(rxPermissions.ensure(WRITE_EXTERNAL_STORAGE))
-                .subscribe(openGallery());
+		RxView.clicks(findViewById(R.id.gallery_button))
+			.compose(rxPermissions.ensure(WRITE_EXTERNAL_STORAGE))
+			.subscribe(openGallery());
 
-        RxView.clicks(findViewById(R.id.camera_button))
-                .compose(rxPermissions.ensure(CAMERA, WRITE_EXTERNAL_STORAGE))
-                .subscribe(openCamera());
+		RxView.clicks(findViewById(R.id.camera_button))
+			.compose(rxPermissions.ensure(CAMERA, WRITE_EXTERNAL_STORAGE))
+			.subscribe(openCamera());
 
-        RxView.clicks(findViewById(R.id.upoad_button)).subscribe(new Action1<Void>() {
-            @Override
-            public void call(Void aVoid) {
-                uploadDetailView.finishActivityAndStartUpload(uploadDetailView.getTitle(),
-                        uploadDetailView.getDescription(), "");
-            }
-        });
+		RxView.clicks(findViewById(R.id.upoad_button)).subscribe(new Action1<Void>() {
+			@Override
+			public void call(Void aVoid) {
+				uploadDetailView.finishActivityAndStartUpload(uploadDetailView.getTitle(),
+					uploadDetailView.getDescription(), "");
+			}
+		});
 	}
 
 	@Override
@@ -119,18 +114,16 @@ public class GalleryCard extends Card implements ImageGalleryListener, PortletDi
 
 	@Override
 	public void onScriptMessageHandler(String namespace, final String body) {
-		if("gallery-item".equals(namespace)) {
+		if ("gallery-item".equals(namespace)) {
 			new Handler(Looper.getMainLooper()).post(new Runnable() {
 				@Override
 				public void run() {
 					PortletConfiguration configuration =
-							new PortletConfiguration.Builder("/web/westeros-hybrid/detail?id=" + body)
-									.addRawCss(R.raw.detail_css, "detail_css.css")
-									.addRawJs(R.raw.detail_js, "detail_js.js")
-									.load();
+						new PortletConfiguration.Builder("/web/westeros-hybrid/detail?id=" + body).addRawCss(
+							R.raw.detail_css, "detail_css.css").addRawJs(R.raw.detail_js, "detail_js.js").load();
 
 					PortletDisplayScreenlet portletDisplayScreenlet =
-							(PortletDisplayScreenlet) findViewById(R.id.portlet_gallery_item);
+						(PortletDisplayScreenlet) findViewById(R.id.portlet_gallery_item);
 
 					portletDisplayScreenlet.setPortletConfiguration(configuration);
 					portletDisplayScreenlet.load();
@@ -173,8 +166,8 @@ public class GalleryCard extends Card implements ImageGalleryListener, PortletDi
 
 	@Override
 	public void onImageUploadStarted(Uri pictureUri, String title, String description, String changelog) {
-        uploadImageCard.setState(CardState.MINIMIZED);
-    }
+		uploadImageCard.setState(CardState.MINIMIZED);
+	}
 
 	@Override
 	public void onImageUploadProgress(int totalBytes, int totalBytesSent) {
@@ -183,13 +176,13 @@ public class GalleryCard extends Card implements ImageGalleryListener, PortletDi
 
 	@Override
 	public void onImageUploadEnd(ImageEntry entry) {
-        portletDisplayScreenlet.load();
+		portletDisplayScreenlet.load();
 	}
 
 	@Override
 	public boolean showUploadImageView(String actionName, Uri pictureUri, int screenletId) {
-        uploadDetailView.initializeUploadView(actionName, pictureUri, screenletId);
-        return false;
+		uploadDetailView.initializeUploadView(actionName, pictureUri, screenletId);
+		return false;
 	}
 
 	@Override
@@ -197,25 +190,25 @@ public class GalleryCard extends Card implements ImageGalleryListener, PortletDi
 		return 0;
 	}
 
-    private Action1<Boolean> openGallery() {
-        return new Action1<Boolean>() {
-            @Override
-            public void call(Boolean permissionAccepted) {
-                if (permissionAccepted) {
-                    imageGalleryScreenlet.openGallery();
-                }
-            }
-        };
-    }
+	private Action1<Boolean> openGallery() {
+		return new Action1<Boolean>() {
+			@Override
+			public void call(Boolean permissionAccepted) {
+				if (permissionAccepted) {
+					imageGalleryScreenlet.openGallery();
+				}
+			}
+		};
+	}
 
-    private Action1<Boolean> openCamera() {
-        return new Action1<Boolean>() {
-            @Override
-            public void call(Boolean permissionAccepted) {
-                if (permissionAccepted) {
-                    imageGalleryScreenlet.openCamera();
-                }
-            }
-        };
-    }
+	private Action1<Boolean> openCamera() {
+		return new Action1<Boolean>() {
+			@Override
+			public void call(Boolean permissionAccepted) {
+				if (permissionAccepted) {
+					imageGalleryScreenlet.openCamera();
+				}
+			}
+		};
+	}
 }

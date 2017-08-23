@@ -183,8 +183,7 @@ public class LiferayServerContext {
 			SessionContext.getAuthentication().authenticate(authRequest);
 
 			return authRequest.getHeaders();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			return new HashMap<>();
 		}
 	}
