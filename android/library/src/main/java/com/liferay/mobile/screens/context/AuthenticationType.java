@@ -19,5 +19,5 @@ package com.liferay.mobile.screens.context;
  */
 public enum AuthenticationType {
 
-	BASIC, OAUTH, COOKIE, VOID;
+	BASIC, OAUTH, COOKIE, VOID
 }

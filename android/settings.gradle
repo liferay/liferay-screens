@@ -10,7 +10,7 @@ include 'liferay-westeros-viewset'
 project(':liferay-westeros-viewset').projectDir = new File(settingsDir, '/viewsets/westeros')
 project(':liferay-westeros-viewset').name = 'liferay-westeros-viewset'
 
-include ':addbookmarkscreenlet'
+include ':addbookmarkscreenlet', ':westerosemployees-hybrid'
 project(':addbookmarkscreenlet').projectDir = new File(settingsDir, '/samples/addbookmarkscreenlet')
 
 include ':listbookmarkscreenlet'
@@ -30,3 +30,6 @@ project(':westerosemployees').projectDir = new File(settingsDir, '/samples/weste
 
 include ':getuserscreenlet'
 project(':getuserscreenlet').projectDir = new File(settingsDir, '/samples/getuserscreenlet')
+
+include ':westerosemployees-hybrid'
+project(':westerosemployees-hybrid').projectDir = new File(settingsDir, '/samples/westerosemployees-hybrid')
