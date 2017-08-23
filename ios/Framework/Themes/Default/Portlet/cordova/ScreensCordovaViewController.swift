@@ -21,6 +21,7 @@ public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate,
 
 	var cdvDelegate: CDVUIWebViewNavigationDelegate?
 	var initialNavigation: WKNavigation?
+	lazy var wkUIDelegate: ScreensWKUIDelegate = ScreensWKUIDelegate(viewController: self)
 	var wkDelegate: WKNavigationDelegate? {
 		return webViewEngine as? WKNavigationDelegate
 	}
@@ -44,6 +45,10 @@ public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate,
 		super.viewDidLoad()
 		register(ScreensBridgePlugin(webViewEngine: self.webViewEngine), withPluginName: "screensbridgeplugin")
 		cdvDelegate = CDVUIWebViewNavigationDelegate(enginePlugin: self.webViewEngine as! CDVPlugin)
+
+		if let wkWebView = self.webViewEngine.engineWebView as? WKWebView {
+			wkWebView.uiDelegate = wkUIDelegate
+		}
 	}
 
 	public func inject(script: InjectableScript, completionHandler: ((Any?, Error?) -> Void)?) {

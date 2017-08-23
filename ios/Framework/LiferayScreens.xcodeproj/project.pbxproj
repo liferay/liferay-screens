@@ -85,7 +85,7 @@
 		0B2180341D6C508200A23690 /* DDMFieldString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180031D6C4F6F00A23690 /* DDMFieldString.swift */; };
 		0B2180351D6C508200A23690 /* DDMFieldStringWithOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180041D6C4F6F00A23690 /* DDMFieldStringWithOptions.swift */; };
 		0B2180361D6C508200A23690 /* DDMFieldUntyped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180051D6C4F6F00A23690 /* DDMFieldUntyped.swift */; };
-		0B2677DE1D3D1E5700FDFC5B /* BuildFile in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
+		0B2677DE1D3D1E5700FDFC5B /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
 		0B2BBE731DC3670800010F30 /* default-preview-imagegallery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2BBE721DC3670800010F30 /* default-preview-imagegallery@2x.png */; };
 		0B2BBE761DC3699C00010F30 /* default-list-preview-imagegallery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2BBE741DC3699C00010F30 /* default-list-preview-imagegallery@2x.png */; };
 		0B2BBE771DC3699C00010F30 /* default-slideshow-preview-imagegallery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B2BBE751DC3699C00010F30 /* default-slideshow-preview-imagegallery@2x.png */; };
@@ -133,6 +133,7 @@
 		0B7F45A21DA7BC5C00A3BDE3 /* ImageDisplayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7F45A11DA7BC5C00A3BDE3 /* ImageDisplayViewModel.swift */; };
 		0B81C1B21EEED7A900D7DCF6 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 0B81C1B11EEED7A900D7DCF6 /* index.html */; };
 		0B89C9951D58B01200A9EAE7 /* SyncManager+ImageGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B89C9941D58B01200A9EAE7 /* SyncManager+ImageGallery.swift */; };
+		0BA1CEDF1F4C64CE0079DD4B /* ScreensWKUIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA1CEDE1F4C64CE0079DD4B /* ScreensWKUIDelegate.swift */; };
 		0BB4678B1D8707280044523E /* comment-add-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BB467851D8707280044523E /* comment-add-screenlet.strings */; };
 		0BB4678C1D8707280044523E /* comment-display-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BB467871D8707280044523E /* comment-display-screenlet.strings */; };
 		0BB4678D1D8707280044523E /* comment-list-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BB467891D8707280044523E /* comment-list-screenlet.strings */; };
@@ -706,6 +707,7 @@
 		0B85DF981DDE24B40015EDCF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/rating-screenlet.strings"; sourceTree = "<group>"; };
 		0B85DF991DDE25D90015EDCF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/webcontentdisplay-screenlet.strings"; sourceTree = "<group>"; };
 		0B89C9941D58B01200A9EAE7 /* SyncManager+ImageGallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncManager+ImageGallery.swift"; sourceTree = "<group>"; };
+		0BA1CEDE1F4C64CE0079DD4B /* ScreensWKUIDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreensWKUIDelegate.swift; sourceTree = "<group>"; };
 		0BB467861D8707280044523E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/comment-add-screenlet.strings"; sourceTree = "<group>"; };
 		0BB467881D8707280044523E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/comment-display-screenlet.strings"; sourceTree = "<group>"; };
 		0BB4678A1D8707280044523E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/comment-list-screenlet.strings"; sourceTree = "<group>"; };
@@ -1431,6 +1433,7 @@
 				0BC700CA1EB20795006DD475 /* PortletDisplayView_default.swift */,
 				0BC700CB1EB20795006DD475 /* PortletDisplayView_default.xib */,
 				0BBE45721F1D0BC200812015 /* ScreensWKWebView.swift */,
+				0BA1CEDE1F4C64CE0079DD4B /* ScreensWKUIDelegate.swift */,
 				0BBE45741F1D0BFB00812015 /* ScreensWebView.swift */,
 			);
 			path = Portlet;
@@ -2506,7 +2509,7 @@
 				887E069B1C6A4DF800CA3807 /* LRScreensjournalarticleService_v70.h in Headers */,
 				887E06971C6A4DF800CA3807 /* LRScreensassetentryService_v70.h in Headers */,
 				88DE2AA21AD3ED6800714701 /* LiferayScreensFrameworkConfig.h in Headers */,
-				0B2677DE1D3D1E5700FDFC5B /* BuildFile in Headers */,
+				0B2677DE1D3D1E5700FDFC5B /* (null) in Headers */,
 				887E05511C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h in Headers */,
 				0BFE283A1D87E13300261A66 /* LRScreenscommentService_v70.h in Headers */,
 			);
@@ -2767,13 +2770,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Screens-LiferayScreensTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B146147EA81C5DE8F28EACDF /* [CP] Copy Pods Resources */ = {
@@ -2797,9 +2803,46 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/Cordova/Cordova.framework",
+				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/DTPickerPresenter/DTPickerPresenter.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Liferay-OAuth/LROAuth.framework",
+				"${BUILT_PRODUCTS_DIR}/Liferay-iOS-SDK/LRMobileSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MDRadialProgress/MDRadialProgress.framework",
+				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/SMXMLDocument/SMXMLDocument.framework",
+				"${BUILT_PRODUCTS_DIR}/SQLCipher/SQLCipher.framework",
+				"${BUILT_PRODUCTS_DIR}/TNRadioButtonGroup/TNRadioButtonGroup.framework",
+				"${BUILT_PRODUCTS_DIR}/YapDatabase/YapDatabase.framework",
+				"${BUILT_PRODUCTS_DIR}/Nocilla/Nocilla.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cordova.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTPickerPresenter.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LROAuth.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LRMobileSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDRadialProgress.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SMXMLDocument.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLCipher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TNRadioButtonGroup.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YapDatabase.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nocilla.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2812,13 +2855,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Screens-LiferayScreens-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2974,6 +3020,7 @@
 				0B217FE11D6C4E9500A23690 /* ImageDisplayView_default.swift in Sources */,
 				0BB5033D1D37C04A00ABD6B3 /* WebContent.swift in Sources */,
 				0BC700D11EB207B1006DD475 /* PortletDisplayScreenlet.swift in Sources */,
+				0BA1CEDF1F4C64CE0079DD4B /* ScreensWKUIDelegate.swift in Sources */,
 				0BBE45711F1D0B8100812015 /* ScreensCordovaWebView.swift in Sources */,
 				881E623C1ACBFC3400862B9E /* DDLFieldNumberTableCell_default.swift in Sources */,
 				887E069C1C6A4DF800CA3807 /* LRScreensjournalarticleService_v70.m in Sources */,

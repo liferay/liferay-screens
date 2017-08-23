@@ -15,6 +15,7 @@
 import UIKit
 import WebKit
 
+@objc(PortletDisplayView_default)
 open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewModel {
 
 	// MARK: Public properties
@@ -68,6 +69,8 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 			screensWebView = ScreensWKWebView(jsCallHandler: jsCallHandler,
 					jsErrorHandler: jsErrorHandler, onPageLoadFinished:
 					onPageLoadFinishedHandler)
+
+			(screensWebView as? ScreensWKWebView)?.viewController = screenlet?.presentingViewController
 		}
 
 		addWebView()
