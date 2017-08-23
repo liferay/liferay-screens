@@ -19,11 +19,10 @@ public class ModalDetailActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.blogs_detail_subview);
 
-        loadDetail(getIntent().getStringExtra("id"));
-
+		loadDetail(getIntent().getStringExtra("id"));
 	}
 
-	private void loadDetail(final String id){
+	private void loadDetail(final String id) {
 		PortletConfiguration configuration =
                 new PortletConfiguration.Builder("/web/westeros-hybrid/detail?id=" + id)
                         .addRawCss(R.raw.detail_css, "detail_css.css")
@@ -35,7 +34,7 @@ public class ModalDetailActivity extends AppCompatActivity {
 		portletDisplayScreenlet.setPortletConfiguration(configuration);
 		portletDisplayScreenlet.load();
 
-    }
+	}
 
 	private void hideSoftKeyBoard() {
 		Activity activity = LiferayScreensContext.getActivityFromContext(this);

@@ -27,134 +27,142 @@ import org.apache.cordova.Whitelist;
 import org.xmlpull.v1.XmlPullParser;
 
 public class WhitelistPlugin extends CordovaPlugin {
-    private static final String LOG_TAG = "WhitelistPlugin";
-    private Whitelist allowedNavigations;
-    private Whitelist allowedIntents;
-    private Whitelist allowedRequests;
+	private static final String LOG_TAG = "WhitelistPlugin";
+	private Whitelist allowedNavigations;
+	private Whitelist allowedIntents;
+	private Whitelist allowedRequests;
 
-    // Used when instantiated via reflection by PluginManager
-    public WhitelistPlugin() {
-    }
-    // These can be used by embedders to allow Java-configuration of whitelists.
-    public WhitelistPlugin(Context context) {
-        this(new Whitelist(), new Whitelist(), null);
-        new CustomConfigXmlParser().parse(context);
-    }
-    public WhitelistPlugin(XmlPullParser xmlParser) {
-        this(new Whitelist(), new Whitelist(), null);
-        new CustomConfigXmlParser().parse(xmlParser);
-    }
-    public WhitelistPlugin(Whitelist allowedNavigations, Whitelist allowedIntents, Whitelist allowedRequests) {
-        if (allowedRequests == null) {
-            allowedRequests = new Whitelist();
-            allowedRequests.addWhiteListEntry("file:///*", false);
-            allowedRequests.addWhiteListEntry("data:*", false);
-        }
-        this.allowedNavigations = allowedNavigations;
-        this.allowedIntents = allowedIntents;
-        this.allowedRequests = allowedRequests;
-    }
-    @Override
-    public void pluginInitialize() {
-        if (allowedNavigations == null) {
-            allowedNavigations = new Whitelist();
-            allowedIntents = new Whitelist();
-            allowedRequests = new Whitelist();
-            new CustomConfigXmlParser().parse(webView.getContext());
-        }
-    }
+	// Used when instantiated via reflection by PluginManager
+	public WhitelistPlugin() {
+	}
 
-    private class CustomConfigXmlParser extends ConfigXmlParser {
-        @Override
-        public void handleStartTag(XmlPullParser xml) {
-            String strNode = xml.getName();
-            if (strNode.equals("content")) {
-                String startPage = xml.getAttributeValue(null, "src");
-                allowedNavigations.addWhiteListEntry(startPage, false);
-            } else if (strNode.equals("allow-navigation")) {
-                String origin = xml.getAttributeValue(null, "href");
-                if ("*".equals(origin)) {
-                    allowedNavigations.addWhiteListEntry("http://*/*", false);
-                    allowedNavigations.addWhiteListEntry("https://*/*", false);
-                    allowedNavigations.addWhiteListEntry("data:*", false);
-                } else {
-                    allowedNavigations.addWhiteListEntry(origin, false);
-                }
-            } else if (strNode.equals("allow-intent")) {
-                String origin = xml.getAttributeValue(null, "href");
-                allowedIntents.addWhiteListEntry(origin, false);
-            } else if (strNode.equals("access")) {
-                String origin = xml.getAttributeValue(null, "origin");
-                String subdomains = xml.getAttributeValue(null, "subdomains");
-                boolean external = (xml.getAttributeValue(null, "launch-external") != null);
-                if (origin != null) {
-                    if (external) {
-                        LOG.w(LOG_TAG, "Found <access launch-external> within config.xml. Please use <allow-intent> instead.");
-                        allowedIntents.addWhiteListEntry(origin, (subdomains != null) && (subdomains.compareToIgnoreCase("true") == 0));
-                    } else {
-                        if ("*".equals(origin)) {
-                            allowedRequests.addWhiteListEntry("http://*/*", false);
-                            allowedRequests.addWhiteListEntry("https://*/*", false);
-                        } else {
-                            allowedRequests.addWhiteListEntry(origin, (subdomains != null) && (subdomains.compareToIgnoreCase("true") == 0));
-                        }
-                    }
-                }
-            }
-        }
-        @Override
-        public void handleEndTag(XmlPullParser xml) {
-        }
-    }
+	// These can be used by embedders to allow Java-configuration of whitelists.
+	public WhitelistPlugin(Context context) {
+		this(new Whitelist(), new Whitelist(), null);
+		new CustomConfigXmlParser().parse(context);
+	}
 
-    @Override
-    public Boolean shouldAllowNavigation(String url) {
-        if (allowedNavigations.isUrlWhiteListed(url)) {
-            return true;
-        }
-        return null; // Default policy
-    }
+	public WhitelistPlugin(XmlPullParser xmlParser) {
+		this(new Whitelist(), new Whitelist(), null);
+		new CustomConfigXmlParser().parse(xmlParser);
+	}
 
-    @Override
-    public Boolean shouldAllowRequest(String url) {
-        if (Boolean.TRUE == shouldAllowNavigation(url)) {
-            return true;
-        }
-        if (allowedRequests.isUrlWhiteListed(url)) {
-            return true;
-        }
-        return null; // Default policy
-    }
+	public WhitelistPlugin(Whitelist allowedNavigations, Whitelist allowedIntents, Whitelist allowedRequests) {
+		if (allowedRequests == null) {
+			allowedRequests = new Whitelist();
+			allowedRequests.addWhiteListEntry("file:///*", false);
+			allowedRequests.addWhiteListEntry("data:*", false);
+		}
+		this.allowedNavigations = allowedNavigations;
+		this.allowedIntents = allowedIntents;
+		this.allowedRequests = allowedRequests;
+	}
 
-    @Override
-    public Boolean shouldOpenExternalUrl(String url) {
-        if (allowedIntents.isUrlWhiteListed(url)) {
-            return true;
-        }
-        return null; // Default policy
-    }
+	@Override
+	public void pluginInitialize() {
+		if (allowedNavigations == null) {
+			allowedNavigations = new Whitelist();
+			allowedIntents = new Whitelist();
+			allowedRequests = new Whitelist();
+			new CustomConfigXmlParser().parse(webView.getContext());
+		}
+	}
 
-    public Whitelist getAllowedNavigations() {
-        return allowedNavigations;
-    }
+	@Override
+	public Boolean shouldAllowNavigation(String url) {
+		if (allowedNavigations.isUrlWhiteListed(url)) {
+			return true;
+		}
+		return null; // Default policy
+	}
 
-    public void setAllowedNavigations(Whitelist allowedNavigations) {
-        this.allowedNavigations = allowedNavigations;
-    }
+	@Override
+	public Boolean shouldAllowRequest(String url) {
+		if (Boolean.TRUE == shouldAllowNavigation(url)) {
+			return true;
+		}
+		if (allowedRequests.isUrlWhiteListed(url)) {
+			return true;
+		}
+		return null; // Default policy
+	}
 
-    public Whitelist getAllowedIntents() {
-        return allowedIntents;
-    }
+	@Override
+	public Boolean shouldOpenExternalUrl(String url) {
+		if (allowedIntents.isUrlWhiteListed(url)) {
+			return true;
+		}
+		return null; // Default policy
+	}
 
-    public void setAllowedIntents(Whitelist allowedIntents) {
-        this.allowedIntents = allowedIntents;
-    }
+	public Whitelist getAllowedNavigations() {
+		return allowedNavigations;
+	}
 
-    public Whitelist getAllowedRequests() {
-        return allowedRequests;
-    }
+	public void setAllowedNavigations(Whitelist allowedNavigations) {
+		this.allowedNavigations = allowedNavigations;
+	}
 
-    public void setAllowedRequests(Whitelist allowedRequests) {
-        this.allowedRequests = allowedRequests;
-    }
+	public Whitelist getAllowedIntents() {
+		return allowedIntents;
+	}
+
+	public void setAllowedIntents(Whitelist allowedIntents) {
+		this.allowedIntents = allowedIntents;
+	}
+
+	public Whitelist getAllowedRequests() {
+		return allowedRequests;
+	}
+
+	public void setAllowedRequests(Whitelist allowedRequests) {
+		this.allowedRequests = allowedRequests;
+	}
+
+	private class CustomConfigXmlParser extends ConfigXmlParser {
+		@Override
+		public void handleStartTag(XmlPullParser xml) {
+			String strNode = xml.getName();
+			if (strNode.equals("content")) {
+				String startPage = xml.getAttributeValue(null, "src");
+				allowedNavigations.addWhiteListEntry(startPage, false);
+			} else if (strNode.equals("allow-navigation")) {
+				String origin = xml.getAttributeValue(null, "href");
+				if ("*".equals(origin)) {
+					allowedNavigations.addWhiteListEntry("http://*/*", false);
+					allowedNavigations.addWhiteListEntry("https://*/*", false);
+					allowedNavigations.addWhiteListEntry("data:*", false);
+				} else {
+					allowedNavigations.addWhiteListEntry(origin, false);
+				}
+			} else if (strNode.equals("allow-intent")) {
+				String origin = xml.getAttributeValue(null, "href");
+				allowedIntents.addWhiteListEntry(origin, false);
+			} else if (strNode.equals("access")) {
+				String origin = xml.getAttributeValue(null, "origin");
+				String subdomains = xml.getAttributeValue(null, "subdomains");
+				boolean external = (xml.getAttributeValue(null, "launch-external") != null);
+				if (origin != null) {
+					if (external) {
+						LOG.w(LOG_TAG,
+							"Found <access launch-external> within config.xml. Please use <allow-intent> instead.");
+						allowedIntents.addWhiteListEntry(origin,
+							(subdomains != null) && (subdomains.compareToIgnoreCase("true") == 0));
+					} else {
+						if ("*".equals(origin)) {
+							allowedRequests.addWhiteListEntry("http://*/*", false);
+							allowedRequests.addWhiteListEntry("https://*/*", false);
+						} else {
+							allowedRequests.addWhiteListEntry(origin,
+								(subdomains != null) && (subdomains.compareToIgnoreCase("true") == 0));
+						}
+					}
+				}
+			}
+		}
+
+		@Override
+		public void handleEndTag(XmlPullParser xml) {
+		}
+	}
 }

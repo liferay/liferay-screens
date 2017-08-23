@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.westerosemployees_hybrid.views.DocsCard xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/westeros_white_shape_ripple"
-    android:elevation="8dp"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@drawable/westeros_white_shape_ripple"
+	android:elevation="8dp"
 	>
 
 	<RelativeLayout

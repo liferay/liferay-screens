@@ -6,7 +6,6 @@ import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.ViewPropertyAnimator;
 
-import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.portlet.PortletConfiguration;
 import com.liferay.mobile.screens.portlet.PortletDisplayListener;
 import com.liferay.mobile.screens.portlet.PortletDisplayScreenlet;
@@ -83,22 +82,21 @@ public class DocsCard extends Card implements PortletDisplayListener {
 
 	@Override
 	public void onScriptMessageHandler(String namespace, final String body) {
-		if("doc-item".equals(namespace)) {
+		if ("doc-item".equals(namespace)) {
 			new Handler(Looper.getMainLooper()).post(new Runnable() {
 				@Override
 				public void run() {
-                    PortletConfiguration configuration = new PortletConfiguration.Builder("/web/westeros-hybrid/detail?id=" + body)
-							.addRawCss(R.raw.detail_css, "detail_css.css")
-							.addRawJs(R.raw.detail_js, "detail_js.js")
-							.load();
+					PortletConfiguration configuration =
+						new PortletConfiguration.Builder("/web/westeros-hybrid/detail?id=" + body).addRawCss(
+							R.raw.detail_css, "detail_css.css").addRawJs(R.raw.detail_js, "detail_js.js").load();
 
-                    PortletDisplayScreenlet portletDisplayScreenlet =
-							(PortletDisplayScreenlet) findViewById(R.id.portlet_doc_item);
+					PortletDisplayScreenlet portletDisplayScreenlet =
+						(PortletDisplayScreenlet) findViewById(R.id.portlet_doc_item);
 
-                    portletDisplayScreenlet.setPortletConfiguration(configuration);
-                    portletDisplayScreenlet.load();
+					portletDisplayScreenlet.setPortletConfiguration(configuration);
+					portletDisplayScreenlet.load();
 
-                    cardListener.moveCardRight(DocsCard.this);
+					cardListener.moveCardRight(DocsCard.this);
 				}
 			});
 		}

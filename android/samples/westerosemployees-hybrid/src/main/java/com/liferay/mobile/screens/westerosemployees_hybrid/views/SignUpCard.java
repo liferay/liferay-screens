@@ -1,7 +1,6 @@
 package com.liferay.mobile.screens.westerosemployees_hybrid.views;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;

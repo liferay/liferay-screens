@@ -78,24 +78,25 @@ public class BlogsCard extends Card implements PortletDisplayListener {
 
 	@Override
 	public void onScriptMessageHandler(String namespace, final String body) {
-		if("blog-item".equals(namespace)) {
-            new Handler(Looper.getMainLooper()).post(new Runnable() {
-                @Override
-                public void run() {
-                    PortletConfiguration configuration = new PortletConfiguration.Builder("/web/westeros-hybrid/detail?id=" + body)
-							.addRawCss(R.raw.blog_portlet_css, "blog_portlet_css.css")
+		if ("blog-item".equals(namespace)) {
+			new Handler(Looper.getMainLooper()).post(new Runnable() {
+				@Override
+				public void run() {
+					PortletConfiguration configuration =
+						new PortletConfiguration.Builder("/web/westeros-hybrid/detail?id=" + body).addRawCss(
+							R.raw.blog_portlet_css, "blog_portlet_css.css")
 							.addRawJs(R.raw.blog_portlet_js, "blog_portlet_js.js")
 							.load();
 
-                    PortletDisplayScreenlet portletDisplayScreenlet =
-							(PortletDisplayScreenlet) findViewById(R.id.portlet_blog_item);
+					PortletDisplayScreenlet portletDisplayScreenlet =
+						(PortletDisplayScreenlet) findViewById(R.id.portlet_blog_item);
 
-                    portletDisplayScreenlet.setPortletConfiguration(configuration);
-                    portletDisplayScreenlet.load();
+					portletDisplayScreenlet.setPortletConfiguration(configuration);
+					portletDisplayScreenlet.load();
 
-                    cardListener.moveCardRight(BlogsCard.this);
-                }
-            });
+					cardListener.moveCardRight(BlogsCard.this);
+				}
+			});
 		}
 	}
 

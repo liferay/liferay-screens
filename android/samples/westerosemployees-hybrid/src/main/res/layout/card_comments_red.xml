@@ -38,10 +38,10 @@
 			android:layout_alignParentBottom="true"
 			/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/comment_list"
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:text="@string/comment_list"
 			/>
 
 		<com.liferay.mobile.screens.westerosemployees_hybrid.views.InnerDeck
@@ -81,10 +81,10 @@
 						style="@style/westeros_arrow"
 						/>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="@string/comment_add"
+					<TextView
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:text="@string/comment_add"
 						/>
 
 				</RelativeLayout>

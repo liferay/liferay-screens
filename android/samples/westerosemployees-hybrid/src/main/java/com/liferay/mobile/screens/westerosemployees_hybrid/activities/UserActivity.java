@@ -108,7 +108,7 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 
 	@Override
 	public void onScriptMessageHandler(String namespace, final String body) {
-		if("last-changes-item".equals(namespace)) {
+		if ("last-changes-item".equals(namespace)) {
 			new Handler(Looper.getMainLooper()).post(new Runnable() {
 				@Override
 				public void run() {
