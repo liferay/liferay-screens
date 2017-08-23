@@ -42,7 +42,7 @@ public class ScreensCordovaActivity extends CordovaActivity {
 	}
 
 	protected CordovaWebViewEngine makeWebViewEngine() {
-		return CordovaWebViewImpl.createEngine(activity.getApplicationContext(), this.preferences);
+		return CordovaWebViewImpl.createEngine(activity, this.preferences);
 	}
 
 	public CordovaWebView makeWebView() {

@@ -23,9 +23,13 @@ All notable changes to this project will be documented in this file.
 * Support pages in forms with a ViewPager
 * Add support for multiple select fields in forms
 * Allow data providers in forms
+* Show alerts in the PortletDisplayScreenlet
 
 ### Refactor
 * Remove unused attribute in RatingsScreenlet 
+
+### Demo
+* Added Westeros Employees Hybrid
 
 ## iOS
 
@@ -42,6 +46,7 @@ All notable changes to this project will be documented in this file.
 * Add PortletDisplayScreenlet
 * Add name to classes annotated with @objc for Xamarin solutions
 * Remove module name in default views for Xamarin solutions
+* Show alerts in the PortletDisplayScreenlet
 
 ### Refactor
 * Migrate from UIWebView to WKWebView
@@ -50,10 +55,15 @@ All notable changes to this project will be documented in this file.
 ### Documentation
 * Screenlets documentation improvements
 
+### Demo
+* Added Westeros Employees Hybrid
+
 ## Xamarin
 
 ### New Features
 - Auth screenlets bindings: LoginScreenlet, ForgotPasswordScreenlet, SignUpScreenlet
+- DDLFormScreenlet binding
+- ImageGalleryScreenlet binding
 
 # 2.1.2
 

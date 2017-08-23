@@ -41,19 +41,17 @@ public abstract class BaseInteractor<L, E extends BasicEvent> implements Interac
 				EventBusUtil.post(event);
 			}
 		} catch (Exception e) {
-			if(!retried && isCookieSessionAndAuthenticationError(e)) {
+			if (!retried && isCookieSessionAndAuthenticationError(e)) {
 				retried = true;
 				try {
 					Session session = CookieSignIn.signIn(getSession());
 					SessionContext.createCookieSession(session);
-				}
-				catch (Exception ex) {
+				} catch (Exception ex) {
 					createErrorEvent(ex);
 					return;
 				}
 				doInBackground(args);
-			}
-			else {
+			} else {
 				createErrorEvent(e);
 			}
 		}

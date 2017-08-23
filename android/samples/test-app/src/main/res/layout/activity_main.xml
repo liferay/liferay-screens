@@ -61,7 +61,7 @@
 				android:id="@+id/web_content_display_screenlet_customcss"
 				android:text="@string/webview_customcss"
 				style="@style/test_app_button"
-			/>
+				/>
 
 			<Button
 				android:id="@+id/journal_article_with_template"
@@ -85,7 +85,7 @@
 				android:id="@+id/asset_display"
 				android:text="@string/asset_display"
 				style="@style/test_app_button"
-			/>
+				/>
 
 			<Button
 				android:id="@+id/user_display"

@@ -14,6 +14,7 @@
 import UIKit
 import WebKit
 
+// swiftlint:disable weak_delegate
 @objc open class ScreensWKWebView: NSObject, ScreensWebView, WKNavigationDelegate, WKScriptMessageHandler,
 UIScrollViewDelegate {
 
@@ -25,9 +26,15 @@ UIScrollViewDelegate {
 	}
 
 	let wkWebView: WKWebView
+	lazy var uiDelegate: ScreensWKUIDelegate = ScreensWKUIDelegate(viewController: self.viewController)
 
 	var scriptsToInject = [InjectableScript]()
 	var initialNavigation: WKNavigation?
+	var viewController: UIViewController? {
+		didSet {
+			wkWebView.uiDelegate = self.uiDelegate
+		}
+	}
 
 	let jsCallHandler: (String, String) -> Void
 	let onPageLoadFinished: (String, Error?) -> Void
@@ -43,7 +50,8 @@ UIScrollViewDelegate {
 		self.wkWebView = WKWebView()
 
 		super.init()
-
+        
+        wkWebView.scrollView.backgroundColor = .clear
 		wkWebView.injectViewportMetaTag()
 		wkWebView.navigationDelegate = self
 		wkWebView.scrollView.delegate = self

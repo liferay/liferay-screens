@@ -30,6 +30,7 @@ import java.util.List;
  * @author Sarai Díaz García
  */
 public class PortletConfiguration {
+
 	private String portletUrl;
 	private List<InjectableScript> scripts;
 	private boolean isThemeEnabled;

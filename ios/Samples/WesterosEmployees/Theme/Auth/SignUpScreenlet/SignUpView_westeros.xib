@@ -1,8 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -23,18 +27,18 @@
                                     <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                            <color key="value" red="0.76078431369999999" green="0.23529411759999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="value" red="0.70061671733856201" green="0.15670415759086609" blue="0.16195255517959595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="color" keyPath="focusedColor">
-                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="color" keyPath="unfocusedColor">
-                                            <color key="value" red="0.76078431369999999" green="0.23529411759999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="value" red="0.70061671733856201" green="0.15670415759086609" blue="0.16195255517959595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </textField>
                             </subviews>
-                            <color key="backgroundColor" red="0.76078431369999999" green="0.23529411759999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.70061671733856201" green="0.15670415759086609" blue="0.16195255517959595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="OtF-Z5-tM8"/>
                                 <constraint firstAttribute="bottom" secondItem="3b5-N7-gPg" secondAttribute="bottom" id="S9R-E2-C29"/>
@@ -57,18 +61,18 @@
                                     <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                            <color key="value" red="0.76078431369999999" green="0.23529411759999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="value" red="0.70061671733856201" green="0.15670415759086609" blue="0.16195255517959595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="color" keyPath="focusedColor">
-                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="color" keyPath="unfocusedColor">
-                                            <color key="value" red="0.76078431369999999" green="0.23529411759999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="value" red="0.70061671733856201" green="0.15670415759086609" blue="0.16195255517959595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </textField>
                             </subviews>
-                            <color key="backgroundColor" red="0.76078431369999999" green="0.23529411759999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.70061671733856201" green="0.15670415759086609" blue="0.16195255517959595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="3Gq-qh-ycb" firstAttribute="centerX" secondItem="82s-oX-vET" secondAttribute="centerX" id="3G9-c9-72n"/>
                                 <constraint firstAttribute="bottom" secondItem="3Gq-qh-ycb" secondAttribute="bottom" id="3hY-q8-54F"/>
@@ -91,18 +95,18 @@
                                     <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                            <color key="value" red="0.76078431369999999" green="0.23529411759999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="value" red="0.70061671733856201" green="0.15670415759086609" blue="0.16195255517959595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="color" keyPath="focusedColor">
-                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="color" keyPath="unfocusedColor">
-                                            <color key="value" red="0.76078431369999999" green="0.23529411759999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="value" red="0.70061671733856201" green="0.15670415759086609" blue="0.16195255517959595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </textField>
                             </subviews>
-                            <color key="backgroundColor" red="0.76078431369999999" green="0.23529411759999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.70061671733856201" green="0.15670415759086609" blue="0.16195255517959595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="Pxa-bY-Qhu" firstAttribute="leading" secondItem="CZi-GF-47U" secondAttribute="leading" constant="20" id="O8X-19-kDp"/>
                                 <constraint firstAttribute="bottom" secondItem="Pxa-bY-Qhu" secondAttribute="bottom" id="bAH-hM-aVu"/>
@@ -125,18 +129,18 @@
                                     <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                            <color key="value" red="0.76078431369999999" green="0.23529411759999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="value" red="0.70061671733856201" green="0.15670415759086609" blue="0.16195255517959595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="color" keyPath="focusedColor">
-                                            <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="color" keyPath="unfocusedColor">
-                                            <color key="value" red="0.76078431369999999" green="0.23529411759999999" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="value" red="0.70061671733856201" green="0.15670415759086609" blue="0.16195255517959595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </textField>
                             </subviews>
-                            <color key="backgroundColor" red="0.76078431372549016" green="0.23529411764705882" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" red="0.70061671733856201" green="0.15670415759086609" blue="0.16195255517959595" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="raN-qV-ZPC" secondAttribute="bottom" id="6Ui-Of-nIc"/>
                                 <constraint firstItem="raN-qV-ZPC" firstAttribute="centerX" secondItem="Jk2-J7-7UO" secondAttribute="centerX" id="902-vm-rmo"/>
@@ -184,7 +188,7 @@
                 <outlet property="firstNameField" destination="raN-qV-ZPC" id="oLs-Gf-niI"/>
                 <outlet property="lastNameField" destination="3b5-N7-gPg" id="kcZ-RN-Vp8"/>
                 <outlet property="passwordField" destination="Pxa-bY-Qhu" id="mRn-q5-Mh3"/>
-                <outlet property="scrollView" destination="NaB-nV-kAl" id="Dp4-by-HFe"/>
+                <outlet property="scroll" destination="NaB-nV-kAl" id="Kl8-yy-GBu"/>
             </connections>
             <point key="canvasLocation" x="306.5" y="236"/>
         </view>

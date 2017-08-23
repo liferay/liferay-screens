@@ -1,0 +1,62 @@
+body {
+    background: #D6D6D6;
+}
+
+#wrapper {
+    padding-top: 0em;
+}
+
+.col-md-12 {
+    padding: 0px;
+}
+
+.portlet-decorate .portlet-content {
+    background: #D6D6D6;
+    border: 0px;
+    margin-top: -50px;
+}
+
+.user-img-container {
+    border-radius: 100%;
+    border: 1px solid #E44740;
+    display: block;
+    height: 80px;
+    margin: auto;
+    overflow: hidden;
+    width: 80px;
+}
+
+.user-img {
+    height: 100%;
+    width: 100%;
+}
+
+.user-fullname {
+    font-weight: 900;
+    text-align: center;
+}
+
+.user-fields {
+    margin-left: 15px;
+}
+
+.red {
+    color: #E44740;
+}
+
+button {
+    background-color: #FFF;
+    border-radius: 5px;
+    border: 0px;
+    bottom: 10px;
+    box-shadow: none;
+    color: #E44740;
+    font-size: 16px;
+    font-weight: 600;
+    height: 60px;
+    margin-left: 2.6%;
+    margin-top: 35%;
+    position: fixed;
+    text-align: center;
+    width: 90%;
+}

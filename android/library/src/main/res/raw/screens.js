@@ -1,7 +1,6 @@
 window.console = (function(oldCons){
     return {
         log: function(text){
-            oldCons.log(text, "hola");
             if(window.Screens) {
                 window.Screens.postMessage("screensInternal.consoleMessage", "Console message: " + text);
             }
@@ -17,7 +16,6 @@ window.console = (function(oldCons){
         }
     };
 }(window.console));
-
 
 window.addEventListener('error', function(ev) {
 	if (window.Screens) {
