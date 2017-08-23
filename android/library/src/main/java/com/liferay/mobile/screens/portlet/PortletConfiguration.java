@@ -88,7 +88,7 @@ public class PortletConfiguration {
 		private boolean isThemeEnabled = true;
 		private WebType webType = WebType.LIFERAY_AUTHENTICATED;
 		private CordovaLifeCycleObserver observer;
-		private boolean isCordovaEnabled = false;
+		private boolean isCordovaEnabled;
 
 		public Builder(String portletUrl) {
 			super();
