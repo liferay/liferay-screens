@@ -1,10 +1,11 @@
 buildscript {
 	repositories {
 		jcenter()
+		maven { url 'https://maven.google.com' }
 	}
 
 	dependencies {
-		classpath 'com.android.tools.build:gradle:2.3.1'
+		classpath 'com.android.tools.build:gradle:3.0.0-beta2'
 		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
 		classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
 	}
@@ -16,8 +17,8 @@ ext {
 	targetSdkVersion = compileSdkVersion
 	buildToolsVersion = '25.0.1'
 
-	versionCode = 211
-	versionName = '2.1.1'
+	versionCode = 220
+	versionName = '2.2.0.beta-4'
 
 	publishedGroupId = 'com.liferay.mobile'
 	libraryName = 'Liferay Screens for Android'
@@ -39,7 +40,7 @@ ext {
 	allLicenses = ["LGPL-2.1"]
 }
 
-def supportLibsVersion = '25.1.0'
+def supportLibsVersion = '25.4.0'
 
 ext.libraries = [appCompat    : 'com.android.support:appcompat-v7:' + supportLibsVersion,
                  recyclerView : 'com.android.support:recyclerview-v7:' + supportLibsVersion,
@@ -63,5 +64,6 @@ ext.libraries = [appCompat    : 'com.android.support:appcompat-v7:' + supportLib
 subprojects {
 	repositories {
 		jcenter()
+		maven { url 'https://maven.google.com' }
 	}
 }

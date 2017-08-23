@@ -19,19 +19,6 @@ android {
 		}
 	}
 
-	packagingOptions {
-		exclude 'META-INF/LICENSE'
-		exclude 'META-INF/NOTICE'
-	}
-
-	productFlavors {
-		travisci {
-			minSdkVersion 21
-		}
-		vanilla {
-			minSdkVersion rootProject.ext.minSdkVersion
-		}
-	}
 }
 
 dependencies {
@@ -41,3 +28,6 @@ dependencies {
 
 	compile project(':liferay-material-viewset')
 }
+
+apply from: '../../bintray.gradle'
+apply from: '../../install.gradle'

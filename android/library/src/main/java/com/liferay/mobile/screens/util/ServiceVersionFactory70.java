@@ -18,11 +18,11 @@ import com.liferay.mobile.screens.ddl.form.connector.DDLRecordConnector70;
 import com.liferay.mobile.screens.ddl.form.connector.DDLRecordSetConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DDLRecordSetConnector70;
 import com.liferay.mobile.screens.ddl.form.connector.DDMStructureConnector;
-import com.liferay.mobile.screens.ddl.form.connector.DDMStructureConnector70;
 import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector70;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector70;
+import com.liferay.mobile.screens.ddl.form.connector.ScreensDDMStructureConnector70;
 import com.liferay.mobile.screens.rating.connector.ScreensRatingsConnector;
 import com.liferay.mobile.screens.rating.connector.ScreensRatingsConnector70;
 import com.liferay.mobile.screens.webcontent.display.connector.JournalContentConnector;
@@ -64,7 +64,7 @@ public class ServiceVersionFactory70 implements ServiceVersionFactory {
 	}
 
 	public DDMStructureConnector getDDMStructureConnector(Session session) {
-		return new DDMStructureConnector70(session);
+		return new ScreensDDMStructureConnector70(session);
 	}
 
 	public AssetEntryConnector getAssetEntryConnector(Session session) {
