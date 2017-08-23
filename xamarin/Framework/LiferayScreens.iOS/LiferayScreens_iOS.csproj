@@ -51,6 +51,7 @@
     <Folder Include="Themes\Default\Auth\" />
     <Folder Include="Themes\Default\DDL\" />
     <Folder Include="ImageGallery\" />
+    <Folder Include="UserPortrait\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,6 +92,10 @@
     <ObjcBindingApiDefinition Include="ImageGallery\ImageEntryUpload.cs" />
     <ObjcBindingApiDefinition Include="Models\ImageEntry.cs" />
     <ObjcBindingApiDefinition Include="Models\Asset.cs" />
+    <ObjcBindingApiDefinition Include="UserPortrait\UserPortraitScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="UserPortrait\UserPortraitScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="UserPortrait\UserPortraitViewModel.cs" />
+    <ObjcBindingApiDefinition Include="Models\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />
