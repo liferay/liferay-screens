@@ -3,7 +3,6 @@ package com.liferay.mobile.screens.testapp;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.portlet.PortletConfiguration;
 import com.liferay.mobile.screens.portlet.PortletDisplayListener;
 import com.liferay.mobile.screens.portlet.PortletDisplayScreenlet;

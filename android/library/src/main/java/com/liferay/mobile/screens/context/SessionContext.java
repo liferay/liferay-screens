@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.context;
 
 import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
-import com.liferay.mobile.android.auth.basic.CookieAuthentication;
 import com.liferay.mobile.android.oauth.OAuth;
 import com.liferay.mobile.android.oauth.OAuthConfig;
 import com.liferay.mobile.android.service.Session;

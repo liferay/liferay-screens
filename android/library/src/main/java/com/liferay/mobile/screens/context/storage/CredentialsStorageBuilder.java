@@ -120,8 +120,7 @@ public class CredentialsStorageBuilder {
 		} else {
 			if (auth instanceof CookieAuthentication) {
 				return instance.getCookieCredentialsStorageSharedPreferences();
-			}
-			else if (auth instanceof BasicAuthentication) {
+			} else if (auth instanceof BasicAuthentication) {
 				return instance.getBasicCredentialsStorageSharedPreferences();
 			} else if (auth instanceof OAuth) {
 				return instance.getOAuthCredentialsStorageSharedPreferences();

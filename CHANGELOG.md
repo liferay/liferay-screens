@@ -24,6 +24,9 @@ All notable changes to this project will be documented in this file.
 ### Refactor
 * Remove unused attribute in RatingsScreenlet 
 
+### Demo
+* Added Westeros Employees Hybrid
+
 ## iOS
 
 ### Bugs

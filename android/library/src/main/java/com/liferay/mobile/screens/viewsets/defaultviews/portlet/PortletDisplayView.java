@@ -186,7 +186,11 @@ public class PortletDisplayView extends FrameLayout
 				webView.loadUrl("javascript:window.Screens.listPortlets()");
 			}
 
+			// The webview shows a white screen before loading its content, this prevent that.
+			webView.setAlpha(0);
 			webView.setVisibility(VISIBLE);
+			webView.animate().setStartDelay(200).alpha(1.0f);
+
 			progressBar.setVisibility(GONE);
 
 			((PortletDisplayScreenlet) getScreenlet()).onPageLoaded(url);
