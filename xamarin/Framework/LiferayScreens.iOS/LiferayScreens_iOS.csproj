@@ -50,6 +50,7 @@
     <Folder Include="Models\DDM\" />
     <Folder Include="Themes\Default\Auth\" />
     <Folder Include="Themes\Default\DDL\" />
+    <Folder Include="ImageGallery\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -82,6 +83,14 @@
     <ObjcBindingApiDefinition Include="Themes\Default\DDL\DDLFormView_default.cs" />
     <ObjcBindingApiDefinition Include="DDL\Form\DDLFormTableView.cs" />
     <ObjcBindingApiDefinition Include="DDL\Form\DDLFormView.cs" />
+    <ObjcBindingApiDefinition Include="ImageGallery\ImageGalleryScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Base\BaseListScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Base\BaseListView.cs" />
+    <ObjcBindingApiDefinition Include="ImageGallery\ImageGalleryScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="ImageGallery\ImageGalleryViewModel.cs" />
+    <ObjcBindingApiDefinition Include="ImageGallery\ImageEntryUpload.cs" />
+    <ObjcBindingApiDefinition Include="Models\ImageEntry.cs" />
+    <ObjcBindingApiDefinition Include="Models\Asset.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />

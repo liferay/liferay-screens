@@ -6,6 +6,7 @@ using CoreGraphics;
 
 namespace LiferayScreens
 {
+    // @interface BaseScreenlet : UIView
     [BaseType(typeof(UIView))]
     interface BaseScreenlet
     {

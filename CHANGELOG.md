@@ -60,6 +60,7 @@ All notable changes to this project will be documented in this file.
 ### New Features
 - Auth screenlets bindings: LoginScreenlet, ForgotPasswordScreenlet, SignUpScreenlet
 - DDLFormScreenlet binding
+- ImageGalleryScreenlet binding
 
 # 2.1.2
 

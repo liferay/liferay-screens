@@ -19,12 +19,10 @@
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.webcontent.display']/class[@name='WebContentDisplayScreenlet']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.auth.login']/class[@name='LoginView']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.base.interactor']/class[@name='BaseInteractor']"/>
-  <remove-node path="/api/package[@name='com.liferay.mobile.screens.imagegallery']/class[@name='ImageGalleryScreenlet']"/>
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.asset.list']/class[@name='AssetListScreenlet']"/>
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.comment.list']/class[@name='CommentListScreenlet']"/>
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.list']/class[@name='DDLListScreenlet']"/>
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.webcontent.list']/class[@name='WebContentListScreenlet']"/>
-  <remove-node path="/api/package[@name='com.liferay.mobile.screens.base.list']/class[@name='BaseListScreenlet']"/>
 
   <!-- Corrections BooleanField-->
   <remove-node  path="/api/package[@name='com.liferay.mobile.screens.ddl.model']
@@ -93,4 +91,33 @@
   <remove-node  path="/api/package[@name='com.liferay.mobile.screens.ddl.form']
         /class[@name='DDLFormScreenlet']
 	    /method[@name='createInteractor']"/>
+
+  <!-- Corrections for ImageGalleryScreenlet-->
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.imagegallery']
+        /class[@name='ImageGalleryScreenlet']
+        /method[@name='onUserAction']"/>
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.imagegallery']
+        /class[@name='ImageGalleryScreenlet']
+        /method[@name='createInteractor']"/>
+  <attr path="/api/package[@name='com.liferay.mobile.screens.imagegallery']
+              /class[@name='ImageGalleryScreenlet']
+              /method[@name='getViewModel']"
+        name="managedReturn">Java.Lang.Object</attr>
+
+  <!-- Corrections for BaseListScreenlet-->
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.base.list']
+        /class[@name='BaseListScreenlet']
+        /method[@name='onUserAction']"/>
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.base.list']
+        /class[@name='BaseListScreenlet']
+        /method[@name='createInteractor']"/>
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.base.list']
+        /class[@name='BaseListScreenlet']
+        /method[@name='loadRows']"/>
+
+  <!-- Corrections for BaseScreenlet-->
+  <attr path="/api/package[@name='com.liferay.mobile.screens.base']
+              /class[@name='BaseScreenlet']
+              /method[@name='getViewModel']"
+        name="visibility">public</attr>
 </metadata>
