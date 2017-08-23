@@ -8,7 +8,6 @@
 
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.comment.display']/class[@name='CommentDisplayScreenlet']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.rating']/class[@name='RatingScreenlet']" />
-  <remove-node path="/api/package[@name='com.liferay.mobile.screens.userportrait']/class[@name='UserPortraitScreenlet']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.asset.display']/class[@name='AssetDisplayScreenlet']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.blogs']/class[@name='BlogsEntryDisplayScreenlet']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.comment.add']/class[@name='CommentAddScreenlet']" />
@@ -120,4 +119,12 @@
               /class[@name='BaseScreenlet']
               /method[@name='getViewModel']"
         name="visibility">public</attr>
+	
+  <!-- Corrections for UserPortraitScreenlet-->
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.userportrait']
+        /class[@name='UserPortraitScreenlet']
+        /method[@name='onUserAction']"/>
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.userportrait']
+        /class[@name='UserPortraitScreenlet']
+        /method[@name='createInteractor']"/>
 </metadata>
