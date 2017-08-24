@@ -14,7 +14,8 @@
     <string name="liferay_anonymousApiPassword">anonymous1</string>
 
 	<!-- DDLFormScreenlet -->
-    <string name="liferay_structure_id">54341</string>
-    <string name="liferay_recordset_id">54345</string>
-	<string name="liferay_record_id">54351</string>
+    <string name="liferay_structure_id">54371</string>
+    <string name="liferay_recordset_id">54375</string>
+	<string name="liferay_record_id">54385</string>
+	<string name="liferay_folder_id">54469</string>
 </resources>

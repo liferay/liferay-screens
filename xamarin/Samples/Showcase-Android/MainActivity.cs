@@ -18,7 +18,6 @@ namespace ShowcaseAndroid
             FindViewById(Resource.Id.forgot_password_screenlet).SetOnClickListener(this);
             FindViewById(Resource.Id.sign_up_screenlet).SetOnClickListener(this);
             FindViewById(Resource.Id.ddl_form_screenlet).SetOnClickListener(this);
-
         }
 
         /* IOnClickListener */

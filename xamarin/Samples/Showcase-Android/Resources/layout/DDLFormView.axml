@@ -16,5 +16,6 @@
         app:cachePolicy="REMOTE_FIRST"
         app:structureId="@string/liferay_structure_id"
         app:recordSetId="@string/liferay_recordset_id"
-        app:recordId="@string/liferay_record_id" />
+        app:recordId="@string/liferay_record_id"
+        app:folderId="@string/liferay_folder_id" />
 </LinearLayout>
