@@ -20,6 +20,7 @@ import android.os.Parcelable;
 import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.util.JSONUtil;
 
+import java.util.Iterator;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -298,7 +299,11 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 	public String getField(JSONObject pageJsonObject, String title) throws JSONException {
 		JSONObject jsonObject = pageJsonObject.getJSONObject(title);
 		JSONObject values = jsonObject.getJSONObject("values");
-		return values.getString(values.keys().next());
+		Iterator<String> keys = values.keys();
+		if (keys.hasNext()) {
+			return values.getString(keys.next());
+		}
+		return "";
 	}
 
 	private List<Page> pages = new ArrayList<>();
