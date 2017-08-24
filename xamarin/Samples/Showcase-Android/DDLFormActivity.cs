@@ -40,15 +40,18 @@ namespace ShowcaseAndroid
 
         public void Error(Java.Lang.Exception p0, string p1)
         {
-        }
+            System.Diagnostics.Debug.WriteLine($"DDLForm error: {p0}");
+		}
 
         public void OnDDLFormDocumentUploaded(DocumentField p0, JSONObject p1)
         {
-        }
+			System.Diagnostics.Debug.WriteLine($"DDLForm document uploaded: {p0}");
+		}
 
         public void OnDDLFormDocumentUploadFailed(DocumentField p0, Java.Lang.Exception p1)
         {
-        }
+			System.Diagnostics.Debug.WriteLine($"DDLForm document uploaded fail: {p0}");
+		}
 
         public void OnDDLFormLoaded(Record p0)
         {
@@ -67,6 +70,7 @@ namespace ShowcaseAndroid
 
         public void OnDDLFormRecordUpdated(Record p0)
         {
-        }
+			System.Diagnostics.Debug.WriteLine($"DDLForm record updated: {p0}");
+		}
     }
 }
