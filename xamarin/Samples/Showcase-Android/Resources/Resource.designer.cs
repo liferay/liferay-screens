@@ -4085,8 +4085,8 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0a002a
 			public const int add_icon_user_portrait_content_description = 2131361834;
 			
-			// aapt resource value: 0x7f0a0096
-			public const int app_name = 2131361942;
+			// aapt resource value: 0x7f0a0097
+			public const int app_name = 2131361943;
 			
 			// aapt resource value: 0x7f0a0021
 			public const int appbar_scrolling_view_behavior = 2131361825;
@@ -4118,8 +4118,8 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0a002d
 			public const int creating_file_error = 2131361837;
 			
-			// aapt resource value: 0x7f0a0099
-			public const int ddl_form = 2131361945;
+			// aapt resource value: 0x7f0a009a
+			public const int ddl_form = 2131361946;
 			
 			// aapt resource value: 0x7f0a0076
 			public const int default_class_name_id_user = 2131361910;
@@ -4154,8 +4154,8 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0a0036
 			public const int first_name = 2131361846;
 			
-			// aapt resource value: 0x7f0a0098
-			public const int forgot_password = 2131361944;
+			// aapt resource value: 0x7f0a0099
+			public const int forgot_password = 2131361945;
 			
 			// aapt resource value: 0x7f0a0078
 			public const int gallery_image = 2131361912;
@@ -4202,6 +4202,9 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0a008f
 			public const int liferay_default_user_name = 2131361935;
 			
+			// aapt resource value: 0x7f0a0096
+			public const int liferay_folder_id = 2131361942;
+			
 			// aapt resource value: 0x7f0a007e
 			public const int liferay_group_id = 2131361918;
 			
@@ -4238,8 +4241,8 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0a0040
 			public const int login_error = 2131361856;
 			
-			// aapt resource value: 0x7f0a0097
-			public const int main_activity_label = 2131361943;
+			// aapt resource value: 0x7f0a0098
+			public const int main_activity_label = 2131361944;
 			
 			// aapt resource value: 0x7f0a0082
 			public const int neutral_smiley = 2131361922;
