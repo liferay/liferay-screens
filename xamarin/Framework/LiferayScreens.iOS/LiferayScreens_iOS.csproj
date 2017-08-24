@@ -52,6 +52,7 @@
     <Folder Include="Themes\Default\DDL\" />
     <Folder Include="ImageGallery\" />
     <Folder Include="UserPortrait\" />
+    <Folder Include="WebContent\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,6 +97,9 @@
     <ObjcBindingApiDefinition Include="UserPortrait\UserPortraitScreenletDelegate.cs" />
     <ObjcBindingApiDefinition Include="UserPortrait\UserPortraitViewModel.cs" />
     <ObjcBindingApiDefinition Include="Models\User.cs" />
+    <ObjcBindingApiDefinition Include="WebContent\WebContentDisplayScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="WebContent\WebContentDisplayDelegate.cs" />
+    <ObjcBindingApiDefinition Include="WebContent\WebContentDisplayViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />

@@ -33,6 +33,6 @@ namespace LiferayScreens
 
         // -(void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
         [Export("encodeWithCoder:")]
-        void EncodeWithCoder(NSCoder aCoder);
+        void EncodeWithCoderImageEntryUpload(NSCoder aCoder);
     }
 }
