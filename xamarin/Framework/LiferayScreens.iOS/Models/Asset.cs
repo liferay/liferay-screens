@@ -67,7 +67,7 @@ namespace LiferayScreens
         IntPtr Constructor(NSDictionary<NSString, NSObject> attributes);
 
         // -(void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
-        [Export("encodeWithCoder:")]
-        void EncodeWithCoderAsset(NSCoder aCoder);
+        [Export("encodeWithCoderAsset:")]
+        void EncodeWithCoder(NSCoder aCoder);
     }
 }

@@ -32,7 +32,7 @@ namespace LiferayScreens
         IntPtr Constructor(UIImage image, [NullAllowed] UIImage thumbnail, string title, string notes);
 
         // -(void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
-        [Export("encodeWithCoder:")]
-        void EncodeWithCoderImageEntryUpload(NSCoder aCoder);
+        [Export("encodeWithCoderImageEntryUpload:")]
+        void EncodeWithCoder(NSCoder aCoder);
     }
 }

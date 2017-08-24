@@ -59,7 +59,7 @@ namespace LiferayScreens
         string StringAttribute(string key);
 
         // -(void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
-        [Export("encodeWithCoder:")]
+        [Export("encodeWithCoderUser:")]
         void EncodeWithCoderUser(NSCoder aCoder);
     }
 }
