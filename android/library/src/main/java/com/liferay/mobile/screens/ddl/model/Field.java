@@ -127,7 +127,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 		lastValidationResult = (in.readInt() == 1);
 		visibilityExpression = in.readString();
-		ddmDataProviderInstanceId = in.readInt();
+		ddmDataProviderInstanceId = in.readLong();
 	}
 
 	@Override
