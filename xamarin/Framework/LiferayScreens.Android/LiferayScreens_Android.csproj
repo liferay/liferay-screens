@@ -57,6 +57,7 @@
     <Compile Include="Additions\ImageGallery\ImageGalleryScreenlet.cs" />
     <Compile Include="Additions\Base\BaseListScreenlet.cs" />
     <Compile Include="Additions\UserPortrait\UserPortraitScreenlet.cs" />
+    <Compile Include="Additions\WebContent\WebContentDisplayScreenlet.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\liferay-android-oauth-1.3.0.aar" />
@@ -102,6 +103,7 @@
     <Folder Include="Additions\ImageGallery\" />
     <Folder Include="Additions\Base\" />
     <Folder Include="Additions\UserPortrait\" />
+    <Folder Include="Additions\WebContent\" />
   </ItemGroup>
   <ItemGroup>
     <LibraryProjectZip Include="Jars\liferay-screens-release.aar" />
