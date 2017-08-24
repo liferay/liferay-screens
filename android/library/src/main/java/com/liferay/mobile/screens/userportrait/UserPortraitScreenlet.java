@@ -151,6 +151,10 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 		getViewModel().showFailedOperation(userAction, e);
 	}
 
+	public UserPortraitListener getListener() {
+		return listener;
+	}
+
 	public void setListener(UserPortraitListener listener) {
 		this.listener = listener;
 	}
