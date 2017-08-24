@@ -21,6 +21,7 @@
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.comment.list']/class[@name='CommentListScreenlet']"/>
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.list']/class[@name='DDLListScreenlet']"/>
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.webcontent.list']/class[@name='WebContentListScreenlet']"/>
+  <remove-node path="/api/package[@name='com.liferay.mobile.screens.portlet']/class[@name='PortletDisplayScreenlet']"/>
 
   <!-- Corrections BooleanField-->
   <remove-node  path="/api/package[@name='com.liferay.mobile.screens.ddl.model']
