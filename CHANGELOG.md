@@ -47,6 +47,7 @@ All notable changes to this project will be documented in this file.
 * Add name to classes annotated with @objc for Xamarin solutions
 * Remove module name in default views for Xamarin solutions
 * Show alerts in the PortletDisplayScreenlet
+* Allow developers to disable scroll on PortletDisplayScreenlet
 
 ### Refactor
 * Migrate from UIWebView to WKWebView
