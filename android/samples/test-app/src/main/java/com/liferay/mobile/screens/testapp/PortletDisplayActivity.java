@@ -39,6 +39,7 @@ public class PortletDisplayActivity extends ThemeActivity implements PortletDisp
 			screenlet.setPortletConfiguration(portletConfiguration);
 
 			screenlet.setListener(this);
+			screenlet.setScrollEnabled(true);
 			screenlet.load();
 		}
 
