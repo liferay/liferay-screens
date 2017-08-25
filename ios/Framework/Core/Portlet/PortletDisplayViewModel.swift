@@ -21,6 +21,9 @@ import UIKit
 	/// Whether or not it should show log messages
 	var isLoggingEnabled: Bool { get set }
 
+	/// Whether or not the scroll of the webview is enabled
+	var isScrollEnabled: Bool { get set }
+
 	/// Used to create the WebView depending on the cordovaEnabled flag
 	///
 	/// - Parameter cordovaEnabled: it tell the view if it has to create a cordova WebView

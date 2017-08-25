@@ -28,6 +28,15 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 	open var isLoggingEnabled = true
 
+	open var isScrollEnabled: Bool {
+		get {
+			return screensWebView?.isScrollEnabled ?? false
+		}
+		set {
+			screensWebView?.isScrollEnabled = newValue
+		}
+	}
+
 	open var screensWebView: ScreensWebView?
 
 	open var portletDisplayScreenlet: PortletDisplayScreenlet {

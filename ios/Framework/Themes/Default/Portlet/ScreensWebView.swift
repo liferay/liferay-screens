@@ -18,6 +18,8 @@ import UIKit
 
 	var view: UIView { get }
 
+	var isScrollEnabled: Bool { get set }
+
 	init(jsCallHandler: @escaping (String, String) -> Void,
 	     jsErrorHandler: @escaping (String) -> (Any?, Error?) -> Void,
 		 onPageLoadFinished: @escaping (String, Error?) -> Void)

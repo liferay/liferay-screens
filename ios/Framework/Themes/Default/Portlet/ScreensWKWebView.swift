@@ -25,6 +25,15 @@ UIScrollViewDelegate {
 		return wkWebView
 	}
 
+	open var isScrollEnabled: Bool {
+		get {
+			return wkWebView.scrollView.isScrollEnabled
+		}
+		set {
+			wkWebView.scrollView.isScrollEnabled = newValue
+		}
+	}
+
 	let wkWebView: WKWebView
 	lazy var uiDelegate: ScreensWKUIDelegate = ScreensWKUIDelegate(viewController: self.viewController)
 

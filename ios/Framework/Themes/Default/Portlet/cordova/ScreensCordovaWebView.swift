@@ -14,11 +14,35 @@
 
 import Foundation
 import UIKit
+import WebKit
 
 @objc open class ScreensCordovaWebView: NSObject, ScreensWebView {
 
 	open var view: UIView {
 		return cordovaVC.view
+	}
+
+	open var isScrollEnabled: Bool {
+		get {
+			if let webView = cordovaVC.webView as? WKWebView {
+				return webView.scrollView.isScrollEnabled
+			}
+
+			if let webView = cordovaVC.webView as? UIWebView {
+				return webView.scrollView.isScrollEnabled
+			}
+
+			return false
+		}
+		set {
+			if let webView = cordovaVC.webView as? WKWebView {
+				webView.scrollView.isScrollEnabled = newValue
+			}
+
+			if let webView = cordovaVC.webView as? UIWebView {
+				webView.scrollView.isScrollEnabled = newValue
+			}
+		}
 	}
 
 	var scriptsToInject = [InjectableScript]()
