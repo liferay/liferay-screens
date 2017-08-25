@@ -24,6 +24,7 @@ All notable changes to this project will be documented in this file.
 * Add support for multiple select fields in forms
 * Allow data providers in forms
 * Show alerts in the PortletDisplayScreenlet
+* Allow developers to disable scroll in the PortletDisplayScreenlet
 
 ### Refactor
 * Remove unused attribute in RatingsScreenlet 
