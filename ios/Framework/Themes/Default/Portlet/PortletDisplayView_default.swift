@@ -128,7 +128,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		guard let webView = screensWebView?.view else { return }
 
 		webView.translatesAutoresizingMaskIntoConstraints = false
-    
+
 		webView.backgroundColor = .clear
 
 		addSubview(webView)
