@@ -53,6 +53,8 @@
     <Folder Include="ImageGallery\" />
     <Folder Include="UserPortrait\" />
     <Folder Include="WebContent\" />
+    <Folder Include="Asset\" />
+    <Folder Include="Asset\List\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,6 +102,8 @@
     <ObjcBindingApiDefinition Include="WebContent\WebContentDisplayScreenlet.cs" />
     <ObjcBindingApiDefinition Include="WebContent\WebContentDisplayDelegate.cs" />
     <ObjcBindingApiDefinition Include="WebContent\WebContentDisplayViewModel.cs" />
+    <ObjcBindingApiDefinition Include="Asset\List\AssetListScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Asset\List\AssetListScreenletDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />
