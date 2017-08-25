@@ -94,9 +94,6 @@
   <!-- Corrections for ImageGalleryScreenlet-->
   <remove-node  path="/api/package[@name='com.liferay.mobile.screens.imagegallery']
         /class[@name='ImageGalleryScreenlet']
-        /method[@name='onUserAction']"/>
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.imagegallery']
-        /class[@name='ImageGalleryScreenlet']
         /method[@name='createInteractor']"/>
   <attr path="/api/package[@name='com.liferay.mobile.screens.imagegallery']
               /class[@name='ImageGalleryScreenlet']
