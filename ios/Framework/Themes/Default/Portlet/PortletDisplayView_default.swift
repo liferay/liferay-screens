@@ -28,6 +28,15 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 	open var isLoggingEnabled = true
 
+	open var isScrollEnabled: Bool {
+		get {
+			return screensWebView?.isScrollEnabled ?? false
+		}
+		set {
+			screensWebView?.isScrollEnabled = newValue
+		}
+	}
+
 	open var screensWebView: ScreensWebView?
 
 	open var portletDisplayScreenlet: PortletDisplayScreenlet {
@@ -119,7 +128,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		guard let webView = screensWebView?.view else { return }
 
 		webView.translatesAutoresizingMaskIntoConstraints = false
-    
+
 		webView.backgroundColor = .clear
 
 		addSubview(webView)

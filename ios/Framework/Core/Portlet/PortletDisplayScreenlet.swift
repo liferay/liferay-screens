@@ -80,6 +80,8 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 
 	@IBInspectable open var loggingEnabled: Bool = true
 
+	@IBInspectable open var isScrollEnabled: Bool = true
+
 	/// The portlet URL to be displayed.
 	open var configuration: PortletConfiguration? {
 		didSet {
@@ -138,6 +140,7 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 		portletDisplayViewModel.add(injectableScripts: configuration.scripts)
 
 		portletDisplayViewModel.isThemeEnabled = configuration.isThemeEnabled
+		portletDisplayViewModel.isScrollEnabled = isScrollEnabled
 
 		switch configuration.webType {
 			case .liferayAuthenticated:
