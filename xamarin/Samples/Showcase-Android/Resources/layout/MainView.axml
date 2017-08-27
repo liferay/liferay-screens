@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:text="@string/main_activity_label"
+        style="@style/label" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/login_screenlet"
+                android:text="@string/login"
+                style="@style/test_app_button" />
+            <Button
+                android:id="@+id/forgot_password_screenlet"
+                android:text="@string/forgot_password"
+                style="@style/test_app_button" />
+            <Button
+                android:id="@+id/sign_up_screenlet"
+                android:text="@string/sign_up"
+                style="@style/test_app_button" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
