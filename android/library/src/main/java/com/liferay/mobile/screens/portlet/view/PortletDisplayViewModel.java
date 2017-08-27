@@ -70,4 +70,10 @@ public interface PortletDisplayViewModel extends BaseViewModel {
 	 * lifecycle methods
 	 */
 	void configureView(boolean isCordovaEnabled, CordovaLifeCycleObserver observer);
+
+	/**
+	 * Controls wether or not the scroll of the webview should be enabled
+	 * @param enabled
+	 */
+	void setScrollEnabled(boolean enabled);
 }

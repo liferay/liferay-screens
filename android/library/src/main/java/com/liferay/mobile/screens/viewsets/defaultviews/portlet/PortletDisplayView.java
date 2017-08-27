@@ -2,6 +2,8 @@ package com.liferay.mobile.screens.viewsets.defaultviews.portlet;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
+import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 import android.widget.FrameLayout;
@@ -102,7 +104,6 @@ public class PortletDisplayView extends FrameLayout
 	@Override
 	public void postUrl(String url, String body) {
 		if (webView != null) {
-
 			webView.postUrl(url, body.getBytes());
 		}
 	}
@@ -166,6 +167,20 @@ public class PortletDisplayView extends FrameLayout
 		webView.getSettings().setJavaScriptEnabled(true);
 
 		addView(webView);
+	}
+
+	@Override
+	public void setScrollEnabled(boolean enabled) {
+		if (enabled) {
+			webView.setOnTouchListener(null);
+		} else {
+			webView.setOnTouchListener(new View.OnTouchListener() {
+				@Override
+				public boolean onTouch(View v, MotionEvent event) {
+					return (event.getAction() == MotionEvent.ACTION_MOVE);
+				}
+			});
+		}
 	}
 
 	@Override

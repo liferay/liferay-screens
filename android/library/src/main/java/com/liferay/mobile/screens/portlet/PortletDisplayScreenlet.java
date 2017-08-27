@@ -48,6 +48,7 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	private PortletDisplayListener listener;
 	private PortletConfiguration portletConfiguration;
 	private boolean isLoggingEnabled = true;
+	private boolean isScrollEnabled = true;
 
 	public PortletDisplayScreenlet(Context context) {
 		super(context);
@@ -165,6 +166,15 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 
 	public void setLoggingEnabled(boolean loggingEnabled) {
 		isLoggingEnabled = loggingEnabled;
+	}
+
+	public boolean isScrollEnabled() {
+		return isScrollEnabled;
+	}
+
+	public void setScrollEnabled(boolean enabled) {
+		isScrollEnabled = enabled;
+		getViewModel().setScrollEnabled(enabled);
 	}
 
 	public boolean isAutoLoad() {
