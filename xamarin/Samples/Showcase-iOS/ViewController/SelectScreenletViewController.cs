@@ -6,8 +6,17 @@ namespace ShowcaseiOS.ViewController
 {
     public partial class SelectScreenletViewController : UITableViewController
     {
-        protected string[] screenlets = { "DDLFormScreenlet" };
-        protected string[] viewControllers = { "DDLFormViewController" };
+        protected string[] screenlets = 
+        { 
+            "DDLFormScreenlet", 
+            "UserPortraitScreenlet",
+        };
+
+        protected string[] viewControllers = 
+        { 
+            "DDLFormViewController",
+            "UserPortraitViewController",
+        };
 
         public SelectScreenletViewController(IntPtr handle) : base(handle) { }
 
