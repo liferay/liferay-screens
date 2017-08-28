@@ -41,5 +41,11 @@
 	</dict>
 	<key>CFBundleName</key>
 	<string>Liferay Screens</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>New Entry</string>
+	<key>NSCameraUsageDescription</key>
+	<string>New Entry</string>
+	<key>kTCCServiceMediaLibrary</key>
+	<string>New Entry</string>
 </dict>
 </plist>

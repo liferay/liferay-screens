@@ -14,5 +14,11 @@
 	<string>anonymous1@liferay.com</string>
 	<key>anonymousPassword</key>
 	<string>anonymous1</string>
+	<key>ddlRecordId</key>
+	<string>54385</string>
+	<key>ddlRecordSetId</key>
+	<string>54375</string>
+	<key>ddlStructureId</key>
+	<string>54371</string>
 </dict>
 </plist>
