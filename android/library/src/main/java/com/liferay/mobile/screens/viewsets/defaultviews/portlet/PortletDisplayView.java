@@ -35,7 +35,6 @@ public class PortletDisplayView extends FrameLayout
 	private ProgressBar progressBar;
 	private static final String URL_LOGIN = "/c/portal/login";
 	private List<InjectableScript> scriptsToInject = new ArrayList<>();
-	private boolean theme;
 	private boolean isLoaded;
 
 	public PortletDisplayView(Context context) {
@@ -143,10 +142,6 @@ public class PortletDisplayView extends FrameLayout
 		this.screenlet = screenlet;
 	}
 
-	public void setTheme(boolean theme) {
-		this.theme = theme;
-	}
-
 	@Override
 	public void configureView(boolean isCordovaEnabled, CordovaLifeCycleObserver observer) {
 		if (isCordovaEnabled) {
@@ -195,10 +190,6 @@ public class PortletDisplayView extends FrameLayout
 
 			for (InjectableScript script : scriptsToInject) {
 				injectScript(script);
-			}
-
-			if (theme) {
-				webView.loadUrl("javascript:window.Screens.listPortlets()");
 			}
 
 			// The webview shows a white screen before loading its content, this prevent that.

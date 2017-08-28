@@ -36,28 +36,4 @@ public interface PortletDisplayListener extends BaseCacheListener {
 	 * @param body source namespace body
 	 */
 	void onScriptMessageHandler(String namespace, String body);
-
-	/**
-	 * Called this method when we want to search the css file to inject in the portlet
-	 * when the {@link PortletConfiguration#isThemeEnabled} is on.
-	 * It's not necessary the same filename as the portlet. For example:
-	 * Portlet name: "com_liferay_document_library_web_portlet_IGDisplayPortlet"
-	 * Filename: gallery.css
-	 *
-	 * @param portlet name of the internal portlet.
-	 * @return {@link CssScript}
-	 */
-	InjectableScript cssForPortlet(String portlet);
-
-	/**
-	 * Called this method when we want to search the js file to inject in the portlet
-	 * when the {@link PortletConfiguration#isThemeEnabled} is on.
-	 * It's not necessary the same filename as the portlet. For example:
-	 * Portlet name: "com_liferay_document_library_web_portlet_IGDisplayPortlet"
-	 * Filename: gallery.js
-	 *
-	 * @param portlet name of the internal portlet.
-	 * @return {@link JsScript}
-	 */
-	InjectableScript jsForPortlet(String portlet);
 }

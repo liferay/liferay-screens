@@ -41,29 +41,6 @@ import UIKit
 	@objc optional func screenlet(_ screenlet: PortletDisplayScreenlet,
 	                              onScriptMessageNamespace namespace: String,
 	                              onScriptMessage message: String)
-
-	/// Called this method when we want to search the css file to inject into the page
-	/// when the isThemeEnabled flag in PortletConfiguration is on.
-	/// It's not necessary the same filename as the portlet. For example:
-	/// Portlet name: "com_liferay_document_library_web_portlet_IGDisplayPortlet"
-	/// Filename: gallery.css
-	/// - Parameters:
-	///	  - portlet: name of the internal portlet.
-	/// - Returns: injectable script.
-	@objc optional func screenlet(_ screenlet: PortletDisplayScreenlet,
-	                              cssFor portlet: String) -> InjectableScript?
-
-	/// Called this method when we want to search the js file to inject into the page
-	/// when the isThemeEnabled in PortletConfiguration is on.
-	/// It's not necessary the same filename as the portlet. For example:
-	/// Portlet name: "com_liferay_document_library_web_portlet_IGDisplayPortlet"
-	/// Filename: gallery.js
-	/// - Parameters:
-	///	  - portlet: name of the internal portlet.
-	/// - Returns: injectable script.
-	@objc optional func screenlet(_ screenlet: PortletDisplayScreenlet,
-	                              jsFor portlet: String) -> InjectableScript?
-
 }
 
 /// Portlet Display Screenlet can display a Liferay page (with one or more portlets
@@ -139,7 +116,6 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 		portletDisplayViewModel.add(injectableScript: JsScript(name: "Screens.js", js: screensScript))
 		portletDisplayViewModel.add(injectableScripts: configuration.scripts)
 
-		portletDisplayViewModel.isThemeEnabled = configuration.isThemeEnabled
 		portletDisplayViewModel.isScrollEnabled = isScrollEnabled
 
 		switch configuration.webType {
@@ -152,10 +128,7 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 
 				let html = configureInitialHtml(portletUrl: configuration.portletUrl)
 				portletDisplayViewModel.load(htmlString: html)
-			case .liferay:
-				portletDisplayViewModel.load(request: URLRequest(url: URL(string: configuration.portletUrl)!))
 			case .other:
-				portletDisplayViewModel.isThemeEnabled = false
 				portletDisplayViewModel.load(request: URLRequest(url: URL(string: configuration.portletUrl)!))
 		}
 	}
@@ -164,40 +137,6 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 		if namespace.hasSuffix("consoleMessage") {
 			if loggingEnabled {
 				print("Console message: \(message)")
-			}
-		}
-		else if namespace.hasSuffix("listportlets") {
-			guard let portletsString = message as? String else { return }
-
-			let portlets = portletsString.components(separatedBy: ",")
-
-			for portlet in portlets {
-				var js = portletDisplayDelegate?.screenlet?(self, jsFor: portlet)
-				var css = portletDisplayDelegate?.screenlet?(self, cssFor: portlet)
-
-				let fileName = "\(themeName!)_\(portlet)"
-
-				if js == nil {
-					js = Bundle.loadFile(name: fileName, ofType: "js", currentClass: type(of: self))
-						.map { js in
-							JsScript(name: fileName, js: js)
-						}
-				}
-
-				if css == nil {
-					css = Bundle.loadFile(name: fileName, ofType: "css", currentClass: type(of: self))
-						.map { css in
-							CssScript(name: fileName, css: css)
-						}
-				}
-
-				if let js = js {
-					portletDisplayViewModel.inject(injectableScript: js)
-				}
-
-				if let css = css {
-					portletDisplayViewModel.inject(injectableScript: css)
-				}
 			}
 		}
 	}

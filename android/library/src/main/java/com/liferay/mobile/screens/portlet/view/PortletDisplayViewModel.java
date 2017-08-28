@@ -54,14 +54,6 @@ public interface PortletDisplayViewModel extends BaseViewModel {
 	void addScript(InjectableScript script);
 
 	/**
-	 * Enable the theme. This means that the screenlet will inject the css and js files
-	 * from visible portlets automatically if they exist.
-	 *
-	 * @param theme if the proper css and js files must be injected or not.
-	 */
-	void setTheme(boolean theme);
-
-	/**
 	 * Create the WebView. Depending on the isCordovaEnabled flag it will create a normal WebView or
 	 * a Cordova WebView.
 	 *

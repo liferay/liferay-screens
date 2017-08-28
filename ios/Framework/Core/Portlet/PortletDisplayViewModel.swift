@@ -15,9 +15,6 @@ import UIKit
 
 @objc public protocol PortletDisplayViewModel {
 
-	/// Whether or not it has to look for portlets inside the page
-	var isThemeEnabled: Bool { get set }
-
 	/// Whether or not it should show log messages
 	var isLoggingEnabled: Bool { get set }
 
