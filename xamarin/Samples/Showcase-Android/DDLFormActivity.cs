@@ -70,7 +70,7 @@ namespace ShowcaseAndroid
 
         public void OnDDLFormRecordUpdated(Record p0)
         {
-			System.Diagnostics.Debug.WriteLine($"DDLForm record updated: {p0}");
-		}
+            System.Diagnostics.Debug.WriteLine($"DDLForm record updated: {p0}");
+        }
     }
 }
