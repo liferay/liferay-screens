@@ -24,8 +24,6 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 	// MARK: PortletDisplayViewModel
 
-	open var isThemeEnabled = false
-
 	open var isLoggingEnabled = true
 
 	open var isScrollEnabled: Bool {
@@ -157,10 +155,6 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		}
 		else {
 			self.progressPresenter?.hideHUDFromView(self, message: nil, forInteractor: Interactor(), withError: nil)
-			if isThemeEnabled {
-				let js = JsScript(name: "listPorlets", js: "window.Screens.listPortlets()")
-				inject(injectableScript: js)
-			}
 
 			portletDisplayScreenlet.portletDisplayDelegate?.onPortletPageLoaded?(portletDisplayScreenlet, url: url)
 		}
