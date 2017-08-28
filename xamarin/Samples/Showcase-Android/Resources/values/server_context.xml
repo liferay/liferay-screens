@@ -18,4 +18,8 @@
 	<string name="liferay_recordset_id">54375</string>
 	<string name="liferay_record_id">54385</string>
 	<string name="liferay_folder_id">54469</string>
+	<!-- WebcontentScreenlet values -->
+    <string name="liferay_article_id">57343</string>
+	<string name="liferay_webcontent_structure_id">29641</string>
+	
 </resources>
