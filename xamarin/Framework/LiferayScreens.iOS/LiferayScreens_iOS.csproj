@@ -55,6 +55,10 @@
     <Folder Include="WebContent\" />
     <Folder Include="Asset\" />
     <Folder Include="Asset\List\" />
+    <Folder Include="Themes\Default\ImageGallery\" />
+    <Folder Include="Themes\Default\UserPortrait\" />
+    <Folder Include="Themes\Default\WebContent\" />
+    <Folder Include="Themes\Default\Asset\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,6 +108,14 @@
     <ObjcBindingApiDefinition Include="WebContent\WebContentDisplayViewModel.cs" />
     <ObjcBindingApiDefinition Include="Asset\List\AssetListScreenlet.cs" />
     <ObjcBindingApiDefinition Include="Asset\List\AssetListScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\ImageGallery\ImageGalleryView_default.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\ImageGallery\ImageGalleryCollectionViewBase.cs" />
+    <ObjcBindingApiDefinition Include="Base\BaseListCollectionView.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\UserPortrait\UserPortraitView_default.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\WebContent\WebContentDisplayView_default.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Asset\AssetListView_default.cs" />
+    <ObjcBindingApiDefinition Include="Base\BaseListTableView.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Asset\AssetListTableView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />
