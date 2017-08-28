@@ -2613,8 +2613,8 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f090047
 			public const int REMOTE_ONLY = 2131296327;
 			
-			// aapt resource value: 0x7f0900df
-			public const int action0 = 2131296479;
+			// aapt resource value: 0x7f0900e0
+			public const int action0 = 2131296480;
 			
 			// aapt resource value: 0x7f090077
 			public const int action_bar = 2131296375;
@@ -2637,17 +2637,17 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f090054
 			public const int action_bar_title = 2131296340;
 			
-			// aapt resource value: 0x7f0900dc
-			public const int action_container = 2131296476;
+			// aapt resource value: 0x7f0900dd
+			public const int action_container = 2131296477;
 			
 			// aapt resource value: 0x7f090078
 			public const int action_context_bar = 2131296376;
 			
-			// aapt resource value: 0x7f0900e3
-			public const int action_divider = 2131296483;
+			// aapt resource value: 0x7f0900e4
+			public const int action_divider = 2131296484;
 			
-			// aapt resource value: 0x7f0900dd
-			public const int action_image = 2131296477;
+			// aapt resource value: 0x7f0900de
+			public const int action_image = 2131296478;
 			
 			// aapt resource value: 0x7f090003
 			public const int action_menu_divider = 2131296259;
@@ -2664,11 +2664,11 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f090056
 			public const int action_mode_close_button = 2131296342;
 			
-			// aapt resource value: 0x7f0900de
-			public const int action_text = 2131296478;
+			// aapt resource value: 0x7f0900df
+			public const int action_text = 2131296479;
 			
-			// aapt resource value: 0x7f0900ec
-			public const int actions = 2131296492;
+			// aapt resource value: 0x7f0900ed
+			public const int actions = 2131296493;
 			
 			// aapt resource value: 0x7f090057
 			public const int activity_chooser_view_content = 2131296343;
@@ -2688,11 +2688,11 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f09002f
 			public const int auto = 2131296303;
 			
-			// aapt resource value: 0x7f090115
-			public const int averageRatingBar = 2131296533;
+			// aapt resource value: 0x7f090116
+			public const int averageRatingBar = 2131296534;
 			
-			// aapt resource value: 0x7f090114
-			public const int average_container = 2131296532;
+			// aapt resource value: 0x7f090115
+			public const int average_container = 2131296533;
 			
 			// aapt resource value: 0x7f090051
 			public const int basic = 2131296337;
@@ -2709,8 +2709,8 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f09005e
 			public const int buttonPanel = 2131296350;
 			
-			// aapt resource value: 0x7f0900e0
-			public const int cancel_action = 2131296480;
+			// aapt resource value: 0x7f0900e1
+			public const int cancel_action = 2131296481;
 			
 			// aapt resource value: 0x7f090030
 			public const int center = 2131296304;
@@ -2724,8 +2724,8 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f09006e
 			public const int checkbox = 2131296366;
 			
-			// aapt resource value: 0x7f0900e8
-			public const int chronometer = 2131296488;
+			// aapt resource value: 0x7f0900e9
+			public const int chronometer = 2131296489;
 			
 			// aapt resource value: 0x7f090039
 			public const int clip_horizontal = 2131296313;
@@ -2814,11 +2814,11 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f09005a
 			public const int default_activity_button = 2131296346;
 			
-			// aapt resource value: 0x7f09011b
-			public const int default_dialog_edit_text = 2131296539;
-			
 			// aapt resource value: 0x7f09011c
-			public const int default_list = 2131296540;
+			public const int default_dialog_edit_text = 2131296540;
+			
+			// aapt resource value: 0x7f09011d
+			public const int default_list = 2131296541;
 			
 			// aapt resource value: 0x7f0900d2
 			public const int default_progress_view_text = 2131296466;
@@ -2844,11 +2844,11 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f090012
 			public const int disableHome = 2131296274;
 			
-			// aapt resource value: 0x7f09010a
-			public const int dissatisfied_button = 2131296522;
+			// aapt resource value: 0x7f09010b
+			public const int dissatisfied_button = 2131296523;
 			
-			// aapt resource value: 0x7f09010f
-			public const int dissatisfied_label = 2131296527;
+			// aapt resource value: 0x7f090110
+			public const int dissatisfied_label = 2131296528;
 			
 			// aapt resource value: 0x7f090079
 			public const int edit_query = 2131296377;
@@ -2856,35 +2856,35 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f090041
 			public const int email = 2131296321;
 			
-			// aapt resource value: 0x7f0900ff
-			public const int emoji_1_button = 2131296511;
-			
-			// aapt resource value: 0x7f090103
-			public const int emoji_1_label = 2131296515;
-			
 			// aapt resource value: 0x7f090100
-			public const int emoji_2_button = 2131296512;
+			public const int emoji_1_button = 2131296512;
 			
 			// aapt resource value: 0x7f090104
-			public const int emoji_2_label = 2131296516;
+			public const int emoji_1_label = 2131296516;
 			
 			// aapt resource value: 0x7f090101
-			public const int emoji_3_button = 2131296513;
+			public const int emoji_2_button = 2131296513;
 			
 			// aapt resource value: 0x7f090105
-			public const int emoji_3_label = 2131296517;
+			public const int emoji_2_label = 2131296517;
 			
 			// aapt resource value: 0x7f090102
-			public const int emoji_4_button = 2131296514;
+			public const int emoji_3_button = 2131296514;
 			
 			// aapt resource value: 0x7f090106
-			public const int emoji_4_label = 2131296518;
+			public const int emoji_3_label = 2131296518;
+			
+			// aapt resource value: 0x7f090103
+			public const int emoji_4_button = 2131296515;
+			
+			// aapt resource value: 0x7f090107
+			public const int emoji_4_label = 2131296519;
 			
 			// aapt resource value: 0x7f090021
 			public const int end = 2131296289;
 			
-			// aapt resource value: 0x7f0900f2
-			public const int end_padder = 2131296498;
+			// aapt resource value: 0x7f0900f3
+			public const int end_padder = 2131296499;
 			
 			// aapt resource value: 0x7f09002a
 			public const int enterAlways = 2131296298;
@@ -2928,8 +2928,8 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f09005c
 			public const int icon = 2131296348;
 			
-			// aapt resource value: 0x7f0900ed
-			public const int icon_group = 2131296493;
+			// aapt resource value: 0x7f0900ee
+			public const int icon_group = 2131296494;
 			
 			// aapt resource value: 0x7f090025
 			public const int ifRoom = 2131296293;
@@ -2937,8 +2937,8 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f090059
 			public const int image = 2131296345;
 			
-			// aapt resource value: 0x7f0900e9
-			public const int info = 2131296489;
+			// aapt resource value: 0x7f0900ea
+			public const int info = 2131296490;
 			
 			// aapt resource value: 0x7f090087
 			public const int inner_screenlet_container = 2131296391;
@@ -2952,14 +2952,14 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f090034
 			public const int left = 2131296308;
 			
-			// aapt resource value: 0x7f0900f3
-			public const int liferay_asset_progress_horizontal = 2131296499;
-			
 			// aapt resource value: 0x7f0900f4
-			public const int liferay_asset_progress_number = 2131296500;
+			public const int liferay_asset_progress_horizontal = 2131296500;
 			
-			// aapt resource value: 0x7f0900fb
-			public const int liferay_asset_title = 2131296507;
+			// aapt resource value: 0x7f0900f5
+			public const int liferay_asset_progress_number = 2131296501;
+			
+			// aapt resource value: 0x7f0900fc
+			public const int liferay_asset_title = 2131296508;
 			
 			// aapt resource value: 0x7f09008d
 			public const int liferay_audio_asset = 2131296397;
@@ -3030,11 +3030,11 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0900b6
 			public const int liferay_document_progress = 2131296438;
 			
-			// aapt resource value: 0x7f09011f
-			public const int liferay_email_address = 2131296543;
+			// aapt resource value: 0x7f090120
+			public const int liferay_email_address = 2131296544;
 			
-			// aapt resource value: 0x7f09011d
-			public const int liferay_first_name = 2131296541;
+			// aapt resource value: 0x7f09011e
+			public const int liferay_first_name = 2131296542;
 			
 			// aapt resource value: 0x7f0900c9
 			public const int liferay_forgot_button = 2131296457;
@@ -3054,20 +3054,20 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0900ba
 			public const int liferay_gallery_upload_title = 2131296442;
 			
-			// aapt resource value: 0x7f0900f8
-			public const int liferay_go_to_page = 2131296504;
-			
 			// aapt resource value: 0x7f0900f9
-			public const int liferay_go_to_page_submit = 2131296505;
+			public const int liferay_go_to_page = 2131296505;
+			
+			// aapt resource value: 0x7f0900fa
+			public const int liferay_go_to_page_submit = 2131296506;
 			
 			// aapt resource value: 0x7f0900d4
 			public const int liferay_image_asset = 2131296468;
 			
-			// aapt resource value: 0x7f09011e
-			public const int liferay_last_name = 2131296542;
+			// aapt resource value: 0x7f09011f
+			public const int liferay_last_name = 2131296543;
 			
-			// aapt resource value: 0x7f0900f5
-			public const int liferay_linear_buttons = 2131296501;
+			// aapt resource value: 0x7f0900f6
+			public const int liferay_linear_buttons = 2131296502;
 			
 			// aapt resource value: 0x7f090088
 			public const int liferay_list_screenlet = 2131296392;
@@ -3081,8 +3081,8 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0900d8
 			public const int liferay_login_button = 2131296472;
 			
-			// aapt resource value: 0x7f0900f7
-			public const int liferay_next_page = 2131296503;
+			// aapt resource value: 0x7f0900f8
+			public const int liferay_next_page = 2131296504;
 			
 			// aapt resource value: 0x7f0900ae
 			public const int liferay_pager = 2131296430;
@@ -3090,65 +3090,65 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0900d7
 			public const int liferay_password = 2131296471;
 			
-			// aapt resource value: 0x7f0900fa
-			public const int liferay_pdf_renderer = 2131296506;
+			// aapt resource value: 0x7f0900fb
+			public const int liferay_pdf_renderer = 2131296507;
 			
-			// aapt resource value: 0x7f0900fc
-			public const int liferay_portlet_progress = 2131296508;
+			// aapt resource value: 0x7f0900fd
+			public const int liferay_portlet_progress = 2131296509;
 			
-			// aapt resource value: 0x7f090121
-			public const int liferay_portrait = 2131296545;
+			// aapt resource value: 0x7f090122
+			public const int liferay_portrait = 2131296546;
 			
-			// aapt resource value: 0x7f090123
-			public const int liferay_portrait_progress = 2131296547;
+			// aapt resource value: 0x7f090124
+			public const int liferay_portrait_progress = 2131296548;
 			
-			// aapt resource value: 0x7f0900f6
-			public const int liferay_previous_page = 2131296502;
+			// aapt resource value: 0x7f0900f7
+			public const int liferay_previous_page = 2131296503;
 			
 			// aapt resource value: 0x7f090086
 			public const int liferay_progress = 2131296390;
 			
-			// aapt resource value: 0x7f0900fe
-			public const int liferay_rating_content = 2131296510;
+			// aapt resource value: 0x7f0900ff
+			public const int liferay_rating_content = 2131296511;
 			
-			// aapt resource value: 0x7f0900fd
-			public const int liferay_rating_progress = 2131296509;
+			// aapt resource value: 0x7f0900fe
+			public const int liferay_rating_progress = 2131296510;
 			
 			// aapt resource value: 0x7f090089
 			public const int liferay_recycler_list = 2131296393;
 			
-			// aapt resource value: 0x7f090122
-			public const int liferay_replace_image = 2131296546;
+			// aapt resource value: 0x7f090123
+			public const int liferay_replace_image = 2131296547;
 			
-			// aapt resource value: 0x7f090120
-			public const int liferay_sign_up_button = 2131296544;
+			// aapt resource value: 0x7f090121
+			public const int liferay_sign_up_button = 2131296545;
 			
 			// aapt resource value: 0x7f0900cc
 			public const int liferay_upload_fab = 2131296460;
 			
-			// aapt resource value: 0x7f090125
-			public const int liferay_video_asset = 2131296549;
+			// aapt resource value: 0x7f090126
+			public const int liferay_video_asset = 2131296550;
 			
-			// aapt resource value: 0x7f090124
-			public const int liferay_video_message = 2131296548;
+			// aapt resource value: 0x7f090125
+			public const int liferay_video_message = 2131296549;
+			
+			// aapt resource value: 0x7f090128
+			public const int liferay_webview = 2131296552;
 			
 			// aapt resource value: 0x7f090127
-			public const int liferay_webview = 2131296551;
+			public const int liferay_webview_progress = 2131296551;
 			
-			// aapt resource value: 0x7f090126
-			public const int liferay_webview_progress = 2131296550;
+			// aapt resource value: 0x7f090109
+			public const int likeCountLabel = 2131296521;
 			
 			// aapt resource value: 0x7f090108
-			public const int likeCountLabel = 2131296520;
+			public const int likeRatingButton = 2131296520;
 			
-			// aapt resource value: 0x7f090107
-			public const int likeRatingButton = 2131296519;
+			// aapt resource value: 0x7f0900ef
+			public const int line1 = 2131296495;
 			
-			// aapt resource value: 0x7f0900ee
-			public const int line1 = 2131296494;
-			
-			// aapt resource value: 0x7f0900f0
-			public const int line3 = 2131296496;
+			// aapt resource value: 0x7f0900f1
+			public const int line3 = 2131296497;
 			
 			// aapt resource value: 0x7f09000f
 			public const int listMode = 2131296271;
@@ -3159,11 +3159,11 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0900da
 			public const int login_screenlet = 2131296474;
 			
-			// aapt resource value: 0x7f09012a
-			public const int masked = 2131296554;
+			// aapt resource value: 0x7f09012b
+			public const int masked = 2131296555;
 			
-			// aapt resource value: 0x7f0900e2
-			public const int media_actions = 2131296482;
+			// aapt resource value: 0x7f0900e3
+			public const int media_actions = 2131296483;
 			
 			// aapt resource value: 0x7f090022
 			public const int middle = 2131296290;
@@ -3177,17 +3177,17 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0900c2
 			public const int navigation_header_container = 2131296450;
 			
-			// aapt resource value: 0x7f090119
-			public const int negativeRatingButton = 2131296537;
-			
 			// aapt resource value: 0x7f09011a
-			public const int negativeRatingCount = 2131296538;
+			public const int negativeRatingButton = 2131296538;
 			
-			// aapt resource value: 0x7f09010b
-			public const int neutral_button = 2131296523;
+			// aapt resource value: 0x7f09011b
+			public const int negativeRatingCount = 2131296539;
 			
-			// aapt resource value: 0x7f090110
-			public const int neutral_label = 2131296528;
+			// aapt resource value: 0x7f09010c
+			public const int neutral_button = 2131296524;
+			
+			// aapt resource value: 0x7f090111
+			public const int neutral_label = 2131296529;
 			
 			// aapt resource value: 0x7f090026
 			public const int never = 2131296294;
@@ -3198,14 +3198,14 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f090010
 			public const int normal = 2131296272;
 			
-			// aapt resource value: 0x7f0900eb
-			public const int notification_background = 2131296491;
+			// aapt resource value: 0x7f0900ec
+			public const int notification_background = 2131296492;
+			
+			// aapt resource value: 0x7f0900e6
+			public const int notification_main_column = 2131296486;
 			
 			// aapt resource value: 0x7f0900e5
-			public const int notification_main_column = 2131296485;
-			
-			// aapt resource value: 0x7f0900e4
-			public const int notification_main_column_container = 2131296484;
+			public const int notification_main_column_container = 2131296485;
 			
 			// aapt resource value: 0x7f090053
 			public const int oauth = 2131296339;
@@ -3222,11 +3222,11 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f090038
 			public const int pin = 2131296312;
 			
-			// aapt resource value: 0x7f090117
-			public const int positiveRatingButton = 2131296535;
-			
 			// aapt resource value: 0x7f090118
-			public const int positiveRatingCount = 2131296536;
+			public const int positiveRatingButton = 2131296536;
+			
+			// aapt resource value: 0x7f090119
+			public const int positiveRatingCount = 2131296537;
 			
 			// aapt resource value: 0x7f090006
 			public const int progress_circular = 2131296262;
@@ -3255,17 +3255,17 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f090035
 			public const int right = 2131296309;
 			
-			// aapt resource value: 0x7f0900ea
-			public const int right_icon = 2131296490;
+			// aapt resource value: 0x7f0900eb
+			public const int right_icon = 2131296491;
 			
-			// aapt resource value: 0x7f0900e6
-			public const int right_side = 2131296486;
+			// aapt resource value: 0x7f0900e7
+			public const int right_side = 2131296487;
 			
-			// aapt resource value: 0x7f09010c
-			public const int satisfied_button = 2131296524;
+			// aapt resource value: 0x7f09010d
+			public const int satisfied_button = 2131296525;
 			
-			// aapt resource value: 0x7f090111
-			public const int satisfied_label = 2131296529;
+			// aapt resource value: 0x7f090112
+			public const int satisfied_label = 2131296530;
 			
 			// aapt resource value: 0x7f09001b
 			public const int screen = 2131296283;
@@ -3369,8 +3369,8 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f090036
 			public const int start = 2131296310;
 			
-			// aapt resource value: 0x7f0900e1
-			public const int status_bar_latest_event_content = 2131296481;
+			// aapt resource value: 0x7f0900e2
+			public const int status_bar_latest_event_content = 2131296482;
 			
 			// aapt resource value: 0x7f090071
 			public const int submenuarrow = 2131296369;
@@ -3381,11 +3381,11 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f090011
 			public const int tabMode = 2131296273;
 			
-			// aapt resource value: 0x7f0900f1
-			public const int text = 2131296497;
+			// aapt resource value: 0x7f0900f2
+			public const int text = 2131296498;
 			
-			// aapt resource value: 0x7f0900ef
-			public const int text2 = 2131296495;
+			// aapt resource value: 0x7f0900f0
+			public const int text2 = 2131296496;
 			
 			// aapt resource value: 0x7f090065
 			public const int textSpacerNoButtons = 2131296357;
@@ -3402,8 +3402,8 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f09000d
 			public const int textinput_error = 2131296269;
 			
-			// aapt resource value: 0x7f0900e7
-			public const int time = 2131296487;
+			// aapt resource value: 0x7f0900e8
+			public const int time = 2131296488;
 			
 			// aapt resource value: 0x7f09005d
 			public const int title = 2131296349;
@@ -3420,8 +3420,8 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f090069
 			public const int topPanel = 2131296361;
 			
-			// aapt resource value: 0x7f090116
-			public const int totalCountTextView = 2131296534;
+			// aapt resource value: 0x7f090117
+			public const int totalCountTextView = 2131296535;
 			
 			// aapt resource value: 0x7f0900be
 			public const int touch_outside = 2131296446;
@@ -3438,8 +3438,8 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f090018
 			public const int useLogo = 2131296280;
 			
-			// aapt resource value: 0x7f090113
-			public const int userRatingBar = 2131296531;
+			// aapt resource value: 0x7f090114
+			public const int userRatingBar = 2131296532;
 			
 			// aapt resource value: 0x7f090043
 			public const int user_id = 2131296323;
@@ -3447,26 +3447,29 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f09008f
 			public const int user_portrait_screenlet = 2131296399;
 			
-			// aapt resource value: 0x7f090109
-			public const int very_dissatisfied_button = 2131296521;
+			// aapt resource value: 0x7f09010a
+			public const int very_dissatisfied_button = 2131296522;
+			
+			// aapt resource value: 0x7f09010f
+			public const int very_dissatisfied_label = 2131296527;
 			
 			// aapt resource value: 0x7f09010e
-			public const int very_dissatisfied_label = 2131296526;
+			public const int very_satisfied_button = 2131296526;
 			
-			// aapt resource value: 0x7f09010d
-			public const int very_satisfied_button = 2131296525;
-			
-			// aapt resource value: 0x7f090112
-			public const int very_satisfied_label = 2131296530;
+			// aapt resource value: 0x7f090113
+			public const int very_satisfied_label = 2131296531;
 			
 			// aapt resource value: 0x7f09000e
 			public const int view_offset_helper = 2131296270;
 			
-			// aapt resource value: 0x7f090129
-			public const int visible = 2131296553;
+			// aapt resource value: 0x7f09012a
+			public const int visible = 2131296554;
 			
-			// aapt resource value: 0x7f090128
-			public const int web_content_field = 2131296552;
+			// aapt resource value: 0x7f0900dc
+			public const int web_content_display_screenlet = 2131296476;
+			
+			// aapt resource value: 0x7f090129
+			public const int web_content_field = 2131296553;
 			
 			// aapt resource value: 0x7f090027
 			public const int withText = 2131296295;
@@ -3876,16 +3879,22 @@ namespace ShowcaseAndroid
 			public const int userportrait_default = 2130903152;
 			
 			// aapt resource value: 0x7f030071
-			public const int video_display_default = 2130903153;
+			public const int UserPortraitView = 2130903153;
 			
 			// aapt resource value: 0x7f030072
-			public const int webcontentdisplay_default = 2130903154;
+			public const int video_display_default = 2130903154;
 			
 			// aapt resource value: 0x7f030073
-			public const int webcontentdisplay_structured_default = 2130903155;
+			public const int webcontentdisplay_default = 2130903155;
 			
 			// aapt resource value: 0x7f030074
-			public const int webcontentlist_default = 2130903156;
+			public const int webcontentdisplay_structured_default = 2130903156;
+			
+			// aapt resource value: 0x7f030075
+			public const int WebContentDisplayView = 2130903157;
+			
+			// aapt resource value: 0x7f030076
+			public const int webcontentlist_default = 2130903158;
 			
 			static Layout()
 			{
@@ -4097,8 +4106,8 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0a002a
 			public const int add_icon_user_portrait_content_description = 2131361834;
 			
-			// aapt resource value: 0x7f0a0098
-			public const int app_name = 2131361944;
+			// aapt resource value: 0x7f0a009c
+			public const int app_name = 2131361948;
 			
 			// aapt resource value: 0x7f0a0021
 			public const int appbar_scrolling_view_behavior = 2131361825;
@@ -4130,8 +4139,8 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0a002d
 			public const int creating_file_error = 2131361837;
 			
-			// aapt resource value: 0x7f0a009b
-			public const int ddl_form = 2131361947;
+			// aapt resource value: 0x7f0a009f
+			public const int ddl_form = 2131361951;
 			
 			// aapt resource value: 0x7f0a0077
 			public const int default_class_name_id_user = 2131361911;
@@ -4166,8 +4175,8 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0a0036
 			public const int first_name = 2131361846;
 			
-			// aapt resource value: 0x7f0a009a
-			public const int forgot_password = 2131361946;
+			// aapt resource value: 0x7f0a009e
+			public const int forgot_password = 2131361950;
 			
 			// aapt resource value: 0x7f0a0079
 			public const int gallery_image = 2131361913;
@@ -4199,6 +4208,9 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0a0092
 			public const int liferay_anonymousApiUserName = 2131361938;
 			
+			// aapt resource value: 0x7f0a009a
+			public const int liferay_article_id = 2131361946;
+			
 			// aapt resource value: 0x7f0a007c
 			public const int liferay_class_dlfile = 2131361916;
 			
@@ -4220,6 +4232,12 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0a007f
 			public const int liferay_group_id = 2131361919;
 			
+			// aapt resource value: 0x7f0a0099
+			public const int liferay_group_id_images = 2131361945;
+			
+			// aapt resource value: 0x7f0a0098
+			public const int liferay_images_folder = 2131361944;
+			
 			// aapt resource value: 0x7f0a0096
 			public const int liferay_record_id = 2131361942;
 			
@@ -4234,6 +4252,9 @@ namespace ShowcaseAndroid
 			
 			// aapt resource value: 0x7f0a0081
 			public const int liferay_version_factory = 2131361921;
+			
+			// aapt resource value: 0x7f0a009b
+			public const int liferay_webcontent_structure_id = 2131361947;
 			
 			// aapt resource value: 0x7f0a0082
 			public const int list_icon = 2131361922;
@@ -4253,8 +4274,8 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0a0040
 			public const int login_error = 2131361856;
 			
-			// aapt resource value: 0x7f0a0099
-			public const int main_activity_label = 2131361945;
+			// aapt resource value: 0x7f0a009d
+			public const int main_activity_label = 2131361949;
 			
 			// aapt resource value: 0x7f0a0083
 			public const int neutral_smiley = 2131361923;
@@ -4402,6 +4423,9 @@ namespace ShowcaseAndroid
 			
 			// aapt resource value: 0x7f0a008f
 			public const int very_sad_smiley = 2131361935;
+			
+			// aapt resource value: 0x7f0a00a0
+			public const int web_content_display = 2131361952;
 			
 			static String()
 			{

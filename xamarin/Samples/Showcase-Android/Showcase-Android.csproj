@@ -113,6 +113,7 @@
     <Compile Include="ForgotPasswordActivity.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="DDLFormActivity.cs" />
+    <Compile Include="UserPortraitActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -129,6 +130,7 @@
     <AndroidResource Include="Resources\values\Styles.xml" />
     <AndroidResource Include="Resources\layout\SignUpView.axml" />
     <AndroidResource Include="Resources\layout\DDLFormView.axml" />
+    <AndroidResource Include="Resources\layout\UserPortraitView.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

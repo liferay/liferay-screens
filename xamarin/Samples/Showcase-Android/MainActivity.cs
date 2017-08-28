@@ -18,6 +18,7 @@ namespace ShowcaseAndroid
             FindViewById(Resource.Id.forgot_password_screenlet).SetOnClickListener(this);
             FindViewById(Resource.Id.sign_up_screenlet).SetOnClickListener(this);
             FindViewById(Resource.Id.ddl_form_screenlet).SetOnClickListener(this);
+            FindViewById(Resource.Id.user_portrait_screenlet).SetOnClickListener(this);
         }
 
         /* IOnClickListener */
@@ -37,6 +38,9 @@ namespace ShowcaseAndroid
 					break;
                 case Resource.Id.ddl_form_screenlet:
                     StartActivity(typeof(DDLFormActivity));
+					break;
+                case Resource.Id.user_portrait_screenlet:
+                    StartActivity(typeof(UserPortraitActivity));
 					break;
             }
         }
