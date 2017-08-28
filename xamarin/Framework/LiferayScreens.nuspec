@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>LiferayScreens</id>
-    <version>0.1.0-beta4</version>
+    <version>0.1.0-beta5</version>
     <authors>Liferay</authors>
     <owners>Liferay Inc.</owners>
     <projectUrl>https://www.nuget.org/packages/LiferayScreens</projectUrl>
