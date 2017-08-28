@@ -38,7 +38,7 @@ class PortletDisplayViewController: UIViewController, PortletDisplayScreenletDel
 				.set(webType: .liferayAuthenticated)
 				.enableCordova()
 				.addCss(localFile: "bigger_pagination")
-//				.addJs(localFile: "gallery")
+				.addJs(localFile: "gallery")
 				.load()
 
 		screenlet?.configuration = configuration
@@ -61,14 +61,6 @@ class PortletDisplayViewController: UIViewController, PortletDisplayScreenletDel
 
 		//We can check what is the name of the message handler responsible for the action
 		performSegue(withIdentifier: "detail", sender: message)
-	}
-
-	func screenlet(_ screenlet: PortletDisplayScreenlet, jsFor portlet: String) -> InjectableScript? {
-		if portlet == "com_liferay_document_library_web_portlet_IGDisplayPortlet" {
-			return JsScript(name: "gallery.js", js: Bundle.loadFile(name: "gallery", ofType: "js", currentClass: type(of: self))!)
-		}
-
-		return nil
 	}
 
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
