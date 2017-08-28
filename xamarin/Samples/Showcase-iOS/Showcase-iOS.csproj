@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
@@ -179,6 +178,9 @@
     <InterfaceDefinition Include="Storyboard\SignUp.storyboard" />
     <InterfaceDefinition Include="Storyboard\SelectScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\DDLFormScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\ImageGalleryScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\UserPortraitScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\WebContentScreenlet.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -208,6 +210,18 @@
     <Compile Include="ViewController\DDLFormViewController.cs" />
     <Compile Include="ViewController\DDLFormViewController.designer.cs">
       <DependentUpon>DDLFormViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\ImageGalleryViewController.cs" />
+    <Compile Include="ViewController\ImageGalleryViewController.designer.cs">
+      <DependentUpon>ImageGalleryViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\UserPortraitViewController.cs" />
+    <Compile Include="ViewController\UserPortraitViewController.designer.cs">
+      <DependentUpon>UserPortraitViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\WebContentViewController.cs" />
+    <Compile Include="ViewController\WebContentViewController.designer.cs">
+      <DependentUpon>WebContentViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

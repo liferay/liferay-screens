@@ -10,12 +10,14 @@ namespace ShowcaseiOS.ViewController
         { 
             "DDLFormScreenlet", 
             "UserPortraitScreenlet",
+            "WebContentScreenlet"
         };
 
         protected string[] viewControllers = 
         { 
             "DDLFormViewController",
             "UserPortraitViewController",
+            "WebContentViewController"
         };
 
         public SelectScreenletViewController(IntPtr handle) : base(handle) { }
