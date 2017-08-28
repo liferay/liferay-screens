@@ -82,12 +82,6 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 
 			getViewModel().addScript(new JsScript("Screens.js", screensJs));
 
-			if (portletConfiguration.isThemeEnabled()
-				&& !PortletConfiguration.WebType.OTHER.equals(portletConfiguration.getWebType())) {
-				
-				getViewModel().setTheme(true);
-			}
-
 			for (InjectableScript script : portletConfiguration.getScripts()) {
 				getViewModel().addScript(script);
 			}
@@ -131,24 +125,6 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 				listener.onScriptMessageHandler(namespace, body);
 			}
 		}
-	}
-
-	@Override
-	public InjectableScript cssForPortlet(String portlet) {
-		if (listener != null) {
-			listener.cssForPortlet(portlet);
-		}
-
-		return null;
-	}
-
-	@Override
-	public InjectableScript jsForPortlet(String portlet) {
-		if (listener != null) {
-			listener.jsForPortlet(portlet);
-		}
-
-		return null;
 	}
 
 	@Override
@@ -277,43 +253,6 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 		if (namespace.endsWith("error") || namespace.endsWith("consoleMessage")) {
 			if (isLoggingEnabled) {
 				LiferayLogger.d(body);
-			}
-		} else if (namespace.endsWith("listPortlets")) {
-			String[] portlets = body.split(",");
-
-			for (String portlet : portlets) {
-
-				InjectableScript js = null;
-				InjectableScript css = null;
-
-				if (listener != null) {
-					js = listener.jsForPortlet(portlet);
-					css = listener.cssForPortlet(portlet);
-				}
-
-				String fileName = getLayoutTheme() + "_" + portlet;
-
-				if (js == null) {
-					String content = new AssetReader(getContext()).read(fileName);
-					if (!content.isEmpty()) {
-						js = new JsScript(fileName, content);
-					}
-				}
-
-				if (css == null) {
-					String content = new AssetReader(getContext()).read(fileName);
-					if (!content.isEmpty()) {
-						css = new CssScript(fileName, content);
-					}
-				}
-
-				if (js != null && !js.getContent().isEmpty()) {
-					injectScriptInMainThread(js);
-				}
-
-				if (css != null && !css.getContent().isEmpty()) {
-					injectScriptInMainThread(css);
-				}
 			}
 		}
 	}

@@ -39,27 +39,6 @@ var screens = {
 
 	postMessage: function(namespace, message) {
 		android.postMessage(namespace, message);
-	},
-
-	listPortlets: function() {
-		var portlets = window.Liferay.Portlet.list;
-
-		var parsedPortlets = portlets.map(function(portlet) {
-			var portletSplitted = portlet.split('_');
-			var length = portletSplitted.length;
-			if (length >= 3 && portletSplitted[length - 2] === 'INSTANCE') {
-				return portletSplitted.slice(0, length - 2).join('_');
-			}
-			else {
-				return portlet;
-			}
-		})
-		.filter(function(x, idx, arr) {
-		    return arr.indexOf(x) === idx
-		})
-		.join(',');
-
-		this.postMessage("screensInternal.listPortlets", parsedPortlets);
 	}
 };
 

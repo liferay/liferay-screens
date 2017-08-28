@@ -33,18 +33,15 @@ public class PortletConfiguration {
 
 	private String portletUrl;
 	private List<InjectableScript> scripts;
-	private boolean isThemeEnabled;
 	private WebType webType;
 	private CordovaLifeCycleObserver observer;
 	private boolean isCordovaEnabled;
 
-	public PortletConfiguration(String portletUrl, List<InjectableScript> scripts,
-		boolean isThemeEnabled, WebType webType, CordovaLifeCycleObserver observer,
-		boolean isCordovaEnabled) {
+	public PortletConfiguration(String portletUrl, List<InjectableScript> scripts, WebType webType,
+		CordovaLifeCycleObserver observer, boolean isCordovaEnabled) {
 
 		this.portletUrl = portletUrl;
 		this.scripts = scripts;
-		this.isThemeEnabled = isThemeEnabled;
 		this.webType = webType;
 		this.observer = observer;
 		this.isCordovaEnabled = isCordovaEnabled;
@@ -56,10 +53,6 @@ public class PortletConfiguration {
 
 	public List<InjectableScript> getScripts() {
 		return scripts;
-	}
-
-	public boolean isThemeEnabled() {
-		return isThemeEnabled;
 	}
 
 	public WebType getWebType() {
@@ -74,7 +67,7 @@ public class PortletConfiguration {
 		return isCordovaEnabled;
 	}
 
-	public enum WebType {LIFERAY_AUTHENTICATED, LIFERAY, OTHER}
+	public enum WebType {LIFERAY_AUTHENTICATED, OTHER}
 
 	public static class Builder {
 
@@ -85,7 +78,6 @@ public class PortletConfiguration {
 		private List<String> remoteCss = new ArrayList<>();
 		private List<Pair<Integer, String>> localRawJs = new ArrayList<>();
 		private List<Pair<Integer, String>> localRawCss = new ArrayList<>();
-		private boolean isThemeEnabled = true;
 		private WebType webType = WebType.LIFERAY_AUTHENTICATED;
 		private CordovaLifeCycleObserver observer;
 		private boolean isCordovaEnabled;
@@ -122,11 +114,6 @@ public class PortletConfiguration {
 
 		public Builder addRemoteCss(String url) {
 			this.remoteCss.add(url);
-			return this;
-		}
-
-		public Builder disableTheme() {
-			this.isThemeEnabled = false;
 			return this;
 		}
 
@@ -181,7 +168,7 @@ public class PortletConfiguration {
 				}
 			}
 
-			return new PortletConfiguration(portletUrl, allScripts, isThemeEnabled, webType,
+			return new PortletConfiguration(portletUrl, allScripts, webType,
 				observer, isCordovaEnabled);
 		}
 
