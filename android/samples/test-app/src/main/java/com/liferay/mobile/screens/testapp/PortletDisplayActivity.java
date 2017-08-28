@@ -6,10 +6,6 @@ import android.os.Bundle;
 import com.liferay.mobile.screens.portlet.PortletConfiguration;
 import com.liferay.mobile.screens.portlet.PortletDisplayListener;
 import com.liferay.mobile.screens.portlet.PortletDisplayScreenlet;
-import com.liferay.mobile.screens.portlet.util.CssScript;
-import com.liferay.mobile.screens.portlet.util.InjectableScript;
-import com.liferay.mobile.screens.portlet.util.JsScript;
-import com.liferay.mobile.screens.util.AssetReader;
 import com.liferay.mobile.screens.viewsets.defaultviews.portlet.cordova.CordovaLifeCycleObserver;
 
 /**
@@ -27,14 +23,17 @@ public class PortletDisplayActivity extends ThemeActivity implements PortletDisp
 
 		setContentView(R.layout.portlet_display);
 
-		PortletDisplayScreenlet screenlet = (PortletDisplayScreenlet) findViewById(R.id.portlet_display_screenlet);
+		PortletDisplayScreenlet screenlet =
+			(PortletDisplayScreenlet) findViewById(R.id.portlet_display_screenlet);
 
 		if (getIntent().getStringExtra("url") != null) {
-			PortletConfiguration portletConfiguration = new PortletConfiguration.Builder(getIntent().getStringExtra("url"))
-				.addLocalCss("portlet.css")
-				.addRawCss(R.raw.portletcss, "portlet.css")
-				.enableCordova(observer)
-				.load();
+			PortletConfiguration portletConfiguration =
+				new PortletConfiguration.Builder(getIntent().getStringExtra("url")).addRawCss(
+					R.raw.portletcss, "portlet.css")
+					.addLocalCss("gallery.css")
+					.addLocalJs("gallery.js")
+					.enableCordova(observer)
+					.load();
 
 			screenlet.setPortletConfiguration(portletConfiguration);
 
@@ -42,7 +41,6 @@ public class PortletDisplayActivity extends ThemeActivity implements PortletDisp
 			screenlet.setScrollEnabled(true);
 			screenlet.load();
 		}
-
 	}
 
 	@Override
@@ -120,23 +118,5 @@ public class PortletDisplayActivity extends ThemeActivity implements PortletDisp
 			intent.putExtra("imgSrcPosition", imgSrcPosition);
 			startActivity(intent);
 		}
-	}
-
-	@Override
-	public InjectableScript cssForPortlet(String portlet) {
-		if ("com_liferay_document_library_web_portlet_IGDisplayPortlet".equals(portlet)) {
-			return new CssScript("gallery.css", new AssetReader(getApplicationContext()).read("gallery.css"));
-		}
-
-		return null;
-	}
-
-	@Override
-	public InjectableScript jsForPortlet(String portlet) {
-		if ("com_liferay_document_library_web_portlet_IGDisplayPortlet".equals(portlet)) {
-			return new JsScript("gallery.js", new AssetReader(getApplicationContext()).read("gallery.js"));
-		}
-
-		return null;
 	}
 }
