@@ -116,7 +116,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
-    <None Include="Assets\AboutAssets.txt" />
     <Compile Include="SignUpActivity.cs" />
     <None Include="packages.config" />
   </ItemGroup>
