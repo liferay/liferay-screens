@@ -6,7 +6,7 @@ using UIKit;
 namespace LiferayScreens
 {
     // @interface AssetListTableView : BaseListTableView
-    [BaseType(typeof(BaseListTableView), Name = "_TtC14LiferayScreens18AssetListTableView")]
+    [BaseType(typeof(BaseListTableView))]
     interface AssetListTableView
     {
         // -(void)doFillLoadedCellWithRow:(NSInteger)row cell:(UITableViewCell * _Nonnull)cell object:(id _Nonnull)object;
