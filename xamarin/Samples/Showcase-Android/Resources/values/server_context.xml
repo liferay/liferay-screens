@@ -23,7 +23,7 @@
 	<string name="liferay_user_id">20156</string>
 
 	<!-- WebcontentScreenlet values -->
-    <string name="liferay_article_id">57343</string>
+	<string name="liferay_webcontent_article_id">57343</string>
 	<string name="liferay_webcontent_structure_id">29641</string>
-	
+	<string name="liferay_webcontent_label_fields">content</string>
 </resources>

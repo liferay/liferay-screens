@@ -4208,9 +4208,6 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0a0092
 			public const int liferay_anonymousApiUserName = 2131361938;
 			
-			// aapt resource value: 0x7f0a009a
-			public const int liferay_article_id = 2131361946;
-			
 			// aapt resource value: 0x7f0a007c
 			public const int liferay_class_dlfile = 2131361916;
 			
@@ -4232,12 +4229,6 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0a007f
 			public const int liferay_group_id = 2131361919;
 			
-			// aapt resource value: 0x7f0a0099
-			public const int liferay_group_id_images = 2131361945;
-			
-			// aapt resource value: 0x7f0a0098
-			public const int liferay_images_folder = 2131361944;
-			
 			// aapt resource value: 0x7f0a0096
 			public const int liferay_record_id = 2131361942;
 			
@@ -4250,11 +4241,20 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0a0094
 			public const int liferay_structure_id = 2131361940;
 			
+			// aapt resource value: 0x7f0a0098
+			public const int liferay_user_id = 2131361944;
+			
 			// aapt resource value: 0x7f0a0081
 			public const int liferay_version_factory = 2131361921;
 			
+			// aapt resource value: 0x7f0a0099
+			public const int liferay_webcontent_article_id = 2131361945;
+			
 			// aapt resource value: 0x7f0a009b
-			public const int liferay_webcontent_structure_id = 2131361947;
+			public const int liferay_webcontent_label_fields = 2131361947;
+			
+			// aapt resource value: 0x7f0a009a
+			public const int liferay_webcontent_structure_id = 2131361946;
 			
 			// aapt resource value: 0x7f0a0082
 			public const int list_icon = 2131361922;

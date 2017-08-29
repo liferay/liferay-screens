@@ -8,6 +8,7 @@
         android:id="@+id/web_content_display_screenlet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:articleId="@string/liferay_article_id"
-        app:cachePolicy="REMOTE_ONLY" />
+        app:articleId="@string/liferay_webcontent_article_id"
+        app:structureId="@string/liferay_webcontent_structure_id"
+        app:labelFields="@string/liferay_webcontent_label_fields" />
 </LinearLayout>
