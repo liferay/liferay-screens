@@ -22,10 +22,6 @@ namespace LiferayScreens
         [Export("onFinishInteraction:error:")]
         void OnFinishInteraction([NullAllowed] NSObject result, [NullAllowed] NSError error);
 
-        // -(NSInteger)tableView:(UITableView * _Nonnull)tableView numberOfRowsInSection:(NSInteger)section __attribute__((warn_unused_result));
-        [Export("tableView:numberOfRowsInSection:")]
-        nint TableViewNumberOfRowsInSection(UITableView tableView, nint section);
-
         // -(NSInteger)numberOfSectionsInTableView:(UITableView * _Nonnull)tableView __attribute__((warn_unused_result));
         [Export("numberOfSectionsInTableView:")]
         nint NumberOfSectionsInTableView(UITableView tableView);
@@ -34,10 +30,6 @@ namespace LiferayScreens
         [Export("tableView:titleForHeaderInSection:")]
         [return: NullAllowed]
         string TableViewTitleForHeaderInSection(UITableView tableView, nint section);
-
-        // -(UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath __attribute__((warn_unused_result));
-        [Export("tableView:cellForRowAtIndexPath:")]
-        UITableViewCell TableViewCellForRowAtIndexPath(UITableView tableView, NSIndexPath indexPath);
 
         // -(void)tableView:(UITableView * _Nonnull)tableView didSelectRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
         [Export("tableView:didSelectRowAtIndexPath:")]
