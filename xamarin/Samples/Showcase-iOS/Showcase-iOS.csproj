@@ -148,8 +148,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="LiferayScreens_iOS">
-      <HintPath>packages\LiferayScreens.0.1.0-beta6\lib\Xamarin.iOS10\LiferayScreens_iOS.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>packages\LiferayScreens.0.1.0-beta5\lib\Xamarin.iOS10\LiferayScreens_iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -178,7 +177,6 @@
     <InterfaceDefinition Include="Storyboard\SignUp.storyboard" />
     <InterfaceDefinition Include="Storyboard\SelectScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\DDLFormScreenlet.storyboard" />
-    <InterfaceDefinition Include="Storyboard\ImageGalleryScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\UserPortraitScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\WebContentScreenlet.storyboard" />
   </ItemGroup>
@@ -210,10 +208,6 @@
     <Compile Include="ViewController\DDLFormViewController.cs" />
     <Compile Include="ViewController\DDLFormViewController.designer.cs">
       <DependentUpon>DDLFormViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ViewController\ImageGalleryViewController.cs" />
-    <Compile Include="ViewController\ImageGalleryViewController.designer.cs">
-      <DependentUpon>ImageGalleryViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewController\UserPortraitViewController.cs" />
     <Compile Include="ViewController\UserPortraitViewController.designer.cs">
