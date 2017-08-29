@@ -73,8 +73,7 @@ namespace LiferayScreens
 
         // -(UIView * _Nullable)createLoadingMoreView __attribute__((warn_unused_result));
         [NullAllowed, Export("createLoadingMoreView")]
-        //[Verify(MethodToProperty)]
-        UIView CreateLoadingMoreView { get; }
+        UIView CreateLoadingMoreView();
 
         // -(void)changeEditable:(BOOL)editable;
         [Export("changeEditable:")]

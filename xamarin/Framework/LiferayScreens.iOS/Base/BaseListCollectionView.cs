@@ -56,8 +56,7 @@ namespace LiferayScreens
 
         // -(UICollectionViewLayout * _Nonnull)doCreateLayout __attribute__((warn_unused_result));
         [Export("doCreateLayout")]
-        //[Verify(MethodToProperty)]
-        UICollectionViewLayout DoCreateLayout { get; }
+        UICollectionViewLayout DoCreateLayout();
 
         // -(UICollectionViewCell * _Nonnull)doDequeueReusableCell:(NSIndexPath * _Nonnull)indexPath object:(id _Nullable)object __attribute__((warn_unused_result));
         [Export("doDequeueReusableCell:object:")]
@@ -85,8 +84,7 @@ namespace LiferayScreens
 
         // -(NSString * _Nonnull)doGetLoadMoreCellId __attribute__((warn_unused_result));
         [Export("doGetLoadMoreCellId")]
-        //[Verify(MethodToProperty)]
-        string DoGetLoadMoreCellId { get; }
+        string DoGetLoadMoreCellId();
 
         // -(UICollectionViewCell * _Nonnull)doCreateCell:(NSString * _Nonnull)cellId __attribute__((warn_unused_result));
         [Export("doCreateCell:")]

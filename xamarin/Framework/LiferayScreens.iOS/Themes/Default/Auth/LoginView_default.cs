@@ -58,10 +58,9 @@ namespace LiferayScreens
 		[Export("onFinishInteraction:error:")]
 		void OnFinishInteraction([NullAllowed] NSObject result, [NullAllowed] NSError error);
 
-		// -(id<ProgressPresenter> _Nonnull)createProgressPresenter __attribute__((warn_unused_result));
-		[Export("createProgressPresenter")]
-		//[Verify(MethodToProperty)]
-		ProgressPresenter CreateProgressPresenter { get; }
+        // -(id<ProgressPresenter> _Nonnull)createProgressPresenter __attribute__((warn_unused_result));
+        [Export("createProgressPresenter")]
+        ProgressPresenter CreateProgressPresenter();
 
 		// -(void)configureAuthType;
 		[Export("configureAuthType")]

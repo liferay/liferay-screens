@@ -44,8 +44,7 @@ namespace LiferayScreens
 
         // -(UICollectionViewLayout * _Nonnull)doCreateLayout __attribute__((warn_unused_result));
         [Export("doCreateLayout")]
-        //[Verify(MethodToProperty)]
-        UICollectionViewLayout DoCreateLayout { get; }
+        UICollectionViewLayout DoCreateLayout();
 
         // -(void)doFillLoadedCellWithIndexPath:(NSIndexPath * _Nonnull)indexPath cell:(UICollectionViewCell * _Nonnull)cell object:(id _Nonnull)object;
         [Export("doFillLoadedCellWithIndexPath:cell:object:")]

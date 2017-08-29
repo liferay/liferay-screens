@@ -57,10 +57,9 @@ namespace LiferayScreens
         [return: NullAllowed]
         Interactor CreateInteractorWithName(string name, [NullAllowed] NSObject sender);
 
-        // -(BOOL)loadLoggedUserPortrait __attribute__((warn_unused_result));
+        // -(BOOL)loadLoggedUserPortrait;
         [Export("loadLoggedUserPortrait")]
-        //[Verify(MethodToProperty)]
-        bool LoadLoggedUserPortrait { get; }
+        bool LoadLoggedUserPortrait();
 
         // -(BOOL)loadWithPortraitId:(int64_t)portraitId uuid:(NSString * _Nonnull)uuid male:(BOOL)male;
         [Export("loadWithPortraitId:uuid:male:")]

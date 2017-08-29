@@ -116,8 +116,7 @@ namespace LiferayScreens
 
         // -(BOOL)loadForm;
         [Export("loadForm")]
-        //[Verify(MethodToProperty)]
-        bool LoadForm { get; }
+        bool LoadForm();
 
         // -(void)clearForm;
         [Export("clearForm")]
@@ -125,13 +124,11 @@ namespace LiferayScreens
 
         // -(BOOL)loadRecord;
         [Export("loadRecord")]
-        //[Verify(MethodToProperty)]
-        bool LoadRecord { get; }
+        bool LoadRecord();
 
         // -(BOOL)submitForm;
         [Export("submitForm")]
-        //[Verify(MethodToProperty)]
-        bool SubmitForm { get; }
+        bool SubmitForm();
 
         // -(instancetype _Nonnull)initWithFrame:(CGRect)frame themeName:(NSString * _Nullable)themeName __attribute__((objc_designated_initializer));
         [Export("initWithFrame:themeName:")]

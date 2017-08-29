@@ -56,8 +56,7 @@ namespace LiferayScreens
 
         // -(BOOL)loadCurrentUser __attribute__((warn_unused_result));
         [Export("loadCurrentUser")]
-        //[Verify(MethodToProperty)]
-        bool LoadCurrentUser { get; }
+        bool LoadCurrentUser();
 
         // -(instancetype _Nonnull)initWithFrame:(CGRect)frame themeName:(NSString * _Nullable)themeName __attribute__((objc_designated_initializer));
         [Export("initWithFrame:themeName:")]

@@ -62,8 +62,7 @@ namespace LiferayScreens
 
         // -(BOOL)loadList;
         [Export("loadList")]
-        //[Verify(MethodToProperty)]
-        bool LoadList { get; }
+        bool LoadList();
 
         // -(void)loadPageForRow:(NSInteger)row;
         [Export("loadPageForRow:")]

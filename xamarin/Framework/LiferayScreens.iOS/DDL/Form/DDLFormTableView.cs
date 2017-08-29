@@ -28,13 +28,11 @@ namespace LiferayScreens
 
         // -(BOOL)resignFirstResponder __attribute__((warn_unused_result));
         [Export("resignFirstResponder")]
-        //[Verify(MethodToProperty)]
-        bool ResignFirstResponder { get; }
+        bool ResignFirstResponder();
 
         // -(BOOL)becomeFirstResponder __attribute__((warn_unused_result));
         [Export("becomeFirstResponder")]
-        //[Verify(MethodToProperty)]
-        bool BecomeFirstResponder { get; }
+        bool BecomeFirstResponder();
 
         // -(void)onShow;
         [Export("onShow")]

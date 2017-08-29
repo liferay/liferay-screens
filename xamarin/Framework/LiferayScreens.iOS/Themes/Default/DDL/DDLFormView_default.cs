@@ -18,8 +18,7 @@ namespace LiferayScreens
 
         // -(id<ProgressPresenter> _Nonnull)createProgressPresenter __attribute__((warn_unused_result));
         [Export("createProgressPresenter")]
-        //[Verify(MethodToProperty)]
-        ProgressPresenter CreateProgressPresenter { get; }
+        ProgressPresenter CreateProgressPresenter();
 
         // -(void)changeEditable:(BOOL)editable;
         [Export("changeEditable:")]

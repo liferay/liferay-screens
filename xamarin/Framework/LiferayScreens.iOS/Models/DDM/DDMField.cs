@@ -44,7 +44,6 @@ namespace LiferayScreens
 
         // -(BOOL)validate __attribute__((warn_unused_result));
         [Export("validate")]
-        //[Verify(MethodToProperty)]
-        bool Validate { get; }
+        bool Validate();
     }
 }

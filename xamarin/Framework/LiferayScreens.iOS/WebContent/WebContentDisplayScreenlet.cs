@@ -60,8 +60,7 @@ namespace LiferayScreens
 
         // -(BOOL)loadWebContent;
         [Export("loadWebContent")]
-        //[Verify(MethodToProperty)]
-        bool LoadWebContent { get; }
+        bool LoadWebContent();
 
         // -(instancetype _Nonnull)initWithFrame:(CGRect)frame themeName:(NSString * _Nullable)themeName __attribute__((objc_designated_initializer));
         [Export("initWithFrame:themeName:")]
