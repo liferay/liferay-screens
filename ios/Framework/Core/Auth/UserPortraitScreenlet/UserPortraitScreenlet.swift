@@ -147,6 +147,7 @@ open class UserPortraitScreenlet: BaseScreenlet {
 	/// Loads the user portrait that correspond to the user logged.
 	///
 	/// - Returns: True if the interactor was able to start, false otherwise.
+	@discardableResult
 	open func loadLoggedUserPortrait() -> Bool {
 		guard let userId = SessionContext.currentContext?.user.userId else {
 			return false
