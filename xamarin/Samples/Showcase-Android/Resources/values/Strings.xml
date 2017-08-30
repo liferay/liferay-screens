@@ -10,4 +10,5 @@
 	<string name="ddl_form">DDL Form</string>
 	<string name="user_portrait">User Portrait</string>
 	<string name="web_content_display">Web Content Display</string>
+	<string name="image_display">Image Display</string>
 </resources>

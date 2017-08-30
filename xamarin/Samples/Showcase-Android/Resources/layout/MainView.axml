@@ -37,6 +37,10 @@
                 android:id="@+id/web_content_display_screenlet"
                 android:text="@string/web_content_display"
                 style="@style/test_app_button" />
+            <Button
+                android:id="@+id/image_display_screenlet"
+                android:text="@string/image_display"
+                style="@style/test_app_button" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

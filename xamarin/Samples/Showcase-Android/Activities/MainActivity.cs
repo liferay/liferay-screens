@@ -20,6 +20,7 @@ namespace ShowcaseAndroid
             FindViewById(Resource.Id.ddl_form_screenlet).SetOnClickListener(this);
             FindViewById(Resource.Id.user_portrait_screenlet).SetOnClickListener(this);
             FindViewById(Resource.Id.web_content_display_screenlet).SetOnClickListener(this);
+            FindViewById(Resource.Id.image_display_screenlet).SetOnClickListener(this);
         }
 
         /* IOnClickListener */
@@ -46,6 +47,9 @@ namespace ShowcaseAndroid
                 case Resource.Id.web_content_display_screenlet:
                     StartActivity(typeof(WebContentDisplayActivity));
 					break;
+                case Resource.Id.image_display_screenlet:
+                    StartActivity(typeof(ImageDisplayActivity));
+                    break;
             }
         }
     }

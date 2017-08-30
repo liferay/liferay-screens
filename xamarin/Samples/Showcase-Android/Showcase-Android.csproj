@@ -116,6 +116,7 @@
     <Compile Include="Activities\SignUpActivity.cs" />
     <Compile Include="Activities\UserPortraitActivity.cs" />
     <Compile Include="Activities\WebContentDisplayActivity.cs" />
+    <Compile Include="Activities\ImageDisplayActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -133,6 +134,7 @@
     <AndroidResource Include="Resources\layout\DDLFormView.axml" />
     <AndroidResource Include="Resources\layout\UserPortraitView.axml" />
     <AndroidResource Include="Resources\layout\WebContentDisplayView.axml" />
+    <AndroidResource Include="Resources\layout\ImageDisplayView.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
