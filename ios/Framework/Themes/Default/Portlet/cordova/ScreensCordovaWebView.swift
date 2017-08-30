@@ -19,7 +19,12 @@ import WebKit
 @objc open class ScreensCordovaWebView: NSObject, ScreensWebView {
 
 	open var view: UIView {
-		return cordovaVC.view
+		let view = cordovaVC.view
+		if let webView = cordovaVC.webView as? WKWebView {
+			webView.scrollView.backgroundColor = .clear
+		}
+
+		return view!
 	}
 
 	open var isScrollEnabled: Bool {
