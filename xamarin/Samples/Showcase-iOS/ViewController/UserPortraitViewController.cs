@@ -15,6 +15,7 @@ namespace ShowcaseiOS.ViewController
 
             this.userPortraitScreenlet.OfflinePolicy = "remote-first";
             this.userPortraitScreenlet.Editable = true;
+            this.userPortraitScreenlet.AutoLoad = false;
 
             this.userPortraitScreenlet.Delegate = this;
         }
