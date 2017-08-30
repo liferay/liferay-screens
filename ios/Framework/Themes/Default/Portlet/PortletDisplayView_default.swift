@@ -34,7 +34,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 			screensWebView?.isScrollEnabled = newValue
 		}
 	}
-
+	
 	open var screensWebView: ScreensWebView?
 
 	open var portletDisplayScreenlet: PortletDisplayScreenlet {
@@ -97,11 +97,13 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 	open func load(request: URLRequest) {
 		showHud()
+		screensWebView?.view.isHidden = true
 		screensWebView?.load(request: request)
 	}
 
 	open func load(htmlString: String) {
 		showHud()
+		screensWebView?.view.isHidden = true
 		screensWebView?.load(htmlString: htmlString)
 	}
 
@@ -154,15 +156,42 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 				.portletDisplayDelegate?.screenlet?(portletDisplayScreenlet, onPortletError: error as NSError)
 		}
 		else {
-			self.progressPresenter?.hideHUDFromView(self, message: nil, forInteractor: Interactor(), withError: nil)
+			progressPresenter?.hideHUDFromView(self, message: nil, forInteractor: Interactor(), withError: nil)
 
-			portletDisplayScreenlet.portletDisplayDelegate?.onPortletPageLoaded?(portletDisplayScreenlet, url: url)
+			UIView.transition(
+				with: screensWebView!.view,
+				duration: 0.4,
+				options: .transitionCrossDissolve,
+				animations: {
+					self.screensWebView?.view.isHidden = false
+			},
+				completion: nil)
+			portletDisplayScreenlet.portletDisplayDelegate?
+				.onPortletPageLoaded?(portletDisplayScreenlet, url: "")
+//			screensWebView?.inject(injectableScript: JsScript(name: "waitForJs", js: "window.Screens.waitForJsLoaded()"))
 		}
 	}
 
 	open func handleJsCall(namespace: String, message: String) {
-		portletDisplayScreenlet.handleJsCall(namespace: namespace, message: message)
-	}
+			if namespace == "jsloaded" {
+				progressPresenter?.hideHUDFromView(self, message: nil, forInteractor: Interactor(), withError: nil)
+
+				UIView.transition(
+					with: screensWebView!.view,
+					duration: 0.4,
+					options: .transitionCrossDissolve,
+					animations: {
+						self.screensWebView?.view.isHidden = false
+					},
+					completion: nil)
+
+				portletDisplayScreenlet.portletDisplayDelegate?
+					.onPortletPageLoaded?(portletDisplayScreenlet, url: message)
+			}
+			else {
+				portletDisplayScreenlet.handleJsCall(namespace: namespace, message: message)
+			}
+		}
 
 	open func showHud() {
 		progressPresenter?.showHUDInView(self, message: LocalizedString(
