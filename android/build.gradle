@@ -56,7 +56,7 @@ ext.libraries = [appCompat    : 'com.android.support:appcompat-v7:' + supportLib
                  rxjava       : 'io.reactivex:rxjava:1.2.4',
                  rxpermissions: 'com.tbruyelle.rxpermissions:rxpermissions:0.9.1',
                  rxbinding    : 'com.jakewharton.rxbinding:rxbinding:1.0.0',
-                 robolectric  : 'org.robolectric:robolectric:3.1.4',
+                 robolectric  : 'org.robolectric:robolectric:3.4.2',
                  mockito      : 'org.mockito:mockito-core:2.4.3',
                  snappydb     : 'com.snappydb:snappydb-lib:0.5.2',
                  kryo         : 'com.esotericsoftware:kryo:4.0.0']
