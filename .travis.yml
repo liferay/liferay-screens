@@ -28,7 +28,7 @@ script:
         cd android
         sh gradlew clean
         sh gradlew assemble
-        sh gradlew test
+        sh gradlew testDebug
      elif [ "$PLATFORM" = iOS ]; then
          cd ios/Framework
          pod install --repo-update
