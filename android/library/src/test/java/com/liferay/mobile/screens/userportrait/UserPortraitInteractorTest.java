@@ -35,7 +35,7 @@ import org.robolectric.annotation.Config;
 public class UserPortraitInteractorTest {
 
 	@RunWith(RobolectricTestRunner.class)
-	@Config(constants = BuildConfig.class, sdk = 23)
+	//@Config(constants = BuildConfig.class, sdk = 23)
 	public static class WhenLoadingFromPortraitId {
 
 		@Before
@@ -44,13 +44,13 @@ public class UserPortraitInteractorTest {
 		}
 
 		@Test
-		public void shouldRaiseInvalidArgumentWhenListenerIsNull() throws Exception {
+		public void shouldRaiseInvalidArgumentWhenSessionIsNull() throws Exception {
 			UserPortraitLoadInteractor interactor = new UserPortraitLoadInteractor();
 
 			try {
-				interactor.start(true, 123, "xxx");
-			} catch (IllegalArgumentException e) {
-				Assert.assertEquals("Listener cannot be empty", e.getMessage());
+				interactor.execute( 123L);
+			} catch (Exception e) {
+				Assert.assertEquals("You need to be logged in to get a session", e.getMessage());
 			}
 		}
 
@@ -60,7 +60,7 @@ public class UserPortraitInteractorTest {
 			interactor.onScreenletAttached(MockFactory.mockUserPortraitScreenlet());
 
 			try {
-				interactor.start(true, 0, "xxx");
+				interactor.execute(true, 0L, "xxx");
 			} catch (IllegalArgumentException e) {
 				Assert.assertEquals("portraitId cannot be empty", e.getMessage());
 			}
@@ -72,7 +72,7 @@ public class UserPortraitInteractorTest {
 			interactor.onScreenletAttached(MockFactory.mockUserPortraitScreenlet());
 
 			try {
-				interactor.start(true, 123, null);
+				interactor.execute(true, 123L, null);
 			} catch (IllegalArgumentException e) {
 				Assert.assertEquals("userId cannot be empty", e.getMessage());
 			}
@@ -84,7 +84,7 @@ public class UserPortraitInteractorTest {
 			interactor.onScreenletAttached(MockFactory.mockUserPortraitScreenlet());
 
 			try {
-				interactor.start(true, 123, "");
+				interactor.execute(true, 123L, "");
 			} catch (IllegalArgumentException e) {
 				Assert.assertEquals("userId cannot be empty", e.getMessage());
 			}

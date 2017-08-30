@@ -119,4 +119,5 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 		}
 
 	}
+
 }
