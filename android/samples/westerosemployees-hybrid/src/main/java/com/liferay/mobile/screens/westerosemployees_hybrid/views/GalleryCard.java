@@ -135,16 +135,6 @@ public class GalleryCard extends Card implements ImageGalleryListener, PortletDi
 	}
 
 	@Override
-	public InjectableScript cssForPortlet(String portlet) {
-		return null;
-	}
-
-	@Override
-	public InjectableScript jsForPortlet(String portlet) {
-		return null;
-	}
-
-	@Override
 	public void onListPageFailed(int startRow, Exception e) {
 
 	}
