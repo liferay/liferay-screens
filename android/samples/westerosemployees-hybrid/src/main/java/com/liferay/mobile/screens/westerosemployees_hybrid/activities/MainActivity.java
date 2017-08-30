@@ -14,9 +14,13 @@
 
 package com.liferay.mobile.screens.westerosemployees_hybrid.activities;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
+import android.view.View;
+import android.widget.ImageView;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.cache.Cache;
@@ -61,8 +65,10 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 		toNextActivity();
 	}
 
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
 	private void toNextActivity() {
-		findViewById(R.id.background).animate().alpha(0f).withEndAction(new Runnable() {
+		View viewById = findViewById(R.id.background);
+		viewById.animate().alpha(0f).withEndAction(new Runnable() {
 			@Override
 			public void run() {
 				startActivity(new Intent(MainActivity.this, UserActivity.class));
