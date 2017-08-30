@@ -17,9 +17,8 @@ import Cordova
 import WebKit
 
 // swiftlint:disable weak_delegate
-public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate, WKNavigationDelegate {
+public class ScreensCordovaViewController: CDVViewController, WKNavigationDelegate {
 
-	var cdvDelegate: CDVUIWebViewNavigationDelegate?
 	var initialNavigation: WKNavigation?
 	lazy var wkUIDelegate: ScreensWKUIDelegate = ScreensWKUIDelegate(viewController: self)
 	var wkDelegate: WKNavigationDelegate? {
@@ -43,18 +42,18 @@ public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate,
 
 	public override func viewDidLoad() {
 		super.viewDidLoad()
-		register(ScreensBridgePlugin(webViewEngine: self.webViewEngine), withPluginName: "screensbridgeplugin")
-		cdvDelegate = CDVUIWebViewNavigationDelegate(enginePlugin: self.webViewEngine as! CDVPlugin)
-
-		if let wkWebView = self.webViewEngine.engineWebView as? WKWebView {
-			wkWebView.uiDelegate = wkUIDelegate
-			wkWebView.configuration.userContentController.add(
-				WeakMessageHandler(jsCallHandler: jsCallHandler), name: "screensDefault")
+		guard let webView = self.webViewEngine.engineWebView as? WKWebView else {
+			fatalError("You have to install the WKWebView plugin")
 		}
+
+		register(ScreensBridgePlugin(webViewEngine: self.webViewEngine), withPluginName: "screensbridgeplugin")
+
+		webView.uiDelegate = wkUIDelegate
+		webView.configuration.userContentController.add(
+			WeakMessageHandler(jsCallHandler: jsCallHandler), name: "screensDefault")
 	}
 
 	public func inject(script: InjectableScript, completionHandler: ((Any?, Error?) -> Void)?) {
-
 		self.webViewEngine.evaluateJavaScript(script.content, completionHandler: completionHandler)
 	}
 
@@ -67,30 +66,8 @@ public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate,
 		initialNavigation = webViewEngine.loadHTMLString(htmlString, baseURL: URL(string: server)!) as? WKNavigation
 	}
 
-	// MARK: UIWebViewDelegate
-
-	public func webView(_ webView: UIWebView,
-	                    shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-		return cdvDelegate?.webView(webView, shouldStartLoadWith: request, navigationType: navigationType) ?? false
-
-	}
-
-	public func handleJsCall(namespace: String, message: String) {
+	open func handleJsCall(namespace: String, message: String) {
 		jsCallHandler(namespace, message)
-	}
-
-	public func webViewDidStartLoad(_ webView: UIWebView) {
-		cdvDelegate?.webViewDidStartLoad(webView)
-	}
-
-	public func webViewDidFinishLoad(_ webView: UIWebView) {
-		cdvDelegate?.webViewDidFinishLoad(webView)
-		onPageLoadFinished(webView.request?.url?.absoluteString ?? "", nil)
-	}
-
-	public func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
-		cdvDelegate?.webView(webView, didFailLoadWithError: error)
-		onPageLoadFinished(webView.request?.url?.absoluteString ?? "", error)
 	}
 
 	// MARK: WKNavigationDelegate
@@ -108,7 +85,6 @@ public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate,
 			webView.evaluateJavaScript(notifyDOMContentLoaded, completionHandler: nil)
 		}
 	}
-
 
 	public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
 		wkDelegate?.webView?(webView, didFinish: navigation)
