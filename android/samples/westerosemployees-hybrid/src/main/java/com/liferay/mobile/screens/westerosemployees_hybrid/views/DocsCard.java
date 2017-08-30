@@ -101,5 +101,4 @@ public class DocsCard extends Card implements PortletDisplayListener {
 			});
 		}
 	}
-
 }

@@ -12,7 +12,7 @@
 
 	<!--Default user & password-->
 	<string name="liferay_default_user_name">test@liferay.com</string>
-	<string name="liferay_default_password">test</string>
+	<string name="liferay_default_password">test1</string>
 
 	<!--DDLFormScreenlet values-->
 	<string name="liferay_structure_id">54371</string>
