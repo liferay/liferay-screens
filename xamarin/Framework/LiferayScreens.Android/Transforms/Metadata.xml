@@ -12,7 +12,6 @@
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.blogs']/class[@name='BlogsEntryDisplayScreenlet']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.comment.add']/class[@name='CommentAddScreenlet']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.audio']/class[@name='AudioDisplayScreenlet']" />
-  <remove-node path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.image']/class[@name='ImageDisplayScreenlet']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.pdf']/class[@name='PdfDisplayScreenlet']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.video']/class[@name='VideoDisplayScreenlet']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.auth.login']/class[@name='LoginView']" />
@@ -135,5 +134,13 @@
   <!-- Corrections for AssetListScreenlet-->
   <remove-node  path="/api/package[@name='com.liferay.mobile.screens.asset.list']
         /class[@name='AssetListScreenlet']
+        /method[@name='createInteractor']"/>
+
+  <!-- Corrections for ImageDisplayScreenlet-->
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.image']
+        /class[@name='ImageDisplayScreenlet']
+        /method[@name='onUserAction']"/>
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.image']
+        /class[@name='ImageDisplayScreenlet']
         /method[@name='createInteractor']"/>
 </metadata>
