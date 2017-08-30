@@ -179,6 +179,7 @@
     <InterfaceDefinition Include="Storyboard\DDLFormScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\UserPortraitScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\WebContentScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\ImageDisplayScreenlet.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -216,6 +217,10 @@
     <Compile Include="ViewController\WebContentViewController.cs" />
     <Compile Include="ViewController\WebContentViewController.designer.cs">
       <DependentUpon>WebContentViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\ImageDisplayViewController.cs" />
+    <Compile Include="ViewController\ImageDisplayViewController.designer.cs">
+      <DependentUpon>ImageDisplayViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
