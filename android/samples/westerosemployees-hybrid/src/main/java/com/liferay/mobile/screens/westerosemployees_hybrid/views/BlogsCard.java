@@ -99,14 +99,4 @@ public class BlogsCard extends Card implements PortletDisplayListener {
 			});
 		}
 	}
-
-	@Override
-	public InjectableScript cssForPortlet(String portlet) {
-		return null;
-	}
-
-	@Override
-	public InjectableScript jsForPortlet(String portlet) {
-		return null;
-	}
 }

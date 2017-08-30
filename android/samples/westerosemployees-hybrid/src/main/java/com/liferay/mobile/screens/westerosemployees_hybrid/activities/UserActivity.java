@@ -59,7 +59,6 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
                 new PortletConfiguration.Builder("/web/westeros-hybrid/lastchanges")
                         .addRawCss(R.raw.last_changes_portlet_css, "last_changes_portlet_css.css")
                         .addRawJs(R.raw.last_changes_portlet_js, "last_changes_portlet_js.js")
-                        .disableTheme()
                         .load();
 
         portletDisplayScreenlet.setPortletConfiguration(configuration);
@@ -119,15 +118,5 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 			});
 		}
 
-	}
-
-	@Override
-	public InjectableScript cssForPortlet(String portlet) {
-		return null;
-	}
-
-	@Override
-	public InjectableScript jsForPortlet(String portlet) {
-		return null;
 	}
 }
