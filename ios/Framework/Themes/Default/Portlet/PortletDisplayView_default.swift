@@ -34,7 +34,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 			screensWebView?.isScrollEnabled = newValue
 		}
 	}
-	
+
 	open var screensWebView: ScreensWebView?
 
 	open var portletDisplayScreenlet: PortletDisplayScreenlet {

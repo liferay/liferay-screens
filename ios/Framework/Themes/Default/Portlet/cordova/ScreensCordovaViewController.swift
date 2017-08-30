@@ -81,7 +81,7 @@ public class ScreensCordovaViewController: CDVViewController, WKNavigationDelega
 			let notifyDOMContentLoaded = "document.addEventListener('DOMContentLoaded', function(event) {"
 				+ "window.webkit.messageHandlers.screensDefault.postMessage(['DOMContentLoaded', '']);"
 				+ "});"
-				
+
 			webView.evaluateJavaScript(notifyDOMContentLoaded, completionHandler: nil)
 		}
 	}
@@ -118,15 +118,16 @@ public class ScreensCordovaViewController: CDVViewController, WKNavigationDelega
 	}
 }
 
-
-public class WeakMessageHandler : NSObject, WKScriptMessageHandler {
+public class WeakMessageHandler: NSObject, WKScriptMessageHandler {
 	let jsCallHandler: (String, String) -> Void
 
 	public init(jsCallHandler: @escaping (String, String) -> Void) {
 		self.jsCallHandler = jsCallHandler
 	}
 
-	public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+	public func userContentController(_ userContentController: WKUserContentController,
+			didReceive message: WKScriptMessage) {
+
 		guard let body = message.body as? [String] else { return }
 
 		jsCallHandler(body[0], body[1])

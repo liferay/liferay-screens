@@ -49,7 +49,6 @@ UIScrollViewDelegate {
 	let jsErrorHandler: ScreensWebView.JsErrorHandler
 	let onPageLoadFinished: ScreensWebView.OnPageLoadFinished
 
-
 	public required init(jsCallHandler: @escaping ScreensWebView.JsCallHandler,
 		jsErrorHandler: @escaping ScreensWebView.JsErrorHandler,
 		onPageLoadFinished: @escaping ScreensWebView.OnPageLoadFinished) {
@@ -114,10 +113,14 @@ UIScrollViewDelegate {
 
 	// MARK: WKNavigationDelegate
 
-
 	public func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
 		if initialNavigation == nil || initialNavigation != navigation {
-			wkWebView.evaluateJavaScript("document.addEventListener('DOMContentLoaded', function(event) {window.webkit.messageHandlers.screensDefault.postMessage(['DOMContentLoaded', '']);});", completionHandler: nil)
+
+			let notifyDOMContentLoaded = "document.addEventListener('DOMContentLoaded', function(event) {"
+				+ "window.webkit.messageHandlers.screensDefault.postMessage(['DOMContentLoaded', '']);"
+				+ "});"
+
+			webView.evaluateJavaScript(notifyDOMContentLoaded, completionHandler: nil)
 		}
 	}
 
