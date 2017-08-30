@@ -49,7 +49,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		let jsCallHandler = weakify(owner: self, f: PortletDisplayView_default.handleJsCall)
 		let onPageLoadFinished = weakify(owner: self, f: PortletDisplayView_default.onPageLoadFinished)
 
-		let jsErrorHandler: (String) -> (Any?, Error?) -> Void = { [unowned self] scriptName in
+		let jsErrorHandler: ScreensWebView.JsErrorHandler = { [unowned self] scriptName in
 			return { _, error in
 				guard self.isLoggingEnabled else { return }
 				print("executed \(scriptName)")
@@ -165,7 +165,7 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 				completion: nil)
 			portletDisplayScreenlet.portletDisplayDelegate?
 				.onPortletPageLoaded?(portletDisplayScreenlet, url: "")
-//			screensWebView?.inject(injectableScript: JsScript(name: "waitForJs", js: "window.Screens.waitForJsLoaded()"))
+			screensWebView?.inject(injectableScript: JsScript(name: "waitForJs", js: "window.Screens.waitForJsLoaded()"))
 		}
 	}
 

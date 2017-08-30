@@ -56,13 +56,13 @@ import WebKit
 			jsCallHandler: weakify(owner: self, f: ScreensCordovaWebView.handleJsCall),
 			onPageLoadFinished: weakify(owner: self, f: ScreensCordovaWebView.onPageLoad))
 
-	let jsCallHandler: (String, String) -> Void
-	let onPageLoadFinished: (String, Error?) -> Void
-	let jsErrorHandler: (String) -> (Any?, Error?) -> Void
+	let jsCallHandler: ScreensWebView.JsCallHandler
+	let jsErrorHandler: ScreensWebView.JsErrorHandler
+	let onPageLoadFinished: ScreensWebView.OnPageLoadFinished
 
-	public required init(jsCallHandler: @escaping (String, String) -> Void,
-		jsErrorHandler: @escaping (String) -> (Any?, Error?) -> Void,
-		onPageLoadFinished: @escaping (String, Error?) -> Void) {
+	public required init(jsCallHandler: @escaping ScreensWebView.JsCallHandler,
+		jsErrorHandler: @escaping ScreensWebView.JsErrorHandler,
+		onPageLoadFinished: @escaping ScreensWebView.OnPageLoadFinished) {
 
 		self.jsCallHandler = jsCallHandler
 		self.jsErrorHandler = jsErrorHandler

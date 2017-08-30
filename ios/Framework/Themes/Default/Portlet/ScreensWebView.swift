@@ -16,13 +16,17 @@ import UIKit
 
 @objc public protocol ScreensWebView {
 
+	typealias JsCallHandler = (String, String) -> Void
+	typealias JsErrorHandler = (String) -> (Any?, Error?) -> Void
+	typealias OnPageLoadFinished = (String, Error?) -> Void
+
 	var view: UIView { get }
 
 	var isScrollEnabled: Bool { get set }
 
-	init(jsCallHandler: @escaping (String, String) -> Void,
-	     jsErrorHandler: @escaping (String) -> (Any?, Error?) -> Void,
-		 onPageLoadFinished: @escaping (String, Error?) -> Void)
+	init(jsCallHandler: @escaping JsCallHandler,
+	     jsErrorHandler: @escaping JsErrorHandler,
+		 onPageLoadFinished: @escaping OnPageLoadFinished)
 
 	func add(injectableScript: InjectableScript)
 

@@ -26,11 +26,11 @@ public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate,
 		return webViewEngine as? WKNavigationDelegate
 	}
 
-	let jsCallHandler: (String, String) -> Void
-	let onPageLoadFinished: (String, Error?) -> Void
+	let jsCallHandler: ScreensWebView.JsCallHandler
+	let onPageLoadFinished: ScreensWebView.OnPageLoadFinished
 
-	public init(jsCallHandler: @escaping (String, String) -> Void,
-		onPageLoadFinished: @escaping (String, Error?) -> Void) {
+	public init(jsCallHandler: @escaping ScreensWebView.JsCallHandler,
+		onPageLoadFinished: @escaping ScreensWebView.OnPageLoadFinished) {
 
 		self.jsCallHandler = jsCallHandler
 		self.onPageLoadFinished = onPageLoadFinished
