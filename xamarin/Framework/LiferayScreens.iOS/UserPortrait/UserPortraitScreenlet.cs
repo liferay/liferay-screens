@@ -36,6 +36,10 @@ namespace LiferayScreens
         [NullAllowed, Export("offlinePolicy")]
         string OfflinePolicy { get; set; }
 
+        // @property (nonatomic) BOOL autoLoad;
+        [Export("autoLoad")]
+        bool AutoLoad { get; set; }
+
         [Wrap("WeakUserPortraitDelegate")]
         [NullAllowed]
         UserPortraitScreenletDelegate UserPortraitDelegate { get; }
@@ -47,6 +51,10 @@ namespace LiferayScreens
         // @property (readonly, nonatomic, strong) id<UserPortraitViewModel> _Nonnull viewModel;
         [Export("viewModel", ArgumentSemantic.Strong)]
         IUserPortraitViewModel ViewModel { get; }
+
+        // -(void)onShow;
+        [Export("onShow")]
+        void OnShow();
 
         // -(void)onCreated;
         [Export("onCreated")]
