@@ -113,11 +113,11 @@ public class DDMStructure implements Parcelable {
 	}
 
 	public void parse(JSONObject jsonObject) throws JSONException {
-		this.description = jsonObject.getString("descriptionCurrentValue");
-		this.name = jsonObject.getString("nameCurrentValue");
-		this.structureKey = jsonObject.getString("structureKey");
-		this.structureId = jsonObject.getString("structureId");
-		this.classNameId = jsonObject.getLong("classNameId");
+		this.description = parseString(jsonObject, "descriptionCurrentValue");
+		this.name = parseString(jsonObject,"nameCurrentValue");
+		this.structureKey = parseString(jsonObject,"structureKey");
+		this.structureId = parseString(jsonObject,"structureId");
+		this.classNameId = jsonObject.has("classNameId") ? jsonObject.getLong("classNameId") : 0;
 		this.classPK = "com.liferay.dynamic.data.mapping.model.DDMStructure";
 		if (jsonObject.has("xsd")) {
 			parse(jsonObject.getString("xsd"), new XSDParser());
@@ -125,6 +125,10 @@ public class DDMStructure implements Parcelable {
 			parse(jsonObject.getString("definition"), new JsonParser());
 		}
 		parsed = true;
+	}
+
+	private String parseString(JSONObject jsonObject, String key) throws JSONException {
+		return jsonObject.has(key) ? jsonObject.getString(key) : "";
 	}
 
 	protected void parse(String content, DDMStructureParser parser) {
