@@ -46,13 +46,8 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 			return
 		}
 
-		let jsCallHandler: (String, String) -> Void = { [weak self] namespace, message in
-			self?.handleJsCall(namespace: namespace, message: message)
-		}
-
-		let onPageLoadFinishedHandler: (String, Error?) -> Void = { [weak self] url, error in
-			self?.onPageLoadFinished(url: url, with: error)
-		}
+		let jsCallHandler = weakify(owner: self, f: PortletDisplayView_default.handleJsCall)
+		let onPageLoadFinished = weakify(owner: self, f: PortletDisplayView_default.onPageLoadFinished)
 
 		let jsErrorHandler: (String) -> (Any?, Error?) -> Void = { [unowned self] scriptName in
 			return { _, error in
@@ -68,14 +63,16 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		}
 
 		if cordovaEnabled {
-			screensWebView = ScreensCordovaWebView(jsCallHandler: jsCallHandler,
+			screensWebView = ScreensCordovaWebView(
+					jsCallHandler: jsCallHandler,
 					jsErrorHandler: jsErrorHandler,
-					onPageLoadFinished: onPageLoadFinishedHandler)
+					onPageLoadFinished: onPageLoadFinished)
 		}
 		else {
-			screensWebView = ScreensWKWebView(jsCallHandler: jsCallHandler,
-					jsErrorHandler: jsErrorHandler, onPageLoadFinished:
-					onPageLoadFinishedHandler)
+			screensWebView = ScreensWKWebView(
+					jsCallHandler: jsCallHandler,
+					jsErrorHandler: jsErrorHandler,
+					onPageLoadFinished: onPageLoadFinished)
 
 			(screensWebView as? ScreensWKWebView)?.viewController = screenlet?.presentingViewController
 		}

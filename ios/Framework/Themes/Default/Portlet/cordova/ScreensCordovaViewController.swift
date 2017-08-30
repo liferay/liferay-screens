@@ -48,7 +48,8 @@ public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate,
 
 		if let wkWebView = self.webViewEngine.engineWebView as? WKWebView {
 			wkWebView.uiDelegate = wkUIDelegate
-			wkWebView.configuration.userContentController.add(WeakMessageHandler(jsCallHandler: jsCallHandler), name: "screensDefault")
+			wkWebView.configuration.userContentController.add(
+				WeakMessageHandler(jsCallHandler: jsCallHandler), name: "screensDefault")
 		}
 	}
 

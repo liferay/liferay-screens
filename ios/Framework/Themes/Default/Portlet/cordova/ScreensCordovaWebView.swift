@@ -53,9 +53,8 @@ import WebKit
 	var scriptsToInject = [InjectableScript]()
 
 	lazy var cordovaVC: ScreensCordovaViewController = ScreensCordovaViewController(
-		jsCallHandler: self.handleJsCall, onPageLoadFinished: { [weak self] url, error in
-			self?.onPageLoad(url: url, error: error)
-		})
+			jsCallHandler: weakify(owner: self, f: ScreensCordovaWebView.handleJsCall),
+			onPageLoadFinished: weakify(owner: self, f: ScreensCordovaWebView.onPageLoad))
 
 	let jsCallHandler: (String, String) -> Void
 	let onPageLoadFinished: (String, Error?) -> Void
