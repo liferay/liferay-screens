@@ -59,6 +59,7 @@
     <Folder Include="Themes\Default\UserPortrait\" />
     <Folder Include="Themes\Default\WebContent\" />
     <Folder Include="Themes\Default\Asset\" />
+    <Folder Include="FileDisplay\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -116,6 +117,12 @@
     <ObjcBindingApiDefinition Include="Themes\Default\Asset\AssetListView_default.cs" />
     <ObjcBindingApiDefinition Include="Base\BaseListTableView.cs" />
     <ObjcBindingApiDefinition Include="Themes\Default\Asset\AssetListTableView.cs" />
+    <ObjcBindingApiDefinition Include="FileDisplay\ImageDisplayScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="FileDisplay\FileDisplayScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="FileDisplay\ImageDisplayViewModel.cs" />
+    <ObjcBindingApiDefinition Include="FileDisplay\FileDisplayViewModel.cs" />
+    <ObjcBindingApiDefinition Include="FileDisplay\FileDisplayScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Models\DDM\FileEntry.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />
