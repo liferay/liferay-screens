@@ -48,6 +48,7 @@ public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate,
 
 		if let wkWebView = self.webViewEngine.engineWebView as? WKWebView {
 			wkWebView.uiDelegate = wkUIDelegate
+			wkWebView.configuration.userContentController.add(WeakMessageHandler(jsCallHandler: jsCallHandler), name: "screensDefault")
 		}
 	}
 
@@ -97,6 +98,17 @@ public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate,
 		wkDelegate?.webView?(webView, didStartProvisionalNavigation: navigation)
 	}
 
+	public func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+		if initialNavigation == nil || initialNavigation != navigation {
+			let notifyDOMContentLoaded = "document.addEventListener('DOMContentLoaded', function(event) {"
+				+ "window.webkit.messageHandlers.screensDefault.postMessage(['DOMContentLoaded', '']);"
+				+ "});"
+				
+			webView.evaluateJavaScript(notifyDOMContentLoaded, completionHandler: nil)
+		}
+	}
+
+
 	public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
 		wkDelegate?.webView?(webView, didFinish: navigation)
 
@@ -126,5 +138,20 @@ public class ScreensCordovaViewController: CDVViewController, UIWebViewDelegate,
 		}
 
 		wkDelegate?.webView?(webView, decidePolicyFor: navigationAction, decisionHandler: decisionHandler)
+	}
+}
+
+
+public class WeakMessageHandler : NSObject, WKScriptMessageHandler {
+	let jsCallHandler: (String, String) -> Void
+
+	public init(jsCallHandler: @escaping (String, String) -> Void) {
+		self.jsCallHandler = jsCallHandler
+	}
+
+	public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+		guard let body = message.body as? [String] else { return }
+
+		jsCallHandler(body[0], body[1])
 	}
 }

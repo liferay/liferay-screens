@@ -53,7 +53,7 @@ import WebKit
 	var scriptsToInject = [InjectableScript]()
 
 	lazy var cordovaVC: ScreensCordovaViewController = ScreensCordovaViewController(
-		jsCallHandler: self.jsCallHandler, onPageLoadFinished: { [weak self] url, error in
+		jsCallHandler: self.handleJsCall, onPageLoadFinished: { [weak self] url, error in
 			self?.onPageLoad(url: url, error: error)
 		})
 
@@ -73,6 +73,15 @@ import WebKit
 
 		let plugin = loadCordovaPlugin()
 		self.scriptsToInject.append(plugin)
+	}
+
+	open func handleJsCall(namespace: String, message: String) {
+		if namespace == "DOMContentLoaded" {
+			self.scriptsToInject.forEach { cordovaVC.inject(script: $0, completionHandler: jsErrorHandler($0.name)) }
+		}
+		else {
+			self.jsCallHandler(namespace, message)
+		}
 	}
 
 	open func add(injectableScript: InjectableScript) {
@@ -97,7 +106,6 @@ import WebKit
 			return
 		}
 
-		self.scriptsToInject.forEach { cordovaVC.inject(script: $0, completionHandler: jsErrorHandler($0.name)) }
 		self.onPageLoadFinished(url, nil)
 	}
 

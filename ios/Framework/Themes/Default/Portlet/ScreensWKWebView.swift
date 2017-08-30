@@ -101,18 +101,27 @@ UIScrollViewDelegate {
 
 		guard let body = message.body as? [String] else { return }
 
-		jsCallHandler(body[0], body[1])
+		if body[0] == "DOMContentLoaded" {
+			scriptsToInject.forEach { script in
+				wkWebView.evaluateJavaScript(script.content, completionHandler: jsErrorHandler(script.name))
+			}
+		}
+		else {
+			jsCallHandler(body[0], body[1])
+		}
 	}
 
 	// MARK: WKNavigationDelegate
 
+
+	public func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+		if initialNavigation == nil || initialNavigation != navigation {
+			wkWebView.evaluateJavaScript("document.addEventListener('DOMContentLoaded', function(event) {window.webkit.messageHandlers.screensDefault.postMessage(['DOMContentLoaded', '']);});", completionHandler: nil)
+		}
+	}
+
 	open func webView(_ webView: WKWebView, didFinish navigation: WKNavigation) {
 		if initialNavigation == nil || initialNavigation != navigation {
-
-			scriptsToInject.forEach { script in
-				webView.evaluateJavaScript(script.content, completionHandler: jsErrorHandler(script.name))
-			}
-
 			onPageLoadFinished(webView.url?.absoluteString ?? "", nil)
 		}
 	}
