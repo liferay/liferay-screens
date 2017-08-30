@@ -49,7 +49,7 @@ namespace ShowcaseiOS.ViewController
         [Export("screenlet:onUserPortraitUploaded:")]
         public virtual void Screenlet(UserPortraitScreenlet screenlet, NSDictionary<NSString, NSObject> attributes)
         {
-            System.Diagnostics.Debug.WriteLine($"User portrait uploaded successfullu: {attributes.DebugDescription}");
+            System.Diagnostics.Debug.WriteLine($"User portrait uploaded successfully: {attributes.DebugDescription}");
         }
 
         [Export("screenlet:onUserPortraitUploadError:")]

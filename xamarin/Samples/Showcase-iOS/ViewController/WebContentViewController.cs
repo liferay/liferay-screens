@@ -30,13 +30,13 @@ namespace ShowcaseiOS.ViewController
         [Export("screenlet:onRecordContentResponse:")]
         public void Screenlet(WebContentDisplayScreenlet screenlet, DDLRecord record)
         {
-            System.Diagnostics.Debug.WriteLine($"WebContent displays record successfully: {record.DebugDescription}");
+            System.Diagnostics.Debug.WriteLine($"WebContent display record successfully: {record.DebugDescription}");
         }
 
         [Export("screenlet:onWebContentResponse:")]
         public string Screenlet(WebContentDisplayScreenlet screenlet, string html)
         {
-            System.Diagnostics.Debug.WriteLine("WebContent displays successfully");
+            System.Diagnostics.Debug.WriteLine("WebContent display successfully");
             return html;
         }
 
