@@ -60,6 +60,7 @@
     <Folder Include="Themes\Default\WebContent\" />
     <Folder Include="Themes\Default\Asset\" />
     <Folder Include="FileDisplay\" />
+    <Folder Include="Asset\Display\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -123,6 +124,9 @@
     <ObjcBindingApiDefinition Include="FileDisplay\FileDisplayViewModel.cs" />
     <ObjcBindingApiDefinition Include="FileDisplay\FileDisplayScreenletDelegate.cs" />
     <ObjcBindingApiDefinition Include="Models\DDM\FileEntry.cs" />
+    <ObjcBindingApiDefinition Include="Asset\Display\AssetDisplayScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Asset\Display\AssetDisplayScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Asset\Display\AssetDisplayViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />
