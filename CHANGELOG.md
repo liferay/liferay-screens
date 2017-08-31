@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 * Fix error in VideoDisplayScreenlet: video is not showing the first time its downloaded
 * Fix error in material LoginView with cookie login
 * All screenlets should have getter and setter for their listener property
+* Disable selection in PortletDisplayScreenlet
 
 ### New Features
 * Create loadLoggedUserPortrait method in UserPortraitScreenlet
@@ -40,6 +41,7 @@ All notable changes to this project will be documented in this file.
 * Fix retain cycle in BaseListScreenlet
 * Update the cookie expired verification to work with new versions of the mobile sdk
 * Fix error messages "Unknown class in Interface Builder file".
+* Disable selection in PortletDisplayScreenlet
 
 ### New Features
 * AssetDisplayScreenlet uses FileDisplayScreenlet for ppt, xls and doc files
