@@ -32,20 +32,20 @@ namespace ShowcaseAndroid
         /* IUserPortraitListener */
 
         public void Error(Java.Lang.Exception p0, string p1)
-		{
+        {
             Toast.MakeText(this, $"User portrait failed: {p0} - {p1}", ToastLength.Short).Show();
-		}
+        }
 
-		public Bitmap OnUserPortraitLoadReceived(Bitmap p0)
-		{
+        public Bitmap OnUserPortraitLoadReceived(Bitmap p0)
+        {
             Toast.MakeText(this, "User portrait loaded successfully", ToastLength.Short).Show();
             return p0;
-		}
+        }
 
-		public void OnUserPortraitUploaded()
-		{
+        public void OnUserPortraitUploaded()
+        {
             Toast.MakeText(this, "User portrait uploaded successfully", ToastLength.Short).Show();
-		}
+        }
 
         /* ICacheListener */
 
