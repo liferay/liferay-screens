@@ -278,16 +278,32 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		this.portletItemName = portletItemName;
 	}
 
+	public AssetDisplayListener getListener() {
+		return listener;
+	}
+
 	public void setListener(AssetDisplayListener listener) {
 		this.listener = listener;
+	}
+
+	public AssetDisplayInnerScreenletListener getConfigureListener() {
+		return configureListener;
 	}
 
 	public void setInnerListener(AssetDisplayInnerScreenletListener configureListener) {
 		this.configureListener = configureListener;
 	}
 
+	public boolean isAutoLoad() {
+		return autoLoad;
+	}
+
 	public void setAutoLoad(boolean autoLoad) {
 		this.autoLoad = autoLoad;
+	}
+
+	public HashMap<String, Integer> getLayouts() {
+		return layouts;
 	}
 
 	public void setLayouts(HashMap<String, Integer> layouts) {
