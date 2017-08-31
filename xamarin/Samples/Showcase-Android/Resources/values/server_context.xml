@@ -25,9 +25,11 @@
     <!-- WebcontentScreenlet values -->
     <string name="liferay_webcontent_article_id">57343</string>
     <string name="liferay_webcontent_structure_id">29641</string>
+    <string name="liferay_webcontent_label_fields">content</string>
 
-	<!-- AssetList values -->
-    <string name="liferay_class_name_id">20015</string>
+    <!-- AssetListScreenlet values -->
+    <string name="liferay_asset_list_class_name_id">20015</string>
+    <string name="liferay_asset_list_label_fields">Text</string>
 
     <!-- ImageDisplayScreenlet values -->
     <string name="liferay_image_entry_id">54500</string>

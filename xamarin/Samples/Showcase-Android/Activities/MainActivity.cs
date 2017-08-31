@@ -20,6 +20,7 @@ namespace ShowcaseAndroid
             FindViewById(Resource.Id.ddl_form_screenlet).SetOnClickListener(this);
             FindViewById(Resource.Id.user_portrait_screenlet).SetOnClickListener(this);
             FindViewById(Resource.Id.web_content_display_screenlet).SetOnClickListener(this);
+            FindViewById(Resource.Id.asset_list_screenlet).SetOnClickListener(this);
             FindViewById(Resource.Id.image_display_screenlet).SetOnClickListener(this);
         }
 
@@ -37,16 +38,19 @@ namespace ShowcaseAndroid
                     break;
                 case Resource.Id.sign_up_screenlet:
                     StartActivity(typeof(SignUpActivity));
-					break;
+    				break;
                 case Resource.Id.ddl_form_screenlet:
                     StartActivity(typeof(DDLFormActivity));
-					break;
+    				break;
                 case Resource.Id.user_portrait_screenlet:
                     StartActivity(typeof(UserPortraitActivity));
-					break;
+    				break;
                 case Resource.Id.web_content_display_screenlet:
                     StartActivity(typeof(WebContentDisplayActivity));
-					break;
+    				break;
+                case Resource.Id.asset_list_screenlet:
+                    StartActivity(typeof(AssetListActivity));
+                    break;
                 case Resource.Id.image_display_screenlet:
                     StartActivity(typeof(ImageDisplayActivity));
                     break;
