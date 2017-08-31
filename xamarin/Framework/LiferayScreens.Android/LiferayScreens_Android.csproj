@@ -63,6 +63,7 @@
     <Compile Include="Additions\Asset\Display\AssetDisplayScreenlet.cs" />
     <Compile Include="Additions\DLFile\PdfDisplayScreenlet.cs" />
     <Compile Include="Additions\DLFile\VideoDisplayScreenlet.cs" />
+    <Compile Include="Additions\DLFile\AudioDisplayScreenlet.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\liferay-android-oauth-1.3.0.aar" />
