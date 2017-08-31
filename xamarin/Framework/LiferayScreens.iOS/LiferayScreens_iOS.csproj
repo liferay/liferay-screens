@@ -134,6 +134,8 @@
     <ObjcBindingApiDefinition Include="Themes\Default\FileDisplay\PdfDisplayView_default.cs" />
     <ObjcBindingApiDefinition Include="FileDisplay\VideoDisplayScreenlet.cs" />
     <ObjcBindingApiDefinition Include="Themes\Default\FileDisplay\VideoDisplayView_default.cs" />
+    <ObjcBindingApiDefinition Include="FileDisplay\AudioDisplayScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\FileDisplay\AudioDisplayView_default.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />
