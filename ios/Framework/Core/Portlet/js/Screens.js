@@ -1,10 +1,22 @@
-const log = console.log;
-console.log = message => {
-	log(message);
-	if (window.Screens) {
-		window.Screens.postMessage("screensinternal.consoleMessage", message);
-	}
-};
+window.console = (function (oldCons) {
+	return {
+		log: function (text) {
+			if (window.Screens) {
+				window.Screens.postMessage("screensinternal.consoleMessage", "Console message: " + text);
+			}
+		},
+		info: function (text) {
+			oldCons.info(text);
+		},
+		warn: function (text) {
+			oldCons.warn(text);
+		},
+		error: function (text) {
+			oldCons.error(text);
+		}
+	};
+}(window.console));
+
 
 var screens = {
 	screensScripts_: [],
@@ -13,12 +25,14 @@ var screens = {
 	},
 
 	reloadScripts: function () {
-		this.screensScripts_.forEach(fn => fn());
+		this.screensScripts_.forEach(function (scripts) {
+			scripts();
+		});
 	},
 
 	postMessage: function (namespace, message) {
 		if (window.cordova) {
-			document.addEventListener("deviceready", () => {
+			document.addEventListener("deviceready", function () {
 				cordova.exec(null, null, "ScreensBridgePlugin", "postMessage", [
 					namespace,
 					message
@@ -30,28 +44,21 @@ var screens = {
 				message
 			]);
 		}
+	},
+
+	waitForJsLoaded: function () {
+		this.postMessage('jsloaded', window.location.href)
 	}
 };
 
 window.Screens = Object.create(screens);
 
-if (window.Liferay) {
-	window.Liferay.on("endNavigate", () => {
-		window.Screens.reloadScripts();
-	});
+window.Liferay.on('endNavigate', function () {
+	window.Screens.reloadScripts();
+});
 
-	// Attach a proxy to the Liferay object so we can inject our custom session
-	window.Liferay = new Proxy(window.Liferay, {
-		set: function (target, name, value) {
-			if (name === "Session") {
-				target[name] = new Liferay.SessionBase({
-					autoExtend: true,
-					sessionLength: 5 * 60,
-					warningLength: 60
-				});
-			}
-
-			target[name] = value;
-		}
-	});
-}
+setInterval(function () {
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', window.location.origin + '/c/portal/extend_session');
+	xhr.send();
+}, 3 * 60 * 1000);

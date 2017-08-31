@@ -45,13 +45,13 @@ UIScrollViewDelegate {
 		}
 	}
 
-	let jsCallHandler: (String, String) -> Void
-	let onPageLoadFinished: (String, Error?) -> Void
-	let jsErrorHandler: (String) -> (Any?, Error?) -> Void
+	let jsCallHandler: ScreensWebView.JsCallHandler
+	let jsErrorHandler: ScreensWebView.JsErrorHandler
+	let onPageLoadFinished: ScreensWebView.OnPageLoadFinished
 
-	public required init(jsCallHandler: @escaping (String, String) -> Void,
-		jsErrorHandler: @escaping (String) -> (Any?, Error?) -> Void,
-		onPageLoadFinished: @escaping (String, Error?) -> Void) {
+	public required init(jsCallHandler: @escaping ScreensWebView.JsCallHandler,
+		jsErrorHandler: @escaping ScreensWebView.JsErrorHandler,
+		onPageLoadFinished: @escaping ScreensWebView.OnPageLoadFinished) {
 
 		self.jsCallHandler = jsCallHandler
 		self.jsErrorHandler = jsErrorHandler
@@ -101,18 +101,31 @@ UIScrollViewDelegate {
 
 		guard let body = message.body as? [String] else { return }
 
-		jsCallHandler(body[0], body[1])
+		if body[0] == "DOMContentLoaded" {
+			scriptsToInject.forEach { script in
+				wkWebView.evaluateJavaScript(script.content, completionHandler: jsErrorHandler(script.name))
+			}
+		}
+		else {
+			jsCallHandler(body[0], body[1])
+		}
 	}
 
 	// MARK: WKNavigationDelegate
 
-	open func webView(_ webView: WKWebView, didFinish navigation: WKNavigation) {
+	public func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
 		if initialNavigation == nil || initialNavigation != navigation {
 
-			scriptsToInject.forEach { script in
-				webView.evaluateJavaScript(script.content, completionHandler: jsErrorHandler(script.name))
-			}
+			let notifyDOMContentLoaded = "document.addEventListener('DOMContentLoaded', function(event) {"
+				+ "window.webkit.messageHandlers.screensDefault.postMessage(['DOMContentLoaded', '']);"
+				+ "});"
 
+			webView.evaluateJavaScript(notifyDOMContentLoaded, completionHandler: nil)
+		}
+	}
+
+	open func webView(_ webView: WKWebView, didFinish navigation: WKNavigation) {
+		if initialNavigation == nil || initialNavigation != navigation {
 			onPageLoadFinished(webView.url?.absoluteString ?? "", nil)
 		}
 	}

@@ -27,7 +27,9 @@
 
 	ScreensCordovaViewController *vc = (ScreensCordovaViewController * )self.viewController;
 
-	[vc handleJsCallWithNamespace:namespace message: message];
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[vc handleJsCallWithNamespace:namespace message: message];
+	});
 
 	[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }

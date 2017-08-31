@@ -19,7 +19,12 @@ import WebKit
 @objc open class ScreensCordovaWebView: NSObject, ScreensWebView {
 
 	open var view: UIView {
-		return cordovaVC.view
+		let view = cordovaVC.view
+		if let webView = cordovaVC.webView as? WKWebView {
+			webView.scrollView.backgroundColor = .clear
+		}
+
+		return view!
 	}
 
 	open var isScrollEnabled: Bool {
@@ -48,17 +53,16 @@ import WebKit
 	var scriptsToInject = [InjectableScript]()
 
 	lazy var cordovaVC: ScreensCordovaViewController = ScreensCordovaViewController(
-		jsCallHandler: self.jsCallHandler, onPageLoadFinished: { [weak self] url, error in
-			self?.onPageLoad(url: url, error: error)
-		})
+			jsCallHandler: weakify(owner: self, f: ScreensCordovaWebView.handleJsCall),
+			onPageLoadFinished: weakify(owner: self, f: ScreensCordovaWebView.onPageLoad))
 
-	let jsCallHandler: (String, String) -> Void
-	let onPageLoadFinished: (String, Error?) -> Void
-	let jsErrorHandler: (String) -> (Any?, Error?) -> Void
+	let jsCallHandler: ScreensWebView.JsCallHandler
+	let jsErrorHandler: ScreensWebView.JsErrorHandler
+	let onPageLoadFinished: ScreensWebView.OnPageLoadFinished
 
-	public required init(jsCallHandler: @escaping (String, String) -> Void,
-		jsErrorHandler: @escaping (String) -> (Any?, Error?) -> Void,
-		onPageLoadFinished: @escaping (String, Error?) -> Void) {
+	public required init(jsCallHandler: @escaping ScreensWebView.JsCallHandler,
+		jsErrorHandler: @escaping ScreensWebView.JsErrorHandler,
+		onPageLoadFinished: @escaping ScreensWebView.OnPageLoadFinished) {
 
 		self.jsCallHandler = jsCallHandler
 		self.jsErrorHandler = jsErrorHandler
@@ -68,6 +72,15 @@ import WebKit
 
 		let plugin = loadCordovaPlugin()
 		self.scriptsToInject.append(plugin)
+	}
+
+	open func handleJsCall(namespace: String, message: String) {
+		if namespace == "DOMContentLoaded" {
+			self.scriptsToInject.forEach { cordovaVC.inject(script: $0, completionHandler: jsErrorHandler($0.name)) }
+		}
+		else {
+			self.jsCallHandler(namespace, message)
+		}
 	}
 
 	open func add(injectableScript: InjectableScript) {
@@ -92,7 +105,6 @@ import WebKit
 			return
 		}
 
-		self.scriptsToInject.forEach { cordovaVC.inject(script: $0, completionHandler: jsErrorHandler($0.name)) }
 		self.onPageLoadFinished(url, nil)
 	}
 

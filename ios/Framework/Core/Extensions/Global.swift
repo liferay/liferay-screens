@@ -13,6 +13,14 @@
  */
 import UIKit
 
+public func weakify<T: AnyObject, U, V>(owner: T, f: @escaping (T) -> (U, V) -> Void) -> (U, V) -> Void {
+	return { [weak owner] arg1, arg2 in
+		guard let owner = owner else { return }
+
+		f(owner)(arg1, arg2)
+	}
+}
+
 public func nullIfEmpty(_ string: String?) -> String? {
 	if string == nil {
 		return nil
@@ -24,7 +32,7 @@ public func nullIfEmpty(_ string: String?) -> String? {
 	return string
 }
 
-public func synchronized(_ lock: AnyObject, closure: (Void) -> Void) {
+public func synchronized(_ lock: AnyObject, closure: () -> Void) {
 	objc_sync_enter(lock)
 	closure()
 	objc_sync_exit(lock)

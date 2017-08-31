@@ -46,15 +46,10 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 			return
 		}
 
-		let jsCallHandler: (String, String) -> Void = { [weak self] namespace, message in
-			self?.handleJsCall(namespace: namespace, message: message)
-		}
+		let jsCallHandler = weakify(owner: self, f: PortletDisplayView_default.handleJsCall)
+		let onPageLoadFinished = weakify(owner: self, f: PortletDisplayView_default.onPageLoadFinished)
 
-		let onPageLoadFinishedHandler: (String, Error?) -> Void = { [weak self] url, error in
-			self?.onPageLoadFinished(url: url, with: error)
-		}
-
-		let jsErrorHandler: (String) -> (Any?, Error?) -> Void = { [unowned self] scriptName in
+		let jsErrorHandler: ScreensWebView.JsErrorHandler = { [unowned self] scriptName in
 			return { _, error in
 				guard self.isLoggingEnabled else { return }
 				print("executed \(scriptName)")
@@ -68,14 +63,16 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		}
 
 		if cordovaEnabled {
-			screensWebView = ScreensCordovaWebView(jsCallHandler: jsCallHandler,
+			screensWebView = ScreensCordovaWebView(
+					jsCallHandler: jsCallHandler,
 					jsErrorHandler: jsErrorHandler,
-					onPageLoadFinished: onPageLoadFinishedHandler)
+					onPageLoadFinished: onPageLoadFinished)
 		}
 		else {
-			screensWebView = ScreensWKWebView(jsCallHandler: jsCallHandler,
-					jsErrorHandler: jsErrorHandler, onPageLoadFinished:
-					onPageLoadFinishedHandler)
+			screensWebView = ScreensWKWebView(
+					jsCallHandler: jsCallHandler,
+					jsErrorHandler: jsErrorHandler,
+					onPageLoadFinished: onPageLoadFinished)
 
 			(screensWebView as? ScreensWKWebView)?.viewController = screenlet?.presentingViewController
 		}
@@ -97,11 +94,13 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 	open func load(request: URLRequest) {
 		showHud()
+		screensWebView?.view.isHidden = true
 		screensWebView?.load(request: request)
 	}
 
 	open func load(htmlString: String) {
 		showHud()
+		screensWebView?.view.isHidden = true
 		screensWebView?.load(htmlString: htmlString)
 	}
 
@@ -154,15 +153,42 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 				.portletDisplayDelegate?.screenlet?(portletDisplayScreenlet, onPortletError: error as NSError)
 		}
 		else {
-			self.progressPresenter?.hideHUDFromView(self, message: nil, forInteractor: Interactor(), withError: nil)
+			progressPresenter?.hideHUDFromView(self, message: nil, forInteractor: Interactor(), withError: nil)
 
-			portletDisplayScreenlet.portletDisplayDelegate?.onPortletPageLoaded?(portletDisplayScreenlet, url: url)
+			UIView.transition(
+				with: screensWebView!.view,
+				duration: 0.4,
+				options: .transitionCrossDissolve,
+				animations: {
+					self.screensWebView?.view.isHidden = false
+			},
+				completion: nil)
+			portletDisplayScreenlet.portletDisplayDelegate?
+				.onPortletPageLoaded?(portletDisplayScreenlet, url: "")
+			screensWebView?.inject(injectableScript: JsScript(name: "waitForJs", js: "window.Screens.waitForJsLoaded()"))
 		}
 	}
 
 	open func handleJsCall(namespace: String, message: String) {
-		portletDisplayScreenlet.handleJsCall(namespace: namespace, message: message)
-	}
+			if namespace == "jsloaded" {
+				progressPresenter?.hideHUDFromView(self, message: nil, forInteractor: Interactor(), withError: nil)
+
+				UIView.transition(
+					with: screensWebView!.view,
+					duration: 0.4,
+					options: .transitionCrossDissolve,
+					animations: {
+						self.screensWebView?.view.isHidden = false
+					},
+					completion: nil)
+
+				portletDisplayScreenlet.portletDisplayDelegate?
+					.onPortletPageLoaded?(portletDisplayScreenlet, url: message)
+			}
+			else {
+				portletDisplayScreenlet.handleJsCall(namespace: namespace, message: message)
+			}
+		}
 
 	open func showHud() {
 		progressPresenter?.showHUDInView(self, message: LocalizedString(

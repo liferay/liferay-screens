@@ -114,20 +114,14 @@ PODS:
     - YapDatabase/SQLCipher/Core
 
 DEPENDENCIES:
-  - LiferayScreens (from `https://github.com/liferay/liferay-screens`, branch `develop`)
+  - LiferayScreens (from `../../../..`)
   - MGSwipeTableCell
   - PureLayout
   - TPKeyboardAvoiding
 
 EXTERNAL SOURCES:
   LiferayScreens:
-    :branch: develop
-    :git: https://github.com/liferay/liferay-screens
-
-CHECKOUT OPTIONS:
-  LiferayScreens:
-    :commit: 84f955122ced75946bd392c1769578b71e40b820
-    :git: https://github.com/liferay/liferay-screens
+    :path: ../../../..
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
@@ -152,6 +146,6 @@ SPEC CHECKSUMS:
   TPKeyboardAvoiding: 0d6af20e95e2850f4c621841225b59ec7d8dd852
   YapDatabase: b1e43555a34a5298e23a045be96817a5ef0da58f
 
-PODFILE CHECKSUM: 54e9717125c085eb18f2a40256a877bf84d50a39
+PODFILE CHECKSUM: 19f4091e51f445f5d4d9b9a6ff6f5373eb61a882
 
 COCOAPODS: 1.3.1
