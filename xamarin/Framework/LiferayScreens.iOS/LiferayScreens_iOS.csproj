@@ -61,6 +61,7 @@
     <Folder Include="Themes\Default\Asset\" />
     <Folder Include="FileDisplay\" />
     <Folder Include="Asset\Display\" />
+    <Folder Include="Themes\Default\FileDisplay\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -127,6 +128,10 @@
     <ObjcBindingApiDefinition Include="Asset\Display\AssetDisplayScreenlet.cs" />
     <ObjcBindingApiDefinition Include="Asset\Display\AssetDisplayScreenletDelegate.cs" />
     <ObjcBindingApiDefinition Include="Asset\Display\AssetDisplayViewModel.cs" />
+    <ObjcBindingApiDefinition Include="FileDisplay\PdfDisplayScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\FileDisplay\ImageDisplayView_default.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Asset\AssetDisplayView_default.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\FileDisplay\PdfDisplayView_default.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />
