@@ -52,7 +52,7 @@
                             </attributedString>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="lo1-c7-5u9" userLabel="ImageDisplay Screenlet" customClass="ImageDisplayScreenlet" customModule="LiferayScreens">
+                        <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="lo1-c7-5u9" userLabel="ImageDisplay Screenlet" customClass="ImageDisplayScreenlet">
                             <rect key="frame" x="0.0" y="0.0" width="318" height="125"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="125" id="kPA-Eu-1DR"/>
