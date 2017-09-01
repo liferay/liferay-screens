@@ -159,6 +159,14 @@ public class PortletDisplayView extends FrameLayout
 			new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
 				LinearLayout.LayoutParams.MATCH_PARENT));
 
+		// Disable selection in webView
+		webView.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				return true;
+			}
+		});
+
 		webView.getSettings().setJavaScriptEnabled(true);
 
 		addView(webView);

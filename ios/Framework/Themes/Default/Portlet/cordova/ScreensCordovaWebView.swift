@@ -29,24 +29,14 @@ import WebKit
 
 	open var isScrollEnabled: Bool {
 		get {
-			if let webView = cordovaVC.webView as? WKWebView {
-				return webView.scrollView.isScrollEnabled
-			}
+			guard let webView = cordovaVC.webView as? WKWebView else { return false }
 
-			if let webView = cordovaVC.webView as? UIWebView {
-				return webView.scrollView.isScrollEnabled
-			}
-
-			return false
+			return webView.scrollView.isScrollEnabled
 		}
 		set {
-			if let webView = cordovaVC.webView as? WKWebView {
-				webView.scrollView.isScrollEnabled = newValue
-			}
+			guard let webView = cordovaVC.webView as? WKWebView else { return }
 
-			if let webView = cordovaVC.webView as? UIWebView {
-				webView.scrollView.isScrollEnabled = newValue
-			}
+			webView.scrollView.isScrollEnabled = newValue
 		}
 	}
 

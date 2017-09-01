@@ -114,6 +114,9 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 		let screensScript = Bundle.loadFile(name: "Screens", ofType: "js", currentClass: type(of: self))!
 
 		portletDisplayViewModel.add(injectableScript: JsScript(name: "Screens.js", js: screensScript))
+		// disable selection
+		portletDisplayViewModel.add(injectableScript: CssScript(name: "disableSelection.css",
+				css: "*:not(input):not(textarea) { -webkit-user-select: none; -webkit-touch-callout: none; }"))
 		portletDisplayViewModel.add(injectableScripts: configuration.scripts)
 
 		portletDisplayViewModel.isScrollEnabled = isScrollEnabled
