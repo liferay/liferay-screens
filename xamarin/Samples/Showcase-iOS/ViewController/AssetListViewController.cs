@@ -13,7 +13,12 @@ namespace ShowcaseiOS.ViewController
         {
             base.ViewDidLoad();
 
-            this.assetListScreenlet.ClassNameId = 20015;
+            //With classNameId
+            //this.assetListScreenlet.ClassNameId = 20015;
+
+            //With porletItemName
+            this.assetListScreenlet.PortletItemName = "dynamic";
+
             this.assetListScreenlet.Delegate = this;
         }
 
@@ -22,14 +27,16 @@ namespace ShowcaseiOS.ViewController
             base.DidReceiveMemoryWarning();
         }
 
-		[Export("screenlet:onAssetListError:")]
+        /* IAssetListScreenletDelegate */
+
+        [Export("screenlet:onAssetListError:")]
         public virtual void OnAssetListError(AssetListScreenlet screenlet, NSError error){
             System.Diagnostics.Debug.WriteLine($"Asset list error: {error}");
 		}
 
 		[Export("screenlet:onAssetListResponse:")]
         public virtual void OnAssetListResponse(AssetListScreenlet screenlet, Asset[] assets){
-            System.Diagnostics.Debug.WriteLine($"Asset list response: {assets}");
+            System.Diagnostics.Debug.WriteLine($"Asset list response: {assets.Length}");
 		}
 
 		[Export("screenlet:onAssetSelected:")]
