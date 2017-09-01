@@ -180,6 +180,7 @@
     <InterfaceDefinition Include="Storyboard\UserPortraitScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\WebContentScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\AssetListScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\AssetDisplayScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\ImageDisplayScreenlet.storyboard" />
   </ItemGroup>
   <ItemGroup>
@@ -222,6 +223,10 @@
     <Compile Include="ViewController\AssetListViewController.cs" />
     <Compile Include="ViewController\AssetListViewController.designer.cs">
       <DependentUpon>AssetListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\AssetDisplayViewController.cs" />
+    <Compile Include="ViewController\AssetDisplayViewController.designer.cs">
+      <DependentUpon>AssetDisplayViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewController\ImageDisplayViewController.cs" />
     <Compile Include="ViewController\ImageDisplayViewController.designer.cs">

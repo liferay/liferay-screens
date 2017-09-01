@@ -12,6 +12,7 @@ namespace ShowcaseiOS.ViewController
             "UserPortraitScreenlet",
             "WebContentScreenlet",
             "AssetListScreenlet",
+            "AssetDisplayScreenlet",
             "ImageDisplayScreenlet"
         };
 
@@ -21,6 +22,7 @@ namespace ShowcaseiOS.ViewController
             "UserPortraitViewController",
             "WebContentViewController",
             "AssetListViewController",
+            "AssetDisplayViewController",
             "ImageDisplayViewController"
         };
 
