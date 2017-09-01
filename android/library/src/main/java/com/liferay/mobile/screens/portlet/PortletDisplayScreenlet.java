@@ -181,7 +181,7 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 		TypedArray typedArray = context.getTheme()
 			.obtainStyledAttributes(attributes, R.styleable.PortletDisplayScreenlet, 0, 0);
 
-		autoLoad = typedArray.getBoolean(R.styleable.PortletDisplayScreenlet_autoLoad, true);
+		autoLoad = typedArray.getBoolean(R.styleable.PortletDisplayScreenlet_autoLoad, false);
 
 		int layoutId = typedArray.getResourceId(R.styleable.PortletDisplayScreenlet_layoutId,
 			getDefaultLayoutId());
