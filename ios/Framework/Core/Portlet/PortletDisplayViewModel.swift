@@ -44,4 +44,7 @@ import UIKit
 	///
 	/// - Parameter htmlString
 	func load(htmlString: String)
+
+	/// Clears the WebView cache
+	func clearCache()
 }

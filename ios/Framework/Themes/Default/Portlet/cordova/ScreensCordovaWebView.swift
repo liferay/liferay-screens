@@ -98,6 +98,10 @@ import WebKit
 		self.onPageLoadFinished(url, nil)
 	}
 
+	open func clearCache() {
+		(cordovaVC.webView as? WKWebView)?.clearCache()
+	}
+
 	open func handleJsCalls(uri: String) -> Bool {
 		if uri.hasPrefix("screens-") {
 			let parts = uri.components(separatedBy: "://")

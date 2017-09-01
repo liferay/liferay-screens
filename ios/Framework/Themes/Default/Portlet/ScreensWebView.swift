@@ -37,4 +37,6 @@ import UIKit
 	func load(htmlString: String)
 
 	@objc optional func onDestroy()
+
+	func clearCache()
 }

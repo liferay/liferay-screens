@@ -84,8 +84,12 @@ UIScrollViewDelegate {
 		initialNavigation = wkWebView.loadHTMLString(htmlString, baseURL: URL(string: server)!)
 	}
 
-	public func onDestroy() {
+	open func onDestroy() {
 		wkWebView.configuration.userContentController.removeScriptMessageHandler(forName: defaultNamespace)
+	}
+
+	open func clearCache() {
+		wkWebView.clearCache()
 	}
 
 	// MARK: UIScrollViewDelegate

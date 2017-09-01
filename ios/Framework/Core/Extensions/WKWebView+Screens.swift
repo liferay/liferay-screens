@@ -51,6 +51,13 @@ extension WKWebView {
 		configuration.userContentController.addUserScript(addMetaScript)
 	}
 
+	public func clearCache() {
+		let websiteDataTypes = WKWebsiteDataStore.allWebsiteDataTypes()
+		let dateSince = Date.distantPast
+
+		WKWebsiteDataStore.default().removeData(ofTypes: websiteDataTypes, modifiedSince: dateSince) {}
+	}
+
 	public func loadScript(js: String,
 		injectionTime: WKUserScriptInjectionTime = .atDocumentEnd, forMainFrameOnly: Bool = false) {
 

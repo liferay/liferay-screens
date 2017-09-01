@@ -87,6 +87,10 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 
 	// MARK: Public methods
 
+	open func clearCache() {
+		portletDisplayViewModel.clearCache()
+	}
+
 	open func handleJsCall(namespace: String, message: String) {
 		if namespace.hasPrefix(internalNamespace) {
 			handleInternal(namespace: namespace, message: message)
