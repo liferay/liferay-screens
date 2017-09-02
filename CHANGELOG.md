@@ -52,6 +52,7 @@ All notable changes to this project will be documented in this file.
 * Show alerts in the PortletDisplayScreenlet
 * Allow developers to disable scroll on PortletDisplayScreenlet
 * Wait for all scripts to load before showing the PortletDisplayScreenlet
+* Update min version to iOS 9
 
 ### Refactor
 * Migrate from UIWebView to WKWebView
