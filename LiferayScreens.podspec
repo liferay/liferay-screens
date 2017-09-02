@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 		'Javier Gamarra' => 'javier.gamarra@liferay.com'
 	}
 	
-	s.platform = :ios, '8.0'
+	s.platform = :ios, '9.0'
 	s.requires_arc = true
 
 	s.ios.frameworks = [
