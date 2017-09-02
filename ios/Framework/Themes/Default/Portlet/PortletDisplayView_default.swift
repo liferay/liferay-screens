@@ -104,6 +104,10 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		screensWebView?.load(htmlString: htmlString)
 	}
 
+	open func clearCache() {
+		screensWebView?.clearCache()
+	}
+
     // MARK: BaseScreenletView
 
     open override func onCreated() {

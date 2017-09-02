@@ -105,6 +105,13 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 		}
 	}
 
+	/**
+	 * Clear the PortletDisplayScreenlet cache
+	 */
+	public void clearCache() {
+		getViewModel().clearCache();
+	}
+
 	public void injectScript(InjectableScript script) {
 		getViewModel().injectScript(script);
 	}

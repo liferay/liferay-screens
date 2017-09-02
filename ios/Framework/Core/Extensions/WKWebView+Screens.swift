@@ -13,8 +13,8 @@ extension WKWebView {
 
 	public func loadCss(file: String, extension ext: String = "css") -> String {
 
-		let string = Bundle.resourceInBundle(name: file, ofType: ext, currentClass: type(of:self)) {
-			(path, _) -> String? in
+		let string = Bundle.resourceInBundle(name: file, ofType: ext,
+			currentClass: type(of:self)) { (path, _) -> String? in
 
 			return try! String(contentsOfFile: path)
 		}
@@ -49,6 +49,13 @@ extension WKWebView {
 				injectionTime: .atDocumentEnd, forMainFrameOnly: false)
 
 		configuration.userContentController.addUserScript(addMetaScript)
+	}
+
+	public func clearCache() {
+		let websiteDataTypes = WKWebsiteDataStore.allWebsiteDataTypes()
+		let dateSince = Date.distantPast
+
+		WKWebsiteDataStore.default().removeData(ofTypes: websiteDataTypes, modifiedSince: dateSince) {}
 	}
 
 	public func loadScript(js: String,

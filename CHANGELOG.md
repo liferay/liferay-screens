@@ -26,6 +26,7 @@ All notable changes to this project will be documented in this file.
 * Allow data providers in forms
 * Show alerts in the PortletDisplayScreenlet
 * Allow developers to disable scroll in the PortletDisplayScreenlet
+* Allow developers to clear cache on PortletDisplayScreenlet
 
 ### Refactor
 * Remove unused attribute in RatingsScreenlet 
@@ -34,6 +35,8 @@ All notable changes to this project will be documented in this file.
 * Added Westeros Employees Hybrid
 
 ## iOS
+
+* Increased min version to iOS 9
 
 ### Bugs
 * Fix error in UserPortrait initials view: user lastname is required in Liferay 7.0 but is not in Liferay 6.2
@@ -52,6 +55,7 @@ All notable changes to this project will be documented in this file.
 * Show alerts in the PortletDisplayScreenlet
 * Allow developers to disable scroll on PortletDisplayScreenlet
 * Wait for all scripts to load before showing the PortletDisplayScreenlet
+* Allow developers to clear cache on PortletDisplayScreenlet
 
 ### Refactor
 * Migrate from UIWebView to WKWebView

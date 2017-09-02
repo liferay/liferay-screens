@@ -187,6 +187,11 @@ public class PortletDisplayView extends FrameLayout
 	}
 
 	@Override
+	public void clearCache() {
+		webView.clearCache(true);
+	}
+
+	@Override
 	public void onPageStarted() {
 		webView.addJavascriptInterface(new PortletDisplayInterface(), "android");
 	}

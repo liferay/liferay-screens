@@ -68,4 +68,9 @@ public interface PortletDisplayViewModel extends BaseViewModel {
 	 * @param enabled
 	 */
 	void setScrollEnabled(boolean enabled);
+
+	/**
+	 * Clear the webView cache
+	 */
+	void clearCache();
 }
