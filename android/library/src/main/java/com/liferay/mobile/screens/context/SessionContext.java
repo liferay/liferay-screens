@@ -16,18 +16,20 @@ package com.liferay.mobile.screens.context;
 
 import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
+import com.liferay.mobile.android.auth.basic.CookieAuthentication;
 import com.liferay.mobile.android.oauth.OAuth;
 import com.liferay.mobile.android.oauth.OAuthConfig;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
 import com.liferay.mobile.screens.auth.login.LoginListener;
-import com.liferay.mobile.screens.auth.login.connector.CurrentUserConnector;
+import com.liferay.mobile.screens.auth.login.interactor.LoginBasicInteractor;
+import com.liferay.mobile.screens.auth.login.interactor.LoginCookieInteractor;
+import com.liferay.mobile.screens.auth.login.interactor.LoginOAuthInteractor;
+import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
 import com.liferay.mobile.screens.cache.executor.Executor;
 import com.liferay.mobile.screens.context.storage.CredentialsStorage;
 import com.liferay.mobile.screens.context.storage.CredentialsStorageBuilder;
-import com.liferay.mobile.screens.util.ServiceProvider;
 import java.security.AccessControlException;
-import org.json.JSONObject;
 
 /**
  * @author Silvio Santos
@@ -153,27 +155,42 @@ public class SessionContext {
 	}
 
 	private static void refreshUserAttributes(final LoginListener loginListener, final Session session) {
-		Executor.execute(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					CurrentUserConnector currentUserConnector =
-						ServiceProvider.getInstance().getCurrentUserConnector(session);
-					JSONObject jsonObject = currentUserConnector.getCurrentUser();
-					if (jsonObject != null) {
+		Executor.execute(() -> {
+			try {
+				BasicEvent basicEvent = loginWithAuthentication(session);
 
-						User user = new User(jsonObject);
-						currentUser = user;
-						loginListener.onLoginSuccess(user);
-					} else {
-						SessionContext.logout();
-						loginListener.onLoginFailure(new AccessControlException("User invalid"));
-					}
-				} catch (Exception e) {
-					loginListener.onLoginFailure(e);
+				if (!basicEvent.isFailed()) {
+					User user = new User(basicEvent.getJSONObject());
+					currentUser = user;
+					loginListener.onLoginSuccess(user);
+				} else {
+					SessionContext.logout();
+					loginListener.onLoginFailure(new AccessControlException("User invalid"));
 				}
+			} catch (Exception e) {
+				loginListener.onLoginFailure(e);
 			}
 		});
+	}
+
+	private static BasicEvent loginWithAuthentication(Session session) throws Exception {
+
+		Authentication authentication = session.getAuthentication();
+
+		if (authentication instanceof CookieAuthentication) {
+			CookieAuthentication cookieAuthentication = (CookieAuthentication) authentication;
+			return new LoginCookieInteractor().execute(cookieAuthentication.getUsername(),
+				cookieAuthentication.getPassword());
+		} else if (authentication instanceof OAuthAuthentication) {
+			OAuth oAuthAuthentication = (OAuth) authentication;
+			LoginOAuthInteractor oauthInteractor = new LoginOAuthInteractor();
+			oauthInteractor.setOAuthConfig(oAuthAuthentication.getConfig());
+			return oauthInteractor.execute(null);
+		} else {
+			BasicAuthentication basicAuthentication = (BasicAuthentication) authentication;
+			return new LoginBasicInteractor().execute(basicAuthentication.getUsername(),
+				basicAuthentication.getPassword());
+		}
 	}
 
 	private static void checkIfStorageTypeIsSupported(CredentialsStorageBuilder.StorageType storageType,

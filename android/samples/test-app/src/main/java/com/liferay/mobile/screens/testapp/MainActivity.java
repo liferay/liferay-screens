@@ -6,6 +6,7 @@ import android.view.View;
 import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.context.storage.CredentialsStorageBuilder;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormEvent;
 import com.liferay.mobile.screens.testapp.fullview.LoginFullActivity;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -20,6 +21,11 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 	protected void onCreate(Bundle state) {
 		super.onCreate(state);
 		setContentView(R.layout.activity_main);
+
+		if (BuildConfig.DEBUG) {
+			SessionContext.loadStoredCredentials(CredentialsStorageBuilder.StorageType.SHARED_PREFERENCES);
+			LiferayLogger.e("User already logged in: " + SessionContext.isLoggedIn());
+		}
 
 		findViewById(R.id.ddl_form).setOnClickListener(this);
 		findViewById(R.id.ddl_list).setOnClickListener(this);
@@ -118,6 +124,9 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				}
 				break;
 			case R.id.clear_cache:
+
+				SessionContext.removeStoredCredentials(CredentialsStorageBuilder.StorageType.SHARED_PREFERENCES);
+
 				try {
 					Long groupId = LiferayServerContext.getGroupId();
 					Long userId = SessionContext.getUserId();
