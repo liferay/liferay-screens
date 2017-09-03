@@ -15,7 +15,7 @@
 	<string name="ddl_form">DDL Form</string>
 	<string name="ddl_list">DDL List</string>
 	<string name="clear_cache_forms">Clear Cache Forms</string>
-	<string name="clear_cache">Clear Cache</string>
+	<string name="clear_cache_and_login">Clear Cache and Login</string>
 	<string name="sync_cache">Sync Cache</string>
 	<string name="change_theme">Change Theme</string>
 	<string name="image_gallery">Image Gallery</string>
