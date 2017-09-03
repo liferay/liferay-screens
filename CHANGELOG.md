@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
 * Fix error in material LoginView with cookie login
 * All screenlets should have getter and setter for their listener property
 * Disable selection in PortletDisplayScreenlet
+* Refresh user credentials when using Cookie authentication
 
 ### New Features
 * Create loadLoggedUserPortrait method in UserPortraitScreenlet
