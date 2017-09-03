@@ -11,7 +11,7 @@
 	<string name="liferay_anonymousApiPassword">anonymous1</string>
 
 	<!--Default user & password-->
-	<string name="liferay_default_user_name">test@liferay.com</string>
+	<string name="liferay_default_user_name">demo@liferay.com</string>
 	<string name="liferay_default_password">test</string>
 
 	<!--DDLFormScreenlet values-->
