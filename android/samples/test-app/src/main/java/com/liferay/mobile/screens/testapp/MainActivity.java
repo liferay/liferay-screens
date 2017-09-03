@@ -22,6 +22,11 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		super.onCreate(state);
 		setContentView(R.layout.activity_main);
 
+		if (BuildConfig.DEBUG) {
+			SessionContext.loadStoredCredentials(CredentialsStorageBuilder.StorageType.SHARED_PREFERENCES);
+			LiferayLogger.e("User already logged in: " + SessionContext.isLoggedIn());
+		}
+
 		findViewById(R.id.ddl_form).setOnClickListener(this);
 		findViewById(R.id.ddl_list).setOnClickListener(this);
 		findViewById(R.id.asset_list).setOnClickListener(this);
