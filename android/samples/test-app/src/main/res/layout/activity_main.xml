@@ -185,7 +185,7 @@
 
 			<Button
 				android:id="@+id/clear_cache"
-				android:text="@string/clear_cache"
+				android:text="@string/clear_cache_and_login"
 				style="@style/test_app_button"
 				/>
 
