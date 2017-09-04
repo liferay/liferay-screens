@@ -2,6 +2,7 @@
 using LiferayScreens;
 using System;
 using UIKit;
+using System.Diagnostics;
 
 namespace ShowcaseiOS.ViewController
 {
@@ -25,25 +26,25 @@ namespace ShowcaseiOS.ViewController
         [Export("screenlet:onFormLoaded:")]
         public virtual void OnFormLoaded(DDLFormScreenlet screenlet, DDLRecord record)
         {
-            System.Diagnostics.Debug.WriteLine("DDLForm loaded successfully");
+            Debug.WriteLine("DDLForm loaded successfully");
         }
 
         [Export("screenlet:onFormLoadError:")]
         public virtual void OnFormLoadError(DDLFormScreenlet screenlet, NSError error)
         {
-            System.Diagnostics.Debug.WriteLine($"DDLForm loaded failed: {error.DebugDescription}");
+            Debug.WriteLine($"DDLForm loaded failed: {error.DebugDescription}");
         }
 
         [Export("screenlet:onRecordLoaded:")]
         public virtual void OnRecordLoaded(DDLFormScreenlet screenlet, DDLRecord record)
         {
-            System.Diagnostics.Debug.WriteLine($"DDLForm record loaded successfully: {record.Attributes}");
+            Debug.WriteLine($"DDLForm record loaded successfully: {record.Attributes}");
         }
 
         [Export("screenlet:onRecordLoadError:")]
         public virtual void OnRecordLoadError(DDLFormScreenlet screenlet, NSError error)
         {
-            System.Diagnostics.Debug.WriteLine($"DDLForm record loaded failed: {error.DebugDescription}");
+            Debug.WriteLine($"DDLForm record loaded failed: {error.DebugDescription}");
         }
 	}
 }

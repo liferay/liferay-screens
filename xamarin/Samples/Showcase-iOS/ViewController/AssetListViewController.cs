@@ -2,6 +2,7 @@
 using LiferayScreens;
 using System;
 using UIKit;
+using System.Diagnostics;
 
 namespace ShowcaseiOS.ViewController
 {
@@ -26,17 +27,17 @@ namespace ShowcaseiOS.ViewController
 
         [Export("screenlet:onAssetListError:")]
         public virtual void OnAssetListError(AssetListScreenlet screenlet, NSError error){
-            System.Diagnostics.Debug.WriteLine($"Asset list error: {error}");
+            Debug.WriteLine($"Asset list error: {error}");
 		}
 
 		[Export("screenlet:onAssetListResponse:")]
         public virtual void OnAssetListResponse(AssetListScreenlet screenlet, Asset[] assets){
-            System.Diagnostics.Debug.WriteLine($"Asset list response: {assets.Length}");
+            Debug.WriteLine($"Asset list response: {assets.Length}");
 		}
 
 		[Export("screenlet:onAssetSelected:")]
         public virtual void OnAssetSelected(AssetListScreenlet screenlet, Asset asset){
-            System.Diagnostics.Debug.WriteLine($"Asset selected: {asset.Title}");
+            Debug.WriteLine($"Asset selected: {asset.Title}");
 		}
     }
 }

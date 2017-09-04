@@ -2,6 +2,7 @@
 using LiferayScreens;
 using System;
 using UIKit;
+using System.Diagnostics;
 
 namespace ShowcaseiOS.ViewController
 {
@@ -25,13 +26,13 @@ namespace ShowcaseiOS.ViewController
         [Export("screenlet:onFileAssetError:")]
         public virtual void OnFileAssetError(FileDisplayScreenlet screenlet, NSError error)
         {
-            System.Diagnostics.Debug.WriteLine($"Image display failed: {error.DebugDescription}");
+            Debug.WriteLine($"Image display failed: {error.DebugDescription}");
         }
 
         [Export("screenlet:onFileAssetResponse:")]
         public virtual void OnFileAssetResponse(FileDisplayScreenlet screenlet, NSUrl url)
         {
-            System.Diagnostics.Debug.WriteLine($"Image display succesful: {url.DebugDescription}");
+            Debug.WriteLine($"Image display succesful: {url.DebugDescription}");
         }
     }
 }

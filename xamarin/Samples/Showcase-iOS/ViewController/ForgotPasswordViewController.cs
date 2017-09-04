@@ -2,6 +2,7 @@
 using LiferayScreens;
 using System;
 using UIKit;
+using System.Diagnostics;
 
 namespace ShowcaseiOS.ViewController
 {
@@ -26,13 +27,13 @@ namespace ShowcaseiOS.ViewController
         [Export("screenlet:onForgotPasswordError:")]
         public void OnForgotPasswordError(ForgotPasswordScreenlet screenlet, Foundation.NSError error)
         {
-            System.Diagnostics.Debug.WriteLine($"Forgot password failed: {error.Description}");
+            Debug.WriteLine($"Forgot password failed: {error.Description}");
         }
 
         [Export("screenlet:onForgotPasswordSent:")]
         public virtual void OnForgotPasswordSent(ForgotPasswordScreenlet screenlet, bool passwordSent)
         {
-            System.Diagnostics.Debug.WriteLine($"Forgot password successful: {passwordSent}");
+            Debug.WriteLine($"Forgot password successful: {passwordSent}");
         }
 
         /* Private methods */

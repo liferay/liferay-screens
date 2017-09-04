@@ -2,6 +2,7 @@
 using LiferayScreens;
 using System;
 using UIKit;
+using System.Diagnostics;
 
 namespace ShowcaseiOS.ViewController
 {
@@ -25,20 +26,20 @@ namespace ShowcaseiOS.ViewController
         [Export("screenlet:onRecordContentResponse:")]
         public void Screenlet(WebContentDisplayScreenlet screenlet, DDLRecord record)
         {
-            System.Diagnostics.Debug.WriteLine($"WebContent display record successfully: {record.DebugDescription}");
+            Debug.WriteLine($"WebContent display record successfully: {record.DebugDescription}");
         }
 
         [Export("screenlet:onWebContentResponse:")]
         public string Screenlet(WebContentDisplayScreenlet screenlet, string html)
         {
-            System.Diagnostics.Debug.WriteLine("WebContent display successfully");
+            Debug.WriteLine("WebContent display successfully");
             return html;
         }
 
         [Export("screenlet:onWebContentError:")]
         public void Screenlet(WebContentDisplayScreenlet screenlet, NSError error)
         {
-            System.Diagnostics.Debug.WriteLine($"WebContent failed: {error.DebugDescription}");
+            Debug.WriteLine($"WebContent failed: {error.DebugDescription}");
         }
     }
 }

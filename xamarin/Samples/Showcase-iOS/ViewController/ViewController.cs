@@ -2,6 +2,7 @@
 using Foundation;
 using System;
 using UIKit;
+using System.Diagnostics;
 
 namespace ShowcaseiOS.ViewController
 {
@@ -23,15 +24,15 @@ namespace ShowcaseiOS.ViewController
         [Export("screenlet:onLoginError:")]
         public virtual void OnLoginError(BaseScreenlet screenlet, NSError error)
         {
-            System.Diagnostics.Debug.WriteLine($"Login failed: {error.Description}");
+            Debug.WriteLine($"Login failed: {error.Description}");
         }
 
         [Export("screenlet:onLoginResponseUserAttributes:")]
         public virtual void OnLoginResponseUserAttributes(BaseScreenlet screenlet, NSDictionary<NSString, NSObject> attributes)
         {
-            System.Diagnostics.Debug.WriteLine($"Login successful: {attributes}");
+            Debug.WriteLine($"Login successful: {attributes}");
 
-            System.Diagnostics.Debug.WriteLine("Navigate to SelectScreenletViewController");
+            Debug.WriteLine("Navigate to SelectScreenletViewController");
             UIStoryboard board = UIStoryboard.FromName("SelectScreenlet", null);
             SelectScreenletViewController vc = (SelectScreenletViewController)
                 board.InstantiateViewController("SelectScreenletViewController");
@@ -50,7 +51,7 @@ namespace ShowcaseiOS.ViewController
 
         partial void ForgotPasswordButton_TouchUpInside(UIButton sender)
         {
-            System.Diagnostics.Debug.WriteLine("Navigate to ForgotPasswordScreenlet");
+            Debug.WriteLine("Navigate to ForgotPasswordScreenlet");
             UIStoryboard board = UIStoryboard.FromName("ForgotPassword", null);
             ForgotPasswordViewController vc = (ForgotPasswordViewController) 
                 board.InstantiateViewController("ForgotPasswordViewController");
@@ -59,7 +60,7 @@ namespace ShowcaseiOS.ViewController
 
         partial void SignUpButton_TouchUpInside(UIButton sender)
         {
-            System.Diagnostics.Debug.WriteLine("Navigate to SignUpScreenlet");
+            Debug.WriteLine("Navigate to SignUpScreenlet");
             UIStoryboard board = UIStoryboard.FromName("SignUp", null);
             SignUpViewController vc = (SignUpViewController) 
                 board.InstantiateViewController("SignUpViewController");

@@ -2,6 +2,7 @@
 using LiferayScreens;
 using System;
 using UIKit;
+using System.Diagnostics;
 
 namespace ShowcaseiOS.ViewController
 {
@@ -24,13 +25,13 @@ namespace ShowcaseiOS.ViewController
         [Export("screenlet:onSignUpError:")]
         public void OnSignUpError(SignUpScreenlet screenlet, NSError error)
         {
-            System.Diagnostics.Debug.WriteLine($"Sign up failed: {error.Description}");
+            Debug.WriteLine($"Sign up failed: {error.Description}");
         }
 
         [Export("screenlet:onSignUpResponseUserAttributes:")]
         public void OnSignUpResponseUserAttributes(SignUpScreenlet screenlet, NSDictionary<NSString, NSObject> attributes)
         {
-            System.Diagnostics.Debug.WriteLine($"Sign up successful: {attributes}");
+            Debug.WriteLine($"Sign up successful: {attributes}");
         }
 
     }
