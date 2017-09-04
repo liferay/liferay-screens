@@ -3117,6 +3117,9 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0900fc
 			public const int liferay_previous_page = 2131296508;
 			
+			// aapt resource value: 0x7f0900fc
+			public const int liferay_previous_page = 2131296508;
+			
 			// aapt resource value: 0x7f090086
 			public const int liferay_progress = 2131296390;
 			
@@ -4537,6 +4540,9 @@ namespace ShowcaseAndroid
 			
 			// aapt resource value: 0x7f0a00b6
 			public const int web_content_display = 2131361974;
+			
+			// aapt resource value: 0x7f0a00b1
+			public const int web_content_display = 2131361969;
 			
 			static String()
 			{
