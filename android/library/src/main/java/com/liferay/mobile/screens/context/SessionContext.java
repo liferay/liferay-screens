@@ -28,6 +28,7 @@ import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
 import com.liferay.mobile.screens.cache.executor.Executor;
 import com.liferay.mobile.screens.context.storage.CredentialsStorage;
 import com.liferay.mobile.screens.context.storage.CredentialsStorageBuilder;
+import com.squareup.okhttp.Authenticator;
 import java.security.AccessControlException;
 
 /**
@@ -139,27 +140,33 @@ public class SessionContext {
 		checkIfStorageTypeIsSupported(storageType, storage);
 
 		if (storage.loadStoredCredentials()) {
-			currentUserSession = new SessionImpl(LiferayServerContext.getServer(), storage.getAuthentication());
+			currentUserSession =
+				new SessionImpl(LiferayServerContext.getServer(), storage.getAuthentication());
 			currentUser = storage.getUser();
 		}
 	}
 
 	public static void relogin(LoginListener loginListener) {
+		relogin(loginListener, null);
+	}
+
+	public static void relogin(LoginListener loginListener, Authenticator cookieAuthenticator) {
 		if (currentUserSession == null || currentUserSession.getAuthentication() == null) {
 			loginListener.onLoginFailure(new AccessControlException("Missing user attributes"));
 		}
 
-		refreshUserAttributes(loginListener,
-			new SessionImpl(LiferayServerContext.getServer(), currentUserSession.getAuthentication()));
+		refreshUserAttributes(loginListener, new SessionImpl(LiferayServerContext.getServer(),
+			currentUserSession.getAuthentication()), cookieAuthenticator);
 	}
 
-	private static void refreshUserAttributes(final LoginListener loginListener, final Session session) {
+	private static void refreshUserAttributes(final LoginListener loginListener,
+		final Session session, final Authenticator cookieAuthenticator) {
 
 		Executor.execute(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					BasicEvent basicEvent = loginWithAuthentication(session);
+					BasicEvent basicEvent = loginWithAuthentication(session, cookieAuthenticator);
 
 					if (!basicEvent.isFailed()) {
 						User user = new User(basicEvent.getJSONObject());
@@ -176,14 +183,15 @@ public class SessionContext {
 		});
 	}
 
-	private static BasicEvent loginWithAuthentication(Session session) throws Exception {
+	private static BasicEvent loginWithAuthentication(Session session,
+		Authenticator cookieAuthenticator) throws Exception {
 
 		Authentication authentication = session.getAuthentication();
 
 		if (authentication instanceof CookieAuthentication) {
 			CookieAuthentication cookieAuthentication = (CookieAuthentication) authentication;
 			return new LoginCookieInteractor().execute(cookieAuthentication.getUsername(),
-				cookieAuthentication.getPassword());
+				cookieAuthentication.getPassword(), cookieAuthenticator);
 		} else if (authentication instanceof OAuthAuthentication) {
 			OAuth oAuthAuthentication = (OAuth) authentication;
 			LoginOAuthInteractor oauthInteractor = new LoginOAuthInteractor();
