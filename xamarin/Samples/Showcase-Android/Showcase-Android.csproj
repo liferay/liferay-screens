@@ -120,6 +120,7 @@
     <Compile Include="Activities\AssetListActivity.cs" />
     <Compile Include="Activities\AssetDisplayActivity.cs" />
     <Compile Include="Activities\PdfDisplayActivity.cs" />
+    <Compile Include="AudioDisplayActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -141,6 +142,7 @@
     <AndroidResource Include="Resources\layout\AssetDisplayView.axml" />
     <AndroidResource Include="Resources\layout\ImageDisplayView.axml" />
     <AndroidResource Include="Resources\layout\PdfDisplayView.axml" />
+    <AndroidResource Include="Resources\layout\AudioDisplayView.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
