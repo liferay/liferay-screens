@@ -25,7 +25,9 @@ namespace ShowcaseiOS.ViewController
             base.DidReceiveMemoryWarning();
         }
 
-		[Export("screenlet:onAssetResponse:")]
+        /* IAssetDisplayScreenletDelegate */
+
+        [Export("screenlet:onAssetResponse:")]
 		public virtual void Screenlet(AssetDisplayScreenlet screenlet, Asset asset)
 		{
 			Debug.WriteLine($"PDF display response: {asset}");

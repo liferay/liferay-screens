@@ -119,7 +119,7 @@
     <Compile Include="Activities\ImageDisplayActivity.cs" />
     <Compile Include="Activities\AssetListActivity.cs" />
     <Compile Include="Activities\AssetDisplayActivity.cs" />
-    <Compile Include="PdfDisplayActivity.cs" />
+    <Compile Include="Activities\PdfDisplayActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

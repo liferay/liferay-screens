@@ -13,7 +13,7 @@ namespace ShowcaseiOS.ViewController
             "WebContentScreenlet",
             "AssetListScreenlet",
             "AssetDisplayScreenlet",
-            "ImageDisplayScreenlet"
+            "ImageDisplayScreenlet",
             "PdfDisplayScreenlet"
         };
 
@@ -24,7 +24,7 @@ namespace ShowcaseiOS.ViewController
             "WebContentViewController",
             "AssetListViewController",
             "AssetDisplayViewController",
-            "ImageDisplayViewController"
+            "ImageDisplayViewController",
             "PdfDisplayViewController"
         };
 

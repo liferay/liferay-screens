@@ -23,6 +23,7 @@ namespace ShowcaseAndroid
             FindViewById(Resource.Id.asset_list_screenlet).SetOnClickListener(this);
             FindViewById(Resource.Id.asset_display_screenlet).SetOnClickListener(this);
             FindViewById(Resource.Id.image_display_screenlet).SetOnClickListener(this);
+            FindViewById(Resource.Id.pdf_display_screenlet).SetOnClickListener(this);
         }
 
         /* IOnClickListener */
@@ -57,6 +58,9 @@ namespace ShowcaseAndroid
                     break;
                 case Resource.Id.image_display_screenlet:
                     StartActivity(typeof(ImageDisplayActivity));
+                    break;
+                case Resource.Id.pdf_display_screenlet:
+                    StartActivity(typeof(PdfDisplayActivity));
                     break;
             }
         }
