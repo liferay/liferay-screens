@@ -17,8 +17,11 @@ namespace ShowcaseiOS.ViewController
             this.ddlFormScreenlet.StructureId = 54371;
             this.ddlFormScreenlet.RecordSetId = 54375;
             this.ddlFormScreenlet.RecordId = 54385;
+            this.ddlFormScreenlet.AutoLoad = false;
 
             this.ddlFormScreenlet.Delegate = this;
+
+            this.ddlFormScreenlet.LoadForm();
         }
 
         /* IDDLFormScreenletDelegate */
@@ -33,6 +36,18 @@ namespace ShowcaseiOS.ViewController
         public virtual void OnFormLoadError(DDLFormScreenlet screenlet, NSError error)
         {
             Debug.WriteLine($"DDLForm loaded failed: {error.DebugDescription}");
+        }
+
+        [Export("screenlet:onFormSubmitError:")]
+        public virtual void OnFormSubmitError(DDLFormScreenlet screenlet, NSError error)
+        {
+            Debug.WriteLine($"DDLForm submit failed: {error.DebugDescription}");
+        }
+
+        [Export("screenlet:onFormSubmitted:")]
+        public virtual void OnFormSubmitted(DDLFormScreenlet screenlet, DDLRecord record)
+        {
+            Debug.WriteLine($"DDLForm submitted successfully: {record.Attributes}");
         }
 
         [Export("screenlet:onRecordLoaded:")]
