@@ -30,6 +30,7 @@
     <!-- AssetListScreenlet values -->
     <string name="liferay_asset_list_class_name_id">20015</string>
     <string name="liferay_asset_list_label_fields">Text</string>
+    <string name="liferay_asset_list_portlet_item_name">dynamic</string>
 
 	<!-- AssetDisplay blog values -->
     <string name="liferay_blog_display_class_name">com.liferay.blogs.kernel.model.BlogsEntry</string>

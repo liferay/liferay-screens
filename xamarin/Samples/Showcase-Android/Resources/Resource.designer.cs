@@ -4124,8 +4124,8 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0a002a
 			public const int add_icon_user_portrait_content_description = 2131361834;
 			
-			// aapt resource value: 0x7f0a00b1
-			public const int app_name = 2131361969;
+			// aapt resource value: 0x7f0a00b2
+			public const int app_name = 2131361970;
 			
 			// aapt resource value: 0x7f0a0021
 			public const int appbar_scrolling_view_behavior = 2131361825;
@@ -4133,14 +4133,14 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0a0073
 			public const int arrow = 2131361907;
 			
-			// aapt resource value: 0x7f0a00b7
-			public const int asset_display = 2131361975;
+			// aapt resource value: 0x7f0a00b8
+			public const int asset_display = 2131361976;
 			
 			// aapt resource value: 0x7f0a0074
 			public const int asset_image = 2131361908;
 			
-			// aapt resource value: 0x7f0a00b6
-			public const int asset_list = 2131361974;
+			// aapt resource value: 0x7f0a00b7
+			public const int asset_list = 2131361975;
 			
 			// aapt resource value: 0x7f0a0075
 			public const int audio_player_background = 2131361909;
@@ -4163,8 +4163,8 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0a002d
 			public const int creating_file_error = 2131361837;
 			
-			// aapt resource value: 0x7f0a00b4
-			public const int ddl_form = 2131361972;
+			// aapt resource value: 0x7f0a00b5
+			public const int ddl_form = 2131361973;
 			
 			// aapt resource value: 0x7f0a0077
 			public const int default_class_name_id_user = 2131361911;
@@ -4199,8 +4199,8 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0a0036
 			public const int first_name = 2131361846;
 			
-			// aapt resource value: 0x7f0a00b3
-			public const int forgot_password = 2131361971;
+			// aapt resource value: 0x7f0a00b4
+			public const int forgot_password = 2131361972;
 			
 			// aapt resource value: 0x7f0a0079
 			public const int gallery_image = 2131361913;
@@ -4220,8 +4220,8 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0a0039
 			public const int hint_select = 2131361849;
 			
-			// aapt resource value: 0x7f0a00b8
-			public const int image_display = 2131361976;
+			// aapt resource value: 0x7f0a00b9
+			public const int image_display = 2131361977;
 			
 			// aapt resource value: 0x7f0a003a
 			public const int invalid = 2131361850;
@@ -4241,23 +4241,26 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0a009d
 			public const int liferay_asset_list_label_fields = 2131361949;
 			
-			// aapt resource value: 0x7f0a00a6
-			public const int liferay_audio_display_asset_entry = 2131361958;
+			// aapt resource value: 0x7f0a009e
+			public const int liferay_asset_list_portlet_item_name = 2131361950;
 			
-			// aapt resource value: 0x7f0a00a4
-			public const int liferay_audio_display_class_name = 2131361956;
+			// aapt resource value: 0x7f0a00a7
+			public const int liferay_audio_display_asset_entry = 2131361959;
 			
 			// aapt resource value: 0x7f0a00a5
-			public const int liferay_audio_display_class_pk = 2131361957;
+			public const int liferay_audio_display_class_name = 2131361957;
 			
-			// aapt resource value: 0x7f0a00a0
-			public const int liferay_blog_display_asset_entry = 2131361952;
+			// aapt resource value: 0x7f0a00a6
+			public const int liferay_audio_display_class_pk = 2131361958;
 			
-			// aapt resource value: 0x7f0a009e
-			public const int liferay_blog_display_class_name = 2131361950;
+			// aapt resource value: 0x7f0a00a1
+			public const int liferay_blog_display_asset_entry = 2131361953;
 			
 			// aapt resource value: 0x7f0a009f
-			public const int liferay_blog_display_class_pk = 2131361951;
+			public const int liferay_blog_display_class_name = 2131361951;
+			
+			// aapt resource value: 0x7f0a00a0
+			public const int liferay_blog_display_class_pk = 2131361952;
 			
 			// aapt resource value: 0x7f0a007c
 			public const int liferay_class_dlfile = 2131361916;
@@ -4280,26 +4283,26 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0a007f
 			public const int liferay_group_id = 2131361919;
 			
-			// aapt resource value: 0x7f0a00a3
-			public const int liferay_image_display_asset_entry = 2131361955;
-			
-			// aapt resource value: 0x7f0a00a1
-			public const int liferay_image_display_class_name = 2131361953;
+			// aapt resource value: 0x7f0a00a4
+			public const int liferay_image_display_asset_entry = 2131361956;
 			
 			// aapt resource value: 0x7f0a00a2
-			public const int liferay_image_display_class_pk = 2131361954;
+			public const int liferay_image_display_class_name = 2131361954;
 			
-			// aapt resource value: 0x7f0a00b0
-			public const int liferay_image_entry_id = 2131361968;
+			// aapt resource value: 0x7f0a00a3
+			public const int liferay_image_display_class_pk = 2131361955;
 			
-			// aapt resource value: 0x7f0a00ac
-			public const int liferay_pdf_display_asset_entry = 2131361964;
+			// aapt resource value: 0x7f0a00b1
+			public const int liferay_image_entry_id = 2131361969;
 			
-			// aapt resource value: 0x7f0a00aa
-			public const int liferay_pdf_display_class_name = 2131361962;
+			// aapt resource value: 0x7f0a00ad
+			public const int liferay_pdf_display_asset_entry = 2131361965;
 			
 			// aapt resource value: 0x7f0a00ab
-			public const int liferay_pdf_display_class_pk = 2131361963;
+			public const int liferay_pdf_display_class_name = 2131361963;
+			
+			// aapt resource value: 0x7f0a00ac
+			public const int liferay_pdf_display_class_pk = 2131361964;
 			
 			// aapt resource value: 0x7f0a0096
 			public const int liferay_record_id = 2131361942;
@@ -4319,26 +4322,26 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0a0081
 			public const int liferay_version_factory = 2131361921;
 			
-			// aapt resource value: 0x7f0a00a9
-			public const int liferay_video_display_asset_entry = 2131361961;
-			
-			// aapt resource value: 0x7f0a00a7
-			public const int liferay_video_display_class_name = 2131361959;
+			// aapt resource value: 0x7f0a00aa
+			public const int liferay_video_display_asset_entry = 2131361962;
 			
 			// aapt resource value: 0x7f0a00a8
-			public const int liferay_video_display_class_pk = 2131361960;
+			public const int liferay_video_display_class_name = 2131361960;
+			
+			// aapt resource value: 0x7f0a00a9
+			public const int liferay_video_display_class_pk = 2131361961;
 			
 			// aapt resource value: 0x7f0a0099
 			public const int liferay_webcontent_article_id = 2131361945;
 			
-			// aapt resource value: 0x7f0a00af
-			public const int liferay_webcontent_display_asset_entry = 2131361967;
-			
-			// aapt resource value: 0x7f0a00ad
-			public const int liferay_webcontent_display_class_name = 2131361965;
+			// aapt resource value: 0x7f0a00b0
+			public const int liferay_webcontent_display_asset_entry = 2131361968;
 			
 			// aapt resource value: 0x7f0a00ae
-			public const int liferay_webcontent_display_class_pk = 2131361966;
+			public const int liferay_webcontent_display_class_name = 2131361966;
+			
+			// aapt resource value: 0x7f0a00af
+			public const int liferay_webcontent_display_class_pk = 2131361967;
 			
 			// aapt resource value: 0x7f0a009b
 			public const int liferay_webcontent_label_fields = 2131361947;
@@ -4364,8 +4367,8 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0a0040
 			public const int login_error = 2131361856;
 			
-			// aapt resource value: 0x7f0a00b2
-			public const int main_activity_label = 2131361970;
+			// aapt resource value: 0x7f0a00b3
+			public const int main_activity_label = 2131361971;
 			
 			// aapt resource value: 0x7f0a0083
 			public const int neutral_smiley = 2131361923;
@@ -4514,8 +4517,8 @@ namespace ShowcaseAndroid
 			// aapt resource value: 0x7f0a008f
 			public const int very_sad_smiley = 2131361935;
 			
-			// aapt resource value: 0x7f0a00b5
-			public const int web_content_display = 2131361973;
+			// aapt resource value: 0x7f0a00b6
+			public const int web_content_display = 2131361974;
 			
 			static String()
 			{
