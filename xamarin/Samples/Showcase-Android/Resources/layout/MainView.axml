@@ -49,6 +49,10 @@
                 android:id="@+id/image_display_screenlet"
                 android:text="@string/image_display"
                 style="@style/test_app_button" />
+            <Button
+                android:id="@+id/pdf_display_screenlet"
+                android:text="@string/pdf_display"
+                style="@style/test_app_button" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
