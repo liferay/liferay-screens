@@ -6,7 +6,7 @@ using UIKit;
 
 namespace ShowcaseiOS.ViewController
 {
-    public partial class PdfDisplayViewController : UIViewController, IAssetDisplayScreenletDelegate
+    public partial class PdfDisplayViewController : UIViewController, IFileDisplayScreenletDelegate
     {
         public PdfDisplayViewController(IntPtr handle) : base(handle) { }
 
@@ -20,31 +20,18 @@ namespace ShowcaseiOS.ViewController
             this.pdfDisplayScreenlet.Delegate = this;
 		}
 
-        /* IAssetDisplayScreenletDelegate */
+        /* IFileDisplayScreenletDelegate */
 
-        //FIXME: Delegate methods are never called
-        [Export("screenlet:onAssetResponse:")]
-        public virtual void Screenlet(AssetDisplayScreenlet screenlet, Asset asset)
+        [Export("screenlet:onFileAssetError:")]
+        public virtual void OnFileAssetError(FileDisplayScreenlet screenlet, NSError error)
         {
-            Debug.WriteLine($"PDF display response: {asset}");
+            Debug.WriteLine($"Pdf display failed: {error.DebugDescription}");
         }
 
-        [Export("screenlet:onAssetError:")]
-        public virtual void Screenlet(AssetDisplayScreenlet screenlet, NSError error)
+        [Export("screenlet:onFileAssetResponse:")]
+        public virtual void OnFileAssetResponse(FileDisplayScreenlet screenlet, NSUrl url)
         {
-            Debug.WriteLine($"PDF display error: {error}");
-        }
-
-        [Export("screenlet:onConfigureScreenlet:onAsset:")]
-        public virtual void Screenlet(AssetDisplayScreenlet screenlet, BaseScreenlet childScreenlet, Asset asset)
-        {
-            Debug.WriteLine($"Configure PDF display: {asset}");
-        }
-
-        [Export("screenlet:onAsset:")]
-        public virtual UIView ScreenletCustomAsset(AssetDisplayScreenlet screenlet, Asset asset)
-        {
-            return screenlet;
+            Debug.WriteLine($"Pdf display success: {url.DebugDescription}");
         }
     }
 }

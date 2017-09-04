@@ -6,7 +6,7 @@ using UIKit;
 
 namespace ShowcaseiOS.ViewController
 {
-    public partial class VideoDisplayViewController : UIViewController, IAssetDisplayScreenletDelegate
+    public partial class VideoDisplayViewController : UIViewController, IFileDisplayScreenletDelegate
     {
         public VideoDisplayViewController(IntPtr handle) : base(handle) { }
 
@@ -20,30 +20,18 @@ namespace ShowcaseiOS.ViewController
             this.videoDisplayScreenlet.Delegate = this;
         }
 
-        /* IAssetDisplayScreenletDelegate */
+        /* IFileDisplayScreenletDelegate */
 
-        [Export("screenlet:onAssetResponse:")]
-        public virtual void Screenlet(AssetDisplayScreenlet screenlet, Asset asset)
+        [Export("screenlet:onFileAssetError:")]
+        public virtual void OnFileAssetError(FileDisplayScreenlet screenlet, NSError error)
         {
-        	Debug.WriteLine($"Video display response: {asset}");
+            Debug.WriteLine($"Video display failed: {error.DebugDescription}");
         }
 
-        [Export("screenlet:onAssetError:")]
-        public virtual void Screenlet(AssetDisplayScreenlet screenlet, NSError error)
+        [Export("screenlet:onFileAssetResponse:")]
+        public virtual void OnFileAssetResponse(FileDisplayScreenlet screenlet, NSUrl url)
         {
-        	Debug.WriteLine($"Video display error: {error}");
-        }
-
-        [Export("screenlet:onConfigureScreenlet:onAsset:")]
-        public virtual void Screenlet(AssetDisplayScreenlet screenlet, BaseScreenlet childScreenlet, Asset asset)
-        {
-        	Debug.WriteLine($"Configure Video display: {asset}");
-        }
-
-        [Export("screenlet:onAsset:")]
-        public virtual UIView ScreenletCustomAsset(AssetDisplayScreenlet screenlet, Asset asset)
-        {
-        	return screenlet;
+            Debug.WriteLine($"Video display success: {url.DebugDescription}");
         }
     }
 }

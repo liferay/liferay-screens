@@ -6,7 +6,7 @@ using UIKit;
 
 namespace ShowcaseiOS.ViewController
 {
-    public partial class AudioDisplayViewController : UIViewController, IAssetDisplayScreenletDelegate
+    public partial class AudioDisplayViewController : UIViewController, IFileDisplayScreenletDelegate
     {
         public AudioDisplayViewController(IntPtr handle) : base(handle) { }
 
@@ -20,31 +20,18 @@ namespace ShowcaseiOS.ViewController
             this.audioDisplayScreenlet.Delegate = this;
         }
 
-        /* IAssetDisplayScreenletDelegate */
+        /* IFileDisplayScreenletDelegate */
 
-        [Export("screenlet:onAssetResponse:")]
-        public virtual void Screenlet(AssetDisplayScreenlet screenlet, Asset asset)
+        [Export("screenlet:onFileAssetError:")]
+        public virtual void OnFileAssetError(FileDisplayScreenlet screenlet, NSError error)
         {
-            Debug.WriteLine($"Audio display response: {asset}");
+            Debug.WriteLine($"Audio display failed: {error.DebugDescription}");
         }
 
-        [Export("screenlet:onAssetError:")]
-        public virtual void Screenlet(AssetDisplayScreenlet screenlet, NSError error)
+        [Export("screenlet:onFileAssetResponse:")]
+        public virtual void OnFileAssetResponse(FileDisplayScreenlet screenlet, NSUrl url)
         {
-        	Debug.WriteLine($"Audio display error: {error}");
-        }
-
-        [Export("screenlet:onConfigureScreenlet:onAsset:")]
-        public virtual void Screenlet(AssetDisplayScreenlet screenlet, BaseScreenlet childScreenlet, Asset asset)
-        {
-        	Debug.WriteLine($"Configure Audio display: {asset}");
-        }
-
-        [Export("screenlet:onAsset:")]
-        public virtual UIView ScreenletCustomAsset(AssetDisplayScreenlet screenlet, Asset asset)
-        {
-            Debug.WriteLine($"Audio display custom asset: {asset.Attributes}");
-        	return screenlet;
+            Debug.WriteLine($"Audio display success: {url.DebugDescription}");
         }
     }
 }

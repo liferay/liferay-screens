@@ -2,13 +2,12 @@
 using Android.OS;
 using Android.Widget;
 using Com.Liferay.Mobile.Screens.Asset;
-using Com.Liferay.Mobile.Screens.Asset.Display;
 using Com.Liferay.Mobile.Screens.Dlfile.Display.Video;
 
 namespace ShowcaseAndroid
 {
     [Activity]
-    public class VideoDisplayActivity : Activity, IAssetDisplayListener, IVideoDisplayScreenletListener
+    public class VideoDisplayActivity : Activity, IVideoDisplayScreenletListener
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -18,18 +17,6 @@ namespace ShowcaseAndroid
             VideoDisplayScreenlet videoDisplayScreenlet =
                 (VideoDisplayScreenlet) FindViewById(Resource.Id.video_display_screenlet);
             videoDisplayScreenlet.Listener = this;
-        }
-
-        /* IAssetDisplayListener */
-
-        public void OnRetrieveAssetSuccess(AssetEntry p0)
-        {
-            Toast.MakeText(this, "Video display success: " + p0.EntryId, ToastLength.Short).Show();
-        }
-
-        public void Error(Java.Lang.Exception p0, string p1)
-        {
-            System.Diagnostics.Debug.WriteLine($"Video display error: {p0.Message}");
         }
 
         /* IVideoDisplayScreenletListener */
@@ -47,6 +34,18 @@ namespace ShowcaseAndroid
         public void OnVideoPrepared()
         {
             System.Diagnostics.Debug.WriteLine("Video prepared");
+        }
+
+        /* IAssetDisplayListener */
+
+        public void OnRetrieveAssetSuccess(AssetEntry p0)
+        {
+            Toast.MakeText(this, "Video display success: " + p0.EntryId, ToastLength.Short).Show();
+        }
+
+        public void Error(Java.Lang.Exception p0, string p1)
+        {
+            System.Diagnostics.Debug.WriteLine($"Video display error: {p0.Message}");
         }
     }
 }

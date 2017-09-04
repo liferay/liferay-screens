@@ -32,7 +32,7 @@ namespace ShowcaseiOS.ViewController
         [Export("screenlet:onFileAssetResponse:")]
         public virtual void OnFileAssetResponse(FileDisplayScreenlet screenlet, NSUrl url)
         {
-            Debug.WriteLine($"Image display succesful: {url.DebugDescription}");
+            Debug.WriteLine($"Image display success: {url.DebugDescription}");
         }
     }
 }
