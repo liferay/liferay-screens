@@ -183,6 +183,9 @@ import Foundation
 		else if session.authentication is LROAuth {
 			return reloginOAuth(completed)
 		}
+		else if session.authentication is LRCookieAuthentication {
+			return reloginCookie(completed)
+		}
 
 		return false
 	}
@@ -224,8 +227,39 @@ import Foundation
 		}
 	}
 
-	open func refreshUserAttributes(_ completed: (([String:AnyObject]?) -> ())?) -> Bool {
+	open func reloginCookie(_ completed: (([String:AnyObject]?) -> Void)?) -> Bool {
+		guard session.authentication is LRCookieAuthentication else {
+			completed?(nil)
+			return false
+		}
+
+
+		SessionContext.reloadCookieAuth(session: self.session, callback: LRCookieBlockCallback { (session, error) in
+			guard session != nil, let auth = session?.authentication as? LRCookieAuthentication else {
+				print("Error reloading the cookie auth\(error!)")
+				completed?(nil)
+				return
+			}
+
+			_ = SessionContext.currentContext?.refreshUserAttributes { attributes in
+				if let attributes = attributes {
+					SessionContext.loginWithCookie(authentication: auth, userAttributes: attributes)
+				}
+				else {
+					SessionContext.logout()
+				}
+
+				completed?(attributes)
+			}
+
+		})
+
+		return true
+	}
+
+	open func refreshUserAttributes(_ completed: (([String:AnyObject]?) -> Void)?) -> Bool {
 		let session = self.createRequestSession()
+
 
 		session.callback = LRBlockCallback(
 			success: { obj in
