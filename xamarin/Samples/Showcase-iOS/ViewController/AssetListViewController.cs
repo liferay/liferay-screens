@@ -26,19 +26,22 @@ namespace ShowcaseiOS.ViewController
         /* IAssetListScreenletDelegate */
 
         [Export("screenlet:onAssetListError:")]
-        public virtual void OnAssetListError(AssetListScreenlet screenlet, NSError error){
-            Debug.WriteLine($"Asset list error: {error}");
-		}
+        public virtual void OnAssetListError(AssetListScreenlet screenlet, NSError error)
+        {
+            Debug.WriteLine($"Asset list error: {error.DebugDescription}");
+        }
 
-		[Export("screenlet:onAssetListResponse:")]
-        public virtual void OnAssetListResponse(AssetListScreenlet screenlet, Asset[] assets){
-            Debug.WriteLine($"Asset list response: {assets.Length}");
-		}
+        [Export("screenlet:onAssetListResponse:")]
+        public virtual void OnAssetListResponse(AssetListScreenlet screenlet, Asset[] assets)
+        {
+            Debug.WriteLine($"Asset list response: {assets.Length} entries");
+        }
 
-		[Export("screenlet:onAssetSelected:")]
-        public virtual void OnAssetSelected(AssetListScreenlet screenlet, Asset asset){
+        [Export("screenlet:onAssetSelected:")]
+        public virtual void OnAssetSelected(AssetListScreenlet screenlet, Asset asset)
+        {
             Debug.WriteLine($"Asset selected: {asset.Title}");
-		}
+        }
     }
 }
 

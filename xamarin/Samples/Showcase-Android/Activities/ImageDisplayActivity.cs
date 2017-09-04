@@ -26,14 +26,14 @@ namespace ShowcaseAndroid
 
         /* IAssetDisplayListener */
 
-        public void Error(Java.Lang.Exception p0, string p1)
-        {
-            Toast.MakeText(this, "Asset display failed: " + p0.Message, ToastLength.Short).Show();
-        }
-
         public void OnRetrieveAssetSuccess(AssetEntry p0)
         {
-            Toast.MakeText(this, "Asset display successful: " + p0.EntryId, ToastLength.Short).Show();
+            Toast.MakeText(this, "Image display success: " + p0.EntryId, ToastLength.Short).Show();
+        }
+
+        public void Error(Java.Lang.Exception p0, string p1)
+        {
+            System.Diagnostics.Debug.WriteLine($"Image display failed: {p0.Message}");
         }
     }
 }

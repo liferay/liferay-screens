@@ -22,9 +22,10 @@ namespace ShowcaseAndroid
 
         /* IWebContentDisplayListener */
 
-        public void Error(Java.Lang.Exception p0, string p1)
+        public WebContent OnWebContentReceived(WebContent p0)
         {
-            Toast.MakeText(this, $"WebContent display failed: {p0} - {p1}", ToastLength.Short).Show();
+            Toast.MakeText(this, $"WebContent received successfully: {p0}", ToastLength.Short).Show();
+            return p0;
         }
 
         public bool OnUrlClicked(string p0)
@@ -33,16 +34,15 @@ namespace ShowcaseAndroid
             return false;
         }
 
-        public WebContent OnWebContentReceived(WebContent p0)
-        {
-            Toast.MakeText(this, $"WebContent received successfully: {p0}", ToastLength.Short).Show();
-            return p0;
-        }
-
         public bool OnWebContentTouched(View p0, MotionEvent p1)
         {
             Toast.MakeText(this, $"WebContent touched: {p0}", ToastLength.Short).Show();
             return false;
+        }
+
+        public void Error(Java.Lang.Exception p0, string p1)
+        {
+            System.Diagnostics.Debug.WriteLine($"WebContent display failed: {p0.Message}");
         }
     }
 }

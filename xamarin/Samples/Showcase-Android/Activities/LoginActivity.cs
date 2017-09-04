@@ -24,14 +24,14 @@ namespace ShowcaseAndroid
 
         /* ILoginListener */
 
+        public void OnLoginSuccess(User p0)
+        {
+            Toast.MakeText(this, "Login success: " + p0.Id, ToastLength.Short).Show();
+        }
+
         public void OnLoginFailure(Java.Lang.Exception p0)
         {
             Toast.MakeText(this, "Login failed: " + p0.Message, ToastLength.Short).Show();
-        }
-
-        public void OnLoginSuccess(User p0)
-        {
-            Toast.MakeText(this, "Login successful: " + p0.Id, ToastLength.Short).Show();
         }
 
         /* Private methods */

@@ -60,24 +60,24 @@ namespace ShowcaseiOS.ViewController
             Debug.WriteLine($"Asset display response: {asset.Attributes}");
         }
 
-		[Export("screenlet:onAssetError:")]
+        [Export("screenlet:onAssetError:")]
         public virtual void Screenlet(AssetDisplayScreenlet screenlet, NSError error)
         {
             Debug.WriteLine($"Asset display error: {error.DebugDescription}");
-		}
+        }
 
-		[Export("screenlet:onConfigureScreenlet:onAsset:")]
+        [Export("screenlet:onConfigureScreenlet:onAsset:")]
         public virtual void Screenlet(AssetDisplayScreenlet screenlet, BaseScreenlet childScreenlet, Asset asset)
         {
             Debug.WriteLine($"Configure Asset display: {asset}");
-		}
+        }
 
-		[Export("screenlet:onAsset:")]
-        public virtual UIView ScreenletCustomAsset(AssetDisplayScreenlet screenlet, Asset asset){
+        [Export("screenlet:onAsset:")]
+        public virtual UIView ScreenletCustomAsset(AssetDisplayScreenlet screenlet, Asset asset)
+        {
             Debug.WriteLine($"Asset display custom asset: {asset.Attributes}");
             return screenlet;
         }
-
     }
 }
 

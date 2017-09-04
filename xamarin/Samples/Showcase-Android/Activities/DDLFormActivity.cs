@@ -29,6 +29,8 @@ namespace ShowcaseAndroid
             ddlFormScreenlet.Load();
         }
 
+        /* IDDLFormListener */
+
         public void Error(Java.Lang.Exception p0, string p1)
         {
             System.Diagnostics.Debug.WriteLine($"DDLForm error: {p0}");
@@ -36,12 +38,12 @@ namespace ShowcaseAndroid
 
         public void OnDDLFormDocumentUploaded(DocumentField p0, JSONObject p1)
         {
-			System.Diagnostics.Debug.WriteLine($"DDLForm document uploaded: {p0}");
+            Toast.MakeText(this, "DDLForm document uploaded: " + p0, ToastLength.Short).Show();
 		}
 
         public void OnDDLFormDocumentUploadFailed(DocumentField p0, Java.Lang.Exception p1)
         {
-			System.Diagnostics.Debug.WriteLine($"DDLForm document uploaded fail: {p0}");
+			System.Diagnostics.Debug.WriteLine($"DDLForm document uploaded failed: {p0}");
 		}
 
         public void OnDDLFormLoaded(Record p0)
@@ -61,7 +63,7 @@ namespace ShowcaseAndroid
 
         public void OnDDLFormRecordUpdated(Record p0)
         {
-            System.Diagnostics.Debug.WriteLine($"DDLForm record updated: {p0}");
+            Toast.MakeText(this, "DDLForm record updated: " + p0, ToastLength.Short).Show();
         }
     }
 }

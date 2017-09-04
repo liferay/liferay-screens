@@ -39,7 +39,7 @@ namespace ShowcaseiOS.ViewController
         [Export("screenlet:onUserPortraitResponseImage:")]
         public virtual UIImage Screenlet(UserPortraitScreenlet screenlet, UIImage image)
         {
-            Debug.WriteLine($"User portrait succesful: {image.DebugDescription}");
+            Debug.WriteLine($"User portrait succes: {image.DebugDescription}");
             return image;
         }
 

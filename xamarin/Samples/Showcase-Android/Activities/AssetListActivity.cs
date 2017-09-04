@@ -2,6 +2,7 @@
 using Android.App;
 using Android.OS;
 using Android.Views;
+using Android.Widget;
 using Com.Liferay.Mobile.Screens.Asset.List;
 using Com.Liferay.Mobile.Screens.Base.List;
 
@@ -31,22 +32,22 @@ namespace ShowcaseAndroid
 
         public void Error(Java.Lang.Exception p0, string p1)
         {
-        	System.Diagnostics.Debug.WriteLine($"Asset List error: {p0}");
+        	System.Diagnostics.Debug.WriteLine($"Asset list failed: {p0}");
         }
 
         public void OnListItemSelected(Java.Lang.Object p0, View p1)
         {
-        	System.Diagnostics.Debug.WriteLine($"Item selected: {p0}");
+            Toast.MakeText(this, "Item selected: " + p0, ToastLength.Short).Show();
         }
 
         public void OnListPageFailed(int p0, Java.Lang.Exception p1)
         {
-        	System.Diagnostics.Debug.WriteLine($"List page failed: {p1}");
+            System.Diagnostics.Debug.WriteLine($"List page failed: {p1.Message}");
         }
 
         public void OnListPageReceived(int p0, int p1, IList p2, int p3)
         {
-            System.Diagnostics.Debug.WriteLine($"List page received");
+            Toast.MakeText(this, "List page received: " + p3 + " entries", ToastLength.Short).Show();
         }
     }
 }

@@ -23,12 +23,12 @@ namespace ShowcaseAndroid
 
         public void OnForgotPasswordRequestFailure(Java.Lang.Exception p0)
         {
-            Toast.MakeText(this, "Forgot password failed: " + p0.Message, ToastLength.Short).Show();
+            System.Diagnostics.Debug.WriteLine($"Forgot password failed: {p0.Message}");
         }
 
         public void OnForgotPasswordRequestSuccess(bool p0)
         {
-            Toast.MakeText(this, "Forgot password successful: " + p0, ToastLength.Short).Show();
+            Toast.MakeText(this, "Forgot password successfully sent", ToastLength.Short).Show();
         }
     }
 }
