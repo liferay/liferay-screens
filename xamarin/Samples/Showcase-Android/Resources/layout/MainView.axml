@@ -42,6 +42,10 @@
                 android:text="@string/asset_list"
                 style="@style/test_app_button" />
             <Button
+                android:id="@+id/asset_display_screenlet"
+                android:text="@string/asset_display"
+                style="@style/test_app_button" />
+            <Button
                 android:id="@+id/image_display_screenlet"
                 android:text="@string/image_display"
                 style="@style/test_app_button" />

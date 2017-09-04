@@ -31,6 +31,36 @@
     <string name="liferay_asset_list_class_name_id">20015</string>
     <string name="liferay_asset_list_label_fields">Text</string>
 
+	<!-- AssetDisplay blog values -->
+    <string name="liferay_blog_display_class_name">com.liferay.blogs.kernel.model.BlogsEntry</string>
+    <string name="liferay_blog_display_class_pk">57366</string>
+    <string name="liferay_blog_display_asset_entry">57367</string>
+
+    <!-- AssetDisplay image values -->
+	<string name="liferay_image_display_class_name">com.liferay.document.library.kernel.model.DLFileEntry</string>
+    <string name="liferay_image_display_class_pk">54498</string>
+    <string name="liferay_image_display_asset_entry">54500</string>
+
+	<!-- AssetDisplay audio values -->
+    <string name="liferay_audio_display_class_name">com.liferay.document.library.kernel.model.DLFileEntry</string>
+    <string name="liferay_audio_display_class_pk">57433</string>
+    <string name="liferay_audio_display_asset_entry">57435</string>
+
+	<!-- AssetDisplay video values -->
+    <string name="liferay_video_display_class_name">com.liferay.document.library.kernel.model.DLFileEntry</string>
+    <string name="liferay_video_display_class_pk">38943</string>
+    <string name="liferay_video_display_asset_entry">38945</string>
+
+	<!-- AssetDisplay pdf values -->
+    <string name="liferay_pdf_display_class_name">com.liferay.document.library.kernel.model.DLFileEntry</string>
+    <string name="liferay_pdf_display_class_pk">38930</string>
+    <string name="liferay_pdf_display_asset_entry">38932</string>
+
+    <!-- AssetDisplay webcontent values -->
+    <string name="liferay_webcontent_display_class_name">com.liferay.journal.model.JournalArticle</string>
+    <string name="liferay_webcontent_display_class_pk">39226</string>
+    <string name="liferay_webcontent_display_asset_entry"></string>	
+
     <!-- ImageDisplayScreenlet values -->
     <string name="liferay_image_entry_id">54500</string>
 </resources>

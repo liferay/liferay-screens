@@ -11,5 +11,6 @@
 	<string name="user_portrait">User Portrait</string>
 	<string name="web_content_display">Web Content Display</string>
 	<string name="asset_list">Asset List</string>
+	<string name="asset_display">Asset Display</string>
 	<string name="image_display">Image Display</string>
 </resources>

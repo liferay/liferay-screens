@@ -21,6 +21,7 @@ namespace ShowcaseAndroid
             FindViewById(Resource.Id.user_portrait_screenlet).SetOnClickListener(this);
             FindViewById(Resource.Id.web_content_display_screenlet).SetOnClickListener(this);
             FindViewById(Resource.Id.asset_list_screenlet).SetOnClickListener(this);
+            FindViewById(Resource.Id.asset_display_screenlet).SetOnClickListener(this);
             FindViewById(Resource.Id.image_display_screenlet).SetOnClickListener(this);
         }
 
@@ -50,6 +51,9 @@ namespace ShowcaseAndroid
     				break;
                 case Resource.Id.asset_list_screenlet:
                     StartActivity(typeof(AssetListActivity));
+                    break;
+                case Resource.Id.asset_display_screenlet:
+                    StartActivity(typeof(AssetDisplayActivity));
                     break;
                 case Resource.Id.image_display_screenlet:
                     StartActivity(typeof(ImageDisplayActivity));
