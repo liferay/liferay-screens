@@ -25,7 +25,7 @@ namespace ShowcaseAndroid
             SetContentView(Resource.Layout.AudioDisplayView);
 
             AudioDisplayScreenlet audioDisplayScreenlet =
-                (AudioDisplayScreenlet)FindViewById(Resource.Id.audio_display_screenlet);
+                (AudioDisplayScreenlet) FindViewById(Resource.Id.audio_display_screenlet);
             audioDisplayScreenlet.Listener = this;
         }
 

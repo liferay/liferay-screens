@@ -20,11 +20,6 @@ namespace ShowcaseiOS.ViewController
             this.audioDisplayScreenlet.Delegate = this;
         }
 
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-        }
-
         /* IAssetDisplayScreenletDelegate */
 
         [Export("screenlet:onAssetResponse:")]

@@ -16,36 +16,35 @@ namespace ShowcaseiOS.ViewController
 
             this.videoDisplayScreenlet.ClassPK = 38943;
             this.videoDisplayScreenlet.ClassName = "com.liferay.document.library.kernel.model.DLFileEntry";
-		}
 
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
+            this.videoDisplayScreenlet.Delegate = this;
         }
 
-		[Export("screenlet:onAssetResponse:")]
-		public virtual void Screenlet(AssetDisplayScreenlet screenlet, Asset asset)
-		{
-			Debug.WriteLine($"Video display response: {asset}");
-		}
+        /* IAssetDisplayScreenletDelegate */
 
-		[Export("screenlet:onAssetError:")]
-		public virtual void Screenlet(AssetDisplayScreenlet screenlet, NSError error)
-		{
-			Debug.WriteLine($"Video display error: {error}");
-		}
+        [Export("screenlet:onAssetResponse:")]
+        public virtual void Screenlet(AssetDisplayScreenlet screenlet, Asset asset)
+        {
+        	Debug.WriteLine($"Video display response: {asset}");
+        }
 
-		[Export("screenlet:onConfigureScreenlet:onAsset:")]
-		public virtual void Screenlet(AssetDisplayScreenlet screenlet, BaseScreenlet childScreenlet, Asset asset)
-		{
-			Debug.WriteLine($"Configure Video display: {asset}");
-		}
+        [Export("screenlet:onAssetError:")]
+        public virtual void Screenlet(AssetDisplayScreenlet screenlet, NSError error)
+        {
+        	Debug.WriteLine($"Video display error: {error}");
+        }
 
-		[Export("screenlet:onAsset:")]
-		public virtual UIView ScreenletCustomAsset(AssetDisplayScreenlet screenlet, Asset asset)
-		{
-			return screenlet;
-		}
+        [Export("screenlet:onConfigureScreenlet:onAsset:")]
+        public virtual void Screenlet(AssetDisplayScreenlet screenlet, BaseScreenlet childScreenlet, Asset asset)
+        {
+        	Debug.WriteLine($"Configure Video display: {asset}");
+        }
+
+        [Export("screenlet:onAsset:")]
+        public virtual UIView ScreenletCustomAsset(AssetDisplayScreenlet screenlet, Asset asset)
+        {
+        	return screenlet;
+        }
     }
 }
 

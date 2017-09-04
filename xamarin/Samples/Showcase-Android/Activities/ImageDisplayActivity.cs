@@ -18,7 +18,7 @@ namespace ShowcaseAndroid
             SetContentView(Resource.Layout.ImageDisplayView);
 
             ImageDisplayScreenlet imageDisplayScreenlet =
-                (ImageDisplayScreenlet)FindViewById(Resource.Id.image_display_screenlet);
+                (ImageDisplayScreenlet) FindViewById(Resource.Id.image_display_screenlet);
             imageDisplayScreenlet.Listener = this;
 
             imageDisplayScreenlet.Load();

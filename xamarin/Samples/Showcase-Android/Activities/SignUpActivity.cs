@@ -15,7 +15,7 @@ namespace ShowcaseAndroid
             SetContentView(Resource.Layout.SignUpView);
 
             SignUpScreenlet signUpScreenlet =
-                (SignUpScreenlet)FindViewById(Resource.Id.sign_up_screenlet);
+                (SignUpScreenlet) FindViewById(Resource.Id.sign_up_screenlet);
             signUpScreenlet.Listener = this;
         }
 

@@ -16,7 +16,7 @@ namespace ShowcaseAndroid
             SetContentView(Resource.Layout.PdfDisplayView);
 
             PdfDisplayScreenlet pdfDisplayScreenlet = 
-                (PdfDisplayScreenlet)FindViewById(Resource.Id.pdf_display_screenlet);
+                (PdfDisplayScreenlet) FindViewById(Resource.Id.pdf_display_screenlet);
             pdfDisplayScreenlet.Listener = this;
         }
 

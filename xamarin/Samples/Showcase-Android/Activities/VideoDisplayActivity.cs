@@ -1,11 +1,9 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
 using Android.OS;
 using Android.Widget;
 using Com.Liferay.Mobile.Screens.Asset;
 using Com.Liferay.Mobile.Screens.Asset.Display;
 using Com.Liferay.Mobile.Screens.Dlfile.Display.Video;
-using Java.Lang;
 
 namespace ShowcaseAndroid
 {
@@ -17,8 +15,8 @@ namespace ShowcaseAndroid
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.VideoDisplayView);
 
-            VideoDisplayScreenlet videoDisplayScreenlet = 
-                (VideoDisplayScreenlet)FindViewById(Resource.Id.video_display_screenlet);
+            VideoDisplayScreenlet videoDisplayScreenlet =
+                (VideoDisplayScreenlet) FindViewById(Resource.Id.video_display_screenlet);
             videoDisplayScreenlet.Listener = this;
         }
 

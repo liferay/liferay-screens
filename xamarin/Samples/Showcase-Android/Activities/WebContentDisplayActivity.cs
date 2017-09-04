@@ -16,7 +16,7 @@ namespace ShowcaseAndroid
             SetContentView(Resource.Layout.WebContentDisplayView);
 
             WebContentDisplayScreenlet webContentDisplay = 
-                (WebContentDisplayScreenlet)FindViewById(Resource.Id.web_content_display_screenlet);
+                (WebContentDisplayScreenlet) FindViewById(Resource.Id.web_content_display_screenlet);
             webContentDisplay.Listener = this;
         }
 
