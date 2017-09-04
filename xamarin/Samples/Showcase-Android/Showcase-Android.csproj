@@ -118,7 +118,7 @@
     <Compile Include="Activities\WebContentDisplayActivity.cs" />
     <Compile Include="Activities\ImageDisplayActivity.cs" />
     <Compile Include="Activities\AssetListActivity.cs" />
-    <Compile Include="AssetDisplayActivity.cs" />
+    <Compile Include="Activities\AssetDisplayActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

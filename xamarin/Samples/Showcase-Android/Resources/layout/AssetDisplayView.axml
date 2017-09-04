@@ -8,5 +8,5 @@
         android:id="@+id/asset_display_screenlet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:entryId="liferay_image_display_asset_entry" />
+        app:entryId="@string/liferay_image_display_asset_entry" />
 </LinearLayout>
