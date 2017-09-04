@@ -8,7 +8,6 @@
         android:id="@+id/video_display_screenlet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cachePolicy="REMOTE_ONLY"
         app:className="@string/liferay_video_display_class_name"
         app:classPK="@string/liferay_video_display_class_pk" />
 </LinearLayout>

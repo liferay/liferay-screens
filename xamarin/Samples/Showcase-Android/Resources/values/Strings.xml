@@ -13,7 +13,7 @@
 	<string name="asset_list">Asset List</string>
 	<string name="asset_display">Asset Display</string>
 	<string name="image_display">Image Display</string>
-	<string name="pdf_display">PDF Display</string>
-	<string name="video_display">Video Display</string>
+	<string name="pdf_display">PDF Display</string>   
 	<string name="audio_display">Audio Display</string>
+	<string name="video_display">Video Display</string>
 </resources>
