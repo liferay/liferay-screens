@@ -18,36 +18,39 @@ namespace ShowcaseiOS.ViewController
             this.audioDisplayScreenlet.ClassName = "com.liferay.document.library.kernel.model.DLFileEntry";
 
             this.audioDisplayScreenlet.Delegate = this;
-		}
+        }
 
         public override void DidReceiveMemoryWarning()
         {
             base.DidReceiveMemoryWarning();
         }
 
-		[Export("screenlet:onAssetResponse:")]
-		public virtual void Screenlet(AssetDisplayScreenlet screenlet, Asset asset)
-		{
-			Debug.WriteLine($"Audio display response: {asset}");
-		}
+        /* IAssetDisplayScreenletDelegate */
 
-		[Export("screenlet:onAssetError:")]
-		public virtual void Screenlet(AssetDisplayScreenlet screenlet, NSError error)
-		{
-			Debug.WriteLine($"Audio display error: {error}");
-		}
+        [Export("screenlet:onAssetResponse:")]
+        public virtual void Screenlet(AssetDisplayScreenlet screenlet, Asset asset)
+        {
+            Debug.WriteLine($"Audio display response: {asset}");
+        }
 
-		[Export("screenlet:onConfigureScreenlet:onAsset:")]
-		public virtual void Screenlet(AssetDisplayScreenlet screenlet, BaseScreenlet childScreenlet, Asset asset)
-		{
-			Debug.WriteLine($"Configure Audio display: {asset}");
-		}
+        [Export("screenlet:onAssetError:")]
+        public virtual void Screenlet(AssetDisplayScreenlet screenlet, NSError error)
+        {
+        	Debug.WriteLine($"Audio display error: {error}");
+        }
 
-		[Export("screenlet:onAsset:")]
-		public virtual UIView ScreenletCustomAsset(AssetDisplayScreenlet screenlet, Asset asset)
-		{
-			return screenlet;
-		}
+        [Export("screenlet:onConfigureScreenlet:onAsset:")]
+        public virtual void Screenlet(AssetDisplayScreenlet screenlet, BaseScreenlet childScreenlet, Asset asset)
+        {
+        	Debug.WriteLine($"Configure Audio display: {asset}");
+        }
+
+        [Export("screenlet:onAsset:")]
+        public virtual UIView ScreenletCustomAsset(AssetDisplayScreenlet screenlet, Asset asset)
+        {
+            Debug.WriteLine($"Audio display custom asset: {asset.Attributes}");
+        	return screenlet;
+        }
     }
 }
 

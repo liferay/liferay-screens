@@ -19,25 +19,26 @@ namespace ShowcaseAndroid
     [Activity]
     public class AudioDisplayActivity : Activity, IAssetDisplayListener
     {
-        private AudioDisplayScreenlet audioDisplayScreenlet;
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.AudioDisplayView);
 
-            audioDisplayScreenlet = (AudioDisplayScreenlet)FindViewById(Resource.Id.audio_display_screenlet);
+            AudioDisplayScreenlet audioDisplayScreenlet =
+                (AudioDisplayScreenlet)FindViewById(Resource.Id.audio_display_screenlet);
             audioDisplayScreenlet.Listener = this;
         }
 
-		public void Error(Java.Lang.Exception p0, string p1)
-		{
-			System.Diagnostics.Debug.WriteLine($"Audio display error: {p0}");
-		}
+        /* IAssetDisplayListener */
 
-		public void OnRetrieveAssetSuccess(AssetEntry p0)
-		{
-			System.Diagnostics.Debug.WriteLine($"Audio display succes: {p0}");
-		}
+        public void Error(Java.Lang.Exception p0, string p1)
+        {
+            System.Diagnostics.Debug.WriteLine($"Audio display error: {p0.Message}");
+        }
+
+        public void OnRetrieveAssetSuccess(AssetEntry p0)
+        {
+            Toast.MakeText(this, "Audio display success: " + p0.EntryId, ToastLength.Short).Show();
+        }
     }
 }

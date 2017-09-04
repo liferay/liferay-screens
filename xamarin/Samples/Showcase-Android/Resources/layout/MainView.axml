@@ -54,7 +54,6 @@
                 android:text="@string/pdf_display"
                 style="@style/test_app_button" />
             <Button
-            <Button
                 android:id="@+id/audio_display_screenlet"
                 android:text="@string/audio_display"
                 style="@style/test_app_button" />
