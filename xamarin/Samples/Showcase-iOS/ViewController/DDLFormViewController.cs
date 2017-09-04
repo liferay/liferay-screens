@@ -20,11 +20,6 @@ namespace ShowcaseiOS.ViewController
             this.ddlFormScreenlet.Delegate = this;
         }
 
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-        }
-
         /* IDDLFormScreenletDelegate */
 
         [Export("screenlet:onFormLoaded:")]

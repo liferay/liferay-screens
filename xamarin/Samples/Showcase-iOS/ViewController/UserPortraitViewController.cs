@@ -27,11 +27,6 @@ namespace ShowcaseiOS.ViewController
             this.userPortraitScreenlet.LoadLoggedUserPortrait();
         }
 
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-        }
-
         /* IUserPortraitScreenletDelegate */
 
         [Export("screenlet:onUserPortraitError:")]

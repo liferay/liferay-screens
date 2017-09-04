@@ -21,11 +21,6 @@ namespace ShowcaseiOS.ViewController
             SetDefaultValues();
         }
 
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-        }
-
         /* IForgotPasswordScreenletDelegate */
 
         [Export("screenlet:onForgotPasswordError:")]

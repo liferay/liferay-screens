@@ -20,11 +20,6 @@ namespace ShowcaseiOS.ViewController
             this.imageDisplayScreenlet.Load();
         }
 
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-        }
-
         /* IFileDisplayScreenletDelegate */
 
         [Export("screenlet:onFileAssetError:")]

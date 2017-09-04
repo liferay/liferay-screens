@@ -19,11 +19,6 @@ namespace ShowcaseiOS.ViewController
             this.signUpScreenlet.Delegate = this;
         }
 
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-        }
-
         /* ISignUpScreenletDelegate */
 
         [Export("screenlet:onSignUpError:")]

@@ -22,11 +22,6 @@ namespace ShowcaseiOS.ViewController
             this.assetListScreenlet.Delegate = this;
         }
 
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-        }
-
         /* IAssetListScreenletDelegate */
 
         [Export("screenlet:onAssetListError:")]

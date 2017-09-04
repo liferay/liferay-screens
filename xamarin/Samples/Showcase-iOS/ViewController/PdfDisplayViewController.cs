@@ -20,11 +20,6 @@ namespace ShowcaseiOS.ViewController
             this.pdfDisplayScreenlet.Delegate = this;
 		}
 
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-        }
-
         /* IAssetDisplayScreenletDelegate */
 
         [Export("screenlet:onAssetResponse:")]

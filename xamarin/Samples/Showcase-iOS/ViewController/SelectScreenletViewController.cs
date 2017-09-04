@@ -36,11 +36,6 @@ namespace ShowcaseiOS.ViewController
 
             TableView.Source = new ScreenletsTableSource(screenlets, viewControllers, this);
         }
-
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-        }
     }
 }
 

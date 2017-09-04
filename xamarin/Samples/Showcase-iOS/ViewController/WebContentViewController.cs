@@ -20,11 +20,6 @@ namespace ShowcaseiOS.ViewController
             this.webContentDisplayScreenlet.Delegate = this;
         }
 
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-        }
-
         /* IWebContentDisplayScreenletDelegate */
 
         [Export("screenlet:onRecordContentResponse:")]
