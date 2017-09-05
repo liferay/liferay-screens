@@ -311,15 +311,25 @@ import Foundation
 
 	@discardableResult
 	open class func loadStoredCredentials() -> Bool {
+		return loadStoredCredentials(shouldLoadServer: false)
+	}
+
+	@discardableResult
+	open class func loadStoredCredentialsAndServer() -> Bool {
+		return loadStoredCredentials(shouldLoadServer: true)
+	}
+
+	private class func loadStoredCredentials(shouldLoadServer: Bool) -> Bool {
 		guard let storage = CredentialsStorage.createFromStoredAuthType() else {
 			return false
 		}
 
-		return loadStoredCredentials(storage)
+		return loadStoredCredentials(storage, shouldLoadServer: shouldLoadServer)
 	}
 
-	open class func loadStoredCredentials(_ storage: CredentialsStorage) -> Bool {
-		guard let result = storage.load() else {
+	@discardableResult
+	open class func loadStoredCredentials(_ storage: CredentialsStorage, shouldLoadServer: Bool = false) -> Bool {
+		guard let result = storage.load(shouldLoadServer: shouldLoadServer) else {
 			return false
 		}
 		guard result.session.server != nil else {
@@ -334,7 +344,6 @@ import Foundation
 
 		return true
 	}
-
 
 	// Deprecated. Will be removed in next version
 	open class func createSessionFromCurrentSession() -> LRSession? {

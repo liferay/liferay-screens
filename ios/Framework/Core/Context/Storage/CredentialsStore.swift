@@ -26,5 +26,6 @@ import UIKit
 	func storeCredentials(_ session: LRSession?, userAttributes: [String:AnyObject]?) -> Bool
 	func removeStoredCredentials() -> Bool
 	func loadStoredCredentials() -> Bool
+	func loadStoredCredentialsAndServer() -> Bool
 
 }
