@@ -19,7 +19,7 @@ namespace ShowcaseAndroid
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.DDLFormView);
 
-            ddlFormScreenlet = (DDLFormScreenlet)FindViewById(Resource.Id.ddl_form_screenlet);
+            ddlFormScreenlet = (DDLFormScreenlet) FindViewById(Resource.Id.ddl_form_screenlet);
             ddlFormScreenlet.Listener = this;
         }
 

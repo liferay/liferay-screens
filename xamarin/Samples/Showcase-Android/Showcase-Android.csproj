@@ -122,6 +122,7 @@
     <Compile Include="Activities\PdfDisplayActivity.cs" />
     <Compile Include="Activities\AudioDisplayActivity.cs" />
     <Compile Include="Activities\VideoDisplayActivity.cs" />
+    <Compile Include="Activities\ImageGalleryActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -145,6 +146,7 @@
     <AndroidResource Include="Resources\layout\PdfDisplayView.axml" />
     <AndroidResource Include="Resources\layout\VideoDisplayView.axml" />
     <AndroidResource Include="Resources\layout\AudioDisplayView.axml" />
+    <AndroidResource Include="Resources\layout\ImageGalleryView.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

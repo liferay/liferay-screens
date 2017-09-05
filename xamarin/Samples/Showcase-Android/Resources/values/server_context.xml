@@ -65,4 +65,8 @@
 
     <!-- ImageDisplayScreenlet values -->
     <string name="liferay_image_entry_id">54500</string>
+
+    <!-- ImageGalleryScreenlet values -->
+    <string name="liferay_image_gallery_folder_id">54469</string>
+    <string name="liferay_image_gallery_repository_id">20143</string>
 </resources>

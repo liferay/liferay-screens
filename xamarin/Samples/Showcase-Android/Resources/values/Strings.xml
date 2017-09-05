@@ -16,4 +16,5 @@
 	<string name="pdf_display">PDF Display</string>   
 	<string name="audio_display">Audio Display</string>
 	<string name="video_display">Video Display</string>
+	<string name="image_gallery">Image Gallery</string>
 </resources>

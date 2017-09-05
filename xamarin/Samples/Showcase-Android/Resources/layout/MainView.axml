@@ -61,6 +61,10 @@
                 android:id="@+id/video_display_screenlet"
                 android:text="@string/video_display"
                 style="@style/test_app_button" />
+            <Button
+                android:id="@+id/image_gallery_screenlet"
+                android:text="@string/image_gallery"
+                style="@style/test_app_button" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
