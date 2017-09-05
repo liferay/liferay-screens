@@ -185,6 +185,7 @@
     <InterfaceDefinition Include="Storyboard\PdfDisplayScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\AudioDisplayScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\VideoDisplayScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\ImageGalleryScreenlet.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -246,6 +247,10 @@
     <Compile Include="ViewController\VideoDisplayViewController.cs" />
     <Compile Include="ViewController\VideoDisplayViewController.designer.cs">
       <DependentUpon>VideoDisplayViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\ImageGalleryViewController.cs" />
+    <Compile Include="ViewController\ImageGalleryViewController.designer.cs">
+      <DependentUpon>ImageGalleryViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
