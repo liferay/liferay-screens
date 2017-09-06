@@ -62,6 +62,14 @@
     <Folder Include="FileDisplay\" />
     <Folder Include="Asset\Display\" />
     <Folder Include="Themes\Default\FileDisplay\" />
+    <Folder Include="Context\" />
+    <Folder Include="LRMobileSDK\" />
+    <Folder Include="Context\Storage\" />
+    <Folder Include="Comment\" />
+    <Folder Include="Comment\Display\" />
+    <Folder Include="Themes\Default\Comment\" />
+    <Folder Include="Comment\Add\" />
+    <Folder Include="Comment\List\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -136,6 +144,26 @@
     <ObjcBindingApiDefinition Include="Themes\Default\FileDisplay\VideoDisplayView_default.cs" />
     <ObjcBindingApiDefinition Include="FileDisplay\AudioDisplayScreenlet.cs" />
     <ObjcBindingApiDefinition Include="Themes\Default\FileDisplay\AudioDisplayView_default.cs" />
+    <ObjcBindingApiDefinition Include="Context\SessionContext.cs" />
+    <ObjcBindingApiDefinition Include="LRMobileSDK\LRAuthentication.cs" />
+    <ObjcBindingApiDefinition Include="LRMobileSDK\LRSession.cs" />
+    <ObjcBindingApiDefinition Include="Context\Storage\CredentialsStorage.cs" />
+    <ObjcBindingApiDefinition Include="Context\Storage\CredentialsStore.cs" />
+    <ObjcBindingApiDefinition Include="LRMobileSDK\LROAuth.cs" />
+    <ObjcBindingApiDefinition Include="LRMobileSDK\LROAuthConfig.cs" />
+    <ObjcBindingApiDefinition Include="Comment\Display\CommentDisplayScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Comment\Display\CommentDisplayScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Comment\Display\CommentDisplayViewModel.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Comment\CommentDisplayView_default.cs" />
+    <ObjcBindingApiDefinition Include="Models\Comment.cs" />
+    <ObjcBindingApiDefinition Include="Comment\Add\CommentAddScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Comment\Add\CommentAddScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Comment\Add\CommentAddViewModel.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Comment\CommentAddView_default.cs" />
+    <ObjcBindingApiDefinition Include="Comment\List\CommentListScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Comment\List\CommentListScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Comment\List\CommentListViewModel.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Comment\CommentListView_default.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />
