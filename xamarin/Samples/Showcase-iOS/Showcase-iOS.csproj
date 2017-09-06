@@ -186,6 +186,7 @@
     <InterfaceDefinition Include="Storyboard\AudioDisplayScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\VideoDisplayScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\ImageGalleryScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\CommentDisplayScreenlet.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -251,6 +252,10 @@
     <Compile Include="ViewController\ImageGalleryViewController.cs" />
     <Compile Include="ViewController\ImageGalleryViewController.designer.cs">
       <DependentUpon>ImageGalleryViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\CommentDisplayViewController.cs" />
+    <Compile Include="ViewController\CommentDisplayViewController.designer.cs">
+      <DependentUpon>CommentDisplayViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
