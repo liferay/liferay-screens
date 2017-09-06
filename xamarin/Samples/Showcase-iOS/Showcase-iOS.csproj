@@ -148,7 +148,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="LiferayScreens_iOS">
-      <HintPath>packages\LiferayScreens.0.1.0-beta5\lib\Xamarin.iOS10\LiferayScreens_iOS.dll</HintPath>
+      <HintPath>packages\LiferayScreens.0.1.0-beta6\lib\Xamarin.iOS10\LiferayScreens_iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
