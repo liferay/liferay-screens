@@ -139,10 +139,24 @@ public class PortletConfiguration {
 				}
 			}
 
+			for (Pair<Integer, String> pairJsName : localRawJs) {
+				String content = loadLocalContent(pairJsName.first);
+				if (!content.isEmpty()) {
+					allScripts.add(new JsScript(pairJsName.second, content));
+				}
+			}
+
 			for (String css : localCss) {
 				String content = loadLocalContent(css);
 				if (!content.isEmpty()) {
 					allScripts.add(new CssScript(css, loadLocalContent(css)));
+				}
+			}
+
+			for (Pair<Integer, String> pairCssName : localRawCss) {
+				String content = loadLocalContent(pairCssName.first);
+				if (!content.isEmpty()) {
+					allScripts.add(new CssScript(pairCssName.second, content));
 				}
 			}
 
@@ -154,22 +168,8 @@ public class PortletConfiguration {
 				allScripts.add(new RemoteCssScript(rCss, rCss));
 			}
 
-			for (Pair<Integer, String> pairCssName : localRawCss) {
-				String content = loadLocalContent(pairCssName.first);
-				if (!content.isEmpty()) {
-					allScripts.add(new CssScript(pairCssName.second, content));
-				}
-			}
-
-			for (Pair<Integer, String> pairJsName : localRawJs) {
-				String content = loadLocalContent(pairJsName.first);
-				if (!content.isEmpty()) {
-					allScripts.add(new JsScript(pairJsName.second, content));
-				}
-			}
-
-			return new PortletConfiguration(portletUrl, allScripts, webType,
-				observer, isCordovaEnabled);
+			return new PortletConfiguration(portletUrl, allScripts, webType, observer,
+				isCordovaEnabled);
 		}
 
 		private String loadLocalContent(String fileName) {
