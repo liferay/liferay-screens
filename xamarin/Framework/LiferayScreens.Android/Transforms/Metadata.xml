@@ -6,7 +6,6 @@
   <!-- We must change visibility on interface SimpleFileDialogListener-->
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']/class[@name='SelectFileDialog']"/>
 
-  <remove-node path="/api/package[@name='com.liferay.mobile.screens.rating']/class[@name='RatingScreenlet']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.blogs']/class[@name='BlogsEntryDisplayScreenlet']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.auth.login']/class[@name='LoginView']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.base.interactor']/class[@name='BaseInteractor']"/>
@@ -195,5 +194,13 @@
   <!-- Corrections for WebContentListScreenlet-->
   <remove-node  path="/api/package[@name='com.liferay.mobile.screens.webcontent.list']
         /class[@name='WebContentListScreenlet']
+        /method[@name='createInteractor']"/>
+
+  <!-- Corrections for RatingScreenlet-->
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.rating']
+        /class[@name='RatingScreenlet']
+        /method[@name='onUserAction']"/>
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.rating']
+        /class[@name='RatingScreenlet']
         /method[@name='createInteractor']"/>
 </metadata>
