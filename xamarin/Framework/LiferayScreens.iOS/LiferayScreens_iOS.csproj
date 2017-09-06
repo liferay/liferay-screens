@@ -72,6 +72,8 @@
     <Folder Include="Comment\List\" />
     <Folder Include="WebContent\Display\" />
     <Folder Include="WebContent\List\" />
+    <Folder Include="Rating\" />
+    <Folder Include="Themes\Default\Rating\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -171,6 +173,14 @@
     <ObjcBindingApiDefinition Include="Models\WebContent.cs" />
     <ObjcBindingApiDefinition Include="Themes\Default\WebContent\WebContentListTableView.cs" />
     <ObjcBindingApiDefinition Include="Themes\Default\WebContent\WebContentListView_default.cs" />
+    <ObjcBindingApiDefinition Include="Rating\RatingScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Rating\RatingScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Rating\RatingViewModel.cs" />
+    <ObjcBindingApiDefinition Include="Models\RatingEntry.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Rating\RatingView_default_stars.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Rating\RatingView_default_like.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Rating\RatingView_default_emojis.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Rating\RatingView_default_thumbs.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />
