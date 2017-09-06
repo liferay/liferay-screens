@@ -11,14 +11,14 @@
 * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 * details.
 */
-
 import Foundation
 
 @objc public enum WebType: Int {
 	case liferayAuthenticated, other
 }
 
-@objc public class WebScreenletConfiguration: NSObject {
+@objc(WebScreenletConfiguration)
+public class WebScreenletConfiguration: NSObject {
 	public let url: String
 	public let scripts: [InjectableScript]
 	public let isCordovaEnabled: Bool
@@ -32,7 +32,7 @@ import Foundation
 	}
 }
 
-@objc
+@objc(WebScreenletConfigurationBuilder)
 public class WebScreenletConfigurationBuilder: NSObject {
 	let url: String
 	var localJs: [String]

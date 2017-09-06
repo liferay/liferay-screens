@@ -18,7 +18,8 @@ import Foundation
 	import LROAuth
 #endif
 
-@objc open class SessionContext: NSObject {
+@objc(SessionContext)
+open class SessionContext: NSObject {
 
 	open static var currentContext: SessionContext?
 	open static var challengeResolver: ChallengeResolver?

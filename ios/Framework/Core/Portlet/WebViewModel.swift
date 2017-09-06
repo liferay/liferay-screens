@@ -13,7 +13,9 @@
 */
 import UIKit
 
-@objc public protocol WebViewModel {
+
+@objc(WebViewModel)
+public protocol WebViewModel {
 
 	/// Whether or not it should show log messages
 	var isLoggingEnabled: Bool { get set }

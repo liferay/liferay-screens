@@ -11,10 +11,11 @@
 * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 * details.
 */
-
 import Foundation
 
-@objc public protocol InjectableScript {
+
+@objc(InjectableScript)
+public protocol InjectableScript {
 	var name: String { get }
 	var content: String { get }
 }
