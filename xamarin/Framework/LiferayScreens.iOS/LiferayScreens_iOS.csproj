@@ -70,6 +70,7 @@
     <Folder Include="Themes\Default\Comment\" />
     <Folder Include="Comment\Add\" />
     <Folder Include="Comment\List\" />
+    <Folder Include="WebContent\Display\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -114,9 +115,6 @@
     <ObjcBindingApiDefinition Include="UserPortrait\UserPortraitScreenletDelegate.cs" />
     <ObjcBindingApiDefinition Include="UserPortrait\UserPortraitViewModel.cs" />
     <ObjcBindingApiDefinition Include="Models\User.cs" />
-    <ObjcBindingApiDefinition Include="WebContent\WebContentDisplayScreenlet.cs" />
-    <ObjcBindingApiDefinition Include="WebContent\WebContentDisplayDelegate.cs" />
-    <ObjcBindingApiDefinition Include="WebContent\WebContentDisplayViewModel.cs" />
     <ObjcBindingApiDefinition Include="Asset\List\AssetListScreenlet.cs" />
     <ObjcBindingApiDefinition Include="Asset\List\AssetListScreenletDelegate.cs" />
     <ObjcBindingApiDefinition Include="Themes\Default\ImageGallery\ImageGalleryView_default.cs" />
@@ -164,6 +162,9 @@
     <ObjcBindingApiDefinition Include="Comment\List\CommentListScreenletDelegate.cs" />
     <ObjcBindingApiDefinition Include="Comment\List\CommentListViewModel.cs" />
     <ObjcBindingApiDefinition Include="Themes\Default\Comment\CommentListView_default.cs" />
+    <ObjcBindingApiDefinition Include="WebContent\Display\WebContentDisplayDelegate.cs" />
+    <ObjcBindingApiDefinition Include="WebContent\Display\WebContentDisplayScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="WebContent\Display\WebContentDisplayViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />
