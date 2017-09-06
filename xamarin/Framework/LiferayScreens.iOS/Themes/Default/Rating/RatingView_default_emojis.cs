@@ -6,7 +6,7 @@ using System;
 namespace LiferayScreens
 {
     // @interface RatingView_default_emojis : BaseScreenletView <RatingViewModel>
-    [BaseType(typeof(BaseScreenletView), Name = "_TtC14LiferayScreens25RatingView_default_emojis")]
+    [BaseType(typeof(BaseScreenletView))]
     interface RatingView_default_emojis : IRatingViewModel
     {
         // @property (readonly, nonatomic) int32_t defaultRatingsGroupCount;

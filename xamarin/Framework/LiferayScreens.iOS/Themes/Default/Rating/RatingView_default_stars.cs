@@ -6,7 +6,7 @@ using System;
 namespace LiferayScreens
 {
     // @interface RatingView_default_stars : BaseScreenletView <RatingViewModel>
-    [BaseType(typeof(BaseScreenletView), Name = "_TtC14LiferayScreens24RatingView_default_stars")]
+    [BaseType(typeof(BaseScreenletView))]
     interface RatingView_default_stars : IRatingViewModel
     {
         // @property (nonatomic) int32_t defaultRatingsGroupCount;

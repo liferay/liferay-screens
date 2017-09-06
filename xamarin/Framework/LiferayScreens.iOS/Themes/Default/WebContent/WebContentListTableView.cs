@@ -6,7 +6,7 @@ using UIKit;
 namespace LiferayScreens
 {
     // @interface WebContentListTableView : BaseListTableView
-    [BaseType(typeof(BaseListTableView), Name = "_TtC14LiferayScreens23WebContentListTableView")]
+    [BaseType(typeof(BaseListTableView))]
     interface WebContentListTableView
     {
         // -(void)doFillLoadedCellWithRow:(NSInteger)row cell:(UITableViewCell * _Nonnull)cell object:(id _Nonnull)object;
