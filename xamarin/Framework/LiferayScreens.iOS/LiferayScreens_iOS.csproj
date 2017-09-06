@@ -71,6 +71,7 @@
     <Folder Include="Comment\Add\" />
     <Folder Include="Comment\List\" />
     <Folder Include="WebContent\Display\" />
+    <Folder Include="WebContent\List\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -162,9 +163,14 @@
     <ObjcBindingApiDefinition Include="Comment\List\CommentListScreenletDelegate.cs" />
     <ObjcBindingApiDefinition Include="Comment\List\CommentListViewModel.cs" />
     <ObjcBindingApiDefinition Include="Themes\Default\Comment\CommentListView_default.cs" />
-    <ObjcBindingApiDefinition Include="WebContent\Display\WebContentDisplayDelegate.cs" />
+    <ObjcBindingApiDefinition Include="WebContent\Display\WebContentDisplayScreenletDelegate.cs" />
     <ObjcBindingApiDefinition Include="WebContent\Display\WebContentDisplayScreenlet.cs" />
     <ObjcBindingApiDefinition Include="WebContent\Display\WebContentDisplayViewModel.cs" />
+    <ObjcBindingApiDefinition Include="WebContent\List\WebContentListScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="WebContent\List\WebContentListScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Models\WebContent.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\WebContent\WebContentListTableView.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\WebContent\WebContentListView_default.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />
