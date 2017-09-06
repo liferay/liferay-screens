@@ -6,13 +6,10 @@
   <!-- We must change visibility on interface SimpleFileDialogListener-->
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']/class[@name='SelectFileDialog']"/>
 
-  <remove-node path="/api/package[@name='com.liferay.mobile.screens.comment.display']/class[@name='CommentDisplayScreenlet']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.rating']/class[@name='RatingScreenlet']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.blogs']/class[@name='BlogsEntryDisplayScreenlet']" />
-  <remove-node path="/api/package[@name='com.liferay.mobile.screens.comment.add']/class[@name='CommentAddScreenlet']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.auth.login']/class[@name='LoginView']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.base.interactor']/class[@name='BaseInteractor']"/>
-  <remove-node path="/api/package[@name='com.liferay.mobile.screens.comment.list']/class[@name='CommentListScreenlet']"/>
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.list']/class[@name='DDLListScreenlet']"/>
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.webcontent.list']/class[@name='WebContentListScreenlet']"/>
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.portlet']/class[@name='PortletDisplayScreenlet']"/>
@@ -170,5 +167,29 @@
         /method[@name='onUserAction']"/>
   <remove-node  path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.audio']
         /class[@name='AudioDisplayScreenlet']
+        /method[@name='createInteractor']"/>
+
+  <!-- Corrections for CommentDisplayScreenlet-->
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.comment.display']
+        /class[@name='CommentDisplayScreenlet']
+        /method[@name='onUserAction']"/>
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.comment.display']
+        /class[@name='CommentDisplayScreenlet']
+        /method[@name='createInteractor']"/>
+
+  <!-- Corrections for CommentAddScreenlet-->
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.comment.add']
+        /class[@name='CommentAddScreenlet']
+        /method[@name='onUserAction']"/>
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.comment.add']
+        /class[@name='CommentAddScreenlet']
+        /method[@name='createInteractor']"/>
+
+  <!-- Corrections for CommentListScreenlet-->
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.comment.list']
+        /class[@name='CommentListScreenlet']
+        /method[@name='onUserAction']"/>
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.comment.list']
+        /class[@name='CommentListScreenlet']
         /method[@name='createInteractor']"/>
 </metadata>
