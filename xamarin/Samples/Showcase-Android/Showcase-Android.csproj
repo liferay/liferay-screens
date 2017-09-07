@@ -125,6 +125,7 @@
     <Compile Include="Activities\ImageGalleryActivity.cs" />
     <Compile Include="Activities\CommentDisplayActivity.cs" />
     <Compile Include="Activities\CommentAddActivity.cs" />
+    <Compile Include="Activities\CommentListActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -151,6 +152,7 @@
     <AndroidResource Include="Resources\layout\ImageGalleryView.axml" />
     <AndroidResource Include="Resources\layout\CommentDisplayView.axml" />
     <AndroidResource Include="Resources\layout\CommentAddView.axml" />
+    <AndroidResource Include="Resources\layout\CommentListView.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
