@@ -10,7 +10,6 @@
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.auth.login']/class[@name='LoginView']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.base.interactor']/class[@name='BaseInteractor']"/>
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.list']/class[@name='DDLListScreenlet']"/>
-  <remove-node path="/api/package[@name='com.liferay.mobile.screens.portlet']/class[@name='PortletDisplayScreenlet']"/>
 
   <!-- Corrections BooleanField-->
   <remove-node  path="/api/package[@name='com.liferay.mobile.screens.ddl.model']
@@ -202,5 +201,13 @@
         /method[@name='onUserAction']"/>
   <remove-node  path="/api/package[@name='com.liferay.mobile.screens.rating']
         /class[@name='RatingScreenlet']
+        /method[@name='createInteractor']"/>
+
+  <!-- Corrections for PortletDisplayScreenlet-->
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.portlet']
+        /class[@name='PortletDisplayScreenlet']
+        /method[@name='onUserAction']"/>
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.portlet']
+        /class[@name='PortletDisplayScreenlet']
         /method[@name='createInteractor']"/>
 </metadata>
