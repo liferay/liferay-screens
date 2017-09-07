@@ -188,6 +188,7 @@
     <InterfaceDefinition Include="Storyboard\ImageGalleryScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\CommentDisplayScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\CommentAddScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\CommentListScreenlet.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -261,6 +262,10 @@
     <Compile Include="ViewController\CommentAddViewController.cs" />
     <Compile Include="ViewController\CommentAddViewController.designer.cs">
       <DependentUpon>CommentAddViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\CommentListViewController.cs" />
+    <Compile Include="ViewController\CommentListViewController.designer.cs">
+      <DependentUpon>CommentListViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="243">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <scene sceneID="242">
+            <objects>
+                <viewController id="243" sceneMemberID="viewController" customClass="CommentListViewController" storyboardIdentifier="CommentListViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="240"/>
+                        <viewControllerLayoutGuide type="bottom" id="241"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="244">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="361" translatesAutoresizingMaskIntoConstraints="NO" customClass="CommentListScreenlet">
+                                <rect key="frame" x="20" y="90" width="374" height="626"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint id="364" firstAttribute="width" constant="374"/>
+                                    <constraint id="365" firstAttribute="height" constant="626"/>
+                                    <constraint id="991" firstItem="361" firstAttribute="width" constant="374"/>
+                                    <constraint id="992" firstItem="361" firstAttribute="height" constant="626"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint id="362" firstItem="244" firstAttribute="trailing" secondItem="361" secondAttribute="trailing" constant="20"/>
+                            <constraint id="363" firstItem="244" firstAttribute="bottom" secondItem="361" secondAttribute="bottom" constant="20"/>
+                            <constraint id="370" firstItem="361" firstAttribute="top" secondItem="240" secondAttribute="bottom" constant="26"/>
+                            <constraint id="990" firstItem="361" firstAttribute="centerX" secondItem="244" secondAttribute="centerX"/>
+                            <constraint id="993" firstItem="361" firstAttribute="leading" secondItem="244" secondAttribute="leadingMargin" constant="20"/>
+                            <constraint id="994" firstItem="244" firstAttribute="trailingMargin" secondItem="361" secondAttribute="trailing" constant="20"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <navigationItem title="CommentListScreenlet" id="360" key="navigationItem"/>
+                    <connections>
+                        <outlet property="commentListScreenlet" destination="361" id="name-outlet-361"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="245" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="446" y="124"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="img/Liferay-Screens.png" width="124" height="144"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedScreenMetrics key="destination" type="retina55"/>
+    </simulatedMetricsContainer>
+</document>
