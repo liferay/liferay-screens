@@ -4,15 +4,14 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Portlet Display View Controller-->
+        <!--Web View Controller-->
         <scene sceneID="Asx-uz-Ru6">
             <objects>
-                <viewController id="W3W-Y8-ktr" customClass="PortletDisplayViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="W3W-Y8-ktr" customClass="WebViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ksz-H2-bvk"/>
                         <viewControllerLayoutGuide type="bottom" id="nXg-yU-4WU"/>
@@ -21,7 +20,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eoX-mJ-Wo5" customClass="PortletDisplayScreenlet">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eoX-mJ-Wo5" customClass="WebScreenlet">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
@@ -38,7 +37,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="screenlet" destination="eoX-mJ-Wo5" id="kbs-QL-TME"/>
+                        <outlet property="screenlet" destination="eoX-mJ-Wo5" id="wHA-L8-Fkv"/>
                         <segue destination="bD1-1Q-8XE" kind="show" identifier="detail" id="5Q6-T7-m0e"/>
                     </connections>
                 </viewController>
@@ -46,10 +45,10 @@
             </objects>
             <point key="canvasLocation" x="-7.2000000000000002" y="124.58770614692655"/>
         </scene>
-        <!--Portlet Detail View Controller-->
+        <!--Web Detail View Controller-->
         <scene sceneID="k8W-yu-Lr9">
             <objects>
-                <viewController id="bD1-1Q-8XE" customClass="PortletDetailViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bD1-1Q-8XE" customClass="WebDetailViewController" customModule="LiferayScreens_Showcase_Swift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="khZ-Hz-HvL"/>
                         <viewControllerLayoutGuide type="bottom" id="eQJ-F7-wPO"/>

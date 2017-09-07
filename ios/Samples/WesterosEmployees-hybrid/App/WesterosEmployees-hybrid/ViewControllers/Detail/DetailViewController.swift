@@ -19,7 +19,7 @@ class DetailViewController: CardViewController,
 	
 	//MARK: Outlets
 
-    @IBOutlet weak var portletDisplayScreenlet: PortletDisplayScreenlet!
+    @IBOutlet weak var webScreenlet: WebScreenlet!
     
 	@IBOutlet weak var cardDeck: CardDeckView? {
 		didSet {
@@ -38,21 +38,21 @@ class DetailViewController: CardViewController,
 	//MARK: View methods
 
 	@IBAction func goBackButtonClicked() {
-        portletDisplayScreenlet.themeName = "westeros"
+        webScreenlet.themeName = "westeros"
 
 		dismiss(animated: true, completion: nil)
 	}
 
     func load(file: String, id: String) {
-        let portletConfiguration = PortletConfiguration.Builder(portletUrl: "/web/westeros-hybrid/detail?id=\(id)").addCss(localFile: file).addJs(localFile: file).load()
-        portletDisplayScreenlet.configuration = portletConfiguration
-        portletDisplayScreenlet.load()
+        let webScreenletConfiguration = WebScreenletConfiguration.Builder(url: "/web/westeros-hybrid/detail?id=\(id)").addCss(localFile: file).addJs(localFile: file).load()
+        webScreenlet.configuration = webScreenletConfiguration
+        webScreenlet.load()
     }
 	
 	//MARK: CardViewController
 	
 	override func pageWillDisappear() {
-        portletDisplayScreenlet.themeName = "westeros"
+        webScreenlet.themeName = "westeros"
         
 		//Hide comment card
 		self.cardDeck?.cards[safe: 0]?.changeToState(.minimized)

@@ -14,13 +14,12 @@
 import UIKit
 import LiferayScreens
 
-
-class PortletDisplayViewController: UIViewController, PortletDisplayScreenletDelegate {
+class WebViewController: UIViewController, WebScreenletDelegate {
 
 
 	//MARK: IBOutlet
 
-	@IBOutlet var screenlet: PortletDisplayScreenlet? {
+	@IBOutlet var screenlet: WebScreenlet? {
 		didSet {
 			screenlet?.delegate = self
 			screenlet?.presentingViewController = self
@@ -32,9 +31,9 @@ class PortletDisplayViewController: UIViewController, PortletDisplayScreenletDel
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		let portletUrl = LiferayServerContext.stringPropertyForKey("portletDisplayUrl")
+		let url = LiferayServerContext.stringPropertyForKey("WebUrl")
 
-		let configuration = PortletConfiguration.Builder(portletUrl: portletUrl)
+		let configuration = WebScreenletConfiguration.Builder(url: url)
 				.set(webType: .liferayAuthenticated)
 				.enableCordova()
 				.addCss(localFile: "bigger_pagination")
@@ -47,24 +46,24 @@ class PortletDisplayViewController: UIViewController, PortletDisplayScreenletDel
 	}
 
 
-	//MARK: PortletDisplayScreenletDelegate
+	//MARK: WebScreenletDelegate
 
-	func onPortletPageLoaded(_ screenlet: PortletDisplayScreenlet, url: String) {
+	func onWbPageLoaded(_ screenlet: WebScreenlet, url: String) {
 		
 	}
 
-	func screenlet(_ screenlet: PortletDisplayScreenlet, onPortletError error: NSError) {
+	func screenlet(_ screenlet: WebScreenlet, onError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
 
-	func screenlet(_ screenlet: PortletDisplayScreenlet, onScriptMessageNamespace namespace: String, onScriptMessage message: String) {
+	func screenlet(_ screenlet: WebScreenlet, onScriptMessageNamespace namespace: String, onScriptMessage message: String) {
 
 		//We can check what is the name of the message handler responsible for the action
 		performSegue(withIdentifier: "detail", sender: message)
 	}
 
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-		let vc = segue.destination as? PortletDetailViewController
+		let vc = segue.destination as? WebDetailViewController
 		vc?.url = "http://" + (sender as! String)
 	}
 }

@@ -14,7 +14,7 @@
 import UIKit
 import WebKit
 
-class PortletDetailViewController: UIViewController {
+class WebDetailViewController: UIViewController {
 
 
 	//MARK: IBOutlet

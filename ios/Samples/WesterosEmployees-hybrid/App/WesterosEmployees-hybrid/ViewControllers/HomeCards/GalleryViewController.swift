@@ -14,7 +14,7 @@
 import UIKit
 import LiferayScreens
 
-class GalleryViewController: CardViewController, PortletDisplayScreenletDelegate,
+class GalleryViewController: CardViewController, WebScreenletDelegate,
 		CardDeckDataSource, CardDeckDelegate, ImageGalleryScreenletDelegate {
 
 	var selectedImageEntry: String?
@@ -32,11 +32,11 @@ class GalleryViewController: CardViewController, PortletDisplayScreenletDelegate
 	
 	//MARK: Outlets
 
-    @IBOutlet weak var portletDisplayScreenlet: PortletDisplayScreenlet! {
+    @IBOutlet weak var webScreenlet: WebScreenlet! {
         didSet {
-            let portletConfiguration = PortletConfiguration.Builder(portletUrl: "/web/westeros-hybrid/gallery").addCss(localFile: "gallery").addJs(localFile: "gallery").load()
-            portletDisplayScreenlet.configuration = portletConfiguration
-            portletDisplayScreenlet.delegate = self
+            let webScreenletConfiguration = WebScreenletConfiguration.Builder(url: "/web/westeros-hybrid/gallery").addCss(localFile: "gallery").addJs(localFile: "gallery").load()
+            webScreenlet.configuration = webScreenletConfiguration
+            webScreenlet.delegate = self
         }
     }
 	
@@ -55,14 +55,14 @@ class GalleryViewController: CardViewController, PortletDisplayScreenletDelegate
 		hideUploadCard()
 	}
 
-    func loadPortletScreenlet() {
-        portletDisplayScreenlet.load()
+    func loadWebScreenlet() {
+        webScreenlet.load()
     }
     
     //MARK: CardViewController
     override func pageWillAppear() {
         if !loaded {
-            loadPortletScreenlet()
+            loadWebScreenlet()
             loaded = true
         }
     }
@@ -164,12 +164,12 @@ class GalleryViewController: CardViewController, PortletDisplayScreenletDelegate
     }
     
     func screenlet(_ screenlet: ImageGalleryScreenlet, onImageUploaded image: ImageEntry) {
-        loadPortletScreenlet()
+        loadWebScreenlet()
     }
 
     
-    //MARK: PortletScreenletDelegate
-    func screenlet(_ screenlet: PortletDisplayScreenlet,
+    //MARK: WebScreenletDelegate
+    func screenlet(_ screenlet: WebScreenlet,
                    onScriptMessageNamespace namespace: String,
                    onScriptMessage message: String) {
         selectedImageEntry = message

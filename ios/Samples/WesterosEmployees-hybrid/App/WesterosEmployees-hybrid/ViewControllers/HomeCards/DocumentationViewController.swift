@@ -14,7 +14,7 @@
 import UIKit
 import LiferayScreens
 
-class DocumentationViewController: CardViewController, PortletDisplayScreenletDelegate {
+class DocumentationViewController: CardViewController, WebScreenletDelegate {
 
 	var selectedFileEntry: String?
 
@@ -22,7 +22,7 @@ class DocumentationViewController: CardViewController, PortletDisplayScreenletDe
 
 	//MARK: Outlets
     
-    @IBOutlet weak var portletDisplayScreenlet: PortletDisplayScreenlet!
+    @IBOutlet weak var webScreenlet: WebScreenlet!
 
 	//MARK: Init methods
 
@@ -30,23 +30,23 @@ class DocumentationViewController: CardViewController, PortletDisplayScreenletDe
 		self.init(nibName: "DocumentationViewController", bundle: nil)
 	}
 
-    func loadPortletScreenlet() {
-        let portletConfiguration = PortletConfiguration.Builder(portletUrl: "/web/westeros-hybrid/documents").addCss(localFile: "docs").addJs(localFile: "docs").load()
-        portletDisplayScreenlet.configuration = portletConfiguration
-        portletDisplayScreenlet.load()
-        portletDisplayScreenlet.delegate = self
+    func loadWebScreenlet() {
+        let webScreenletConfiguration = WebScreenletConfiguration.Builder(url: "/web/westeros-hybrid/documents").addCss(localFile: "docs").addJs(localFile: "docs").load()
+        webScreenlet.configuration = webScreenletConfiguration
+        webScreenlet.load()
+        webScreenlet.delegate = self
     }
     
     //MARK: CardViewController
     override func pageWillAppear() {
         if !loaded {
-            loadPortletScreenlet()
+            loadWebScreenlet()
             loaded = true
         }
     }
 
-    //MARK: PortletScreenletDelegate
-    func screenlet(_ screenlet: PortletDisplayScreenlet,
+    //MARK: WebScreenletDelegate
+    func screenlet(_ screenlet: WebScreenlet,
                    onScriptMessageNamespace namespace: String,
                    onScriptMessage message: String) {
         selectedFileEntry = message

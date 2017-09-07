@@ -62,7 +62,7 @@
                                             <action selector="userButtonClicked" destination="sUr-X0-jI8" eventType="touchUpInside" id="RiS-eZ-Ub0"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDy-iV-fag" customClass="PortletDisplayScreenlet">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDy-iV-fag" customClass="WebScreenlet">
                                         <rect key="frame" x="0.0" y="162" width="375" height="295"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
@@ -106,11 +106,11 @@
                     <connections>
                         <outlet property="cardDeck" destination="kjo-Hh-Kwh" id="yml-ve-rfy"/>
                         <outlet property="latestChangesLabel" destination="YLw-JF-ukC" id="5jw-nf-E1I"/>
-                        <outlet property="portletDisplayScreenlet" destination="KDy-iV-fag" id="cEt-O3-yYI"/>
                         <outlet property="userNameLabel" destination="hgB-N5-DkM" id="aTb-8Y-kKa"/>
                         <outlet property="userPortraitScreenlet" destination="8ZJ-Uu-WlF" id="VJ6-ba-rKQ"/>
                         <outlet property="userProfileButton" destination="IPM-B1-9qN" id="qea-eV-Cwm"/>
                         <outlet property="userView" destination="PxX-Vo-WhH" id="h0j-Ca-JJQ"/>
+                        <outlet property="webScreenlet" destination="KDy-iV-fag" id="80m-uQ-Uee"/>
                         <segue destination="GmK-7W-ZSi" kind="show" identifier="tour" id="UMz-We-zVk"/>
                         <segue destination="Fcc-Vc-T92" kind="show" identifier="login" action="showDetailViewController:sender:" id="b2q-Sj-PM5"/>
                         <segue destination="d4M-wM-mNK" kind="show" identifier="user_profile" id="DhX-Ga-Sal"/>

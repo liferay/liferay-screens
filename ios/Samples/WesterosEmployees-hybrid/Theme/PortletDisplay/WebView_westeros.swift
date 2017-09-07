@@ -15,7 +15,7 @@ import Foundation
 import LiferayScreens
 
 
-open class PortletDisplayView_westeros: PortletDisplayView_default {
+open class WebView_westeros: WebView_default {
     
     override open func createProgressPresenter() -> ProgressPresenter {
         return WesterosProgressPresenter()
