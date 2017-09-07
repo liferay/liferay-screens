@@ -5,7 +5,7 @@
 	android:layout_height="match_parent"
 	>
 
-	<com.liferay.mobile.screens.portlet.PortletDisplayScreenlet
+	<com.liferay.mobile.screens.web.WebScreenlet
 		android:id="@+id/portlet_user_profile"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"

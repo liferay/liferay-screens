@@ -14,10 +14,9 @@ import com.liferay.mobile.screens.imagegallery.BaseDetailUploadView;
 import com.liferay.mobile.screens.imagegallery.ImageGalleryListener;
 import com.liferay.mobile.screens.imagegallery.ImageGalleryScreenlet;
 import com.liferay.mobile.screens.imagegallery.model.ImageEntry;
-import com.liferay.mobile.screens.portlet.PortletConfiguration;
-import com.liferay.mobile.screens.portlet.PortletDisplayListener;
-import com.liferay.mobile.screens.portlet.PortletDisplayScreenlet;
-import com.liferay.mobile.screens.portlet.util.InjectableScript;
+import com.liferay.mobile.screens.web.WebScreenletConfiguration;
+import com.liferay.mobile.screens.web.WebListener;
+import com.liferay.mobile.screens.web.WebScreenlet;
 import com.liferay.mobile.screens.westerosemployees_hybrid.R;
 import com.liferay.mobile.screens.westerosemployees_hybrid.utils.CardState;
 import com.tbruyelle.rxpermissions.RxPermissions;
@@ -30,12 +29,12 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 /**
  * @author Víctor Galán Grande
  */
-public class GalleryCard extends Card implements ImageGalleryListener, PortletDisplayListener {
+public class GalleryCard extends Card implements ImageGalleryListener, WebListener {
 
 	private ImageGalleryScreenlet imageGalleryScreenlet;
 	private BaseDetailUploadView uploadDetailView;
 	private Card uploadImageCard;
-	PortletDisplayScreenlet portletDisplayScreenlet;
+	WebScreenlet webScreenlet;
 	private boolean loaded;
 
 	public GalleryCard(Context context) {
@@ -65,15 +64,15 @@ public class GalleryCard extends Card implements ImageGalleryListener, PortletDi
 	}
 
 	private void loadGallery() {
-		PortletConfiguration configuration =
-			new PortletConfiguration.Builder("/web/westeros-hybrid/gallery").addRawCss(R.raw.gallery_portlet_css,
+		WebScreenletConfiguration configuration =
+			new WebScreenletConfiguration.Builder("/web/westeros-hybrid/gallery").addRawCss(R.raw.gallery_portlet_css,
 				"gallery_portlet_css.css").addRawJs(R.raw.gallery_portlet_js, "gallery_portlet_js.js").load();
 
-		portletDisplayScreenlet = (PortletDisplayScreenlet) findViewById(R.id.portlet_gallery);
+		webScreenlet = (WebScreenlet) findViewById(R.id.portlet_gallery);
 
-		portletDisplayScreenlet.setPortletConfiguration(configuration);
-		portletDisplayScreenlet.load();
-		portletDisplayScreenlet.setListener(this);
+		webScreenlet.setWebScreenletConfiguration(configuration);
+		webScreenlet.load();
+		webScreenlet.setListener(this);
 	}
 
 	@Override
@@ -118,15 +117,15 @@ public class GalleryCard extends Card implements ImageGalleryListener, PortletDi
 			new Handler(Looper.getMainLooper()).post(new Runnable() {
 				@Override
 				public void run() {
-					PortletConfiguration configuration =
-						new PortletConfiguration.Builder("/web/westeros-hybrid/detail?id=" + body).addRawCss(
+					WebScreenletConfiguration configuration =
+						new WebScreenletConfiguration.Builder("/web/westeros-hybrid/detail?id=" + body).addRawCss(
 							R.raw.detail_css, "detail_css.css").addRawJs(R.raw.detail_js, "detail_js.js").load();
 
-					PortletDisplayScreenlet portletDisplayScreenlet =
-						(PortletDisplayScreenlet) findViewById(R.id.portlet_gallery_item);
+					WebScreenlet webScreenlet =
+						(WebScreenlet) findViewById(R.id.portlet_gallery_item);
 
-					portletDisplayScreenlet.setPortletConfiguration(configuration);
-					portletDisplayScreenlet.load();
+					webScreenlet.setWebScreenletConfiguration(configuration);
+					webScreenlet.load();
 
 					cardListener.moveCardRight(GalleryCard.this);
 				}
@@ -166,7 +165,7 @@ public class GalleryCard extends Card implements ImageGalleryListener, PortletDi
 
 	@Override
 	public void onImageUploadEnd(ImageEntry entry) {
-		portletDisplayScreenlet.load();
+		webScreenlet.load();
 	}
 
 	@Override

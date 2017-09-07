@@ -23,7 +23,7 @@
 		style="@style/westeros_arrow"
 		/>
 
-	<com.liferay.mobile.screens.portlet.PortletDisplayScreenlet
+	<com.liferay.mobile.screens.web.WebScreenlet
 		android:id="@+id/portlet_blog_item"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"

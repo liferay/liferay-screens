@@ -8,8 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.inputmethod.InputMethodManager;
 
 import com.liferay.mobile.screens.context.LiferayScreensContext;
-import com.liferay.mobile.screens.portlet.PortletConfiguration;
-import com.liferay.mobile.screens.portlet.PortletDisplayScreenlet;
+import com.liferay.mobile.screens.web.WebScreenletConfiguration;
+import com.liferay.mobile.screens.web.WebScreenlet;
 import com.liferay.mobile.screens.westerosemployees_hybrid.R;
 
 public class ModalDetailActivity extends AppCompatActivity {
@@ -23,16 +23,16 @@ public class ModalDetailActivity extends AppCompatActivity {
 	}
 
 	private void loadDetail(final String id) {
-		PortletConfiguration configuration =
-                new PortletConfiguration.Builder("/web/westeros-hybrid/detail?id=" + id)
+		WebScreenletConfiguration configuration =
+                new WebScreenletConfiguration.Builder("/web/westeros-hybrid/detail?id=" + id)
                         .addRawCss(R.raw.detail_css, "detail_css.css")
                         .addRawJs(R.raw.detail_js, "detail_js.js")
                         .load();
 
-		PortletDisplayScreenlet portletDisplayScreenlet =
-                (PortletDisplayScreenlet) findViewById(R.id.portlet_blog_item);
-		portletDisplayScreenlet.setPortletConfiguration(configuration);
-		portletDisplayScreenlet.load();
+		WebScreenlet webScreenlet =
+                (WebScreenlet) findViewById(R.id.portlet_blog_item);
+		webScreenlet.setWebScreenletConfiguration(configuration);
+		webScreenlet.load();
 
 	}
 

@@ -10,10 +10,9 @@ import android.widget.TextView;
 import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.portlet.PortletConfiguration;
-import com.liferay.mobile.screens.portlet.PortletDisplayListener;
-import com.liferay.mobile.screens.portlet.PortletDisplayScreenlet;
-import com.liferay.mobile.screens.portlet.util.InjectableScript;
+import com.liferay.mobile.screens.web.WebScreenletConfiguration;
+import com.liferay.mobile.screens.web.WebListener;
+import com.liferay.mobile.screens.web.WebScreenlet;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.westerosemployees_hybrid.R;
 
@@ -21,7 +20,7 @@ import java.util.List;
 
 
 public class UserActivity extends WesterosActivity implements View.OnClickListener,
-        BaseListListener<AssetEntry>, PortletDisplayListener {
+        BaseListListener<AssetEntry>, WebListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,19 +51,19 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
     }
 
     private void loadLastChanges() {
-        PortletDisplayScreenlet portletDisplayScreenlet =
-                (PortletDisplayScreenlet) findViewById(R.id.portlet_last_changes);
+        WebScreenlet webScreenlet =
+                (WebScreenlet) findViewById(R.id.portlet_last_changes);
 
-        PortletConfiguration configuration =
-                new PortletConfiguration.Builder("/web/westeros-hybrid/lastchanges")
+        WebScreenletConfiguration configuration =
+                new WebScreenletConfiguration.Builder("/web/westeros-hybrid/lastchanges")
                         .addRawCss(R.raw.last_changes_portlet_css, "last_changes_portlet_css.css")
                         .addRawJs(R.raw.last_changes_portlet_js, "last_changes_portlet_js.js")
                         .load();
 
-        portletDisplayScreenlet.setPortletConfiguration(configuration);
-        portletDisplayScreenlet.load();
+        webScreenlet.setWebScreenletConfiguration(configuration);
+        webScreenlet.load();
 
-        portletDisplayScreenlet.setListener(this);
+        webScreenlet.setListener(this);
     }
 
 	@Override

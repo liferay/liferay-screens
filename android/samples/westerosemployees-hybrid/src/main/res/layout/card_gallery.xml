@@ -38,7 +38,7 @@
 			android:layout_alignParentBottom="true"
 			/>
 
-		<com.liferay.mobile.screens.portlet.PortletDisplayScreenlet
+		<com.liferay.mobile.screens.web.WebScreenlet
 			android:id="@+id/portlet_gallery"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"

@@ -3,15 +3,15 @@ package com.liferay.mobile.screens.testapp;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import com.liferay.mobile.screens.portlet.PortletConfiguration;
-import com.liferay.mobile.screens.portlet.PortletDisplayListener;
-import com.liferay.mobile.screens.portlet.PortletDisplayScreenlet;
-import com.liferay.mobile.screens.viewsets.defaultviews.portlet.cordova.CordovaLifeCycleObserver;
+import com.liferay.mobile.screens.web.WebScreenletConfiguration;
+import com.liferay.mobile.screens.web.WebListener;
+import com.liferay.mobile.screens.web.WebScreenlet;
+import com.liferay.mobile.screens.viewsets.defaultviews.web.cordova.CordovaLifeCycleObserver;
 
 /**
  * @author Sarai Díaz García
  */
-public class PortletDisplayActivity extends ThemeActivity implements PortletDisplayListener {
+public class WebActivity extends ThemeActivity implements WebListener {
 
 	private CordovaLifeCycleObserver observer;
 
@@ -21,21 +21,22 @@ public class PortletDisplayActivity extends ThemeActivity implements PortletDisp
 
 		observer = new CordovaLifeCycleObserver();
 
-		setContentView(R.layout.portlet_display);
+		setContentView(R.layout.web);
 
-		PortletDisplayScreenlet screenlet =
-			(PortletDisplayScreenlet) findViewById(R.id.portlet_display_screenlet);
+		WebScreenlet screenlet =
+			(WebScreenlet) findViewById(R.id.web_screenlet
+			);
 
 		if (getIntent().getStringExtra("url") != null) {
-			PortletConfiguration portletConfiguration =
-				new PortletConfiguration.Builder(getIntent().getStringExtra("url")).addRawCss(
+			WebScreenletConfiguration webScreenletConfiguration =
+				new WebScreenletConfiguration.Builder(getIntent().getStringExtra("url")).addRawCss(
 					R.raw.portletcss, "portlet.css")
 					.addLocalCss("gallery.css")
 					.addLocalJs("gallery.js")
 					.enableCordova(observer)
 					.load();
 
-			screenlet.setPortletConfiguration(portletConfiguration);
+			screenlet.setWebScreenletConfiguration(webScreenletConfiguration);
 
 			screenlet.setListener(this);
 			screenlet.setScrollEnabled(true);
