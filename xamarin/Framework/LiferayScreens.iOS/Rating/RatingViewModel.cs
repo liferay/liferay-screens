@@ -1,6 +1,5 @@
 ﻿using Foundation;
 using ObjCRuntime;
-using System;
 
 namespace LiferayScreens
 {

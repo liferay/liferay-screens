@@ -74,6 +74,8 @@
     <Folder Include="WebContent\List\" />
     <Folder Include="Rating\" />
     <Folder Include="Themes\Default\Rating\" />
+    <Folder Include="Portlet\" />
+    <Folder Include="Themes\Default\Portlet\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -181,6 +183,13 @@
     <ObjcBindingApiDefinition Include="Themes\Default\Rating\RatingView_default_like.cs" />
     <ObjcBindingApiDefinition Include="Themes\Default\Rating\RatingView_default_emojis.cs" />
     <ObjcBindingApiDefinition Include="Themes\Default\Rating\RatingView_default_thumbs.cs" />
+    <ObjcBindingApiDefinition Include="Portlet\PortletDisplayScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Portlet\PortletDisplayScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Portlet\PortletDisplayViewModel.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Portlet\PortletDisplayView_default.cs" />
+    <ObjcBindingApiDefinition Include="Portlet\PortletConfiguration.cs" />
+    <ObjcBindingApiDefinition Include="Portlet\InjectableScript.cs" />
+    <ObjcBindingApiDefinition Include="Portlet\ScreensWebView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />

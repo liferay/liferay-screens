@@ -28,6 +28,13 @@ namespace LiferayScreens
     }
 
     [Native]
+    public enum WebType : ulong
+    {
+        LiferayAuthenticated = 0,
+        Other = 1
+    }
+
+    [Native]
     public enum ProgressCloseMode : ulong
     {
         ManualClose = 0,
@@ -60,6 +67,5 @@ namespace LiferayScreens
         Discard = 2,
         Ignore = 3
     }
-
 }
 
