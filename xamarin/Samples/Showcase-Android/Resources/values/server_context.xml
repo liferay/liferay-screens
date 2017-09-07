@@ -72,4 +72,8 @@
 
     <!-- CommentDisplayScreenlet -->
     <string name="liferay_comment_id">63710</string>
+
+    <!-- CommentAddScreenlet -->
+    <string name="liferay_comment_class_pk">54473</string>
+    <string name="liferay_comment_class_name">com.liferay.document.library.kernel.model.DLFileEntry</string>
 </resources>

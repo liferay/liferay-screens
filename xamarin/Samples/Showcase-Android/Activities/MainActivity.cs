@@ -28,6 +28,7 @@ namespace ShowcaseAndroid
             FindViewById(Resource.Id.video_display_screenlet).SetOnClickListener(this);
             FindViewById(Resource.Id.image_gallery_screenlet).SetOnClickListener(this);
             FindViewById(Resource.Id.comment_display_screenlet).SetOnClickListener(this);
+            FindViewById(Resource.Id.comment_add_screenlet).SetOnClickListener(this);
         }
 
         /* IOnClickListener */
@@ -77,6 +78,9 @@ namespace ShowcaseAndroid
                     break;
                 case Resource.Id.comment_display_screenlet:
                     StartActivity(typeof(CommentDisplayActivity));
+                    break;
+                case Resource.Id.comment_add_screenlet:
+                    StartActivity(typeof(CommentAddActivity));
                     break;
             }
         }
