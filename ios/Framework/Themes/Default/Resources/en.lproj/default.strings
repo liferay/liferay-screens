@@ -75,8 +75,8 @@
 "default-comment-display-cancel"="Cancel";
 "default-comment-display-type"="Type your comment...";
 
-"default-portletdisplay-loading-message"="Loading...\nWait few seconds...";
-"default-portletdisplay-loading-error"="Error loading the page";
+"default-web-loading-message"="Loading...\nWait few seconds...";
+"default-web-loading-error"="Error loading the page";
 
 "default-time-ago-seconds" = "%d seconds ago";
 "default-time-ago-minute" = "A minute ago";

@@ -13,7 +13,7 @@
 */
 import UIKit
 
-@objc public protocol PortletDisplayViewModel {
+@objc public protocol WebViewModel {
 
 	/// Whether or not it should show log messages
 	var isLoggingEnabled: Bool { get set }

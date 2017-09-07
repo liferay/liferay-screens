@@ -14,26 +14,26 @@
 
 import Foundation
 
-@objc public class PortletConfiguration: NSObject {
+@objc public class WebScreenletConfiguration: NSObject {
 
 	@objc public enum WebType: Int {
 		case liferayAuthenticated, other
 	}
 
-	public let portletUrl: String
+	public let url: String
 	public let scripts: [InjectableScript]
 	public let isCordovaEnabled: Bool
 	public let webType: WebType
 
-	public init(portletUrl: String, scripts: [InjectableScript], isCordovaEnabled: Bool, webType: WebType) {
-		self.portletUrl = portletUrl
+	public init(url: String, scripts: [InjectableScript], isCordovaEnabled: Bool, webType: WebType) {
+		self.url = url
 		self.scripts = scripts
 		self.isCordovaEnabled = isCordovaEnabled
 		self.webType = webType
 	}
 
 	public class Builder {
-		let portletUrl: String
+		let url: String
 		var localJs: [String]
 		var localCss: [String]
 		var remoteJs: [String]
@@ -41,8 +41,8 @@ import Foundation
 		var isCordovaEnabled: Bool
 		var webType: WebType
 
-		public init(portletUrl: String) {
-			self.portletUrl = portletUrl
+		public init(url: String) {
+			self.url = url
 			self.localJs = []
 			self.localCss = []
 			self.remoteJs = []
@@ -81,7 +81,7 @@ import Foundation
 			return self
 		}
 
-		public func load() -> PortletConfiguration {
+		public func load() -> WebScreenletConfiguration {
 			let localJsScripts: [InjectableScript] = localJs
 				.map { fileName in
 					JsScript(name: "\(fileName).js", js: loadLocalJsContent(fileName: fileName))
@@ -104,7 +104,7 @@ import Foundation
 
 			let allScripts: [InjectableScript] = localJsScripts + localCssScripts + remoteJsScripts + remoteCssScripts
 
-			return PortletConfiguration(portletUrl: portletUrl, scripts: allScripts,
+			return WebScreenletConfiguration(url: url, scripts: allScripts,
 				isCordovaEnabled: isCordovaEnabled, webType: webType)
 		}
 

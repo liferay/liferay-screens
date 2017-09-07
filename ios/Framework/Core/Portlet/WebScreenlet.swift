@@ -13,41 +13,40 @@
 */
 import UIKit
 
-/// The PortletDisplayScreenletDelegate protocol defines some methods that you use to
-/// manage the PortletDisplayScreenlet events. All of them are optional.
-@objc public protocol PortletDisplayScreenletDelegate: BaseScreenletDelegate {
+/// The WebScreenletDelegate protocol defines some methods that you use to
+/// manage the WebScreenlet events. All of them are optional.
+@objc public protocol WebScreenletDelegate: BaseScreenletDelegate {
 
 	///  Called when the page is loaded.
 	///
 	/// - Parameters:
-	///   - screenlet: Portlet display screenlet instance.
-	@objc optional func onPortletPageLoaded(_ screenlet: PortletDisplayScreenlet, url: String)
+	///   - screenlet: Web display screenlet instance.
+	@objc optional func onWebLoad(_ screenlet: WebScreenlet, url: String)
 
 	/// Called when an error occurs in the process.
-	/// The NSError object describes the error.
 	///
 	/// - Parameters:
-	///   - screenlet: Portlet display screenlet instance.
-	///   - error: Error while retrieving portlet.
-	@objc optional func screenlet(_ screenlet: PortletDisplayScreenlet,
-	                              onPortletError error: NSError)
+	///   - screenlet: Web display screenlet instance.
+	///   - error: Error object describing the error
+	@objc optional func screenlet(_ screenlet: WebScreenlet,
+	                              onError error: NSError)
 
 	/// Called when we want to notify a message from the WKWebView used in the view.
 	///
 	/// - Parameters:
-	///   - screenlet: Portlet display screenlet instance.
+	///   - screenlet: Web display screenlet instance.
 	///   - key: source message key.
 	///   - body: source message body.
-	@objc optional func screenlet(_ screenlet: PortletDisplayScreenlet,
+	@objc optional func screenlet(_ screenlet: WebScreenlet,
 	                              onScriptMessageNamespace namespace: String,
 	                              onScriptMessage message: String)
 }
 
-/// Portlet Display Screenlet can display a Liferay page (with one or more portlets
-/// inside). With this screenlet you can inject custom css and js files to customize
+/// Web Screenlet can display a web page (Liferay page or not). 
+/// With this screenlet you can inject custom css and js files to customize
 /// your view.
-@objc(PortletDisplayScreenlet)
-open class PortletDisplayScreenlet: BaseScreenlet {
+@objc(WebScreenlet)
+open class WebScreenlet: BaseScreenlet {
 
 	let internalNamespace = "screensinternal"
 
@@ -59,22 +58,21 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 
 	@IBInspectable open var isScrollEnabled: Bool = true
 
-	/// The portlet URL to be displayed.
-	open var configuration: PortletConfiguration? {
+	/// The Web URL to be displayed.
+	open var configuration: WebScreenletConfiguration? {
 		didSet {
 			guard let configuration = configuration else { return }
-			portletDisplayViewModel.configureView(with: configuration.isCordovaEnabled)
+			webViewModel.configureView(with: configuration.isCordovaEnabled)
 		}
 	}
 
 	// MARK: Public properties
-
-	open var portletDisplayDelegate: PortletDisplayScreenletDelegate? {
-		return delegate as? PortletDisplayScreenletDelegate
+	open var webDelegate: WebScreenletDelegate? {
+		return delegate as? WebScreenletDelegate
 	}
 
-	open var portletDisplayViewModel: PortletDisplayViewModel {
-		return screenletView as! PortletDisplayViewModel
+	open var webViewModel: WebViewModel {
+		return screenletView as! WebViewModel
 	}
 
 	// MARK: BaseScreenlet
@@ -88,7 +86,7 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 	// MARK: Public methods
 
 	open func clearCache() {
-		portletDisplayViewModel.clearCache()
+		webViewModel.clearCache()
 	}
 
 	open func handleJsCall(namespace: String, message: String) {
@@ -96,47 +94,47 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 			handleInternal(namespace: namespace, message: message)
 		}
 		else {
-			portletDisplayDelegate?.screenlet?(self,
+			webDelegate?.screenlet?(self,
 				onScriptMessageNamespace: namespace, onScriptMessage: message)
 		}
 	}
 
 	open func inject(injectableScript: InjectableScript) {
-		self.portletDisplayViewModel.inject(injectableScript: injectableScript)
+		webViewModel.inject(injectableScript: injectableScript)
 	}
 
 	/// Loads the page specified in the configuraion.
 	open func load() {
 		guard let configuration = configuration else {
-			self.portletDisplayDelegate?.screenlet?(self, onPortletError: NSError.errorWithCause(
-				.invalidServerResponse, message: "You need to specify a portlet configuration first"))
+			webDelegate?.screenlet?(self, onError: NSError.errorWithCause(
+				.invalidServerResponse, message: "You need to specify a web screnlet configuration first"))
 			return
 		}
 
-		portletDisplayViewModel.isLoggingEnabled = loggingEnabled
+		webViewModel.isLoggingEnabled = loggingEnabled
 
 		let screensScript = Bundle.loadFile(name: "Screens", ofType: "js", currentClass: type(of: self))!
 
-		portletDisplayViewModel.add(injectableScript: JsScript(name: "Screens.js", js: screensScript))
+		webViewModel.add(injectableScript: JsScript(name: "Screens.js", js: screensScript))
 		// disable selection
-		portletDisplayViewModel.add(injectableScript: CssScript(name: "disableSelection.css",
+		webViewModel.add(injectableScript: CssScript(name: "disableSelection.css",
 				css: "*:not(input):not(textarea) { -webkit-user-select: none; -webkit-touch-callout: none; }"))
-		portletDisplayViewModel.add(injectableScripts: configuration.scripts)
+		webViewModel.add(injectableScripts: configuration.scripts)
 
-		portletDisplayViewModel.isScrollEnabled = isScrollEnabled
+		webViewModel.isScrollEnabled = isScrollEnabled
 
 		switch configuration.webType {
 			case .liferayAuthenticated:
 				guard SessionContext.isLoggedIn else {
-					self.portletDisplayDelegate?.screenlet?(self, onPortletError: NSError.errorWithCause(
+					webDelegate?.screenlet?(self, onError: NSError.errorWithCause(
 						.abortedDueToPreconditions, message: "You have to be logged to use this web type"))
 					return
 				}
 
-				let html = configureInitialHtml(portletUrl: configuration.portletUrl)
-				portletDisplayViewModel.load(htmlString: html)
+				let html = configureInitialHtml(url: configuration.url)
+				webViewModel.load(htmlString: html)
 			case .other:
-				portletDisplayViewModel.load(request: URLRequest(url: URL(string: configuration.portletUrl)!))
+				webViewModel.load(request: URLRequest(url: URL(string: configuration.url)!))
 		}
 	}
 
@@ -148,7 +146,7 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 		}
 	}
 
-	func configureInitialHtml(portletUrl: String) -> String {
+	func configureInitialHtml(url: String) -> String {
 		// With WKWebView we are not able to load a page using a POST request, in order to work around we have to
 		// create a form with the parameters for the POST request and submit it to actually perform the request
 
@@ -158,9 +156,9 @@ open class PortletDisplayScreenlet: BaseScreenlet {
 		let username = SessionContext.currentContext?.basicAuthUsername ?? ""
 		let password = SessionContext.currentContext?.basicAuthPassword ?? ""
 
-		let portletUrlEscaped = portletUrl.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+		let urlEscaped = url.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
 
-		return html.replacingOccurrences(of: "<portletUrl>", with: portletUrlEscaped!)
+		return html.replacingOccurrences(of: "<webUrl>", with: urlEscaped!)
 			.replacingOccurrences(of: "<login>", with: username)
 			.replacingOccurrences(of: "<password>", with: password)
 	}

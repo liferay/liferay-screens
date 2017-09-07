@@ -15,14 +15,14 @@
 import UIKit
 import WebKit
 
-@objc(PortletDisplayView_default)
-open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewModel {
+@objc(WebView_default)
+open class WebView_default: BaseScreenletView, WebViewModel {
 
 	// MARK: Public properties
 
     var progressPresenter: ProgressPresenter?
 
-	// MARK: PortletDisplayViewModel
+	// MARK: WebViewModel
 
 	open var isLoggingEnabled = true
 
@@ -37,8 +37,8 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 
 	open var screensWebView: ScreensWebView?
 
-	open var portletDisplayScreenlet: PortletDisplayScreenlet {
-		return self.screenlet as! PortletDisplayScreenlet
+	open var webScreenlet: WebScreenlet {
+		return self.screenlet as! WebScreenlet
 	}
 
 	open func configureView(with cordovaEnabled: Bool) {
@@ -46,8 +46,8 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 			return
 		}
 
-		let jsCallHandler = weakify(owner: self, f: PortletDisplayView_default.handleJsCall)
-		let onPageLoadFinished = weakify(owner: self, f: PortletDisplayView_default.onPageLoadFinished)
+		let jsCallHandler = weakify(owner: self, f: WebView_default.handleJsCall)
+		let onPageLoadFinished = weakify(owner: self, f: WebView_default.onPageLoadFinished)
 
 		let jsErrorHandler: ScreensWebView.JsErrorHandler = { [unowned self] scriptName in
 			return { _, error in
@@ -150,26 +150,15 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 		if let error = error {
 			self.progressPresenter?
 				.hideHUDFromView(self,
-				message: LocalizedString("default", key: "portletdisplay-loading-error", obj: self),
+				message: LocalizedString("default", key: "web-loading-error", obj: self),
 				forInteractor: Interactor(), withError: error as NSError?)
 
-			portletDisplayScreenlet
-				.portletDisplayDelegate?.screenlet?(portletDisplayScreenlet, onPortletError: error as NSError)
+			webScreenlet
+				.webDelegate?.screenlet?(webScreenlet, onError: error as NSError)
 		}
 		else {
-			progressPresenter?.hideHUDFromView(self, message: nil, forInteractor: Interactor(), withError: nil)
-
-			UIView.transition(
-				with: screensWebView!.view,
-				duration: 0.4,
-				options: .transitionCrossDissolve,
-				animations: {
-					self.screensWebView?.view.isHidden = false
-			},
-				completion: nil)
-			portletDisplayScreenlet.portletDisplayDelegate?
-				.onPortletPageLoaded?(portletDisplayScreenlet, url: "")
-			screensWebView?.inject(injectableScript: JsScript(name: "waitForJs", js: "window.Screens.waitForJsLoaded()"))
+			screensWebView?.inject(injectableScript: JsScript(name: "waitForJs",
+				js: "window.Screens.waitForJsLoaded()"))
 		}
 	}
 
@@ -186,17 +175,17 @@ open class PortletDisplayView_default: BaseScreenletView, PortletDisplayViewMode
 					},
 					completion: nil)
 
-				portletDisplayScreenlet.portletDisplayDelegate?
-					.onPortletPageLoaded?(portletDisplayScreenlet, url: message)
+				webScreenlet.webDelegate?
+					.onWebLoad?(webScreenlet, url: message)
 			}
 			else {
-				portletDisplayScreenlet.handleJsCall(namespace: namespace, message: message)
+				webScreenlet.handleJsCall(namespace: namespace, message: message)
 			}
 		}
 
 	open func showHud() {
 		progressPresenter?.showHUDInView(self, message: LocalizedString(
-			"default", key: "portletdisplay-loading-message", obj: self), forInteractor: Interactor())
+			"default", key: "web-loading-message", obj: self), forInteractor: Interactor())
 	}
 
 	func parseJavaScriptError(_ error: NSError) -> String {
