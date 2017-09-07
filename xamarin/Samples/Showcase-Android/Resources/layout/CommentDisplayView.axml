@@ -8,6 +8,6 @@
         android:id="@+id/comment_display_screenlet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:commentId="@string/liferay_comment_display_class_pk"
+        app:commentId="@string/liferay_comment_id"
         app:editable="true" />
 </LinearLayout>
