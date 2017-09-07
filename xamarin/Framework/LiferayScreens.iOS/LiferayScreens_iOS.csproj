@@ -78,6 +78,7 @@
     <Folder Include="Themes\Default\Portlet\" />
     <Folder Include="Blogs\" />
     <Folder Include="Themes\Default\Blogs\" />
+    <Folder Include="DDL\List\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -197,6 +198,10 @@
     <ObjcBindingApiDefinition Include="Blogs\BlogsDisplayViewModel.cs" />
     <ObjcBindingApiDefinition Include="Models\BlogsEntry.cs" />
     <ObjcBindingApiDefinition Include="Themes\Default\Blogs\BlogsEntryDisplayView_default.cs" />
+    <ObjcBindingApiDefinition Include="DDL\List\DDLListScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="DDL\List\DDLListScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="DDL\List\DDLListViewModel.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\DDL\DDLListView_default.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />
