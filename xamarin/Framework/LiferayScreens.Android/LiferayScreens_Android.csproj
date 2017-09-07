@@ -70,6 +70,7 @@
     <Compile Include="Additions\WebContent\List\WebContentListScreenlet.cs" />
     <Compile Include="Additions\Rating\RatingScreenlet.cs" />
     <Compile Include="Additions\Portlet\PortletDisplayScreenlet.cs" />
+    <Compile Include="Additions\Blogs\BlogsEntryDisplayScreenlet.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\liferay-android-oauth-1.3.0.aar" />
@@ -125,6 +126,7 @@
     <Folder Include="Additions\WebContent\List\" />
     <Folder Include="Additions\Rating\" />
     <Folder Include="Additions\Portlet\" />
+    <Folder Include="Additions\Blogs\" />
   </ItemGroup>
   <ItemGroup>
     <LibraryProjectZip Include="Jars\liferay-screens-release.aar" />

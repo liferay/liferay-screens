@@ -6,7 +6,6 @@
   <!-- We must change visibility on interface SimpleFileDialogListener-->
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']/class[@name='SelectFileDialog']"/>
 
-  <remove-node path="/api/package[@name='com.liferay.mobile.screens.blogs']/class[@name='BlogsEntryDisplayScreenlet']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.auth.login']/class[@name='LoginView']" />
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.base.interactor']/class[@name='BaseInteractor']"/>
   <remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.list']/class[@name='DDLListScreenlet']"/>
@@ -209,5 +208,13 @@
         /method[@name='onUserAction']"/>
   <remove-node  path="/api/package[@name='com.liferay.mobile.screens.portlet']
         /class[@name='PortletDisplayScreenlet']
+        /method[@name='createInteractor']"/>
+
+  <!-- Corrections for BlogsEntryDisplayScreenlet-->
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.blogs']
+        /class[@name='BlogsEntryDisplayScreenlet']
+        /method[@name='onUserAction']"/>
+  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.blogs']
+        /class[@name='BlogsEntryDisplayScreenlet']
         /method[@name='createInteractor']"/>
 </metadata>
