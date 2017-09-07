@@ -69,4 +69,7 @@
     <!-- ImageGalleryScreenlet values -->
     <string name="liferay_image_gallery_folder_id">54469</string>
     <string name="liferay_image_gallery_repository_id">20143</string>
+
+	<!-- CommentDisplayScreenlet values -->
+	<string name="liferay_comment_display_class_pk">63710</string>
 </resources>
