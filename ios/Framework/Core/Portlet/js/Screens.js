@@ -56,9 +56,3 @@ window.Screens = Object.create(screens);
 window.Liferay.on('endNavigate', function () {
 	window.Screens.reloadScripts();
 });
-
-setInterval(function () {
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', window.location.origin + '/c/portal/extend_session');
-	xhr.send();
-}, 3 * 60 * 1000);
