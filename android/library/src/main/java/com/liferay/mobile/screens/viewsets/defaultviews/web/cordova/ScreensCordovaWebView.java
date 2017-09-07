@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.viewsets.defaultviews.portlet.cordova;
+package com.liferay.mobile.screens.viewsets.defaultviews.web.cordova;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,7 +6,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.webkit.WebView;
 import com.liferay.mobile.screens.util.EventBusUtil;
-import com.liferay.mobile.screens.viewsets.defaultviews.portlet.ScreensWebView;
+import com.liferay.mobile.screens.viewsets.defaultviews.web.ScreensWebView;
 import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.ScreensCordovaActivity;
 

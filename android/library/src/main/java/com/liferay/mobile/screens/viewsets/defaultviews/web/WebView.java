@@ -1,23 +1,22 @@
-package com.liferay.mobile.screens.viewsets.defaultviews.portlet;
+package com.liferay.mobile.screens.viewsets.defaultviews.web;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.JavascriptInterface;
-import android.webkit.WebView;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
-import com.liferay.mobile.screens.portlet.PortletDisplayScreenlet;
-import com.liferay.mobile.screens.portlet.util.InjectableScript;
-import com.liferay.mobile.screens.portlet.view.PortletDisplayViewModel;
 import com.liferay.mobile.screens.util.LiferayLogger;
-import com.liferay.mobile.screens.viewsets.defaultviews.portlet.cordova.CordovaLifeCycleObserver;
-import com.liferay.mobile.screens.viewsets.defaultviews.portlet.cordova.ScreensCordovaWebView;
+import com.liferay.mobile.screens.viewsets.defaultviews.web.cordova.CordovaLifeCycleObserver;
+import com.liferay.mobile.screens.viewsets.defaultviews.web.cordova.ScreensCordovaWebView;
+import com.liferay.mobile.screens.web.WebScreenlet;
+import com.liferay.mobile.screens.web.util.InjectableScript;
+import com.liferay.mobile.screens.web.view.WebViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,26 +25,25 @@ import java.util.List;
  * @author Víctor Galán
  */
 
-public class PortletDisplayView extends FrameLayout
-	implements PortletDisplayViewModel, ScreensWebView.Listener {
+public class WebView extends FrameLayout implements WebViewModel, ScreensWebView.Listener {
 
 	private BaseScreenlet screenlet;
-	private WebView webView;
+	private android.webkit.WebView webView;
 	private ScreensWebView screensWebView;
 	private ProgressBar progressBar;
 	private static final String URL_LOGIN = "/c/portal/login";
 	private List<InjectableScript> scriptsToInject = new ArrayList<>();
 	private boolean isLoaded;
 
-	public PortletDisplayView(Context context) {
+	public WebView(Context context) {
 		super(context);
 	}
 
-	public PortletDisplayView(Context context, AttributeSet attrs) {
+	public WebView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
 
-	public PortletDisplayView(Context context, AttributeSet attrs, int defStyleAttr) {
+	public WebView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 	}
 
@@ -212,13 +210,13 @@ public class PortletDisplayView extends FrameLayout
 
 			progressBar.setVisibility(GONE);
 
-			((PortletDisplayScreenlet) getScreenlet()).onPageLoaded(url);
+			((WebScreenlet) getScreenlet()).onPageLoaded(url);
 		}
 	}
 
 	@Override
 	public void onPageError(Exception e) {
-		((PortletDisplayScreenlet) getScreenlet()).error(e, PortletDisplayScreenlet.DEFAULT_ACTION);
+		((WebScreenlet) getScreenlet()).error(e, WebScreenlet.DEFAULT_ACTION);
 	}
 
 	private class PortletDisplayInterface {
@@ -228,7 +226,7 @@ public class PortletDisplayView extends FrameLayout
 
 		@JavascriptInterface
 		public void postMessage(String namespace, String body) {
-			((PortletDisplayScreenlet) getScreenlet()).onScriptMessageHandler(namespace, body);
+			((WebScreenlet) getScreenlet()).onScriptMessageHandler(namespace, body);
 		}
 	}
 }

@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.viewsets.defaultviews.portlet.cordova;
+package com.liferay.mobile.screens.viewsets.defaultviews.web.cordova;
 
 import com.liferay.mobile.screens.util.EventBusUtil;
 import org.apache.cordova.CordovaPlugin;

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.portlet;
+package com.liferay.mobile.screens.web;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -27,10 +27,9 @@ import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.portlet.util.CssScript;
-import com.liferay.mobile.screens.portlet.util.InjectableScript;
-import com.liferay.mobile.screens.portlet.util.JsScript;
-import com.liferay.mobile.screens.portlet.view.PortletDisplayViewModel;
+import com.liferay.mobile.screens.web.util.InjectableScript;
+import com.liferay.mobile.screens.web.util.JsScript;
+import com.liferay.mobile.screens.web.view.WebViewModel;
 import com.liferay.mobile.screens.util.AssetReader;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import java.io.UnsupportedEncodingException;
@@ -41,28 +40,28 @@ import java.net.URLEncoder;
  * @author Sarai Díaz García
  * @author Victor Galán Grande
  */
-public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewModel, Interactor>
-	implements PortletDisplayListener {
+public class WebScreenlet extends BaseScreenlet<WebViewModel, Interactor>
+	implements WebListener {
 
 	private boolean autoLoad;
-	private PortletDisplayListener listener;
-	private PortletConfiguration portletConfiguration;
+	private WebListener listener;
+	private WebScreenletConfiguration webScreenletConfiguration;
 	private boolean isLoggingEnabled = true;
 	private boolean isScrollEnabled = true;
 
-	public PortletDisplayScreenlet(Context context) {
+	public WebScreenlet(Context context) {
 		super(context);
 	}
 
-	public PortletDisplayScreenlet(Context context, AttributeSet attrs) {
+	public WebScreenlet(Context context, AttributeSet attrs) {
 		super(context, attrs);
 	}
 
-	public PortletDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+	public WebScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 	}
 
-	public PortletDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr,
+	public WebScreenlet(Context context, AttributeSet attrs, int defStyleAttr,
 		int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
@@ -73,21 +72,21 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	 */
 	public void load() {
 		getViewModel().showStartOperation(DEFAULT_ACTION);
-		if (portletConfiguration != null) {
+		if (webScreenletConfiguration != null) {
 
-			String finalUrl = buildPortletUrl(portletConfiguration.getPortletUrl());
+			String finalUrl = buildPortletUrl(webScreenletConfiguration.getUrl());
 			String body = buildBody();
 
 			String screensJs = new AssetReader(getContext()).read(R.raw.screens);
 
 			getViewModel().addScript(new JsScript("Screens.js", screensJs));
 
-			for (InjectableScript script : portletConfiguration.getScripts()) {
+			for (InjectableScript script : webScreenletConfiguration.getScripts()) {
 				getViewModel().addScript(script);
 			}
 
-			if (PortletConfiguration.WebType.LIFERAY_AUTHENTICATED.equals(
-				portletConfiguration.getWebType())) {
+			if (WebScreenletConfiguration.WebType.LIFERAY_AUTHENTICATED.equals(
+				webScreenletConfiguration.getWebType())) {
 
 				if (SessionContext.isLoggedIn()) {
 					getViewModel().postUrl(finalUrl, body);
@@ -168,29 +167,29 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 		this.autoLoad = autoLoad;
 	}
 
-	public PortletDisplayListener getListener() {
+	public WebListener getListener() {
 		return listener;
 	}
 
-	public void setListener(PortletDisplayListener listener) {
+	public void setListener(WebListener listener) {
 		this.listener = listener;
 	}
 
-	public void setPortletConfiguration(PortletConfiguration portletConfiguration) {
-		this.portletConfiguration = portletConfiguration;
-		getViewModel().configureView(portletConfiguration.isCordovaEnabled(),
-			portletConfiguration.getObserver());
+	public void setWebScreenletConfiguration(WebScreenletConfiguration webScreenletConfiguration) {
+		this.webScreenletConfiguration = webScreenletConfiguration;
+		getViewModel().configureView(webScreenletConfiguration.isCordovaEnabled(),
+			webScreenletConfiguration.getObserver());
 	}
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
 
 		TypedArray typedArray = context.getTheme()
-			.obtainStyledAttributes(attributes, R.styleable.PortletDisplayScreenlet, 0, 0);
+			.obtainStyledAttributes(attributes, R.styleable.WebScreenlet, 0, 0);
 
-		autoLoad = typedArray.getBoolean(R.styleable.PortletDisplayScreenlet_autoLoad, false);
+		autoLoad = typedArray.getBoolean(R.styleable.WebScreenlet_autoLoad, false);
 
-		int layoutId = typedArray.getResourceId(R.styleable.PortletDisplayScreenlet_layoutId,
+		int layoutId = typedArray.getResourceId(R.styleable.WebScreenlet_layoutId,
 			getDefaultLayoutId());
 
 		typedArray.recycle();
@@ -209,7 +208,7 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 	}
 
 	protected void autoLoad() {
-		if (portletConfiguration != null && portletConfiguration.getPortletUrl() != null) {
+		if (webScreenletConfiguration != null && webScreenletConfiguration.getUrl() != null) {
 
 			load();
 		}

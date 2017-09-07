@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.viewsets.defaultviews.portlet.cordova;
+package com.liferay.mobile.screens.viewsets.defaultviews.web.cordova;
 
 /**
  * @author Víctor Galán Grande

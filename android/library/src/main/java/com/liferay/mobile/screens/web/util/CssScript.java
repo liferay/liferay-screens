@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.portlet.util;
+package com.liferay.mobile.screens.web.util;
 
 /**
  * @author Sarai Díaz García

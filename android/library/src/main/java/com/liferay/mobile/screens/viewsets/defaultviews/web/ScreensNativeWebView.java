@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.viewsets.defaultviews.portlet;
+package com.liferay.mobile.screens.viewsets.defaultviews.web;
 
 import android.annotation.TargetApi;
 import android.content.Context;

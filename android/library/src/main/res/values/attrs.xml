@@ -289,7 +289,7 @@
 		<attr name="classPK"/>
 	</declare-styleable>
 
-	<declare-styleable name="PortletDisplayScreenlet">
+	<declare-styleable name="WebScreenlet">
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
 		<attr format="string" name="url"/>

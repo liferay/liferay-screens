@@ -12,17 +12,17 @@
  * details.
  */
 
-package com.liferay.mobile.screens.portlet.view;
+package com.liferay.mobile.screens.web.view;
 
 import android.webkit.WebView;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
-import com.liferay.mobile.screens.portlet.util.InjectableScript;
-import com.liferay.mobile.screens.viewsets.defaultviews.portlet.cordova.CordovaLifeCycleObserver;
+import com.liferay.mobile.screens.web.util.InjectableScript;
+import com.liferay.mobile.screens.viewsets.defaultviews.web.cordova.CordovaLifeCycleObserver;
 
 /**
  * @author Sarai Díaz García
  */
-public interface PortletDisplayViewModel extends BaseViewModel {
+public interface WebViewModel extends BaseViewModel {
 
 	/**
 	 * Loads the url on the WebView using a POST request {@link WebView}

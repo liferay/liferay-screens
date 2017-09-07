@@ -1,4 +1,4 @@
-package com.liferay.mobile.screens.viewsets.defaultviews.portlet;
+package com.liferay.mobile.screens.viewsets.defaultviews.web;
 
 import android.webkit.WebView;
 

@@ -12,43 +12,43 @@
  * details.
  */
 
-package com.liferay.mobile.screens.portlet;
+package com.liferay.mobile.screens.web;
 
 import android.support.v4.util.Pair;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
-import com.liferay.mobile.screens.portlet.util.CssScript;
-import com.liferay.mobile.screens.portlet.util.InjectableScript;
-import com.liferay.mobile.screens.portlet.util.JsScript;
-import com.liferay.mobile.screens.portlet.util.RemoteCssScript;
-import com.liferay.mobile.screens.portlet.util.RemoteJsScript;
+import com.liferay.mobile.screens.web.util.CssScript;
+import com.liferay.mobile.screens.web.util.InjectableScript;
+import com.liferay.mobile.screens.web.util.JsScript;
+import com.liferay.mobile.screens.web.util.RemoteCssScript;
+import com.liferay.mobile.screens.web.util.RemoteJsScript;
 import com.liferay.mobile.screens.util.AssetReader;
-import com.liferay.mobile.screens.viewsets.defaultviews.portlet.cordova.CordovaLifeCycleObserver;
+import com.liferay.mobile.screens.viewsets.defaultviews.web.cordova.CordovaLifeCycleObserver;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Sarai Díaz García
  */
-public class PortletConfiguration {
+public class WebScreenletConfiguration {
 
-	private String portletUrl;
+	private String url;
 	private List<InjectableScript> scripts;
 	private WebType webType;
 	private CordovaLifeCycleObserver observer;
 	private boolean isCordovaEnabled;
 
-	public PortletConfiguration(String portletUrl, List<InjectableScript> scripts, WebType webType,
+	public WebScreenletConfiguration(String url, List<InjectableScript> scripts, WebType webType,
 		CordovaLifeCycleObserver observer, boolean isCordovaEnabled) {
 
-		this.portletUrl = portletUrl;
+		this.url = url;
 		this.scripts = scripts;
 		this.webType = webType;
 		this.observer = observer;
 		this.isCordovaEnabled = isCordovaEnabled;
 	}
 
-	public String getPortletUrl() {
-		return portletUrl;
+	public String getUrl() {
+		return url;
 	}
 
 	public List<InjectableScript> getScripts() {
@@ -71,7 +71,7 @@ public class PortletConfiguration {
 
 	public static class Builder {
 
-		private String portletUrl;
+		private String url;
 		private List<String> localJs = new ArrayList<>();
 		private List<String> localCss = new ArrayList<>();
 		private List<String> remoteJs = new ArrayList<>();
@@ -82,9 +82,9 @@ public class PortletConfiguration {
 		private CordovaLifeCycleObserver observer;
 		private boolean isCordovaEnabled;
 
-		public Builder(String portletUrl) {
+		public Builder(String url) {
 			super();
-			this.portletUrl = portletUrl;
+			this.url = url;
 		}
 
 		public Builder addLocalJs(String fileName) {
@@ -128,7 +128,7 @@ public class PortletConfiguration {
 			return this;
 		}
 
-		public PortletConfiguration load() {
+		public WebScreenletConfiguration load() {
 
 			List<InjectableScript> allScripts = new ArrayList<>();
 
@@ -168,7 +168,7 @@ public class PortletConfiguration {
 				allScripts.add(new RemoteCssScript(rCss, rCss));
 			}
 
-			return new PortletConfiguration(portletUrl, allScripts, webType, observer,
+			return new WebScreenletConfiguration(url, allScripts, webType, observer,
 				isCordovaEnabled);
 		}
 

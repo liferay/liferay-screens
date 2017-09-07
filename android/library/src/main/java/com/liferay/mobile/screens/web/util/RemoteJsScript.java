@@ -12,26 +12,26 @@
  * details.
  */
 
-package com.liferay.mobile.screens.portlet.util;
+package com.liferay.mobile.screens.web.util;
 
 /**
  * @author Sarai Díaz García
  */
-public class RemoteCssScript implements InjectableScript {
+public class RemoteJsScript implements InjectableScript {
 
 	private String name;
 	private String content;
 
-	public RemoteCssScript(String name, String url) {
+	public RemoteJsScript(String name, String url) {
 		this.name = name;
-		content = "var link = document.createElement('link');"
-			+ "link.type = 'text/css';"
-			+ "link.rel = 'stylesheet';"
-			+ "link.href = '"
+		content = "var script = document.createElement('script');"
+			+ "script.language = 'javascript';"
+			+ "script.type = 'text/javascript';"
+			+ "script.src = '"
 			+ url
 			+ "';"
-			+ "var head = document.getElementsByTagName('head')[0];"
-			+ "head.appendChild(link);";
+			+ "var body = document.getElementsByTagName('body')[0];"
+			+ "body.appendChild(script);";
 	}
 
 	@Override

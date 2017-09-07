@@ -34,10 +34,10 @@ public class ScreensCordovaActivity extends CordovaActivity {
 		this.pluginEntries = parser.getPluginEntries();
 
 		this.pluginEntries.add(new PluginEntry("RemoteInjectionPlugin",
-			"com.liferay.mobile.screens.viewsets.defaultviews.portlet.cordova.RemoteInjectionPlugin",
+			"com.liferay.mobile.screens.viewsets.defaultviews.web.cordova.RemoteInjectionPlugin",
 			true));
 		this.pluginEntries.add(new PluginEntry("ScreensCordovaPlugin",
-			"com.liferay.mobile.screens.viewsets.defaultviews.portlet.cordova.ScreensCordovaPlugin",
+			"com.liferay.mobile.screens.viewsets.defaultviews.web.cordova.ScreensCordovaPlugin",
 			true));
 	}
 

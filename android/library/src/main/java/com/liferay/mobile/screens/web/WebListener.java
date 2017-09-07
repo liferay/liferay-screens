@@ -12,17 +12,14 @@
  * details.
  */
 
-package com.liferay.mobile.screens.portlet;
+package com.liferay.mobile.screens.web;
 
 import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
-import com.liferay.mobile.screens.portlet.util.CssScript;
-import com.liferay.mobile.screens.portlet.util.InjectableScript;
-import com.liferay.mobile.screens.portlet.util.JsScript;
 
 /**
  * @author Sarai Díaz García
  */
-public interface PortletDisplayListener extends BaseCacheListener {
+public interface WebListener extends BaseCacheListener {
 
 	/**
 	 * Called when the screenlet loads the page correctly.

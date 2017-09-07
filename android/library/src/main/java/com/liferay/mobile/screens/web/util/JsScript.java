@@ -12,24 +12,28 @@
  * details.
  */
 
-package com.liferay.mobile.screens.portlet.util;
+package com.liferay.mobile.screens.web.util;
 
 /**
  * @author Sarai Díaz García
  */
-public interface InjectableScript {
+public class JsScript implements InjectableScript {
 
-	/**
-	 * Get the name of the script. Useful for debugging purposes
-	 *
-	 * @return name of the script
-	 */
-	String getName();
+	private String name;
+	private String content;
 
-	/**
-	 * Get file content.
-	 *
-	 * @return javascript content.
-	 */
-	String getContent();
+	public JsScript(String name, String content) {
+		this.name = name;
+		this.content = content;
+	}
+
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public String getContent() {
+		return content;
+	}
 }
