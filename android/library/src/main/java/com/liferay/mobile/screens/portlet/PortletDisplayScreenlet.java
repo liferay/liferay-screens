@@ -250,7 +250,7 @@ public class PortletDisplayScreenlet extends BaseScreenlet<PortletDisplayViewMod
 			String username = basicAuth.getUsername();
 			String password = basicAuth.getPassword();
 
-			return String.format("login=%s&password=%s", username, password);
+			return String.format("login=%s&password=%s&rememberMe=true", username, password);
 		}
 
 		return "";
