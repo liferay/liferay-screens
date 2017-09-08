@@ -30,6 +30,7 @@ namespace ShowcaseAndroid
             FindViewById(Resource.Id.comment_display_screenlet).SetOnClickListener(this);
             FindViewById(Resource.Id.comment_add_screenlet).SetOnClickListener(this);
             FindViewById(Resource.Id.comment_list_screenlet).SetOnClickListener(this);
+            FindViewById(Resource.Id.web_content_list_screenlet).SetOnClickListener(this);
         }
 
         /* IOnClickListener */
@@ -85,6 +86,9 @@ namespace ShowcaseAndroid
                     break;
                 case Resource.Id.comment_list_screenlet:
                     StartActivity(typeof(CommentListActivity));
+                    break;
+                case Resource.Id.web_content_list_screenlet:
+                    StartActivity(typeof(WebContentListActivity));
                     break;
             }
         }

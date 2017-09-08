@@ -61,7 +61,7 @@
     <!-- FIXME: WebContent failed -->
     <string name="liferay_webcontent_display_class_name">com.liferay.journal.model.JournalArticle</string>
     <string name="liferay_webcontent_display_class_pk">39226</string>
-    <string name="liferay_webcontent_display_asset_entry"></string>	
+    <string name="liferay_webcontent_display_asset_entry">39228</string>	
 
     <!-- ImageDisplayScreenlet -->
     <string name="liferay_image_entry_id">54500</string>
