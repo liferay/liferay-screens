@@ -20,5 +20,6 @@
     <string name="comment_display">Comment Display</string>
     <string name="comment_add">Comment Add</string>
 	<string name="comment_list">Comment List</string>
-    <string name="web_content_list">WebContent List</string>
+    <string name="web_content_list">Web Content List</string>
+    <string name="rating">Rating</string>
 </resources>

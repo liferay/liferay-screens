@@ -81,6 +81,10 @@
                 android:id="@+id/web_content_list_screenlet"
                 android:text="@string/web_content_list"
                 style="@style/test_app_button" />
+            <Button
+                android:id="@+id/rating_screenlet"
+                android:text="@string/rating"
+                style="@style/test_app_button" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
