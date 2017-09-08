@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UploadImageViewController" customModule="WesterosEmployees" customModuleProvider="target">
@@ -21,7 +24,7 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l2W-KN-6QE" userLabel="Select Image Button">
                             <rect key="frame" x="0.0" y="0.0" width="354" height="60"/>
-                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="8Wb-mc-xHn"/>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="Y0g-Hf-Tcn"/>
@@ -30,11 +33,11 @@
                                 <attributedString key="attributedTitle">
                                     <fragment content="SELECT IMAGE">
                                         <attributes>
-                                            <color key="NSColor" red="0.89411764705882346" green="0.27843137254901962" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="NSColor" red="0.89411764705882346" green="0.27843137254901962" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <font key="NSFont" size="18" name="AvenirNext-DemiBold"/>
                                             <real key="NSKern" value="0.0"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36"/>
-                                            <color key="NSStrokeColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="NSStrokeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -50,7 +53,7 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zpb-Y9-n1i">
                             <rect key="frame" x="0.0" y="68" width="354" height="60"/>
-                            <color key="backgroundColor" red="0.89411764709999997" green="0.2784313725" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="0.89411764709999997" green="0.2784313725" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="7Cs-II-YZ2"/>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="fgZ-uv-mX3"/>
@@ -59,11 +62,11 @@
                                 <attributedString key="attributedTitle">
                                     <fragment content="TAKE PHOTO">
                                         <attributes>
-                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <font key="NSFont" size="18" name="AvenirNext-DemiBold"/>
                                             <real key="NSKern" value="0.0"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36"/>
-                                            <color key="NSStrokeColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="NSStrokeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>

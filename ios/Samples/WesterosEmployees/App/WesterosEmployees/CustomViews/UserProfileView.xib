@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -18,7 +21,7 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lcV-0x-YJe">
                     <rect key="frame" x="20" y="572" width="335" height="60"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="eio-IV-WG3"/>
                     </constraints>
@@ -26,11 +29,11 @@
                         <attributedString key="attributedTitle">
                             <fragment content="SIGN OUT">
                                 <attributes>
-                                    <color key="NSColor" red="0.89411764705882346" green="0.27843137254901962" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="NSColor" red="0.89411764705882346" green="0.27843137254901962" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <font key="NSFont" size="18" name="AvenirNext-DemiBold"/>
                                     <real key="NSKern" value="0.0"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36"/>
-                                    <color key="NSStrokeColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="NSStrokeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </attributes>
                             </fragment>
                         </attributedString>
@@ -47,18 +50,18 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EMAIL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cHe-fe-TCz" userLabel="Email Top label">
                     <rect key="frame" x="20" y="225" width="335" height="16"/>
                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="13"/>
-                    <color key="textColor" red="1" green="0.21551639049999999" blue="0.1889987551" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="1" green="0.21551639049999999" blue="0.1889987551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SCREEN NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Lu-Ig-3R8" userLabel="Screen Name Top Label">
                     <rect key="frame" x="20" y="287" width="335" height="16"/>
                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="13"/>
-                    <color key="textColor" red="1" green="0.21551639049999999" blue="0.1889987551" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="1" green="0.21551639049999999" blue="0.1889987551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OxB-Ln-uAB">
                     <rect key="frame" x="20" y="504" width="335" height="60"/>
-                    <color key="backgroundColor" red="0.89411764709999997" green="0.2784313725" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.85728287696838379" green="0.18751269578933716" blue="0.19454109668731689" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="rAy-9F-rQ1"/>
                     </constraints>
@@ -66,11 +69,11 @@
                         <attributedString key="attributedTitle">
                             <fragment content="GO BACK">
                                 <attributes>
-                                    <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <font key="NSFont" size="18" name="AvenirNext-DemiBold"/>
                                     <real key="NSKern" value="0.0"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36"/>
-                                    <color key="NSStrokeColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="NSStrokeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </attributes>
                             </fragment>
                         </attributedString>
@@ -84,7 +87,7 @@
                         <action selector="goBackButtonClick" destination="iN0-l3-epB" eventType="touchUpInside" id="hcM-Bc-yiV"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="geB-Mv-MoA" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="geB-Mv-MoA" customClass="UserPortraitScreenlet">
                     <rect key="frame" x="137" y="35" width="100" height="100"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="4FK-gz-OBU"/>
@@ -98,19 +101,19 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x92-4r-DrE" userLabel="Job Title Label">
                     <rect key="frame" x="20" y="175" width="335" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <color key="textColor" red="0.4310496795" green="0.4310496795" blue="0.4310496795" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.4310496795" green="0.4310496795" blue="0.4310496795" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Screen name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S1r-8H-0hB" userLabel="Screen Name Label">
                     <rect key="frame" x="20" y="311" width="335" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="test@liferay.com" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAL-BC-ml9" userLabel="Email Label">
                     <rect key="frame" x="20" y="246" width="335" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -142,7 +145,6 @@
                 <constraint firstItem="cHe-fe-TCz" firstAttribute="top" secondItem="x92-4r-DrE" secondAttribute="bottom" constant="30" id="zOo-DE-qS8"/>
                 <constraint firstItem="uAL-BC-ml9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="znT-ae-agt"/>
             </constraints>
-            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <connections>
                 <outlet property="emailLabel" destination="uAL-BC-ml9" id="SZT-dM-ndE"/>
                 <outlet property="jobTitleLabel" destination="x92-4r-DrE" id="R83-YC-F30"/>

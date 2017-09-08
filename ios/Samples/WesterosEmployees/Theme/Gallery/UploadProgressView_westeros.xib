@@ -1,10 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UploadProgressView_default" customModule="LiferayScreens"/>
@@ -15,14 +18,14 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-user-icon.png" translatesAutoresizingMaskIntoConstraints="NO" id="dhh-9G-yAl">
                     <rect key="frame" x="5" y="8" width="65" height="65"/>
-                    <color key="tintColor" red="1" green="0.1498036968" blue="0.40921200470000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="tintColor" red="1" green="0.1498036968" blue="0.40921200470000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="dhh-9G-yAl" secondAttribute="height" multiplier="1:1" id="fyW-zB-uvn"/>
                     </constraints>
                 </imageView>
                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BPm-Pa-Vcw">
                     <rect key="frame" x="78" y="40" width="461" height="2"/>
-                    <color key="tintColor" red="0.89411764709999997" green="0.2784313725" blue="0.25098039220000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="tintColor" red="0.89411764709999997" green="0.2784313725" blue="0.25098039220000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </progressView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Uploading image..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="2" translatesAutoresizingMaskIntoConstraints="NO" id="GIl-qL-if8">
                     <rect key="frame" x="78" y="5" width="461" height="27"/>
@@ -30,7 +33,7 @@
                         <constraint firstAttribute="height" constant="15" id="t5t-hi-tJi"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                    <color key="textColor" red="0.60115346859999996" green="0.60115346859999996" blue="0.60115346859999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.60115346859999996" green="0.60115346859999996" blue="0.60115346859999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                     <variation key="default">
                         <mask key="constraints">
@@ -49,7 +52,7 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="5bg-I2-ASv" firstAttribute="centerY" secondItem="6cB-16-pVQ" secondAttribute="centerY" id="1mL-JG-9vF"/>
                 <constraint firstItem="GIl-qL-if8" firstAttribute="trailing" secondItem="BPm-Pa-Vcw" secondAttribute="trailing" id="BeG-Yz-lhx"/>
