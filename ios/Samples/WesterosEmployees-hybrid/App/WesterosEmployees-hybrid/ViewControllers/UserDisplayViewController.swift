@@ -29,19 +29,19 @@ open class UserDisplayViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @IBOutlet weak var portletDisplayScreenlet: PortletDisplayScreenlet!
+    @IBOutlet weak var webScreenlet: WebScreenlet!
         
 	//MARK: UIViewController
 
 	open override func viewDidLoad() {
 		super.viewDidLoad()
-        loadPortletScreenlet()
+        loadWebScreenlet()
 	}
 
-    func loadPortletScreenlet() {
-        let portletConfiguration = PortletConfiguration.Builder(portletUrl: "/web/westeros-hybrid/userprofile").enableCordova().addCss(localFile: "user_profile").addJs(localFile: "user_profile").load()
-        portletDisplayScreenlet.configuration = portletConfiguration
-        portletDisplayScreenlet.load()
+    func loadWebScreenlet() {
+        let webScreenletConfiguration = WebScreenletConfiguration.Builder(url: "/web/westeros-hybrid/userprofile").enableCordova().addCss(localFile: "user_profile").addJs(localFile: "user_profile").load()
+        webScreenlet.configuration = webScreenletConfiguration
+        webScreenlet.load()
     }
     
 }

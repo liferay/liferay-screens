@@ -14,20 +14,20 @@ All notable changes to this project will be documented in this file.
 * Fix error in VideoDisplayScreenlet: video is not showing the first time its downloaded
 * Fix error in material LoginView with cookie login
 * All screenlets should have getter and setter for their listener property
-* Disable selection in PortletDisplayScreenlet
-* Fix session in PortletDisplayScreenlet
+* Disable selection in WebScreenlet
+* Fix session in WebScreenlet
 
 ### New Features
 * Create loadLoggedUserPortrait method in UserPortraitScreenlet
 * Expose Video events in the VideoDisplayScreenlet 
 * Allow developers override injected CSS in WebContentDisplayScreenlet
-* Add PortletDisplayScreenlet
+* Add WebScreenlet
 * Support pages in forms with a ViewPager
 * Add support for multiple select fields in forms
 * Allow data providers in forms
-* Show alerts in the PortletDisplayScreenlet
-* Allow developers to disable scroll in the PortletDisplayScreenlet
-* Allow developers to clear cache on PortletDisplayScreenlet
+* Show alerts in the WebScreenlet
+* Allow developers to disable scroll in the WebScreenlet
+* Allow developers to clear cache on WebScreenlet
 
 ### Refactor
 * Remove unused attribute in RatingsScreenlet 
@@ -45,19 +45,19 @@ All notable changes to this project will be documented in this file.
 * Fix retain cycle in BaseListScreenlet
 * Update the cookie expired verification to work with new versions of the mobile sdk
 * Fix error messages "Unknown class in Interface Builder file".
-* Disable selection in PortletDisplayScreenlet
-* Fix session in PortletDisplayScreenlet
+* Disable selection in WebScreenlet
+* Fix session in WebScreenlet
 
 ### New Features
 * AssetDisplayScreenlet uses FileDisplayScreenlet for ppt, xls and doc files
 * Allow developers override injected CSS in WebContentDisplayScreenlet
-* Add PortletDisplayScreenlet
+* Add WebScreenlet
 * Add name to classes annotated with @objc for Xamarin solutions
 * Remove module name in default views for Xamarin solutions
-* Show alerts in the PortletDisplayScreenlet
-* Allow developers to disable scroll on PortletDisplayScreenlet
-* Wait for all scripts to load before showing the PortletDisplayScreenlet
-* Allow developers to clear cache on PortletDisplayScreenlet
+* Show alerts in the WebScreenlet
+* Allow developers to disable scroll on WebScreenlet
+* Wait for all scripts to load before showing the WebScreenlet
+* Allow developers to clear cache on WebScreenlet
 
 ### Refactor
 * Migrate from UIWebView to WKWebView

@@ -17,7 +17,7 @@ import LiferayScreens
 
 public var tourCompleted = false
 
-class HomeViewController: UIViewController, PortletDisplayScreenletDelegate,
+class HomeViewController: UIViewController, WebScreenletDelegate,
 	CardDeckDelegate, CardDeckDataSource {
 	
 	///Flag to control if the home has been initialized
@@ -47,7 +47,7 @@ class HomeViewController: UIViewController, PortletDisplayScreenletDelegate,
 		}
 	}
     
-    @IBOutlet weak var portletDisplayScreenlet: PortletDisplayScreenlet!
+    @IBOutlet weak var webScreenlet: WebScreenlet!
     
 
 
@@ -81,12 +81,12 @@ class HomeViewController: UIViewController, PortletDisplayScreenletDelegate,
 
 	//MARK: UIViewController
 
-    func loadPortletScreenlet() {
-        let portletConfiguration = PortletConfiguration.Builder(portletUrl: "/web/westeros-hybrid/lastchanges").addCss(localFile: "last_changes").addJs(localFile: "last_changes").load()
-        portletDisplayScreenlet.themeName = "westeros"
-        portletDisplayScreenlet.configuration = portletConfiguration
-        portletDisplayScreenlet.load()
-        portletDisplayScreenlet.delegate = self
+    func loadWebScreenlet() {
+        let webScreenletConfiguration = WebScreenletConfiguration.Builder(url: "/web/westeros-hybrid/lastchanges").addCss(localFile: "last_changes").addJs(localFile: "last_changes").load()
+        webScreenlet.themeName = "westeros"
+        webScreenlet.configuration = webScreenletConfiguration
+        webScreenlet.load()
+        webScreenlet.delegate = self
     }
     
 	override func viewDidLoad() {
@@ -150,7 +150,7 @@ class HomeViewController: UIViewController, PortletDisplayScreenletDelegate,
 			case (2, 0):
 				return galleryViewController
 			case (0, 1), (1, 1), (2, 1):
-				return DetailViewController(nibName: "PortletDetailViewController")
+				return DetailViewController(nibName: "WebDetailViewController")
 			default:
 				return nil
 			}
@@ -200,21 +200,21 @@ class HomeViewController: UIViewController, PortletDisplayScreenletDelegate,
 		}
 	}
     
-    //MARK: PortletScreenletDelegate
-    func screenlet(_ screenlet: PortletDisplayScreenlet,
+    //MARK: WebScreenletDelegate
+    func screenlet(_ screenlet: WebScreenlet,
                    onScriptMessageNamespace namespace: String,
                    onScriptMessage message: String) {
         
         let bodyArray = message.components(separatedBy: "|")
         
         if bodyArray[1] != "blog"{
-            let detail: DetailViewController? = DetailViewController(nibName: "ModalPortletDetailViewController")
+            let detail: DetailViewController? = DetailViewController(nibName: "ModalWebDetailViewController")
             
             self.present(detail!, animated: true) {
                 detail?.load(file: "detail", id: bodyArray[0])
             }
         } else {
-            let detail: DetailViewController? = DetailViewController(nibName: "ModalPortletBlogDetailViewController")
+            let detail: DetailViewController? = DetailViewController(nibName: "ModalWebBlogDetailViewController")
             
             self.present(detail!, animated: true) {
                 detail?.load(file: "blog", id: bodyArray[0])
@@ -228,7 +228,7 @@ class HomeViewController: UIViewController, PortletDisplayScreenletDelegate,
 
 	fileprivate func initializeHome() {
         
-        loadPortletScreenlet()
+        loadWebScreenlet()
     
 		//Load user profile
 		let userId = SessionContext.currentContext!.user.userId

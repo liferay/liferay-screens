@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m5o-Dc-FbM" customClass="PortletDisplayScreenlet">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m5o-Dc-FbM" customClass="WebScreenlet">
                                 <rect key="frame" x="0.0" y="43" width="375" height="446"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
@@ -100,7 +100,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="portletDisplayScreenlet" destination="m5o-Dc-FbM" id="mI8-AT-Adm"/>
+                        <outlet property="webScreenlet" destination="m5o-Dc-FbM" id="Bde-ch-B3L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oVo-Gz-Fk4" userLabel="First Responder" sceneMemberID="firstResponder"/>

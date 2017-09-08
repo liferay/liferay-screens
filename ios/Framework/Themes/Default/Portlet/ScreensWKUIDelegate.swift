@@ -22,7 +22,7 @@ import WebKit
 		self.viewController = viewController
 
 		if viewController == nil {
-			print("Error: you have to set the presentingViewController property on your PortletDisplayScreenlet"
+			print("Error: you have to set the presentingViewController property on your WebScreenlet"
 			+ "if you want to show alerts")
 		}
 	}

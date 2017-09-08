@@ -6,20 +6,18 @@ import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.ViewPropertyAnimator;
 
-import com.liferay.mobile.screens.asset.AssetEntry;
-import com.liferay.mobile.screens.portlet.PortletConfiguration;
-import com.liferay.mobile.screens.portlet.PortletDisplayListener;
-import com.liferay.mobile.screens.portlet.PortletDisplayScreenlet;
-import com.liferay.mobile.screens.portlet.util.InjectableScript;
+import com.liferay.mobile.screens.web.WebScreenletConfiguration;
+import com.liferay.mobile.screens.web.WebListener;
+import com.liferay.mobile.screens.web.WebScreenlet;
 import com.liferay.mobile.screens.westerosemployees_hybrid.R;
 import com.liferay.mobile.screens.westerosemployees_hybrid.utils.CardState;
 
 /**
  * @author Víctor Galán Grande
  */
-public class BlogsCard extends Card implements PortletDisplayListener {
+public class BlogsCard extends Card implements WebListener {
 
-	private PortletDisplayScreenlet portletDisplayScreenlet;
+	private WebScreenlet webScreenlet;
 	private boolean loaded;
 
 	public BlogsCard(Context context) {
@@ -49,20 +47,20 @@ public class BlogsCard extends Card implements PortletDisplayListener {
 	}
 
 	private void loadCompanyNews() {
-		PortletConfiguration configuration = new PortletConfiguration.Builder("/web/westeros-hybrid/companynews")
+		WebScreenletConfiguration configuration = new WebScreenletConfiguration.Builder("/web/westeros-hybrid/companynews")
 				.addRawCss(R.raw.blogs_portlet_css, "blogs_portlet_css.css")
 				.addRawJs(R.raw.blogs_portlet_js, "blogs_portlet_js.js")
 				.load();
 
-		portletDisplayScreenlet.setPortletConfiguration(configuration);
-		portletDisplayScreenlet.load();
-		portletDisplayScreenlet.setListener(this);
+		webScreenlet.setWebScreenletConfiguration(configuration);
+		webScreenlet.load();
+		webScreenlet.setListener(this);
 	}
 
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
-		portletDisplayScreenlet = (PortletDisplayScreenlet) findViewById(R.id.portlet_blogs);
+		webScreenlet = (WebScreenlet) findViewById(R.id.portlet_blogs);
 
 	}
 
@@ -82,17 +80,17 @@ public class BlogsCard extends Card implements PortletDisplayListener {
 			new Handler(Looper.getMainLooper()).post(new Runnable() {
 				@Override
 				public void run() {
-					PortletConfiguration configuration =
-						new PortletConfiguration.Builder("/web/westeros-hybrid/detail?id=" + body).addRawCss(
+					WebScreenletConfiguration configuration =
+						new WebScreenletConfiguration.Builder("/web/westeros-hybrid/detail?id=" + body).addRawCss(
 							R.raw.blog_portlet_css, "blog_portlet_css.css")
 							.addRawJs(R.raw.blog_portlet_js, "blog_portlet_js.js")
 							.load();
 
-					PortletDisplayScreenlet portletDisplayScreenlet =
-						(PortletDisplayScreenlet) findViewById(R.id.portlet_blog_item);
+					WebScreenlet webScreenlet =
+						(WebScreenlet) findViewById(R.id.portlet_blog_item);
 
-					portletDisplayScreenlet.setPortletConfiguration(configuration);
-					portletDisplayScreenlet.load();
+					webScreenlet.setWebScreenletConfiguration(configuration);
+					webScreenlet.load();
 
 					cardListener.moveCardRight(BlogsCard.this);
 				}

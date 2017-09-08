@@ -58,7 +58,7 @@
 	<integer>42184</integer>
 	<key>webContentDisplayArticleId</key>
 	<string>41983</string>
-	<key>portletDisplayUrl</key>
-	<string>/web/portletdisplay-demo/gallery</string>
+	<key>WebUrl</key>
+	<string>/web/guest/blog</string>
 </dict>
 </plist>

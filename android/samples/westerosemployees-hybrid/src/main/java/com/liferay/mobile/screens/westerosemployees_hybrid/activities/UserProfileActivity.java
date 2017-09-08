@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.storage.CredentialsStorageBuilder;
-import com.liferay.mobile.screens.portlet.PortletConfiguration;
-import com.liferay.mobile.screens.portlet.PortletDisplayScreenlet;
-import com.liferay.mobile.screens.viewsets.defaultviews.portlet.cordova.CordovaLifeCycleObserver;
+import com.liferay.mobile.screens.web.WebScreenletConfiguration;
+import com.liferay.mobile.screens.web.WebScreenlet;
+import com.liferay.mobile.screens.viewsets.defaultviews.web.cordova.CordovaLifeCycleObserver;
 import com.liferay.mobile.screens.westerosemployees_hybrid.R;
 
 public class UserProfileActivity extends WesterosActivity implements View.OnClickListener {
@@ -28,17 +28,17 @@ public class UserProfileActivity extends WesterosActivity implements View.OnClic
 
 		observer = new CordovaLifeCycleObserver();
 
-		PortletDisplayScreenlet portletDisplayScreenlet =
-			(PortletDisplayScreenlet) findViewById(R.id.portlet_user_profile);
+		WebScreenlet webScreenlet =
+			(WebScreenlet) findViewById(R.id.portlet_user_profile);
 
-		PortletConfiguration configuration =
-			new PortletConfiguration.Builder("/web/westeros-hybrid/userprofile").enableCordova(observer)
+		WebScreenletConfiguration configuration =
+			new WebScreenletConfiguration.Builder("/web/westeros-hybrid/userprofile").enableCordova(observer)
 				.addRawCss(R.raw.user_profile_portlet_css, "user_profile_portlet_css.css")
 				.addRawJs(R.raw.user_profile_portlet_js, "user_profile_portlet_js.js")
 				.load();
 
-		portletDisplayScreenlet.setPortletConfiguration(configuration);
-		portletDisplayScreenlet.load();
+		webScreenlet.setWebScreenletConfiguration(configuration);
+		webScreenlet.load();
 	}
 
 	@Override

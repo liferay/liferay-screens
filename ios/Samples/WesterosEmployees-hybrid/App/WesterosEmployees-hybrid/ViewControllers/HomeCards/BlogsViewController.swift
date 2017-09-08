@@ -14,13 +14,13 @@
 import UIKit
 import LiferayScreens
 
-class BlogsViewController: CardViewController, PortletDisplayScreenletDelegate {
+class BlogsViewController: CardViewController, WebScreenletDelegate {
 
 	var selectedBlogEntry:String?
 
 	var loaded: Bool = false
 	
-    @IBOutlet weak var portletDisplayScreenlet: PortletDisplayScreenlet!
+    @IBOutlet weak var webScreenlet: WebScreenlet!
 
 	//MARK: Init methods
 
@@ -28,25 +28,25 @@ class BlogsViewController: CardViewController, PortletDisplayScreenletDelegate {
 		self.init(nibName: "BlogsViewController", bundle: nil)
 	}
     
-    func loadPortletScreenlet() {
-        let portletConfiguration = PortletConfiguration.Builder(portletUrl: "/web/westeros-hybrid/companynews").addCss(localFile: "blogs").addJs(localFile: "blogs").load()
-        portletDisplayScreenlet.configuration = portletConfiguration
-        portletDisplayScreenlet.load()
-        portletDisplayScreenlet.delegate = self
+    func loadWebScreenlet() {
+        let webScreenletConfiguration = WebScreenletConfiguration.Builder(url: "/web/westeros-hybrid/companynews").addCss(localFile: "blogs").addJs(localFile: "blogs").load()
+        webScreenlet.configuration = webScreenletConfiguration
+        webScreenlet.load()
+        webScreenlet.delegate = self
     }
 
 
 	//MARK: CardViewController
 	override func pageWillAppear() {
 		if !loaded {
-			loadPortletScreenlet()
+			loadWebScreenlet()
 			loaded = true
 		}
 	}
 
 
-	//MARK: PortletScreenletDelegate
-    func screenlet(_ screenlet: PortletDisplayScreenlet,
+	//MARK: WebScreenletDelegate
+    func screenlet(_ screenlet: WebScreenlet,
                    onScriptMessageNamespace namespace: String,
                    onScriptMessage message: String) {
         selectedBlogEntry = message

@@ -49,7 +49,7 @@
 		<activity android:name=".ImageDisplayActivity"/>
 		<activity android:name=".GalleryActivity"/>
 		<activity android:name=".GetUserActivity"/>
-		<activity android:name=".PortletDisplayActivity"/>
+		<activity android:name=".WebActivity"/>
 		<activity
 			android:name=".DetailMediaGalleryActivity"
 			android:theme="@style/gallery_theme"/>

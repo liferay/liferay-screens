@@ -11,8 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BlogsViewController" customModule="WesterosEmployees_hybrid" customModuleProvider="target">
             <connections>
-                <outlet property="portletDisplayScreenlet" destination="d9H-mH-LSG" id="20W-M2-4hC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="webScreenlet" destination="d9H-mH-LSG" id="8qH-OJ-nGA"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -20,7 +20,7 @@
             <rect key="frame" x="0.0" y="0.0" width="372" height="279"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9H-mH-LSG" customClass="PortletDisplayScreenlet">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d9H-mH-LSG" customClass="WebScreenlet">
                     <rect key="frame" x="0.0" y="0.0" width="372" height="279"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
