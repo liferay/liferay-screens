@@ -80,4 +80,7 @@
     <!-- RatingScreenlet -->
     <string name="liferay_rating_class_name">com.liferay.document.library.kernel.model.DLFileEntry</string>
     <string name="liferay_rating_list_class_pk">57177</string>
+
+    <!-- BlogsEntryDisplayScreenlet -->
+    <string name="liferay_blog_entry_id">40516</string>
 </resources>

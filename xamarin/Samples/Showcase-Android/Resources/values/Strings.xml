@@ -1,25 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">Liferay Screens</string>
-	<string name="main_activity_label">
-	    List of all the screenlets supported on version 0.1.0 of LiferayScreens for Xamarin solutions.
-	</string>
-	<string name="login">Login</string>
-	<string name="forgot_password">Forgot Password</string>
-	<string name="sign_up">Sign Up</string>
-	<string name="ddl_form">DDL Form</string>
-	<string name="user_portrait">User Portrait</string>
-	<string name="web_content_display">Web Content Display</string>
-	<string name="asset_list">Asset List</string>
-	<string name="asset_display">Asset Display</string>
-	<string name="image_display">Image Display</string>
-	<string name="pdf_display">PDF Display</string>   
-	<string name="audio_display">Audio Display</string>
-	<string name="video_display">Video Display</string>
-	<string name="image_gallery">Image Gallery</string>
+    <string name="app_name">Liferay Screens</string>
+    <string name="main_activity_label">
+        List of all the screenlets supported on version 0.1.0 of LiferayScreens for Xamarin solutions.
+    </string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="ddl_form">DDL Form</string>
+    <string name="user_portrait">User Portrait</string>
+    <string name="web_content_display">Web Content Display</string>
+    <string name="asset_list">Asset List</string>
+    <string name="asset_display">Asset Display</string>
+    <string name="image_display">Image Display</string>
+    <string name="pdf_display">PDF Display</string>   
+    <string name="audio_display">Audio Display</string>
+    <string name="video_display">Video Display</string>
+    <string name="image_gallery">Image Gallery</string>
     <string name="comment_display">Comment Display</string>
     <string name="comment_add">Comment Add</string>
-	<string name="comment_list">Comment List</string>
+    <string name="comment_list">Comment List</string>
     <string name="web_content_list">Web Content List</string>
     <string name="rating">Rating</string>
+    <string name="blogs_display">Blog Display</string>
 </resources>
