@@ -189,6 +189,7 @@
     <InterfaceDefinition Include="Storyboard\CommentDisplayScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\CommentAddScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\CommentListScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\WebContentListScreenlet.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -266,6 +267,10 @@
     <Compile Include="ViewController\CommentListViewController.cs" />
     <Compile Include="ViewController\CommentListViewController.designer.cs">
       <DependentUpon>CommentListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\WebContentListViewController.cs" />
+    <Compile Include="ViewController\WebContentListViewController.designer.cs">
+      <DependentUpon>WebContentListViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

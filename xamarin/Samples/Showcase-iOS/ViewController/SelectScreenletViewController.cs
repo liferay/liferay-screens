@@ -20,7 +20,8 @@ namespace ShowcaseiOS.ViewController
             "ImageGalleryScreenlet",
             "CommentDisplayScreenlet",
             "CommentAddScreenlet",
-            "CommentListScreenlet"
+            "CommentListScreenlet",
+			"WebContentListScreenlet"
         };
 
         protected string[] viewControllers = 
@@ -37,7 +38,8 @@ namespace ShowcaseiOS.ViewController
             "ImageGalleryViewController",
             "CommentDisplayViewController",
             "CommentAddViewController",
-            "CommentListViewController"
+            "CommentListViewController",
+            "WebContentListViewController"
         };
 
         public SelectScreenletViewController(IntPtr handle) : base(handle) { }
@@ -50,4 +52,3 @@ namespace ShowcaseiOS.ViewController
         }
     }
 }
-
