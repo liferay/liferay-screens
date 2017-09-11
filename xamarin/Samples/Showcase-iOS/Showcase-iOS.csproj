@@ -192,6 +192,7 @@
     <InterfaceDefinition Include="Storyboard\WebContentListScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\RatingScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\BlogsScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\DDLListScreenlet.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -281,6 +282,10 @@
     <Compile Include="ViewController\BlogsViewController.cs" />
     <Compile Include="ViewController\BlogsViewController.designer.cs">
       <DependentUpon>BlogsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\DDLListViewController.cs" />
+    <Compile Include="ViewController\DDLListViewController.designer.cs">
+      <DependentUpon>DDLListViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
