@@ -129,6 +129,7 @@
     <Compile Include="Activities\WebContentListActivity.cs" />
     <Compile Include="Activities\RatingActivity.cs" />
     <Compile Include="Activities\BlogsEntryDisplayActivity.cs" />
+    <Compile Include="Activities\DDLListActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -158,6 +159,7 @@
     <AndroidResource Include="Resources\layout\CommentListView.axml" />
     <AndroidResource Include="Resources\layout\WebContentListView.axml" />
     <AndroidResource Include="Resources\layout\RatingView.axml" />
+    <AndroidResource Include="Resources\layout\DDLListView.axml" />
     <AndroidResource Include="Resources\layout\BlogsEntryView.axml" />
   </ItemGroup>
   <ItemGroup>

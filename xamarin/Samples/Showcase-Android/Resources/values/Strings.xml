@@ -22,5 +22,6 @@
     <string name="comment_list">Comment List</string>
     <string name="web_content_list">Web Content List</string>
     <string name="rating">Rating</string>
-    <string name="blogs_display">Blog Display</string>
+	<string name="blogs_display">Blogs Display</string>
+	<string name="ddl_list">DDL List</string>
 </resources>

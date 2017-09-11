@@ -1,10 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="liferay_server">http://screens.liferay.org.es/</string>
-    <integer name="liferay_portal_version">70</integer>
-    <string name="liferay_company_id">20116</string>
-    <string name="liferay_group_id">20143</string>
-
+<?xml version="1.0" encoding="utf-8"?> 
+<resources> 
+    <string name="liferay_server">http://screens.liferay.org.es/</string> 
+    <integer name="liferay_portal_version">70</integer> 
+    <string name="liferay_company_id">20116</string> 
+    <string name="liferay_group_id">20143</string> 
+	
     <!-- LoginScreenlet: Default user & password -->
     <string name="liferay_default_user_name">test@liferay.com</string>
     <string name="liferay_default_password">test1</string>
@@ -81,6 +81,10 @@
     <string name="liferay_rating_class_name">com.liferay.document.library.kernel.model.DLFileEntry</string>
     <string name="liferay_rating_list_class_pk">57177</string>
 
-    <!-- BlogsEntryDisplayScreenlet -->
-    <string name="liferay_blog_entry_id">40516</string>
+    <!-- Blog Entry values -->
+    <string name="liferay_blog_entry_id">40516</string> 
+
+    <!-- DDL List values -->
+    <string name="liferay_ddl_list_label_fields">description</string>
+    <string name="liferay_ddl_list_recordset_id">33280</string>
 </resources>

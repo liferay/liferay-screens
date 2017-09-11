@@ -33,6 +33,7 @@ namespace ShowcaseAndroid
             FindViewById(Resource.Id.web_content_list_screenlet).SetOnClickListener(this);
             FindViewById(Resource.Id.rating_screenlet).SetOnClickListener(this);
             FindViewById(Resource.Id.blogs_display_screenlet).SetOnClickListener(this);
+            FindViewById(Resource.Id.ddl_list_screenlet).SetOnClickListener(this);
         }
 
         /* IOnClickListener */
@@ -97,6 +98,9 @@ namespace ShowcaseAndroid
                     break;
                 case Resource.Id.blogs_display_screenlet:
                     StartActivity(typeof(BlogsEntryDisplayActivity));
+                    break;
+                case Resource.Id.ddl_list_screenlet:
+                    StartActivity(typeof(DDLListActivity));
                     break;
             }
         }
