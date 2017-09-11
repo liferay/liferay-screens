@@ -5,25 +5,25 @@ using System;
 
 namespace LiferayScreens
 {
-    // @interface PortletDisplayView_default : BaseScreenletView <PortletDisplayViewModel>
+    // @interface WebView_default : BaseScreenletView <WebViewModel>
     [BaseType(typeof(BaseScreenletView))]
-    interface PortletDisplayView_default : IPortletDisplayViewModel
+    interface WebView_default : IWebViewModel
     {
-        // @property (nonatomic) BOOL isThemeEnabled;
-        [Export("isThemeEnabled")]
-        bool IsThemeEnabled { get; set; }
-
         // @property (nonatomic) BOOL isLoggingEnabled;
         [Export("isLoggingEnabled")]
         bool IsLoggingEnabled { get; set; }
+
+        // @property (nonatomic) BOOL isScrollEnabled;
+        [Export("isScrollEnabled")]
+        bool IsScrollEnabled { get; set; }
 
         // @property (nonatomic, strong) id<ScreensWebView> _Nullable screensWebView;
         [NullAllowed, Export("screensWebView", ArgumentSemantic.Strong)]
         IScreensWebView ScreensWebView { get; set; }
 
-        // @property (readonly, nonatomic, strong) PortletDisplayScreenlet * _Nonnull portletDisplayScreenlet;
-        [Export("portletDisplayScreenlet", ArgumentSemantic.Strong)]
-        PortletDisplayScreenlet PortletDisplayScreenlet { get; }
+        // @property (readonly, nonatomic, strong) WebScreenlet * _Nonnull webScreenlet;
+        [Export("webScreenlet", ArgumentSemantic.Strong)]
+        WebScreenlet WebScreenlet { get; }
 
         // -(void)configureViewWith:(BOOL)cordovaEnabled;
         [Export("configureViewWith:")]
@@ -48,6 +48,10 @@ namespace LiferayScreens
         // -(void)loadWithHtmlString:(NSString * _Nonnull)htmlString;
         [Export("loadWithHtmlString:")]
         void LoadWithHtmlString(string htmlString);
+
+        // -(void)clearCache;
+        [Export("clearCache")]
+        void ClearCache();
 
         // -(void)onCreated;
         [Export("onCreated")]

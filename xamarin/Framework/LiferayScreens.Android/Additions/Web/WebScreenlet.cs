@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Com.Liferay.Mobile.Screens.Portlet
+namespace Com.Liferay.Mobile.Screens.Web
 {
-    public partial class PortletDisplayScreenlet
+    public partial class WebScreenlet
     {
         protected override Java.Lang.Object CreateInteractor(string p0)
         {

@@ -5,9 +5,9 @@ using System;
 
 namespace LiferayScreens
 {
-    // @interface PortletDisplayScreenlet : BaseScreenlet
+    // @interface WebScreenlet : BaseScreenlet
     [BaseType(typeof(BaseScreenlet))]
-    interface PortletDisplayScreenlet
+    interface WebScreenlet
     {
         // @property (nonatomic) BOOL autoLoad;
         [Export("autoLoad")]
@@ -17,25 +17,33 @@ namespace LiferayScreens
         [Export("loggingEnabled")]
         bool LoggingEnabled { get; set; }
 
-        // @property (nonatomic, strong) PortletConfiguration * _Nullable configuration;
+        // @property (nonatomic) BOOL isScrollEnabled;
+        [Export("isScrollEnabled")]
+        bool IsScrollEnabled { get; set; }
+
+        // @property (nonatomic, strong) WebScreenletConfiguration * _Nullable configuration;
         [NullAllowed, Export("configuration", ArgumentSemantic.Strong)]
-        PortletConfiguration Configuration { get; set; }
+        WebScreenletConfiguration Configuration { get; set; }
 
-        [Wrap("WeakPortletDisplayDelegate")]
+        [Wrap("WeakWebDelegate")]
         [NullAllowed]
-        PortletDisplayScreenletDelegate PortletDisplayDelegate { get; }
+        WebScreenletDelegate WebDelegate { get; }
 
-        // @property (readonly, nonatomic, strong) id<PortletDisplayScreenletDelegate> _Nullable portletDisplayDelegate;
-        [NullAllowed, Export("portletDisplayDelegate", ArgumentSemantic.Strong)]
-        NSObject WeakPortletDisplayDelegate { get; }
+        // @property (readonly, nonatomic, strong) id<WebScreenletDelegate> _Nullable webDelegate;
+        [NullAllowed, Export("webDelegate", ArgumentSemantic.Strong)]
+        NSObject WeakWebDelegate { get; }
 
-        // @property (readonly, nonatomic, strong) id<PortletDisplayViewModel> _Nonnull portletDisplayViewModel;
-        [Export("portletDisplayViewModel", ArgumentSemantic.Strong)]
-        IPortletDisplayViewModel PortletDisplayViewModel { get; }
+        // @property (readonly, nonatomic, strong) id<WebViewModel> _Nonnull webViewModel;
+        [Export("webViewModel", ArgumentSemantic.Strong)]
+        IWebViewModel WebViewModel { get; }
 
         // -(void)onShow;
         [Export("onShow")]
         void OnShow();
+
+        // -(void)clearCache;
+        [Export("clearCache")]
+        void ClearCache();
 
         // -(void)handleJsCallWithNamespace:(NSString * _Nonnull)namespace_ message:(NSString * _Nonnull)message;
         [Export("handleJsCallWithNamespace:message:")]

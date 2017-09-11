@@ -69,7 +69,7 @@
     <Compile Include="Additions\WebContent\Display\WebContentDisplayScreenlet.cs" />
     <Compile Include="Additions\WebContent\List\WebContentListScreenlet.cs" />
     <Compile Include="Additions\Rating\RatingScreenlet.cs" />
-    <Compile Include="Additions\Portlet\PortletDisplayScreenlet.cs" />
+    <Compile Include="Additions\Web\WebScreenlet.cs" />
     <Compile Include="Additions\Blogs\BlogsEntryDisplayScreenlet.cs" />
     <Compile Include="Additions\DDL\List\DDLListScreenlet.cs" />
   </ItemGroup>
@@ -126,7 +126,7 @@
     <Folder Include="Additions\WebContent\Display\" />
     <Folder Include="Additions\WebContent\List\" />
     <Folder Include="Additions\Rating\" />
-    <Folder Include="Additions\Portlet\" />
+    <Folder Include="Additions\Web\" />
     <Folder Include="Additions\Blogs\" />
     <Folder Include="Additions\DDL\List\" />
   </ItemGroup>
