@@ -190,6 +190,7 @@
     <InterfaceDefinition Include="Storyboard\CommentAddScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\CommentListScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\WebContentListScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\RatingScreenlet.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -271,6 +272,10 @@
     <Compile Include="ViewController\WebContentListViewController.cs" />
     <Compile Include="ViewController\WebContentListViewController.designer.cs">
       <DependentUpon>WebContentListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\RatingViewController.cs" />
+    <Compile Include="ViewController\RatingViewController.designer.cs">
+      <DependentUpon>RatingViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
