@@ -22,7 +22,8 @@ namespace ShowcaseiOS.ViewController
             "CommentAddScreenlet",
             "CommentListScreenlet",
 			"WebContentListScreenlet",
-			"RatingScreenlet"
+			"RatingScreenlet",
+            "BlogsScreenlet"
         };
 
         protected string[] viewControllers = 
@@ -41,7 +42,8 @@ namespace ShowcaseiOS.ViewController
             "CommentAddViewController",
             "CommentListViewController",
             "WebcontentListViewController",
-            "RatingViewController"
+            "RatingViewController",
+            "BlogsViewController"
         };
 
         public SelectScreenletViewController(IntPtr handle) : base(handle) { }
