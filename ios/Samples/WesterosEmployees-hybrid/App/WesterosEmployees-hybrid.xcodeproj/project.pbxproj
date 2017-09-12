@@ -129,7 +129,7 @@
 		4BCA1EDE1F1649A80034F8E9 /* last_changes.js in Resources */ = {isa = PBXBuildFile; fileRef = 4BCA1EDD1F1649A80034F8E9 /* last_changes.js */; };
 		4BCA1EE01F1649DC0034F8E9 /* last_changes.css in Resources */ = {isa = PBXBuildFile; fileRef = 4BCA1EDF1F1649DC0034F8E9 /* last_changes.css */; };
 		4BCCB9C91F2B1F660020EB56 /* user_profile.js in Resources */ = {isa = PBXBuildFile; fileRef = 4BCCB9C81F2B1F660020EB56 /* user_profile.js */; };
-		4BEF0AF81F1781F800E2B453 /* WebPortletDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BEF0AF71F1781F800E2B453 /* WebPortletDetailViewController.xib */; };
+		4BEF0AF81F1781F800E2B453 /* WebDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BEF0AF71F1781F800E2B453 /* WebDetailViewController.xib */; };
 		4BEF0AFA1F1787D000E2B453 /* detail.css in Resources */ = {isa = PBXBuildFile; fileRef = 4BEF0AF91F1787D000E2B453 /* detail.css */; };
 		4BEF0AFC1F1787E500E2B453 /* detail.js in Resources */ = {isa = PBXBuildFile; fileRef = 4BEF0AFB1F1787E500E2B453 /* detail.js */; };
 		4BEF0AFE1F18A2EC00E2B453 /* ModalWebDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BEF0AFD1F18A2EC00E2B453 /* ModalWebDetailViewController.xib */; };
@@ -269,7 +269,7 @@
 		4BCA1EDD1F1649A80034F8E9 /* last_changes.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = last_changes.js; path = js/last_changes.js; sourceTree = "<group>"; };
 		4BCA1EDF1F1649DC0034F8E9 /* last_changes.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = last_changes.css; path = css/last_changes.css; sourceTree = "<group>"; };
 		4BCCB9C81F2B1F660020EB56 /* user_profile.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = user_profile.js; path = js/user_profile.js; sourceTree = "<group>"; };
-		4BEF0AF71F1781F800E2B453 /* WebPortletDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebPortletDetailViewController.xib; sourceTree = "<group>"; };
+		4BEF0AF71F1781F800E2B453 /* WebDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebDetailViewController.xib; sourceTree = "<group>"; };
 		4BEF0AF91F1787D000E2B453 /* detail.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = detail.css; path = css/detail.css; sourceTree = "<group>"; };
 		4BEF0AFB1F1787E500E2B453 /* detail.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = detail.js; path = js/detail.js; sourceTree = "<group>"; };
 		4BEF0AFD1F18A2EC00E2B453 /* ModalWebDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ModalWebDetailViewController.xib; sourceTree = "<group>"; };
@@ -437,7 +437,7 @@
 				4B0BA1051F1609F20083D523 /* DetailViewController.swift */,
 				4BEF0AFD1F18A2EC00E2B453 /* ModalWebDetailViewController.xib */,
 				4BEF0AFF1F18BF0A00E2B453 /* ModalWebBlogDetailViewController.xib */,
-				4BEF0AF71F1781F800E2B453 /* WebPortletDetailViewController.xib */,
+				4BEF0AF71F1781F800E2B453 /* WebDetailViewController.xib */,
 				4B0BA1061F1609F20083D523 /* DetailViewController.xib */,
 			);
 			path = Detail;
@@ -864,7 +864,7 @@
 				4BC4E4091F4B2066004B5763 /* www in Resources */,
 				4BCCB9C91F2B1F660020EB56 /* user_profile.js in Resources */,
 				4B62FE561F1CC85B00B1FEA1 /* CommentDisplayView_westeros-white.xib in Resources */,
-				4BEF0AF81F1781F800E2B453 /* WebPortletDetailViewController.xib in Resources */,
+				4BEF0AF81F1781F800E2B453 /* WebDetailViewController.xib in Resources */,
 				4B62FE421F1CC85B00B1FEA1 /* AssetListView_westeros_news.xib in Resources */,
 				4BEF0B001F18BF0A00E2B453 /* ModalWebBlogDetailViewController.xib in Resources */,
 				4BCA1ED81F1649200034F8E9 /* blog.css in Resources */,
