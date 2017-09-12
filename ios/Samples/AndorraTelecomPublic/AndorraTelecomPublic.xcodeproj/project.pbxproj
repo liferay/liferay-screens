@@ -1,0 +1,615 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4607542CBDA666B3DF9BDF5D /* Pods_AndorraTelecomPublic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 569E07E5BEA618B6FE707643 /* Pods_AndorraTelecomPublic.framework */; };
+		4B1FF3391F274C8000ECB73F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B1FF3381F274C8000ECB73F /* AppDelegate.swift */; };
+		4B45A59A1F5D8FC2002E2052 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B45A5991F5D8FC2002E2052 /* UIColor.swift */; };
+		4B45A59C1F5D935B002E2052 /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B45A59B1F5D935B002E2052 /* UIAlertController.swift */; };
+		4B45A59E1F5E8753002E2052 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B45A59D1F5E8753002E2052 /* UIView.swift */; };
+		4B45A5A21F5EFB46002E2052 /* ColourfulFlag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B45A5A11F5EFB46002E2052 /* ColourfulFlag.swift */; };
+		4B7A38561F4848EA00567D19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B7A38541F4848EA00567D19 /* LaunchScreen.storyboard */; };
+		4B7A38571F4848EA00567D19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B7A38551F4848EA00567D19 /* Main.storyboard */; };
+		4B7A38591F48497700567D19 /* CallMeBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A38581F48497700567D19 /* CallMeBackView.swift */; };
+		4B7A38601F4860A100567D19 /* CallMeBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B7A385F1F4860A100567D19 /* CallMeBackView.xib */; };
+		4B7A38661F488E8200567D19 /* CallMeBackDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A38651F488E8200567D19 /* CallMeBackDelegate.swift */; };
+		4B7A38681F48982300567D19 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A38671F48982300567D19 /* MapViewController.swift */; };
+		4B7A386C1F48AD9B00567D19 /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A386B1F48AD9B00567D19 /* UITextFieldExtension.swift */; };
+		4B7A386E1F48E24000567D19 /* LegalConditionsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B7A386D1F48E24000567D19 /* LegalConditionsView.xib */; };
+		4B7A38701F48E83300567D19 /* LegalConditionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B7A386F1F48E83300567D19 /* LegalConditionsView.swift */; };
+		4B7A38721F48F47000567D19 /* legal.js in Resources */ = {isa = PBXBuildFile; fileRef = 4B7A38711F48F47000567D19 /* legal.js */; };
+		4B7A38741F48F49500567D19 /* legal.css in Resources */ = {isa = PBXBuildFile; fileRef = 4B7A38731F48F49500567D19 /* legal.css */; };
+		4B9A910B1F3C66D6007DB477 /* map.css in Resources */ = {isa = PBXBuildFile; fileRef = 4B9A91041F3C66D5007DB477 /* map.css */; };
+		4B9A910C1F3C66D6007DB477 /* forfet.css in Resources */ = {isa = PBXBuildFile; fileRef = 4B9A91051F3C66D5007DB477 /* forfet.css */; };
+		4B9A910D1F3C66D6007DB477 /* menu.css in Resources */ = {isa = PBXBuildFile; fileRef = 4B9A91061F3C66D5007DB477 /* menu.css */; };
+		4B9A910E1F3C66D6007DB477 /* map.js in Resources */ = {isa = PBXBuildFile; fileRef = 4B9A91081F3C66D5007DB477 /* map.js */; };
+		4B9A910F1F3C66D6007DB477 /* forfet.js in Resources */ = {isa = PBXBuildFile; fileRef = 4B9A91091F3C66D5007DB477 /* forfet.js */; };
+		4B9A91101F3C66D6007DB477 /* menu.js in Resources */ = {isa = PBXBuildFile; fileRef = 4B9A910A1F3C66D5007DB477 /* menu.js */; };
+		4B9A91191F3C678A007DB477 /* ForfetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9A91171F3C678A007DB477 /* ForfetViewController.swift */; };
+		4B9A911A1F3C678A007DB477 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9A91181F3C678A007DB477 /* MenuViewController.swift */; };
+		4B9A91231F3C67EC007DB477 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B9A91221F3C67EC007DB477 /* Assets.xcassets */; };
+		4B9A91261F3C681A007DB477 /* LanguageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9A91251F3C681A007DB477 /* LanguageHelper.swift */; };
+		4B9A91321F3C6A62007DB477 /* AndorraTelecomProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9A912F1F3C6A62007DB477 /* AndorraTelecomProgressPresenter.swift */; };
+		4B9A91331F3C6A62007DB477 /* WebView_andorra_telecom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B9A91301F3C6A62007DB477 /* WebView_andorra_telecom.swift */; };
+		4B9A91341F3C6A62007DB477 /* WebView_andorra_telecom.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B9A91311F3C6A62007DB477 /* WebView_andorra_telecom.xib */; };
+		4B9A913F1F3C71D2007DB477 /* translations.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B9A91411F3C71D2007DB477 /* translations.strings */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		26F86B4F5FE9C338001ECCFA /* Pods-AndorraTelecomPublic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AndorraTelecomPublic.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AndorraTelecomPublic/Pods-AndorraTelecomPublic.debug.xcconfig"; sourceTree = "<group>"; };
+		4B1FF3351F274C8000ECB73F /* AndorraTelecomPublic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AndorraTelecomPublic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B1FF3381F274C8000ECB73F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4B1FF3441F274C8000ECB73F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B45A5991F5D8FC2002E2052 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		4B45A59B1F5D935B002E2052 /* UIAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
+		4B45A59D1F5E8753002E2052 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		4B45A5A11F5EFB46002E2052 /* ColourfulFlag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColourfulFlag.swift; sourceTree = "<group>"; };
+		4B7A38541F4848EA00567D19 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4B7A38551F4848EA00567D19 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		4B7A38581F48497700567D19 /* CallMeBackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallMeBackView.swift; sourceTree = "<group>"; };
+		4B7A385F1F4860A100567D19 /* CallMeBackView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallMeBackView.xib; sourceTree = "<group>"; };
+		4B7A38611F4880F600567D19 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/translations.strings; sourceTree = "<group>"; };
+		4B7A38621F48810500567D19 /* ca */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ca; path = ca.lproj/translations.strings; sourceTree = "<group>"; };
+		4B7A38631F48810B00567D19 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/translations.strings; sourceTree = "<group>"; };
+		4B7A38651F488E8200567D19 /* CallMeBackDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallMeBackDelegate.swift; sourceTree = "<group>"; };
+		4B7A38671F48982300567D19 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		4B7A386B1F48AD9B00567D19 /* UITextFieldExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
+		4B7A386D1F48E24000567D19 /* LegalConditionsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LegalConditionsView.xib; sourceTree = "<group>"; };
+		4B7A386F1F48E83300567D19 /* LegalConditionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegalConditionsView.swift; sourceTree = "<group>"; };
+		4B7A38711F48F47000567D19 /* legal.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = legal.js; sourceTree = "<group>"; };
+		4B7A38731F48F49500567D19 /* legal.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = legal.css; sourceTree = "<group>"; };
+		4B9A91041F3C66D5007DB477 /* map.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = map.css; sourceTree = "<group>"; };
+		4B9A91051F3C66D5007DB477 /* forfet.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = forfet.css; sourceTree = "<group>"; };
+		4B9A91061F3C66D5007DB477 /* menu.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = menu.css; sourceTree = "<group>"; };
+		4B9A91081F3C66D5007DB477 /* map.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = map.js; sourceTree = "<group>"; };
+		4B9A91091F3C66D5007DB477 /* forfet.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = forfet.js; sourceTree = "<group>"; };
+		4B9A910A1F3C66D5007DB477 /* menu.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = menu.js; sourceTree = "<group>"; };
+		4B9A91171F3C678A007DB477 /* ForfetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForfetViewController.swift; sourceTree = "<group>"; };
+		4B9A91181F3C678A007DB477 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		4B9A91221F3C67EC007DB477 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4B9A91251F3C681A007DB477 /* LanguageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageHelper.swift; sourceTree = "<group>"; };
+		4B9A912F1F3C6A62007DB477 /* AndorraTelecomProgressPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AndorraTelecomProgressPresenter.swift; sourceTree = "<group>"; };
+		4B9A91301F3C6A62007DB477 /* WebView_andorra_telecom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebView_andorra_telecom.swift; sourceTree = "<group>"; };
+		4B9A91311F3C6A62007DB477 /* WebView_andorra_telecom.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebView_andorra_telecom.xib; sourceTree = "<group>"; };
+		4B9A91401F3C71D2007DB477 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/translations.strings; sourceTree = "<group>"; };
+		569E07E5BEA618B6FE707643 /* Pods_AndorraTelecomPublic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AndorraTelecomPublic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6661B11A4AE031863E199AEC /* Pods-AndorraTelecomPublic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AndorraTelecomPublic.release.xcconfig"; path = "Pods/Target Support Files/Pods-AndorraTelecomPublic/Pods-AndorraTelecomPublic.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4B1FF3321F274C8000ECB73F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4607542CBDA666B3DF9BDF5D /* Pods_AndorraTelecomPublic.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		15C5A8867BDFC243B421D0F9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				26F86B4F5FE9C338001ECCFA /* Pods-AndorraTelecomPublic.debug.xcconfig */,
+				6661B11A4AE031863E199AEC /* Pods-AndorraTelecomPublic.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		4B1FF32C1F274C8000ECB73F = {
+			isa = PBXGroup;
+			children = (
+				4B9A912E1F3C6A44007DB477 /* Theme */,
+				4B1FF3371F274C8000ECB73F /* AndorraTelecomPublic */,
+				4B1FF3361F274C8000ECB73F /* Products */,
+				15C5A8867BDFC243B421D0F9 /* Pods */,
+				669CD7AEDB67B3CEF611A47B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		4B1FF3361F274C8000ECB73F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4B1FF3351F274C8000ECB73F /* AndorraTelecomPublic.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4B1FF3371F274C8000ECB73F /* AndorraTelecomPublic */ = {
+			isa = PBXGroup;
+			children = (
+				4B9A91271F3C68F9007DB477 /* Translations */,
+				4B9A91241F3C680C007DB477 /* Helpers */,
+				4B9A911B1F3C67CB007DB477 /* Views */,
+				4B9A91161F3C678A007DB477 /* ViewControllers */,
+				4B7A38641F488E4000567D19 /* Delegates */,
+				4B9A91021F3C666C007DB477 /* Resources */,
+				4B1FF3381F274C8000ECB73F /* AppDelegate.swift */,
+				4B1FF3441F274C8000ECB73F /* Info.plist */,
+				4B45A5A11F5EFB46002E2052 /* ColourfulFlag.swift */,
+			);
+			path = AndorraTelecomPublic;
+			sourceTree = "<group>";
+		};
+		4B7A38641F488E4000567D19 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				4B7A38651F488E8200567D19 /* CallMeBackDelegate.swift */,
+			);
+			name = Delegates;
+			sourceTree = "<group>";
+		};
+		4B9A91021F3C666C007DB477 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4B9A91221F3C67EC007DB477 /* Assets.xcassets */,
+				4B9A91031F3C66D5007DB477 /* css */,
+				4B9A91071F3C66D5007DB477 /* js */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		4B9A91031F3C66D5007DB477 /* css */ = {
+			isa = PBXGroup;
+			children = (
+				4B9A91041F3C66D5007DB477 /* map.css */,
+				4B9A91051F3C66D5007DB477 /* forfet.css */,
+				4B9A91061F3C66D5007DB477 /* menu.css */,
+				4B7A38731F48F49500567D19 /* legal.css */,
+			);
+			path = css;
+			sourceTree = "<group>";
+		};
+		4B9A91071F3C66D5007DB477 /* js */ = {
+			isa = PBXGroup;
+			children = (
+				4B9A91081F3C66D5007DB477 /* map.js */,
+				4B9A91091F3C66D5007DB477 /* forfet.js */,
+				4B9A910A1F3C66D5007DB477 /* menu.js */,
+				4B7A38711F48F47000567D19 /* legal.js */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
+		4B9A91161F3C678A007DB477 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4B9A91171F3C678A007DB477 /* ForfetViewController.swift */,
+				4B9A91181F3C678A007DB477 /* MenuViewController.swift */,
+				4B7A38671F48982300567D19 /* MapViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		4B9A911B1F3C67CB007DB477 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4B7A38541F4848EA00567D19 /* LaunchScreen.storyboard */,
+				4B7A38551F4848EA00567D19 /* Main.storyboard */,
+				4B7A38581F48497700567D19 /* CallMeBackView.swift */,
+				4B7A385F1F4860A100567D19 /* CallMeBackView.xib */,
+				4B7A386F1F48E83300567D19 /* LegalConditionsView.swift */,
+				4B7A386D1F48E24000567D19 /* LegalConditionsView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4B9A91241F3C680C007DB477 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4B9A91251F3C681A007DB477 /* LanguageHelper.swift */,
+				4B7A386B1F48AD9B00567D19 /* UITextFieldExtension.swift */,
+				4B45A5991F5D8FC2002E2052 /* UIColor.swift */,
+				4B45A59B1F5D935B002E2052 /* UIAlertController.swift */,
+				4B45A59D1F5E8753002E2052 /* UIView.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		4B9A91271F3C68F9007DB477 /* Translations */ = {
+			isa = PBXGroup;
+			children = (
+				4B9A91411F3C71D2007DB477 /* translations.strings */,
+			);
+			path = Translations;
+			sourceTree = "<group>";
+		};
+		4B9A912E1F3C6A44007DB477 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				4B9A912F1F3C6A62007DB477 /* AndorraTelecomProgressPresenter.swift */,
+				4B9A91301F3C6A62007DB477 /* WebView_andorra_telecom.swift */,
+				4B9A91311F3C6A62007DB477 /* WebView_andorra_telecom.xib */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		669CD7AEDB67B3CEF611A47B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				569E07E5BEA618B6FE707643 /* Pods_AndorraTelecomPublic.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4B1FF3341F274C8000ECB73F /* AndorraTelecomPublic */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B1FF3471F274C8000ECB73F /* Build configuration list for PBXNativeTarget "AndorraTelecomPublic" */;
+			buildPhases = (
+				8170B76B40470F301A1C002D /* [CP] Check Pods Manifest.lock */,
+				4B1FF3311F274C8000ECB73F /* Sources */,
+				4B1FF3321F274C8000ECB73F /* Frameworks */,
+				4B1FF3331F274C8000ECB73F /* Resources */,
+				B3E9473B35E8BFAA198D8180 /* [CP] Embed Pods Frameworks */,
+				667EAA4DCCF3956DBFE0A10B /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AndorraTelecomPublic;
+			productName = AndorraTelecomPublic;
+			productReference = 4B1FF3351F274C8000ECB73F /* AndorraTelecomPublic.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4B1FF32D1F274C8000ECB73F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = Liferay;
+				TargetAttributes = {
+					4B1FF3341F274C8000ECB73F = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = A5UCFNWB8C;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 4B1FF3301F274C8000ECB73F /* Build configuration list for PBXProject "AndorraTelecomPublic" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				es,
+				ca,
+				fr,
+			);
+			mainGroup = 4B1FF32C1F274C8000ECB73F;
+			productRefGroup = 4B1FF3361F274C8000ECB73F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4B1FF3341F274C8000ECB73F /* AndorraTelecomPublic */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4B1FF3331F274C8000ECB73F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B9A910B1F3C66D6007DB477 /* map.css in Resources */,
+				4B9A910C1F3C66D6007DB477 /* forfet.css in Resources */,
+				4B7A386E1F48E24000567D19 /* LegalConditionsView.xib in Resources */,
+				4B7A38571F4848EA00567D19 /* Main.storyboard in Resources */,
+				4B9A910F1F3C66D6007DB477 /* forfet.js in Resources */,
+				4B7A38601F4860A100567D19 /* CallMeBackView.xib in Resources */,
+				4B9A91341F3C6A62007DB477 /* WebView_andorra_telecom.xib in Resources */,
+				4B9A910D1F3C66D6007DB477 /* menu.css in Resources */,
+				4B7A38721F48F47000567D19 /* legal.js in Resources */,
+				4B9A910E1F3C66D6007DB477 /* map.js in Resources */,
+				4B9A91101F3C66D6007DB477 /* menu.js in Resources */,
+				4B7A38741F48F49500567D19 /* legal.css in Resources */,
+				4B9A913F1F3C71D2007DB477 /* translations.strings in Resources */,
+				4B7A38561F4848EA00567D19 /* LaunchScreen.storyboard in Resources */,
+				4B9A91231F3C67EC007DB477 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		667EAA4DCCF3956DBFE0A10B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AndorraTelecomPublic/Pods-AndorraTelecomPublic-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8170B76B40470F301A1C002D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AndorraTelecomPublic-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B3E9473B35E8BFAA198D8180 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-AndorraTelecomPublic/Pods-AndorraTelecomPublic-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/Cordova/Cordova.framework",
+				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/DTPickerPresenter/DTPickerPresenter.framework",
+				"${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework",
+				"${BUILT_PRODUCTS_DIR}/Hokusai/Hokusai.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Liferay-OAuth/LROAuth.framework",
+				"${BUILT_PRODUCTS_DIR}/Liferay-iOS-SDK/LRMobileSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/LiferayScreens/LiferayScreens.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MDRadialProgress/MDRadialProgress.framework",
+				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/SMXMLDocument/SMXMLDocument.framework",
+				"${BUILT_PRODUCTS_DIR}/SQLCipher/SQLCipher.framework",
+				"${BUILT_PRODUCTS_DIR}/TNRadioButtonGroup/TNRadioButtonGroup.framework",
+				"${BUILT_PRODUCTS_DIR}/YapDatabase/YapDatabase.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cordova.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTPickerPresenter.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hokusai.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LROAuth.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LRMobileSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LiferayScreens.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDRadialProgress.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SMXMLDocument.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLCipher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TNRadioButtonGroup.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YapDatabase.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AndorraTelecomPublic/Pods-AndorraTelecomPublic-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4B1FF3311F274C8000ECB73F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B45A5A21F5EFB46002E2052 /* ColourfulFlag.swift in Sources */,
+				4B9A911A1F3C678A007DB477 /* MenuViewController.swift in Sources */,
+				4B45A59A1F5D8FC2002E2052 /* UIColor.swift in Sources */,
+				4B9A91261F3C681A007DB477 /* LanguageHelper.swift in Sources */,
+				4B7A38701F48E83300567D19 /* LegalConditionsView.swift in Sources */,
+				4B9A91321F3C6A62007DB477 /* AndorraTelecomProgressPresenter.swift in Sources */,
+				4B7A38591F48497700567D19 /* CallMeBackView.swift in Sources */,
+				4B7A38681F48982300567D19 /* MapViewController.swift in Sources */,
+				4B9A91331F3C6A62007DB477 /* WebView_andorra_telecom.swift in Sources */,
+				4B7A38661F488E8200567D19 /* CallMeBackDelegate.swift in Sources */,
+				4B9A91191F3C678A007DB477 /* ForfetViewController.swift in Sources */,
+				4B45A59E1F5E8753002E2052 /* UIView.swift in Sources */,
+				4B7A386C1F48AD9B00567D19 /* UITextFieldExtension.swift in Sources */,
+				4B1FF3391F274C8000ECB73F /* AppDelegate.swift in Sources */,
+				4B45A59C1F5D935B002E2052 /* UIAlertController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4B9A91411F3C71D2007DB477 /* translations.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4B9A91401F3C71D2007DB477 /* en */,
+				4B7A38611F4880F600567D19 /* es */,
+				4B7A38621F48810500567D19 /* ca */,
+				4B7A38631F48810B00567D19 /* fr */,
+			);
+			name = translations.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4B1FF3451F274C8000ECB73F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		4B1FF3461F274C8000ECB73F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4B1FF3481F274C8000ECB73F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26F86B4F5FE9C338001ECCFA /* Pods-AndorraTelecomPublic.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = A5UCFNWB8C;
+				INFOPLIST_FILE = AndorraTelecomPublic/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AndorraTelecomPublic/Resources/Plugins/cordova-plugin-mapbox",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.liferay.AndorraTelecomPublic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		4B1FF3491F274C8000ECB73F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6661B11A4AE031863E199AEC /* Pods-AndorraTelecomPublic.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = A5UCFNWB8C;
+				INFOPLIST_FILE = AndorraTelecomPublic/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/AndorraTelecomPublic/Resources/Plugins/cordova-plugin-mapbox",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.liferay.AndorraTelecomPublic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4B1FF3301F274C8000ECB73F /* Build configuration list for PBXProject "AndorraTelecomPublic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B1FF3451F274C8000ECB73F /* Debug */,
+				4B1FF3461F274C8000ECB73F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4B1FF3471F274C8000ECB73F /* Build configuration list for PBXNativeTarget "AndorraTelecomPublic" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B1FF3481F274C8000ECB73F /* Debug */,
+				4B1FF3491F274C8000ECB73F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4B1FF32D1F274C8000ECB73F /* Project object */;
+}

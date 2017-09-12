@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CallMeBackView" customModule="AndorraTelecomPublic" customModuleProvider="target">
+            <connections>
+                <outlet property="callMeNowButton" destination="gpr-vW-aFk" id="gVN-sI-cji"/>
+                <outlet property="iCallButton" destination="yCP-ex-TdY" id="3Mb-5G-IUp"/>
+                <outlet property="legalLabel" destination="t4i-nu-sdY" id="Zxc-sd-Flo"/>
+                <outlet property="legalSwitch" destination="e6F-e9-81o" id="3HA-5g-9TL"/>
+                <outlet property="orLabel" destination="u6Z-7Y-wjM" id="7tY-DU-TZv"/>
+                <outlet property="phoneLabel" destination="uCi-WP-Vfn" id="wsg-La-bgJ"/>
+                <outlet property="phoneTextField" destination="ZWT-08-dJY" id="cNL-ar-3VL"/>
+                <outlet property="title" destination="KuX-IO-aeI" id="PZY-Ti-jtI"/>
+                <outlet property="view" destination="iN0-l3-epB" id="B3y-Ui-kth"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="labelOr" text="- or -" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u6Z-7Y-wjM">
+                    <rect key="frame" x="20" y="241" width="335" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="LabelTelephone" text="Telephone number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uCi-WP-Vfn">
+                    <rect key="frame" x="20" y="55" width="335" height="21"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="buttonCallMeNow" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gpr-vW-aFk">
+                    <rect key="frame" x="20" y="196" width="335" height="40"/>
+                    <color key="backgroundColor" red="0.81366789340000001" green="0.02215999179" blue="0.4384140372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="335" id="Wti-tR-1wN"/>
+                        <constraint firstAttribute="height" constant="40" id="XMh-xn-1Z1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
+                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="CALL ME NOW"/>
+                    <connections>
+                        <action selector="callMeNow:" destination="-1" eventType="touchUpInside" id="1Xx-aZ-1WX"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I accept the legal conditions" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t4i-nu-sdY">
+                    <rect key="frame" x="20" y="136" width="280" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="baO-J0-TlA"/>
+                        <constraint firstAttribute="width" constant="280" id="uSW-bn-9aL"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="buttonICall" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yCP-ex-TdY">
+                    <rect key="frame" x="20" y="267" width="335" height="40"/>
+                    <color key="backgroundColor" red="0.81366789340000001" green="0.02215999179" blue="0.4384140372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="eak-Nv-Dy7"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
+                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="I CALL"/>
+                    <connections>
+                        <action selector="iCall:" destination="-1" eventType="touchUpInside" id="Vcz-iK-dep"/>
+                    </connections>
+                </button>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" restorationIdentifier="switchLegal" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="e6F-e9-81o">
+                    <rect key="frame" x="308" y="146" width="51" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="31" id="1Kh-kQ-P79"/>
+                        <constraint firstAttribute="width" constant="49" id="P0e-YN-RsE"/>
+                    </constraints>
+                    <color key="onTintColor" red="0.55294117649999996" green="0.054901960780000002" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </switch>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="questionCanWeHelp" text="How can we help you?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KuX-IO-aeI">
+                    <rect key="frame" x="20" y="0.0" width="335" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="7Xn-86-1dt"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="875000" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZWT-08-dJY" customClass="UITextFieldExtended" customModule="AndorraTelecomPublic" customModuleProvider="target">
+                    <rect key="frame" x="20" y="86" width="335" height="40"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="mQ3-gD-fkd"/>
+                    </constraints>
+                    <color key="textColor" red="0.81366789340000001" green="0.02215999179" blue="0.4384140372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="inset">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="image" keyPath="leftImage" value="phone"/>
+                    </userDefinedRuntimeAttributes>
+                </textField>
+            </subviews>
+            <color key="backgroundColor" red="0.96070033310000003" green="0.96083813910000004" blue="0.96067017320000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="tintColor" red="0.55294117649999996" green="0.054901960780000002" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="KuX-IO-aeI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="5Ao-Ge-4QW"/>
+                <constraint firstItem="uCi-WP-Vfn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="5P2-kd-1cl"/>
+                <constraint firstItem="gpr-vW-aFk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="9gS-eE-Izp"/>
+                <constraint firstItem="u6Z-7Y-wjM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="FO8-9V-QC7"/>
+                <constraint firstAttribute="trailing" secondItem="uCi-WP-Vfn" secondAttribute="trailing" constant="20" id="JyF-jH-q6b"/>
+                <constraint firstItem="gpr-vW-aFk" firstAttribute="top" secondItem="t4i-nu-sdY" secondAttribute="bottom" constant="10" id="L5b-Tn-4St"/>
+                <constraint firstItem="ZWT-08-dJY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="Odl-V9-xeq"/>
+                <constraint firstAttribute="trailing" secondItem="yCP-ex-TdY" secondAttribute="trailing" constant="20" id="ThM-Sx-qEZ"/>
+                <constraint firstItem="t4i-nu-sdY" firstAttribute="top" secondItem="ZWT-08-dJY" secondAttribute="bottom" constant="10" id="V4c-Xk-ka7"/>
+                <constraint firstItem="uCi-WP-Vfn" firstAttribute="top" secondItem="KuX-IO-aeI" secondAttribute="bottom" constant="5" id="WEq-WB-dIs"/>
+                <constraint firstAttribute="trailing" secondItem="gpr-vW-aFk" secondAttribute="trailing" constant="20" id="WbS-yx-uzn"/>
+                <constraint firstAttribute="trailing" secondItem="KuX-IO-aeI" secondAttribute="trailing" constant="20" id="XB4-yJ-ctE"/>
+                <constraint firstItem="u6Z-7Y-wjM" firstAttribute="top" secondItem="gpr-vW-aFk" secondAttribute="bottom" constant="5" id="Xvh-fx-tqP"/>
+                <constraint firstItem="e6F-e9-81o" firstAttribute="leading" secondItem="t4i-nu-sdY" secondAttribute="trailing" constant="8" id="YpG-YM-Rge"/>
+                <constraint firstItem="KuX-IO-aeI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="ZXU-3x-wou"/>
+                <constraint firstItem="ZWT-08-dJY" firstAttribute="top" secondItem="uCi-WP-Vfn" secondAttribute="bottom" constant="10" id="aFF-ra-m6N"/>
+                <constraint firstItem="t4i-nu-sdY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="aft-E9-eQN"/>
+                <constraint firstAttribute="trailing" secondItem="e6F-e9-81o" secondAttribute="trailing" constant="18" id="dc4-U8-xNM"/>
+                <constraint firstAttribute="trailing" secondItem="ZWT-08-dJY" secondAttribute="trailing" constant="20" id="dre-GB-0IB"/>
+                <constraint firstItem="e6F-e9-81o" firstAttribute="top" secondItem="ZWT-08-dJY" secondAttribute="bottom" constant="20" id="g3C-uF-6gb"/>
+                <constraint firstItem="yCP-ex-TdY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="gaM-HX-e4Z"/>
+                <constraint firstAttribute="trailing" secondItem="u6Z-7Y-wjM" secondAttribute="trailing" constant="20" id="kqc-hD-zSJ"/>
+                <constraint firstItem="e6F-e9-81o" firstAttribute="leading" secondItem="t4i-nu-sdY" secondAttribute="trailing" constant="8" id="v4v-WF-g97"/>
+                <constraint firstItem="yCP-ex-TdY" firstAttribute="top" secondItem="u6Z-7Y-wjM" secondAttribute="bottom" constant="5" id="zmZ-DX-WRC"/>
+            </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="string" keyPath="nibName" value="CallMeBackView"/>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="116" y="97"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="phone" width="36" height="36"/>
+    </resources>
+</document>

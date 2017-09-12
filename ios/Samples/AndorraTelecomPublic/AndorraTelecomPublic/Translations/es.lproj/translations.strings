@@ -1,0 +1,28 @@
+/* 
+  translations.strings
+  AndorraTelecomPublic
+
+  Created by Francisco Mico on 10/08/2017.
+  Copyright © 2017 Liferay. All rights reserved.
+*/
+"back" = "Atrás";
+"cancel" = "Cancelar";
+"accept" = "Aceptar";
+"language" = "Idioma";
+"choose" = "Seleccione una opción";
+"section" = "Sección";
+"loading" = "Cargando...";
+
+"help?" = "¿En qué podemos ayudarte?";
+"phone" = "Teléfono";
+"accept-legal" = "Acepto las condiciones legales";
+"call-me-now" = "LLAMADME AHORA";
+"or" = "o";
+"i-call" = "YO LLAMO";
+
+"title-legal" = "Condiciones legales";
+"legal-no-accept" = "Necesita aceptar las condiciones";
+
+"title-call" = "Nosotros te llamamos";
+"call" = "Nosotros te llamaremos pronto al teléfono que nos has facilitado";
+"phone-not-valid" = "Este número de teléfono no es válido en Andorra";
