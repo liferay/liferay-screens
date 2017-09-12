@@ -15,7 +15,7 @@ warn("PR is classed as Work in Progress") if github.pr_title.include? "[WIP]"
 warn("Big PR") if git.lines_of_code > 500
 
 # If these are all empty something has gone wrong, better to raise it in a comment
-if git.modified_files.empty? && added_files.empty? && deleted_files.empty?
+if git.modified_files.empty? && git.added_files.empty? && git.deleted_files.empty?
   fail "This PR has no changes at all, this is likely a developer issue."
 end
 
