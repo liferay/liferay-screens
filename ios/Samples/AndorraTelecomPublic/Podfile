@@ -2,7 +2,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'AndorraTelecomPublic' do
-    pod 'LiferayScreens', :git => 'https://github.com/liferay/liferay-screens', :branch => 'develop'
+  	pod 'LiferayScreens', :path => '../../..'
     pod 'Alamofire'
     pod 'DynamicBlurView'
     pod 'Hokusai'
