@@ -130,8 +130,8 @@ public class SessionContext {
 		storage.removeStoredCredentials();
 	}
 
-	public static void loadStoredCredentials(CredentialsStorageBuilder.StorageType storageType)
-		throws IllegalStateException {
+	public static void loadStoredCredentials(CredentialsStorageBuilder.StorageType storageType,
+		boolean shouldLoadServer) throws IllegalStateException {
 
 		CredentialsStorage storage = new CredentialsStorageBuilder().setContext(LiferayScreensContext.getContext())
 			.setStorageType(storageType)
@@ -139,11 +139,21 @@ public class SessionContext {
 
 		checkIfStorageTypeIsSupported(storageType, storage);
 
-		if (storage.loadStoredCredentials()) {
-			currentUserSession =
-				new SessionImpl(LiferayServerContext.getServer(), storage.getAuthentication());
+		boolean loadedCredentials =
+			shouldLoadServer ? storage.loadStoredCredentialsAndServer() : storage.loadStoredCredentials();
+		if (loadedCredentials) {
+			currentUserSession = new SessionImpl(LiferayServerContext.getServer(), storage.getAuthentication());
 			currentUser = storage.getUser();
 		}
+	}
+
+	public static void loadStoredCredentials(CredentialsStorageBuilder.StorageType storageType)
+		throws IllegalStateException {
+		loadStoredCredentials(storageType, false);
+	}
+
+	public static void loadStoredCredentialsAndServer(CredentialsStorageBuilder.StorageType sharedPreferences) {
+		loadStoredCredentials(sharedPreferences, true);
 	}
 
 	public static void relogin(LoginListener loginListener) {
@@ -155,12 +165,13 @@ public class SessionContext {
 			loginListener.onLoginFailure(new AccessControlException("Missing user attributes"));
 		}
 
-		refreshUserAttributes(loginListener, new SessionImpl(LiferayServerContext.getServer(),
-			currentUserSession.getAuthentication()), cookieAuthenticator);
+		refreshUserAttributes(loginListener,
+			new SessionImpl(LiferayServerContext.getServer(), currentUserSession.getAuthentication()),
+			cookieAuthenticator);
 	}
 
-	private static void refreshUserAttributes(final LoginListener loginListener,
-		final Session session, final Authenticator cookieAuthenticator) {
+	private static void refreshUserAttributes(final LoginListener loginListener, final Session session,
+		final Authenticator cookieAuthenticator) {
 
 		Executor.execute(new Runnable() {
 			@Override
@@ -183,8 +194,8 @@ public class SessionContext {
 		});
 	}
 
-	private static BasicEvent loginWithAuthentication(Session session,
-		Authenticator cookieAuthenticator) throws Exception {
+	private static BasicEvent loginWithAuthentication(Session session, Authenticator cookieAuthenticator)
+		throws Exception {
 
 		Authentication authentication = session.getAuthentication();
 

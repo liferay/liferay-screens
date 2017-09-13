@@ -86,8 +86,15 @@ public abstract class BaseCredentialsStorageSharedPreferences implements Credent
 		auth = null;
 	}
 
-	@Override
 	public boolean loadStoredCredentials() throws IllegalStateException {
+		return loadStoredCredentials(false);
+	}
+
+	public boolean loadStoredCredentialsAndServer() throws IllegalStateException {
+		return loadStoredCredentials(true);
+	}
+
+	public boolean loadStoredCredentials(boolean shouldLoadServer) throws IllegalStateException {
 		if (sharedPreferences == null) {
 			throw new IllegalStateException("You need to set the context");
 		}
@@ -104,7 +111,10 @@ public abstract class BaseCredentialsStorageSharedPreferences implements Credent
 			return false;
 		}
 
-		if (!server.equals(LiferayServerContext.getServer())
+		if (shouldLoadServer) {
+			LiferayServerContext.setGroupId(groupId);
+			LiferayServerContext.setCompanyId(companyId);
+		} else if (!server.equals(LiferayServerContext.getServer())
 			|| groupId != LiferayServerContext.getGroupId()
 			|| companyId != LiferayServerContext.getCompanyId()) {
 
