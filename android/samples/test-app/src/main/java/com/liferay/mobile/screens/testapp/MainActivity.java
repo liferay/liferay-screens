@@ -23,7 +23,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		setContentView(R.layout.activity_main);
 
 		if (BuildConfig.DEBUG) {
-			SessionContext.loadStoredCredentials(CredentialsStorageBuilder.StorageType.SHARED_PREFERENCES);
+			SessionContext.loadStoredCredentialsAndServer(CredentialsStorageBuilder.StorageType.SHARED_PREFERENCES);
 			LiferayLogger.e("User already logged in: " + SessionContext.isLoggedIn());
 		}
 
