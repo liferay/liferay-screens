@@ -16,8 +16,8 @@ ext {
 	targetSdkVersion = compileSdkVersion
 	buildToolsVersion = '25.0.1'
 
-	versionCode = 211
-	versionName = '2.1.1'
+	versionCode = 214
+	versionName = '2.1.4'
 
 	publishedGroupId = 'com.liferay.mobile'
 	libraryName = 'Liferay Screens for Android'
