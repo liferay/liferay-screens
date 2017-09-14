@@ -70,13 +70,13 @@ class ForfetViewController: UIViewController, WebScreenletDelegate{
             actionSheetController.dismiss(animated: true, completion: nil)
         }
         
-        let fullList = self.menuList.components(separatedBy: "|")
+        let list = self.menuList.components(separatedBy: "|")
         
-        for i in 0...fullList.count - 1 {
-            var item = fullList[i].components(separatedBy: ",")
-        
-            let itemAction: UIAlertAction = UIAlertAction(title: item[0], style: .default) { action -> Void in
-                self.webScreenlet.inject(injectableScript: JsScript(name: item[0], js: "gotoId(\"\(item[1])\")"))
+        for item in list {
+            var dividedItem = item.components(separatedBy: ",")
+            
+            let itemAction: UIAlertAction = UIAlertAction(title: dividedItem[0], style: .default) { action -> Void in
+                self.webScreenlet.inject(injectableScript: JsScript(name: dividedItem[0], js: "gotoId(\"\(dividedItem[1])\")"))
             }
             actionSheetController.addAction(itemAction)
         }
@@ -95,13 +95,13 @@ class ForfetViewController: UIViewController, WebScreenletDelegate{
             fontColor: UIColor.white
         )
         
-        let fullList = self.menuList.components(separatedBy: "|")
+        let list = self.menuList.components(separatedBy: "|")
         
-        for i in 0...fullList.count - 1 {
-            var item = fullList[i].components(separatedBy: ",")
+        for item in list {
+            var dividedItem = item.components(separatedBy: ",")
             
-            hokusai.addButton(item[0]) {
-                self.webScreenlet.inject(injectableScript: JsScript(name: item[0], js: "gotoId(\"\(item[1])\")"))
+            hokusai.addButton(dividedItem[0]) {
+                self.webScreenlet.inject(injectableScript: JsScript(name: dividedItem[0], js: "gotoId(\"\(dividedItem[1])\")"))
             }
         }
         
@@ -117,10 +117,6 @@ class ForfetViewController: UIViewController, WebScreenletDelegate{
             print("Any event")
         }
         
-    }
-    
-    func onWebLoad(_ screenlet: WebScreenlet, url: String) {
-        webScreenlet.inject(injectableScript: JsScript(name: "Nombre", js: "ahora()"))
     }
     
 }

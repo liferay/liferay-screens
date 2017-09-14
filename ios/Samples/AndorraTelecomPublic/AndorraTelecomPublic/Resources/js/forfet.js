@@ -1,17 +1,9 @@
-function ahora(){
-    console.log('Me has ejecutaoooo!!');
-}
-
-function showLogin(){
-    console.log('Llamando!!!!');
-}
-
-function gotoId(anchor){
+function gotoId(anchor) {
     var anchor = anchor.slice(1, anchor.length)
     document.getElementById(anchor).scrollIntoView(true);
 }
 
-function buildMenu(){
+function buildMenu() {
     var menuList = document.getElementsByClassName('menu-list')[0];
     if (menuList != undefined) {
         var items = menuList.getElementsByTagName("li");

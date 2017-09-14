@@ -1,8 +1,8 @@
-body{
+body {
     background: #D30572 url("https://www.andorratelecom.ad/o/atcomercial-theme/images/bg-pattern-footer.png") no-repeat 25% 145%;
 }
 
-ul{
+ul {
     margin: 3%;
     margin-top: 6%;
 }
@@ -19,15 +19,15 @@ li.item-button {
     text-align: center;
 }
 
-.picture img{
+.picture img {
     filter: brightness(0) invert(1);
 }
 
-img{
+img {
     max-width: 150%;
 }
 
-.coverage-container{
+.coverage-container {
     margin: 0% 3%;
 }
 

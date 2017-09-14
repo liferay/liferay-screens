@@ -16,14 +16,10 @@ import Foundation
 import UIKit
 import Hokusai
 
-extension Hokusai {
-    
-}
-
 extension UIAlertController {
 
     func colorfull() {
-        let subview = (self.view.subviews.first?.subviews.first?.subviews.first!)! as UIView
+        let subview = (self.view.subviews.first?.subviews.first!)! as UIView
         
         for view in subview.subviews {
             view.backgroundColor = UIColor.pink

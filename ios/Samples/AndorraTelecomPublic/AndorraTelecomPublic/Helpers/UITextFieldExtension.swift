@@ -20,7 +20,7 @@ class UITextFieldExtended: UITextField {
     @IBInspectable var inset: CGFloat = 0
     @IBInspectable var leftImage : UIImage? {
         didSet {
-            if let image = leftImage{
+            if let image = leftImage {
                 isImageSelected = true
                 leftViewMode = .always
                 let imageView = UIImageView(frame: CGRect(x: 15, y: 0, width: 20, height: 20))

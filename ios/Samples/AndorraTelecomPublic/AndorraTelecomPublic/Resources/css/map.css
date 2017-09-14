@@ -1,4 +1,4 @@
-body{
+body {
     background: #CA1A77 url("https://www.andorratelecom.ad/o/atcomercial-theme/images/bg-pattern-footer.png") no-repeat 25% 145%;
 }
 
@@ -25,9 +25,10 @@ ul {
     display: none;
 }
 
+
 /* Mapa */
 
-.gmnoprint {
+.gmnoprint {
     display: none;
 }
 
@@ -39,9 +40,10 @@ div.gmnoprint {
     display: none;
 }
 
+
 /* Switch */
 
-.checkbox-custom {
+.checkbox-custom {
     padding-bottom: 2px;
 }
 
@@ -53,46 +55,58 @@ input[type="checkbox"] {
     position: absolute;
     margin: 10px 0 0 20px;
 }
-input[type="checkbox"] + label {
+
+input[type="checkbox"]+label {
     position: relative;
     padding: 0px 0 0 60px;
     line-height: 2.3em;
     text-align: left;
 }
-input[type="checkbox"] + label:before {
+
+input[type="checkbox"]+label:before {
     content: "";
     position: absolute;
     display: block;
     left: 0;
     top: 0;
-    width: 50px; /* x*5 */
-    height: 30px; /* x*3 */
-    border-radius: 20px; /* x*2 */
+    width: 50px;
+    /* x*5 */
+    height: 30px;
+    /* x*3 */
+    border-radius: 20px;
+    /* x*2 */
     background: #fff;
     border: 1px solid #d9d9d9;
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
 }
-input[type="checkbox"] + label:after {
+
+input[type="checkbox"]+label:after {
     content: "";
     position: absolute;
     display: block;
     left: 0px;
     top: 0px;
-    width: 30px; /* x*3 */
-    height: 30px; /* x*3 */
-    border-radius: 20px; /* x*2 */
+    width: 30px;
+    /* x*3 */
+    height: 30px;
+    /* x*3 */
+    border-radius: 20px;
+    /* x*2 */
     background: #fff;
     border: 1px solid #d9d9d9;
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
 }
-input[type="checkbox"] + label:hover:after {
+
+input[type="checkbox"]+label:hover:after {
     box-shadow: 0 0 8px #8D0E57;
 }
-input[type="checkbox"]:checked + label:after {
+
+input[type="checkbox"]:checked+label:after {
     margin-left: 20px;
 }
-input[type="checkbox"]:checked + label:before {
+
+input[type="checkbox"]:checked+label:before {
     background: #8D0E57;
 }

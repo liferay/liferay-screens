@@ -66,22 +66,6 @@ class CallMeBackView: UIView {
         }
     }
     
-    /*func requestCallMeNow() {
-        let url = "https://www.andorratelecom.ad/particulares/inicio?p_p_id=ad_at_portal_callmeback_portlet_CallMeBackPortlet_INSTANCE_callMeBack&p_p_lifecycle=2&p_p_state=normal&p_p_mode=view&p_p_cacheability=cacheLevelPage&_ad_at_portal_callmeback_portlet_CallMeBackPortlet_INSTANCE_callMeBack_CMD=sendEmail"
-        let headers: HTTPHeaders = [
-            "Content-Type": "application/x-www-form-urlencoded",
-            "Accept": "application/json",
-        ]
-        let parameters: Parameters = [
-            "_ad_at_portal_callmeback_portlet_CallMeBackPortlet_INSTANCE_callMeBack_body": "343242",
-            "ad_at_portal_callmeback_portlet_CallMeBackPortlet_INSTANCE_callMeBack_captchaText": "1042"
-        ]
-        
-        Alamofire.request(url, headers: headers, method: .post).responseJSON{ (response) in
-            print(response)
-        }
-    }*/
-    
     @IBAction func iCall(_ sender: UIButton) {
         if let url = URL(string: "tel://100900900") {
             if #available(iOS 10, *) {

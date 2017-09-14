@@ -7,8 +7,7 @@ function buildMenu() {
     var titles = document.getElementsByClassName('item title');
     var footer = document.getElementById('footer-links');
     var contentButtonMap = footer.getElementsByTagName('h3')[1].innerText;
-    console.log(contentButtonMap);
-    
+
     removeItemByClassName(bannerTop, 'flex-control-nav flex-control-paging', 0);
     removeItemByClassName(bannerTop, 'flex-direction-nav', 0);
     removeItemsByClassName(bannerTop, 'block-container');
@@ -25,14 +24,14 @@ function buildMenu() {
     document.body.insertBefore(bannerTop, buttonList);
 }
 
-function createButtonMap(text){
+function createButtonMap(text) {
     var containerButton = document.createElement('div');
     containerButton.className = 'coverage-container';
 
     var buttonMap = document.createElement('button');
     buttonMap.className = 'coverage-button';
     buttonMap.innerHTML = text;
-    
+
     buttonMap.addEventListener('click', function(event) {
         window.Screens.postMessage('map', '');
     });
@@ -46,10 +45,10 @@ function removeItemByClassName(node, className, position) {
     item.remove();
 }
 
-function removeItemsByClassName(node, className){
+function removeItemsByClassName(node, className) {
     var items = node.getElementsByClassName(className);
     for (var i = items.length - 1; i >= 0; i--) {
-        items[i].remove();        
+        items[i].remove();
     }
 }
 

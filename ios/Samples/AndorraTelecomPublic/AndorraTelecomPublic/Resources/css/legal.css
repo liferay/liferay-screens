@@ -1,9 +1,9 @@
-body{
+body {
     background: #EFA4CC;
     color: #FFF;
 }
 
-.numbered-lists dt:before{
+.numbered-lists dt:before {
     border: 3px solid #FFF;
     color: #FFF;
 }
@@ -12,10 +12,10 @@ h1 {
     color: #FFF;
 }
 
-.cont-wrapper p{
+.cont-wrapper p {
     color: #FFF;
 }
 
-.numbered-lists dt p a{
+.numbered-lists dt p a {
     color: #FFF;
 }
