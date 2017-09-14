@@ -32,7 +32,9 @@ import Foundation
 		self.webType = webType
 	}
 
-	public class Builder {
+
+	@objc(WebScreenletConfigurationBuilder)
+	public class Builder: NSObject {
 		let url: String
 		var localJs: [String]
 		var localCss: [String]
