@@ -14,12 +14,12 @@
 
 import Foundation
 
+@objc public enum WebType: Int {
+	case liferayAuthenticated, other
+}
+
+
 @objc public class WebScreenletConfiguration: NSObject {
-
-	@objc public enum WebType: Int {
-		case liferayAuthenticated, other
-	}
-
 	public let url: String
 	public let scripts: [InjectableScript]
 	public let isCordovaEnabled: Bool
@@ -31,104 +31,103 @@ import Foundation
 		self.isCordovaEnabled = isCordovaEnabled
 		self.webType = webType
 	}
+}
 
+@objc(WebScreenletConfigurationBuilder)
+public class Builder: NSObject {
+	let url: String
+	var localJs: [String]
+	var localCss: [String]
+	var remoteJs: [String]
+	var remoteCss: [String]
+	var isCordovaEnabled: Bool
+	var webType: WebType
 
-	@objc(WebScreenletConfigurationBuilder)
-	public class Builder: NSObject {
-		let url: String
-		var localJs: [String]
-		var localCss: [String]
-		var remoteJs: [String]
-		var remoteCss: [String]
-		var isCordovaEnabled: Bool
-		var webType: WebType
-
-		public init(url: String) {
-			self.url = url
-			self.localJs = []
-			self.localCss = []
-			self.remoteJs = []
-			self.remoteCss = []
-			self.isCordovaEnabled = false
-			self.webType = .liferayAuthenticated
-		}
-
-		public func addJs(localFile: String) -> Self {
-			self.localJs.append(localFile)
-			return self
-		}
-
-		public func addCss(localFile: String) -> Self {
-			self.localCss.append(localFile)
-			return self
-		}
-
-		public func addJs(url: String) -> Self {
-			self.remoteJs.append(url)
-			return self
-		}
-
-		public func addCss(url: String) -> Self {
-			self.remoteCss.append(url)
-			return self
-		}
-
-		public func enableCordova() -> Self {
-			self.isCordovaEnabled = true
-			return self
-		}
-
-		public func set(webType: WebType) -> Self {
-			self.webType = webType
-			return self
-		}
-
-		public func load() -> WebScreenletConfiguration {
-			let localJsScripts: [InjectableScript] = localJs
-				.map { fileName in
-					JsScript(name: "\(fileName).js", js: loadLocalJsContent(fileName: fileName))
-				}
-
-			let localCssScripts: [InjectableScript] = localCss
-				.map { fileName in
-					CssScript(name: "\(fileName).css", css: loadLocalCssContent(fileName: fileName))
-				}
-
-			let remoteJsScripts: [InjectableScript] = remoteJs
-				.map { url in
-					RemoteJsScript(name: "Remote js url: \(url)", url: url)
-				}
-
-			let remoteCssScripts: [InjectableScript] = remoteCss
-				.map { url in
-					RemoteCssScript(name: "Remote css url: \(url)", url: url)
-				}
-
-			let allScripts: [InjectableScript] = localJsScripts + localCssScripts + remoteJsScripts + remoteCssScripts
-
-			return WebScreenletConfiguration(url: url, scripts: allScripts,
-				isCordovaEnabled: isCordovaEnabled, webType: webType)
-		}
-
-		private func loadLocalCssContent(fileName: String) -> String {
-			guard let content = Bundle.loadFile(name: fileName,
-				ofType: "css", currentClass: type(of: self)) else {
-					print("file named \(fileName) not found")
-					return ""
-			}
-
-			return content
-		}
-
-		private func loadLocalJsContent(fileName: String) -> String {
-		 	guard let content = Bundle.loadFile(name: fileName,
-				ofType: "js", currentClass: type(of: self)) else {
-				print("file named \(fileName) not found")
-				return ""
-			}
-
-			return content
-		}
+	public init(url: String) {
+		self.url = url
+		self.localJs = []
+		self.localCss = []
+		self.remoteJs = []
+		self.remoteCss = []
+		self.isCordovaEnabled = false
+		self.webType = .liferayAuthenticated
 	}
 
+	public func addJs(localFile: String) -> Self {
+		self.localJs.append(localFile)
+		return self
+	}
+
+	public func addCss(localFile: String) -> Self {
+		self.localCss.append(localFile)
+		return self
+	}
+
+	public func addJs(url: String) -> Self {
+		self.remoteJs.append(url)
+		return self
+	}
+
+	public func addCss(url: String) -> Self {
+		self.remoteCss.append(url)
+		return self
+	}
+
+	public func enableCordova() -> Self {
+		self.isCordovaEnabled = true
+		return self
+	}
+
+	public func set(webType: WebType) -> Self {
+		self.webType = webType
+		return self
+	}
+
+	public func load() -> WebScreenletConfiguration {
+		let localJsScripts: [InjectableScript] = localJs
+			.map { fileName in
+				JsScript(name: "\(fileName).js", js: loadLocalJsContent(fileName: fileName))
+		}
+
+		let localCssScripts: [InjectableScript] = localCss
+			.map { fileName in
+				CssScript(name: "\(fileName).css", css: loadLocalCssContent(fileName: fileName))
+		}
+
+		let remoteJsScripts: [InjectableScript] = remoteJs
+			.map { url in
+				RemoteJsScript(name: "Remote js url: \(url)", url: url)
+		}
+
+		let remoteCssScripts: [InjectableScript] = remoteCss
+			.map { url in
+				RemoteCssScript(name: "Remote css url: \(url)", url: url)
+		}
+
+		let allScripts: [InjectableScript] = localJsScripts + localCssScripts + remoteJsScripts + remoteCssScripts
+
+		return WebScreenletConfiguration(url: url, scripts: allScripts,
+		                                 isCordovaEnabled: isCordovaEnabled, webType: webType)
+	}
+
+	private func loadLocalCssContent(fileName: String) -> String {
+		guard let content = Bundle.loadFile(name: fileName,
+		                                    ofType: "css", currentClass: type(of: self)) else {
+												print("file named \(fileName) not found")
+												return ""
+		}
+
+		return content
+	}
+
+	private func loadLocalJsContent(fileName: String) -> String {
+		guard let content = Bundle.loadFile(name: fileName,
+		                                    ofType: "js", currentClass: type(of: self)) else {
+												print("file named \(fileName) not found")
+												return ""
+		}
+		
+		return content
+	}
 }
+
