@@ -97,7 +97,7 @@ public class WebScreenlet extends BaseScreenlet<WebViewModel, Interactor>
 					error(exception, DEFAULT_ACTION);
 				}
 			} else {
-				getViewModel().loadUrl(finalUrl);
+				getViewModel().loadUrl(webScreenletConfiguration.getUrl());
 			}
 		} else {
 			getViewModel().showFailedOperation(DEFAULT_ACTION, new MalformedURLException());
