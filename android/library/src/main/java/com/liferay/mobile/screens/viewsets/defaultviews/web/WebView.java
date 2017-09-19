@@ -101,6 +101,7 @@ public class WebView extends FrameLayout implements WebViewModel, ScreensWebView
 	@Override
 	public void postUrl(String url, String body) {
 		if (webView != null) {
+			isLoaded = false;
 			webView.postUrl(url, body.getBytes());
 		}
 	}
@@ -108,6 +109,7 @@ public class WebView extends FrameLayout implements WebViewModel, ScreensWebView
 	@Override
 	public void loadUrl(String url) {
 		if (webView != null) {
+			isLoaded = false;
 			webView.loadUrl(url);
 		}
 	}
@@ -142,6 +144,11 @@ public class WebView extends FrameLayout implements WebViewModel, ScreensWebView
 
 	@Override
 	public void configureView(boolean isCordovaEnabled, CordovaLifeCycleObserver observer) {
+		if (screensWebView != null) {
+			isLoaded = false;
+			return;
+		}
+
 		if (isCordovaEnabled) {
 			screensWebView = new ScreensCordovaWebView(
 				LiferayScreensContext.getActivityFromContext(getContext()), observer);

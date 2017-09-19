@@ -16,6 +16,7 @@ All notable changes to this project will be documented in this file.
 * All screenlets should have getter and setter for their listener property
 * Disable selection in WebScreenlet
 * Fix session in WebScreenlet
+* Fix url in other webtype in WebScreenlet
 
 ### New Features
 * Create loadLoggedUserPortrait method in UserPortraitScreenlet
