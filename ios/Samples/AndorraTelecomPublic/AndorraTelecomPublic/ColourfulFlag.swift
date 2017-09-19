@@ -15,5 +15,6 @@
 import Foundation
 
 struct Colorful {
+
     static let flag = true
 }

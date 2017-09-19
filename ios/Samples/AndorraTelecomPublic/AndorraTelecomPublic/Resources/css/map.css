@@ -26,7 +26,7 @@ ul {
 }
 
 
-/* Mapa */
+/* Map */
 
 .gmnoprint {
     display: none;
@@ -88,11 +88,8 @@ input[type="checkbox"]+label:after {
     left: 0px;
     top: 0px;
     width: 30px;
-    /* x*3 */
     height: 30px;
-    /* x*3 */
     border-radius: 20px;
-    /* x*2 */
     background: #fff;
     border: 1px solid #d9d9d9;
     -webkit-transition: all 0.3s;

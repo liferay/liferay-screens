@@ -15,9 +15,9 @@
 import Foundation
 
 protocol CallMeBackDelegate: class {
-    
+
     func showAlertLegalNotAccepted(callMeBackView: CallMeBackView, title: String, message: String)
-    
+
     func showLegalCoditions(callMeBackView: CallMeBackView)
-    
+
 }

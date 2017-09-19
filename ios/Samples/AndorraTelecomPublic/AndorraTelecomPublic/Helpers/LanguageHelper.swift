@@ -15,33 +15,33 @@
 import Foundation
 
 class LanguageHelper {
-    
+
     private var languageApp: String
-    
+
     private static var sharedLanguageHelper: LanguageHelper = {
         let languageHelper = LanguageHelper()
         return languageHelper
     }()
-    
+
     class func shared() -> LanguageHelper {
         return sharedLanguageHelper
     }
-    
+
     init() {
         self.languageApp = NSLocale.current.languageCode!
     }
-    
+
     func change(language: String) {
         let endIndex = language.index(language.startIndex, offsetBy: 2)
         self.languageApp = language.substring(to: endIndex)
     }
-    
+
     func currentLanguage() -> String {
         return languageApp
     }
-    
+
     let listLanguages = ["cat", "esp", "fra", "eng"]
-    
+
     var formattedId: String {
         switch languageApp {
         case "ca":
@@ -54,7 +54,7 @@ class LanguageHelper {
             return "en_US"
         }
     }
-    
+
     var threeLettersFormatted: String {
         switch languageApp {
         case "ca":
@@ -67,13 +67,14 @@ class LanguageHelper {
             return "eng"
         }
     }
-    
+
     func url(page: Pages) -> String {
         let url = "https://www.andorratelecom.ad/c/portal/update_language?p_l_id=\(page.plid)&redirect=\(page.pathName)&languageId=\(self.formattedId)"
         print("\nURL: \(url)")
+
         return url
     }
-    
+
     enum Pages: String {
         case index
         case mobileland29
@@ -82,7 +83,7 @@ class LanguageHelper {
         case optima
         case legal
         case map
-        
+
         var plid: String {
             switch self {
             case .index:
@@ -101,7 +102,7 @@ class LanguageHelper {
                 return "33998"
             }
         }
-        
+
         var pathName: String {
             switch self {
             case .index:
@@ -121,7 +122,7 @@ class LanguageHelper {
             }
         }
     }
-    
+
 }
 
 extension String {
@@ -131,7 +132,7 @@ extension String {
                 return NSLocalizedString(self, tableName: "translations", bundle: bundle, value: "", comment: "")
             }
         }
-        
-        return nil;
+
+        return nil
     }
 }

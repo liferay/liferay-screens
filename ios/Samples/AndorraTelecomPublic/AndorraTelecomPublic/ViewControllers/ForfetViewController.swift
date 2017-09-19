@@ -16,19 +16,19 @@ import Foundation
 import LiferayScreens
 import Hokusai
 
-class ForfetViewController: UIViewController, WebScreenletDelegate{
+class ForfetViewController: UIViewController, WebScreenletDelegate {
 
     var url: String = ""
     var menuList: String = ""
-    
+
     @IBOutlet weak var webScreenlet: WebScreenlet!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         loadWebScreenlet()
         addLogoToNavegationBar()
     }
-    
+
     func loadWebScreenlet() {
         let webScreenletConfiguration = WebScreenletConfiguration
             .Builder(url: self.url)
@@ -36,24 +36,24 @@ class ForfetViewController: UIViewController, WebScreenletDelegate{
             .addCss(localFile: "forfet")
             .addJs(localFile: "forfet")
             .load()
-        
+
         webScreenlet.configuration = webScreenletConfiguration
-        
+
         webScreenlet.backgroundColor = UIColor(red:0.83, green:0.02, blue:0.45, alpha:1.0)
         webScreenlet.load()
         webScreenlet.delegate = self
     }
-    
+
     func addLogoToNavegationBar() {
         let logo = UIImage(named: "Logo") as UIImage?
         let imageView = UIImageView(image:logo)
-        imageView.frame.size.width = 100;
-        imageView.frame.size.height = 32;
+        imageView.frame.size.width = 100
+        imageView.frame.size.height = 32
         imageView.contentMode = UIViewContentMode.scaleAspectFill
-        
+
         self.navigationItem.titleView = imageView
     }
-    
+
     func createButtonMenuList() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "section".localized(),
@@ -61,53 +61,52 @@ class ForfetViewController: UIViewController, WebScreenletDelegate{
             target: self,
             action: Colorful.flag ? #selector(createColorfullMenuList) : #selector(createMenuList))
     }
-    
+
     func createMenuList() {
         let actionSheetController: UIAlertController = UIAlertController(title: "section".localized(), message: "choose".localized(), preferredStyle: .alert)
-        
-    
-        let cancelAction: UIAlertAction = UIAlertAction(title: "cancel".localized(), style: .cancel) { action -> Void in
+
+        let cancelAction: UIAlertAction = UIAlertAction(title: "cancel".localized(), style: .cancel) { _ -> Void in
             actionSheetController.dismiss(animated: true, completion: nil)
         }
-        
+
         let list = self.menuList.components(separatedBy: "|")
-        
+
         for item in list {
             var dividedItem = item.components(separatedBy: ",")
-            
-            let itemAction: UIAlertAction = UIAlertAction(title: dividedItem[0], style: .default) { action -> Void in
+
+            let itemAction: UIAlertAction = UIAlertAction(title: dividedItem[0], style: .default) { _ -> Void in
                 self.webScreenlet.inject(injectableScript: JsScript(name: dividedItem[0], js: "gotoId(\"\(dividedItem[1])\")"))
             }
             actionSheetController.addAction(itemAction)
         }
-        
+
         actionSheetController.addAction(cancelAction)
         self.present(actionSheetController, animated: true, completion: nil)
     }
-    
+
     func createColorfullMenuList() {
         let hokusai = Hokusai()
-        
+
         hokusai.colors = HOKColors(
             backGroundColor: UIColor(red:0.82, green:0.02, blue:0.45, alpha:1.0),
             buttonColor: UIColor(red:0.55, green:0.05, blue:0.34, alpha:1.0),
             cancelButtonColor: UIColor(red:0.55, green:0.05, blue:0.34, alpha:1.0),
             fontColor: UIColor.white
         )
-        
+
         let list = self.menuList.components(separatedBy: "|")
-        
+
         for item in list {
             var dividedItem = item.components(separatedBy: ",")
-            
+
             hokusai.addButton(dividedItem[0]) {
                 self.webScreenlet.inject(injectableScript: JsScript(name: dividedItem[0], js: "gotoId(\"\(dividedItem[1])\")"))
             }
         }
-        
+
         hokusai.show()
     }
-    
+
     func screenlet(_ screenlet: WebScreenlet, onScriptMessageNamespace namespace: String, onScriptMessage message: String) {
         switch namespace {
         case "menu":
@@ -116,7 +115,7 @@ class ForfetViewController: UIViewController, WebScreenletDelegate{
         default:
             print("Any event")
         }
-        
+
     }
-    
+
 }
