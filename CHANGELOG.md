@@ -68,6 +68,7 @@ All notable changes to this project will be documented in this file.
 
 ### Demo
 * Added Westeros Employees Hybrid
+* Added Andorra Telecom
 
 ## Xamarin
 
