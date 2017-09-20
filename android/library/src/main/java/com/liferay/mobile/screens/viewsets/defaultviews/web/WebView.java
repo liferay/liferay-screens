@@ -215,7 +215,9 @@ public class WebView extends FrameLayout implements WebViewModel, ScreensWebView
 			webView.setVisibility(VISIBLE);
 			webView.animate().setStartDelay(200).alpha(1.0f);
 
-			progressBar.setVisibility(GONE);
+			if (progressBar != null) {
+				progressBar.setVisibility(GONE);
+			}
 
 			((WebScreenlet) getScreenlet()).onPageLoaded(url);
 		}
