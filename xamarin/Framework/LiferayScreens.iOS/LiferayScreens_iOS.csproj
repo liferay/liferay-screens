@@ -202,6 +202,7 @@
     <ObjcBindingApiDefinition Include="DDL\List\DDLListScreenletDelegate.cs" />
     <ObjcBindingApiDefinition Include="DDL\List\DDLListViewModel.cs" />
     <ObjcBindingApiDefinition Include="Themes\Default\DDL\DDLListView_default.cs" />
+    <ObjcBindingApiDefinition Include="Web\WebScreenletConfigurationBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />
