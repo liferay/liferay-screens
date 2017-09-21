@@ -1,224 +1,221 @@
 ﻿<metadata>
+    <remove-node path="/api/package[@name='com.liferay.mobile.screens.base.list.interactor']/class[@name='ListEvent']"/>
+    <remove-node path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.auth.login']/class[@name='LoginView']" />
+    <remove-node path="/api/package[@name='com.liferay.mobile.screens.base.interactor']/class[@name='BaseInteractor']"/>
 
-  <!--<remove-node  path="/api/package[@name='com.liferay.mobile.screens.ddl.model']/class[@name='Field']"/>-->
-  <remove-node path="/api/package[@name='com.liferay.mobile.screens.base.list.interactor']/class[@name='ListEvent']"/>
+    <!-- We must change visibility on interface SimpleFileDialogListener -->
+    <remove-node path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']/class[@name='SelectFileDialog']"/>
 
-  <!-- We must change visibility on interface SimpleFileDialogListener-->
-  <remove-node path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']/class[@name='SelectFileDialog']"/>
+    <!-- Corrections BooleanField -->
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.ddl.model']
+    	/class[@name='BooleanField']
+        /method[@name='convertFromString']"/>
 
-  <remove-node path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.auth.login']/class[@name='LoginView']" />
-  <remove-node path="/api/package[@name='com.liferay.mobile.screens.base.interactor']/class[@name='BaseInteractor']"/>
+    <!-- Corrections DateField -->
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.ddl.model']
+    	/class[@name='DateField']
+        /method[@name='convertFromString']"/>
 
-  <!-- Corrections BooleanField-->
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.ddl.model']
-                /class[@name='BooleanField']
-                /method[@name='convertFromString']"/>
+    <!-- Corrections DocumentField -->
+    <remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.model']
+    	/class[@name='DocumentField']
+        /method[@name='convertFromString']"/>
 
-  <!-- Corrections DateField-->
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.ddl.model']
-                /class[@name='DateField']
-                /method[@name='convertFromString']"/>
+    <!-- Corrections NumberField -->
+    <remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.model']
+    	/class[@name='NumberField']
+        /method[@name='convertFromString']"/>
 
-  <!-- Corrections DocumentField-->
-  <remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.model']
-               /class[@name='DocumentField']
-               /method[@name='convertFromString']"/>
-  
-  <!-- Corrections NumberField-->
-  <remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.model']
-               /class[@name='NumberField']
-               /method[@name='convertFromString']"/>
-  
-  <!-- Corrections StringField-->
-  <remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.model']
-               /class[@name='StringField']
-               /method[@name='convertFromString']"/>
-  
-  <!-- Corrections StringWithOptionsField-->
-  <remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.model']
-               /class[@name='StringWithOptionsField']
-               /method[@name='convertFromString']"/>
+    <!-- Corrections StringField -->
+    <remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.model']
+    	/class[@name='StringField']
+        /method[@name='convertFromString']"/>
 
-  <!-- Corrections CustomRatingNumberView-->
-  <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']
+    <!-- Corrections StringWithOptionsField -->
+    <remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.model']
+    	/class[@name='StringWithOptionsField']
+        /method[@name='convertFromString']"/>
+
+    <!-- Corrections CustomRatingNumberView -->
+    <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']
         /class[@name='CustomRatingNumberView']
         /method[@name='getField' and count(parameter)=0]"
-	    name="propertyName">FieldProperty</attr>
-  <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']
-        /class[@name='CustomRatingNumberView']
-        /method[@name='setField' and count(parameter)=1 and parameter[1][@type='com.liferay.mobile.screens.ddl.model.NumberField']]"
         name="propertyName">FieldProperty</attr>
-  
-  <!-- Corrections DDLFieldCheckboxView-->
-  <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']
-        /class[@name='DDLFieldCheckboxView']
-        /method[@name='getField' and count(parameter)=0]"
-        name="propertyName">FieldProperty</attr>
-  <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']
-        /class[@name='DDLFieldCheckboxView']
-        /method[@name='setField' and count(parameter)=1 and parameter[1][@type='com.liferay.mobile.screens.ddl.model.NumberField']]"
-        name="propertyName">FieldProperty</attr>
-  
-  <!-- Corrections DDLFieldRadioView-->
-  <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']
-        /class[@name='DDLFieldRadioView']
-        /method[@name='getField' and count(parameter)=0]"
-        name="propertyName">FieldProperty</attr>
-  <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']
-        /class[@name='DDLFieldRadioView']
-        /method[@name='setField' and count(parameter)=1 and parameter[1][@type='com.liferay.mobile.screens.ddl.model.NumberField']]"
+    <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']
+    	/class[@name='CustomRatingNumberView']
+    	/method[@name='setField' and count(parameter)=1 and parameter[1][@type='com.liferay.mobile.screens.ddl.model.NumberField']]"
         name="propertyName">FieldProperty</attr>
 
-  <!-- Corrections for DDLFormScreenlet-->
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.ddl.form']
-        /class[@name='DDLFormScreenlet']
-	    /method[@name='onUserAction']"/>
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.ddl.form']
-        /class[@name='DDLFormScreenlet']
-	    /method[@name='createInteractor']"/>
+    <!-- Corrections DDLFieldCheckboxView -->
+    <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']
+    	/class[@name='DDLFieldCheckboxView']
+    	/method[@name='getField' and count(parameter)=0]"
+        name="propertyName">FieldProperty</attr>
+    <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']
+    	/class[@name='DDLFieldCheckboxView']
+    	/method[@name='setField' and count(parameter)=1 and parameter[1][@type='com.liferay.mobile.screens.ddl.model.NumberField']]"
+        name="propertyName">FieldProperty</attr>
 
-  <!-- Corrections for ImageGalleryScreenlet-->
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.imagegallery']
-        /class[@name='ImageGalleryScreenlet']
+    <!-- Corrections DDLFieldRadioView -->
+    <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']
+    	/class[@name='DDLFieldRadioView']
+    	/method[@name='getField' and count(parameter)=0]"
+        name="propertyName">FieldProperty</attr>
+    <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']
+    	/class[@name='DDLFieldRadioView']
+    	/method[@name='setField' and count(parameter)=1 and parameter[1][@type='com.liferay.mobile.screens.ddl.model.NumberField']]"
+        name="propertyName">FieldProperty</attr>
+
+    <!-- Corrections for DDLFormScreenlet -->
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.ddl.form']
+    	/class[@name='DDLFormScreenlet']
+        /method[@name='onUserAction']"/>
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.ddl.form']
+    	/class[@name='DDLFormScreenlet']
         /method[@name='createInteractor']"/>
-  <attr path="/api/package[@name='com.liferay.mobile.screens.imagegallery']
-              /class[@name='ImageGalleryScreenlet']
-              /method[@name='getViewModel']"
+
+    <!-- Corrections for ImageGalleryScreenlet -->
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.imagegallery']
+    	/class[@name='ImageGalleryScreenlet']
+        /method[@name='createInteractor']"/>
+    <attr path="/api/package[@name='com.liferay.mobile.screens.imagegallery']
+    	/class[@name='ImageGalleryScreenlet']
+    	/method[@name='getViewModel']"
         name="managedReturn">Java.Lang.Object</attr>
 
-  <!-- Corrections for BaseListScreenlet-->
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.base.list']
-        /class[@name='BaseListScreenlet']
+    <!-- Corrections for BaseListScreenlet -->
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.base.list']
+    	/class[@name='BaseListScreenlet']
         /method[@name='onUserAction']"/>
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.base.list']
-        /class[@name='BaseListScreenlet']
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.base.list']
+    	/class[@name='BaseListScreenlet']
         /method[@name='createInteractor']"/>
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.base.list']
-        /class[@name='BaseListScreenlet']
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.base.list']
+    	/class[@name='BaseListScreenlet']
         /method[@name='loadRows']"/>
 
-  <!-- Corrections for BaseScreenlet-->
-  <attr path="/api/package[@name='com.liferay.mobile.screens.base']
-              /class[@name='BaseScreenlet']
-              /method[@name='getViewModel']"
+    <!-- Corrections for BaseScreenlet -->
+    <attr path="/api/package[@name='com.liferay.mobile.screens.base']
+    	/class[@name='BaseScreenlet']
+    	/method[@name='getViewModel']"
         name="visibility">public</attr>
-	
-  <!-- Corrections for UserPortraitScreenlet-->
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.userportrait']
-        /class[@name='UserPortraitScreenlet']
+
+    <!-- Corrections for UserPortraitScreenlet -->
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.userportrait']
+    	/class[@name='UserPortraitScreenlet']
         /method[@name='onUserAction']"/>
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.userportrait']
-        /class[@name='UserPortraitScreenlet']
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.userportrait']
+    	/class[@name='UserPortraitScreenlet']
         /method[@name='createInteractor']"/>
-	
-  <!-- Corrections for WebContentDisplayScreenlet-->
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.webcontent.display']
-        /class[@name='WebContentDisplayScreenlet']
+
+    <!-- Corrections for WebContentDisplayScreenlet -->
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.webcontent.display']
+    	/class[@name='WebContentDisplayScreenlet']
         /method[@name='onUserAction']"/>
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.webcontent.display']
-        /class[@name='WebContentDisplayScreenlet']
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.webcontent.display']
+    	/class[@name='WebContentDisplayScreenlet']
         /method[@name='createInteractor']"/>
 
-  <!-- Corrections for AssetListScreenlet-->
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.asset.list']
-        /class[@name='AssetListScreenlet']
+    <!-- Corrections for AssetListScreenlet -->
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.asset.list']
+    	/class[@name='AssetListScreenlet']
         /method[@name='createInteractor']"/>
 
-  <!-- Corrections for ImageDisplayScreenlet-->
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.image']
-        /class[@name='ImageDisplayScreenlet']
+    <!-- Corrections for ImageDisplayScreenlet -->
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.image']
+    	/class[@name='ImageDisplayScreenlet']
         /method[@name='onUserAction']"/>
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.image']
-        /class[@name='ImageDisplayScreenlet']
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.image']
+    	/class[@name='ImageDisplayScreenlet']
         /method[@name='createInteractor']"/>
 
-  <!-- Corrections for AssetDisplayScreenlet-->
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.asset.display']
-        /class[@name='AssetDisplayScreenlet']
+    <!-- Corrections for AssetDisplayScreenlet -->
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.asset.display']
+    	/class[@name='AssetDisplayScreenlet']
         /method[@name='onUserAction']"/>
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.asset.display']
-        /class[@name='AssetDisplayScreenlet']
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.asset.display']
+    	/class[@name='AssetDisplayScreenlet']
         /method[@name='createInteractor']"/>
 
-  <!-- Corrections for PdfDisplayScreenlet-->
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.pdf']
-        /class[@name='PdfDisplayScreenlet']
+    <!-- Corrections for PdfDisplayScreenlet -->
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.pdf']
+    	/class[@name='PdfDisplayScreenlet']
         /method[@name='onUserAction']"/>
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.pdf']
-        /class[@name='PdfDisplayScreenlet']
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.pdf']
+    	/class[@name='PdfDisplayScreenlet']
         /method[@name='createInteractor']"/>
 
-  <!-- Corrections for VideoDisplayScreenlet-->
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.video']
-        /class[@name='VideoDisplayScreenlet']
+    <!-- Corrections for VideoDisplayScreenlet -->
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.video']
+    	/class[@name='VideoDisplayScreenlet']
         /method[@name='onUserAction']"/>
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.video']
-        /class[@name='VideoDisplayScreenlet']
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.video']
+    	/class[@name='VideoDisplayScreenlet']
         /method[@name='createInteractor']"/>
 
-  <!-- Corrections for AudioDisplayScreenlet-->
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.audio']
-        /class[@name='AudioDisplayScreenlet']
+    <!-- Corrections for AudioDisplayScreenlet -->
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.audio']
+    	/class[@name='AudioDisplayScreenlet']
         /method[@name='onUserAction']"/>
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.audio']
-        /class[@name='AudioDisplayScreenlet']
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.audio']
+    	/class[@name='AudioDisplayScreenlet']
         /method[@name='createInteractor']"/>
 
-  <!-- Corrections for CommentDisplayScreenlet-->
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.comment.display']
-        /class[@name='CommentDisplayScreenlet']
+    <!-- Corrections for CommentDisplayScreenlet -->
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.comment.display']
+    	/class[@name='CommentDisplayScreenlet']
         /method[@name='onUserAction']"/>
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.comment.display']
-        /class[@name='CommentDisplayScreenlet']
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.comment.display']
+    	/class[@name='CommentDisplayScreenlet']
         /method[@name='createInteractor']"/>
 
-  <!-- Corrections for CommentAddScreenlet-->
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.comment.add']
-        /class[@name='CommentAddScreenlet']
+    <!-- Corrections for CommentAddScreenlet -->
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.comment.add']
+    	/class[@name='CommentAddScreenlet']
         /method[@name='onUserAction']"/>
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.comment.add']
-        /class[@name='CommentAddScreenlet']
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.comment.add']
+    	/class[@name='CommentAddScreenlet']
         /method[@name='createInteractor']"/>
 
-  <!-- Corrections for CommentListScreenlet-->
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.comment.list']
-        /class[@name='CommentListScreenlet']
+    <!-- Corrections for CommentListScreenlet -->
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.comment.list']
+    	/class[@name='CommentListScreenlet']
         /method[@name='onUserAction']"/>
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.comment.list']
-        /class[@name='CommentListScreenlet']
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.comment.list']
+    	/class[@name='CommentListScreenlet']
         /method[@name='createInteractor']"/>
 
-  <!-- Corrections for WebContentListScreenlet-->
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.webcontent.list']
-        /class[@name='WebContentListScreenlet']
+    <!-- Corrections for WebContentListScreenlet -->
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.webcontent.list']
+    	/class[@name='WebContentListScreenlet']
         /method[@name='createInteractor']"/>
 
-  <!-- Corrections for RatingScreenlet-->
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.rating']
-        /class[@name='RatingScreenlet']
+    <!-- Corrections for RatingScreenlet -->
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.rating']
+    	/class[@name='RatingScreenlet']
         /method[@name='onUserAction']"/>
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.rating']
-        /class[@name='RatingScreenlet']
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.rating']
+    	/class[@name='RatingScreenlet']
         /method[@name='createInteractor']"/>
 
-  <!-- Corrections for WebScreenlet-->
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.web']
-        /class[@name='WebScreenlet']
+    <!-- Corrections for WebScreenlet -->
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.web']
+    	/class[@name='WebScreenlet']
         /method[@name='onUserAction']"/>
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.web']
-        /class[@name='WebScreenlet']
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.web']
+    	/class[@name='WebScreenlet']
         /method[@name='createInteractor']"/>
 
-  <!-- Corrections for BlogsEntryDisplayScreenlet-->
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.blogs']
-        /class[@name='BlogsEntryDisplayScreenlet']
+    <!-- Corrections for BlogsEntryDisplayScreenlet -->
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.blogs']
+    	/class[@name='BlogsEntryDisplayScreenlet']
         /method[@name='onUserAction']"/>
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.blogs']
-        /class[@name='BlogsEntryDisplayScreenlet']
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.blogs']
+    	/class[@name='BlogsEntryDisplayScreenlet']
         /method[@name='createInteractor']"/>
 
-  <!-- Corrections for DDLListScreenlet-->
-  <remove-node  path="/api/package[@name='com.liferay.mobile.screens.ddl.list']
-        /class[@name='DDLListScreenlet']
+    <!-- Corrections for DDLListScreenlet -->
+    <remove-node  path="/api/package[@name='com.liferay.mobile.screens.ddl.list']
+    	/class[@name='DDLListScreenlet']
         /method[@name='createInteractor']"/>
 </metadata>
