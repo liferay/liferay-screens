@@ -91,19 +91,22 @@
       <HintPath>packages\Xamarin.Android.Support.Design.25.3.1\lib\MonoAndroid70\Xamarin.Android.Support.Design.dll</HintPath>
     </Reference>
     <Reference Include="jakeWharton.RxbindingBindingLibrary">
-      <HintPath>packages\LiferayScreens.0.1.0-beta6\lib\MonoAndroid403\jakeWharton.RxbindingBindingLibrary.dll</HintPath>
+      <HintPath>packages\LiferayScreens.0.1.0-beta7\lib\MonoAndroid403\jakeWharton.RxbindingBindingLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="LiferayOAuth.BindinLibrary">
+      <HintPath>packages\LiferayScreens.0.1.0-beta7\lib\MonoAndroid403\LiferayOAuth.BindinLibrary.dll</HintPath>
     </Reference>
     <Reference Include="LiferayScreens_Android">
-      <HintPath>packages\LiferayScreens.0.1.0-beta6\lib\MonoAndroid403\LiferayScreens_Android.dll</HintPath>
+      <HintPath>packages\LiferayScreens.0.1.0-beta7\lib\MonoAndroid403\LiferayScreens_Android.dll</HintPath>
     </Reference>
     <Reference Include="rxAndroid.BindingLibrary">
-      <HintPath>packages\LiferayScreens.0.1.0-beta6\lib\MonoAndroid403\rxAndroid.BindingLibrary.dll</HintPath>
+      <HintPath>packages\LiferayScreens.0.1.0-beta7\lib\MonoAndroid403\rxAndroid.BindingLibrary.dll</HintPath>
     </Reference>
     <Reference Include="SnappyDBBindingLibrary">
-      <HintPath>packages\LiferayScreens.0.1.0-beta6\lib\MonoAndroid403\SnappyDBBindingLibrary.dll</HintPath>
+      <HintPath>packages\LiferayScreens.0.1.0-beta7\lib\MonoAndroid403\SnappyDBBindingLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Tbruyelle.RxpermissionsBindingLibrary">
-      <HintPath>packages\LiferayScreens.0.1.0-beta6\lib\MonoAndroid403\Tbruyelle.RxpermissionsBindingLibrary.dll</HintPath>
+      <HintPath>packages\LiferayScreens.0.1.0-beta7\lib\MonoAndroid403\Tbruyelle.RxpermissionsBindingLibrary.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +133,8 @@
     <Compile Include="Activities\RatingActivity.cs" />
     <Compile Include="Activities\BlogsEntryDisplayActivity.cs" />
     <Compile Include="Activities\DDLListActivity.cs" />
+    <Compile Include="Activities\WebScreenletActivity.cs" />
+    <Compile Include="Activities\WebScreenletDetailActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -161,10 +166,17 @@
     <AndroidResource Include="Resources\layout\RatingView.axml" />
     <AndroidResource Include="Resources\layout\DDLListView.axml" />
     <AndroidResource Include="Resources\layout\BlogsEntryView.axml" />
+    <AndroidResource Include="Resources\raw\css_master.css" />
+    <AndroidResource Include="Resources\raw\js_master.js" />
+    <AndroidResource Include="Resources\layout\WebScreenletView.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
     <Folder Include="Activities\" />
+    <Folder Include="Assets\" />
+    <Folder Include="Resources\raw\" />
+  </ItemGroup>
+  <ItemGroup>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="packages\Xamarin.Android.Support.Annotations.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.Annotations.targets" Condition="Exists('packages\Xamarin.Android.Support.Annotations.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.Annotations.targets')" />

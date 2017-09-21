@@ -93,6 +93,10 @@
                 android:id="@+id/ddl_list_screenlet"
                 android:text="@string/ddl_list"
                 style="@style/test_app_button" />
+            <Button
+                android:id="@+id/web_screenlet"
+                android:text="@string/web_screenlet"
+                style="@style/test_app_button" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
