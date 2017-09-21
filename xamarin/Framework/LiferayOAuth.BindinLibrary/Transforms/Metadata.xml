@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+
+	<remove-node path="/api/package[@name='com.liferay.mobile.android.oauth.task']/class[@name='AccessTokenAsyncTask']" />
+    <remove-node path="/api/package[@name='com.liferay.mobile.android.oauth.task']/class[@name='RequestTokenAsyncTask']" />
+	
+</metadata>
