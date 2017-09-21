@@ -27,6 +27,10 @@ try {
 } catch (FileNotFoundException ignore) {
 }
 
+javadoc {
+	options.encoding = 'UTF-8'
+}
+
 bintray {
 	user = properties.getProperty("bintray.user")
 	key = properties.getProperty("bintray.apikey")
