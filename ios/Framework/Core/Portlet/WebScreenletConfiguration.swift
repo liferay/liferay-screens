@@ -33,8 +33,8 @@ import Foundation
 	}
 }
 
-@objc(WebScreenletConfigurationBuilder)
-public class Builder: NSObject {
+@objc
+public class WebScreenletConfigurationBuilder: NSObject {
 	let url: String
 	var localJs: [String]
 	var localCss: [String]
