@@ -30,18 +30,18 @@ PODS:
     - CocoaLumberjack/Default
   - Cordova (4.4.0)
   - Cosmos (8.0.2)
-  - CryptoSwift (0.6.7)
+  - CryptoSwift (0.7.2)
   - DTPickerPresenter (0.2.0)
-  - KeychainAccess (3.0.1)
-  - Kingfisher (3.4.0)
-  - Liferay-iOS-SDK (7.0.11):
+  - KeychainAccess (3.1.0)
+  - Kingfisher (3.13.1)
+  - Liferay-iOS-SDK (7.0.12):
     - AFNetworking (= 2.6.3)
   - Liferay-OAuth (1.2.1):
     - Liferay-iOS-SDK (~> 7.0.4)
   - LiferayScreens (2.1.2):
     - Cordova (~> 4.0)
     - Cosmos (~> 8.0)
-    - CryptoSwift (~> 0.6.0)
+    - CryptoSwift (~> 0.7.0)
     - DTPickerPresenter (~> 0.2.0)
     - KeychainAccess (~> 3.0)
     - Kingfisher (~> 3.0)
@@ -54,7 +54,7 @@ PODS:
     - YapDatabase/SQLCipher (= 2.9.2)
   - MBProgressHUD (0.9.2)
   - MDRadialProgress (1.3.2)
-  - MGSwipeTableCell (1.5.6)
+  - MGSwipeTableCell (1.6.1)
   - Reachability (3.2)
   - SMXMLDocument (1.1)
   - SQLCipher/common (3.4.1)
@@ -126,16 +126,16 @@ SPEC CHECKSUMS:
   CocoaLumberjack: aa9dcab71bdf9eaf2a63bbd9ddc87863efe45457
   Cordova: 561576155c420c54441d99b855de12c6e7b51088
   Cosmos: 007c0b8e33a85e5363911bdd933571bbe221f7ef
-  CryptoSwift: 685ae257941e5447474348a2b545583e1a16b573
+  CryptoSwift: cd2158be2bf639aabc63ec804707c7137c90157c
   DTPickerPresenter: 1976573e3475534559b6ec1dad64b2ece16c966d
-  KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
-  Kingfisher: 5690cfb3d1bddf3a98d679a3a34d0b7294974ed2
-  Liferay-iOS-SDK: 6b14cb23150d26289c36c4e9eee622bc1979a3d9
+  KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
+  Kingfisher: ed9707a409cc47fddafbcd12a43a9757e3600af5
+  Liferay-iOS-SDK: f597272f3e96d3bc13650ba0b3fc998ed0d2952d
   Liferay-OAuth: a9ff190558928bec8ebc18dd326b01bddd7e2968
-  LiferayScreens: 6b42b2943f4f25c69008d498ebe3978d0f7fe306
+  LiferayScreens: 3c9b7a2079ce901797b664e812d9ba0921669f08
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MDRadialProgress: 1068574b9b4b870f64b605b07f734385bde5104d
-  MGSwipeTableCell: 616700eb0ffd1c611ba909066cb7fd739790a0a7
+  MGSwipeTableCell: 19a1d65dcc1ceaea42eb44bb2adae32101904514
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SMXMLDocument: e0d9fbf726a2a0921871b492966458acb3ad9689
   SQLCipher: 43d12c0eb9c57fb438749618fc3ce0065509a559
