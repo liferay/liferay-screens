@@ -51,6 +51,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 
 	@IBInspectable open var themeName: String? {
 		set {
+			guard newValue != themeName else { return }
 			_themeName = (newValue ?? BaseScreenlet.DefaultThemeName).lowercased()
 
 			if _runningOnInterfaceBuilder {
