@@ -31,7 +31,7 @@ class DocumentationViewController: CardViewController, WebScreenletDelegate {
 	}
 
     func loadWebScreenlet() {
-        let webScreenletConfiguration = WebScreenletConfiguration.Builder(url: "/web/westeros-hybrid/documents").addCss(localFile: "docs").addJs(localFile: "docs").load()
+        let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/documents").addCss(localFile: "docs").addJs(localFile: "docs").load()
         webScreenlet.configuration = webScreenletConfiguration
         webScreenlet.load()
         webScreenlet.delegate = self

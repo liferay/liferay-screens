@@ -29,7 +29,7 @@ class BlogsViewController: CardViewController, WebScreenletDelegate {
 	}
     
     func loadWebScreenlet() {
-        let webScreenletConfiguration = WebScreenletConfiguration.Builder(url: "/web/westeros-hybrid/companynews").addCss(localFile: "blogs").addJs(localFile: "blogs").load()
+        let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/companynews").addCss(localFile: "blogs").addJs(localFile: "blogs").load()
         webScreenlet.configuration = webScreenletConfiguration
         webScreenlet.load()
         webScreenlet.delegate = self

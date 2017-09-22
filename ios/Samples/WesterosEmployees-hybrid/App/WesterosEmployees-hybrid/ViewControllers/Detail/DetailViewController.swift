@@ -44,7 +44,7 @@ class DetailViewController: CardViewController,
 	}
 
     func load(file: String, id: String) {
-        let webScreenletConfiguration = WebScreenletConfiguration.Builder(url: "/web/westeros-hybrid/detail?id=\(id)").addCss(localFile: file).addJs(localFile: file).load()
+        let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/detail?id=\(id)").addCss(localFile: file).addJs(localFile: file).load()
         webScreenlet.configuration = webScreenletConfiguration
         webScreenlet.load()
     }

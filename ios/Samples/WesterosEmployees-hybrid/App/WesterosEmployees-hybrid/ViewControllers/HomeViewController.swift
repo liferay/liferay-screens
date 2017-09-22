@@ -82,7 +82,7 @@ class HomeViewController: UIViewController, WebScreenletDelegate,
 	//MARK: UIViewController
 
     func loadWebScreenlet() {
-        let webScreenletConfiguration = WebScreenletConfiguration.Builder(url: "/web/westeros-hybrid/lastchanges").addCss(localFile: "last_changes").addJs(localFile: "last_changes").load()
+        let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/lastchanges").addCss(localFile: "last_changes").addJs(localFile: "last_changes").load()
         webScreenlet.themeName = "westeros"
         webScreenlet.configuration = webScreenletConfiguration
         webScreenlet.load()
