@@ -18,7 +18,6 @@ import Foundation
 	case liferayAuthenticated, other
 }
 
-
 @objc public class WebScreenletConfiguration: NSObject {
 	public let url: String
 	public let scripts: [InjectableScript]
@@ -85,24 +84,16 @@ public class WebScreenletConfigurationBuilder: NSObject {
 
 	public func load() -> WebScreenletConfiguration {
 		let localJsScripts: [InjectableScript] = localJs
-			.map { fileName in
-				JsScript(name: "\(fileName).js", js: loadLocalJsContent(fileName: fileName))
-		}
+			.map { fileName in JsScript(name: "\(fileName).js", js: loadLocalJsContent(fileName: fileName)) }
 
 		let localCssScripts: [InjectableScript] = localCss
-			.map { fileName in
-				CssScript(name: "\(fileName).css", css: loadLocalCssContent(fileName: fileName))
-		}
+			.map { fileName in CssScript(name: "\(fileName).css", css: loadLocalCssContent(fileName: fileName)) }
 
 		let remoteJsScripts: [InjectableScript] = remoteJs
-			.map { url in
-				RemoteJsScript(name: "Remote js url: \(url)", url: url)
-		}
+			.map { url in RemoteJsScript(name: "Remote js url: \(url)", url: url) }
 
 		let remoteCssScripts: [InjectableScript] = remoteCss
-			.map { url in
-				RemoteCssScript(name: "Remote css url: \(url)", url: url)
-		}
+			.map { url in RemoteCssScript(name: "Remote css url: \(url)", url: url) }
 
 		let allScripts: [InjectableScript] = localJsScripts + localCssScripts + remoteJsScripts + remoteCssScripts
 
@@ -111,23 +102,22 @@ public class WebScreenletConfigurationBuilder: NSObject {
 	}
 
 	private func loadLocalCssContent(fileName: String) -> String {
-		guard let content = Bundle.loadFile(name: fileName,
-		                                    ofType: "css", currentClass: type(of: self)) else {
-												print("file named \(fileName) not found")
-												return ""
+		guard let content = Bundle.loadFile(name: fileName, ofType: "css", currentClass: type(of: self))
+		else {
+			print("file named \(fileName) not found")
+			return ""
 		}
 
 		return content
 	}
 
 	private func loadLocalJsContent(fileName: String) -> String {
-		guard let content = Bundle.loadFile(name: fileName,
-		                                    ofType: "js", currentClass: type(of: self)) else {
-												print("file named \(fileName) not found")
-												return ""
+		guard let content = Bundle.loadFile(name: fileName, ofType: "js", currentClass: type(of: self))
+		else {
+			print("file named \(fileName) not qfound")
+			return ""
 		}
-		
+
 		return content
 	}
 }
-
