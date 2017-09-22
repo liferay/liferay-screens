@@ -69,6 +69,11 @@ import WebKit
 		wkWebView.configuration.userContentController.add(WeakMessageHandler(jsCallHandler: weakJsHandler),
 				name: defaultNamespace)
 	}
+
+	deinit {
+		// In iOS 9.x if you dont do this a retain message is sent when this
+		// object is already deallocated
+		wkWebView.scrollView.delegate = nil
 	}
 
 	open func add(injectableScript: InjectableScript) {
