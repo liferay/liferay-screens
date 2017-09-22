@@ -112,6 +112,7 @@ public class ScreensCordovaViewController: CDVViewController, WKNavigationDelega
 
 		if navigationAction.request.url?.isFileURL ?? false {
 			decisionHandler(.cancel)
+			return
 		}
 
 		wkDelegate?.webView?(webView, decidePolicyFor: navigationAction, decisionHandler: decisionHandler)
