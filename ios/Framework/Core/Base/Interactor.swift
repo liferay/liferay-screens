@@ -18,7 +18,7 @@ open class Interactor: NSObject {
 
 	open var actionName: String?
 
-	open var onSuccess: ((Void) -> Void)?
+	open var onSuccess: (() -> Void)?
 
 	open var onFailure: ((NSError) -> Void)?
 
