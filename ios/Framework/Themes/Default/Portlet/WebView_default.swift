@@ -116,11 +116,6 @@ open class WebView_default: BaseScreenletView, WebViewModel {
         self.progressPresenter = createProgressPresenter()
     }
 
-	open override func onDestroy() {
-		super.onDestroy()
-		screensWebView?.onDestroy?()
-	}
-
     open override func createProgressPresenter() -> ProgressPresenter {
         return DefaultProgressPresenter()
     }
