@@ -37,8 +37,8 @@ All notable changes to this project will be documented in this file.
 * Added Westeros Employees Hybrid
 
 ## iOS
-
 * Increased min version to iOS 9
+* Updated to Swift 3.2
 
 ### Bugs
 * Fix error in UserPortrait initials view: user lastname is required in Liferay 7.0 but is not in Liferay 6.2
