@@ -49,14 +49,14 @@ open class WebView_default: BaseScreenletView, WebViewModel {
 		let jsCallHandler = weakify(owner: self, f: WebView_default.handleJsCall)
 		let onPageLoadFinished = weakify(owner: self, f: WebView_default.onPageLoadFinished)
 
-		let jsErrorHandler: ScreensWebView.JsErrorHandler = { [unowned self] scriptName in
+		let jsErrorHandler: ScreensWebView.JsErrorHandler = { [weak self] scriptName in
 			return { _, error in
-				guard self.isLoggingEnabled else { return }
+				guard self?.isLoggingEnabled ?? false else { return }
 				print("executed \(scriptName)")
 				if let error = error as NSError? {
 
 					if error.domain == "WKErrorDomain" && error.code != 5 {
-						print("\nError injecting \(scriptName): \(self.parseJavaScriptError(error))")
+						print("\nError injecting \(scriptName): \(self?.parseJavaScriptError(error) ?? "")")
 					}
 				}
 			}
@@ -115,11 +115,6 @@ open class WebView_default: BaseScreenletView, WebViewModel {
         backgroundColor = .clear
         self.progressPresenter = createProgressPresenter()
     }
-
-	open override func onDestroy() {
-		super.onDestroy()
-		screensWebView?.onDestroy?()
-	}
 
     open override func createProgressPresenter() -> ProgressPresenter {
         return DefaultProgressPresenter()

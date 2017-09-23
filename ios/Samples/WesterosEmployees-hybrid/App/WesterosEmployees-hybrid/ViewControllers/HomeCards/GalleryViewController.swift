@@ -34,7 +34,7 @@ class GalleryViewController: CardViewController, WebScreenletDelegate,
 
     @IBOutlet weak var webScreenlet: WebScreenlet! {
         didSet {
-            let webScreenletConfiguration = WebScreenletConfiguration.Builder(url: "/web/westeros-hybrid/gallery").addCss(localFile: "gallery").addJs(localFile: "gallery").load()
+            let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/gallery").addCss(localFile: "gallery").addJs(localFile: "gallery").load()
             webScreenlet.configuration = webScreenletConfiguration
             webScreenlet.delegate = self
         }

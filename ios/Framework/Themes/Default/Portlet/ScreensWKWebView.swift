@@ -15,8 +15,7 @@ import UIKit
 import WebKit
 
 // swiftlint:disable weak_delegate
-@objc open class ScreensWKWebView: NSObject, ScreensWebView, WKNavigationDelegate, WKScriptMessageHandler,
-UIScrollViewDelegate {
+@objc open class ScreensWKWebView: NSObject, ScreensWebView, WKNavigationDelegate, UIScrollViewDelegate {
 
 	let defaultNamespace = "screensDefault"
 
@@ -39,7 +38,7 @@ UIScrollViewDelegate {
 
 	var scriptsToInject = [InjectableScript]()
 	var initialNavigation: WKNavigation?
-	var viewController: UIViewController? {
+	weak var viewController: UIViewController? {
 		didSet {
 			wkWebView.uiDelegate = self.uiDelegate
 		}
@@ -64,7 +63,17 @@ UIScrollViewDelegate {
 		wkWebView.injectViewportMetaTag()
 		wkWebView.navigationDelegate = self
 		wkWebView.scrollView.delegate = self
-		wkWebView.configuration.userContentController.add(self, name: defaultNamespace)
+
+		let weakJsHandler = weakify(owner: self, f: ScreensWKWebView.handleJsCall)
+
+		wkWebView.configuration.userContentController.add(WeakMessageHandler(jsCallHandler: weakJsHandler),
+				name: defaultNamespace)
+	}
+
+	deinit {
+		// In iOS 9.x if you dont do this a retain message is sent when this
+		// object is already deallocated
+		wkWebView.scrollView.delegate = nil
 	}
 
 	open func add(injectableScript: InjectableScript) {
@@ -84,35 +93,26 @@ UIScrollViewDelegate {
 		initialNavigation = wkWebView.loadHTMLString(htmlString, baseURL: URL(string: server)!)
 	}
 
-	open func onDestroy() {
-		wkWebView.configuration.userContentController.removeScriptMessageHandler(forName: defaultNamespace)
-	}
-
 	open func clearCache() {
 		wkWebView.clearCache()
+	}
+
+	open func handleJsCall(namespace: String, message: String) {
+
+		if namespace == "DOMContentLoaded" {
+			scriptsToInject.forEach { script in
+				wkWebView.evaluateJavaScript(script.content, completionHandler: jsErrorHandler(script.name))
+			}
+		}
+		else {
+			jsCallHandler(namespace, message)
+		}
 	}
 
 	// MARK: UIScrollViewDelegate
 
 	open func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
 		return nil
-	}
-
-	// MARK: WKScriptMessageHandler
-
-	open func userContentController(_ userContentController: WKUserContentController,
-	                                  didReceive message: WKScriptMessage) {
-
-		guard let body = message.body as? [String] else { return }
-
-		if body[0] == "DOMContentLoaded" {
-			scriptsToInject.forEach { script in
-				wkWebView.evaluateJavaScript(script.content, completionHandler: jsErrorHandler(script.name))
-			}
-		}
-		else {
-			jsCallHandler(body[0], body[1])
-		}
 	}
 
 	// MARK: WKNavigationDelegate

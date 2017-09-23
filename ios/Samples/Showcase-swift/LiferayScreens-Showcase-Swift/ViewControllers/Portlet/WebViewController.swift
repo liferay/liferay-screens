@@ -33,7 +33,7 @@ class WebViewController: UIViewController, WebScreenletDelegate {
 
 		let url = LiferayServerContext.stringPropertyForKey("WebUrl")
 
-		let configuration = WebScreenletConfiguration.Builder(url: url)
+		let configuration = WebScreenletConfigurationBuilder(url: url)
 				.set(webType: .liferayAuthenticated)
 				.enableCordova()
 				.addCss(localFile: "bigger_pagination")
