@@ -58,6 +58,13 @@ open class WebScreenlet: BaseScreenlet {
 
 	@IBInspectable open var isScrollEnabled: Bool = true
 
+	open override var themeName: String? {
+		didSet {
+			guard let configuration = configuration else { return }
+			webViewModel.configureView(with: configuration.isCordovaEnabled)
+		}
+	}
+
 	/// The Web URL to be displayed.
 	open var configuration: WebScreenletConfiguration? {
 		didSet {
