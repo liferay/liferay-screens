@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-
 	<remove-node path="/api/package[@name='com.liferay.mobile.android.oauth.task']/class[@name='AccessTokenAsyncTask']" />
     <remove-node path="/api/package[@name='com.liferay.mobile.android.oauth.task']/class[@name='RequestTokenAsyncTask']" />
-	
+
+	<!-- Warning BG8401: Skipping Com.Liferay.Mobile.Android.Oauth.View.OAuthWebView.DenyURL, due to a duplicate field, method or nested type name -->
+	<attr path="api/package[@name='com.liferay.mobile.android.oauth.view']/class[@name='OAuthWebView']/field[@name='denyURL']" name="managedName">denyURLField</attr>
 </metadata>
