@@ -13,13 +13,13 @@
  */
 import UIKit
 
-
-@objc public protocol ImageDisplayViewModel: FileDisplayViewModel {
+@objc(ImageDisplayViewModel)
+public protocol ImageDisplayViewModel: FileDisplayViewModel {
 
 	/// Image mode for the screenlet image. See UIViewContentMode enum for
 	/// knowing all the posible modes.
 	var imageMode: UIViewContentMode { get set }
-	
+
 	/// Placeholder image to show before the asset image or if the asset not exists.
 	var placeholder: UIImage? { get set }
 

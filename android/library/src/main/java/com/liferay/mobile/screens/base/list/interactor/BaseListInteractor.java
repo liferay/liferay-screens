@@ -30,7 +30,7 @@ public abstract class BaseListInteractor<L extends BaseListInteractorListener, E
 
 		validate(startRow, endRow, locale);
 
-		if (notRequestingRightNow(query) || retrying(args) ) {
+		if (notRequestingRightNow(query) || retrying(args)) {
 
 			JSONArray jsonArray = getPageRowsRequest(query, args);
 			int rowCount = getPageRowCountRequest(args);

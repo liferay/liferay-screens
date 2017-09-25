@@ -14,8 +14,7 @@
 import Foundation
 import LRMobileSDK
 
-
-open class UploadFileConnector : ServerConnector, LRCallback, LRFileProgressDelegate {
+open class UploadFileConnector: ServerConnector, LRCallback, LRFileProgressDelegate {
 
 	public typealias OnProgress = (Any?, UInt64, UInt64) -> Void
 
@@ -31,8 +30,7 @@ open class UploadFileConnector : ServerConnector, LRCallback, LRFileProgressDele
 
 	var uploadResult: [String:AnyObject]?
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(
 		inputStream: InputStream,
@@ -68,8 +66,7 @@ open class UploadFileConnector : ServerConnector, LRCallback, LRFileProgressDele
 		super.init()
 	}
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func doRun(session: LRSession) {
 		if inputStream == nil {
@@ -95,15 +92,15 @@ open class UploadFileConnector : ServerConnector, LRCallback, LRFileProgressDele
 
 		do {
 			try doSendFile(session, data: uploadData!)
-		} catch {
+		}
+		catch {
 
 		}
 
 		_ = requestSemaphore!.wait(timeout: .distantFuture)
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func onProgress(_ data: Data!, totalBytes: Int64) {
 		let totalBytesSent = UInt64(totalBytes)

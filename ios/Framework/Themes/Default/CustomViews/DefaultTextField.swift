@@ -13,21 +13,18 @@
  */
 import UIKit
 
-
 open class DefaultTextField: UITextField {
 
-
-	//MARK: Public variables
+	// MARK: Public variables
 
 	open var buttonMargin: CGFloat = 10
 
-	open var onRightButtonClick: (() -> ())?
-	
-	
-	//MARK: IBInspectable
-	
+	open var onRightButtonClick: (() -> Void)?
+
+	// MARK: IBInspectable
+
 	@IBInspectable open var defaultColor: UIColor = .lightGray
-	
+
 	@IBInspectable open var highlightColor: UIColor = DefaultThemeBasicBlue
 
 	@IBInspectable open var errorColor: UIColor = .red
@@ -35,15 +32,15 @@ open class DefaultTextField: UITextField {
 	@IBInspectable open var paddingLeft: CGFloat = 15
 
 	@IBInspectable open var paddingRight: CGFloat = 15
-	
+
 	@IBInspectable open var leftImage: UIImage? {
 		didSet {
 			if let image = leftImage {
-				
+
 				let icon = UIImageView(image: image)
 
 				icon.contentMode = .center
-				
+
 				self.leftViewMode = .always
 				self.leftView = icon
 			}
@@ -70,27 +67,25 @@ open class DefaultTextField: UITextField {
 		}
 	}
 
-	
-	//MARK: Initializers
-	
+	// MARK: Initializers
+
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		
+
 		setup()
 	}
-	
+
 	public required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-		
+
 		setup()
 	}
-	
+
 	open override func prepareForInterfaceBuilder() {
 		setup()
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func setDefaultState() {
 		self.layer.borderColor = defaultColor.cgColor
@@ -99,9 +94,9 @@ open class DefaultTextField: UITextField {
 	open func setErrorState() {
 		self.layer.borderColor = errorColor.cgColor
 	}
-	
-	//MARK: Internal methods
-	
+
+	// MARK: Internal methods
+
 	internal func setup() {
 		self.layer.cornerRadius = 4.0
 		self.layer.borderWidth = 1.0
@@ -130,23 +125,23 @@ open class DefaultTextField: UITextField {
 
 		return button
 	}
-	
-	//MARK: UITextField
-	
+
+	// MARK: UITextField
+
 	open override func resignFirstResponder() -> Bool {
 		self.layer.borderColor = defaultColor.cgColor
-		
+
 		return super.resignFirstResponder()
 	}
-	
+
 	open override func becomeFirstResponder() -> Bool {
 		self.layer.borderColor = highlightColor.cgColor
-		
+
 		return super.becomeFirstResponder()
 	}
 
 	open override func textRect(forBounds bounds: CGRect) -> CGRect {
-		if let _ = leftView {
+		if leftView != nil {
 			return super.textRect(forBounds: bounds)
 		}
 
@@ -154,7 +149,7 @@ open class DefaultTextField: UITextField {
 	}
 
 	open override func editingRect(forBounds bounds: CGRect) -> CGRect {
-		if let _ = leftView {
+		if leftView != nil {
 			return super.editingRect(forBounds: bounds)
 		}
 
@@ -173,7 +168,7 @@ open class DefaultTextField: UITextField {
 
 		let size = CGSize(width: bounds.height - buttonMargin,
 		                  height: bounds.height - buttonMargin)
-		
+
 		return CGRect(origin: origin, size: size)
 	}
 }

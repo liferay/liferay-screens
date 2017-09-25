@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 
 	let groupId: Int64
@@ -28,8 +27,7 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 
 	var resultRecord: DDLRecord?
 
-
-	//MARK: Interactor
+	// MARK: Interactor
 
 	init(screenlet: BaseScreenlet, groupId: Int64, articleId: String, structureId: Int64?, templateId: Int64?) {
 		self.groupId = (groupId != 0) ? groupId : LiferayServerContext.groupId
@@ -40,8 +38,7 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 		super.init(screenlet: screenlet)
 	}
 
-
-	//MARK: ServerConnectorInteractor
+	// MARK: ServerConnectorInteractor
 
 	override func createConnector() -> WebContentLoadBaseLiferayConnector? {
 		if let structureId = self.structureId, structureId != 0 {
@@ -73,10 +70,9 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
+	// MARK: Cache methods
 
-	//MARK: Cache methods
-
-	override func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> ()) {
+	override func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> Void) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return
@@ -130,8 +126,7 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 				"articleId": loadCon.articleId as AnyObject])
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func articleCacheKey(_ groupId: Int64, _ articleId: String) -> String {
 		return "\((groupId != 0) ? groupId : LiferayServerContext.groupId)-articleId-\(articleId)"

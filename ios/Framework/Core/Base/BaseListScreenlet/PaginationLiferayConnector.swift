@@ -13,20 +13,18 @@
  */
 import UIKit
 
-
 open class PaginationLiferayConnector: ServerConnector {
 
 	open let startRow: Int
 	open let endRow: Int
 	open let computeRowCount: Bool
 
-	open var obcClassName: String? = nil
+	open var obcClassName: String?
 
 	open var resultPageContent: [[String:AnyObject]]?
 	open var resultRowCount: Int?
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(startRow: Int, endRow: Int, computeRowCount: Bool) {
 		self.startRow = startRow
@@ -35,8 +33,8 @@ open class PaginationLiferayConnector: ServerConnector {
 
 		super.init()
 	}
-	
-	//MARK: ServerConnector
+
+	// MARK: ServerConnector
 
 	override open func doRun(session: LRSession) {
 		let batchSession = LRBatchSession(session: session)!
@@ -44,7 +42,7 @@ open class PaginationLiferayConnector: ServerConnector {
 		resultPageContent = nil
 		resultRowCount = nil
 		lastError = nil
-		
+
 		let obc = obcClassName.flatMap {
 			LRJSONObjectWrapper(className: $0, jsonObject: [:])
 		}
@@ -86,14 +84,13 @@ open class PaginationLiferayConnector: ServerConnector {
 		}
 	}
 
+	// MARK: Public methods
 
-	//MARK: Public methods
-	
 	open func doAddPageRowsServiceCall(session: LRBatchSession,
 			startRow: Int,
 			endRow: Int,
 			obc: LRJSONObjectWrapper?) {
-			
+
 		fatalError("doGetPageRowsConnector must be overriden")
 	}
 

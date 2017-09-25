@@ -13,9 +13,7 @@
  */
 import Foundation
 
-
 //TODO: Unit test
-
 
 @objc open class DDLRecord: NSObject, NSCoding {
 
@@ -47,7 +45,7 @@ import Foundation
 	}
 
 	open var values: [String:AnyObject] {
-		var result = [String:AnyObject]()
+		var result = [String: AnyObject]()
 
 		for field in self.fields {
 			if let value = field.currentValueAsString {
@@ -64,8 +62,7 @@ import Foundation
 		return result
 	}
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(structure: DDMStructure) {
 		self.structure = structure
@@ -107,7 +104,7 @@ import Foundation
 	public init(dataAndAttributes: [String:AnyObject]) {
 		structure = nil
 
-		if let recordFields = (dataAndAttributes["modelValues"] ?? nil) as? [String:AnyObject] {
+		if let recordFields = dataAndAttributes["modelValues"] as? [String:AnyObject] {
 			let parsedFields = DDLUntypedValuesParser().parse(recordFields)
 		 	if parsedFields.isEmpty {
 				untypedValues = nil
@@ -120,7 +117,7 @@ import Foundation
 			untypedValues = nil
 		}
 
-		if let recordAttributes = (dataAndAttributes["modelAttributes"] ?? nil) as? [String:AnyObject] {
+		if let recordAttributes = dataAndAttributes["modelAttributes"] as? [String:AnyObject] {
 			attributes = recordAttributes
 		}
 
@@ -135,8 +132,7 @@ import Foundation
 		super.init()
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func encode(with aCoder: NSCoder) {
 		if let structure = structure {

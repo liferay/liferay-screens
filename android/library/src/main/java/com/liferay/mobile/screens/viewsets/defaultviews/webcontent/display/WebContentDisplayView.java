@@ -40,18 +40,8 @@ import com.squareup.okhttp.Request;
 /**
  * @author Silvio Santos
  */
-public class WebContentDisplayView extends FrameLayout
-	implements WebContentDisplayViewModel, View.OnTouchListener {
+public class WebContentDisplayView extends FrameLayout implements WebContentDisplayViewModel, View.OnTouchListener {
 
-	private static final String STYLES = "<style>"
-		+ ".MobileCSS {padding: 4%; width: 92%;} "
-		+ ".MobileCSS, .MobileCSS span, .MobileCSS p, .MobileCSS h1, "
-		+ ".MobileCSS h2, .MobileCSS h3{ "
-		+ "font-size: 110%; font-weight: 200;"
-		+ "font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;} "
-		+ ".MobileCSS img { width: 100% !important; } "
-		+ ".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }"
-		+ "</style>";
 	protected WebView webView;
 	protected ProgressBar progressBar;
 	private BaseScreenlet screenlet;
@@ -84,7 +74,7 @@ public class WebContentDisplayView extends FrameLayout
 	}
 
 	@Override
-	public void showFinishOperation(WebContent webContent) {
+	public void showFinishOperation(WebContent webContent, String customCSs) {
 		if (progressBar != null) {
 			progressBar.setVisibility(View.GONE);
 		}
@@ -93,12 +83,11 @@ public class WebContentDisplayView extends FrameLayout
 
 			LiferayLogger.i("article loaded: " + webContent);
 
-			String styledHtml =
-				STYLES + "<div class=\"MobileCSS\">" + webContent.getHtml() + "</div>";
+			String styledHtml = "<style>" + customCSs + "</style>"
+				+ "<div class=\"MobileCSS\">" + webContent.getHtml() + "</div>";
 
 			//TODO check encoding
-			webView.loadDataWithBaseURL(LiferayServerContext.getServer(), styledHtml, "text/html",
-				"utf-8", null);
+			webView.loadDataWithBaseURL(LiferayServerContext.getServer(), styledHtml, "text/html", "utf-8", null);
 		}
 	}
 
@@ -149,17 +138,16 @@ public class WebContentDisplayView extends FrameLayout
 			}
 			webView.setWebViewClient(getWebViewClientWithCustomHeader());
 			webView.setOnTouchListener(this);
-			webView.setWebViewClient(new WebViewClient() {
-				@Override
-				public boolean shouldOverrideUrlLoading(WebView view, String url) {
-					return ((WebContentDisplayScreenlet) getScreenlet()).onUrlClicked(url);
-				}
-			});
 		}
 	}
 
 	public WebViewClient getWebViewClientWithCustomHeader() {
 		return new WebViewClient() {
+
+			@Override
+			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+				return ((WebContentDisplayScreenlet) getScreenlet()).onUrlClicked(url);
+			}
 
 			@Override
 			public WebResourceResponse shouldInterceptRequest(WebView view, String url) {

@@ -15,10 +15,10 @@ import UIKit
 
 private let xibName = "CommentEditViewController_default"
 
+@objc(CommentEditViewController_default)
 open class CommentEditViewController_default: UIViewController, UITextViewDelegate {
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet open var bodyTextView: UITextView?
 
@@ -30,12 +30,11 @@ open class CommentEditViewController_default: UIViewController, UITextViewDelega
 
 	open var confirmBodyClosure: ((String?) -> Void)?
 
-	fileprivate var placeholderLabel : UILabel!
+	fileprivate var placeholderLabel: UILabel!
 
 	fileprivate var initialBody: String?
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -52,8 +51,7 @@ open class CommentEditViewController_default: UIViewController, UITextViewDelega
 		super.init(coder: aDecoder)
 	}
 
-
-	//MARK: UIViewController
+	// MARK: UIViewController
 
 	override open func viewDidLoad() {
 		confirmButton?.replaceAttributedTitle(
@@ -87,9 +85,8 @@ open class CommentEditViewController_default: UIViewController, UITextViewDelega
 			bodyTextView?.becomeFirstResponder()
 		}
 	}
-	
 
-	//MARK: Keyboard action
+	// MARK: Keyboard action
 
 	func adjustForKeyboard(_ notification: Notification) {
 		if let keyboardScreenEndFrame =
@@ -101,7 +98,8 @@ open class CommentEditViewController_default: UIViewController, UITextViewDelega
 
 			if notification.name == NSNotification.Name.UIKeyboardWillHide {
 				scroll.contentInset = UIEdgeInsets.zero
-			} else {
+			}
+			else {
 				scroll.contentInset =
 					UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height, right: 0)
 			}
@@ -110,15 +108,13 @@ open class CommentEditViewController_default: UIViewController, UITextViewDelega
 		}
 	}
 
-
-	//MARK: UITextViewDelegate
+	// MARK: UITextViewDelegate
 
 	open func textViewDidChange(_ textView: UITextView) {
 		placeholderLabel.isHidden = !textView.text.isEmpty
 	}
 
-
-	//MARK: Actions
+	// MARK: Actions
 
 	@IBAction open func cancelButtonAction() {
 		bodyTextView?.resignFirstResponder()

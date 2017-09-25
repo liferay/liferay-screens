@@ -217,11 +217,8 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 			addFieldView(record.getField(i), i);
 		}
 
-		if (getDDLFormScreenlet().isShowSubmitButton()) {
-			submitButton.setVisibility(VISIBLE);
-		} else {
-			submitButton.setVisibility(INVISIBLE);
-		}
+		int visibility = getDDLFormScreenlet().isShowSubmitButton() ? VISIBLE : INVISIBLE;
+		submitButton.setVisibility(visibility);
 
 		DefaultAnimation.showViewWithReveal(fieldsContainerView);
 	}
@@ -262,13 +259,9 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 	}
 
 	protected void addFieldView(Field field, int position) {
-		int layoutId;
 
-		if (customLayoutIds.containsKey(field.getName())) {
-			layoutId = getCustomFieldLayoutId(field.getName());
-		} else {
-			layoutId = getFieldLayoutId(field.getEditorType());
-		}
+		boolean containsKey = customLayoutIds.containsKey(field.getName());
+		int layoutId = containsKey ? getCustomFieldLayoutId(field.getName()) : getFieldLayoutId(field.getEditorType());
 
 		View view = LayoutInflater.from(getContext()).inflate(layoutId, this, false);
 		DDLFieldViewModel viewModel = (DDLFieldViewModel) view;

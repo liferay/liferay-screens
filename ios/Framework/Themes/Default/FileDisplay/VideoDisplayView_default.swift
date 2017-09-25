@@ -15,18 +15,16 @@ import UIKit
 import AVFoundation
 import AVKit
 
-
+@objc(VideoDisplayView_default)
 open class VideoDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet weak var view: UIView?
 
 	open var playerController: AVPlayerViewController?
 
-
-	//MARK: FileDisplayViewModel
+	// MARK: FileDisplayViewModel
 
 	open var url: URL? {
 		didSet {

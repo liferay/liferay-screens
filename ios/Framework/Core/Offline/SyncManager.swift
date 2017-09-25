@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 @objc public enum SyncConflictResolution: Int {
 
 	case useRemote
@@ -22,7 +21,6 @@ import Foundation
 	case ignore
 
 }
-
 
 @objc public protocol SyncManagerDelegate {
 
@@ -50,13 +48,11 @@ import Foundation
 		conflictedKey: String,
 		remoteValue: AnyObject,
 		localValue: AnyObject,
-		resolve: (SyncConflictResolution) -> ())
+		resolve: (SyncConflictResolution) -> Void)
 
 }
 
-
-public typealias OfflineSynchronizer = (String, [String:AnyObject]) -> (@escaping Signal) -> ()
-
+public typealias OfflineSynchronizer = (String, [String:AnyObject]) -> (@escaping Signal) -> Void
 
 @objc open class SyncManager: NSObject {
 
@@ -66,7 +62,6 @@ public typealias OfflineSynchronizer = (String, [String:AnyObject]) -> (@escapin
 
 	fileprivate let syncQueue: OperationQueue
 	fileprivate var synchronizers: [String:OfflineSynchronizer] = [:]
-
 
 	public init(cacheManager: CacheManager) {
 		self.cacheManager = cacheManager
@@ -100,10 +95,10 @@ public typealias OfflineSynchronizer = (String, [String:AnyObject]) -> (@escapin
 	}
 
 	open func startSync() {
-		cacheManager.countPendingToSync { count in
-			self.delegate?.syncManager?(self, itemsCount: count)
+		cacheManager.countPendingToSync { totalCount in
+			self.delegate?.syncManager?(self, itemsCount: totalCount)
 
-			if count > 0 {
+			if totalCount > 0 {
 				self.cacheManager.pendingToSync({ (screenlet, key, attributes) -> Bool in
 					self.delegate?.syncManager?(self,
 						onItemSyncScreenlet: screenlet,

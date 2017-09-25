@@ -13,13 +13,11 @@
  */
 import UIKit
 
-
 open class SaveUserInteractor: ServerConnectorInteractor {
 
 	open var resultUserAttributes: [String:AnyObject]?
 
-
-	//MARK: ServerConnectorInteractor
+	// MARK: ServerConnectorInteractor
 
 	override open func createConnector() -> UpdateCurrentUserLiferayConnector {
 		let screenlet = self.screenlet as! SignUpScreenlet

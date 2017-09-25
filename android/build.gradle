@@ -1,10 +1,11 @@
 buildscript {
 	repositories {
 		jcenter()
+		maven { url 'https://maven.google.com' }
 	}
 
 	dependencies {
-		classpath 'com.android.tools.build:gradle:2.3.0'
+		classpath 'com.android.tools.build:gradle:3.0.0-beta3'
 		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
 		classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
 	}
@@ -16,8 +17,8 @@ ext {
 	targetSdkVersion = compileSdkVersion
 	buildToolsVersion = '25.0.1'
 
-	versionCode = 211
-	versionName = '2.1.1'
+	versionCode = 228
+	versionName = '2.2.0.beta-8'
 
 	publishedGroupId = 'com.liferay.mobile'
 	libraryName = 'Liferay Screens for Android'
@@ -39,7 +40,7 @@ ext {
 	allLicenses = ["LGPL-2.1"]
 }
 
-def supportLibsVersion = '25.1.0'
+def supportLibsVersion = '25.4.0'
 
 ext.libraries = [appCompat    : 'com.android.support:appcompat-v7:' + supportLibsVersion,
                  recyclerView : 'com.android.support:recyclerview-v7:' + supportLibsVersion,
@@ -55,7 +56,7 @@ ext.libraries = [appCompat    : 'com.android.support:appcompat-v7:' + supportLib
                  rxjava       : 'io.reactivex:rxjava:1.2.4',
                  rxpermissions: 'com.tbruyelle.rxpermissions:rxpermissions:0.9.1',
                  rxbinding    : 'com.jakewharton.rxbinding:rxbinding:1.0.0',
-                 robolectric  : 'org.robolectric:robolectric:3.1.4',
+                 robolectric  : 'org.robolectric:robolectric:3.4.2',
                  mockito      : 'org.mockito:mockito-core:2.4.3',
                  snappydb     : 'com.snappydb:snappydb-lib:0.5.2',
                  kryo         : 'com.esotericsoftware:kryo:4.0.0']
@@ -63,5 +64,6 @@ ext.libraries = [appCompat    : 'com.android.support:appcompat-v7:' + supportLib
 subprojects {
 	repositories {
 		jcenter()
+		maven { url 'https://maven.google.com' }
 	}
 }

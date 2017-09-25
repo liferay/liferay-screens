@@ -13,11 +13,10 @@
  */
 import UIKit
 
-
+@objc(LoginView_default)
 open class LoginView_default: BaseScreenletView, LoginViewModel {
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet open weak var userNameField: UITextField?
 
@@ -29,14 +28,13 @@ open class LoginView_default: BaseScreenletView, LoginViewModel {
 
 	override open var progressMessages: [String:ProgressMessages] {
 		return [
-			BaseScreenlet.DefaultAction : [
-				.working : LocalizedString("default", key: "login-loading-message", obj: self),
-				.failure : LocalizedString("default", key: "login-loading-error", obj: self)]
+			BaseScreenlet.DefaultAction: [
+				.working: LocalizedString("default", key: "login-loading-message", obj: self),
+				.failure: LocalizedString("default", key: "login-loading-error", obj: self)]
 		]
 	}
 
-
-	//MARK: AuthBasedViewModel
+	// MARK: AuthBasedViewModel
 
 	open var basicAuthMethod: String? = BasicAuthMethod.email.rawValue {
 		didSet {
@@ -53,8 +51,7 @@ open class LoginView_default: BaseScreenletView, LoginViewModel {
 		}
 	}
 
-
-	//MARK: LoginViewModel
+	// MARK: LoginViewModel
 
 	open var userName: String? {
 		get {
@@ -74,8 +71,7 @@ open class LoginView_default: BaseScreenletView, LoginViewModel {
 		}
 	}
 
-
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
 	override open func onCreated() {
 		super.onCreated()
@@ -113,8 +109,7 @@ open class LoginView_default: BaseScreenletView, LoginViewModel {
 		return DefaultProgressPresenter()
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func configureAuthType() {
 		let auth = AuthTypeFromString(authType ?? "") ?? .basic

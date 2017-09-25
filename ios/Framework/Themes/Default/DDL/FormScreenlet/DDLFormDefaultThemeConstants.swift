@@ -13,23 +13,20 @@
  */
 import Foundation
 
+// MARK: Text field
 
-//MARK: Text field
+let DDLFieldTextFieldHeightWithLabel: CGFloat =  81
+let DDLFieldTextFieldHeightWithoutLabel: CGFloat = 56
 
-let DDLFieldTextFieldHeightWithLabel:CGFloat =  81
-let DDLFieldTextFieldHeightWithoutLabel:CGFloat = 56
+// MARK: Text area
 
+let DDLFieldTextareaExpandedCellHeight: CGFloat = 104
+let DDLFieldTextareaExpandedTextViewHeight: CGFloat = 84
+let DDLFieldTextareaExpandedBackgroundHeight: CGFloat = 91
 
-//MARK: Text area
+// MARK: Radio group
 
-let DDLFieldTextareaExpandedCellHeight:CGFloat = 104
-let DDLFieldTextareaExpandedTextViewHeight:CGFloat = 84
-let DDLFieldTextareaExpandedBackgroundHeight:CGFloat = 91
-
-
-//MARK: Radio group
-
-let DDLFieldRadioGroupMarginTop:CGFloat = 15
-let DDLFieldRadioGroupMarginBottom:CGFloat = 10
-let DDLFieldRadioButtonMargin:CGFloat = 10
-let DDLFieldRadioButtonHeight:CGFloat = 16
+let DDLFieldRadioGroupMarginTop: CGFloat = 15
+let DDLFieldRadioGroupMarginBottom: CGFloat = 10
+let DDLFieldRadioButtonMargin: CGFloat = 10
+let DDLFieldRadioButtonHeight: CGFloat = 16

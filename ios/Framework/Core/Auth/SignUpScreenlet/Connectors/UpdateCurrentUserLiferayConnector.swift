@@ -14,15 +14,13 @@
 import UIKit
 import LRMobileSDK
 
-
 open class UpdateCurrentUserLiferayConnector: ServerConnector {
 
 	open var resultUserAttributes: [String:AnyObject]?
 
 	fileprivate let viewModel: SignUpViewModel
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(viewModel: SignUpViewModel) {
 		self.viewModel = viewModel
@@ -30,8 +28,7 @@ open class UpdateCurrentUserLiferayConnector: ServerConnector {
 		super.init()
 	}
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -49,8 +46,7 @@ open class UpdateCurrentUserLiferayConnector: ServerConnector {
 		return error
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func attributeAsString(_ key: String) -> String {
 		return SessionContext.currentContext?.user.stringAttribute(key) ?? ""
@@ -62,11 +58,9 @@ open class UpdateCurrentUserLiferayConnector: ServerConnector {
 
 }
 
-
 open class Liferay62UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnector {
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func doRun(session: LRSession) {
 		let service = LRUserService_v62(session: session)
@@ -132,15 +126,13 @@ open class Liferay62UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnecto
 			resultUserAttributes = nil
 		}
 	}
-	
-}
 
+}
 
 open class Liferay70UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnector {
 
+	// MARK: ServerConnector
 
-	//MARK: ServerConnector
-	
 	override open func doRun(session: LRSession) {
 		let service = LRUserService_v7(session: session)
 
@@ -200,5 +192,5 @@ open class Liferay70UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnecto
 			resultUserAttributes = nil
 		}
 	}
-	
+
 }

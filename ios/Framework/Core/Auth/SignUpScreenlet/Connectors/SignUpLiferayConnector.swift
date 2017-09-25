@@ -14,7 +14,6 @@
 import UIKit
 import LRMobileSDK
 
-
 open class SignUpLiferayConnector: ServerConnector {
 
 	open var companyId: Int64 = 0
@@ -25,8 +24,7 @@ open class SignUpLiferayConnector: ServerConnector {
 	open let anonymousUsername: String
 	open let anonymousPassword: String
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(viewModel: SignUpViewModel, anonymousUsername: String, anonymousPassword: String) {
 		self.viewModel = viewModel
@@ -36,8 +34,7 @@ open class SignUpLiferayConnector: ServerConnector {
 		super.init()
 	}
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -59,8 +56,7 @@ open class SignUpLiferayConnector: ServerConnector {
 
 open class Liferay62SignUpConnector: SignUpLiferayConnector {
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func doRun(session: LRSession) {
 		let result: [String:AnyObject]?
@@ -113,7 +109,7 @@ open class Liferay62SignUpConnector: SignUpLiferayConnector {
 			}
 			else {
 				lastError = nil
-				resultUserAttributes = result 
+				resultUserAttributes = result
 			}
 		}
 		catch let error as NSError {
@@ -124,12 +120,10 @@ open class Liferay62SignUpConnector: SignUpLiferayConnector {
 
 }
 
-
 open class Liferay70SignUpConnector: SignUpLiferayConnector {
 
+	// MARK: ServerConnector
 
-	//MARK: ServerConnector
-	
 	override open func doRun(session: LRSession) {
 		let result: [AnyHashable: Any]?
 		let service = LRUserService_v7(session: session)

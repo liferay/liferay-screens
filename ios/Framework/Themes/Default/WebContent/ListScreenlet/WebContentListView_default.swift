@@ -13,16 +13,16 @@
  */
 import UIKit
 
-
+@objc(WebContentListView_default)
 open class WebContentListView_default: WebContentListTableView {
 
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
 	override open func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
 	}
 
-	override open func doFillLoadedCell(row: Int, cell: UITableViewCell, object:AnyObject) {
+	override open func doFillLoadedCell(row: Int, cell: UITableViewCell, object: AnyObject) {
 		if let entry = object as? WebContent {
 			cell.textLabel?.text = entry.title
 			cell.accessoryType = .disclosureIndicator

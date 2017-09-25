@@ -6,6 +6,7 @@
 	<string name="user_portrait">User Portrait</string>
 	<string name="webview">WebContent Display</string>
 	<string name="webview_structured">WebContent with DDMStructure</string>
+	<string name="webview_customcss">WebContent with custom CSS</string>
 	<string name="webview_list">WebContent List</string>
 	<string name="asset_list">Asset List</string>
 	<string name="get_user">Get User</string>
@@ -44,6 +45,7 @@
 	<string name="list_comments">Comment List</string>
 	<string name="custom_interactor">Login with custom interactor</string>
 	<string name="list_bookmarks">List Bookmarks</string>
+	<string name="portlet_display">Portlet Display</string>
 	<string name="relogin">Relogin</string>
 	<string name="change_surname">Change Surname</string>
 	<string name="surname">Surname</string>

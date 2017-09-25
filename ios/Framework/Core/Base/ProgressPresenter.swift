@@ -13,19 +13,20 @@
  */
 import Foundation
 
-@objc public protocol ProgressPresenter {
+
+@objc(ProgressPresenter)
+public protocol ProgressPresenter {
 
 	func showHUDInView(_ view: UIView,
 		message: String?,
 		forInteractor interactor: Interactor)
-	
+
 	func hideHUDFromView(_ view: UIView?,
 		message: String?,
 		forInteractor interactor: Interactor,
 		withError error: NSError?)
 
 }
-
 
 @objc public enum ProgressMessageType: Int {
 	case working

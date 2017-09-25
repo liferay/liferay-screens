@@ -13,16 +13,14 @@
  */
 import UIKit
 
+@objc(ImageUploadDetailView_default)
+open class ImageUploadDetailView_default: ImageUploadDetailViewBase, UITextViewDelegate {
 
-open class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextViewDelegate {
+	// MARK: Outlets
 
-
-	//MARK: Outlets
-
-	@IBOutlet weak var scrollView: UIScrollView!
+	@IBOutlet weak var scroll: UIScrollView!
 
 	@IBOutlet weak var hintLabel: UILabel!
-
 
 	//MARK ImageUploadDetailVeiewBase
 
@@ -38,7 +36,7 @@ open class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextView
 		}
 	}
 
-	//MARK: UIView
+	// MARK: UIView
 
 	override open func awakeFromNib() {
 		initialize()
@@ -50,15 +48,15 @@ open class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextView
 		descripText?.layer.cornerRadius = 4.0
 		descripText?.delegate = self
 
-		hintLabel?.text = LocalizedString("default",key: "imagegallery-description", obj: self)
+		hintLabel?.text = LocalizedString("default", key: "imagegallery-description", obj: self)
 
-		titleText?.placeholder = LocalizedString("default",key: "imagegallery-title", obj: self)
+		titleText?.placeholder = LocalizedString("default", key: "imagegallery-title", obj: self)
 
 		let dismissKeyboardGesture = UITapGestureRecognizer(
 			target: self,
 			action: #selector(dismissKeyboard))
 
-		scrollView?.addGestureRecognizer(dismissKeyboardGesture)
+		scroll?.addGestureRecognizer(dismissKeyboardGesture)
 	}
 
 	override open func didMoveToWindow() {
@@ -87,8 +85,7 @@ open class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextView
 				self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func textViewDidBeginEditing(_ textView: UITextView) {
 		hintLabel.alpha = 0
@@ -115,30 +112,29 @@ open class ImageUploadDetailView_default : ImageUploadDetailViewBase, UITextView
 		}
 	}
 
-
-	//MARK: Notifications
+	// MARK: Notifications
 
 	open func keyboardWillShow(_ notification: Notification) {
 
 		let keyboardHeight =
 			(notification.userInfo![UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.height
 
-		var scrollNewFrame = scrollView.frame
+		var scrollNewFrame = scroll.frame
 		scrollNewFrame.size.height = frame.height - keyboardHeight
 
-		scrollView.frame = scrollNewFrame
+		scroll.frame = scrollNewFrame
 
-		let bottomOffset = CGPoint(x: 0, y: scrollView.contentSize.height - scrollView.frame.height)
-		scrollView.setContentOffset(bottomOffset, animated: true)
+		let bottomOffset = CGPoint(x: 0, y: scroll.contentSize.height - scroll.frame.height)
+		scroll.setContentOffset(bottomOffset, animated: true)
 	}
 
 	open func keyboardWillHide(_ notification: Notification) {
 		let keyboardHeight =
 			(notification.userInfo![UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.height
 
-		var scrollNewFrame = scrollView.frame
+		var scrollNewFrame = scroll.frame
 		scrollNewFrame.size.height = frame.height + keyboardHeight
 
-		scrollView.frame = scrollNewFrame
+		scroll.frame = scrollNewFrame
 	}
 }

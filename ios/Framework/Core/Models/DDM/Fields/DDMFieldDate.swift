@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 open class DDMFieldDate: DDMField {
 
 	static let GMTTimeZone = TimeZone(abbreviation: "GMT")
@@ -22,7 +21,7 @@ open class DDMFieldDate: DDMField {
 		let result = DateFormatter()
 		result.dateStyle = .long
 		result.timeStyle = .none
-		result.locale = currentLocale 
+		result.locale = currentLocale
 		return result
 	}
 
@@ -39,7 +38,7 @@ open class DDMFieldDate: DDMField {
 		return formatter
 	}
 
-	//MARK: DDMField
+	// MARK: DDMField
 
 	override fileprivate init(attributes: [String:AnyObject], locale: Locale) {
 		super.init(attributes: attributes, locale: locale)
@@ -96,8 +95,6 @@ open class DDMFieldDate: DDMField {
 
 }
 
-
-
 open class DDMFieldDate_v62: DDMFieldDate {
 
 	override public init(attributes: [String:AnyObject], locale: Locale) {
@@ -121,7 +118,6 @@ open class DDMFieldDate_v62: DDMFieldDate {
 
 }
 
-
 open class DDMFieldDate_v70: DDMFieldDate {
 
 	override public init(attributes: [String:AnyObject], locale: Locale) {
@@ -136,7 +132,6 @@ open class DDMFieldDate_v70: DDMFieldDate {
 		return "yyyy'-'MM'-'dd"
 	}
 
-
 	override internal func convert(fromString value: String?) -> AnyObject? {
 		guard let stringValue = value else {
 			return nil
@@ -149,7 +144,6 @@ open class DDMFieldDate_v70: DDMFieldDate {
 			?? formatterWithFormat("M'/'d'/'yyyy").date(from: stringValue) as AnyObject?
 	}
 
-
 	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
 		guard let date = value as? Date else {
 			return nil
@@ -157,6 +151,5 @@ open class DDMFieldDate_v70: DDMFieldDate {
 
 		return formatterWithFormat(serverDateFormat).string(from: date)
 	}
-
 
 }

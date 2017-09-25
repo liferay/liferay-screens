@@ -13,46 +13,64 @@
  */
 import UIKit
 
-
-@objc public protocol SignUpScreenletDelegate : BaseScreenletDelegate {
+/// The SignUpScreenletDelegate protocol defines some methods that you use to manage the
+/// SignUpScreenlet events. All of them are optional.
+@objc(SignUpScreenletDelegate)
+public protocol SignUpScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when sign up successfully completes.
 	/// The user attributes are passed as a dictionary of keys (String or NSStrings)
 	/// and values (AnyObject or NSObject).
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - attributes: user attributes.
+	///   - screenlet: Sign up screenlet instance.
+	///   - attributes: User attributes.
 	@objc optional func screenlet(_ screenlet: SignUpScreenlet,
 			onSignUpResponseUserAttributes attributes: [String:AnyObject])
 
-	/// Called when an error occurs in the process. The NSError object describes the error.
+	/// Called when an error occurs in the process.
+	/// The NSError object describes the error.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - error: error in sign up.
+	///   - screenlet: Sign up screenlet instance.
+	///   - error: Error in sign up.
 	@objc optional func screenlet(_ screenlet: SignUpScreenlet,
 			onSignUpError error: NSError)
 
 }
 
-
+/// The Sign Up Screenlet creates a new user in your Liferay instance: a new user of your app 
+/// can become a new user in your portal. You can also use this Screenlet to save the credentials 
+/// of the new user in their keychain. This enables auto login for future sessions. The Screenlet 
+/// also supports navigation of form fields from the keyboard of the user’s device.
+@objc(SignUpScreenlet)
 open class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 
-	//MARK: Inspectables
+	// MARK: Inspectables
 
+	/// The user name, email address, or user ID (depending on the portal’s authentication method) 
+	/// to use for authenticating the request.
 	@IBInspectable open var anonymousApiUserName: String? = "test@liferay.com"
 
+	/// The password for use in authenticating the request.
 	@IBInspectable open var anonymousApiPassword: String? = "test"
 
+	/// Whether the user is logged in automatically after a successful sign up.
 	@IBInspectable open var autoLogin: Bool = true
 
+	/// Sets whether or not the user’s credentials and attributes are stored in the keychain after 
+	/// a successful log in. This attribute is ignored if autologin is disabled.
 	@IBInspectable open var saveCredentials: Bool = true
 
+	/// When set, authentication is done for a user in the specified company.
+	/// If the value is 0, the company specified in LiferayServerContext is used.
 	@IBInspectable open var companyId: Int64 = 0
+
+	// MARK: Outlets
 
 	@IBOutlet open weak var autoLoginDelegate: LoginScreenletDelegate?
 
+	// MARK: Public properties
 
 	open var signUpDelegate: SignUpScreenletDelegate? {
 		return delegate as? SignUpScreenletDelegate
@@ -62,7 +80,7 @@ open class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 		return screenletView as! SignUpViewModel
 	}
 
-	//MARK: BaseScreenlet
+	// MARK: BaseScreenlet
 
 	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
 
@@ -76,12 +94,11 @@ open class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 		}
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	/// Loads the current user throught editCurrentUser property.
 	///
-	/// - Returns: if there is a session created, returns true, if not, false.
+	/// - Returns: True if there is a session created, false otherwise.
 	open func loadCurrentUser() -> Bool {
 		if SessionContext.isLoggedIn {
 			self.viewModel.editCurrentUser = true
@@ -89,9 +106,8 @@ open class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 		}
 		return false
 	}
-	
 
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func createSignUpConnectorInteractor() -> SignUpInteractor {
 		let interactor = SignUpInteractor(screenlet: self)
@@ -143,9 +159,9 @@ open class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 	}
 
 	fileprivate func doAutoLogin(_ userAttributes: [String:AnyObject]) {
-		let userNameKeys : [BasicAuthMethod:String] = [
-			.email : "emailAddress",
-			.screenName : "screenName",
+		let userNameKeys: [BasicAuthMethod:String] = [
+			.email: "emailAddress",
+			.screenName: "screenName",
 			.userId: "userId"
 		]
 

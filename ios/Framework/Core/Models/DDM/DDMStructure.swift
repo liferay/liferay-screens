@@ -13,9 +13,7 @@
  */
 import Foundation
 
-
 //TODO: Unit test
-
 
 @objc open class DDMStructure: NSObject, NSCoding {
 
@@ -31,8 +29,7 @@ import Foundation
 		return "DDMStructure[fields=\(fields)]"
 	}
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(fields: [DDMField], locale: Locale, attributes: [String:AnyObject]) {
 		self.fields = fields
@@ -41,7 +38,7 @@ import Foundation
 
 		super.init()
 	}
-	
+
 	public convenience init?(xsd: String, locale: Locale, attributes: [String:AnyObject] = [:]) {
 		guard let parsedFields = DDMXSDParser().parse(xsd, locale: locale) else {
 			return nil
@@ -90,8 +87,7 @@ import Foundation
 		super.init()
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func encode(with aCoder: NSCoder) {
 		aCoder.encode(fields, forKey:"fields")

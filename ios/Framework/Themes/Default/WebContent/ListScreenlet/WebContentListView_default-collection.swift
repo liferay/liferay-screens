@@ -12,11 +12,11 @@
  * details.
  */
 import UIKit
-
+import WebKit
 
 open class WebContentListView_default_collection: BaseListCollectionView {
 
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
 	override open func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
@@ -32,7 +32,6 @@ open class WebContentListView_default_collection: BaseListCollectionView {
 		layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
 		layout.scrollDirection = .horizontal
 
-
 		return layout
 	}
 
@@ -44,15 +43,15 @@ open class WebContentListView_default_collection: BaseListCollectionView {
 	override open func doFillLoadedCell(
 			indexPath: IndexPath,
 			cell: UICollectionViewCell,
-			object:AnyObject) {
-			
+			object: AnyObject) {
+
 		guard let cell = cell as? WebViewCell, let object = object as? WebContent
 			else {
 				return
 		}
 
 		cell.html = object.html ?? "No html available"
-		cell.layer.borderWidth = 1;
+		cell.layer.borderWidth = 1
 		cell.layer.borderColor = UIColor.black.cgColor
 	}
 
@@ -64,7 +63,7 @@ open class WebContentListView_default_collection: BaseListCollectionView {
 	}
 
 	override open func doGetCellId(indexPath: IndexPath, object: AnyObject?) -> String {
-		if let _ = object {
+		if object != nil {
 			return "cell"
 		}
 
@@ -72,10 +71,9 @@ open class WebContentListView_default_collection: BaseListCollectionView {
 	}
 }
 
+open class WebViewCell: UICollectionViewCell {
 
-open class WebViewCell : UICollectionViewCell {
-
-	fileprivate var webView: UIWebView
+	fileprivate var webView: WKWebView?
 
 	fileprivate let styles =
 		".MobileCSS {padding: 4%; width: 92%;} " +
@@ -91,23 +89,30 @@ open class WebViewCell : UICollectionViewCell {
 		set {
 			let styledHtml = "<style>\(styles)</style><div class=\"MobileCSS\">\(newValue)</div>"
 
-			webView.loadHTMLString(styledHtml, baseURL: URL(string:LiferayServerContext.server))
+			webView?.loadHTMLString(styledHtml, baseURL: URL(string:LiferayServerContext.server))
 		}
 	}
 
 	override init(frame: CGRect) {
-		webView = UIWebView()
+
 		super.init(frame: frame)
 
-		webView.frame = bounds
-		addSubview(webView)
+		initialize()
 	}
 
 	required public init?(coder aDecoder: NSCoder) {
-		webView = UIWebView()
 		super.init(coder: aDecoder)
 
-		webView.frame = bounds
-		addSubview(webView)
+		initialize()
+	}
+
+	func initialize() {
+		let config = WKWebViewConfiguration.noCacheConfiguration
+		webView = WKWebView(frame: CGRect.zero, configuration: config)
+		webView?.frame = bounds
+		webView?.injectCookies()
+		webView?.injectViewportMetaTag()
+
+		addSubview(webView!)
 	}
 }

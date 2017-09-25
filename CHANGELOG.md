@@ -3,6 +3,83 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# Develop
+
+## Android
+
+### Bugs
+* Fix error in UserPortrait initials view: user lastname is required in Liferay 7.0 but is not in Liferay 6.2
+* Fix error in UserPortrait initials view: image doesn't show correctly because background was always on top
+* Fix error in cookie login, now its possible to use this login type with UserId and Screenname
+* Fix error in VideoDisplayScreenlet: video is not showing the first time its downloaded
+* Fix error in material LoginView with cookie login
+* All screenlets should have getter and setter for their listener property
+* Disable selection in WebScreenlet
+* Fix session in WebScreenlet
+* Fix url in other webtype in WebScreenlet
+
+### New Features
+* Create loadLoggedUserPortrait method in UserPortraitScreenlet
+* Expose Video events in the VideoDisplayScreenlet 
+* Allow developers override injected CSS in WebContentDisplayScreenlet
+* Add WebScreenlet
+* Support pages in forms with a ViewPager
+* Add support for multiple select fields in forms
+* Allow data providers in forms
+* Show alerts in the WebScreenlet
+* Allow developers to disable scroll in the WebScreenlet
+* Allow developers to clear cache on WebScreenlet
+
+### Refactor
+* Remove unused attribute in RatingsScreenlet 
+
+### Demo
+* Added Westeros Employees Hybrid
+
+## iOS
+* Increased min version to iOS 9
+* Updated to Swift 3.2
+
+### Bugs
+* Fix error in UserPortrait initials view: user lastname is required in Liferay 7.0 but is not in Liferay 6.2
+* Fix bug in Session context, user attributes were being removed when the cookie login was refreshed.
+* Fix retain cycle in BaseListScreenlet
+* Update the cookie expired verification to work with new versions of the mobile sdk
+* Fix error messages "Unknown class in Interface Builder file".
+* Disable selection in WebScreenlet
+* Fix session in WebScreenlet
+
+### New Features
+* AssetDisplayScreenlet uses FileDisplayScreenlet for ppt, xls and doc files
+* Allow developers override injected CSS in WebContentDisplayScreenlet
+* Add WebScreenlet
+* Add name to classes annotated with @objc for Xamarin solutions
+* Remove module name in default views for Xamarin solutions
+* Show alerts in the WebScreenlet
+* Allow developers to disable scroll on WebScreenlet
+* Wait for all scripts to load before showing the WebScreenlet
+* Allow developers to clear cache on WebScreenlet
+
+### Refactor
+* Migrate from UIWebView to WKWebView
+* UserPortraitScreenlet: extract methods, add comments and SF
+
+### Documentation
+* Screenlets documentation improvements
+
+### Demo
+* Added Westeros Employees Hybrid
+* Added Andorra Telecom
+
+## Xamarin
+
+### New Features
+- Auth screenlets bindings: LoginScreenlet, ForgotPasswordScreenlet, SignUpScreenlet
+- DDLFormScreenlet binding
+- ImageGalleryScreenlet binding
+- UserPortraitScreenlet binding
+- Create demo apps: Showcase-Android and Showcase-iOS
+
 # 2.1.2
 
 ## Android

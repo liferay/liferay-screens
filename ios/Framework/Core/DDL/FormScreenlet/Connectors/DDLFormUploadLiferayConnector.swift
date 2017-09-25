@@ -14,7 +14,6 @@
 import UIKit
 import LRMobileSDK
 
-
 open class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFileProgressDelegate {
 
 	public typealias OnProgress = (DDMFieldDocument, UInt64, UInt64) -> Void
@@ -33,8 +32,7 @@ open class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFilePro
 
 	fileprivate var bytesToSend: Int64 = 0
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(
 			document: DDMFieldDocument,
@@ -51,8 +49,7 @@ open class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFilePro
 		super.init()
 	}
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -100,8 +97,7 @@ open class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFilePro
 		fatalError("Override doSendFile method")
 	}
 
-
-	//MARK: LRFileProgressDelegate
+	// MARK: LRFileProgressDelegate
 
 	open func onProgress(_ data: Data!, totalBytes: Int64) {
 		let totalBytesSent = UInt64(totalBytes)
@@ -111,8 +107,7 @@ open class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFilePro
 		onUploadedBytes?(document, totalBytesSent, totalBytesToSend)
 	}
 
-
-	//MARK: LRCallback
+	// MARK: LRCallback
 
 	open func onFailure(_ error: Error!) {
 		lastError = error as NSError
@@ -130,11 +125,9 @@ open class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFilePro
 
 }
 
-
 open class Liferay62DDLFormUploadConnector: DDLFormUploadLiferayConnector {
 
-
-	//MARK: DDLFormUploadLiferayConnector
+	// MARK: DDLFormUploadLiferayConnector
 
 	override open func doSendFile(_ session: LRSession, name: String, data: LRUploadData) throws {
 		let service = LRDLAppService_v62(session: session)
@@ -152,11 +145,9 @@ open class Liferay62DDLFormUploadConnector: DDLFormUploadLiferayConnector {
 
 }
 
-
 open class Liferay70DDLFormUploadConnector: DDLFormUploadLiferayConnector {
 
-
-	//MARK: DDLFormUploadLiferayConnector
+	// MARK: DDLFormUploadLiferayConnector
 
 	override open func doSendFile(_ session: LRSession, name: String, data: LRUploadData) throws {
 		let service = LRDLAppService_v7(session: session)

@@ -32,4 +32,5 @@
 	<string name="comment_added_success">Comentario añadido con éxito:</string>
 	<string name="add_new_comment">Añadir un nuevo comentario</string>
 	<string name="type_comment_send">Escribe tu comentario y pulsa Enviar</string>
+	<string name="portlet_display_success">Portlet cargado con éxito!</string>
 </resources>

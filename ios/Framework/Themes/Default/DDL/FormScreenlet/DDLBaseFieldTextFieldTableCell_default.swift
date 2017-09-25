@@ -13,11 +13,10 @@
  */
 import UIKit
 
-
+@objc(DDLBaseFieldTextboxTableCell_default)
 open class DDLBaseFieldTextboxTableCell_default: DDMFieldTableCell, UITextFieldDelegate {
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet open var textField: UITextField?
 
@@ -27,8 +26,7 @@ open class DDLBaseFieldTextboxTableCell_default: DDMFieldTableCell, UITextFieldD
 		return textField as? DefaultTextField
 	}
 
-
-	//MARK: DDMFieldTableCell
+	// MARK: DDMFieldTableCell
 
 	override open func onChangedField() {
 		if field!.showLabel {
@@ -77,8 +75,7 @@ open class DDLBaseFieldTextboxTableCell_default: DDMFieldTableCell, UITextFieldD
 
 	}
 
-
-	//MARK: UITextFieldDelegate
+	// MARK: UITextFieldDelegate
 
 	open func textField(_ textField: UITextField,
 			shouldChangeCharactersIn range: NSRange,

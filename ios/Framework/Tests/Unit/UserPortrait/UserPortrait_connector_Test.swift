@@ -29,7 +29,7 @@ class UserPortrait_connector_Test: XCTestCase {
 				compatibleWith: nil)!
 
 		let expectation = self.expectation(description: "Should throw fileToolarge error")
-		
+
 		let connector = Liferay70UploadUserPortraitConnector(userId: 1000, image: imageToUpload)
 
 		connector.onComplete = { connector in

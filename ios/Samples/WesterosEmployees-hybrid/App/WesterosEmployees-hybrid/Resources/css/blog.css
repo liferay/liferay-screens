@@ -1,0 +1,60 @@
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    background: #E44740;
+    color: #FFF;
+    font-size: 18px;
+    margin: 0px;
+}
+
+#wrapper {
+    padding-top: 0em;
+}
+
+.col-md-12 {
+    padding: 0px;
+}
+
+.portlet-content-editable {
+    padding: 0px;
+}
+
+.portlet-decorate .portlet-content {
+    background: #E44740;
+    border: 0px;
+    margin-top: -50px;
+}
+
+a {
+    color: #FFF !important;
+}
+
+p {
+    margin: 0px 20px;
+}
+
+
+.author-content {
+    margin-left: 20px;
+}
+
+.user-icon {
+    border-radius: 0px;
+    height: 50px;
+    width: 50px;
+}
+
+.img-content-blog {
+    display: block;
+    height: 100%;
+    margin: auto;
+    max-width: 100%;
+}
+
+.img-blog {
+    max-width: 100%;
+}

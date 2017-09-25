@@ -13,23 +13,25 @@
  */
 import UIKit
 
+/// The AssetDisplayScreenletDelegate protocol defines some methods that you use to manage the
+/// AssetDisplayScreenlet events. All of them are optional.
+@objc(AssetDisplayScreenletDelegate)
+public protocol AssetDisplayScreenletDelegate: BaseScreenletDelegate {
 
-@objc public protocol AssetDisplayScreenletDelegate : BaseScreenletDelegate {
-	
 	///  Called when the screenlet receives the asset.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - asset: asset object.
+	///   - screenlet: Asset display screenlet instance.
+	///   - asset: Asset object.
 	@objc optional func screenlet(_ screenlet: AssetDisplayScreenlet,
 	                        onAssetResponse asset: Asset)
-	
+
 	/// Called when an error occurs in the process.
 	/// The NSError object describes the error.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - error: error while retrieving the asset.
+	///   - screenlet: Asset display screenlet instance.
+	///   - error: Error while retrieving the asset.
 	@objc optional func screenlet(_ screenlet: AssetDisplayScreenlet,
 	                        onAssetError error: NSError)
 
@@ -38,9 +40,9 @@ import UIKit
 	/// Use this method to configure or customize it.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - childScreenlet: AssetDisplayScreenlet inner screenlet.
-	///   - asset: asset object.
+	///   - screenlet: Asset display screenlet instance.
+	///   - childScreenlet: Asset display screenlet inner screenlet.
+	///   - asset: Asset object.
 	@objc optional func screenlet(_ screenlet: AssetDisplayScreenlet,
 	                        onConfigureScreenlet childScreenlet: BaseScreenlet?,
 							onAsset asset: Asset)
@@ -48,29 +50,52 @@ import UIKit
 	/// Called to render a custom asset.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - asset: custom asset.
-	/// - Returns: custom view.
+	///   - screenlet: Asset display screenlet instance.
+	///   - asset: Custom asset.
+	/// - Returns: Custom view.
 	@objc optional func screenlet(_ screenlet: AssetDisplayScreenlet, onAsset asset: Asset) -> UIView?
 }
 
-
+/// Asset Display Screenlet can display an asset from a Liferay instance. The Screenlet can 
+/// currently display Documents and Media files (DLFileEntry images, videos, audio files, and PDFs),
+/// blogs entries (BlogsEntry) and web content articles (WebContent). 
+/// Asset Display Screenlet can also display your custom asset types.
+@objc(AssetDisplayScreenlet)
 open class AssetDisplayScreenlet: BaseScreenlet {
 
+	// MARK: Inspectables
 
-	//MARK: Inspectables
-	
+	/// The primary key of the asset.
 	@IBInspectable open var assetEntryId: Int64 = 0
 
+	/// The asset’s fully qualified class name. For example, a blog entry’s className is 
+	/// com.liferay.blogs.kernel.model.BlogsEntry. The className and classPK attributes are 
+	/// required to instantiate the Screenlet.
 	@IBInspectable open var className: String = ""
 
+	///	The asset’s unique identifier. The className and classPK attributes are required to 
+	/// instantiate the Screenlet.
 	@IBInspectable open var classPK: Int64 = 0
 
+	/// Saved configuration name for the Asset publisher portlet.
 	@IBInspectable public var portletItemName: String?
 
+	/// Whether the asset automatically loads when the Screenlet appears in the app’s UI. 
+	/// The default value is true.
 	@IBInspectable public var autoLoad: Bool = true
 
+	/// The offline mode setting. The default value is remote-first.
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
+
+	// MARK: Public properties
+
+	open var assetDisplayDelegate: AssetDisplayScreenletDelegate? {
+		return delegate as? AssetDisplayScreenletDelegate
+	}
+
+	open var assetDisplayViewModel: AssetDisplayViewModel? {
+		return screenletView as? AssetDisplayViewModel
+	}
 
 	open var assetEntry: Asset? {
 		didSet {
@@ -92,22 +117,14 @@ open class AssetDisplayScreenlet: BaseScreenlet {
 		}
 	}
 
-	open var assetDisplayDelegate: AssetDisplayScreenletDelegate? {
-		return delegate as? AssetDisplayScreenletDelegate
-	}
+	// MARK: BaseScreenlet
 
-	open var assetDisplayViewModel: AssetDisplayViewModel? {
-		return screenletView as? AssetDisplayViewModel
-	}
-	
-	//MARK: BaseScreenlet
-	
 	override open func onShow() {
 		if autoLoad {
 			load()
 		}
 	}
-	
+
 	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
 		let interactor: LoadAssetInteractor
 
@@ -127,29 +144,28 @@ open class AssetDisplayScreenlet: BaseScreenlet {
 		interactor.onSuccess = {
 			self.assetEntry = interactor.asset
 		}
-		
+
 		interactor.onFailure = {
 			self.assetDisplayDelegate?.screenlet?(self, onAssetError: $0)
 		}
-		
+
 		return interactor
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	/// Call this method to load the asset.
 	///
-	/// - Returns: true if default use case has been perform, false otherwise.
+	/// - Returns: True if the interactor was able to start, false otherwise.
 	@discardableResult
 	open func load() -> Bool {
 		return self.performDefaultAction()
 	}
 
-	/// Creates AssetDisplayScreenlet inner screenlet.
+	/// Creates Asset display screenlet inner screenlet.
 	///
-	/// - Parameter asset: asset object.
-	/// - Returns: inner screenlet (UIView)
+	/// - Parameter asset: Asset object.
+	/// - Returns: Inner screenlet (UIView)
 	open func createInnerScreenlet(_ asset: Asset) -> UIView? {
 		guard let view = screenletView else {
 			return nil
@@ -168,11 +184,11 @@ open class AssetDisplayScreenlet: BaseScreenlet {
 		return innerScreenlet
 	}
 
-	/// Configures AssetDisplayScreenlet inner screenlet.
+	/// Configures Asset display screenlet inner screenlet.
 	///
 	/// - Parameters:
-	///   - innerScreenlet: AssetDisplayScreenlet inner screenlet (UIView).
-	///   - asset: asset object.
+	///   - innerScreenlet: Asset display screenlet inner screenlet (UIView).
+	///   - asset: Asset object.
 	open func configureInnerScreenlet(_ innerScreenlet: BaseScreenlet, asset: Asset) {
 		if let screenlet = innerScreenlet as? FileDisplayScreenlet {
 			screenlet.autoLoad = false
@@ -185,7 +201,7 @@ open class AssetDisplayScreenlet: BaseScreenlet {
 			else {
 				screenlet.fileEntry = FileEntry(attributes: asset.attributes)
 			}
-			
+
 			screenlet.load()
 		}
 		else if let screenlet = innerScreenlet as? BlogsEntryDisplayScreenlet {
@@ -203,7 +219,7 @@ open class AssetDisplayScreenlet: BaseScreenlet {
 		assetDisplayDelegate?.screenlet?(self, onConfigureScreenlet: innerScreenlet, onAsset: asset)
 	}
 
-	/// Removes AssetDisplayScreenlet inner screenlet.
+	/// Removes Asset display screenlet inner screenlet.
 	open func removeInnerScreenlet() {
 		assetDisplayViewModel?.innerScreenlet = nil
 	}

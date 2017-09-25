@@ -83,6 +83,7 @@ public class UploadService extends IntentService {
 		} catch (Exception e) {
 			DDLFormDocumentUploadEvent event = new DDLFormDocumentUploadEvent(e);
 			decorateEvent(event, groupId, userId, null, targetScreenletId, actionName);
+			event.setDocumentField(file);
 			EventBusUtil.post(event);
 		}
 	}

@@ -31,6 +31,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		findViewById(R.id.user_portrait).setOnClickListener(this);
 		findViewById(R.id.web_content_display_screenlet).setOnClickListener(this);
 		findViewById(R.id.web_content_display_screenlet_structured).setOnClickListener(this);
+		findViewById(R.id.web_content_display_screenlet_customcss).setOnClickListener(this);
 		findViewById(R.id.add_bookmark).setOnClickListener(this);
 		findViewById(R.id.journal_article_with_template).setOnClickListener(this);
 		findViewById(R.id.filtered_asset).setOnClickListener(this);
@@ -49,6 +50,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		findViewById(R.id.user_display).setOnClickListener(this);
 		findViewById(R.id.image_display).setOnClickListener(this);
 		findViewById(R.id.gallery).setOnClickListener(this);
+		findViewById(R.id.portlet_display).setOnClickListener(this);
 	}
 
 	@Override
@@ -83,6 +85,9 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				break;
 			case R.id.web_content_display_screenlet_structured:
 				start(WebContentDisplayStructuredActivity.class);
+				break;
+			case R.id.web_content_display_screenlet_customcss:
+				start(WebContentDisplayCustomCssActivity.class);
 				break;
 			case R.id.add_bookmark:
 				start(AddBookmarkActivity.class);
@@ -157,6 +162,11 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				break;
 			case R.id.image_display:
 				start(ImageDisplayActivity.class);
+				break;
+			case R.id.portlet_display:
+				Intent intentPortlet = getIntentWithTheme(WebActivity.class);
+				intentPortlet.putExtra("url", getResources().getString(R.string.liferay_portlet_url));
+				DefaultAnimation.startActivityWithAnimation(this, intentPortlet);
 				break;
 			default:
 				start(LoginActivity.class);

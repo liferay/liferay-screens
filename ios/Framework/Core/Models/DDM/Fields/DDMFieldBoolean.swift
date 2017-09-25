@@ -13,10 +13,9 @@
  */
 import Foundation
 
+open class DDMFieldBoolean: DDMField {
 
-open class DDMFieldBoolean : DDMField {
-
-	override internal func convert(fromString value:String?) -> AnyObject? {
+	override internal func convert(fromString value: String?) -> AnyObject? {
 		return value.map {
 				Bool.from(string: $0) as AnyObject
 			}
@@ -51,6 +50,5 @@ open class DDMFieldBoolean : DDMField {
 
 		return LocalizedString("core", key: boolValue ? "yes" : "no", obj: self)
 	}
-
 
 }

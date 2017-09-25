@@ -13,35 +13,31 @@
  */
 import UIKit
 
-
+@objc(SignUpView_default)
 open class SignUpView_default: BaseScreenletView, SignUpViewModel {
 
+	// MARK: Outlets
 
-	//MARK: Outlets
+	@IBOutlet open weak var emailAddressField: UITextField?
 
-	@IBOutlet open var emailAddressField: UITextField?
+	@IBOutlet open weak var passwordField: UITextField?
 
-	@IBOutlet open var passwordField: UITextField?
+	@IBOutlet open weak var firstNameField: UITextField?
 
-	@IBOutlet open var firstNameField: UITextField?
+	@IBOutlet open weak var lastNameField: UITextField?
 
-	@IBOutlet open var lastNameField: UITextField?
-	
-	@IBOutlet open var signUpButton: UIButton?
+	@IBOutlet open weak var signUpButton: UIButton?
 
-	@IBOutlet open var scrollView: UIScrollView?
+	@IBOutlet open weak var scroll: UIScrollView?
 
-
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
 	override open var progressMessages: [String:ProgressMessages] {
 		return [
-			"signup-action" :
-				[.working : LocalizedString("default", key: "signup-loading-message", obj: self),
-				.failure : LocalizedString("default", key: "signup-loading-error", obj: self)],
-			"save-action" :
-				[.working : LocalizedString("default", key: "signup-saving-message", obj: self),
-				.failure : LocalizedString("default", key: "signup-saving-error", obj: self)],
+			"signup-action": [.working: LocalizedString("default", key: "signup-loading-message", obj: self),
+				.failure: LocalizedString("default", key: "signup-loading-error", obj: self)],
+			"save-action": [.working: LocalizedString("default", key: "signup-saving-message", obj: self),
+				.failure: LocalizedString("default", key: "signup-saving-error", obj: self)]
 		]
 	}
 
@@ -53,8 +49,7 @@ open class SignUpView_default: BaseScreenletView, SignUpViewModel {
 		signUpButton?.isEnabled = true
 	}
 
-
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
 	override open func onCreated() {
 		super.onCreated()
@@ -77,8 +72,7 @@ open class SignUpView_default: BaseScreenletView, SignUpViewModel {
 		return DefaultProgressPresenter()
 	}
 
-
-	//MARK: SignUpViewModel
+	// MARK: SignUpViewModel
 
 	open var emailAddress: String? {
 		get {
@@ -145,7 +139,6 @@ open class SignUpView_default: BaseScreenletView, SignUpViewModel {
 			self.signUpButton?.restorationIdentifier = actionName
 		}
 	}
-
 
 	// The following properties are not supported in this theme but
 	// may be supported in a child theme

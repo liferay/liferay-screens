@@ -14,15 +14,13 @@
 import UIKit
 import LiferayScreens
 
-
 public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 
 	@IBOutlet private var titleLabel: UILabel?
 	@IBOutlet private var subtitleLabel: UILabel?
 	@IBOutlet private var userNamePlaceholder: UILabel?
 
-
-	//MARK: ForgotPasswordView
+	// MARK: ForgotPasswordView
 
 	override public func onCreated() {
 		super.onCreated()
@@ -41,25 +39,23 @@ public class ForgotPasswordView_flat7: ForgotPasswordView_default {
 				LocalizedString("flat7", "forgotpassword-request", self),
 				forState: .Normal)
 
-		userNameField!.placeholder = "";
+		userNameField!.placeholder = ""
 	}
 
 	override public func createProgressPresenter() -> ProgressPresenter {
 		return Flat7ProgressPresenter()
 	}
 
+	// MARK: ForgotPasswordView
 
-	//MARK: ForgotPasswordView
-	
 	override public var userName: String? {
 		didSet {
 			userNamePlaceholder!.changeVisibility(visible: userName != "")
 		}
 	}
 
+	// MARK: UITextFieldDelegate
 
-	//MARK: UITextFieldDelegate
-	
 	internal func textField(textField: UITextField!,
 			shouldChangeCharactersInRange range: NSRange,
 			replacementString string: String!)

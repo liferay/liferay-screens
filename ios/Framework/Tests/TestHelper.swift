@@ -14,9 +14,8 @@
 import Foundation
 import XCTest
 
-
 func XCTAssertOptional(_ expression:  @autoclosure () -> AnyObject?, _ message: String? = nil) {
-	let evaluatedExpression:AnyObject? = expression()
+	let evaluatedExpression: AnyObject? = expression()
 
 	if evaluatedExpression == nil {
 		if let messageValue = message {
@@ -27,7 +26,6 @@ func XCTAssertOptional(_ expression:  @autoclosure () -> AnyObject?, _ message: 
 		}
 	}
 }
-
 
 func testResourcePath(_ name: String, ext: String) -> String {
 	let bundle = Bundle(for:IntegrationTestCase.self)

@@ -16,14 +16,21 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
 import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.util.JSONUtil;
+
+import java.util.Iterator;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * @author Jose Manuel Navarro
@@ -64,10 +71,6 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 		parseServerValues();
 	}
 
-	public Record(Locale locale) {
-		this(new HashMap<String, Object>(), locale);
-	}
-
 	private Record(Parcel in, ClassLoader loader) {
 		super(in, loader);
 		ddmStructure = in.readParcelable(DDMStructure.class.getClassLoader());
@@ -75,10 +78,16 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 		structureId = (Long) in.readValue(Long.class.getClassLoader());
 		recordSetId = (Long) in.readValue(Long.class.getClassLoader());
 		recordId = (Long) in.readValue(Long.class.getClassLoader());
+		Parcelable[] array = in.readParcelableArray(Page.class.getClassLoader());
+		pages = new ArrayList(Arrays.asList(array));
+	}
+
+	public Record(Locale locale) {
+		this(new HashMap<String, Object>(), locale);
 	}
 
 	public void refresh() {
-		for (Field f : getDDMStructure().getFields()) {
+		for (Field f : getFields()) {
 			Object fieldValue = getServerValue(f.getName());
 			if (fieldValue != null) {
 				f.setCurrentValue(f.convertFromString(fieldValue.toString()));
@@ -94,11 +103,13 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 	@Override
 	public void writeToParcel(Parcel destination, int flags) {
 		super.writeToParcel(destination, flags);
+
 		destination.writeParcelable(ddmStructure, flags);
 		destination.writeValue(creatorUserId);
 		destination.writeValue(structureId);
 		destination.writeValue(recordSetId);
 		destination.writeValue(recordId);
+		destination.writeParcelableArray(pages.toArray(new Page[pages.size()]), flags);
 	}
 
 	public long getRecordSetId() {
@@ -243,6 +254,135 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 		Long userId = JSONUtil.castToLong(getServerAttribute("userId"));
 		if (userId != null) {
 			creatorUserId = userId;
+		}
+	}
+
+	public void parsePages(JSONObject pagesObject) throws JSONException {
+
+		pages.clear();
+
+		JSONArray pagesArray = pagesObject.getJSONArray("DDMFormLayoutPages");
+
+		for (int i = 0; i < pagesArray.length(); i++) {
+
+			JSONObject pageJsonObject = pagesArray.getJSONObject(i);
+
+			String title = getField(pageJsonObject, "title");
+			String description = getField(pageJsonObject, "description");
+
+			JSONArray rowsArray = pageJsonObject.getJSONArray("DDMFormLayoutRows");
+
+			List<Field> fields = new ArrayList<>();
+
+			for (int j = 0; j < rowsArray.length(); j++) {
+
+				JSONArray columnsArray = rowsArray.getJSONObject(j).getJSONArray("DDMFormLayoutColumns");
+
+				for (int k = 0; k < columnsArray.length(); k++) {
+
+					JSONArray fieldsArray = columnsArray.getJSONObject(k).getJSONArray("DDMFormFieldNames");
+
+					for (int l = 0; l < fieldsArray.length(); l++) {
+						String fieldName = fieldsArray.getString(l);
+						Field fieldByName = getFieldByName(fieldName);
+						if (fieldByName != null) {
+							fields.add(fieldByName);
+						}
+					}
+				}
+			}
+
+			pages.add(new Page(i, title, description, fields));
+		}
+	}
+
+	public String getField(JSONObject pageJsonObject, String title) throws JSONException {
+		JSONObject jsonObject = pageJsonObject.getJSONObject(title);
+		JSONObject values = jsonObject.getJSONObject("values");
+		Iterator<String> keys = values.keys();
+		if (keys.hasNext()) {
+			return values.getString(keys.next());
+		}
+		return "";
+	}
+
+	private List<Page> pages = new ArrayList<>();
+
+	public List<Page> getPages() {
+		return pages;
+	}
+
+	public int getPage(Field field) {
+		for (int i = 0; i < pages.size(); i++) {
+			if (pages.get(i).getFields().contains(field)) {
+				return i;
+			}
+		}
+		return 0;
+	}
+
+	public static class Page implements Parcelable {
+
+		private final String title;
+		private final String description;
+		private final List<Field> fields;
+		private final int number;
+
+		public Page(int number, String title, String description, List<Field> fields) {
+			this.number = number;
+			this.title = title;
+			this.description = description;
+			this.fields = fields;
+		}
+
+		protected Page(Parcel in, ClassLoader classLoader) {
+			title = in.readString();
+			description = in.readString();
+			Parcelable[] array = in.readParcelableArray(Field.class.getClassLoader());
+			fields = new ArrayList(Arrays.asList(array));
+			number = in.readInt();
+		}
+
+		@Override
+		public void writeToParcel(Parcel dest, int flags) {
+			dest.writeString(title);
+			dest.writeString(description);
+			dest.writeParcelableArray(fields.toArray(new Field[fields.size()]), flags);
+			dest.writeInt(number);
+		}
+
+		@Override
+		public int describeContents() {
+			return 0;
+		}
+
+		public static final Parcelable.ClassLoaderCreator<Page> CREATOR = new ClassLoaderCreator<Page>() {
+			@Override
+			public Page createFromParcel(Parcel in, ClassLoader classLoader) {
+				return new Page(in, classLoader);
+			}
+
+			@Override
+			public Page createFromParcel(Parcel source) {
+				throw new AssertionError("constructor with classloader method should be called!");
+			}
+
+			@Override
+			public Page[] newArray(int size) {
+				return new Page[size];
+			}
+		};
+
+		public List<Field> getFields() {
+			return fields;
+		}
+
+		public int getNumber() {
+			return number;
+		}
+
+		public String getTitle() {
+			return title;
 		}
 	}
 }

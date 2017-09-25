@@ -3,20 +3,20 @@
 <plist version="1.0">
 <dict>
 	<key>server</key>
-	<string>http://screens-challenge.liferay.org.es</string>
+	<string>http://screens.liferay.org.es</string>
 	<key>companyId</key>
-	<integer>20116</integer>
+	<real>20116</real>
 	<key>groupId</key>
-	<integer>43734</integer>
+	<real>33300</real>
 	<key>anonymousUsername</key>
 	<string>anonymous1@liferay.com</string>
 	<key>anonymousPassword</key>
 	<string>anonymous1</string>
 	<key>galleryFolderId</key>
-	<integer>44059</integer>
+	<real>38636</real>
 	<key>documentationPortletItemName</key>
-	<string>DocumentationWesteros</string>
+	<string>Docs</string>
 	<key>termsAndConditionsAssetEntryId</key>
-	<integer>44493</integer>
+	<real>39228</real>
 </dict>
 </plist>

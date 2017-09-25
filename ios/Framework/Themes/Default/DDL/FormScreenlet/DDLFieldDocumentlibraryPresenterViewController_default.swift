@@ -14,15 +14,13 @@
 import UIKit
 import MobileCoreServices
 
-
 private let xibName = "DDLFieldDocumentlibraryPresenterViewController_default"
 
+@objc(DDMFieldDocumentlibraryPresenterViewController_default)
+open class DDMFieldDocumentlibraryPresenterViewController_default: UIViewController,
+		UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-open class DDMFieldDocumentlibraryPresenterViewController_default:
-		UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet open var takeNewButton: UIButton?
 
@@ -36,8 +34,7 @@ open class DDMFieldDocumentlibraryPresenterViewController_default:
 
 	fileprivate let imagePicker = UIImagePickerController()
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	override public init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -70,8 +67,7 @@ open class DDMFieldDocumentlibraryPresenterViewController_default:
 		super.init(coder: aDecoder)
 	}
 
-
-	//MARK: Actions
+	// MARK: Actions
 
 	@IBAction fileprivate func cancelButtonAction(_ sender: AnyObject) {
 		selectedDocumentClosure?(nil, nil)
@@ -100,8 +96,7 @@ open class DDMFieldDocumentlibraryPresenterViewController_default:
 		present(imagePicker, animated: true) {}
 	}
 
-
-	//MARK: UIImagePickerControllerDelegate
+	// MARK: UIImagePickerControllerDelegate
 
     open func imagePickerController(
 			_ picker: UIImagePickerController,

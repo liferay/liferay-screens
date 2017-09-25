@@ -13,16 +13,14 @@
  */
 import UIKit
 
-
+@objc(ImageDisplayView_default)
 open class ImageDisplayView_default: BaseScreenletView, ImageDisplayViewModel {
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet open weak var imageView: UIImageView?
 
-
-	//MARK: ImageDisplayViewModel
+	// MARK: ImageDisplayViewModel
 
 	open var imageMode: UIViewContentMode = .scaleAspectFit
 
@@ -30,8 +28,7 @@ open class ImageDisplayView_default: BaseScreenletView, ImageDisplayViewModel {
 
 	open var placeholder: UIImage?
 
-
-	//MARK: FileDisplayViewModel
+	// MARK: FileDisplayViewModel
 
 	open var url: URL? {
 		didSet {
@@ -48,8 +45,7 @@ open class ImageDisplayView_default: BaseScreenletView, ImageDisplayViewModel {
 		}
 	}
 
-
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
 	override open func onStartInteraction() {
 		imageView?.contentMode = placeholderImageMode

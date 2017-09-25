@@ -13,15 +13,17 @@
  */
 import UIKit
 
-
-@objc public protocol WebContentListScreenletDelegate : BaseScreenletDelegate {
+/// The WebContentListScreenletDelegate protocol defines some methods that you use to manage the
+/// WebContentListScreenlet events. All of them are optional.
+@objc(WebContentListScreenletDelegate)
+public protocol WebContentListScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when a page of contents is received.
 	/// Note that this method may be called more than once: one call for each page received.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - contents: list of web contents.
+	///   - screenlet: Web content list screenlet instance.
+	///   - contents: List of web contents.
 	@objc optional func screenlet(_ screenlet: WebContentListScreenlet,
 			onWebContentListResponse contents: [WebContent])
 
@@ -29,40 +31,49 @@ import UIKit
 	/// The NSError object describes the error.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - error: error while retrieving web content list.
+	///   - screenlet: Web content list screenlet instance.
+	///   - error: Error while retrieving web content list.
 	@objc optional func screenlet(_ screenlet: WebContentListScreenlet,
 			onWebContentListError error: NSError)
 
 	/// Called when an item in the list is selected.
 	///
 	/// - Parameters:
-	///   - screenlet:
-	///   - content: selected web content.
+	///   - screenlet: Web content list screenlet instance.
+	///   - content: Selected web content.
 	@objc optional func screenlet(_ screenlet: WebContentListScreenlet,
 			onWebContentSelected content: WebContent)
 
 }
 
-
+/// Web Content List Screenlet can show lists of [web content]
+/// (https://dev.liferay.com/discover/portal/-/knowledge_base/7-0/creating-web-content) from a Liferay instance. It can 
+/// show both basic and [structured web content]
+/// (https://dev.liferay.com/discover/portal/-/knowledge_base/7-0/designing-uniform-content). The Screenlet also 
+/// implements fluent pagination with configurable page size, and supports i18n in asset values.
+@objc(WebContentListScreenlet)
 open class WebContentListScreenlet: BaseListScreenlet {
 
+	// MARK: Inspectables
 
-	//MARK: Inspectables
-
+	/// The ID of the site (group) where the web content exists. If set to 0, the groupId 
+	/// specified in LiferayServerContext is used. The default value is 0.
 	@IBInspectable open var groupId: Int64 = 0
 
+	/// The ID of the web content folder. If set to 0, the root folder is used.
+	/// The default value is 0.
 	@IBInspectable open var folderId: Int64 = 0
 
+	/// The offline mode setting. The default value is remote-first.
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
+	// MARK: Public properties
 
 	open var webContentListDelegate: WebContentListScreenletDelegate? {
 		return delegate as? WebContentListScreenletDelegate
 	}
 
-
-	//MARK: BaseListScreenlet
+	// MARK: BaseListScreenlet
 
 	override open func createPageLoadInteractor(
 			page: Int,

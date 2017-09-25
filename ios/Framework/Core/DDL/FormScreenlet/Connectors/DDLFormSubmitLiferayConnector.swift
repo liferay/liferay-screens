@@ -14,7 +14,6 @@
 import UIKit
 import LRMobileSDK
 
-
 open class DDLFormSubmitLiferayConnector: ServerConnector {
 
 	open var groupId: Int64?
@@ -30,8 +29,7 @@ open class DDLFormSubmitLiferayConnector: ServerConnector {
 	fileprivate let values: [String:AnyObject]
 	fileprivate let viewModel: DDLFormViewModel?
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(values: [String:AnyObject], viewModel: DDLFormViewModel?) {
 		self.values = values
@@ -40,8 +38,7 @@ open class DDLFormSubmitLiferayConnector: ServerConnector {
 		super.init()
 	}
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -67,11 +64,9 @@ open class DDLFormSubmitLiferayConnector: ServerConnector {
 
 }
 
-
 open class Liferay62DDLFormSubmitConnector: DDLFormSubmitLiferayConnector {
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func doRun(session: LRSession) {
 		let service = LRDDLRecordService_v62(session: session)
@@ -116,15 +111,13 @@ open class Liferay62DDLFormSubmitConnector: DDLFormSubmitLiferayConnector {
 			resultAttributes = nil
 		}
 	}
-	
-}
 
+}
 
 open class Liferay70DDLFormSubmitConnector: DDLFormSubmitLiferayConnector {
 
+	// MARK: ServerConnector
 
-	//MARK: ServerConnector
-	
 	override open func doRun(session: LRSession) {
 		let service = LRDDLRecordService_v7(session: session)
 
@@ -168,5 +161,5 @@ open class Liferay70DDLFormSubmitConnector: DDLFormSubmitLiferayConnector {
 			resultAttributes = nil
 		}
 	}
-	
+
 }

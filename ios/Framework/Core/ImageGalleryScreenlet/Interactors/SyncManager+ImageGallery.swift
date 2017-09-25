@@ -18,7 +18,7 @@ extension SyncManager {
 	func imageGallerySynchronizer(
 			_ key: String,
 			attributes: [String : AnyObject])
-			-> (@escaping Signal) -> () {
+			-> (@escaping Signal) -> Void {
 
 		return { signal in
 			let folderId = attributes["folderId"]!.int64Value
@@ -26,7 +26,7 @@ extension SyncManager {
 			let page = attributes["page"]!.description.asNumber!.intValue
 
 			self.cacheManager.getAny(collection: ScreenletName(ImageGalleryScreenlet.self), key: key) {
-			
+
 				if let imageEntryUpload = $0 as? ImageEntryUpload {
 
 					let interactor = ImageGalleryUploadInteractor(
@@ -56,13 +56,12 @@ extension SyncManager {
 							attributes: attributes,
 							error: NSError.errorWithCause(.notAvailable,
 									message: "Synchronizer for image gallery not available."))
-					
+
 					signal()
 				}
 
 			}
 		}
 	}
-
 
 }

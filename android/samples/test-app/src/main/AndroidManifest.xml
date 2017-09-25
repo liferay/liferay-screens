@@ -39,6 +39,7 @@
 		<activity android:name=".CustomInteractorActivity"/>
 		<activity android:name=".ListBookmarksActivity"/>
 		<activity android:name=".WebContentDisplayStructuredActivity"/>
+		<activity android:name=".WebContentDisplayCustomCssActivity"/>
 		<activity android:name=".WebContentListActivity"/>
 		<activity
 			android:name=".CommentsActivity"
@@ -48,6 +49,10 @@
 		<activity android:name=".ImageDisplayActivity"/>
 		<activity android:name=".GalleryActivity"/>
 		<activity android:name=".GetUserActivity"/>
+		<activity android:name=".WebActivity"/>
+		<activity
+			android:name=".DetailMediaGalleryActivity"
+			android:theme="@style/gallery_theme"/>
 	</application>
 
 </manifest>

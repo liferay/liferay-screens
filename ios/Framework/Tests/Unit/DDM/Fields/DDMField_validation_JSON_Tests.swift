@@ -13,7 +13,6 @@
  */
 import XCTest
 
-
 class DDMField_Validation_JSON_Tests: XCTestCase {
 
 	fileprivate let spanishLocale = Locale(identifier: "es_ES")
@@ -63,11 +62,11 @@ class DDMField_Validation_JSON_Tests: XCTestCase {
 	}
 
 	func test_ValidateOnStringField_ShouldFail_WhenRequiredValueIsEmptyString() {
-		validateOnStringField_ShouldFail_WhenRequiredValueIs("");
+		validateOnStringField_ShouldFail_WhenRequiredValueIs("")
 	}
 
 	func test_ValidateOnStringField_ShouldFail_WhenRequiredValueIsEmptyStringWithSpaces() {
-		validateOnStringField_ShouldFail_WhenRequiredValueIs("  ");
+		validateOnStringField_ShouldFail_WhenRequiredValueIs("  ")
 	}
 
 	fileprivate func validateOnStringField_ShouldFail_WhenRequiredValueIs(_ value: String) {

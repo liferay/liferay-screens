@@ -13,14 +13,16 @@
  */
 import UIKit
 
-
-@objc public protocol CommentDisplayScreenletDelegate : BaseScreenletDelegate {
+/// The CommentDisplayScreenletDelegate protocol defines some methods that you use to manage the
+/// CommentDisplayScreenlet events. All of them are optional.
+@objc(CommentDisplayScreenletDelegate)
+public protocol CommentDisplayScreenletDelegate: BaseScreenletDelegate {
 
 	/// Called when the screenlet loads the comment.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - comment: loaded comment.
+	///   - screenlet: Comment display screenlet instance.
+	///   - comment: Loaded comment.
 	@objc optional func screenlet(_ screenlet: CommentDisplayScreenlet,
 			onCommentLoaded comment: Comment)
 
@@ -28,25 +30,25 @@ import UIKit
 	/// The NSError object describes the error.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - error: error while loading the comment.
+	///   - screenlet: Comment display screenlet instance.
+	///   - error: Error while loading the comment.
 	@objc optional func screenlet(_ screenlet: CommentDisplayScreenlet,
 			onLoadCommentError error: NSError)
 
 	/// Called when the screenlet prepares the comment for deletion.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - comment: comment to be deleted.
+	///   - screenlet: Comment display screenlet instance.
+	///   - comment: Comment to be deleted.
 	@objc optional func screenlet(_ screenlet: CommentDisplayScreenlet,
 			onCommentDeleted comment: Comment)
 
 	///  Called when a comment is deleted.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - comment: deleted comment.
-	///   - error: error while deleting the comment.
+	///   - screenlet: Comment display screenlet instance.
+	///   - comment: Deleted comment.
+	///   - error: Error while deleting the comment.
 	@objc optional func screenlet(_ screenlet: CommentDisplayScreenlet,
 			onDeleteComment comment: Comment,
 			onError error: NSError)
@@ -54,43 +56,53 @@ import UIKit
 	/// Called when the screenlet prepares the comment for update.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - comment: comment to be updated.
+	///   - screenlet: Comment display screenlet instance.
+	///   - comment: Comment to be updated.
 	@objc optional func screenlet(_ screenlet: CommentDisplayScreenlet,
 			onCommentUpdated comment: Comment)
 
 	/// Called when a comment is updated.
 	///
 	/// - Parameters:
-	///   - screenlet
-	///   - comment: updated comment.
-	///   - error: error while updating the comment.
+	///   - screenlet: Comment display screenlet instance.
+	///   - comment: Updated comment.
+	///   - error: Error while updating the comment.
 	@objc optional func screenlet(_ screenlet: CommentDisplayScreenlet,
 			onUpdateComment comment: Comment,
 			onError error: NSError)
 
 }
 
-
+/// Comment Display Screenlet can show one comment of an asset in a Liferay instance. It also lets 
+/// the user update or delete the comment.
+@objc(CommentDisplayScreenlet)
 open class CommentDisplayScreenlet: BaseScreenlet {
+
+	// MARK: Static properties
 
 	open static let DeleteAction = "deleteAction"
 	open static let UpdateAction = "updateAction"
 
+	// MARK: Inspectables
 
-	//MARK: Inspectables
-
+	/// The primary key of the comment to display.
 	@IBInspectable open var commentId: Int64 = 0
 
+	/// Whether the list should automatically load when the Screenlet appears in the app’s UI. 
+	/// The default value is true.
 	@IBInspectable open var autoLoad: Bool = true
 
+	/// The offline mode setting. The default is remote-first.
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
+	/// Whether the user can edit the comment.
 	@IBInspectable open var editable: Bool = false {
 		didSet {
 			screenletView?.editable = self.editable
 		}
 	}
+
+	// MARK: Public properties
 
 	open var commentDisplayDelegate: CommentDisplayScreenletDelegate? {
 		return delegate as? CommentDisplayScreenletDelegate
@@ -109,8 +121,7 @@ open class CommentDisplayScreenlet: BaseScreenlet {
 		}
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	/// Loads the comment in the screenlet.
 	open func load() {
@@ -127,8 +138,7 @@ open class CommentDisplayScreenlet: BaseScreenlet {
 		viewModel.editComment()
 	}
 
-
-	//MARK: BaseScreenlet
+	// MARK: BaseScreenlet
 
 	override open func onCreated() {
 		super.onCreated()
@@ -157,8 +167,7 @@ open class CommentDisplayScreenlet: BaseScreenlet {
 		}
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func createCommentLoadInteractor() -> Interactor {
 		let interactor = CommentLoadInteractor(screenlet: self)

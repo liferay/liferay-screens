@@ -13,7 +13,7 @@
  */
 import UIKit
 
-
+@objc(ImageGalleryView_default)
 open class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 
 	open static let DefaultColumns = 4
@@ -29,7 +29,7 @@ open class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 	internal var lastOffset: CGPoint?
 	internal var currentOrientation: UIInterfaceOrientation?
 
-	//MARK: UIView
+	// MARK: UIView
 
 	override open func layoutSubviews() {
 		super.layoutSubviews()
@@ -44,8 +44,8 @@ open class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 		}
 	}
 
-	//MARK: BaseScreenletView
-	
+	// MARK: BaseScreenletView
+
 	override open func onShow() {
 		super.onShow()
 
@@ -60,7 +60,7 @@ open class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 		lastOffset = collectionView?.contentOffset
 	}
 
-	//MARK: BaseListCollectionView
+	// MARK: BaseListCollectionView
 
 	override open func doConfigureCollectionView(_ collectionView: UICollectionView) {
 		collectionView.backgroundColor = .white
@@ -81,14 +81,14 @@ open class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 		// When the theme is changed dinamically the collection view hasn't the correct bounds at
 		// this time so we use the screenlet (which is also a view) to calculate the itemSize
 		screenlet?.layoutIfNeeded()
-		
+
 		return createCustomLayout()
 	}
 
 	override open func doFillLoadedCell(
 			indexPath: IndexPath,
 			cell: UICollectionViewCell,
-			object:AnyObject) {
+			object: AnyObject) {
 
 		guard let imageCell = cell as? ImageGalleryGridCell, let entry = object as? ImageEntry else {
 			return
@@ -111,8 +111,7 @@ open class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 		return imageCellId
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func changeLayout() {
 		if let collectionView = collectionView {
@@ -121,8 +120,7 @@ open class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 		}
 	}
 
-
-	//MARK: Internal methods
+	// MARK: Internal methods
 
 	internal func createCustomLayout() -> UICollectionViewLayout {
 		let layout = UICollectionViewFlowLayout()

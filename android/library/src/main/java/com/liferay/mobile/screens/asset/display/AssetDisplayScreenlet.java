@@ -127,12 +127,12 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	 */
 	public void load(AssetEntry assetEntry) {
 		AssetEntry asset = AssetFactory.createInstance(assetEntry.getValues());
-		AssetDisplayFactory factory = new AssetDisplayFactory();
-		BaseScreenlet screenlet = factory.getScreenlet(getContext(), asset, layouts);
+		BaseScreenlet screenlet = AssetDisplayFactory.getScreenlet(getContext(), asset, layouts);
 		if (screenlet != null) {
 			if (configureListener != null) {
 				configureListener.onConfigureChildScreenlet(this, screenlet, asset);
 			}
+
 			getViewModel().showFinishOperation(screenlet);
 		} else {
 
@@ -288,5 +288,9 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 
 	public void setAutoLoad(boolean autoLoad) {
 		this.autoLoad = autoLoad;
+	}
+
+	public void setLayouts(HashMap<String, Integer> layouts) {
+		this.layouts = layouts;
 	}
 }

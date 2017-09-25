@@ -15,8 +15,7 @@ import Foundation
 
 private let dummyObject = MBProgressHUDPresenter()
 
-
-open class ValidationError : NSError {
+open class ValidationError: NSError {
 
 	public init(_ message: String) {
 		super.init(domain: "LiferayScreens",
@@ -37,7 +36,6 @@ open class ValidationError : NSError {
 	}
 
 }
-
 
 public enum ScreensErrorCause: Int {
 

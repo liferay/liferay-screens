@@ -74,7 +74,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 	public BaseScreenlet(Context context) {
 		super(context);
 
-		//		init(context, null);
+		//init(context, null);
 	}
 
 	public BaseScreenlet(Context context, AttributeSet attrs) {
@@ -231,7 +231,8 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 		this.userId = (userAttribute == 0 ? (userId == null ? 0 : userId) : userAttribute);
 
 		String localeAttribute = typedArray.getString(R.styleable.CacheScreenlet_locale);
-		locale = locale == null ? LiferayLocale.getDefaultLocale() : new Locale(localeAttribute);
+		locale = localeAttribute == null ? new Locale(LiferayLocale.getDefaultSupportedLocale())
+			: new Locale(localeAttribute);
 
 		Integer cachePolicyAttribute =
 			typedArray.getInteger(R.styleable.CacheScreenlet_cachePolicy, CachePolicy.REMOTE_ONLY.ordinal());

@@ -45,6 +45,10 @@ public class DDLFormDocumentUploadEvent extends CacheEvent {
 		return folderId;
 	}
 
+	public void setDocumentField(DocumentField documentField) {
+		this.documentField = documentField;
+	}
+
 	public String getFilePrefix() {
 		return filePrefix;
 	}

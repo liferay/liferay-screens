@@ -19,6 +19,7 @@ public enum CommentDisplayState_default {
 	case editing
 }
 
+@objc(CommentDisplayView_default)
 open class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewModel {
 
 	//Left/right UILabel padding
@@ -31,8 +32,7 @@ open class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMode
 	//Top/bottom UILabel insets
 	fileprivate static let LabelInsets: CGFloat = 16
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet weak var userPortraitScreenlet: UserPortraitScreenlet?
 
@@ -81,8 +81,7 @@ open class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMode
 		}
 	}
 
-
-	//MARK: CommentDisplayViewModel
+	// MARK: CommentDisplayViewModel
 
 	open func editComment() {
 		if let viewController = self.presentingViewController, let editedComment = self.comment, editedComment.isStyled {
@@ -99,7 +98,8 @@ open class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMode
 			alertController.addAction(dismissAction)
 
 			viewController.present(alertController, animated: true, completion: nil)
-		} else {
+		}
+		else {
 			self.state = .editing
 		}
 	}
@@ -127,8 +127,7 @@ open class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMode
 		}
 	}
 
-
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
 	override open func onSetTranslations() {
 		editedLabel?.text = LocalizedString("default", key: "comment-display-edited", obj: self)
@@ -155,8 +154,7 @@ open class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMode
 		]
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func confirmBodyClosure(_ body: String?) {
 		editViewController?.dismiss(animated: true, completion: nil)
@@ -198,8 +196,7 @@ open class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMode
 		return attributes
 	}
 
-
-	//MARK: Actions
+	// MARK: Actions
 
 	@IBAction func deleteButtonClicked() {
 		self.state = .deleting

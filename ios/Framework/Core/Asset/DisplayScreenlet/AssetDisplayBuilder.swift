@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc open class AssetDisplayBuilder: NSObject {
 
 	open class func createScreenlet(_ frame: CGRect, asset: Asset, themeName: String? = nil)
@@ -30,6 +29,9 @@ import UIKit
 		}
 		else if asset.isAnyMimeType(PdfDisplayScreenlet().supportedMimeTypes) {
 			return PdfDisplayScreenlet(frame: frame, themeName: themeName)
+		}
+		else if asset.isAnyMimeType(FileDisplayScreenlet().supportedMimeTypes) {
+			return FileDisplayScreenlet(frame: frame, themeName: themeName)
 		}
 		else if asset.mimeType == "text/html" {
 			if asset.classNameId == AssetClasses.getClassNameId(AssetClassNameKey_BlogsEntry)! {

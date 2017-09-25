@@ -18,8 +18,7 @@ import UIKit
 	import KeychainAccess
 #endif
 
-
-open class CookieCredentialsStoreKeyChain : BaseCredentialsStoreKeyChain {
+open class CookieCredentialsStoreKeyChain: BaseCredentialsStoreKeyChain {
 
 	override open func storeAuth(keychain: Keychain, auth: LRAuthentication) {
 		let cookieAuth = auth as! LRCookieAuthentication

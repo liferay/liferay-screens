@@ -13,8 +13,7 @@
  */
 import Foundation
 
-
-@objc open class WebContent : Asset {
+@objc open class WebContent: Asset {
 
 	open let structure: DDMStructure?
 	open let structuredRecord: DDLRecord?
@@ -31,15 +30,13 @@ import Foundation
 		return super.debugDescription
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open class func isWebContentClassName(_ className: String) -> Bool {
 		return className.hasPrefix("com.liferay.") && className.hasSuffix(".JournalArticle")
 	}
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	override public init(attributes: [String:AnyObject]) {
 		func loadStructuredRecord(_ content: String, _ attributes: [String:AnyObject]) -> DDLRecord? {
@@ -121,8 +118,7 @@ import Foundation
 		super.init(coder: aDecoder)
 	}
 
-
-	//MARK: Asset
+	// MARK: Asset
 
 	override open func encode(with aCoder: NSCoder) {
 		if let structure = self.structure {
@@ -135,5 +131,5 @@ import Foundation
 			aCoder.encode(html, forKey:"webcontent-html")
 		}
 	}
-	
+
 }

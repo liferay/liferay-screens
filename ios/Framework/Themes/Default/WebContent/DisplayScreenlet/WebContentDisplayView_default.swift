@@ -12,47 +12,79 @@
  * details.
  */
 import UIKit
+import WebKit
 
-
+@objc(WebContentDisplayView_default)
 open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayViewModel {
 
+	// MARK: Outlets
 
-	//MARK: Outlets
+	open var webView: WKWebView?
 
-	@IBOutlet open var webView: UIWebView?
+	open var injectedCss: String?
 
 	override open var progressMessages: [String:ProgressMessages] {
 		return [
-			BaseScreenlet.DefaultAction :
-				[.working : LocalizedString("default", key: "webcontentdisplay-loading-message", obj: self),
-				.failure : LocalizedString("default", key: "webcontentdisplay-loading-error", obj: self)]]
+			BaseScreenlet.DefaultAction : [
+				.working : LocalizedString("default", key: "webcontentdisplay-loading-message", obj: self),
+				.failure : LocalizedString("default", key: "webcontentdisplay-loading-error", obj: self)
+			]
+		]
 	}
 
-	fileprivate let styles =
-		".MobileCSS {padding: 4%; width: 92%;} " +
-		".MobileCSS, .MobileCSS span, .MobileCSS p, .MobileCSS h1, .MobileCSS h2, .MobileCSS h3 { " +
-			"font-size: 110%; font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif; font-weight: 200; } " +
-		".MobileCSS img { width: 100% !important; } " +
-		".span2, .span3, .span4, .span6, .span8, .span10 { width: 100%; }"
+	open override func onCreated() {
+		super.onCreated()
 
+		let config = WKWebViewConfiguration.noCacheConfiguration
+
+		webView = WKWebView(frame: self.frame, configuration: config)
+
+		webView?.injectCookies()
+		webView?.injectViewportMetaTag()
+
+		addWebView()
+	}
+
+	open func addWebView() {
+		webView?.translatesAutoresizingMaskIntoConstraints = false
+
+		addSubview(webView!)
+
+		let top = NSLayoutConstraint(item: webView!, attribute: .top, relatedBy: .equal,
+		                             toItem: self, attribute: .top, multiplier: 1, constant: 0)
+		let bottom = NSLayoutConstraint(item: webView!, attribute: .bottom, relatedBy: .equal,
+		                                toItem: self, attribute: .bottom, multiplier: 1, constant: 0)
+		let leading = NSLayoutConstraint(item: webView!, attribute: .leading, relatedBy: .equal,
+		                                 toItem: self, attribute: .leading, multiplier: 1, constant: 0)
+		let trailing = NSLayoutConstraint(item: webView!, attribute: .trailing, relatedBy: .equal,
+		                                  toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
+
+		NSLayoutConstraint.activate([top, bottom, leading, trailing])
+	}
 
 	override open func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
 	}
 
-	//MARK: WebContentDisplayViewModel
+	// MARK: WebContentDisplayViewModel
 
 	open var htmlContent: String? {
 		get {
 			return ""
 		}
 		set {
-			let styledHtml = "<style>\(styles)</style><div class=\"MobileCSS\">\(newValue ?? "")</div>"
-
+			let styledHtml = "<style>\(injectedCss ?? "")</style><div class=\"MobileCSS\">\(newValue ?? "")</div>"
 			webView!.loadHTMLString(styledHtml, baseURL: URL(string:LiferayServerContext.server))
 		}
 	}
 
 	open var recordContent: DDLRecord?
 
+	open var customCssFile: String? {
+		didSet {
+			if let css = customCssFile {
+				injectedCss = webView?.loadCss(file: css)
+			}
+		}
+	}
 }

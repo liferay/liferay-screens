@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bZP-If-YhO">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--User Display View Controller-->
+        <scene sceneID="OTo-Xd-aIm">
+            <objects>
+                <viewController id="bZP-If-YhO" customClass="UserDisplayViewController" customModule="WesterosEmployees_hybrid" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Idb-0c-hfG"/>
+                        <viewControllerLayoutGuide type="bottom" id="RWG-Yx-ODa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YJT-qG-ND2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m5o-Dc-FbM" customClass="WebScreenlet">
+                                <rect key="frame" x="0.0" y="43" width="375" height="446"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ygz-ZN-aHB">
+                                <rect key="frame" x="20" y="497" width="335" height="60"/>
+                                <color key="backgroundColor" red="0.85728287700000005" green="0.18751269579999999" blue="0.1945410967" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="vRT-Fb-3Tf"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="GO BACK">
+                                            <attributes>
+                                                <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <font key="NSFont" size="18" name="AvenirNext-DemiBold"/>
+                                                <real key="NSKern" value="0.0"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36"/>
+                                                <color key="NSStrokeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="goBack:" destination="bZP-If-YhO" eventType="touchUpInside" id="0Bu-HO-Wqd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sxx-oT-SUh">
+                                <rect key="frame" x="20" y="574" width="335" height="60"/>
+                                <color key="backgroundColor" red="1" green="0.99997437" blue="0.99999129769999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="MTU-hY-lNg"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="SIGN OUT">
+                                            <attributes>
+                                                <color key="NSColor" red="0.89411764705882346" green="0.27843137254901962" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <font key="NSFont" size="18" name="AvenirNext-DemiBold"/>
+                                                <real key="NSKern" value="0.0"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36"/>
+                                                <color key="NSStrokeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="signOut:" destination="bZP-If-YhO" eventType="touchUpInside" id="N0c-TW-mkK"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.83914172649383545" green="0.83926308155059814" blue="0.8391152024269104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="m5o-Dc-FbM" firstAttribute="leading" secondItem="YJT-qG-ND2" secondAttribute="leading" id="QEg-XZ-OIA"/>
+                            <constraint firstItem="ygz-ZN-aHB" firstAttribute="top" secondItem="m5o-Dc-FbM" secondAttribute="bottom" constant="8" id="SQT-c6-UJR"/>
+                            <constraint firstItem="RWG-Yx-ODa" firstAttribute="top" secondItem="sxx-oT-SUh" secondAttribute="bottom" constant="33" id="V89-lx-IZe"/>
+                            <constraint firstAttribute="trailing" secondItem="sxx-oT-SUh" secondAttribute="trailing" constant="20" id="bwd-Bb-Th5"/>
+                            <constraint firstItem="m5o-Dc-FbM" firstAttribute="top" secondItem="Idb-0c-hfG" secondAttribute="bottom" constant="23" id="c8b-TO-eiN"/>
+                            <constraint firstAttribute="trailing" secondItem="ygz-ZN-aHB" secondAttribute="trailing" constant="20" id="qOt-5c-5vJ"/>
+                            <constraint firstItem="ygz-ZN-aHB" firstAttribute="leading" secondItem="YJT-qG-ND2" secondAttribute="leading" constant="20" id="rA4-ig-BVI"/>
+                            <constraint firstItem="sxx-oT-SUh" firstAttribute="top" secondItem="ygz-ZN-aHB" secondAttribute="bottom" constant="17" id="sin-jO-4IP"/>
+                            <constraint firstAttribute="trailing" secondItem="m5o-Dc-FbM" secondAttribute="trailing" id="sjy-5u-c0B"/>
+                            <constraint firstItem="sxx-oT-SUh" firstAttribute="leading" secondItem="YJT-qG-ND2" secondAttribute="leading" constant="20" id="zbx-fw-rkp"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webScreenlet" destination="m5o-Dc-FbM" id="Bde-ch-B3L"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oVo-Gz-Fk4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-50.399999999999999" y="436.73163418290858"/>
+        </scene>
+    </scenes>
+</document>

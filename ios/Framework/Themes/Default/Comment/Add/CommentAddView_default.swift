@@ -13,11 +13,10 @@
  */
 import UIKit
 
-
+@objc(CommentAddView_default)
 open class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet weak var addCommentTextField: UITextField?
 
@@ -38,8 +37,7 @@ open class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 		}
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func updateButton() {
 		sendCommentButton?.isEnabled = !(addCommentTextField?.text?.isEmpty ?? false)
@@ -51,8 +49,7 @@ open class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 		}
 	}
 
-
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
 	override open func onShow() {
 		addCommentTextField?.delegate = self
@@ -67,15 +64,13 @@ open class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 		return DefaultProgressPresenter()
 	}
 
-
-	//MARK: Actions
+	// MARK: Actions
 
 	@IBAction func editingDidChangeAction() {
 		updateButton()
 	}
 
-
-	//MARK: UITextFieldDelegate
+	// MARK: UITextFieldDelegate
 
 	override open func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		userAction(name: "add-comment", sender: textField)

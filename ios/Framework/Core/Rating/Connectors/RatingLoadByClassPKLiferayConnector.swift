@@ -15,15 +15,14 @@ import UIKit
 import LRMobileSDK
 
 open class RatingLoadByClassPKLiferayConnector: ServerConnector {
-	
+
 	open let classPK: Int64
 	open let className: String
 	open let ratingsGroupCount: Int32
-	
+
 	open var resultRating: RatingEntry?
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(classPK: Int64, className: String, ratingsGroupCount: Int32) {
 		self.ratingsGroupCount = ratingsGroupCount
@@ -32,12 +31,11 @@ open class RatingLoadByClassPKLiferayConnector: ServerConnector {
 		super.init()
 	}
 
+	// MARK: ServerConnector
 
-	//MARK: ServerConnector
-	
 	open override func validateData() -> ValidationError? {
 		let error = super.validateData()
-		
+
 		if error == nil {
 			if classPK == 0 {
 				return ValidationError("rating-screenlet", "undefined-classPK")
@@ -49,22 +47,23 @@ open class RatingLoadByClassPKLiferayConnector: ServerConnector {
 				return ValidationError("rating-screenlet", "wrong-ratingsGroupCount")
 			}
 		}
-		
+
 		return error
 	}
-	
+
 }
 
 open class Liferay70RatingLoadByClassPKConnector: RatingLoadByClassPKLiferayConnector {
 
+	// MARK: ServerConnector
 
-	//MARK: ServerConnector
-	
 	override open func doRun(session: LRSession) {
 		let service = LRScreensratingsentryService_v70(session: session)
-		
+
 		do {
-			let result = try service?.getRatingsEntries(withClassPK: classPK, className: className, ratingsLength: ratingsGroupCount)
+			let result = try service?.getRatingsEntries(withClassPK: classPK,
+					className: className, ratingsLength: ratingsGroupCount)
+
 			lastError = nil
 			resultRating = RatingEntry(attributes: result as! [String: AnyObject])
 		}
@@ -73,7 +72,5 @@ open class Liferay70RatingLoadByClassPKConnector: RatingLoadByClassPKLiferayConn
 			resultRating = nil
 		}
 	}
-	
+
 }
-
-

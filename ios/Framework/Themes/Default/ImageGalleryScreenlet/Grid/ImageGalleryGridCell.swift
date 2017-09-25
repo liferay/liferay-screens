@@ -1,11 +1,16 @@
-//
-//  ImageGalleryGridCell.swift
-//  LiferayScreens
-//
-//  Created by liferay on 20/07/16.
-//  Copyright © 2016 Liferay. All rights reserved.
-//
-
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
 
 open class ImageGalleryGridCell: UICollectionViewCell {
@@ -14,7 +19,7 @@ open class ImageGalleryGridCell: UICollectionViewCell {
 
 	fileprivate var placeholderImage: UIImage?
 
-	open var imageUrl: String  {
+	open var imageUrl: String {
 		get {
 			return ""
 		}
@@ -37,7 +42,7 @@ open class ImageGalleryGridCell: UICollectionViewCell {
 
 	open override func awakeFromNib() {
 		super.awakeFromNib()
-		
+
 		previewImage?.clipsToBounds = true
 		previewImage?.kf.indicatorType = .activity
 

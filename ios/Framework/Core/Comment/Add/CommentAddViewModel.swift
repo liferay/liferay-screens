@@ -13,8 +13,8 @@
  */
 import UIKit
 
-
-@objc public protocol CommentAddViewModel {
+@objc(CommentAddViewModel)
+public protocol CommentAddViewModel {
 
 	/// Comment content for new entry.
 	var body: String { get set }

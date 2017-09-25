@@ -1,0 +1,36 @@
+disabled_rules:
+  - force_cast
+  - force_try
+  - identifier_name
+  - vertical_parameter_alignment
+  - function_body_length
+  - todo
+  - type_body_length
+  - function_parameter_count
+  - type_name
+
+opt_in_rules:
+  - empty_count
+  - closure_spacing
+  - redundant_nil_coalescing
+
+included:
+  - AndorraTelecomPublic/
+  - Theme/
+
+excluded:
+  - Pods/
+
+statement_position:
+  statement_mode: uncuddled_else
+
+type_name:
+  max_length: 50
+
+large_tuple:
+  warning: 4
+  error: 5
+
+file_length:
+  warning: 600
+

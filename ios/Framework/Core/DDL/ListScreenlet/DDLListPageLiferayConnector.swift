@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 open class DDLListPageLiferayConnector: PaginationLiferayConnector {
 
 	open var userId: Int64?
@@ -21,8 +20,7 @@ open class DDLListPageLiferayConnector: PaginationLiferayConnector {
 
 	internal let viewModel: DDLListViewModel
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(viewModel: DDLListViewModel, startRow: Int, endRow: Int, computeRowCount: Bool) {
 		self.viewModel = viewModel
@@ -30,8 +28,7 @@ open class DDLListPageLiferayConnector: PaginationLiferayConnector {
 		super.init(startRow: startRow, endRow: endRow, computeRowCount: computeRowCount)
 	}
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -41,7 +38,7 @@ open class DDLListPageLiferayConnector: PaginationLiferayConnector {
 				return ValidationError("ddllist-screenlet", "undefined-recordset")
 			}
 
-			if viewModel.labelFields.count == 0 {
+			if viewModel.labelFields.isEmpty {
 				return ValidationError("ddllist-screenlet", "undefined-fields")
 			}
 		}
@@ -51,11 +48,9 @@ open class DDLListPageLiferayConnector: PaginationLiferayConnector {
 
 }
 
-
 open class Liferay62DDLListPageConnector: DDLListPageLiferayConnector {
 
-
-	//MARK: PaginationLiferayConnector
+	// MARK: PaginationLiferayConnector
 
 	override open func doAddPageRowsServiceCall(
 			session: LRBatchSession,
@@ -101,21 +96,19 @@ open class Liferay62DDLListPageConnector: DDLListPageLiferayConnector {
 		catch _ as NSError {
 		}
 	}
-	
-}
 
+}
 
 open class Liferay70DDLListPageConnector: DDLListPageLiferayConnector {
 
-
-	//MARK: PaginationLiferayConnector
+	// MARK: PaginationLiferayConnector
 
 	override open func doAddPageRowsServiceCall(
 			session: LRBatchSession,
 			startRow: Int,
 			endRow: Int,
 			obc: LRJSONObjectWrapper?) {
-			
+
 		let service = LRScreensddlrecordService_v70(session: session)
 
 		do {
@@ -154,5 +147,5 @@ open class Liferay70DDLListPageConnector: DDLListPageLiferayConnector {
 		catch _ as NSError {
 		}
 	}
-	
+
 }

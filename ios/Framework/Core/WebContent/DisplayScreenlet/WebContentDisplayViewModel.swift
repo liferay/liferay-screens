@@ -13,8 +13,8 @@
  */
 import UIKit
 
-
-@objc public protocol WebContentDisplayViewModel {
+@objc(WebContentDisplayViewModel)
+public protocol WebContentDisplayViewModel {
 
 	/// WebContent html to be displayed.
 	var htmlContent: String? { get set }
@@ -22,4 +22,6 @@ import UIKit
 	/// DDLRecord content.
 	var recordContent: DDLRecord? { get set }
 
+	/// Customize the WebContent with custom css
+	var customCssFile: String? { get set }
 }

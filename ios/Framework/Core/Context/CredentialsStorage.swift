@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc open class CredentialsStorage: NSObject {
 
 	public typealias LoadResult = (session: LRSession, userAttributes: [String:AnyObject])
@@ -48,14 +47,18 @@ import UIKit
 		return credentialsStore.removeStoredCredentials()
 	}
 
-	open func load() -> LoadResult? {
-		guard credentialsStore.loadStoredCredentials() else {
-			return nil
+	open func load(shouldLoadServer: Bool) -> LoadResult? {
+		let credentialsLoaded: Bool
+
+		if shouldLoadServer {
+			credentialsLoaded = credentialsStore.loadStoredCredentialsAndServer()
 		}
-		guard let loadedAuth = credentialsStore.authentication else {
-			return nil
+		else {
+			credentialsLoaded = credentialsStore.loadStoredCredentials()
 		}
-		guard let loadedUserAttributes = credentialsStore.userAttributes else {
+
+		guard credentialsLoaded, let loadedAuth = credentialsStore.authentication,
+			let loadedUserAttributes = credentialsStore.userAttributes else {
 			return nil
 		}
 

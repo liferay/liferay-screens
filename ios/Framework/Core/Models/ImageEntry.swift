@@ -13,11 +13,10 @@
  */
 import Foundation
 
-
-open class ImageEntry : Asset {
+open class ImageEntry: Asset {
 
 	open var image: UIImage?
-    
+
     open var thumbnailUrl: String {
         return createThumbnailUrl()
     }
@@ -30,8 +29,7 @@ open class ImageEntry : Asset {
 		return attributes["fileEntryId"]?.int64Value ?? 0
 	}
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
     override public init(attributes: [String:AnyObject]) {
         super.init(attributes: attributes)
@@ -42,8 +40,7 @@ open class ImageEntry : Asset {
         super.init(coder: aDecoder)
     }
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
     fileprivate func createThumbnailUrl() -> String {
 		guard let version = attributes["version"]
@@ -52,7 +49,7 @@ open class ImageEntry : Asset {
 		}
         return "\(createImageUrl())?version=\(version)&imageThumbnail=1"
     }
-    
+
     fileprivate func createImageUrl() -> String {
 		guard let groupId = attributes["groupId"], let folderId = attributes["folderId"],
 				let uuid = attributes["uuid"]
@@ -62,17 +59,16 @@ open class ImageEntry : Asset {
         return "\(LiferayServerContext.server)/documents/\(groupId)/" +
             "\(folderId)/\(encodeUrlString(title))/\(uuid)"
     }
-    
+
     fileprivate func encodeUrlString(_ originalString: String) -> String {
         return originalString.addingPercentEncoding(
             withAllowedCharacters: .urlHostAllowed) ?? ""
     }
-	
+
 }
 
+// MARK: Equatable
 
-//MARK: Equatable
-
-public func ==(lhs: ImageEntry, rhs: ImageEntry) -> Bool {
+public func == (lhs: ImageEntry, rhs: ImageEntry) -> Bool {
 	return lhs.imageEntryId == rhs.imageEntryId
 }

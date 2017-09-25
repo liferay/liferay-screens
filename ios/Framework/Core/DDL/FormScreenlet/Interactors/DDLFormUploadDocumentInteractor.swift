@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 
 	typealias OnProgress = DDLFormUploadLiferayConnector.OnProgress
@@ -34,8 +33,7 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 
 	var lastCacheKey: String?
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	init(screenlet: BaseScreenlet?,
 			document: DDMFieldDocument,
@@ -82,8 +80,7 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 		super.init(screenlet: nil)
 	}
 
-
-	//MARK: ServerConnectorInteractor
+	// MARK: ServerConnectorInteractor
 
 	override func createConnector() -> DDLFormUploadLiferayConnector {
 		return LiferayServerContext.connectorFactory.createDDLFormUploadConnector(
@@ -111,8 +108,7 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 		}
 	}
 
-
-	//MARK: Cache methods
+	// MARK: Cache methods
 
 	override func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
@@ -134,8 +130,7 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 		}
 	}
 
-
-	//MARK: Interactor
+	// MARK: Interactor
 
 	override func callOnSuccess() {
 		if cacheStrategy == .cacheFirst {
@@ -148,8 +143,7 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 		super.callOnSuccess()
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func cacheKey() -> String {
 		lastCacheKey = lastCacheKey ?? "document-\(Date().timeIntervalSince1970)"

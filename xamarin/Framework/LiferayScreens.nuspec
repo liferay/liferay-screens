@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>LiferayScreens</id>
+    <version>0.1.0-beta4</version>
+    <authors>Liferay</authors>
+    <owners>Liferay Inc.</owners>
+    <projectUrl>https://www.nuget.org/packages/LiferayScreens</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Liferay Screens to use in Xamarin.iOS and Xamarin.Droid solutions.</description>
+    <releaseNotes>First version of Liferay Screens for Xamarin solutions</releaseNotes>
+    <copyright>Copyright © 2000-present Liferay, Inc. All rights reserved.</copyright>
+    <tags>liferay screens liferayscreens ios android native library mobile</tags>
+    <dependencies>
+        <group targetFramework="MonoAndroid">
+            <dependency id="Xamarin.Android.Support.v7.AppCompat" version="25.0.1" />
+            <dependency id="Xamarin.Android.Support.Design" version="25.3.1" />
+            <dependency id="Xamarin.Android.Support.Exif" version="25.3.1" />
+        </group>
+        <group targetFramework="Xamarin.iOS10">
+            <dependency id="Xamarin.Swift3" version="3.0.1" />
+            <dependency id="Xamarin.Swift3.AVFoundation" version="3.1.0.2" />
+            <dependency id="Xamarin.Swift3.CloudKit" version="3.1.0.2" />
+            <dependency id="Xamarin.Swift3.Contacts" version="3.1.0.2" />
+            <dependency id="Xamarin.Swift3.Core" version="3.1.0.2" />
+            <dependency id="Xamarin.Swift3.CoreAudio" version="3.1.0.2" />
+            <dependency id="Xamarin.Swift3.CoreGraphics" version="3.1.0.2" />
+            <dependency id="Xamarin.Swift3.CoreImage" version="3.1.0.2" />
+            <dependency id="Xamarin.Swift3.CoreLocation" version="3.1.0.2" />
+            <dependency id="Xamarin.Swift3.CoreMedia" version="3.1.0.2" />
+            <dependency id="Xamarin.Swift3.Darwin" version="3.1.0.2" />
+            <dependency id="Xamarin.Swift3.Dispatch" version="3.1.0.2" />
+            <dependency id="Xamarin.Swift3.Foundation" version="3.1.0.2" />
+            <dependency id="Xamarin.Swift3.ObjectiveC" version="3.1.0.2" />
+            <dependency id="Xamarin.Swift3.QuartzCore" version="3.1.0.2" />
+            <dependency id="Xamarin.Swift3.UIKit" version="3.1.0.2" />
+        </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <!-- Android -->
+    <file src="jakeWharton.RxbindingBindingLibrary/bin/Release/jakeWharton.RxbindingBindingLibrary.dll" target="lib/MonoAndroid403" />
+    <file src="LiferayScreens.Android/bin/Release/LiferayScreens_Android.dll" target="lib/MonoAndroid403" />
+    <file src="rxAndroid.BindingLibrary/bin/Release/rxAndroid.BindingLibrary.dll" target="lib/MonoAndroid403" />
+    <file src="SnappyDBBindingLibrary/bin/Release/SnappyDBBindingLibrary.dll" target="lib/MonoAndroid403" />
+    <file src="Tbruyelle.RxpermissionsBindingLibrary/bin/Release/Tbruyelle.RxpermissionsBindingLibrary.dll" target="lib/MonoAndroid403" />
+    <!-- iOS -->
+    <file src="LiferayScreens.iOS/bin/Release/LiferayScreens_iOS.dll" target="lib/Xamarin.iOS10" />
+  </files>
+</package>

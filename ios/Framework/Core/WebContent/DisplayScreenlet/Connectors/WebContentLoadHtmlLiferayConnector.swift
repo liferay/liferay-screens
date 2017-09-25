@@ -13,14 +13,13 @@
  */
 import UIKit
 
-
 open class WebContentLoadHtmlLiferayConnector: WebContentLoadBaseLiferayConnector {
 
 	open var templateId: Int64?
 
 	open var resultHTML: String?
 
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func doRun(session: LRSession) {
 		resultHTML = nil
@@ -57,8 +56,7 @@ open class WebContentLoadHtmlLiferayConnector: WebContentLoadBaseLiferayConnecto
 		return error
 	}
 
-
-	//MARK: Internal methods
+	// MARK: Internal methods
 
 	internal func replaceHTMLPlaceholders(_ html: String) -> String {
 		return html
@@ -80,11 +78,9 @@ open class WebContentLoadHtmlLiferayConnector: WebContentLoadBaseLiferayConnecto
 
 }
 
-
 open class Liferay62WebContentLoadHtmlConnector: WebContentLoadHtmlLiferayConnector {
 
-
-	//MARK: WebContentLoadHtmlLiferayConnector
+	// MARK: WebContentLoadHtmlLiferayConnector
 
 	override internal func doGetJournalArticleWithTemplate(
 			_ templateId: Int64,
@@ -130,11 +126,9 @@ open class Liferay62WebContentLoadHtmlConnector: WebContentLoadHtmlLiferayConnec
 
 }
 
-
 open class Liferay70WebContentLoadHtmlConnector: WebContentLoadHtmlLiferayConnector {
 
-
-	//MARK: WebContentLoadHtmlLiferayConnector
+	// MARK: WebContentLoadHtmlLiferayConnector
 
 	override internal func doGetJournalArticleWithTemplate(
 			_ templateId: Int64,
@@ -154,29 +148,28 @@ open class Liferay70WebContentLoadHtmlConnector: WebContentLoadHtmlLiferayConnec
 		catch let error as NSError {
 			lastError = error
 		}
-		
+
 		return nil
 	}
-	
+
 	override internal func doGetJournalArticle(_ session: LRSession) -> String? {
 		let service = LRJournalArticleService_v7(session: session)
-		
+
 		do {
 			let result = try service?.getArticleContent(withGroupId: groupId,
 				articleId: articleId,
 			    languageId: NSLocale.currentLocaleString,
 				themeDisplay: nil)
-			
+
 			lastError = nil
-			
+
 			return result
 		}
 		catch let error as NSError {
 			lastError = error
 		}
-		
+
 		return nil
 	}
-	
-}
 
+}

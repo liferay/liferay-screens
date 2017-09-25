@@ -15,16 +15,14 @@ import Foundation
 import XCTest
 import Nocilla
 
-
 let mockServer = Liferay62MockServer(host: "test-host:9090")
-
 
 protocol StubResponses {
 	func loginOK() -> String
 	func loginFailedAuthentication() -> String
 }
 
-class MockServer  {
+class MockServer {
 
 	fileprivate let host: String
 
@@ -41,7 +39,7 @@ class MockServer  {
 
 }
 
-class Liferay62MockServer : MockServer, StubResponses {
+class Liferay62MockServer: MockServer, StubResponses {
 	func loginOK() -> String {
 		return
 			"[{\"agreedToTermsOfUse\":true,\"comments\":\"From stub!\",\"companyId\":10154," +
@@ -57,7 +55,7 @@ class Liferay62MockServer : MockServer, StubResponses {
 			"\"reminderQueryAnswer\":\"test\"," +
 			"\"reminderQueryQuestion\":\"what-is-your-father's-middle-name\"," +
 			"\"screenName\":\"test\",\"status\":0,\"timeZoneId\":\"UTC\",\"userId\":123456," +
-			"\"uuid\":\"a16f9d4a-9012-4eee-a42b-269c8a8263c7\"}]";
+			"\"uuid\":\"a16f9d4a-9012-4eee-a42b-269c8a8263c7\"}]"
 	}
 
 	func loginFailedAuthentication() -> String {
@@ -66,8 +64,7 @@ class Liferay62MockServer : MockServer, StubResponses {
 
 }
 
-
-@objc class CredentialStoreMock : NSObject, CredentialsStore {
+@objc class CredentialStoreMock: NSObject, CredentialsStore {
 
 	var calledLoadCredential = false
 	var calledRemoveCredential = false
@@ -101,11 +98,14 @@ class Liferay62MockServer : MockServer, StubResponses {
 		return hasData
 	}
 
+	func loadStoredCredentialsAndServer() -> Bool {
+		return hasData
+	}
+
 }
 
-
 // Syntactic sugar
-func withCredentialsStoreMockedSession(_ block: (CredentialStoreMock) -> ()) {
+func withCredentialsStoreMockedSession(_ block: (CredentialStoreMock) -> Void) {
 	let mock = CredentialStoreMock()
 	SessionContext.currentContext?.credentialsStorage = CredentialsStorage(store: mock)
 	block(mock)

@@ -23,7 +23,7 @@ import java.util.Map;
  */
 public class AssetDisplayFactory {
 
-	public BaseScreenlet getScreenlet(Context context, AssetEntry assetEntry, Map<String, Integer> layouts) {
+	public static BaseScreenlet getScreenlet(Context context, AssetEntry assetEntry, Map<String, Integer> layouts) {
 
 		if (assetEntry instanceof FileEntry || assetEntry instanceof ImageEntry) {
 			BaseFileDisplayScreenlet screenlet = getDLFileEntryScreenlet(context, assetEntry.getMimeType());
@@ -65,7 +65,7 @@ public class AssetDisplayFactory {
 		return null;
 	}
 
-	private BaseFileDisplayScreenlet getDLFileEntryScreenlet(Context context, String mimeType) {
+	private static BaseFileDisplayScreenlet getDLFileEntryScreenlet(Context context, String mimeType) {
 		if (is(mimeType, R.array.image_mime_types, context)) {
 			return new ImageDisplayScreenlet(context);
 		} else if (is(mimeType, R.array.video_mime_types, context)) {
@@ -78,7 +78,7 @@ public class AssetDisplayFactory {
 		return null;
 	}
 
-	private boolean is(String mimeType, int typesIds, Context context) {
+	private static boolean is(String mimeType, int typesIds, Context context) {
 		String[] mimeTypes = context.getResources().getStringArray(typesIds);
 		return Arrays.asList(mimeTypes).contains(mimeType);
 	}

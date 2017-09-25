@@ -13,10 +13,10 @@
  */
 import UIKit
 
-
 /*!
  * BaseScreenletView is the base class from which all Screenlet's View classes must inherit.
  */
+@objc(BaseScreenletView)
 open class BaseScreenletView: UIView, UITextFieldDelegate {
 
 	open weak var screenlet: BaseScreenlet?
@@ -41,8 +41,7 @@ open class BaseScreenletView: UIView, UITextFieldDelegate {
 		onDestroy()
 	}
 
-
-	//MARK: UIView
+	// MARK: UIView
 
 	override open func awakeFromNib() {
 		onPreCreate()
@@ -52,7 +51,7 @@ open class BaseScreenletView: UIView, UITextFieldDelegate {
 	}
 
 	override open func becomeFirstResponder() -> Bool {
-		var result:Bool
+		var result: Bool
 
 		if let firstView = viewWithTag(1) {
 			result = firstView.becomeFirstResponder()
@@ -65,16 +64,15 @@ open class BaseScreenletView: UIView, UITextFieldDelegate {
 	}
 
 	override open func didMoveToWindow() {
-		if (window != nil) {
-			onShow();
+		if window != nil {
+			onShow()
 		}
 		else {
-			onHide();
+			onHide()
 		}
 	}
 
-
-	//MARK: UITextFieldDelegate
+	// MARK: UITextFieldDelegate
 
 	open func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		let nextResponder = nextResponderForView(textField)
@@ -103,8 +101,7 @@ open class BaseScreenletView: UIView, UITextFieldDelegate {
 		return true
 	}
 
-
-	//MARK: Internal methods
+	// MARK: Internal methods
 
 	/*
 	 * onCreated is fired after the initialization of the screenlet view. 
@@ -203,21 +200,20 @@ open class BaseScreenletView: UIView, UITextFieldDelegate {
 	open func userAction(name: String?) {
 		userAction(name: name, sender: nil)
 	}
-	
+
 	open func userAction(name: String?, sender: AnyObject?) {
 		let actionName = name ?? BaseScreenlet.DefaultAction
 
 		if onPreAction(name: actionName, sender: sender) {
 			endEditing(true)
-		
+
 			_ = onPerformAction?(actionName, sender)
 		}
 	}
 
+	// MARK: Private methods
 
-	//MARK: Private methods
-
-	fileprivate func nextResponderForView(_ view:UIView) -> UIResponder {
+	fileprivate func nextResponderForView(_ view: UIView) -> UIResponder {
 		if view.tag > 0 {
 			if let nextView = viewWithTag(view.tag + 1) {
 				return nextView
@@ -241,7 +237,7 @@ open class BaseScreenletView: UIView, UITextFieldDelegate {
 		}
 	}
 
-	fileprivate func addDefaultDelegatesForView(_ view:UIView) {
+	fileprivate func addDefaultDelegatesForView(_ view: UIView) {
 		if let textField = view as? UITextField {
 			if onSetDefaultDelegate(self, view:textField) {
 				textField.delegate = self
@@ -256,13 +252,12 @@ open class BaseScreenletView: UIView, UITextFieldDelegate {
 
 		addDefaultDelegatesForView(view)
 
-		for subview:UIView in view.subviews {
+		for subview: UIView in view.subviews {
 			setUpView(subview)
 		}
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func changeEditable(_ editable: Bool) {
 		isUserInteractionEnabled = editable

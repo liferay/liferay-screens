@@ -13,15 +13,14 @@
  */
 import UIKit
 
-
+@objc(DDLListView_default)
 open class DDLListView_default: BaseListTableView, DDLListViewModel {
 
-
-	//MARK: DDLListViewModel
+	// MARK: DDLListViewModel
 
 	open var labelFields: [String] = []
 
-	override open func doFillLoadedCell( row: Int, cell: UITableViewCell, object:AnyObject) {
+	override open func doFillLoadedCell( row: Int, cell: UITableViewCell, object: AnyObject) {
 		if let record = object as? DDLRecord {
 			cell.textLabel?.text = composeLabel(record)
 			cell.accessoryType = .disclosureIndicator
@@ -41,15 +40,13 @@ open class DDLListView_default: BaseListTableView, DDLListViewModel {
 		}
 	}
 
-
-	//MARK: DDLFormTableView
+	// MARK: DDLFormTableView
 
 	override open func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	open func composeLabel(_ record: DDLRecord) -> String {
 		var result: String = ""

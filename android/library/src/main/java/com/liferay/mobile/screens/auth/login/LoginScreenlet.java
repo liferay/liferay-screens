@@ -118,6 +118,10 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 		}
 	}
 
+	public LoginListener getListener() {
+		return listener;
+	}
+
 	public void setListener(LoginListener listener) {
 		this.listener = listener;
 	}
@@ -214,7 +218,7 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 		loginViewModel.setAuthenticationType(authenticationType);
 
-		if (authenticationType.equals(AuthenticationType.BASIC)) {
+		if (authenticationType.equals(AuthenticationType.BASIC) || authenticationType.equals(AuthenticationType.COOKIE)) {
 			int basicAuthMethodId = typedArray.getInt(R.styleable.LoginScreenlet_basicAuthMethod, 0);
 
 			basicAuthMethod = BasicAuthMethod.getValue(basicAuthMethodId);
@@ -230,8 +234,7 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 	protected BaseLoginInteractor createInteractor(String actionName) {
 		if (authenticationType.equals(AuthenticationType.COOKIE)) {
 			return new LoginCookieInteractor();
-		}
-		else if (authenticationType.equals(AuthenticationType.OAUTH)) {
+		} else if (authenticationType.equals(AuthenticationType.OAUTH)) {
 			LoginOAuthInteractor oauthInteractor = new LoginOAuthInteractor();
 
 			OAuthConfig config =
@@ -240,8 +243,7 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 			oauthInteractor.setOAuthConfig(config);
 
 			return oauthInteractor;
-		}
-		else {
+		} else {
 			return new LoginBasicInteractor();
 		}
 	}
@@ -254,7 +256,7 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 		} else if (AuthenticationType.BASIC.equals(authenticationType)) {
 			LoginViewModel viewModel = getViewModel();
 			interactor.start(viewModel.getLogin(), viewModel.getPassword(), viewModel.getBasicAuthMethod());
-		} else if(AuthenticationType.OAUTH.equals(authenticationType)) {
+		} else if (AuthenticationType.OAUTH.equals(authenticationType)) {
 			LoginOAuthInteractor oauthInteractor = (LoginOAuthInteractor) interactor;
 			Intent intent = new Intent(getContext(), OAuthActivity.class);
 			intent.putExtra(OAuthActivity.EXTRA_OAUTH_CONFIG, oauthInteractor.getOAuthConfig());

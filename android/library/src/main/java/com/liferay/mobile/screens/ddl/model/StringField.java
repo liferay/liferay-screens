@@ -47,6 +47,10 @@ public class StringField extends Field<String> {
 
 	public StringField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
 		super(attributes, locale, defaultLocale);
+
+		if (getText() != null) {
+			setReadOnly(true);
+		}
 	}
 
 	protected StringField(Parcel source, ClassLoader loader) {
@@ -82,4 +86,5 @@ public class StringField extends Field<String> {
 	protected String convertToFormattedString(String value) {
 		return value;
 	}
+
 }

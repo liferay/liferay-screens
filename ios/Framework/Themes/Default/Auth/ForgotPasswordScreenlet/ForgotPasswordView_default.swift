@@ -13,29 +13,28 @@
  */
 import UIKit
 
-
+@objc(ForgotPasswordView_default)
 open class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewModel {
 
+	// MARK: Outlets
 
-	//MARK: Outlets
+	@IBOutlet open weak var userNameField: UITextField?
 
-	@IBOutlet open var userNameField: UITextField?
-
-	@IBOutlet open var requestPasswordButton: UIButton?
+	@IBOutlet open weak var requestPasswordButton: UIButton?
 
 	override open var progressMessages: [String:ProgressMessages] {
 		return [
-			BaseScreenlet.DefaultAction : [
-				.working : LocalizedString("default", key: "forgotpassword-loading-message", obj: self),
-				.failure : LocalizedString("default", key: "forgotpassword-loading-error", obj: self),
-				.success : LocalizedString("default", key: "forgotpassword-\(successMessageKey)", obj: self)
+			BaseScreenlet.DefaultAction: [
+				.working: LocalizedString("default", key: "forgotpassword-loading-message", obj: self),
+				.failure: LocalizedString("default", key: "forgotpassword-loading-error", obj: self),
+				.success: LocalizedString("default", key: "forgotpassword-\(successMessageKey)", obj: self)
 			]
 		]
 	}
 
 	fileprivate var successMessageKey = "password-sent"
 
-	//MARK: ForgotPasswordViewModel
+	// MARK: ForgotPasswordViewModel
 
 	open var userName: String? {
 		get {
@@ -46,8 +45,7 @@ open class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMode
 		}
 	}
 
-
-	//MARK: BasicAuthBasedType
+	// MARK: BasicAuthBasedType
 
 	open var basicAuthMethod: String? = BasicAuthMethod.email.rawValue {
 		didSet {
@@ -64,8 +62,7 @@ open class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMode
 		set {}
 	}
 
-
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
 	override open func onCreated() {
 		super.onCreated()

@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 open class CommentAddInteractor: ServerWriteConnectorInteractor {
 
 	let className: String
@@ -26,8 +25,7 @@ open class CommentAddInteractor: ServerWriteConnectorInteractor {
 
 	open var resultComment: Comment?
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(screenlet: CommentAddScreenlet, body: String) {
 		self.className = screenlet.className
@@ -63,8 +61,7 @@ open class CommentAddInteractor: ServerWriteConnectorInteractor {
 		self.cacheKeyUsed = cacheKeyUsed
 	}
 
-
-	//MARK: ServerConnectorInteractor
+	// MARK: ServerConnectorInteractor
 
 	override open func createConnector() -> CommentAddLiferayConnector? {
 		return LiferayServerContext.connectorFactory.createCommentAddConnector(
@@ -80,7 +77,7 @@ open class CommentAddInteractor: ServerWriteConnectorInteractor {
 		}
 	}
 
-	//MARK: Cache methods
+	// MARK: Cache methods
 
 	override open func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
@@ -111,7 +108,7 @@ open class CommentAddInteractor: ServerWriteConnectorInteractor {
 			[
 				"className": addCon.className as AnyObject,
 				"classPK": NSNumber(value: addCon.classPK as Int64),
-				"body": addCon.body as AnyObject,
+				"body": addCon.body as AnyObject
 			],
 			nil)
 	}
@@ -125,7 +122,7 @@ open class CommentAddInteractor: ServerWriteConnectorInteractor {
 				attributes: [
 					"className": className as AnyObject,
 					"classPK": NSNumber(value: classPK as Int64),
-					"body": body as AnyObject,
+					"body": body as AnyObject
 				],
 				onCompletion: nil)
 		}

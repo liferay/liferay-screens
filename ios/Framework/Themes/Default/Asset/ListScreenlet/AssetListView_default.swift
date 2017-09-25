@@ -13,16 +13,16 @@
  */
 import UIKit
 
-
+@objc(AssetListView_default)
 open class AssetListView_default: AssetListTableView {
 
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
 	override open func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
 	}
 
-	override open func doFillLoadedCell(row: Int, cell: UITableViewCell, object:AnyObject) {
+	override open func doFillLoadedCell(row: Int, cell: UITableViewCell, object: AnyObject) {
 		if let entry = object as? Asset {
 			cell.textLabel?.text = entry.title
 			cell.accessoryType = .disclosureIndicator

@@ -23,11 +23,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 import UIKit
 import XCTest
 
-
 private var currentIndentationLevel = 1
 
 private var lastDoneEvent: (name: String, result: AnyObject?)?
-
 
 public enum Action {
 	case testNow
@@ -154,7 +152,7 @@ public func done(_ notificationName: String, withResult result: AnyObject?) {
 	NotificationCenter.default.post(name: Notification.Name(rawValue: notificationName), object: result)
 }
 
-public func scenario(_ scenario: String, code:(Void)->Void) {
+public func scenario(_ scenario: String, code: (Void) -> Void) {
 	doPrint("\(currentIndentation())\(currentIcons().scenario) \(scenario)")
 
 	currentIndentationLevel += 1
@@ -198,7 +196,7 @@ private func doPrint(_ str: String) {
 	print(str)
 }
 
-public func assertThat(_ text: String, code: @escaping () -> ()) {
+public func assertThat(_ text: String, code: @escaping () -> Void) {
 	do {
 		try ObjCTryCatch.catch {
 			code()
@@ -223,7 +221,7 @@ private func currentIndentation() -> String {
 	return indentation(currentIndentationLevel)
 }
 
-private func indentation(_ level:Int) -> String {
+private func indentation(_ level: Int) -> String {
 	return String(repeating: "\t", count: level)
 }
 
@@ -243,7 +241,6 @@ public typealias Icons =
 	secondLevel: Character,
 	assertPassed: Character,
 	assertFailed: Character)
-
 
 func asciiIcons() -> Icons {
 	return (

@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 	s.name         = 'LiferayScreens'
 	s.module_name  = 'LiferayScreens'
-	s.version      = '2.1.2'
+	s.version      = '3.0.0-beta-1'
 	s.summary      = 'A family of visual components called screenlets that are connected to the Liferay Platform used as a backend'
 	s.homepage     = 'https://www.liferay.com/liferay-screens'
 	s.license = { 
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 		'Javier Gamarra' => 'javier.gamarra@liferay.com'
 	}
 	
-	s.platform = :ios, '8.0'
+	s.platform = :ios, '9.0'
 	s.requires_arc = true
 
 	s.ios.frameworks = [
@@ -41,7 +41,7 @@ Pod::Spec.new do |s|
 	]
 
 	s.resource_bundle = {
-		'LiferayScreens-core' => 'ios/Framework/Core/**/*.{plist,lproj}',
+		'LiferayScreens-core' => 'ios/Framework/Core/**/*.{plist,lproj,js,html,css}',
 		'LiferayScreens-default' => 'ios/Framework/Themes/Default/**/*.{xib,png,plist,lproj}'
 	}
 	
@@ -62,7 +62,7 @@ Pod::Spec.new do |s|
 	s.dependency 'KeychainAccess', '~> 3.0'
 
 	# UserPortrait
-	s.dependency 'CryptoSwift', '~> 0.6.0'
+	s.dependency 'CryptoSwift', '~> 0.7.0'
 
 	# DDLForm
 	s.dependency 'DTPickerPresenter', '~> 0.2.0'
@@ -71,5 +71,7 @@ Pod::Spec.new do |s|
 
 	# RatingBar
 	s.dependency 'Cosmos', '~> 8.0'
+
+	s.dependency 'Cordova', '~> 4.0'
 
 end

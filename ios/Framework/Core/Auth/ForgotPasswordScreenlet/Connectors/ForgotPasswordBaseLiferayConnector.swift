@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 open class ForgotPasswordBaseLiferayConnector: ServerConnector {
 
 	open var companyId: Int64 = 0
@@ -25,8 +24,7 @@ open class ForgotPasswordBaseLiferayConnector: ServerConnector {
 	fileprivate let anonymousUsername: String
 	fileprivate let anonymousPassword: String
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(viewModel: ForgotPasswordViewModel, anonymousUsername: String, anonymousPassword: String) {
 		self.viewModel = viewModel
@@ -35,7 +33,6 @@ open class ForgotPasswordBaseLiferayConnector: ServerConnector {
 
 		super.init()
 	}
-
 
 	//MARK ServerConnector
 
@@ -66,8 +63,8 @@ open class ForgotPasswordBaseLiferayConnector: ServerConnector {
 		return SessionContext.createEphemeralBasicSession(anonymousUsername, anonymousPassword)
 	}
 
-	//MARK: Template Methods
-	
+	// MARK: Template Methods
+
 	open func sendForgotPasswordRequest(_ session: LRSession) throws -> Bool {
 		fatalError("sendForgotPasswordRequest must be overriden")
 	}

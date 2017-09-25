@@ -19,19 +19,8 @@ android {
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 		}
 	}
-
-	packagingOptions {
-		exclude 'META-INF/LICENSE'
-		exclude 'META-INF/NOTICE'
-	}
-
-	productFlavors {
-		vanilla {
-			minSdkVersion rootProject.ext.minSdkVersion
-		}
-		travisci {
-			minSdkVersion 21
-		}
+	lintOptions {
+		abortOnError false
 	}
 }
 
@@ -44,15 +33,15 @@ dependencies {
 
 	compile libraries.design
 
-	debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
-	releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
-	testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+	debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+	releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+	testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
 
 	androidTestCompile libraries.design
 
-	androidTestCompile 'com.android.support.test:runner:0.5'
-	androidTestCompile 'com.android.support.test:rules:0.5'
-	androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
-	androidTestCompile 'com.android.support.test.espresso:espresso-contrib:2.2.2'
-	androidTestCompile 'com.android.support.test.espresso:espresso-idling-resource:2.2.2'
+	androidTestImplementation 'com.android.support.test:runner:1.0.0'
+	androidTestImplementation 'com.android.support.test:rules:1.0.0'
+	androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.0'
+	androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.0.0'
+	androidTestImplementation 'com.android.support.test.espresso:espresso-idling-resource:3.0.0'
 }

@@ -14,13 +14,23 @@
 
 package com.liferay.mobile.screens.ddl.form.interactor.formload;
 
+import android.support.annotation.NonNull;
+import com.liferay.mobile.android.auth.basic.BasicAuthentication;
+import com.liferay.mobile.android.http.Method;
+import com.liferay.mobile.android.http.Request;
+import com.liferay.mobile.android.http.client.OkHttpClientImpl;
+import com.liferay.mobile.android.v7.ddmdataproviderinstance.DdmdataproviderinstanceService;
 import com.liferay.mobile.screens.base.interactor.BaseCacheReadInteractor;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.form.connector.DDMStructureConnector;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormEvent;
+import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
+import com.liferay.mobile.screens.ddl.model.StringWithOptionsField;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.util.ServiceProvider;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -39,27 +49,104 @@ public class DDLFormLoadInteractor extends BaseCacheReadInteractor<DDLFormListen
 		DDMStructureConnector ddmStructureConnector =
 			ServiceProvider.getInstance().getDDMStructureConnector(getSession());
 		JSONObject jsonObject = ddmStructureConnector.getStructure(record.getStructureId());
-		return new DDLFormEvent(record, jsonObject);
+
+		DDLFormEvent event = new DDLFormEvent(record, jsonObject);
+
+		Record formRecord = event.getRecord();
+
+		JSONObject ddmStructure = jsonObject.getJSONObject("ddmStructure");
+		formRecord.parseDDMStructure(ddmStructure);
+		if (jsonObject.has("ddmFormLayout")) {
+			formRecord.parsePages(jsonObject.getJSONObject("ddmFormLayout"));
+		}
+
+		if (formRecord.getCreatorUserId() == 0) {
+			long userId = ddmStructure.getLong("userId");
+			formRecord.setCreatorUserId(userId);
+		}
+
+		parseDateProviders(formRecord);
+
+		return event;
+	}
+
+	private void parseDateProviders(Record record) {
+		try {
+			for (Field field : record.getFields()) {
+				if (field.getDdmDataProviderInstanceId() != 0) {
+
+					StringWithOptionsField optionsField = (StringWithOptionsField) field;
+
+					DdmdataproviderinstanceService ddmdataproviderinstanceService =
+						new DdmdataproviderinstanceService(getSession());
+
+					JSONObject jsonDataProvider =
+						ddmdataproviderinstanceService.getDataProviderInstance(field.getDdmDataProviderInstanceId());
+
+					String definition = jsonDataProvider.getString("definition");
+					JSONObject jsonDefinition = new JSONObject(definition);
+
+					StringWithOptionsField.DataProvider dataProvider = parseDataProvider(jsonDefinition);
+					optionsField.setDataProvider(dataProvider);
+
+					String body =
+						requestDataFromDataProvider(dataProvider.url, dataProvider.username, dataProvider.password);
+
+					JSONArray values = new JSONArray(body);
+					for (int i = 0; i < values.length(); i++) {
+						StringWithOptionsField.Option option = parseOption(values.getJSONObject(i), dataProvider);
+						optionsField.getAvailableOptions().add(option);
+					}
+				}
+			}
+		} catch (Exception e) {
+			LiferayLogger.e("Error retrieving a data provider", e);
+		}
+	}
+
+	@NonNull
+	private StringWithOptionsField.DataProvider parseDataProvider(JSONObject jsonDefinition) throws JSONException {
+		JSONArray fieldValues = jsonDefinition.getJSONArray("fieldValues");
+		String url = findAttributeValue(fieldValues, "url");
+		String username = findAttributeValue(fieldValues, "username");
+		String password = findAttributeValue(fieldValues, "password");
+		String key = findAttributeValue(fieldValues, "key");
+		String value = findAttributeValue(fieldValues, "value");
+		return new StringWithOptionsField.DataProvider(url, username, password, key, value);
+	}
+
+	@NonNull
+	private StringWithOptionsField.Option parseOption(JSONObject jsonObject,
+		StringWithOptionsField.DataProvider dataProvider) throws JSONException {
+
+		String optionName = jsonObject.getString(dataProvider.name);
+		String optionValue = jsonObject.getString(dataProvider.value);
+
+		return new StringWithOptionsField.Option(optionName, optionName, optionValue, jsonObject);
+	}
+
+	private String requestDataFromDataProvider(String url, String username, String password) throws Exception {
+		BasicAuthentication authentication = new BasicAuthentication(username, password);
+		Request request = new Request(authentication, Method.POST, getSession().getHeaders(), url, "",
+			getSession().getConnectionTimeout(), null);
+
+		return new OkHttpClientImpl().send(request).getBody();
+	}
+
+	private String findAttributeValue(JSONArray array, String name) throws JSONException {
+		for (int i = 0; i < array.length(); i++) {
+			JSONObject jsonObject = array.getJSONObject(i);
+			String jsonObjectString = jsonObject.getString("name");
+			if (name.equals(jsonObjectString)) {
+				return jsonObject.getString("value");
+			}
+		}
+		return "";
 	}
 
 	@Override
 	public void onSuccess(DDLFormEvent event) {
-		Record formRecord = event.getRecord();
-
-		try {
-			formRecord.parseDDMStructure(event.getJSONObject());
-
-			if (formRecord.getCreatorUserId() == 0) {
-				long userId = event.getJSONObject().getLong("userId");
-				formRecord.setCreatorUserId(userId);
-			}
-		} catch (JSONException e) {
-			event.setException(e);
-			onFailure(event);
-			return;
-		}
-
-		getListener().onDDLFormLoaded(formRecord);
+		getListener().onDDLFormLoaded(event.getRecord());
 	}
 
 	@Override

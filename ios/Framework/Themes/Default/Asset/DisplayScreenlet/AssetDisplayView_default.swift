@@ -13,7 +13,7 @@
  */
 import UIKit
 
-
+@objc(AssetDisplayView_default)
 open class AssetDisplayView_default: BaseScreenletView, AssetDisplayViewModel {
 
 	open override var progressMessages: [String : ProgressMessages] {
@@ -22,8 +22,7 @@ open class AssetDisplayView_default: BaseScreenletView, AssetDisplayViewModel {
 		]
 	}
 
-
-	//MARK: AssetDisplayViewModel
+	// MARK: AssetDisplayViewModel
 
 	open var asset: Asset?
 
@@ -37,9 +36,9 @@ open class AssetDisplayView_default: BaseScreenletView, AssetDisplayViewModel {
 			if let newScreenlet = newValue {
 				_innerScreenlet = newScreenlet
 				self.addSubview(newScreenlet)
-				
+
 				newScreenlet.translatesAutoresizingMaskIntoConstraints = false
-				
+
 				//Pin all edges from inner Screenlets to view edges
 				let top = NSLayoutConstraint(item: newScreenlet, attribute: .top, relatedBy: .equal,
 				                             toItem: self, attribute: .top, multiplier: 1, constant: 0)
@@ -49,9 +48,9 @@ open class AssetDisplayView_default: BaseScreenletView, AssetDisplayViewModel {
 				                                 toItem: self, attribute: .leading, multiplier: 1, constant: 0)
 				let trailing = NSLayoutConstraint(item: newScreenlet, attribute: .trailing, relatedBy: .equal,
 				                                  toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
-				
+
 				NSLayoutConstraint.activate([top, bottom, leading, trailing])
-				
+
 				newScreenlet.layoutIfNeeded()
 			}
 		}

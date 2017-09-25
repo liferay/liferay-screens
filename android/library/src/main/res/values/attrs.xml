@@ -229,7 +229,6 @@
 		<attr name="className"/>
 		<attr name="classPK"/>
 		<attr name="entryId"/>
-		<attr format="integer" name="ratingsGroupCount"/>
 	</declare-styleable>
 
 	<declare-styleable name="AssetDisplayScreenlet">
@@ -288,6 +287,12 @@
 		<attr name="entryId"/>
 		<attr name="className"/>
 		<attr name="classPK"/>
+	</declare-styleable>
+
+	<declare-styleable name="WebScreenlet">
+		<attr name="layoutId"/>
+		<attr name="autoLoad"/>
+		<attr format="string" name="url"/>
 	</declare-styleable>
 
 </resources>

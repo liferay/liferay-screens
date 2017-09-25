@@ -13,8 +13,8 @@
  */
 import UIKit
 
-
-@objc public protocol CommentDisplayViewModel {
+@objc(CommentDisplayViewModel)
+public protocol CommentDisplayViewModel {
 
 	/// Comment entry to be displayed.
 	var comment: Comment? { get set }

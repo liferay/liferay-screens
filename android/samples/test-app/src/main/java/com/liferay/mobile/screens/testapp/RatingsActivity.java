@@ -47,7 +47,7 @@ public class RatingsActivity extends ThemeActivity
 			button.setOnClickListener(this);
 		}
 
-		displayScreenlet(R.layout.rating_thumb_default, R.string.liferay_rating_thumb_asset_id, 2);
+		displayScreenlet(R.layout.rating_thumb_default, R.string.liferay_rating_thumb_asset_id);
 		tintButtons(R.id.button_rating_thumb);
 	}
 
@@ -55,21 +55,20 @@ public class RatingsActivity extends ThemeActivity
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.button_rating_like:
-				displayScreenlet(R.layout.rating_like_default, R.string.liferay_rating_like_asset_id, 1);
+				displayScreenlet(R.layout.rating_like_default, R.string.liferay_rating_like_asset_id);
 				break;
 			case R.id.button_rating_star:
-				displayScreenlet(R.layout.rating_star_bar_default, R.string.liferay_rating_star_asset_id, 5);
+				displayScreenlet(R.layout.rating_star_bar_default, R.string.liferay_rating_star_asset_id);
 				break;
 			case R.id.button_rating_reactions:
-				displayScreenlet(R.layout.rating_reactions_default, R.string.liferay_rating_reactions_emojis_asset_id,
-					5);
+				displayScreenlet(R.layout.rating_reactions_default, R.string.liferay_rating_reactions_emojis_asset_id);
 				break;
 			case R.id.button_rating_emojis:
-				displayScreenlet(R.layout.rating_emojis_default, R.string.liferay_rating_reactions_emojis_asset_id, 4);
+				displayScreenlet(R.layout.rating_emojis_default, R.string.liferay_rating_reactions_emojis_asset_id);
 				break;
 			case R.id.button_rating_thumb:
 			default:
-				displayScreenlet(R.layout.rating_thumb_default, R.string.liferay_rating_thumb_asset_id, 2);
+				displayScreenlet(R.layout.rating_thumb_default, R.string.liferay_rating_thumb_asset_id);
 				break;
 		}
 
@@ -91,7 +90,7 @@ public class RatingsActivity extends ThemeActivity
 		info(getString(R.string.screenlet_info));
 	}
 
-	private void displayScreenlet(int layoutId, int entryId, int ratingsGroupCount) {
+	private void displayScreenlet(int layoutId, int entryId) {
 		ratingScreenlet = new RatingScreenlet(this);
 		ratingScreenlet.setEntryId(Long.parseLong(getResources().getString(entryId)));
 		ratingScreenlet.setAutoLoad(true);

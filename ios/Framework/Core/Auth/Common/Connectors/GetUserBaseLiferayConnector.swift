@@ -20,12 +20,11 @@ open class GetUserBaseLiferayConnector: ServerConnector {
 	open var userName: String?
 	open var password: String?
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
-		
+
 		if !SessionContext.isLoggedIn {
 			if userName == nil {
 				return ValidationError("login-screenlet", "undefined-username")
@@ -74,8 +73,7 @@ open class GetUserBaseLiferayConnector: ServerConnector {
 		}
 	}
 
-
-	//MARK: Internal methods
+	// MARK: Internal methods
 
 	@discardableResult
 	internal func loginWithResult() -> Bool {
@@ -118,8 +116,7 @@ open class GetUserBaseLiferayConnector: ServerConnector {
 		return userAttributes
 	}
 
-
-	//MARK: Template methods
+	// MARK: Template methods
 
 	open func sendGetUserRequest(_ session: LRSession)
 			throws -> NSDictionary {

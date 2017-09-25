@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="128">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="65">
+            <objects>
+                <viewController id="66" sceneMemberID="viewController" customClass="ViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="63"/>
+                        <viewControllerLayoutGuide type="bottom" id="64"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="67">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="70" translatesAutoresizingMaskIntoConstraints="NO" customClass="LoginScreenlet">
+                                <rect key="frame" x="69" y="107" width="277" height="300"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <subviews/>
+                                <constraints>
+                                    <constraint id="359" firstItem="70" firstAttribute="width" constant="277"/>
+                                    <constraint id="360" firstItem="70" firstAttribute="height" constant="300"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="373" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="137" y="482" width="140" height="30"/>
+                                <state key="normal" title="Create an account">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <constraints>
+                                    <constraint id="376" firstItem="373" firstAttribute="width" constant="140"/>
+                                    <constraint id="377" firstItem="373" firstAttribute="height" constant="30"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="SignUpButton_TouchUpInside:" destination="66" id="1752" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="634" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="103" y="429" width="209" height="30"/>
+                                <state key="normal" title="Did you forget your password?">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <constraints>
+                                    <constraint id="2232" firstItem="634" firstAttribute="width" constant="209"/>
+                                    <constraint id="2233" firstItem="634" firstAttribute="height" constant="30"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="ForgotPasswordButton_TouchUpInside:" destination="66" id="1751" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint id="361" firstItem="70" firstAttribute="centerX" secondItem="67" secondAttribute="centerX"/>
+                            <constraint id="362" firstItem="70" firstAttribute="top" secondItem="63" secondAttribute="bottom" constant="43"/>
+                            <constraint id="375" firstItem="373" firstAttribute="centerX" secondItem="67" secondAttribute="centerX"/>
+                            <constraint id="378" firstItem="64" firstAttribute="top" secondItem="373" secondAttribute="bottom" constant="224"/>
+                            <constraint id="2231" firstItem="634" firstAttribute="centerX" secondItem="67" secondAttribute="centerX"/>
+                            <constraint id="2235" firstItem="373" firstAttribute="top" secondItem="634" secondAttribute="bottom" constant="23"/>
+                            <constraint id="2252" firstItem="634" firstAttribute="top" secondItem="70" secondAttribute="bottom" constant="22"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loginScreenlet" destination="70" id="name-outlet-70"/>
+                        <outlet property="forgotPasswordButton" destination="634" id="name-outlet-634"/>
+                        <outlet property="signUpButton" destination="373" id="name-outlet-373"/>
+                    </connections>
+                    <navigationItem title="Home" id="353" key="navigationItem"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="68" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="357" y="187"/>
+        </scene>
+        <scene sceneID="127">
+            <objects>
+                <navigationController id="128" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="130">
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue id="354" destination="66" kind="relationship" relationship="rootViewController"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="131" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-222" y="186"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="img/Liferay-Screens.png" width="124" height="144"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedScreenMetrics key="destination" type="retina55"/>
+    </simulatedMetricsContainer>
+</document>

@@ -13,11 +13,9 @@
  */
 import UIKit
 
-
 open class RatingView_default_like: BaseScreenletView, RatingViewModel {
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet weak var likeButton: UIButton? {
 		didSet {
@@ -27,32 +25,32 @@ open class RatingView_default_like: BaseScreenletView, RatingViewModel {
 			self.likeButton?.setBackgroundImage(image, for: .normal)
 		}
 	}
-	
+
 	@IBOutlet weak var countLabel: UILabel?
-	
+
 	open var defaultRatingsGroupCount: Int32 = 1
-	
-	//MARK: BaseScreenletView
-	
+
+	// MARK: BaseScreenletView
+
 	override open func createProgressPresenter() -> ProgressPresenter {
 		return NetworkActivityIndicatorPresenter()
 	}
-	
+
 	override open var progressMessages: [String:ProgressMessages] {
 		return [
-			RatingScreenlet.LoadRatingsAction : [.working : ""],
-			RatingScreenlet.UpdateRatingAction : [.working : ""],
-			RatingScreenlet.DeleteRatingAction : [.working : ""],
+			RatingScreenlet.LoadRatingsAction: [.working: ""],
+			RatingScreenlet.UpdateRatingAction: [.working: ""],
+			RatingScreenlet.DeleteRatingAction: [.working: ""]
 		]
 	}
 
-
-	//MARK: RatingViewModel
+	// MARK: RatingViewModel
 
 	open var ratingEntry: RatingEntry? {
 		didSet {
 			if let rating = ratingEntry {
-				self.countLabel?.text = NSString.localizedStringWithFormat(LocalizedString("default", key: "rating-total", obj: self) as NSString, rating.totalCount) as String
+				self.countLabel?.text = NSString.localizedStringWithFormat(LocalizedString("default",
+						key: "rating-total", obj: self) as NSString, rating.totalCount) as String
 
 				if rating.userScore == -1 {
 					self.likeButton?.tintColor = UIColor.gray
@@ -66,14 +64,13 @@ open class RatingView_default_like: BaseScreenletView, RatingViewModel {
 		}
 	}
 
+	// MARK: Actions
 
-	//MARK: Actions
-	
 	@IBAction func likeButtonClicked(_ sender: AnyObject) {
 		let sender = self.ratingEntry?.userScore == -1 ? 1 : 0
 		self.userAction(
 			name: self.likeButton?.restorationIdentifier,
 			sender: sender as AnyObject?)
 	}
-	
+
 }

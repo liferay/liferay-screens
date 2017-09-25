@@ -18,7 +18,7 @@ extension SyncManager {
 	func commentsSynchronizer(
 			_ key: String,
 			attributes: [String:AnyObject])
-			-> (@escaping Signal) -> () {
+			-> (@escaping Signal) -> Void {
 
 		if key.hasPrefix("delete-") {
 			return deleteCommentSynchronizer(key, attributes: attributes)
@@ -30,18 +30,17 @@ extension SyncManager {
 			return addCommentSynchronizer(key, attributes: attributes)
 		}
 
-
 		return { _ in }
 	}
 
 	func deleteCommentSynchronizer(
 			_ key: String,
 			attributes: [String:AnyObject])
-			-> (@escaping Signal) -> () {
+			-> (@escaping Signal) -> Void {
 		return { signal in
 			let commentId = (attributes["commentId"] as! NSNumber).int64Value
 
-			let interactor = CommentDeleteInteractor(commentId: commentId);
+			let interactor = CommentDeleteInteractor(commentId: commentId)
 
 			self.prepareInteractorForSync(interactor,
 					key: key,
@@ -64,7 +63,7 @@ extension SyncManager {
 	func updateCommentSynchronizer(
 			_ key: String,
 			attributes: [String:AnyObject])
-			-> (@escaping Signal) -> () {
+			-> (@escaping Signal) -> Void {
 		return { signal in
 			let commentId = (attributes["commentId"] as! NSNumber).int64Value
 			let body = (attributes["body"] as! String)
@@ -94,7 +93,7 @@ extension SyncManager {
 	func addCommentSynchronizer(
 			_ key: String,
 			attributes: [String:AnyObject])
-			-> (@escaping Signal) -> () {
+			-> (@escaping Signal) -> Void {
 		return { signal in
 			let className = (attributes["className"] as! String)
 			let classPK = (attributes["classPK"] as! NSNumber).int64Value

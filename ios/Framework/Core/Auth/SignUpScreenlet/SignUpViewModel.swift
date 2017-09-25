@@ -13,8 +13,8 @@
  */
 import UIKit
 
-
-@objc public protocol SignUpViewModel {
+@objc(SignUpViewModel)
+public protocol SignUpViewModel {
 
 	/// User email address.
 	var emailAddress: String? { get set }

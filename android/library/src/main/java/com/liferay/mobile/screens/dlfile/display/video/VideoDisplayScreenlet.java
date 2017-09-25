@@ -38,4 +38,8 @@ public class VideoDisplayScreenlet extends BaseFileDisplayScreenlet {
 	public VideoDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
+
+	public VideoDisplayScreenletListener getListener() {
+		return ((VideoDisplayScreenletListener) listener);
+	}
 }

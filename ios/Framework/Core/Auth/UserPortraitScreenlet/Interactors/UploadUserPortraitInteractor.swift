@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 class UploadUserPortraitInteractor: ServerWriteConnectorInteractor {
 
 	var uploadResult: [String:AnyObject]?
@@ -22,8 +21,7 @@ class UploadUserPortraitInteractor: ServerWriteConnectorInteractor {
 
 	let image: UIImage
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	init(screenlet: BaseScreenlet?, userId: Int64, image: UIImage) {
 		self.userId = userId
@@ -32,8 +30,7 @@ class UploadUserPortraitInteractor: ServerWriteConnectorInteractor {
 		super.init(screenlet: screenlet)
 	}
 
-
-	//MARK: ServerConnectorInteractor
+	// MARK: ServerConnectorInteractor
 
 	override func createConnector() -> UploadUserPortraitLiferayConnector {
 		return LiferayServerContext.connectorFactory.createUploadUserPortraitConnector(
@@ -45,8 +42,7 @@ class UploadUserPortraitInteractor: ServerWriteConnectorInteractor {
 		self.uploadResult = (c as! UploadUserPortraitLiferayConnector).uploadResult
 	}
 
-
-	//MARK: Cache methods
+	// MARK: Cache methods
 
 	override func writeToCache(_ c: ServerConnector) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
@@ -65,8 +61,7 @@ class UploadUserPortraitInteractor: ServerWriteConnectorInteractor {
 			nil)
 	}
 
-
-	//MARK: Interactor
+	// MARK: Interactor
 
 	override func callOnSuccess() {
 		if cacheStrategy == .cacheFirst {

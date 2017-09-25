@@ -40,6 +40,7 @@ class SignInViewController: CardViewController, LoginScreenletDelegate, Keyboard
 
 	override func viewDidLoad() {
 		self.loginScreenlet?.delegate = self
+        self.loginScreenlet?.loginMode = "cookie"
 	}
 
 
@@ -47,7 +48,6 @@ class SignInViewController: CardViewController, LoginScreenletDelegate, Keyboard
 
 	func screenlet(_ screenlet: BaseScreenlet,
 			onLoginResponseUserAttributes attributes: [String:AnyObject]) {
-		SessionContext.currentContext?.storeCredentials()
 		onDone?()
 	}
 

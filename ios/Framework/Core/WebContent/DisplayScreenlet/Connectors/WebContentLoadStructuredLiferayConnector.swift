@@ -13,15 +13,13 @@
  */
 import UIKit
 
-
 open class WebContentLoadStructuredLiferayConnector: WebContentLoadBaseLiferayConnector {
 
 	open let structureId: Int64
 
 	open var resultRecord: DDLRecord?
 
-
-	//MARK: Initializers
+	// MARK: Initializers
 
 	public init(groupId: Int64, articleId: String, structureId: Int64) {
 		self.structureId = structureId
@@ -29,8 +27,7 @@ open class WebContentLoadStructuredLiferayConnector: WebContentLoadBaseLiferayCo
 		super.init(groupId: groupId, articleId: articleId)
 	}
 
-
-	//MARK: ServerConnector
+	// MARK: ServerConnector
 
 	override open func doRun(session: LRSession) {
 		if let resultRecord = doGetJournalArticleStructure(session) {
@@ -46,8 +43,7 @@ open class WebContentLoadStructuredLiferayConnector: WebContentLoadBaseLiferayCo
 		}
 	}
 
-
-	//MARK: Internal methods
+	// MARK: Internal methods
 
 	internal func doGetJournalArticleStructure(_ session: LRSession) -> DDLRecord? {
 		fatalError("doGetJournalArticle method must be overwritten")
@@ -55,11 +51,9 @@ open class WebContentLoadStructuredLiferayConnector: WebContentLoadBaseLiferayCo
 
 }
 
-
 open class Liferay62WebContentLoadStructuredConnector: WebContentLoadStructuredLiferayConnector {
 
-
-	//MARK: WebContentLoadStructuredLiferayConnector
+	// MARK: WebContentLoadStructuredLiferayConnector
 
 	override internal func doGetJournalArticleStructure(_ session: LRSession) -> DDLRecord? {
 		let batchSession = LRBatchSession(session: session)
@@ -117,11 +111,9 @@ open class Liferay62WebContentLoadStructuredConnector: WebContentLoadStructuredL
 
 }
 
-
 open class Liferay70WebContentLoadStructuredConnector: WebContentLoadStructuredLiferayConnector {
 
-
-	//MARK: WebContentLoadStructuredLiferayConnector
+	// MARK: WebContentLoadStructuredLiferayConnector
 
 	override internal func doGetJournalArticleStructure(_ session: LRSession) -> DDLRecord? {
 		let batchSession = LRBatchSession(session: session)

@@ -13,8 +13,7 @@
  */
 import Foundation
 
-
-open class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
+open class ImageGalleryUploadInteractor: ServerWriteConnectorInteractor {
 
 	public typealias OnProgress = ImageGalleryUploadConnector.OnProgress
 
@@ -70,8 +69,7 @@ open class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 		self.cacheKeyUsed = cacheKeyUsed
 	}
 
-
-	//MARK: ServerConnectorInteractor
+	// MARK: ServerConnectorInteractor
 
 	override open func createConnector() -> ServerConnector? {
 
@@ -96,7 +94,7 @@ open class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 		}
 	}
 
-	//MARK: Cache methods
+	// MARK: Cache methods
 
 	override open func writeToCache(_ c: ServerConnector) {
 		let uploadFailed = (c.lastError != nil)
@@ -110,8 +108,7 @@ open class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 		}
 	}
 
-
-	//MARK: Interactor
+	// MARK: Interactor
 
 	override open func callOnSuccess() {
 		if cacheStrategy == .cacheFirst {
@@ -122,8 +119,7 @@ open class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 		super.callOnSuccess()
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func createModelFromUploadData() {
 		// Construct an object with the uploadEntry data
@@ -146,7 +142,7 @@ open class ImageGalleryUploadInteractor : ServerWriteConnectorInteractor {
 					collection: ScreenletName(ImageGalleryScreenlet.self),
 					keys: [cacheKeyList, cacheKeyCount], result: {
 
-				var newPage = [[String:AnyObject]]()
+				var newPage = [[String: AnyObject]]()
 
 				if let oldPage = $0.first as? [[String:AnyObject]] {
 					newPage.append(contentsOf: oldPage)

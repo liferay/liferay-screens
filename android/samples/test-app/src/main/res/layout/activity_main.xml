@@ -58,6 +58,12 @@
 				/>
 
 			<Button
+				android:id="@+id/web_content_display_screenlet_customcss"
+				android:text="@string/webview_customcss"
+				style="@style/test_app_button"
+				/>
+
+			<Button
 				android:id="@+id/journal_article_with_template"
 				android:text="@string/journal_article_with_template"
 				style="@style/test_app_button"
@@ -79,7 +85,7 @@
 				android:id="@+id/asset_display"
 				android:text="@string/asset_display"
 				style="@style/test_app_button"
-			/>
+				/>
 
 			<Button
 				android:id="@+id/user_display"
@@ -144,6 +150,12 @@
 			<Button
 				android:id="@+id/list_bookmarks"
 				android:text="@string/list_bookmarks"
+				style="@style/test_app_button"
+				/>
+
+			<Button
+				android:id="@+id/portlet_display"
+				android:text="@string/portlet_display"
 				style="@style/test_app_button"
 				/>
 

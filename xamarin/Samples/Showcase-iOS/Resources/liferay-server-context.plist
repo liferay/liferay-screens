@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>server</key>
+	<string>http://screens.liferay.org.es/</string>
+	<key>version</key>
+	<integer>70</integer>
+	<key>companyId</key>
+	<real>20116</real>
+	<key>groupId</key>
+	<real>20143</real>
+	<key>anonymousUsername</key>
+	<string>anonymous1@liferay.com</string>
+	<key>anonymousPassword</key>
+	<string>anonymous1</string>
+	<key>ddlRecordId</key>
+	<string>54385</string>
+	<key>ddlRecordSetId</key>
+	<string>54375</string>
+	<key>ddlStructureId</key>
+	<string>54371</string>
+</dict>
+</plist>

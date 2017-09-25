@@ -13,8 +13,8 @@
  */
 import UIKit
 
-
-@objc public protocol FileDisplayViewModel {
+@objc(FileDisplayViewModel)
+public protocol FileDisplayViewModel {
 
 	/// File URL to be displayed.
 	var url: URL? { get set }
