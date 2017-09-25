@@ -51,12 +51,19 @@ open class WebScreenlet: BaseScreenlet {
 	let internalNamespace = "screensinternal"
 
 	/// Whether the content should be retrieved from the portal as soon as the Screenlet appears.
-	/// The default value is true.
-	@IBInspectable open var autoLoad: Bool = true
+	/// The default value is false.
+	@IBInspectable open var autoLoad: Bool = false
 
 	@IBInspectable open var loggingEnabled: Bool = true
 
 	@IBInspectable open var isScrollEnabled: Bool = true
+
+	open override var themeName: String? {
+		didSet {
+			guard let configuration = configuration else { return }
+			webViewModel.configureView(with: configuration.isCordovaEnabled)
+		}
+	}
 
 	/// The Web URL to be displayed.
 	open var configuration: WebScreenletConfiguration? {
