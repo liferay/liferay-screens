@@ -1,7 +1,6 @@
 ﻿using Foundation;
 using ObjCRuntime;
 using System;
-using UIKit;
 
 namespace LiferayScreens
 {
@@ -11,15 +10,20 @@ namespace LiferayScreens
     [Protocol, Model]
     interface ScreensWebView
     {
-        // @required @property (readonly, nonatomic, strong) UIView * _Nonnull view;
+        // @required @property (readonly, nonatomic, strong) int * _Nonnull view;
         [Abstract]
         [Export("view", ArgumentSemantic.Strong)]
-        UIView View { get; }
+        unsafe IntPtr View { get; }
 
-        // @required -(instancetype _Nonnull)initWithJsCallHandler:(void (^ _Nonnull)(NSString * _Nonnull, NSString * _Nonnull))jsCallHandler jsErrorHandler:(void (^ _Nonnull (^ _Nonnull)(NSString * _Nonnull))(id _Nullable, NSError * _Nullable))jsErrorHandler onPageLoadFinished:(void (^ _Nonnull)(NSString * _Nonnull, NSError * _Nullable))onPageLoadFinished;
+        // @required @property (nonatomic) int isScrollEnabled;
+        [Abstract]
+        [Export("isScrollEnabled")]
+        int IsScrollEnabled { get; set; }
+
+        // @required -(instancetype _Nonnull)initWithJsCallHandler:(void (^ _Nonnull)(int * _Nonnull, int * _Nonnull))jsCallHandler jsErrorHandler:(void (^ _Nonnull (^ _Nonnull)(int * _Nonnull))(id _Nullable, NSError * _Nullable))jsErrorHandler onPageLoadFinished:(void (^ _Nonnull)(int * _Nonnull, NSError * _Nullable))onPageLoadFinished;
         [Abstract]
         [Export("initWithJsCallHandler:jsErrorHandler:onPageLoadFinished:")]
-        IntPtr Constructor(Action<NSString, NSString> jsCallHandler, Func<NSString, Action<NSObject, NSError>> jsErrorHandler, Action<NSString, NSError> onPageLoadFinished);
+        unsafe IntPtr Constructor(Action<IntPtr, IntPtr> jsCallHandler, Func<IntPtr, Action<NSObject, NSError>> jsErrorHandler, Action<IntPtr, NSError> onPageLoadFinished);
 
         // @required -(void)addWithInjectableScript:(id<InjectableScript> _Nonnull)injectableScript;
         [Abstract]
@@ -31,18 +35,19 @@ namespace LiferayScreens
         [Export("injectWithInjectableScript:")]
         void InjectWithInjectableScript(IInjectableScript injectableScript);
 
-        // @required -(void)loadWithRequest:(NSURLRequest * _Nonnull)request;
+        // @required -(void)loadWithRequest:(id)request;
         [Abstract]
         [Export("loadWithRequest:")]
-        void LoadWithRequest(NSUrlRequest request);
+        void LoadWithRequest(NSObject request);
 
-        // @required -(void)loadWithHtmlString:(NSString * _Nonnull)htmlString;
+        // @required -(void)loadWithHtmlString:(id)htmlString;
         [Abstract]
         [Export("loadWithHtmlString:")]
-        void LoadWithHtmlString(string htmlString);
+        void LoadWithHtmlString(NSObject htmlString);
 
-        // @optional -(void)onDestroy;
-        [Export("onDestroy")]
-        void OnDestroy();
+        // @required -(void)clearCache;
+        [Abstract]
+        [Export("clearCache")]
+        void ClearCache();
     }
 }

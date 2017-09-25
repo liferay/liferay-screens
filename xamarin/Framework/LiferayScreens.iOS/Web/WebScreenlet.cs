@@ -1,5 +1,4 @@
-﻿using CoreGraphics;
-using Foundation;
+﻿using Foundation;
 using ObjCRuntime;
 using System;
 
@@ -9,17 +8,17 @@ namespace LiferayScreens
     [BaseType(typeof(BaseScreenlet))]
     interface WebScreenlet
     {
-        // @property (nonatomic) BOOL autoLoad;
+        // @property (nonatomic) int autoLoad;
         [Export("autoLoad")]
-        bool AutoLoad { get; set; }
+        int AutoLoad { get; set; }
 
-        // @property (nonatomic) BOOL loggingEnabled;
+        // @property (nonatomic) int loggingEnabled;
         [Export("loggingEnabled")]
-        bool LoggingEnabled { get; set; }
+        int LoggingEnabled { get; set; }
 
-        // @property (nonatomic) BOOL isScrollEnabled;
+        // @property (nonatomic) int isScrollEnabled;
         [Export("isScrollEnabled")]
-        bool IsScrollEnabled { get; set; }
+        int IsScrollEnabled { get; set; }
 
         // @property (nonatomic, strong) WebScreenletConfiguration * _Nullable configuration;
         [NullAllowed, Export("configuration", ArgumentSemantic.Strong)]
@@ -45,9 +44,9 @@ namespace LiferayScreens
         [Export("clearCache")]
         void ClearCache();
 
-        // -(void)handleJsCallWithNamespace:(NSString * _Nonnull)namespace_ message:(NSString * _Nonnull)message;
+        // -(void)handleJsCallWithNamespace:(id)namespace_ message:(id)message;
         [Export("handleJsCallWithNamespace:message:")]
-        void HandleJsCallWithNamespace(string namespace_, string message);
+        void HandleJsCallWithNamespace(NSObject namespace_, NSObject message);
 
         // -(void)injectWithInjectableScript:(id<InjectableScript> _Nonnull)injectableScript;
         [Export("injectWithInjectableScript:")]
@@ -57,9 +56,9 @@ namespace LiferayScreens
         [Export("load")]
         void Load();
 
-        // -(instancetype _Nonnull)initWithFrame:(CGRect)frame themeName:(NSString * _Nullable)themeName __attribute__((objc_designated_initializer));
+        // -(instancetype _Nonnull)initWithFrame:(id)frame themeName:(id)themeName __attribute__((objc_designated_initializer));
         [Export("initWithFrame:themeName:")]
         [DesignatedInitializer]
-        IntPtr Constructor(CGRect frame, [NullAllowed] string themeName);
+        IntPtr Constructor(NSObject frame, NSObject themeName);
     }
 }

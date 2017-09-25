@@ -8,26 +8,26 @@ namespace LiferayScreens
     [DisableDefaultCtor]
     interface WebScreenletConfigurationBuilder
     {
-        // -(instancetype _Nonnull)initWithUrl:(NSString * _Nonnull)url __attribute__((objc_designated_initializer));
+        // -(instancetype _Nonnull)initWithUrl:(id)url __attribute__((objc_designated_initializer));
         [Export("initWithUrl:")]
         [DesignatedInitializer]
-        IntPtr Constructor(string url);
+        IntPtr Constructor(NSObject url);
 
-        // -(instancetype _Nonnull)addJsWithLocalFile:(NSString * _Nonnull)localFile __attribute__((warn_unused_result));
+        // -(instancetype _Nonnull)addJsWithLocalFile:(id)localFile __attribute__((warn_unused_result));
         [Export("addJsWithLocalFile:")]
-        WebScreenletConfigurationBuilder AddJsWithLocalFile(string localFile);
+        WebScreenletConfigurationBuilder AddJsWithLocalFile(NSObject localFile);
 
-        // -(instancetype _Nonnull)addCssWithLocalFile:(NSString * _Nonnull)localFile __attribute__((warn_unused_result));
+        // -(instancetype _Nonnull)addCssWithLocalFile:(id)localFile __attribute__((warn_unused_result));
         [Export("addCssWithLocalFile:")]
-        WebScreenletConfigurationBuilder AddCssWithLocalFile(string localFile);
+        WebScreenletConfigurationBuilder AddCssWithLocalFile(NSObject localFile);
 
-        // -(instancetype _Nonnull)addJsWithUrl:(NSString * _Nonnull)url __attribute__((warn_unused_result));
+        // -(instancetype _Nonnull)addJsWithUrl:(id)url __attribute__((warn_unused_result));
         [Export("addJsWithUrl:")]
-        WebScreenletConfigurationBuilder AddJsWithUrl(string url);
+        WebScreenletConfigurationBuilder AddJsWithUrl(NSObject url);
 
-        // -(instancetype _Nonnull)addCssWithUrl:(NSString * _Nonnull)url __attribute__((warn_unused_result));
+        // -(instancetype _Nonnull)addCssWithUrl:(id)url __attribute__((warn_unused_result));
         [Export("addCssWithUrl:")]
-        WebScreenletConfigurationBuilder AddCssWithUrl(string url);
+        WebScreenletConfigurationBuilder AddCssWithUrl(NSObject url);
 
         // -(instancetype _Nonnull)enableCordova __attribute__((warn_unused_result));
         [Export("enableCordova")]
