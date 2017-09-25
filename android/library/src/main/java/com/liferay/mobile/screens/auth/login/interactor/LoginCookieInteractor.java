@@ -6,6 +6,7 @@ import com.liferay.mobile.screens.auth.login.connector.CurrentUserConnector;
 import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.ServiceProvider;
+import com.squareup.okhttp.Authenticator;
 import org.json.JSONObject;
 
 /**
@@ -19,12 +20,12 @@ public class LoginCookieInteractor extends BaseLoginInteractor {
 
 		String login = (String) args[0];
 		String password = (String) args[1];
+		Authenticator authenticator = (Authenticator) args[2];
 
 		validate(login, password);
 
 		Session session = SessionContext.createBasicSession(login, password);
-
-		Session cookieSession = CookieSignIn.signIn(session);
+		Session cookieSession = CookieSignIn.signIn(session, authenticator);
 
 		SessionContext.createCookieSession(cookieSession);
 		CurrentUserConnector userConnector = getCurrentUserConnector(cookieSession);

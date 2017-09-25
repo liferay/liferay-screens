@@ -82,9 +82,14 @@ All notable changes to this project will be documented in this file.
 
 # 2.1.2
 
+## Android
+
+### New features
+* Allow developers to handle Authentication challenges in Login Screenlet
+
 ## iOS
 
-## New feature
+### New features
 * Allow developers to handle Authentication challenges in Login Screenlet
 
 # 2.1.1

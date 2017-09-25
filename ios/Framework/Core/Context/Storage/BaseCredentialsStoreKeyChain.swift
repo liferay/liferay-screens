@@ -79,22 +79,40 @@ import UIKit
 	}
 
 	open func loadStoredCredentials() -> Bool {
+		return loadStoredCredentials(shouldLoadServer: false)
+	}
+
+	open func loadStoredCredentialsAndServer() -> Bool {
+		return loadStoredCredentials(shouldLoadServer: true)
+	}
+
+	private func loadStoredCredentials(shouldLoadServer: Bool) -> Bool {
 		let keychain = BaseCredentialsStoreKeyChain.keychain()
 
 		let companyId = try? keychain.get("companyId")
-					.flatMap { Int($0) }
-					.flatMap { Int64($0) }
+			.flatMap { Int64($0) }
 		let groupId = try? keychain.get("groupId")
-					.flatMap { Int($0) }
-					.flatMap { Int64($0) }
+			.flatMap { Int64($0) }
 
-		if (companyId ?? 0) != LiferayServerContext.companyId
+
+		if shouldLoadServer {
+			if let companyId = companyId ?? nil {
+				LiferayServerContext.companyId = companyId
+			}
+
+			if let groupId = groupId ?? nil {
+				LiferayServerContext.groupId = groupId
+			}
+
+		}
+		else {
+			if (companyId ?? 0) != LiferayServerContext.companyId
 				|| (groupId ?? 0) != LiferayServerContext.groupId {
-			return false
+				return false
+			}
 		}
 
-		guard let userData = try? keychain.getData("user_attributes")
-		else {
+		guard let userData = try? keychain.getData("user_attributes") else {
 			return false
 		}
 
@@ -106,7 +124,7 @@ import UIKit
 
 			return (authentication != nil && userAttributes != nil)
 		}
-
+		
 		return false
 	}
 
@@ -133,5 +151,4 @@ import UIKit
 		let url = URL(string: LiferayServerContext.server)!
 		return Keychain(server: url, protocolType: .https)
 	}
-
 }

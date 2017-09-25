@@ -98,6 +98,10 @@ class Liferay62MockServer: MockServer, StubResponses {
 		return hasData
 	}
 
+	func loadStoredCredentialsAndServer() -> Bool {
+		return hasData
+	}
+
 }
 
 // Syntactic sugar
