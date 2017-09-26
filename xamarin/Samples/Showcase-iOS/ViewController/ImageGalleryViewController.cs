@@ -14,9 +14,12 @@ namespace ShowcaseiOS.ViewController
         {
             base.ViewDidLoad();
 
-            //FIXME: ImageGalleryScreenlet doesn't work
+            //FIXME: ImageGalleryScreenlet doesn't work with "default" theme (grid)
             this.imageGalleryScreenlet.FolderId = 54469;
             this.imageGalleryScreenlet.RepositoryId = 20143;
+
+            this.imageGalleryScreenlet.ThemeName = "default-slideshow";
+            //this.imageGalleryScreenlet.ThemeName = "default-list";
 
             this.imageGalleryScreenlet.Delegate = this;
         }
