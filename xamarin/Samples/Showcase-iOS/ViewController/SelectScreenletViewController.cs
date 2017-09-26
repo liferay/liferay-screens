@@ -24,7 +24,8 @@ namespace ShowcaseiOS.ViewController
 			"WebContentListScreenlet",
 			"RatingScreenlet",
             "BlogsScreenlet",
-            "DDLListScreenlet"
+            "DDLListScreenlet",
+            "WebScreenlet"
 
         };
 
@@ -46,7 +47,8 @@ namespace ShowcaseiOS.ViewController
             "WebcontentListViewController",
             "RatingViewController",
             "BlogsViewController",
-            "DDLListViewController"
+            "DDLListViewController",
+            "WebScreenletViewController"
         };
 
         public SelectScreenletViewController(IntPtr handle) : base(handle) { }

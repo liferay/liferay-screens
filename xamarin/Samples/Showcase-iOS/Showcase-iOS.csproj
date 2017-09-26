@@ -148,7 +148,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="LiferayScreens_iOS">
-      <HintPath>packages\LiferayScreens.0.1.0-beta6\lib\Xamarin.iOS10\LiferayScreens_iOS.dll</HintPath>
+      <HintPath>packages\LiferayScreens.0.1.0-beta7\lib\Xamarin.iOS10\LiferayScreens_iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +169,8 @@
     <Folder Include="Resources\img\" />
     <Folder Include="ViewController\" />
     <Folder Include="SelectScreenlets\" />
+    <Folder Include="Resources\js\" />
+    <Folder Include="Resources\css\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Storyboard\LaunchScreen.storyboard" />
@@ -193,6 +195,7 @@
     <InterfaceDefinition Include="Storyboard\RatingScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\BlogsScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\DDLListScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\WebScreenlet.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -287,10 +290,16 @@
     <Compile Include="ViewController\DDLListViewController.designer.cs">
       <DependentUpon>DDLListViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewController\WebScreenletViewController.cs" />
+    <Compile Include="ViewController\WebScreenletViewController.designer.cs">
+      <DependentUpon>WebScreenletViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\img\Liferay-Screens.png" />
     <BundleResource Include="Resources\liferay-server-context.plist" />
+    <BundleResource Include="Resources\css\css_master.css" />
+    <BundleResource Include="Resources\js\js_master.js" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork" />
