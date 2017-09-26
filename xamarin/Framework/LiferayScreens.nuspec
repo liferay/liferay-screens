@@ -34,7 +34,6 @@
             <dependency id="Xamarin.Swift3.ObjectiveC" version="3.1.0.2" />
             <dependency id="Xamarin.Swift3.QuartzCore" version="3.1.0.2" />
             <dependency id="Xamarin.Swift3.UIKit" version="3.1.0.2" />
-            <dependency id="Xamarin.Swift3.SIMD" version="3.1.0.2" />
         </group>
     </dependencies>
   </metadata>

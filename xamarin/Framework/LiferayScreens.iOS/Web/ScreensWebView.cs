@@ -1,6 +1,7 @@
 ﻿using Foundation;
 using ObjCRuntime;
 using System;
+using UIKit;
 
 namespace LiferayScreens
 {
@@ -10,20 +11,20 @@ namespace LiferayScreens
     [Protocol, Model]
     interface ScreensWebView
     {
-        // @required @property (readonly, nonatomic, strong) int * _Nonnull view;
+        // @required @property (readonly, nonatomic, strong) UIView * _Nonnull view;
         [Abstract]
         [Export("view", ArgumentSemantic.Strong)]
-        unsafe IntPtr View { get; }
+        UIView View { get; }
 
-        // @required @property (nonatomic) int isScrollEnabled;
+        // @required @property (nonatomic) BOOL isScrollEnabled;
         [Abstract]
         [Export("isScrollEnabled")]
-        int IsScrollEnabled { get; set; }
+        bool IsScrollEnabled { get; set; }
 
-        // @required -(instancetype _Nonnull)initWithJsCallHandler:(void (^ _Nonnull)(int * _Nonnull, int * _Nonnull))jsCallHandler jsErrorHandler:(void (^ _Nonnull (^ _Nonnull)(int * _Nonnull))(id _Nullable, NSError * _Nullable))jsErrorHandler onPageLoadFinished:(void (^ _Nonnull)(int * _Nonnull, NSError * _Nullable))onPageLoadFinished;
+        // @required -(instancetype _Nonnull)initWithJsCallHandler:(void (^ _Nonnull)(NSString * _Nonnull, NSString * _Nonnull))jsCallHandler jsErrorHandler:(void (^ _Nonnull (^ _Nonnull)(NSString * _Nonnull))(id _Nullable, NSError * _Nullable))jsErrorHandler onPageLoadFinished:(void (^ _Nonnull)(NSString * _Nonnull, NSError * _Nullable))onPageLoadFinished;
         [Abstract]
         [Export("initWithJsCallHandler:jsErrorHandler:onPageLoadFinished:")]
-        unsafe IntPtr Constructor(Action<IntPtr, IntPtr> jsCallHandler, Func<IntPtr, Action<NSObject, NSError>> jsErrorHandler, Action<IntPtr, NSError> onPageLoadFinished);
+        IntPtr Constructor(Action<NSString, NSString> jsCallHandler, Func<NSString, Action<NSObject, NSError>> jsErrorHandler, Action<NSString, NSError> onPageLoadFinished);
 
         // @required -(void)addWithInjectableScript:(id<InjectableScript> _Nonnull)injectableScript;
         [Abstract]
@@ -35,15 +36,15 @@ namespace LiferayScreens
         [Export("injectWithInjectableScript:")]
         void InjectWithInjectableScript(IInjectableScript injectableScript);
 
-        // @required -(void)loadWithRequest:(id)request;
+        // @required -(void)loadWithRequest:(NSURLRequest * _Nonnull)request;
         [Abstract]
         [Export("loadWithRequest:")]
-        void LoadWithRequest(NSObject request);
+        void LoadWithRequest(NSUrlRequest request);
 
-        // @required -(void)loadWithHtmlString:(id)htmlString;
+        // @required -(void)loadWithHtmlString:(NSString * _Nonnull)htmlString;
         [Abstract]
         [Export("loadWithHtmlString:")]
-        void LoadWithHtmlString(NSObject htmlString);
+        void LoadWithHtmlString(string htmlString);
 
         // @required -(void)clearCache;
         [Abstract]
