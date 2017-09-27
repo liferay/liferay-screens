@@ -30,12 +30,8 @@
 
     <!-- Corrections DDLFieldCheckboxView -->
     <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']/class[@name='DDLFieldCheckboxView']/method[@name='getField' and count(parameter)=0]" name="propertyName">FieldProperty</attr>
-    <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']/class[@name='DDLFieldCheckboxView']/method[@name='setField' and count(parameter)=1 and parameter[1][@type='com.liferay.mobile.screens.ddl.model.NumberField']]" name="propertyName">FieldProperty</attr>
-
     <!-- Corrections DDLFieldRadioView -->
     <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']/class[@name='DDLFieldRadioView']/method[@name='getField' and count(parameter)=0]" name="propertyName">FieldProperty</attr>
-    <attr path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']/class[@name='DDLFieldRadioView']/method[@name='setField' and count(parameter)=1 and parameter[1][@type='com.liferay.mobile.screens.ddl.model.NumberField']]" name="propertyName">FieldProperty</attr>
-
     <!-- Corrections for DDLFormScreenlet -->
     <remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.form']/class[@name='DDLFormScreenlet']/method[@name='onUserAction']"/>
     <remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.form']/class[@name='DDLFormScreenlet']/method[@name='createInteractor']"/>
@@ -46,7 +42,6 @@
 
     <!-- Corrections for BaseListScreenlet -->
     <remove-node path="/api/package[@name='com.liferay.mobile.screens.base.list']/class[@name='BaseListScreenlet']/method[@name='onUserAction']"/>
-    <remove-node path="/api/package[@name='com.liferay.mobile.screens.base.list']/class[@name='BaseListScreenlet']/method[@name='createInteractor']"/>
     <remove-node path="/api/package[@name='com.liferay.mobile.screens.base.list']/class[@name='BaseListScreenlet']/method[@name='loadRows']"/>
 
     <!-- Corrections for BaseScreenlet -->
@@ -63,25 +58,9 @@
     <!-- Corrections for AssetListScreenlet -->
     <remove-node path="/api/package[@name='com.liferay.mobile.screens.asset.list']/class[@name='AssetListScreenlet']/method[@name='createInteractor']"/>
 
-    <!-- Corrections for ImageDisplayScreenlet -->
-    <remove-node path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.image']/class[@name='ImageDisplayScreenlet']/method[@name='onUserAction']"/>
-    <remove-node path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.image']/class[@name='ImageDisplayScreenlet']/method[@name='createInteractor']"/>
-
     <!-- Corrections for AssetDisplayScreenlet -->
     <remove-node path="/api/package[@name='com.liferay.mobile.screens.asset.display']/class[@name='AssetDisplayScreenlet']/method[@name='onUserAction']"/>
     <remove-node path="/api/package[@name='com.liferay.mobile.screens.asset.display']/class[@name='AssetDisplayScreenlet']/method[@name='createInteractor']"/>
-
-    <!-- Corrections for PdfDisplayScreenlet -->
-    <remove-node path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.pdf']/class[@name='PdfDisplayScreenlet']/method[@name='onUserAction']"/>
-    <remove-node path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.pdf']/class[@name='PdfDisplayScreenlet']/method[@name='createInteractor']"/>
-
-    <!-- Corrections for VideoDisplayScreenlet -->
-    <remove-node path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.video']/class[@name='VideoDisplayScreenlet']/method[@name='onUserAction']"/>
-    <remove-node path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.video']/class[@name='VideoDisplayScreenlet']/method[@name='createInteractor']"/>
-
-    <!-- Corrections for AudioDisplayScreenlet -->
-    <remove-node path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.audio']/class[@name='AudioDisplayScreenlet']/method[@name='onUserAction']"/>
-    <remove-node path="/api/package[@name='com.liferay.mobile.screens.dlfile.display.audio']/class[@name='AudioDisplayScreenlet']/method[@name='createInteractor']"/>
 
     <!-- Corrections for CommentDisplayScreenlet -->
     <remove-node path="/api/package[@name='com.liferay.mobile.screens.comment.display']/class[@name='CommentDisplayScreenlet']/method[@name='onUserAction']"/>
