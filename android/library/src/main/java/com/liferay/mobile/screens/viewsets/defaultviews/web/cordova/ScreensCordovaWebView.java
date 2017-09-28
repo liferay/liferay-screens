@@ -102,4 +102,10 @@ public class ScreensCordovaWebView implements ScreensWebView, CordovaLifeCycleLi
 	public void onConfigurationChanged(Configuration newConfig) {
 		cordovaActivity.onConfigurationChanged(newConfig);
 	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String[] permissions,
+		int[] grantResults) {
+		cordovaActivity.onRequestPermissionsResult(requestCode, permissions, grantResults);
+	}
 }

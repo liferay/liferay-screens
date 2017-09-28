@@ -173,6 +173,7 @@ public class WebView extends FrameLayout implements WebViewModel, ScreensWebView
 		});
 
 		webView.getSettings().setJavaScriptEnabled(true);
+		webView.addJavascriptInterface(new PortletDisplayInterface(), "android");
 
 		addView(webView);
 	}
@@ -197,9 +198,7 @@ public class WebView extends FrameLayout implements WebViewModel, ScreensWebView
 	}
 
 	@Override
-	public void onPageStarted() {
-		webView.addJavascriptInterface(new PortletDisplayInterface(), "android");
-	}
+	public void onPageStarted() { }
 
 	@Override
 	public void onPageFinished(String url) {
