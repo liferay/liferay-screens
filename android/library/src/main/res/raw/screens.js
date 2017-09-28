@@ -1,22 +1,3 @@
-window.console = (function(oldCons){
-    return {
-        log: function(text){
-            if(window.Screens) {
-                window.Screens.postMessage("screensInternal.consoleMessage", "Console message: " + text);
-            }
-        },
-        info: function (text) {
-            oldCons.info(text);
-        },
-        warn: function (text) {
-            oldCons.warn(text);
-        },
-        error: function (text) {
-            oldCons.error(text);
-        }
-    };
-}(window.console));
-
 window.addEventListener('error', function(ev) {
 	if (window.Screens) {
 		window.Screens.postMessage('screensInternal.error', 'Error in file ' + window.currentFile + ': ' + ev.message);
