@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 * Disable selection in WebScreenlet
 * Fix session in WebScreenlet
 * Fix url in other webtype in WebScreenlet
+* Fix File provider so developers can use their own
 
 ### New Features
 * Create loadLoggedUserPortrait method in UserPortraitScreenlet
