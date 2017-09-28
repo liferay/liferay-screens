@@ -3,7 +3,7 @@
     <remove-node path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.auth.login']/class[@name='LoginView']" />
     <remove-node path="/api/package[@name='com.liferay.mobile.screens.base.interactor']/class[@name='BaseInteractor']"/>
 
-    <!-- We must change visibility on interface SimpleFileDialogListener -->
+    <!-- Correction SimpleFileDialogListener -->
     <remove-node path="/api/package[@name='com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields']/class[@name='SelectFileDialog']"/>
 
     <!-- Corrections BooleanField -->

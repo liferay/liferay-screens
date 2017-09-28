@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AndroidClassParser>class-parse</AndroidClassParser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AndroidClassParser>class-parse</AndroidClassParser>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -79,27 +81,6 @@
     <TransformFile Include="Transforms\EnumMethods.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\eventbus-2.4.0.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\liferay-android-sdk-7.0.4.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\okhttp-2.4.0.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\picasso-2.5.2.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\okio-1.4.0.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\rxjava-1.2.4.jar" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedReferenceJar Include="Jars\robolectric-3.1.4.jar" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Additions\Auth\" />
     <Folder Include="Additions\Auth\Login\" />
     <Folder Include="Additions\Viewset\" />
@@ -129,6 +110,15 @@
   </ItemGroup>
   <ItemGroup>
     <LibraryProjectZip Include="Jars\liferay-screens-release.aar" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedReferenceJar Include="Jars\eventbus-2.4.0.jar" />
+    <EmbeddedReferenceJar Include="Jars\okhttp-2.4.0.jar" />
+    <EmbeddedReferenceJar Include="Jars\okio-1.4.0.jar" />
+    <EmbeddedReferenceJar Include="Jars\picasso-2.5.2.jar" />
+    <EmbeddedReferenceJar Include="Jars\robolectric-3.1.4.jar" />
+    <EmbeddedReferenceJar Include="Jars\rxjava-1.2.4.jar" />
+    <EmbeddedReferenceJar Include="Jars\liferay-android-sdk-7.0.4.jar" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
