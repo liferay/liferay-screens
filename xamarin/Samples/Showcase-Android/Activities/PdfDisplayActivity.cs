@@ -28,8 +28,8 @@ namespace ShowcaseAndroid
         }
 
         public void Error(Java.Lang.Exception p0, string p1)
-		{
-            System.Diagnostics.Debug.WriteLine($"Pdf display failed: {p0.Message}");
-		}
+        {
+            Android.Util.Log.Debug("PdfDisplayScreenlet", $"Pdf display failed: {p0.Message}");
+        }
     }
 }

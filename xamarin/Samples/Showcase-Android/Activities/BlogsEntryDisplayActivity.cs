@@ -29,7 +29,7 @@ namespace ShowcaseAndroid
 
         public void Error(Java.Lang.Exception p0, string p1)
         {
-            System.Diagnostics.Debug.WriteLine($"Blog entry display failed: {p0.Message}");
+            Android.Util.Log.Debug("BlogsEntryDisplayScreenlet", $"Blog entry display failed: {p0.Message}");
         }
     }
 }

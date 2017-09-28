@@ -23,7 +23,7 @@ namespace ShowcaseAndroid
 
         public void OnSignUpFailure(Java.Lang.Exception p0)
         {
-            System.Diagnostics.Debug.WriteLine($"Sign up failed: {p0.Message}");
+            Android.Util.Log.Debug("SignUpScreenlet", $"Sign up failed: {p0.Message}");
         }
 
         public void OnSignUpSuccess(User p0)

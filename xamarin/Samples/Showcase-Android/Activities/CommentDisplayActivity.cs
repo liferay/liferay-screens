@@ -23,7 +23,7 @@ namespace ShowcaseAndroid
 
         public void Error(Java.Lang.Exception p0, string p1)
         {
-            System.Diagnostics.Debug.WriteLine($"Comment display error: {p0.Message}");
+            Android.Util.Log.Debug("CommentDisplayScreenlet", $"Comment display error: {p0.Message}");
         }
 
         public void OnDeleteCommentSuccess(CommentEntry p0)

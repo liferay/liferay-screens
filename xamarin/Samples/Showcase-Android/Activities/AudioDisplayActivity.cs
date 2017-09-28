@@ -24,7 +24,7 @@ namespace ShowcaseAndroid
 
         public void Error(Java.Lang.Exception p0, string p1)
         {
-            System.Diagnostics.Debug.WriteLine($"Audio display error: {p0.Message}");
+            Android.Util.Log.Debug("AudioDisplayScreenlet", $"Audio display error: {p0.Message}");
         }
 
         public void OnRetrieveAssetSuccess(AssetEntry p0)

@@ -17,7 +17,7 @@ namespace ShowcaseAndroid
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.UserPortraitView);
 
-            userPortraitScreenlet = (UserPortraitScreenlet)FindViewById(Resource.Id.user_portrait_screenlet);
+            userPortraitScreenlet = (UserPortraitScreenlet) FindViewById(Resource.Id.user_portrait_screenlet);
             userPortraitScreenlet.Listener = this;
             userPortraitScreenlet.CacheListener = this;
         }
@@ -44,24 +44,24 @@ namespace ShowcaseAndroid
 
         public void Error(Java.Lang.Exception p0, string p1)
         {
-            System.Diagnostics.Debug.WriteLine($"User portrait failed: {p0.Message}");
+            Android.Util.Log.Debug("UserPortraitScreenlet", $"User portrait failed: {p0.Message}");
         }
 
         /* ICacheListener */
 
         public void LoadingFromCache(bool p0)
         {
-            System.Diagnostics.Debug.WriteLine("Loading user portrait from cache");
+            Android.Util.Log.Debug("UserPortraitScreenlet", "Loading user portrait from cache");
         }
 
         public void RetrievingOnline(bool p0, Java.Lang.Exception p1)
         {
-            System.Diagnostics.Debug.WriteLine($"Retrieving user portrait online: {p0} - {p1}");
+            Android.Util.Log.Debug("UserPortraitScreenlet", $"Retrieving user portrait online: {p0} - {p1}");
         }
 
         public void StoringToCache(Java.Lang.Object p0)
         {
-            System.Diagnostics.Debug.WriteLine($"Storing user portrait to cache: {p0}");
+            Android.Util.Log.Debug("UserPortraitScreenlet", $"Storing user portrait to cache: {p0}");
         }
     }
 }

@@ -11,8 +11,7 @@ namespace ShowcaseAndroid
     [Activity]
     public class DDLFormActivity : Activity, IDDLFormListener
     {
-
-        private DDLFormScreenlet ddlFormScreenlet;
+        DDLFormScreenlet ddlFormScreenlet;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -33,18 +32,18 @@ namespace ShowcaseAndroid
 
         public void Error(Java.Lang.Exception p0, string p1)
         {
-            System.Diagnostics.Debug.WriteLine($"DDLForm error: {p0}");
-		}
+            Android.Util.Log.Debug("DDLFormScreenlet", $"DDLForm error: {p0}");
+        }
 
         public void OnDDLFormDocumentUploaded(DocumentField p0, JSONObject p1)
         {
             Toast.MakeText(this, "DDLForm document uploaded: " + p0, ToastLength.Short).Show();
-		}
+        }
 
         public void OnDDLFormDocumentUploadFailed(DocumentField p0, Java.Lang.Exception p1)
         {
-			System.Diagnostics.Debug.WriteLine($"DDLForm document uploaded failed: {p0}");
-		}
+            Android.Util.Log.Debug("DDLFormScreenlet", $"DDLForm document uploaded failed: {p0}");
+        }
 
         public void OnDDLFormLoaded(Record p0)
         {

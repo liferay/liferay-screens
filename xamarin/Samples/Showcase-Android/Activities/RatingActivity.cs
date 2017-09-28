@@ -8,26 +8,27 @@ namespace ShowcaseAndroid
     [Activity]
     public class RatingActivity : Activity, IRatingListener
     {
-
-        private RatingScreenlet ratingScreenlet;
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.RatingView);
 
-            ratingScreenlet = (RatingScreenlet)FindViewById(Resource.Id.rating_screenlet);
+            RatingScreenlet ratingScreenlet = 
+                (RatingScreenlet) FindViewById(Resource.Id.rating_screenlet);
+            ratingScreenlet.Listener = this;
 
         }
+
+        /* IRatingListener */
 
         public void Error(Java.Lang.Exception p0, string p1)
         {
-            System.Diagnostics.Debug.WriteLine($"Rating error: {p0}");
+            Android.Util.Log.Debug("RatingScreenlet", $"Rating error: {p0.Message}");
         }
 
-		public void OnRatingOperationSuccess(AssetRating p0)
-		{
-			Toast.MakeText(this, "Rating success", ToastLength.Short).Show();
-		}
+        public void OnRatingOperationSuccess(AssetRating p0)
+        {
+        	Toast.MakeText(this, "Rating success", ToastLength.Short).Show();
+        }
     }
 }

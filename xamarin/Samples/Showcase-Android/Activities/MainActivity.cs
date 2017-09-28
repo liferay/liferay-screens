@@ -8,7 +8,6 @@ namespace ShowcaseAndroid
     [Activity(MainLauncher = true)]
     public class MainActivity : AppCompatActivity, View.IOnClickListener
     {
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -51,16 +50,16 @@ namespace ShowcaseAndroid
                     break;
                 case Resource.Id.sign_up_screenlet:
                     StartActivity(typeof(SignUpActivity));
-    				break;
+        			break;
                 case Resource.Id.ddl_form_screenlet:
                     StartActivity(typeof(DDLFormActivity));
-    				break;
+        			break;
                 case Resource.Id.user_portrait_screenlet:
                     StartActivity(typeof(UserPortraitActivity));
-    				break;
+        			break;
                 case Resource.Id.web_content_display_screenlet:
                     StartActivity(typeof(WebContentDisplayActivity));
-    				break;
+        			break;
                 case Resource.Id.asset_list_screenlet:
                     StartActivity(typeof(AssetListActivity));
                     break;

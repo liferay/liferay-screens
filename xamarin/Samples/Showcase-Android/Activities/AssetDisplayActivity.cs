@@ -27,8 +27,8 @@ namespace ShowcaseAndroid
         }
 
         public void Error(Java.Lang.Exception p0, string p1)
-		{
-			System.Diagnostics.Debug.WriteLine($"Asset display failed: {p0}");
-		}
+        {
+            Android.Util.Log.Debug("AssetDisplayScreenlet", $"Asset display failed: {p0}");
+        }
     }
 }

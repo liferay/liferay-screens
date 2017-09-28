@@ -23,17 +23,17 @@ namespace ShowcaseAndroid
 
         public void OnVideoCompleted()
         {
-            System.Diagnostics.Debug.WriteLine("Video completed");
+            Android.Util.Log.Debug("VideoDisplayScreenlet", "Video completed");
         }
 
         public void OnVideoError(Java.Lang.Exception p0)
         {
-            System.Diagnostics.Debug.WriteLine($"Video error: {p0.Message}");
+            Android.Util.Log.Debug("VideoDisplayScreenlet", $"Video error: {p0.Message}");
         }
 
         public void OnVideoPrepared()
         {
-            System.Diagnostics.Debug.WriteLine("Video prepared");
+            Android.Util.Log.Debug("VideoDisplayScreenlet", "Video prepared");
         }
 
         /* IAssetDisplayListener */
@@ -45,7 +45,7 @@ namespace ShowcaseAndroid
 
         public void Error(Java.Lang.Exception p0, string p1)
         {
-            System.Diagnostics.Debug.WriteLine($"Video display error: {p0.Message}");
+            Android.Util.Log.Debug("VideoDisplayScreenlet", $"Video display error: {p0.Message}");
         }
     }
 }

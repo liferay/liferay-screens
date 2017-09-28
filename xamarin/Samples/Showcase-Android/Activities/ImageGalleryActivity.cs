@@ -26,7 +26,7 @@ namespace ShowcaseAndroid
         //FIXME: Listener doesn't compile
         public void Error(Java.Lang.Exception p0, string p1)
         {
-            System.Diagnostics.Debug.WriteLine($"Image gallery failed: {p0.Message}");
+            Android.Util.Log.Debug("ImageGalleryScreenlet", $"Image gallery failed: {p0.Message}");
         }
 
         public void OnImageEntryDeleted(long p0)
@@ -56,7 +56,7 @@ namespace ShowcaseAndroid
 
         public void OnListPageFailed(int p0, Java.Lang.Exception p1)
         {
-            System.Diagnostics.Debug.WriteLine($"Image gallery page failed: {p1.Message}");
+            Android.Util.Log.Debug("ImageGalleryScreenlet", $"Image gallery page failed: {p1.Message}");
         }
 
         public void OnListPageReceived(int p0, int p1, IList p2, int p3)

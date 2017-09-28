@@ -31,7 +31,7 @@ namespace ShowcaseAndroid
 
         public void OnLoginFailure(Java.Lang.Exception p0)
         {
-            Toast.MakeText(this, "Login failed: " + p0.Message, ToastLength.Short).Show();
+            Android.Util.Log.Debug("LoginScreenlet", $"Login failed: {p0.Message}");
         }
 
         /* Private methods */
