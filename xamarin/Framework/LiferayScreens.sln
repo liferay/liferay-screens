@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiferayScreens_Android", "L
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiferayScreens_iOS", "LiferayScreens.iOS\LiferayScreens_iOS.csproj", "{9A7BF9F5-5C02-4749-AB38-FE8D8C3D0C91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiferayOAuth.BindinLibrary", "LiferayOAuth.BindinLibrary\LiferayOAuth.BindinLibrary.csproj", "{1E5D5DB7-2CA4-4820-AB77-B72433CB82E9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiferayOAuth.BindingLibrary", "LiferayOAuth.BindingLibrary\LiferayOAuth.BindingLibrary.csproj", "{1E5D5DB7-2CA4-4820-AB77-B72433CB82E9}"
 EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
