@@ -110,15 +110,21 @@
     <Folder Include="Additions\DDL\List\" />
   </ItemGroup>
   <ItemGroup>
-    <LibraryProjectZip Include="Jars\liferay-screens-release.aar" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\eventbus-2.4.0.jar" />
     <EmbeddedReferenceJar Include="Jars\okhttp-2.4.0.jar" />
     <EmbeddedReferenceJar Include="Jars\okio-1.4.0.jar" />
     <EmbeddedReferenceJar Include="Jars\picasso-2.5.2.jar" />
     <EmbeddedReferenceJar Include="Jars\robolectric-3.1.4.jar" />
     <EmbeddedReferenceJar Include="Jars\rxjava-1.2.4.jar" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LiferayAndroidSdk.BindingLibrary\LiferayAndroidSdk.BindingLibrary.csproj">
+      <Project>{987C9DF7-DD6A-40F4-8D1C-8A5757162994}</Project>
+      <Name>LiferayAndroidSdk.BindingLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <LibraryProjectZip Include="Jars\liferay-screens-release.aar" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

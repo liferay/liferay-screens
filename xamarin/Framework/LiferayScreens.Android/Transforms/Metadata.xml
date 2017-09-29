@@ -61,6 +61,7 @@
     <!-- Corrections for AssetDisplayScreenlet -->
     <remove-node path="/api/package[@name='com.liferay.mobile.screens.asset.display']/class[@name='AssetDisplayScreenlet']/method[@name='onUserAction']"/>
     <remove-node path="/api/package[@name='com.liferay.mobile.screens.asset.display']/class[@name='AssetDisplayScreenlet']/method[@name='createInteractor']"/>
+    <attr path="/api/package[@name='com.liferay.mobile.screens.asset.display']/interface[@name='AssetDisplayInnerScreenletListener']/method[@name='onRenderCustomAsset']" name="managedReturn">Java.Lang.Object</attr>
 
     <!-- Corrections for CommentDisplayScreenlet -->
     <remove-node path="/api/package[@name='com.liferay.mobile.screens.comment.display']/class[@name='CommentDisplayScreenlet']/method[@name='onUserAction']"/>
