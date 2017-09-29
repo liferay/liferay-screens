@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiferayScreens_iOS", "Lifer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiferayOAuth.BindingLibrary", "LiferayOAuth.BindingLibrary\LiferayOAuth.BindingLibrary.csproj", "{1E5D5DB7-2CA4-4820-AB77-B72433CB82E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiferayAndroidSdk.BindingLibrary", "LiferayAndroidSdk.BindingLibrary\LiferayAndroidSdk.BindingLibrary.csproj", "{987C9DF7-DD6A-40F4-8D1C-8A5757162994}"
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -114,5 +116,17 @@ Global
 		{1E5D5DB7-2CA4-4820-AB77-B72433CB82E9}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{1E5D5DB7-2CA4-4820-AB77-B72433CB82E9}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{1E5D5DB7-2CA4-4820-AB77-B72433CB82E9}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{987C9DF7-DD6A-40F4-8D1C-8A5757162994}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{987C9DF7-DD6A-40F4-8D1C-8A5757162994}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{987C9DF7-DD6A-40F4-8D1C-8A5757162994}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{987C9DF7-DD6A-40F4-8D1C-8A5757162994}.Release|Any CPU.Build.0 = Release|Any CPU
+		{987C9DF7-DD6A-40F4-8D1C-8A5757162994}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{987C9DF7-DD6A-40F4-8D1C-8A5757162994}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{987C9DF7-DD6A-40F4-8D1C-8A5757162994}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{987C9DF7-DD6A-40F4-8D1C-8A5757162994}.Release|iPhone.Build.0 = Release|Any CPU
+		{987C9DF7-DD6A-40F4-8D1C-8A5757162994}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{987C9DF7-DD6A-40F4-8D1C-8A5757162994}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{987C9DF7-DD6A-40F4-8D1C-8A5757162994}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{987C9DF7-DD6A-40F4-8D1C-8A5757162994}.Debug|iPhone.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal

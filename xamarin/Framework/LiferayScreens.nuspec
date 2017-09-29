@@ -45,6 +45,7 @@
     <file src="SnappyDBBindingLibrary/bin/Release/SnappyDBBindingLibrary.dll" target="lib/MonoAndroid403" />
     <file src="Tbruyelle.RxpermissionsBindingLibrary/bin/Release/Tbruyelle.RxpermissionsBindingLibrary.dll" target="lib/MonoAndroid403" />
     <file src="LiferayOAuth.BindingLibrary/bin/Release/LiferayOAuth.BindingLibrary.dll" target="lib/MonoAndroid403" />
+    <file src="LiferayAndroidSdk.BindingLibrary/bin/Release/LiferayAndroidSdk.BindingLibrary.dll" target="lib/MonoAndroid403" />
     <!-- iOS -->
     <file src="LiferayScreens.iOS/bin/Release/LiferayScreens_iOS.dll" target="lib/Xamarin.iOS10" />
   </files>
