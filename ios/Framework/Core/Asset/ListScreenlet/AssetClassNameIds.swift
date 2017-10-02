@@ -58,7 +58,8 @@ public let AssetClassNameKey_WikiPage = "WikiPage"
 public let AssetClassNameKey_WikiPageResource = "WikiPageResource"
 public let AssetClassNameKey_WikiNode = "WikiNode"
 
-@objc open class AssetClassEntry: NSObject {
+@objc(AssetClassEntry)
+open class AssetClassEntry: NSObject {
 
 	open let classNameId: Int64
 	open let className: String
@@ -72,7 +73,8 @@ public let AssetClassNameKey_WikiNode = "WikiNode"
 
 }
 
-@objc open class AssetClasses: NSObject {
+@objc(AssetClasses)
+open class AssetClasses: NSObject {
 
 	fileprivate static var classNameEntries: [String:AssetClassEntry] = {
 
