@@ -44,7 +44,7 @@ namespace ShowcaseiOS.ViewController
             "CommentDisplayViewController",
             "CommentAddViewController",
             "CommentListViewController",
-            "WebcontentListViewController",
+            "WebContentListViewController",
             "RatingViewController",
             "BlogsViewController",
             "DDLListViewController",
