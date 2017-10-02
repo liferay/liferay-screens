@@ -1,8 +1,7 @@
-﻿using System;
-using UIKit;
-using Foundation;
+﻿using Foundation;
 using LiferayScreens;
-using System.Diagnostics;
+using System;
+using UIKit;
 
 namespace ShowcaseiOS.ViewController
 {
@@ -25,19 +24,19 @@ namespace ShowcaseiOS.ViewController
         [Export("screenlet:onDDLListError:")]
         public virtual void OnDDLListError(DDLListScreenlet screenlet, NSError error)
         {
-            Debug.WriteLine($"DDLList error: {error.DebugDescription}");
+            Console.WriteLine($"DDLList error: {error.DebugDescription}");
         }
 
         [Export("screenlet:onDDLListResponseRecords:")]
         public virtual void OnDDLListResponseRecords(DDLListScreenlet screenlet, DDLRecord[] records)
         {
-            Debug.WriteLine($"DDLList response: {records.Length} records");
+            Console.WriteLine($"DDLList response: {records.Length} records");
         }
 
         [Export("screenlet:onDDLSelectedRecord:")]
         public virtual void OnDDLSelectedRecord(DDLListScreenlet screenlet, DDLRecord record)
         {
-            Debug.WriteLine($"DDLList selected record: {record.Attributes}");
+            Console.WriteLine($"DDLList selected record: {record.Attributes}");
         }
     }
 }

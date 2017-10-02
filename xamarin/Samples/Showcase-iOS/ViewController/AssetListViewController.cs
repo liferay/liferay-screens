@@ -2,15 +2,14 @@
 using LiferayScreens;
 using System;
 using UIKit;
-using System.Diagnostics;
 
 namespace ShowcaseiOS.ViewController
 {
     public partial class AssetListViewController : UIViewController, IAssetListScreenletDelegate
     {
-		public AssetListViewController(IntPtr handle) : base(handle) { }
+        public AssetListViewController(IntPtr handle) : base(handle) { }
 
-		public override void ViewDidLoad()
+        public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
@@ -28,19 +27,19 @@ namespace ShowcaseiOS.ViewController
         [Export("screenlet:onAssetListError:")]
         public virtual void OnAssetListError(AssetListScreenlet screenlet, NSError error)
         {
-            Debug.WriteLine($"Asset list error: {error.DebugDescription}");
+            Console.WriteLine($"Asset list error: {error.DebugDescription}");
         }
 
         [Export("screenlet:onAssetListResponse:")]
         public virtual void OnAssetListResponse(AssetListScreenlet screenlet, Asset[] assets)
         {
-            Debug.WriteLine($"Asset list response: {assets.Length} entries");
+            Console.WriteLine($"Asset list response: {assets.Length} entries");
         }
 
         [Export("screenlet:onAssetSelected:")]
         public virtual void OnAssetSelected(AssetListScreenlet screenlet, Asset asset)
         {
-            Debug.WriteLine($"Asset selected: {asset.Title}");
+            Console.WriteLine($"Asset selected: {asset.Title}");
         }
     }
 }

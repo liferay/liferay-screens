@@ -2,7 +2,6 @@
 using LiferayScreens;
 using System;
 using UIKit;
-using System.Diagnostics;
 
 namespace ShowcaseiOS.ViewController
 {
@@ -33,20 +32,19 @@ namespace ShowcaseiOS.ViewController
         [Export("onWebLoad:url:")]
         public virtual void OnWebLoad(WebScreenlet screenlet, string url)
         {
-            Debug.WriteLine($"WebScreenlet URL display successfully: {url}");
+            Console.WriteLine($"WebScreenlet URL display successfully: {url}");
         }
 
         [Export("screenlet:onError:")]
         public virtual void Screenlet(WebScreenlet screenlet, NSError error)
         {
-            Debug.WriteLine($"WebScreenlet URL display failed: {error.DebugDescription}");
+            Console.WriteLine($"WebScreenlet URL display failed: {error.DebugDescription}");
         }
 
         [Export("screenlet:onScriptMessageNamespace:onScriptMessage:")]
         public virtual void Screenlet(WebScreenlet screenlet, string namespace_, string message)
         {
-            Debug.WriteLine($"WebScreenlet onScriptMessage -> namespace: {namespace_}, message: {message}");
+            Console.WriteLine($"WebScreenlet onScriptMessage -> namespace: {namespace_}, message: {message}");
         }
     }
 }
-

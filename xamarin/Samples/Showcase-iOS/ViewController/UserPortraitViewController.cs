@@ -2,7 +2,6 @@
 using LiferayScreens;
 using System;
 using UIKit;
-using System.Diagnostics;
 
 namespace ShowcaseiOS.ViewController
 {
@@ -10,7 +9,7 @@ namespace ShowcaseiOS.ViewController
     {
         public UserPortraitViewController(IntPtr handle) : base(handle) { }
 
-		public override void ViewDidLoad()
+        public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
@@ -33,26 +32,26 @@ namespace ShowcaseiOS.ViewController
         [Export("screenlet:onUserPortraitError:")]
         public virtual void Screenlet(UserPortraitScreenlet screenlet, NSError error)
         {
-            Debug.WriteLine($"User portrait failed: {error.DebugDescription}");
+            Console.WriteLine($"User portrait failed: {error.DebugDescription}");
         }
 
         [Export("screenlet:onUserPortraitResponseImage:")]
         public virtual UIImage Screenlet(UserPortraitScreenlet screenlet, UIImage image)
         {
-            Debug.WriteLine($"User portrait succes: {image.DebugDescription}");
+            Console.WriteLine($"User portrait succes: {image.DebugDescription}");
             return image;
         }
 
         [Export("screenlet:onUserPortraitUploaded:")]
         public virtual void Screenlet(UserPortraitScreenlet screenlet, NSDictionary<NSString, NSObject> attributes)
         {
-            Debug.WriteLine($"User portrait uploaded successfully: {attributes.DebugDescription}");
+            Console.WriteLine($"User portrait uploaded successfully: {attributes.DebugDescription}");
         }
 
         [Export("screenlet:onUserPortraitUploadError:")]
         public virtual void ScreenletUploadError(UserPortraitScreenlet screenlet, NSError error)
         {
-            Debug.WriteLine($"User portrait uploaded failed: {error.DebugDescription}");
+            Console.WriteLine($"User portrait uploaded failed: {error.DebugDescription}");
         }
     }
 }

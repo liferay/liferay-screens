@@ -1,7 +1,7 @@
-﻿using System;
-using UIKit;
-using Foundation;
+﻿using Foundation;
 using LiferayScreens;
+using System;
+using UIKit;
 
 namespace ShowcaseiOS.ViewController
 {
@@ -23,14 +23,13 @@ namespace ShowcaseiOS.ViewController
         [Export("screenlet:onBlogEntryError:")]
         public virtual void OnBlogEntryError(BlogsEntryDisplayScreenlet screenlet, NSError error)
         {
-            System.Diagnostics.Debug.WriteLine($"Blog entry error: {error.DebugDescription}");
+            Console.WriteLine($"Blog entry error: {error.DebugDescription}");
         }
 
         [Export("screenlet:onBlogEntryResponse:")]
         public virtual void OnBlogEntryResponse(BlogsEntryDisplayScreenlet screenlet, BlogsEntry blogEntry)
         {
-            System.Diagnostics.Debug.WriteLine($"Blog entry response: {blogEntry.EntryId}");
+            Console.WriteLine($"Blog entry response: {blogEntry.EntryId}");
         }
-
     }
 }

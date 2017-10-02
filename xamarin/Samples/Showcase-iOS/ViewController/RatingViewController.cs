@@ -5,8 +5,8 @@ using Foundation;
 
 namespace ShowcaseiOS.ViewController
 {
-    public partial class RatingViewController : UIViewController, IRatingScreenletDelegate
-    {
+        public partial class RatingViewController : UIViewController, IRatingScreenletDelegate
+        {
         public RatingViewController(IntPtr handle) : base(handle) { }
 
         public override void ViewDidLoad()
@@ -32,25 +32,25 @@ namespace ShowcaseiOS.ViewController
         [Export("screenlet:onRatingDeleted:")]
         public virtual void OnRatingDeleted(RatingScreenlet screenlet, RatingEntry rating)
         {
-            System.Diagnostics.Debug.WriteLine("Rating delete");
+            Console.WriteLine("Rating delete");
         }
 
         [Export("screenlet:onRatingError:")]
         public virtual void OnRatingError(RatingScreenlet screenlet, NSError error)
         {
-            System.Diagnostics.Debug.WriteLine($"Rating error: {error.Description}");
+            Console.WriteLine($"Rating error: {error.Description}");
         }
 
         [Export("screenlet:onRatingRetrieve:")]
         public virtual void OnRatingRetrieve(RatingScreenlet screenlet, RatingEntry rating)
         {
-            System.Diagnostics.Debug.WriteLine($"Rating retrive: {rating.Attributes}");
+            Console.WriteLine($"Rating retrive: {rating.Attributes}");
         }
 
         [Export("screenlet:onRatingUpdated:")]
         public virtual void OnRatingUpdated(RatingScreenlet screenlet, RatingEntry rating)
         {
-            System.Diagnostics.Debug.WriteLine($"Rating updated: {rating.Average}");
+            Console.WriteLine($"Rating updated: {rating.Average}");
         }
     }
 }

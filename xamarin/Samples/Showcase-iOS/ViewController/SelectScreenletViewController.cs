@@ -21,8 +21,8 @@ namespace ShowcaseiOS.ViewController
             "CommentDisplayScreenlet",
             "CommentAddScreenlet",
             "CommentListScreenlet",
-			"WebContentListScreenlet",
-			"RatingScreenlet",
+        	"WebContentListScreenlet",
+        	"RatingScreenlet",
             "BlogsScreenlet",
             "DDLListScreenlet",
             "WebScreenlet"

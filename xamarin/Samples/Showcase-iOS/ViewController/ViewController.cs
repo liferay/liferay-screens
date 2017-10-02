@@ -2,7 +2,6 @@
 using Foundation;
 using System;
 using UIKit;
-using System.Diagnostics;
 
 namespace ShowcaseiOS.ViewController
 {
@@ -24,15 +23,15 @@ namespace ShowcaseiOS.ViewController
         [Export("screenlet:onLoginError:")]
         public virtual void OnLoginError(BaseScreenlet screenlet, NSError error)
         {
-            Debug.WriteLine($"Login failed: {error.Description}");
+            Console.WriteLine($"Login failed: {error.Description}");
         }
 
         [Export("screenlet:onLoginResponseUserAttributes:")]
         public virtual void OnLoginResponseUserAttributes(BaseScreenlet screenlet, NSDictionary<NSString, NSObject> attributes)
         {
-            Debug.WriteLine($"Login successful: {attributes}");
+            Console.WriteLine($"Login successful: {attributes}");
 
-            Debug.WriteLine("Navigate to SelectScreenletViewController");
+            Console.WriteLine("Navigate to SelectScreenletViewController");
             UIStoryboard board = UIStoryboard.FromName("SelectScreenlet", null);
             SelectScreenletViewController vc = (SelectScreenletViewController)
                 board.InstantiateViewController("SelectScreenletViewController");
@@ -51,7 +50,7 @@ namespace ShowcaseiOS.ViewController
 
         partial void ForgotPasswordButton_TouchUpInside(UIButton sender)
         {
-            Debug.WriteLine("Navigate to ForgotPasswordScreenlet");
+            Console.WriteLine("Navigate to ForgotPasswordScreenlet");
             UIStoryboard board = UIStoryboard.FromName("ForgotPassword", null);
             ForgotPasswordViewController vc = (ForgotPasswordViewController) 
                 board.InstantiateViewController("ForgotPasswordViewController");
@@ -60,7 +59,7 @@ namespace ShowcaseiOS.ViewController
 
         partial void SignUpButton_TouchUpInside(UIButton sender)
         {
-            Debug.WriteLine("Navigate to SignUpScreenlet");
+            Console.WriteLine("Navigate to SignUpScreenlet");
             UIStoryboard board = UIStoryboard.FromName("SignUp", null);
             SignUpViewController vc = (SignUpViewController) 
                 board.InstantiateViewController("SignUpViewController");

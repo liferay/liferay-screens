@@ -1,7 +1,6 @@
 ﻿using Foundation;
 using LiferayScreens;
 using System;
-using System.Diagnostics;
 using UIKit;
 
 namespace ShowcaseiOS.ViewController
@@ -57,25 +56,25 @@ namespace ShowcaseiOS.ViewController
         [Export("screenlet:onAssetResponse:")]
         public virtual void Screenlet(AssetDisplayScreenlet screenlet, Asset asset)
         {
-            Debug.WriteLine($"Asset display response: {asset.Attributes}");
+            Console.WriteLine($"Asset display response: {asset.Attributes}");
         }
 
         [Export("screenlet:onAssetError:")]
         public virtual void Screenlet(AssetDisplayScreenlet screenlet, NSError error)
         {
-            Debug.WriteLine($"Asset display error: {error.DebugDescription}");
+            Console.WriteLine($"Asset display error: {error.DebugDescription}");
         }
 
         [Export("screenlet:onConfigureScreenlet:onAsset:")]
         public virtual void Screenlet(AssetDisplayScreenlet screenlet, BaseScreenlet childScreenlet, Asset asset)
         {
-            Debug.WriteLine($"Configure Asset display: {asset}");
+            Console.WriteLine($"Configure Asset display: {asset}");
         }
 
         [Export("screenlet:onAsset:")]
         public virtual UIView ScreenletCustomAsset(AssetDisplayScreenlet screenlet, Asset asset)
         {
-            Debug.WriteLine($"Asset display custom asset: {asset.Attributes}");
+            Console.WriteLine($"Asset display custom asset: {asset.Attributes}");
             return screenlet;
         }
     }

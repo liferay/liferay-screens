@@ -2,15 +2,14 @@
 using LiferayScreens;
 using System;
 using UIKit;
-using System.Diagnostics;
 
 namespace ShowcaseiOS.ViewController
 {
     public partial class WebContentViewController : UIViewController, IWebContentDisplayScreenletDelegate
     {
-		public WebContentViewController(IntPtr handle) : base(handle) { }
+        public WebContentViewController(IntPtr handle) : base(handle) { }
 
-		public override void ViewDidLoad()
+        public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
@@ -26,20 +25,20 @@ namespace ShowcaseiOS.ViewController
         [Export("screenlet:onRecordContentResponse:")]
         public void Screenlet(WebContentDisplayScreenlet screenlet, DDLRecord record)
         {
-            Debug.WriteLine($"WebContent display record successfully: {record.DebugDescription}");
+            Console.WriteLine($"WebContent display record successfully: {record.DebugDescription}");
         }
 
         [Export("screenlet:onWebContentResponse:")]
         public string Screenlet(WebContentDisplayScreenlet screenlet, string html)
         {
-            Debug.WriteLine("WebContent display successfully");
+            Console.WriteLine("WebContent display successfully");
             return html;
         }
 
         [Export("screenlet:onWebContentError:")]
         public void Screenlet(WebContentDisplayScreenlet screenlet, NSError error)
         {
-            Debug.WriteLine($"WebContent failed: {error.DebugDescription}");
+            Console.WriteLine($"WebContent failed: {error.DebugDescription}");
         }
     }
 }
