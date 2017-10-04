@@ -27,3 +27,7 @@ dependencies {
 
 	compile project(':liferay-westeros-viewset')
 }
+
+repositories {
+	google()
+}
