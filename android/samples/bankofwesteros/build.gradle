@@ -23,15 +23,6 @@ android {
 		exclude 'META-INF/LICENSE'
 		exclude 'META-INF/NOTICE'
 	}
-
-	productFlavors {
-		travisci {
-			minSdkVersion 21
-		}
-		vanilla {
-			minSdkVersion rootProject.ext.minSdkVersion
-		}
-	}
 }
 
 dependencies {
@@ -39,4 +30,8 @@ dependencies {
 	compile 'com.daimajia.swipelayout:library:1.2.0'
 
 	compile project(':liferay-westeros-viewset')
+}
+
+repositories {
+	google()
 }

@@ -17,11 +17,6 @@ android {
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 		}
 	}
-
-	packagingOptions {
-		exclude 'META-INF/LICENSE'
-		exclude 'META-INF/NOTICE'
-	}
 }
 
 dependencies {
@@ -31,12 +26,18 @@ dependencies {
 	compile libraries.design
 	compile libraries.exif
 	compile libraries.recyclerView
-	compile libraries.sdk
+	compile(libraries.sdk) {
+//		exclude group: 'com.google.android'
+		exclude module: 'android'
+	}
 	compile(libraries.push) {
 		exclude group: 'com.google.android.gms', module: 'play-services'
+		exclude module: 'android'
 	}
 	compile libraries.gms
-	compile libraries.oauth
+	compile(libraries.oauth) {
+		exclude module: 'android'
+	}
 
 	compile libraries.eventbus
 	compile libraries.picasso
@@ -47,14 +48,14 @@ dependencies {
 
 	compile 'com.lsjwzh:recyclerviewpager:1.0.8'
 
-	testCompile libraries.junit
-	testCompile libraries.robolectric
-	testCompile libraries.mockito
-
 	compile(libraries.snappydb) {
 		exclude group: 'com.esotericsoftware.kryo', module: 'kryo'
 	}
 	compile libraries.kryo
+
+	testCompile libraries.junit
+	testCompile libraries.robolectric
+	testCompile libraries.mockito
 }
 
 apply from: '../bintray.gradle'
