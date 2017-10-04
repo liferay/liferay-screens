@@ -67,5 +67,24 @@ namespace LiferayScreens
         Discard = 2,
         Ignore = 3
     }
-}
 
+    [Native]
+    public enum MBProgressHUDMode : ulong
+    {
+        Indeterminate,
+        Determinate,
+        DeterminateHorizontalBar,
+        AnnularDeterminate,
+        CustomView,
+        Text
+    }
+
+    [Native]
+    public enum MBProgressHUDAnimation : ulong
+    {
+        Fade,
+        Zoom,
+        ZoomOut = Zoom,
+        ZoomIn
+    }
+}

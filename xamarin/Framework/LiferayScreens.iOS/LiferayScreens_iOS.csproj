@@ -203,6 +203,8 @@
     <ObjcBindingApiDefinition Include="DDL\List\DDLListViewModel.cs" />
     <ObjcBindingApiDefinition Include="Themes\Default\DDL\DDLListView_default.cs" />
     <ObjcBindingApiDefinition Include="Web\WebScreenletConfigurationBuilder.cs" />
+    <ObjcBindingApiDefinition Include="Base\MBProgressHUDPresenter.cs" />
+    <ObjcBindingApiDefinition Include="Base\MBProgressHUD.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />
