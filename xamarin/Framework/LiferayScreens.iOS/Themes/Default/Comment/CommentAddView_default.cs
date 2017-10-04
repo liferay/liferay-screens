@@ -27,7 +27,7 @@ namespace LiferayScreens
 
         // -(id<ProgressPresenter> _Nonnull)createProgressPresenter __attribute__((warn_unused_result));
         [Export("createProgressPresenter")]
-        ProgressPresenter CreateProgressPresenter();
+        IProgressPresenter CreateProgressPresenter();
 
         // -(BOOL)textFieldShouldReturn:(UITextField * _Nonnull)textField __attribute__((warn_unused_result));
         [Export("textFieldShouldReturn:")]

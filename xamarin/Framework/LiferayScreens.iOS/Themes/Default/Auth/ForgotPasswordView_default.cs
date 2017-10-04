@@ -48,7 +48,7 @@ namespace LiferayScreens
 
         // -(id<ProgressPresenter> _Nonnull)createProgressPresenter __attribute__((warn_unused_result));
         [Export("createProgressPresenter")]
-        ProgressPresenter CreateProgressPresenter();
+        IProgressPresenter CreateProgressPresenter();
 
         // -(instancetype _Nonnull)initWithFrame:(CGRect)frame __attribute__((objc_designated_initializer));
         [Export("initWithFrame:")]

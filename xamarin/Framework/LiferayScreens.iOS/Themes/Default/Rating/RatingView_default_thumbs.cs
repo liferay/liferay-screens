@@ -15,7 +15,7 @@ namespace LiferayScreens
 
         // -(id<ProgressPresenter> _Nonnull)createProgressPresenter __attribute__((warn_unused_result));
         [Export("createProgressPresenter")]
-        ProgressPresenter CreateProgressPresenter();
+        IProgressPresenter CreateProgressPresenter();
 
         // @property (nonatomic, strong) RatingEntry * _Nullable ratingEntry;
         [NullAllowed, Export("ratingEntry", ArgumentSemantic.Strong)]

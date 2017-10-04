@@ -24,7 +24,7 @@ namespace LiferayScreens
 
         // -(id<ProgressPresenter> _Nonnull)createProgressPresenter __attribute__((warn_unused_result));
         [Export("createProgressPresenter")]
-        ProgressPresenter CreateProgressPresenter();
+        IProgressPresenter CreateProgressPresenter();
 
         // -(NSString * _Nonnull)composeLabel:(DDLRecord * _Nonnull)record __attribute__((warn_unused_result));
         [Export("composeLabel:")]

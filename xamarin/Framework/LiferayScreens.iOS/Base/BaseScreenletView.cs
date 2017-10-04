@@ -93,7 +93,7 @@ namespace LiferayScreens
 
         // -(id<ProgressPresenter> _Nonnull)createProgressPresenter __attribute__((warn_unused_result));
         [Export("createProgressPresenter")]
-        ProgressPresenter CreateProgressPresenter();
+        IProgressPresenter CreateProgressPresenter();
 
         // -(NSString * _Nullable)progressMessageForAction:(NSString * _Nonnull)actionName messageType:(enum ProgressMessageType)messageType __attribute__((warn_unused_result));
         [Export("progressMessageForAction:messageType:")]

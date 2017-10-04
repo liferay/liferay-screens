@@ -28,7 +28,7 @@ namespace LiferayScreens
 
         // -(id<ProgressPresenter> _Nonnull)createProgressPresenter __attribute__((warn_unused_result));
         [Export("createProgressPresenter")]
-        ProgressPresenter CreateProgressPresenter();
+        IProgressPresenter CreateProgressPresenter();
 
         // @property (copy, nonatomic) NSString * _Nullable htmlContent;
         [NullAllowed, Export("htmlContent")]
