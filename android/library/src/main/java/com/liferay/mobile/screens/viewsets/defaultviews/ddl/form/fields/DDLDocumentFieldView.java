@@ -195,7 +195,7 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 					if (file != null) {
 						getField().createLocalFile(file.getAbsolutePath());
 						Uri photoURI = FileProvider.getUriForFile(getContext(),
-							getContext().getPackageName() + ".screensfileprovider", file);
+							getContext().getPackageName() + ".screens.fileprovider", file);
 						cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 
 						Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
