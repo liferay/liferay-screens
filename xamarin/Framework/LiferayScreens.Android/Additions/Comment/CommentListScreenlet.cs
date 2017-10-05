@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Android.Runtime;
+using System;
+
 namespace Com.Liferay.Mobile.Screens.Comment.List
 {
     public partial class CommentListScreenlet
@@ -11,6 +13,14 @@ namespace Com.Liferay.Mobile.Screens.Comment.List
         protected override Java.Lang.Object CreateInteractor(string p0)
         {
             throw new NotImplementedException();
+        }
+
+        public virtual ICommentListListener Listener
+        {
+            [Register("getListener", "()Lcom/liferay/mobile/screens/comment/list/CommentListScreenlet;", "GetGetListenerHandler")]
+            get;
+            [Register("setListener", "(Lcom/liferay/mobile/screens/comment/list/CommentListScreenlet;)V", "GetSetListener_Lcom_liferay_mobile_screens_comment_list_CommentListListener_Handler")]
+            set;
         }
     }
 }

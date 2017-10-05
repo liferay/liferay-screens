@@ -76,6 +76,8 @@
     <Compile Include="Additions\Blogs\BlogsEntryDisplayScreenlet.cs" />
     <Compile Include="Additions\DDL\List\DDLListScreenlet.cs" />
     <Compile Include="Additions\Base\BaseListListener.cs" />
+    <Compile Include="Additions\Comment\CommentListListener.cs" />
+    <Compile Include="Additions\ImageGallery\ImageGalleryListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <TransformFile Include="Transforms\Metadata.xml" />
