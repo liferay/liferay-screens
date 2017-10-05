@@ -1,11 +1,11 @@
 buildscript {
 	repositories {
 		jcenter()
-		google()
+		maven { url 'https://maven.google.com' }
 	}
 
 	dependencies {
-		classpath 'com.android.tools.build:gradle:2.3.0'
+		classpath 'com.android.tools.build:gradle:2.3.3'
 		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
 		classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
 	}
@@ -64,6 +64,6 @@ ext.libraries = [appCompat    : 'com.android.support:appcompat-v7:' + supportLib
 subprojects {
 	repositories {
 		jcenter()
-		google()
+		maven { url 'https://maven.google.com' }
 	}
 }
