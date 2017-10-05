@@ -75,6 +75,7 @@
     <Compile Include="Additions\Web\WebScreenlet.cs" />
     <Compile Include="Additions\Blogs\BlogsEntryDisplayScreenlet.cs" />
     <Compile Include="Additions\DDL\List\DDLListScreenlet.cs" />
+    <Compile Include="Additions\Base\BaseListListener.cs" />
   </ItemGroup>
   <ItemGroup>
     <TransformFile Include="Transforms\Metadata.xml" />
