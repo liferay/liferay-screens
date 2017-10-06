@@ -55,7 +55,9 @@ public class AssetReader {
 		String line = reader.readLine();
 
 		while (line != null) {
-			fileContent.append(line);
+			if (!line.startsWith("//")) {
+				fileContent.append(line);
+			}
 			line = reader.readLine();
 		}
 
