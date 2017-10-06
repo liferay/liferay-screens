@@ -42,8 +42,7 @@ class LegalConditionsView: UIView, WebScreenletDelegate {
     }
 
     func loadWebScreenlet() {
-        let webScreenletConfiguration = WebScreenletConfiguration
-            .Builder(url: LanguageHelper.shared().url(page: .legal))
+        let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: LanguageHelper.shared().url(page: .legal))
             .set(webType: .other)
             .addCss(localFile: "legal")
             .addJs(localFile: "legal")

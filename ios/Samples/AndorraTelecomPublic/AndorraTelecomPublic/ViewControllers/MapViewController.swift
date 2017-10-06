@@ -30,8 +30,7 @@ class MapViewController: UIViewController {
     }
 
     func loadWebScreenlet() {
-        let webScreenletConfiguration = WebScreenletConfiguration
-            .Builder(url: LanguageHelper.shared().url(page: .map))
+        let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: LanguageHelper.shared().url(page: .map))
             .set(webType: .other)
             .addCss(localFile: "map")
             .addJs(localFile: "map")
