@@ -9,6 +9,7 @@ import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.viewsets.defaultviews.web.ScreensWebView;
 import org.apache.cordova.CordovaWebView;
 import org.apache.cordova.ScreensCordovaActivity;
+import org.apache.cordova.engine.SystemWebViewEngine;
 
 /**
  * @author Víctor Galán Grande
@@ -28,6 +29,9 @@ public class ScreensCordovaWebView implements ScreensWebView, CordovaLifeCycleLi
 		observer.setListener(this);
 
 		webView = ((WebView) cordovaWebView.getView());
+
+		webView.setWebViewClient(
+			new ScreensCordovaWebViewClient((SystemWebViewEngine) cordovaWebView.getEngine()));
 	}
 
 	public void onEvent(CordovaEvent event) {

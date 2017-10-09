@@ -23,15 +23,15 @@ import java.io.InputStreamReader;
  * @author Sarai Díaz García
  */
 
-public class AssetReader {
+public class ScriptReader {
 
 	private Context context;
 
-	public AssetReader(Context context) {
+	public ScriptReader(Context context) {
 		this.context = context;
 	}
 
-	public String read(int fileId) {
+	public String readScriptContent(int fileId) {
 		try {
 			InputStream in = context.getResources().openRawResource(fileId);
 			return getFileContent(in);
@@ -40,7 +40,7 @@ public class AssetReader {
 		}
 	}
 
-	public String read(String filename) {
+	public String readScriptContent(String filename) {
 		try {
 			InputStream in = context.getResources().getAssets().open(filename);
 			return getFileContent(in);
@@ -55,7 +55,9 @@ public class AssetReader {
 		String line = reader.readLine();
 
 		while (line != null) {
-			fileContent.append(line);
+			if (!line.startsWith("//")) {
+				fileContent.append(line);
+			}
 			line = reader.readLine();
 		}
 

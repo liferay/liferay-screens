@@ -21,7 +21,7 @@ import com.liferay.mobile.screens.web.util.InjectableScript;
 import com.liferay.mobile.screens.web.util.JsScript;
 import com.liferay.mobile.screens.web.util.RemoteCssScript;
 import com.liferay.mobile.screens.web.util.RemoteJsScript;
-import com.liferay.mobile.screens.util.AssetReader;
+import com.liferay.mobile.screens.util.ScriptReader;
 import com.liferay.mobile.screens.viewsets.defaultviews.web.cordova.CordovaLifeCycleObserver;
 import java.util.ArrayList;
 import java.util.List;
@@ -173,11 +173,11 @@ public class WebScreenletConfiguration {
 		}
 
 		private String loadLocalContent(String fileName) {
-			return new AssetReader(LiferayScreensContext.getContext()).read(fileName);
+			return new ScriptReader(LiferayScreensContext.getContext()).readScriptContent(fileName);
 		}
 
 		private String loadLocalContent(int fileId) {
-			return new AssetReader(LiferayScreensContext.getContext()).read(fileId);
+			return new ScriptReader(LiferayScreensContext.getContext()).readScriptContent(fileId);
 		}
 	}
 }

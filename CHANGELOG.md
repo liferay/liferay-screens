@@ -18,6 +18,7 @@ All notable changes to this project will be documented in this file.
 * Fix session in WebScreenlet
 * Fix url in other webtype in WebScreenlet
 * Fix File provider so developers can use their own
+* Fix error with comment in '//' format in WebScreenlet
 
 ### New Features
 * Create loadLoggedUserPortrait method in UserPortraitScreenlet
