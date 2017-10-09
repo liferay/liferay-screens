@@ -6,7 +6,7 @@ namespace LiferayScreens
     interface IRatingViewModel {}
 
     // @protocol RatingViewModel
-    [Protocol, Model]
+    [Protocol]
     interface RatingViewModel
     {
         // @required @property (readonly, nonatomic) int32_t defaultRatingsGroupCount;

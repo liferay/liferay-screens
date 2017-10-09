@@ -4,7 +4,7 @@ using ObjCRuntime;
 namespace LiferayScreens
 {
     // @protocol CredentialsStore
-    [Protocol, Model]
+    [Protocol]
     interface CredentialsStore
     {
         // @required @property (readonly, nonatomic, strong) id<LRAuthentication> _Nullable authentication;

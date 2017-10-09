@@ -6,7 +6,7 @@ namespace LiferayScreens
     interface IInjectableScript {}
     
     // @protocol LiferayScreens
-    [Protocol, Model]
+    [Protocol]
     interface InjectableScript
     {
         // @required @property (readonly, copy, nonatomic) NSString * _Nonnull name;

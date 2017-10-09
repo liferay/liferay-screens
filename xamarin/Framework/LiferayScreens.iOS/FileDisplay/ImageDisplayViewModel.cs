@@ -7,7 +7,7 @@ namespace LiferayScreens
     interface IImageDisplayViewModel {}
 
     // @protocol ImageDisplayViewModel <FileDisplayViewModel>
-    [Protocol, Model]
+    [Protocol]
     interface ImageDisplayViewModel : FileDisplayViewModel
     {
         // @required @property (nonatomic) UIViewContentMode imageMode;

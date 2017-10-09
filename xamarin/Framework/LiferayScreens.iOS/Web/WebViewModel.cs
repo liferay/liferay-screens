@@ -6,7 +6,7 @@ namespace LiferayScreens
     interface IWebViewModel {}
 
     // @protocol WebViewModel
-    [Protocol, Model]
+    [Protocol]
     interface WebViewModel
     {
         // @required @property (nonatomic) BOOL isLoggingEnabled;

@@ -6,7 +6,7 @@ namespace LiferayScreens
     interface IDDLListViewModel { }
 
     // @protocol DDLListViewModel
-    [Protocol, Model]
+    [Protocol]
     interface DDLListViewModel
     {
         // @required @property (copy, nonatomic) NSArray<NSString *> * _Nonnull labelFields;

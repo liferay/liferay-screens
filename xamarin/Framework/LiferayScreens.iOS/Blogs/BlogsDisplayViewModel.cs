@@ -6,7 +6,7 @@ namespace LiferayScreens
     interface IBlogsDisplayViewModel { }
 
     // @protocol BlogsDisplayViewModel
-    [Protocol, Model]
+    [Protocol]
     interface BlogsDisplayViewModel
     {
         // @required @property (nonatomic, strong) BlogsEntry * _Nullable blogsEntry;

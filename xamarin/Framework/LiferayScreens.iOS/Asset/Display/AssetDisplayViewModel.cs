@@ -7,7 +7,7 @@ namespace LiferayScreens
     interface IAssetDisplayViewModel { }
 
     // @protocol AssetDisplayViewModel
-    [Protocol, Model]
+    [Protocol]
     interface AssetDisplayViewModel
     {
         // @required @property (nonatomic, strong) Asset * _Nullable asset;

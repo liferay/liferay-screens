@@ -6,7 +6,7 @@ namespace LiferayScreens
     interface ICommentListViewModel { }
 
     // @protocol CommentListViewModel
-    [Protocol, Model]
+    [Protocol]
     interface CommentListViewModel
     {
         // @required -(void)addComment:(Comment * _Nonnull)comment;

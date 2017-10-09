@@ -8,7 +8,7 @@ namespace LiferayScreens
     interface IScreensWebView { }
 
     // @protocol ScreensWebView
-    [Protocol, Model]
+    [Protocol]
     interface ScreensWebView
     {
         // @required @property (readonly, nonatomic, strong) UIView * _Nonnull view;

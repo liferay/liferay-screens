@@ -6,7 +6,7 @@ namespace LiferayScreens
     interface ICommentAddViewModel {}
 
     // @protocol CommentAddViewModel
-    [Protocol, Model]
+    [Protocol]
     interface CommentAddViewModel
     {
         // @required @property (copy, nonatomic) NSString * _Nonnull body;

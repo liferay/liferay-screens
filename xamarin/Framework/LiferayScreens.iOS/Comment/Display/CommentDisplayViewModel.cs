@@ -6,7 +6,7 @@ namespace LiferayScreens
     interface ICommentDisplayViewModel {}
 
     // @protocol CommentDisplayViewModel
-    [Protocol, Model]
+    [Protocol]
     interface CommentDisplayViewModel
     {
         // @required @property (nonatomic, strong) Comment * _Nullable comment;
