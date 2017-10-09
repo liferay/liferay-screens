@@ -63,7 +63,6 @@ namespace LiferayScreens
 
         // -(void)onLoadPageResultWithPage:(NSInteger)page rows:(NSArray * _Nonnull)rows rowCount:(NSInteger)rowCount;
         [Export("onLoadPageResultWithPage:rows:rowCount:")]
-        //[Verify(StronglyTypedNSArray)]
         void OnLoadPageResultWithPage(nint page, NSObject[] rows, nint rowCount);
 
         // -(void)onSelectedRow:(id _Nonnull)row;

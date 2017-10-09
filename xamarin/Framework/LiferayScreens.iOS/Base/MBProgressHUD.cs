@@ -39,7 +39,6 @@ namespace LiferayScreens
         // +(NSArray *)allHUDsForView:(UIView *)view;
         [Static]
         [Export("allHUDsForView:")]
-        //[Verify(StronglyTypedNSArray)]
         NSObject[] AllHUDsForView(UIView view);
 
         // -(id)initWithWindow:(UIWindow *)window;

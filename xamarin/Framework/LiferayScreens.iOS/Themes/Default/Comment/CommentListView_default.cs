@@ -59,7 +59,6 @@ namespace LiferayScreens
 
         // -(NSArray * _Nullable)tableView:(UITableView * _Nonnull)tableView editActionsForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath __attribute__((warn_unused_result));
         [Export("tableView:editActionsForRowAtIndexPath:")]
-        //[Verify(StronglyTypedNSArray)]
         [return: NullAllowed]
         NSObject[] TableViewEditActionsForRowAtIndexPath(UITableView tableView, NSIndexPath indexPath);
 
