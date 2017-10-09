@@ -168,8 +168,7 @@ class MenuViewController: UIViewController, WebScreenletDelegate, CallMeBackDele
     }
 
     func loadWebScreenlet() {
-        let webScreenletConfiguration = WebScreenletConfiguration
-            .Builder(url: LanguageHelper.shared().url(page: .index))
+        let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: LanguageHelper.shared().url(page: .index))
             .set(webType: .other)
             .addCss(localFile: "menu")
             .addJs(localFile: "menu")

@@ -30,8 +30,7 @@ class ForfetViewController: UIViewController, WebScreenletDelegate {
     }
 
     func loadWebScreenlet() {
-        let webScreenletConfiguration = WebScreenletConfiguration
-            .Builder(url: self.url)
+        let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: self.url)
             .set(webType: .other)
             .addCss(localFile: "forfet")
             .addJs(localFile: "forfet")
