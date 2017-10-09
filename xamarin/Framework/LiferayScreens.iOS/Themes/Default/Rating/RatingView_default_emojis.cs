@@ -13,14 +13,6 @@ namespace LiferayScreens
         [Export("defaultRatingsGroupCount")]
         int DefaultRatingsGroupCount { get; }
 
-        // -(void)onCreated;
-        [Export("onCreated")]
-        void OnCreated();
-
-        // -(id<ProgressPresenter> _Nonnull)createProgressPresenter __attribute__((warn_unused_result));
-        [Export("createProgressPresenter")]
-        IProgressPresenter CreateProgressPresenter();
-
         // @property (nonatomic, strong) RatingEntry * _Nullable ratingEntry;
         [NullAllowed, Export("ratingEntry", ArgumentSemantic.Strong)]
         RatingEntry RatingEntry { get; set; }

@@ -34,10 +34,6 @@ namespace LiferayScreens
         [NullAllowed, Export("title")]
         string Title { get; set; }
 
-        // -(void)onStartInteraction;
-        [Export("onStartInteraction")]
-        void OnStartInteraction();
-
         // -(instancetype _Nonnull)initWithFrame:(CGRect)frame __attribute__((objc_designated_initializer));
         [Export("initWithFrame:")]
         [DesignatedInitializer]

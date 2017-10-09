@@ -34,26 +34,6 @@ namespace LiferayScreens
         [NullAllowed, Export("scrollView", ArgumentSemantic.Weak)]
         UIScrollView ScrollView { get; set; }
 
-        // -(void)onStartInteraction;
-        [Export("onStartInteraction")]
-        void OnStartInteraction();
-
-        // -(void)onFinishInteraction:(id _Nullable)result error:(NSError * _Nullable)error;
-        [Export("onFinishInteraction:error:")]
-        void OnFinishInteraction([NullAllowed] NSObject result, [NullAllowed] NSError error);
-
-        // -(void)onCreated;
-        [Export("onCreated")]
-        void OnCreated();
-
-        // -(void)onSetTranslations;
-        [Export("onSetTranslations")]
-        void OnSetTranslations();
-
-        // -(id<ProgressPresenter> _Nonnull)createProgressPresenter __attribute__((warn_unused_result));
-        [Export("createProgressPresenter")]
-        IProgressPresenter CreateProgressPresenter();
-
         // @property (copy, nonatomic) NSString * _Nullable emailAddress;
         [NullAllowed, Export("emailAddress")]
         string EmailAddress { get; set; }

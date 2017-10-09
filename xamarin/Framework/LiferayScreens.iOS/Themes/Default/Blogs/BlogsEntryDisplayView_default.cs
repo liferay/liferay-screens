@@ -21,10 +21,6 @@ namespace LiferayScreens
         [NullAllowed, Export("blogsEntry", ArgumentSemantic.Strong)]
         BlogsEntry BlogsEntry { get; set; }
 
-        // -(void)onSetTranslations;
-        [Export("onSetTranslations")]
-        void OnSetTranslations();
-
         // -(void)loadBlog;
         [Export("loadBlog")]
         void LoadBlog();

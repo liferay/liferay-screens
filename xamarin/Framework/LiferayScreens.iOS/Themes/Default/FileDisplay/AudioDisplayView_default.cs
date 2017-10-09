@@ -38,10 +38,6 @@ namespace LiferayScreens
         [NullAllowed, Export("duration", ArgumentSemantic.Strong)]
         NSTimer Duration { get; set; }
 
-        // -(void)onHide;
-        [Export("onHide")]
-        void OnHide();
-
         // -(instancetype _Nonnull)initWithFrame:(CGRect)frame __attribute__((objc_designated_initializer));
         [Export("initWithFrame:")]
         [DesignatedInitializer]

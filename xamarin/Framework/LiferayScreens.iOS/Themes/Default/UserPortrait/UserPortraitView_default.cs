@@ -23,10 +23,6 @@ namespace LiferayScreens
         [NullAllowed, Export("portraitImage", ArgumentSemantic.Weak)]
         UIImageView PortraitImage { get; set; }
 
-        // @property (nonatomic) BOOL editable;
-        [Export("editable")]
-        bool Editable { get; set; }
-
         // @property (nonatomic, strong) UIImage * _Nullable image;
         [NullAllowed, Export("image", ArgumentSemantic.Strong)]
         UIImage Image { get; set; }
@@ -38,22 +34,6 @@ namespace LiferayScreens
         // @property (nonatomic, strong) UIColor * _Nullable borderColor;
         [NullAllowed, Export("borderColor", ArgumentSemantic.Strong)]
         UIColor BorderColor { get; set; }
-
-        // -(id<ProgressPresenter> _Nonnull)createProgressPresenter __attribute__((warn_unused_result));
-        [Export("createProgressPresenter")]
-        IProgressPresenter CreateProgressPresenter();
-
-        // -(void)onCreated;
-        [Export("onCreated")]
-        void OnCreated();
-
-        // -(void)onShow;
-        [Export("onShow")]
-        void OnShow();
-
-        // -(BOOL)onPreActionWithName:(NSString * _Nonnull)name sender:(id _Nullable)sender __attribute__((warn_unused_result));
-        [Export("onPreActionWithName:sender:")]
-        bool OnPreActionWithName(string name, [NullAllowed] NSObject sender);
 
         // -(void)loadPlaceholderFor:(User * _Nonnull)user;
         [Export("loadPlaceholderFor:")]

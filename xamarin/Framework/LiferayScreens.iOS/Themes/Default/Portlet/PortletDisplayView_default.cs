@@ -53,18 +53,6 @@ namespace LiferayScreens
         [Export("clearCache")]
         void ClearCache();
 
-        // -(void)onCreated;
-        [Export("onCreated")]
-        void OnCreated();
-
-        // -(void)onDestroy;
-        [Export("onDestroy")]
-        void OnDestroy();
-
-        // -(id<ProgressPresenter> _Nonnull)createProgressPresenter __attribute__((warn_unused_result));
-        [Export("createProgressPresenter")]
-        IProgressPresenter CreateProgressPresenter();
-
         // -(void)addWebView;
         [Export("addWebView")]
         void AddWebView();

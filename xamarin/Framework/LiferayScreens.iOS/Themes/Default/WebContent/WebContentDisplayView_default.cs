@@ -18,17 +18,9 @@ namespace LiferayScreens
         [NullAllowed, Export("injectedCss")]
         string InjectedCss { get; set; }
 
-        // -(void)onCreated;
-        [Export("onCreated")]
-        void OnCreated();
-
         // -(void)addWebView;
         [Export("addWebView")]
         void AddWebView();
-
-        // -(id<ProgressPresenter> _Nonnull)createProgressPresenter __attribute__((warn_unused_result));
-        [Export("createProgressPresenter")]
-        IProgressPresenter CreateProgressPresenter();
 
         // @property (copy, nonatomic) NSString * _Nullable htmlContent;
         [NullAllowed, Export("htmlContent")]

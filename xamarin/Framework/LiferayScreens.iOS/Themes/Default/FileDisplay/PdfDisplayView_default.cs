@@ -22,10 +22,6 @@ namespace LiferayScreens
         [NullAllowed, Export("url", ArgumentSemantic.Copy)]
         NSUrl Url { get; set; }
 
-        // -(void)onCreated;
-        [Export("onCreated")]
-        void OnCreated();
-
         // -(void)addWebView;
         [Export("addWebView")]
         void AddWebView();

@@ -17,18 +17,6 @@ namespace LiferayScreens
         [NullAllowed, Export("comment", ArgumentSemantic.Strong)]
         Comment Comment { get; set; }
 
-        // -(void)onSetTranslations;
-        [Export("onSetTranslations")]
-        void OnSetTranslations();
-
-        // @property (nonatomic) BOOL editable;
-        [Export("editable")]
-        bool Editable { get; set; }
-
-        // -(id<ProgressPresenter> _Nonnull)createProgressPresenter __attribute__((warn_unused_result));
-        [Export("createProgressPresenter")]
-        IProgressPresenter CreateProgressPresenter();
-
         // -(void)confirmBodyClosure:(NSString * _Nullable)body;
         [Export("confirmBodyClosure:")]
         void ConfirmBodyClosure([NullAllowed] string body);

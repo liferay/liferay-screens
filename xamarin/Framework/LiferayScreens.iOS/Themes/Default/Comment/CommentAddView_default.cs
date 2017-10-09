@@ -17,22 +17,6 @@ namespace LiferayScreens
         [Export("updateButton")]
         void UpdateButton();
 
-        // -(void)onShow;
-        [Export("onShow")]
-        void OnShow();
-
-        // -(void)onSetTranslations;
-        [Export("onSetTranslations")]
-        void OnSetTranslations();
-
-        // -(id<ProgressPresenter> _Nonnull)createProgressPresenter __attribute__((warn_unused_result));
-        [Export("createProgressPresenter")]
-        IProgressPresenter CreateProgressPresenter();
-
-        // -(BOOL)textFieldShouldReturn:(UITextField * _Nonnull)textField __attribute__((warn_unused_result));
-        [Export("textFieldShouldReturn:")]
-        bool TextFieldShouldReturn(UITextField textField);
-
         // -(instancetype _Nonnull)initWithFrame:(CGRect)frame __attribute__((objc_designated_initializer));
         [Export("initWithFrame:")]
         [DesignatedInitializer]
