@@ -30,7 +30,7 @@ import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.web.util.InjectableScript;
 import com.liferay.mobile.screens.web.util.JsScript;
 import com.liferay.mobile.screens.web.view.WebViewModel;
-import com.liferay.mobile.screens.util.AssetReader;
+import com.liferay.mobile.screens.util.ScriptReader;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
@@ -77,7 +77,7 @@ public class WebScreenlet extends BaseScreenlet<WebViewModel, Interactor>
 			String finalUrl = buildPortletUrl(webScreenletConfiguration.getUrl());
 			String body = buildBody();
 
-			String screensJs = new AssetReader(getContext()).read(R.raw.screens);
+			String screensJs = new ScriptReader(getContext()).readScriptContent(R.raw.screens);
 
 			getViewModel().addScript(new JsScript("Screens.js", screensJs));
 
