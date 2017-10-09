@@ -14,18 +14,6 @@ namespace LiferayScreens
         [NullAllowed, Export("collectionView", ArgumentSemantic.Strong)]
         UICollectionView CollectionView { get; set; }
 
-        // -(void)onCreated;
-        [Export("onCreated")]
-        void OnCreated();
-
-        // -(void)onShow;
-        [Export("onShow")]
-        void OnShow();
-
-        // -(void)onFinishInteraction:(id _Nullable)result error:(NSError * _Nullable)error;
-        [Export("onFinishInteraction:error:")]
-        void OnFinishInteraction([NullAllowed] NSObject result, [NullAllowed] NSError error);
-
         // -(NSInteger)collectionView:(UICollectionView * _Nonnull)collectionView numberOfItemsInSection:(NSInteger)section __attribute__((warn_unused_result));
         [Export("collectionView:numberOfItemsInSection:")]
         new nint GetItemsCount(UICollectionView collectionView, nint section);

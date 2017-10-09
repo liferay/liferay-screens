@@ -21,10 +21,6 @@ namespace LiferayScreens
         [Export("isScrollEnabled")]
         bool IsScrollEnabled { get; set; }
 
-        // @property (copy, nonatomic) NSString * _Nullable themeName;
-        [NullAllowed, Export("themeName")]
-        string ThemeName { get; set; }
-
         // @property (nonatomic, strong) WebScreenletConfiguration * _Nullable configuration;
         [NullAllowed, Export("configuration", ArgumentSemantic.Strong)]
         WebScreenletConfiguration Configuration { get; set; }
@@ -40,10 +36,6 @@ namespace LiferayScreens
         // @property (readonly, nonatomic, strong) id<WebViewModel> _Nonnull webViewModel;
         [Export("webViewModel", ArgumentSemantic.Strong)]
         IWebViewModel WebViewModel { get; }
-
-        // -(void)onShow;
-        [Export("onShow")]
-        void OnShow();
 
         // -(void)clearCache;
         [Export("clearCache")]

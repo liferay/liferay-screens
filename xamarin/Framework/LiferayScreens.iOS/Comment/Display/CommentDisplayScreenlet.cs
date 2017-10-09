@@ -63,19 +63,6 @@ namespace LiferayScreens
         [Export("editComment")]
         void EditComment();
 
-        // -(void)onCreated;
-        [Export("onCreated")]
-        void OnCreated();
-
-        // -(void)onShow;
-        [Export("onShow")]
-        void OnShow();
-
-        // -(Interactor * _Nullable)createInteractorWithName:(NSString * _Nonnull)name sender:(id _Nullable)sender __attribute__((warn_unused_result));
-        [Export("createInteractorWithName:sender:")]
-        [return: NullAllowed]
-        Interactor CreateInteractorWithName(string name, [NullAllowed] NSObject sender);
-
         // -(instancetype _Nonnull)initWithFrame:(CGRect)frame themeName:(NSString * _Nullable)themeName __attribute__((objc_designated_initializer));
         [Export("initWithFrame:themeName:")]
         [DesignatedInitializer]

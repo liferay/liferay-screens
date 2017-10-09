@@ -97,23 +97,6 @@ namespace LiferayScreens
         [Export("isFormLoaded")]
         bool IsFormLoaded { get; }
 
-        // -(void)onCreated;
-        [Export("onCreated")]
-        void OnCreated();
-
-        // -(void)onShow;
-        [Export("onShow")]
-        void OnShow();
-
-        // -(Interactor * _Nullable)createInteractorWithName:(NSString * _Nonnull)name sender:(id _Nullable)sender __attribute__((warn_unused_result));
-        [Export("createInteractorWithName:sender:")]
-        [return: NullAllowed]
-        Interactor CreateInteractorWithName(string name, [NullAllowed] NSObject sender);
-
-        // -(BOOL)onActionWithName:(NSString * _Nonnull)name interactor:(Interactor * _Nonnull)interactor sender:(id _Nullable)sender __attribute__((warn_unused_result));
-        [Export("onActionWithName:interactor:sender:")]
-        bool OnActionWithName(string name, Interactor interactor, [NullAllowed] NSObject sender);
-
         // -(BOOL)loadForm;
         [Export("loadForm")]
         bool LoadForm();

@@ -40,10 +40,6 @@ namespace LiferayScreens
         [Export("coverImageFileEntryId")]
         long CoverImageFileEntryId { get; }
 
-        // @property (readonly, copy, nonatomic) NSString * _Nullable mimeType;
-        [NullAllowed, Export("mimeType")]
-        string MimeType { get; }
-
         // -(instancetype _Nonnull)initWithAttributes:(NSDictionary<NSString *,id> * _Nonnull)attributes __attribute__((objc_designated_initializer));
         [Export("initWithAttributes:")]
         [DesignatedInitializer]

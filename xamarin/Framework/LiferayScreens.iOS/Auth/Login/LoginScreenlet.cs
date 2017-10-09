@@ -53,15 +53,6 @@ namespace LiferayScreens
         [Export("authType", ArgumentSemantic.Assign)]
         AuthType AuthType { get; set; }
 
-        // -(void)onCreated;
-        [Export("onCreated")]
-        void OnCreated();
-
-        // -(Interactor * _Nullable)createInteractorWithName:(NSString * _Nonnull)name sender:(id _Nullable)sender __attribute__((warn_unused_result));
-        [Export("createInteractorWithName:sender:")]
-        [return: NullAllowed]
-        Interactor CreateInteractorWithName(string name, [NullAllowed] NSObject sender);
-
         // -(BOOL)loadStoredCredentials __attribute__((warn_unused_result));
         [Export("loadStoredCredentials")]
         bool LoadStoredCredentials();

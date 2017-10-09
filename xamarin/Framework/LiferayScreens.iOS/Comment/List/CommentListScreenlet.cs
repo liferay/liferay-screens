@@ -49,26 +49,6 @@ namespace LiferayScreens
         [Export("updateComment:")]
         void UpdateComment(Comment comment);
 
-        // -(void)onCreated;
-        [Export("onCreated")]
-        void OnCreated();
-
-        // -(BaseListPageLoadInteractor * _Nonnull)createPageLoadInteractorWithPage:(NSInteger)page computeRowCount:(BOOL)computeRowCount __attribute__((warn_unused_result));
-        //[Export("createPageLoadInteractorWithPage:computeRowCount:")]
-        //BaseListPageLoadInteractor CreatePageLoadInteractorWithPage(nint page, bool computeRowCount);
-
-        // -(void)onLoadPageErrorWithPage:(NSInteger)page error:(NSError * _Nonnull)error;
-        [Export("onLoadPageErrorWithPage:error:")]
-        void OnLoadPageErrorWithPage(nint page, NSError error);
-
-        // -(void)onLoadPageResultWithPage:(NSInteger)page rows:(NSArray * _Nonnull)rows rowCount:(NSInteger)rowCount;
-        [Export("onLoadPageResultWithPage:rows:rowCount:")]
-        void OnLoadPageResultWithPage(nint page, NSObject[] rows, nint rowCount);
-
-        // -(void)onSelectedRow:(id _Nonnull)row;
-        [Export("onSelectedRow:")]
-        void OnSelectedRow(NSObject row);
-
         // -(void)screenlet:(CommentDisplayScreenlet * _Nonnull)screenlet onCommentDeleted:(Comment * _Nonnull)comment;
         [Export("screenlet:onCommentDeleted:")]
         void Screenlet(CommentDisplayScreenlet screenlet, Comment comment);

@@ -14,34 +14,6 @@ namespace LiferayScreens
         [NullAllowed, Export("tableView", ArgumentSemantic.Strong)]
         UITableView TableView { get; set; }
 
-        // @property (nonatomic, strong) DDLRecord * _Nullable record;
-        [NullAllowed, Export("record", ArgumentSemantic.Strong)]
-        DDLRecord Record { get; set; }
-
-        // @property (copy, nonatomic) NSString * _Nonnull themeName;
-        [Export("themeName")]
-        string ThemeName { get; set; }
-
-        // -(void)refresh;
-        [Export("refresh")]
-        void Refresh();
-
-        // -(BOOL)resignFirstResponder __attribute__((warn_unused_result));
-        [Export("resignFirstResponder")]
-        bool ResignFirstResponder();
-
-        // -(BOOL)becomeFirstResponder __attribute__((warn_unused_result));
-        [Export("becomeFirstResponder")]
-        bool BecomeFirstResponder();
-
-        // -(void)onShow;
-        [Export("onShow")]
-        void OnShow();
-
-        // -(void)onHide;
-        [Export("onHide")]
-        void OnHide();
-
         // -(void)layoutWhenKeyboardHidden;
         [Export("layoutWhenKeyboardHidden")]
         void LayoutWhenKeyboardHidden();

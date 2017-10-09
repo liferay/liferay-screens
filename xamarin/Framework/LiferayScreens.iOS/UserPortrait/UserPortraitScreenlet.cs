@@ -52,19 +52,6 @@ namespace LiferayScreens
         [Export("viewModel", ArgumentSemantic.Strong)]
         IUserPortraitViewModel ViewModel { get; }
 
-        // -(void)onShow;
-        [Export("onShow")]
-        void OnShow();
-
-        // -(void)onCreated;
-        [Export("onCreated")]
-        void OnCreated();
-
-        // -(Interactor * _Nullable)createInteractorWithName:(NSString * _Nonnull)name sender:(id _Nullable)sender __attribute__((warn_unused_result));
-        [Export("createInteractorWithName:sender:")]
-        [return: NullAllowed]
-        Interactor CreateInteractorWithName(string name, [NullAllowed] NSObject sender);
-
         // -(BOOL)loadLoggedUserPortrait;
         [Export("loadLoggedUserPortrait")]
         bool LoadLoggedUserPortrait();

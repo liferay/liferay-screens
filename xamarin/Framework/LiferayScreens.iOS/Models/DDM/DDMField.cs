@@ -25,14 +25,6 @@ namespace LiferayScreens
         [NullAllowed, Export("currentValueAsLabel")]
         string CurrentValueAsLabel { get; set; }
 
-        // @property (readonly, copy, nonatomic) NSString * _Nonnull debugDescription;
-        [Export("debugDescription")]
-        string DebugDescription { get; }
-
-        // @property (readonly, copy, nonatomic) NSString * _Nonnull description;
-        [Export("description")]
-        string Description { get; }
-
         // @property (copy, nonatomic) NSLocale * _Nonnull currentLocale;
         [Export("currentLocale", ArgumentSemantic.Copy)]
         NSLocale CurrentLocale { get; set; }

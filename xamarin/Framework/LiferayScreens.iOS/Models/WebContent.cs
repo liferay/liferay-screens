@@ -20,10 +20,6 @@ namespace LiferayScreens
         [NullAllowed, Export("html")]
         string Html { get; }
 
-        // @property (readonly, copy, nonatomic) NSString * _Nonnull debugDescription;
-        [Export("debugDescription")]
-        string DebugDescription { get; }
-
         // +(BOOL)isWebContentClassName:(NSString * _Nonnull)className __attribute__((warn_unused_result));
         [Static]
         [Export("isWebContentClassName:")]
@@ -33,9 +29,5 @@ namespace LiferayScreens
         [Export("initWithAttributes:")]
         [DesignatedInitializer]
         IntPtr Constructor(NSDictionary<NSString, NSObject> attributes);
-
-        // -(void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
-        [Export("encodeWithCoderWebContent:")]
-        void EncodeWithCoder(NSCoder aCoder);
     }
 }

@@ -13,10 +13,6 @@ namespace LiferayScreens
         [Export("mimeTypes")]
         string MimeTypes { get; set; }
 
-        // @property (readonly, copy, nonatomic) NSArray<NSString *> * _Nonnull supportedMimeTypes;
-        [Export("supportedMimeTypes", ArgumentSemantic.Copy)]
-        string[] SupportedMimeTypes { get; }
-
         // -(instancetype _Nonnull)initWithFrame:(CGRect)frame themeName:(NSString * _Nullable)themeName __attribute__((objc_designated_initializer));
         [Export("initWithFrame:themeName:")]
         [DesignatedInitializer]

@@ -14,14 +14,6 @@ namespace LiferayScreens
         [NullAllowed, Export("tableView", ArgumentSemantic.Strong)]
         UITableView TableView { get; set; }
 
-        // -(void)onCreated;
-        [Export("onCreated")]
-        void OnCreated();
-
-        // -(void)onFinishInteraction:(id _Nullable)result error:(NSError * _Nullable)error;
-        [Export("onFinishInteraction:error:")]
-        void OnFinishInteraction([NullAllowed] NSObject result, [NullAllowed] NSError error);
-
         // -(NSInteger)numberOfSectionsInTableView:(UITableView * _Nonnull)tableView __attribute__((warn_unused_result));
         [Export("numberOfSectionsInTableView:")]
         nint NumberOfSectionsInTableView(UITableView tableView);
@@ -66,10 +58,6 @@ namespace LiferayScreens
         // -(UIView * _Nullable)createLoadingMoreView __attribute__((warn_unused_result));
         [NullAllowed, Export("createLoadingMoreView")]
         UIView CreateLoadingMoreView();
-
-        // -(void)changeEditable:(BOOL)editable;
-        [Export("changeEditable:")]
-        void ChangeEditable(bool editable);
 
         // -(instancetype _Nonnull)initWithFrame:(CGRect)frame __attribute__((objc_designated_initializer));
         [Export("initWithFrame:")]

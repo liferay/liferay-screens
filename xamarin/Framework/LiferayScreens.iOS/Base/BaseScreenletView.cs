@@ -30,15 +30,6 @@ namespace LiferayScreens
         [Export("themeName")]
         string ThemeName { get; set; }
 
-        // -(void)awakeFromNib __attribute__((objc_requires_super));
-        [Export("awakeFromNib")]
-        //[RequiresSuper]
-        void AwakeFromNib();
-
-        // -(BOOL)becomeFirstResponder __attribute__((warn_unused_result));
-        [Export("becomeFirstResponder")]
-        bool BecomeFirstResponder();
-
         // -(void)didMoveToWindow;
         [Export("didMoveToWindow")]
         void DidMoveToWindow();

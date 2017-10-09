@@ -8,10 +8,6 @@ namespace LiferayScreens
     [BaseType(typeof(Asset))]
     interface FileEntry
     {
-        // @property (readonly, copy, nonatomic) NSString * _Nonnull url;
-        [Export("url")]
-        string Url { get; }
-
         // @property (readonly, copy, nonatomic) NSString * _Nullable fileExtension;
         [NullAllowed, Export("fileExtension")]
         string FileExtension { get; }

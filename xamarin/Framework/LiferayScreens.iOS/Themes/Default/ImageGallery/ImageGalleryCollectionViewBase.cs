@@ -42,10 +42,6 @@ namespace LiferayScreens
         [Export("indexOfImageEntry:")]
         nint IndexOfImageEntry(ImageEntry imageEntry);
 
-        // -(id<ProgressPresenter> _Nonnull)createProgressPresenter __attribute__((warn_unused_result));
-        [Export("createProgressPresenter")]
-        IProgressPresenter CreateProgressPresenter();
-
         // -(void)showUploadProgressView;
         [Export("showUploadProgressView")]
         void ShowUploadProgressView();
