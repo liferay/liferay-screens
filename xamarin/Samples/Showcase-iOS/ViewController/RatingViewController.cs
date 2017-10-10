@@ -23,6 +23,12 @@ namespace ShowcaseiOS.ViewController
             this.ratingScreenletStars.Editable = true;
             this.ratingScreenletStars.ThemeName = "default-stars";
 
+            //FIXME: RatingScreenlet doesn't work with emojis view
+            //this.ratingScreenletStars.ClassName = "com.liferay.document.library.kernel.model.DLFileEntry";
+            //this.ratingScreenletStars.ClassPK = 57177;
+            //this.ratingScreenletStars.Editable = true;
+            //this.ratingScreenletStars.ThemeName = "default-emojis";
+
             this.ratingScreenletThumbs.Delegate = this;
             this.ratingScreenletStars.Delegate = this;
         }

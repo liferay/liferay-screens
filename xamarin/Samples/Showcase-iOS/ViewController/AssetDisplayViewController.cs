@@ -41,7 +41,7 @@ namespace ShowcaseiOS.ViewController
             //this.assetDisplayScreenlet.ClassPK = 38930;
             //this.assetDisplayScreenlet.ClassName = "com.liferay.document.library.kernel.model.DLFileEntry";
 
-            //FIXME: WebContent failed
+            //FIXME: AssetDisplayScreenlet doesn't work with WebContent
             //this.assetDisplayScreenlet.AssetEntryId = 39228;
             //this.assetDisplayScreenlet.ClassPK = 39226;
             //this.assetDisplayScreenlet.ClassName = "com.liferay.journal.model.JournalArticle";

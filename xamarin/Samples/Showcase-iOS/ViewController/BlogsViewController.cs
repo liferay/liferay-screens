@@ -15,6 +15,9 @@ namespace ShowcaseiOS.ViewController
 
             this.blogsDisplayScreenlet.ClassPK = 40515;
 
+            //FIXME: BlogsEntryDisplayScreenlet doesn't work if the blog has images in its body
+            //this.blogsDisplayScreenlet.ClassPK = 57546;
+
             this.blogsDisplayScreenlet.Delegate = this;
         }
 
