@@ -92,7 +92,4 @@
 
     <!-- Corrections for DDLListScreenlet -->
     <remove-node path="/api/package[@name='com.liferay.mobile.screens.ddl.list']/class[@name='DDLListScreenlet']/method[@name='createInteractor']"/>
-
-	<!-- Corrections for BaseListListener -->
-	<remove-node path="/api/package[@name='com.liferay.mobile.screens.base.list']/interface[@name='BaseListListener']" />
 </metadata>
