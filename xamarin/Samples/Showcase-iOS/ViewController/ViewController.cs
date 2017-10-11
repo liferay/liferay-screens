@@ -13,6 +13,8 @@ namespace ShowcaseiOS.ViewController
         {
             base.ViewDidLoad();
 
+            //Remove the comment for demo theme without ProgressPresenter
+            //this.loginScreenlet.ThemeName = "demo";
             this.loginScreenlet.Delegate = this;
 
             SetDefaultValues();
@@ -64,6 +66,18 @@ namespace ShowcaseiOS.ViewController
             SignUpViewController vc = (SignUpViewController) 
                 board.InstantiateViewController("SignUpViewController");
             this.NavigationController.PushViewController(vc, true);
+        }
+
+        partial void ChangeThemeButton_TouchUpInside(UIButton sender)
+        {
+            if (this.loginScreenlet.ThemeName == "default")
+            {
+                this.loginScreenlet.ThemeName = "demo";
+            }
+            else
+            {
+                this.loginScreenlet.ThemeName = "default";
+            }
         }
     }
 }

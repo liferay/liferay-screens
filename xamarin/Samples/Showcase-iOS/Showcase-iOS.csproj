@@ -171,6 +171,7 @@
     <Folder Include="SelectScreenlets\" />
     <Folder Include="Resources\js\" />
     <Folder Include="Resources\css\" />
+    <Folder Include="CustomViews\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Storyboard\LaunchScreen.storyboard" />
@@ -196,6 +197,7 @@
     <InterfaceDefinition Include="Storyboard\BlogsScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\DDLListScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\WebScreenlet.storyboard" />
+    <InterfaceDefinition Include="CustomViews\LoginView_demo.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -294,6 +296,11 @@
     <Compile Include="ViewController\WebScreenletViewController.designer.cs">
       <DependentUpon>WebScreenletViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomViews\LoginView_demo.cs" />
+    <Compile Include="CustomViews\LoginView_demo.designer.cs">
+      <DependentUpon>LoginView_demo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomViews\NoneProgressPresenter.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\img\Liferay-Screens.png" />
