@@ -16,6 +16,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		liferay:basicAuthMethod="email"
+		liferay:credentialsStorage="shared_preferences"
 		/>
 
 </LinearLayout>
