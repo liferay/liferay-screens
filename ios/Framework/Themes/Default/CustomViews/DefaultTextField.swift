@@ -13,6 +13,7 @@
  */
 import UIKit
 
+@objc(DefaultTextField)
 open class DefaultTextField: UITextField {
 
 	// MARK: Public variables
