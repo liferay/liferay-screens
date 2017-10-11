@@ -79,6 +79,7 @@
     <Folder Include="Blogs\" />
     <Folder Include="Themes\Default\Blogs\" />
     <Folder Include="DDL\List\" />
+    <Folder Include="Themes\Default\CustomViews\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -205,6 +206,7 @@
     <ObjcBindingApiDefinition Include="Web\WebScreenletConfigurationBuilder.cs" />
     <ObjcBindingApiDefinition Include="Base\MBProgressHUDPresenter.cs" />
     <ObjcBindingApiDefinition Include="Base\MBProgressHUD.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\CustomViews\DefaultTextField.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />
