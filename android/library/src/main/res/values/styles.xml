@@ -33,9 +33,9 @@
 		<item name="android:background">@android:color/transparent</item>
 	</style>
 
-	<style name="default_date_picker" parent="Theme.AppCompat.Light">
+	<style name="default_date_picker" parent="Theme.AppCompat.Light.Dialog">
+		<item name="colorPrimary">@color/colorPrimaryLight_default</item>
 		<item name="colorAccent">@color/colorPrimaryLight_default</item>
-		<item name="android:background">@android:color/transparent</item>
 	</style>
 
 	<style name="default_screenlet">
