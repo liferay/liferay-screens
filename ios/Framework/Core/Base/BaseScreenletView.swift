@@ -109,27 +109,27 @@ open class BaseScreenletView: UIView, UITextFieldDelegate {
 	 * Override this method to perform actions such as setting colors, sizes, 
 	 * positioning, etc to the component's subviews.
 	*/
-	open func onCreated() {
+	open dynamic func onCreated() {
 	}
 
 	/*
 	 * onDestroy is fired before the destruction of the screenlet view.
 	 * Override this method to perform cleanup actions.
 	*/
-	open func onDestroy() {
+	open dynamic func onDestroy() {
 	}
 
 	/*
 	 * onPreCreate is fired before the initialization of the screenlet view. 
 	 * Override this method to create UI components programatically.
 	*/
-	open func onPreCreate() {
+	open dynamic func onPreCreate() {
 	}
 
 	/*
 	 * onHide is invoked when the screenlet's view is hidden
 	 */
-	open func onHide() {
+	open dynamic func onHide() {
 	}
 
 	/*
@@ -137,7 +137,7 @@ open class BaseScreenletView: UIView, UITextFieldDelegate {
 	 * Override this method for example to reset values when the screenlet's 
 	 * view is shown.
 	 */
-	open func onShow() {
+	open dynamic func onShow() {
 	}
 
 	/*
@@ -146,7 +146,7 @@ open class BaseScreenletView: UIView, UITextFieldDelegate {
 	 * Override this method to decide whether or not the handler should be 
 	 * associated to the control.
 	 */
-	open func onSetUserActionForControl(_ control: UIControl) -> Bool {
+	open dynamic func onSetUserActionForControl(_ control: UIControl) -> Bool {
 		return true
 	}
 
@@ -154,28 +154,28 @@ open class BaseScreenletView: UIView, UITextFieldDelegate {
 	 * onPreAction is invoked just before any user action is invoked.
 	 * Override this method to decide whether or not the user action should be fired.
 	 */
-	open func onPreAction(name: String, sender: AnyObject?) -> Bool {
+	open dynamic func onPreAction(name: String, sender: AnyObject?) -> Bool {
 		return true
 	}
 
-	open func onSetDefaultDelegate(_ delegate: AnyObject, view: UIView) -> Bool {
+	open dynamic func onSetDefaultDelegate(_ delegate: AnyObject, view: UIView) -> Bool {
 		return true
 	}
 
-	open func onSetTranslations() {
+	open dynamic func onSetTranslations() {
 	}
 
-	open func onStartInteraction() {
+	open dynamic func onStartInteraction() {
 	}
 
-	open func onFinishInteraction(_ result: AnyObject?, error: NSError?) {
+	open dynamic func onFinishInteraction(_ result: AnyObject?, error: NSError?) {
 	}
 
-	open func createProgressPresenter() -> ProgressPresenter {
+	open dynamic func createProgressPresenter() -> ProgressPresenter {
 		return MBProgressHUDPresenter()
 	}
 
-	open func progressMessageForAction(_ actionName: String,
+	open dynamic func progressMessageForAction(_ actionName: String,
 			messageType: ProgressMessageType) -> String? {
 
 		let messages = progressMessages[actionName] ?? progressMessages[BaseScreenlet.DefaultAction]
@@ -189,7 +189,7 @@ open class BaseScreenletView: UIView, UITextFieldDelegate {
 		return nil
 	}
 
-	open func userActionWithSender(_ sender: AnyObject?) {
+	open dynamic func userActionWithSender(_ sender: AnyObject?) {
 		if let controlSender = sender as? UIControl {
 			userAction(name: controlSender.restorationIdentifier, sender: sender)
 		}
@@ -198,11 +198,11 @@ open class BaseScreenletView: UIView, UITextFieldDelegate {
 		}
 	}
 
-	open func userAction(name: String?) {
+	open dynamic func userAction(name: String?) {
 		userAction(name: name, sender: nil)
 	}
 
-	open func userAction(name: String?, sender: AnyObject?) {
+	open dynamic func userAction(name: String?, sender: AnyObject?) {
 		let actionName = name ?? BaseScreenlet.DefaultAction
 
 		if onPreAction(name: actionName, sender: sender) {
@@ -260,7 +260,7 @@ open class BaseScreenletView: UIView, UITextFieldDelegate {
 
 	// MARK: Public methods
 
-	open func changeEditable(_ editable: Bool) {
+	open dynamic func changeEditable(_ editable: Bool) {
 		isUserInteractionEnabled = editable
 	}
 

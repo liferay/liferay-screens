@@ -232,21 +232,21 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 
 	/// onCreated is invoked after the screenlet is created.
 	/// Override this method to set custom values for the screenlet properties.
-	open func onCreated() {
+	open dynamic func onCreated() {
 	}
 
 	/// onPreCreate is invoked before the screenlet is created.
 	/// Override this method to set create new UI components programatically.
-	open func onPreCreate() {
+	open dynamic func onPreCreate() {
 	}
 
 	/// onHide is invoked when the screenlet is hidden from the app window.
-	open func onHide() {
+	open dynamic func onHide() {
 	}
 
 	/// onShow is invoked when the screenlet is displayed on the app window.
 	/// Override this method for example to reset values when the screenlet is shown.
-	open func onShow() {
+	open dynamic func onShow() {
 	}
 
 	/// performAction is invoked when we want to start an interaction (use case)
@@ -258,7 +258,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	///   - sender: Source of the event.
 	/// - Returns: False interactor ready to be started.
 	@discardableResult
-	open func performAction(name: String, sender: AnyObject? = nil) -> Bool {
+	open dynamic func performAction(name: String, sender: AnyObject? = nil) -> Bool {
 		guard !isRunningOnInterfaceBuilder else {
 			return false
 		}
@@ -288,7 +288,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	///
 	/// - Returns: Call to performAction with the default action.
 	@discardableResult
-	open func performDefaultAction() -> Bool {
+	open dynamic func performDefaultAction() -> Bool {
 		return performAction(name: BaseScreenlet.DefaultAction, sender: nil)
 	}
 
@@ -300,7 +300,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	///   - sender: Source of the event.
 	/// - Returns: Call for starting the interactor.
 	@discardableResult
-	open func onAction(name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
+	open dynamic func onAction(name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
 		onStartInteraction()
 		screenletView?.onStartInteraction()
 
@@ -311,7 +311,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	///
 	/// - Parameter name: Action name.
 	/// - Returns: True if there is another one running.
-	open func isActionRunning(_ name: String) -> Bool {
+	open dynamic func isActionRunning(_ name: String) -> Bool {
 		var firstInteractor: Interactor? = nil
 
 		synchronized(_runningInteractors as AnyObject) {
@@ -324,7 +324,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	/// cancelInteractorsForAction cancels all the interactors with the given action name.
 	///
 	/// - Parameter name: Action name.
-	open func cancelInteractorsForAction(_ name: String) {
+	open dynamic func cancelInteractorsForAction(_ name: String) {
 		let interactors = _runningInteractors[name] ?? []
 
 		for interactor in interactors {
@@ -338,7 +338,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	///   - name: Action name.
 	///   - sender: Source of the event.
 	/// - Returns: Proper interactor for each use case.
-	open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
+	open dynamic func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
 		return nil
 	}
 
@@ -347,7 +347,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	/// - Parameters:
 	///   - interactor: A started interactor.
 	///   - error: Nil if there is no error.
-	open func endInteractor(_ interactor: Interactor, error: NSError?) {
+	open dynamic func endInteractor(_ interactor: Interactor, error: NSError?) {
 
 		func getMessage() -> String? {
 			if let error = error as? ValidationError {
@@ -368,11 +368,11 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	}
 
 	/// onStartInteraction is called just before a screenlet request is sent to server.
-	open func onStartInteraction() {
+	open dynamic func onStartInteraction() {
 	}
 
 	/// onFinishInteraction is called when the server response arrives
-	open func onFinishInteraction(_ result: AnyObject?, error: NSError?) {
+	open dynamic func onFinishInteraction(_ result: AnyObject?, error: NSError?) {
 	}
 
 	// MARK: HUD methods
@@ -382,7 +382,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	/// - Parameters:
 	///   - message: HUD message.
 	///   - interactor: Interaction (use case).
-	open func showHUDWithMessage(_ message: String?,
+	open dynamic func showHUDWithMessage(_ message: String?,
 			forInteractor interactor: Interactor) {
 
 		_progressPresenter?.showHUDInView(rootView(self),
@@ -396,7 +396,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	///   - message: HUD message.
 	///   - interactor: Interaction (use case).
 	///   - error: Interaction error.
-	open func hideHUDWithMessage(_ message: String?,
+	open dynamic func hideHUDWithMessage(_ message: String?,
 			forInteractor interactor: Interactor,
 			withError error: NSError?) {
 
@@ -409,7 +409,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	// MARK: Public methods
 
 	/// refreshTranslations refreshes all translations of the screenlet view.
-	open func refreshTranslations() {
+	open dynamic func refreshTranslations() {
 		screenletView?.onSetTranslations()
 	}
 

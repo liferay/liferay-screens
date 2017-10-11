@@ -25,7 +25,7 @@ open class BaseCredentialsStoreKeyChain: NSObject, CredentialsStore {
 	open var authentication: LRAuthentication?
 	open var userAttributes: [String:AnyObject]?
 
-	open func storeCredentials(
+	open dynamic func storeCredentials(
 			_ session: LRSession?,
 			userAttributes: [String:AnyObject]?) -> Bool {
 
@@ -67,7 +67,7 @@ open class BaseCredentialsStoreKeyChain: NSObject, CredentialsStore {
 		return false
 	}
 
-	open func removeStoredCredentials() -> Bool {
+	open dynamic func removeStoredCredentials() -> Bool {
 		let keychain = BaseCredentialsStoreKeyChain.keychain()
 
 		do {
@@ -80,13 +80,40 @@ open class BaseCredentialsStoreKeyChain: NSObject, CredentialsStore {
 		return true
 	}
 
-	open func loadStoredCredentials() -> Bool {
+	open dynamic func loadStoredCredentials() -> Bool {
 		return loadStoredCredentials(shouldLoadServer: false)
 	}
 
-	open func loadStoredCredentialsAndServer() -> Bool {
+	open dynamic func loadStoredCredentialsAndServer() -> Bool {
 		return loadStoredCredentials(shouldLoadServer: true)
 	}
+
+	open func storeAuth(keychain: Keychain, auth: LRAuthentication) {
+		fatalError("This method must be overriden")
+	}
+
+	open func loadAuth(keychain: Keychain) -> LRAuthentication? {
+		fatalError("This method must be overriden")
+	}
+
+	open class func storedAuthType() -> AuthType? {
+		guard let authType = try? keychain().get("auth_type") else {
+			return nil
+		}
+		guard let authTypeValue = authType else {
+			return nil
+		}
+
+		return AuthTypeFromString(authTypeValue)
+	}
+
+	open class func keychain() -> Keychain {
+		let url = URL(string: LiferayServerContext.server)!
+		return Keychain(server: url, protocolType: .https)
+	}
+
+
+	//MARK: Private methods
 
 	private func loadStoredCredentials(shouldLoadServer: Bool) -> Bool {
 		let keychain = BaseCredentialsStoreKeyChain.keychain()
@@ -128,29 +155,5 @@ open class BaseCredentialsStoreKeyChain: NSObject, CredentialsStore {
 		}
 		
 		return false
-	}
-
-	open func storeAuth(keychain: Keychain, auth: LRAuthentication) {
-		fatalError("This method must be overriden")
-	}
-
-	open func loadAuth(keychain: Keychain) -> LRAuthentication? {
-		fatalError("This method must be overriden")
-	}
-
-	open class func storedAuthType() -> AuthType? {
-		guard let authType = try? keychain().get("auth_type") else {
-			return nil
-		}
-		guard let authTypeValue = authType else {
-			return nil
-		}
-
-		return AuthTypeFromString(authTypeValue)
-	}
-
-	open class func keychain() -> Keychain {
-		let url = URL(string: LiferayServerContext.server)!
-		return Keychain(server: url, protocolType: .https)
 	}
 }

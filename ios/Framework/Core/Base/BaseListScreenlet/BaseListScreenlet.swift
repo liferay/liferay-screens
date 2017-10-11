@@ -158,7 +158,7 @@ open class BaseListScreenlet: BaseScreenlet {
 	///
 	/// - Parameter row: Item row.
 	/// - Returns: Item page.
-	open func pageFromRow(_ row: Int) -> Int {
+	open dynamic func pageFromRow(_ row: Int) -> Int {
 		if row < firstPageSize {
 			return 0
 		}
@@ -170,7 +170,7 @@ open class BaseListScreenlet: BaseScreenlet {
 	///
 	/// - Parameter page: Page number.
 	/// - Returns: Item row.
-	open func firstRowForPage(_ page: Int) -> Int {
+	open dynamic func firstRowForPage(_ page: Int) -> Int {
 		if page == 0 {
 			return 0
 		}
@@ -185,7 +185,7 @@ open class BaseListScreenlet: BaseScreenlet {
 	///   - page: Page number.
 	///   - computeRowCount: True if we want to compute row count.
 	/// - Returns: Proper interactor.
-	open func createPageLoadInteractor(
+	open dynamic func createPageLoadInteractor(
 			page: Int,
 			computeRowCount: Bool) -> BaseListPageLoadInteractor {
 
@@ -198,7 +198,7 @@ open class BaseListScreenlet: BaseScreenlet {
 	/// - Parameters:
 	///   - page: Page number.
 	///   - error: Error on loading.
-	open func onLoadPageError(page: Int, error: NSError) {
+	open dynamic func onLoadPageError(page: Int, error: NSError) {
 		print("ERROR: Load page error \(page) -> \(error)\n")
 	}
 
@@ -209,14 +209,14 @@ open class BaseListScreenlet: BaseScreenlet {
 	///   - page: Page number.
 	///   - rows: Page items.
 	///   - rowCount: Row count.
-	open func onLoadPageResult(page: Int, rows: [AnyObject], rowCount: Int) {
+	open dynamic func onLoadPageResult(page: Int, rows: [AnyObject], rowCount: Int) {
 	}
 
 	/// Gets the information about one row.
 	/// Call this method if you want to know what item list was selected.
 	///
 	/// - Parameter row: Selected row.
-	open func onSelectedRow(_ row: AnyObject) {
+	open dynamic func onSelectedRow(_ row: AnyObject) {
 	}
 
 	// MARK: Internal methods

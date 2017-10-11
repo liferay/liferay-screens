@@ -70,7 +70,7 @@ open class BaseListView: BaseScreenletView {
 		}
 	}
 
-	open func clearRows() {
+	open dynamic func clearRows() {
 		let oldRows = _rows
 		_rows = [String: [AnyObject?]]()
 		_rows[BaseListView.DefaultSection] = [AnyObject?]()
@@ -81,6 +81,7 @@ open class BaseListView: BaseScreenletView {
 	}
 
 	open func onChangedRows(_ oldRows: [String : [AnyObject?]]) {
+
 	}
 
 	open func onAddedRows(_ oldRows: [String : [AnyObject?]]) {
@@ -91,15 +92,15 @@ open class BaseListView: BaseScreenletView {
 
 	}
 
-	open func deleteRow(_ section: String, row: Int) {
+	open dynamic func deleteRow(_ section: String, row: Int) {
 		_ = _rows[section]?.remove(at: row)
 	}
 
-	open func addRow(_ section: String, element: AnyObject) {
+	open dynamic func addRow(_ section: String, element: AnyObject) {
 		_rows[section]?.append(element)
 	}
 
-	open func updateRow(_ section: String, row: Int, element: AnyObject) {
+	open dynamic func updateRow(_ section: String, row: Int, element: AnyObject) {
 		_rows[section]?[row] = element
 	}
 
