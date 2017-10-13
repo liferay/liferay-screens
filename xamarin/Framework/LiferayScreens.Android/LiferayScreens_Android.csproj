@@ -122,6 +122,26 @@
       <Project>{987C9DF7-DD6A-40F4-8D1C-8A5757162994}</Project>
       <Name>LiferayAndroidSdk.BindingLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LiferayOAuth.BindingLibrary\LiferayOAuth.BindingLibrary.csproj">
+      <Project>{1E5D5DB7-2CA4-4820-AB77-B72433CB82E9}</Project>
+      <Name>LiferayOAuth.BindingLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\jakeWharton.RxbindingBindingLibrary\jakeWharton.RxbindingBindingLibrary.csproj">
+      <Project>{6B7D5CA7-3038-49CB-9D96-42ECAE149DD7}</Project>
+      <Name>jakeWharton.RxbindingBindingLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\rxAndroid.BindingLibrary\rxAndroid.BindingLibrary.csproj">
+      <Project>{8901D0A4-35D8-4698-874B-704BD2D3177C}</Project>
+      <Name>rxAndroid.BindingLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SnappyDBBindingLibrary\SnappyDBBindingLibrary.csproj">
+      <Project>{A753986F-8AAE-4191-9302-53F9ED3F1A2C}</Project>
+      <Name>SnappyDBBindingLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tbruyelle.RxpermissionsBindingLibrary\Tbruyelle.RxpermissionsBindingLibrary.csproj">
+      <Project>{01FA43E0-00C1-4F1B-86E7-CEF258CED22F}</Project>
+      <Name>Tbruyelle.RxpermissionsBindingLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <LibraryProjectZip Include="Jars\liferay-screens-release.aar" />
