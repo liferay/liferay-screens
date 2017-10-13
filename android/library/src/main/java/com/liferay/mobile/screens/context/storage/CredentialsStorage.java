@@ -29,6 +29,8 @@ public interface CredentialsStorage {
 
 	boolean loadStoredCredentials() throws IllegalStateException;
 
+	boolean loadStoredCredentialsAndServer() throws IllegalStateException;
+
 	Authentication getAuthentication();
 
 	void setAuthentication(Authentication auth);

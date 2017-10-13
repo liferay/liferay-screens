@@ -38,6 +38,11 @@ public class CredentialsStorageVoid implements CredentialsStorage {
 	}
 
 	@Override
+	public boolean loadStoredCredentialsAndServer() throws IllegalStateException {
+		return false;
+	}
+
+	@Override
 	public BasicAuthentication getAuthentication() {
 		return null;
 	}

@@ -43,6 +43,7 @@ dependencies {
 	compile libraries.gms
 	compile(libraries.oauth) {
 		exclude group: 'com.google.android', module: 'android'
+		exclude module: 'android'
 	}
 
 	compile libraries.eventbus
@@ -54,16 +55,16 @@ dependencies {
 
 	compile 'com.lsjwzh:recyclerviewpager:1.0.8'
 
-	testCompile libraries.junit
-	testCompile libraries.robolectric
-	testCompile libraries.mockito
-
 	compile(libraries.snappydb) {
 		exclude group: 'com.esotericsoftware.kryo', module: 'kryo'
 	}
 	compile libraries.kryo
 
 	compile group: 'org.apache.cordova', name: 'framework', version: '6.2.3', classifier: 'debug', ext: 'aar'
+
+	testCompile libraries.junit
+	testCompile libraries.robolectric
+	testCompile libraries.mockito
 }
 
 apply from: '../bintray.gradle'

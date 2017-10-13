@@ -28,3 +28,7 @@ dependencies {
 
 	compile project(':liferay-westeros-viewset')
 }
+
+repositories {
+	maven { url 'https://maven.google.com' }
+}

@@ -82,12 +82,22 @@ All notable changes to this project will be documented in this file.
 - UserPortraitScreenlet binding
 - Create demo apps: Showcase-Android and Showcase-iOS
 
-# 2.1.2
+# 2.1.4
 
 ## Android
 
 ### New features
 * Allow developers to handle Authentication challenges in Login Screenlet
+
+### Bugs
+* Fix relogin for cookie authentication
+
+## iOS
+
+### Bugs
+* Fix relogin for cookie authentication
+
+# 2.1.2
 
 ## iOS
 
