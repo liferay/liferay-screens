@@ -4,7 +4,7 @@ osx_image: xcode9
 env:
   global:
    - ADB_INSTALL_TIMEOUT=10
-   - LICENSES="android-sdk-license-5be876d5|mips-android-sysimage-license-15de68cc|intel-android-sysimage-license-1ea702d1|android-sdk-license-ed0d0a5b|android-sdk-license-c81a61d9"
+   - LICENSES="android-sdk-license-5be876d5|mips-android-sysimage-license-15de68cc|intel-android-sysimage-license-1ea702d1|android-sdk-license-ed0d0a5b|android-sdk-license-c81a61d9|android-sdk-license-2742d1c5"
    - COMPONENTS=build-tools-25.0.1,android-25,extra-android-m2repository,extra-google-m2repository
   matrix:
     - PLATFORM=iOS
