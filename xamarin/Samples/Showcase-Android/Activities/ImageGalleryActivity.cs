@@ -5,6 +5,7 @@ using Android.Views;
 using Android.Widget;
 using Com.Liferay.Mobile.Screens.Imagegallery;
 using Com.Liferay.Mobile.Screens.Imagegallery.Model;
+using Java.Lang;
 
 namespace ShowcaseAndroid
 {
@@ -49,11 +50,6 @@ namespace ShowcaseAndroid
             Toast.MakeText(this, "Image gallery entry upload started: " + p1, ToastLength.Short).Show();
         }
 
-        public void OnListItemSelected(Java.Lang.Object p0, View p1)
-        {
-            Toast.MakeText(this, "Image gallery entry selected: " + p0, ToastLength.Short).Show();
-        }
-
         public void OnListPageFailed(int p0, Java.Lang.Exception p1)
         {
             Android.Util.Log.Debug("ImageGalleryScreenlet", $"Image gallery page failed: {p1.Message}");
@@ -72,6 +68,16 @@ namespace ShowcaseAndroid
         public bool ShowUploadImageView(string p0, Android.Net.Uri p1, int p2)
         {
             return false;
+        }
+
+        public void OnListItemSelected(ImageEntry p0, View p1)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void OnListItemSelected(Object p0, View p1)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

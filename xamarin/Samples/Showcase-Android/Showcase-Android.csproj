@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>ShowcaseAndroid</RootNamespace>
     <AssemblyName>Showcase-Android</AssemblyName>
-    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -139,6 +139,7 @@
     <Compile Include="Activities\BlogsEntryDisplayActivity.cs" />
     <Compile Include="Activities\DDLListActivity.cs" />
     <Compile Include="Activities\WebScreenletActivity.cs" />
+    <Compile Include="Activities\LoginDemoActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -173,6 +174,9 @@
     <AndroidResource Include="Resources\raw\css_master.css" />
     <AndroidResource Include="Resources\raw\js_master.js" />
     <AndroidResource Include="Resources\layout\WebScreenletView.axml" />
+    <AndroidResource Include="Resources\layout\login_demo.xml" />
+    <AndroidResource Include="Resources\layout\LoginDemoView.axml" />
+    <AndroidResource Include="Resources\values\Colors.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

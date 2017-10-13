@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Views;
@@ -14,6 +15,7 @@ namespace ShowcaseAndroid
             SetContentView(Resource.Layout.MainView);
 
             FindViewById(Resource.Id.login_screenlet).SetOnClickListener(this);
+            FindViewById(Resource.Id.login_screenlet_demo).SetOnClickListener(this);
             FindViewById(Resource.Id.forgot_password_screenlet).SetOnClickListener(this);
             FindViewById(Resource.Id.sign_up_screenlet).SetOnClickListener(this);
             FindViewById(Resource.Id.ddl_form_screenlet).SetOnClickListener(this);
@@ -44,6 +46,9 @@ namespace ShowcaseAndroid
             {
                 case Resource.Id.login_screenlet:
                     StartActivity(typeof(LoginActivity));
+                    break;
+                case Resource.Id.login_screenlet_demo:
+                    StartActivity(typeof(LoginDemoActivity));
                     break;
                 case Resource.Id.forgot_password_screenlet:
                     StartActivity(typeof(ForgotPasswordActivity));

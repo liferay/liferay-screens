@@ -5,6 +5,7 @@
         List of all the screenlets supported on version 0.1.0 of LiferayScreens for Xamarin solutions.
     </string>
     <string name="login">Login</string>
+    <string name="login_demo">Login demo theme</string>
     <string name="forgot_password">Forgot Password</string>
     <string name="sign_up">Sign Up</string>
     <string name="ddl_form">DDL Form</string>
@@ -22,7 +23,9 @@
     <string name="comment_list">Comment List</string>
     <string name="web_content_list">Web Content List</string>
     <string name="rating">Rating</string>
-	<string name="blogs_display">Blogs Display</string>
-	<string name="ddl_list">DDL List</string>
-	<string name="web_screenlet">Web Screenlet</string>
+    <string name="blogs_display">Blogs Display</string>
+    <string name="ddl_list">DDL List</string>
+    <string name="web_screenlet">Web Screenlet</string>
+
+    <string name="login_demo_sign_in">Sign in now!</string>
 </resources>
