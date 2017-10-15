@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.userportrait;
 
+import android.content.Context;
 import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.userportrait.interactor.load.UserPortraitLoadInteractor;
@@ -35,12 +36,13 @@ import org.robolectric.annotation.Config;
 public class UserPortraitInteractorTest {
 
 	@RunWith(RobolectricTestRunner.class)
-	//@Config(constants = BuildConfig.class, sdk = 23)
+	@Config(constants = BuildConfig.class, sdk = 23)
 	public static class WhenLoadingFromPortraitId {
 
 		@Before
 		public void setUp() {
-			LiferayScreensContext.init(RuntimeEnvironment.application);
+			Context ctx = RuntimeEnvironment.application.getApplicationContext();
+			LiferayScreensContext.init(ctx);
 		}
 
 		@Test
