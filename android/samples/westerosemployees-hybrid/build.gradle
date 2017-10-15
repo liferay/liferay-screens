@@ -1,17 +1,17 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+	compileSdkVersion rootProject.ext.compileSdkVersion
+	buildToolsVersion rootProject.ext.buildToolsVersion
 
-    defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
-        applicationId 'com.liferay.mobile.screens.westerosemployees_hybrid'
-        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
-    }
+	defaultConfig {
+		minSdkVersion rootProject.ext.minSdkVersion
+		targetSdkVersion rootProject.ext.targetSdkVersion
+		versionCode rootProject.ext.versionCode
+		versionName rootProject.ext.versionName
+		applicationId 'com.liferay.mobile.screens.westerosemployees_hybrid'
+		testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+	}
 
     buildTypes {
         release {
@@ -20,16 +20,15 @@ android {
         }
     }
 
-    packagingOptions {
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/NOTICE'
-    }
 	buildToolsVersion '26.0.2'
+	lintOptions {
+		abortOnError false
+	}
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':liferay-westeros-viewset')
+	compile fileTree(dir: 'libs', include: ['*.jar'])
+	compile project(':liferay-westeros-viewset')
 
     compile libraries.design
 }
