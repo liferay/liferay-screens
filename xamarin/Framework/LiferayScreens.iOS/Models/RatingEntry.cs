@@ -37,10 +37,6 @@ namespace LiferayScreens
         [Export("ratings", ArgumentSemantic.Copy)]
         NSNumber[] Ratings { get; }
 
-        // -(void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
-        [Export("encodeWithCoderRatingEntry:")]
-        void EncodeWithCoder(NSCoder aCoder);
-
         // -(instancetype _Nonnull)initWithAttributes:(NSDictionary<NSString *,id> * _Nonnull)attributes __attribute__((objc_designated_initializer));
         [Export("initWithAttributes:")]
         [DesignatedInitializer]

@@ -62,10 +62,6 @@ namespace LiferayScreens
         [Export("canEdit")]
         bool CanEdit { get; }
 
-        // -(void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
-        [Export("encodeWithCoderComment:")]
-        void EncodeWithCoder(NSCoder aCoder);
-
         // -(instancetype _Nonnull)initWithAttributes:(NSDictionary<NSString *,id> * _Nonnull)attributes __attribute__((objc_designated_initializer));
         [Export("initWithAttributes:")]
         [DesignatedInitializer]
