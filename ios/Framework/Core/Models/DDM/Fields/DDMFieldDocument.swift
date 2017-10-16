@@ -34,11 +34,11 @@ open class DDMFieldDocument: DDMField {
 
 		fileprivate func toInt() -> Int {
 			switch self {
-			case .uploaded(_):
+			case .uploaded:
 				return 1
-			case .failed(_):
+			case .failed:
 				return 2
-			case .uploading(_, _):
+			case .uploading:
 				return 3
 			case .pending:
 				return 4
