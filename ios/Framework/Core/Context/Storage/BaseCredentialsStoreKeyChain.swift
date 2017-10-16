@@ -116,17 +116,15 @@ open class BaseCredentialsStoreKeyChain: NSObject, CredentialsStore {
 	private func loadStoredCredentials(shouldLoadServer: Bool) -> Bool {
 		let keychain = BaseCredentialsStoreKeyChain.keychain()
 
-		let companyId = try? keychain.get("companyId")
-			.flatMap { Int64($0) }
-		let groupId = try? keychain.get("groupId")
-			.flatMap { Int64($0) }
+		let companyId = try? keychain.get("companyId").flatMap { Int64($0) }
+		let groupId = try? keychain.get("groupId").flatMap { Int64($0) }
 
 		if shouldLoadServer {
-			if let companyId = companyId {
+			if let companyId = companyId ?? nil {
 				LiferayServerContext.companyId = companyId
 			}
 
-			if let groupId = groupId {
+			if let groupId = groupId ?? nil {
 				LiferayServerContext.groupId = groupId
 			}
 
