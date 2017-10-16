@@ -37,7 +37,9 @@ import com.liferay.mobile.screens.dlfile.display.video.VideoDisplayScreenlet;
 import com.liferay.mobile.screens.imagegallery.model.ImageEntry;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet;
+import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Sarai Díaz García
@@ -48,7 +50,7 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	public static final String STATE_LAYOUTS = "STATE_LAYOUTS";
 	public static final String STATE_ENTRY_ID = "STATE_ENTRY_ID";
 	private boolean autoLoad;
-	private HashMap<String, Integer> layouts;
+	private Map<String, Integer> layouts;
 	private long entryId;
 	private String className;
 	private long classPK;
@@ -230,7 +232,7 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		Parcelable superState = super.onSaveInstanceState();
 		Bundle state = new Bundle();
 		state.putParcelable(STATE_SUPER, superState);
-		state.putSerializable(STATE_LAYOUTS, layouts);
+		state.putSerializable(STATE_LAYOUTS, (Serializable) layouts);
 		state.putLong(STATE_ENTRY_ID, entryId);
 		return state;
 	}
@@ -303,11 +305,11 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		this.autoLoad = autoLoad;
 	}
 
-	public HashMap<String, Integer> getLayouts() {
+	public Map<String, Integer> getLayouts() {
 		return layouts;
 	}
 
-	public void setLayouts(HashMap<String, Integer> layouts) {
+	public void setLayouts(Map<String, Integer> layouts) {
 		this.layouts = layouts;
 	}
 }
