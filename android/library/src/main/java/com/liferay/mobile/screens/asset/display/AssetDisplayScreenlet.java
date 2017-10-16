@@ -54,7 +54,7 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 	private long classPK;
 	private String portletItemName;
 	private AssetDisplayListener listener;
-	private AssetDisplayInnerScreenletListener configureListener;
+	private AssetDisplayInnerScreenletListener configurationListener;
 
 	public AssetDisplayScreenlet(Context context) {
 		super(context);
@@ -129,16 +129,16 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		AssetEntry asset = AssetFactory.createInstance(assetEntry.getValues());
 		BaseScreenlet screenlet = AssetDisplayFactory.getScreenlet(getContext(), asset, layouts);
 		if (screenlet != null) {
-			if (configureListener != null) {
-				configureListener.onConfigureChildScreenlet(this, screenlet, asset);
+			if (configurationListener != null) {
+				configurationListener.onConfigureChildScreenlet(this, screenlet, asset);
 			}
 
 			getViewModel().showFinishOperation(screenlet);
 		} else {
 
 			View customView = null;
-			if (configureListener != null) {
-				customView = configureListener.onRenderCustomAsset(asset);
+			if (configurationListener != null) {
+				customView = configurationListener.onRenderCustomAsset(asset);
 			}
 
 			if (customView != null) {
@@ -286,12 +286,13 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		this.listener = listener;
 	}
 
-	public AssetDisplayInnerScreenletListener getConfigureListener() {
-		return configureListener;
+	public AssetDisplayInnerScreenletListener getConfigurationListener() {
+		return configurationListener;
 	}
 
-	public void setInnerListener(AssetDisplayInnerScreenletListener configureListener) {
-		this.configureListener = configureListener;
+	public void setConfigurationListener(
+		AssetDisplayInnerScreenletListener configurationListener) {
+		this.configurationListener = configurationListener;
 	}
 
 	public boolean isAutoLoad() {

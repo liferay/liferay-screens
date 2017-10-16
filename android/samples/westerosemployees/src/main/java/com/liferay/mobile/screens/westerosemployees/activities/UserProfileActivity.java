@@ -32,7 +32,7 @@ public class UserProfileActivity extends WesterosActivity
 		AssetDisplayScreenlet screenlet = ((AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet));
 		screenlet.setClassName("com.liferay.portal.kernel.model.User");
 		screenlet.setClassPK(SessionContext.getCurrentUser().getId());
-		screenlet.setInnerListener(this);
+		screenlet.setConfigurationListener(this);
 		screenlet.loadAsset();
 	}
 

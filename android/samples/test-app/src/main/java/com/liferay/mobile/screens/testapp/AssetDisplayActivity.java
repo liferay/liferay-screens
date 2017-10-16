@@ -37,7 +37,7 @@ public class AssetDisplayActivity extends ThemeActivity
 		}
 
 		screenlet.setListener(this);
-		screenlet.setInnerListener(this);
+		screenlet.setConfigurationListener(this);
 	}
 
 	@Override
