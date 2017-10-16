@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc(AssetListTableView)
 open class AssetListTableView: BaseListTableView {
 

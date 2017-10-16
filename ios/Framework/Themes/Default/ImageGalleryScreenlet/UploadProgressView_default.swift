@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc(UploadProgressView_default)
 open class UploadProgressView_default: UIView, UploadProgressViewBase {
 
@@ -25,7 +24,7 @@ open class UploadProgressView_default: UIView, UploadProgressViewBase {
 
 	@IBOutlet weak fileprivate var informationText: UILabel?
 
-	open var cancelClosure: ((Void) -> Void)?
+	open var cancelClosure: (() -> Void)?
 
 	fileprivate var images: [UIImage] = []
 	fileprivate var uploadsCount = 0

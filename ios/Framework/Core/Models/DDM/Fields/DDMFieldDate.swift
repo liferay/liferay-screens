@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 @objc(DDMFieldDate)
 open class DDMFieldDate: DDMField {
 

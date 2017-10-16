@@ -14,7 +14,6 @@
 import UIKit
 import WebKit
 
-
 @objc(WebView_default)
 open class WebView_default: BaseScreenletView, WebViewModel {
 

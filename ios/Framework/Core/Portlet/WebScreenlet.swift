@@ -13,7 +13,6 @@
 */
 import UIKit
 
-
 /// The WebScreenletDelegate protocol defines some methods that you use to
 /// manage the WebScreenlet events. All of them are optional.
 @objc(WebScreenletDelegate)

@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 @objc(DDMFieldString)
 open class DDMFieldString: DDMField {
 

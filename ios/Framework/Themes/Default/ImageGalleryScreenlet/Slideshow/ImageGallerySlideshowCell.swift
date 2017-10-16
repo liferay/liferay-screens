@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc(ImageGallerySlideshowCell)
 open class ImageGallerySlideshowCell: UICollectionViewCell {
 

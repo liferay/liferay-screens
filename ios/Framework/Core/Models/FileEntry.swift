@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 @objc(FileEntry)
 open class FileEntry: Asset {
 

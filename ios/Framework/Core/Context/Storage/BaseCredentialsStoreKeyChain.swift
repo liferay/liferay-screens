@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 #if LIFERAY_SCREENS_FRAMEWORK
 	import LRMobileSDK
 	import KeychainAccess
@@ -112,8 +111,7 @@ open class BaseCredentialsStoreKeyChain: NSObject, CredentialsStore {
 		return Keychain(server: url, protocolType: .https)
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	private func loadStoredCredentials(shouldLoadServer: Bool) -> Bool {
 		let keychain = BaseCredentialsStoreKeyChain.keychain()
@@ -123,13 +121,12 @@ open class BaseCredentialsStoreKeyChain: NSObject, CredentialsStore {
 		let groupId = try? keychain.get("groupId")
 			.flatMap { Int64($0) }
 
-
 		if shouldLoadServer {
-			if let companyId = companyId ?? nil {
+			if let companyId = companyId {
 				LiferayServerContext.companyId = companyId
 			}
 
-			if let groupId = groupId ?? nil {
+			if let groupId = groupId {
 				LiferayServerContext.groupId = groupId
 			}
 
@@ -153,7 +150,7 @@ open class BaseCredentialsStoreKeyChain: NSObject, CredentialsStore {
 
 			return (authentication != nil && userAttributes != nil)
 		}
-		
+
 		return false
 	}
 }

@@ -13,7 +13,6 @@
 */
 import UIKit
 
-
 @objc(WebViewModel)
 public protocol WebViewModel {
 

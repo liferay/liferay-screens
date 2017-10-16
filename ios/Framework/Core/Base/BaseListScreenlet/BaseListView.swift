@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc(BaseListView)
 open class BaseListView: BaseScreenletView {
 

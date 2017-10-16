@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 @objc(Asset)
 open class Asset: NSObject, NSCoding, MimeTypeable {
 

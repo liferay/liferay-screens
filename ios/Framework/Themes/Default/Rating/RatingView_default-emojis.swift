@@ -14,7 +14,6 @@
 import UIKit
 import Cosmos
 
-
 @objc(RatingView_default_emojis)
 open class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 

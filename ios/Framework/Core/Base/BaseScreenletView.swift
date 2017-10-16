@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 /*
  * BaseScreenletView is the base class from which all Screenlet's View classes must inherit.
  */

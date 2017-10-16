@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc(DDLSubmitButtonTableCell_default)
 open class DDLSubmitButtonTableCell_default: DDMFieldTableCell {
 

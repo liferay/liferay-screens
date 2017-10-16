@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 /// The DDLListScreenletDelegate protocol defines some methods that you use to manage the
 /// DDLListScreenlet events. All of them are optional.
 @objc(DDLListScreenletDelegate)

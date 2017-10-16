@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc(DDLListViewModel)
 public protocol DDLListViewModel {
 

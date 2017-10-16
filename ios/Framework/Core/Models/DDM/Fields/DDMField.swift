@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 @objc(DDMField)
 open class DDMField: NSObject, NSCoding {
 

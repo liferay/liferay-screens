@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc(ImageUploadDetailViewController_default)
 open class ImageUploadDetailViewController_default: UIViewController {
 

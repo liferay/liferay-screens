@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc(DDLListView_default)
 open class DDLListView_default: BaseListTableView, DDLListViewModel {
 

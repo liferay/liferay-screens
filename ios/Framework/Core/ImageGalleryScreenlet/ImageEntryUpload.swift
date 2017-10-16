@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 @objc(ImageEntryUpload)
 open class ImageEntryUpload: NSObject, NSCoding {
 

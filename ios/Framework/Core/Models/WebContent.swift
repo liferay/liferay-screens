@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 @objc(WebContent)
 open class WebContent: Asset {
 

@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc(SlideShowLayout)
 open class SlideShowLayout: UICollectionViewFlowLayout {
 

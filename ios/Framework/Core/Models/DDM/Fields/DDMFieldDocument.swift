@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc(DDMFieldDocument)
 open class DDMFieldDocument: DDMField {
 

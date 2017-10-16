@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 @objc(DDMFieldUntyped)
 open class DDMFieldUntyped: DDMField {
 

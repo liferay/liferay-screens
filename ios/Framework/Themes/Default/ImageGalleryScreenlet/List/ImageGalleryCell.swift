@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc(ImageGalleryCell)
 open class ImageGalleryCell: UITableViewCell {
 

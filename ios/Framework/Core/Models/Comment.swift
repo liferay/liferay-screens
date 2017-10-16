@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 @objc(Comment)
 open class Comment: NSObject, NSCoding {
 

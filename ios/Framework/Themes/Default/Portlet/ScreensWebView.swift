@@ -13,7 +13,6 @@
 */
 import UIKit
 
-
 @objc(ScreensWebView)
 public protocol ScreensWebView {
 

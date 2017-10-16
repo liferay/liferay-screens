@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 @objc(DDMFieldBoolean)
 open class DDMFieldBoolean: DDMField {
 

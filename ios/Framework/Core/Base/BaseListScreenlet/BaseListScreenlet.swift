@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 /// BaseListScreenlet is the base class from which all list Screenlet classes must inherit.
 /// A screenlet is the container for a screenlet view.
 @objc(BaseListScreenlet)

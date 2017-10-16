@@ -13,7 +13,6 @@
 */
 import Foundation
 
-
 @objc(InjectableScript)
 public protocol InjectableScript {
 	var name: String { get }

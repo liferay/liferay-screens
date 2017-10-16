@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc(RatingView_default_like)
 open class RatingView_default_like: BaseScreenletView, RatingViewModel {
 

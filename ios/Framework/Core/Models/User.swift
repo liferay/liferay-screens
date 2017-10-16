@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 @objc(User)
 open class User: NSObject, NSCoding {
 

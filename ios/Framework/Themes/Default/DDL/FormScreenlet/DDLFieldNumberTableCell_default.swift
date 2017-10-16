@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc(DDLFieldNumberTableCell_default)
 open class DDLFieldNumberTableCell_default: DDLBaseFieldTextboxTableCell_default {
 

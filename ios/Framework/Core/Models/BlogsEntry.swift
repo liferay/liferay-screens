@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 @objc(BlogsEntry)
 open class BlogsEntry: Asset {
 

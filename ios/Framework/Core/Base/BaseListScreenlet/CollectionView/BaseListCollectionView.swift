@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc(BaseListCollectionView)
 open class BaseListCollectionView: BaseListView, UICollectionViewDataSource, UICollectionViewDelegate {
 
@@ -25,7 +24,7 @@ open class BaseListCollectionView: BaseListView, UICollectionViewDataSource, UIC
 
 	internal var refreshControlView: UIRefreshControl?
 
-	internal var refreshClosure: ((Void) -> Bool)? {
+	internal var refreshClosure: (() -> Bool)? {
 		didSet {
 			updateRefreshControl()
 		}

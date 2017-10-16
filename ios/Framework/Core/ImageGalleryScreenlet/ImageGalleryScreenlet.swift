@@ -14,7 +14,6 @@
 import Foundation
 import Kingfisher
 
-
 /// The ImageGalleryScreenletDelegate protocol defines some methods that you use to manage the
 /// ImageGalleryScreenlet events. All of them are optional.
 @objc(ImageGalleryScreenletDelegate)

@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc(ImageGalleryGridCell)
 open class ImageGalleryGridCell: UICollectionViewCell {
 

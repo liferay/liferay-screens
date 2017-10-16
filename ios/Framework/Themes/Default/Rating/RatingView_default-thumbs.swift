@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc(RatingView_default_thumbs)
 open class RatingView_default_thumbs: BaseScreenletView, RatingViewModel {
 

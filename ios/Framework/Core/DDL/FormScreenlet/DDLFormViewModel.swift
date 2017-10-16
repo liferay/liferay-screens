@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc(DDLFormViewModel)
 public protocol DDLFormViewModel {
 

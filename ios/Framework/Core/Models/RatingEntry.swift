@@ -13,7 +13,6 @@
  */
 import UIKit
 
-
 @objc(RatingEntry)
 open class RatingEntry: NSObject, NSCoding {
 

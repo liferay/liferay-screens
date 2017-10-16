@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 @objc(ImageEntry)
 open class ImageEntry: Asset {
 
