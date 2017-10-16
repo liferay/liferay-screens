@@ -20,7 +20,7 @@
 
 - (void)postMessage:(CDVInvokedUrlCommand*)command {
 
-	CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@""];
+	/*CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@""];
 
 	NSString *namespace = command.arguments[0];
 	NSString *message = command.arguments[1];
@@ -31,7 +31,7 @@
 		[vc handleJsCallWithNamespace:namespace message: message];
 	});
 
-	[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+	[self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];*/
 }
 
 @end

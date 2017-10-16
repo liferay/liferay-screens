@@ -31,6 +31,7 @@ All notable changes to this project will be documented in this file.
 * Show alerts in the WebScreenlet
 * Allow developers to disable scroll in the WebScreenlet
 * Allow developers to clear cache on WebScreenlet
+* All screenlets should have getter/setter for their listener properties (for Xamarin projects)
 
 ### Refactor
 * Remove unused attribute in RatingsScreenlet 
