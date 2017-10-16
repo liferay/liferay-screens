@@ -166,7 +166,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				break;
 			case R.id.user_display:
 				Intent intentUser = getIntentWithTheme(AssetDisplayActivity.class);
-				intentUser.putExtra("entryId", Long.valueOf(getResources().getString(R.string.liferay_video_entryId)));
+				intentUser.putExtra("entryId", Long.valueOf(getResources().getString(R.string.liferay_user_entryId)));
 				DefaultAnimation.startActivityWithAnimation(this, intentUser);
 				break;
 			case R.id.image_display:
