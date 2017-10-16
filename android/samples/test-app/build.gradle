@@ -21,7 +21,7 @@ android {
 	}
 	lintOptions {
 		abortOnError false
-    disable 'MissingTranslation'
+		disable 'MissingTranslation'
 	}
 	buildToolsVersion '26.0.2'
 }
