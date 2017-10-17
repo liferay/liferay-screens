@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		069DA62B61E96C4B7F9348C3 /* Pods_Screens_LiferayScreensXamarin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F87A66990734AE5230D0C891 /* Pods_Screens_LiferayScreensXamarin.framework */; };
 		0B1063161D49E7C9001D8DE3 /* WebContentListView_default-collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1063151D49E7C9001D8DE3 /* WebContentListView_default-collection.swift */; };
 		0B1063181D49E7DE001D8DE3 /* WebContentListView_default-collection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B1063171D49E7DE001D8DE3 /* WebContentListView_default-collection.xib */; };
 		0B139A831EB9EE1E00628D24 /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 0B139A821EB9EE1E00628D24 /* default.css */; };
@@ -85,7 +86,7 @@
 		0B2180341D6C508200A23690 /* DDMFieldString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180031D6C4F6F00A23690 /* DDMFieldString.swift */; };
 		0B2180351D6C508200A23690 /* DDMFieldStringWithOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180041D6C4F6F00A23690 /* DDMFieldStringWithOptions.swift */; };
 		0B2180361D6C508200A23690 /* DDMFieldUntyped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180051D6C4F6F00A23690 /* DDMFieldUntyped.swift */; };
-		0B2677DE1D3D1E5700FDFC5B /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
+		0B2677DE1D3D1E5700FDFC5B /* BuildFile in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
 		0B2C41541D5A3C7C00764326 /* ImageGalleryCollectionViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C41421D5A3C7C00764326 /* ImageGalleryCollectionViewBase.swift */; };
 		0B2C415F1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C414D1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift */; };
 		0B2C41631D5A3C7C00764326 /* UploadProgressView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C41511D5A3C7C00764326 /* UploadProgressView_default.xib */; };
@@ -183,6 +184,425 @@
 		0B64637B1D66F172007F3289 /* UploadProgressView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B64637A1D66F172007F3289 /* UploadProgressView_default.swift */; };
 		0B66FFCE1DAF83E900963DEB /* DefaultTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B66FFCD1DAF83E900963DEB /* DefaultTextField.swift */; };
 		0B76FE8E1E4DADA80002D27F /* CookieCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76FE8D1E4DADA80002D27F /* CookieCredentialsStoreKeyChain.swift */; };
+		0B7783441F95F60C001C9134 /* SyncManager+DDLForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886FCCB21BA6D96E00494BB0 /* SyncManager+DDLForm.swift */; };
+		0B7783451F95F60C001C9134 /* BlogsEntryDisplayScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B21801D1D6C500C00A23690 /* BlogsEntryDisplayScreenlet.swift */; };
+		0B7783461F95F60C001C9134 /* AssetDisplayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FA81D6C4E6F00A23690 /* AssetDisplayViewModel.swift */; };
+		0B7783471F95F60C001C9134 /* WebContentDisplayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837FA6B1CAEF6AE00DCB1B4 /* WebContentDisplayViewModel.swift */; };
+		0B7783481F95F60C001C9134 /* UIImageView+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E901D5870630007D4B1 /* UIImageView+Screens.swift */; };
+		0B7783491F95F60C001C9134 /* WebScreenletConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B0C861EFD1375002EAA76 /* WebScreenletConfiguration.swift */; };
+		0B77834A1F95F60C001C9134 /* FileEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180161D6C4FEF00A23690 /* FileEntry.swift */; };
+		0B77834B1F95F60C001C9134 /* SignUpScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60FF1ACBE5F000862B9E /* SignUpScreenlet.swift */; };
+		0B77834C1F95F60C001C9134 /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881B743D1B9EE28D00EA64ED /* SyncManager.swift */; };
+		0B77834D1F95F60C001C9134 /* CredentialsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA806D1B25EE04004C1D59 /* CredentialsStore.swift */; };
+		0B77834E1F95F60C001C9134 /* DDLFieldCheckboxTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61CF1ACBFC3400862B9E /* DDLFieldCheckboxTableCell_default.swift */; };
+		0B77834F1F95F60C001C9134 /* UserPortraitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E610B1ACBE5F000862B9E /* UserPortraitViewModel.swift */; };
+		0B7783501F95F60C001C9134 /* RatingUpdateLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8891259D1D5479E6006AFA08 /* RatingUpdateLiferayConnector.swift */; };
+		0B7783511F95F60C001C9134 /* MimeTypeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FF31D6C4F4E00A23690 /* MimeTypeable.swift */; };
+		0B7783521F95F60C001C9134 /* CookieCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76FE8D1E4DADA80002D27F /* CookieCredentialsStoreKeyChain.swift */; };
+		0B7783531F95F60C001C9134 /* RatingDeleteLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8891259A1D5479E6006AFA08 /* RatingDeleteLiferayConnector.swift */; };
+		0B7783541F95F60C001C9134 /* ServerWriteConnectorInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844371C73D6C0007A447D /* ServerWriteConnectorInteractor.swift */; };
+		0B7783551F95F60C001C9134 /* DDLListScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61661ACBEE0B00862B9E /* DDLListScreenlet.swift */; };
+		0B7783561F95F60C001C9134 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61001ACBE5F000862B9E /* SignUpViewModel.swift */; };
+		0B7783571F95F60C001C9134 /* DDLFormSubmitFormInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E615A1ACBEE0B00862B9E /* DDLFormSubmitFormInteractor.swift */; };
+		0B7783581F95F60C001C9134 /* LRScreenscommentService_v70.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE28391D87E13300261A66 /* LRScreenscommentService_v70.m */; };
+		0B7783591F95F60C001C9134 /* CommentAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917891D76BE6900C86C85 /* CommentAddViewModel.swift */; };
+		0B77835A1F95F60C001C9134 /* LoginCookieInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3699E81E4C929900B82F81 /* LoginCookieInteractor.swift */; };
+		0B77835B1F95F60C001C9134 /* SignUpView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61C61ACBFC3400862B9E /* SignUpView_default.swift */; };
+		0B77835C1F95F60C001C9134 /* BaseListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884F92681D58D02A002EE6B3 /* BaseListCollectionView.swift */; };
+		0B77835D1F95F60C001C9134 /* ScreensWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBE45741F1D0BFB00812015 /* ScreensWebView.swift */; };
+		0B77835E1F95F60C001C9134 /* ImageGalleryScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E7A1D5869DB0007D4B1 /* ImageGalleryScreenlet.swift */; };
+		0B77835F1F95F60C001C9134 /* CommentEditViewController_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917BD1D76BEA000C86C85 /* CommentEditViewController_default.swift */; };
+		0B7783601F95F60C001C9134 /* LRScreensjournalarticleService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 887E054A1C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.m */; };
+		0B7783611F95F60C001C9134 /* ForgotPasswordScreenNameLiferayConnectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8448E1C73D856007A447D /* ForgotPasswordScreenNameLiferayConnectors.swift */; };
+		0B7783621F95F60C001C9134 /* DDLFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61511ACBEE0B00862B9E /* DDLFormView.swift */; };
+		0B7783631F95F60C001C9134 /* UserPortraitView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61C91ACBFC3400862B9E /* UserPortraitView_default.swift */; };
+		0B7783641F95F60C001C9134 /* ImageGalleryDeleteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E7E1D5869DB0007D4B1 /* ImageGalleryDeleteInteractor.swift */; };
+		0B7783651F95F60C001C9134 /* ImageGalleryView_default-list.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBEDA221D5B230700F8CB31 /* ImageGalleryView_default-list.swift */; };
+		0B7783661F95F60C001C9134 /* DDMTypedValuesXMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FF81D6C4F6F00A23690 /* DDMTypedValuesXMLParser.swift */; };
+		0B7783671F95F60C001C9134 /* ScreensBridgePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1527331F2F8BFD00B60188 /* ScreensBridgePlugin.m */; };
+		0B7783681F95F60C001C9134 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D081B999CD90007AECE /* CacheManager.swift */; };
+		0B7783691F95F60C001C9134 /* WebContentListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AF68321CBFF58700097014 /* WebContentListPageLoadInteractor.swift */; };
+		0B77836A1F95F60C001C9134 /* CredentialsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DC31E11ACC18F10078C961 /* CredentialsStorage.swift */; };
+		0B77836B1F95F60C001C9134 /* LoginByScreenNameLiferayConnectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844A31C73D888007A447D /* LoginByScreenNameLiferayConnectors.swift */; };
+		0B77836C1F95F60C001C9134 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB503181D37C04A00ABD6B3 /* Asset.swift */; };
+		0B77836D1F95F60C001C9134 /* Bool+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6A51ACBD89400192232 /* Bool+Screens.swift */; };
+		0B77836E1F95F60C001C9134 /* CommentUpdateLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917941D76BE6900C86C85 /* CommentUpdateLiferayConnector.swift */; };
+		0B77836F1F95F60C001C9134 /* LRSession+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D111B99A79A0007AECE /* LRSession+Screens.swift */; };
+		0B7783701F95F60C001C9134 /* ImageUploadDetailViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E7C1D5869DB0007D4B1 /* ImageUploadDetailViewBase.swift */; };
+		0B7783711F95F60C001C9134 /* DownloadUserPortraitInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E49C51B95CE65007DBEC9 /* DownloadUserPortraitInteractor.swift */; };
+		0B7783721F95F60C001C9134 /* Dictionary+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882CDC561C64B2C00043A9FD /* Dictionary+Screens.swift */; };
+		0B7783731F95F60C001C9134 /* DDMField+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FFC1D6C4F6F00A23690 /* DDMField+Editor.swift */; };
+		0B7783741F95F60C001C9134 /* ImageGalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E7B1D5869DB0007D4B1 /* ImageGalleryViewModel.swift */; };
+		0B7783751F95F60C001C9134 /* SequenceType+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1E0F21D364E96000A2678 /* SequenceType+Screens.swift */; };
+		0B7783761F95F60C001C9134 /* ServerReadConnectorInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844361C73D6C0007A447D /* ServerReadConnectorInteractor.swift */; };
+		0B7783771F95F60C001C9134 /* AssetListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FB11D6C4E6F00A23690 /* AssetListPageLoadInteractor.swift */; };
+		0B7783781F95F60C001C9134 /* SaveUserInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8839B8791B0CD539006C18F1 /* SaveUserInteractor.swift */; };
+		0B7783791F95F60C001C9134 /* UpdateRatingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889125A11D5479E6006AFA08 /* UpdateRatingInteractor.swift */; };
+		0B77837A1F95F60C001C9134 /* NSError+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8839B8821B0CD55E006C18F1 /* NSError+Screens.swift */; };
+		0B77837B1F95F60C001C9134 /* LoginView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61C31ACBFC3400862B9E /* LoginView_default.swift */; };
+		0B77837C1F95F60C001C9134 /* ServerConnectorInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844351C73D6C0007A447D /* ServerConnectorInteractor.swift */; };
+		0B77837D1F95F60C001C9134 /* UserPortraitDefaultProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA91B71B8DE3AD000B92F2 /* UserPortraitDefaultProgressPresenter.swift */; };
+		0B77837E1F95F60C001C9134 /* WebContentListPageLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AF68311CBFF58700097014 /* WebContentListPageLiferayConnector.swift */; };
+		0B77837F1F95F60C001C9134 /* AssetListPageLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FB01D6C4E6F00A23690 /* AssetListPageLiferayConnector.swift */; };
+		0B7783801F95F60C001C9134 /* VideoDisplayScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FCC1D6C4E7B00A23690 /* VideoDisplayScreenlet.swift */; };
+		0B7783811F95F60C001C9134 /* DDLFieldDateTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61D11ACBFC3400862B9E /* DDLFieldDateTableCell_default.swift */; };
+		0B7783821F95F60C001C9134 /* RatingView_default-thumbs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889125C01D549757006AFA08 /* RatingView_default-thumbs.swift */; };
+		0B7783831F95F60C001C9134 /* ImageUploadDetailView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6463781D66F143007F3289 /* ImageUploadDetailView_default.swift */; };
+		0B7783841F95F60C001C9134 /* AssetLoadByPortletItemNameLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C27511E40F83300F6B01D /* AssetLoadByPortletItemNameLiferayConnector.swift */; };
+		0B7783851F95F60C001C9134 /* ImageGalleryView_default-slideshow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBEDA171D5B22FF00F8CB31 /* ImageGalleryView_default-slideshow.swift */; };
+		0B7783861F95F60C001C9134 /* LoginScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60F11ACBE5F000862B9E /* LoginScreenlet.swift */; };
+		0B7783871F95F60C001C9134 /* LRScreensddlrecordService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C41651D5A3CF400764326 /* LRScreensddlrecordService_v62.m */; };
+		0B7783881F95F60C001C9134 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6A61ACBD89400192232 /* Global.swift */; };
+		0B7783891F95F60C001C9134 /* UploadUserPortraitInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880ACA5A1B01FBF0007AD007 /* UploadUserPortraitInteractor.swift */; };
+		0B77838A1F95F60C001C9134 /* RatingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889125A41D5479E6006AFA08 /* RatingViewModel.swift */; };
+		0B77838B1F95F60C001C9134 /* LiferayConnectorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E7909C1C6CA3A700C90453 /* LiferayConnectorFactory.swift */; };
+		0B77838C1F95F60C001C9134 /* SyncManager+UserPortrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 886FCCAF1BA6D59700494BB0 /* SyncManager+UserPortrait.swift */; };
+		0B77838D1F95F60C001C9134 /* DDLFieldTextareaTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61DD1ACBFC3400862B9E /* DDLFieldTextareaTableCell_default.swift */; };
+		0B77838E1F95F60C001C9134 /* Kingfisher+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E941D58707E0007D4B1 /* Kingfisher+Screens.swift */; };
+		0B77838F1F95F60C001C9134 /* DDMFieldString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180031D6C4F6F00A23690 /* DDMFieldString.swift */; };
+		0B7783901F95F60C001C9134 /* BlogsEntryDisplayView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180221D6C502000A23690 /* BlogsEntryDisplayView_default.swift */; };
+		0B7783911F95F60C001C9134 /* DDLSubmitButtonTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61E41ACBFC3400862B9E /* DDLSubmitButtonTableCell_default.swift */; };
+		0B7783921F95F60C001C9134 /* AssetLoadByEntryIdLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FAB1D6C4E6F00A23690 /* AssetLoadByEntryIdLiferayConnector.swift */; };
+		0B7783931F95F60C001C9134 /* ForgotPasswordBaseLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8448B1C73D856007A447D /* ForgotPasswordBaseLiferayConnector.swift */; };
+		0B7783941F95F60C001C9134 /* DDMField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FFD1D6C4F6F00A23690 /* DDMField.swift */; };
+		0B7783951F95F60C001C9134 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60BC1ACBE43200862B9E /* KeyboardManager.swift */; };
+		0B7783961F95F60C001C9134 /* BasicCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */; };
+		0B7783971F95F60C001C9134 /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC700D01EB207B1006DD475 /* WebViewModel.swift */; };
+		0B7783981F95F60C001C9134 /* LRScreensratingsentryService_v70.m in Sources */ = {isa = PBXBuildFile; fileRef = 889125B01D547A10006AFA08 /* LRScreensratingsentryService_v70.m */; };
+		0B7783991F95F60C001C9134 /* DDLListView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61E71ACBFC3400862B9E /* DDLListView_default.swift */; };
+		0B77839A1F95F60C001C9134 /* LoadRatingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889125A01D5479E6006AFA08 /* LoadRatingsInteractor.swift */; };
+		0B77839B1F95F60C001C9134 /* ImageEntryUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E791D5869DB0007D4B1 /* ImageEntryUpload.swift */; };
+		0B77839C1F95F60C001C9134 /* BlogsDisplayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B21801C1D6C500C00A23690 /* BlogsDisplayViewModel.swift */; };
+		0B77839D1F95F60C001C9134 /* FileDisplayView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B147A181E78047C00EDE7B7 /* FileDisplayView_default.swift */; };
+		0B77839E1F95F60C001C9134 /* DDMFieldStringWithOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180041D6C4F6F00A23690 /* DDMFieldStringWithOptions.swift */; };
+		0B77839F1F95F60C001C9134 /* CommentAddLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9178B1D76BE6900C86C85 /* CommentAddLiferayConnector.swift */; };
+		0B7783A01F95F60C001C9134 /* CommentDeleteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917961D76BE6900C86C85 /* CommentDeleteInteractor.swift */; };
+		0B7783A11F95F60C001C9134 /* OAuthCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA80731B25F868004C1D59 /* OAuthCredentialsStoreKeyChain.swift */; };
+		0B7783A21F95F60C001C9134 /* DDLFormLoadLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844BE1C73D8F7007A447D /* DDLFormLoadLiferayConnector.swift */; };
+		0B7783A31F95F60C001C9134 /* CommentDeleteLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917921D76BE6900C86C85 /* CommentDeleteLiferayConnector.swift */; };
+		0B7783A41F95F60C001C9134 /* CommentLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917971D76BE6900C86C85 /* CommentLoadInteractor.swift */; };
+		0B7783A51F95F60C001C9134 /* DefaultProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B273111B7109C300477E5E /* DefaultProgressPresenter.swift */; };
+		0B7783A61F95F60C001C9134 /* AssetListScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FB21D6C4E6F00A23690 /* AssetListScreenlet.swift */; };
+		0B7783A71F95F60C001C9134 /* LoginBasicInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA80581B25AF48004C1D59 /* LoginBasicInteractor.swift */; };
+		0B7783A81F95F60C001C9134 /* Array+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E49CB1B95D474007DBEC9 /* Array+Screens.swift */; };
+		0B7783A91F95F60C001C9134 /* AuthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA80651B25D72A004C1D59 /* AuthType.swift */; };
+		0B7783AA1F95F60C001C9134 /* AssetListView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FEC1D6C4F0100A23690 /* AssetListView_default.swift */; };
+		0B7783AB1F95F60C001C9134 /* WebContentLoadHtmlLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AF681E1CBF82A400097014 /* WebContentLoadHtmlLiferayConnector.swift */; };
+		0B7783AC1F95F60C001C9134 /* ImageGalleryUploadConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E771D5869DB0007D4B1 /* ImageGalleryUploadConnector.swift */; };
+		0B7783AD1F95F60C001C9134 /* HttpConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844321C73D6C0007A447D /* HttpConnector.swift */; };
+		0B7783AE1F95F60C001C9134 /* CommentListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9179F1D76BE6900C86C85 /* CommentListPageLoadInteractor.swift */; };
+		0B7783AF1F95F60C001C9134 /* UserPortraitScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E610A1ACBE5F000862B9E /* UserPortraitScreenlet.swift */; };
+		0B7783B01F95F60C001C9134 /* SyncManager+ImageGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B89C9941D58B01200A9EAE7 /* SyncManager+ImageGallery.swift */; };
+		0B7783B11F95F60C001C9134 /* ImageGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBEDA201D5B230700F8CB31 /* ImageGalleryCell.swift */; };
+		0B7783B21F95F60C001C9134 /* PaginationLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8442E1C73D215007A447D /* PaginationLiferayConnector.swift */; };
+		0B7783B31F95F60C001C9134 /* AudioDisplayScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FC21D6C4E7B00A23690 /* AudioDisplayScreenlet.swift */; };
+		0B7783B41F95F60C001C9134 /* BaseScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60B61ACBE3FF00862B9E /* BaseScreenlet.swift */; };
+		0B7783B51F95F60C001C9134 /* ImageGalleryLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E7F1D5869DB0007D4B1 /* ImageGalleryLoadInteractor.swift */; };
+		0B7783B61F95F60C001C9134 /* SessionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6B31ACBD95400192232 /* SessionContext.swift */; };
+		0B7783B71F95F60C001C9134 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60E61ACBE5F000862B9E /* ForgotPasswordViewModel.swift */; };
+		0B7783B81F95F60C001C9134 /* ScreensFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AA42CA1C624A6E00AA97FB /* ScreensFactory.swift */; };
+		0B7783B91F95F60C001C9134 /* OAuthWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA805A1B25AF48004C1D59 /* OAuthWebViewController.swift */; };
+		0B7783BA1F95F60C001C9134 /* DDMJSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FF61D6C4F6F00A23690 /* DDMJSONParser.swift */; };
+		0B7783BB1F95F60C001C9134 /* UploadUserPortraitLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844BA1C73D8C1007A447D /* UploadUserPortraitLiferayConnector.swift */; };
+		0B7783BC1F95F60C001C9134 /* AssetLoadByClassPKLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FAA1D6C4E6F00A23690 /* AssetLoadByClassPKLiferayConnector.swift */; };
+		0B7783BD1F95F60C001C9134 /* DDLFormRecordLoadLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844BF1C73D8F7007A447D /* DDLFormRecordLoadLiferayConnector.swift */; };
+		0B7783BE1F95F60C001C9134 /* LoadAssetInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FAD1D6C4E6F00A23690 /* LoadAssetInteractor.swift */; };
+		0B7783BF1F95F60C001C9134 /* WebContentListView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC3AF11CC12C2600E0AEB7 /* WebContentListView_default.swift */; };
+		0B7783C01F95F60C001C9134 /* RatingScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889125A31D5479E6006AFA08 /* RatingScreenlet.swift */; };
+		0B7783C11F95F60C001C9134 /* ImageGalleryPageLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E761D5869DB0007D4B1 /* ImageGalleryPageLiferayConnector.swift */; };
+		0B7783C21F95F60C001C9134 /* ImageGalleryView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBEDA2B1D5B230E00F8CB31 /* ImageGalleryView_default.swift */; };
+		0B7783C31F95F60C001C9134 /* BlogsEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180151D6C4FEF00A23690 /* BlogsEntry.swift */; };
+		0B7783C41F95F60C001C9134 /* CommentAddInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9178D1D76BE6900C86C85 /* CommentAddInteractor.swift */; };
+		0B7783C51F95F60C001C9134 /* DDMFieldTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880459EC1CA15FA400449D55 /* DDMFieldTableCell.swift */; };
+		0B7783C61F95F60C001C9134 /* SyncManager+Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887FCB3A1D9D3ABF00537C40 /* SyncManager+Rating.swift */; };
+		0B7783C71F95F60C001C9134 /* UIButton+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6A91ACBD89400192232 /* UIButton+Screens.swift */; };
+		0B7783C81F95F60C001C9134 /* GetUserBaseLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8446C1C73D81D007A447D /* GetUserBaseLiferayConnector.swift */; };
+		0B7783C91F95F60C001C9134 /* GetUserByUserIdLiferayConnectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844751C73D81D007A447D /* GetUserByUserIdLiferayConnectors.swift */; };
+		0B7783CA1F95F60C001C9134 /* CommentDisplayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917901D76BE6900C86C85 /* CommentDisplayViewModel.swift */; };
+		0B7783CB1F95F60C001C9134 /* NSBundle+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A28EB91B0DD1300040D7F6 /* NSBundle+Screens.swift */; };
+		0B7783CC1F95F60C001C9134 /* WebContentLoadStructuredLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AF68211CBF8AD200097014 /* WebContentLoadStructuredLiferayConnector.swift */; };
+		0B7783CD1F95F60C001C9134 /* BaseCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA80701B25EF69004C1D59 /* BaseCredentialsStoreKeyChain.swift */; };
+		0B7783CE1F95F60C001C9134 /* WebView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC700CA1EB20795006DD475 /* WebView_default.swift */; };
+		0B7783CF1F95F60C001C9134 /* WebContentDisplayLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837FA691CAEF6AE00DCB1B4 /* WebContentDisplayLoadInteractor.swift */; };
+		0B7783D01F95F60C001C9134 /* DDMFieldUntyped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180051D6C4F6F00A23690 /* DDMFieldUntyped.swift */; };
+		0B7783D11F95F60C001C9134 /* ServerConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844331C73D6C0007A447D /* ServerConnector.swift */; };
+		0B7783D21F95F60C001C9134 /* CommentLoadLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917931D76BE6900C86C85 /* CommentLoadLiferayConnector.swift */; };
+		0B7783D31F95F60C001C9134 /* ImageDisplayView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FD91D6C4E9500A23690 /* ImageDisplayView_default.swift */; };
+		0B7783D41F95F60C001C9134 /* WebContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB5032B1D37C04A00ABD6B3 /* WebContent.swift */; };
+		0B7783D51F95F60C001C9134 /* WebScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC700CF1EB207B1006DD475 /* WebScreenlet.swift */; };
+		0B7783D61F95F60C001C9134 /* ScreensWKUIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA1CEDE1F4C64CE0079DD4B /* ScreensWKUIDelegate.swift */; };
+		0B7783D71F95F60C001C9134 /* ScreensCordovaWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBE45701F1D0B8100812015 /* ScreensCordovaWebView.swift */; };
+		0B7783D81F95F60C001C9134 /* DDLFieldNumberTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61D71ACBFC3400862B9E /* DDLFieldNumberTableCell_default.swift */; };
+		0B7783D91F95F60C001C9134 /* LRScreensjournalarticleService_v70.m in Sources */ = {isa = PBXBuildFile; fileRef = 887E055B1C6A4DF700CA3807 /* LRScreensjournalarticleService_v70.m */; };
+		0B7783DA1F95F60C001C9134 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180171D6C4FEF00A23690 /* User.swift */; };
+		0B7783DB1F95F60C001C9134 /* DDLListPageLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844511C73D750007A447D /* DDLListPageLiferayConnector.swift */; };
+		0B7783DC1F95F60C001C9134 /* PdfDisplayScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FCA1D6C4E7B00A23690 /* PdfDisplayScreenlet.swift */; };
+		0B7783DD1F95F60C001C9134 /* RatingView_default-like.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889125BC1D549757006AFA08 /* RatingView_default-like.swift */; };
+		0B7783DE1F95F60C001C9134 /* DDLFieldTextTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61DF1ACBFC3400862B9E /* DDLFieldTextTableCell_default.swift */; };
+		0B7783DF1F95F60C001C9134 /* ForgotPasswordScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60E51ACBE5F000862B9E /* ForgotPasswordScreenlet.swift */; };
+		0B7783E01F95F60C001C9134 /* UIView+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6AA1ACBD89400192232 /* UIView+Screens.swift */; };
+		0B7783E11F95F60C001C9134 /* ImageDisplayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7F45A11DA7BC5C00A3BDE3 /* ImageDisplayViewModel.swift */; };
+		0B7783E21F95F60C001C9134 /* GetUserByScreenNameLiferayConnectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844721C73D81D007A447D /* GetUserByScreenNameLiferayConnectors.swift */; };
+		0B7783E31F95F60C001C9134 /* NSDate+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917CE1D76BFA800C86C85 /* NSDate+Screens.swift */; };
+		0B7783E41F95F60C001C9134 /* CommentAddScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917881D76BE6900C86C85 /* CommentAddScreenlet.swift */; };
+		0B7783E51F95F60C001C9134 /* WebContentLoadBaseLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837FA681CAEF6AE00DCB1B4 /* WebContentLoadBaseLiferayConnector.swift */; };
+		0B7783E61F95F60C001C9134 /* WebContentListScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AF68331CBFF58700097014 /* WebContentListScreenlet.swift */; };
+		0B7783E71F95F60C001C9134 /* CommentListScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9179A1D76BE6900C86C85 /* CommentListScreenlet.swift */; };
+		0B7783E81F95F60C001C9134 /* LoginOAuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA80591B25AF48004C1D59 /* LoginOAuthInteractor.swift */; };
+		0B7783E91F95F60C001C9134 /* NetworkActivityIndicatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889125CA1D54977F006AFA08 /* NetworkActivityIndicatorPresenter.swift */; };
+		0B7783EA1F95F60C001C9134 /* WebContentListView_default-collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1063151D49E7C9001D8DE3 /* WebContentListView_default-collection.swift */; };
+		0B7783EB1F95F60C001C9134 /* ForgotPasswordEmailLiferayConnectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8448C1C73D856007A447D /* ForgotPasswordEmailLiferayConnectors.swift */; };
+		0B7783EC1F95F60C001C9134 /* AssetDisplayScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FA71D6C4E6F00A23690 /* AssetDisplayScreenlet.swift */; };
+		0B7783ED1F95F60C001C9134 /* BaseListScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60C71ACBE56700862B9E /* BaseListScreenlet.swift */; };
+		0B7783EE1F95F60C001C9134 /* BaseListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60CC1ACBE56700862B9E /* BaseListTableView.swift */; };
+		0B7783EF1F95F60C001C9134 /* LiferayServerContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6B21ACBD95400192232 /* LiferayServerContext.swift */; };
+		0B7783F01F95F60C001C9134 /* LoginByEmailLiferayConnectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844A11C73D888007A447D /* LoginByEmailLiferayConnectors.swift */; };
+		0B7783F11F95F60C001C9134 /* ImageUploadDetailViewController_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C414D1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift */; };
+		0B7783F21F95F60C001C9134 /* SignUpInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8839B87A1B0CD539006C18F1 /* SignUpInteractor.swift */; };
+		0B7783F31F95F60C001C9134 /* WebContentDisplayScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837FA6A1CAEF6AE00DCB1B4 /* WebContentDisplayScreenlet.swift */; };
+		0B7783F41F95F60C001C9134 /* DeleteRatingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8891259F1D5479E6006AFA08 /* DeleteRatingInteractor.swift */; };
+		0B7783F51F95F60C001C9134 /* DDLFormTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61631ACBEE0B00862B9E /* DDLFormTableView.swift */; };
+		0B7783F61F95F60C001C9134 /* LRCookieBlockCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF8CFA91E51A7B6009B1581 /* LRCookieBlockCallback.swift */; };
+		0B7783F71F95F60C001C9134 /* ImageGallerySlideshowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBEDA151D5B22FF00F8CB31 /* ImageGallerySlideshowCell.swift */; };
+		0B7783F81F95F60C001C9134 /* DDLFormUploadDocumentInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E615B1ACBEE0B00862B9E /* DDLFormUploadDocumentInteractor.swift */; };
+		0B7783F91F95F60C001C9134 /* DDLFieldDocumentlibraryTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61D51ACBFC3400862B9E /* DDLFieldDocumentlibraryTableCell_default.swift */; };
+		0B7783FA1F95F60C001C9134 /* DDMFieldBoolean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FFE1D6C4F6F00A23690 /* DDMFieldBoolean.swift */; };
+		0B7783FB1F95F60C001C9134 /* AssetDisplayView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FE91D6C4F0100A23690 /* AssetDisplayView_default.swift */; };
+		0B7783FC1F95F60C001C9134 /* DDMField+DataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FFB1D6C4F6F00A23690 /* DDMField+DataType.swift */; };
+		0B7783FD1F95F60C001C9134 /* BaseScreenletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60B71ACBE3FF00862B9E /* BaseScreenletView.swift */; };
+		0B7783FE1F95F60C001C9134 /* UploadProgressView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B64637A1D66F172007F3289 /* UploadProgressView_default.swift */; };
+		0B7783FF1F95F60C001C9134 /* LRScreensassetentryService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 887E05461C6A4DB000CA3807 /* LRScreensassetentryService_v62.m */; };
+		0B7784001F95F60C001C9134 /* NSLocale+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6A81ACBD89400192232 /* NSLocale+Screens.swift */; };
+		0B7784011F95F60C001C9134 /* CommentTableViewCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917C21D76BEA000C86C85 /* CommentTableViewCell_default.swift */; };
+		0B7784021F95F60C001C9134 /* ProgressPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B2730E1B7107F200477E5E /* ProgressPresenter.swift */; };
+		0B7784031F95F60C001C9134 /* DDLFieldSelectTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61DB1ACBFC3400862B9E /* DDLFieldSelectTableCell_default.swift */; };
+		0B7784041F95F60C001C9134 /* CommentAddView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917B81D76BEA000C86C85 /* CommentAddView_default.swift */; };
+		0B7784051F95F60C001C9134 /* ImageDisplayScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FC61D6C4E7B00A23690 /* ImageDisplayScreenlet.swift */; };
+		0B7784061F95F60C001C9134 /* DDLFieldDocumentlibraryPresenterViewController_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61D31ACBFC3400862B9E /* DDLFieldDocumentlibraryPresenterViewController_default.swift */; };
+		0B7784071F95F60C001C9134 /* RatingEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889125B71D547C14006AFA08 /* RatingEntry.swift */; };
+		0B7784081F95F60C001C9134 /* AssetListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FB41D6C4E6F00A23690 /* AssetListTableView.swift */; };
+		0B7784091F95F60C001C9134 /* ForgotPasswordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60E41ACBE5F000862B9E /* ForgotPasswordInteractor.swift */; };
+		0B77840A1F95F60C001C9134 /* UpdateCurrentUserLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844B51C73D8A3007A447D /* UpdateCurrentUserLiferayConnector.swift */; };
+		0B77840B1F95F60C001C9134 /* DDLFormDefaultThemeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61E11ACBFC3400862B9E /* DDLFormDefaultThemeConstants.swift */; };
+		0B77840C1F95F60C001C9134 /* CacheMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D171B99BD640007AECE /* CacheMetadata.swift */; };
+		0B77840D1F95F60C001C9134 /* DDLValuesParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E614D1ACBEE0B00862B9E /* DDLValuesParser.swift */; };
+		0B77840E1F95F60C001C9134 /* DDLFieldRadioTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61D91ACBFC3400862B9E /* DDLFieldRadioTableCell_default.swift */; };
+		0B77840F1F95F60C001C9134 /* CommentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9179B1D76BE6900C86C85 /* CommentListViewModel.swift */; };
+		0B7784101F95F60C001C9134 /* FileDisplayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FC41D6C4E7B00A23690 /* FileDisplayViewModel.swift */; };
+		0B7784111F95F60C001C9134 /* String+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D141B99AABA0007AECE /* String+Screens.swift */; };
+		0B7784121F95F60C001C9134 /* CommentListPageLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9179D1D76BE6900C86C85 /* CommentListPageLiferayConnector.swift */; };
+		0B7784131F95F60C001C9134 /* BaseListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60C81ACBE56700862B9E /* BaseListView.swift */; };
+		0B7784141F95F60C001C9134 /* DDMStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FF71D6C4F6F00A23690 /* DDMStructure.swift */; };
+		0B7784151F95F60C001C9134 /* LoadFileEntryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FC81D6C4E7B00A23690 /* LoadFileEntryInteractor.swift */; };
+		0B7784161F95F60C001C9134 /* CommentDisplayView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917BB1D76BEA000C86C85 /* CommentDisplayView_default.swift */; };
+		0B7784171F95F60C001C9134 /* ImageGalleryDeleteConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E751D5869DB0007D4B1 /* ImageGalleryDeleteConnector.swift */; };
+		0B7784181F95F60C001C9134 /* DDLFormLoadRecordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61591ACBEE0B00862B9E /* DDLFormLoadRecordInteractor.swift */; };
+		0B7784191F95F60C001C9134 /* LoginByUserIdLiferayConnectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844A51C73D888007A447D /* LoginByUserIdLiferayConnectors.swift */; };
+		0B77841A1F95F60C001C9134 /* DDMFieldNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180021D6C4F6F00A23690 /* DDMFieldNumber.swift */; };
+		0B77841B1F95F60C001C9134 /* WebContentListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AF68351CBFF58700097014 /* WebContentListTableView.swift */; };
+		0B77841C1F95F60C001C9134 /* UIImage+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E921D58706E0007D4B1 /* UIImage+Screens.swift */; };
+		0B77841D1F95F60C001C9134 /* SyncManager+Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883468501D7DA896002344C4 /* SyncManager+Comment.swift */; };
+		0B77841E1F95F60C001C9134 /* ForgotPasswordView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61C01ACBFC3400862B9E /* ForgotPasswordView_default.swift */; };
+		0B77841F1F95F60C001C9134 /* LRScreensuserService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 887E054C1C6A4DB000CA3807 /* LRScreensuserService_v62.m */; };
+		0B7784201F95F60C001C9134 /* CommentListView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917C01D76BEA000C86C85 /* CommentListView_default.swift */; };
+		0B7784211F95F60C001C9134 /* CommentUpdateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917981D76BE6900C86C85 /* CommentUpdateInteractor.swift */; };
+		0B7784221F95F60C001C9134 /* LRScreensassetentryService_v70.m in Sources */ = {isa = PBXBuildFile; fileRef = 887E05571C6A4DF700CA3807 /* LRScreensassetentryService_v70.m */; };
+		0B7784231F95F60C001C9134 /* LRScreensddlrecordService_v70.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB4FB01D37C08B0023E2CA /* LRScreensddlrecordService_v70.m */; };
+		0B7784241F95F60C001C9134 /* VideoDisplayView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FDD1D6C4E9500A23690 /* VideoDisplayView_default.swift */; };
+		0B7784251F95F60C001C9134 /* DDLListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61651ACBEE0B00862B9E /* DDLListPageLoadInteractor.swift */; };
+		0B7784261F95F60C001C9134 /* DDLFormSubmitLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844C01C73D8F7007A447D /* DDLFormSubmitLiferayConnector.swift */; };
+		0B7784271F95F60C001C9134 /* PdfDisplayView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FDB1D6C4E9500A23690 /* PdfDisplayView_default.swift */; };
+		0B7784281F95F60C001C9134 /* ScreensCordovaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4460841F176668007D12E5 /* ScreensCordovaViewController.swift */; };
+		0B7784291F95F60C001C9134 /* WKWebView+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5619F91E7A7D3E00FDF397 /* WKWebView+Screens.swift */; };
+		0B77842A1F95F60C001C9134 /* CommentDisplayScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9178F1D76BE6900C86C85 /* CommentDisplayScreenlet.swift */; };
+		0B77842B1F95F60C001C9134 /* AssetClassNameIds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FAF1D6C4E6F00A23690 /* AssetClassNameIds.swift */; };
+		0B77842C1F95F60C001C9134 /* BasicAuthBased.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA80621B25D6EA004C1D59 /* BasicAuthBased.swift */; };
+		0B77842D1F95F60C001C9134 /* DDLFormUploadLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844C11C73D8F7007A447D /* DDLFormUploadLiferayConnector.swift */; };
+		0B77842E1F95F60C001C9134 /* RatingView_default-emojis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889125BA1D549757006AFA08 /* RatingView_default-emojis.swift */; };
+		0B77842F1F95F60C001C9134 /* ForgotPasswordUserIdLiferayConnectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844901C73D856007A447D /* ForgotPasswordUserIdLiferayConnectors.swift */; };
+		0B7784301F95F60C001C9134 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917B01D76BE7500C86C85 /* Comment.swift */; };
+		0B7784311F95F60C001C9134 /* ImageGalleryGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBEDA291D5B230E00F8CB31 /* ImageGalleryGridCell.swift */; };
+		0B7784321F95F60C001C9134 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60F21ACBE5F000862B9E /* LoginViewModel.swift */; };
+		0B7784331F95F60C001C9134 /* DDLRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB503191D37C04A00ABD6B3 /* DDLRecord.swift */; };
+		0B7784341F95F60C001C9134 /* ImageGalleryUploadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E801D5869DB0007D4B1 /* ImageGalleryUploadInteractor.swift */; };
+		0B7784351F95F60C001C9134 /* SignUpLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844B41C73D8A3007A447D /* SignUpLiferayConnector.swift */; };
+		0B7784361F95F60C001C9134 /* DefaultTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B66FFCD1DAF83E900963DEB /* DefaultTextField.swift */; };
+		0B7784371F95F60C001C9134 /* DDLBaseFieldTextFieldTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61CD1ACBFC3400862B9E /* DDLBaseFieldTextFieldTableCell_default.swift */; };
+		0B7784381F95F60C001C9134 /* DDLListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61671ACBEE0B00862B9E /* DDLListViewModel.swift */; };
+		0B7784391F95F60C001C9134 /* ScreensWKWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBE45721F1D0BC200812015 /* ScreensWKWebView.swift */; };
+		0B77843A1F95F60C001C9134 /* RatingView_default-stars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889125BE1D549757006AFA08 /* RatingView_default-stars.swift */; };
+		0B77843B1F95F60C001C9134 /* MediaSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E561D5869BB0007D4B1 /* MediaSelector.swift */; };
+		0B77843C1F95F60C001C9134 /* BaseListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60C61ACBE56700862B9E /* BaseListPageLoadInteractor.swift */; };
+		0B77843D1F95F60C001C9134 /* SlideShowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBEDA191D5B22FF00F8CB31 /* SlideShowLayout.swift */; };
+		0B77843E1F95F60C001C9134 /* FileDisplayScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FC31D6C4E7B00A23690 /* FileDisplayScreenlet.swift */; };
+		0B77843F1F95F60C001C9134 /* HttpDownloadConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180261D6C504300A23690 /* HttpDownloadConnector.swift */; };
+		0B7784401F95F60C001C9134 /* GetUserByEmailLiferayConnectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8446F1C73D81D007A447D /* GetUserByEmailLiferayConnectors.swift */; };
+		0B7784411F95F60C001C9134 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60BB1ACBE43200862B9E /* Interactor.swift */; };
+		0B7784421F95F60C001C9134 /* ImageEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A915371D62F4280075D927 /* ImageEntry.swift */; };
+		0B7784431F95F60C001C9134 /* ImageGalleryCollectionViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C41421D5A3C7C00764326 /* ImageGalleryCollectionViewBase.swift */; };
+		0B7784441F95F60C001C9134 /* MBProgressHUDPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B273141B7109E200477E5E /* MBProgressHUDPresenter.swift */; };
+		0B7784451F95F60C001C9134 /* UploadFileConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E8E1D58703D0007D4B1 /* UploadFileConnector.swift */; };
+		0B7784461F95F60C001C9134 /* WebContentDisplayView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC3AEE1CC12C2600E0AEB7 /* WebContentDisplayView_default.swift */; };
+		0B7784471F95F60C001C9134 /* DefaultThemeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61E91ACBFC3400862B9E /* DefaultThemeConstants.swift */; };
+		0B7784481F95F60C001C9134 /* DDLFormView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61E21ACBFC3400862B9E /* DDLFormView_default.swift */; };
+		0B7784491F95F60C001C9134 /* DDMFieldImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180011D6C4F6F00A23690 /* DDMFieldImage.swift */; };
+		0B77844A1F95F60C001C9134 /* DDLFormScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61501ACBEE0B00862B9E /* DDLFormScreenlet.swift */; };
+		0B77844B1F95F60C001C9134 /* UploadProgressViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E811D5869DB0007D4B1 /* UploadProgressViewBase.swift */; };
+		0B77844C1F95F60C001C9134 /* ServerConnectorChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844341C73D6C0007A447D /* ServerConnectorChain.swift */; };
+		0B77844D1F95F60C001C9134 /* RatingLoadByEntryIdLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8891259C1D5479E6006AFA08 /* RatingLoadByEntryIdLiferayConnector.swift */; };
+		0B77844E1F95F60C001C9134 /* AssetDisplayBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FA61D6C4E6F00A23690 /* AssetDisplayBuilder.swift */; };
+		0B77844F1F95F60C001C9134 /* DDMXSDParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FF91D6C4F6F00A23690 /* DDMXSDParser.swift */; };
+		0B7784501F95F60C001C9134 /* DDLFormLoadFormInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61581ACBEE0B00862B9E /* DDLFormLoadFormInteractor.swift */; };
+		0B7784511F95F60C001C9134 /* RatingLoadByClassPKLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8891259B1D5479E6006AFA08 /* RatingLoadByClassPKLiferayConnector.swift */; };
+		0B7784521F95F60C001C9134 /* DDMFieldDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FFF1D6C4F6F00A23690 /* DDMFieldDate.swift */; };
+		0B7784531F95F60C001C9134 /* AudioDisplayView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FD71D6C4E9500A23690 /* AudioDisplayView_default.swift */; };
+		0B7784541F95F60C001C9134 /* SMXMLDocument+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC3B0A1CC52E9A00E0AEB7 /* SMXMLDocument+Screens.swift */; };
+		0B7784551F95F60C001C9134 /* DDLFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61521ACBEE0B00862B9E /* DDLFormViewModel.swift */; };
+		0B7784561F95F60C001C9134 /* DDMFieldDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180001D6C4F6F00A23690 /* DDMFieldDocument.swift */; };
+		0B7784571F95F60C001C9134 /* InjectableScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B0C841EFBE8AF002EAA76 /* InjectableScript.swift */; };
+		0B7784591F95F60C001C9134 /* Pods_Screens_LiferayScreens.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 039C3B21F16B559B9C196029 /* Pods_Screens_LiferayScreens.framework */; };
+		0B77845B1F95F60C001C9134 /* LRScreensratingsentryService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 889125AF1D547A10006AFA08 /* LRScreensratingsentryService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B77845C1F95F60C001C9134 /* LRScreensddlrecordService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B2C41641D5A3CF400764326 /* LRScreensddlrecordService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B77845D1F95F60C001C9134 /* LRScreensuserService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E054B1C6A4DB000CA3807 /* LRScreensuserService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B77845E1F95F60C001C9134 /* ScreensBridgePlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B1527321F2F8BFD00B60188 /* ScreensBridgePlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B77845F1F95F60C001C9134 /* LRScreensddlrecordService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BCB4FAF1D37C08B0023E2CA /* LRScreensddlrecordService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B7784601F95F60C001C9134 /* LiferayScreens.h in Headers */ = {isa = PBXBuildFile; fileRef = 8892C67D1ACB2E3300192232 /* LiferayScreens.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B7784611F95F60C001C9134 /* LRScreensassetentryService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E05451C6A4DB000CA3807 /* LRScreensassetentryService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B7784621F95F60C001C9134 /* LRScreensjournalarticleService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E055A1C6A4DF700CA3807 /* LRScreensjournalarticleService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B7784631F95F60C001C9134 /* LRScreensassetentryService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E05561C6A4DF700CA3807 /* LRScreensassetentryService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B7784641F95F60C001C9134 /* LiferayScreensFrameworkConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 88DE2AA11AD3ED3B00714701 /* LiferayScreensFrameworkConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B7784651F95F60C001C9134 /* BuildFile in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
+		0B7784661F95F60C001C9134 /* LRScreensjournalarticleService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E05491C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B7784671F95F60C001C9134 /* LRScreenscommentService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BFE28381D87E13300261A66 /* LRScreenscommentService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B7784691F95F60C001C9134 /* SignUpView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E61C71ACBFC3400862B9E /* SignUpView_default.xib */; };
+		0B77846A1F95F60C001C9134 /* WebContentDisplayView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CC3AEF1CC12C2600E0AEB7 /* WebContentDisplayView_default.xib */; };
+		0B77846B1F95F60C001C9134 /* imagegallery-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B5B5EC21D58742B0007D4B1 /* imagegallery-screenlet.strings */; };
+		0B77846C1F95F60C001C9134 /* default-calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2C11F62A21000C2285B /* default-calendar.png */; };
+		0B77846D1F95F60C001C9134 /* default-cancel-upload.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2C31F62A21000C2285B /* default-cancel-upload.png */; };
+		0B77846E1F95F60C001C9134 /* default-point.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2E61F62A21000C2285B /* default-point.png */; };
+		0B77846F1F95F60C001C9134 /* CommentListView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BF917C11D76BEA000C86C85 /* CommentListView_default.xib */; };
+		0B7784701F95F60C001C9134 /* default-point@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2E81F62A21000C2285B /* default-point@3x.png */; };
+		0B7784711F95F60C001C9134 /* AudioDisplayView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B217FD81D6C4E9500A23690 /* AudioDisplayView_default.xib */; };
+		0B7784721F95F60C001C9134 /* default-play.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2E31F62A21000C2285B /* default-play.png */; };
+		0B7784731F95F60C001C9134 /* OAuthWebViewController_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CA80681B25E505004C1D59 /* OAuthWebViewController_default.xib */; };
+		0B7784741F95F60C001C9134 /* default-thumb-up@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2F71F62A21000C2285B /* default-thumb-up@3x.png */; };
+		0B7784751F95F60C001C9134 /* comment-display-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BB467871D8707280044523E /* comment-display-screenlet.strings */; };
+		0B7784761F95F60C001C9134 /* default-portrait-placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2E91F62A21000C2285B /* default-portrait-placeholder.png */; };
+		0B7784771F95F60C001C9134 /* default-mail-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2DB1F62A21000C2285B /* default-mail-icon.png */; };
+		0B7784781F95F60C001C9134 /* ImageGalleryView_default-slideshow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBEDA181D5B22FF00F8CB31 /* ImageGalleryView_default-slideshow.xib */; };
+		0B7784791F95F60C001C9134 /* default-fast-forward@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2C81F62A21000C2285B /* default-fast-forward@3x.png */; };
+		0B77847A1F95F60C001C9134 /* default-field-focused@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2CF1F62A21000C2285B /* default-field-focused@2x.png */; };
+		0B77847B1F95F60C001C9134 /* default-form-gradient-top.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2D41F62A21000C2285B /* default-form-gradient-top.png */; };
+		0B77847C1F95F60C001C9134 /* assetlist-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88BCB55F1B8CAC22004349F1 /* assetlist-screenlet.strings */; };
+		0B77847D1F95F60C001C9134 /* default-field-focused.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2CE1F62A21000C2285B /* default-field-focused.png */; };
+		0B77847E1F95F60C001C9134 /* assetdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BB467911D8707720044523E /* assetdisplay-screenlet.strings */; };
+		0B77847F1F95F60C001C9134 /* default-volumeup.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2FD1F62A21000C2285B /* default-volumeup.png */; };
+		0B7784801F95F60C001C9134 /* default-cancel-upload@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2C51F62A21000C2285B /* default-cancel-upload@3x.png */; };
+		0B7784811F95F60C001C9134 /* RatingView_default-stars.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889125BF1D549757006AFA08 /* RatingView_default-stars.xib */; };
+		0B7784821F95F60C001C9134 /* CommentDisplayView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BF917BC1D76BEA000C86C85 /* CommentDisplayView_default.xib */; };
+		0B7784831F95F60C001C9134 /* default-field-failed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2CD1F62A21000C2285B /* default-field-failed@2x.png */; };
+		0B7784841F95F60C001C9134 /* userportrait-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 880ACA711B0224A0007AD007 /* userportrait-screenlet.strings */; };
+		0B7784851F95F60C001C9134 /* default-field.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2D01F62A21000C2285B /* default-field.png */; };
+		0B7784861F95F60C001C9134 /* default-multiline-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2DE1F62A21000C2285B /* default-multiline-field@2x.png */; };
+		0B7784871F95F60C001C9134 /* default-play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2E41F62A21000C2285B /* default-play@2x.png */; };
+		0B7784881F95F60C001C9134 /* comment-list-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BB467891D8707280044523E /* comment-list-screenlet.strings */; };
+		0B7784891F95F60C001C9134 /* DDLFieldTextareaTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E61DE1ACBFC3400862B9E /* DDLFieldTextareaTableCell_default.xib */; };
+		0B77848A1F95F60C001C9134 /* default-preview-assetlist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2EC1F62A21000C2285B /* default-preview-assetlist@2x.png */; };
+		0B77848B1F95F60C001C9134 /* DDLFieldCheckboxTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E61D01ACBFC3400862B9E /* DDLFieldCheckboxTableCell_default.xib */; };
+		0B77848C1F95F60C001C9134 /* default-cancel-upload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2C41F62A21000C2285B /* default-cancel-upload@2x.png */; };
+		0B77848D1F95F60C001C9134 /* default-form-gradient-bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2D31F62A21000C2285B /* default-form-gradient-bottom@2x.png */; };
+		0B77848E1F95F60C001C9134 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 0B81C1B11EEED7A900D7DCF6 /* index.html */; };
+		0B77848F1F95F60C001C9134 /* DDLFieldDocumentlibraryTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E61D61ACBFC3400862B9E /* DDLFieldDocumentlibraryTableCell_default.xib */; };
+		0B7784901F95F60C001C9134 /* UploadProgressView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C41511D5A3C7C00764326 /* UploadProgressView_default.xib */; };
+		0B7784911F95F60C001C9134 /* default-fast-rewind.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2C91F62A21000C2285B /* default-fast-rewind.png */; };
+		0B7784921F95F60C001C9134 /* default.strings in Resources */ = {isa = PBXBuildFile; fileRef = 881E61EB1ACBFC3400862B9E /* default.strings */; };
+		0B7784931F95F60C001C9134 /* default-hourglass.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2D61F62A21000C2285B /* default-hourglass.png */; };
+		0B7784941F95F60C001C9134 /* DDLFormView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E61E31ACBFC3400862B9E /* DDLFormView_default.xib */; };
+		0B7784951F95F60C001C9134 /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 0B139A821EB9EE1E00628D24 /* default.css */; };
+		0B7784961F95F60C001C9134 /* default-preview-commentlist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2ED1F62A21000C2285B /* default-preview-commentlist@2x.png */; };
+		0B7784971F95F60C001C9134 /* default-multiline-field.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2DD1F62A21000C2285B /* default-multiline-field.png */; };
+		0B7784981F95F60C001C9134 /* default-fast-rewind@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2CB1F62A21000C2285B /* default-fast-rewind@3x.png */; };
+		0B7784991F95F60C001C9134 /* DDLFieldSelectTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E61DC1ACBFC3400862B9E /* DDLFieldSelectTableCell_default.xib */; };
+		0B77849A1F95F60C001C9134 /* AssetDisplayView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B217FEA1D6C4F0100A23690 /* AssetDisplayView_default.xib */; };
+		0B77849B1F95F60C001C9134 /* forgotpassword-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 880ACA6C1B0224A0007AD007 /* forgotpassword-screenlet.strings */; };
+		0B77849C1F95F60C001C9134 /* ddllist-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88BCB5631B8CAD93004349F1 /* ddllist-screenlet.strings */; };
+		0B77849D1F95F60C001C9134 /* comment-add-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BB467851D8707280044523E /* comment-add-screenlet.strings */; };
+		0B77849E1F95F60C001C9134 /* default-portrait-placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2EA1F62A21000C2285B /* default-portrait-placeholder@2x.png */; };
+		0B77849F1F95F60C001C9134 /* login-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 880ACA6E1B0224A0007AD007 /* login-screenlet.strings */; };
+		0B7784A01F95F60C001C9134 /* default-volumemute@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2FC1F62A21000C2285B /* default-volumemute@3x.png */; };
+		0B7784A11F95F60C001C9134 /* DDLFieldNumberTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E61D81ACBFC3400862B9E /* DDLFieldNumberTableCell_default.xib */; };
+		0B7784A21F95F60C001C9134 /* DDLFieldTextTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E61E01ACBFC3400862B9E /* DDLFieldTextTableCell_default.xib */; };
+		0B7784A31F95F60C001C9134 /* VideoDisplayView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B217FDE1D6C4E9500A23690 /* VideoDisplayView_default.xib */; };
+		0B7784A41F95F60C001C9134 /* default-form-gradient-top@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2D51F62A21000C2285B /* default-form-gradient-top@2x.png */; };
+		0B7784A51F95F60C001C9134 /* PdfDisplayView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B217FDC1D6C4E9500A23690 /* PdfDisplayView_default.xib */; };
+		0B7784A61F95F60C001C9134 /* BlogsEntryDisplayView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2180231D6C502000A23690 /* BlogsEntryDisplayView_default.xib */; };
+		0B7784A71F95F60C001C9134 /* default-thumb-up.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2F51F62A21000C2285B /* default-thumb-up.png */; };
+		0B7784A81F95F60C001C9134 /* WebContentListView_default-collection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B1063171D49E7DE001D8DE3 /* WebContentListView_default-collection.xib */; };
+		0B7784A91F95F60C001C9134 /* default-volumeup@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2FF1F62A21000C2285B /* default-volumeup@3x.png */; };
+		0B7784AA1F95F60C001C9134 /* default-volumeup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2FE1F62A21000C2285B /* default-volumeup@2x.png */; };
+		0B7784AB1F95F60C001C9134 /* default-thumb-down.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2F21F62A21000C2285B /* default-thumb-down.png */; };
+		0B7784AC1F95F60C001C9134 /* CommentAddView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BF917B91D76BEA000C86C85 /* CommentAddView_default.xib */; };
+		0B7784AD1F95F60C001C9134 /* ForgotPasswordView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E61C11ACBFC3400862B9E /* ForgotPasswordView_default.xib */; };
+		0B7784AE1F95F60C001C9134 /* DDLCustomFieldCompanyTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E61CE1ACBFC3400862B9E /* DDLCustomFieldCompanyTableCell_default.xib */; };
+		0B7784AF1F95F60C001C9134 /* ddlform-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 880ACA651B0224A0007AD007 /* ddlform-screenlet.strings */; };
+		0B7784B01F95F60C001C9134 /* webcontentdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88019FA01B8F22EE00674B00 /* webcontentdisplay-screenlet.strings */; };
+		0B7784B11F95F60C001C9134 /* default-slideshow-preview-imagegallery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2F11F62A21000C2285B /* default-slideshow-preview-imagegallery@2x.png */; };
+		0B7784B21F95F60C001C9134 /* default-preview-assetdisplay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2EB1F62A21000C2285B /* default-preview-assetdisplay@2x.png */; };
+		0B7784B31F95F60C001C9134 /* CommentTableViewCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BF917C31D76BEA000C86C85 /* CommentTableViewCell_default.xib */; };
+		0B7784B41F95F60C001C9134 /* FileDisplayView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B147A1A1E78049F00EDE7B7 /* FileDisplayView_default.xib */; };
+		0B7784B51F95F60C001C9134 /* liferay-server-context-sample.plist in Resources */ = {isa = PBXBuildFile; fileRef = 880ACA7C1B0224A0007AD007 /* liferay-server-context-sample.plist */; };
+		0B7784B61F95F60C001C9134 /* CommentEditViewController_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BF917BE1D76BEA000C86C85 /* CommentEditViewController_default.xib */; };
+		0B7784B71F95F60C001C9134 /* RatingView_default-thumbs.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889125C11D549757006AFA08 /* RatingView_default-thumbs.xib */; };
+		0B7784B81F95F60C001C9134 /* default-fast-forward@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2C71F62A21000C2285B /* default-fast-forward@2x.png */; };
+		0B7784B91F95F60C001C9134 /* default-pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2E01F62A21000C2285B /* default-pause@2x.png */; };
+		0B7784BA1F95F60C001C9134 /* ImageDisplayView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B217FDA1D6C4E9500A23690 /* ImageDisplayView_default.xib */; };
+		0B7784BB1F95F60C001C9134 /* ImageGalleryView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBEDA2C1D5B230E00F8CB31 /* ImageGalleryView_default.xib */; };
+		0B7784BC1F95F60C001C9134 /* Screens.js in Resources */ = {isa = PBXBuildFile; fileRef = 0B6402651EDC637300F6DC53 /* Screens.js */; };
+		0B7784BD1F95F60C001C9134 /* default-list-preview-imagegallery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2D81F62A21000C2285B /* default-list-preview-imagegallery@2x.png */; };
+		0B7784BE1F95F60C001C9134 /* default-field-failed.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2CC1F62A21000C2285B /* default-field-failed.png */; };
+		0B7784BF1F95F60C001C9134 /* default-preview-ddlform@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2EE1F62A21000C2285B /* default-preview-ddlform@2x.png */; };
+		0B7784C01F95F60C001C9134 /* default-form-gradient-bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2D21F62A21000C2285B /* default-form-gradient-bottom.png */; };
+		0B7784C11F95F60C001C9134 /* LoginView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E61C41ACBFC3400862B9E /* LoginView_default.xib */; };
+		0B7784C21F95F60C001C9134 /* default-thumb-up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2F61F62A21000C2285B /* default-thumb-up@2x.png */; };
+		0B7784C31F95F60C001C9134 /* default-placeholder-image.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2E21F62A21000C2285B /* default-placeholder-image.png */; };
+		0B7784C41F95F60C001C9134 /* default-thumb-down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2F41F62A21000C2285B /* default-thumb-down@3x.png */; };
+		0B7784C51F95F60C001C9134 /* default-preview-imagegallery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2EF1F62A21000C2285B /* default-preview-imagegallery@2x.png */; };
+		0B7784C61F95F60C001C9134 /* default-volumemute@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2FB1F62A21000C2285B /* default-volumemute@2x.png */; };
+		0B7784C71F95F60C001C9134 /* rating-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BB4678E1D8707430044523E /* rating-screenlet.strings */; };
+		0B7784C81F95F60C001C9134 /* ImageGalleryView_default-list.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBEDA231D5B230700F8CB31 /* ImageGalleryView_default-list.xib */; };
+		0B7784C91F95F60C001C9134 /* default-lock-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2D91F62A21000C2285B /* default-lock-icon.png */; };
+		0B7784CA1F95F60C001C9134 /* default-user-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2F91F62A21000C2285B /* default-user-icon@2x.png */; };
+		0B7784CB1F95F60C001C9134 /* default-lock-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2DA1F62A21000C2285B /* default-lock-icon@2x.png */; };
+		0B7784CC1F95F60C001C9134 /* AssetListView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B217FED1D6C4F0100A23690 /* AssetListView_default.xib */; };
+		0B7784CD1F95F60C001C9134 /* RatingView_default-like.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889125BD1D549757006AFA08 /* RatingView_default-like.xib */; };
+		0B7784CE1F95F60C001C9134 /* default-mail-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2DC1F62A21000C2285B /* default-mail-icon@2x.png */; };
+		0B7784CF1F95F60C001C9134 /* default-play@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2E51F62A21000C2285B /* default-play@3x.png */; };
+		0B7784D01F95F60C001C9134 /* default-preview-webcontentdisplay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2F01F62A21000C2285B /* default-preview-webcontentdisplay@2x.png */; };
+		0B7784D11F95F60C001C9134 /* default-pause@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2E11F62A21000C2285B /* default-pause@3x.png */; };
+		0B7784D21F95F60C001C9134 /* default-thumb-down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2F31F62A21000C2285B /* default-thumb-down@2x.png */; };
+		0B7784D31F95F60C001C9134 /* WebContentListView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88CC3AF21CC12C2600E0AEB7 /* WebContentListView_default.xib */; };
+		0B7784D41F95F60C001C9134 /* ImageUploadDetailView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B6463761D66EEB7007F3289 /* ImageUploadDetailView_default.xib */; };
+		0B7784D51F95F60C001C9134 /* core.strings in Resources */ = {isa = PBXBuildFile; fileRef = 880ACA691B0224A0007AD007 /* core.strings */; };
+		0B7784D61F95F60C001C9134 /* ImageGallerySlideshowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBEDA161D5B22FF00F8CB31 /* ImageGallerySlideshowCell.xib */; };
+		0B7784D71F95F60C001C9134 /* UserPortraitView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E61CA1ACBFC3400862B9E /* UserPortraitView_default.xib */; };
+		0B7784D81F95F60C001C9134 /* DDLFieldDocumentlibraryPresenterViewController_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E61D41ACBFC3400862B9E /* DDLFieldDocumentlibraryPresenterViewController_default.xib */; };
+		0B7784D91F95F60C001C9134 /* WebView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC700CB1EB20795006DD475 /* WebView_default.xib */; };
+		0B7784DA1F95F60C001C9134 /* signup-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 880ACA671B0224A0007AD007 /* signup-screenlet.strings */; };
+		0B7784DB1F95F60C001C9134 /* DDLFieldDateTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E61D21ACBFC3400862B9E /* DDLFieldDateTableCell_default.xib */; };
+		0B7784DC1F95F60C001C9134 /* DDLFieldRadioTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E61DA1ACBFC3400862B9E /* DDLFieldRadioTableCell_default.xib */; };
+		0B7784DD1F95F60C001C9134 /* ImageGalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBEDA211D5B230700F8CB31 /* ImageGalleryCell.xib */; };
+		0B7784DE1F95F60C001C9134 /* default-point@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2E71F62A21000C2285B /* default-point@2x.png */; };
+		0B7784DF1F95F60C001C9134 /* default-pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2DF1F62A21000C2285B /* default-pause.png */; };
+		0B7784E01F95F60C001C9134 /* default-hourglass@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2D71F62A21000C2285B /* default-hourglass@2x.png */; };
+		0B7784E11F95F60C001C9134 /* default-fast-forward.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2C61F62A21000C2285B /* default-fast-forward.png */; };
+		0B7784E21F95F60C001C9134 /* DDLSubmitButtonTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E61E51ACBFC3400862B9E /* DDLSubmitButtonTableCell_default.xib */; };
+		0B7784E31F95F60C001C9134 /* RatingView_default-emojis.xib in Resources */ = {isa = PBXBuildFile; fileRef = 889125BB1D549757006AFA08 /* RatingView_default-emojis.xib */; };
+		0B7784E41F95F60C001C9134 /* ImageGalleryGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBEDA2A1D5B230E00F8CB31 /* ImageGalleryGridCell.xib */; };
+		0B7784E51F95F60C001C9134 /* default-fast-rewind@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2CA1F62A21000C2285B /* default-fast-rewind@2x.png */; };
+		0B7784E61F95F60C001C9134 /* DDLListView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E61E81ACBFC3400862B9E /* DDLListView_default.xib */; };
+		0B7784E71F95F60C001C9134 /* default-calendar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2C21F62A21000C2285B /* default-calendar@2x.png */; };
+		0B7784E81F95F60C001C9134 /* default-field@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2D11F62A21000C2285B /* default-field@2x.png */; };
+		0B7784E91F95F60C001C9134 /* default-volumemute.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2FA1F62A21000C2285B /* default-volumemute.png */; };
 		0B7F45A21DA7BC5C00A3BDE3 /* ImageDisplayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7F45A11DA7BC5C00A3BDE3 /* ImageDisplayViewModel.swift */; };
 		0B81C1B21EEED7A900D7DCF6 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 0B81C1B11EEED7A900D7DCF6 /* index.html */; };
 		0B89C9951D58B01200A9EAE7 /* SyncManager+ImageGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B89C9941D58B01200A9EAE7 /* SyncManager+ImageGallery.swift */; };
@@ -764,6 +1184,7 @@
 		0B64637A1D66F172007F3289 /* UploadProgressView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadProgressView_default.swift; sourceTree = "<group>"; };
 		0B66FFCD1DAF83E900963DEB /* DefaultTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTextField.swift; sourceTree = "<group>"; };
 		0B76FE8D1E4DADA80002D27F /* CookieCredentialsStoreKeyChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CookieCredentialsStoreKeyChain.swift; sourceTree = "<group>"; };
+		0B7784EE1F95F60C001C9134 /* LiferayScreens.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LiferayScreens.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B7F45A11DA7BC5C00A3BDE3 /* ImageDisplayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDisplayViewModel.swift; sourceTree = "<group>"; };
 		0B81C1B11EEED7A900D7DCF6 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		0B85DF921DDE19450015EDCF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/assetdisplay-screenlet.strings"; sourceTree = "<group>"; };
@@ -838,6 +1259,8 @@
 		0BF917CE1D76BFA800C86C85 /* NSDate+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Screens.swift"; sourceTree = "<group>"; };
 		0BFE28381D87E13300261A66 /* LRScreenscommentService_v70.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreenscommentService_v70.h; sourceTree = "<group>"; };
 		0BFE28391D87E13300261A66 /* LRScreenscommentService_v70.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreenscommentService_v70.m; sourceTree = "<group>"; };
+		601A72E78E13C61E0936DAFC /* Pods-Screens-LiferayScreensXamarin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreensXamarin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreensXamarin/Pods-Screens-LiferayScreensXamarin.release.xcconfig"; sourceTree = "<group>"; };
+		6A201C4FCF2C05BD0381F239 /* Pods-Screens-LiferayScreensXamarin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreensXamarin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreensXamarin/Pods-Screens-LiferayScreensXamarin.debug.xcconfig"; sourceTree = "<group>"; };
 		76277052A489CACA834992A8 /* Pods_Screens_LiferayScreensTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Screens_LiferayScreensTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88019FA11B8F22EE00674B00 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/webcontentdisplay-screenlet.strings"; sourceTree = "<group>"; };
 		880459EC1CA15FA400449D55 /* DDMFieldTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDMFieldTableCell.swift; sourceTree = "<group>"; };
@@ -1089,9 +1512,19 @@
 		A8B45C06052D105C65EF5C83 /* Pods-Screens-LiferayScreens.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreens.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreens/Pods-Screens-LiferayScreens.debug.xcconfig"; sourceTree = "<group>"; };
 		AD76E36E85BE8E49BD3D8E53 /* Pods-Screens-LiferayScreensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreensTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests.release.xcconfig"; sourceTree = "<group>"; };
 		ADC21DB5DD46A1A28344B494 /* Pods-Screens-LiferayScreensTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreensTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F87A66990734AE5230D0C891 /* Pods_Screens_LiferayScreensXamarin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Screens_LiferayScreensXamarin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		0B7784581F95F60C001C9134 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B7784591F95F60C001C9134 /* Pods_Screens_LiferayScreens.framework in Frameworks */,
+				069DA62B61E96C4B7F9348C3 /* Pods_Screens_LiferayScreensXamarin.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8892C6741ACB2E3300192232 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1119,6 +1552,8 @@
 				A6822BE408CFC178464795BE /* Pods-Screens-LiferayScreens.release.xcconfig */,
 				ADC21DB5DD46A1A28344B494 /* Pods-Screens-LiferayScreensTests.debug.xcconfig */,
 				AD76E36E85BE8E49BD3D8E53 /* Pods-Screens-LiferayScreensTests.release.xcconfig */,
+				6A201C4FCF2C05BD0381F239 /* Pods-Screens-LiferayScreensXamarin.debug.xcconfig */,
+				601A72E78E13C61E0936DAFC /* Pods-Screens-LiferayScreensXamarin.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1638,6 +2073,7 @@
 				9136B139BF9449FC75DBECA6 /* Pods.framework */,
 				039C3B21F16B559B9C196029 /* Pods_Screens_LiferayScreens.framework */,
 				76277052A489CACA834992A8 /* Pods_Screens_LiferayScreensTests.framework */,
+				F87A66990734AE5230D0C891 /* Pods_Screens_LiferayScreensXamarin.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2256,6 +2692,7 @@
 			children = (
 				8892C6781ACB2E3300192232 /* LiferayScreens.framework */,
 				8892C6831ACB2E3300192232 /* LiferayScreensTests.xctest */,
+				0B7784EE1F95F60C001C9134 /* LiferayScreens.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2565,6 +3002,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		0B77845A1F95F60C001C9134 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B77845B1F95F60C001C9134 /* LRScreensratingsentryService_v70.h in Headers */,
+				0B77845C1F95F60C001C9134 /* LRScreensddlrecordService_v62.h in Headers */,
+				0B77845D1F95F60C001C9134 /* LRScreensuserService_v62.h in Headers */,
+				0B77845E1F95F60C001C9134 /* ScreensBridgePlugin.h in Headers */,
+				0B77845F1F95F60C001C9134 /* LRScreensddlrecordService_v70.h in Headers */,
+				0B7784601F95F60C001C9134 /* LiferayScreens.h in Headers */,
+				0B7784611F95F60C001C9134 /* LRScreensassetentryService_v62.h in Headers */,
+				0B7784621F95F60C001C9134 /* LRScreensjournalarticleService_v70.h in Headers */,
+				0B7784631F95F60C001C9134 /* LRScreensassetentryService_v70.h in Headers */,
+				0B7784641F95F60C001C9134 /* LiferayScreensFrameworkConfig.h in Headers */,
+				0B7784651F95F60C001C9134 /* BuildFile in Headers */,
+				0B7784661F95F60C001C9134 /* LRScreensjournalarticleService_v62.h in Headers */,
+				0B7784671F95F60C001C9134 /* LRScreenscommentService_v70.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8892C6751ACB2E3300192232 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -2579,7 +3036,7 @@
 				887E069B1C6A4DF800CA3807 /* LRScreensjournalarticleService_v70.h in Headers */,
 				887E06971C6A4DF800CA3807 /* LRScreensassetentryService_v70.h in Headers */,
 				88DE2AA21AD3ED6800714701 /* LiferayScreensFrameworkConfig.h in Headers */,
-				0B2677DE1D3D1E5700FDFC5B /* (null) in Headers */,
+				0B2677DE1D3D1E5700FDFC5B /* BuildFile in Headers */,
 				887E05511C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h in Headers */,
 				0BFE283A1D87E13300261A66 /* LRScreenscommentService_v70.h in Headers */,
 			);
@@ -2588,6 +3045,26 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		0B7783411F95F60C001C9134 /* LiferayScreensXamarin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0B7784EB1F95F60C001C9134 /* Build configuration list for PBXNativeTarget "LiferayScreensXamarin" */;
+			buildPhases = (
+				0B7783421F95F60C001C9134 /* [CP] Check Pods Manifest.lock */,
+				0B7783431F95F60C001C9134 /* Sources */,
+				0B7784581F95F60C001C9134 /* Frameworks */,
+				0B77845A1F95F60C001C9134 /* Headers */,
+				0B7784681F95F60C001C9134 /* Resources */,
+				0B7784EA1F95F60C001C9134 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LiferayScreensXamarin;
+			productName = LiferayScreens;
+			productReference = 0B7784EE1F95F60C001C9134 /* LiferayScreens.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		8892C6771ACB2E3300192232 /* LiferayScreens */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8892C68E1ACB2E3300192232 /* Build configuration list for PBXNativeTarget "LiferayScreens" */;
@@ -2666,11 +3143,148 @@
 			targets = (
 				8892C6771ACB2E3300192232 /* LiferayScreens */,
 				8892C6821ACB2E3300192232 /* LiferayScreensTests */,
+				0B7783411F95F60C001C9134 /* LiferayScreensXamarin */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0B7784681F95F60C001C9134 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B7784691F95F60C001C9134 /* SignUpView_default.xib in Resources */,
+				0B77846A1F95F60C001C9134 /* WebContentDisplayView_default.xib in Resources */,
+				0B77846B1F95F60C001C9134 /* imagegallery-screenlet.strings in Resources */,
+				0B77846C1F95F60C001C9134 /* default-calendar.png in Resources */,
+				0B77846D1F95F60C001C9134 /* default-cancel-upload.png in Resources */,
+				0B77846E1F95F60C001C9134 /* default-point.png in Resources */,
+				0B77846F1F95F60C001C9134 /* CommentListView_default.xib in Resources */,
+				0B7784701F95F60C001C9134 /* default-point@3x.png in Resources */,
+				0B7784711F95F60C001C9134 /* AudioDisplayView_default.xib in Resources */,
+				0B7784721F95F60C001C9134 /* default-play.png in Resources */,
+				0B7784731F95F60C001C9134 /* OAuthWebViewController_default.xib in Resources */,
+				0B7784741F95F60C001C9134 /* default-thumb-up@3x.png in Resources */,
+				0B7784751F95F60C001C9134 /* comment-display-screenlet.strings in Resources */,
+				0B7784761F95F60C001C9134 /* default-portrait-placeholder.png in Resources */,
+				0B7784771F95F60C001C9134 /* default-mail-icon.png in Resources */,
+				0B7784781F95F60C001C9134 /* ImageGalleryView_default-slideshow.xib in Resources */,
+				0B7784791F95F60C001C9134 /* default-fast-forward@3x.png in Resources */,
+				0B77847A1F95F60C001C9134 /* default-field-focused@2x.png in Resources */,
+				0B77847B1F95F60C001C9134 /* default-form-gradient-top.png in Resources */,
+				0B77847C1F95F60C001C9134 /* assetlist-screenlet.strings in Resources */,
+				0B77847D1F95F60C001C9134 /* default-field-focused.png in Resources */,
+				0B77847E1F95F60C001C9134 /* assetdisplay-screenlet.strings in Resources */,
+				0B77847F1F95F60C001C9134 /* default-volumeup.png in Resources */,
+				0B7784801F95F60C001C9134 /* default-cancel-upload@3x.png in Resources */,
+				0B7784811F95F60C001C9134 /* RatingView_default-stars.xib in Resources */,
+				0B7784821F95F60C001C9134 /* CommentDisplayView_default.xib in Resources */,
+				0B7784831F95F60C001C9134 /* default-field-failed@2x.png in Resources */,
+				0B7784841F95F60C001C9134 /* userportrait-screenlet.strings in Resources */,
+				0B7784851F95F60C001C9134 /* default-field.png in Resources */,
+				0B7784861F95F60C001C9134 /* default-multiline-field@2x.png in Resources */,
+				0B7784871F95F60C001C9134 /* default-play@2x.png in Resources */,
+				0B7784881F95F60C001C9134 /* comment-list-screenlet.strings in Resources */,
+				0B7784891F95F60C001C9134 /* DDLFieldTextareaTableCell_default.xib in Resources */,
+				0B77848A1F95F60C001C9134 /* default-preview-assetlist@2x.png in Resources */,
+				0B77848B1F95F60C001C9134 /* DDLFieldCheckboxTableCell_default.xib in Resources */,
+				0B77848C1F95F60C001C9134 /* default-cancel-upload@2x.png in Resources */,
+				0B77848D1F95F60C001C9134 /* default-form-gradient-bottom@2x.png in Resources */,
+				0B77848E1F95F60C001C9134 /* index.html in Resources */,
+				0B77848F1F95F60C001C9134 /* DDLFieldDocumentlibraryTableCell_default.xib in Resources */,
+				0B7784901F95F60C001C9134 /* UploadProgressView_default.xib in Resources */,
+				0B7784911F95F60C001C9134 /* default-fast-rewind.png in Resources */,
+				0B7784921F95F60C001C9134 /* default.strings in Resources */,
+				0B7784931F95F60C001C9134 /* default-hourglass.png in Resources */,
+				0B7784941F95F60C001C9134 /* DDLFormView_default.xib in Resources */,
+				0B7784951F95F60C001C9134 /* default.css in Resources */,
+				0B7784961F95F60C001C9134 /* default-preview-commentlist@2x.png in Resources */,
+				0B7784971F95F60C001C9134 /* default-multiline-field.png in Resources */,
+				0B7784981F95F60C001C9134 /* default-fast-rewind@3x.png in Resources */,
+				0B7784991F95F60C001C9134 /* DDLFieldSelectTableCell_default.xib in Resources */,
+				0B77849A1F95F60C001C9134 /* AssetDisplayView_default.xib in Resources */,
+				0B77849B1F95F60C001C9134 /* forgotpassword-screenlet.strings in Resources */,
+				0B77849C1F95F60C001C9134 /* ddllist-screenlet.strings in Resources */,
+				0B77849D1F95F60C001C9134 /* comment-add-screenlet.strings in Resources */,
+				0B77849E1F95F60C001C9134 /* default-portrait-placeholder@2x.png in Resources */,
+				0B77849F1F95F60C001C9134 /* login-screenlet.strings in Resources */,
+				0B7784A01F95F60C001C9134 /* default-volumemute@3x.png in Resources */,
+				0B7784A11F95F60C001C9134 /* DDLFieldNumberTableCell_default.xib in Resources */,
+				0B7784A21F95F60C001C9134 /* DDLFieldTextTableCell_default.xib in Resources */,
+				0B7784A31F95F60C001C9134 /* VideoDisplayView_default.xib in Resources */,
+				0B7784A41F95F60C001C9134 /* default-form-gradient-top@2x.png in Resources */,
+				0B7784A51F95F60C001C9134 /* PdfDisplayView_default.xib in Resources */,
+				0B7784A61F95F60C001C9134 /* BlogsEntryDisplayView_default.xib in Resources */,
+				0B7784A71F95F60C001C9134 /* default-thumb-up.png in Resources */,
+				0B7784A81F95F60C001C9134 /* WebContentListView_default-collection.xib in Resources */,
+				0B7784A91F95F60C001C9134 /* default-volumeup@3x.png in Resources */,
+				0B7784AA1F95F60C001C9134 /* default-volumeup@2x.png in Resources */,
+				0B7784AB1F95F60C001C9134 /* default-thumb-down.png in Resources */,
+				0B7784AC1F95F60C001C9134 /* CommentAddView_default.xib in Resources */,
+				0B7784AD1F95F60C001C9134 /* ForgotPasswordView_default.xib in Resources */,
+				0B7784AE1F95F60C001C9134 /* DDLCustomFieldCompanyTableCell_default.xib in Resources */,
+				0B7784AF1F95F60C001C9134 /* ddlform-screenlet.strings in Resources */,
+				0B7784B01F95F60C001C9134 /* webcontentdisplay-screenlet.strings in Resources */,
+				0B7784B11F95F60C001C9134 /* default-slideshow-preview-imagegallery@2x.png in Resources */,
+				0B7784B21F95F60C001C9134 /* default-preview-assetdisplay@2x.png in Resources */,
+				0B7784B31F95F60C001C9134 /* CommentTableViewCell_default.xib in Resources */,
+				0B7784B41F95F60C001C9134 /* FileDisplayView_default.xib in Resources */,
+				0B7784B51F95F60C001C9134 /* liferay-server-context-sample.plist in Resources */,
+				0B7784B61F95F60C001C9134 /* CommentEditViewController_default.xib in Resources */,
+				0B7784B71F95F60C001C9134 /* RatingView_default-thumbs.xib in Resources */,
+				0B7784B81F95F60C001C9134 /* default-fast-forward@2x.png in Resources */,
+				0B7784B91F95F60C001C9134 /* default-pause@2x.png in Resources */,
+				0B7784BA1F95F60C001C9134 /* ImageDisplayView_default.xib in Resources */,
+				0B7784BB1F95F60C001C9134 /* ImageGalleryView_default.xib in Resources */,
+				0B7784BC1F95F60C001C9134 /* Screens.js in Resources */,
+				0B7784BD1F95F60C001C9134 /* default-list-preview-imagegallery@2x.png in Resources */,
+				0B7784BE1F95F60C001C9134 /* default-field-failed.png in Resources */,
+				0B7784BF1F95F60C001C9134 /* default-preview-ddlform@2x.png in Resources */,
+				0B7784C01F95F60C001C9134 /* default-form-gradient-bottom.png in Resources */,
+				0B7784C11F95F60C001C9134 /* LoginView_default.xib in Resources */,
+				0B7784C21F95F60C001C9134 /* default-thumb-up@2x.png in Resources */,
+				0B7784C31F95F60C001C9134 /* default-placeholder-image.png in Resources */,
+				0B7784C41F95F60C001C9134 /* default-thumb-down@3x.png in Resources */,
+				0B7784C51F95F60C001C9134 /* default-preview-imagegallery@2x.png in Resources */,
+				0B7784C61F95F60C001C9134 /* default-volumemute@2x.png in Resources */,
+				0B7784C71F95F60C001C9134 /* rating-screenlet.strings in Resources */,
+				0B7784C81F95F60C001C9134 /* ImageGalleryView_default-list.xib in Resources */,
+				0B7784C91F95F60C001C9134 /* default-lock-icon.png in Resources */,
+				0B7784CA1F95F60C001C9134 /* default-user-icon@2x.png in Resources */,
+				0B7784CB1F95F60C001C9134 /* default-lock-icon@2x.png in Resources */,
+				0B7784CC1F95F60C001C9134 /* AssetListView_default.xib in Resources */,
+				0B7784CD1F95F60C001C9134 /* RatingView_default-like.xib in Resources */,
+				0B7784CE1F95F60C001C9134 /* default-mail-icon@2x.png in Resources */,
+				0B7784CF1F95F60C001C9134 /* default-play@3x.png in Resources */,
+				0B7784D01F95F60C001C9134 /* default-preview-webcontentdisplay@2x.png in Resources */,
+				0B7784D11F95F60C001C9134 /* default-pause@3x.png in Resources */,
+				0B7784D21F95F60C001C9134 /* default-thumb-down@2x.png in Resources */,
+				0B7784D31F95F60C001C9134 /* WebContentListView_default.xib in Resources */,
+				0B7784D41F95F60C001C9134 /* ImageUploadDetailView_default.xib in Resources */,
+				0B7784D51F95F60C001C9134 /* core.strings in Resources */,
+				0B7784D61F95F60C001C9134 /* ImageGallerySlideshowCell.xib in Resources */,
+				0B7784D71F95F60C001C9134 /* UserPortraitView_default.xib in Resources */,
+				0B7784D81F95F60C001C9134 /* DDLFieldDocumentlibraryPresenterViewController_default.xib in Resources */,
+				0B7784D91F95F60C001C9134 /* WebView_default.xib in Resources */,
+				0B7784DA1F95F60C001C9134 /* signup-screenlet.strings in Resources */,
+				0B7784DB1F95F60C001C9134 /* DDLFieldDateTableCell_default.xib in Resources */,
+				0B7784DC1F95F60C001C9134 /* DDLFieldRadioTableCell_default.xib in Resources */,
+				0B7784DD1F95F60C001C9134 /* ImageGalleryCell.xib in Resources */,
+				0B7784DE1F95F60C001C9134 /* default-point@2x.png in Resources */,
+				0B7784DF1F95F60C001C9134 /* default-pause.png in Resources */,
+				0B7784E01F95F60C001C9134 /* default-hourglass@2x.png in Resources */,
+				0B7784E11F95F60C001C9134 /* default-fast-forward.png in Resources */,
+				0B7784E21F95F60C001C9134 /* DDLSubmitButtonTableCell_default.xib in Resources */,
+				0B7784E31F95F60C001C9134 /* RatingView_default-emojis.xib in Resources */,
+				0B7784E41F95F60C001C9134 /* ImageGalleryGridCell.xib in Resources */,
+				0B7784E51F95F60C001C9134 /* default-fast-rewind@2x.png in Resources */,
+				0B7784E61F95F60C001C9134 /* DDLListView_default.xib in Resources */,
+				0B7784E71F95F60C001C9134 /* default-calendar@2x.png in Resources */,
+				0B7784E81F95F60C001C9134 /* default-field@2x.png in Resources */,
+				0B7784E91F95F60C001C9134 /* default-volumemute.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8892C6761ACB2E3300192232 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2833,6 +3447,39 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0B7783421F95F60C001C9134 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Screens-LiferayScreensXamarin-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0B7784EA1F95F60C001C9134 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Screens-LiferayScreensXamarin/Pods-Screens-LiferayScreensXamarin-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2CF526B5C36F45B4AFA262D1 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2954,6 +3601,289 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		0B7783431F95F60C001C9134 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B7783441F95F60C001C9134 /* SyncManager+DDLForm.swift in Sources */,
+				0B7783451F95F60C001C9134 /* BlogsEntryDisplayScreenlet.swift in Sources */,
+				0B7783461F95F60C001C9134 /* AssetDisplayViewModel.swift in Sources */,
+				0B7783471F95F60C001C9134 /* WebContentDisplayViewModel.swift in Sources */,
+				0B7783481F95F60C001C9134 /* UIImageView+Screens.swift in Sources */,
+				0B7783491F95F60C001C9134 /* WebScreenletConfiguration.swift in Sources */,
+				0B77834A1F95F60C001C9134 /* FileEntry.swift in Sources */,
+				0B77834B1F95F60C001C9134 /* SignUpScreenlet.swift in Sources */,
+				0B77834C1F95F60C001C9134 /* SyncManager.swift in Sources */,
+				0B77834D1F95F60C001C9134 /* CredentialsStore.swift in Sources */,
+				0B77834E1F95F60C001C9134 /* DDLFieldCheckboxTableCell_default.swift in Sources */,
+				0B77834F1F95F60C001C9134 /* UserPortraitViewModel.swift in Sources */,
+				0B7783501F95F60C001C9134 /* RatingUpdateLiferayConnector.swift in Sources */,
+				0B7783511F95F60C001C9134 /* MimeTypeable.swift in Sources */,
+				0B7783521F95F60C001C9134 /* CookieCredentialsStoreKeyChain.swift in Sources */,
+				0B7783531F95F60C001C9134 /* RatingDeleteLiferayConnector.swift in Sources */,
+				0B7783541F95F60C001C9134 /* ServerWriteConnectorInteractor.swift in Sources */,
+				0B7783551F95F60C001C9134 /* DDLListScreenlet.swift in Sources */,
+				0B7783561F95F60C001C9134 /* SignUpViewModel.swift in Sources */,
+				0B7783571F95F60C001C9134 /* DDLFormSubmitFormInteractor.swift in Sources */,
+				0B7783581F95F60C001C9134 /* LRScreenscommentService_v70.m in Sources */,
+				0B7783591F95F60C001C9134 /* CommentAddViewModel.swift in Sources */,
+				0B77835A1F95F60C001C9134 /* LoginCookieInteractor.swift in Sources */,
+				0B77835B1F95F60C001C9134 /* SignUpView_default.swift in Sources */,
+				0B77835C1F95F60C001C9134 /* BaseListCollectionView.swift in Sources */,
+				0B77835D1F95F60C001C9134 /* ScreensWebView.swift in Sources */,
+				0B77835E1F95F60C001C9134 /* ImageGalleryScreenlet.swift in Sources */,
+				0B77835F1F95F60C001C9134 /* CommentEditViewController_default.swift in Sources */,
+				0B7783601F95F60C001C9134 /* LRScreensjournalarticleService_v62.m in Sources */,
+				0B7783611F95F60C001C9134 /* ForgotPasswordScreenNameLiferayConnectors.swift in Sources */,
+				0B7783621F95F60C001C9134 /* DDLFormView.swift in Sources */,
+				0B7783631F95F60C001C9134 /* UserPortraitView_default.swift in Sources */,
+				0B7783641F95F60C001C9134 /* ImageGalleryDeleteInteractor.swift in Sources */,
+				0B7783651F95F60C001C9134 /* ImageGalleryView_default-list.swift in Sources */,
+				0B7783661F95F60C001C9134 /* DDMTypedValuesXMLParser.swift in Sources */,
+				0B7783671F95F60C001C9134 /* ScreensBridgePlugin.m in Sources */,
+				0B7783681F95F60C001C9134 /* CacheManager.swift in Sources */,
+				0B7783691F95F60C001C9134 /* WebContentListPageLoadInteractor.swift in Sources */,
+				0B77836A1F95F60C001C9134 /* CredentialsStorage.swift in Sources */,
+				0B77836B1F95F60C001C9134 /* LoginByScreenNameLiferayConnectors.swift in Sources */,
+				0B77836C1F95F60C001C9134 /* Asset.swift in Sources */,
+				0B77836D1F95F60C001C9134 /* Bool+Screens.swift in Sources */,
+				0B77836E1F95F60C001C9134 /* CommentUpdateLiferayConnector.swift in Sources */,
+				0B77836F1F95F60C001C9134 /* LRSession+Screens.swift in Sources */,
+				0B7783701F95F60C001C9134 /* ImageUploadDetailViewBase.swift in Sources */,
+				0B7783711F95F60C001C9134 /* DownloadUserPortraitInteractor.swift in Sources */,
+				0B7783721F95F60C001C9134 /* Dictionary+Screens.swift in Sources */,
+				0B7783731F95F60C001C9134 /* DDMField+Editor.swift in Sources */,
+				0B7783741F95F60C001C9134 /* ImageGalleryViewModel.swift in Sources */,
+				0B7783751F95F60C001C9134 /* SequenceType+Screens.swift in Sources */,
+				0B7783761F95F60C001C9134 /* ServerReadConnectorInteractor.swift in Sources */,
+				0B7783771F95F60C001C9134 /* AssetListPageLoadInteractor.swift in Sources */,
+				0B7783781F95F60C001C9134 /* SaveUserInteractor.swift in Sources */,
+				0B7783791F95F60C001C9134 /* UpdateRatingInteractor.swift in Sources */,
+				0B77837A1F95F60C001C9134 /* NSError+Screens.swift in Sources */,
+				0B77837B1F95F60C001C9134 /* LoginView_default.swift in Sources */,
+				0B77837C1F95F60C001C9134 /* ServerConnectorInteractor.swift in Sources */,
+				0B77837D1F95F60C001C9134 /* UserPortraitDefaultProgressPresenter.swift in Sources */,
+				0B77837E1F95F60C001C9134 /* WebContentListPageLiferayConnector.swift in Sources */,
+				0B77837F1F95F60C001C9134 /* AssetListPageLiferayConnector.swift in Sources */,
+				0B7783801F95F60C001C9134 /* VideoDisplayScreenlet.swift in Sources */,
+				0B7783811F95F60C001C9134 /* DDLFieldDateTableCell_default.swift in Sources */,
+				0B7783821F95F60C001C9134 /* RatingView_default-thumbs.swift in Sources */,
+				0B7783831F95F60C001C9134 /* ImageUploadDetailView_default.swift in Sources */,
+				0B7783841F95F60C001C9134 /* AssetLoadByPortletItemNameLiferayConnector.swift in Sources */,
+				0B7783851F95F60C001C9134 /* ImageGalleryView_default-slideshow.swift in Sources */,
+				0B7783861F95F60C001C9134 /* LoginScreenlet.swift in Sources */,
+				0B7783871F95F60C001C9134 /* LRScreensddlrecordService_v62.m in Sources */,
+				0B7783881F95F60C001C9134 /* Global.swift in Sources */,
+				0B7783891F95F60C001C9134 /* UploadUserPortraitInteractor.swift in Sources */,
+				0B77838A1F95F60C001C9134 /* RatingViewModel.swift in Sources */,
+				0B77838B1F95F60C001C9134 /* LiferayConnectorFactory.swift in Sources */,
+				0B77838C1F95F60C001C9134 /* SyncManager+UserPortrait.swift in Sources */,
+				0B77838D1F95F60C001C9134 /* DDLFieldTextareaTableCell_default.swift in Sources */,
+				0B77838E1F95F60C001C9134 /* Kingfisher+Screens.swift in Sources */,
+				0B77838F1F95F60C001C9134 /* DDMFieldString.swift in Sources */,
+				0B7783901F95F60C001C9134 /* BlogsEntryDisplayView_default.swift in Sources */,
+				0B7783911F95F60C001C9134 /* DDLSubmitButtonTableCell_default.swift in Sources */,
+				0B7783921F95F60C001C9134 /* AssetLoadByEntryIdLiferayConnector.swift in Sources */,
+				0B7783931F95F60C001C9134 /* ForgotPasswordBaseLiferayConnector.swift in Sources */,
+				0B7783941F95F60C001C9134 /* DDMField.swift in Sources */,
+				0B7783951F95F60C001C9134 /* KeyboardManager.swift in Sources */,
+				0B7783961F95F60C001C9134 /* BasicCredentialsStoreKeyChain.swift in Sources */,
+				0B7783971F95F60C001C9134 /* WebViewModel.swift in Sources */,
+				0B7783981F95F60C001C9134 /* LRScreensratingsentryService_v70.m in Sources */,
+				0B7783991F95F60C001C9134 /* DDLListView_default.swift in Sources */,
+				0B77839A1F95F60C001C9134 /* LoadRatingsInteractor.swift in Sources */,
+				0B77839B1F95F60C001C9134 /* ImageEntryUpload.swift in Sources */,
+				0B77839C1F95F60C001C9134 /* BlogsDisplayViewModel.swift in Sources */,
+				0B77839D1F95F60C001C9134 /* FileDisplayView_default.swift in Sources */,
+				0B77839E1F95F60C001C9134 /* DDMFieldStringWithOptions.swift in Sources */,
+				0B77839F1F95F60C001C9134 /* CommentAddLiferayConnector.swift in Sources */,
+				0B7783A01F95F60C001C9134 /* CommentDeleteInteractor.swift in Sources */,
+				0B7783A11F95F60C001C9134 /* OAuthCredentialsStoreKeyChain.swift in Sources */,
+				0B7783A21F95F60C001C9134 /* DDLFormLoadLiferayConnector.swift in Sources */,
+				0B7783A31F95F60C001C9134 /* CommentDeleteLiferayConnector.swift in Sources */,
+				0B7783A41F95F60C001C9134 /* CommentLoadInteractor.swift in Sources */,
+				0B7783A51F95F60C001C9134 /* DefaultProgressPresenter.swift in Sources */,
+				0B7783A61F95F60C001C9134 /* AssetListScreenlet.swift in Sources */,
+				0B7783A71F95F60C001C9134 /* LoginBasicInteractor.swift in Sources */,
+				0B7783A81F95F60C001C9134 /* Array+Screens.swift in Sources */,
+				0B7783A91F95F60C001C9134 /* AuthType.swift in Sources */,
+				0B7783AA1F95F60C001C9134 /* AssetListView_default.swift in Sources */,
+				0B7783AB1F95F60C001C9134 /* WebContentLoadHtmlLiferayConnector.swift in Sources */,
+				0B7783AC1F95F60C001C9134 /* ImageGalleryUploadConnector.swift in Sources */,
+				0B7783AD1F95F60C001C9134 /* HttpConnector.swift in Sources */,
+				0B7783AE1F95F60C001C9134 /* CommentListPageLoadInteractor.swift in Sources */,
+				0B7783AF1F95F60C001C9134 /* UserPortraitScreenlet.swift in Sources */,
+				0B7783B01F95F60C001C9134 /* SyncManager+ImageGallery.swift in Sources */,
+				0B7783B11F95F60C001C9134 /* ImageGalleryCell.swift in Sources */,
+				0B7783B21F95F60C001C9134 /* PaginationLiferayConnector.swift in Sources */,
+				0B7783B31F95F60C001C9134 /* AudioDisplayScreenlet.swift in Sources */,
+				0B7783B41F95F60C001C9134 /* BaseScreenlet.swift in Sources */,
+				0B7783B51F95F60C001C9134 /* ImageGalleryLoadInteractor.swift in Sources */,
+				0B7783B61F95F60C001C9134 /* SessionContext.swift in Sources */,
+				0B7783B71F95F60C001C9134 /* ForgotPasswordViewModel.swift in Sources */,
+				0B7783B81F95F60C001C9134 /* ScreensFactory.swift in Sources */,
+				0B7783B91F95F60C001C9134 /* OAuthWebViewController.swift in Sources */,
+				0B7783BA1F95F60C001C9134 /* DDMJSONParser.swift in Sources */,
+				0B7783BB1F95F60C001C9134 /* UploadUserPortraitLiferayConnector.swift in Sources */,
+				0B7783BC1F95F60C001C9134 /* AssetLoadByClassPKLiferayConnector.swift in Sources */,
+				0B7783BD1F95F60C001C9134 /* DDLFormRecordLoadLiferayConnector.swift in Sources */,
+				0B7783BE1F95F60C001C9134 /* LoadAssetInteractor.swift in Sources */,
+				0B7783BF1F95F60C001C9134 /* WebContentListView_default.swift in Sources */,
+				0B7783C01F95F60C001C9134 /* RatingScreenlet.swift in Sources */,
+				0B7783C11F95F60C001C9134 /* ImageGalleryPageLiferayConnector.swift in Sources */,
+				0B7783C21F95F60C001C9134 /* ImageGalleryView_default.swift in Sources */,
+				0B7783C31F95F60C001C9134 /* BlogsEntry.swift in Sources */,
+				0B7783C41F95F60C001C9134 /* CommentAddInteractor.swift in Sources */,
+				0B7783C51F95F60C001C9134 /* DDMFieldTableCell.swift in Sources */,
+				0B7783C61F95F60C001C9134 /* SyncManager+Rating.swift in Sources */,
+				0B7783C71F95F60C001C9134 /* UIButton+Screens.swift in Sources */,
+				0B7783C81F95F60C001C9134 /* GetUserBaseLiferayConnector.swift in Sources */,
+				0B7783C91F95F60C001C9134 /* GetUserByUserIdLiferayConnectors.swift in Sources */,
+				0B7783CA1F95F60C001C9134 /* CommentDisplayViewModel.swift in Sources */,
+				0B7783CB1F95F60C001C9134 /* NSBundle+Screens.swift in Sources */,
+				0B7783CC1F95F60C001C9134 /* WebContentLoadStructuredLiferayConnector.swift in Sources */,
+				0B7783CD1F95F60C001C9134 /* BaseCredentialsStoreKeyChain.swift in Sources */,
+				0B7783CE1F95F60C001C9134 /* WebView_default.swift in Sources */,
+				0B7783CF1F95F60C001C9134 /* WebContentDisplayLoadInteractor.swift in Sources */,
+				0B7783D01F95F60C001C9134 /* DDMFieldUntyped.swift in Sources */,
+				0B7783D11F95F60C001C9134 /* ServerConnector.swift in Sources */,
+				0B7783D21F95F60C001C9134 /* CommentLoadLiferayConnector.swift in Sources */,
+				0B7783D31F95F60C001C9134 /* ImageDisplayView_default.swift in Sources */,
+				0B7783D41F95F60C001C9134 /* WebContent.swift in Sources */,
+				0B7783D51F95F60C001C9134 /* WebScreenlet.swift in Sources */,
+				0B7783D61F95F60C001C9134 /* ScreensWKUIDelegate.swift in Sources */,
+				0B7783D71F95F60C001C9134 /* ScreensCordovaWebView.swift in Sources */,
+				0B7783D81F95F60C001C9134 /* DDLFieldNumberTableCell_default.swift in Sources */,
+				0B7783D91F95F60C001C9134 /* LRScreensjournalarticleService_v70.m in Sources */,
+				0B7783DA1F95F60C001C9134 /* User.swift in Sources */,
+				0B7783DB1F95F60C001C9134 /* DDLListPageLiferayConnector.swift in Sources */,
+				0B7783DC1F95F60C001C9134 /* PdfDisplayScreenlet.swift in Sources */,
+				0B7783DD1F95F60C001C9134 /* RatingView_default-like.swift in Sources */,
+				0B7783DE1F95F60C001C9134 /* DDLFieldTextTableCell_default.swift in Sources */,
+				0B7783DF1F95F60C001C9134 /* ForgotPasswordScreenlet.swift in Sources */,
+				0B7783E01F95F60C001C9134 /* UIView+Screens.swift in Sources */,
+				0B7783E11F95F60C001C9134 /* ImageDisplayViewModel.swift in Sources */,
+				0B7783E21F95F60C001C9134 /* GetUserByScreenNameLiferayConnectors.swift in Sources */,
+				0B7783E31F95F60C001C9134 /* NSDate+Screens.swift in Sources */,
+				0B7783E41F95F60C001C9134 /* CommentAddScreenlet.swift in Sources */,
+				0B7783E51F95F60C001C9134 /* WebContentLoadBaseLiferayConnector.swift in Sources */,
+				0B7783E61F95F60C001C9134 /* WebContentListScreenlet.swift in Sources */,
+				0B7783E71F95F60C001C9134 /* CommentListScreenlet.swift in Sources */,
+				0B7783E81F95F60C001C9134 /* LoginOAuthInteractor.swift in Sources */,
+				0B7783E91F95F60C001C9134 /* NetworkActivityIndicatorPresenter.swift in Sources */,
+				0B7783EA1F95F60C001C9134 /* WebContentListView_default-collection.swift in Sources */,
+				0B7783EB1F95F60C001C9134 /* ForgotPasswordEmailLiferayConnectors.swift in Sources */,
+				0B7783EC1F95F60C001C9134 /* AssetDisplayScreenlet.swift in Sources */,
+				0B7783ED1F95F60C001C9134 /* BaseListScreenlet.swift in Sources */,
+				0B7783EE1F95F60C001C9134 /* BaseListTableView.swift in Sources */,
+				0B7783EF1F95F60C001C9134 /* LiferayServerContext.swift in Sources */,
+				0B7783F01F95F60C001C9134 /* LoginByEmailLiferayConnectors.swift in Sources */,
+				0B7783F11F95F60C001C9134 /* ImageUploadDetailViewController_default.swift in Sources */,
+				0B7783F21F95F60C001C9134 /* SignUpInteractor.swift in Sources */,
+				0B7783F31F95F60C001C9134 /* WebContentDisplayScreenlet.swift in Sources */,
+				0B7783F41F95F60C001C9134 /* DeleteRatingInteractor.swift in Sources */,
+				0B7783F51F95F60C001C9134 /* DDLFormTableView.swift in Sources */,
+				0B7783F61F95F60C001C9134 /* LRCookieBlockCallback.swift in Sources */,
+				0B7783F71F95F60C001C9134 /* ImageGallerySlideshowCell.swift in Sources */,
+				0B7783F81F95F60C001C9134 /* DDLFormUploadDocumentInteractor.swift in Sources */,
+				0B7783F91F95F60C001C9134 /* DDLFieldDocumentlibraryTableCell_default.swift in Sources */,
+				0B7783FA1F95F60C001C9134 /* DDMFieldBoolean.swift in Sources */,
+				0B7783FB1F95F60C001C9134 /* AssetDisplayView_default.swift in Sources */,
+				0B7783FC1F95F60C001C9134 /* DDMField+DataType.swift in Sources */,
+				0B7783FD1F95F60C001C9134 /* BaseScreenletView.swift in Sources */,
+				0B7783FE1F95F60C001C9134 /* UploadProgressView_default.swift in Sources */,
+				0B7783FF1F95F60C001C9134 /* LRScreensassetentryService_v62.m in Sources */,
+				0B7784001F95F60C001C9134 /* NSLocale+Screens.swift in Sources */,
+				0B7784011F95F60C001C9134 /* CommentTableViewCell_default.swift in Sources */,
+				0B7784021F95F60C001C9134 /* ProgressPresenter.swift in Sources */,
+				0B7784031F95F60C001C9134 /* DDLFieldSelectTableCell_default.swift in Sources */,
+				0B7784041F95F60C001C9134 /* CommentAddView_default.swift in Sources */,
+				0B7784051F95F60C001C9134 /* ImageDisplayScreenlet.swift in Sources */,
+				0B7784061F95F60C001C9134 /* DDLFieldDocumentlibraryPresenterViewController_default.swift in Sources */,
+				0B7784071F95F60C001C9134 /* RatingEntry.swift in Sources */,
+				0B7784081F95F60C001C9134 /* AssetListTableView.swift in Sources */,
+				0B7784091F95F60C001C9134 /* ForgotPasswordInteractor.swift in Sources */,
+				0B77840A1F95F60C001C9134 /* UpdateCurrentUserLiferayConnector.swift in Sources */,
+				0B77840B1F95F60C001C9134 /* DDLFormDefaultThemeConstants.swift in Sources */,
+				0B77840C1F95F60C001C9134 /* CacheMetadata.swift in Sources */,
+				0B77840D1F95F60C001C9134 /* DDLValuesParser.swift in Sources */,
+				0B77840E1F95F60C001C9134 /* DDLFieldRadioTableCell_default.swift in Sources */,
+				0B77840F1F95F60C001C9134 /* CommentListViewModel.swift in Sources */,
+				0B7784101F95F60C001C9134 /* FileDisplayViewModel.swift in Sources */,
+				0B7784111F95F60C001C9134 /* String+Screens.swift in Sources */,
+				0B7784121F95F60C001C9134 /* CommentListPageLiferayConnector.swift in Sources */,
+				0B7784131F95F60C001C9134 /* BaseListView.swift in Sources */,
+				0B7784141F95F60C001C9134 /* DDMStructure.swift in Sources */,
+				0B7784151F95F60C001C9134 /* LoadFileEntryInteractor.swift in Sources */,
+				0B7784161F95F60C001C9134 /* CommentDisplayView_default.swift in Sources */,
+				0B7784171F95F60C001C9134 /* ImageGalleryDeleteConnector.swift in Sources */,
+				0B7784181F95F60C001C9134 /* DDLFormLoadRecordInteractor.swift in Sources */,
+				0B7784191F95F60C001C9134 /* LoginByUserIdLiferayConnectors.swift in Sources */,
+				0B77841A1F95F60C001C9134 /* DDMFieldNumber.swift in Sources */,
+				0B77841B1F95F60C001C9134 /* WebContentListTableView.swift in Sources */,
+				0B77841C1F95F60C001C9134 /* UIImage+Screens.swift in Sources */,
+				0B77841D1F95F60C001C9134 /* SyncManager+Comment.swift in Sources */,
+				0B77841E1F95F60C001C9134 /* ForgotPasswordView_default.swift in Sources */,
+				0B77841F1F95F60C001C9134 /* LRScreensuserService_v62.m in Sources */,
+				0B7784201F95F60C001C9134 /* CommentListView_default.swift in Sources */,
+				0B7784211F95F60C001C9134 /* CommentUpdateInteractor.swift in Sources */,
+				0B7784221F95F60C001C9134 /* LRScreensassetentryService_v70.m in Sources */,
+				0B7784231F95F60C001C9134 /* LRScreensddlrecordService_v70.m in Sources */,
+				0B7784241F95F60C001C9134 /* VideoDisplayView_default.swift in Sources */,
+				0B7784251F95F60C001C9134 /* DDLListPageLoadInteractor.swift in Sources */,
+				0B7784261F95F60C001C9134 /* DDLFormSubmitLiferayConnector.swift in Sources */,
+				0B7784271F95F60C001C9134 /* PdfDisplayView_default.swift in Sources */,
+				0B7784281F95F60C001C9134 /* ScreensCordovaViewController.swift in Sources */,
+				0B7784291F95F60C001C9134 /* WKWebView+Screens.swift in Sources */,
+				0B77842A1F95F60C001C9134 /* CommentDisplayScreenlet.swift in Sources */,
+				0B77842B1F95F60C001C9134 /* AssetClassNameIds.swift in Sources */,
+				0B77842C1F95F60C001C9134 /* BasicAuthBased.swift in Sources */,
+				0B77842D1F95F60C001C9134 /* DDLFormUploadLiferayConnector.swift in Sources */,
+				0B77842E1F95F60C001C9134 /* RatingView_default-emojis.swift in Sources */,
+				0B77842F1F95F60C001C9134 /* ForgotPasswordUserIdLiferayConnectors.swift in Sources */,
+				0B7784301F95F60C001C9134 /* Comment.swift in Sources */,
+				0B7784311F95F60C001C9134 /* ImageGalleryGridCell.swift in Sources */,
+				0B7784321F95F60C001C9134 /* LoginViewModel.swift in Sources */,
+				0B7784331F95F60C001C9134 /* DDLRecord.swift in Sources */,
+				0B7784341F95F60C001C9134 /* ImageGalleryUploadInteractor.swift in Sources */,
+				0B7784351F95F60C001C9134 /* SignUpLiferayConnector.swift in Sources */,
+				0B7784361F95F60C001C9134 /* DefaultTextField.swift in Sources */,
+				0B7784371F95F60C001C9134 /* DDLBaseFieldTextFieldTableCell_default.swift in Sources */,
+				0B7784381F95F60C001C9134 /* DDLListViewModel.swift in Sources */,
+				0B7784391F95F60C001C9134 /* ScreensWKWebView.swift in Sources */,
+				0B77843A1F95F60C001C9134 /* RatingView_default-stars.swift in Sources */,
+				0B77843B1F95F60C001C9134 /* MediaSelector.swift in Sources */,
+				0B77843C1F95F60C001C9134 /* BaseListPageLoadInteractor.swift in Sources */,
+				0B77843D1F95F60C001C9134 /* SlideShowLayout.swift in Sources */,
+				0B77843E1F95F60C001C9134 /* FileDisplayScreenlet.swift in Sources */,
+				0B77843F1F95F60C001C9134 /* HttpDownloadConnector.swift in Sources */,
+				0B7784401F95F60C001C9134 /* GetUserByEmailLiferayConnectors.swift in Sources */,
+				0B7784411F95F60C001C9134 /* Interactor.swift in Sources */,
+				0B7784421F95F60C001C9134 /* ImageEntry.swift in Sources */,
+				0B7784431F95F60C001C9134 /* ImageGalleryCollectionViewBase.swift in Sources */,
+				0B7784441F95F60C001C9134 /* MBProgressHUDPresenter.swift in Sources */,
+				0B7784451F95F60C001C9134 /* UploadFileConnector.swift in Sources */,
+				0B7784461F95F60C001C9134 /* WebContentDisplayView_default.swift in Sources */,
+				0B7784471F95F60C001C9134 /* DefaultThemeConstants.swift in Sources */,
+				0B7784481F95F60C001C9134 /* DDLFormView_default.swift in Sources */,
+				0B7784491F95F60C001C9134 /* DDMFieldImage.swift in Sources */,
+				0B77844A1F95F60C001C9134 /* DDLFormScreenlet.swift in Sources */,
+				0B77844B1F95F60C001C9134 /* UploadProgressViewBase.swift in Sources */,
+				0B77844C1F95F60C001C9134 /* ServerConnectorChain.swift in Sources */,
+				0B77844D1F95F60C001C9134 /* RatingLoadByEntryIdLiferayConnector.swift in Sources */,
+				0B77844E1F95F60C001C9134 /* AssetDisplayBuilder.swift in Sources */,
+				0B77844F1F95F60C001C9134 /* DDMXSDParser.swift in Sources */,
+				0B7784501F95F60C001C9134 /* DDLFormLoadFormInteractor.swift in Sources */,
+				0B7784511F95F60C001C9134 /* RatingLoadByClassPKLiferayConnector.swift in Sources */,
+				0B7784521F95F60C001C9134 /* DDMFieldDate.swift in Sources */,
+				0B7784531F95F60C001C9134 /* AudioDisplayView_default.swift in Sources */,
+				0B7784541F95F60C001C9134 /* SMXMLDocument+Screens.swift in Sources */,
+				0B7784551F95F60C001C9134 /* DDLFormViewModel.swift in Sources */,
+				0B7784561F95F60C001C9134 /* DDMFieldDocument.swift in Sources */,
+				0B7784571F95F60C001C9134 /* InjectableScript.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8892C6731ACB2E3300192232 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3537,6 +4467,49 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		0B7784EC1F95F60C001C9134 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6A201C4FCF2C05BD0381F239 /* Pods-Screens-LiferayScreensXamarin.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = LiferayScreens;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		0B7784ED1F95F60C001C9134 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 601A72E78E13C61E0936DAFC /* Pods-Screens-LiferayScreensXamarin.release.xcconfig */;
+			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = LiferayScreens;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		8892C68C1ACB2E3300192232 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3709,6 +4682,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		0B7784EB1F95F60C001C9134 /* Build configuration list for PBXNativeTarget "LiferayScreensXamarin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0B7784EC1F95F60C001C9134 /* Debug */,
+				0B7784ED1F95F60C001C9134 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8892C6721ACB2E3300192232 /* Build configuration list for PBXProject "LiferayScreens" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
