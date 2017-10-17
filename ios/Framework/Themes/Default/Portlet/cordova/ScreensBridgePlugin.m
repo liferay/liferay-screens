@@ -20,7 +20,7 @@
 
 - (void)postMessage:(CDVInvokedUrlCommand*)command {
 
-	CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:@""];
+	CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:1 messageAsString:@""];
 
 	NSString *namespace = command.arguments[0];
 	NSString *message = command.arguments[1];
