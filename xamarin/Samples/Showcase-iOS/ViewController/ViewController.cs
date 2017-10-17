@@ -44,8 +44,8 @@ namespace ShowcaseiOS.ViewController
 
         void SetDefaultValues()
         {
-            this.loginScreenlet.ViewModel.UserName = "test@liferay.com";
-            this.loginScreenlet.ViewModel.Password = "test1";
+            this.loginScreenlet.ViewModel.UserName = "demo@liferay.com";
+            this.loginScreenlet.ViewModel.Password = "demo";
         }
 
         /* Event methods */
