@@ -118,6 +118,10 @@
     <EmbeddedReferenceJar Include="Jars\rxjava-1.2.4.jar" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\jakeWharton.RxbindingBindingLibrary\jakeWharton.RxbindingBindingLibrary.csproj">
+      <Project>{6B7D5CA7-3038-49CB-9D96-42ECAE149DD7}</Project>
+      <Name>jakeWharton.RxbindingBindingLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LiferayAndroidSdk.BindingLibrary\LiferayAndroidSdk.BindingLibrary.csproj">
       <Project>{987C9DF7-DD6A-40F4-8D1C-8A5757162994}</Project>
       <Name>LiferayAndroidSdk.BindingLibrary</Name>
@@ -125,10 +129,6 @@
     <ProjectReference Include="..\LiferayOAuth.BindingLibrary\LiferayOAuth.BindingLibrary.csproj">
       <Project>{1E5D5DB7-2CA4-4820-AB77-B72433CB82E9}</Project>
       <Name>LiferayOAuth.BindingLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\jakeWharton.RxbindingBindingLibrary\jakeWharton.RxbindingBindingLibrary.csproj">
-      <Project>{6B7D5CA7-3038-49CB-9D96-42ECAE149DD7}</Project>
-      <Name>jakeWharton.RxbindingBindingLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\rxAndroid.BindingLibrary\rxAndroid.BindingLibrary.csproj">
       <Project>{8901D0A4-35D8-4698-874B-704BD2D3177C}</Project>
