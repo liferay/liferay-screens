@@ -200,7 +200,7 @@ open class DDMFieldDocument: DDMField {
 
 		if result {
 			switch uploadStatus {
-			case .failed(_):
+			case .failed:
 				result = false
 			default:
 				result = true
