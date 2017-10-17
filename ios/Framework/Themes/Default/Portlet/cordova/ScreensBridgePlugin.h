@@ -12,12 +12,7 @@
  * details.
  */
 
-#ifdef LIFERAY_SCREENS_FRAMEWORK
-	@import Cordova;
-#else
-	#import "CDV.h"
-#endif
-
+@import Cordova;
 
 @interface ScreensBridgePlugin : CDVPlugin
 
