@@ -79,11 +79,11 @@ open class BaseCredentialsStoreKeyChain: NSObject, CredentialsStore {
 		return true
 	}
 
-	open dynamic func loadStoredCredentials() -> Bool {
+	open func loadStoredCredentials() -> Bool {
 		return loadStoredCredentials(shouldLoadServer: false)
 	}
 
-	open dynamic func loadStoredCredentialsAndServer() -> Bool {
+	open func loadStoredCredentialsAndServer() -> Bool {
 		return loadStoredCredentials(shouldLoadServer: true)
 	}
 
