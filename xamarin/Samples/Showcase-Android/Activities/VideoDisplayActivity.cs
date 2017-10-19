@@ -7,7 +7,7 @@ using Com.Liferay.Mobile.Screens.Dlfile.Display.Video;
 namespace ShowcaseAndroid
 {
     [Activity]
-    public class VideoDisplayActivity : Activity, IVideoDisplayScreenletListener
+    public class VideoDisplayActivity : Activity, IVideoDisplayListener
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
