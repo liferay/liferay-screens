@@ -73,7 +73,11 @@ public class DDLFormLoadInteractor extends BaseCacheReadInteractor<DDLFormListen
 	private void parseDateProviders(Record record) {
 		try {
 			for (Field field : record.getFields()) {
-				if (field.getDdmDataProviderInstanceId() != 0) {
+				String ddmDataProviderInstance = field.getDdmDataProviderInstance();
+				if (!"".equals(ddmDataProviderInstance) && !"[]".equals(ddmDataProviderInstance)) {
+
+					JSONArray jsonArray = new JSONArray(ddmDataProviderInstance);
+					long ddmDataProviderInstanceId = jsonArray.getLong(0);
 
 					StringWithOptionsField optionsField = (StringWithOptionsField) field;
 
@@ -81,7 +85,7 @@ public class DDLFormLoadInteractor extends BaseCacheReadInteractor<DDLFormListen
 						new DdmdataproviderinstanceService(getSession());
 
 					JSONObject jsonDataProvider =
-						ddmdataproviderinstanceService.getDataProviderInstance(field.getDdmDataProviderInstanceId());
+						ddmdataproviderinstanceService.getDataProviderInstance(ddmDataProviderInstanceId);
 
 					String definition = jsonDataProvider.getString("definition");
 					JSONObject jsonDefinition = new JSONObject(definition);

@@ -23,6 +23,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.w3c.dom.Element;
 
 /**
@@ -47,7 +49,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	private Locale currentLocale;
 	private Locale defaultLocale;
 	private String visibilityExpression;
-	private long ddmDataProviderInstanceId;
+	private String ddmDataProviderInstance;
 	private List<Field> fields = new ArrayList<>();
 
 	public Field() {
@@ -62,12 +64,12 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		this.visibilityExpression = visibilityExpression;
 	}
 
-	public long getDdmDataProviderInstanceId() {
-		return ddmDataProviderInstanceId;
+	public String getDdmDataProviderInstance() {
+		return ddmDataProviderInstance;
 	}
 
-	public void setDdmDataProviderInstanceId(int ddmDataProviderInstanceId) {
-		this.ddmDataProviderInstanceId = ddmDataProviderInstanceId;
+	public void setDdmDataProviderInstance(String ddmDataProviderInstance) {
+		this.ddmDataProviderInstance = ddmDataProviderInstance;
 	}
 
 	public Field(Map<String, Object> attributes, Locale currentLocale, Locale defaultLocale) {
@@ -87,10 +89,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		required = Boolean.valueOf(getAttributeStringValue(attributes, "required"));
 		showLabel = Boolean.valueOf(getAttributeStringValue(attributes, "showLabel"));
 		visibilityExpression = getAttributeStringValue(attributes, "visibilityExpression");
-		String ddmDataProviderInstanceId = getAttributeStringValue(attributes, "ddmDataProviderInstanceId");
-		if (!"".equals(ddmDataProviderInstanceId)) {
-			this.ddmDataProviderInstanceId = Integer.valueOf(ddmDataProviderInstanceId);
-		}
+		ddmDataProviderInstance = getAttributeStringValue(attributes, "ddmDataProviderInstance");
 
 		String predefinedValue = getAttributeStringValue(attributes, "predefinedValue");
 		this.predefinedValue = convertFromString(predefinedValue);
@@ -127,7 +126,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 		lastValidationResult = (in.readInt() == 1);
 		visibilityExpression = in.readString();
-		ddmDataProviderInstanceId = in.readLong();
+		ddmDataProviderInstance = in.readString();
 	}
 
 	@Override
@@ -280,7 +279,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 		destination.writeInt(lastValidationResult ? 1 : 0);
 		destination.writeString(visibilityExpression);
-		destination.writeLong(ddmDataProviderInstanceId);
+		destination.writeString(ddmDataProviderInstance);
 	}
 
 	public List<Field> getFields() {
