@@ -37,9 +37,6 @@ import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.liferay.mobile.screens.ddl.model.Field.DataType.STRING;
-import static com.liferay.mobile.screens.ddl.model.Field.EditorType.TEXT;
-
 /**
  * @author Silvio Santos
  */
@@ -55,7 +52,7 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 		DEFAULT_LAYOUT_IDS.put(Field.EditorType.DECIMAL, R.layout.ddlfield_number_default);
 		DEFAULT_LAYOUT_IDS.put(Field.EditorType.RADIO, R.layout.ddlfield_radio_default);
 		DEFAULT_LAYOUT_IDS.put(Field.EditorType.SELECT, R.layout.ddlfield_select_default);
-		DEFAULT_LAYOUT_IDS.put(TEXT, R.layout.ddlfield_text_default);
+		DEFAULT_LAYOUT_IDS.put(Field.EditorType.TEXT, R.layout.ddlfield_text_default);
 		DEFAULT_LAYOUT_IDS.put(Field.EditorType.TEXT_AREA, R.layout.ddlfield_text_area_default);
 		DEFAULT_LAYOUT_IDS.put(Field.EditorType.DOCUMENT, R.layout.ddlfield_document_default);
 	}
@@ -241,8 +238,8 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 		attributes.put("label", page.getDescription());
 		attributes.put("name", page.getDescription());
 		attributes.put("showLabel", true);
-		attributes.put("type", TEXT.getValue());
-		attributes.put("dataType", STRING.getValue());
+		attributes.put("type", Field.EditorType.TEXT.getValue());
+		attributes.put("dataType", Field.DataType.STRING.getValue());
 		attributes.put("readOnly", true);
 		StringField titlePage =
 			new StringField(attributes, LiferayLocale.getDefaultLocale(), LiferayLocale.getDefaultLocale());
