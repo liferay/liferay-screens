@@ -23,8 +23,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.w3c.dom.Element;
 
 /**
@@ -54,22 +52,6 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 	public Field() {
 		super();
-	}
-
-	public String getVisibilityExpression() {
-		return visibilityExpression;
-	}
-
-	public void setVisibilityExpression(String visibilityExpression) {
-		this.visibilityExpression = visibilityExpression;
-	}
-
-	public String getDdmDataProviderInstance() {
-		return ddmDataProviderInstance;
-	}
-
-	public void setDdmDataProviderInstance(String ddmDataProviderInstance) {
-		this.ddmDataProviderInstance = ddmDataProviderInstance;
 	}
 
 	public Field(Map<String, Object> attributes, Locale currentLocale, Locale defaultLocale) {
@@ -253,6 +235,30 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	@Override
 	public int describeContents() {
 		return 0;
+	}
+
+	public Map<String, Object> getAttributes() {
+		return attributes;
+	}
+
+	public void setAttributes(Map<String, Object> attributes) {
+		this.attributes = attributes;
+	}
+
+	public String getVisibilityExpression() {
+		return visibilityExpression;
+	}
+
+	public void setVisibilityExpression(String visibilityExpression) {
+		this.visibilityExpression = visibilityExpression;
+	}
+
+	public String getDdmDataProviderInstance() {
+		return ddmDataProviderInstance;
+	}
+
+	public void setDdmDataProviderInstance(String ddmDataProviderInstance) {
+		this.ddmDataProviderInstance = ddmDataProviderInstance;
 	}
 
 	@Override
