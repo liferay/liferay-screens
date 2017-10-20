@@ -63,6 +63,8 @@ extension DDMField {
 				return .Number
 			case "boolean":
 				return .Checkbox
+			case "checkbox_multiple":
+				return .Select
 			default:
 				return Editor(rawValue: value) ?? .Unsupported
 			}
