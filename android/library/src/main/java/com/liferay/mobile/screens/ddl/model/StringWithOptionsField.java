@@ -207,12 +207,16 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 			return "[]";
 		}
 
+		if (!multiple && selectedOptions.size() == 1) {
+			return selectedOptions.get(0).value;
+		}
+
 		StringBuilder result = new StringBuilder();
 		boolean isFirst = true;
 
 		result.append('[');
 
-		for (Option op : selectedOptions) {
+		for (Option option : selectedOptions) {
 			if (isFirst) {
 				result.append('"');
 				isFirst = false;
@@ -220,7 +224,7 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 				result.append(", \"");
 			}
 
-			result.append(op.value);
+			result.append(option.value);
 
 			result.append('"');
 		}
