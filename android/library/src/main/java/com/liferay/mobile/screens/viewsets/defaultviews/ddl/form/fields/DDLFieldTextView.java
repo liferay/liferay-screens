@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.widget.EditText;
 import com.liferay.mobile.screens.ddl.model.StringField;
 
 /**
@@ -43,5 +44,16 @@ public class DDLFieldTextView extends BaseDDLFieldTextView<StringField> {
 	@Override
 	protected void onTextChanged(String text) {
 		getField().setCurrentValue(text);
+	}
+
+
+	@Override
+	public void setField(StringField field) {
+		super.setField(field);
+
+		EditText editText = getTextEditText();
+		if (getField().isReadOnly()) {
+			editText.setVisibility(GONE);
+		}
 	}
 }
