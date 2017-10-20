@@ -188,7 +188,7 @@ public class StringWithOptionsFieldTest {
 			String result = field.convertToData(selected);
 
 			assertNotNull(result);
-			assertEquals("[\"option1\"]", result);
+			assertEquals("option1", result);
 		}
 
 		@Test
