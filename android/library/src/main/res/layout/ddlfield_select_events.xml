@@ -21,7 +21,7 @@
 		android:id="@+id/liferay_ddl_edit_text"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:drawableRight="@drawable/material_tinted_launch"
+		android:drawableRight="@drawable/events_launch"
 		android:inputType="none"
 		android:padding="5dp"
 		/>
