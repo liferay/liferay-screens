@@ -114,16 +114,20 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 		for (int i = 0; i < fieldsContainerView.getChildCount(); i++) {
 			View fieldView = fieldsContainerView.getChildAt(i);
 			DDLFieldViewModel fieldViewModel = (DDLFieldViewModel) fieldView;
-			boolean isFieldValid = fieldResults.get(fieldViewModel.getField());
 
-			fieldView.clearFocus();
+			if (fieldResults.containsKey(fieldViewModel.getField())) {
 
-			fieldViewModel.onPostValidation(isFieldValid);
+				boolean isFieldValid = fieldResults.get(fieldViewModel.getField());
 
-			if (!isFieldValid && autoscroll && !scrolled) {
-				fieldView.requestFocus();
-				smoothScrollTo(0, fieldView.getTop());
-				scrolled = true;
+				fieldView.clearFocus();
+
+				fieldViewModel.onPostValidation(isFieldValid);
+
+				if (!isFieldValid && autoscroll && !scrolled) {
+					fieldView.requestFocus();
+					smoothScrollTo(0, fieldView.getTop());
+					scrolled = true;
+				}
 			}
 		}
 	}
