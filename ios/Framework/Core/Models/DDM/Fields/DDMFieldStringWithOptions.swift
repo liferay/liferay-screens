@@ -96,6 +96,10 @@ open class DDMFieldStringWithOptions: DDMField {
 		var result = "["
 
 		if let currentOptions = value as? [NSObject] {
+			if currentOptions.count == 1 {
+				return currentOptions[0].description
+			}
+			
 			var first = true
 			for option in currentOptions {
 				if first {
