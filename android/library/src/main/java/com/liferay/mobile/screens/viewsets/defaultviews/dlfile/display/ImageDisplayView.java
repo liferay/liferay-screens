@@ -76,7 +76,7 @@ public class ImageDisplayView extends BaseFileDisplayView implements ImageDispla
 	private void loadImage(String url) {
 		setScaleType(scaleType);
 
-		Uri photoURI = FileProvider.getUriForFile(getContext(), getContext().getPackageName() + ".screensfileprovider",
+		Uri photoURI = FileProvider.getUriForFile(getContext(), getContext().getPackageName() + ".screens.fileprovider",
 			new File(url));
 
 		Picasso.with(getContext()).load(photoURI).into(imageView, this);

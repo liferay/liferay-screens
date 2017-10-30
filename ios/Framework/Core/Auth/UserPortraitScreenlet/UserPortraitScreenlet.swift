@@ -97,6 +97,10 @@ open class UserPortraitScreenlet: BaseScreenlet {
 	/// is remote first.
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
+	/// Whether the user portrait automatically loads when the Screenlet appears in the app’s UI.
+	/// The default value is true.
+	@IBInspectable open var autoLoad: Bool = true
+
 	// MARK: Public properties
 
 	open var userPortraitDelegate: UserPortraitScreenletDelegate? {
@@ -116,6 +120,12 @@ open class UserPortraitScreenlet: BaseScreenlet {
 	fileprivate var loadedUserId: Int64?
 
 	// MARK: BaseScreenlet
+
+	override open func onShow() {
+		if autoLoad {
+			loadLoggedUserPortrait()
+		}
+	}
 
 	override open func onCreated() {
 		super.onCreated()
@@ -147,6 +157,7 @@ open class UserPortraitScreenlet: BaseScreenlet {
 	/// Loads the user portrait that correspond to the user logged.
 	///
 	/// - Returns: True if the interactor was able to start, false otherwise.
+	@discardableResult
 	open func loadLoggedUserPortrait() -> Bool {
 		guard let userId = SessionContext.currentContext?.user.userId else {
 			return false

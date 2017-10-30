@@ -67,4 +67,10 @@ public class CordovaLifeCycleObserver {
 			listener.onConfigurationChanged(newConfig);
 		}
 	}
+
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+		if (listener != null) {
+			listener.onRequestPermissionsResult(requestCode, permissions, grantResults);
+		}
+	}
 }

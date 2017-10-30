@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="882">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <scene sceneID="881">
+            <objects>
+                <viewController id="882" sceneMemberID="viewController" customClass="WebScreenletViewController" storyboardIdentifier="WebScreenletViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="879"/>
+                        <viewControllerLayoutGuide type="bottom" id="880"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="883">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="1078" translatesAutoresizingMaskIntoConstraints="NO" customClass="WebScreenlet">
+                                <rect key="frame" x="8" y="76" width="398" height="652"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint id="1081" firstAttribute="width" constant="398"/>
+                                    <constraint id="1082" firstAttribute="height" constant="652"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint id="1079" firstItem="883" firstAttribute="trailing" secondItem="1078" secondAttribute="trailing" constant="8"/>
+                            <constraint id="1080" firstItem="883" firstAttribute="bottom" secondItem="1078" secondAttribute="bottom" constant="8"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="webScreenlet" destination="1078" id="name-outlet-1078"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="884" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="789" y="74"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="img/Liferay-Screens.png" width="124" height="144"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedScreenMetrics key="destination" type="retina55"/>
+    </simulatedMetricsContainer>
+</document>

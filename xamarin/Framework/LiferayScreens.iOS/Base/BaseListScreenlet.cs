@@ -43,27 +43,9 @@ namespace LiferayScreens
         [Export("baseListView", ArgumentSemantic.Strong)]
         BaseListView BaseListView { get; }
 
-        // -(void)onCreated;
-        [Export("onCreated")]
-        void OnCreated();
-
-        // -(void)onShow;
-        [Export("onShow")]
-        void OnShow();
-
-        // -(Interactor * _Nullable)createInteractorWithName:(NSString * _Nonnull)name sender:(id _Nullable)sender __attribute__((warn_unused_result));
-        [Export("createInteractorWithName:sender:")]
-        [return: NullAllowed]
-        Interactor CreateInteractorWithName(string name, [NullAllowed] NSObject sender);
-
-        // -(BOOL)onActionWithName:(NSString * _Nonnull)name interactor:(Interactor * _Nonnull)interactor sender:(id _Nullable)sender __attribute__((warn_unused_result));
-        [Export("onActionWithName:interactor:sender:")]
-        bool OnActionWithName(string name, Interactor interactor, [NullAllowed] NSObject sender);
-
         // -(BOOL)loadList;
         [Export("loadList")]
-        //[Verify(MethodToProperty)]
-        bool LoadList { get; }
+        bool LoadList();
 
         // -(void)loadPageForRow:(NSInteger)row;
         [Export("loadPageForRow:")]
@@ -87,7 +69,6 @@ namespace LiferayScreens
 
         // -(void)onLoadPageResultWithPage:(NSInteger)page rows:(NSArray * _Nonnull)rows rowCount:(NSInteger)rowCount;
         [Export("onLoadPageResultWithPage:rows:rowCount:")]
-        //[Verify(StronglyTypedNSArray)]
         void OnLoadPageResultWithPage(nint page, NSObject[] rows, nint rowCount);
 
         // -(void)onSelectedRow:(id _Nonnull)row;

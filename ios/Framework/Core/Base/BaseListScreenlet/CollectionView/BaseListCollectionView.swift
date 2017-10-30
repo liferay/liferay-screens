@@ -13,6 +13,7 @@
  */
 import UIKit
 
+@objc(BaseListCollectionView)
 open class BaseListCollectionView: BaseListView, UICollectionViewDataSource, UICollectionViewDelegate {
 
 	let defaultCellId = "liferay-screns-loadingMoreCellId"
@@ -23,7 +24,7 @@ open class BaseListCollectionView: BaseListView, UICollectionViewDataSource, UIC
 
 	internal var refreshControlView: UIRefreshControl?
 
-	internal var refreshClosure: ((Void) -> Bool)? {
+	internal var refreshClosure: (() -> Bool)? {
 		didSet {
 			updateRefreshControl()
 		}
@@ -209,18 +210,18 @@ open class BaseListCollectionView: BaseListView, UICollectionViewDataSource, UIC
 
 	// MARK: Public methods
 
-	open func doConfigureCollectionView(_ collectionView: UICollectionView) {
+	open dynamic func doConfigureCollectionView(_ collectionView: UICollectionView) {
 		collectionView.backgroundColor = .white
 	}
 
-	open func doCreateLayout() -> UICollectionViewLayout {
+	open dynamic func doCreateLayout() -> UICollectionViewLayout {
 		let layout = UICollectionViewFlowLayout()
 		layout.itemSize = CGSize(width: 100, height: 100)
 		layout.sectionInset = UIEdgeInsets.zero
 		return layout
 	}
 
-	open func doDequeueReusableCell(
+	open dynamic func doDequeueReusableCell(
 			_ indexPath: IndexPath,
 			object: AnyObject?) -> UICollectionViewCell {
 
@@ -229,37 +230,37 @@ open class BaseListCollectionView: BaseListView, UICollectionViewDataSource, UIC
 		return collectionView!.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
 	}
 
-	open func doFillLoadedCell(
+	open dynamic func doFillLoadedCell(
 			indexPath: IndexPath,
 			cell: UICollectionViewCell, object: AnyObject) {
 
 	}
 
-	open func doFillInProgressCell(indexPath: IndexPath, cell: UICollectionViewCell) {
+	open dynamic func doFillInProgressCell(indexPath: IndexPath, cell: UICollectionViewCell) {
 	}
 
-	open func doRegisterCellNibs() {
+	open dynamic func doRegisterCellNibs() {
 	}
 
-	open func doRegisterLoadMoreCell() {
+	open dynamic func doRegisterLoadMoreCell() {
 		collectionView?.register(
 				UICollectionViewCell.self,
 				forCellWithReuseIdentifier: defaultCellId)
 	}
 
-	open func doGetCellId(indexPath: IndexPath, object: AnyObject?) -> String {
+	open dynamic func doGetCellId(indexPath: IndexPath, object: AnyObject?) -> String {
 		return defaultCellId//"defaultCellId"
 	}
 
-	open func doGetLoadMoreCellId() -> String {
+	open dynamic func doGetLoadMoreCellId() -> String {
 		return defaultCellId
 	}
 
-	open func doCreateCell(_ cellId: String) -> UICollectionViewCell {
+	open dynamic func doCreateCell(_ cellId: String) -> UICollectionViewCell {
 		return UICollectionViewCell()
 	}
 
-	open func doFillLoadMoreCell(_ cell: UICollectionViewCell) {
+	open dynamic func doFillLoadMoreCell(_ cell: UICollectionViewCell) {
 		if cell.contentView.viewWithTag(99) == nil {
 			let loadingMoreView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 			loadingMoreView.center = CGPoint(
@@ -273,7 +274,7 @@ open class BaseListCollectionView: BaseListView, UICollectionViewDataSource, UIC
 		}
 	}
 
-	open func doGetLoadMoreViewSize(_ layout: UICollectionViewFlowLayout) -> CGSize {
+	open dynamic func doGetLoadMoreViewSize(_ layout: UICollectionViewFlowLayout) -> CGSize {
 		if layout.scrollDirection == .vertical {
 			return CGSize(width: layout.itemSize.width, height: 30)
 		}
@@ -281,7 +282,7 @@ open class BaseListCollectionView: BaseListView, UICollectionViewDataSource, UIC
 		return CGSize(width: 30, height: layout.itemSize.height)
 	}
 
-	open func updateRefreshControl() {
+	open dynamic func updateRefreshControl() {
 		if refreshClosure != nil {
 			if refreshControlView == nil {
 				refreshControlView = UIRefreshControl()

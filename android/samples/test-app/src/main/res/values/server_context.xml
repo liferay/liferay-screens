@@ -53,6 +53,8 @@
 
 	<string name="liferay_image_entryId">41638</string>
 	<string name="liferay_portlet_item_name">documents</string>
+
+	<string name="liferay_video_entryId">38945</string>
 	<string name="liferay_user_entryId">20169</string>
 
 	<!-- OAuth values -->

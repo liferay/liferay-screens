@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
@@ -149,8 +148,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="LiferayScreens_iOS">
-      <HintPath>packages\LiferayScreens.0.1.0-beta6\lib\Xamarin.iOS10\LiferayScreens_iOS.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>packages\LiferayScreens.0.1.0-beta8\lib\Xamarin.iOS10\LiferayScreens_iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +169,9 @@
     <Folder Include="Resources\img\" />
     <Folder Include="ViewController\" />
     <Folder Include="SelectScreenlets\" />
+    <Folder Include="Resources\js\" />
+    <Folder Include="Resources\css\" />
+    <Folder Include="CustomViews\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Storyboard\LaunchScreen.storyboard" />
@@ -179,6 +180,24 @@
     <InterfaceDefinition Include="Storyboard\SignUp.storyboard" />
     <InterfaceDefinition Include="Storyboard\SelectScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\DDLFormScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\UserPortraitScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\WebContentScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\AssetListScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\AssetDisplayScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\ImageDisplayScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\PdfDisplayScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\AudioDisplayScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\VideoDisplayScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\ImageGalleryScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\CommentDisplayScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\CommentAddScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\CommentListScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\WebContentListScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\RatingScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\BlogsScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\DDLListScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\WebScreenlet.storyboard" />
+    <InterfaceDefinition Include="CustomViews\LoginView_demo.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -209,10 +228,85 @@
     <Compile Include="ViewController\DDLFormViewController.designer.cs">
       <DependentUpon>DDLFormViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewController\UserPortraitViewController.cs" />
+    <Compile Include="ViewController\UserPortraitViewController.designer.cs">
+      <DependentUpon>UserPortraitViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\WebContentViewController.cs" />
+    <Compile Include="ViewController\WebContentViewController.designer.cs">
+      <DependentUpon>WebContentViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\AssetListViewController.cs" />
+    <Compile Include="ViewController\AssetListViewController.designer.cs">
+      <DependentUpon>AssetListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\AssetDisplayViewController.cs" />
+    <Compile Include="ViewController\AssetDisplayViewController.designer.cs">
+      <DependentUpon>AssetDisplayViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\ImageDisplayViewController.cs" />
+    <Compile Include="ViewController\ImageDisplayViewController.designer.cs">
+      <DependentUpon>ImageDisplayViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\PdfDisplayViewController.cs" />
+    <Compile Include="ViewController\PdfDisplayViewController.designer.cs">
+      <DependentUpon>PdfDisplayViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\AudioDisplayViewController.cs" />
+    <Compile Include="ViewController\AudioDisplayViewController.designer.cs">
+      <DependentUpon>AudioDisplayViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\VideoDisplayViewController.cs" />
+    <Compile Include="ViewController\VideoDisplayViewController.designer.cs">
+      <DependentUpon>VideoDisplayViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\ImageGalleryViewController.cs" />
+    <Compile Include="ViewController\ImageGalleryViewController.designer.cs">
+      <DependentUpon>ImageGalleryViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\CommentDisplayViewController.cs" />
+    <Compile Include="ViewController\CommentDisplayViewController.designer.cs">
+      <DependentUpon>CommentDisplayViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\CommentAddViewController.cs" />
+    <Compile Include="ViewController\CommentAddViewController.designer.cs">
+      <DependentUpon>CommentAddViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\CommentListViewController.cs" />
+    <Compile Include="ViewController\CommentListViewController.designer.cs">
+      <DependentUpon>CommentListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\WebContentListViewController.cs" />
+    <Compile Include="ViewController\WebContentListViewController.designer.cs">
+      <DependentUpon>WebContentListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\RatingViewController.cs" />
+    <Compile Include="ViewController\RatingViewController.designer.cs">
+      <DependentUpon>RatingViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\BlogsViewController.cs" />
+    <Compile Include="ViewController\BlogsViewController.designer.cs">
+      <DependentUpon>BlogsViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\DDLListViewController.cs" />
+    <Compile Include="ViewController\DDLListViewController.designer.cs">
+      <DependentUpon>DDLListViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewController\WebScreenletViewController.cs" />
+    <Compile Include="ViewController\WebScreenletViewController.designer.cs">
+      <DependentUpon>WebScreenletViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomViews\LoginView_demo.cs" />
+    <Compile Include="CustomViews\LoginView_demo.designer.cs">
+      <DependentUpon>LoginView_demo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomViews\NoneProgressPresenter.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\img\Liferay-Screens.png" />
     <BundleResource Include="Resources\liferay-server-context.plist" />
+    <BundleResource Include="Resources\css\css_master.css" />
+    <BundleResource Include="Resources\js\js_master.js" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork" />

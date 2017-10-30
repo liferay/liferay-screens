@@ -7,6 +7,7 @@ abstract_target "Screens" do
 	podspec :path => '../../LiferayScreens.podspec'
 
 	target 'LiferayScreens'
+	target 'LiferayScreensXamarin'
 	target 'LiferayScreensTests' do 
 		pod 'Nocilla'
 	end

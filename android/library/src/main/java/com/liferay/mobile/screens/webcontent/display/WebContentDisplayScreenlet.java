@@ -24,7 +24,7 @@ import android.webkit.WebView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.util.AssetReader;
+import com.liferay.mobile.screens.util.ScriptReader;
 import com.liferay.mobile.screens.webcontent.WebContent;
 import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayBaseInteractor;
 import com.liferay.mobile.screens.webcontent.display.interactor.WebContentDisplayFromArticleIdInteractor;
@@ -105,10 +105,14 @@ public class WebContentDisplayScreenlet
 			}
 		}
 
-		String css = new AssetReader(getContext().getApplicationContext()).read(customCssFile);
+		String css = new ScriptReader(getContext().getApplicationContext()).readScriptContent(customCssFile);
 		getViewModel().showFinishOperation(modifiedHtml, css != null ? css : "");
 
 		return modifiedHtml;
+	}
+
+	public WebContentDisplayListener getListener() {
+		return listener;
 	}
 
 	public void setListener(WebContentDisplayListener listener) {

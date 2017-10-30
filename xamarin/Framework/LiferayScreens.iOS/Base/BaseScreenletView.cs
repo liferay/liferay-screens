@@ -30,15 +30,6 @@ namespace LiferayScreens
         [Export("themeName")]
         string ThemeName { get; set; }
 
-        // -(void)awakeFromNib __attribute__((objc_requires_super));
-        [Export("awakeFromNib")]
-        //[RequiresSuper]
-        void AwakeFromNib();
-
-        // -(BOOL)becomeFirstResponder __attribute__((warn_unused_result));
-        [Export("becomeFirstResponder")]
-        bool BecomeFirstResponder();
-
         // -(void)didMoveToWindow;
         [Export("didMoveToWindow")]
         void DidMoveToWindow();
@@ -93,8 +84,7 @@ namespace LiferayScreens
 
         // -(id<ProgressPresenter> _Nonnull)createProgressPresenter __attribute__((warn_unused_result));
         [Export("createProgressPresenter")]
-        //[Verify(MethodToProperty)] 
-        ProgressPresenter CreateProgressPresenter { get; }
+        IProgressPresenter CreateProgressPresenter();
 
         // -(NSString * _Nullable)progressMessageForAction:(NSString * _Nonnull)actionName messageType:(enum ProgressMessageType)messageType __attribute__((warn_unused_result));
         [Export("progressMessageForAction:messageType:")]

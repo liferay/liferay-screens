@@ -13,6 +13,7 @@
  */
 import UIKit
 
+@objc(DDLFormTableView)
 open class DDLFormTableView: DDLFormView,
 		UITableViewDataSource, UITableViewDelegate, KeyboardLayoutable {
 

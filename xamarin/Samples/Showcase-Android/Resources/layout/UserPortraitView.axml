@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
+        android:id="@+id/user_portrait_screenlet"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        app:autoLoad="false"
+        app:cachePolicy="REMOTE_FIRST"
+        app:editable="true"
+        app:userId="@string/liferay_user_id" />
+</LinearLayout>

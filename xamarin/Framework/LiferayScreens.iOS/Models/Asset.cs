@@ -21,14 +21,6 @@ namespace LiferayScreens
         [NullAllowed, Export("mimeType")]
         string MimeType { get; }
 
-        // @property (readonly, copy, nonatomic) NSString * _Nonnull description;
-        [Export("description")]
-        string Description { get; }
-
-        // @property (readonly, nonatomic) int64_t classNameId;
-        [Export("classNameId")]
-        long ClassNameId { get; }
-
         // @property (readonly, nonatomic) int64_t classPK;
         [Export("classPK")]
         long ClassPK { get; }
@@ -57,17 +49,9 @@ namespace LiferayScreens
         [Export("modifiedDate", ArgumentSemantic.Copy)]
         NSDate ModifiedDate { get; }
 
-        // @property (readonly, copy, nonatomic) NSString * _Nonnull debugDescription;
-        [Export("debugDescription")]
-        string DebugDescription { get; }
-
         // -(instancetype _Nonnull)initWithAttributes:(NSDictionary<NSString *,id> * _Nonnull)attributes __attribute__((objc_designated_initializer));
         [Export("initWithAttributes:")]
         [DesignatedInitializer]
         IntPtr Constructor(NSDictionary<NSString, NSObject> attributes);
-
-        // -(void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
-        [Export("encodeWithCoder:")]
-        void EncodeWithCoder(NSCoder aCoder);
     }
 }

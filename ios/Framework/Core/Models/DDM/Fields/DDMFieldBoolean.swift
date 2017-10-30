@@ -13,6 +13,7 @@
  */
 import Foundation
 
+@objc(DDMFieldBoolean)
 open class DDMFieldBoolean: DDMField {
 
 	override internal func convert(fromString value: String?) -> AnyObject? {

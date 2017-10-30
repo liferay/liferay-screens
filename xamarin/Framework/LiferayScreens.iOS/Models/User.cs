@@ -57,9 +57,5 @@ namespace LiferayScreens
         // -(NSString * _Nonnull)stringAttribute:(NSString * _Nonnull)key __attribute__((warn_unused_result));
         [Export("stringAttribute:")]
         string StringAttribute(string key);
-
-        // -(void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
-        [Export("encodeWithCoder:")]
-        void EncodeWithCoder(NSCoder aCoder);
     }
 }

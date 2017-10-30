@@ -17,6 +17,12 @@ android {
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 		}
 	}
+	testOptions {
+		unitTests {
+			includeAndroidResources = true
+		}
+	}
+	buildToolsVersion '26.0.2'
 }
 
 dependencies {
@@ -36,6 +42,7 @@ dependencies {
 	compile libraries.gms
 	compile(libraries.oauth) {
 		exclude group: 'com.google.android', module: 'android'
+		exclude module: 'android'
 	}
 
 	compile libraries.eventbus
@@ -46,6 +53,7 @@ dependencies {
 	compile libraries.rxbinding
 
 	compile 'com.lsjwzh:recyclerviewpager:1.0.8'
+
 	compile(libraries.snappydb) {
 		exclude group: 'com.esotericsoftware.kryo', module: 'kryo'
 	}

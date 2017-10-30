@@ -18,7 +18,8 @@ import Foundation
 	import LROAuth
 #endif
 
-@objc open class SessionContext: NSObject {
+@objc(SessionContext)
+open class SessionContext: NSObject {
 
 	open static var currentContext: SessionContext?
 	open static var challengeResolver: ChallengeResolver?
@@ -253,7 +254,6 @@ import Foundation
 			return false
 		}
 
-
 		SessionContext.reloadCookieAuth(session: self.session, callback: LRCookieBlockCallback { (session, error) in
 			guard session != nil, let auth = session?.authentication as? LRCookieAuthentication else {
 				print("Error reloading the cookie auth\(error!)")
@@ -279,7 +279,6 @@ import Foundation
 
 	open func refreshUserAttributes(_ completed: (([String:AnyObject]?) -> Void)?) -> Bool {
 		let session = self.createRequestSession()
-
 
 		session.callback = LRBlockCallback(
 			success: { obj in

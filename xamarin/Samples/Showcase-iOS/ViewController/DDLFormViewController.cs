@@ -16,13 +16,11 @@ namespace ShowcaseiOS.ViewController
             this.ddlFormScreenlet.StructureId = 54371;
             this.ddlFormScreenlet.RecordSetId = 54375;
             this.ddlFormScreenlet.RecordId = 54385;
+            this.ddlFormScreenlet.AutoLoad = false;
 
             this.ddlFormScreenlet.Delegate = this;
-        }
 
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
+            this.ddlFormScreenlet.LoadForm();
         }
 
         /* IDDLFormScreenletDelegate */
@@ -30,25 +28,37 @@ namespace ShowcaseiOS.ViewController
         [Export("screenlet:onFormLoaded:")]
         public virtual void OnFormLoaded(DDLFormScreenlet screenlet, DDLRecord record)
         {
-            System.Diagnostics.Debug.WriteLine("DDLForm loaded successfully");
+            Console.WriteLine("DDLForm loaded successfully");
         }
 
         [Export("screenlet:onFormLoadError:")]
         public virtual void OnFormLoadError(DDLFormScreenlet screenlet, NSError error)
         {
-            System.Diagnostics.Debug.WriteLine($"DDLForm loaded failed: {error.DebugDescription}");
+            Console.WriteLine($"DDLForm loaded failed: {error.DebugDescription}");
+        }
+
+        [Export("screenlet:onFormSubmitError:")]
+        public virtual void OnFormSubmitError(DDLFormScreenlet screenlet, NSError error)
+        {
+            Console.WriteLine($"DDLForm submit failed: {error.DebugDescription}");
+        }
+
+        [Export("screenlet:onFormSubmitted:")]
+        public virtual void OnFormSubmitted(DDLFormScreenlet screenlet, DDLRecord record)
+        {
+            Console.WriteLine($"DDLForm submitted successfully: {record.Attributes}");
         }
 
         [Export("screenlet:onRecordLoaded:")]
         public virtual void OnRecordLoaded(DDLFormScreenlet screenlet, DDLRecord record)
         {
-            System.Diagnostics.Debug.WriteLine($"DDLForm record loaded successfully: {record.Attributes}");
+            Console.WriteLine($"DDLForm record loaded successfully: {record.Attributes}");
         }
 
         [Export("screenlet:onRecordLoadError:")]
         public virtual void OnRecordLoadError(DDLFormScreenlet screenlet, NSError error)
         {
-            System.Diagnostics.Debug.WriteLine($"DDLForm record loaded failed: {error.DebugDescription}");
+            Console.WriteLine($"DDLForm record loaded failed: {error.DebugDescription}");
         }
 	}
 }

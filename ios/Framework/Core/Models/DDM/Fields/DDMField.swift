@@ -13,7 +13,8 @@
  */
 import Foundation
 
-@objc open class DDMField: NSObject, NSCoding {
+@objc(DDMField)
+open class DDMField: NSObject, NSCoding {
 
 	open var onPostValidation: ((Bool) -> Void)?
 	open var lastValidationResult: Bool?

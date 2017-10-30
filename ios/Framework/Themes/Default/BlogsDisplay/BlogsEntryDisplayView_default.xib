@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -52,7 +52,7 @@
                             </attributedString>
                             <nil key="highlightedColor"/>
                         </label>
-                        <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="lo1-c7-5u9" userLabel="ImageDisplay Screenlet" customClass="ImageDisplayScreenlet" customModule="LiferayScreens">
+                        <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="lo1-c7-5u9" userLabel="ImageDisplay Screenlet" customClass="ImageDisplayScreenlet">
                             <rect key="frame" x="0.0" y="0.0" width="318" height="125"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="125" id="kPA-Eu-1DR"/>
@@ -61,7 +61,7 @@
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="autoLoad" value="NO"/>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ms-uQ-ejP" userLabel="UserPortrait Screenlet" customClass="UserPortraitScreenlet" customModule="LiferayScreens">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ms-uQ-ejP" userLabel="UserPortrait Screenlet" customClass="UserPortraitScreenlet">
                             <rect key="frame" x="20" y="145" width="50" height="50"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>

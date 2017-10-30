@@ -252,6 +252,10 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 		return ((ImageGalleryListener) super.getListener());
 	}
 
+	public void setListener(ImageGalleryListener listener) {
+		this.listener = listener;
+	}
+
 	@Override
 	protected void loadRows(ImageGalleryLoadInteractor interactor) {
 		interactor.start(repositoryId, folderId, mimeTypes);

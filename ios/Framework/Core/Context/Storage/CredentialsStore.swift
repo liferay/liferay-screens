@@ -17,7 +17,8 @@ import UIKit
 	import LRMobileSDK
 #endif
 
-@objc public protocol CredentialsStore {
+@objc(CredentialsStore)
+public protocol CredentialsStore {
 
 	var authentication: LRAuthentication? { get }
 	var userAttributes: [String:AnyObject]? { get }

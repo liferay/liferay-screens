@@ -30,9 +30,5 @@ namespace LiferayScreens
         [Export("initWithImage:thumbnail:title:notes:")]
         [DesignatedInitializer]
         IntPtr Constructor(UIImage image, [NullAllowed] UIImage thumbnail, string title, string notes);
-
-        // -(void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
-        [Export("encodeWithCoder:")]
-        void EncodeWithCoder(NSCoder aCoder);
     }
 }

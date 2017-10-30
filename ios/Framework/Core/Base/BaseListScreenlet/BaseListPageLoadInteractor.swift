@@ -13,6 +13,7 @@
  */
 import UIKit
 
+@objc(BaseListPageLoadInteractor)
 open class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 
 	open let page: Int

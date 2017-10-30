@@ -72,7 +72,7 @@ public class VideoDisplayView extends BaseFileDisplayView {
 			@Override
 			public void onPrepared(MediaPlayer mp) {
 				progressBar.setVisibility(GONE);
-				getScreenlet().getListener().onVideoPrepared();
+				getScreenlet().onVideoPrepared();
 			}
 		});
 	}
@@ -83,7 +83,7 @@ public class VideoDisplayView extends BaseFileDisplayView {
 			public boolean onError(MediaPlayer mp, int what, int extra) {
 				progressBar.setVisibility(GONE);
 				message.setText(R.string.file_error);
-				getScreenlet().getListener().onVideoError(new MediaPlayerException(what, extra));
+				getScreenlet().onVideoError(new MediaPlayerException(what, extra));
 				return false;
 			}
 		});
@@ -93,7 +93,7 @@ public class VideoDisplayView extends BaseFileDisplayView {
 		videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 			@Override
 			public void onCompletion(MediaPlayer mp) {
-				getScreenlet().getListener().onVideoCompleted();
+				getScreenlet().onVideoCompleted();
 			}
 		});
 	}

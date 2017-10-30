@@ -13,6 +13,7 @@
  */
 import UIKit
 
+@objc(SlideShowLayout)
 open class SlideShowLayout: UICollectionViewFlowLayout {
 
 	let DistanceBetweenCenters = CGFloat(250)

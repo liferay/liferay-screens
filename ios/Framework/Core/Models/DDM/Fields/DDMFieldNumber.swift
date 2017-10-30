@@ -13,6 +13,7 @@
  */
 import Foundation
 
+@objc(DDMFieldNumber)
 open class DDMFieldNumber: DDMField {
 
 	open var maximumDecimalDigits = 2

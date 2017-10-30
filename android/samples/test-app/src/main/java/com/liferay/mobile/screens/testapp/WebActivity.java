@@ -3,6 +3,7 @@ package com.liferay.mobile.screens.testapp;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import com.liferay.mobile.screens.web.WebScreenletConfiguration;
 import com.liferay.mobile.screens.web.WebListener;
 import com.liferay.mobile.screens.web.WebScreenlet;
@@ -29,8 +30,8 @@ public class WebActivity extends ThemeActivity implements WebListener {
 
 		if (getIntent().getStringExtra("url") != null) {
 			WebScreenletConfiguration webScreenletConfiguration =
-				new WebScreenletConfiguration.Builder(getIntent().getStringExtra("url")).addRawCss(
-					R.raw.portletcss, "portlet.css")
+				new WebScreenletConfiguration.Builder(getIntent().getStringExtra("url"))
+					.addRawCss(R.raw.portletcss, "portlet.css")
 					.addLocalCss("gallery.css")
 					.addLocalJs("gallery.js")
 					.enableCordova(observer)
@@ -59,13 +60,6 @@ public class WebActivity extends ThemeActivity implements WebListener {
 	}
 
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-
-		observer.onActivityResult(requestCode, resultCode, data);
-	}
-
-	@Override
 	public void onPause() {
 		super.onPause();
 
@@ -89,6 +83,23 @@ public class WebActivity extends ThemeActivity implements WebListener {
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
+
+		observer.onSaveInstanceState(outState);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		observer.onActivityResult(requestCode, resultCode, data);
+	}
+
+	@Override
+	public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+		@NonNull int[] grantResults) {
+		super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+		observer.onRequestPermissionsResult(requestCode, permissions, grantResults);
 	}
 
 	@Override

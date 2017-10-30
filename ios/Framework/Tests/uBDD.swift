@@ -34,23 +34,23 @@ public enum Action {
 	case testAndWaitFor(String, XCTestCase)
 }
 
-public func given(_ str: String, code: (Void) -> Void) {
+public func given(_ str: String, code: () -> Void) {
 	doPrint("\(currentIndentation())\(currentIcons().given) Given \(str)")
 	code()
 }
 
-public func when(_ str: String, code: (Void) -> Void) {
+public func when(_ str: String, code: () -> Void) {
 	lastDoneEvent = nil
 
 	doPrint("\(currentIndentation())\(currentIcons().when) When \(str)")
 	code()
 }
 
-public func then(_ str: String, code: @escaping (Void) -> Void) {
+public func then(_ str: String, code: @escaping () -> Void) {
 	then(str, code: code, action: .testNow)
 }
 
-public func then(_ str: String, code: @escaping (Void) -> Void, action: Action) {
+public func then(_ str: String, code: @escaping () -> Void, action: Action) {
 	let icons = currentIcons()
 	let indentation = currentIndentation()
 
@@ -152,7 +152,7 @@ public func done(_ notificationName: String, withResult result: AnyObject?) {
 	NotificationCenter.default.post(name: Notification.Name(rawValue: notificationName), object: result)
 }
 
-public func scenario(_ scenario: String, code: (Void) -> Void) {
+public func scenario(_ scenario: String, code: () -> Void) {
 	doPrint("\(currentIndentation())\(currentIcons().scenario) \(scenario)")
 
 	currentIndentationLevel += 1
@@ -160,31 +160,31 @@ public func scenario(_ scenario: String, code: (Void) -> Void) {
 	currentIndentationLevel -= 1
 }
 
-public func with(_ text: String, code: (Void) -> Void) {
+public func with(_ text: String, code: () -> Void) {
 	withSugar("with", text: text, level: 1, code: code)
 }
 
-public func that(_ text: String, code: (Void) -> Void) {
+public func that(_ text: String, code: () -> Void) {
 	withSugar("that", text: text, level: 1, code: code)
 }
 
-public func and(_ text: String, code: (Void) -> Void) {
+public func and(_ text: String, code: () -> Void) {
 	withSugar("and", text: text, level: 1, code: code)
 }
 
-public func but(_ text: String, code: (Void) -> Void) {
+public func but(_ text: String, code: () -> Void) {
 	withSugar("but", text: text, level: 1, code: code)
 }
 
-public func it(_ text: String, code: (Void) -> Void) {
+public func it(_ text: String, code: () -> Void) {
 	withSugar("it", text: text, level: 1, code: code)
 }
 
-public func perform(_ text: String, code: (Void) -> Void) {
+public func perform(_ text: String, code: () -> Void) {
 	withSugar("perform", text: text, level: 1, code: code)
 }
 
-private func withSugar(_ sugar: String, text: String, level: Int, code: (Void) -> Void) {
+private func withSugar(_ sugar: String, text: String, level: Int, code: () -> Void) {
 	doPrint("\(indentation(currentIndentationLevel + level))\(currentIcons().secondLevel) \(sugar) \(text)")
 	code()
 }

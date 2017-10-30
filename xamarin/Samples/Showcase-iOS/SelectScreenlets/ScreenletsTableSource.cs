@@ -2,6 +2,7 @@
 using Foundation;
 using UIKit;
 using ShowcaseiOS.ViewController;
+using System.Diagnostics;
 
 namespace ShowcaseiOS.SelectScreenlets
 {
@@ -44,7 +45,7 @@ namespace ShowcaseiOS.SelectScreenlets
 
         public override void RowSelected(UITableView tableView, Foundation.NSIndexPath indexPath)
         {
-            System.Diagnostics.Debug.WriteLine($"Navigate to {screenlets[indexPath.Row]}");
+            Debug.WriteLine($"Navigate to {screenlets[indexPath.Row]}");
             UIStoryboard board = UIStoryboard.FromName(screenlets[indexPath.Row], null);
             UIViewController vc = board.InstantiateViewController(viewControllers[indexPath.Row]);
             owner.NavigationController.PushViewController(vc, true);

@@ -22,9 +22,9 @@
 		<item name="themeName">material_theme</item>
 	</style>
 
-	<style name="material_date_picker" parent="Theme.AppCompat.Light">
-		<item name="colorAccent">@color/colorAccent_material</item>
-		<item name="android:background">@android:color/transparent</item>
+	<style name="material_date_picker" parent="Theme.AppCompat.Light.Dialog">
+		<item name="colorPrimary">@color/colorPrimary_material</item>
+		<item name="colorAccent">@color/colorPrimary_material</item>
 	</style>
 
 	<style name="material_button" parent="Widget.AppCompat.Button">

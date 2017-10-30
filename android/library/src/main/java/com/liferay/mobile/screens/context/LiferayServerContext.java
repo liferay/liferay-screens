@@ -93,7 +93,7 @@ public class LiferayServerContext {
 		return classFactory;
 	}
 
-	public static void setFactoryClass(String factoryClass) {
+	public static void setClassFactory(String factoryClass) {
 		classFactory = factoryClass;
 	}
 

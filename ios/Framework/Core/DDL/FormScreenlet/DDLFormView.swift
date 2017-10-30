@@ -13,6 +13,7 @@
  */
 import UIKit
 
+@objc(DDLFormView)
 open class DDLFormView: BaseScreenletView, DDLFormViewModel {
 
 	// MARK: DDLFormViewModel

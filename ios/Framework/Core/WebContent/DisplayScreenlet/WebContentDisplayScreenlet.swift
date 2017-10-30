@@ -79,8 +79,7 @@ open class WebContentDisplayScreenlet: BaseScreenlet {
 	// Custom css file to customize the WebContent
 	@IBInspectable open var customCssFile: String = "default"
 
-
-	//MARK: Public properties
+	// MARK: Public properties
 
 	open var webContentDisplayDelegate: WebContentDisplayScreenletDelegate? {
 		return delegate as? WebContentDisplayScreenletDelegate
@@ -90,8 +89,7 @@ open class WebContentDisplayScreenlet: BaseScreenlet {
 		return screenletView as? WebContentDisplayViewModel
 	}
 
-
-	//MARK: BaseScreenlet
+	// MARK: BaseScreenlet
 
 	override open func onShow() {
 		if autoLoad && articleId != "" {

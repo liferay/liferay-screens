@@ -4,9 +4,11 @@ using UIKit;
 
 namespace LiferayScreens
 {
+    interface IProgressPresenter { }
+
     // @protocol ProgressPresenter
-    [Protocol, Model]
     [BaseType(typeof(NSObject))]
+    [Protocol, Model]
     interface ProgressPresenter
     {
         // @required -(void)showHUDInView:(UIView * _Nonnull)view message:(NSString * _Nullable)message forInteractor:(Interactor * _Nonnull)interactor;

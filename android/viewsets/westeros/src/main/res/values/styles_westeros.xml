@@ -124,9 +124,9 @@
 		<item name="android:paddingLeft">30dp</item>
 	</style>
 
-	<style name="westeros_date_picker" parent="Theme.AppCompat.Light">
-		<item name="colorAccent">@color/colorPrimaryDark_westeros</item>
-		<item name="android:background">@android:color/transparent</item>
+	<style name="westeros_date_picker" parent="Theme.AppCompat.Light.Dialog">
+		<item name="colorPrimary">@color/colorPrimary_westeros</item>
+		<item name="colorAccent">@color/colorPrimary_westeros</item>
 	</style>
 
 </resources>

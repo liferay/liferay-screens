@@ -8,10 +8,5 @@ namespace Com.Liferay.Mobile.Screens.Imagegallery
         {
             throw new NotImplementedException();
         }
-
-        protected override void OnUserAction(string p0, Java.Lang.Object p1, params Java.Lang.Object[] p2)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

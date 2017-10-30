@@ -3,7 +3,9 @@ package com.liferay.mobile.screens.viewsets.defaultviews.web;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.net.http.SslError;
 import android.os.Build;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceError;
 import android.webkit.WebResourceRequest;
@@ -80,6 +82,16 @@ public class ScreensNativeWebView extends WebViewClient implements ScreensWebVie
 
 		if (listener != null) {
 			listener.onPageError(new Exception(description));
+		}
+	}
+
+	@Override
+	public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+		if (error.getPrimaryError() == SslError.SSL_EXPIRED) {
+			handler.cancel();
+		}
+		else {
+			handler.proceed();
 		}
 	}
 }

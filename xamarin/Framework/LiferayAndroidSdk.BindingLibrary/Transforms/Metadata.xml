@@ -1,0 +1,11 @@
+﻿<metadata>
+	<!-- Error: CSO508 -->
+    <remove-node path="/api/package[@name='com.liferay.mobile.android.callback']/class[@name='BatchCallback']" />
+    <remove-node path="/api/package[@name='com.liferay.mobile.android.callback.typed']/class[@name='BooleanCallback']" />
+    <remove-node path="/api/package[@name='com.liferay.mobile.android.callback.typed']/class[@name='DoubleCallback']" />
+    <remove-node path="/api/package[@name='com.liferay.mobile.android.callback.typed']/class[@name='IntegerCallback']" />
+    <remove-node path="/api/package[@name='com.liferay.mobile.android.callback.typed']/class[@name='JSONArrayCallback']" />
+    <remove-node path="/api/package[@name='com.liferay.mobile.android.callback.typed']/class[@name='JSONObjectCallback']" />
+    <remove-node path="/api/package[@name='com.liferay.mobile.android.callback.typed']/class[@name='LongCallback']" />
+    <remove-node path="/api/package[@name='com.liferay.mobile.android.callback.typed']/class[@name='StringCallback']" />   
+</metadata>

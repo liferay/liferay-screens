@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.liferay.mobile.screens.asset.list.AssetListScreenlet
+        android:id="@+id/asset_list_screenlet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:autoLoad="false"
+        app:cachePolicy="REMOTE_ONLY"
+        app:portletItemName="@string/liferay_asset_list_portlet_item_name" />
+</LinearLayout>

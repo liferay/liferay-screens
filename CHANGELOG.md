@@ -17,6 +17,8 @@ All notable changes to this project will be documented in this file.
 * Disable selection in WebScreenlet
 * Fix session in WebScreenlet
 * Fix url in other webtype in WebScreenlet
+* Fix File provider so developers can use their own
+* Fix error with comment in '//' format in WebScreenlet
 
 ### New Features
 * Create loadLoggedUserPortrait method in UserPortraitScreenlet
@@ -29,6 +31,7 @@ All notable changes to this project will be documented in this file.
 * Show alerts in the WebScreenlet
 * Allow developers to disable scroll in the WebScreenlet
 * Allow developers to clear cache on WebScreenlet
+* All screenlets should have getter/setter for their listener properties (for Xamarin projects)
 
 ### Refactor
 * Remove unused attribute in RatingsScreenlet 
@@ -78,7 +81,16 @@ All notable changes to this project will be documented in this file.
 - DDLFormScreenlet binding
 - ImageGalleryScreenlet binding
 - UserPortraitScreenlet binding
+- WebContentDisplay and WebContentList screenlets' bindings
+- Comment screenlets' bindings
+- Asset screenlets' bindings
+- WebScreenlet binding
+- DDLListScreenlet binding
+- BlogsDisplayScreenlet binding
+- File screenlets' bindings
 - Create demo apps: Showcase-Android and Showcase-iOS
+- Add all screenlets in demo apps
+- Add example about how to change screenlet theme
 
 # 2.1.4
 

@@ -21,7 +21,9 @@ android {
 	}
 	lintOptions {
 		abortOnError false
+		disable 'MissingTranslation'
 	}
+	buildToolsVersion '26.0.2'
 }
 
 dependencies {
@@ -39,9 +41,9 @@ dependencies {
 
 	androidTestCompile libraries.design
 
-	androidTestCompile 'com.android.support.test:runner:1.0.0'
-	androidTestCompile 'com.android.support.test:rules:1.0.0'
-	androidTestCompile 'com.android.support.test.espresso:espresso-core:3.0.0'
-	androidTestCompile 'com.android.support.test.espresso:espresso-contrib:3.0.0'
-	androidTestCompile 'com.android.support.test.espresso:espresso-idling-resource:3.0.0'
+	androidTestImplementation 'com.android.support.test:runner:1.0.0'
+	androidTestImplementation 'com.android.support.test:rules:1.0.0'
+	androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.0'
+	androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.0.0'
+	androidTestImplementation 'com.android.support.test.espresso:espresso-idling-resource:3.0.0'
 }

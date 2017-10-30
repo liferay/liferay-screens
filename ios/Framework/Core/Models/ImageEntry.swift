@@ -13,6 +13,7 @@
  */
 import Foundation
 
+@objc(ImageEntry)
 open class ImageEntry: Asset {
 
 	open var image: UIImage?

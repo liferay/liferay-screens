@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="654">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--List View Controller-->
+        <scene sceneID="653">
+            <objects>
+                <viewController id="654" sceneMemberID="viewController" customClass="DDLListViewController" storyboardIdentifier="DDLListViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="651"/>
+                        <viewControllerLayoutGuide type="bottom" id="652"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="655">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="1522" translatesAutoresizingMaskIntoConstraints="NO" customClass="DDLListScreenlet">
+                                <rect key="frame" x="20" y="66" width="374" height="670"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint id="2844" firstItem="1522" firstAttribute="width" constant="374"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint id="2840" firstItem="1522" firstAttribute="top" secondItem="651" secondAttribute="bottom" constant="2"/>
+                            <constraint id="2841" firstItem="1522" firstAttribute="bottom" secondItem="652" secondAttribute="top"/>
+                            <constraint id="2842" firstItem="655" firstAttribute="trailingMargin" secondItem="1522" secondAttribute="trailing" constant="20"/>
+                            <constraint id="2843" firstItem="1522" firstAttribute="centerX" secondItem="655" secondAttribute="centerX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem title="DDLListScreenlet" id="907" key="navigationItem"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="ddlListScreenlet" destination="1522" id="name-outlet-1522"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="656" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="88" y="97"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="img/Liferay-Screens.png" width="124" height="144"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedScreenMetrics key="destination" type="retina55"/>
+    </simulatedMetricsContainer>
+</document>

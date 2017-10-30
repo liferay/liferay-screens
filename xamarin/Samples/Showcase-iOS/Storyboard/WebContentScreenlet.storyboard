@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="717">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Web Content View Controller-->
+        <scene sceneID="716">
+            <objects>
+                <viewController id="717" sceneMemberID="viewController" customClass="WebContentViewController" storyboardIdentifier="WebContentViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="714"/>
+                        <viewControllerLayoutGuide type="bottom" id="715"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="718">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="771" translatesAutoresizingMaskIntoConstraints="NO" customClass="WebContentDisplayScreenlet">
+                                <rect key="frame" x="0.0" y="62" width="414" height="674"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint id="1536" firstItem="771" firstAttribute="centerX" secondItem="718" secondAttribute="centerX"/>
+                            <constraint id="1539" firstItem="771" firstAttribute="leading" secondItem="718" secondAttribute="leadingMargin"/>
+                            <constraint id="1543" firstItem="771" firstAttribute="bottom" secondItem="715" secondAttribute="top"/>
+                            <constraint id="1548" firstItem="714" firstAttribute="bottom" secondItem="771" secondAttribute="top" constant="2"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <navigationItem title="WebContentDisplayScreenlet" id="782" key="navigationItem"/>
+                    <connections>
+                        <outlet property="webContentDisplayScreenlet" destination="771" id="name-outlet-771"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="719" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="250" y="-132"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="img/Liferay-Screens.png" width="124" height="144"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedScreenMetrics key="destination" type="retina55"/>
+    </simulatedMetricsContainer>
+</document>

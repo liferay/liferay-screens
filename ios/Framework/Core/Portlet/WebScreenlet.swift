@@ -15,7 +15,8 @@ import UIKit
 
 /// The WebScreenletDelegate protocol defines some methods that you use to
 /// manage the WebScreenlet events. All of them are optional.
-@objc public protocol WebScreenletDelegate: BaseScreenletDelegate {
+@objc(WebScreenletDelegate)
+public protocol WebScreenletDelegate: BaseScreenletDelegate {
 
 	///  Called when the page is loaded.
 	///
