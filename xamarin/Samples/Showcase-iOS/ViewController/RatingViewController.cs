@@ -13,23 +13,12 @@ namespace ShowcaseiOS.ViewController
         {
             base.ViewDidLoad();
 
-            this.ratingScreenletThumbs.ClassName = "com.liferay.document.library.kernel.model.DLFileEntry";
-            this.ratingScreenletThumbs.ClassPK = 57177;
-            this.ratingScreenletThumbs.Editable = true;
-            this.ratingScreenletThumbs.ThemeName = "default-thumbs";
-
-            this.ratingScreenletStars.ClassName = "com.liferay.document.library.kernel.model.DLFileEntry";
-            this.ratingScreenletStars.ClassPK = 57177;
-            this.ratingScreenletStars.Editable = true;
-            this.ratingScreenletStars.ThemeName = "default-stars";
-
             //FIXME: RatingScreenlet doesn't work with emojis view
-            //this.ratingScreenletStars.ClassName = "com.liferay.document.library.kernel.model.DLFileEntry";
-            //this.ratingScreenletStars.ClassPK = 57177;
-            //this.ratingScreenletStars.Editable = true;
-            //this.ratingScreenletStars.ThemeName = "default-emojis";
+            this.ratingScreenletStars.ClassName = LiferayServerContext.StringPropertyForKey("fileClassName");
+            this.ratingScreenletStars.ClassPK = LiferayServerContext.LongPropertyForKey("ratingClassPK");
+            this.ratingScreenletStars.ThemeName = LiferayServerContext.StringPropertyForKey("ratingThemeName");
+            this.ratingScreenletStars.Editable = true;
 
-            this.ratingScreenletThumbs.Delegate = this;
             this.ratingScreenletStars.Delegate = this;
         }
 

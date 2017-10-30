@@ -13,8 +13,8 @@ namespace ShowcaseiOS.ViewController
         {
             base.ViewDidLoad();
 
-            this.audioDisplayScreenlet.ClassPK = 57433;
-            this.audioDisplayScreenlet.ClassName = "com.liferay.document.library.kernel.model.DLFileEntry";
+            this.audioDisplayScreenlet.ClassPK = LiferayServerContext.LongPropertyForKey("audioClassPK");
+            this.audioDisplayScreenlet.ClassName = LiferayServerContext.StringPropertyForKey("fileClassName");
 
             this.audioDisplayScreenlet.Delegate = this;
         }

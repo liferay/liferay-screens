@@ -17,34 +17,34 @@ namespace ShowcaseiOS.ViewController
             this.assetDisplayScreenlet.AutoLoad = false;
 
             //Blog
-            //this.assetDisplayScreenlet.AssetEntryId = 40516;
-            //this.assetDisplayScreenlet.ClassPK = 40515;
-            //this.assetDisplayScreenlet.ClassName = "com.liferay.blogs.kernel.model.BlogsEntry";
+            //this.assetDisplayScreenlet.AssetEntryId = LiferayServerContext.LongPropertyForKey("blogEntryId");
+            //this.assetDisplayScreenlet.ClassPK = LiferayServerContext.LongPropertyForKey("blogClassPK");
+            //this.assetDisplayScreenlet.ClassName = LiferayServerContext.StringPropertyForKey("blogClassName");
 
             //Image
-            //this.assetDisplayScreenlet.AssetEntryId = 54500;
-            //this.assetDisplayScreenlet.ClassPK = 54498;
-            //this.assetDisplayScreenlet.ClassName = "com.liferay.document.library.kernel.model.DLFileEntry";
+            //this.assetDisplayScreenlet.AssetEntryId = LiferayServerContext.LongPropertyForKey("imageEntryId");
+            //this.assetDisplayScreenlet.ClassPK = LiferayServerContext.LongPropertyForKey("imageClassPK");
+            //this.assetDisplayScreenlet.ClassName = LiferayServerContext.StringPropertyForKey("fileClassName");
 
             //Audio
-            this.assetDisplayScreenlet.AssetEntryId = 57435;
-            //this.assetDisplayScreenlet.ClassPK = 57433;
-            //this.assetDisplayScreenlet.ClassName = "com.liferay.document.library.kernel.model.DLFileEntry";
+            this.assetDisplayScreenlet.AssetEntryId = LiferayServerContext.LongPropertyForKey("audioEntryId");
+            //this.assetDisplayScreenlet.ClassPK = LiferayServerContext.LongPropertyForKey("audioClassPK");
+            //this.assetDisplayScreenlet.ClassName = LiferayServerContext.StringPropertyForKey("fileClassName");
 
             //Video
-            //this.assetDisplayScreenlet.AssetEntryId = 38945;
-            //this.assetDisplayScreenlet.ClassPK = 38943;
-            //this.assetDisplayScreenlet.ClassName = "com.liferay.document.library.kernel.model.DLFileEntry";
+            //this.assetDisplayScreenlet.AssetEntryId = LiferayServerContext.LongPropertyForKey("videoEntryId");
+            //this.assetDisplayScreenlet.ClassPK = LiferayServerContext.LongPropertyForKey("videoClassPK");
+            //this.assetDisplayScreenlet.ClassName = LiferayServerContext.StringPropertyForKey("fileClassName");
 
             //PDF
-            //this.assetDisplayScreenlet.AssetEntryId = 38932;
-            //this.assetDisplayScreenlet.ClassPK = 38930;
-            //this.assetDisplayScreenlet.ClassName = "com.liferay.document.library.kernel.model.DLFileEntry";
+            //this.assetDisplayScreenlet.AssetEntryId = LiferayServerContext.LongPropertyForKey("pdfEntryId");
+            //this.assetDisplayScreenlet.ClassPK = LiferayServerContext.LongPropertyForKey("pdfClassPK");
+            //this.assetDisplayScreenlet.ClassName = LiferayServerContext.StringPropertyForKey("fileClassName");
 
             //FIXME: AssetDisplayScreenlet doesn't work with WebContent
-            //this.assetDisplayScreenlet.AssetEntryId = 39228;
-            //this.assetDisplayScreenlet.ClassPK = 39226;
-            //this.assetDisplayScreenlet.ClassName = "com.liferay.journal.model.JournalArticle";
+            //this.assetDisplayScreenlet.AssetEntryId = LiferayServerContext.LongPropertyForKey("webContentEntryId");
+            //this.assetDisplayScreenlet.ClassPK = LiferayServerContext.LongPropertyForKey("webContentClassPK");
+            //this.assetDisplayScreenlet.ClassName = LiferayServerContext.StringPropertyForKey("webContentClassName");
 
             this.assetDisplayScreenlet.Load();
 

@@ -13,9 +13,9 @@ namespace ShowcaseiOS.ViewController
         {
             base.ViewDidLoad();
 
-            this.webContentDisplayScreenlet.ArticleId = "57343";
-            this.webContentDisplayScreenlet.GroupId = 20143;
-            this.webContentDisplayScreenlet.TemplateId = 29644;
+            this.webContentDisplayScreenlet.ArticleId = LiferayServerContext.StringPropertyForKey("webContentDisplayArticleId");
+            this.webContentDisplayScreenlet.GroupId = LiferayServerContext.LongPropertyForKey("webContentDisplayGroupId");
+            this.webContentDisplayScreenlet.TemplateId = LiferayServerContext.LongPropertyForKey("webContentDisplayTemplateId");
 
             this.webContentDisplayScreenlet.Delegate = this;
         }

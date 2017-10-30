@@ -18,20 +18,11 @@ namespace ShowcaseiOS.ViewController
         [GeneratedCode ("iOS Designer", "1.0")]
         LiferayScreens.RatingScreenlet ratingScreenletStars { get; set; }
 
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        LiferayScreens.RatingScreenlet ratingScreenletThumbs { get; set; }
-
         void ReleaseDesignerOutlets ()
         {
             if (ratingScreenletStars != null) {
                 ratingScreenletStars.Dispose ();
                 ratingScreenletStars = null;
-            }
-
-            if (ratingScreenletThumbs != null) {
-                ratingScreenletThumbs.Dispose ();
-                ratingScreenletThumbs = null;
             }
         }
     }
