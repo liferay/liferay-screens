@@ -97,27 +97,9 @@ namespace LiferayScreens
         [Export("isFormLoaded")]
         bool IsFormLoaded { get; }
 
-        // -(void)onCreated;
-        [Export("onCreated")]
-        void OnCreated();
-
-        // -(void)onShow;
-        [Export("onShow")]
-        void OnShow();
-
-        // -(Interactor * _Nullable)createInteractorWithName:(NSString * _Nonnull)name sender:(id _Nullable)sender __attribute__((warn_unused_result));
-        [Export("createInteractorWithName:sender:")]
-        [return: NullAllowed]
-        Interactor CreateInteractorWithName(string name, [NullAllowed] NSObject sender);
-
-        // -(BOOL)onActionWithName:(NSString * _Nonnull)name interactor:(Interactor * _Nonnull)interactor sender:(id _Nullable)sender __attribute__((warn_unused_result));
-        [Export("onActionWithName:interactor:sender:")]
-        bool OnActionWithName(string name, Interactor interactor, [NullAllowed] NSObject sender);
-
         // -(BOOL)loadForm;
         [Export("loadForm")]
-        //[Verify(MethodToProperty)]
-        bool LoadForm { get; }
+        bool LoadForm();
 
         // -(void)clearForm;
         [Export("clearForm")]
@@ -125,13 +107,11 @@ namespace LiferayScreens
 
         // -(BOOL)loadRecord;
         [Export("loadRecord")]
-        //[Verify(MethodToProperty)]
-        bool LoadRecord { get; }
+        bool LoadRecord();
 
         // -(BOOL)submitForm;
         [Export("submitForm")]
-        //[Verify(MethodToProperty)]
-        bool SubmitForm { get; }
+        bool SubmitForm();
 
         // -(instancetype _Nonnull)initWithFrame:(CGRect)frame themeName:(NSString * _Nullable)themeName __attribute__((objc_designated_initializer));
         [Export("initWithFrame:themeName:")]

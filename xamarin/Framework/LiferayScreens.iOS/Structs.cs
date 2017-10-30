@@ -28,6 +28,13 @@ namespace LiferayScreens
     }
 
     [Native]
+    public enum WebType : ulong
+    {
+        LiferayAuthenticated = 0,
+        Other = 1
+    }
+
+    [Native]
     public enum ProgressCloseMode : ulong
     {
         ManualClose = 0,
@@ -61,5 +68,23 @@ namespace LiferayScreens
         Ignore = 3
     }
 
-}
+    [Native]
+    public enum MBProgressHUDMode : ulong
+    {
+        Indeterminate,
+        Determinate,
+        DeterminateHorizontalBar,
+        AnnularDeterminate,
+        CustomView,
+        Text
+    }
 
+    [Native]
+    public enum MBProgressHUDAnimation : ulong
+    {
+        Fade,
+        Zoom,
+        ZoomOut = Zoom,
+        ZoomIn
+    }
+}

@@ -26,10 +26,6 @@ namespace LiferayScreens
         [return: NullAllowed]
         DDMField ObjectForKeyedSubscript(string fieldName);
 
-        // @property (readonly, copy, nonatomic) NSString * _Nonnull debugDescription;
-        [Export("debugDescription")]
-        string DebugDescription { get; }
-
         // -(instancetype _Nonnull)initWithFields:(NSArray<DDMField *> * _Nonnull)fields locale:(NSLocale * _Nonnull)locale attributes:(NSDictionary<NSString *,id> * _Nonnull)attributes __attribute__((objc_designated_initializer));
         [Export("initWithFields:locale:attributes:")]
         [DesignatedInitializer]

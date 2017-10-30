@@ -42,27 +42,6 @@ namespace LiferayScreens
 		[NullAllowed, Export("password")]
 		string Password { get; set; }
 
-		// -(void)onCreated;
-		[Export("onCreated")]
-		void OnCreated();
-
-		// -(void)onSetTranslations;
-		[Export("onSetTranslations")]
-		void OnSetTranslations();
-
-		// -(void)onStartInteraction;
-		[Export("onStartInteraction")]
-		void OnStartInteraction();
-
-		// -(void)onFinishInteraction:(id _Nullable)result error:(NSError * _Nullable)error;
-		[Export("onFinishInteraction:error:")]
-		void OnFinishInteraction([NullAllowed] NSObject result, [NullAllowed] NSError error);
-
-		// -(id<ProgressPresenter> _Nonnull)createProgressPresenter __attribute__((warn_unused_result));
-		[Export("createProgressPresenter")]
-		//[Verify(MethodToProperty)]
-		ProgressPresenter CreateProgressPresenter { get; }
-
 		// -(void)configureAuthType;
 		[Export("configureAuthType")]
 		void ConfigureAuthType();

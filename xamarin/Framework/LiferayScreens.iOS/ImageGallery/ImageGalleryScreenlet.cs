@@ -84,40 +84,6 @@ namespace LiferayScreens
         [Export("deleteImageEntry:")]
         void DeleteImageEntry(ImageEntry imageEntry);
 
-        // -(void)onCreated;
-        [Export("onCreated")]
-        void OnCreated();
-
-        // -(void)onShow;
-        [Export("onShow")]
-        void OnShow();
-
-        // -(BOOL)performActionWithName:(NSString * _Nonnull)name sender:(id _Nullable)sender;
-        [Export("performActionWithName:sender:")]
-        bool PerformActionWithName(string name, [NullAllowed] NSObject sender);
-
-        // -(Interactor * _Nullable)createInteractorWithName:(NSString * _Nonnull)name sender:(id _Nullable)sender __attribute__((warn_unused_result));
-        [Export("createInteractorWithName:sender:")]
-        [return: NullAllowed]
-        Interactor CreateInteractorWithName(string name, [NullAllowed] NSObject sender);
-
-        // -(void)onLoadPageErrorWithPage:(NSInteger)page error:(NSError * _Nonnull)error;
-        [Export("onLoadPageErrorWithPage:error:")]
-        void OnLoadPageErrorWithPage(nint page, NSError error);
-
-        // -(void)onLoadPageResultWithPage:(NSInteger)page rows:(NSArray * _Nonnull)rows rowCount:(NSInteger)rowCount;
-        [Export("onLoadPageResultWithPage:rows:rowCount:")]
-        //[Verify(StronglyTypedNSArray)]
-        void OnLoadPageResultWithPage(nint page, NSObject[] rows, nint rowCount);
-
-        // -(void)onSelectedRow:(id _Nonnull)row;
-        [Export("onSelectedRow:")]
-        void OnSelectedRow(NSObject row);
-
-        // -(BaseListPageLoadInteractor * _Nonnull)createPageLoadInteractorWithPage:(NSInteger)page computeRowCount:(BOOL)computeRowCount __attribute__((warn_unused_result));
-        //[Export("createPageLoadInteractorWithPage:computeRowCount:")]
-        //BaseListPageLoadInteractor CreatePageLoadInteractorWithPage(nint page, bool computeRowCount);
-
         // -(instancetype _Nonnull)initWithFrame:(CGRect)frame themeName:(NSString * _Nullable)themeName __attribute__((objc_designated_initializer));
         [Export("initWithFrame:themeName:")]
         [DesignatedInitializer]

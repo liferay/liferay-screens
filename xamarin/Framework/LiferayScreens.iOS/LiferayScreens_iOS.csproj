@@ -22,7 +22,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>full</DebugType>
+    <DebugType></DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
@@ -52,6 +52,34 @@
     <Folder Include="Themes\Default\DDL\" />
     <Folder Include="ImageGallery\" />
     <Folder Include="UserPortrait\" />
+    <Folder Include="WebContent\" />
+    <Folder Include="Asset\" />
+    <Folder Include="Asset\List\" />
+    <Folder Include="Themes\Default\ImageGallery\" />
+    <Folder Include="Themes\Default\UserPortrait\" />
+    <Folder Include="Themes\Default\WebContent\" />
+    <Folder Include="Themes\Default\Asset\" />
+    <Folder Include="FileDisplay\" />
+    <Folder Include="Asset\Display\" />
+    <Folder Include="Themes\Default\FileDisplay\" />
+    <Folder Include="Context\" />
+    <Folder Include="LRMobileSDK\" />
+    <Folder Include="Context\Storage\" />
+    <Folder Include="Comment\" />
+    <Folder Include="Comment\Display\" />
+    <Folder Include="Themes\Default\Comment\" />
+    <Folder Include="Comment\Add\" />
+    <Folder Include="Comment\List\" />
+    <Folder Include="WebContent\Display\" />
+    <Folder Include="WebContent\List\" />
+    <Folder Include="Rating\" />
+    <Folder Include="Themes\Default\Rating\" />
+    <Folder Include="Web\" />
+    <Folder Include="Themes\Default\Portlet\" />
+    <Folder Include="Blogs\" />
+    <Folder Include="Themes\Default\Blogs\" />
+    <Folder Include="DDL\List\" />
+    <Folder Include="Themes\Default\CustomViews\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,6 +124,89 @@
     <ObjcBindingApiDefinition Include="UserPortrait\UserPortraitScreenletDelegate.cs" />
     <ObjcBindingApiDefinition Include="UserPortrait\UserPortraitViewModel.cs" />
     <ObjcBindingApiDefinition Include="Models\User.cs" />
+    <ObjcBindingApiDefinition Include="Asset\List\AssetListScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Asset\List\AssetListScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\ImageGallery\ImageGalleryView_default.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\ImageGallery\ImageGalleryCollectionViewBase.cs" />
+    <ObjcBindingApiDefinition Include="Base\BaseListCollectionView.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\UserPortrait\UserPortraitView_default.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\WebContent\WebContentDisplayView_default.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Asset\AssetListView_default.cs" />
+    <ObjcBindingApiDefinition Include="Base\BaseListTableView.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Asset\AssetListTableView.cs" />
+    <ObjcBindingApiDefinition Include="FileDisplay\ImageDisplayScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="FileDisplay\FileDisplayScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="FileDisplay\ImageDisplayViewModel.cs" />
+    <ObjcBindingApiDefinition Include="FileDisplay\FileDisplayViewModel.cs" />
+    <ObjcBindingApiDefinition Include="FileDisplay\FileDisplayScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Models\DDM\FileEntry.cs" />
+    <ObjcBindingApiDefinition Include="Asset\Display\AssetDisplayScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Asset\Display\AssetDisplayScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Asset\Display\AssetDisplayViewModel.cs" />
+    <ObjcBindingApiDefinition Include="FileDisplay\PdfDisplayScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\FileDisplay\ImageDisplayView_default.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Asset\AssetDisplayView_default.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\FileDisplay\PdfDisplayView_default.cs" />
+    <ObjcBindingApiDefinition Include="FileDisplay\VideoDisplayScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\FileDisplay\VideoDisplayView_default.cs" />
+    <ObjcBindingApiDefinition Include="FileDisplay\AudioDisplayScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\FileDisplay\AudioDisplayView_default.cs" />
+    <ObjcBindingApiDefinition Include="Context\SessionContext.cs" />
+    <ObjcBindingApiDefinition Include="LRMobileSDK\LRAuthentication.cs" />
+    <ObjcBindingApiDefinition Include="LRMobileSDK\LRSession.cs" />
+    <ObjcBindingApiDefinition Include="Context\Storage\CredentialsStorage.cs" />
+    <ObjcBindingApiDefinition Include="Context\Storage\CredentialsStore.cs" />
+    <ObjcBindingApiDefinition Include="LRMobileSDK\LROAuth.cs" />
+    <ObjcBindingApiDefinition Include="LRMobileSDK\LROAuthConfig.cs" />
+    <ObjcBindingApiDefinition Include="Comment\Display\CommentDisplayScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Comment\Display\CommentDisplayScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Comment\Display\CommentDisplayViewModel.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Comment\CommentDisplayView_default.cs" />
+    <ObjcBindingApiDefinition Include="Models\Comment.cs" />
+    <ObjcBindingApiDefinition Include="Comment\Add\CommentAddScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Comment\Add\CommentAddScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Comment\Add\CommentAddViewModel.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Comment\CommentAddView_default.cs" />
+    <ObjcBindingApiDefinition Include="Comment\List\CommentListScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Comment\List\CommentListScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Comment\List\CommentListViewModel.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Comment\CommentListView_default.cs" />
+    <ObjcBindingApiDefinition Include="WebContent\Display\WebContentDisplayScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="WebContent\Display\WebContentDisplayScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="WebContent\Display\WebContentDisplayViewModel.cs" />
+    <ObjcBindingApiDefinition Include="WebContent\List\WebContentListScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="WebContent\List\WebContentListScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Models\WebContent.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\WebContent\WebContentListTableView.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\WebContent\WebContentListView_default.cs" />
+    <ObjcBindingApiDefinition Include="Rating\RatingScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Rating\RatingScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Rating\RatingViewModel.cs" />
+    <ObjcBindingApiDefinition Include="Models\RatingEntry.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Rating\RatingView_default_stars.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Rating\RatingView_default_like.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Rating\RatingView_default_emojis.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Rating\RatingView_default_thumbs.cs" />
+    <ObjcBindingApiDefinition Include="Web\WebScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Web\WebScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Web\WebViewModel.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Portlet\PortletDisplayView_default.cs" />
+    <ObjcBindingApiDefinition Include="Web\WebScreenletConfiguration.cs" />
+    <ObjcBindingApiDefinition Include="Web\InjectableScript.cs" />
+    <ObjcBindingApiDefinition Include="Web\ScreensWebView.cs" />
+    <ObjcBindingApiDefinition Include="Blogs\BlogsEntryDisplayScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="Blogs\BlogsEntryDisplayScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="Blogs\BlogsDisplayViewModel.cs" />
+    <ObjcBindingApiDefinition Include="Models\BlogsEntry.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\Blogs\BlogsEntryDisplayView_default.cs" />
+    <ObjcBindingApiDefinition Include="DDL\List\DDLListScreenlet.cs" />
+    <ObjcBindingApiDefinition Include="DDL\List\DDLListScreenletDelegate.cs" />
+    <ObjcBindingApiDefinition Include="DDL\List\DDLListViewModel.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\DDL\DDLListView_default.cs" />
+    <ObjcBindingApiDefinition Include="Web\WebScreenletConfigurationBuilder.cs" />
+    <ObjcBindingApiDefinition Include="Base\MBProgressHUDPresenter.cs" />
+    <ObjcBindingApiDefinition Include="Base\MBProgressHUD.cs" />
+    <ObjcBindingApiDefinition Include="Themes\Default\CustomViews\DefaultTextField.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />
@@ -106,6 +217,10 @@
       <SmartLink>False</SmartLink>
     </NativeReference>
     <NativeReference Include="..\DependentFrameworks\CocoaLumberjack.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="..\DependentFrameworks\Cordova.framework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
     </NativeReference>
