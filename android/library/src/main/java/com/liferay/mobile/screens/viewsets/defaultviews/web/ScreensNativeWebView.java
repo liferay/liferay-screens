@@ -87,6 +87,11 @@ public class ScreensNativeWebView extends WebViewClient implements ScreensWebVie
 
 	@Override
 	public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-		handler.proceed();
+		if (error.getPrimaryError() == SslError.SSL_EXPIRED) {
+			handler.cancel();
+		}
+		else {
+			handler.proceed();
+		}
 	}
 }
