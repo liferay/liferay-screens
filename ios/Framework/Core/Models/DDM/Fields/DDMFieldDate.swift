@@ -13,6 +13,7 @@
  */
 import Foundation
 
+@objc(DDMFieldDate)
 open class DDMFieldDate: DDMField {
 
 	static let GMTTimeZone = TimeZone(abbreviation: "GMT")

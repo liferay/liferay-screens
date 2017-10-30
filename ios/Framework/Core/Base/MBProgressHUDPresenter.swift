@@ -30,7 +30,8 @@ import Foundation
 	case noSpinner
 }
 
-@objc open class MBProgressHUDPresenter: NSObject, ProgressPresenter {
+@objc(MBProgressHUDPresenter)
+open class MBProgressHUDPresenter: NSObject, ProgressPresenter {
 
 	open var instance: MBProgressHUD?
 
@@ -79,8 +80,6 @@ import Foundation
 				spinnerMode: .indeterminateSpinner)
 		}
 	}
-
-	// MARK: PRIVATE METHODS
 
 	open func hideHud() {
 		if self.instance == nil {
@@ -155,5 +154,4 @@ import Foundation
 			return .text
 		}
 	}
-
 }

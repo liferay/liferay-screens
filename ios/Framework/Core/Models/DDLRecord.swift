@@ -15,7 +15,8 @@ import Foundation
 
 //TODO: Unit test
 
-@objc open class DDLRecord: NSObject, NSCoding {
+@objc(DDLRecord)
+open class DDLRecord: NSObject, NSCoding {
 
 	open var structure: DDMStructure?
 	open let untypedValues: [DDMField]?

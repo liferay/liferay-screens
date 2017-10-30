@@ -196,12 +196,24 @@ public abstract class BaseFileDisplayScreenlet<V extends BaseFileDisplayViewMode
 		this.classPK = classPK;
 	}
 
+	public AssetDisplayListener getListener() {
+		return listener;
+	}
+
 	public void setListener(AssetDisplayListener listener) {
 		this.listener = listener;
 	}
 
+	public FileEntry getFileEntry() {
+		return fileEntry;
+	}
+
 	public void setFileEntry(FileEntry fileEntry) {
 		this.fileEntry = fileEntry;
+	}
+
+	public boolean getAutoLoad() {
+		return autoLoad;
 	}
 
 	public void setAutoLoad(boolean autoLoad) {

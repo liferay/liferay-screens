@@ -13,13 +13,14 @@
  */
 import UIKit
 
+@objc(BaseListTableView)
 open class BaseListTableView: BaseListView, UITableViewDataSource, UITableViewDelegate {
 
 	@IBOutlet open var tableView: UITableView?
 
 	internal var refreshControlView: UIRefreshControl?
 
-	internal var refreshClosure: ((Void) -> Bool)? {
+	internal var refreshClosure: (() -> Bool)? {
 		didSet {
 			updateRefreshControl()
 		}

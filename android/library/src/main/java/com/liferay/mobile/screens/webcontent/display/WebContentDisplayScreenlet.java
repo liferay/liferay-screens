@@ -111,6 +111,10 @@ public class WebContentDisplayScreenlet
 		return modifiedHtml;
 	}
 
+	public WebContentDisplayListener getListener() {
+		return listener;
+	}
+
 	public void setListener(WebContentDisplayListener listener) {
 		this.listener = listener;
 	}

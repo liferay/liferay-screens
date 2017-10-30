@@ -13,7 +13,6 @@
  */
 import Foundation
 
-
 @objc(ProgressPresenter)
 public protocol ProgressPresenter {
 

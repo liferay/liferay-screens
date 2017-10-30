@@ -13,6 +13,7 @@
  */
 import UIKit
 
+@objc(DDMFieldImage)
 open class DDMFieldImage: DDMField {
 
 	// MARK: DDMField

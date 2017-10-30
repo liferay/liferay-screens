@@ -23,6 +23,6 @@ public protocol UploadProgressViewBase {
 
 	func setProgress(_ progress: Float)
 
-	var cancelClosure: ((Void) -> Void)? { get set }
+	var cancelClosure: (() -> Void)? { get set }
 
 }

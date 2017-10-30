@@ -13,6 +13,7 @@
  */
 import UIKit
 
+@objc(ImageGalleryGridCell)
 open class ImageGalleryGridCell: UICollectionViewCell {
 
 	@IBOutlet fileprivate weak var previewImage: UIImageView?

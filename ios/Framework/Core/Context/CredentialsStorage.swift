@@ -13,7 +13,8 @@
  */
 import UIKit
 
-@objc open class CredentialsStorage: NSObject {
+@objc(CredentialsStorage)
+open class CredentialsStorage: NSObject {
 
 	public typealias LoadResult = (session: LRSession, userAttributes: [String:AnyObject])
 

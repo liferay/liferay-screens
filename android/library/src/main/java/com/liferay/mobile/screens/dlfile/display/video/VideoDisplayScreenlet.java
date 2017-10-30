@@ -16,12 +16,13 @@ package com.liferay.mobile.screens.dlfile.display.video;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import com.liferay.mobile.screens.asset.display.AssetDisplayListener;
 import com.liferay.mobile.screens.dlfile.display.BaseFileDisplayScreenlet;
 
 /**
  * @author Sarai Díaz García
  */
-public class VideoDisplayScreenlet extends BaseFileDisplayScreenlet {
+public class VideoDisplayScreenlet extends BaseFileDisplayScreenlet implements VideoDisplayListener {
 
 	public VideoDisplayScreenlet(Context context) {
 		super(context);
@@ -39,7 +40,32 @@ public class VideoDisplayScreenlet extends BaseFileDisplayScreenlet {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
-	public VideoDisplayScreenletListener getListener() {
-		return ((VideoDisplayScreenletListener) listener);
+	@Override
+	public void onVideoPrepared() {
+		if (listener != null) {
+			getListener().onVideoPrepared();
+		}
+	}
+
+	@Override
+	public void onVideoError(Exception e) {
+		if (listener != null) {
+			getListener().onVideoError(e);
+		}
+	}
+
+	@Override
+	public void onVideoCompleted() {
+		if (listener != null) {
+			getListener().onVideoCompleted();
+		}
+	}
+
+	public VideoDisplayListener getListener() {
+		return (VideoDisplayListener) listener;
+	}
+
+	public void setListener(VideoDisplayListener listener) {
+		this.listener = listener;
 	}
 }

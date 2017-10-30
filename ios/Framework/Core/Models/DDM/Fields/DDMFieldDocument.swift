@@ -13,6 +13,7 @@
  */
 import UIKit
 
+@objc(DDMFieldDocument)
 open class DDMFieldDocument: DDMField {
 
 	public enum UploadStatus: Hashable, Equatable {
@@ -33,11 +34,11 @@ open class DDMFieldDocument: DDMField {
 
 		fileprivate func toInt() -> Int {
 			switch self {
-			case .uploaded(_):
+			case .uploaded:
 				return 1
-			case .failed(_):
+			case .failed:
 				return 2
-			case .uploading(_, _):
+			case .uploading:
 				return 3
 			case .pending:
 				return 4
@@ -199,7 +200,7 @@ open class DDMFieldDocument: DDMField {
 
 		if result {
 			switch uploadStatus {
-			case .failed(_):
+			case .failed:
 				result = false
 			default:
 				result = true

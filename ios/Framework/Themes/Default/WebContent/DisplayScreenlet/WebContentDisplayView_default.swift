@@ -25,9 +25,9 @@ open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayVi
 
 	override open var progressMessages: [String:ProgressMessages] {
 		return [
-			BaseScreenlet.DefaultAction : [
-				.working : LocalizedString("default", key: "webcontentdisplay-loading-message", obj: self),
-				.failure : LocalizedString("default", key: "webcontentdisplay-loading-error", obj: self)
+			BaseScreenlet.DefaultAction: [
+				.working: LocalizedString("default", key: "webcontentdisplay-loading-message", obj: self),
+				.failure: LocalizedString("default", key: "webcontentdisplay-loading-error", obj: self)
 			]
 		]
 	}

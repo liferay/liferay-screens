@@ -14,6 +14,7 @@
 import UIKit
 import Cosmos
 
+@objc(RatingView_default_stars)
 open class RatingView_default_stars: BaseScreenletView, RatingViewModel {
 
 	// MARK: Outlets

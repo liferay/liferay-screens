@@ -13,6 +13,7 @@
  */
 import UIKit
 
+@objc(WebContentListTableView)
 open class WebContentListTableView: BaseListTableView {
 
 	// MARK: BaseListTableView
