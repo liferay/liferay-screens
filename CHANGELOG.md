@@ -4,7 +4,11 @@ All notable changes to this project will be documented in this file.
 ---
 
 # Develop
-Nothing yet
+
+## Xamarin
+
+### Refactor
+* Xamarin.iOS demo app takes values from plist file
 
 # 3.0.0
 
