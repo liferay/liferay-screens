@@ -15,7 +15,7 @@ namespace ShowcaseAndroid
             SetContentView(Resource.Layout.SignUpView);
 
             SignUpScreenlet signUpScreenlet =
-                (SignUpScreenlet)FindViewById(Resource.Id.sign_up_screenlet);
+                (SignUpScreenlet) FindViewById(Resource.Id.sign_up_screenlet);
             signUpScreenlet.Listener = this;
         }
 
@@ -23,12 +23,12 @@ namespace ShowcaseAndroid
 
         public void OnSignUpFailure(Java.Lang.Exception p0)
         {
-            Toast.MakeText(this, "Sign up failed: " + p0.Message, ToastLength.Short).Show();
+            Android.Util.Log.Debug("SignUpScreenlet", $"Sign up failed: {p0.Message}");
         }
 
         public void OnSignUpSuccess(User p0)
         {
-            Toast.MakeText(this, "Sign up successful: " + p0, ToastLength.Short).Show();
+            Toast.MakeText(this, "Sign up success: " + p0.EntryId, ToastLength.Short).Show();
         }
     }
 }

@@ -13,6 +13,8 @@ namespace ShowcaseiOS.ViewController
         {
             base.ViewDidLoad();
 
+            //Remove the comment for demo theme without ProgressPresenter
+            //this.loginScreenlet.ThemeName = "demo";
             this.loginScreenlet.Delegate = this;
 
             SetDefaultValues();
@@ -23,15 +25,15 @@ namespace ShowcaseiOS.ViewController
         [Export("screenlet:onLoginError:")]
         public virtual void OnLoginError(BaseScreenlet screenlet, NSError error)
         {
-            System.Diagnostics.Debug.WriteLine($"Login failed: {error.Description}");
+            Console.WriteLine($"Login failed: {error.Description}");
         }
 
         [Export("screenlet:onLoginResponseUserAttributes:")]
         public virtual void OnLoginResponseUserAttributes(BaseScreenlet screenlet, NSDictionary<NSString, NSObject> attributes)
         {
-            System.Diagnostics.Debug.WriteLine($"Login successful: {attributes}");
+            Console.WriteLine($"Login successful: {attributes}");
 
-            System.Diagnostics.Debug.WriteLine("Navigate to SelectScreenletViewController");
+            Console.WriteLine("Navigate to SelectScreenletViewController");
             UIStoryboard board = UIStoryboard.FromName("SelectScreenlet", null);
             SelectScreenletViewController vc = (SelectScreenletViewController)
                 board.InstantiateViewController("SelectScreenletViewController");
@@ -42,15 +44,15 @@ namespace ShowcaseiOS.ViewController
 
         void SetDefaultValues()
         {
-            this.loginScreenlet.ViewModel.UserName = "test@liferay.com";
-            this.loginScreenlet.ViewModel.Password = "test1";
+            this.loginScreenlet.ViewModel.UserName = "demo@liferay.com";
+            this.loginScreenlet.ViewModel.Password = "demo";
         }
 
         /* Event methods */
 
         partial void ForgotPasswordButton_TouchUpInside(UIButton sender)
         {
-            System.Diagnostics.Debug.WriteLine("Navigate to ForgotPasswordScreenlet");
+            Console.WriteLine("Navigate to ForgotPasswordScreenlet");
             UIStoryboard board = UIStoryboard.FromName("ForgotPassword", null);
             ForgotPasswordViewController vc = (ForgotPasswordViewController) 
                 board.InstantiateViewController("ForgotPasswordViewController");
@@ -59,11 +61,23 @@ namespace ShowcaseiOS.ViewController
 
         partial void SignUpButton_TouchUpInside(UIButton sender)
         {
-            System.Diagnostics.Debug.WriteLine("Navigate to SignUpScreenlet");
+            Console.WriteLine("Navigate to SignUpScreenlet");
             UIStoryboard board = UIStoryboard.FromName("SignUp", null);
             SignUpViewController vc = (SignUpViewController) 
                 board.InstantiateViewController("SignUpViewController");
             this.NavigationController.PushViewController(vc, true);
+        }
+
+        partial void ChangeThemeButton_TouchUpInside(UIButton sender)
+        {
+            if (this.loginScreenlet.ThemeName == "default")
+            {
+                this.loginScreenlet.ThemeName = "demo";
+            }
+            else
+            {
+                this.loginScreenlet.ThemeName = "default";
+            }
         }
     }
 }

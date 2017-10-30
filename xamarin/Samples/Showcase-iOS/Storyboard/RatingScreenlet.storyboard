@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="249">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Rating View Controller-->
+        <scene sceneID="248">
+            <objects>
+                <viewController id="249" sceneMemberID="viewController" customClass="RatingViewController" storyboardIdentifier="RatingViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="246"/>
+                        <viewControllerLayoutGuide type="bottom" id="247"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="250">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="385" translatesAutoresizingMaskIntoConstraints="NO" customClass="RatingScreenlet">
+                                <rect key="frame" x="20" y="118" width="374" height="137"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint id="392" firstItem="385" firstAttribute="width" constant="374"/>
+                                    <constraint id="393" firstItem="385" firstAttribute="height" constant="137"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" id="386" translatesAutoresizingMaskIntoConstraints="NO" customClass="RatingScreenlet">
+                                <rect key="frame" x="20" y="300" width="374" height="182"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint id="399" firstItem="386" firstAttribute="width" constant="374"/>
+                                    <constraint id="807" firstItem="386" firstAttribute="height" constant="182"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint id="387" firstItem="385" firstAttribute="top" secondItem="246" secondAttribute="bottom" constant="54"/>
+                            <constraint id="388" firstItem="386" firstAttribute="top" secondItem="385" secondAttribute="bottom" constant="45"/>
+                            <constraint id="389" firstItem="385" firstAttribute="leading" secondItem="250" secondAttribute="leadingMargin"/>
+                            <constraint id="390" firstItem="385" firstAttribute="trailing" secondItem="250" secondAttribute="trailingMargin"/>
+                            <constraint id="391" firstItem="385" firstAttribute="centerX" secondItem="250" secondAttribute="centerX"/>
+                            <constraint id="394" firstItem="386" firstAttribute="centerX" secondItem="250" secondAttribute="centerX"/>
+                            <constraint id="396" firstItem="386" firstAttribute="leading" secondItem="250" secondAttribute="leadingMargin"/>
+                            <constraint id="398" firstItem="386" firstAttribute="trailing" secondItem="250" secondAttribute="trailingMargin"/>
+                            <constraint id="806" firstItem="386" firstAttribute="centerX" secondItem="250" secondAttribute="centerX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem title="RatingScreenlet" id="384" key="navigationItem"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="ratingScreenletThumbs" destination="385" id="name-outlet-385"/>
+                        <outlet property="ratingScreenletStars" destination="386" id="name-outlet-386"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="251" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="360" y="76"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="img/Liferay-Screens.png" width="124" height="144"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedScreenMetrics key="destination" type="retina55"/>
+    </simulatedMetricsContainer>
+</document>

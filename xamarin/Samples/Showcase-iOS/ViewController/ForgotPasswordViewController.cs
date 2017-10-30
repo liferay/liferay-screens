@@ -21,23 +21,18 @@ namespace ShowcaseiOS.ViewController
             SetDefaultValues();
         }
 
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-        }
-
         /* IForgotPasswordScreenletDelegate */
 
         [Export("screenlet:onForgotPasswordError:")]
         public void OnForgotPasswordError(ForgotPasswordScreenlet screenlet, Foundation.NSError error)
         {
-            System.Diagnostics.Debug.WriteLine($"Forgot password failed: {error.Description}");
+            Console.WriteLine($"Forgot password failed: {error.Description}");
         }
 
         [Export("screenlet:onForgotPasswordSent:")]
         public virtual void OnForgotPasswordSent(ForgotPasswordScreenlet screenlet, bool passwordSent)
         {
-            System.Diagnostics.Debug.WriteLine($"Forgot password successful: {passwordSent}");
+            Console.WriteLine($"Forgot password successful: {passwordSent}");
         }
 
         /* Private methods */

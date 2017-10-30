@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="237">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Blogs View Controller-->
+        <scene sceneID="236">
+            <objects>
+                <viewController storyboardIdentifier="BlogsViewController" id="237" customClass="BlogsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="234"/>
+                        <viewControllerLayoutGuide type="bottom" id="235"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="238">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="777" translatesAutoresizingMaskIntoConstraints="NO" customClass="BlogsEntryDisplayScreenlet">
+                                <rect key="frame" x="20" y="66" width="374" height="650"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint id="782" firstItem="777" firstAttribute="width" constant="374"/>
+                                    <constraint id="783" firstItem="777" firstAttribute="height" constant="650"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="782"/>
+                                        <exclude reference="783"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="782"/>
+                                        <include reference="783"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                        </subviews>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="777"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="778"/>
+                                <exclude reference="779"/>
+                                <exclude reference="780"/>
+                                <exclude reference="781"/>
+                                <exclude reference="790"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="777"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="778"/>
+                                <include reference="779"/>
+                                <include reference="780"/>
+                                <include reference="781"/>
+                                <include reference="790"/>
+                            </mask>
+                        </variation>
+                        <constraints>
+                            <constraint id="778" firstItem="777" firstAttribute="centerX" secondItem="238" secondAttribute="centerX"/>
+                            <constraint id="779" firstItem="235" firstAttribute="top" secondItem="777" secondAttribute="bottom" constant="20"/>
+                            <constraint id="780" firstItem="777" firstAttribute="leading" secondItem="238" secondAttribute="leadingMargin"/>
+                            <constraint id="781" firstItem="777" firstAttribute="trailing" secondItem="238" secondAttribute="trailingMargin"/>
+                            <constraint id="790" firstItem="777" firstAttribute="top" secondItem="234" secondAttribute="bottom" constant="2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="blogsDisplayScreenlet" destination="777" id="name-outlet-777"/>
+                    </connections>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <navigationItem title="BlogsEntryDisplayScreenlet" id="776" key="navigationItem"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="239" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="220" y="169"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="img/Liferay-Screens.png" width="124" height="144"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedScreenMetrics key="destination" type="retina55"/>
+    </simulatedMetricsContainer>
+</document>

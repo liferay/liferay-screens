@@ -81,6 +81,8 @@ All notable changes to this project will be documented in this file.
 - ImageGalleryScreenlet binding
 - UserPortraitScreenlet binding
 - Create demo apps: Showcase-Android and Showcase-iOS
+- Add all screenlets in demo apps
+- Add example about how to change screenlet theme
 
 # 2.1.4
 

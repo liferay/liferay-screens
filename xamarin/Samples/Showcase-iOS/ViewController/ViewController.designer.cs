@@ -15,6 +15,10 @@ namespace ShowcaseiOS.ViewController
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton changeThemeButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton forgotPasswordButton { get; set; }
 
         [Outlet]
@@ -24,6 +28,10 @@ namespace ShowcaseiOS.ViewController
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton signUpButton { get; set; }
+
+        [Action ("ChangeThemeButton_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void ChangeThemeButton_TouchUpInside (UIKit.UIButton sender);
 
         [Action ("ForgotPasswordButton_TouchUpInside:")]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -35,6 +43,11 @@ namespace ShowcaseiOS.ViewController
 
         void ReleaseDesignerOutlets ()
         {
+            if (changeThemeButton != null) {
+                changeThemeButton.Dispose ();
+                changeThemeButton = null;
+            }
+
             if (forgotPasswordButton != null) {
                 forgotPasswordButton.Dispose ();
                 forgotPasswordButton = null;

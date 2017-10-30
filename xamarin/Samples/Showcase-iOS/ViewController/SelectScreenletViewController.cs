@@ -6,8 +6,50 @@ namespace ShowcaseiOS.ViewController
 {
     public partial class SelectScreenletViewController : UITableViewController
     {
-        protected string[] screenlets = { "DDLFormScreenlet" };
-        protected string[] viewControllers = { "DDLFormViewController" };
+        protected string[] screenlets = 
+        { 
+            "DDLFormScreenlet", 
+            "UserPortraitScreenlet",
+            "WebContentScreenlet",
+            "AssetListScreenlet",
+            "AssetDisplayScreenlet",
+            "ImageDisplayScreenlet",
+            "PdfDisplayScreenlet",
+            "AudioDisplayScreenlet",
+            "VideoDisplayScreenlet",
+            "ImageGalleryScreenlet",
+            "CommentDisplayScreenlet",
+            "CommentAddScreenlet",
+            "CommentListScreenlet",
+        	"WebContentListScreenlet",
+        	"RatingScreenlet",
+            "BlogsScreenlet",
+            "DDLListScreenlet",
+            "WebScreenlet"
+
+        };
+
+        protected string[] viewControllers = 
+        { 
+            "DDLFormViewController",
+            "UserPortraitViewController",
+            "WebContentViewController",
+            "AssetListViewController",
+            "AssetDisplayViewController",
+            "ImageDisplayViewController",
+            "PdfDisplayViewController",
+            "AudioDisplayViewController",
+            "VideoDisplayViewController",
+            "ImageGalleryViewController",
+            "CommentDisplayViewController",
+            "CommentAddViewController",
+            "CommentListViewController",
+            "WebContentListViewController",
+            "RatingViewController",
+            "BlogsViewController",
+            "DDLListViewController",
+            "WebScreenletViewController"
+        };
 
         public SelectScreenletViewController(IntPtr handle) : base(handle) { }
 
@@ -17,11 +59,5 @@ namespace ShowcaseiOS.ViewController
 
             TableView.Source = new ScreenletsTableSource(screenlets, viewControllers, this);
         }
-
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-        }
     }
 }
-

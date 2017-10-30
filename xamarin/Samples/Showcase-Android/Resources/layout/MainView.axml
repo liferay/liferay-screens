@@ -18,6 +18,10 @@
                 android:text="@string/login"
                 style="@style/test_app_button" />
             <Button
+                android:id="@+id/login_screenlet_demo"
+                android:text="@string/login_demo"
+                style="@style/test_app_button" />
+            <Button
                 android:id="@+id/forgot_password_screenlet"
                 android:text="@string/forgot_password"
                 style="@style/test_app_button" />
@@ -28,6 +32,74 @@
             <Button
                 android:id="@+id/ddl_form_screenlet"
                 android:text="@string/ddl_form"
+                style="@style/test_app_button" />
+            <Button
+                android:id="@+id/user_portrait_screenlet"
+                android:text="@string/user_portrait"
+                style="@style/test_app_button" />
+            <Button
+                android:id="@+id/web_content_display_screenlet"
+                android:text="@string/web_content_display"
+                style="@style/test_app_button" />
+            <Button
+                android:id="@+id/asset_list_screenlet"
+                android:text="@string/asset_list"
+                style="@style/test_app_button" />
+            <Button
+                android:id="@+id/asset_display_screenlet"
+                android:text="@string/asset_display"
+                style="@style/test_app_button" />
+            <Button
+                android:id="@+id/image_display_screenlet"
+                android:text="@string/image_display"
+                style="@style/test_app_button" />
+            <Button
+                android:id="@+id/pdf_display_screenlet"
+                android:text="@string/pdf_display"
+                style="@style/test_app_button" />
+            <Button
+                android:id="@+id/audio_display_screenlet"
+                android:text="@string/audio_display"
+                style="@style/test_app_button" />
+            <Button
+                android:id="@+id/video_display_screenlet"
+                android:text="@string/video_display"
+                style="@style/test_app_button" />
+            <Button
+                android:id="@+id/image_gallery_screenlet"
+                android:text="@string/image_gallery"
+                style="@style/test_app_button" />
+            <Button
+                android:id="@+id/comment_display_screenlet"
+                android:text="@string/comment_display"
+                style="@style/test_app_button" />
+            <Button
+                android:id="@+id/comment_add_screenlet"
+                android:text="@string/comment_add"
+                style="@style/test_app_button" />
+            <Button
+                android:id="@+id/comment_list_screenlet"
+                android:text="@string/comment_list"
+                style="@style/test_app_button" />
+            <Button
+                android:id="@+id/web_content_list_screenlet"
+                android:text="@string/web_content_list"
+                style="@style/test_app_button" />
+            <Button
+                android:id="@+id/rating_screenlet"
+                android:text="@string/rating"
+                style="@style/test_app_button" />
+            <Button
+                android:id="@+id/blogs_display_screenlet"
+                android:text="@string/blogs_display"
+                style="@style/test_app_button" />
+            <Button
+                android:id="@+id/ddl_list_screenlet"
+                android:text="@string/ddl_list"
+                style="@style/test_app_button" />
+            <Button
+                android:id="@+id/web_screenlet"
+                android:text="@string/web_screenlet"
                 style="@style/test_app_button" />
         </LinearLayout>
     </ScrollView>

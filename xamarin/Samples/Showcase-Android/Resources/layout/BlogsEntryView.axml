@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.liferay.mobile.screens.blogs.BlogsEntryDisplayScreenlet
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/blogs_entry_display_screenlet"
+        app:entryId="@string/liferay_blog_entry_id" />
+</LinearLayout>

@@ -1,18 +1,9 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using System.Collections.Generic;
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using Com.Liferay.Mobile.Screens.Ddl.Form;
 using Com.Liferay.Mobile.Screens.Ddl.Model;
-using Java.Lang;
 using Org.Json;
 
 namespace ShowcaseAndroid
@@ -20,15 +11,14 @@ namespace ShowcaseAndroid
     [Activity]
     public class DDLFormActivity : Activity, IDDLFormListener
     {
-
-        private DDLFormScreenlet ddlFormScreenlet;
+        DDLFormScreenlet ddlFormScreenlet;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.DDLFormView);
 
-            ddlFormScreenlet = (DDLFormScreenlet)FindViewById(Resource.Id.ddl_form_screenlet);
+            ddlFormScreenlet = (DDLFormScreenlet) FindViewById(Resource.Id.ddl_form_screenlet);
             ddlFormScreenlet.Listener = this;
         }
 
@@ -38,20 +28,22 @@ namespace ShowcaseAndroid
             ddlFormScreenlet.Load();
         }
 
+        /* IDDLFormListener */
+
         public void Error(Java.Lang.Exception p0, string p1)
         {
-            System.Diagnostics.Debug.WriteLine($"DDLForm error: {p0}");
-		}
+            Android.Util.Log.Debug("DDLFormScreenlet", $"DDLForm error: {p0}");
+        }
 
         public void OnDDLFormDocumentUploaded(DocumentField p0, JSONObject p1)
         {
-			System.Diagnostics.Debug.WriteLine($"DDLForm document uploaded: {p0}");
-		}
+            Toast.MakeText(this, "DDLForm document uploaded: " + p0, ToastLength.Short).Show();
+        }
 
         public void OnDDLFormDocumentUploadFailed(DocumentField p0, Java.Lang.Exception p1)
         {
-			System.Diagnostics.Debug.WriteLine($"DDLForm document uploaded fail: {p0}");
-		}
+            Android.Util.Log.Debug("DDLFormScreenlet", $"DDLForm document uploaded failed: {p0}");
+        }
 
         public void OnDDLFormLoaded(Record p0)
         {
@@ -70,7 +62,7 @@ namespace ShowcaseAndroid
 
         public void OnDDLFormRecordUpdated(Record p0)
         {
-            System.Diagnostics.Debug.WriteLine($"DDLForm record updated: {p0}");
+            Toast.MakeText(this, "DDLForm record updated: " + p0, ToastLength.Short).Show();
         }
     }
 }

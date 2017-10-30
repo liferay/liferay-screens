@@ -19,25 +19,19 @@ namespace ShowcaseiOS.ViewController
             this.signUpScreenlet.Delegate = this;
         }
 
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-        }
-
         /* ISignUpScreenletDelegate */
 
         [Export("screenlet:onSignUpError:")]
         public void OnSignUpError(SignUpScreenlet screenlet, NSError error)
         {
-            System.Diagnostics.Debug.WriteLine($"Sign up failed: {error.Description}");
+            Console.WriteLine($"Sign up failed: {error.Description}");
         }
 
         [Export("screenlet:onSignUpResponseUserAttributes:")]
         public void OnSignUpResponseUserAttributes(SignUpScreenlet screenlet, NSDictionary<NSString, NSObject> attributes)
         {
-            System.Diagnostics.Debug.WriteLine($"Sign up successful: {attributes}");
+            Console.WriteLine($"Sign up successful: {attributes}");
         }
-
     }
 }
 

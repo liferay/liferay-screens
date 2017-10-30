@@ -8,7 +8,6 @@ namespace ShowcaseAndroid
     [Activity]
     public class ForgotPasswordActivity : Activity, IForgotPasswordListener
     {
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -23,12 +22,12 @@ namespace ShowcaseAndroid
 
         public void OnForgotPasswordRequestFailure(Java.Lang.Exception p0)
         {
-            Toast.MakeText(this, "Forgot password failed: " + p0.Message, ToastLength.Short).Show();
+            Android.Util.Log.Debug("ForgotPasswordScreenlet", $"Forgot password failed: {p0.Message}");
         }
 
         public void OnForgotPasswordRequestSuccess(bool p0)
         {
-            Toast.MakeText(this, "Forgot password successful: " + p0, ToastLength.Short).Show();
+            Toast.MakeText(this, "Forgot password successfully sent", ToastLength.Short).Show();
         }
     }
 }
