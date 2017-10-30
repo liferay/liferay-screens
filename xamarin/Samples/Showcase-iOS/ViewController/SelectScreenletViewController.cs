@@ -10,7 +10,7 @@ namespace ShowcaseiOS.ViewController
         { 
             "DDLFormScreenlet", 
             "UserPortraitScreenlet",
-            "WebContentScreenlet",
+            "WebContentDisplayScreenlet",
             "AssetListScreenlet",
             "AssetDisplayScreenlet",
             "ImageDisplayScreenlet",
