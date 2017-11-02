@@ -23,7 +23,6 @@ android {
 		abortOnError false
 		disable 'MissingTranslation'
 	}
-	buildToolsVersion '26.0.2'
 }
 
 dependencies {
