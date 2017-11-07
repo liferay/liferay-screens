@@ -19,6 +19,7 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 import com.liferay.mobile.screens.base.interactor.listener.CacheListener;
+import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.userportrait.UserPortraitListener;
 import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -39,12 +40,8 @@ public class UserPortraitActivity extends ThemeActivity implements UserPortraitL
 		screenlet = (UserPortraitScreenlet) findViewById(R.id.user_portrait_screenlet);
 		screenlet.setListener(this);
 		screenlet.setCacheListener(this);
-	}
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-
+		screenlet.setUserId(SessionContext.getUserId());
 		screenlet.loadLoggedUserPortrait();
 	}
 
