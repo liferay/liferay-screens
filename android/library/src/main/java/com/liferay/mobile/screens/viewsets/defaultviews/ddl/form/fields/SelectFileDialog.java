@@ -152,7 +152,7 @@ public class SelectFileDialog {
 		return entries;
 	}
 
-	interface SimpleFileDialogListener {
+	public interface SimpleFileDialogListener {
 		void onFileChosen(String path);
 	}
 }
