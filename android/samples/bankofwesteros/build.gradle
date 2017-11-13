@@ -25,12 +25,13 @@ android {
 }
 
 dependencies {
-	compile fileTree(dir: 'libs', include: ['*.jar'])
-	compile 'com.daimajia.swipelayout:library:1.2.0'
+	implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-	compile project(':liferay-westeros-viewset')
-}
+	implementation project(':liferay-screens')
+	implementation project(':liferay-westeros-viewset')
 
-repositories {
-	maven { url 'https://maven.google.com' }
+	implementation libraries.appCompat
+	implementation libraries.recyclerView
+	implementation libraries.rxpermissions
+	implementation libraries.rxbinding
 }

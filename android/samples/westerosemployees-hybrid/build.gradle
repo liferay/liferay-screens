@@ -26,8 +26,10 @@ android {
 }
 
 dependencies {
-	compile fileTree(dir: 'libs', include: ['*.jar'])
-	compile project(':liferay-westeros-viewset')
+	implementation fileTree(dir: 'libs', include: ['*.jar'])
+	implementation project(':liferay-westeros-viewset')
 
-    compile libraries.design
+	implementation libraries.design
+	implementation libraries.rxbinding
+	implementation libraries.rxpermissions
 }

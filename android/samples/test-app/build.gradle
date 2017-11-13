@@ -26,23 +26,26 @@ android {
 }
 
 dependencies {
-	compile fileTree(dir: 'libs', include: ['*.jar'])
-	compile project(':liferay-material-viewset')
-	compile project(':liferay-westeros-viewset')
-	compile project(':listbookmarkscreenlet')
-	compile project(':getuserscreenlet')
+	implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-	compile libraries.design
+	implementation project(':liferay-material-viewset')
+	implementation project(':liferay-westeros-viewset')
+	implementation project(':addbookmarkscreenlet')
+	implementation project(':listbookmarkscreenlet')
+	implementation project(':getuserscreenlet')
 
-	debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
-	releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-	testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+	implementation libraries.design
+	implementation libraries.picasso
 
-	androidTestCompile libraries.design
+	debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5'
+	releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+	testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
 
-	androidTestImplementation 'com.android.support.test:runner:1.0.0'
-	androidTestImplementation 'com.android.support.test:rules:1.0.0'
-	androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.0'
-	androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.0.0'
-	androidTestImplementation 'com.android.support.test.espresso:espresso-idling-resource:3.0.0'
+	androidTestImplementation libraries.design
+
+	androidTestImplementation 'com.android.support.test:runner:1.0.1'
+	androidTestImplementation 'com.android.support.test:rules:1.0.1'
+	androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+	androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.0.1'
+	androidTestImplementation 'com.android.support.test.espresso:espresso-idling-resource:3.0.1'
 }

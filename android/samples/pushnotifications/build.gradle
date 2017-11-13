@@ -25,11 +25,12 @@ android {
 }
 
 dependencies {
-	compile fileTree(dir: 'libs', include: ['*.jar'])
-	compile libraries.appCompat
-	compile libraries.design
+	implementation fileTree(dir: 'libs', include: ['*.jar'])
+	implementation libraries.appCompat
+	implementation libraries.design
+	implementation libraries.picasso
 
-	compile project(':liferay-material-viewset')
+	implementation project(':liferay-material-viewset')
 }
 
 apply from: '../../bintray.gradle'
