@@ -292,7 +292,6 @@
 	<declare-styleable name="WebScreenlet">
 		<attr name="layoutId"/>
 		<attr name="autoLoad"/>
-		<attr format="string" name="url"/>
 	</declare-styleable>
 
 </resources>
