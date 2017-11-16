@@ -6,7 +6,7 @@
 	>
 
 	<TextView
-		android:text="@string/login_label"
+		android:text="@string/portlet_label"
 		style="@style/label"
 		/>
 
