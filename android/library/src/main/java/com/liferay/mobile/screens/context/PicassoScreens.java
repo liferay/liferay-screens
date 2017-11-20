@@ -18,7 +18,7 @@ public class PicassoScreens {
 
 	private static volatile Picasso picasso;
 	private static volatile Picasso picassoWithoutCache;
-	private static CachePolicy cachePolicy;
+	private static CachePolicy cachePolicy = CachePolicy.REMOTE_ONLY;
 
 	private PicassoScreens() {
 		super();
