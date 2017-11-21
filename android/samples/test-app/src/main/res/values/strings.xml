@@ -35,7 +35,7 @@
 	<string name="asset_list_label">Asset List Screenlet: Shows a list of assets of a specific className.</string>
 	<string name="comment_list_label">Comment List Screenlet: Shows a list of comments of a specific asset.</string>
 	<string name="web_content_list_label">WebContent List Screenlet: Shows a list of web content of a specific folderId.</string>
-	<string name="main_activity_label">List of all the screenlets supported on version 2.0.0 of Liferay Screens.</string>
+	<string name="main_activity_label">List of all the screenlets supported on version 3.0.0 of Liferay Screens.</string>
 	<string name="customizing_a_screenlet">Customizing an screenlet</string>
 	<string name="image_gallery_label">Image Gallery Screenlet: Shows a gallery of photos from a folder in Liferay.</string>
 	<string name="add_a_bookmark">Add a Bookmark</string>
