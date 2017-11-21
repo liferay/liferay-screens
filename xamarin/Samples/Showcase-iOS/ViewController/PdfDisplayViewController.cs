@@ -13,8 +13,8 @@ namespace ShowcaseiOS.ViewController
         {
             base.ViewDidLoad();
 
-            this.pdfDisplayScreenlet.ClassPK = 38930;
-        	this.pdfDisplayScreenlet.ClassName = "com.liferay.document.library.kernel.model.DLFileEntry";
+            this.pdfDisplayScreenlet.ClassPK = LiferayServerContext.LongPropertyForKey("pdfClassPK");
+            this.pdfDisplayScreenlet.ClassName = LiferayServerContext.StringPropertyForKey("fileClassName");
 
             this.pdfDisplayScreenlet.Delegate = this;
         }

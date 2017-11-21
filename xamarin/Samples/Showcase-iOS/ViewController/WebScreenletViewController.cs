@@ -15,19 +15,20 @@ namespace ShowcaseiOS.ViewController
 
             webScreenlet.AutoLoad = false;
 
-            var config = new WebScreenletConfigurationBuilder("/web/westeros-hybrid/documents")
+            var url = LiferayServerContext.StringPropertyForKey("webScreenletUrl");
+
+            var config = new WebScreenletConfigurationBuilder(url)
                     .AddJsWithLocalFile("js/js_master")
                     .AddCssWithLocalFile("css/css_master")
                     .Load();
 
             webScreenlet.Configuration = config;
-            webScreenlet.Delegate = this;
 
+            webScreenlet.Delegate = this;
             webScreenlet.Load();
         }
 
-        /* WebScreenletDelegate */
-
+        /* IWebScreenletDelegate */
 
         [Export("onWebLoad:url:")]
         public virtual void OnWebLoad(WebScreenlet screenlet, string url)

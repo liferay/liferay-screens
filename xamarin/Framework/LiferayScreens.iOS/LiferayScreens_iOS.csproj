@@ -207,6 +207,7 @@
     <ObjcBindingApiDefinition Include="Base\MBProgressHUDPresenter.cs" />
     <ObjcBindingApiDefinition Include="Base\MBProgressHUD.cs" />
     <ObjcBindingApiDefinition Include="Themes\Default\CustomViews\DefaultTextField.cs" />
+    <ObjcBindingApiDefinition Include="Context\LiferayServerContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="Structs.cs" />

@@ -13,10 +13,8 @@ namespace ShowcaseiOS.ViewController
         {
             base.ViewDidLoad();
 
-            this.blogsDisplayScreenlet.ClassPK = 40515;
-
             //FIXME: BlogsEntryDisplayScreenlet doesn't work if the blog has images in its body
-            //this.blogsDisplayScreenlet.ClassPK = 57546;
+            this.blogsDisplayScreenlet.ClassPK = LiferayServerContext.LongPropertyForKey("blogClassPK");
 
             this.blogsDisplayScreenlet.Delegate = this;
         }
