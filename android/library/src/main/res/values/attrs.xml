@@ -123,7 +123,7 @@
 		<attr format="string" name="filePrefix"/>
 		<attr format="string" name="repositoryId"/>
 		<attr name="folderId"/>
-		<attr format="boolean" name="showSubmitButton"/>
+		<attr format="boolean" name="updateEnabled"/>
 		<attr format="reference" name="checkboxFieldLayoutId"/>
 		<attr format="reference" name="dateFieldLayoutId"/>
 		<attr format="reference" name="numberFieldLayoutId"/>
