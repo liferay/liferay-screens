@@ -62,6 +62,7 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 	protected ViewGroup fieldsContainerView;
 	protected Button submitButton;
 	private BaseScreenlet screenlet;
+	private View submitContainerView;
 
 	public DDLFormView(Context context) {
 		super(context);
@@ -144,7 +145,14 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 				break;
 			default:
 				progressBar.setVisibility(VISIBLE);
+				loadingFormProgressBar.setVisibility(GONE);
 				break;
+		}
+
+		if (!getDDLFormScreenlet().isUpdateEnabled()) {
+			if (submitContainerView != null) {
+				findViewById(R.id.liferay_submit_container).setVisibility(GONE);
+			}
 		}
 	}
 
@@ -217,7 +225,7 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 			addFieldView(record.getField(i), i);
 		}
 
-		int visibility = getDDLFormScreenlet().isShowSubmitButton() ? VISIBLE : INVISIBLE;
+		int visibility = getDDLFormScreenlet().isUpdateEnabled() ? VISIBLE : GONE;
 		submitButton.setVisibility(visibility);
 
 		DefaultAnimation.showViewWithReveal(fieldsContainerView);
@@ -248,8 +256,11 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 	}
 
 	protected void showRecordValues() {
+		boolean isUpdatingEnabled = getDDLFormScreenlet().isUpdateEnabled();
+
 		for (int i = 0; i < fieldsContainerView.getChildCount(); i++) {
 			DDLFieldViewModel viewModel = (DDLFieldViewModel) fieldsContainerView.getChildAt(i);
+			viewModel.setUpdateMode(isUpdatingEnabled);
 			viewModel.refresh();
 		}
 	}
@@ -261,7 +272,8 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 	protected void addFieldView(Field field, int position) {
 
 		boolean containsKey = customLayoutIds.containsKey(field.getName());
-		int layoutId = containsKey ? getCustomFieldLayoutId(field.getName()) : getFieldLayoutId(field.getEditorType());
+		int layoutId = containsKey ? getCustomFieldLayoutId(field.getName())
+			: getFieldLayoutId(field.getEditorType());
 
 		View view = LayoutInflater.from(getContext()).inflate(layoutId, this, false);
 		DDLFieldViewModel viewModel = (DDLFieldViewModel) view;
@@ -282,8 +294,11 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 		submitButton = (Button) findViewById(R.id.liferay_form_submit);
 		submitButton.setOnClickListener(this);
 
+		submitContainerView = findViewById(R.id.liferay_submit_container);
+
 		progressBar = (ProgressBar) findViewById(R.id.ddlform_progress_bar);
-		loadingFormProgressBar = (ProgressBar) findViewById(R.id.ddlform_loading_screen_progress_bar);
+		loadingFormProgressBar =
+			(ProgressBar) findViewById(R.id.ddlform_loading_screen_progress_bar);
 	}
 
 	private DDLFieldViewModel findFieldView(Field field) {
