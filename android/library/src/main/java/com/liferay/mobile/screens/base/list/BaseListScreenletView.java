@@ -182,6 +182,22 @@ public abstract class BaseListScreenletView<E extends Parcelable, H extends Base
 
 		super.onRestoreInstanceState(superState);
 
+		restoreState(state);
+	}
+
+	@Override
+	protected Parcelable onSaveInstanceState() {
+		Parcelable superState = super.onSaveInstanceState();
+
+		Bundle state = new Bundle();
+		state.putParcelable(STATE_SUPER, superState);
+
+		saveState(state);
+
+		return state;
+	}
+
+	protected void restoreState(Bundle state) {
 		List<E> entries = state.getParcelableArrayList(STATE_ENTRIES);
 
 		A adapter = getAdapter();
@@ -196,22 +212,14 @@ public abstract class BaseListScreenletView<E extends Parcelable, H extends Base
 		firstRow = state.getInt(STATE_FIRST_ROW);
 	}
 
-	@Override
-	protected Parcelable onSaveInstanceState() {
-		Parcelable superState = super.onSaveInstanceState();
-
+	protected void saveState(Bundle state) {
 		A adapter = getAdapter();
 		ArrayList<E> entries = (ArrayList<E>) adapter.getEntries();
-
-		Bundle state = new Bundle();
 		state.putParcelableArrayList(STATE_ENTRIES, entries);
 		state.putSerializable(STATE_ROW_COUNT, adapter.getItemCount());
-		state.putParcelable(STATE_SUPER, superState);
 		state.putStringArrayList(STATE_LABEL_FIELDS,
 			(ArrayList<String>) ((BaseListScreenlet) getScreenlet()).getLabelFields());
 		state.putInt(STATE_FIRST_ROW, firstRow);
-
-		return state;
 	}
 
 	@Override
