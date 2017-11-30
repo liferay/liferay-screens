@@ -101,6 +101,11 @@ public class CustomRatingNumberView extends LinearLayout
 	}
 
 	@Override
+	public void setUpdateMode(boolean enabled) {
+		ratingBar.setEnabled(enabled);
+	}
+
+	@Override
 	public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
 		if (!fromUser) {
 			return;

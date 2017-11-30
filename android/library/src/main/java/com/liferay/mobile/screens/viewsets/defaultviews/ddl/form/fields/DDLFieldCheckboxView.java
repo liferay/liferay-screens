@@ -92,6 +92,11 @@ public class DDLFieldCheckboxView extends LinearLayout
 	}
 
 	@Override
+	public void setUpdateMode(boolean enabled) {
+		switchCompat.setEnabled(enabled);
+	}
+
+	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		field.setCurrentValue(isChecked);
 	}
