@@ -17,7 +17,7 @@ public class DocumentRemoteFile extends DocumentFile {
 		JSONObject jsonObject = new JSONObject(json);
 
 		uuid = jsonObject.getString("uuid");
-		version = jsonObject.getInt("version");
+		version = jsonObject.optInt("version");
 		groupId = jsonObject.getInt("groupId");
 
 		// this is empty if we're retrieving the record
