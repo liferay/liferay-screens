@@ -58,4 +58,6 @@ public interface DDLFieldViewModel<T extends Field> {
 	 * Sets the DDL field position in parent view.
 	 */
 	void setPositionInParent(int position);
+
+	void setUpdateMode(boolean enabled);
 }

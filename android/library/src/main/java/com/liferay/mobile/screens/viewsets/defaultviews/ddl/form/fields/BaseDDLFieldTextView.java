@@ -130,6 +130,11 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 	}
 
 	@Override
+	public void setUpdateMode(boolean enabled) {
+		textEditText.setEnabled(enabled);
+	}
+
+	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 

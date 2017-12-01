@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 
 # Develop
 
+## Android
+
+### New features
+* Add preview mode in DDLForm (breaking change)
+
 ## Xamarin
 
 ### Refactor

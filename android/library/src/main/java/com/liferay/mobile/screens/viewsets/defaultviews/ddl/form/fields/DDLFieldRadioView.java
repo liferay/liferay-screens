@@ -131,6 +131,11 @@ public class DDLFieldRadioView extends RadioGroup
 	}
 
 	@Override
+	public void setUpdateMode(boolean enabled) {
+		setEnabled(enabled);
+	}
+
+	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		RadioButton radioButton = (RadioButton) buttonView;
 
