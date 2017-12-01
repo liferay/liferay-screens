@@ -25,6 +25,7 @@ public class DDLFormDocumentUploadInteractor
 		Context context = LiferayScreensContext.getContext();
 		Intent service = new Intent(context, UploadService.class);
 		service.putExtra("file", event.getDocumentField());
+		service.putExtra("groupId", event.getGroupId());
 		service.putExtra("userId", event.getUserId());
 		service.putExtra("folderId", event.getFolderId());
 		service.putExtra("repositoryId", event.getRepositoryId());
