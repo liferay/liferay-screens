@@ -140,6 +140,7 @@
     <Compile Include="Activities\DDLListActivity.cs" />
     <Compile Include="Activities\WebScreenletActivity.cs" />
     <Compile Include="Activities\LoginDemoActivity.cs" />
+    <Compile Include="CustomViews\LoginCheckPasswordView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -177,12 +178,14 @@
     <AndroidResource Include="Resources\layout\LoginDemoView.axml" />
     <AndroidResource Include="Resources\values\Colors.xml" />
     <AndroidResource Include="Resources\values\server_context.xml" />
+    <AndroidResource Include="Resources\layout\login_password.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
     <Folder Include="Activities\" />
     <Folder Include="Assets\" />
     <Folder Include="Resources\raw\" />
+    <Folder Include="CustomViews\" />
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>

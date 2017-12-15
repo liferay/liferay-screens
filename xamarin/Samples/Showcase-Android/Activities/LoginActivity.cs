@@ -19,6 +19,7 @@ namespace ShowcaseAndroid
             loginScreenlet = (LoginScreenlet) FindViewById(Resource.Id.login_screenlet);
             loginScreenlet.Listener = this;
 
+            //Comment this method if you want to test LoginCheckPasswordView
             setDefaultValues();
         }
 
