@@ -71,24 +71,21 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 		super(context, attrs, defStyleAttr);
 	}
 
-	public ImageGalleryScreenlet(Context context, AttributeSet attrs, int defStyleAttr,
-		int defStyleRes) {
+	public ImageGalleryScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
 
-		TypedArray typedArray = context.getTheme()
-			.obtainStyledAttributes(attributes, R.styleable.ImageGalleryScreenlet, 0, 0);
+		TypedArray typedArray =
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.ImageGalleryScreenlet, 0, 0);
 
 		PicassoScreens.setCachePolicy(this.cachePolicy);
 
-		repositoryId =
-			castToLong(typedArray.getString(R.styleable.ImageGalleryScreenlet_repositoryId));
+		repositoryId = castToLong(typedArray.getString(R.styleable.ImageGalleryScreenlet_repositoryId));
 		folderId = castToLong(typedArray.getString(R.styleable.ImageGalleryScreenlet_folderId));
-		mimeTypes =
-			parseMimeTypes(typedArray.getString(R.styleable.ImageGalleryScreenlet_mimeTypes));
+		mimeTypes = parseMimeTypes(typedArray.getString(R.styleable.ImageGalleryScreenlet_mimeTypes));
 
 		typedArray.recycle();
 
@@ -121,8 +118,7 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 	 * Deletes the image associated with the given `fileEntryId`.
 	 */
 	public void deleteEntry(long fileEntryId) {
-		ImageGalleryDeleteInteractor imageGalleryDeleteInteractor =
-			new ImageGalleryDeleteInteractor();
+		ImageGalleryDeleteInteractor imageGalleryDeleteInteractor = new ImageGalleryDeleteInteractor();
 		imageGalleryDeleteInteractor.start(new ImageGalleryEvent(new ImageEntry(fileEntryId)));
 	}
 
@@ -144,8 +140,8 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 	 * Opens the device camera to upload a new photo.
 	 */
 	public void openCamera() {
-		MediaStoreRequestShadowActivity.show(getContext(),
-			MediaStoreRequestShadowActivity.TAKE_PICTURE_WITH_CAMERA, new MediaStoreCallback(){
+		MediaStoreRequestShadowActivity.show(getContext(), MediaStoreRequestShadowActivity.TAKE_PICTURE_WITH_CAMERA,
+			new MediaStoreCallback() {
 
 				@Override
 				public void onUriReceived(Uri uri) {
@@ -158,8 +154,8 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 	 * Opens the device image gallery to upload a new photo.
 	 */
 	public void openGallery() {
-		MediaStoreRequestShadowActivity.show(getContext(),
-			MediaStoreRequestShadowActivity.SELECT_IMAGE_FROM_GALLERY, new MediaStoreCallback(){
+		MediaStoreRequestShadowActivity.show(getContext(), MediaStoreRequestShadowActivity.SELECT_IMAGE_FROM_GALLERY,
+			new MediaStoreCallback() {
 
 				@Override
 				public void onUriReceived(Uri uri) {
@@ -189,8 +185,7 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 	public void onPictureUriReceived(Uri pictureUri) {
 		int uploadDetailViewLayout = 0;
 		if (getListener() != null) {
-			boolean showed =
-				getListener().showUploadImageView(UPLOAD_IMAGE, pictureUri, getScreenletId());
+			boolean showed = getListener().showUploadImageView(UPLOAD_IMAGE, pictureUri, getScreenletId());
 
 			if (showed) {
 				return;
@@ -235,8 +230,7 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 	}
 
 	@Override
-	public void onPictureUploadInformationReceived(Uri pictureUri, String title, String description,
-		String changelog) {
+	public void onPictureUploadInformationReceived(Uri pictureUri, String title, String description, String changelog) {
 		getViewModel().imageUploadStart(pictureUri);
 
 		ImageGalleryUploadInteractor imageGalleryUploadInteractor = getUploadInteractor();
@@ -349,10 +343,8 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 	}
 
 	private View inflateView(@LayoutRes int uploadDetailView, Context context) {
-		ContextThemeWrapper ctx =
-			new ContextThemeWrapper(context, R.style.default_transparent_theme);
-		int view =
-			uploadDetailView == 0 ? R.layout.default_upload_detail_activity : uploadDetailView;
+		ContextThemeWrapper ctx = new ContextThemeWrapper(context, R.style.default_transparent_theme);
+		int view = uploadDetailView == 0 ? R.layout.default_upload_detail_activity : uploadDetailView;
 		return LayoutInflater.from(ctx).inflate(view, null, false);
 	}
 
@@ -360,8 +352,7 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 		if (uploadInteractors.containsKey(UPLOAD_IMAGE)) {
 			return uploadInteractors.get(UPLOAD_IMAGE);
 		}
-		ImageGalleryUploadInteractor imageGalleryUploadInteractor =
-			new ImageGalleryUploadInteractor();
+		ImageGalleryUploadInteractor imageGalleryUploadInteractor = new ImageGalleryUploadInteractor();
 		decorateInteractor(UPLOAD_IMAGE, imageGalleryUploadInteractor);
 		uploadInteractors.put(UPLOAD_IMAGE, imageGalleryUploadInteractor);
 		imageGalleryUploadInteractor.onScreenletAttached(this);

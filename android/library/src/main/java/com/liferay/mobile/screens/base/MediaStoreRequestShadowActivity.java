@@ -83,8 +83,7 @@ public class MediaStoreRequestShadowActivity extends Activity {
 	}
 
 	private void openGallery() {
-		Intent galleryIntent =
-			new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+		Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 		startActivityForResult(galleryIntent, mediaStoreType);
 	}
 
@@ -93,8 +92,7 @@ public class MediaStoreRequestShadowActivity extends Activity {
 
 		if (cameraIntent.resolveActivity(getPackageManager()) != null) {
 			File imageFile = FileUtil.createImageFile();
-			fileUri = FileProvider.getUriForFile(this, getPackageName() + ".screens.fileprovider",
-				imageFile);
+			fileUri = FileProvider.getUriForFile(this, getPackageName() + ".screens.fileprovider", imageFile);
 			cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
 			startActivityForResult(cameraIntent, mediaStoreType);
 		}
@@ -105,8 +103,7 @@ public class MediaStoreRequestShadowActivity extends Activity {
 
 		if (cameraIntent.resolveActivity(getPackageManager()) != null) {
 			File videoFile = FileUtil.createVideoFile();
-			fileUri = FileProvider.getUriForFile(this, getPackageName() + ".screens.fileprovider",
-				videoFile);
+			fileUri = FileProvider.getUriForFile(this, getPackageName() + ".screens.fileprovider", videoFile);
 			cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
 			startActivityForResult(cameraIntent, mediaStoreType);
 		}
