@@ -81,10 +81,6 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 		refresh();
 	}
 
-	@Override
-	public void setPositionInParent(int position) {
-	}
-
 	protected int getDatePickerStyle() {
 		return R.style.default_date_picker;
 	}

@@ -90,15 +90,6 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 	}
 
 	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-
-		if (resultCode == RESULT_OK) {
-			screenlet.startUploadByPosition(requestCode);
-		}
-	}
-
-	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		outState.putBoolean(STATE_LOADED, loaded);

@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.ddl.form.service;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.net.Uri;
 import android.webkit.MimeTypeMap;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
@@ -27,6 +28,7 @@ import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.util.ServiceProvider;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -74,10 +76,12 @@ public class UploadService extends IntentService {
 
 		try {
 			JSONObject jsonObject =
-				uploadFile(file, userId, groupId, repositoryId, folderId, filePrefix, connectionTimeout);
+				uploadFile(file, userId, groupId, repositoryId, folderId, filePrefix,
+					connectionTimeout);
 
 			DDLFormDocumentUploadEvent event =
-				new DDLFormDocumentUploadEvent(file, repositoryId, folderId, filePrefix, connectionTimeout, jsonObject);
+				new DDLFormDocumentUploadEvent(file, repositoryId, folderId, filePrefix,
+					connectionTimeout, jsonObject);
 			decorateEvent(event, groupId, userId, null, targetScreenletId, actionName);
 			EventBusUtil.post(event);
 		} catch (Exception e) {
@@ -88,11 +92,12 @@ public class UploadService extends IntentService {
 		}
 	}
 
-	public JSONObject uploadFile(DocumentField file, Long userId, Long groupId, Long repositoryId, Long folderId,
-		String filePrefix, Integer connectionTimeout) throws Exception {
+	public JSONObject uploadFile(DocumentField file, Long userId, Long groupId, Long repositoryId,
+		Long folderId, String filePrefix, Integer connectionTimeout) throws Exception {
 		String path = file.getCurrentValue().toString();
 		String name = path.substring(path.lastIndexOf('/') + 1);
 		String date = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
+		Uri uri = Uri.parse(path);
 
 		Session session = SessionContext.createSessionFromCurrentSession();
 		session.setConnectionTimeout(connectionTimeout);
@@ -101,31 +106,27 @@ public class UploadService extends IntentService {
 
 		JSONObjectWrapper serviceContextWrapper = getJsonObjectWrapper(userId, groupId);
 
+		InputStream inputStream = getContentResolver().openInputStream(uri);
+
 		String fileName = (filePrefix == null ? "" : filePrefix) + date + "_" + name;
 
-		return dlAppConnector.addFileEntry(repositoryId, folderId, name, getMimeType(path), fileName, "", "",
-			getBytes(new File(path)), serviceContextWrapper);
+		return dlAppConnector.addFileEntry(repositoryId, folderId, name, getMimeType(path),
+			fileName, "", "", readBytes(inputStream), serviceContextWrapper);
 	}
 
-	private byte[] getBytes(File file) throws IOException {
-		byte[] buffer = new byte[(int) file.length()];
-		InputStream ios = null;
-		try {
-			ios = new FileInputStream(file);
-			if (ios.read(buffer) == -1) {
-				throw new IOException("EOF reached while trying to read the whole file");
-			}
-		} finally {
-			try {
-				if (ios != null) {
-					ios.close();
-				}
-			} catch (IOException e) {
-				LiferayLogger.e("Error closing stream", e);
-			}
+
+	public byte[] readBytes(InputStream inputStream) throws IOException {
+		ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
+
+		int bufferSize = 1024;
+		byte[] buffer = new byte[bufferSize];
+
+		int len = 0;
+		while ((len = inputStream.read(buffer)) != -1) {
+			byteBuffer.write(buffer, 0, len);
 		}
 
-		return buffer;
+		return byteBuffer.toByteArray();
 	}
 
 	private JSONObjectWrapper getJsonObjectWrapper(Long userId, Long groupId) throws JSONException {
@@ -135,8 +136,8 @@ public class UploadService extends IntentService {
 		return new JSONObjectWrapper(serviceContextAttributes);
 	}
 
-	private void decorateEvent(CacheEvent event, long groupId, long userId, Locale locale, int targetScreenletId,
-		String actionName) {
+	private void decorateEvent(CacheEvent event, long groupId, long userId, Locale locale,
+		int targetScreenletId, String actionName) {
 		event.setGroupId(groupId);
 		event.setUserId(userId);
 		event.setLocale(locale);

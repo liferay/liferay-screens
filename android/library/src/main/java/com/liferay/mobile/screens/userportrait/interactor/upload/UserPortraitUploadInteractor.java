@@ -3,7 +3,6 @@ package com.liferay.mobile.screens.userportrait.interactor.upload;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import com.liferay.mobile.screens.base.MediaStoreEvent;
 import com.liferay.mobile.screens.base.interactor.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
@@ -90,9 +89,5 @@ public class UserPortraitUploadInteractor
 		} catch (IOException e) {
 			LiferayLogger.e("Error invalidating cache", e);
 		}
-	}
-
-	public void onEvent(MediaStoreEvent event) {
-		getListener().onPictureUriReceived(event.getFileUri());
 	}
 }

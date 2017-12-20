@@ -126,11 +126,6 @@ public class DDLFieldRadioView extends RadioGroup
 	}
 
 	@Override
-	public void setPositionInParent(int position) {
-
-	}
-
-	@Override
 	public void setUpdateMode(boolean enabled) {
 		setEnabled(enabled);
 	}

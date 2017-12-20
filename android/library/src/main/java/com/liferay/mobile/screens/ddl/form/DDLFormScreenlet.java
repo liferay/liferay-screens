@@ -154,13 +154,6 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 	}
 
 	/**
-	 * Starts uploading document from position.
-	 */
-	public void startUploadByPosition(int position) {
-		startUpload((DocumentField) record.getField(position));
-	}
-
-	/**
 	 * Starts uploading document from field.
 	 */
 	public void startUpload(DocumentField field) {

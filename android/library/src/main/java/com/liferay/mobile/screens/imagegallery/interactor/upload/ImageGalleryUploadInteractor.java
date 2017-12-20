@@ -2,7 +2,6 @@ package com.liferay.mobile.screens.imagegallery.interactor.upload;
 
 import android.content.Intent;
 import android.net.Uri;
-import com.liferay.mobile.screens.base.MediaStoreEvent;
 import com.liferay.mobile.screens.base.interactor.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.imagegallery.interactor.ImageGalleryEvent;
@@ -48,10 +47,6 @@ public class ImageGalleryUploadInteractor
 	@Override
 	public void onFailure(ImageGalleryEvent event) {
 		getListener().error(event.getException(), getActionName());
-	}
-
-	public void onEventMainThread(MediaStoreEvent event) {
-		getListener().onPictureUriReceived(event.getFileUri());
 	}
 
 	public void onEventMainThread(ImageGalleryProgress event) {

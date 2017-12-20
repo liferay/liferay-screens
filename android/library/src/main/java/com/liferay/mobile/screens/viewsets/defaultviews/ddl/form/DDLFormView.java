@@ -237,9 +237,11 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 			if (getDDLFormScreenlet().validateForm()) {
 				getDDLFormScreenlet().submitForm();
 			}
-		} else {
-			getDDLFormScreenlet().startUpload((DocumentField) view.getTag());
 		}
+	}
+
+	public void startUploadField(DocumentField field) {
+		getDDLFormScreenlet().startUpload(field);
 	}
 
 	protected void clearFormFields() {
@@ -280,7 +282,6 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 
 		viewModel.setField(field);
 		viewModel.setParentView(this);
-		viewModel.setPositionInParent(position);
 
 		fieldsContainerView.addView(view);
 	}
