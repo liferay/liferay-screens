@@ -27,6 +27,7 @@ import android.widget.ProgressBar;
 import com.jakewharton.rxbinding.view.RxView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity;
+import com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity.MediaStoreCallback;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
@@ -162,15 +163,24 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 
 	@NonNull
 	private Action1<Boolean> chooseFile() {
-		return result -> {
-			if (result) {
-				fileDialog = new SelectFileDialog().createDialog(getContext(), path -> {
-					startUpload(Uri.fromFile(new File(path)));
-					choseOriginDialog.dismiss();
-				});
-				fileDialog.show();
+		return new Action1<Boolean>() {
+			@Override
+			public void call(Boolean result) {
+				if (result) {
+					fileDialog =
+						new SelectFileDialog().createDialog(DDLDocumentFieldView.this.getContext(),
+							new SelectFileDialog.SimpleFileDialogListener() {
+								@Override
+								public void onFileChosen(String path) {
+									DDLDocumentFieldView.this.startUpload(
+										Uri.fromFile(new File(path)));
+									choseOriginDialog.dismiss();
+								}
+							});
+					fileDialog.show();
+				}
+				choseOriginDialog.dismiss();
 			}
-			choseOriginDialog.dismiss();
 		};
 	}
 
@@ -182,7 +192,12 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 				if (result) {
 
 					MediaStoreRequestShadowActivity.show(getContext(), mediaStore,
-						DDLDocumentFieldView.this::startUpload);
+						new MediaStoreCallback() {
+							@Override
+							public void onUriReceived(Uri uri) {
+								DDLDocumentFieldView.this.startUpload(uri);
+							}
+						});
 				}
 				choseOriginDialog.dismiss();
 			}

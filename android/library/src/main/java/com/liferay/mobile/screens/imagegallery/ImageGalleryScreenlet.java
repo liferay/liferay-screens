@@ -25,6 +25,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity;
+import com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity.MediaStoreCallback;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
@@ -144,7 +145,13 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 	 */
 	public void openCamera() {
 		MediaStoreRequestShadowActivity.show(getContext(),
-			MediaStoreRequestShadowActivity.TAKE_PICTURE_WITH_CAMERA, this::onPictureUriReceived);
+			MediaStoreRequestShadowActivity.TAKE_PICTURE_WITH_CAMERA, new MediaStoreCallback(){
+
+				@Override
+				public void onUriReceived(Uri uri) {
+					onPictureUriReceived(uri);
+				}
+			});
 	}
 
 	/**
@@ -152,7 +159,13 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 	 */
 	public void openGallery() {
 		MediaStoreRequestShadowActivity.show(getContext(),
-			MediaStoreRequestShadowActivity.SELECT_IMAGE_FROM_GALLERY, this::onPictureUriReceived);
+			MediaStoreRequestShadowActivity.SELECT_IMAGE_FROM_GALLERY, new MediaStoreCallback(){
+
+				@Override
+				public void onUriReceived(Uri uri) {
+					onPictureUriReceived(uri);
+				}
+			});
 	}
 
 	/**
