@@ -48,7 +48,6 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 	protected ProgressBar progressBar;
 	protected AlertDialog choseOriginDialog;
 	protected AlertDialog fileDialog;
-	private int positionInForm;
 
 	public DDLDocumentFieldView(Context context) {
 		super(context);
@@ -91,10 +90,6 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 		}
 	}
 
-	@Override
-	public void setPositionInParent(int position) {
-		positionInForm = position;
-	}
 
 	@Override
 	protected void onDetachedFromWindow() {

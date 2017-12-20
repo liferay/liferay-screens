@@ -282,7 +282,6 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 
 		viewModel.setField(field);
 		viewModel.setParentView(this);
-		viewModel.setPositionInParent(position);
 
 		fieldsContainerView.addView(view);
 	}
