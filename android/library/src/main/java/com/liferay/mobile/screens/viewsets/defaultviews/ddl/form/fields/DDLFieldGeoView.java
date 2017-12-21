@@ -60,15 +60,9 @@ public class DDLFieldGeoView extends LinearLayout implements DDLFieldViewModel<G
 	public void setField(GeolocationField field) {
 		this.field = field;
 
-		if (this.field.isShowLabel()) {
-			if (labelTextView != null) {
-				labelTextView.setText(this.field.getLabel());
-				labelTextView.setVisibility(VISIBLE);
-			}
-		} else {
-			if (labelTextView != null) {
-				labelTextView.setVisibility(GONE);
-			}
+		if (labelTextView != null) {
+			labelTextView.setVisibility(this.field.isShowLabel() ? VISIBLE : GONE);
+			labelTextView.setText(this.field.getLabel());
 		}
 
 		refresh();
