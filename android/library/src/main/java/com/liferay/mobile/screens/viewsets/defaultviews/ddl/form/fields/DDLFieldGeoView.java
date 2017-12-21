@@ -143,11 +143,7 @@ public class DDLFieldGeoView extends LinearLayout implements DDLFieldViewModel<G
 	}
 
 	private double castToDoubleOrDefault(String value, double defaultValue) {
-		if (value.isEmpty()) {
-			return defaultValue;
-		}
-
-		if ("-".equals(value)) {
+		if (value.isEmpty() || "-".equals(value)) {
 			return defaultValue;
 		}
 
