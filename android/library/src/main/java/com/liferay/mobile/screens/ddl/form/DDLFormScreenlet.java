@@ -454,6 +454,9 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 		setFieldLayoutId(viewModel, typedArray, Field.EditorType.DOCUMENT,
 			R.styleable.DDLFormScreenlet_documentFieldLayoutId);
 
+		setFieldLayoutId(viewModel, typedArray, Field.EditorType.GEO,
+			R.styleable.DDLFormScreenlet_geoFieldLayoutId);
+
 		typedArray.recycle();
 
 		return view;
