@@ -25,9 +25,8 @@ import java.text.ParseException;
 
 public class DDLFieldGeoView extends LinearLayout implements DDLFieldViewModel<GeolocationField>, TextWatcher {
 
-
-	public static final double INVALID_LATITUDE = -91;
-	public static final double INVALID_LONGITUDE = -181;
+	public static final double INVALID_LATITUDE = 90 + 1;
+	public static final double INVALID_LONGITUDE = 180 + 1;
 	protected GeolocationField field;
 	protected TextView labelTextView;
 	protected EditText latitudeEditText;
