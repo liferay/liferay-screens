@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 ### New features
 * Add preview mode in DDLForm (breaking change)
 * Refactor shadow activity to request media, and use it in UserPortrait and DDLFormScreenlet
+* Support Geolocation field in DDLFormScreenlet
 
 ## Xamarin
 

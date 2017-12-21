@@ -23,8 +23,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.w3c.dom.Element;
 
 /**
@@ -307,7 +305,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 	public enum DataType {
 		BOOLEAN("boolean"), STRING("string"), HTML("html"), DATE("date"), NUMBER("number"), IMAGE("image"), DOCUMENT(
-			"document-library"), UNSUPPORTED(null);
+			"document-library"), GEO("geolocation"), UNSUPPORTED(null);
 
 		private final String value;
 
@@ -378,6 +376,8 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 				return new DocumentField(attributes, locale, defaultLocale);
 			} else if (IMAGE.equals(this)) {
 				return new ImageField(attributes, locale, defaultLocale);
+			} else if (GEO.equals(this)) {
+				return new GeolocationField(attributes, locale, defaultLocale);
 			}
 			return null;
 		}
@@ -392,7 +392,8 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		CHECKBOX("checkbox"), TEXT("text"), TEXT_AREA("textarea", "paragraph", "ddm-text-html"), DATE("ddm-date",
 			"date"), NUMBER("ddm-number", "number", "numeric"), INTEGER("ddm-integer", "integer"), DECIMAL(
 			"ddm-decimal", "decimal"), SELECT("select", "checkbox_multiple"), RADIO("radio"), DOCUMENT(
-			"ddm-documentlibrary", "documentlibrary", "wcm-image"), UNSUPPORTED("");
+			"ddm-documentlibrary", "documentlibrary", "wcm-image"), GEO("ddm-geolocation", "geolocation"), UNSUPPORTED(
+			"");
 
 		private final String[] values;
 

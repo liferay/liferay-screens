@@ -68,4 +68,6 @@
 	</string-array>
 
 	<string name="default_class_name_id_user">20087</string>
+	<string name="latitude">latitude:</string>
+	<string name="longitude">longitude:</string>
 </resources>

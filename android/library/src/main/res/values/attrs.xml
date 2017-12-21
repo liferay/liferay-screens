@@ -132,6 +132,7 @@
 		<attr format="reference" name="textFieldLayoutId"/>
 		<attr format="reference" name="textAreaFieldLayoutId"/>
 		<attr format="reference" name="documentFieldLayoutId"/>
+		<attr format="reference" name="geoFieldLayoutId"/>
 	</declare-styleable>
 
 	<declare-styleable name="DDLListScreenlet">

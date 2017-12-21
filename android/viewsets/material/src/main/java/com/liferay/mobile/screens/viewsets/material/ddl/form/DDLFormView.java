@@ -24,6 +24,8 @@ public class DDLFormView extends com.liferay.mobile.screens.viewsets.defaultview
 		MATERIAL_LAYOUT_IDS.put(Field.EditorType.TEXT, R.layout.ddlfield_text_default);
 		MATERIAL_LAYOUT_IDS.put(Field.EditorType.TEXT_AREA, R.layout.ddlfield_text_area_default);
 		MATERIAL_LAYOUT_IDS.put(Field.EditorType.DOCUMENT, R.layout.ddlfield_document_material);
+		MATERIAL_LAYOUT_IDS.put(Field.EditorType.GEO, R.layout.ddlfield_geo_default);
+
 	}
 
 	public DDLFormView(Context context) {
