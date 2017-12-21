@@ -108,10 +108,6 @@ public class DDLFieldGeoView extends LinearLayout implements DDLFieldViewModel<G
 		this.parentView = view;
 	}
 
-	@Override
-	public void setPositionInParent(int position) {
-
-	}
 
 	@Override
 	public void setUpdateMode(boolean enabled) {
