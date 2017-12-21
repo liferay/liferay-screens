@@ -17,7 +17,6 @@ import com.liferay.mobile.screens.ddl.model.GeoLocation;
 import com.liferay.mobile.screens.ddl.model.GeolocationField;
 import com.liferay.mobile.screens.util.LiferayLocale;
 import java.text.NumberFormat;
-import java.text.ParseException;
 
 /**
  * @author Víctor Galán Grande
@@ -100,7 +99,6 @@ public class DDLFieldGeoView extends LinearLayout implements DDLFieldViewModel<G
 	public void setParentView(View view) {
 		this.parentView = view;
 	}
-
 
 	@Override
 	public void setUpdateMode(boolean enabled) {
