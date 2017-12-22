@@ -118,6 +118,10 @@ public abstract class BaseInteractor<L, E extends BasicEvent> implements Interac
 	}
 
 	protected boolean isCookieSessionAndAuthenticationError(Exception e) {
+		if (!SessionContext.isLoggedIn()) {
+			return false;
+		}
+
 		return getSession().getAuthentication() instanceof CookieAuthentication
 			&& e != null
 			&& e.getMessage() != null
