@@ -3,6 +3,14 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# 2.1.5
+
+## Android
+### Bugs
+
+* version is not always present in a DDMDocumentField
+
+
 # 2.1.0
 
 <!-- Possible categories for the changes: Bugs, New features, Refactor, Documentation, Samples, Deprecated, Contributions -->
