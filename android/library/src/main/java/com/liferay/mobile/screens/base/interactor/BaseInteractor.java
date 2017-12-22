@@ -120,8 +120,16 @@ public abstract class BaseInteractor<L, E extends BasicEvent> implements Interac
 	}
 
 	protected boolean isCookieSessionAndAuthenticationError(Exception e) {
-		return e.getMessage().contains("Response code: 403")
-			&& getSession().getAuthentication() instanceof CookieAuthentication;
+
+		if (!SessionContext.isLoggedIn()) {
+			return false;
+		}
+
+		return getSession().getAuthentication() instanceof CookieAuthentication
+			&& e != null
+			&& e.getMessage() != null
+			&& (e.getMessage().contains("Response code: 403") || e.getMessage()
+			.contains("Authenticated access required"));
 	}
 
 	protected Session getSession() {
