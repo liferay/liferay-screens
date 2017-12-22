@@ -3,12 +3,24 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+# 2.1.7
+
+## Android
+### Bugs
+
+* Fix crash while a interactor fails without a session created
+
+### Features
+
+* Include loadCredentialsAndServer method to retrieve server data while loading credentials
+
 # 2.1.5
 
 ## Android
 ### Bugs
 
 * version is not always present in a DDMDocumentField
+* Fix crash while a interactor fails without a session created
 
 
 # 2.1.0
