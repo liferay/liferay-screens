@@ -10,7 +10,7 @@ using Java.Lang;
 namespace ShowcaseAndroid
 {
     [Activity]
-    public class ImageGalleryActivity : Activity/*, IImageGalleryListener*/
+    public class ImageGalleryActivity : Activity, IImageGalleryListener
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -19,13 +19,12 @@ namespace ShowcaseAndroid
 
             ImageGalleryScreenlet imageGalleryScreenlet = 
                 (ImageGalleryScreenlet) FindViewById(Resource.Id.image_gallery_screenlet);
-            //imageGalleryScreenlet.Listener = this;
+            imageGalleryScreenlet.Listener = this;
         }
 
         /* IImageGalleryListener */
 
-        //FIXME: Listener doesn't compile
-        public void Error(Java.Lang.Exception p0, string p1)
+        public void Error(Exception p0, string p1)
         {
             Android.Util.Log.Debug("ImageGalleryScreenlet", $"Image gallery failed: {p0.Message}");
         }
@@ -50,7 +49,12 @@ namespace ShowcaseAndroid
             Toast.MakeText(this, "Image gallery entry upload started: " + p1, ToastLength.Short).Show();
         }
 
-        public void OnListPageFailed(int p0, Java.Lang.Exception p1)
+        public void OnListItemSelected(Object p0, View p1)
+        {
+            Toast.MakeText(this, "Image gallery item selected: " + p0, ToastLength.Short).Show();
+        }
+
+        public void OnListPageFailed(int p0, Exception p1)
         {
             Android.Util.Log.Debug("ImageGalleryScreenlet", $"Image gallery page failed: {p1.Message}");
         }
@@ -68,16 +72,6 @@ namespace ShowcaseAndroid
         public bool ShowUploadImageView(string p0, Android.Net.Uri p1, int p2)
         {
             return false;
-        }
-
-        public void OnListItemSelected(ImageEntry p0, View p1)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void OnListItemSelected(Object p0, View p1)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }
