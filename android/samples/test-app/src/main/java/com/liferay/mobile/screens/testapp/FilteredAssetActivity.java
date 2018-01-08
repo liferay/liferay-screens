@@ -3,13 +3,15 @@ package com.liferay.mobile.screens.testapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
 import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.asset.list.AssetListScreenlet;
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
+
 import java.util.List;
 
-public class FilteredAssetActivity extends ThemeActivity implements BaseListListener<AssetEntry> {
+public class FilteredAssetActivity extends ThemeActivity implements BaseListListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,14 +28,17 @@ public class FilteredAssetActivity extends ThemeActivity implements BaseListList
 	}
 
 	@Override
-	public void onListPageReceived(int startRow, int endRow, List<AssetEntry> entries, int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List entries, int rowCount) {
 		info(rowCount + " " + getString(R.string.rows_received_info) + " " + startRow);
 	}
 
 	@Override
-	public void onListItemSelected(AssetEntry element, View view) {
+	public void onListItemSelected(Object element, View view) {
+
+		AssetEntry assetEntry = (AssetEntry) element;
+
 		Intent intent = getIntentWithTheme(AssetDisplayActivity.class);
-		intent.putExtra("entryId", element.getEntryId());
+		intent.putExtra("entryId", assetEntry.getEntryId());
 		DefaultAnimation.startActivityWithAnimation(this, intent);
 	}
 

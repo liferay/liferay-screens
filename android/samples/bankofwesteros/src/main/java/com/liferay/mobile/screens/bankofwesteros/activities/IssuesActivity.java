@@ -40,7 +40,7 @@ import rx.functions.Action1;
  * @author Javier Gamarra
  */
 public class IssuesActivity extends CardActivity
-	implements View.OnClickListener, DDLFormListener, BaseListListener<Record>, View.OnTouchListener {
+	implements View.OnClickListener, DDLFormListener, BaseListListener, View.OnTouchListener {
 
 	private DDLFormScreenlet ddlFormScreenlet;
 	private DDLListScreenlet ddlListScreenlet;
@@ -122,17 +122,20 @@ public class IssuesActivity extends CardActivity
 	}
 
 	@Override
-	public void onListPageReceived(int startRow, int endRow, List<Record> entries, int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List entries, int rowCount) {
 
 	}
 
 	@Override
-	public void onListItemSelected(Record element, View view) {
-		selectDDLEntry(element);
+	public void onListItemSelected(Object element, View view) {
+
+		Record record = (Record) element;
+
+		selectDDLEntry(record);
 		if (view.getId() == R.id.liferay_list_edit) {
 			toCard2();
 		} else if (view.getId() == R.id.liferay_list_view) {
-			goRightCard1(element);
+			goRightCard1(record);
 		}
 	}
 

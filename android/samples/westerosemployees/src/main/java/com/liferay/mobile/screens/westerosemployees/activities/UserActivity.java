@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * @author Víctor Galán Grande
  */
-public class UserActivity extends WesterosActivity implements View.OnClickListener, BaseListListener<AssetEntry> {
+public class UserActivity extends WesterosActivity implements View.OnClickListener, BaseListListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,16 +59,19 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 	}
 
 	@Override
-	public void onListPageReceived(int startRow, int endRow, List<AssetEntry> entries, int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List entries, int rowCount) {
 
 	}
 
 	@Override
-	public void onListItemSelected(AssetEntry element, View view) {
+	public void onListItemSelected(Object element, View view) {
+
+		AssetEntry assetEntry = (AssetEntry) element;
+
 		Intent intent = new Intent(this, ModalDetailActivity.class);
-		intent.putExtra("className", element.getClassName());
-		intent.putExtra("classPK", element.getClassPK());
-		intent.putExtra("mimeType", element.getMimeType());
+		intent.putExtra("className", assetEntry.getClassName());
+		intent.putExtra("classPK", assetEntry.getClassPK());
+		intent.putExtra("mimeType", assetEntry.getMimeType());
 		startActivity(intent);
 	}
 

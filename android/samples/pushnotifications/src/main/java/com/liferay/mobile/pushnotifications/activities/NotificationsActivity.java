@@ -18,7 +18,7 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class NotificationsActivity extends PushScreensActivity implements BaseListListener<Record> {
+public class NotificationsActivity extends PushScreensActivity implements BaseListListener {
 
 	private DDLListScreenlet ddlList;
 
@@ -41,13 +41,16 @@ public class NotificationsActivity extends PushScreensActivity implements BaseLi
 	}
 
 	@Override
-	public void onListPageReceived(int startRow, int endRow, List<Record> entries, int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List entries, int rowCount) {
 
 	}
 
 	@Override
-	public void onListItemSelected(Record element, View view) {
-		loadDDLForm(element);
+	public void onListItemSelected(Object element, View view) {
+
+		Record record = (Record) element;
+
+		loadDDLForm(record);
 	}
 
 	@Override

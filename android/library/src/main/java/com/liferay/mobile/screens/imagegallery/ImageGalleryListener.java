@@ -23,7 +23,7 @@ import com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.DefaultUplo
 /**
  * @author Víctor Galán Grande
  */
-public interface ImageGalleryListener extends BaseListListener<ImageEntry> {
+public interface ImageGalleryListener extends BaseListListener {
 
 	/**
 	 * Called when an item in the list is deleted.

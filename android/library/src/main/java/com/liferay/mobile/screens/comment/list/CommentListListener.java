@@ -20,7 +20,7 @@ import com.liferay.mobile.screens.comment.CommentEntry;
 /**
  * @author Alejandro Hernández
  */
-public interface CommentListListener extends BaseListListener<CommentEntry> {
+public interface CommentListListener extends BaseListListener {
 
 	/**
 	 * Called when the screenlet successfully deletes the comment.

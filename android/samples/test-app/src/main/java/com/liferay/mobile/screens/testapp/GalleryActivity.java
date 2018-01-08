@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
+
+import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.base.interactor.listener.CacheListener;
 import com.liferay.mobile.screens.imagegallery.ImageGalleryListener;
 import com.liferay.mobile.screens.imagegallery.ImageGalleryScreenlet;
 import com.liferay.mobile.screens.imagegallery.model.ImageEntry;
 import com.liferay.mobile.screens.util.LiferayLogger;
+
 import java.util.List;
 
 import static android.view.View.GONE;
@@ -56,14 +59,17 @@ public class GalleryActivity extends ThemeActivity implements ImageGalleryListen
 	}
 
 	@Override
-	public void onListPageReceived(int startRow, int endRow, List<ImageEntry> entries, int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List entries, int rowCount) {
 		info(rowCount + " " + getString(R.string.rows_received_info) + " " + startRow);
 	}
 
 	@Override
-	public void onListItemSelected(ImageEntry image, View view) {
-		LiferayLogger.i("Image selected: " + image.getImageUrl());
-		imageGalleryScreenletGrid.showImageInFullScreenActivity(image);
+	public void onListItemSelected(Object image, View view) {
+
+		ImageEntry imageEntry = (ImageEntry) image;
+
+		LiferayLogger.i("Image selected: " + imageEntry.getImageUrl());
+		imageGalleryScreenletGrid.showImageInFullScreenActivity(imageEntry);
 	}
 
 	@Override

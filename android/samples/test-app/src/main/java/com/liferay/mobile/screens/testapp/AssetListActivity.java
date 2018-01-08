@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * @author Javier Gamarra
  */
-public class AssetListActivity extends ThemeActivity implements BaseListListener<AssetEntry> {
+public class AssetListActivity extends ThemeActivity implements BaseListListener {
 
 	private AssetListScreenlet assetListScreenlet;
 
@@ -54,14 +54,16 @@ public class AssetListActivity extends ThemeActivity implements BaseListListener
 	}
 
 	@Override
-	public void onListPageReceived(int startRow, int endRow, List<AssetEntry> entries, int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List entries, int rowCount) {
 		info(rowCount + " " + getString(R.string.rows_received_info) + " " + startRow);
 	}
 
 	@Override
-	public void onListItemSelected(AssetEntry element, View view) {
+	public void onListItemSelected(Object element, View view) {
+
+		AssetEntry assetEntry = (AssetEntry) element;
 		Intent intent = getIntentWithTheme(AssetDisplayActivity.class);
-		intent.putExtra("entryId", Long.valueOf(element.getValues().get("entryId").toString()));
+		intent.putExtra("entryId", Long.valueOf(assetEntry.getValues().get("entryId").toString()));
 		DefaultAnimation.startActivityWithAnimation(this, intent);
 	}
 

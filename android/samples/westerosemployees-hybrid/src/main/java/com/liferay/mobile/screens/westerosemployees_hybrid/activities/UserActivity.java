@@ -20,7 +20,7 @@ import java.util.List;
 
 
 public class UserActivity extends WesterosActivity implements View.OnClickListener,
-        BaseListListener<AssetEntry>, WebListener {
+        BaseListListener, WebListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -85,12 +85,12 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 	}
 
 	@Override
-	public void onListPageReceived(int startRow, int endRow, List<AssetEntry> entries, int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List entries, int rowCount) {
 
 	}
 
 	@Override
-	public void onListItemSelected(AssetEntry element, View view) {
+	public void onListItemSelected(Object element, View view) {
 
 	}
 

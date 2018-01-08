@@ -24,12 +24,12 @@ public class ListBookmarksActivity extends ThemeActivity implements BookmarkList
 	}
 
 	@Override
-	public void onListPageReceived(int startRow, int endRow, List<Bookmark> entries, int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List entries, int rowCount) {
 		info(rowCount + " " + getString(R.string.rows_received_info) + " " + startRow);
 	}
 
 	@Override
-	public void onListItemSelected(Bookmark element, View view) {
+	public void onListItemSelected(Object element, View view) {
 
 	}
 

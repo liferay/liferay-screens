@@ -40,7 +40,7 @@ public abstract class BaseListScreenlet<E, N extends BaseListInteractor> extends
 	protected static final int PAGE_SIZE = 25;
 	protected boolean autoLoad;
 	protected int firstPageSize;
-	protected BaseListListener<E> listener;
+	protected BaseListListener listener;
 	protected int pageSize;
 	protected String obcClassName;
 	private List<String> labelFields;
@@ -150,11 +150,11 @@ public abstract class BaseListScreenlet<E, N extends BaseListInteractor> extends
 		this.firstPageSize = firstPageSize;
 	}
 
-	public BaseListListener<E> getListener() {
+	public BaseListListener getListener() {
 		return listener;
 	}
 
-	public void setListener(BaseListListener<E> listener) {
+	public void setListener(BaseListListener listener) {
 		this.listener = listener;
 	}
 

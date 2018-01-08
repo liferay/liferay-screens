@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author Javier Gamarra
  */
-public class WebContentListActivity extends ThemeActivity implements BaseListListener<WebContent> {
+public class WebContentListActivity extends ThemeActivity implements BaseListListener {
 
 	private WebContentListScreenlet webContentListScreenlet;
 
@@ -39,14 +39,17 @@ public class WebContentListActivity extends ThemeActivity implements BaseListLis
 	}
 
 	@Override
-	public void onListPageReceived(int startRow, int endRow, List<WebContent> entries, int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List entries, int rowCount) {
 		info(rowCount + " " + getString(R.string.rows_received_info) + " " + startRow);
 	}
 
 	@Override
-	public void onListItemSelected(WebContent element, View view) {
+	public void onListItemSelected(Object element, View view) {
+
+		WebContent webContent = (WebContent) element;
+
 		Intent intent = getIntentWithTheme(WebContentDisplayActivity.class);
-		intent.putExtra("articleId", element.getArticleId());
+		intent.putExtra("articleId", webContent.getArticleId());
 		DefaultAnimation.startActivityWithAnimation(this, intent);
 	}
 

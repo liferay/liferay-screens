@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * @author Víctor Galán Grande
  */
-public class BlogsCard extends CommentsRatingsCard implements BaseListListener<AssetEntry> {
+public class BlogsCard extends com.liferay.mobile.screens.westerosemployees.views.CommentsRatingsCard implements BaseListListener {
 
 	private AssetListScreenlet blogsListScreenlet;
 	private AssetDisplayScreenlet blogDisplayScreenlet;
@@ -54,15 +54,18 @@ public class BlogsCard extends CommentsRatingsCard implements BaseListListener<A
 	}
 
 	@Override
-	public void onListPageReceived(int startRow, int endRow, List<AssetEntry> entries, int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List entries, int rowCount) {
 
 	}
 
 	@Override
-	public void onListItemSelected(AssetEntry element, View view) {
-		blogDisplayScreenlet.load(element);
+	public void onListItemSelected(Object element, View view) {
 
-		initializeRatingsAndComments("com.liferay.blogs.kernel.model.BlogsEntry", element.getClassPK());
+		AssetEntry assetEntry = (AssetEntry) element;
+
+		blogDisplayScreenlet.load(assetEntry);
+
+		initializeRatingsAndComments("com.liferay.blogs.kernel.model.BlogsEntry", assetEntry.getClassPK());
 
 		cardListener.moveCardRight(this);
 	}

@@ -33,7 +33,7 @@ import org.json.JSONObject;
 /**
  * @author Javier Gamarra
  */
-public class DDLListActivity extends ThemeActivity implements BaseListListener<Record>, CacheListener {
+public class DDLListActivity extends ThemeActivity implements BaseListListener, CacheListener {
 
 	private DDLListScreenlet screenlet;
 
@@ -42,7 +42,7 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.ddl_list);
-
+		
 		screenlet = (DDLListScreenlet) findViewById(R.id.ddl_list_screenlet);
 		screenlet.setListener(this);
 		screenlet.setCacheListener(this);
@@ -61,13 +61,14 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 	}
 
 	@Override
-	public void onListPageReceived(int startRow, int endRow, List<Record> entries, int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List entries, int rowCount) {
 		info(rowCount + " " + getString(R.string.rows_received_info) + " " + startRow);
 	}
 
 	@Override
-	public void onListItemSelected(Record element, View view) {
-		loadDDLForm(element);
+	public void onListItemSelected(Object element, View view) {
+		Record record = (Record) element;
+		loadDDLForm(record);
 	}
 
 	@Override
