@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * @author Javier Gamarra
  */
-public interface BaseListListener<E> extends BaseCacheListener {
+public interface BaseListListener extends BaseCacheListener {
 
 	/**
 	 * Called when the call to retrieve a page of items fails.
@@ -33,10 +33,10 @@ public interface BaseListListener<E> extends BaseCacheListener {
 	/**
 	 * Called when the call to retrieve a page of items succeed.
 	 */
-	void onListPageReceived(int startRow, int endRow, List<E> entries, int rowCount);
+	void onListPageReceived(int startRow, int endRow, List entries, int rowCount);
 
 	/**
 	 * Called when a list item is selected.
 	 */
-	void onListItemSelected(E element, View view);
+	void onListItemSelected(Object element, View view);
 }
