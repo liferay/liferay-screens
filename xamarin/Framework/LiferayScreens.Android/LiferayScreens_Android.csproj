@@ -24,7 +24,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidClassParser>class-parse</AndroidClassParser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,7 +32,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidClassParser>class-parse</AndroidClassParser>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -75,6 +73,8 @@
     <Compile Include="Additions\Web\WebScreenlet.cs" />
     <Compile Include="Additions\Blogs\BlogsEntryDisplayScreenlet.cs" />
     <Compile Include="Additions\DDL\List\DDLListScreenlet.cs" />
+    <Compile Include="Additions\DDL\Form\Model\GeolocationField.cs" />
+    <Compile Include="Additions\Viewset\Default\DDL\Form\DDLFieldGeoView.cs" />
   </ItemGroup>
   <ItemGroup>
     <TransformFile Include="Transforms\Metadata.xml" />
