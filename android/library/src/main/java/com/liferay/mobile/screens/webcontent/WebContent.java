@@ -57,8 +57,9 @@ public class WebContent extends AssetEntry implements WithDDM, Parcelable {
 			if (map.containsKey(DDM_STRUCTURE)) {
 				HashMap hashMap = (HashMap) map.get(DDM_STRUCTURE);
 
-				HashMap ddmStructure = (HashMap) hashMap.get("ddmStructure");
-				parseDDMStructure(new JSONObject(ddmStructure));
+				HashMap values = hashMap.containsKey("ddmStructure") ? (HashMap) hashMap.get("ddmStructure") : hashMap;
+
+				parseDDMStructure(new JSONObject(values));
 			}
 
 			String content = getContent(map);
