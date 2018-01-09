@@ -147,9 +147,6 @@
       <HintPath>packages\Xamarin.Swift3.UIKit.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.UIKit.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="LiferayScreens_iOS">
-      <HintPath>packages\LiferayScreens.0.2.1\lib\Xamarin.iOS10\LiferayScreens_iOS.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -311,6 +308,12 @@
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork" />
     <ITunesArtwork Include="Resources\iTunesArtwork%402x" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Framework\LiferayScreens.iOS\LiferayScreens_iOS.csproj">
+      <Project>{9A7BF9F5-5C02-4749-AB38-FE8D8C3D0C91}</Project>
+      <Name>LiferayScreens_iOS</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="packages\Xamarin.Swift3.3.0.1\build\Xamarin.Swift3.targets" Condition="Exists('packages\Xamarin.Swift3.3.0.1\build\Xamarin.Swift3.targets')" />
