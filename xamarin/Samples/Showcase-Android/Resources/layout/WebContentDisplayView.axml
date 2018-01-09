@@ -6,8 +6,22 @@
     android:layout_height="match_parent">
     <com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet
         android:id="@+id/web_content_display_screenlet"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:templateId="57615"
-        app:structureId="29641" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:labelFields="Field1,Field2"
+        app:articleId="64614"
+        app:templateId="64609" />
+    <com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet
+        android:id="@+id/web_content_display_screenlet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:labelFields="Field1,Field2"
+        app:articleId="64614" />
+    <com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet
+        android:id="@+id/web_content_display_screenlet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:labelFields="Field1"
+        app:structureId="64601"
+        app:articleId="64614" />
 </LinearLayout>
