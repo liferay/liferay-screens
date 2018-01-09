@@ -111,7 +111,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedReferenceJar Include="Jars\eventbus-2.4.0.jar" />
-    <EmbeddedReferenceJar Include="Jars\okhttp-2.4.0.jar" />
     <EmbeddedReferenceJar Include="Jars\okio-1.4.0.jar" />
     <EmbeddedReferenceJar Include="Jars\picasso-2.5.2.jar" />
     <EmbeddedReferenceJar Include="Jars\robolectric-3.1.4.jar" />
@@ -141,6 +140,10 @@
     <ProjectReference Include="..\Tbruyelle.RxpermissionsBindingLibrary\Tbruyelle.RxpermissionsBindingLibrary.csproj">
       <Project>{01FA43E0-00C1-4F1B-86E7-CEF258CED22F}</Project>
       <Name>Tbruyelle.RxpermissionsBindingLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OkHttp.BindingLibrary\OkHttp.BindingLibrary.csproj">
+      <Project>{A98329E1-0BB3-476B-B131-F77914143689}</Project>
+      <Name>OkHttp.BindingLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
