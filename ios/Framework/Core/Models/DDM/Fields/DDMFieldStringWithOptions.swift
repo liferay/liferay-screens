@@ -96,7 +96,7 @@ open class DDMFieldStringWithOptions: DDMField {
 		var result = "["
 
 		if let currentOptions = value as? [NSObject] {
-			if currentOptions.count == 1 {
+			if currentOptions.count == 1 && !multiple {
 				return currentOptions[0].description
 			}
 			
