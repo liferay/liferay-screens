@@ -9,7 +9,7 @@ using Com.Liferay.Mobile.Screens.Comment.List;
 namespace ShowcaseAndroid
 {
     [Activity]
-    public class CommentListActivity : Activity/*, ICommentListListener*/
+    public class CommentListActivity : Activity, ICommentListListener
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -18,12 +18,11 @@ namespace ShowcaseAndroid
 
             CommentListScreenlet commentListScreenlet = 
                 (CommentListScreenlet) FindViewById(Resource.Id.comment_list_screenlet);
-            //commentListScreenlet.Listener = this;
+            commentListScreenlet.Listener = this;
         }
 
         /* ICommentListListener */
 
-        //FIXME: Listener doesn't compile
         public void Error(Java.Lang.Exception p0, string p1)
         {
             Android.Util.Log.Debug("CommentListScreenlet", $"Comment list error: {p0}");

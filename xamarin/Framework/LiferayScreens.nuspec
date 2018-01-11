@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>LiferayScreens</id>
-    <version>0.2.1</version>
+    <version>1.0.0</version>
     <authors>Liferay</authors>
     <owners>Liferay Inc.</owners>
     <projectUrl>https://www.nuget.org/packages/LiferayScreens</projectUrl>
@@ -46,6 +46,7 @@
     <file src="Tbruyelle.RxpermissionsBindingLibrary/bin/Release/Tbruyelle.RxpermissionsBindingLibrary.dll" target="lib/MonoAndroid403" />
     <file src="LiferayOAuth.BindingLibrary/bin/Release/LiferayOAuth.BindingLibrary.dll" target="lib/MonoAndroid403" />
     <file src="LiferayAndroidSdk.BindingLibrary/bin/Release/LiferayAndroidSdk.BindingLibrary.dll" target="lib/MonoAndroid403" />
+    <file src="OkHttp.BindingLibrary/bin/Release/OkHttp.BindingLibrary.dll" target="lib/MonoAndroid403" />
     <!-- iOS -->
     <file src="LiferayScreens.iOS/bin/Release/LiferayScreens_iOS.dll" target="lib/Xamarin.iOS10" />
   </files>

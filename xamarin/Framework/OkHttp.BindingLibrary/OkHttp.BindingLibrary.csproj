@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{987C9DF7-DD6A-40F4-8D1C-8A5757162994}</ProjectGuid>
+    <ProjectGuid>{A98329E1-0BB3-476B-B131-F77914143689}</ProjectGuid>
     <ProjectTypeGuids>{10368E6C-D01B-4462-8E8B-01FC667A7035};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>LiferayAndroidSdk.BindingLibrary</RootNamespace>
-    <AssemblyName>LiferayAndroidSdk.BindingLibrary</AssemblyName>
+    <RootNamespace>OkHttp.BindingLibrary</RootNamespace>
+    <AssemblyName>OkHttp.BindingLibrary</AssemblyName>
     <TargetFrameworkVersion>v4.0.3</TargetFrameworkVersion>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
@@ -51,13 +51,10 @@
     <TransformFile Include="Transforms\Metadata.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="Jars\liferay-android-sdk-7.0.4.jar" />
+    <Folder Include="Jars\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OkHttp.BindingLibrary\OkHttp.BindingLibrary.csproj">
-      <Project>{A98329E1-0BB3-476B-B131-F77914143689}</Project>
-      <Name>OkHttp.BindingLibrary</Name>
-    </ProjectReference>
+    <EmbeddedJar Include="Jars\okhttp-2.4.0.jar" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
 </Project>
