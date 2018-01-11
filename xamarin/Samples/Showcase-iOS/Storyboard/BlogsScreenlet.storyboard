@@ -1,91 +1,52 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="237">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="63I-Bl-gKS">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Blogs View Controller-->
-        <scene sceneID="236">
+        <!--View Controller-->
+        <scene sceneID="bxU-yo-j3z">
             <objects>
-                <viewController storyboardIdentifier="BlogsViewController" id="237" customClass="BlogsViewController" sceneMemberID="viewController">
+                <viewController id="63I-Bl-gKS" sceneMemberID="viewController" customClass="BlogsViewController" storyboardIdentifier="BlogsViewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="234"/>
-                        <viewControllerLayoutGuide type="bottom" id="235"/>
+                        <viewControllerLayoutGuide type="top" id="Bos-vm-PbM"/>
+                        <viewControllerLayoutGuide type="bottom" id="UUj-zX-FDB"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="238">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="view" contentMode="scaleToFill" id="x2o-AB-4H7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="777" translatesAutoresizingMaskIntoConstraints="NO" customClass="BlogsEntryDisplayScreenlet">
-                                <rect key="frame" x="20" y="66" width="374" height="650"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7FB-GN-KbV" customClass="BlogsEntryDisplayScreenlet">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint id="782" firstItem="777" firstAttribute="width" constant="374"/>
-                                    <constraint id="783" firstItem="777" firstAttribute="height" constant="650"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="782"/>
-                                        <exclude reference="783"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="782"/>
-                                        <include reference="783"/>
-                                    </mask>
-                                </variation>
                             </view>
                         </subviews>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="777"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="778"/>
-                                <exclude reference="779"/>
-                                <exclude reference="780"/>
-                                <exclude reference="781"/>
-                                <exclude reference="790"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="777"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="778"/>
-                                <include reference="779"/>
-                                <include reference="780"/>
-                                <include reference="781"/>
-                                <include reference="790"/>
-                            </mask>
-                        </variation>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint id="778" firstItem="777" firstAttribute="centerX" secondItem="238" secondAttribute="centerX"/>
-                            <constraint id="779" firstItem="235" firstAttribute="top" secondItem="777" secondAttribute="bottom" constant="20"/>
-                            <constraint id="780" firstItem="777" firstAttribute="leading" secondItem="238" secondAttribute="leadingMargin"/>
-                            <constraint id="781" firstItem="777" firstAttribute="trailing" secondItem="238" secondAttribute="trailingMargin"/>
-                            <constraint id="790" firstItem="777" firstAttribute="top" secondItem="234" secondAttribute="bottom" constant="2"/>
+                            <constraint firstItem="UUj-zX-FDB" firstAttribute="top" secondItem="7FB-GN-KbV" secondAttribute="bottom" id="gDg-fc-1NQ"/>
+                            <constraint firstItem="7FB-GN-KbV" firstAttribute="centerX" secondItem="x2o-AB-4H7" secondAttribute="centerX" id="pfQ-QV-AIv"/>
+                            <constraint firstItem="7FB-GN-KbV" firstAttribute="leading" secondItem="x2o-AB-4H7" secondAttribute="leading" id="prS-i0-UNl"/>
+                            <constraint firstAttribute="trailing" secondItem="7FB-GN-KbV" secondAttribute="trailing" id="wnV-AO-ZPd"/>
+                            <constraint firstItem="7FB-GN-KbV" firstAttribute="top" secondItem="Bos-vm-PbM" secondAttribute="bottom" id="zQH-cT-3VH"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="blogsDisplayScreenlet" destination="777" id="name-outlet-777"/>
-                    </connections>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <navigationItem title="BlogsEntryDisplayScreenlet" id="776" key="navigationItem"/>
+                    <navigationItem title="BlogsEntryDisplayScreenlet" id="385" key="navigationItem"/>
+                    <connections>
+                        <outlet property="blogsDisplayScreenlet" destination="7FB-GN-KbV" id="name-outlet-7FB-GN-KbV"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="239" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ApB-f5-N2Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="220" y="169"/>
+            <point key="canvasLocation" x="224.8" y="110.1949"/>
         </scene>
     </scenes>
     <resources>
         <image name="img/Liferay-Screens.png" width="124" height="144"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedScreenMetrics key="destination" type="retina55"/>
-    </simulatedMetricsContainer>
 </document>

@@ -1,50 +1,52 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="344">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Vo4-ay-DfH">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <scene sceneID="343">
+        <!--View Controller-->
+        <scene sceneID="KGb-DS-MkP">
             <objects>
-                <viewController id="344" sceneMemberID="viewController" customClass="CommentAddViewController" storyboardIdentifier="CommentAddViewController">
+                <viewController id="Vo4-ay-DfH" sceneMemberID="viewController" customClass="CommentAddViewController" storyboardIdentifier="CommentAddViewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="341"/>
-                        <viewControllerLayoutGuide type="bottom" id="342"/>
+                        <viewControllerLayoutGuide type="top" id="bGZ-cU-AgT"/>
+                        <viewControllerLayoutGuide type="bottom" id="ArV-VZ-yvy"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="345">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                    <view key="view" contentMode="scaleToFill" id="RmJ-N3-wBC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="818" translatesAutoresizingMaskIntoConstraints="NO" customClass="CommentAddScreenlet">
-                                <rect key="frame" x="20" y="319" width="374" height="120"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ef5-j6-wqh" customClass="CommentAddScreenlet">
+                                <rect key="frame" x="0.0" y="64" width="375" height="123"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint id="926" firstItem="818" firstAttribute="centerX" secondItem="345" secondAttribute="centerX"/>
-                            <constraint id="928" firstItem="818" firstAttribute="leading" secondItem="345" secondAttribute="leadingMargin"/>
-                            <constraint id="929" firstItem="818" firstAttribute="trailing" secondItem="345" secondAttribute="trailingMargin"/>
-                            <constraint id="930" firstItem="342" firstAttribute="top" secondItem="818" secondAttribute="bottom" constant="297"/>
-                            <constraint id="2661" firstItem="818" firstAttribute="top" secondItem="341" secondAttribute="bottom" constant="255"/>
+                            <constraint firstItem="Ef5-j6-wqh" firstAttribute="leading" secondItem="RmJ-N3-wBC" secondAttribute="leading" id="4XP-dt-5pq"/>
+                            <constraint firstItem="Ef5-j6-wqh" firstAttribute="top" secondItem="bGZ-cU-AgT" secondAttribute="bottom" id="Ib0-8x-Ytj"/>
+                            <constraint firstItem="Ef5-j6-wqh" firstAttribute="centerX" secondItem="RmJ-N3-wBC" secondAttribute="centerX" id="Nd7-WG-A4V"/>
+                            <constraint firstItem="ArV-VZ-yvy" firstAttribute="top" secondItem="Ef5-j6-wqh" secondAttribute="bottom" constant="480" id="Pc4-fc-oaZ"/>
+                            <constraint firstAttribute="trailing" secondItem="Ef5-j6-wqh" secondAttribute="trailing" id="oeT-ip-NWJ"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <navigationItem title="CommentAddScreenlet" id="582" key="navigationItem"/>
+                    <navigationItem title="CommentAddScreenlet" id="383" key="navigationItem"/>
                     <connections>
-                        <outlet property="commentAddScreenlet" destination="818" id="name-outlet-818"/>
+                        <outlet property="commentAddScreenlet" destination="Ef5-j6-wqh" id="name-outlet-Ef5-j6-wqh"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="346" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5jN-6P-vFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="202" y="179"/>
+            <point key="canvasLocation" x="232.8" y="124.5877"/>
         </scene>
     </scenes>
     <resources>
         <image name="img/Liferay-Screens.png" width="124" height="144"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedScreenMetrics key="destination" type="retina55"/>
-    </simulatedMetricsContainer>
 </document>

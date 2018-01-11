@@ -1,91 +1,49 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="219">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pCF-dt-KPP">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Asset Display View Controller-->
-        <scene sceneID="218">
+        <!--AssetDisplayScreenlet-->
+        <scene sceneID="ptU-8V-AU3">
             <objects>
-                <viewController storyboardIdentifier="AssetDisplayViewController" id="219" customClass="AssetDisplayViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AssetDisplayViewController" id="pCF-dt-KPP" customClass="AssetDisplayViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="216"/>
-                        <viewControllerLayoutGuide type="bottom" id="217"/>
+                        <viewControllerLayoutGuide type="top" id="H2T-gt-xOJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="a90-rl-QWt"/>
                     </layoutGuides>
-                    <connections>
-                        <outlet property="assetDisplayScreenlet" destination="737" id="name-outlet-737"/>
-                    </connections>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <navigationItem title="AssetDisplayScreenlet" id="735" key="navigationItem"/>
-                    <view contentMode="scaleToFill" id="736" key="view">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <view key="view" contentMode="scaleToFill" id="qdV-nn-7Wv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="737" translatesAutoresizingMaskIntoConstraints="NO" customClass="AssetDisplayScreenlet">
-                                <rect key="frame" x="0.0" y="63" width="414" height="673"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lyp-a4-2gX" customClass="AssetDisplayScreenlet">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint id="741" firstItem="737" firstAttribute="width" constant="414"/>
-                                    <constraint id="743" firstItem="737" firstAttribute="height" constant="673"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="741"/>
-                                        <exclude reference="743"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="741"/>
-                                        <include reference="743"/>
-                                    </mask>
-                                </variation>
                             </view>
                         </subviews>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="737"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="738"/>
-                                <exclude reference="739"/>
-                                <exclude reference="740"/>
-                                <exclude reference="742"/>
-                                <exclude reference="750"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="737"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="738"/>
-                                <include reference="739"/>
-                                <include reference="740"/>
-                                <include reference="742"/>
-                                <include reference="750"/>
-                            </mask>
-                        </variation>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint id="738" firstItem="737" firstAttribute="centerX" secondItem="736" secondAttribute="centerX"/>
-                            <constraint id="739" firstItem="737" firstAttribute="leading" secondItem="736" secondAttribute="leadingMargin"/>
-                            <constraint id="740" firstItem="737" firstAttribute="bottom" secondItem="217" secondAttribute="top"/>
-                            <constraint id="742" firstItem="737" firstAttribute="trailing" secondItem="736" secondAttribute="trailingMargin"/>
-                            <constraint id="750" firstItem="216" firstAttribute="bottom" secondItem="737" secondAttribute="top" constant="1"/>
+                            <constraint firstItem="Lyp-a4-2gX" firstAttribute="leading" secondItem="qdV-nn-7Wv" secondAttribute="leading" id="CkE-a3-DfD"/>
+                            <constraint firstAttribute="trailing" secondItem="Lyp-a4-2gX" secondAttribute="trailing" id="b3p-hO-qgv"/>
+                            <constraint firstItem="a90-rl-QWt" firstAttribute="top" secondItem="Lyp-a4-2gX" secondAttribute="bottom" id="lRL-UU-Z7K"/>
+                            <constraint firstItem="Lyp-a4-2gX" firstAttribute="top" secondItem="H2T-gt-xOJ" secondAttribute="bottom" id="rG1-2k-aqd"/>
+                            <constraint firstItem="Lyp-a4-2gX" firstAttribute="centerX" secondItem="qdV-nn-7Wv" secondAttribute="centerX" id="shY-Cl-KRh"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="AssetDisplayScreenlet" id="391"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="assetDisplayScreenlet" destination="Lyp-a4-2gX" id="name-outlet-Lyp-a4-2gX"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="221" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EVO-gs-23G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="413" y="110"/>
+            <point key="canvasLocation" x="469.60000000000002" y="49.925037481259373"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="img/Liferay-Screens.png" width="124" height="144"/>
-    </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedScreenMetrics key="destination" type="retina55"/>
-    </simulatedMetricsContainer>
 </document>
