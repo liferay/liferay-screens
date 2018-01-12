@@ -92,6 +92,30 @@
     <Reference Include="Xamarin.Android.Support.Design">
       <HintPath>packages\Xamarin.Android.Support.Design.25.3.1\lib\MonoAndroid70\Xamarin.Android.Support.Design.dll</HintPath>
     </Reference>
+    <Reference Include="jakeWharton.RxbindingBindingLibrary">
+      <HintPath>packages\LiferayScreens.1.0.0\lib\MonoAndroid403\jakeWharton.RxbindingBindingLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="LiferayAndroidSdk.BindingLibrary">
+      <HintPath>packages\LiferayScreens.1.0.0\lib\MonoAndroid403\LiferayAndroidSdk.BindingLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="LiferayOAuth.BindingLibrary">
+      <HintPath>packages\LiferayScreens.1.0.0\lib\MonoAndroid403\LiferayOAuth.BindingLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="LiferayScreens_Android">
+      <HintPath>packages\LiferayScreens.1.0.0\lib\MonoAndroid403\LiferayScreens_Android.dll</HintPath>
+    </Reference>
+    <Reference Include="OkHttp.BindingLibrary">
+      <HintPath>packages\LiferayScreens.1.0.0\lib\MonoAndroid403\OkHttp.BindingLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="rxAndroid.BindingLibrary">
+      <HintPath>packages\LiferayScreens.1.0.0\lib\MonoAndroid403\rxAndroid.BindingLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="SnappyDBBindingLibrary">
+      <HintPath>packages\LiferayScreens.1.0.0\lib\MonoAndroid403\SnappyDBBindingLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Tbruyelle.RxpermissionsBindingLibrary">
+      <HintPath>packages\LiferayScreens.1.0.0\lib\MonoAndroid403\Tbruyelle.RxpermissionsBindingLibrary.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
@@ -167,40 +191,6 @@
     <Folder Include="CustomViews\" />
   </ItemGroup>
   <ItemGroup>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Framework\jakeWharton.RxbindingBindingLibrary\jakeWharton.RxbindingBindingLibrary.csproj">
-      <Project>{6B7D5CA7-3038-49CB-9D96-42ECAE149DD7}</Project>
-      <Name>jakeWharton.RxbindingBindingLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\LiferayAndroidSdk.BindingLibrary\LiferayAndroidSdk.BindingLibrary.csproj">
-      <Project>{987C9DF7-DD6A-40F4-8D1C-8A5757162994}</Project>
-      <Name>LiferayAndroidSdk.BindingLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\LiferayOAuth.BindingLibrary\LiferayOAuth.BindingLibrary.csproj">
-      <Project>{1E5D5DB7-2CA4-4820-AB77-B72433CB82E9}</Project>
-      <Name>LiferayOAuth.BindingLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\LiferayScreens.Android\LiferayScreens_Android.csproj">
-      <Project>{6E229A7B-AD65-4095-880C-3EEAF793B1E5}</Project>
-      <Name>LiferayScreens_Android</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\OkHttp.BindingLibrary\OkHttp.BindingLibrary.csproj">
-      <Project>{A98329E1-0BB3-476B-B131-F77914143689}</Project>
-      <Name>OkHttp.BindingLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\rxAndroid.BindingLibrary\rxAndroid.BindingLibrary.csproj">
-      <Project>{8901D0A4-35D8-4698-874B-704BD2D3177C}</Project>
-      <Name>rxAndroid.BindingLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\SnappyDBBindingLibrary\SnappyDBBindingLibrary.csproj">
-      <Project>{A753986F-8AAE-4191-9302-53F9ED3F1A2C}</Project>
-      <Name>SnappyDBBindingLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Framework\Tbruyelle.RxpermissionsBindingLibrary\Tbruyelle.RxpermissionsBindingLibrary.csproj">
-      <Project>{01FA43E0-00C1-4F1B-86E7-CEF258CED22F}</Project>
-      <Name>Tbruyelle.RxpermissionsBindingLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="packages\Xamarin.Build.Download.0.4.6\build\Xamarin.Build.Download.targets" Condition="Exists('packages\Xamarin.Build.Download.0.4.6\build\Xamarin.Build.Download.targets')" />
