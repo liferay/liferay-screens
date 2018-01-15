@@ -57,7 +57,7 @@ Pod::Spec.new do |s|
 	s.dependency 'KeychainAccess', '~> 3.0'
 
 	# UserPortrait
-	s.dependency 'CryptoSwift', '~> 0.7.0'
+	s.dependency 'CryptoSwift', '~> 0.6.9'
 
 	# DDLForm
 	s.dependency 'DTPickerPresenter', '~> 0.2.0'
