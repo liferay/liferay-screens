@@ -11,7 +11,7 @@ import com.liferay.mobile.screens.comment.add.CommentAddListener;
 import com.liferay.mobile.screens.comment.add.CommentAddScreenlet;
 import com.liferay.mobile.screens.comment.display.CommentDisplayListener;
 import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
-import com.liferay.mobile.screens.base.list.CommentListListener;
+import com.liferay.mobile.screens.comment.list.CommentListListener;
 import com.liferay.mobile.screens.comment.list.CommentListScreenlet;
 
 import java.util.List;
