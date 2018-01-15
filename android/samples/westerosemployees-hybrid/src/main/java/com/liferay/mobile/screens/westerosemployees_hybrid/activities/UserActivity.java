@@ -85,7 +85,7 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 	}
 
 	@Override
-	public void onListPageReceived(int startRow, int endRow, List entries, int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List<AssetEntry> entries, int rowCount) {
 
 	}
 

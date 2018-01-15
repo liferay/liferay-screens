@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * @author Víctor Galán Grande
  */
-public class BlogsCard extends com.liferay.mobile.screens.westerosemployees.views.CommentsRatingsCard implements BaseListListener<BlogsEntry> {
+public class BlogsCard extends com.liferay.mobile.screens.westerosemployees.views.CommentsRatingsCard implements BaseListListener<AssetEntry> {
 
 	private AssetListScreenlet blogsListScreenlet;
 	private AssetDisplayScreenlet blogDisplayScreenlet;
@@ -55,12 +55,12 @@ public class BlogsCard extends com.liferay.mobile.screens.westerosemployees.view
 	}
 
 	@Override
-	public void onListPageReceived(int startRow, int endRow, List entries, int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List<AssetEntry> entries, int rowCount) {
 
 	}
 
 	@Override
-	public void onListItemSelected(BlogsEntry element, View view) {
+	public void onListItemSelected(AssetEntry element, View view) {
 
 		blogDisplayScreenlet.load(element);
 

@@ -54,7 +54,7 @@ public class DocsCard extends com.liferay.mobile.screens.westerosemployees.views
 	}
 
 	@Override
-	public void onListPageReceived(int startRow, int endRow, List entries, int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List<AssetEntry> entries, int rowCount) {
 
 	}
 

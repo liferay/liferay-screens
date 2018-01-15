@@ -41,7 +41,7 @@ public class NotificationsActivity extends PushScreensActivity implements BaseLi
 	}
 
 	@Override
-	public void onListPageReceived(int startRow, int endRow, List entries, int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List<Record> entries, int rowCount) {
 
 	}
 

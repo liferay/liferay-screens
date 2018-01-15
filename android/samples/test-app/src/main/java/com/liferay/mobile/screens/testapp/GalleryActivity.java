@@ -58,7 +58,7 @@ public class GalleryActivity extends ThemeActivity implements ImageGalleryListen
 	}
 
 	@Override
-	public void onListPageReceived(int startRow, int endRow, List entries, int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List<ImageEntry> entries, int rowCount) {
 		info(rowCount + " " + getString(R.string.rows_received_info) + " " + startRow);
 	}
 

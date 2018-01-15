@@ -61,7 +61,7 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 	}
 
 	@Override
-	public void onListPageReceived(int startRow, int endRow, List entries, int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List<Record> entries, int rowCount) {
 		info(rowCount + " " + getString(R.string.rows_received_info) + " " + startRow);
 	}
 

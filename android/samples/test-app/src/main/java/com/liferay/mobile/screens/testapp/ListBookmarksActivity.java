@@ -24,7 +24,7 @@ public class ListBookmarksActivity extends ThemeActivity implements BookmarkList
 	}
 
 	@Override
-	public void onListPageReceived(int startRow, int endRow, List entries, int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List<Bookmark> entries, int rowCount) {
 		info(rowCount + " " + getString(R.string.rows_received_info) + " " + startRow);
 	}
 

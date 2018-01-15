@@ -132,7 +132,7 @@ public class GalleryCard extends com.liferay.mobile.screens.westerosemployees.vi
 	}
 
 	@Override
-	public void onListPageReceived(int startRow, int endRow, List entries, int rowCount) {
+	public void onListPageReceived(int startRow, int endRow, List<ImageEntry> entries, int rowCount) {
 
 	}
 
