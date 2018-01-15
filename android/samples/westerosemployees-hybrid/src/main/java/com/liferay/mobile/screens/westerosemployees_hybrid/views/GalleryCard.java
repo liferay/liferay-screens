@@ -144,7 +144,7 @@ public class GalleryCard extends Card implements ImageGalleryListener, WebListen
 	}
 
 	@Override
-	public void onListItemSelected(Object element, View view) {
+	public void onListItemSelected(ImageEntry element, View view) {
 
 	}
 

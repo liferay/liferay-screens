@@ -33,7 +33,7 @@ import org.json.JSONObject;
 /**
  * @author Javier Gamarra
  */
-public class DDLListActivity extends ThemeActivity implements BaseListListener, CacheListener {
+public class DDLListActivity extends ThemeActivity implements BaseListListener<Record>, CacheListener {
 
 	private DDLListScreenlet screenlet;
 
@@ -66,9 +66,8 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener, 
 	}
 
 	@Override
-	public void onListItemSelected(Object element, View view) {
-		Record record = (Record) element;
-		loadDDLForm(record);
+	public void onListItemSelected(Record element, View view) {
+		loadDDLForm(element);
 	}
 
 	@Override

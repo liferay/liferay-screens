@@ -40,7 +40,7 @@ import rx.functions.Action1;
  * @author Javier Gamarra
  */
 public class IssuesActivity extends CardActivity
-	implements View.OnClickListener, DDLFormListener, BaseListListener, View.OnTouchListener {
+	implements View.OnClickListener, DDLFormListener, BaseListListener<Record>, View.OnTouchListener {
 
 	private DDLFormScreenlet ddlFormScreenlet;
 	private DDLListScreenlet ddlListScreenlet;
@@ -127,9 +127,7 @@ public class IssuesActivity extends CardActivity
 	}
 
 	@Override
-	public void onListItemSelected(Object element, View view) {
-
-		Record record = (Record) element;
+	public void onListItemSelected(Record record, View view) {
 
 		selectDDLEntry(record);
 		if (view.getId() == R.id.liferay_list_edit) {

@@ -137,9 +137,7 @@ public class GalleryCard extends com.liferay.mobile.screens.westerosemployees.vi
 	}
 
 	@Override
-	public void onListItemSelected(Object element, View view) {
-
-		ImageEntry imageEntry = (ImageEntry) element;
+	public void onListItemSelected(ImageEntry imageEntry, View view) {
 
 		imageAssetDisplayScreenlet.load(imageEntry);
 

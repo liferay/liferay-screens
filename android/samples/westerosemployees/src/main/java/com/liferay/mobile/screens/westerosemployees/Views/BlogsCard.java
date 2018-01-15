@@ -8,6 +8,7 @@ import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet;
 import com.liferay.mobile.screens.asset.list.AssetListScreenlet;
 import com.liferay.mobile.screens.base.list.BaseListListener;
+import com.liferay.mobile.screens.blogs.BlogsEntry;
 import com.liferay.mobile.screens.westerosemployees.R;
 import com.liferay.mobile.screens.westerosemployees.utils.CardState;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.List;
 /**
  * @author Víctor Galán Grande
  */
-public class BlogsCard extends com.liferay.mobile.screens.westerosemployees.views.CommentsRatingsCard implements BaseListListener {
+public class BlogsCard extends com.liferay.mobile.screens.westerosemployees.views.CommentsRatingsCard implements BaseListListener<BlogsEntry> {
 
 	private AssetListScreenlet blogsListScreenlet;
 	private AssetDisplayScreenlet blogDisplayScreenlet;
@@ -59,13 +60,11 @@ public class BlogsCard extends com.liferay.mobile.screens.westerosemployees.view
 	}
 
 	@Override
-	public void onListItemSelected(Object element, View view) {
+	public void onListItemSelected(BlogsEntry element, View view) {
 
-		AssetEntry assetEntry = (AssetEntry) element;
+		blogDisplayScreenlet.load(element);
 
-		blogDisplayScreenlet.load(assetEntry);
-
-		initializeRatingsAndComments("com.liferay.blogs.kernel.model.BlogsEntry", assetEntry.getClassPK());
+		initializeRatingsAndComments("com.liferay.blogs.kernel.model.BlogsEntry", element.getClassPK());
 
 		cardListener.moveCardRight(this);
 	}

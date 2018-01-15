@@ -11,7 +11,7 @@ import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 
 import java.util.List;
 
-public class FilteredAssetActivity extends ThemeActivity implements BaseListListener {
+public class FilteredAssetActivity extends ThemeActivity implements BaseListListener<AssetEntry> {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +33,7 @@ public class FilteredAssetActivity extends ThemeActivity implements BaseListList
 	}
 
 	@Override
-	public void onListItemSelected(Object element, View view) {
-
-		AssetEntry assetEntry = (AssetEntry) element;
+	public void onListItemSelected(AssetEntry assetEntry, View view) {
 
 		Intent intent = getIntentWithTheme(AssetDisplayActivity.class);
 		intent.putExtra("entryId", assetEntry.getEntryId());

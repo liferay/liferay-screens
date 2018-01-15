@@ -18,7 +18,7 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class NotificationsActivity extends PushScreensActivity implements BaseListListener {
+public class NotificationsActivity extends PushScreensActivity implements BaseListListener<Record> {
 
 	private DDLListScreenlet ddlList;
 
@@ -46,9 +46,7 @@ public class NotificationsActivity extends PushScreensActivity implements BaseLi
 	}
 
 	@Override
-	public void onListItemSelected(Object element, View view) {
-
-		Record record = (Record) element;
+	public void onListItemSelected(Record record, View view) {
 
 		loadDDLForm(record);
 	}

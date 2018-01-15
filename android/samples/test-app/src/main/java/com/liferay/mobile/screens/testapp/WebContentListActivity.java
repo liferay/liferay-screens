@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author Javier Gamarra
  */
-public class WebContentListActivity extends ThemeActivity implements BaseListListener {
+public class WebContentListActivity extends ThemeActivity implements BaseListListener<WebContent> {
 
 	private WebContentListScreenlet webContentListScreenlet;
 
@@ -44,9 +44,7 @@ public class WebContentListActivity extends ThemeActivity implements BaseListLis
 	}
 
 	@Override
-	public void onListItemSelected(Object element, View view) {
-
-		WebContent webContent = (WebContent) element;
+	public void onListItemSelected(WebContent webContent, View view) {
 
 		Intent intent = getIntentWithTheme(WebContentDisplayActivity.class);
 		intent.putExtra("articleId", webContent.getArticleId());

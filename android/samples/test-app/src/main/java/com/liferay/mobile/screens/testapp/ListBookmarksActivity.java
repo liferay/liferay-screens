@@ -29,7 +29,7 @@ public class ListBookmarksActivity extends ThemeActivity implements BookmarkList
 	}
 
 	@Override
-	public void onListItemSelected(Object element, View view) {
+	public void onListItemSelected(Bookmark element, View view) {
 
 	}
 

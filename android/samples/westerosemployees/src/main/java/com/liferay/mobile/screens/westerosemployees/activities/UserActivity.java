@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * @author Víctor Galán Grande
  */
-public class UserActivity extends WesterosActivity implements View.OnClickListener, BaseListListener {
+public class UserActivity extends WesterosActivity implements View.OnClickListener, BaseListListener<AssetEntry> {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +64,7 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 	}
 
 	@Override
-	public void onListItemSelected(Object element, View view) {
-
-		AssetEntry assetEntry = (AssetEntry) element;
+	public void onListItemSelected(AssetEntry assetEntry, View view) {
 
 		Intent intent = new Intent(this, ModalDetailActivity.class);
 		intent.putExtra("className", assetEntry.getClassName());

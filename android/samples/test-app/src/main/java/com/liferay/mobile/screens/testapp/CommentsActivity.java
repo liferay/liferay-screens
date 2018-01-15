@@ -11,7 +11,7 @@ import com.liferay.mobile.screens.comment.add.CommentAddListener;
 import com.liferay.mobile.screens.comment.add.CommentAddScreenlet;
 import com.liferay.mobile.screens.comment.display.CommentDisplayListener;
 import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
-import com.liferay.mobile.screens.comment.list.CommentListListener;
+import com.liferay.mobile.screens.base.list.CommentListListener;
 import com.liferay.mobile.screens.comment.list.CommentListScreenlet;
 
 import java.util.List;
@@ -95,11 +95,9 @@ public class CommentsActivity extends ThemeActivity
 	}
 
 	@Override
-	public void onListItemSelected(Object element, View view) {
+	public void onListItemSelected(CommentEntry element, View view) {
 
-		CommentEntry commentEntry = (CommentEntry) element;
-
-		displayScreenlet.setCommentId(commentEntry.getCommentId());
+		displayScreenlet.setCommentId(element.getCommentId());
 		showDisplayScreenlet(true);
 		displayScreenlet.load();
 	}
