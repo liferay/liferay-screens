@@ -25,11 +25,11 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 /**
  * @author Víctor Galán Grande
  */
-public class GalleryCard extends CommentsRatingsCard implements ImageGalleryListener {
+public class GalleryCard extends com.liferay.mobile.screens.westerosemployees.views.CommentsRatingsCard implements ImageGalleryListener {
 
 	private ImageGalleryScreenlet imageGalleryScreenlet;
 	private BaseDetailUploadView uploadDetailView;
-	private Card uploadImageCard;
+	private com.liferay.mobile.screens.westerosemployees.views.Card uploadImageCard;
 	private AssetDisplayScreenlet imageAssetDisplayScreenlet;
 
 	private boolean loaded;
@@ -68,7 +68,7 @@ public class GalleryCard extends CommentsRatingsCard implements ImageGalleryList
 		imageGalleryScreenlet.setListener(this);
 
 		uploadDetailView = (BaseDetailUploadView) findViewById(R.id.upload_detail_view);
-		uploadImageCard = (Card) findViewById(R.id.upload_image_card);
+		uploadImageCard = (com.liferay.mobile.screens.westerosemployees.views.Card) findViewById(R.id.upload_image_card);
 
 		imageAssetDisplayScreenlet = (AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet_image);
 
@@ -137,10 +137,11 @@ public class GalleryCard extends CommentsRatingsCard implements ImageGalleryList
 	}
 
 	@Override
-	public void onListItemSelected(ImageEntry element, View view) {
-		imageAssetDisplayScreenlet.load(element);
+	public void onListItemSelected(ImageEntry imageEntry, View view) {
 
-		initializeRatingsAndComments("com.liferay.document.library.kernel.model.DLFileEntry", element.getFileEntryId());
+		imageAssetDisplayScreenlet.load(imageEntry);
+
+		initializeRatingsAndComments("com.liferay.document.library.kernel.model.DLFileEntry", imageEntry.getFileEntryId());
 
 		cardListener.moveCardRight(this);
 	}

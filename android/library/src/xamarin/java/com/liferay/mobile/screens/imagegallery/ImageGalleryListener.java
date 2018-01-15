@@ -17,13 +17,14 @@ package com.liferay.mobile.screens.imagegallery;
 import android.net.Uri;
 import android.support.annotation.LayoutRes;
 import com.liferay.mobile.screens.base.list.BaseListListener;
+import com.liferay.mobile.screens.imagegallery.BaseDetailUploadView;
 import com.liferay.mobile.screens.imagegallery.model.ImageEntry;
 import com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.DefaultUploadDetailView;
 
 /**
  * @author Víctor Galán Grande
  */
-public interface ImageGalleryListener extends BaseListListener<ImageEntry> {
+public interface ImageGalleryListener extends BaseListListener {
 
 	/**
 	 * Called when an item in the list is deleted.

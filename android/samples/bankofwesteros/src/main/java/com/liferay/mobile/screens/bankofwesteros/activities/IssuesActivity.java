@@ -127,12 +127,13 @@ public class IssuesActivity extends CardActivity
 	}
 
 	@Override
-	public void onListItemSelected(Record element, View view) {
-		selectDDLEntry(element);
+	public void onListItemSelected(Record record, View view) {
+
+		selectDDLEntry(record);
 		if (view.getId() == R.id.liferay_list_edit) {
 			toCard2();
 		} else if (view.getId() == R.id.liferay_list_view) {
-			goRightCard1(element);
+			goRightCard1(record);
 		}
 	}
 
