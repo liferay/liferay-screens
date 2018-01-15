@@ -22,6 +22,15 @@ android {
 			includeAndroidResources = true
 		}
 	}
+
+	buildTypes {
+		xamarin {}
+	}
+	sourceSets {
+		release {
+			java.srcDirs = ['src/debug/java']
+		}
+	}
 }
 
 dependencies {
@@ -34,7 +43,6 @@ dependencies {
 	api(libraries.push) {
 		exclude group: 'com.google.android.gms', module: 'play-services'
 		exclude group: 'com.google.android', module: 'android'
-
 	}
 	api(libraries.oauth) {
 		exclude group: 'com.google.android', module: 'android'
