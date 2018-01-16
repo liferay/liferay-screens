@@ -77,8 +77,8 @@ class LanguageHelper {
 
     enum Pages: String {
         case index
-        case mobileland29
-        case roming
+        case mobile
+        case roaming
         case paquete69
         case optima
         case legal
@@ -88,10 +88,10 @@ class LanguageHelper {
             switch self {
             case .index:
                 return "34684"
-            case .mobileland29:
-                return "100490"
-            case .roming:
-                return "100870"
+            case .mobile:
+                return "839763"
+            case .roaming:
+                return "841024"
             case .paquete69:
                 return "108620"
             case .optima:
@@ -107,14 +107,14 @@ class LanguageHelper {
             switch self {
             case .index:
                 return "/particulars/inici/"
-            case .mobileland29:
-                return "/particulares/som-telefonia-movil/forfets-mobiland/forfet-mobiland-29/"
-            case .roming:
-                return "/particulares/som-telefonia-movil/otros-forfets/forfet-roaming-espana/"
+            case .mobile:
+                return "/particulars/telefonia-mobil/forfets-mobiland/contracte/"
+            case .roaming:
+                return "/particulars/telefonia-mobil/serveis-complementaris/forfet-roaming/"
             case .paquete69:
-                return "/particulares/som-internet-fija/paquetes-internet-fija/paquet-69/"
+                return "/particulars/internet-fixa/internet-i-telefonia-fixa/paquet-69/"
             case .optima:
-                return "/particulares/som-internet-fija/paquetes-internet-fija/optima/"
+                return "/particulars/internet-fixa/internet-i-telefonia-fixa/optima/"
             case .legal:
                 return "/avis-legal/"
             case .map:
