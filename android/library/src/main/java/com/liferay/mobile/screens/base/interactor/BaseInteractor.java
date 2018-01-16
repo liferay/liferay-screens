@@ -126,7 +126,7 @@ public abstract class BaseInteractor<L, E extends BasicEvent> implements Interac
 			&& e != null
 			&& e.getMessage() != null
 			&& (e.getMessage().contains("Response code: 403") || e.getMessage()
-			.contains("Authenticated access required")) || e.getMessage().contains("SecurityException");
+			.contains("Authenticated access required") || e.getMessage().contains("SecurityException"));
 	}
 
 	protected Session getSession() {
