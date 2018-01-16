@@ -18,7 +18,7 @@ ext {
 	buildToolsVersion = '26.0.2'
 
 	versionCode = 312
-	versionName = '3.0.2'
+	versionName = '3.0.2-beta.1'
 
 	publishedGroupId = 'com.liferay.mobile'
 	libraryName = 'Liferay Screens for Android'
@@ -40,7 +40,7 @@ ext {
 	allLicenses = ["LGPL-2.1"]
 }
 
-def supportLibsVersion = '25.4.0'
+def supportLibsVersion = '26.1.0'
 
 ext.libraries = [appCompat    : 'com.android.support:appcompat-v7:' + supportLibsVersion,
                  recyclerView : 'com.android.support:recyclerview-v7:' + supportLibsVersion,
