@@ -64,11 +64,12 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 	}
 
 	@Override
-	public void onListItemSelected(AssetEntry element, View view) {
+	public void onListItemSelected(AssetEntry assetEntry, View view) {
+
 		Intent intent = new Intent(this, ModalDetailActivity.class);
-		intent.putExtra("className", element.getClassName());
-		intent.putExtra("classPK", element.getClassPK());
-		intent.putExtra("mimeType", element.getMimeType());
+		intent.putExtra("className", assetEntry.getClassName());
+		intent.putExtra("classPK", assetEntry.getClassPK());
+		intent.putExtra("mimeType", assetEntry.getMimeType());
 		startActivity(intent);
 	}
 

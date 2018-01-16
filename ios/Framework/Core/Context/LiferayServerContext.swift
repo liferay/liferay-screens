@@ -20,7 +20,8 @@ import Foundation
 
 }
 
-@objc open class LiferayServerContext: NSObject {
+@objc(LiferayServerContext)
+open class LiferayServerContext: NSObject {
 
 	// MARK: Singleton type
 

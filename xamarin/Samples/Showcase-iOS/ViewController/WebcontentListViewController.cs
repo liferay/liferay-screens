@@ -13,7 +13,7 @@ namespace ShowcaseiOS.ViewController
         {
             base.ViewDidLoad();
 
-            this.webContentListScreenlet.FolderId = 0;
+            this.webContentListScreenlet.FolderId = LiferayServerContext.LongPropertyForKey("webContentListFolderId");
 
             this.webContentListScreenlet.Delegate = this;
         }

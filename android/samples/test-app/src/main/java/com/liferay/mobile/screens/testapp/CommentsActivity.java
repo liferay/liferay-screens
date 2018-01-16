@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.widget.CompoundButton;
+
 import com.liferay.mobile.screens.comment.CommentEntry;
 import com.liferay.mobile.screens.comment.add.CommentAddListener;
 import com.liferay.mobile.screens.comment.add.CommentAddScreenlet;
@@ -12,6 +13,7 @@ import com.liferay.mobile.screens.comment.display.CommentDisplayListener;
 import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
 import com.liferay.mobile.screens.comment.list.CommentListListener;
 import com.liferay.mobile.screens.comment.list.CommentListScreenlet;
+
 import java.util.List;
 
 import static android.view.View.GONE;
@@ -94,6 +96,7 @@ public class CommentsActivity extends ThemeActivity
 
 	@Override
 	public void onListItemSelected(CommentEntry element, View view) {
+
 		displayScreenlet.setCommentId(element.getCommentId());
 		showDisplayScreenlet(true);
 		displayScreenlet.load();

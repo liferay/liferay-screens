@@ -36,11 +36,6 @@ public class DDLFieldTextView extends BaseDDLFieldTextView<StringField> {
 	}
 
 	@Override
-	public void setPositionInParent(int position) {
-
-	}
-
-	@Override
 	protected void onTextChanged(String text) {
 		getField().setCurrentValue(text);
 	}

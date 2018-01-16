@@ -14,7 +14,6 @@
 
 package com.liferay.mobile.screens.imagegallery;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
@@ -26,6 +25,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity;
+import com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity.MediaStoreCallback;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
@@ -140,14 +140,28 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 	 * Opens the device camera to upload a new photo.
 	 */
 	public void openCamera() {
-		startShadowActivityForMediaStore(MediaStoreRequestShadowActivity.TAKE_PICTURE_WITH_CAMERA);
+		MediaStoreRequestShadowActivity.show(getContext(), MediaStoreRequestShadowActivity.TAKE_PICTURE_WITH_CAMERA,
+			new MediaStoreCallback() {
+
+				@Override
+				public void onUriReceived(Uri uri) {
+					onPictureUriReceived(uri);
+				}
+			});
 	}
 
 	/**
 	 * Opens the device image gallery to upload a new photo.
 	 */
 	public void openGallery() {
-		startShadowActivityForMediaStore(MediaStoreRequestShadowActivity.SELECT_IMAGE_FROM_GALLERY);
+		MediaStoreRequestShadowActivity.show(getContext(), MediaStoreRequestShadowActivity.SELECT_IMAGE_FROM_GALLERY,
+			new MediaStoreCallback() {
+
+				@Override
+				public void onUriReceived(Uri uri) {
+					onPictureUriReceived(uri);
+				}
+			});
 	}
 
 	/**
@@ -168,7 +182,6 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 		}
 	}
 
-	@Override
 	public void onPictureUriReceived(Uri pictureUri) {
 		int uploadDetailViewLayout = 0;
 		if (getListener() != null) {
@@ -313,6 +326,10 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 	protected void startUploadDetail(@LayoutRes int uploadDetailView, final Uri pictureUri) {
 		Context context = LiferayScreensContext.getContext();
 
+		ImageGalleryUploadInteractor imageGalleryUploadInteractor = getUploadInteractor();
+		LiferayLogger.e("We initialize the interactor to be able to send him messages, objId:"
+			+ imageGalleryUploadInteractor.toString());
+
 		View view = inflateView(uploadDetailView, context);
 
 		if (view instanceof BaseDetailUploadView) {
@@ -329,23 +346,6 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 		ContextThemeWrapper ctx = new ContextThemeWrapper(context, R.style.default_transparent_theme);
 		int view = uploadDetailView == 0 ? R.layout.default_upload_detail_activity : uploadDetailView;
 		return LayoutInflater.from(ctx).inflate(view, null, false);
-	}
-
-	/**
-	 * Starts the activity to select where the image is from.
-	 */
-	protected void startShadowActivityForMediaStore(int mediaStore) {
-
-		ImageGalleryUploadInteractor imageGalleryUploadInteractor = getUploadInteractor();
-		LiferayLogger.e("We initialize the interactor to be able to send him messages, objId:"
-			+ imageGalleryUploadInteractor.toString());
-
-		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
-
-		Intent intent = new Intent(activity, MediaStoreRequestShadowActivity.class);
-		intent.putExtra(MediaStoreRequestShadowActivity.MEDIA_STORE_TYPE, mediaStore);
-
-		activity.startActivity(intent);
 	}
 
 	private ImageGalleryUploadInteractor getUploadInteractor() {

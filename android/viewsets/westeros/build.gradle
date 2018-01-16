@@ -17,17 +17,18 @@ android {
 			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 		}
 	}
-	buildToolsVersion '26.0.2'
 }
 
 dependencies {
-	compile fileTree(dir: 'libs', include: ['*.jar'])
+	implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-	compile project(':liferay-screens')
-	compile libraries.design
-	compile 'com.daimajia.swipelayout:library:1.2.0'
+	api project(':liferay-screens')
 
-	compile 'com.makeramen:roundedimageview:2.2.1'
+	implementation libraries.design
+	implementation libraries.recyclerView
+
+	implementation 'com.daimajia.swipelayout:library:1.2.0'
+	implementation 'com.makeramen:roundedimageview:2.2.1'
 }
 
 apply from: '../../bintray.gradle'

@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * @author Víctor Galán Grande
  */
-public class DocsCard extends CommentsRatingsCard implements BaseListListener<AssetEntry> {
+public class DocsCard extends com.liferay.mobile.screens.westerosemployees.views.CommentsRatingsCard implements BaseListListener<AssetEntry> {
 
 	private AssetListScreenlet docsListScreenlet;
 	private AssetDisplayScreenlet documentDisplayScreenlet;
@@ -60,6 +60,7 @@ public class DocsCard extends CommentsRatingsCard implements BaseListListener<As
 
 	@Override
 	public void onListItemSelected(AssetEntry element, View view) {
+
 		documentDisplayScreenlet.load(element);
 
 		initializeRatingsAndComments("com.liferay.document.library.kernel.model.DLFileEntry", element.getClassPK());

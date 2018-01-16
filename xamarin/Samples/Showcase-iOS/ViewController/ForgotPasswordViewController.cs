@@ -13,8 +13,8 @@ namespace ShowcaseiOS.ViewController
         {
             base.ViewDidLoad();
 
-            this.forgotPasswordScreenlet.AnonymousApiUserName = "anonymous1@liferay.com";
-            this.forgotPasswordScreenlet.AnonymousApiPassword = "anonymous1";
+            this.forgotPasswordScreenlet.AnonymousApiUserName = LiferayServerContext.StringPropertyForKey("anonymousUsername");
+            this.forgotPasswordScreenlet.AnonymousApiPassword = LiferayServerContext.StringPropertyForKey("anonymousPassword");
 
             this.forgotPasswordScreenlet.Delegate = this;
 
@@ -39,7 +39,7 @@ namespace ShowcaseiOS.ViewController
 
         void SetDefaultValues()
         {
-            this.forgotPasswordScreenlet.ViewModel.UserName = "test@liferay.com";
+            this.forgotPasswordScreenlet.ViewModel.UserName = LiferayServerContext.StringPropertyForKey("defaultUsername");
         }
     }
 }

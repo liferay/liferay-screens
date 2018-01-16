@@ -93,25 +93,28 @@
       <HintPath>packages\Xamarin.Android.Support.Design.25.3.1\lib\MonoAndroid70\Xamarin.Android.Support.Design.dll</HintPath>
     </Reference>
     <Reference Include="jakeWharton.RxbindingBindingLibrary">
-      <HintPath>packages\LiferayScreens.0.1.0-beta8\lib\MonoAndroid403\jakeWharton.RxbindingBindingLibrary.dll</HintPath>
+      <HintPath>packages\LiferayScreens.1.0.0\lib\MonoAndroid403\jakeWharton.RxbindingBindingLibrary.dll</HintPath>
     </Reference>
     <Reference Include="LiferayAndroidSdk.BindingLibrary">
-      <HintPath>packages\LiferayScreens.0.1.0-beta8\lib\MonoAndroid403\LiferayAndroidSdk.BindingLibrary.dll</HintPath>
+      <HintPath>packages\LiferayScreens.1.0.0\lib\MonoAndroid403\LiferayAndroidSdk.BindingLibrary.dll</HintPath>
     </Reference>
     <Reference Include="LiferayOAuth.BindingLibrary">
-      <HintPath>packages\LiferayScreens.0.1.0-beta8\lib\MonoAndroid403\LiferayOAuth.BindingLibrary.dll</HintPath>
+      <HintPath>packages\LiferayScreens.1.0.0\lib\MonoAndroid403\LiferayOAuth.BindingLibrary.dll</HintPath>
     </Reference>
     <Reference Include="LiferayScreens_Android">
-      <HintPath>packages\LiferayScreens.0.1.0-beta8\lib\MonoAndroid403\LiferayScreens_Android.dll</HintPath>
+      <HintPath>packages\LiferayScreens.1.0.0\lib\MonoAndroid403\LiferayScreens_Android.dll</HintPath>
+    </Reference>
+    <Reference Include="OkHttp.BindingLibrary">
+      <HintPath>packages\LiferayScreens.1.0.0\lib\MonoAndroid403\OkHttp.BindingLibrary.dll</HintPath>
     </Reference>
     <Reference Include="rxAndroid.BindingLibrary">
-      <HintPath>packages\LiferayScreens.0.1.0-beta8\lib\MonoAndroid403\rxAndroid.BindingLibrary.dll</HintPath>
+      <HintPath>packages\LiferayScreens.1.0.0\lib\MonoAndroid403\rxAndroid.BindingLibrary.dll</HintPath>
     </Reference>
     <Reference Include="SnappyDBBindingLibrary">
-      <HintPath>packages\LiferayScreens.0.1.0-beta8\lib\MonoAndroid403\SnappyDBBindingLibrary.dll</HintPath>
+      <HintPath>packages\LiferayScreens.1.0.0\lib\MonoAndroid403\SnappyDBBindingLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Tbruyelle.RxpermissionsBindingLibrary">
-      <HintPath>packages\LiferayScreens.0.1.0-beta8\lib\MonoAndroid403\Tbruyelle.RxpermissionsBindingLibrary.dll</HintPath>
+      <HintPath>packages\LiferayScreens.1.0.0\lib\MonoAndroid403\Tbruyelle.RxpermissionsBindingLibrary.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -140,6 +143,7 @@
     <Compile Include="Activities\DDLListActivity.cs" />
     <Compile Include="Activities\WebScreenletActivity.cs" />
     <Compile Include="Activities\LoginDemoActivity.cs" />
+    <Compile Include="CustomViews\LoginCheckPasswordView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
@@ -147,7 +151,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
-    <AndroidResource Include="Resources\values\server_context.xml" />
     <AndroidResource Include="Resources\layout\LoginView.axml" />
     <AndroidResource Include="Resources\layout\ForgotPasswordView.axml" />
     <AndroidResource Include="Resources\layout\MainView.axml" />
@@ -177,12 +180,15 @@
     <AndroidResource Include="Resources\layout\login_demo.xml" />
     <AndroidResource Include="Resources\layout\LoginDemoView.axml" />
     <AndroidResource Include="Resources\values\Colors.xml" />
+    <AndroidResource Include="Resources\values\server_context.xml" />
+    <AndroidResource Include="Resources\layout\login_password.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
     <Folder Include="Activities\" />
     <Folder Include="Assets\" />
     <Folder Include="Resources\raw\" />
+    <Folder Include="CustomViews\" />
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>

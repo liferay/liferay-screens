@@ -48,9 +48,9 @@ class WebViewController: UIViewController, WebScreenletDelegate {
 
 	//MARK: WebScreenletDelegate
 
-	func onWbPageLoaded(_ screenlet: WebScreenlet, url: String) {
-		
-	}
+    func onWebLoad(_ screenlet: WebScreenlet, url: String) {
+
+    }
 
 	func screenlet(_ screenlet: WebScreenlet, onError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)

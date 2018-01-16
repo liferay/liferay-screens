@@ -14,10 +14,10 @@ namespace ShowcaseiOS.ViewController
             base.ViewDidLoad();
 
             //With classNameId
-            //this.assetListScreenlet.ClassNameId = 20015;
+            //this.assetListScreenlet.ClassNameId = LiferayServerContext.LongPropertyForKey("assetListClassNameId");
 
             //With porletItemName
-            this.assetListScreenlet.PortletItemName = "dynamic";
+            this.assetListScreenlet.PortletItemName = LiferayServerContext.StringPropertyForKey("assetListPortletItemName");
 
             this.assetListScreenlet.Delegate = this;
         }

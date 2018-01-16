@@ -25,7 +25,6 @@ Pods/
 android/samples/addbookmarkscreenlet/local.properties
 *.suo
 **/*.framework/
-[Dd]ebug/
 [Rr]elease/
 **/Jars/
 **/bin/

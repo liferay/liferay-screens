@@ -52,7 +52,7 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 	public static final String UPLOAD_DOCUMENT_ACTION = "uploadDocument";
 	private static final String STATE_SUPER = "ddlform-super";
 	private static final String STATE_AUTOSCROLL_ON_VALIDATION = "ddlform-autoScrollOnValidation";
-	private static final String STATE_SHOW_SUBMIT_BUTTON = "ddlform-showSubmitButton";
+	private static final String STATE_SHOW_SUBMIT_BUTTON = "ddlform-updateEnabled";
 	private static final String STATE_STRUCTURE_ID = "ddlform-structureId";
 	private static final String STATE_RECORDSET_ID = "ddlform-recordSetId";
 	private static final String STATE_RECORD_ID = "ddlform-recordId";
@@ -63,7 +63,7 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 	private static final String STATE_FILE_PREFIX = "ddlform-filePrefixId";
 	private boolean autoLoad;
 	private boolean autoScrollOnValidation;
-	private boolean showSubmitButton;
+	private boolean updateEnabled;
 	private long structureId;
 	private long recordSetId;
 	private long recordId;
@@ -151,13 +151,6 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 		getViewModel().showValidationResults(fieldResults, autoScrollOnValidation);
 
 		return result;
-	}
-
-	/**
-	 * Starts uploading document from position.
-	 */
-	public void startUploadByPosition(int position) {
-		startUpload((DocumentField) record.getField(position));
 	}
 
 	/**
@@ -286,12 +279,12 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 		autoScrollOnValidation = value;
 	}
 
-	public boolean isShowSubmitButton() {
-		return showSubmitButton;
+	public boolean isUpdateEnabled() {
+		return updateEnabled;
 	}
 
-	public void setShowSubmitButton(boolean value) {
-		showSubmitButton = value;
+	public void setUpdateEnabled(boolean value) {
+		updateEnabled = value;
 	}
 
 	public long getStructureId() {
@@ -412,7 +405,7 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 
 		autoScrollOnValidation = typedArray.getBoolean(R.styleable.DDLFormScreenlet_autoScrollOnValidation, true);
 
-		showSubmitButton = typedArray.getBoolean(R.styleable.DDLFormScreenlet_showSubmitButton, true);
+		updateEnabled = typedArray.getBoolean(R.styleable.DDLFormScreenlet_updateEnabled, true);
 
 		structureId = castToLong(typedArray.getString(R.styleable.DDLFormScreenlet_structureId));
 		recordSetId = castToLong(typedArray.getString(R.styleable.DDLFormScreenlet_recordSetId));
@@ -460,6 +453,9 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 
 		setFieldLayoutId(viewModel, typedArray, Field.EditorType.DOCUMENT,
 			R.styleable.DDLFormScreenlet_documentFieldLayoutId);
+
+		setFieldLayoutId(viewModel, typedArray, Field.EditorType.GEO,
+			R.styleable.DDLFormScreenlet_geoFieldLayoutId);
 
 		typedArray.recycle();
 
@@ -525,7 +521,7 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 		recordId = state.getLong(STATE_RECORD_ID);
 		recordSetId = state.getLong(STATE_RECORDSET_ID);
 		structureId = state.getLong(STATE_STRUCTURE_ID);
-		showSubmitButton = state.getBoolean(STATE_SHOW_SUBMIT_BUTTON);
+		updateEnabled = state.getBoolean(STATE_SHOW_SUBMIT_BUTTON);
 		autoScrollOnValidation = state.getBoolean(STATE_AUTOSCROLL_ON_VALIDATION);
 		loadRecordAfterForm = state.getBoolean(STATE_LOAD_RECORD_AFTER_FORM);
 		repositoryId = state.getLong(STATE_REPOSITORY_ID);
@@ -546,7 +542,7 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 		Bundle state = new Bundle();
 		state.putParcelable(STATE_SUPER, superState);
 		state.putBoolean(STATE_AUTOSCROLL_ON_VALIDATION, autoScrollOnValidation);
-		state.putBoolean(STATE_SHOW_SUBMIT_BUTTON, showSubmitButton);
+		state.putBoolean(STATE_SHOW_SUBMIT_BUTTON, updateEnabled);
 		state.putLong(STATE_STRUCTURE_ID, structureId);
 		state.putLong(STATE_RECORDSET_ID, recordSetId);
 		state.putLong(STATE_RECORD_ID, recordId);

@@ -46,8 +46,9 @@ public class NotificationsActivity extends PushScreensActivity implements BaseLi
 	}
 
 	@Override
-	public void onListItemSelected(Record element, View view) {
-		loadDDLForm(element);
+	public void onListItemSelected(Record record, View view) {
+
+		loadDDLForm(record);
 	}
 
 	@Override

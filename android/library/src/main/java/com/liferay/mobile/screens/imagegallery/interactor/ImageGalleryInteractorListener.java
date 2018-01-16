@@ -29,11 +29,6 @@ public interface ImageGalleryInteractorListener extends BaseListInteractorListen
 	void onImageEntryDeleted(long imageEntryId);
 
 	/**
-	 * Called when an item in the list was chosen and it's ready for upload.
-	 */
-	void onPictureUriReceived(Uri pictureUri);
-
-	/**
 	 * Called when the item was successfully uploaded.
 	 */
 	void onPictureUploaded(ImageEntry entry);

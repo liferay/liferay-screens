@@ -7,6 +7,20 @@ All notable changes to this project will be documented in this file.
 
 ## Android
 
+### New features
+* Add preview mode in DDLForm (breaking change)
+* Refactor shadow activity to request media, and use it in UserPortrait and DDLFormScreenlet
+* Support Geolocation field in DDLFormScreenlet
+
+## Xamarin
+
+### Refactor
+* Xamarin.iOS demo app takes values from plist file
+
+# 3.0.0
+
+## Android
+
 ### Bugs
 * Fix error in UserPortrait initials view: user lastname is required in Liferay 7.0 but is not in Liferay 6.2
 * Fix error in UserPortrait initials view: image doesn't show correctly because background was always on top

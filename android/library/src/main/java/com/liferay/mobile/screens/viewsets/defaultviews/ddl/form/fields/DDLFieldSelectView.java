@@ -54,11 +54,6 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 	}
 
 	@Override
-	public void setPositionInParent(int position) {
-
-	}
-
-	@Override
 	protected void onDetachedFromWindow() {
 		super.onDetachedFromWindow();
 

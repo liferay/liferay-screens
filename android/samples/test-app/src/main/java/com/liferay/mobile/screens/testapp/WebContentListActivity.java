@@ -44,9 +44,10 @@ public class WebContentListActivity extends ThemeActivity implements BaseListLis
 	}
 
 	@Override
-	public void onListItemSelected(WebContent element, View view) {
+	public void onListItemSelected(WebContent webContent, View view) {
+
 		Intent intent = getIntentWithTheme(WebContentDisplayActivity.class);
-		intent.putExtra("articleId", element.getArticleId());
+		intent.putExtra("articleId", webContent.getArticleId());
 		DefaultAnimation.startActivityWithAnimation(this, intent);
 	}
 

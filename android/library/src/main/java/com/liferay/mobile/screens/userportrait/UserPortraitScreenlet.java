@@ -28,6 +28,7 @@ import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity;
+import com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity.MediaStoreCallback;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -70,7 +71,8 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 		super(context, attrs, defStyleAttr);
 	}
 
-	public UserPortraitScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+	public UserPortraitScreenlet(Context context, AttributeSet attrs, int defStyleAttr,
+		int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
@@ -93,14 +95,28 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 	 * Selects a new user portrait from the device camera.
 	 */
 	public void openCamera() {
-		startShadowActivityForMediaStore(MediaStoreRequestShadowActivity.TAKE_PICTURE_WITH_CAMERA);
+		MediaStoreRequestShadowActivity.show(getContext(),
+			MediaStoreRequestShadowActivity.TAKE_PICTURE_WITH_CAMERA, new MediaStoreCallback(){
+
+				@Override
+				public void onUriReceived(Uri uri) {
+					onPictureUriReceived(uri);
+				}
+			});
 	}
 
 	/**
 	 * Selects a new user portrait from the device image gallery.
 	 */
 	public void openGallery() {
-		startShadowActivityForMediaStore(MediaStoreRequestShadowActivity.SELECT_IMAGE_FROM_GALLERY);
+		MediaStoreRequestShadowActivity.show(getContext(),
+			MediaStoreRequestShadowActivity.SELECT_IMAGE_FROM_GALLERY, new MediaStoreCallback(){
+
+				@Override
+				public void onUriReceived(Uri uri) {
+					onPictureUriReceived(uri);
+				}
+			});
 	}
 
 	@Override
@@ -131,7 +147,6 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 		((UserPortraitLoadInteractor) getInteractor(LOAD_PORTRAIT)).start(uuid);
 	}
 
-	@Override
 	public void onPictureUriReceived(Uri pictureUri) {
 		performUserAction(UPLOAD_PORTRAIT, pictureUri);
 	}
@@ -229,8 +244,8 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray =
-			context.getTheme().obtainStyledAttributes(attributes, R.styleable.UserPortraitScreenlet, 0, 0);
+		TypedArray typedArray = context.getTheme()
+			.obtainStyledAttributes(attributes, R.styleable.UserPortraitScreenlet, 0, 0);
 
 		autoLoad = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_autoLoad, true);
 		male = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_male, true);
@@ -239,7 +254,8 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 		editable = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_editable, false);
 		userId = typedArray.getInt(R.styleable.UserPortraitScreenlet_userId, 0);
 
-		int layoutId = typedArray.getResourceId(R.styleable.UserPortraitScreenlet_layoutId, getDefaultLayoutId());
+		int layoutId = typedArray.getResourceId(R.styleable.UserPortraitScreenlet_layoutId,
+			getDefaultLayoutId());
 
 		typedArray.recycle();
 
@@ -269,7 +285,8 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 			case LOAD_CURRENT_USER:
 				UserPortraitLoadInteractor userPortraitLoadInteractorCurrentUser =
 					(UserPortraitLoadInteractor) getInteractor(userActionName);
-				long currentUserId = SessionContext.isLoggedIn() ? SessionContext.getCurrentUser().getId() : 0;
+				long currentUserId =
+					SessionContext.isLoggedIn() ? SessionContext.getCurrentUser().getId() : 0;
 				userPortraitLoadInteractorCurrentUser.start(currentUserId);
 				break;
 			default:
@@ -305,9 +322,6 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 	}
 
 	private void startShadowActivityForMediaStore(int mediaStore) {
-		//We need to force the creation of the interactor to get the event from the shadow activity
-		getInteractor(UPLOAD_PORTRAIT);
-
 		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
 
 		Intent intent = new Intent(activity, MediaStoreRequestShadowActivity.class);

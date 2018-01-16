@@ -13,9 +13,9 @@ namespace ShowcaseiOS.ViewController
         {
             base.ViewDidLoad();
 
-            this.ddlFormScreenlet.StructureId = 54371;
-            this.ddlFormScreenlet.RecordSetId = 54375;
-            this.ddlFormScreenlet.RecordId = 54385;
+            this.ddlFormScreenlet.StructureId = LiferayServerContext.LongPropertyForKey("ddlFormStructureId");
+            this.ddlFormScreenlet.RecordSetId = LiferayServerContext.LongPropertyForKey("ddlFormRecordSetId");
+            this.ddlFormScreenlet.RecordId = LiferayServerContext.LongPropertyForKey("ddlFormRecordId");
             this.ddlFormScreenlet.AutoLoad = false;
 
             this.ddlFormScreenlet.Delegate = this;

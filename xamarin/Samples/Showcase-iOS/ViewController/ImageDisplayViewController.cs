@@ -14,7 +14,7 @@ namespace ShowcaseiOS.ViewController
             base.ViewDidLoad();
 
             this.imageDisplayScreenlet.AutoLoad = false;
-            this.imageDisplayScreenlet.AssetEntryId = 54500;
+            this.imageDisplayScreenlet.AssetEntryId = LiferayServerContext.LongPropertyForKey("imageEntryId");
 
             this.imageDisplayScreenlet.Delegate = this;
             this.imageDisplayScreenlet.Load();

@@ -53,5 +53,11 @@
   <ItemGroup>
     <EmbeddedJar Include="Jars\liferay-android-sdk-7.0.4.jar" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OkHttp.BindingLibrary\OkHttp.BindingLibrary.csproj">
+      <Project>{A98329E1-0BB3-476B-B131-F77914143689}</Project>
+      <Name>OkHttp.BindingLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
 </Project>

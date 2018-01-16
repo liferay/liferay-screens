@@ -86,9 +86,10 @@ public class DDLFieldCheckboxView extends LinearLayout
 		parentView = view;
 	}
 
-	@Override
-	public void setPositionInParent(int position) {
 
+	@Override
+	public void setUpdateMode(boolean enabled) {
+		switchCompat.setEnabled(enabled);
 	}
 
 	@Override

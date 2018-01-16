@@ -26,17 +26,17 @@
 	<string name="liferay_bookmark_folder">33583</string>
 
 	<!--WebContentDisplayScreenlet values-->
-	<string name="liferay_article_id">33593</string>
-	<string name="liferay_article_structured_structure_id">33613</string>
-	<string name="liferay_article_structured_article_id">33620</string>
+	<string name="liferay_article_id">57343</string>
+	<string name="liferay_article_structured_structure_id">29641</string>
+	<string name="liferay_article_structured_article_id">57615</string>
 	<string name="liferay_article_structured_label_fields_first_field">Text</string>
 	<string name="liferay_article_structured_label_fields">Text,TextBox</string>
-	<string name="liferay_article_id_with_template">33632</string>
+	<string name="liferay_article_id_with_template">57615</string>
 	<string name="liferay_template_id1">33617</string>
 	<string name="liferay_template_id2">33649</string>
 
 	<string name="liferay_web_content_folder_id">33591</string>
-	<string name="liferay_images_folder">33652</string>
+	<string name="liferay_images_folder">54469</string>
 
 	<string name="portlet_item_name1">manual</string>
 	<string name="portlet_item_name2">dynamic</string>

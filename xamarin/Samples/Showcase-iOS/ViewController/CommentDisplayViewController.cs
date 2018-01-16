@@ -13,7 +13,7 @@ namespace ShowcaseiOS.ViewController
         {
             base.ViewDidLoad();
 
-            this.commentDisplayScreenlet.CommentId = 63710;
+            this.commentDisplayScreenlet.CommentId = LiferayServerContext.LongPropertyForKey("commentId");
             this.commentDisplayScreenlet.Editable = true;
 
             this.commentDisplayScreenlet.Delegate = this;

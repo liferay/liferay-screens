@@ -148,7 +148,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="LiferayScreens_iOS">
-      <HintPath>packages\LiferayScreens.0.1.0-beta8\lib\Xamarin.iOS10\LiferayScreens_iOS.dll</HintPath>
+      <HintPath>packages\LiferayScreens.1.0.0\lib\Xamarin.iOS10\LiferayScreens_iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -181,7 +181,7 @@
     <InterfaceDefinition Include="Storyboard\SelectScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\DDLFormScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\UserPortraitScreenlet.storyboard" />
-    <InterfaceDefinition Include="Storyboard\WebContentScreenlet.storyboard" />
+    <InterfaceDefinition Include="Storyboard\WebContentDisplayScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\AssetListScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\AssetDisplayScreenlet.storyboard" />
     <InterfaceDefinition Include="Storyboard\ImageDisplayScreenlet.storyboard" />

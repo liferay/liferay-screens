@@ -13,8 +13,8 @@ namespace ShowcaseiOS.ViewController
         {
             base.ViewDidLoad();
 
-            this.signUpScreenlet.AnonymousApiUserName = "anonymous1@liferay.com";
-            this.signUpScreenlet.AnonymousApiPassword = "anonymous1";
+            this.signUpScreenlet.AnonymousApiUserName = LiferayServerContext.StringPropertyForKey("anonymousUsername");
+            this.signUpScreenlet.AnonymousApiPassword = LiferayServerContext.StringPropertyForKey("anonymousPassword");
 
             this.signUpScreenlet.Delegate = this;
         }

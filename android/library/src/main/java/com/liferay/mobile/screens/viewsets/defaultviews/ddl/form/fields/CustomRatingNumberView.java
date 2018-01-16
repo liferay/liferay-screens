@@ -97,7 +97,8 @@ public class CustomRatingNumberView extends LinearLayout
 	}
 
 	@Override
-	public void setPositionInParent(int position) {
+	public void setUpdateMode(boolean enabled) {
+		ratingBar.setEnabled(enabled);
 	}
 
 	@Override

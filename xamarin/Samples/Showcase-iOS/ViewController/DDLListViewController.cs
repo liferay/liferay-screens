@@ -13,8 +13,8 @@ namespace ShowcaseiOS.ViewController
         {
             base.ViewDidLoad();
 
-            this.ddlListScreenlet.RecordSetId = 33280;
-            this.ddlListScreenlet.LabelFields = "description";
+            this.ddlListScreenlet.RecordSetId = LiferayServerContext.LongPropertyForKey("ddlListRecordSetId");
+            this.ddlListScreenlet.LabelFields = LiferayServerContext.StringPropertyForKey("ddlListLabelFields");
 
             this.ddlListScreenlet.Delegate = this;
         }

@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
+
 import com.liferay.mobile.screens.base.interactor.listener.CacheListener;
 import com.liferay.mobile.screens.imagegallery.ImageGalleryListener;
 import com.liferay.mobile.screens.imagegallery.ImageGalleryScreenlet;
 import com.liferay.mobile.screens.imagegallery.model.ImageEntry;
 import com.liferay.mobile.screens.util.LiferayLogger;
+
 import java.util.List;
 
 import static android.view.View.GONE;
@@ -61,9 +63,10 @@ public class GalleryActivity extends ThemeActivity implements ImageGalleryListen
 	}
 
 	@Override
-	public void onListItemSelected(ImageEntry image, View view) {
-		LiferayLogger.i("Image selected: " + image.getImageUrl());
-		imageGalleryScreenletGrid.showImageInFullScreenActivity(image);
+	public void onListItemSelected(ImageEntry imageEntry, View view) {
+
+		LiferayLogger.i("Image selected: " + imageEntry.getImageUrl());
+		imageGalleryScreenletGrid.showImageInFullScreenActivity(imageEntry);
 	}
 
 	@Override
