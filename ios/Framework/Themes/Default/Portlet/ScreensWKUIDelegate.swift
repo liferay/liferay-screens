@@ -23,7 +23,7 @@ import WebKit
 
 		if viewController == nil {
 			print("Error: you have to set the presentingViewController property on your WebScreenlet"
-			+ "if you want to show alerts")
+			+ " if you want to show alerts")
 		}
 	}
 
