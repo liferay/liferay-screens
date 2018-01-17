@@ -14,6 +14,8 @@ namespace AndorraTelecomiOS
         {
             base.ViewDidLoad();
 
+            AddLogoToNavigationItem();
+
             LoadWebScreenlet();
         }
 
@@ -23,9 +25,14 @@ namespace AndorraTelecomiOS
             // Release any cached data, images, etc that aren't in use.
         }
 
+        public void AddLogoToNavigationItem()
+        {
+            UIImageView ImageView = NavItem.AddLogo();
+            NavigationItem.TitleView = ImageView;
+        }
+
         public void LoadWebScreenlet()
         {
-            
             var url = "https://www.andorratelecom.ad/particulars/inici";
 
             var config = new WebScreenletConfigurationBuilder(url)

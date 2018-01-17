@@ -1,4 +1,5 @@
-﻿using Foundation;
+﻿using AndorraTelecomiOS.Util;
+using Foundation;
 using UIKit;
 
 namespace AndorraTelecomiOS
@@ -20,6 +21,7 @@ namespace AndorraTelecomiOS
         {
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
+            UINavigationBar.Appearance.BarTintColor = Colors.LightPurple;
 
             return true;
         }

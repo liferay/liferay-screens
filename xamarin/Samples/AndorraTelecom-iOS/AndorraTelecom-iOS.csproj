@@ -164,6 +164,7 @@
       <DependentUpon>MenuViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="Util\Colors.cs" />
+    <Compile Include="Util\NavItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\img\phone.png" />
