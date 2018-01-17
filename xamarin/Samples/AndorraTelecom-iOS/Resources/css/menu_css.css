@@ -1,0 +1,45 @@
+﻿body {
+    background: #D30572 url("https://www.andorratelecom.ad/o/atcomercial-theme/images/bg-pattern-footer.png") no-repeat 25% 145%
+}
+
+ul {
+    margin: 3%;
+    margin-top: 6%
+}
+
+li.item-button {
+    background: #8D0E57;
+    color: #FFF;
+    float: left;
+    margin: 3%;
+    padding: 3% 0%;
+    position: relative;
+    width: 44%;
+    border-radius: 8px;
+    text-align: center
+}
+
+.picture img {
+    filter: brightness(0) invert(1)
+}
+
+img {
+    max-width: 150%
+}
+
+.coverage-container {
+    margin: 0% 3%
+}
+
+.coverage-button {
+    color: #FFF;
+    float: left;
+    margin: 3%;
+    padding: 3% 0%;
+    position: relative;
+    width: 94%;
+    height: 50px;
+    border-radius: 8px;
+    border: 1px solid #FFF;
+    text-align: center
+}

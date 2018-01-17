@@ -7,14 +7,23 @@
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
+using UIKit;
 
 namespace AndorraTelecomiOS
 {
-    [Register ("ViewController")]
-    partial class ViewController
+    [Register ("MenuViewController")]
+    partial class MenuViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        LiferayScreens.WebScreenlet webScreenlet { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (webScreenlet != null) {
+                webScreenlet.Dispose ();
+                webScreenlet = null;
+            }
         }
     }
 }
