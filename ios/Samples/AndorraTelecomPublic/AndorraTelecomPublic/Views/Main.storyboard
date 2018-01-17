@@ -92,12 +92,8 @@
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="dKi-Mv-Fgt" secondAttribute="bottom" id="4Ca-Pl-RuZ"/>
                             <constraint firstItem="dKi-Mv-Fgt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="KCa-FT-n4W"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="dKi-Mv-Fgt" secondAttribute="bottom" id="cyx-07-CjQ"/>
                             <constraint firstAttribute="trailing" secondItem="dKi-Mv-Fgt" secondAttribute="trailing" id="fdb-AN-jv5"/>
-                            <constraint firstItem="dKi-Mv-Fgt" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="hO2-Ca-zPa"/>
                             <constraint firstItem="dKi-Mv-Fgt" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="iQR-cJ-jQc"/>
-                            <constraint firstAttribute="trailing" secondItem="dKi-Mv-Fgt" secondAttribute="trailing" id="jXz-8S-aFr"/>
-                            <constraint firstItem="dKi-Mv-Fgt" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="quB-Tp-uy3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="oft-JY-Dju"/>
