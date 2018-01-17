@@ -146,10 +146,12 @@
     <Folder Include="Resources\js\" />
     <Folder Include="Resources\css\" />
     <Folder Include="Util\" />
+    <Folder Include="CustomViews\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="CustomViews\WebView_andorra.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -165,6 +167,11 @@
     </Compile>
     <Compile Include="Util\Colors.cs" />
     <Compile Include="Util\NavItem.cs" />
+    <Compile Include="CustomViews\AndorraTelecomProgressPresenter.cs" />
+    <Compile Include="CustomViews\WebView_andorra.cs" />
+    <Compile Include="CustomViews\WebView_andorra.designer.cs">
+      <DependentUpon>WebView_andorra.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\img\phone.png" />

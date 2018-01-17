@@ -41,6 +41,7 @@ namespace AndorraTelecomiOS
                 .AddCssWithLocalFile("css/menu_css")
                 .Load();
 
+            webScreenlet.ThemeName = "andorra";
             webScreenlet.Configuration = config;
             webScreenlet.IsScrollEnabled = false;
             webScreenlet.BackgroundColor = Colors.LightPurple;
