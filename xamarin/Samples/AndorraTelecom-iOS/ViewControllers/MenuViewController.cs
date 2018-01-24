@@ -19,12 +19,6 @@ namespace AndorraTelecomiOS
             LoadWebScreenlet();
         }
 
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-            // Release any cached data, images, etc that aren't in use.
-        }
-
         public void AddLogoToNavigationItem()
         {
             UIImageView ImageView = NavItem.AddLogo();
@@ -33,7 +27,7 @@ namespace AndorraTelecomiOS
 
         public void LoadWebScreenlet()
         {
-            var url = "https://www.andorratelecom.ad/particulars/inici";
+            var url = new LanguageHelper().Url(LanguageHelper.Pages.Index);
 
             var config = new WebScreenletConfigurationBuilder(url)
                 .SetWithWebType(WebType.Other)

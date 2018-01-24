@@ -172,6 +172,7 @@
     <Compile Include="CustomViews\WebView_andorra.designer.cs">
       <DependentUpon>WebView_andorra.cs</DependentUpon>
     </Compile>
+    <Compile Include="Util\LanguageHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\img\phone.png" />
