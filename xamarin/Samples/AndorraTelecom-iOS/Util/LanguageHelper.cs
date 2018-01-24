@@ -12,6 +12,8 @@ namespace AndorraTelecomiOS.Util
 
         public string Language;
 
+        public string[] ListLanguages = { "esp", "cat", "fra", "eng" };
+
         public string LanguageApp {
             get
             {
@@ -25,6 +27,24 @@ namespace AndorraTelecomiOS.Util
                         return "fr_FR";
                     default:
                         return "en_US";
+                }
+            }
+        }
+
+        public string ThreeLanguageLetters
+        {
+            get
+            {
+                switch (Language)
+                {
+                    case "es":
+                        return "esp";
+                    case "ca":
+                        return "cat";
+                    case "fr":
+                        return "fra";
+                    default:
+                        return "eng";
                 }
             }
         }

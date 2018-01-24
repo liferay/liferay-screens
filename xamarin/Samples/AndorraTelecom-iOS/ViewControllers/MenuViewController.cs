@@ -10,11 +10,15 @@ namespace AndorraTelecomiOS
     {
         protected MenuViewController(IntPtr handle) : base(handle) { }
 
+        public LanguageHelper LanguageHelper = new LanguageHelper();
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
 
             AddLogoToNavigationItem();
+
+            AddMenuChangeLanguage();
 
             LoadWebScreenlet();
         }
@@ -25,11 +29,17 @@ namespace AndorraTelecomiOS
             NavigationItem.TitleView = ImageView;
         }
 
+        public void AddMenuChangeLanguage()
+        {
+            var RightButton = NavItem.AddButtonChangeLanguage(LanguageHelper.ThreeLanguageLetters, this, LanguageHelper);
+            NavigationItem.SetRightBarButtonItem(RightButton, true);
+        }
+
         public void LoadWebScreenlet()
         {
-            var url = new LanguageHelper().Url(LanguageHelper.Pages.Index);
+            var Url = LanguageHelper.Url(LanguageHelper.Pages.Index);
 
-            var config = new WebScreenletConfigurationBuilder(url)
+            var config = new WebScreenletConfigurationBuilder(Url)
                 .SetWithWebType(WebType.Other)
                 .AddJsWithLocalFile("js/menu_js")
                 .AddCssWithLocalFile("css/menu_css")
