@@ -66,9 +66,73 @@ namespace AndorraTelecomiOS
         }
 
         [Export("screenlet:onScriptMessageNamespace:onScriptMessage:")]
-        public virtual void Screenlet(WebScreenlet screenlet, string namespace_, string message)
+        public virtual void Screenlet(WebScreenlet screenlet, string namespace_, string Message)
         {
-            Console.WriteLine($"WebScreenlet onScriptMessage -> namespace: {namespace_}, message: {message}");
+            Console.WriteLine($"WebScreenlet onScriptMessage -> namespace: {namespace_}, message: {Message}");
+
+            switch(namespace_)
+            {
+                case "call-me-back":
+                    Console.WriteLine("Call me back popover");
+                    break;
+                case "click-button":
+                    Console.WriteLine("Go to next forfet");
+                    GoNextForfet(Message);
+                    break;
+                case "map":
+                    Console.WriteLine("Go to map");
+                    GoMap();
+                    break;
+                default:
+                    Console.WriteLine("Invalid event");
+                    break;
+                    
+            }
+        }
+
+        /* UIViewController */
+
+        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+        {
+            if(segue.Identifier == "forfet")
+            {
+                var ViewController = segue.DestinationViewController as ForfetViewController;
+
+                if(ViewController != null)
+                {
+                    switch(sender.ToString())
+                    {
+                        case "0":
+                            ViewController.ForfetUrl = LanguageHelper.Pages.Mobile;
+                            break;
+                        case "1":
+                            ViewController.ForfetUrl = LanguageHelper.Pages.Roaming;
+                            break;
+                        case "2":
+                            ViewController.ForfetUrl = LanguageHelper.Pages.Paquete69;
+                            break;
+                        case "3":
+                            ViewController.ForfetUrl = LanguageHelper.Pages.Optima;
+                            break;
+                        default:
+                            Console.WriteLine("Invalid page");
+                            break;
+                    }
+                }
+            }
+
+        }
+
+        /* Private methods */
+
+        void GoNextForfet(string Message)
+        {
+            PerformSegue("forfet", NSObject.FromObject(Message));
+        }
+
+        void GoMap()
+        {
+            PerformSegue("map", null);
         }
     }
 }

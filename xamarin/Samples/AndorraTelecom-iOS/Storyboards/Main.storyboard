@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="217">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
@@ -38,11 +38,13 @@
                     <navigationItem key="navigationItem" id="262"/>
                     <connections>
                         <outlet property="webScreenlet" destination="469" id="name-outlet-469"/>
+                        <segue id="735" destination="687" kind="show" identifier="forfet"/>
+                        <segue id="1009" destination="955" kind="show" identifier="map"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="215.19999999999999" y="80.50974512743629"/>
+            <point key="canvasLocation" x="-77.8" y="23.50974"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="216">
@@ -60,5 +62,23 @@
             </objects>
             <point key="canvasLocation" x="-620" y="34"/>
         </scene>
+        <scene sceneID="686">
+            <objects>
+                <viewControllerPlaceholder id="687" sceneMemberID="viewController" storyboardName="Forfet"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="688" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="515" y="263"/>
+        </scene>
+        <scene sceneID="954">
+            <objects>
+                <viewControllerPlaceholder id="955" sceneMemberID="viewController" storyboardName="Map"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="956" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="513" y="417"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="img/phone.png" width="57" height="57"/>
+        <image name="img/logo.png" width="286" height="56"/>
+    </resources>
 </document>

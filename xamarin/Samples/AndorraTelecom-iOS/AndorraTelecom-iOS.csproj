@@ -151,11 +151,14 @@
     <Folder Include="Resources\es.lproj\" />
     <Folder Include="Resources\ca.lproj\" />
     <Folder Include="Resources\fr.lproj\" />
+    <Folder Include="Storyboards\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
-    <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="CustomViews\WebView_andorra.xib" />
+    <InterfaceDefinition Include="Storyboards\Main.storyboard" />
+    <InterfaceDefinition Include="Storyboards\Forfet.storyboard" />
+    <InterfaceDefinition Include="Storyboards\Map.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -177,6 +180,14 @@
       <DependentUpon>WebView_andorra.cs</DependentUpon>
     </Compile>
     <Compile Include="Util\LanguageHelper.cs" />
+    <Compile Include="ViewControllers\ForfetViewController.cs" />
+    <Compile Include="ViewControllers\ForfetViewController.designer.cs">
+      <DependentUpon>ForfetViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\MapViewController.cs" />
+    <Compile Include="ViewControllers\MapViewController.designer.cs">
+      <DependentUpon>MapViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\img\phone.png" />

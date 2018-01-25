@@ -11,8 +11,8 @@ using UIKit;
 
 namespace AndorraTelecomiOS
 {
-    [Register ("WebView_andorra")]
-    partial class WebView_andorra
+    [Register ("MapViewController")]
+    partial class MapViewController
     {
         void ReleaseDesignerOutlets ()
         {
