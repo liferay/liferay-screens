@@ -76,6 +76,7 @@ All notable changes to this project will be documented in this file.
 * Allow developers to disable scroll on WebScreenlet
 * Wait for all scripts to load before showing the WebScreenlet
 * Allow developers to clear cache on WebScreenlet
+* Select multiple values in DDLFormScreenlet (checkbox multiple)
 
 ### Refactor
 * Migrate from UIWebView to WKWebView

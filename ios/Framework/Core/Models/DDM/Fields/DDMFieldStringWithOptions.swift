@@ -58,6 +58,10 @@ open class DDMFieldStringWithOptions: DDMField {
 	override public init(attributes: [String:AnyObject], locale: Locale) {
 		multiple = Bool.from(any: attributes["multiple"] ?? "false" as AnyObject)
 
+		if (attributes["type"] as! String) == "checkbox_multiple" {
+			multiple = true
+		}
+
 		if let optionsArray = attributes["options"] as? [[String:AnyObject]] {
 			for optionDict in optionsArray {
 				let label = optionDict["label"] as? String ?? ""
@@ -93,6 +97,10 @@ open class DDMFieldStringWithOptions: DDMField {
 		var result = "["
 
 		if let currentOptions = value as? [NSObject] {
+			if currentOptions.count == 1 && !multiple {
+				return currentOptions[0].description
+			}
+			
 			var first = true
 			for option in currentOptions {
 				if first {

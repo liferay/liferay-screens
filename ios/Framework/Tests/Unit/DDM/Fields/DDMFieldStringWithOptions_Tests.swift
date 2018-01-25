@@ -209,7 +209,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 		stringField.currentValue = "Option 3" as AnyObject?
 
-		XCTAssertEqual("[\"value 3\"]", stringField.currentValueAsString!)
+		XCTAssertEqual("value 3", stringField.currentValueAsString!)
 	}
 
 	func test_CurrentValueAsString_ShouldContainEmptyArray_WhenCurrentValueWasSetToEmptyString() {
@@ -228,7 +228,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 		stringField.currentValueAsString = "Option 3"
 
-		XCTAssertEqual("[\"value 3\"]", stringField.currentValueAsString!)
+		XCTAssertEqual("value 3", stringField.currentValueAsString!)
 	}
 
 	func test_CurrentValueAsString_ShouldSupportOptionValue_WhenSettingTheStringValue() {
@@ -237,7 +237,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 		stringField.currentValueAsString = "value 3"
 
-		XCTAssertEqual("[\"value 3\"]", stringField.currentValueAsString!)
+		XCTAssertEqual("value 3", stringField.currentValueAsString!)
 	}
 
 	func test_CurrentValueAsString_ShouldSupportOptionValue_WhenSettingAnArrayOfValues() {
@@ -246,7 +246,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 		stringField.currentValueAsString = "[\"value 3\"]"
 
-		XCTAssertEqual("[\"value 3\"]", stringField.currentValueAsString!)
+		XCTAssertEqual("value 3", stringField.currentValueAsString!)
 	}
 
 	func test_CurrentValueAsString_ShouldSupportOptionValue_WhenSettingAnArrayOfUnquotedValues() {
@@ -255,7 +255,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 		stringField.currentValueAsString = "[value 3]"
 
-		XCTAssertEqual("[\"value 3\"]", stringField.currentValueAsString!)
+		XCTAssertEqual("value 3", stringField.currentValueAsString!)
 	}
 
 	func test_CurrentValueAsString_ShouldSupportNil_WhenSettingTheStringValue() {
@@ -305,7 +305,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 		stringField.currentValueAsLabel = "Option 3"
 
-		XCTAssertEqual("[\"value 3\"]", stringField.currentValueAsString!)
+		XCTAssertEqual("value 3", stringField.currentValueAsString!)
 	}
 
 	// MARK: Validate
