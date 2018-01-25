@@ -61,3 +61,6 @@
 # Don't warn for missing support classes
 -dontwarn de.greenrobot.event.util.*$Support
 -dontwarn de.greenrobot.event.util.*$SupportManagerFragment
+
+-keep public class com.google.android.gms.* { public *; }
+-dontwarn com.google.android.gms.**
