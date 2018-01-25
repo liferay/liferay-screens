@@ -200,6 +200,8 @@
     <BundleResource Include="Resources\fr.lproj\Localizable.strings" />
     <BundleResource Include="Resources\css\forfet_css.css" />
     <BundleResource Include="Resources\js\forfet_js.js" />
+    <BundleResource Include="Resources\css\map_css.css" />
+    <BundleResource Include="Resources\js\map_js.js" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork" />
