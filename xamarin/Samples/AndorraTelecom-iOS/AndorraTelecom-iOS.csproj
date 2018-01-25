@@ -198,6 +198,8 @@
     <BundleResource Include="Resources\es.lproj\Localizable.strings" />
     <BundleResource Include="Resources\ca.lproj\Localizable.strings" />
     <BundleResource Include="Resources\fr.lproj\Localizable.strings" />
+    <BundleResource Include="Resources\css\forfet_css.css" />
+    <BundleResource Include="Resources\js\forfet_js.js" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork" />
