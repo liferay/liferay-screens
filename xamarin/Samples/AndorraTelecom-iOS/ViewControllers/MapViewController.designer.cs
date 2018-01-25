@@ -14,8 +14,16 @@ namespace AndorraTelecomiOS
     [Register ("MapViewController")]
     partial class MapViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        LiferayScreens.WebScreenlet webScreenlet { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (webScreenlet != null) {
+                webScreenlet.Dispose ();
+                webScreenlet = null;
+            }
         }
     }
 }

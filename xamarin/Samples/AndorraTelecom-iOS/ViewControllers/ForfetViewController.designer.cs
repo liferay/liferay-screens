@@ -14,8 +14,16 @@ namespace AndorraTelecomiOS
     [Register ("ForfetViewController")]
     partial class ForfetViewController
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        LiferayScreens.WebScreenlet webScreenlet { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (webScreenlet != null) {
+                webScreenlet.Dispose ();
+                webScreenlet = null;
+            }
         }
     }
 }
