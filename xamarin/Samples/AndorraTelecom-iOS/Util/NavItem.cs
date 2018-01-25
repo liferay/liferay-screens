@@ -1,4 +1,5 @@
 ﻿using System;
+using Foundation;
 using UIKit;
 
 namespace AndorraTelecomiOS.Util
@@ -13,34 +14,43 @@ namespace AndorraTelecomiOS.Util
             return ImageView;
         }
 
-        public static UIBarButtonItem AddButtonChangeLanguage(string Language, UIViewController Controller, LanguageHelper LanguageHelper)
+        public static UIBarButtonItem AddButtonChangeLanguage(string Language, UIViewController Controller)
         {
-            var LanguageButton = new UIBarButtonItem(Language, UIBarButtonItemStyle.Plain, (sender, e) => OpenMenuChangeLanguage(Controller, LanguageHelper));
+            var LanguageBundle = RetrieveLanguageBundle(LanguageHelper.Language);
+            
+            var LanguageButton = new UIBarButtonItem(Language, UIBarButtonItemStyle.Plain, (sender, e) => OpenMenuChangeLanguage(Controller, LanguageBundle));
             LanguageButton.TintColor = UIColor.White;
 
             return LanguageButton;
         }
 
-        private static void OpenMenuChangeLanguage(UIViewController Controller, LanguageHelper LanguageHelper)
+        static NSBundle RetrieveLanguageBundle(string Language)
+        {
+            var Path = NSBundle.MainBundle.PathForResource(Language, "lproj");
+            return NSBundle.FromPath(Path);
+        }
+
+        static void OpenMenuChangeLanguage(UIViewController Controller, NSBundle LanguageBundle)
         {
             var LanguageAlert = new UIAlertController();
-            LanguageAlert.Title = "Language";
-            LanguageAlert.Message = "Choose your preferred language";
+
+            LanguageAlert.Title = LanguageBundle.LocalizedString("Language", null);
+            LanguageAlert.Message = LanguageBundle.LocalizedString("Choose your preferred language", null);
             LanguageAlert.ModalPresentationStyle = UIModalPresentationStyle.FormSheet;
 
             var AvailableLanguages = LanguageHelper.ListLanguages;
             foreach (var Value in AvailableLanguages)
             {
-                var AlertActionOption = UIAlertAction.Create(Value, UIAlertActionStyle.Default, (obj) => ActionChangeLanguage(obj.Title, Controller, LanguageHelper));
+                var AlertActionOption = UIAlertAction.Create(Value, UIAlertActionStyle.Default, (obj) => ActionChangeLanguage(obj.Title, Controller));
                 LanguageAlert.AddAction(AlertActionOption);
             }
 
-            var AlertActionCancel = UIAlertAction.Create("Cancel", UIAlertActionStyle.Cancel, (obj) => LanguageAlert.DismissViewController(true, null));
+            var AlertActionCancel = UIAlertAction.Create(LanguageBundle.LocalizedString("Cancel", null), UIAlertActionStyle.Cancel, (obj) => LanguageAlert.DismissViewController(true, null));
             LanguageAlert.AddAction(AlertActionCancel);
             Controller.PresentViewController(LanguageAlert, true, null);
         }
 
-        private static void ActionChangeLanguage(string NewLanguage, UIViewController Controller, LanguageHelper LanguageHelper)
+        static void ActionChangeLanguage(string NewLanguage, UIViewController Controller)
         {
             LanguageHelper.Language = NewLanguage.Substring(0, 2);
             Controller.ViewDidLoad();

@@ -3,18 +3,15 @@ using Foundation;
 
 namespace AndorraTelecomiOS.Util
 {
-    public class LanguageHelper
+    public static class LanguageHelper
     {
-        public LanguageHelper()
-        {
-            Language = NSLocale.PreferredLanguages[0].Substring(0, 2);
-        }
+        static LanguageHelper() => Language = NSLocale.PreferredLanguages[0].Substring(0, 2);
 
-        public string Language;
+        public static string Language;
 
-        public string[] ListLanguages = { "esp", "cat", "fra", "eng" };
+        public static string[] ListLanguages = { "esp", "cat", "fra", "eng" };
 
-        public string LanguageApp {
+        public static string LanguageApp {
             get
             {
                 switch (Language)
@@ -31,7 +28,7 @@ namespace AndorraTelecomiOS.Util
             }
         }
 
-        public string ThreeLanguageLetters
+        public static string ThreeLanguageLetters
         {
             get
             {
@@ -53,7 +50,7 @@ namespace AndorraTelecomiOS.Util
 
         /* Methods */
 
-        public string GetPlid(Pages Page)
+        public static string GetPlid(Pages Page)
         {
             switch (Page)
             {
@@ -74,7 +71,7 @@ namespace AndorraTelecomiOS.Util
             }
         }
 
-        public string GetPathName(Pages Page)
+        public static string GetPathName(Pages Page)
         {
             switch (Page)
             {
@@ -95,10 +92,10 @@ namespace AndorraTelecomiOS.Util
             }
         }
 
-        public string Url(Pages Page)
+        public static string Url(Pages Page)
         {
             var url = "https://www.andorratelecom.ad/c/portal/update_language?p_l_id=" 
-                + GetPlid(Page) + "&redirect=" + GetPathName(Page) + "&languageId=" + this.LanguageApp + "";
+                + GetPlid(Page) + "&redirect=" + GetPathName(Page) + "&languageId=" + LanguageApp + "";
             
             Console.WriteLine("URL: " + url);
 

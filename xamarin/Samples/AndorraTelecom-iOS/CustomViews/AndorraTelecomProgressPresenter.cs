@@ -1,4 +1,5 @@
 ﻿using AndorraTelecomiOS.Util;
+using Foundation;
 using LiferayScreens;
 
 namespace AndorraTelecomiOS.CustomViews
@@ -18,7 +19,7 @@ namespace AndorraTelecomiOS.CustomViews
             }
 
             ConfigureAndShowHUD(Instance,
-                                "Loading...",
+                                NSBundle.FromPath(NSBundle.MainBundle.PathForResource(LanguageHelper.Language, "lproj")).LocalizedString("Loading...", null),
                                 ProgressCloseMode.ManualClose,
                                 ProgressSpinnerMode.IndeterminateSpinner);
         }
@@ -33,7 +34,7 @@ namespace AndorraTelecomiOS.CustomViews
                 }
 
                 ConfigureAndShowHUD(Instance,
-                                    "Loading...",
+                                    NSBundle.MainBundle.LocalizedString("Loading...", null),
                                     (error == null ? ProgressCloseMode.Autoclose_TouchClosable : ProgressCloseMode.ManualClose_TouchClosable),
                                     ProgressSpinnerMode.IndeterminateSpinner);
             }

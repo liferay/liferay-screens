@@ -147,6 +147,10 @@
     <Folder Include="Resources\css\" />
     <Folder Include="Util\" />
     <Folder Include="CustomViews\" />
+    <Folder Include="Resources\en.lproj\" />
+    <Folder Include="Resources\es.lproj\" />
+    <Folder Include="Resources\ca.lproj\" />
+    <Folder Include="Resources\fr.lproj\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -179,6 +183,10 @@
     <BundleResource Include="Resources\img\logo.png" />
     <BundleResource Include="Resources\js\menu_js.js" />
     <BundleResource Include="Resources\css\menu_css.css" />
+    <BundleResource Include="Resources\en.lproj\Localizable.strings" />
+    <BundleResource Include="Resources\es.lproj\Localizable.strings" />
+    <BundleResource Include="Resources\ca.lproj\Localizable.strings" />
+    <BundleResource Include="Resources\fr.lproj\Localizable.strings" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork" />

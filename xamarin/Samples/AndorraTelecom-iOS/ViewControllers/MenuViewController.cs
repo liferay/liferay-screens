@@ -10,8 +10,6 @@ namespace AndorraTelecomiOS
     {
         protected MenuViewController(IntPtr handle) : base(handle) { }
 
-        public LanguageHelper LanguageHelper = new LanguageHelper();
-
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -31,7 +29,7 @@ namespace AndorraTelecomiOS
 
         public void AddMenuChangeLanguage()
         {
-            var RightButton = NavItem.AddButtonChangeLanguage(LanguageHelper.ThreeLanguageLetters, this, LanguageHelper);
+            var RightButton = NavItem.AddButtonChangeLanguage(LanguageHelper.ThreeLanguageLetters, this);
             NavigationItem.SetRightBarButtonItem(RightButton, true);
         }
 
