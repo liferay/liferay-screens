@@ -1,5 +1,4 @@
-﻿
-var divCallMeBack;
+﻿var divCallMeBack;
 
 function buildMenu() {
     var newBody = document.createElement('body');
@@ -8,6 +7,9 @@ function buildMenu() {
     var titles = document.getElementsByClassName('item title');
     var footer = document.getElementById('footer-links');
     var contentButtonMap = footer.getElementsByTagName('h3')[1].innerText;
+    var slides = document.getElementsByClassName('slides')[0]
+    var images = slides.querySelectorAll('li img');
+    removeClassName(images, 'hidden-xs');
 
     removeItemByClassName(bannerTop, 'flex-control-nav flex-control-paging', 0);
     removeItemByClassName(bannerTop, 'flex-direction-nav', 0);
@@ -39,6 +41,12 @@ function createButtonMap(text) {
 
     containerButton.appendChild(buttonMap);
     return containerButton;
+}
+
+function removeClassName(items, cssClass) {
+    for (var i = items.length - 1; i >= 0; i--) {
+        items[i].classList.remove(cssClass);
+    }
 }
 
 function removeItemByClassName(node, className, position) {
