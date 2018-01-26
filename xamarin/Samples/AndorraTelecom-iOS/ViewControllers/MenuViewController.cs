@@ -96,6 +96,12 @@ namespace AndorraTelecomiOS
         {
             if(segue.Identifier == "forfet")
             {
+                var LanguageBundle = NSBundle.FromPath(NSBundle.MainBundle.PathForResource(LanguageHelper.Language, "lproj"));
+                var BackItem = new UIBarButtonItem();
+                BackItem.Title = LanguageBundle.LocalizedString("Back", null);
+                BackItem.TintColor = UIColor.White;
+                NavigationItem.BackBarButtonItem = BackItem;
+
                 var ViewController = segue.DestinationViewController as ForfetViewController;
 
                 if(ViewController != null)
