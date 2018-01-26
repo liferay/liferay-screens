@@ -206,6 +206,7 @@
     <BundleResource Include="Resources\js\forfet_js.js" />
     <BundleResource Include="Resources\css\map_css.css" />
     <BundleResource Include="Resources\js\map_js.js" />
+    <BundleResource Include="Resources\img\logo-navbar.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork" />
