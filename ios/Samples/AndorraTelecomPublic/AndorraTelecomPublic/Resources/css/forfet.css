@@ -26,3 +26,12 @@
 .cc-floating {
     display: none;
 }
+
+h1.main-title, h2.global-subtitle {
+    text-transform: uppercase;
+}
+
+h2.global-subtitle {
+    padding-top: 40px;
+    font-size: 30px;
+}
