@@ -15,3 +15,52 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+-keep class com.lsjwzh.widget.recyclerviewpager.**
+-dontwarn com.lsjwzh.widget.recyclerviewpager.**
+
+-keep class com.daimajia.swipe.SwipeLayout.**
+-dontwarn com.daimajia.swipe.SwipeLayout.**
+
+-keep class com.snappydb.** { *; }
+-dontwarn com.snappydb.**
+
+-dontwarn javax.annotation.Nullable
+-dontwarn javax.annotation.ParametersAreNonnullByDefault
+-dontwarn javax.xml.bind.DatatypeConverter
+-dontwarn java.lang.invoke.SerializedLambda
+
+-dontwarn okio.**
+
+-dontwarn sun.misc.**
+-dontwarn sun.reflect.**
+-dontwarn sun.nio.ch.**
+-dontwarn java.beans.**
+#-keep,allowshrinking class com.esotericsoftware.** {
+#   <fields>;
+#   <methods>;
+#}
+-keep,allowshrinking class java.beans.** { *; }
+-keep,allowshrinking class sun.reflect.** { *; }
+#-keep,allowshrinking class com.esotericsoftware.kryo.** { *; }
+-keep,allowshrinking class sun.nio.ch.** { *; }
+-keep class com.esotericsoftware.kryo.** { *; }
+
+-keep class org.apache.cordova.** { *; }
+-keep class * extends org.apache.cordova.CordovaPlugin
+
+-keepclassmembers class ** {
+    public void onEvent*(***);
+}
+
+# Only required if you use AsyncExecutor
+-keepclassmembers class * extends de.greenrobot.event.util.ThrowableFailureEvent {
+    public <init>(java.lang.Throwable);
+}
+
+# Don't warn for missing support classes
+-dontwarn de.greenrobot.event.util.*$Support
+-dontwarn de.greenrobot.event.util.*$SupportManagerFragment
+
+-keep public class com.google.android.gms.* { public *; }
+-dontwarn com.google.android.gms.**
