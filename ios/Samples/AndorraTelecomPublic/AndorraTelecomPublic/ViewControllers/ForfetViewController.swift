@@ -26,7 +26,7 @@ class ForfetViewController: UIViewController, WebScreenletDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadWebScreenlet()
-        addLogoToNavegationBar()
+        addLogoToNavigationBar()
     }
 
     func loadWebScreenlet() {
@@ -43,7 +43,7 @@ class ForfetViewController: UIViewController, WebScreenletDelegate {
         webScreenlet.delegate = self
     }
 
-    func addLogoToNavegationBar() {
+    func addLogoToNavigationBar() {
         let logo = UIImage(named: "Logo") as UIImage?
         let imageView = UIImageView(image:logo)
         imageView.frame.size.width = 100

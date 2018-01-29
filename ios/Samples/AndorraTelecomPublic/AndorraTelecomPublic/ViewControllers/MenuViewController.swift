@@ -31,7 +31,7 @@ class MenuViewController: UIViewController, WebScreenletDelegate, CallMeBackDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        addLogoToNavegationBar()
+        addLogoToNavigationBar()
         modifyHeightCallMeBack(height: 0)
         callMeBack.delegate = self
 
@@ -49,7 +49,7 @@ class MenuViewController: UIViewController, WebScreenletDelegate, CallMeBackDele
         self.viewCallmeBack.layoutIfNeeded()
     }
 
-    func addLogoToNavegationBar() {
+    func addLogoToNavigationBar() {
         let logo = UIImage(named: "Logo") as UIImage?
         let imageView = UIImageView(image:logo)
         imageView.frame.size.width = 100
