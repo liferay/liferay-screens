@@ -16,6 +16,10 @@ namespace AndorraTelecomiOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        AndorraTelecomiOS.CallMeBackView callMeBackView { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIView headerCallMeBack { get; set; }
 
         [Outlet]
@@ -36,6 +40,11 @@ namespace AndorraTelecomiOS
 
         void ReleaseDesignerOutlets ()
         {
+            if (callMeBackView != null) {
+                callMeBackView.Dispose ();
+                callMeBackView = null;
+            }
+
             if (headerCallMeBack != null) {
                 headerCallMeBack.Dispose ();
                 headerCallMeBack = null;

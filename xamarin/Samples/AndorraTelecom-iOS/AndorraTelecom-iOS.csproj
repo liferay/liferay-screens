@@ -163,6 +163,7 @@
     <InterfaceDefinition Include="Storyboards\Forfet.storyboard" />
     <InterfaceDefinition Include="Storyboards\Map.storyboard" />
     <InterfaceDefinition Include="Storyboards\Main.storyboard" />
+    <InterfaceDefinition Include="CustomViews\CallMeBackView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -191,6 +192,10 @@
     <Compile Include="ViewControllers\MapViewController.cs" />
     <Compile Include="ViewControllers\MapViewController.designer.cs">
       <DependentUpon>MapViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomViews\CallMeBackView.cs" />
+    <Compile Include="CustomViews\CallMeBackView.designer.cs">
+      <DependentUpon>CallMeBackView.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

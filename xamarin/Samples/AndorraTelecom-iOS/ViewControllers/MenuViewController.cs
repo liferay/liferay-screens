@@ -19,6 +19,8 @@ namespace AndorraTelecomiOS
             AddMenuChangeLanguage();
 
             LoadWebScreenlet();
+
+            LoadCallMeBackPopOver();
         }
 
         public void AddLogoToNavigationItem()
@@ -51,6 +53,13 @@ namespace AndorraTelecomiOS
             webScreenlet.BackgroundColor = Colors.LightPurple;
             webScreenlet.Delegate = this;
             webScreenlet.Load();
+        }
+
+        public void LoadCallMeBackPopOver()
+        {
+            var CmbView = CallMeBackView.Create();
+            CmbView.Frame = callMeBackView.Bounds;
+            callMeBackView.AddSubview(CmbView);
         }
 
         /* IWebScreenletDelegate */
