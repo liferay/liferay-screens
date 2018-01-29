@@ -59,6 +59,7 @@ namespace AndorraTelecomiOS
         public virtual void OnWebLoad(WebScreenlet screenlet, string url)
         {
             Console.WriteLine($"WebScreenlet URL display successfully: {url}");
+            AttachClickHeaderCallMeBack();
         }
 
         [Export("screenlet:onError:")]
@@ -154,6 +155,32 @@ namespace AndorraTelecomiOS
             this.heightCallMeBack.Constant = 50;
             this.viewCallMeBack.Superview.LayoutIfNeeded();
             this.viewCallMeBack.Hidden = false;
+        }
+
+        void AttachClickHeaderCallMeBack()
+        {
+            Action CallMeBackActions = () =>
+            {
+                UIView.Animate(0.5, () =>
+                {
+                    var bigSize = 400;
+                    var smallSize = 50;
+
+                    if (this.heightCallMeBack.Constant.Equals(bigSize))
+                    {
+                        this.heightCallMeBack.Constant = smallSize;
+                        this.viewCallMeBack.Superview.LayoutIfNeeded();
+                    }
+                    else
+                    {
+                        this.heightCallMeBack.Constant = bigSize;
+                        this.viewCallMeBack.Superview.LayoutIfNeeded();
+                    }
+                });
+            };
+
+            var headerGesture = new UITapGestureRecognizer(CallMeBackActions);
+            this.headerCallMeBack.AddGestureRecognizer(headerGesture);
         }
     }
 }

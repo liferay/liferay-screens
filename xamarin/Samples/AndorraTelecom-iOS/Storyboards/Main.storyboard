@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="217">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
@@ -97,11 +97,12 @@
                         <outlet property="webScreenlet" destination="469" id="name-outlet-469"/>
                         <segue destination="687" kind="show" identifier="forfet" id="735"/>
                         <segue destination="955" kind="show" identifier="map" id="1009"/>
+                        <outlet property="headerCallMeBack" destination="it0-rM-8dx" id="name-outlet-it0-rM-8dx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="148" y="33.733139999999999"/>
+            <point key="canvasLocation" x="148" y="33.73314"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="216">
@@ -138,5 +139,7 @@
     </scenes>
     <resources>
         <image name="img/phone.png" width="57" height="57"/>
+        <image name="img/logo.png" width="286" height="56"/>
+        <image name="img/logo-navbar.png" width="170" height="33"/>
     </resources>
 </document>

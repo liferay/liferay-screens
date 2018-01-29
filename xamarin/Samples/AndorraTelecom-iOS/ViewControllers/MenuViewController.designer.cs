@@ -16,6 +16,10 @@ namespace AndorraTelecomiOS
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView headerCallMeBack { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.NSLayoutConstraint heightCallMeBack { get; set; }
 
         [Outlet]
@@ -32,6 +36,11 @@ namespace AndorraTelecomiOS
 
         void ReleaseDesignerOutlets ()
         {
+            if (headerCallMeBack != null) {
+                headerCallMeBack.Dispose ();
+                headerCallMeBack = null;
+            }
+
             if (heightCallMeBack != null) {
                 heightCallMeBack.Dispose ();
                 heightCallMeBack = null;
