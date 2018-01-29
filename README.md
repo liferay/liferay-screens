@@ -1,6 +1,6 @@
 # Liferay Screens
 
-[![License](http://img.shields.io/badge/license-LGPL_2.1-red.svg?style=flat-square)](http://opensource.org/licenses/LGPL-2.1) [![Release](http://img.shields.io/badge/release-3.0.0-orange.svg?style=flat-square)](https://github.com/liferay/liferay-screens/releases/) [![Tag](http://img.shields.io/github/tag/liferay/liferay-screens.svg?style=flat-square)](https://github.com/liferay/liferay-screens/tags/)
+[![License](http://img.shields.io/badge/license-LGPL_2.1-red.svg?style=flat-square)](http://opensource.org/licenses/LGPL-2.1) [![Release](http://img.shields.io/badge/release-3.0.2-orange.svg?style=flat-square)](https://github.com/liferay/liferay-screens/releases/) [![Tag](http://img.shields.io/github/tag/liferay/liferay-screens.svg?style=flat-square)](https://github.com/liferay/liferay-screens/tags/)
 
 [![iOS Platform](http://img.shields.io/badge/platform-iOS_9+-blue.svg?style=flat-square)](https://github.com/liferay/liferay-screens/tree/master/ios) [![Build Status](http://img.shields.io/travis/liferay/liferay-screens.svg?style=flat-square)](https://travis-ci.org/liferay/liferay-screens/)
 
@@ -8,12 +8,13 @@
 
 ## Overview
 
-This repository contains the Liferay Screens source code, in addition to several example projects that illustrate how Screens is used. For detailed instructions on developing mobile apps with Screens, see the Screens documentation for [Android](https://dev.liferay.com/develop/tutorials/-/knowledge_base/7-0/android-apps-with-liferay-screens) and [iOS](https://dev.liferay.com/develop/tutorials/-/knowledge_base/7-0/ios-apps-with-liferay-screens) on the Liferay Developer Network (LDN). 
+This repository contains the Liferay Screens source code, in addition to several example projects that illustrate how Screens is used. For detailed instructions on developing mobile apps with Screens, see the Screens documentation for [Android](https://dev.liferay.com/develop/tutorials/-/knowledge_base/7-0/android-apps-with-liferay-screens), [iOS](https://dev.liferay.com/develop/tutorials/-/knowledge_base/7-0/ios-apps-with-liferay-screens) and [Xamarin](https://dev.liferay.com/develop/tutorials/-/knowledge_base/7-0/using-xamarin-with-liferay-screens) on the Liferay Developer Network (LDN). 
 
 Brief descriptions of this repository's contents are listed here:
 
 - `android`: the Liferay Screens for Android codebase, View Sets, and example projects.
 - `ios`: the Liferay Screens for iOS codebase, Themes, and example projects.
+- `xamarin`: the Liferay Screens for Xamarin.Android and Xamarin.iOS codebases and example projects. 
 
 ## Available Screenlets
 
