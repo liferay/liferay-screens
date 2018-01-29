@@ -31,6 +31,8 @@ namespace AndorraTelecomiOS
         {
             var RightButton = NavItem.AddButtonChangeLanguage(LanguageHelper.ThreeLanguageLetters, this);
             NavigationItem.SetRightBarButtonItem(RightButton, true);
+
+            this.viewCallMeBack.Hidden = true;
         }
 
         public void LoadWebScreenlet()
@@ -74,6 +76,7 @@ namespace AndorraTelecomiOS
             {
                 case "call-me-back":
                     Console.WriteLine("Call me back popover");
+                    CreatePopOverCallMeBack(Message);
                     break;
                 case "click-button":
                     Console.WriteLine("Go to next forfet");
@@ -86,7 +89,6 @@ namespace AndorraTelecomiOS
                 default:
                     Console.WriteLine("Invalid event");
                     break;
-                    
             }
         }
 
@@ -139,6 +141,19 @@ namespace AndorraTelecomiOS
         void GoMap()
         {
             PerformSegue("map", null);
+        }
+
+        async void CreatePopOverCallMeBack(string Message)
+        {
+            this.labelCallMeBack.Text = Message;
+            await UIView.AnimateAsync(0, () => AnimateCallMeBack());
+        }
+
+        void AnimateCallMeBack()
+        {
+            this.heightCallMeBack.Constant = 50;
+            this.viewCallMeBack.Superview.LayoutIfNeeded();
+            this.viewCallMeBack.Hidden = false;
         }
     }
 }
