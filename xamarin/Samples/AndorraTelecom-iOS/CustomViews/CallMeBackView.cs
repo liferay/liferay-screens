@@ -1,6 +1,5 @@
 using System;
 using AndorraTelecomiOS.Util;
-using CoreText;
 using Foundation;
 using ObjCRuntime;
 using UIKit;
@@ -11,10 +10,14 @@ namespace AndorraTelecomiOS
     {
         public CallMeBackView(IntPtr handle) : base(handle) { }
 
+        public static ICallMeBackDelegate Delegate;
+
         public static CallMeBackView Create()
         {
             var CallMeBackViewArr = NSBundle.MainBundle.LoadNib("CallMeBackView", null, null);
             var View = Runtime.GetNSObject<CallMeBackView>(CallMeBackViewArr.ValueAt(0));
+
+            /* Set text outlets */
 
             var LanguageBundle = RetrieveLanguageBundle(LanguageHelper.Language);
 
@@ -40,6 +43,17 @@ namespace AndorraTelecomiOS
             View.OrLabel.Text = LanguageBundle.LocalizedString("Or", null);
             View.ICallButton.SetTitle(LanguageBundle.LocalizedString("I-call", null), UIControlState.Normal);
 
+            /* Add gesture recognizer to legal conditions link */
+
+            Action LegalTouchPopOver = () =>
+            {
+                ShowLegalConditions(View);
+            };
+
+            var TapGesture = new UITapGestureRecognizer(LegalTouchPopOver);
+            View.LegalLabel.UserInteractionEnabled = true;
+            View.LegalLabel.AddGestureRecognizer(TapGesture);
+
             return View;
         }
 
@@ -60,6 +74,16 @@ namespace AndorraTelecomiOS
             var CountLastTwoWords = ArrayWords[LastPosition].Length + ArrayWords[LastPosition - 1].Length + 1;
 
             return new NSRange(CountCharacters - CountLastTwoWords, CountLastTwoWords);
+        }
+
+        static void ShowLegalConditions(CallMeBackView View)
+        {
+            Delegate.ShowLegalConditions(View);
+        }
+
+        internal void LegalConditionsChange(CallMeBackView View, bool IsAccepted)
+        {
+            View.LegalSwitch.On = IsAccepted;
         }
     }
 }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13771"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1" customClass="LegalConditionsView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DO7-4W-fFj" customClass="WebScreenlet">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="DO7-4W-fFj" secondAttribute="bottom" id="7Nc-fY-1U6"/>
+                <constraint firstAttribute="trailing" secondItem="DO7-4W-fFj" secondAttribute="trailing" id="RSs-jf-CoB"/>
+                <constraint firstItem="DO7-4W-fFj" firstAttribute="top" secondItem="1" secondAttribute="top" id="T73-lJ-uBa"/>
+                <constraint firstItem="DO7-4W-fFj" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="Tzq-f0-Bnl"/>
+            </constraints>
+            <point key="canvasLocation" x="24.5" y="51.5"/>
+            <connections>
+                <outlet property="WebScreenlet" destination="DO7-4W-fFj" id="name-outlet-DO7-4W-fFj"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="img/phone.png" width="57" height="57"/>
+        <image name="img/logo.png" width="286" height="56"/>
+        <image name="img/logo-navbar.png" width="170" height="33"/>
+        <image name="img/phone-input.png" width="35" height="35"/>
+    </resources>
+</document>

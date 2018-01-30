@@ -3,10 +3,11 @@ using UIKit;
 using LiferayScreens;
 using Foundation;
 using AndorraTelecomiOS.Util;
+using CoreGraphics;
 
 namespace AndorraTelecomiOS
 {
-    public partial class MenuViewController : UIViewController, IWebScreenletDelegate
+    public partial class MenuViewController : UIViewController, IWebScreenletDelegate, ICallMeBackDelegate
     {
         protected MenuViewController(IntPtr handle) : base(handle) { }
 
@@ -57,6 +58,8 @@ namespace AndorraTelecomiOS
 
         public void LoadCallMeBackPopOver()
         {
+            CallMeBackView.Delegate = this; 
+
             var CmbView = CallMeBackView.Create();
             CmbView.Frame = callMeBackView.Bounds;
             callMeBackView.AddSubview(CmbView);
@@ -141,6 +144,44 @@ namespace AndorraTelecomiOS
 
         }
 
+        /* ICallMeBackDelegate */
+
+        public void ShowLegalConditions(CallMeBackView CallMeBackView)
+        {
+            Console.WriteLine("Show Legal Conditions");
+
+            var AlertController = new UIAlertController();
+            AlertController.Title = "\n\n\n\n\n\n\n\n\n\n\n\n\n";
+            AlertController.ModalPresentationStyle = UIModalPresentationStyle.PageSheet;
+            AlertController.View.Layer.CornerRadius = 15;
+            AlertController.View.TintColor = Colors.DarkPurple;
+            var Subview = AlertController.View.Subviews[0].Subviews[0] as UIView;
+            foreach (var V in Subview.Subviews)
+            {
+                V.BackgroundColor = Colors.Pink;
+            }
+
+            var LegalView = LegalConditionsView.Create();
+
+            var Margin = 5;
+            var Rect = new CGRect(Margin, Margin, AlertController.View.Bounds.Size.Width - Margin * 2, AlertController.View.Bounds.Size.Height - Margin * 26);
+            LegalView.Frame = Rect;
+            AlertController.View.AddSubview(LegalView);
+
+            var LanguageBundle = RetrieveLanguageBundle(LanguageHelper.Language);
+
+            var AlertActionAccept = UIAlertAction.Create(LanguageBundle.LocalizedString("Accept", null), UIAlertActionStyle.Default, (obj) => this.callMeBackView.LegalConditionsChange(CallMeBackView, true));
+            var AlertActionCancel = UIAlertAction.Create(LanguageBundle.LocalizedString("Cancel", null), UIAlertActionStyle.Cancel, (obj) => this.callMeBackView.LegalConditionsChange(CallMeBackView, false));
+            AlertController.AddAction(AlertActionAccept);
+            AlertController.AddAction(AlertActionCancel);
+            this.PresentViewController(AlertController, true, null);
+        }
+
+        public void ShowAlertLegalNotAccepted(CallMeBackView CallMeBackView, string Title, string Message)
+        {
+            Console.WriteLine("Show Alert Legal Not Accepted");
+        }
+
         /* Private methods */
 
         void GoNextForfet(string Message)
@@ -190,6 +231,12 @@ namespace AndorraTelecomiOS
 
             var headerGesture = new UITapGestureRecognizer(CallMeBackActions);
             this.headerCallMeBack.AddGestureRecognizer(headerGesture);
+        }
+
+        static NSBundle RetrieveLanguageBundle(string Language)
+        {
+            var Path = NSBundle.MainBundle.PathForResource(Language, "lproj");
+            return NSBundle.FromPath(Path);
         }
     }
 }

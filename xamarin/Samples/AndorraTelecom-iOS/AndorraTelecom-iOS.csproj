@@ -164,6 +164,7 @@
     <InterfaceDefinition Include="Storyboards\Map.storyboard" />
     <InterfaceDefinition Include="Storyboards\Main.storyboard" />
     <InterfaceDefinition Include="CustomViews\CallMeBackView.xib" />
+    <InterfaceDefinition Include="CustomViews\LegalConditionsView.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -197,6 +198,14 @@
     <Compile Include="CustomViews\CallMeBackView.designer.cs">
       <DependentUpon>CallMeBackView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ICallMeBackDelegate.cs" />
+    <Compile Include="CustomViews\LegalConditionsView.cs" />
+    <Compile Include="CustomViews\LegalConditions.designer.cs">
+      <DependentUpon>LegalConditionsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomViews\LegalConditionsView.designer.cs">
+      <DependentUpon>..\LegalConditionsView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\img\phone.png" />
@@ -213,6 +222,8 @@
     <BundleResource Include="Resources\js\map_js.js" />
     <BundleResource Include="Resources\img\logo-navbar.png" />
     <BundleResource Include="Resources\img\phone-input.png" />
+    <BundleResource Include="Resources\js\legal_js.js" />
+    <BundleResource Include="Resources\css\legal_css.css" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork" />

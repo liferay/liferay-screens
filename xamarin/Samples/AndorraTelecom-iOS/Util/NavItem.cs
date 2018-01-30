@@ -37,6 +37,7 @@ namespace AndorraTelecomiOS.Util
             LanguageAlert.Title = LanguageBundle.LocalizedString("Language", null);
             LanguageAlert.Message = LanguageBundle.LocalizedString("Choose your preferred language", null);
             LanguageAlert.ModalPresentationStyle = UIModalPresentationStyle.FormSheet;
+            LanguageAlert.View.Layer.CornerRadius = 15;
             LanguageAlert.View.BackgroundColor = Colors.LightPurple;
             LanguageAlert.View.TintColor = Colors.DarkPurple;
 
