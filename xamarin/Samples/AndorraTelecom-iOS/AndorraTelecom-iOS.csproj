@@ -212,6 +212,7 @@
     <BundleResource Include="Resources\css\map_css.css" />
     <BundleResource Include="Resources\js\map_js.js" />
     <BundleResource Include="Resources\img\logo-navbar.png" />
+    <BundleResource Include="Resources\img\phone-input.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="Resources\iTunesArtwork" />
