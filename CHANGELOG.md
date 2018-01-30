@@ -17,6 +17,9 @@ All notable changes to this project will be documented in this file.
 ### Refactor
 * Xamarin.iOS demo app takes values from plist file
 
+### Samples
+* Andorra Telecom developed with Xamarin.iOS
+
 # 3.0.0
 
 ## Android
