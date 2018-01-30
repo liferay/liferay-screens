@@ -10,3 +10,9 @@
 "Call-me-now" = "APPELEZ-MOI MAINTENANT";
 "Or" = "ou";
 "I-call" = "J'APPELLE";
+"Title-legal" = "Conditions légales";
+"Legal-not-accepted" = "Vous devez accepter les conditions";
+"Title-call" = "Nous vous appelons";
+"Call" = "Nous vous contacterons bientôt au téléphone que vous nous avez donné";
+"Phone-not-valid" = "Ce téléphone n'est pas valable pour Andorre";
+"Title-invalid-number"="Téléphone invalide";

@@ -70,6 +70,9 @@
                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
                     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" title="CALL ME NOW"/>
+                    <connections>
+                        <action selector="CallMeNowButton_TouchUpInside:" destination="1" id="258" eventType="touchUpInside"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- or -" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LWv-AP-rSn">
                     <rect key="frame" x="20" y="255.5" width="335" height="20.5"/>
@@ -86,6 +89,9 @@
                     <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
                     <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" title="I CALL"/>
+                    <connections>
+                        <action selector="ICallButton_TouchUpInside:" destination="1" id="259" eventType="touchUpInside"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>

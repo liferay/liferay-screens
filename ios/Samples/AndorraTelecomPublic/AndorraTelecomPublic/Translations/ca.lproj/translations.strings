@@ -21,8 +21,9 @@
 "i-call" = "YO TRUQUE";
 
 "title-legal" = "Condicions legals";
+"phone-not-valid" = "Aquest numero de telèfon no és vàlid per a Andorra";
+"call" = "Nosaltres et truquem promte al telèfono que ens has facilitat";
 "legal-no-accept" = "Necessita acceptar les condicions";
 
 "title-call" = "Et truquem";
-"call" = "Nosaltres et truquem promte al telèfono que ens has facilitat";
-"phone-not-valid" = "Aquest numero de telèfon no és vàlid per a Andorra";
+

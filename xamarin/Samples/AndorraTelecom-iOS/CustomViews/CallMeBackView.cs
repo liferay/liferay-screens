@@ -57,6 +57,40 @@ namespace AndorraTelecomiOS
             return View;
         }
 
+        /* Actions */
+
+        partial void CallMeNowButton_TouchUpInside(UIButton sender)
+        {
+            var LanguageBundle = RetrieveLanguageBundle(LanguageHelper.Language);
+
+            var PhoneCount = PhoneInput.Text.Length;
+            if(PhoneCount != 6)
+            {
+                ShowAlertLegalNotAccepted(this, LanguageBundle.LocalizedString("Title-invalid-number", null), LanguageBundle.LocalizedString("Phone-not-valid", null));
+            }
+            else if(LegalSwitch.On)
+            {
+                ShowAlertLegalNotAccepted(this, LanguageBundle.LocalizedString("Title-call", null), LanguageBundle.LocalizedString("Call", null));
+            }
+            else
+            {
+                ShowAlertLegalNotAccepted(this, LanguageBundle.LocalizedString("Title-legal", null), LanguageBundle.LocalizedString("Legal-not-accepted", null));
+            }
+        }
+
+        partial void ICallButton_TouchUpInside(UIButton sender)
+        {
+            var Url = new NSUrl("tel://100900900");
+            if (UIApplication.SharedApplication.CanOpenUrl(Url))
+            {
+                UIApplication.SharedApplication.OpenUrl(Url);
+            }
+            else
+            {
+                Console.WriteLine("Can't open Url: " + Url);
+            }
+        }
+
         /* Private methods */
 
         static NSBundle RetrieveLanguageBundle(string Language)
@@ -79,6 +113,11 @@ namespace AndorraTelecomiOS
         static void ShowLegalConditions(CallMeBackView View)
         {
             Delegate.ShowLegalConditions(View);
+        }
+
+        static void ShowAlertLegalNotAccepted(CallMeBackView View, string Title, string Message)
+        {
+            Delegate.ShowAlertLegalNotAccepted(View, Title, Message);
         }
 
         internal void LegalConditionsChange(CallMeBackView View, bool IsAccepted)

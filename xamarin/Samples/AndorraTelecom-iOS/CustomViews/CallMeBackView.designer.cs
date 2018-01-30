@@ -46,6 +46,14 @@ namespace AndorraTelecomiOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel PhoneLabel { get; set; }
 
+        [Action ("CallMeNowButton_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void CallMeNowButton_TouchUpInside (UIKit.UIButton sender);
+
+        [Action ("ICallButton_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void ICallButton_TouchUpInside (UIKit.UIButton sender);
+
         void ReleaseDesignerOutlets ()
         {
             if (CallMeNowButton != null) {

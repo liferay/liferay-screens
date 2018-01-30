@@ -155,11 +155,7 @@ namespace AndorraTelecomiOS
             AlertController.ModalPresentationStyle = UIModalPresentationStyle.PageSheet;
             AlertController.View.Layer.CornerRadius = 15;
             AlertController.View.TintColor = Colors.DarkPurple;
-            var Subview = AlertController.View.Subviews[0].Subviews[0] as UIView;
-            foreach (var V in Subview.Subviews)
-            {
-                V.BackgroundColor = Colors.Pink;
-            }
+            Colorfull(AlertController);
 
             var LegalView = LegalConditionsView.Create();
 
@@ -180,6 +176,12 @@ namespace AndorraTelecomiOS
         public void ShowAlertLegalNotAccepted(CallMeBackView CallMeBackView, string Title, string Message)
         {
             Console.WriteLine("Show Alert Legal Not Accepted");
+
+            var AlertController = UIAlertController.Create(Title, Message, UIAlertControllerStyle.Alert);
+            AlertController.View.TintColor = Colors.DarkPurple;
+            AlertController.AddAction(UIAlertAction.Create("Ok", UIAlertActionStyle.Default, null));
+            Colorfull(AlertController);
+            this.PresentViewController(AlertController, true, null);
         }
 
         /* Private methods */
@@ -231,6 +233,15 @@ namespace AndorraTelecomiOS
 
             var headerGesture = new UITapGestureRecognizer(CallMeBackActions);
             this.headerCallMeBack.AddGestureRecognizer(headerGesture);
+        }
+
+        private void Colorfull(UIAlertController AlertController)
+        {
+            var Subview = AlertController.View.Subviews[0].Subviews[0] as UIView;
+            foreach (var V in Subview.Subviews)
+            {
+                V.BackgroundColor = Colors.Pink;
+            }
         }
 
         static NSBundle RetrieveLanguageBundle(string Language)
