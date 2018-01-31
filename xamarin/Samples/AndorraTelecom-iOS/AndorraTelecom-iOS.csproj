@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectGuid>{75E9CF9B-E06F-4E3E-8AE8-56A6764CB1CE}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>AndorraTelecomiOS</RootNamespace>
+    <AssemblyName>AndorraTelecom-iOS</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <IOSDebuggerPort>61123</IOSDebuggerPort>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+    <AssemblyName>Andorra Telecom</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <IOSDebuggerPort>42578</IOSDebuggerPort>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchArch>ARM64</MtouchArch>
+    <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
+    <PlatformTarget>x86</PlatformTarget>
+    <AssemblyName>Andorra Telecom</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="Xamarin.Swift3">
+      <HintPath>packages\Xamarin.Swift3.3.0.1\lib\xamarinios10\Xamarin.Swift3.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.AVFoundation">
+      <HintPath>packages\Xamarin.Swift3.AVFoundation.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.AVFoundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.CloudKit">
+      <HintPath>packages\Xamarin.Swift3.CloudKit.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.CloudKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.Contacts">
+      <HintPath>packages\Xamarin.Swift3.Contacts.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.Contacts.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.Core">
+      <HintPath>packages\Xamarin.Swift3.Core.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.CoreAudio">
+      <HintPath>packages\Xamarin.Swift3.CoreAudio.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.CoreAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.CoreGraphics">
+      <HintPath>packages\Xamarin.Swift3.CoreGraphics.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.CoreGraphics.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.CoreImage">
+      <HintPath>packages\Xamarin.Swift3.CoreImage.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.CoreImage.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.CoreLocation">
+      <HintPath>packages\Xamarin.Swift3.CoreLocation.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.CoreLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.CoreMedia">
+      <HintPath>packages\Xamarin.Swift3.CoreMedia.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.CoreMedia.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.Darwin">
+      <HintPath>packages\Xamarin.Swift3.Darwin.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.Darwin.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.Dispatch">
+      <HintPath>packages\Xamarin.Swift3.Dispatch.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.Dispatch.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.Foundation">
+      <HintPath>packages\Xamarin.Swift3.Foundation.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.ObjectiveC">
+      <HintPath>packages\Xamarin.Swift3.ObjectiveC.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.ObjectiveC.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.QuartzCore">
+      <HintPath>packages\Xamarin.Swift3.QuartzCore.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.QuartzCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Swift3.UIKit">
+      <HintPath>packages\Xamarin.Swift3.UIKit.3.1.0.2\lib\xamarinios10\Xamarin.Swift3.UIKit.dll</HintPath>
+    </Reference>
+    <Reference Include="LiferayScreens_iOS">
+      <HintPath>packages\LiferayScreens.1.0.0\lib\Xamarin.iOS10\LiferayScreens_iOS.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-40%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-40%403x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-60%402x.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-60%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Resources\img\" />
+    <Folder Include="ViewControllers\" />
+    <Folder Include="Resources\js\" />
+    <Folder Include="Resources\css\" />
+    <Folder Include="Util\" />
+    <Folder Include="CustomViews\" />
+    <Folder Include="Resources\en.lproj\" />
+    <Folder Include="Resources\es.lproj\" />
+    <Folder Include="Resources\ca.lproj\" />
+    <Folder Include="Resources\fr.lproj\" />
+    <Folder Include="Storyboards\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="CustomViews\WebView_andorra.xib" />
+    <InterfaceDefinition Include="Storyboards\Forfet.storyboard" />
+    <InterfaceDefinition Include="Storyboards\Map.storyboard" />
+    <InterfaceDefinition Include="Storyboards\Main.storyboard" />
+    <InterfaceDefinition Include="CustomViews\CallMeBackView.xib" />
+    <InterfaceDefinition Include="CustomViews\LegalConditionsView.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="ViewControllers\MenuViewController.cs" />
+    <Compile Include="ViewControllers\MenuViewController.designer.cs">
+      <DependentUpon>MenuViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Util\Colors.cs" />
+    <Compile Include="Util\NavItem.cs" />
+    <Compile Include="CustomViews\AndorraTelecomProgressPresenter.cs" />
+    <Compile Include="CustomViews\WebView_andorra.cs" />
+    <Compile Include="CustomViews\WebView_andorra.designer.cs">
+      <DependentUpon>WebView_andorra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Util\LanguageHelper.cs" />
+    <Compile Include="ViewControllers\ForfetViewController.cs" />
+    <Compile Include="ViewControllers\ForfetViewController.designer.cs">
+      <DependentUpon>ForfetViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewControllers\MapViewController.cs" />
+    <Compile Include="ViewControllers\MapViewController.designer.cs">
+      <DependentUpon>MapViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomViews\CallMeBackView.cs" />
+    <Compile Include="CustomViews\CallMeBackView.designer.cs">
+      <DependentUpon>CallMeBackView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ICallMeBackDelegate.cs" />
+    <Compile Include="CustomViews\LegalConditionsView.cs" />
+    <Compile Include="CustomViews\LegalConditions.designer.cs">
+      <DependentUpon>LegalConditionsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomViews\LegalConditionsView.designer.cs">
+      <DependentUpon>..\LegalConditionsView.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\img\phone.png" />
+    <BundleResource Include="Resources\img\logo.png" />
+    <BundleResource Include="Resources\js\menu_js.js" />
+    <BundleResource Include="Resources\css\menu_css.css" />
+    <BundleResource Include="Resources\en.lproj\Localizable.strings" />
+    <BundleResource Include="Resources\es.lproj\Localizable.strings" />
+    <BundleResource Include="Resources\ca.lproj\Localizable.strings" />
+    <BundleResource Include="Resources\fr.lproj\Localizable.strings" />
+    <BundleResource Include="Resources\css\forfet_css.css" />
+    <BundleResource Include="Resources\js\forfet_js.js" />
+    <BundleResource Include="Resources\css\map_css.css" />
+    <BundleResource Include="Resources\js\map_js.js" />
+    <BundleResource Include="Resources\img\logo-navbar.png" />
+    <BundleResource Include="Resources\img\phone-input.png" />
+    <BundleResource Include="Resources\js\legal_js.js" />
+    <BundleResource Include="Resources\css\legal_css.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="Resources\iTunesArtwork" />
+    <ITunesArtwork Include="Resources\iTunesArtwork%402x" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <Import Project="packages\Xamarin.Swift3.3.0.1\build\Xamarin.Swift3.targets" Condition="Exists('packages\Xamarin.Swift3.3.0.1\build\Xamarin.Swift3.targets')" />
+</Project>

@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndorraTelecom-iOS", "AndorraTelecom-iOS.csproj", "{75E9CF9B-E06F-4E3E-8AE8-56A6764CB1CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{75E9CF9B-E06F-4E3E-8AE8-56A6764CB1CE}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{75E9CF9B-E06F-4E3E-8AE8-56A6764CB1CE}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{75E9CF9B-E06F-4E3E-8AE8-56A6764CB1CE}.Release|iPhone.ActiveCfg = Release|iPhone
+		{75E9CF9B-E06F-4E3E-8AE8-56A6764CB1CE}.Release|iPhone.Build.0 = Release|iPhone
+		{75E9CF9B-E06F-4E3E-8AE8-56A6764CB1CE}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{75E9CF9B-E06F-4E3E-8AE8-56A6764CB1CE}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{75E9CF9B-E06F-4E3E-8AE8-56A6764CB1CE}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{75E9CF9B-E06F-4E3E-8AE8-56A6764CB1CE}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal
