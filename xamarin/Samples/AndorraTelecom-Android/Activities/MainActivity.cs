@@ -16,6 +16,14 @@ namespace AndorraTelecomAndroid
             SetCustomActionBar();
         }
 
+        public override bool OnCreateOptionsMenu(Android.Views.IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.top_menu, menu);
+            return base.OnCreateOptionsMenu(menu);
+        }
+
+        /* Private methods */
+
         void SetCustomActionBar()
         {
             Toolbar Toolbar = (Toolbar)FindViewById(Resource.Id.toolbar);
