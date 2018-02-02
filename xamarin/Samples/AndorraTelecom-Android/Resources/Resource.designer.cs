@@ -799,44 +799,44 @@ namespace AndorraTelecomAndroid
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f0a003b
-			public const int abc_background_cache_hint_selector_material_dark = 2131361851;
+			// aapt resource value: 0x7f0a0043
+			public const int abc_background_cache_hint_selector_material_dark = 2131361859;
 			
-			// aapt resource value: 0x7f0a003c
-			public const int abc_background_cache_hint_selector_material_light = 2131361852;
+			// aapt resource value: 0x7f0a0044
+			public const int abc_background_cache_hint_selector_material_light = 2131361860;
 			
-			// aapt resource value: 0x7f0a003d
-			public const int abc_btn_colored_borderless_text_material = 2131361853;
+			// aapt resource value: 0x7f0a0045
+			public const int abc_btn_colored_borderless_text_material = 2131361861;
 			
-			// aapt resource value: 0x7f0a003e
-			public const int abc_btn_colored_text_material = 2131361854;
+			// aapt resource value: 0x7f0a0046
+			public const int abc_btn_colored_text_material = 2131361862;
 			
-			// aapt resource value: 0x7f0a003f
-			public const int abc_color_highlight_material = 2131361855;
+			// aapt resource value: 0x7f0a0047
+			public const int abc_color_highlight_material = 2131361863;
 			
-			// aapt resource value: 0x7f0a0040
-			public const int abc_hint_foreground_material_dark = 2131361856;
+			// aapt resource value: 0x7f0a0048
+			public const int abc_hint_foreground_material_dark = 2131361864;
 			
-			// aapt resource value: 0x7f0a0041
-			public const int abc_hint_foreground_material_light = 2131361857;
+			// aapt resource value: 0x7f0a0049
+			public const int abc_hint_foreground_material_light = 2131361865;
 			
 			// aapt resource value: 0x7f0a0001
 			public const int abc_input_method_navigation_guard = 2131361793;
 			
-			// aapt resource value: 0x7f0a0042
-			public const int abc_primary_text_disable_only_material_dark = 2131361858;
+			// aapt resource value: 0x7f0a004a
+			public const int abc_primary_text_disable_only_material_dark = 2131361866;
 			
-			// aapt resource value: 0x7f0a0043
-			public const int abc_primary_text_disable_only_material_light = 2131361859;
+			// aapt resource value: 0x7f0a004b
+			public const int abc_primary_text_disable_only_material_light = 2131361867;
 			
-			// aapt resource value: 0x7f0a0044
-			public const int abc_primary_text_material_dark = 2131361860;
+			// aapt resource value: 0x7f0a004c
+			public const int abc_primary_text_material_dark = 2131361868;
 			
-			// aapt resource value: 0x7f0a0045
-			public const int abc_primary_text_material_light = 2131361861;
+			// aapt resource value: 0x7f0a004d
+			public const int abc_primary_text_material_light = 2131361869;
 			
-			// aapt resource value: 0x7f0a0046
-			public const int abc_search_url_text = 2131361862;
+			// aapt resource value: 0x7f0a004e
+			public const int abc_search_url_text = 2131361870;
 			
 			// aapt resource value: 0x7f0a0002
 			public const int abc_search_url_text_normal = 2131361794;
@@ -847,32 +847,32 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a0004
 			public const int abc_search_url_text_selected = 2131361796;
 			
-			// aapt resource value: 0x7f0a0047
-			public const int abc_secondary_text_material_dark = 2131361863;
-			
-			// aapt resource value: 0x7f0a0048
-			public const int abc_secondary_text_material_light = 2131361864;
-			
-			// aapt resource value: 0x7f0a0049
-			public const int abc_tint_btn_checkable = 2131361865;
-			
-			// aapt resource value: 0x7f0a004a
-			public const int abc_tint_default = 2131361866;
-			
-			// aapt resource value: 0x7f0a004b
-			public const int abc_tint_edittext = 2131361867;
-			
-			// aapt resource value: 0x7f0a004c
-			public const int abc_tint_seek_thumb = 2131361868;
-			
-			// aapt resource value: 0x7f0a004d
-			public const int abc_tint_spinner = 2131361869;
-			
-			// aapt resource value: 0x7f0a004e
-			public const int abc_tint_switch_thumb = 2131361870;
-			
 			// aapt resource value: 0x7f0a004f
-			public const int abc_tint_switch_track = 2131361871;
+			public const int abc_secondary_text_material_dark = 2131361871;
+			
+			// aapt resource value: 0x7f0a0050
+			public const int abc_secondary_text_material_light = 2131361872;
+			
+			// aapt resource value: 0x7f0a0051
+			public const int abc_tint_btn_checkable = 2131361873;
+			
+			// aapt resource value: 0x7f0a0052
+			public const int abc_tint_default = 2131361874;
+			
+			// aapt resource value: 0x7f0a0053
+			public const int abc_tint_edittext = 2131361875;
+			
+			// aapt resource value: 0x7f0a0054
+			public const int abc_tint_seek_thumb = 2131361876;
+			
+			// aapt resource value: 0x7f0a0055
+			public const int abc_tint_spinner = 2131361877;
+			
+			// aapt resource value: 0x7f0a0056
+			public const int abc_tint_switch_thumb = 2131361878;
+			
+			// aapt resource value: 0x7f0a0057
+			public const int abc_tint_switch_track = 2131361879;
 			
 			// aapt resource value: 0x7f0a0005
 			public const int accent_material_dark = 2131361797;
@@ -915,6 +915,24 @@ namespace AndorraTelecomAndroid
 			
 			// aapt resource value: 0x7f0a0012
 			public const int button_material_light = 2131361810;
+			
+			// aapt resource value: 0x7f0a0041
+			public const int colorAccent = 2131361857;
+			
+			// aapt resource value: 0x7f0a003b
+			public const int colorAccent_andorra = 2131361851;
+			
+			// aapt resource value: 0x7f0a003f
+			public const int colorPrimary = 2131361855;
+			
+			// aapt resource value: 0x7f0a0040
+			public const int colorPrimaryDark = 2131361856;
+			
+			// aapt resource value: 0x7f0a003d
+			public const int colorPrimaryDark_andorra = 2131361853;
+			
+			// aapt resource value: 0x7f0a003c
+			public const int colorPrimary_andorra = 2131361852;
 			
 			// aapt resource value: 0x7f0a0013
 			public const int dim_foreground_disabled_material_dark = 2131361811;
@@ -1033,17 +1051,23 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a0038
 			public const int switch_thumb_disabled_material_light = 2131361848;
 			
-			// aapt resource value: 0x7f0a0050
-			public const int switch_thumb_material_dark = 2131361872;
+			// aapt resource value: 0x7f0a0058
+			public const int switch_thumb_material_dark = 2131361880;
 			
-			// aapt resource value: 0x7f0a0051
-			public const int switch_thumb_material_light = 2131361873;
+			// aapt resource value: 0x7f0a0059
+			public const int switch_thumb_material_light = 2131361881;
 			
 			// aapt resource value: 0x7f0a0039
 			public const int switch_thumb_normal_material_dark = 2131361849;
 			
 			// aapt resource value: 0x7f0a003a
 			public const int switch_thumb_normal_material_light = 2131361850;
+			
+			// aapt resource value: 0x7f0a0042
+			public const int textColorPrimary = 2131361858;
+			
+			// aapt resource value: 0x7f0a003e
+			public const int textColorPrimary_andorra = 2131361854;
 			
 			static Color()
 			{
@@ -1615,40 +1639,43 @@ namespace AndorraTelecomAndroid
 			public const int abc_vector_test = 2130837586;
 			
 			// aapt resource value: 0x7f020053
-			public const int notification_action_background = 2130837587;
+			public const int logo = 2130837587;
 			
 			// aapt resource value: 0x7f020054
-			public const int notification_bg = 2130837588;
+			public const int notification_action_background = 2130837588;
 			
 			// aapt resource value: 0x7f020055
-			public const int notification_bg_low = 2130837589;
+			public const int notification_bg = 2130837589;
 			
 			// aapt resource value: 0x7f020056
-			public const int notification_bg_low_normal = 2130837590;
+			public const int notification_bg_low = 2130837590;
 			
 			// aapt resource value: 0x7f020057
-			public const int notification_bg_low_pressed = 2130837591;
+			public const int notification_bg_low_normal = 2130837591;
 			
 			// aapt resource value: 0x7f020058
-			public const int notification_bg_normal = 2130837592;
+			public const int notification_bg_low_pressed = 2130837592;
 			
 			// aapt resource value: 0x7f020059
-			public const int notification_bg_normal_pressed = 2130837593;
+			public const int notification_bg_normal = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int notification_icon_background = 2130837594;
-			
-			// aapt resource value: 0x7f02005d
-			public const int notification_template_icon_bg = 2130837597;
-			
-			// aapt resource value: 0x7f02005e
-			public const int notification_template_icon_low_bg = 2130837598;
+			public const int notification_bg_normal_pressed = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int notification_tile_bg = 2130837595;
+			public const int notification_icon_background = 2130837595;
+			
+			// aapt resource value: 0x7f02005e
+			public const int notification_template_icon_bg = 2130837598;
+			
+			// aapt resource value: 0x7f02005f
+			public const int notification_template_icon_low_bg = 2130837599;
 			
 			// aapt resource value: 0x7f02005c
-			public const int notify_panel_notification_icon_bg = 2130837596;
+			public const int notification_tile_bg = 2130837596;
+			
+			// aapt resource value: 0x7f02005d
+			public const int notify_panel_notification_icon_bg = 2130837597;
 			
 			static Drawable()
 			{
@@ -1663,8 +1690,8 @@ namespace AndorraTelecomAndroid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f0b0059
-			public const int action0 = 2131427417;
+			// aapt resource value: 0x7f0b005a
+			public const int action0 = 2131427418;
 			
 			// aapt resource value: 0x7f0b0047
 			public const int action_bar = 2131427399;
@@ -1687,17 +1714,17 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0b0024
 			public const int action_bar_title = 2131427364;
 			
-			// aapt resource value: 0x7f0b0056
-			public const int action_container = 2131427414;
+			// aapt resource value: 0x7f0b0057
+			public const int action_container = 2131427415;
 			
 			// aapt resource value: 0x7f0b0048
 			public const int action_context_bar = 2131427400;
 			
-			// aapt resource value: 0x7f0b005d
-			public const int action_divider = 2131427421;
+			// aapt resource value: 0x7f0b005e
+			public const int action_divider = 2131427422;
 			
-			// aapt resource value: 0x7f0b0057
-			public const int action_image = 2131427415;
+			// aapt resource value: 0x7f0b0058
+			public const int action_image = 2131427416;
 			
 			// aapt resource value: 0x7f0b0002
 			public const int action_menu_divider = 2131427330;
@@ -1714,11 +1741,11 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0b0026
 			public const int action_mode_close_button = 2131427366;
 			
-			// aapt resource value: 0x7f0b0058
-			public const int action_text = 2131427416;
+			// aapt resource value: 0x7f0b0059
+			public const int action_text = 2131427417;
 			
-			// aapt resource value: 0x7f0b0066
-			public const int actions = 2131427430;
+			// aapt resource value: 0x7f0b0067
+			public const int actions = 2131427431;
 			
 			// aapt resource value: 0x7f0b0027
 			public const int activity_chooser_view_content = 2131427367;
@@ -1741,14 +1768,14 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0b002e
 			public const int buttonPanel = 2131427374;
 			
-			// aapt resource value: 0x7f0b005a
-			public const int cancel_action = 2131427418;
+			// aapt resource value: 0x7f0b005b
+			public const int cancel_action = 2131427419;
 			
 			// aapt resource value: 0x7f0b003e
 			public const int checkbox = 2131427390;
 			
-			// aapt resource value: 0x7f0b0062
-			public const int chronometer = 2131427426;
+			// aapt resource value: 0x7f0b0063
+			public const int chronometer = 2131427427;
 			
 			// aapt resource value: 0x7f0b001e
 			public const int collapseActionView = 2131427358;
@@ -1777,8 +1804,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0b001b
 			public const int end = 2131427355;
 			
-			// aapt resource value: 0x7f0b006c
-			public const int end_padder = 2131427436;
+			// aapt resource value: 0x7f0b006d
+			public const int end_padder = 2131427437;
 			
 			// aapt resource value: 0x7f0b0028
 			public const int expand_activities_button = 2131427368;
@@ -1795,8 +1822,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0b002c
 			public const int icon = 2131427372;
 			
-			// aapt resource value: 0x7f0b0067
-			public const int icon_group = 2131427431;
+			// aapt resource value: 0x7f0b0068
+			public const int icon_group = 2131427432;
 			
 			// aapt resource value: 0x7f0b001f
 			public const int ifRoom = 2131427359;
@@ -1804,14 +1831,14 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0b0029
 			public const int image = 2131427369;
 			
-			// aapt resource value: 0x7f0b0063
-			public const int info = 2131427427;
+			// aapt resource value: 0x7f0b0064
+			public const int info = 2131427428;
 			
-			// aapt resource value: 0x7f0b0068
-			public const int line1 = 2131427432;
+			// aapt resource value: 0x7f0b0069
+			public const int line1 = 2131427433;
 			
-			// aapt resource value: 0x7f0b006a
-			public const int line3 = 2131427434;
+			// aapt resource value: 0x7f0b006b
+			public const int line3 = 2131427435;
 			
 			// aapt resource value: 0x7f0b0009
 			public const int listMode = 2131427337;
@@ -1819,8 +1846,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0b002b
 			public const int list_item = 2131427371;
 			
-			// aapt resource value: 0x7f0b005c
-			public const int media_actions = 2131427420;
+			// aapt resource value: 0x7f0b005d
+			public const int media_actions = 2131427421;
 			
 			// aapt resource value: 0x7f0b001c
 			public const int middle = 2131427356;
@@ -1837,14 +1864,14 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0b000a
 			public const int normal = 2131427338;
 			
-			// aapt resource value: 0x7f0b0065
-			public const int notification_background = 2131427429;
+			// aapt resource value: 0x7f0b0066
+			public const int notification_background = 2131427430;
+			
+			// aapt resource value: 0x7f0b0060
+			public const int notification_main_column = 2131427424;
 			
 			// aapt resource value: 0x7f0b005f
-			public const int notification_main_column = 2131427423;
-			
-			// aapt resource value: 0x7f0b005e
-			public const int notification_main_column_container = 2131427422;
+			public const int notification_main_column_container = 2131427423;
 			
 			// aapt resource value: 0x7f0b0030
 			public const int parentPanel = 2131427376;
@@ -1858,11 +1885,11 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0b0040
 			public const int radio = 2131427392;
 			
-			// aapt resource value: 0x7f0b0064
-			public const int right_icon = 2131427428;
+			// aapt resource value: 0x7f0b0065
+			public const int right_icon = 2131427429;
 			
-			// aapt resource value: 0x7f0b0060
-			public const int right_side = 2131427424;
+			// aapt resource value: 0x7f0b0061
+			public const int right_side = 2131427425;
 			
 			// aapt resource value: 0x7f0b0015
 			public const int screen = 2131427349;
@@ -1936,8 +1963,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0b0018
 			public const int src_over = 2131427352;
 			
-			// aapt resource value: 0x7f0b005b
-			public const int status_bar_latest_event_content = 2131427419;
+			// aapt resource value: 0x7f0b005c
+			public const int status_bar_latest_event_content = 2131427420;
 			
 			// aapt resource value: 0x7f0b0041
 			public const int submenuarrow = 2131427393;
@@ -1948,11 +1975,11 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0b000b
 			public const int tabMode = 2131427339;
 			
-			// aapt resource value: 0x7f0b006b
-			public const int text = 2131427435;
+			// aapt resource value: 0x7f0b006c
+			public const int text = 2131427436;
 			
-			// aapt resource value: 0x7f0b0069
-			public const int text2 = 2131427433;
+			// aapt resource value: 0x7f0b006a
+			public const int text2 = 2131427434;
 			
 			// aapt resource value: 0x7f0b0035
 			public const int textSpacerNoButtons = 2131427381;
@@ -1960,8 +1987,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0b0034
 			public const int textSpacerNoTitle = 2131427380;
 			
-			// aapt resource value: 0x7f0b0061
-			public const int time = 2131427425;
+			// aapt resource value: 0x7f0b0062
+			public const int time = 2131427426;
 			
 			// aapt resource value: 0x7f0b002d
 			public const int title = 2131427373;
@@ -1971,6 +1998,9 @@ namespace AndorraTelecomAndroid
 			
 			// aapt resource value: 0x7f0b003a
 			public const int title_template = 2131427386;
+			
+			// aapt resource value: 0x7f0b0056
+			public const int toolbar = 2131427414;
 			
 			// aapt resource value: 0x7f0b0023
 			public const int top = 2131427363;
@@ -2169,6 +2199,9 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f04002e
 			public const int support_simple_spinner_dropdown_item = 2130968622;
 			
+			// aapt resource value: 0x7f04002f
+			public const int toolbar = 2130968623;
+			
 			static Layout()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -2291,11 +2324,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f060012
 			public const int abc_toolbar_collapse_description = 2131099666;
 			
-			// aapt resource value: 0x7f060022
-			public const int app_name = 2131099682;
-			
 			// aapt resource value: 0x7f060021
-			public const int hello = 2131099681;
+			public const int app_name = 2131099681;
 			
 			// aapt resource value: 0x7f060013
 			public const int search_menu_title = 2131099667;
@@ -2321,6 +2351,9 @@ namespace AndorraTelecomAndroid
 			
 			// aapt resource value: 0x7f0800a0
 			public const int AlertDialog_AppCompat_Light = 2131230880;
+			
+			// aapt resource value: 0x7f08015f
+			public const int AndorraTelecomTheme = 2131231071;
 			
 			// aapt resource value: 0x7f0800a1
 			public const int Animation_AppCompat_Dialog = 2131230881;

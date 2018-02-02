@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <style name="AndorraTelecomTheme" parent="android:Theme.Material.Light.DarkActionBar">
+        <item name="android:colorAccent">@color/colorAccent_andorra</item>
+        <item name="android:colorPrimary">@color/colorPrimary_andorra</item>
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDark_andorra</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary_andorra</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark_andorra</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+    </style>
+</resources>
