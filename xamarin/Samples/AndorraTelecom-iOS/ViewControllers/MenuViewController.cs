@@ -168,6 +168,13 @@ namespace AndorraTelecomiOS
             var AlertActionCancel = UIAlertAction.Create(LanguageBundle.LocalizedString("Cancel", null), UIAlertActionStyle.Cancel, (obj) => this.callMeBackView.LegalConditionsChange(CallMeBackView, false));
             AlertController.AddAction(AlertActionAccept);
             AlertController.AddAction(AlertActionCancel);
+
+            if (AlertController.PopoverPresentationController != null)
+            {
+                AlertController.PopoverPresentationController.SourceView = CallMeBackView;
+                AlertController.PopoverPresentationController.SourceRect = CallMeBackView.Bounds;
+            }
+
             this.PresentViewController(AlertController, true, null);
         }
 

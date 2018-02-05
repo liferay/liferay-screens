@@ -6,6 +6,8 @@ namespace AndorraTelecomiOS.Util
 {
     public static class NavItem
     {
+        public static UIBarButtonItem LanguageButton;
+
         public static UIImageView AddLogo()
         {
             var Logo = new UIImage("img/logo-navbar.png");
@@ -18,7 +20,7 @@ namespace AndorraTelecomiOS.Util
         {
             var LanguageBundle = RetrieveLanguageBundle(LanguageHelper.Language);
             
-            var LanguageButton = new UIBarButtonItem(Language, UIBarButtonItemStyle.Plain, (sender, e) => OpenMenuChangeLanguage(Controller, LanguageBundle));
+            LanguageButton = new UIBarButtonItem(Language, UIBarButtonItemStyle.Plain, (sender, e) => OpenMenuChangeLanguage(Controller, LanguageBundle));
             LanguageButton.TintColor = UIColor.White;
 
             return LanguageButton;
@@ -53,6 +55,12 @@ namespace AndorraTelecomiOS.Util
 
             var AlertActionCancel = UIAlertAction.Create(LanguageBundle.LocalizedString("Cancel", null), UIAlertActionStyle.Cancel, (obj) => LanguageAlert.DismissViewController(true, null));
             LanguageAlert.AddAction(AlertActionCancel);
+
+            if(LanguageAlert.PopoverPresentationController != null)
+            {
+                LanguageAlert.PopoverPresentationController.BarButtonItem = LanguageButton;
+            }
+
             Controller.PresentViewController(LanguageAlert, true, null);
         }
 
