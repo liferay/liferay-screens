@@ -2631,8 +2631,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a0047
 			public const int REMOTE_ONLY = 2131361863;
 			
-			// aapt resource value: 0x7f0a00df
-			public const int action0 = 2131362015;
+			// aapt resource value: 0x7f0a00e0
+			public const int action0 = 2131362016;
 			
 			// aapt resource value: 0x7f0a0077
 			public const int action_bar = 2131361911;
@@ -2655,17 +2655,17 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a0054
 			public const int action_bar_title = 2131361876;
 			
-			// aapt resource value: 0x7f0a00dc
-			public const int action_container = 2131362012;
+			// aapt resource value: 0x7f0a00dd
+			public const int action_container = 2131362013;
 			
 			// aapt resource value: 0x7f0a0078
 			public const int action_context_bar = 2131361912;
 			
-			// aapt resource value: 0x7f0a00e3
-			public const int action_divider = 2131362019;
+			// aapt resource value: 0x7f0a00e4
+			public const int action_divider = 2131362020;
 			
-			// aapt resource value: 0x7f0a00dd
-			public const int action_image = 2131362013;
+			// aapt resource value: 0x7f0a00de
+			public const int action_image = 2131362014;
 			
 			// aapt resource value: 0x7f0a0003
 			public const int action_menu_divider = 2131361795;
@@ -2682,11 +2682,11 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a0056
 			public const int action_mode_close_button = 2131361878;
 			
-			// aapt resource value: 0x7f0a00de
-			public const int action_text = 2131362014;
+			// aapt resource value: 0x7f0a00df
+			public const int action_text = 2131362015;
 			
-			// aapt resource value: 0x7f0a00ec
-			public const int actions = 2131362028;
+			// aapt resource value: 0x7f0a00ed
+			public const int actions = 2131362029;
 			
 			// aapt resource value: 0x7f0a0057
 			public const int activity_chooser_view_content = 2131361879;
@@ -2706,11 +2706,11 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a002f
 			public const int auto = 2131361839;
 			
-			// aapt resource value: 0x7f0a0114
-			public const int averageRatingBar = 2131362068;
+			// aapt resource value: 0x7f0a0115
+			public const int averageRatingBar = 2131362069;
 			
-			// aapt resource value: 0x7f0a0113
-			public const int average_container = 2131362067;
+			// aapt resource value: 0x7f0a0114
+			public const int average_container = 2131362068;
 			
 			// aapt resource value: 0x7f0a0051
 			public const int basic = 2131361873;
@@ -2727,8 +2727,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a005e
 			public const int buttonPanel = 2131361886;
 			
-			// aapt resource value: 0x7f0a00e0
-			public const int cancel_action = 2131362016;
+			// aapt resource value: 0x7f0a00e1
+			public const int cancel_action = 2131362017;
 			
 			// aapt resource value: 0x7f0a0030
 			public const int center = 2131361840;
@@ -2742,8 +2742,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a006e
 			public const int checkbox = 2131361902;
 			
-			// aapt resource value: 0x7f0a00e8
-			public const int chronometer = 2131362024;
+			// aapt resource value: 0x7f0a00e9
+			public const int chronometer = 2131362025;
 			
 			// aapt resource value: 0x7f0a0039
 			public const int clip_horizontal = 2131361849;
@@ -2829,11 +2829,11 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a005a
 			public const int default_activity_button = 2131361882;
 			
-			// aapt resource value: 0x7f0a011a
-			public const int default_dialog_edit_text = 2131362074;
-			
 			// aapt resource value: 0x7f0a011b
-			public const int default_list = 2131362075;
+			public const int default_dialog_edit_text = 2131362075;
+			
+			// aapt resource value: 0x7f0a011c
+			public const int default_list = 2131362076;
 			
 			// aapt resource value: 0x7f0a00d3
 			public const int default_progress_view_text = 2131362003;
@@ -2859,11 +2859,11 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a0012
 			public const int disableHome = 2131361810;
 			
-			// aapt resource value: 0x7f0a0109
-			public const int dissatisfied_button = 2131362057;
+			// aapt resource value: 0x7f0a010a
+			public const int dissatisfied_button = 2131362058;
 			
-			// aapt resource value: 0x7f0a010e
-			public const int dissatisfied_label = 2131362062;
+			// aapt resource value: 0x7f0a010f
+			public const int dissatisfied_label = 2131362063;
 			
 			// aapt resource value: 0x7f0a0079
 			public const int edit_query = 2131361913;
@@ -2871,35 +2871,35 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a0041
 			public const int email = 2131361857;
 			
-			// aapt resource value: 0x7f0a00fe
-			public const int emoji_1_button = 2131362046;
-			
-			// aapt resource value: 0x7f0a0102
-			public const int emoji_1_label = 2131362050;
-			
 			// aapt resource value: 0x7f0a00ff
-			public const int emoji_2_button = 2131362047;
+			public const int emoji_1_button = 2131362047;
 			
 			// aapt resource value: 0x7f0a0103
-			public const int emoji_2_label = 2131362051;
+			public const int emoji_1_label = 2131362051;
 			
 			// aapt resource value: 0x7f0a0100
-			public const int emoji_3_button = 2131362048;
+			public const int emoji_2_button = 2131362048;
 			
 			// aapt resource value: 0x7f0a0104
-			public const int emoji_3_label = 2131362052;
+			public const int emoji_2_label = 2131362052;
 			
 			// aapt resource value: 0x7f0a0101
-			public const int emoji_4_button = 2131362049;
+			public const int emoji_3_button = 2131362049;
 			
 			// aapt resource value: 0x7f0a0105
-			public const int emoji_4_label = 2131362053;
+			public const int emoji_3_label = 2131362053;
+			
+			// aapt resource value: 0x7f0a0102
+			public const int emoji_4_button = 2131362050;
+			
+			// aapt resource value: 0x7f0a0106
+			public const int emoji_4_label = 2131362054;
 			
 			// aapt resource value: 0x7f0a0021
 			public const int end = 2131361825;
 			
-			// aapt resource value: 0x7f0a00f2
-			public const int end_padder = 2131362034;
+			// aapt resource value: 0x7f0a00f3
+			public const int end_padder = 2131362035;
 			
 			// aapt resource value: 0x7f0a002a
 			public const int enterAlways = 2131361834;
@@ -2940,8 +2940,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a005c
 			public const int icon = 2131361884;
 			
-			// aapt resource value: 0x7f0a00ed
-			public const int icon_group = 2131362029;
+			// aapt resource value: 0x7f0a00ee
+			public const int icon_group = 2131362030;
 			
 			// aapt resource value: 0x7f0a0025
 			public const int ifRoom = 2131361829;
@@ -2949,8 +2949,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a0059
 			public const int image = 2131361881;
 			
-			// aapt resource value: 0x7f0a00e9
-			public const int info = 2131362025;
+			// aapt resource value: 0x7f0a00ea
+			public const int info = 2131362026;
 			
 			// aapt resource value: 0x7f0a0087
 			public const int inner_screenlet_container = 2131361927;
@@ -2964,14 +2964,14 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a0034
 			public const int left = 2131361844;
 			
-			// aapt resource value: 0x7f0a00f3
-			public const int liferay_asset_progress_horizontal = 2131362035;
-			
 			// aapt resource value: 0x7f0a00f4
-			public const int liferay_asset_progress_number = 2131362036;
+			public const int liferay_asset_progress_horizontal = 2131362036;
 			
-			// aapt resource value: 0x7f0a00fb
-			public const int liferay_asset_title = 2131362043;
+			// aapt resource value: 0x7f0a00f5
+			public const int liferay_asset_progress_number = 2131362037;
+			
+			// aapt resource value: 0x7f0a00fc
+			public const int liferay_asset_title = 2131362044;
 			
 			// aapt resource value: 0x7f0a008d
 			public const int liferay_audio_asset = 2131361933;
@@ -3042,11 +3042,11 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a00b7
 			public const int liferay_document_progress = 2131361975;
 			
-			// aapt resource value: 0x7f0a011e
-			public const int liferay_email_address = 2131362078;
+			// aapt resource value: 0x7f0a011f
+			public const int liferay_email_address = 2131362079;
 			
-			// aapt resource value: 0x7f0a011c
-			public const int liferay_first_name = 2131362076;
+			// aapt resource value: 0x7f0a011d
+			public const int liferay_first_name = 2131362077;
 			
 			// aapt resource value: 0x7f0a00cb
 			public const int liferay_forgot_button = 2131361995;
@@ -3066,23 +3066,23 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a00bc
 			public const int liferay_gallery_upload_title = 2131361980;
 			
-			// aapt resource value: 0x7f0a00f8
-			public const int liferay_go_to_page = 2131362040;
-			
 			// aapt resource value: 0x7f0a00f9
-			public const int liferay_go_to_page_submit = 2131362041;
+			public const int liferay_go_to_page = 2131362041;
+			
+			// aapt resource value: 0x7f0a00fa
+			public const int liferay_go_to_page_submit = 2131362042;
 			
 			// aapt resource value: 0x7f0a00d5
 			public const int liferay_image_asset = 2131362005;
 			
-			// aapt resource value: 0x7f0a011d
-			public const int liferay_last_name = 2131362077;
+			// aapt resource value: 0x7f0a011e
+			public const int liferay_last_name = 2131362078;
 			
 			// aapt resource value: 0x7f0a00b8
 			public const int liferay_latitude_edit_text = 2131361976;
 			
-			// aapt resource value: 0x7f0a00f5
-			public const int liferay_linear_buttons = 2131362037;
+			// aapt resource value: 0x7f0a00f6
+			public const int liferay_linear_buttons = 2131362038;
 			
 			// aapt resource value: 0x7f0a0088
 			public const int liferay_list_screenlet = 2131361928;
@@ -3099,8 +3099,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a00b9
 			public const int liferay_longitude_edit_text = 2131361977;
 			
-			// aapt resource value: 0x7f0a00f7
-			public const int liferay_next_page = 2131362039;
+			// aapt resource value: 0x7f0a00f8
+			public const int liferay_next_page = 2131362040;
 			
 			// aapt resource value: 0x7f0a00af
 			public const int liferay_pager = 2131361967;
@@ -3108,38 +3108,38 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a00d8
 			public const int liferay_password = 2131362008;
 			
-			// aapt resource value: 0x7f0a00fa
-			public const int liferay_pdf_renderer = 2131362042;
+			// aapt resource value: 0x7f0a00fb
+			public const int liferay_pdf_renderer = 2131362043;
 			
-			// aapt resource value: 0x7f0a0125
-			public const int liferay_portlet_progress = 2131362085;
+			// aapt resource value: 0x7f0a0126
+			public const int liferay_portlet_progress = 2131362086;
 			
-			// aapt resource value: 0x7f0a0120
-			public const int liferay_portrait = 2131362080;
+			// aapt resource value: 0x7f0a0121
+			public const int liferay_portrait = 2131362081;
 			
-			// aapt resource value: 0x7f0a0122
-			public const int liferay_portrait_progress = 2131362082;
+			// aapt resource value: 0x7f0a0123
+			public const int liferay_portrait_progress = 2131362083;
 			
-			// aapt resource value: 0x7f0a00f6
-			public const int liferay_previous_page = 2131362038;
+			// aapt resource value: 0x7f0a00f7
+			public const int liferay_previous_page = 2131362039;
 			
 			// aapt resource value: 0x7f0a0086
 			public const int liferay_progress = 2131361926;
 			
-			// aapt resource value: 0x7f0a00fd
-			public const int liferay_rating_content = 2131362045;
+			// aapt resource value: 0x7f0a00fe
+			public const int liferay_rating_content = 2131362046;
 			
-			// aapt resource value: 0x7f0a00fc
-			public const int liferay_rating_progress = 2131362044;
+			// aapt resource value: 0x7f0a00fd
+			public const int liferay_rating_progress = 2131362045;
 			
 			// aapt resource value: 0x7f0a0089
 			public const int liferay_recycler_list = 2131361929;
 			
-			// aapt resource value: 0x7f0a0121
-			public const int liferay_replace_image = 2131362081;
+			// aapt resource value: 0x7f0a0122
+			public const int liferay_replace_image = 2131362082;
 			
-			// aapt resource value: 0x7f0a011f
-			public const int liferay_sign_up_button = 2131362079;
+			// aapt resource value: 0x7f0a0120
+			public const int liferay_sign_up_button = 2131362080;
 			
 			// aapt resource value: 0x7f0a00ac
 			public const int liferay_submit_container = 2131361964;
@@ -3147,29 +3147,29 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a00cd
 			public const int liferay_upload_fab = 2131361997;
 			
-			// aapt resource value: 0x7f0a0124
-			public const int liferay_video_asset = 2131362084;
+			// aapt resource value: 0x7f0a0125
+			public const int liferay_video_asset = 2131362085;
 			
-			// aapt resource value: 0x7f0a0123
-			public const int liferay_video_message = 2131362083;
+			// aapt resource value: 0x7f0a0124
+			public const int liferay_video_message = 2131362084;
+			
+			// aapt resource value: 0x7f0a0128
+			public const int liferay_webview = 2131362088;
 			
 			// aapt resource value: 0x7f0a0127
-			public const int liferay_webview = 2131362087;
+			public const int liferay_webview_progress = 2131362087;
 			
-			// aapt resource value: 0x7f0a0126
-			public const int liferay_webview_progress = 2131362086;
+			// aapt resource value: 0x7f0a0108
+			public const int likeCountLabel = 2131362056;
 			
 			// aapt resource value: 0x7f0a0107
-			public const int likeCountLabel = 2131362055;
+			public const int likeRatingButton = 2131362055;
 			
-			// aapt resource value: 0x7f0a0106
-			public const int likeRatingButton = 2131362054;
+			// aapt resource value: 0x7f0a00ef
+			public const int line1 = 2131362031;
 			
-			// aapt resource value: 0x7f0a00ee
-			public const int line1 = 2131362030;
-			
-			// aapt resource value: 0x7f0a00f0
-			public const int line3 = 2131362032;
+			// aapt resource value: 0x7f0a00f1
+			public const int line3 = 2131362033;
 			
 			// aapt resource value: 0x7f0a000f
 			public const int listMode = 2131361807;
@@ -3177,14 +3177,14 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a005b
 			public const int list_item = 2131361883;
 			
-			// aapt resource value: 0x7f0a012a
-			public const int masked = 2131362090;
-			
-			// aapt resource value: 0x7f0a00e2
-			public const int media_actions = 2131362018;
-			
 			// aapt resource value: 0x7f0a012b
-			public const int menu_change_language = 2131362091;
+			public const int masked = 2131362091;
+			
+			// aapt resource value: 0x7f0a00e3
+			public const int media_actions = 2131362019;
+			
+			// aapt resource value: 0x7f0a012c
+			public const int menu_change_language = 2131362092;
 			
 			// aapt resource value: 0x7f0a0022
 			public const int middle = 2131361826;
@@ -3198,17 +3198,17 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a00c4
 			public const int navigation_header_container = 2131361988;
 			
-			// aapt resource value: 0x7f0a0118
-			public const int negativeRatingButton = 2131362072;
-			
 			// aapt resource value: 0x7f0a0119
-			public const int negativeRatingCount = 2131362073;
+			public const int negativeRatingButton = 2131362073;
 			
-			// aapt resource value: 0x7f0a010a
-			public const int neutral_button = 2131362058;
+			// aapt resource value: 0x7f0a011a
+			public const int negativeRatingCount = 2131362074;
 			
-			// aapt resource value: 0x7f0a010f
-			public const int neutral_label = 2131362063;
+			// aapt resource value: 0x7f0a010b
+			public const int neutral_button = 2131362059;
+			
+			// aapt resource value: 0x7f0a0110
+			public const int neutral_label = 2131362064;
 			
 			// aapt resource value: 0x7f0a0026
 			public const int never = 2131361830;
@@ -3219,14 +3219,14 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a0010
 			public const int normal = 2131361808;
 			
-			// aapt resource value: 0x7f0a00eb
-			public const int notification_background = 2131362027;
+			// aapt resource value: 0x7f0a00ec
+			public const int notification_background = 2131362028;
+			
+			// aapt resource value: 0x7f0a00e6
+			public const int notification_main_column = 2131362022;
 			
 			// aapt resource value: 0x7f0a00e5
-			public const int notification_main_column = 2131362021;
-			
-			// aapt resource value: 0x7f0a00e4
-			public const int notification_main_column_container = 2131362020;
+			public const int notification_main_column_container = 2131362021;
 			
 			// aapt resource value: 0x7f0a0053
 			public const int oauth = 2131361875;
@@ -3243,11 +3243,11 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a0038
 			public const int pin = 2131361848;
 			
-			// aapt resource value: 0x7f0a0116
-			public const int positiveRatingButton = 2131362070;
-			
 			// aapt resource value: 0x7f0a0117
-			public const int positiveRatingCount = 2131362071;
+			public const int positiveRatingButton = 2131362071;
+			
+			// aapt resource value: 0x7f0a0118
+			public const int positiveRatingCount = 2131362072;
 			
 			// aapt resource value: 0x7f0a0006
 			public const int progress_circular = 2131361798;
@@ -3276,17 +3276,17 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a0035
 			public const int right = 2131361845;
 			
-			// aapt resource value: 0x7f0a00ea
-			public const int right_icon = 2131362026;
+			// aapt resource value: 0x7f0a00eb
+			public const int right_icon = 2131362027;
 			
-			// aapt resource value: 0x7f0a00e6
-			public const int right_side = 2131362022;
+			// aapt resource value: 0x7f0a00e7
+			public const int right_side = 2131362023;
 			
-			// aapt resource value: 0x7f0a010b
-			public const int satisfied_button = 2131362059;
+			// aapt resource value: 0x7f0a010c
+			public const int satisfied_button = 2131362060;
 			
-			// aapt resource value: 0x7f0a0110
-			public const int satisfied_label = 2131362064;
+			// aapt resource value: 0x7f0a0111
+			public const int satisfied_label = 2131362065;
 			
 			// aapt resource value: 0x7f0a001b
 			public const int screen = 2131361819;
@@ -3387,8 +3387,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a0036
 			public const int start = 2131361846;
 			
-			// aapt resource value: 0x7f0a00e1
-			public const int status_bar_latest_event_content = 2131362017;
+			// aapt resource value: 0x7f0a00e2
+			public const int status_bar_latest_event_content = 2131362018;
 			
 			// aapt resource value: 0x7f0a0071
 			public const int submenuarrow = 2131361905;
@@ -3399,11 +3399,11 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a0011
 			public const int tabMode = 2131361809;
 			
-			// aapt resource value: 0x7f0a00f1
-			public const int text = 2131362033;
+			// aapt resource value: 0x7f0a00f2
+			public const int text = 2131362034;
 			
-			// aapt resource value: 0x7f0a00ef
-			public const int text2 = 2131362031;
+			// aapt resource value: 0x7f0a00f0
+			public const int text2 = 2131362032;
 			
 			// aapt resource value: 0x7f0a0065
 			public const int textSpacerNoButtons = 2131361893;
@@ -3420,8 +3420,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a000d
 			public const int textinput_error = 2131361805;
 			
-			// aapt resource value: 0x7f0a00e7
-			public const int time = 2131362023;
+			// aapt resource value: 0x7f0a00e8
+			public const int time = 2131362024;
 			
 			// aapt resource value: 0x7f0a005d
 			public const int title = 2131361885;
@@ -3441,8 +3441,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a0069
 			public const int topPanel = 2131361897;
 			
-			// aapt resource value: 0x7f0a0115
-			public const int totalCountTextView = 2131362069;
+			// aapt resource value: 0x7f0a0116
+			public const int totalCountTextView = 2131362070;
 			
 			// aapt resource value: 0x7f0a00c0
 			public const int touch_outside = 2131361984;
@@ -3459,8 +3459,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a0018
 			public const int useLogo = 2131361816;
 			
-			// aapt resource value: 0x7f0a0112
-			public const int userRatingBar = 2131362066;
+			// aapt resource value: 0x7f0a0113
+			public const int userRatingBar = 2131362067;
 			
 			// aapt resource value: 0x7f0a0043
 			public const int user_id = 2131361859;
@@ -3468,26 +3468,29 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a008f
 			public const int user_portrait_screenlet = 2131361935;
 			
-			// aapt resource value: 0x7f0a0108
-			public const int very_dissatisfied_button = 2131362056;
+			// aapt resource value: 0x7f0a0109
+			public const int very_dissatisfied_button = 2131362057;
+			
+			// aapt resource value: 0x7f0a010e
+			public const int very_dissatisfied_label = 2131362062;
 			
 			// aapt resource value: 0x7f0a010d
-			public const int very_dissatisfied_label = 2131362061;
+			public const int very_satisfied_button = 2131362061;
 			
-			// aapt resource value: 0x7f0a010c
-			public const int very_satisfied_button = 2131362060;
-			
-			// aapt resource value: 0x7f0a0111
-			public const int very_satisfied_label = 2131362065;
+			// aapt resource value: 0x7f0a0112
+			public const int very_satisfied_label = 2131362066;
 			
 			// aapt resource value: 0x7f0a000e
 			public const int view_offset_helper = 2131361806;
 			
-			// aapt resource value: 0x7f0a0129
-			public const int visible = 2131362089;
+			// aapt resource value: 0x7f0a012a
+			public const int visible = 2131362090;
 			
-			// aapt resource value: 0x7f0a0128
-			public const int web_content_field = 2131362088;
+			// aapt resource value: 0x7f0a0129
+			public const int web_content_field = 2131362089;
+			
+			// aapt resource value: 0x7f0a00dc
+			public const int web_screenlet = 2131362012;
 			
 			// aapt resource value: 0x7f0a0027
 			public const int withText = 2131361831;
@@ -3964,10 +3967,16 @@ namespace AndorraTelecomAndroid
 		{
 			
 			// aapt resource value: 0x7f080000
-			public const int screens = 2131230720;
+			public const int menu_css = 2131230720;
 			
 			// aapt resource value: 0x7f080001
-			public const int webcontent_default = 2131230721;
+			public const int menu_js = 2131230721;
+			
+			// aapt resource value: 0x7f080002
+			public const int screens = 2131230722;
+			
+			// aapt resource value: 0x7f080003
+			public const int webcontent_default = 2131230723;
 			
 			static Raw()
 			{

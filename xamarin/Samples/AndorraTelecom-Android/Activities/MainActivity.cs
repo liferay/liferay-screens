@@ -1,7 +1,9 @@
-﻿using System;
+﻿using AndorraTelecomiOS.Util;
 using Android.App;
 using Android.OS;
 using Android.Widget;
+using Com.Liferay.Mobile.Screens.Web;
+using static Com.Liferay.Mobile.Screens.Web.WebScreenletConfiguration;
 
 namespace AndorraTelecomAndroid
 {
@@ -14,6 +16,8 @@ namespace AndorraTelecomAndroid
             SetContentView(Resource.Layout.Main);
 
             SetCustomActionBar();
+
+            LoadWebScreenlet();
         }
 
         public override bool OnCreateOptionsMenu(Android.Views.IMenu menu)
@@ -30,6 +34,24 @@ namespace AndorraTelecomAndroid
             SetActionBar(Toolbar);
             ActionBar.SetDisplayShowTitleEnabled(false);
             ActionBar.SetIcon(Resource.Drawable.logo);
+        }
+
+        void LoadWebScreenlet()
+        {
+            WebScreenlet WebScreenlet = 
+                (WebScreenlet)FindViewById(Resource.Id.web_screenlet);
+
+            var Url = LanguageHelper.Url(LanguageHelper.Pages.Index);
+
+            WebScreenletConfiguration webScreenletConfiguration = new WebScreenletConfiguration
+                .Builder(Url)
+                .SetWebType(WebType.Other)
+                .AddRawJs(Resource.Raw.menu_js, "menu_js.js")
+                .AddRawCss(Resource.Raw.menu_css, "menu_css.css")
+                .Load();
+
+            WebScreenlet.SetWebScreenletConfiguration(webScreenletConfiguration);
+            WebScreenlet.Load();
         }
     }
 }
