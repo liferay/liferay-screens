@@ -21,25 +21,11 @@ ul {
     overflow: unset
 }
 
-.cc-floating {
-    display: none
-}
-
-
 /* Map */
 
-.gmnoprint {
+.cc-floating, .gmnoprint, div.gmnoprint, .infowindow-image {
     display: none
 }
-
-div.gmnoprint {
-    display: none
-}
-
-.infowindow-image {
-    display: none
-}
-
 
 /* Switch */
 

@@ -8,15 +8,6 @@
     color: #FFF
 }
 
-h1 {
+h1, .cont-wrapper p, .numbered-lists dt p a {
     color: #FFF
-}
-
-.cont-wrapper p {
-    color: #FFF
-}
-
-.numbered-lists dt p a {
-    color: #FFF
-
 }
