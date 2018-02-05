@@ -150,9 +150,7 @@ namespace AndorraTelecomiOS
         {
             Console.WriteLine("Show Legal Conditions");
 
-            var AlertController = new UIAlertController();
-            AlertController.Title = "\n\n\n\n\n\n\n\n\n\n\n\n\n";
-            AlertController.ModalPresentationStyle = UIModalPresentationStyle.PageSheet;
+            var AlertController = UIAlertController.Create("\n\n\n\n\n\n\n\n\n\n\n\n\n", "", UIAlertControllerStyle.ActionSheet);
             AlertController.View.Layer.CornerRadius = 15;
             AlertController.View.TintColor = Colors.DarkPurple;
             Colorfull(AlertController);
@@ -188,7 +186,7 @@ namespace AndorraTelecomiOS
 
         void GoNextForfet(string Message)
         {
-            PerformSegue("forfet", NSObject.FromObject(Message));
+            PerformSegue("forfet", FromObject(Message));
         }
 
         void GoMap()

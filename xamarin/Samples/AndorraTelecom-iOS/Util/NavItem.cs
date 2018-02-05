@@ -32,13 +32,12 @@ namespace AndorraTelecomiOS.Util
 
         static void OpenMenuChangeLanguage(UIViewController Controller, NSBundle LanguageBundle)
         {
-            var LanguageAlert = new UIAlertController();
-
-            LanguageAlert.Title = LanguageBundle.LocalizedString("Language", null);
-            LanguageAlert.Message = LanguageBundle.LocalizedString("Choose your preferred language", null);
-            LanguageAlert.ModalPresentationStyle = UIModalPresentationStyle.FormSheet;
+            var Title = LanguageBundle.LocalizedString("Language", null);
+            var Message = LanguageBundle.LocalizedString("Choose your preferred language", null);
+            var LanguageAlert = UIAlertController.Create(Title, Message, UIAlertControllerStyle.ActionSheet);
             LanguageAlert.View.Layer.CornerRadius = 15;
             LanguageAlert.View.TintColor = Colors.DarkPurple;
+
             var Subview = LanguageAlert.View.Subviews[0].Subviews[0] as UIView;
             foreach (var V in Subview.Subviews)
             {
