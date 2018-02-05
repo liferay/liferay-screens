@@ -7,7 +7,7 @@ function buildMenu() {
     var titles = document.getElementsByClassName('item title');
     var footer = document.getElementById('footer-links');
     var contentButtonMap = footer.getElementsByTagName('h3')[1].innerText;
-    var slides = document.getElementsByClassName('slides')[0]
+    var slides = document.getElementsByClassName('slides')[0];
     var images = slides.querySelectorAll('li img');
     removeClassName(images, 'hidden-xs');
 
@@ -67,7 +67,7 @@ function createButtons(icons, titles) {
 
     for (var i = 0; i < icons.length; i++) {
         var button = createButton(icons[i], titles[i]);
-        addClick(i, button)
+        addClick(i, button);
         buttonList.appendChild(button);
     }
 
