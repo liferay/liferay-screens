@@ -31,7 +31,8 @@ public class LoginBasicInteractor extends BaseLoginInteractor {
 
 		String login = (String) args[0];
 		String password = (String) args[1];
-		BasicAuthMethod basicAuthMethod = (BasicAuthMethod) args[2];
+
+		BasicAuthMethod basicAuthMethod = getBasicAuthMethod(args);
 
 		validate(login, password, basicAuthMethod);
 
@@ -40,6 +41,10 @@ public class LoginBasicInteractor extends BaseLoginInteractor {
 		JSONObject jsonObject = getUser(login, basicAuthMethod, userConnector);
 
 		return new BasicEvent(jsonObject);
+	}
+
+	private BasicAuthMethod getBasicAuthMethod(Object[] args) {
+		return args.length < 2 ? BasicAuthMethod.EMAIL : (BasicAuthMethod) args[2];
 	}
 
 	protected JSONObject getUser(String login, BasicAuthMethod basicAuthMethod, UserConnector userConnector)
