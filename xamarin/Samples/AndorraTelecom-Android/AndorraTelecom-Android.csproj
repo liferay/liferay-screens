@@ -143,6 +143,8 @@
     <AndroidResource Include="Resources\layout\Map.axml" />
     <AndroidResource Include="Resources\raw\map_css.css" />
     <AndroidResource Include="Resources\raw\map_js.js" />
+    <AndroidResource Include="Resources\layout\callmeback.axml" />
+    <AndroidResource Include="Resources\drawable\phone.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

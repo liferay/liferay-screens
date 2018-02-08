@@ -7,10 +7,24 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
-    <com.liferay.mobile.screens.web.WebScreenlet
-        android:id="@+id/web_screenlet"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
-        app:autoLoad="false" />
+        android:layout_height="match_parent">
+        <com.liferay.mobile.screens.web.WebScreenlet
+            android:id="@+id/web_screenlet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            app:autoLoad="false" />
+        <RelativeLayout
+            android:id="@+id/call_me_back_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:gravity="bottom|end">
+            <include
+                android:id="@+id/call_me_back"
+                layout="@layout/callmeback" />
+        </RelativeLayout>
+    </RelativeLayout>
 </LinearLayout>

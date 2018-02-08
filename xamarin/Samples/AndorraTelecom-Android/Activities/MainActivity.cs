@@ -13,10 +13,18 @@ namespace AndorraTelecomAndroid
     [Activity(MainLauncher = true, Icon = "@mipmap/icon")]
     public class MainActivity : Activity, IWebListener
     {
+        public RelativeLayout CallMeBackView;
+        public TextView CallMeBackText;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Main);
+
+            CallMeBackView =
+                (RelativeLayout)FindViewById(Resource.Id.call_me_back_view);
+            CallMeBackText =
+                (TextView)FindViewById(Resource.Id.call_me_back_text);
 
             SetCustomActionBar();
 
@@ -71,6 +79,12 @@ namespace AndorraTelecomAndroid
             StartActivity(typeof(MapActivity));
         }
 
+        void SetCallMeBackText(string body)
+        {
+            CallMeBackText.Text = body;
+            CallMeBackView.Visibility = Android.Views.ViewStates.Visible;
+        }
+
         /* IWebListener */
 
         public void Error(Java.Lang.Exception ex, string userAction)
@@ -91,6 +105,7 @@ namespace AndorraTelecomAndroid
             {
                 case "call-me-back":
                     Android.Util.Log.Debug("WebScreenlet", "Call me back popover");
+                    RunOnUiThread(() => SetCallMeBackText(body));
                     break;
                 case "click-button":
                     Android.Util.Log.Debug("WebScreenlet", "Go to next forfet");
