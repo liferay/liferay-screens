@@ -8,7 +8,7 @@ using static Com.Liferay.Mobile.Screens.Web.WebScreenletConfiguration;
 namespace AndorraTelecomAndroid
 {
     [Activity(MainLauncher = true, Icon = "@mipmap/icon")]
-    public class MainActivity : Activity
+    public class MainActivity : Activity, IWebListener
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -51,7 +51,26 @@ namespace AndorraTelecomAndroid
                 .Load();
 
             WebScreenlet.SetWebScreenletConfiguration(webScreenletConfiguration);
+            WebScreenlet.ScrollEnabled = false;
+            WebScreenlet.Listener = this;
             WebScreenlet.Load();
+        }
+
+        /* IWebListener */
+
+        public void Error(Java.Lang.Exception p0, string p1)
+        {
+            Android.Util.Log.Debug("WebScreenlet", $"Web Screenlet error: {p0}");
+        }
+
+        public void OnPageLoaded(string p0)
+        {
+            Android.Util.Log.Debug("WebScreenlet", $"Page loaded: {p0}");
+        }
+
+        public void OnScriptMessageHandler(string p0, string p1)
+        {
+            Android.Util.Log.Debug("WebScreenlet", $"JS Message center | namespace: {p0} - message: {p1}");
         }
     }
 }
