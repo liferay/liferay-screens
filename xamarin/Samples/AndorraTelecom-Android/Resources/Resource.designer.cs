@@ -2715,8 +2715,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a0051
 			public const int basic = 2131361873;
 			
-			// aapt resource value: 0x7f0a00d6
-			public const int basic_authentication_login = 2131362006;
+			// aapt resource value: 0x7f0a00d8
+			public const int basic_authentication_login = 2131362008;
 			
 			// aapt resource value: 0x7f0a0020
 			public const int beginning = 2131361824;
@@ -2835,8 +2835,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a011c
 			public const int default_list = 2131362076;
 			
-			// aapt resource value: 0x7f0a00d3
-			public const int default_progress_view_text = 2131362003;
+			// aapt resource value: 0x7f0a00d5
+			public const int default_progress_view_text = 2131362005;
 			
 			// aapt resource value: 0x7f0a00c1
 			public const int design_bottom_sheet = 2131361985;
@@ -2853,8 +2853,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a00c5
 			public const int design_navigation_view = 2131361989;
 			
-			// aapt resource value: 0x7f0a00ce
-			public const int detailed_image = 2131361998;
+			// aapt resource value: 0x7f0a00d0
+			public const int detailed_image = 2131362000;
 			
 			// aapt resource value: 0x7f0a0012
 			public const int disableHome = 2131361810;
@@ -2928,8 +2928,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a003f
 			public const int @fixed = 2131361855;
 			
-			// aapt resource value: 0x7f0a00cf
-			public const int gallery_item_image = 2131361999;
+			// aapt resource value: 0x7f0a00d1
+			public const int gallery_item_image = 2131362001;
 			
 			// aapt resource value: 0x7f0a0005
 			public const int home = 2131361797;
@@ -3048,11 +3048,11 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a011d
 			public const int liferay_first_name = 2131362077;
 			
-			// aapt resource value: 0x7f0a00cb
-			public const int liferay_forgot_button = 2131361995;
+			// aapt resource value: 0x7f0a00cd
+			public const int liferay_forgot_button = 2131361997;
 			
-			// aapt resource value: 0x7f0a00ca
-			public const int liferay_forgot_login = 2131361994;
+			// aapt resource value: 0x7f0a00cc
+			public const int liferay_forgot_login = 2131361996;
 			
 			// aapt resource value: 0x7f0a00ad
 			public const int liferay_form_submit = 2131361965;
@@ -3072,8 +3072,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a00fa
 			public const int liferay_go_to_page_submit = 2131362042;
 			
-			// aapt resource value: 0x7f0a00d5
-			public const int liferay_image_asset = 2131362005;
+			// aapt resource value: 0x7f0a00d7
+			public const int liferay_image_asset = 2131362007;
 			
 			// aapt resource value: 0x7f0a011e
 			public const int liferay_last_name = 2131362078;
@@ -3087,14 +3087,14 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a0088
 			public const int liferay_list_screenlet = 2131361928;
 			
-			// aapt resource value: 0x7f0a00d0
-			public const int liferay_list_title = 2131362000;
-			
-			// aapt resource value: 0x7f0a00d7
-			public const int liferay_login = 2131362007;
+			// aapt resource value: 0x7f0a00d2
+			public const int liferay_list_title = 2131362002;
 			
 			// aapt resource value: 0x7f0a00d9
-			public const int liferay_login_button = 2131362009;
+			public const int liferay_login = 2131362009;
+			
+			// aapt resource value: 0x7f0a00db
+			public const int liferay_login_button = 2131362011;
 			
 			// aapt resource value: 0x7f0a00b9
 			public const int liferay_longitude_edit_text = 2131361977;
@@ -3105,8 +3105,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a00af
 			public const int liferay_pager = 2131361967;
 			
-			// aapt resource value: 0x7f0a00d8
-			public const int liferay_password = 2131362008;
+			// aapt resource value: 0x7f0a00da
+			public const int liferay_password = 2131362010;
 			
 			// aapt resource value: 0x7f0a00fb
 			public const int liferay_pdf_renderer = 2131362043;
@@ -3144,8 +3144,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a00ac
 			public const int liferay_submit_container = 2131361964;
 			
-			// aapt resource value: 0x7f0a00cd
-			public const int liferay_upload_fab = 2131361997;
+			// aapt resource value: 0x7f0a00cf
+			public const int liferay_upload_fab = 2131361999;
 			
 			// aapt resource value: 0x7f0a0125
 			public const int liferay_video_asset = 2131362085;
@@ -3231,8 +3231,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a0053
 			public const int oauth = 2131361875;
 			
-			// aapt resource value: 0x7f0a00da
-			public const int oauth_authentication_login = 2131362010;
+			// aapt resource value: 0x7f0a00dc
+			public const int oauth_authentication_login = 2131362012;
 			
 			// aapt resource value: 0x7f0a0037
 			public const int parallax = 2131361847;
@@ -3255,14 +3255,14 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a0007
 			public const int progress_horizontal = 2131361799;
 			
-			// aapt resource value: 0x7f0a00d2
-			public const int progress_view_cancel_button = 2131362002;
-			
-			// aapt resource value: 0x7f0a00d1
-			public const int progress_view_image = 2131362001;
-			
 			// aapt resource value: 0x7f0a00d4
-			public const int progress_view_progressbar = 2131362004;
+			public const int progress_view_cancel_button = 2131362004;
+			
+			// aapt resource value: 0x7f0a00d3
+			public const int progress_view_image = 2131362003;
+			
+			// aapt resource value: 0x7f0a00d6
+			public const int progress_view_progressbar = 2131362006;
 			
 			// aapt resource value: 0x7f0a0070
 			public const int radio = 2131361904;
@@ -3270,8 +3270,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a00ba
 			public const int radio_group = 2131361978;
 			
-			// aapt resource value: 0x7f0a00cc
-			public const int recycler_container = 2131361996;
+			// aapt resource value: 0x7f0a00ce
+			public const int recycler_container = 2131361998;
 			
 			// aapt resource value: 0x7f0a0035
 			public const int right = 2131361845;
@@ -3432,8 +3432,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a006a
 			public const int title_template = 2131361898;
 			
-			// aapt resource value: 0x7f0a00db
-			public const int toolbar = 2131362011;
+			// aapt resource value: 0x7f0a00ca
+			public const int toolbar = 2131361994;
 			
 			// aapt resource value: 0x7f0a0029
 			public const int top = 2131361833;
@@ -3489,8 +3489,8 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0a0129
 			public const int web_content_field = 2131362089;
 			
-			// aapt resource value: 0x7f0a00dc
-			public const int web_screenlet = 2131362012;
+			// aapt resource value: 0x7f0a00cb
+			public const int web_screenlet = 2131361995;
 			
 			// aapt resource value: 0x7f0a0027
 			public const int withText = 2131361831;
@@ -3759,151 +3759,154 @@ namespace AndorraTelecomAndroid
 			public const int design_text_input_password_icon = 2130968641;
 			
 			// aapt resource value: 0x7f040042
-			public const int forgotpassword_default = 2130968642;
+			public const int Forfet = 2130968642;
 			
 			// aapt resource value: 0x7f040043
-			public const int gallery_default = 2130968643;
+			public const int forgotpassword_default = 2130968643;
 			
 			// aapt resource value: 0x7f040044
-			public const int gallery_default_list = 2130968644;
+			public const int gallery_default = 2130968644;
 			
 			// aapt resource value: 0x7f040045
-			public const int gallery_default_slideshow = 2130968645;
+			public const int gallery_default_list = 2130968645;
 			
 			// aapt resource value: 0x7f040046
-			public const int gallery_detailed_default = 2130968646;
+			public const int gallery_default_slideshow = 2130968646;
 			
 			// aapt resource value: 0x7f040047
-			public const int gallery_item_grid = 2130968647;
+			public const int gallery_detailed_default = 2130968647;
 			
 			// aapt resource value: 0x7f040048
-			public const int gallery_item_list = 2130968648;
+			public const int gallery_item_grid = 2130968648;
 			
 			// aapt resource value: 0x7f040049
-			public const int gallery_item_slideshow = 2130968649;
+			public const int gallery_item_list = 2130968649;
 			
 			// aapt resource value: 0x7f04004a
-			public const int gallery_progress_view_default = 2130968650;
+			public const int gallery_item_slideshow = 2130968650;
 			
 			// aapt resource value: 0x7f04004b
-			public const int image_display_default = 2130968651;
+			public const int gallery_progress_view_default = 2130968651;
 			
 			// aapt resource value: 0x7f04004c
-			public const int list_item_default = 2130968652;
+			public const int image_display_default = 2130968652;
 			
 			// aapt resource value: 0x7f04004d
-			public const int list_item_progress_default = 2130968653;
+			public const int list_item_default = 2130968653;
 			
 			// aapt resource value: 0x7f04004e
-			public const int list_item_progress_empty = 2130968654;
+			public const int list_item_progress_default = 2130968654;
 			
 			// aapt resource value: 0x7f04004f
-			public const int login_default = 2130968655;
+			public const int list_item_progress_empty = 2130968655;
 			
 			// aapt resource value: 0x7f040050
-			public const int Main = 2130968656;
+			public const int login_default = 2130968656;
 			
 			// aapt resource value: 0x7f040051
-			public const int notification_action = 2130968657;
+			public const int Main = 2130968657;
 			
 			// aapt resource value: 0x7f040052
-			public const int notification_action_tombstone = 2130968658;
+			public const int notification_action = 2130968658;
 			
 			// aapt resource value: 0x7f040053
-			public const int notification_media_action = 2130968659;
+			public const int notification_action_tombstone = 2130968659;
 			
 			// aapt resource value: 0x7f040054
-			public const int notification_media_cancel_action = 2130968660;
+			public const int notification_media_action = 2130968660;
 			
 			// aapt resource value: 0x7f040055
-			public const int notification_template_big_media = 2130968661;
+			public const int notification_media_cancel_action = 2130968661;
 			
 			// aapt resource value: 0x7f040056
-			public const int notification_template_big_media_custom = 2130968662;
+			public const int notification_template_big_media = 2130968662;
 			
 			// aapt resource value: 0x7f040057
-			public const int notification_template_big_media_narrow = 2130968663;
+			public const int notification_template_big_media_custom = 2130968663;
 			
 			// aapt resource value: 0x7f040058
-			public const int notification_template_big_media_narrow_custom = 2130968664;
+			public const int notification_template_big_media_narrow = 2130968664;
 			
 			// aapt resource value: 0x7f040059
-			public const int notification_template_custom_big = 2130968665;
+			public const int notification_template_big_media_narrow_custom = 2130968665;
 			
 			// aapt resource value: 0x7f04005a
-			public const int notification_template_icon_group = 2130968666;
+			public const int notification_template_custom_big = 2130968666;
 			
 			// aapt resource value: 0x7f04005b
-			public const int notification_template_lines_media = 2130968667;
+			public const int notification_template_icon_group = 2130968667;
 			
 			// aapt resource value: 0x7f04005c
-			public const int notification_template_media = 2130968668;
+			public const int notification_template_lines_media = 2130968668;
 			
 			// aapt resource value: 0x7f04005d
-			public const int notification_template_media_custom = 2130968669;
+			public const int notification_template_media = 2130968669;
 			
 			// aapt resource value: 0x7f04005e
-			public const int notification_template_part_chronometer = 2130968670;
+			public const int notification_template_media_custom = 2130968670;
 			
 			// aapt resource value: 0x7f04005f
-			public const int notification_template_part_time = 2130968671;
+			public const int notification_template_part_chronometer = 2130968671;
 			
 			// aapt resource value: 0x7f040060
-			public const int pdf_display_default = 2130968672;
+			public const int notification_template_part_time = 2130968672;
 			
 			// aapt resource value: 0x7f040061
-			public const int rating_emojis_default = 2130968673;
+			public const int pdf_display_default = 2130968673;
 			
 			// aapt resource value: 0x7f040062
-			public const int rating_like_default = 2130968674;
+			public const int rating_emojis_default = 2130968674;
 			
 			// aapt resource value: 0x7f040063
-			public const int rating_reactions_default = 2130968675;
+			public const int rating_like_default = 2130968675;
 			
 			// aapt resource value: 0x7f040064
-			public const int rating_star_bar_default = 2130968676;
+			public const int rating_reactions_default = 2130968676;
 			
 			// aapt resource value: 0x7f040065
-			public const int rating_thumb_default = 2130968677;
+			public const int rating_star_bar_default = 2130968677;
 			
 			// aapt resource value: 0x7f040066
-			public const int select_dialog_item_material = 2130968678;
+			public const int rating_thumb_default = 2130968678;
 			
 			// aapt resource value: 0x7f040067
-			public const int select_dialog_multichoice_material = 2130968679;
+			public const int select_dialog_item_material = 2130968679;
 			
 			// aapt resource value: 0x7f040068
-			public const int select_dialog_singlechoice_material = 2130968680;
+			public const int select_dialog_multichoice_material = 2130968680;
 			
 			// aapt resource value: 0x7f040069
-			public const int select_file_default = 2130968681;
+			public const int select_dialog_singlechoice_material = 2130968681;
 			
 			// aapt resource value: 0x7f04006a
-			public const int sign_up_default = 2130968682;
+			public const int select_file_default = 2130968682;
 			
 			// aapt resource value: 0x7f04006b
-			public const int support_simple_spinner_dropdown_item = 2130968683;
+			public const int sign_up_default = 2130968683;
 			
 			// aapt resource value: 0x7f04006c
-			public const int toolbar = 2130968684;
+			public const int support_simple_spinner_dropdown_item = 2130968684;
 			
 			// aapt resource value: 0x7f04006d
-			public const int userportrait_default = 2130968685;
+			public const int toolbar = 2130968685;
 			
 			// aapt resource value: 0x7f04006e
-			public const int video_display_default = 2130968686;
+			public const int userportrait_default = 2130968686;
 			
 			// aapt resource value: 0x7f04006f
-			public const int web_default = 2130968687;
+			public const int video_display_default = 2130968687;
 			
 			// aapt resource value: 0x7f040070
-			public const int webcontentdisplay_default = 2130968688;
+			public const int web_default = 2130968688;
 			
 			// aapt resource value: 0x7f040071
-			public const int webcontentdisplay_structured_default = 2130968689;
+			public const int webcontentdisplay_default = 2130968689;
 			
 			// aapt resource value: 0x7f040072
-			public const int webcontentlist_default = 2130968690;
+			public const int webcontentdisplay_structured_default = 2130968690;
+			
+			// aapt resource value: 0x7f040073
+			public const int webcontentlist_default = 2130968691;
 			
 			static Layout()
 			{
@@ -3967,16 +3970,22 @@ namespace AndorraTelecomAndroid
 		{
 			
 			// aapt resource value: 0x7f080000
-			public const int menu_css = 2131230720;
+			public const int forfet_css = 2131230720;
 			
 			// aapt resource value: 0x7f080001
-			public const int menu_js = 2131230721;
+			public const int forfet_js = 2131230721;
 			
 			// aapt resource value: 0x7f080002
-			public const int screens = 2131230722;
+			public const int menu_css = 2131230722;
 			
 			// aapt resource value: 0x7f080003
-			public const int webcontent_default = 2131230723;
+			public const int menu_js = 2131230723;
+			
+			// aapt resource value: 0x7f080004
+			public const int screens = 2131230724;
+			
+			// aapt resource value: 0x7f080005
+			public const int webcontent_default = 2131230725;
 			
 			static Raw()
 			{

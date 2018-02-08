@@ -1,5 +1,8 @@
-﻿using AndorraTelecomiOS.Util;
+﻿using System;
+using AndorraTelecomAndroid.Activities;
+using AndorraTelecomiOS.Util;
 using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Widget;
 using Com.Liferay.Mobile.Screens.Web;
@@ -38,7 +41,7 @@ namespace AndorraTelecomAndroid
 
         void LoadWebScreenlet()
         {
-            WebScreenlet WebScreenlet = 
+            WebScreenlet WebScreenlet =
                 (WebScreenlet)FindViewById(Resource.Id.web_screenlet);
 
             var Url = LanguageHelper.Url(LanguageHelper.Pages.Index);
@@ -56,21 +59,45 @@ namespace AndorraTelecomAndroid
             WebScreenlet.Load();
         }
 
+        void GoToNextForfet(string body)
+        {
+            var ForfetActivity = new Intent(this, typeof(ForfetActivity));
+            ForfetActivity.PutExtra("body", body);
+            StartActivity(ForfetActivity);
+        }
+
         /* IWebListener */
 
-        public void Error(Java.Lang.Exception p0, string p1)
+        public void Error(Java.Lang.Exception ex, string userAction)
         {
-            Android.Util.Log.Debug("WebScreenlet", $"Web Screenlet error: {p0}");
+            Android.Util.Log.Debug("WebScreenlet", $"Web Screenlet error: {ex}");
         }
 
-        public void OnPageLoaded(string p0)
+        public void OnPageLoaded(string url)
         {
-            Android.Util.Log.Debug("WebScreenlet", $"Page loaded: {p0}");
+            Android.Util.Log.Debug("WebScreenlet", $"Page loaded: {url}");
         }
 
-        public void OnScriptMessageHandler(string p0, string p1)
+        public void OnScriptMessageHandler(string namespace_, string body)
         {
-            Android.Util.Log.Debug("WebScreenlet", $"JS Message center | namespace: {p0} - message: {p1}");
+            Android.Util.Log.Debug("WebScreenlet", $"JS Message center | namespace: {namespace_} - message: {body}");
+
+            switch (namespace_)
+            {
+                case "call-me-back":
+                    Android.Util.Log.Debug("WebScreenlet", "Call me back popover");
+                    break;
+                case "click-button":
+                    Android.Util.Log.Debug("WebScreenlet", "Go to next forfet");
+                    GoToNextForfet(body);
+                    break;
+                case "map":
+                    Android.Util.Log.Debug("WebScreenlet", "Go to map");
+                    break;
+                default:
+                    Android.Util.Log.Debug("WebScreenlet", "Invalid event");
+                    break;
+            }
         }
     }
 }

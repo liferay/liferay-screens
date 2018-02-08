@@ -112,6 +112,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Util\LanguageHelper.cs" />
+    <Compile Include="Activities\ForfetActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -135,6 +136,9 @@
     <AndroidResource Include="Resources\drawable\ic_globe.png" />
     <AndroidResource Include="Resources\raw\menu_css.css" />
     <AndroidResource Include="Resources\raw\menu_js.js" />
+    <AndroidResource Include="Resources\layout\Forfet.axml" />
+    <AndroidResource Include="Resources\raw\forfet_css.css" />
+    <AndroidResource Include="Resources\raw\forfet_js.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
