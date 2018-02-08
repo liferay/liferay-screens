@@ -66,6 +66,11 @@ namespace AndorraTelecomAndroid
             StartActivity(ForfetActivity);
         }
 
+        void GoToMap()
+        {
+            StartActivity(typeof(MapActivity));
+        }
+
         /* IWebListener */
 
         public void Error(Java.Lang.Exception ex, string userAction)
@@ -93,6 +98,7 @@ namespace AndorraTelecomAndroid
                     break;
                 case "map":
                     Android.Util.Log.Debug("WebScreenlet", "Go to map");
+                    GoToMap();
                     break;
                 default:
                     Android.Util.Log.Debug("WebScreenlet", "Invalid event");

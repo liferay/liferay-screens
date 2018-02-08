@@ -113,6 +113,7 @@
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Util\LanguageHelper.cs" />
     <Compile Include="Activities\ForfetActivity.cs" />
+    <Compile Include="Activities\MapActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -139,6 +140,9 @@
     <AndroidResource Include="Resources\layout\Forfet.axml" />
     <AndroidResource Include="Resources\raw\forfet_css.css" />
     <AndroidResource Include="Resources\raw\forfet_js.js" />
+    <AndroidResource Include="Resources\layout\Map.axml" />
+    <AndroidResource Include="Resources\raw\map_css.css" />
+    <AndroidResource Include="Resources\raw\map_js.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

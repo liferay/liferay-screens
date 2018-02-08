@@ -3807,106 +3807,109 @@ namespace AndorraTelecomAndroid
 			public const int Main = 2130968657;
 			
 			// aapt resource value: 0x7f040052
-			public const int notification_action = 2130968658;
+			public const int Map = 2130968658;
 			
 			// aapt resource value: 0x7f040053
-			public const int notification_action_tombstone = 2130968659;
+			public const int notification_action = 2130968659;
 			
 			// aapt resource value: 0x7f040054
-			public const int notification_media_action = 2130968660;
+			public const int notification_action_tombstone = 2130968660;
 			
 			// aapt resource value: 0x7f040055
-			public const int notification_media_cancel_action = 2130968661;
+			public const int notification_media_action = 2130968661;
 			
 			// aapt resource value: 0x7f040056
-			public const int notification_template_big_media = 2130968662;
+			public const int notification_media_cancel_action = 2130968662;
 			
 			// aapt resource value: 0x7f040057
-			public const int notification_template_big_media_custom = 2130968663;
+			public const int notification_template_big_media = 2130968663;
 			
 			// aapt resource value: 0x7f040058
-			public const int notification_template_big_media_narrow = 2130968664;
+			public const int notification_template_big_media_custom = 2130968664;
 			
 			// aapt resource value: 0x7f040059
-			public const int notification_template_big_media_narrow_custom = 2130968665;
+			public const int notification_template_big_media_narrow = 2130968665;
 			
 			// aapt resource value: 0x7f04005a
-			public const int notification_template_custom_big = 2130968666;
+			public const int notification_template_big_media_narrow_custom = 2130968666;
 			
 			// aapt resource value: 0x7f04005b
-			public const int notification_template_icon_group = 2130968667;
+			public const int notification_template_custom_big = 2130968667;
 			
 			// aapt resource value: 0x7f04005c
-			public const int notification_template_lines_media = 2130968668;
+			public const int notification_template_icon_group = 2130968668;
 			
 			// aapt resource value: 0x7f04005d
-			public const int notification_template_media = 2130968669;
+			public const int notification_template_lines_media = 2130968669;
 			
 			// aapt resource value: 0x7f04005e
-			public const int notification_template_media_custom = 2130968670;
+			public const int notification_template_media = 2130968670;
 			
 			// aapt resource value: 0x7f04005f
-			public const int notification_template_part_chronometer = 2130968671;
+			public const int notification_template_media_custom = 2130968671;
 			
 			// aapt resource value: 0x7f040060
-			public const int notification_template_part_time = 2130968672;
+			public const int notification_template_part_chronometer = 2130968672;
 			
 			// aapt resource value: 0x7f040061
-			public const int pdf_display_default = 2130968673;
+			public const int notification_template_part_time = 2130968673;
 			
 			// aapt resource value: 0x7f040062
-			public const int rating_emojis_default = 2130968674;
+			public const int pdf_display_default = 2130968674;
 			
 			// aapt resource value: 0x7f040063
-			public const int rating_like_default = 2130968675;
+			public const int rating_emojis_default = 2130968675;
 			
 			// aapt resource value: 0x7f040064
-			public const int rating_reactions_default = 2130968676;
+			public const int rating_like_default = 2130968676;
 			
 			// aapt resource value: 0x7f040065
-			public const int rating_star_bar_default = 2130968677;
+			public const int rating_reactions_default = 2130968677;
 			
 			// aapt resource value: 0x7f040066
-			public const int rating_thumb_default = 2130968678;
+			public const int rating_star_bar_default = 2130968678;
 			
 			// aapt resource value: 0x7f040067
-			public const int select_dialog_item_material = 2130968679;
+			public const int rating_thumb_default = 2130968679;
 			
 			// aapt resource value: 0x7f040068
-			public const int select_dialog_multichoice_material = 2130968680;
+			public const int select_dialog_item_material = 2130968680;
 			
 			// aapt resource value: 0x7f040069
-			public const int select_dialog_singlechoice_material = 2130968681;
+			public const int select_dialog_multichoice_material = 2130968681;
 			
 			// aapt resource value: 0x7f04006a
-			public const int select_file_default = 2130968682;
+			public const int select_dialog_singlechoice_material = 2130968682;
 			
 			// aapt resource value: 0x7f04006b
-			public const int sign_up_default = 2130968683;
+			public const int select_file_default = 2130968683;
 			
 			// aapt resource value: 0x7f04006c
-			public const int support_simple_spinner_dropdown_item = 2130968684;
+			public const int sign_up_default = 2130968684;
 			
 			// aapt resource value: 0x7f04006d
-			public const int toolbar = 2130968685;
+			public const int support_simple_spinner_dropdown_item = 2130968685;
 			
 			// aapt resource value: 0x7f04006e
-			public const int userportrait_default = 2130968686;
+			public const int toolbar = 2130968686;
 			
 			// aapt resource value: 0x7f04006f
-			public const int video_display_default = 2130968687;
+			public const int userportrait_default = 2130968687;
 			
 			// aapt resource value: 0x7f040070
-			public const int web_default = 2130968688;
+			public const int video_display_default = 2130968688;
 			
 			// aapt resource value: 0x7f040071
-			public const int webcontentdisplay_default = 2130968689;
+			public const int web_default = 2130968689;
 			
 			// aapt resource value: 0x7f040072
-			public const int webcontentdisplay_structured_default = 2130968690;
+			public const int webcontentdisplay_default = 2130968690;
 			
 			// aapt resource value: 0x7f040073
-			public const int webcontentlist_default = 2130968691;
+			public const int webcontentdisplay_structured_default = 2130968691;
+			
+			// aapt resource value: 0x7f040074
+			public const int webcontentlist_default = 2130968692;
 			
 			static Layout()
 			{
@@ -3976,16 +3979,22 @@ namespace AndorraTelecomAndroid
 			public const int forfet_js = 2131230721;
 			
 			// aapt resource value: 0x7f080002
-			public const int menu_css = 2131230722;
+			public const int map_css = 2131230722;
 			
 			// aapt resource value: 0x7f080003
-			public const int menu_js = 2131230723;
+			public const int map_js = 2131230723;
 			
 			// aapt resource value: 0x7f080004
-			public const int screens = 2131230724;
+			public const int menu_css = 2131230724;
 			
 			// aapt resource value: 0x7f080005
-			public const int webcontent_default = 2131230725;
+			public const int menu_js = 2131230725;
+			
+			// aapt resource value: 0x7f080006
+			public const int screens = 2131230726;
+			
+			// aapt resource value: 0x7f080007
+			public const int webcontent_default = 2131230727;
 			
 			static Raw()
 			{
