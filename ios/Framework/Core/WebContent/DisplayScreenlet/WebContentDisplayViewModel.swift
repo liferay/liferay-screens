@@ -25,6 +25,6 @@ public protocol WebContentDisplayViewModel {
 	/// Customize the WebContent with custom css.
 	var customCssFile: String? { get set }
 
-    //Decides whether to allow or cancel a navigation.
-    var onUrlClicked: ((String) -> Bool)? { get set }
+	//Decides whether to allow or cancel a navigation.
+	var onUrlClicked: ((String) -> Bool)? { get set }
 }

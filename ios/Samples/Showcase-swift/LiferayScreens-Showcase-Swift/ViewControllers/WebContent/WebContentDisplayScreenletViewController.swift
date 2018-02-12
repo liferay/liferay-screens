@@ -50,10 +50,11 @@ class WebContentDisplayScreenletViewController: UIViewController, WebContentDisp
 		LiferayLogger.logDelegateMessage(args: error)
 	}
 	
-    func screenlet(_ screenlet: WebContentDisplayScreenlet, onUrlClicked url: String) -> Bool {
-        LiferayLogger.logDelegateMessage(args: url as AnyObject)
-        return true
-    }
+	func screenlet(_ screenlet: WebContentDisplayScreenlet,
+				   onUrlClicked url: String) -> Bool {
+		LiferayLogger.logDelegateMessage(args: url as AnyObject)
+		return true
+	}
 	
 	//MARK: UIViewController
 	

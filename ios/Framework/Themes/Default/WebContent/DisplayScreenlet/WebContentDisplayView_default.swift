@@ -94,14 +94,14 @@ open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayVi
 
     // MARK: WKNavigationDelegate
 
-    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction,
-                        decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+	public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction,
+						decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
 
-        if navigationAction.navigationType == WKNavigationType.linkActivated {
-            (onUrlClicked?(webView.url?.absoluteString ?? "") ?? false) ? decisionHandler(.allow) : decisionHandler(.cancel)
-        }
-        else {
-            decisionHandler(.allow)
-        }
-    }
+		if navigationAction.navigationType == WKNavigationType.linkActivated {
+			(onUrlClicked?(webView.url?.absoluteString ?? "") ?? false) ? decisionHandler(.allow) : decisionHandler(.cancel)
+		}
+		else {
+			decisionHandler(.allow)
+		}
+	}
 }
