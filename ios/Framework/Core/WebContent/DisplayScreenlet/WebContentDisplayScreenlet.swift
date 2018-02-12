@@ -122,11 +122,12 @@ open class WebContentDisplayScreenlet: BaseScreenlet {
 
 				self.webContentDisplayViewModel?.customCssFile = self.customCssFile
 				self.webContentDisplayViewModel?.htmlContent = modifiedHtml ?? resultHtml
-
-				let onUrlClicked: ((WebContentDisplayScreenlet, String) -> Bool)? =
-					self.webContentDisplayDelegate?.screenlet
-
-				self.webContentDisplayViewModel?.onUrlClicked = self.onUrlClicked(_:)
+				self.webContentDisplayViewModel?.onUrlClicked = { [weak self] url in
+					guard let strongSelf = self else {
+						return false
+					}
+					return strongSelf.webContentDisplayDelegate?.screenlet?(strongSelf, onUrlClicked: url) ?? false
+				}
 				
 			} else if let resultRecord = interactor.resultRecord {
 				self.webContentDisplayDelegate?.screenlet?(self,
@@ -141,12 +142,6 @@ open class WebContentDisplayScreenlet: BaseScreenlet {
 		}
 
 		return interactor
-	}
-
-    // MARK: Private methods
-
-	func onUrlClicked(_ url: String) -> Bool {
-		return self.webContentDisplayDelegate?.screenlet?(self, onUrlClicked: url) ?? false
 	}
 
 	// MARK: Public methods
