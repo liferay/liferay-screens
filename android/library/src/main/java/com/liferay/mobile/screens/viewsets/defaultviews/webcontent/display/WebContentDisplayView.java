@@ -34,6 +34,7 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.webcontent.WebContent;
 import com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet;
 import com.liferay.mobile.screens.webcontent.display.view.WebContentDisplayViewModel;
+import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 
@@ -158,7 +159,6 @@ public class WebContentDisplayView extends FrameLayout implements WebContentDisp
 			@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 			public WebResourceResponse shouldInterceptRequest(WebView view,
 				WebResourceRequest request) {
-
 				return getResource(request.getUrl().toString());
 			}
 
@@ -171,9 +171,11 @@ public class WebContentDisplayView extends FrameLayout implements WebContentDisp
 					Request request = builder.build();
 					com.squareup.okhttp.Response response = httpClient.newCall(request).execute();
 
-					return new WebResourceResponse(
-						response.header("content-type", response.body().contentType().type()),
-						response.header("content-encoding", "utf-8"), response.body().byteStream());
+					MediaType mediaType = response.body().contentType();
+					String name = mediaType.charset() == null ? "UTF-8" : mediaType.charset().name();
+
+					return new WebResourceResponse(mediaType.type() + "/" + mediaType.subtype(),
+                            name, response.body().byteStream());
 				} catch (Exception e) {
 					return null;
 				}
