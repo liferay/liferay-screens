@@ -15,6 +15,11 @@ All notable changes to this project will be documented in this file.
 * Refactor shadow activity to request media, and use it in UserPortrait and DDLFormScreenlet
 * Support Geolocation field in DDLFormScreenlet
 
+## iOS
+
+### New features
+* Create new delegate in WebContentDisplayScreenlet to allow or not navigation inside the WKWebView
+
 ## Xamarin
 
 ### Refactor
