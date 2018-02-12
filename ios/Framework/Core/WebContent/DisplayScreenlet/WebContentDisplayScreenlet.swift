@@ -126,9 +126,8 @@ open class WebContentDisplayScreenlet: BaseScreenlet {
 				let onUrlClicked: ((WebContentDisplayScreenlet, String) -> Bool)? =
 					self.webContentDisplayDelegate?.screenlet
 
-				self.webContentDisplayViewModel?.onUrlClicked = { url in
-					return self.onUrlClicked(url)
-                }
+				self.webContentDisplayViewModel?.onUrlClicked = self.onUrlClicked(_:)
+				
 			} else if let resultRecord = interactor.resultRecord {
 				self.webContentDisplayDelegate?.screenlet?(self,
 					onRecordContentResponse: resultRecord)
