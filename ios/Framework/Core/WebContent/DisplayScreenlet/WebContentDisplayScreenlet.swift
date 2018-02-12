@@ -128,8 +128,9 @@ open class WebContentDisplayScreenlet: BaseScreenlet {
 					}
 					return strongSelf.webContentDisplayDelegate?.screenlet?(strongSelf, onUrlClicked: url) ?? false
 				}
-				
-			} else if let resultRecord = interactor.resultRecord {
+
+			}
+			else if let resultRecord = interactor.resultRecord {
 				self.webContentDisplayDelegate?.screenlet?(self,
 					onRecordContentResponse: resultRecord)
 

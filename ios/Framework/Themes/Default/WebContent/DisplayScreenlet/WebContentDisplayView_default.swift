@@ -99,7 +99,7 @@ open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayVi
 
 		if navigationAction.navigationType == WKNavigationType.linkActivated {
 			let shouldNavigate = onUrlClicked?(webView.url?.absoluteString ?? "") ?? false
-			
+
 			if shouldNavigate {
 				decisionHandler(.allow)
 			}
