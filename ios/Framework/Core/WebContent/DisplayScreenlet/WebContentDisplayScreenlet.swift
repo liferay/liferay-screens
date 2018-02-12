@@ -44,6 +44,14 @@ public protocol WebContentDisplayScreenletDelegate: BaseScreenletDelegate {
 	@objc optional func screenlet(_ screenlet: WebContentDisplayScreenlet,
 			onWebContentError error: NSError)
 
+    /// Decides whether to allow or cancel a navigation.
+    ///
+    ///   - screenlet: Web content display screenlet instance.
+    ///   - url: Clicked url.
+    /// - Returns: True if navigation is allowed, false otherwise.
+    @objc optional func screenlet(_ screenlet: WebContentDisplayScreenlet,
+                                  onUrlClicked url: String) -> Bool
+
 }
 
 /// The Web Content Display Screenlet shows web content elements in your app, rendering the inner 
@@ -114,6 +122,13 @@ open class WebContentDisplayScreenlet: BaseScreenlet {
 
 				self.webContentDisplayViewModel?.customCssFile = self.customCssFile
 				self.webContentDisplayViewModel?.htmlContent = modifiedHtml ?? resultHtml
+
+                let onUrlClicked: ((WebContentDisplayScreenlet, String) -> Bool)? =
+                    self.webContentDisplayDelegate?.screenlet
+
+                self.webContentDisplayViewModel?.onUrlClicked = { url in
+                    return self.onUrlClicked(url)
+                }
 			}
 			else if let resultRecord = interactor.resultRecord {
 				self.webContentDisplayDelegate?.screenlet?(self,
@@ -140,4 +155,9 @@ open class WebContentDisplayScreenlet: BaseScreenlet {
 		return self.performDefaultAction()
 	}
 
+    // MARK: Private methods
+
+    func onUrlClicked(_ url: String) -> Bool {
+        return self.webContentDisplayDelegate?.screenlet?(self, onUrlClicked: url) ?? false
+    }
 }

@@ -15,7 +15,7 @@ import UIKit
 import WebKit
 
 @objc(WebContentDisplayView_default)
-open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayViewModel {
+open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayViewModel, WKNavigationDelegate {
 
 	// MARK: Outlets
 
@@ -23,7 +23,7 @@ open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayVi
 
 	open var injectedCss: String?
 
-	override open var progressMessages: [String:ProgressMessages] {
+	override open var progressMessages: [String: ProgressMessages] {
 		return [
 			BaseScreenlet.DefaultAction: [
 				.working: LocalizedString("default", key: "webcontentdisplay-loading-message", obj: self),
@@ -38,6 +38,8 @@ open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayVi
 		let config = WKWebViewConfiguration.noCacheConfiguration
 
 		webView = WKWebView(frame: self.frame, configuration: config)
+
+        webView?.navigationDelegate = self
 
 		webView?.injectCookies()
 		webView?.injectViewportMetaTag()
@@ -87,4 +89,26 @@ open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayVi
 			}
 		}
 	}
+
+    open var onUrlClicked: ((String) -> Bool)?
+
+    // MARK: WKNavigationDelegate
+
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+
+        if navigationAction.navigationType == WKNavigationType.linkActivated {
+
+            let shouldNavigate = onUrlClicked?(webView.url?.absoluteString ?? "") ?? false
+
+            if shouldNavigate {
+                decisionHandler(.allow)
+            }
+            else {
+                decisionHandler(.cancel)
+            }
+        }
+        else {
+            decisionHandler(.allow)
+        }
+    }
 }
