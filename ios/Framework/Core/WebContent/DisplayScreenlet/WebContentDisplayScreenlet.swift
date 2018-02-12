@@ -129,8 +129,7 @@ open class WebContentDisplayScreenlet: BaseScreenlet {
                 self.webContentDisplayViewModel?.onUrlClicked = { url in
                     return self.onUrlClicked(url)
                 }
-			}
-			else if let resultRecord = interactor.resultRecord {
+			} else if let resultRecord = interactor.resultRecord {
 				self.webContentDisplayDelegate?.screenlet?(self,
 					onRecordContentResponse: resultRecord)
 
@@ -145,6 +144,12 @@ open class WebContentDisplayScreenlet: BaseScreenlet {
 		return interactor
 	}
 
+    // MARK: Private methods
+
+    func onUrlClicked(_ url: String) -> Bool {
+        return self.webContentDisplayDelegate?.screenlet?(self, onUrlClicked: url) ?? false
+    }
+
 	// MARK: Public methods
 
 	/// Loads a web content in the screenlet.
@@ -154,10 +159,4 @@ open class WebContentDisplayScreenlet: BaseScreenlet {
 	open func loadWebContent() -> Bool {
 		return self.performDefaultAction()
 	}
-
-    // MARK: Private methods
-
-    func onUrlClicked(_ url: String) -> Bool {
-        return self.webContentDisplayDelegate?.screenlet?(self, onUrlClicked: url) ?? false
-    }
 }

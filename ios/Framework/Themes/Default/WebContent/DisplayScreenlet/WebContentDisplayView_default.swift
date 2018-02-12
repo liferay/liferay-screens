@@ -94,18 +94,11 @@ open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayVi
 
     // MARK: WKNavigationDelegate
 
-    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction,
+                        decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
 
         if navigationAction.navigationType == WKNavigationType.linkActivated {
-
-            let shouldNavigate = onUrlClicked?(webView.url?.absoluteString ?? "") ?? false
-
-            if shouldNavigate {
-                decisionHandler(.allow)
-            }
-            else {
-                decisionHandler(.cancel)
-            }
+            (onUrlClicked?(webView.url?.absoluteString ?? "") ?? false) ? decisionHandler(.allow) : decisionHandler(.cancel)
         }
         else {
             decisionHandler(.allow)
