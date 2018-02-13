@@ -51,7 +51,7 @@ open class WebContentDisplayView_book: BaseScreenletView, WebContentDisplayViewM
 		}
 	}
     
-    open var customCssFile: String?
-    
-    open var onUrlClicked: ((String) -> Bool)?
+	open var customCssFile: String?
+
+	open var onUrlClicked: ((String) -> Bool)?
 }

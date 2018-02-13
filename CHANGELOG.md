@@ -18,7 +18,7 @@ All notable changes to this project will be documented in this file.
 ## iOS
 
 ### New features
-* Create new delegate in WebContentDisplayScreenlet to allow or not navigation inside the WKWebView
+* Create new delegate in WebContentDisplayScreenlet to allow or not navigation inside the WKWebView. Also, a sample of usage in Showcase-swift
 
 ## Xamarin
 
