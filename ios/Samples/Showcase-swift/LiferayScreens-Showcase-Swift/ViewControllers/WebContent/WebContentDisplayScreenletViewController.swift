@@ -53,7 +53,16 @@ class WebContentDisplayScreenletViewController: UIViewController, WebContentDisp
 	func screenlet(_ screenlet: WebContentDisplayScreenlet,
 				   onUrlClicked url: String) -> Bool {
 		LiferayLogger.logDelegateMessage(args: url as AnyObject)
-		return true
+		
+		//Return false to avoid opening the URL in WKWebView and decide what to do with it
+		//For example: open the URL in native browser
+		if let link = URL(string: url) {
+			UIApplication.shared.openURL(link)
+		}
+		return false
+		
+		//Return true to allow WKWebView navigate to the clicked link
+		//return true
 	}
 	
 	//MARK: UIViewController
