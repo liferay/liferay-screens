@@ -48,7 +48,7 @@ public protocol WebContentDisplayScreenletDelegate: BaseScreenletDelegate {
 	///
 	///   - screenlet: Web content display screenlet instance.
 	///   - url: Clicked url.
-	/// - Returns: True if navigation is allowed, false otherwise.
+	/// - Returns: True if you're going to handle navigation, false otherwise.
 	@objc optional func screenlet(_ screenlet: WebContentDisplayScreenlet,
 								  onUrlClicked url: String) -> Bool
 

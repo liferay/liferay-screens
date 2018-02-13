@@ -54,15 +54,15 @@ class WebContentDisplayScreenletViewController: UIViewController, WebContentDisp
 				   onUrlClicked url: String) -> Bool {
 		LiferayLogger.logDelegateMessage(args: url as AnyObject)
 		
-		//Return false to avoid opening the URL in WKWebView and decide what to do with it
+		//Return true to avoid opening the URL in WKWebView and decide what to do with it
 		//For example: open the URL in native browser
 		if let link = URL(string: url) {
 			UIApplication.shared.openURL(link)
 		}
-		return false
+		return true
 		
-		//Return true to allow WKWebView navigate to the clicked link
-		//return true
+		//Return false to allow WKWebView navigate to the clicked link
+		//return false
 	}
 	
 	//MARK: UIViewController
