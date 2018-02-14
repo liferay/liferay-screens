@@ -5,15 +5,14 @@ All notable changes to this project will be documented in this file.
 
 # Develop
 
+Nothing yet
+
+# 3.0.3
+
 ## Android
 
 ### Bugs
 * Fix error in WebContentDisplayScreenlet: link's content was shown as text
-
-### New features
-* Add preview mode in DDLForm (breaking change)
-* Refactor shadow activity to request media, and use it in UserPortrait and DDLFormScreenlet
-* Support Geolocation field in DDLFormScreenlet
 
 ## iOS
 
@@ -22,11 +21,29 @@ All notable changes to this project will be documented in this file.
 
 ## Xamarin
 
+### Samples
+* Andorra Telecom developed with Xamarin.iOS
+
+# 3.0.2
+
+## Android
+
+### New features
+* Add preview mode in DDLForm (breaking change)
+* Refactor shadow activity to request media, and use it in UserPortrait and DDLFormScreenlet
+* Support Geolocation field in DDLFormScreenlet
+
+## Xamarin
+
 ### Refactor
 * Xamarin.iOS demo app takes values from plist file
 
-### Samples
-* Andorra Telecom developed with Xamarin.iOS
+# 3.0.1
+
+## Android
+
+### Bugs
+* Fix error in WebContentListScreenlet: all the html is save as a parcelable and the application crashes
 
 # 3.0.0
 
