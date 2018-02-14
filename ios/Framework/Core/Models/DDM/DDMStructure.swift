@@ -103,11 +103,11 @@ open class DDMStructure: NSObject, NSCoding {
 		}.first
 	}
 
-	open func fieldsBy(type: AnyClass) -> [DDMField] {
-		let typeName = NSStringFromClass(type)
+	open func fieldsBy(type: AnyObject.Type) -> [DDMField] {
+		let typeName = String(describing: type)
 
 		return fields.filter {
-			NSStringFromClass(type(of: $0)) == typeName
+			String(describing: $0.self) == typeName
 		}
 	}
 

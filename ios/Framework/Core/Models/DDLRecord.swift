@@ -154,13 +154,13 @@ open class DDLRecord: NSObject, NSCoding {
 				}.first
 	}
 
-	open func fieldsBy(type: AnyClass) -> [DDMField] {
-		let typeName = NSStringFromClass(type)
+	open func fieldsBy(type: AnyObject.Type) -> [DDMField] {
+		let typeName = String(describing: type)
 
 		return structure?.fieldsBy(type: type)
 					??
 				untypedValues?.filter {
-					NSStringFromClass(type(of: $0)) == typeName
+					String(describing: $0.self) == typeName
 				}
 					??
 				[]
