@@ -15,6 +15,7 @@
 import UIKit
 import Alamofire
 
+@objcMembers
 class CallMeBackView: UIView {
 
     weak var delegate: CallMeBackDelegate?
@@ -56,7 +57,7 @@ class CallMeBackView: UIView {
     }
 
     @IBAction func callMeNow(_ sender: UIButton) {
-        let phoneCount = phoneTextField.text?.characters.count
+        let phoneCount = phoneTextField.text?.count
         if phoneCount != 6 {
             delegate?.showAlertLegalNotAccepted(callMeBackView: self, title: "title-legal".localized()!, message: "phone-not-valid".localized()!)
         }
@@ -86,8 +87,8 @@ class CallMeBackView: UIView {
         let mutableString = NSMutableAttributedString(string: "accept-legal".localized()!, attributes: nil)
         let range = rangeLastTwoWords(words: "accept-legal".localized()!)
         let attributtes =
-            [NSForegroundColorAttributeName: UIColor(red:0.83, green:0.02, blue:0.45, alpha:1.0),
-            NSUnderlineStyleAttributeName: 1] as [String : Any]
+            [.foregroundColor: UIColor(red:0.83, green:0.02, blue:0.45, alpha:1.0),
+            .underlineStyle: 1] as [NSAttributedStringKey : Any]
         mutableString.addAttributes(attributtes, range: range)
 
         legalLabel.attributedText = mutableString

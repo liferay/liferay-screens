@@ -16,6 +16,7 @@ import Foundation
 import LiferayScreens
 import Hokusai
 
+@objcMembers
 class ForfetViewController: UIViewController, WebScreenletDelegate {
 
     var url: String = ""
