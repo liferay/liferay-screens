@@ -72,7 +72,7 @@ open class DDMFieldDate: DDMField {
 			return nil
 		}
 
-		return convertFromDateStr(stringValue) as AnyObject?? ?? convertFromJavaEpoch(stringValue) as AnyObject?
+		return convertFromDateStr(stringValue) as AnyObject? ?? convertFromJavaEpoch(stringValue) as AnyObject?
 	}
 
 	override func convert(fromLabel label: String?) -> AnyObject? {

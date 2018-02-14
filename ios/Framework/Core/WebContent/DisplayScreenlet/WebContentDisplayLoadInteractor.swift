@@ -111,7 +111,7 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 			return
 		}
 		guard let value: NSCoding =
-				(loadCon as? WebContentLoadHtmlLiferayConnector)?.resultHTML as NSCoding??
+				(loadCon as? WebContentLoadHtmlLiferayConnector)?.resultHTML as NSCoding?
 				??
 				(loadCon as? WebContentLoadStructuredLiferayConnector)?.resultRecord else {
 			return

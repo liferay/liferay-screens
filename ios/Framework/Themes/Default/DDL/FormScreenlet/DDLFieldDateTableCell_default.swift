@@ -49,7 +49,7 @@ open class DDLFieldDateTableCell_default: DDLBaseFieldTextboxTableCell_default {
 			field.currentValue = selectedDate as AnyObject?
 			textField!.text = field.currentValueAsLabel
 
-			let fullRange = NSRange(location: 0, length: textField!.text!.characters.count)
+			let fullRange = NSRange(location: 0, length: textField!.text!.count)
 
 			_ = textField(textField!,
 				shouldChangeCharactersIn: fullRange,

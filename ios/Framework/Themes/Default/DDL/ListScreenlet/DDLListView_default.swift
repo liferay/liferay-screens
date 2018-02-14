@@ -66,7 +66,7 @@ open class DDLListView_default: BaseListTableView, DDLListViewModel {
 			print("[ERROR] Can't compose the label for record. It seems the fields specified are not valid\n")
 		}
 		else {
-			result.remove(at: result.characters.index(before: result.endIndex))
+			result.remove(at: result.index(before: result.endIndex))
 		}
 
 		return result

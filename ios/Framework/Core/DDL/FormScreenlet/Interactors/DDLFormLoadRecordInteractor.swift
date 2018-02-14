@@ -127,7 +127,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 
 			cacheManager.setClean(
 				collection: ScreenletName(DDLFormScreenlet.self),
-				key: "structureId-\(self.structureId)",
+				key: "structureId-\(String(describing: self.structureId))",
 				value: recordForm,
 				attributes: [
 					"userId": formUserId.description as AnyObject])
@@ -172,7 +172,8 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 
 			cacheManager.getSomeWithAttributes(
 					collection: ScreenletName(DDLFormScreenlet.self),
-					keys: ["structureId-\(structureId)", "recordId-\(recordId)"]) { objects, attributes in
+					keys: ["structureId-\(String(describing: structureId))", "recordId-\(recordId)"]) {
+						objects, attributes in
 
 				if let recordForm = objects[0] as? DDLRecord,
 						let recordUserId = attributes[0]?["userId"]?.int64Value,
