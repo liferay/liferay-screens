@@ -467,7 +467,7 @@ open class ImageGalleryScreenlet: BaseListScreenlet {
 	}
 
 	internal func parseMimeTypes(_ mimeTypes: String) -> [String] {
-		return mimeTypes.characters.split(separator: ",").map(String.init)
+		return mimeTypes.split(separator: ",").map(String.init)
 	}
 
 }

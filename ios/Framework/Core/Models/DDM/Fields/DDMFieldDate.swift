@@ -51,7 +51,7 @@ open class DDMFieldDate: DDMField {
 
 	override internal func convert(fromString value: String?) -> AnyObject? {
 		func convertFromDateStr(_ str: String) -> Date? {
-			let separator = str[str.characters.index(str.endIndex, offsetBy: -3)]
+			let separator = str[str.index(str.endIndex, offsetBy: -3)]
 			let format = separator == "/" ? "MM/dd/yy" : serverDateFormat
 
 			return formatterWithFormat(format).date(from: str)

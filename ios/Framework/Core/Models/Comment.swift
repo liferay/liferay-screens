@@ -21,7 +21,6 @@ open class Comment: NSObject, NSCoding {
 		return plainBody
 			.replacingOccurrences(of: "<", with: "&lt;")
 			.replacingOccurrences(of: ">", with: "&gt;")
-			.characters
 			.split(separator: "\n")
 			.map(String.init)
 			.map { "<p>\($0)</p>" }

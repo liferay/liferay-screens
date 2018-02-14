@@ -23,7 +23,7 @@ extension String {
 
 		return regex.stringByReplacingMatches(in: self,
 			options: [],
-			range: NSRange(location: 0, length: self.characters.count),
+			range: NSRange(location: 0, length: self.count),
 			withTemplate: "-")
 	}
 
@@ -106,9 +106,9 @@ extension String {
 	}
 
 	func removeFirstAndLastChars() -> String {
-		if characters.count >= 2 {
-			let range = characters.index(after: startIndex)..<characters.index(before: endIndex)
-			return substring(with: range)
+		if count >= 2 {
+			let range = index(after: startIndex)..<index(before: endIndex)
+			return String(self[range])
 		}
 
 		return self
