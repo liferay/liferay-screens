@@ -15,15 +15,15 @@
 	<key>anonymousPassword</key>
 	<string>anonymous1</string>
 	<key>assetDisplayEntryId</key>
-	<integer>20169</integer>
+	<real>40521</real>
 	<key>assetDisplayPortletItemName</key>
 	<string>image</string>
 	<key>blogDisplayClassPK</key>
-	<string>42183</string>
+	<string>40515</string>
 	<key>commentScreenletClassName</key>
 	<string>com.liferay.blogs.kernel.model.BlogsEntry</string>
 	<key>commentScreenletClassPK</key>
-	<integer>42183</integer>
+	<integer>57366</integer>
 	<key>ddlLabelField</key>
 	<string>Email</string>
 	<key>ddlRecordId</key>
@@ -43,21 +43,21 @@
 	<key>fileDisplayClassPK</key>
 	<real>34286</real>
 	<key>imageGalleryFolderId</key>
-	<integer>42257</integer>
+	<real>54469</real>
 	<key>imageGalleryMimeType</key>
 	<string>image/png,image/jpeg</string>
 	<key>imageGalleryRepositoryId</key>
-	<real>41905</real>
+	<real>20143</real>
 	<key>ratingEmojisEntryId</key>
-	<integer>42232</integer>
+	<real>40521</real>
 	<key>ratingLikeEntryId</key>
-	<integer>42184</integer>
+	<real>40521</real>
 	<key>ratingStarsEntryId</key>
-	<integer>42232</integer>
+	<real>40521</real>
 	<key>ratingThumbsEntryId</key>
-	<integer>42184</integer>
+	<real>40521</real>
 	<key>webContentDisplayArticleId</key>
-	<string>41983</string>
+	<string>57343</string>
 	<key>WebUrl</key>
 	<string>/web/guest/blog</string>
 </dict>
