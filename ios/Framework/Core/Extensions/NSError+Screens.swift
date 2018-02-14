@@ -51,7 +51,7 @@ public extension NSError {
 
 	public class func errorWithCause(
 			_ cause: ScreensErrorCause,
-			userInfo: [AnyHashable: Any]? = nil)
+			userInfo: [String: Any]? = nil)
 			-> NSError {
 
 		return NSError(
