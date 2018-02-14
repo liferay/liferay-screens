@@ -24,19 +24,19 @@ open class SignUpView_westeros: SignUpView_default {
 
 		firstNameField?.attributedPlaceholder = NSAttributedString(
 				string: firstNameField!.placeholder!,
-				attributes: [NSForegroundColorAttributeName : color])
+				attributes: [.foregroundColor : color])
 
 		lastNameField?.attributedPlaceholder = NSAttributedString(
 				string: lastNameField!.placeholder!,
-				attributes: [NSForegroundColorAttributeName : color])
+				attributes: [.foregroundColor : color])
 
 		emailAddressField?.attributedPlaceholder = NSAttributedString(
 				string: emailAddressField!.placeholder!,
-				attributes: [NSForegroundColorAttributeName : color])
+				attributes: [.foregroundColor : color])
 
 		passwordField?.attributedPlaceholder = NSAttributedString(
 				string: passwordField!.placeholder!,
-				attributes: [NSForegroundColorAttributeName : color])
+				attributes: [.foregroundColor : color])
 	}
 
 	override open func createProgressPresenter() -> ProgressPresenter {

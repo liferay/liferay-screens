@@ -24,7 +24,7 @@ open class ForgotPasswordView_westeros: ForgotPasswordView_default {
 	override open func onShow() {
 		userNameField!.attributedPlaceholder = NSAttributedString(
 				string: userNameField!.placeholder!,
-				attributes: [NSForegroundColorAttributeName : UIColor.white])
+				attributes: [.foregroundColor : UIColor.white])
 	}
 
 	override open func onSetDefaultDelegate(_ delegate:AnyObject, view:UIView) -> Bool {

@@ -18,7 +18,7 @@ import PureLayout
 ///Override this class
 open class CardViewController: UIViewController {
 
-	open var onDone: ((Void) -> Void)?
+	open var onDone: (() -> Void)?
 
 	///Card which holds the controlled view of this controller
 	open var cardView: CardView? {
