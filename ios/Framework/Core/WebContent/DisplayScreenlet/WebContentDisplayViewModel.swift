@@ -22,6 +22,9 @@ public protocol WebContentDisplayViewModel {
 	/// DDLRecord content.
 	var recordContent: DDLRecord? { get set }
 
-	/// Customize the WebContent with custom css
+	/// Customize the WebContent with custom css.
 	var customCssFile: String? { get set }
+
+	//Decides whether to allow or cancel a navigation.
+	var onUrlClicked: ((String) -> Bool)? { get set }
 }

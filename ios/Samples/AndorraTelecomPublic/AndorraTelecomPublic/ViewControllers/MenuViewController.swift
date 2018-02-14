@@ -31,7 +31,7 @@ class MenuViewController: UIViewController, WebScreenletDelegate, CallMeBackDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        addLogoToNavegationBar()
+        addLogoToNavigationBar()
         modifyHeightCallMeBack(height: 0)
         callMeBack.delegate = self
 
@@ -49,7 +49,7 @@ class MenuViewController: UIViewController, WebScreenletDelegate, CallMeBackDele
         self.viewCallmeBack.layoutIfNeeded()
     }
 
-    func addLogoToNavegationBar() {
+    func addLogoToNavigationBar() {
         let logo = UIImage(named: "Logo") as UIImage?
         let imageView = UIImageView(image:logo)
         imageView.frame.size.width = 100
@@ -221,9 +221,9 @@ class MenuViewController: UIViewController, WebScreenletDelegate, CallMeBackDele
             let vc = segue.destination as? ForfetViewController {
             switch sender as! String {
             case "0":
-                vc.url = LanguageHelper.shared().url(page: .mobileland29)
+                vc.url = LanguageHelper.shared().url(page: .mobile)
             case "1":
-                vc.url = LanguageHelper.shared().url(page: .roming)
+                vc.url = LanguageHelper.shared().url(page: .roaming)
             case "2":
                 vc.url = LanguageHelper.shared().url(page: .paquete69)
             case "3":

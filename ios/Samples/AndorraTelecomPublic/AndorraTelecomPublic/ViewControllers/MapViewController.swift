@@ -22,7 +22,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadWebScreenlet()
-        addLogoToNavegationBar()
+        addLogoToNavigationBar()
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,7 +40,7 @@ class MapViewController: UIViewController {
         webScreenlet.load()
     }
 
-    func addLogoToNavegationBar() {
+    func addLogoToNavigationBar() {
         let logo = UIImage(named: "Logo") as UIImage?
         let imageView = UIImageView(image:logo)
         imageView.frame.size.width = 100

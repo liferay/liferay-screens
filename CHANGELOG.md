@@ -7,15 +7,26 @@ All notable changes to this project will be documented in this file.
 
 ## Android
 
+### Bugs
+* Fix error in WebContentDisplayScreenlet: link's content was shown as text
+
 ### New features
 * Add preview mode in DDLForm (breaking change)
 * Refactor shadow activity to request media, and use it in UserPortrait and DDLFormScreenlet
 * Support Geolocation field in DDLFormScreenlet
 
+## iOS
+
+### New features
+* Create new delegate in WebContentDisplayScreenlet to allow or not navigation inside the WKWebView. Also, a sample of usage in Showcase-swift
+
 ## Xamarin
 
 ### Refactor
 * Xamarin.iOS demo app takes values from plist file
+
+### Samples
+* Andorra Telecom developed with Xamarin.iOS
 
 # 3.0.0
 

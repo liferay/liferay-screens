@@ -13,7 +13,7 @@
 	<string name="comment_list_label">Comment List Screenlet: Muestra una lista de comentarios de un Asset específico.</string>
 	<string name="web_content_list_label">WebContent List Screenlet: Muestra una lista de WebContent de un folderId específico.</string>
 	<string name="image_gallery_label">Image Gallery Screenlet: Muestra una galería de imágenes a partir de un folderId de Liferay.</string>
-	<string name="main_activity_label">Lista con todos los screenlets soportados en la versión 2.0.0 de Liferay Screens.</string>
+	<string name="main_activity_label">Lista con todos los screenlets soportados en la versión 3.0.0 de Liferay Screens.</string>
 	<string name="customizing_a_screenlet">Screenlet personalizado</string>
 	<string name="add_a_bookmark">Añadir un Bookmark</string>
 	<string name="list_bookmarks">Listar Bookmarks</string>

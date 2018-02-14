@@ -1,0 +1,16 @@
+﻿#header {
+    height: 0px;
+    display: none
+}
+
+#main-content .shortcode-container.main-menu-shortcode,
+#main-content .product-prices .product-prices-general {
+    margin: 0px
+}
+
+#callmeback-main,
+#footer,
+.cc-floating,
+.breadcrumb-container {
+    display: none
+}
