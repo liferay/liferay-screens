@@ -60,17 +60,17 @@ extension String {
 		return found?.value ?? self
 	}
 
-	public func toHtmlTextWithAttributes(_ attributes: [String: Any]) -> NSAttributedString? {
+	public func toHtmlTextWithAttributes(_ attributes: [NSAttributedStringKey: Any]) -> NSAttributedString? {
 
 		//Init text with default paragraph style
 		var text = "<style>p:last-of-type{ margin-bottom: 0px; padding-bottom: 0px; }</style>"
 			+ "<div style=\""
 
-		if let font = attributes[NSFontAttributeName] as? UIFont {
+		if let font = attributes[.font] as? UIFont {
 			text.append("font-family: \(font.fontName);font-size: \(font.pointSize);")
 		}
 
-		if let color = attributes[NSForegroundColorAttributeName] as? UIColor {
+		if let color = attributes[.foregroundColor] as? UIColor {
 			text.append("color: \(self.toHexString(color));")
 		}
 
@@ -78,14 +78,15 @@ extension String {
 
 		let encodedData = text.data(using: .utf8)
 
+		var documentAttributes: NSDictionary? = NSDictionary(dictionary: attributes)
+
 		if let data = encodedData {
+			let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
+				.documentType: NSAttributedString.DocumentType.html,
+				.characterEncoding: String.Encoding.utf8.rawValue
+			]
 
-			let attributes = attributes.copyAndMerge([
-				NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-				NSCharacterEncodingDocumentAttribute: String.Encoding.utf8.rawValue
-			])
-
-			return try! NSAttributedString(data: data, options: attributes, documentAttributes: nil)
+			return try! NSAttributedString(data: data, options: options, documentAttributes: &documentAttributes)
 		}
 
 		return nil
