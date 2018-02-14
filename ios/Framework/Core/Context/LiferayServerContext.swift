@@ -21,6 +21,7 @@ import Foundation
 }
 
 @objc(LiferayServerContext)
+@objcMembers
 open class LiferayServerContext: NSObject {
 
 	// MARK: Singleton type

@@ -66,7 +66,7 @@ public class ScreensCordovaViewController: CDVViewController, WKNavigationDelega
 		initialNavigation = webViewEngine.loadHTMLString(htmlString, baseURL: URL(string: server)!) as? WKNavigation
 	}
 
-	open func handleJsCall(namespace: String, message: String) {
+	@objc open func handleJsCall(namespace: String, message: String) {
 		jsCallHandler(namespace, message)
 	}
 

@@ -14,6 +14,7 @@
 import Foundation
 
 @objc(User)
+@objcMembers
 open class User: NSObject, NSCoding {
 
 	open let attributes: [String: AnyObject]

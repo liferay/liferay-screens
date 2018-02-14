@@ -16,6 +16,7 @@ import Foundation
 //TODO: Unit test
 
 @objc(DDLRecord)
+@objcMembers
 open class DDLRecord: NSObject, NSCoding {
 
 	open var structure: DDMStructure?

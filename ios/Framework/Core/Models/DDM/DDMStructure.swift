@@ -16,6 +16,7 @@ import Foundation
 //TODO: Unit test
 
 @objc(DDMStructure)
+@objcMembers
 open class DDMStructure: NSObject, NSCoding {
 
 	open var fields = [DDMField]()

@@ -14,6 +14,7 @@
 import Foundation
 
 @objc(Comment)
+@objcMembers
 open class Comment: NSObject, NSCoding {
 
 	open static func plainBodyToHtml(_ plainBody: String) -> String {

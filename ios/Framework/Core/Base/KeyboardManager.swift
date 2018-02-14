@@ -81,7 +81,7 @@ open class KeyboardManager {
 
 	// MARK: Private methods
 
-	fileprivate dynamic func keyboardShown(_ notification: Notification?) {
+	@objc fileprivate func keyboardShown(_ notification: Notification?) {
 		let value = notification!.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
 		let frame = adjustRectForCurrentOrientation(value.cgRectValue)
 
@@ -97,7 +97,7 @@ open class KeyboardManager {
 				animation: (time: animationDuration, curve: animationCurve))
 	}
 
-	fileprivate dynamic func keyboardHidden(_ notification: Notification?) {
+	@objc fileprivate func keyboardHidden(_ notification: Notification?) {
 		StaticData.visible = false
 
 		layoutable?.layoutWhenKeyboardHidden()

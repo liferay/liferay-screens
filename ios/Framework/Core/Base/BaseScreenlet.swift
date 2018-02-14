@@ -35,6 +35,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 /// BaseScreenlet is the base class from which all Screenlet classes must inherit.
 /// A screenlet is the container for a screenlet view.
 @objc(BaseScreenlet)
+@objcMembers
 @IBDesignable open class BaseScreenlet: UIView {
 
 	// MARK: Static properties
