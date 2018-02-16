@@ -1,4 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_name">Andorra Telecom</string>
+    <string name="help_text">How can we help you?</string>
+    <string name="phone_text">Telephone number</string>
+    <string name="legal_text">I accept the legal conditions</string>
+    <string name="button_call_me_now_text">CALL ME NOW</string>
+    <string name="or_text">or</string>
+    <string name="button_i_call_text">I CALL</string>
 </resources>

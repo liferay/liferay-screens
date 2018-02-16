@@ -1,29 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="200dp"
-    android:layout_height="50dp"
-    android:background="@android:color/black"
-    android:gravity="end|bottom">
+    android:id="@+id/call_me_back_general_view"
+    android:layout_width="250dp"
+    android:layout_height="wrap_content">
     <LinearLayout
-        android:orientation="horizontal"
+        android:id="@+id/call_me_back_header"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/black"
-        android:padding="10dp">
-        <ImageView
-            android:id="@+id/call_me_back_image"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/phone"
-            android:layout_gravity="center" />
-        <TextView
-            android:id="@+id/call_me_back_text"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Text"
-            android:textColor="@color/textColorPrimary"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:background="@android:color/black"
+            android:padding="10dp">
+            <ImageView
+                android:id="@+id/call_me_back_image"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/phone"
+                android:layout_gravity="center" />
+            <TextView
+                android:id="@+id/call_me_back_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Text"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="8pt"
+                android:gravity="center|start" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/call_me_back_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="?android:attr/colorBackground"
+        android:layout_below="@id/call_me_back_header"
+        android:padding="15dp"
+        android:visibility="gone">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
             android:textSize="7pt"
-            android:gravity="center|start" />
+            android:text="@string/help_text" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textSize="7pt"
+            android:textStyle="bold"
+            android:text="@string/phone_text" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/phone_input"
+            android:hint="875000" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp">
+            <TextView
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:textSize="7pt"
+                android:text="@string/legal_text" />
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/button_call_me_now"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/textColorPrimary"
+            android:text="@string/button_call_me_now_text" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="7pt"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/or_text" />
+        <Button
+            android:id="@+id/button_i_call"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/textColorPrimary"
+            android:text="@string/button_i_call_text" />
     </LinearLayout>
 </RelativeLayout>

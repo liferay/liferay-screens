@@ -13,7 +13,8 @@ namespace AndorraTelecomAndroid
     [Activity(MainLauncher = true, Icon = "@mipmap/icon")]
     public class MainActivity : Activity, IWebListener
     {
-        public RelativeLayout CallMeBackView;
+        public LinearLayout CallMeBackViewHeader;
+        public LinearLayout CallMeBackViewBody;
         public TextView CallMeBackText;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -21,14 +22,13 @@ namespace AndorraTelecomAndroid
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.Main);
 
-            CallMeBackView =
-                (RelativeLayout)FindViewById(Resource.Id.call_me_back_view);
-            CallMeBackText =
-                (TextView)FindViewById(Resource.Id.call_me_back_text);
+            FindViews();
 
             SetCustomActionBar();
 
             LoadWebScreenlet();
+
+            CallMeBackViewHeader.Click += OpenCallMeBackView;
         }
 
         public override bool OnCreateOptionsMenu(Android.Views.IMenu menu)
@@ -38,6 +38,16 @@ namespace AndorraTelecomAndroid
         }
 
         /* Private methods */
+
+        void FindViews()
+        {
+            CallMeBackViewHeader =
+                (LinearLayout)FindViewById(Resource.Id.call_me_back_header);
+            CallMeBackViewBody =
+                (LinearLayout)FindViewById(Resource.Id.call_me_back_body);
+            CallMeBackText =
+                (TextView)FindViewById(Resource.Id.call_me_back_text);
+        }
 
         void SetCustomActionBar()
         {
@@ -82,7 +92,17 @@ namespace AndorraTelecomAndroid
         void SetCallMeBackText(string body)
         {
             CallMeBackText.Text = body;
-            CallMeBackView.Visibility = Android.Views.ViewStates.Visible;
+        }
+
+        void ClosePopOverOnInit()
+        {
+            CallMeBackViewHeader.Visibility = Android.Views.ViewStates.Visible;
+            CallMeBackViewBody.Visibility = Android.Views.ViewStates.Visible;
+        }
+
+        void OpenCallMeBackView(object sender, EventArgs e)
+        {
+            Console.WriteLine("open call me back viewwwwwwww");
         }
 
         /* IWebListener */
@@ -105,7 +125,11 @@ namespace AndorraTelecomAndroid
             {
                 case "call-me-back":
                     Android.Util.Log.Debug("WebScreenlet", "Call me back popover");
-                    RunOnUiThread(() => SetCallMeBackText(body));
+                    RunOnUiThread(() =>
+                    {
+                        SetCallMeBackText(body);
+                        ClosePopOverOnInit();
+                    });
                     break;
                 case "click-button":
                     Android.Util.Log.Debug("WebScreenlet", "Go to next forfet");

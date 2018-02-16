@@ -118,7 +118,6 @@
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
-    <None Include="Assets\AboutAssets.txt" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +144,7 @@
     <AndroidResource Include="Resources\raw\map_js.js" />
     <AndroidResource Include="Resources\layout\callmeback.axml" />
     <AndroidResource Include="Resources\drawable\phone.png" />
+    <AndroidResource Include="Resources\drawable\phone_input.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

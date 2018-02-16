@@ -8,8 +8,8 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
         <com.liferay.mobile.screens.web.WebScreenlet
             android:id="@+id/web_screenlet"
             android:layout_width="match_parent"
@@ -17,13 +17,14 @@
             android:background="@color/colorPrimary"
             app:autoLoad="false" />
         <RelativeLayout
-            android:id="@+id/call_me_back_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
-            android:gravity="bottom|end">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true">
             <include
                 android:id="@+id/call_me_back"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
                 layout="@layout/callmeback" />
         </RelativeLayout>
     </RelativeLayout>

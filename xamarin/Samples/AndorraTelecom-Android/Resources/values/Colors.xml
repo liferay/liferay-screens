@@ -4,9 +4,11 @@
     <color name="colorPrimary_andorra">@color/colorPrimary</color>
     <color name="colorPrimaryDark_andorra">@color/colorPrimaryDark</color>
     <color name="textColorPrimary_andorra">@color/textColorPrimary</color>
+    <color name="colorBackground_andorra">@color/colorBackground</color>
     
     <color name="colorPrimary">#C6005F</color>
     <color name="colorPrimaryDark">#790045</color>
     <color name="colorAccent">#790045</color>
     <color name="textColorPrimary">#FFFFFF</color>
+    <color name="colorBackground">#CCCCCC</color>
 </resources>
