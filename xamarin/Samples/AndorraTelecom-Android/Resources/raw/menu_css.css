@@ -1,5 +1,6 @@
 ﻿html, body {
     background: #D30572 url("https://www.andorratelecom.ad/o/atcomercial-theme/images/bg-pattern-footer.png") no-repeat 25% 145%;
+    padding-bottom: 60px;
 }
 
 .big-banner.cont-wrapper {
@@ -8,7 +9,7 @@
 
 ul {
     margin: 10px;
-    margin-top: 30px;
+    overflow: hidden;
 }
 
 ul.slides li img {

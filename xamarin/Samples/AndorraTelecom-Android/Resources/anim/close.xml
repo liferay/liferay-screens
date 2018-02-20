@@ -3,4 +3,4 @@
     android:duration="500"
     android:fillAfter="true"
     android:fromYDelta="0%p"
-    android:toYDelta="55.5%p" />
+    android:toYDelta="87%" />

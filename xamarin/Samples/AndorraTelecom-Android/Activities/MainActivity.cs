@@ -20,6 +20,7 @@ namespace AndorraTelecomAndroid
         public LinearLayout CallMeBackViewHeader;
         public LinearLayout CallMeBackViewBody;
         public TextView CallMeBackText;
+        private bool isOpen = false;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -31,6 +32,8 @@ namespace AndorraTelecomAndroid
             SetCustomActionBar();
 
             LoadWebScreenlet();
+
+            CallMeBackPopOver.Click += OpenOrClosePopover;
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -94,7 +97,6 @@ namespace AndorraTelecomAndroid
                 .Load();
 
             WebScreenlet.SetWebScreenletConfiguration(webScreenletConfiguration);
-            WebScreenlet.ScrollEnabled = false;
             WebScreenlet.Listener = this;
             WebScreenlet.Load();
         }
@@ -123,6 +125,22 @@ namespace AndorraTelecomAndroid
 
             Animation close = AnimationUtils.LoadAnimation(this, Resource.Animation.close);
             CallMeBackPopOver.StartAnimation(close);
+        }
+
+        void OpenOrClosePopover(object sender, EventArgs e)
+        {
+            if(!isOpen)
+            {
+                isOpen = true;
+                Animation open = AnimationUtils.LoadAnimation(this, Resource.Animation.open);
+                CallMeBackPopOver.StartAnimation(open);
+            }
+            else
+            {
+                isOpen = false;
+                Animation close = AnimationUtils.LoadAnimation(this, Resource.Animation.close);
+                CallMeBackPopOver.StartAnimation(close);
+            }
         }
 
         /* IWebListener */
