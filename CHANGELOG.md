@@ -5,7 +5,10 @@ All notable changes to this project will be documented in this file.
 
 # Develop
 
-Nothing yet
+##Xamarin
+
+###Samples
+* Andorra Telecom demo developed with Xamarin.Android
 
 # 3.0.3
 
@@ -22,7 +25,7 @@ Nothing yet
 ## Xamarin
 
 ### Samples
-* Andorra Telecom developed with Xamarin.iOS
+* Andorra Telecom demo developed with Xamarin.iOS
 
 # 3.0.2
 
