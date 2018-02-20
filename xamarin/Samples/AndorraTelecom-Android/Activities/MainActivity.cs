@@ -5,8 +5,10 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Views;
+using Android.Views.Animations;
 using Android.Widget;
 using Com.Liferay.Mobile.Screens.Web;
+using static Android.Views.View;
 using static Com.Liferay.Mobile.Screens.Web.WebScreenletConfiguration;
 
 namespace AndorraTelecomAndroid
@@ -14,6 +16,7 @@ namespace AndorraTelecomAndroid
     [Activity(MainLauncher = true, Icon = "@mipmap/icon")]
     public class MainActivity : Activity, IWebListener
     {
+        public RelativeLayout CallMeBackPopOver;
         public LinearLayout CallMeBackViewHeader;
         public LinearLayout CallMeBackViewBody;
         public TextView CallMeBackText;
@@ -28,8 +31,6 @@ namespace AndorraTelecomAndroid
             SetCustomActionBar();
 
             LoadWebScreenlet();
-
-            CallMeBackViewHeader.Click += OpenCallMeBackView;
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -60,6 +61,8 @@ namespace AndorraTelecomAndroid
 
         void FindViews()
         {
+            CallMeBackPopOver =
+                (RelativeLayout)FindViewById(Resource.Id.call_me_back_popover);
             CallMeBackViewHeader =
                 (LinearLayout)FindViewById(Resource.Id.call_me_back_header);
             CallMeBackViewBody =
@@ -115,13 +118,11 @@ namespace AndorraTelecomAndroid
 
         void ClosePopOverOnInit()
         {
-            CallMeBackViewHeader.Visibility = Android.Views.ViewStates.Visible;
-            CallMeBackViewBody.Visibility = Android.Views.ViewStates.Visible;
-        }
+            CallMeBackViewHeader.Visibility = ViewStates.Visible;
+            CallMeBackViewBody.Visibility = ViewStates.Visible;
 
-        void OpenCallMeBackView(object sender, EventArgs e)
-        {
-            Console.WriteLine("open call me back viewwwwwwww");
+            Animation close = AnimationUtils.LoadAnimation(this, Resource.Animation.close);
+            CallMeBackPopOver.StartAnimation(close);
         }
 
         /* IWebListener */
