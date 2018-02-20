@@ -45,7 +45,6 @@ namespace AndorraTelecomAndroid.Activities
                 .Load();
 
             WebScreenlet.SetWebScreenletConfiguration(webScreenletConfiguration);
-            WebScreenlet.ScrollEnabled = false;
             WebScreenlet.Listener = this;
             WebScreenlet.Load();
         }

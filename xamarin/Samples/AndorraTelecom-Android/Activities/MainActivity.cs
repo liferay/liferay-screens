@@ -20,6 +20,8 @@ namespace AndorraTelecomAndroid
         public LinearLayout CallMeBackViewHeader;
         public LinearLayout CallMeBackViewBody;
         public TextView CallMeBackText;
+        public Button ICallButton;
+        public Button CallMeNowButton;
         private bool isOpen = false;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -34,6 +36,8 @@ namespace AndorraTelecomAndroid
             LoadWebScreenlet();
 
             CallMeBackPopOver.Click += OpenOrClosePopover;
+            CallMeNowButton.Click += CallMeNowAction;
+            ICallButton.Click += ICAllAction;
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -72,6 +76,11 @@ namespace AndorraTelecomAndroid
                 (LinearLayout)FindViewById(Resource.Id.call_me_back_body);
             CallMeBackText =
                 (TextView)FindViewById(Resource.Id.call_me_back_text);
+
+            CallMeNowButton =
+                (Button)FindViewById(Resource.Id.button_call_me_now);
+            ICallButton =
+                (Button)FindViewById(Resource.Id.button_i_call);
         }
 
         void SetCustomActionBar()
@@ -141,6 +150,18 @@ namespace AndorraTelecomAndroid
                 Animation close = AnimationUtils.LoadAnimation(this, Resource.Animation.close);
                 CallMeBackPopOver.StartAnimation(close);
             }
+        }
+
+        /* Button actions */
+
+        void CallMeNowAction(object sender, EventArgs e)
+        {
+            Toast.MakeText(this, "We will call you soon to the telephone that you have given us", ToastLength.Short).Show();
+        }
+
+        void ICAllAction(object sender, EventArgs e)
+        {
+            Toast.MakeText(this, "Calling...", ToastLength.Short).Show();
         }
 
         /* IWebListener */
