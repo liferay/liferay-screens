@@ -8,5 +8,13 @@
         <item name="android:statusBarColor">@color/colorPrimaryDark_andorra</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
+        <item name="android:alertDialogTheme">@style/LanguageAlertDialog</item>
+    </style>
+
+    <style name="LanguageAlertDialog" parent="@android:style/Theme.Material.Light.Dialog">
+        <item name="android:colorAccent">@color/colorAccent_andorra</item>
+        <item name="android:colorPrimary">@color/colorPrimary_andorra</item>
+        <item name="android:textColor">@color/colorPrimaryDark_andorra</item>
+        <item name="android:colorControlActivated">@color/colorPrimaryDark_andorra</item>
     </style>
 </resources>

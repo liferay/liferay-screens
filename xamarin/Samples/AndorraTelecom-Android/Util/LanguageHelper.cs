@@ -6,6 +6,8 @@ namespace AndorraTelecomiOS.Util
     {
         public static string[] ListLanguages = { "esp", "cat", "fra", "eng" };
 
+        public static string CurrentLanguage = "en_US";
+
         public static string LanguageApp {
             get
             {
@@ -20,6 +22,28 @@ namespace AndorraTelecomiOS.Util
                         return "fr_FR";
                     default:
                         return "en_US";
+                }
+            }
+            set
+            {
+                CurrentLanguage = value;
+            }
+        }
+
+        public static int CurrentSelectedLanguageInDialog
+        {
+            get
+            {
+                switch (CurrentLanguage)
+                {
+                    case "es_ES":
+                        return 0;
+                    case "ca_ES":
+                        return 1;
+                    case "fr_FR":
+                        return 2;
+                    default:
+                        return 3;
                 }
             }
         }
@@ -75,11 +99,30 @@ namespace AndorraTelecomiOS.Util
             var url = "https://www.andorratelecom.ad/c/portal/update_language?p_l_id=" 
                 + GetPlid(Page) + "&redirect="
                 + GetPathName(Page) + "&languageId=" 
-                + LanguageApp + "";
+                + CurrentLanguage + "";
             
             Console.WriteLine("URL: " + url);
 
             return url;
+        }
+
+        public static void SetCurrentLanguage(int SelectedLanguage)
+        {
+            switch(SelectedLanguage)
+            {
+                case 0:
+                    LanguageApp = "es_ES";
+                    break;
+                case 1:
+                    LanguageApp = "ca_ES";
+                    break;
+                case 2:
+                    LanguageApp = "fr_FR";
+                    break;
+                default:
+                    LanguageApp = "es_US";
+                    break;
+            }
         }
     }
 }

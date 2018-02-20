@@ -4264,6 +4264,9 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0b0030
 			public const int detail_upload_title = 2131427376;
 			
+			// aapt resource value: 0x7f0b00a3
+			public const int dialog_button_cancel = 2131427491;
+			
 			// aapt resource value: 0x7f0b0031
 			public const int edit_comment = 2131427377;
 			
@@ -4305,6 +4308,21 @@ namespace AndorraTelecomAndroid
 			
 			// aapt resource value: 0x7f0b003a
 			public const int invalid = 2131427386;
+			
+			// aapt resource value: 0x7f0b009e
+			public const int language_ca = 2131427486;
+			
+			// aapt resource value: 0x7f0b00a2
+			public const int language_dialog_title = 2131427490;
+			
+			// aapt resource value: 0x7f0b00a0
+			public const int language_en = 2131427488;
+			
+			// aapt resource value: 0x7f0b009f
+			public const int language_es = 2131427487;
+			
+			// aapt resource value: 0x7f0b00a1
+			public const int language_fr = 2131427489;
 			
 			// aapt resource value: 0x7f0b003b
 			public const int last_name = 2131427387;
@@ -5014,6 +5032,9 @@ namespace AndorraTelecomAndroid
 			
 			// aapt resource value: 0x7f0c0163
 			public const int Base_Widget_Design_TabLayout = 2131493219;
+			
+			// aapt resource value: 0x7f0c018f
+			public const int LanguageAlertDialog = 2131493263;
 			
 			// aapt resource value: 0x7f0c001e
 			public const int Platform_AppCompat = 2131492894;

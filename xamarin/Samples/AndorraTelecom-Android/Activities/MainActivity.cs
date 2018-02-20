@@ -4,6 +4,7 @@ using AndorraTelecomiOS.Util;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Views;
 using Android.Widget;
 using Com.Liferay.Mobile.Screens.Web;
 using static Com.Liferay.Mobile.Screens.Web.WebScreenletConfiguration;
@@ -31,10 +32,28 @@ namespace AndorraTelecomAndroid
             CallMeBackViewHeader.Click += OpenCallMeBackView;
         }
 
-        public override bool OnCreateOptionsMenu(Android.Views.IMenu menu)
+        public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.top_menu, menu);
             return base.OnCreateOptionsMenu(menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            AlertDialog.Builder LanguageDialog = new AlertDialog.Builder(this)
+                .SetTitle(Resource.String.language_dialog_title)
+                .SetSingleChoiceItems(LanguageHelper.ListLanguages, 
+                                      LanguageHelper.CurrentSelectedLanguageInDialog, 
+                                      (sender, e) => { 
+                var position = e.Which; 
+                LanguageHelper.SetCurrentLanguage(position); 
+                this.Recreate();
+            });
+
+            Dialog Dialog = LanguageDialog.Create();
+            Dialog.Show();
+
+            return base.OnOptionsItemSelected(item);
         }
 
         /* Private methods */
