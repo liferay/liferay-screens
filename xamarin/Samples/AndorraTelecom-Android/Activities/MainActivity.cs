@@ -156,12 +156,12 @@ namespace AndorraTelecomAndroid
 
         void CallMeNowAction(object sender, EventArgs e)
         {
-            Toast.MakeText(this, "We will call you soon to the telephone that you have given us", ToastLength.Short).Show();
+            Toast.MakeText(this, Resource.String.call_me_now_message, ToastLength.Short).Show();
         }
 
         void ICAllAction(object sender, EventArgs e)
         {
-            Toast.MakeText(this, "Calling...", ToastLength.Short).Show();
+            Toast.MakeText(this, Resource.String.i_call_message, ToastLength.Short).Show();
         }
 
         /* IWebListener */

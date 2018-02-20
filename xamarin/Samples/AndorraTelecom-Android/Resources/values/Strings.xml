@@ -13,4 +13,6 @@
     <string name="language_fr">French</string>
     <string name="language_dialog_title">Choose your language</string>
     <string name="dialog_button_cancel">Cancel</string>
+    <string name="call_me_now_message">We will call you soon to the telephone that you have given us</string>
+    <string name="i_call_message">Calling...</string>
 </resources>

@@ -4243,6 +4243,9 @@ namespace AndorraTelecomAndroid
 			// aapt resource value: 0x7f0b009d
 			public const int button_i_call_text = 2131427485;
 			
+			// aapt resource value: 0x7f0b00a4
+			public const int call_me_now_message = 2131427492;
+			
 			// aapt resource value: 0x7f0b0076
 			public const int cancel_button = 2131427446;
 			
@@ -4311,6 +4314,9 @@ namespace AndorraTelecomAndroid
 			
 			// aapt resource value: 0x7f0b0039
 			public const int hint_select = 2131427385;
+			
+			// aapt resource value: 0x7f0b00a5
+			public const int i_call_message = 2131427493;
 			
 			// aapt resource value: 0x7f0b003a
 			public const int invalid = 2131427386;
