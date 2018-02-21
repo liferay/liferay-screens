@@ -38,7 +38,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 			}
 		}
 
-		var cacheAttributes: [String:AnyObject] {
+		var cacheAttributes: [String: AnyObject] {
 			switch self {
 			case .attributes(let portraitId, _, _):
 				return ["portraitId": NSNumber(value: portraitId)]
@@ -281,7 +281,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		return chain
 	}
 
-	fileprivate func createConnectorFor(attributes: [String:AnyObject]?) -> ServerConnector? {
+	fileprivate func createConnectorFor(attributes: [String: AnyObject]?) -> ServerConnector? {
 		let portraitEntry = attributes?["portraitId"]
 		let userEntry = attributes?["userId"]
 		if let attributes = attributes,
@@ -309,7 +309,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		return nil
 	}
 
-	open func userHasPortrait(_ userAttrs: [String : AnyObject]?) -> Bool {
+	open func userHasPortrait(_ userAttrs: [String: AnyObject]?) -> Bool {
 		if let portraitId = userAttrs?["portraitId"]?.int64Value, portraitId == 0 {
 			return false
 		}
@@ -317,7 +317,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		return true
 	}
 
-	open func selectUserAttrsToSave(attrs: [String : AnyObject]) -> [String : AnyObject] {
+	open func selectUserAttrsToSave(attrs: [String: AnyObject]) -> [String: AnyObject] {
 		return attrs
 	}
 

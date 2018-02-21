@@ -32,7 +32,7 @@ open class ImageEntry: Asset {
 
 	// MARK: Initializers
 
-    override public init(attributes: [String:AnyObject]) {
+    override public init(attributes: [String: AnyObject]) {
         super.init(attributes: attributes)
 		image = attributes["image"] as? UIImage
     }

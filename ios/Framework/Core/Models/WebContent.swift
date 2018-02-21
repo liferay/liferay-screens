@@ -39,8 +39,8 @@ open class WebContent: Asset {
 
 	// MARK: Initializers
 
-	override public init(attributes: [String:AnyObject]) {
-		func loadStructuredRecord(_ content: String, _ attributes: [String:AnyObject]) -> DDLRecord? {
+	override public init(attributes: [String: AnyObject]) {
+		func loadStructuredRecord(_ content: String, _ attributes: [String: AnyObject]) -> DDLRecord? {
 			let record = DDLRecord(data: [:], attributes: attributes)
 			record.updateCurrentValues(xmlValues: content)
 
@@ -51,15 +51,15 @@ open class WebContent: Asset {
 			return content.asLocalized(Locale(identifier: NSLocale.currentLocaleString))
 		}
 
-		let newAttributes: [String:AnyObject]
+		let newAttributes: [String: AnyObject]
 
 		if let className = attributes["className"] as? String,
-			let object = attributes["object"] as? [String:AnyObject],
-			let modelAttributes = object["modelAttributes"] as? [String:AnyObject],
+			let object = attributes["object"] as? [String: AnyObject],
+			let modelAttributes = object["modelAttributes"] as? [String: AnyObject],
 			let modelValues = object["modelValues"] as? String, WebContent.isWebContentClassName(className) {
 			newAttributes = attributes.copyAndMerge(modelAttributes).copyAndRemove("object")
 
-			if let structureData = object["DDMStructure"] as? [String:AnyObject] {
+			if let structureData = object["DDMStructure"] as? [String: AnyObject] {
 				// structured web content
 				html = nil
 

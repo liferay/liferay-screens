@@ -27,7 +27,7 @@ import MobileCoreServices
 
 	let pickerController = UIImagePickerController()
 	let viewController: UIViewController?
-	let types: [LiferayMediaType : String]
+	let types: [LiferayMediaType: String]
 	let selectedMediaClosure: SelectedMediaClosure
 	let cancelMessage: String
 	var alertTitle: String?
@@ -35,7 +35,7 @@ import MobileCoreServices
 
 	public init(
 			viewController: UIViewController,
-			types: [LiferayMediaType : String],
+			types: [LiferayMediaType: String],
 			cancelMessage: String,
 			alertTitle: String? = nil,
 			selectedMediaClosure: SelectedMediaClosure) {
@@ -114,7 +114,7 @@ import MobileCoreServices
 
 	open func imagePickerController(
 		_ picker: UIImagePickerController,
-		didFinishPickingMediaWithInfo info: [String : Any]) {
+		didFinishPickingMediaWithInfo info: [String: Any]) {
 
 		let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
 		let selectedURL = info[UIImagePickerControllerMediaURL] as? URL

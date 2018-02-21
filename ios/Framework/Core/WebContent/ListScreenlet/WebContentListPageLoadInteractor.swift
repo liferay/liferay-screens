@@ -46,7 +46,7 @@ open class WebContentListPageLoadInteractor: BaseListPageLoadInteractor {
 			computeRowCount: self.computeRowCount)
 	}
 
-	override open func convertResult(_ serverResult: [String:AnyObject]) -> AnyObject {
+	override open func convertResult(_ serverResult: [String: AnyObject]) -> AnyObject {
 		return WebContent(attributes: serverResult)
 	}
 

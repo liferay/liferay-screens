@@ -85,11 +85,11 @@ open class DDMXSDParser {
 	}
 
 	fileprivate func mergeDictionaries(
-			dict1: [String:AnyObject],
-			dict2: [String:AnyObject])
-			-> [String:AnyObject] {
+			dict1: [String: AnyObject],
+			dict2: [String: AnyObject])
+			-> [String: AnyObject] {
 
-		var result: [String:AnyObject] = [:]
+		var result: [String: AnyObject] = [:]
 
 		for (key1, value1) in dict1 {
 			result.updateValue(value1, forKey: key1)
@@ -105,14 +105,14 @@ open class DDMXSDParser {
 	fileprivate func processLocalizedMetadata(_ dynamicElement: SMXMLElement,
 			locale: Locale,
 			defaultLocale: Locale)
-			-> [String:AnyObject] {
+			-> [String: AnyObject] {
 
-		var result: [String:AnyObject] = [:]
+		var result: [String: AnyObject] = [:]
 
 		func addElement(
 				name elementName: String,
 				metadata: SMXMLElement,
-				result: inout [String:AnyObject]) {
+				result: inout [String: AnyObject]) {
 
 			if let element = metadata.child(withAttribute: "name", value: elementName) {
 				result[elementName] = element.value as AnyObject
@@ -123,16 +123,16 @@ open class DDMXSDParser {
 				dynamicElement: SMXMLElement,
 				locale: Locale,
 				defaultLocale: Locale)
-				-> [[String:AnyObject]]? {
+				-> [[String: AnyObject]]? {
 
-			var options: [[String:AnyObject]] = []
+			var options: [[String: AnyObject]] = []
 
 			let optionElements = childrenWithAttribute("type",
 					value: "option",
 					parent: dynamicElement)
 
 			for optionElement in optionElements {
-				var option: [String:AnyObject] = [:]
+				var option: [String: AnyObject] = [:]
 
 				option["name"] = optionElement.attributeNamed("name") as AnyObject
 				option["value"] = optionElement.attributeNamed("value") as AnyObject

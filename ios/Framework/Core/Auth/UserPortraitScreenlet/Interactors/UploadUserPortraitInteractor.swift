@@ -15,7 +15,7 @@ import UIKit
 
 class UploadUserPortraitInteractor: ServerWriteConnectorInteractor {
 
-	var uploadResult: [String:AnyObject]?
+	var uploadResult: [String: AnyObject]?
 
 	let userId: Int64
 

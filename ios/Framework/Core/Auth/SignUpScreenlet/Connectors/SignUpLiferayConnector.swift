@@ -18,7 +18,7 @@ open class SignUpLiferayConnector: ServerConnector {
 
 	open var companyId: Int64 = 0
 
-	open var resultUserAttributes: [String:AnyObject]?
+	open var resultUserAttributes: [String: AnyObject]?
 
 	open let viewModel: SignUpViewModel
 	open let anonymousUsername: String
@@ -59,7 +59,7 @@ open class Liferay62SignUpConnector: SignUpLiferayConnector {
 	// MARK: ServerConnector
 
 	override open func doRun(session: LRSession) {
-		let result: [String:AnyObject]?
+		let result: [String: AnyObject]?
 		let service = LRUserService_v62(session: session)
 		let emptyDict = [AnyObject]()
 		let password = viewModel.password ?? ""
@@ -100,7 +100,7 @@ open class Liferay62SignUpConnector: SignUpLiferayConnector {
 				websites: emptyDict,
 				announcementsDelivers: emptyDict,
 				sendEmail: true,
-				serviceContext: nil) as? [String : AnyObject]
+				serviceContext: nil) as? [String: AnyObject]
 
 			if result?["userId"] == nil {
 				lastError = NSError.errorWithCause(.invalidServerResponse,
@@ -175,7 +175,7 @@ open class Liferay70SignUpConnector: SignUpLiferayConnector {
 			}
 			else {
 				lastError = nil
-				resultUserAttributes = result as? [String:AnyObject]
+				resultUserAttributes = result as? [String: AnyObject]
 			}
 		}
 		catch let error as NSError {

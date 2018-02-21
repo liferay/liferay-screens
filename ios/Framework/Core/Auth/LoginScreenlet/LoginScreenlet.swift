@@ -26,7 +26,7 @@ public protocol LoginScreenletDelegate: BaseScreenletDelegate {
 	///   - screenlet: Login screenlet instance.
 	///   - attributes: User attributes.
 	@objc optional func screenlet(_ screenlet: BaseScreenlet,
-			onLoginResponseUserAttributes attributes: [String:AnyObject])
+			onLoginResponseUserAttributes attributes: [String: AnyObject])
 
 	///  Called when an error occurs during login.
 	/// The NSError object describes the error.
@@ -43,7 +43,7 @@ public protocol LoginScreenletDelegate: BaseScreenletDelegate {
 	///   - screenlet: Login screenlet instance.
 	///   - attributes: User attributes.
 	@objc optional func screenlet(_ screenlet: BaseScreenlet,
-		onCredentialsSavedUserAttributes attributes: [String:AnyObject])
+		onCredentialsSavedUserAttributes attributes: [String: AnyObject])
 
 	/// Called when the user credentials are retrieved. Note that this only occurs when the 
 	/// Screenlet is used and stored credentials are available.
@@ -52,7 +52,7 @@ public protocol LoginScreenletDelegate: BaseScreenletDelegate {
 	///   - screenlet: Login screenlet instance.
 	///   - attributes: User attributes.
 	@objc optional func screenlet(_ screenlet: LoginScreenlet,
-		onCredentialsLoadedUserAttributes attributes: [String:AnyObject])
+		onCredentialsLoadedUserAttributes attributes: [String: AnyObject])
 
 }
 

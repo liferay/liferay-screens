@@ -27,7 +27,7 @@ open class LoginBasicInteractor: ServerConnectorInteractor {
 
 	open let authMethod: BasicAuthMethod
 
-	open var resultUserAttributes: [String:AnyObject]?
+	open var resultUserAttributes: [String: AnyObject]?
 
 	// MARK: Initializers
 

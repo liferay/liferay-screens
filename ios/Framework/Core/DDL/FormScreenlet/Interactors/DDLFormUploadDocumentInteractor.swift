@@ -29,7 +29,7 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 
 	let onProgressClosure: OnProgress?
 
-	var resultResponse: [String:AnyObject]?
+	var resultResponse: [String: AnyObject]?
 
 	var lastCacheKey: String?
 
@@ -150,7 +150,7 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 		return lastCacheKey!
 	}
 
-	fileprivate func cacheAttributes() -> [String:AnyObject] {
+	fileprivate func cacheAttributes() -> [String: AnyObject] {
 		return [
 			"document": self.document,
 			"filePrefix": self.filePrefix as AnyObject,

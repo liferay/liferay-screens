@@ -17,7 +17,7 @@ extension SyncManager {
 
 	func userPortraitSynchronizer(
 			_ key: String,
-			attributes: [String:AnyObject])
+			attributes: [String: AnyObject])
 			-> (@escaping Signal) -> Void {
 
 		return { signal in

@@ -17,8 +17,8 @@ open class DDLFormRecordLoadLiferayConnector: ServerConnector {
 
 	open let recordId: Int64
 
-	open var resultRecordData: [String:AnyObject]?
-	open var resultRecordAttributes: [String:AnyObject]?
+	open var resultRecordData: [String: AnyObject]?
+	open var resultRecordAttributes: [String: AnyObject]?
 	open var resultRecordId: Int64?
 
 	// MARK: Initializers
@@ -37,13 +37,13 @@ open class DDLFormRecordLoadLiferayConnector: ServerConnector {
 					recordId: recordId,
 					locale: NSLocale.currentLocaleString)
 
-			if let resultData = recordDic["modelValues" as NSObject] as? [String:AnyObject],
-					let resultAttributes = recordDic["modelAttributes" as NSObject] as? [String:AnyObject] {
+			if let resultData = recordDic["modelValues" as NSObject] as? [String: AnyObject],
+					let resultAttributes = recordDic["modelAttributes" as NSObject] as? [String: AnyObject] {
 				resultRecordData = resultData
 				resultRecordId = recordId
 				resultRecordAttributes = resultAttributes
 			}
-			else if let resultData = recordDic as? [String:AnyObject] {
+			else if let resultData = recordDic as? [String: AnyObject] {
 				// backwards compat: plugins v1.1.0 and previous (pre LPS-58800)
 				resultRecordData = resultData
 				resultRecordId = recordId
@@ -81,7 +81,7 @@ open class Liferay62DDLFormRecordLoadConnector: DDLFormRecordLoadLiferayConnecto
 		let service = LRScreensddlrecordService_v62(session: session)
 
 		return try service?.getDdlRecord(withDdlRecordId: recordId,
-		locale: NSLocale.currentLocaleString) as! [NSObject : AnyObject]
+		locale: NSLocale.currentLocaleString) as! [NSObject: AnyObject]
 	}
 
 }
@@ -90,7 +90,7 @@ open class Liferay70DDLFormRecordLoadConnector: DDLFormRecordLoadLiferayConnecto
 
 	// MARK: DDLFormRecordLoadLiferayConnector
 
-	override open func getRecord(_ session: LRSession, recordId: Int64, locale: String) throws ->  [NSObject : AnyObject] {
+	override open func getRecord(_ session: LRSession, recordId: Int64, locale: String) throws ->  [NSObject: AnyObject] {
 		let service = LRScreensddlrecordService_v70(session: session)
 
 		return try service!.getDdlRecord(withDdlRecordId: recordId,

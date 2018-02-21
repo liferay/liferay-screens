@@ -22,7 +22,7 @@ open class BaseListView: BaseScreenletView {
 		return _rowCount
 	}
 
-	open var rows: [String : [AnyObject?]] {
+	open var rows: [String: [AnyObject?]] {
 		return _rows
 	}
 
@@ -45,7 +45,7 @@ open class BaseListView: BaseScreenletView {
 
 	// MARK: Public methods
 
-	open func setRows(_ allRows: [String : [AnyObject?]], newRows: [String : [AnyObject]], rowCount: Int,
+	open func setRows(_ allRows: [String: [AnyObject?]], newRows: [String: [AnyObject]], rowCount: Int,
 	                    sections: [String]) {
 
 		let streamMode = (screenlet as! BaseListScreenlet).streamMode
@@ -79,15 +79,15 @@ open class BaseListView: BaseScreenletView {
 		onClearRows(oldRows)
 	}
 
-	open func onChangedRows(_ oldRows: [String : [AnyObject?]]) {
+	open func onChangedRows(_ oldRows: [String: [AnyObject?]]) {
 
 	}
 
-	open func onAddedRows(_ oldRows: [String : [AnyObject?]]) {
+	open func onAddedRows(_ oldRows: [String: [AnyObject?]]) {
 
 	}
 
-	open func onClearRows(_ oldRows: [String : [AnyObject?]]) {
+	open func onClearRows(_ oldRows: [String: [AnyObject?]]) {
 
 	}
 
@@ -111,7 +111,7 @@ open class BaseListView: BaseScreenletView {
 
 	// MARK: Internal methods
 
-	internal func hasMoreRows(_ newRows: [String : [AnyObject]]) -> Bool {
+	internal func hasMoreRows(_ newRows: [String: [AnyObject]]) -> Bool {
 		if newRows.isEmpty {
 			return false
 		}

@@ -26,7 +26,7 @@ open class BaseListTableView: BaseListView, UITableViewDataSource, UITableViewDe
 		}
 	}
 
-	override open var progressMessages: [String:ProgressMessages] {
+	override open var progressMessages: [String: ProgressMessages] {
 		return [
 			BaseListScreenlet.LoadInitialPageAction: [
 				.working: LocalizedString("core", key: "base-list-loading-message", obj: self),
@@ -46,7 +46,7 @@ open class BaseListTableView: BaseListView, UITableViewDataSource, UITableViewDe
 		doRegisterCellNibs()
 	}
 
-	override open func onChangedRows(_ oldRows: [String : [AnyObject?]]) {
+	override open func onChangedRows(_ oldRows: [String: [AnyObject?]]) {
 		super.onChangedRows(oldRows)
 
 		if oldRows[BaseListView.DefaultSection]!.isEmpty {
@@ -78,7 +78,7 @@ open class BaseListTableView: BaseListView, UITableViewDataSource, UITableViewDe
 		}
 	}
 
-	override open func onAddedRows(_ oldRows: [String : [AnyObject?]]) {
+	override open func onAddedRows(_ oldRows: [String: [AnyObject?]]) {
 		if moreRows {
 			showProgressFooter()
 		}
@@ -89,7 +89,7 @@ open class BaseListTableView: BaseListView, UITableViewDataSource, UITableViewDe
 		tableView?.reloadData()
 	}
 
-	override open func onClearRows(_ oldRows: [String : [AnyObject?]]) {
+	override open func onClearRows(_ oldRows: [String: [AnyObject?]]) {
 		clearAllRows(oldRows)
 	}
 
@@ -253,7 +253,7 @@ open class BaseListTableView: BaseListView, UITableViewDataSource, UITableViewDe
 		tableView!.endUpdates()
 	}
 
-	internal func clearAllRows(_ currentRows: [String : [AnyObject?]]) {
+	internal func clearAllRows(_ currentRows: [String: [AnyObject?]]) {
 		tableView?.reloadData()
 	}
 

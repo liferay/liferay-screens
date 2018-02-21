@@ -21,7 +21,7 @@ open class PaginationLiferayConnector: ServerConnector {
 
 	open var obcClassName: String?
 
-	open var resultPageContent: [[String:AnyObject]]?
+	open var resultPageContent: [[String: AnyObject]]?
 	open var resultRowCount: Int?
 
 	// MARK: Initializers
@@ -61,7 +61,7 @@ open class PaginationLiferayConnector: ServerConnector {
 		do {
 			let responses = try batchSession.invoke()
 
-			if let entriesResponse = responses[0] as? [[String:AnyObject]] {
+			if let entriesResponse = responses[0] as? [[String: AnyObject]] {
 				let serverPageContent = entriesResponse
 				var serverRowCount: Int?
 

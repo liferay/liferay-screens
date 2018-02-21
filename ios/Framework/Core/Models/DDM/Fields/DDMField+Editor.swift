@@ -51,7 +51,7 @@ extension DDMField {
 			}
 		}
 
-		public static func from(attributes: [String:AnyObject]) -> Editor {
+		public static func from(attributes: [String: AnyObject]) -> Editor {
 			return from(attributeValue:((attributes["type"] as? String ?? "") ))
 		}
 

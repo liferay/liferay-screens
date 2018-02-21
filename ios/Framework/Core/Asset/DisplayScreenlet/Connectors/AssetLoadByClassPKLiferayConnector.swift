@@ -60,7 +60,7 @@ open class Liferay70AssetLoadByClassPKConnector: AssetLoadByClassPKLiferayConnec
 			let result = try service?.getAssetEntry(withClassName: className, classPK: classPK,
 				locale: NSLocale.currentLocaleString)
 
-			resultAsset = Asset(attributes: result as! [String:AnyObject])
+			resultAsset = Asset(attributes: result as! [String: AnyObject])
 			lastError = nil
 		}
 		catch let error as NSError {

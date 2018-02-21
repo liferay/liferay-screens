@@ -36,7 +36,7 @@ open class SessionContext: NSObject {
 	}
 
 	@available(*, deprecated: 2.0.1, message: "Access it throught user.attributes")
-	open var userAttributes: [String : AnyObject] {
+	open var userAttributes: [String: AnyObject] {
 		return user.attributes
 	}
 
@@ -101,7 +101,7 @@ open class SessionContext: NSObject {
 	open class func loginWithBasic(
 			username: String,
 			password: String,
-			userAttributes: [String:AnyObject]) -> LRSession {
+			userAttributes: [String: AnyObject]) -> LRSession {
 
 		let authentication = LRBasicAuthentication(
 			username: username,
@@ -125,7 +125,7 @@ open class SessionContext: NSObject {
 	@discardableResult
 	open class func loginWithOAuth(
 			authentication: LROAuth,
-			userAttributes: [String:AnyObject]) -> LRSession {
+			userAttributes: [String: AnyObject]) -> LRSession {
 
 		let session = LRSession(
 			server: LiferayServerContext.server,
@@ -145,7 +145,7 @@ open class SessionContext: NSObject {
 	@discardableResult
 	open class func loginWithCookie(
 		authentication: LRCookieAuthentication,
-		userAttributes: [String:AnyObject]) -> LRSession {
+		userAttributes: [String: AnyObject]) -> LRSession {
 
 		let session = LRSession(
 			server: LiferayServerContext.server,
@@ -197,7 +197,7 @@ open class SessionContext: NSObject {
 		return LRSession(session: session)
 	}
 
-	open func relogin(_ completed: (([String:AnyObject]?) -> Void)?) -> Bool {
+	open func relogin(_ completed: (([String: AnyObject]?) -> Void)?) -> Bool {
 		if session.authentication is LRBasicAuthentication {
 			return reloginBasic(completed)
 		}
@@ -211,7 +211,7 @@ open class SessionContext: NSObject {
 		return false
 	}
 
-	open func reloginBasic(_ completed: (([String:AnyObject]?) -> Void)?) -> Bool {
+	open func reloginBasic(_ completed: (([String: AnyObject]?) -> Void)?) -> Bool {
 		guard let userName = self.basicAuthUsername,
 				let password = self.basicAuthPassword else {
 			completed?(nil)
@@ -230,7 +230,7 @@ open class SessionContext: NSObject {
 		}
 	}
 
-	open func reloginOAuth(_ completed: (([String:AnyObject]?) -> Void)?) -> Bool {
+	open func reloginOAuth(_ completed: (([String: AnyObject]?) -> Void)?) -> Bool {
 		guard let auth = self.session.authentication as? LROAuth else {
 			completed?(nil)
 			return false
@@ -248,7 +248,7 @@ open class SessionContext: NSObject {
 		}
 	}
 
-	open func reloginCookie(_ completed: (([String:AnyObject]?) -> Void)?) -> Bool {
+	open func reloginCookie(_ completed: (([String: AnyObject]?) -> Void)?) -> Bool {
 		guard session.authentication is LRCookieAuthentication else {
 			completed?(nil)
 			return false
@@ -277,7 +277,7 @@ open class SessionContext: NSObject {
 		return true
 	}
 
-	open func refreshUserAttributes(_ completed: (([String:AnyObject]?) -> Void)?) -> Bool {
+	open func refreshUserAttributes(_ completed: (([String: AnyObject]?) -> Void)?) -> Bool {
 		let session = self.createRequestSession()
 
 		session.callback = LRBlockCallback(

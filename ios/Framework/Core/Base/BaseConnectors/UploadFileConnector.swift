@@ -28,7 +28,7 @@ open class UploadFileConnector: ServerConnector, LRCallback, LRFileProgressDeleg
 
 	var requestSemaphore: DispatchSemaphore?
 
-	var uploadResult: [String:AnyObject]?
+	var uploadResult: [String: AnyObject]?
 
 	// MARK: Initializers
 
@@ -121,7 +121,7 @@ open class UploadFileConnector: ServerConnector, LRCallback, LRFileProgressDeleg
 	open func onSuccess(_ result: Any!) {
 		lastError = nil
 
-		uploadResult = result as? [String:AnyObject]
+		uploadResult = result as? [String: AnyObject]
 		requestSemaphore!.signal()
 	}
 

@@ -23,7 +23,7 @@ open class BaseScreenletView: UIView, UITextFieldDelegate {
 
 	open weak var presentingViewController: UIViewController?
 
-	open var progressMessages: [String:ProgressMessages] { return [:] }
+	open var progressMessages: [String: ProgressMessages] { return [:] }
 
 	open let NoProgressMessage = ""
 

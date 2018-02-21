@@ -54,7 +54,7 @@ open class Liferay70AssetLoadByEntryIdConnector: AssetLoadByEntryIdLiferayConnec
 		do {
 			let result = try service?.getAssetEntry(withEntryId: entryId, locale: NSLocale.currentLocaleString)
 
-			resultAsset = Asset(attributes: result as! [String:AnyObject])
+			resultAsset = Asset(attributes: result as! [String: AnyObject])
 			lastError = nil
 		}
 		catch let error as NSError {

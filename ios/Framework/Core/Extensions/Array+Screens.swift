@@ -15,7 +15,7 @@ import Foundation
 
 extension Array {
 
-	func toDictionary<K, V>(_ transformer: (_ element: Element) -> (key: K, value: V)?) -> [K : V] {
+	func toDictionary<K, V>(_ transformer: (_ element: Element) -> (key: K, value: V)?) -> [K: V] {
 		return self.reduce([:]) { (dict, e) in
 			if let (key, value) = transformer(e) {
 				var newDict = dict

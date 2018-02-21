@@ -20,7 +20,7 @@ open class DDLUntypedValuesParser {
 	public init() {
 	}
 
-	open func parse(_ values: [String:AnyObject]) -> [DDMField] {
+	open func parse(_ values: [String: AnyObject]) -> [DDMField] {
 		var result: [DDMField] = []
 
 		let locale = Locale(identifier: NSLocale.currentLocaleString)

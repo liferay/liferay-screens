@@ -100,7 +100,7 @@ public protocol LiferayConnectorFactory {
 	func createDDLFormRecordLoadConnector(_ recordId: Int64) -> DDLFormRecordLoadLiferayConnector
 
 	func createDDLFormSubmitConnector(
-		values: [String:AnyObject],
+		values: [String: AnyObject],
 		viewModel: DDLFormViewModel?) -> DDLFormSubmitLiferayConnector
 
 	func createDDLFormUploadConnector(
@@ -345,7 +345,7 @@ open class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 	}
 
 	open func createDDLFormSubmitConnector(
-			values: [String:AnyObject],
+			values: [String: AnyObject],
 			viewModel: DDLFormViewModel?) -> DDLFormSubmitLiferayConnector {
 		return Liferay62DDLFormSubmitConnector(
 			values: values,
@@ -647,7 +647,7 @@ open class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 	}
 
 	open func createDDLFormSubmitConnector(
-			values: [String:AnyObject],
+			values: [String: AnyObject],
 			viewModel: DDLFormViewModel?) -> DDLFormSubmitLiferayConnector {
 		return Liferay70DDLFormSubmitConnector(
 			values: values,

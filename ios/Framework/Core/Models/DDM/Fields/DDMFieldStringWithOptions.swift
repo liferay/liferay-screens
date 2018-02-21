@@ -55,10 +55,10 @@ open class DDMFieldStringWithOptions: DDMField {
 
 	fileprivate(set) var options: [Option] = []
 
-	override public init(attributes: [String:AnyObject], locale: Locale) {
+	override public init(attributes: [String: AnyObject], locale: Locale) {
 		multiple = Bool.from(any: attributes["multiple"] ?? "false" as AnyObject)
 
-		if let optionsArray = attributes["options"] as? [[String:AnyObject]] {
+		if let optionsArray = attributes["options"] as? [[String: AnyObject]] {
 			for optionDict in optionsArray {
 				let label = optionDict["label"] as? String ?? ""
 				let name = optionDict["name"] as? String

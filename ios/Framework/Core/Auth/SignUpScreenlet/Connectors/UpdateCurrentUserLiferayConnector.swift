@@ -16,7 +16,7 @@ import LRMobileSDK
 
 open class UpdateCurrentUserLiferayConnector: ServerConnector {
 
-	open var resultUserAttributes: [String:AnyObject]?
+	open var resultUserAttributes: [String: AnyObject]?
 
 	fileprivate let viewModel: SignUpViewModel
 
@@ -118,7 +118,7 @@ open class Liferay62UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnecto
 			}
 			else {
 				lastError = nil
-				resultUserAttributes = result as? [String:AnyObject]
+				resultUserAttributes = result as? [String: AnyObject]
 			}
 		}
 		catch let error as NSError {
@@ -184,7 +184,7 @@ open class Liferay70UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnecto
 			}
 			else {
 				lastError = nil
-				resultUserAttributes = result as? [String:AnyObject]
+				resultUserAttributes = result as? [String: AnyObject]
 			}
 		}
 		catch let error as NSError {

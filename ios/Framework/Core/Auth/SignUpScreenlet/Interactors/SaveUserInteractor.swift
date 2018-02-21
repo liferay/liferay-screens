@@ -15,7 +15,7 @@ import UIKit
 
 open class SaveUserInteractor: ServerConnectorInteractor {
 
-	open var resultUserAttributes: [String:AnyObject]?
+	open var resultUserAttributes: [String: AnyObject]?
 
 	// MARK: ServerConnectorInteractor
 
