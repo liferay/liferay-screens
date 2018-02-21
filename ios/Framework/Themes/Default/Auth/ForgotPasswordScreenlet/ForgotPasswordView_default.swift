@@ -22,7 +22,7 @@ open class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMode
 
 	@IBOutlet open weak var requestPasswordButton: UIButton?
 
-	override open var progressMessages: [String:ProgressMessages] {
+	override open var progressMessages: [String: ProgressMessages] {
 		return [
 			BaseScreenlet.DefaultAction: [
 				.working: LocalizedString("default", key: "forgotpassword-loading-message", obj: self),

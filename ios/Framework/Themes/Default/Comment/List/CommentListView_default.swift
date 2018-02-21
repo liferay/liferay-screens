@@ -119,7 +119,7 @@ open class CommentListView_default: BaseListTableView, CommentListViewModel {
 
 	// MARK: BaseListView
 
-	open override func onClearRows(_ oldRows: [String : [AnyObject?]]) {
+	open override func onClearRows(_ oldRows: [String: [AnyObject?]]) {
 		super.onClearRows(oldRows)
 		self.tableView?.tableFooterView = UIView()
 	}

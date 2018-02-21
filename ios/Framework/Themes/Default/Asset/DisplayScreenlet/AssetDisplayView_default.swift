@@ -16,7 +16,7 @@ import UIKit
 @objc(AssetDisplayView_default)
 open class AssetDisplayView_default: BaseScreenletView, AssetDisplayViewModel {
 
-	open override var progressMessages: [String : ProgressMessages] {
+	open override var progressMessages: [String: ProgressMessages] {
 		return [
 			BaseScreenlet.DefaultAction: [.working: NoProgressMessage]
 		]
