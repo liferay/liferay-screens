@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Andorra Telecom</string>
+    <string name="help_text">¿En què et podem ajudar?</string>
+    <string name="phone_text">Telèfono</string>
+    <string name="legal_text">Accepto les condicions legals</string>
+    <string name="button_call_me_now_text">TRUQUEU-ME ARA</string>
+    <string name="or_text">o</string>
+    <string name="button_i_call_text">YO TRUQUE</string>
+    <string name="language_ca">Catalá</string>
+    <string name="language_es">Espanyol</string>
+    <string name="language_en">Anglès</string>
+    <string name="language_fr">Frances</string>
+    <string name="language_dialog_title">Seleccioneu un idioma</string>
+    <string name="dialog_button_cancel">Cancel·lar</string>
+    <string name="call_me_now_message">Nosaltres et truquem promte al telèfono que ens has facilitat</string>
+    <string name="i_call_message">Trucant...</string>
+</resources>

@@ -1,0 +1,87 @@
+﻿html, body {
+    background: #CA1A77 url("https://www.andorratelecom.ad/o/atcomercial-theme/images/bg-pattern-footer.png") no-repeat 25% 145%
+}
+
+#header {
+    height: 0px;
+    display: none;
+}
+
+ul {
+    padding: 10px;
+    background-color: #FEF3F9;
+    margin:30px;
+    border-radius: 10px;
+}
+
+#map {
+    width: 100%;
+    height: 410px;
+    position: relative;
+    overflow: unset;
+}
+
+.cc-floating,
+.gmnoprint,
+.infowindow-image,
+.checkbox-custom .checkbox-css {
+    display: none;
+}
+
+.checkbox-custom {
+    padding-bottom: 2px;
+}
+
+input[type="checkbox"] {
+    position: absolute;
+    margin: 10px 0 0 20px;
+}
+
+input[type="checkbox"] + label {
+    position: relative;
+    padding: 0px 0 0 60px;
+    line-height: 2.3em;
+    text-align: left;
+}
+
+input[type="checkbox"] + label:before {
+    content: "";
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 0;
+    width: 50px;
+    height: 30px;
+    border-radius: 20px;
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+input[type="checkbox"] + label:after {
+    content: "";
+    position: absolute;
+    display: block;
+    left: 0px;
+    top: 0px;
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    background: #fff;
+    border: 1px solid #d9d9d9;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+input[type="checkbox"] + label:hover:after {
+    box-shadow: 0 0 8px #8D0E57;
+}
+
+input[type="checkbox"]:checked + label:after {
+    margin-left: 20px;
+}
+
+input[type="checkbox"]:checked + label:before {
+    background: #8D0E57
+}
