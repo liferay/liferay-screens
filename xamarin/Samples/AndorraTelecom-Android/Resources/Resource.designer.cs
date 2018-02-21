@@ -62,28 +62,22 @@ namespace AndorraTelecomAndroid
 			public const int abc_slide_out_top = 2131034121;
 			
 			// aapt resource value: 0x7f05000a
-			public const int close = 2131034122;
+			public const int design_bottom_sheet_slide_in = 2131034122;
 			
 			// aapt resource value: 0x7f05000b
-			public const int design_bottom_sheet_slide_in = 2131034123;
+			public const int design_bottom_sheet_slide_out = 2131034123;
 			
 			// aapt resource value: 0x7f05000c
-			public const int design_bottom_sheet_slide_out = 2131034124;
+			public const int design_fab_in = 2131034124;
 			
 			// aapt resource value: 0x7f05000d
-			public const int design_fab_in = 2131034125;
+			public const int design_fab_out = 2131034125;
 			
 			// aapt resource value: 0x7f05000e
-			public const int design_fab_out = 2131034126;
+			public const int design_snackbar_in = 2131034126;
 			
 			// aapt resource value: 0x7f05000f
-			public const int design_snackbar_in = 2131034127;
-			
-			// aapt resource value: 0x7f050010
-			public const int design_snackbar_out = 2131034128;
-			
-			// aapt resource value: 0x7f050011
-			public const int open = 2131034129;
+			public const int design_snackbar_out = 2131034127;
 			
 			static Animation()
 			{

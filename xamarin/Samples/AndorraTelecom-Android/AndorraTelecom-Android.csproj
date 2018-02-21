@@ -145,8 +145,6 @@
     <AndroidResource Include="Resources\layout\callmeback.axml" />
     <AndroidResource Include="Resources\drawable\phone.png" />
     <AndroidResource Include="Resources\drawable\phone_input.png" />
-    <AndroidResource Include="Resources\anim\close.xml" />
-    <AndroidResource Include="Resources\anim\open.xml" />
     <AndroidResource Include="Resources\values-es\Strings.xml" />
     <AndroidResource Include="Resources\values-fr\Strings.xml" />
     <AndroidResource Include="Resources\values-ca\Strings.xml" />
@@ -157,7 +155,6 @@
     <Folder Include="Resources\menu\" />
     <Folder Include="Resources\raw\" />
     <Folder Include="Util\" />
-    <Folder Include="Resources\anim\" />
     <Folder Include="Resources\values-es\" />
     <Folder Include="Resources\values-fr\" />
     <Folder Include="Resources\values-ca\" />

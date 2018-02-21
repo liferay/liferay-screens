@@ -1,14 +1,14 @@
 ﻿using System;
 using AndorraTelecomAndroid.Activities;
 using AndorraTelecomiOS.Util;
+using Android.Animation;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Util;
 using Android.Views;
-using Android.Views.Animations;
 using Android.Widget;
 using Com.Liferay.Mobile.Screens.Web;
-using static Android.Views.View;
 using static Com.Liferay.Mobile.Screens.Web.WebScreenletConfiguration;
 
 namespace AndorraTelecomAndroid
@@ -22,7 +22,8 @@ namespace AndorraTelecomAndroid
         public TextView CallMeBackText;
         public Button ICallButton;
         public Button CallMeNowButton;
-        private bool isOpen = false;
+        bool isOpen = false;
+        int FinalYPosition;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -38,6 +39,8 @@ namespace AndorraTelecomAndroid
             CallMeBackPopOver.Click += OpenOrClosePopover;
             CallMeNowButton.Click += CallMeNowAction;
             ICallButton.Click += ICAllAction;
+
+            FinalYPosition = (int)TypedValue.ApplyDimension(ComplexUnitType.Dip, 325, Resources.DisplayMetrics);
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
@@ -132,8 +135,8 @@ namespace AndorraTelecomAndroid
             CallMeBackViewHeader.Visibility = ViewStates.Visible;
             CallMeBackViewBody.Visibility = ViewStates.Visible;
 
-            Animation close = AnimationUtils.LoadAnimation(this, Resource.Animation.close);
-            CallMeBackPopOver.StartAnimation(close);
+            ObjectAnimator Animator = ObjectAnimator.OfFloat(CallMeBackPopOver, "TranslationY", 0, FinalYPosition);
+            Animator.Start();
         }
 
         void OpenOrClosePopover(object sender, EventArgs e)
@@ -141,14 +144,14 @@ namespace AndorraTelecomAndroid
             if(!isOpen)
             {
                 isOpen = true;
-                Animation open = AnimationUtils.LoadAnimation(this, Resource.Animation.open);
-                CallMeBackPopOver.StartAnimation(open);
+                ObjectAnimator Animator = ObjectAnimator.OfFloat(CallMeBackPopOver, "TranslationY", FinalYPosition, 0);
+                Animator.Start();
             }
             else
             {
                 isOpen = false;
-                Animation close = AnimationUtils.LoadAnimation(this, Resource.Animation.close);
-                CallMeBackPopOver.StartAnimation(close);
+                ObjectAnimator Animator = ObjectAnimator.OfFloat(CallMeBackPopOver, "TranslationY", 0, FinalYPosition);
+                Animator.Start();
             }
         }
 
@@ -168,22 +171,22 @@ namespace AndorraTelecomAndroid
 
         public void Error(Java.Lang.Exception ex, string userAction)
         {
-            Android.Util.Log.Debug("WebScreenlet", $"Web Screenlet error: {ex}");
+            Log.Debug("WebScreenlet", $"Web Screenlet error: {ex}");
         }
 
         public void OnPageLoaded(string url)
         {
-            Android.Util.Log.Debug("WebScreenlet", $"Page loaded: {url}");
+            Log.Debug("WebScreenlet", $"Page loaded: {url}");
         }
 
         public void OnScriptMessageHandler(string namespace_, string body)
         {
-            Android.Util.Log.Debug("WebScreenlet", $"JS Message center | namespace: {namespace_} - message: {body}");
+            Log.Debug("WebScreenlet", $"JS Message center | namespace: {namespace_} - message: {body}");
 
             switch (namespace_)
             {
                 case "call-me-back":
-                    Android.Util.Log.Debug("WebScreenlet", "Call me back popover");
+                    Log.Debug("WebScreenlet", "Call me back popover");
                     RunOnUiThread(() =>
                     {
                         SetCallMeBackText(body);
@@ -191,15 +194,15 @@ namespace AndorraTelecomAndroid
                     });
                     break;
                 case "click-button":
-                    Android.Util.Log.Debug("WebScreenlet", "Go to next forfet");
+                    Log.Debug("WebScreenlet", "Go to next forfet");
                     GoToNextForfet(body);
                     break;
                 case "map":
-                    Android.Util.Log.Debug("WebScreenlet", "Go to map");
+                    Log.Debug("WebScreenlet", "Go to map");
                     GoToMap();
                     break;
                 default:
-                    Android.Util.Log.Debug("WebScreenlet", "Invalid event");
+                    Log.Debug("WebScreenlet", "Invalid event");
                     break;
             }
         }

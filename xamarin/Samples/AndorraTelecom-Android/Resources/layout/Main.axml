@@ -19,7 +19,7 @@
         <RelativeLayout
             android:id="@+id/call_me_back_popover"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="375dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true">
             <include
