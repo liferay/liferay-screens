@@ -237,17 +237,17 @@ open class DDLFormScreenlet: BaseScreenlet {
 
 	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
 		switch name {
-			case DDLFormScreenlet.LoadFormAction:
-				return createLoadFormInteractor()
-			case DDLFormScreenlet.LoadRecordAction:
-				return createLoadRecordInteractor()
-			case DDLFormScreenlet.SubmitFormAction:
-				return createSubmitFormInteractor()
-			case DDLFormScreenlet.UploadDocumentAction:
-				if sender is DDMFieldDocument {
-					return createUploadDocumentInteractor(sender as! DDMFieldDocument)
-				}
-			default: ()
+		case DDLFormScreenlet.LoadFormAction:
+			return createLoadFormInteractor()
+		case DDLFormScreenlet.LoadRecordAction:
+			return createLoadRecordInteractor()
+		case DDLFormScreenlet.SubmitFormAction:
+			return createSubmitFormInteractor()
+		case DDLFormScreenlet.UploadDocumentAction:
+			if sender is DDMFieldDocument {
+				return createUploadDocumentInteractor(sender as! DDMFieldDocument)
+			}
+		default: ()
 		}
 
 		return nil
@@ -263,11 +263,10 @@ open class DDLFormScreenlet: BaseScreenlet {
 					onDocumentFieldUploadStarted: uploadInteractor.document)
 
 			switch uploadStatus {
-				case .uploading(let uploadCount, let submitRequested):
-					uploadStatus = .uploading(uploadCount + 1, submitRequested)
-
-				default:
-					uploadStatus = .uploading(1, false)
+			case .uploading(let uploadCount, let submitRequested):
+				uploadStatus = .uploading(uploadCount + 1, submitRequested)
+			default:
+				uploadStatus = .uploading(1, false)
 			}
 
 		}
@@ -379,15 +378,15 @@ open class DDLFormScreenlet: BaseScreenlet {
 
 		func onUploadedBytes(_ document: DDMFieldDocument, sent: UInt64, total: UInt64) {
 			switch uploadStatus {
-				case .uploading:
-					formView.changeDocumentUploadStatus(document)
+			case .uploading:
+				formView.changeDocumentUploadStatus(document)
 
-					ddlFormDelegate?.screenlet?(self,
-						onDocumentField: document,
-						uploadedBytes: sent,
-						totalBytes: total)
+				ddlFormDelegate?.screenlet?(self,
+					onDocumentField: document,
+					uploadedBytes: sent,
+					totalBytes: total)
 
-				default: ()
+			default: ()
 			}
 		}
 
@@ -407,21 +406,20 @@ open class DDLFormScreenlet: BaseScreenlet {
 
 			// set new status
 			switch self.uploadStatus {
-				case .uploading(let uploadCount, let submitRequest)
-				where uploadCount > 1:
-					// more than one upload in progress
-					self.uploadStatus = .uploading(uploadCount - 1, submitRequest)
+			case .uploading(let uploadCount, let submitRequest)
+			where uploadCount > 1:
+				// more than one upload in progress
+				self.uploadStatus = .uploading(uploadCount - 1, submitRequest)
 
-				case .uploading(let uploadCount, let submitRequested)
-				where uploadCount == 1:
-					self.uploadStatus = .idle
+			case .uploading(let uploadCount, let submitRequested)
+			where uploadCount == 1:
+				self.uploadStatus = .idle
 
-					if submitRequested {
-						// waiting for upload completion to submit the form
-						self.submitForm()
-				}
-
-				default: ()
+				if submitRequested {
+					// waiting for upload completion to submit the form
+					self.submitForm()
+			}
+			default: ()
 			}
 		}
 
@@ -472,28 +470,28 @@ open class DDLFormScreenlet: BaseScreenlet {
 
 	fileprivate func waitForInProgressUpload(_ interactor: Interactor) -> Bool {
 		switch uploadStatus {
-			case .failed:
-				retryUploads(interactor)
+		case .failed:
+			retryUploads(interactor)
 
-				return true
+			return true
 
-			case .uploading(_, let submitRequested)
-			where submitRequested:
-				return true
+		case .uploading(_, let submitRequested)
+		where submitRequested:
+			return true
 
-			case .uploading(let uploadCount, let submitRequested)
-			where !submitRequested:
-				uploadStatus = .uploading(uploadCount, true)
+		case .uploading(let uploadCount, let submitRequested)
+		where !submitRequested:
+			uploadStatus = .uploading(uploadCount, true)
 
-				let uploadMessage = (uploadCount == 1)
-						? "uploading-message-singular" : "uploading-message-plural"
+			let uploadMessage = (uploadCount == 1)
+					? "uploading-message-singular" : "uploading-message-plural"
 
-				showHUDWithMessage(LocalizedString("ddlform-screenlet", key: uploadMessage, obj: self),
-					forInteractor: interactor)
+			showHUDWithMessage(LocalizedString("ddlform-screenlet", key: uploadMessage, obj: self),
+				forInteractor: interactor)
 
-				return true
+			return true
 
-			default: ()
+		default: ()
 		}
 
 		return false
@@ -503,8 +501,8 @@ open class DDLFormScreenlet: BaseScreenlet {
 		let failedDocumentFields = formView.record?.fields.filter {
 			if let fieldUploadStatus = ($0 as? DDMFieldDocument)?.uploadStatus {
 				switch fieldUploadStatus {
-					case .failed: return true
-					default: ()
+				case .failed: return true
+				default: ()
 				}
 			}
 

@@ -82,7 +82,7 @@ open class ImageGalleryUploadInteractor: ServerWriteConnectorInteractor {
 				descrip: imageUpload.notes,
 				changeLog: "",
 				image: imageUpload.image,
-				onUploadBytes:  onUploadedBytes)
+				onUploadBytes: onUploadedBytes)
 	}
 
 	override open func completedConnector(_ c: ServerConnector) {

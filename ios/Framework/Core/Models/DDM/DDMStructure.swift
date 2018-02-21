@@ -91,9 +91,9 @@ open class DDMStructure: NSObject, NSCoding {
 	// MARK: Public methods
 
 	open func encode(with aCoder: NSCoder) {
-		aCoder.encode(fields, forKey:"fields")
-		aCoder.encode(attributes, forKey:"attributes")
-		aCoder.encode(locale, forKey:"locale")
+		aCoder.encode(fields, forKey: "fields")
+		aCoder.encode(attributes, forKey: "attributes")
+		aCoder.encode(locale, forKey: "locale")
 	}
 
 	open func fieldBy(name: String) -> DDMField? {

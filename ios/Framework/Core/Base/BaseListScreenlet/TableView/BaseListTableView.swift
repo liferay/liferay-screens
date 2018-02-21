@@ -249,7 +249,7 @@ open class BaseListTableView: BaseListView, UITableViewDataSource, UITableViewDe
 			IndexPath(row: $0, section: section)
 		}
 		tableView!.beginUpdates()
-		tableView!.insertRows(at: indexPaths, with:.top)
+		tableView!.insertRows(at: indexPaths, with: .top)
 		tableView!.endUpdates()
 	}
 
@@ -271,7 +271,7 @@ open class BaseListTableView: BaseListView, UITableViewDataSource, UITableViewDe
 			tableView!.reloadData()
 		}
 		else {
-			tableView!.reloadRows(at: visibleRows, with:.none)
+			tableView!.reloadRows(at: visibleRows, with: .none)
 		}
 	}
 

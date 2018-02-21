@@ -35,25 +35,25 @@ extension NSLocale {
 		let language = NSLocale.currentLanguageString
 
 		switch language {
-			case "ca", "es":
-				return language + "_ES"
-			case "zh":
-				return "zh_CN"
-			case "fi":
-				return "fi_FI"
-			case "fr":
-				return "fr_FR"
-			case "de":
-				return "de_DE"
-			case "iw", "he":
-				return "iw_IL"
-			case "hu":
-				return "hu_HU"
-			case "ja":
-				return "ja_JP"
-			case "pt":
-				return "pr_BR"
-			default: ()
+		case "ca", "es":
+			return language + "_ES"
+		case "zh":
+			return "zh_CN"
+		case "fi":
+			return "fi_FI"
+		case "fr":
+			return "fr_FR"
+		case "de":
+			return "de_DE"
+		case "iw", "he":
+			return "iw_IL"
+		case "hu":
+			return "hu_HU"
+		case "ja":
+			return "ja_JP"
+		case "pt":
+			return "pr_BR"
+		default: ()
 		}
 
 		return "en_US"
@@ -66,5 +66,4 @@ extension NSLocale {
 
 		return Bundle(path: path)
 	}
-
 }

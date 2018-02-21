@@ -44,7 +44,7 @@ open class DDMTypedValuesXMLParser {
 
 		if let elements = document.childrenNamed("dynamic-element") {
 			let defaultLocale = Locale(
-				identifier:document.attributeNamed("default-locale") ?? "en_US")
+				identifier: document.attributeNamed("default-locale") ?? "en_US")
 
 			for element in (elements as! [SMXMLElement]) {
 				if let fieldName = element.attributeNamed("name"),

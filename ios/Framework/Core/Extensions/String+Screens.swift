@@ -104,7 +104,7 @@ extension String {
 
 		let rgb: Int = (Int)(r*255)<<16 | (Int)(g*255)<<8 | (Int)(b*255)<<0
 
-		return NSString(format:"#%06x", rgb) as String
+		return NSString(format: "#%06x", rgb) as String
 	}
 
 	func removeFirstAndLastChars() -> String {

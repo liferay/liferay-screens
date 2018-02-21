@@ -54,7 +54,7 @@ open class ImageGalleryLoadInteractor: BaseListPageLoadInteractor {
 	// MARK: BaseListPageLoadInteractor
 
     override open func convertResult(_ serverResult: [String: AnyObject]) -> AnyObject {
-        return ImageEntry(attributes:serverResult)
+        return ImageEntry(attributes: serverResult)
     }
 
     override open func cacheKey(_ c: PaginationLiferayConnector) -> String {

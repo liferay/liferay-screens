@@ -43,7 +43,7 @@ open class RatingEntry: NSObject, NSCoding {
 	}
 
 	open func encode(with aCoder: NSCoder) {
-		aCoder.encode(self.attributes, forKey:"rating-attrs")
+		aCoder.encode(self.attributes, forKey: "rating-attrs")
 	}
 
 	// MARK: Initializers

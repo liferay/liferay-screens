@@ -719,8 +719,8 @@ open class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			folderId: Int64,
 			mimeTypes: [String]) -> ImageGalleryPageLiferayConnector {
 		return Liferay70ImageGalleryPageLiferayConnector(startRow: startRow,
-			endRow:endRow,
-			computeRowCount:computeRowCount,
+			endRow: endRow,
+			computeRowCount: computeRowCount,
 			repositoryId: repositoryId,
 			folderId: folderId,
 			mimeTypes: mimeTypes

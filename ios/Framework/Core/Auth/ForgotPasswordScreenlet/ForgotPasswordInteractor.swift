@@ -30,21 +30,21 @@ class ForgotPasswordInteractor: ServerConnectorInteractor {
 		let connector: ForgotPasswordBaseLiferayConnector?
 
 		switch BasicAuthMethod.create(screenlet.basicAuthMethod) {
-			case .screenName:
-				connector = LiferayServerContext.connectorFactory.createForgotPasswordByScreenNameConnector(
-					viewModel: screenlet.viewModel,
-					anonymousUsername: screenlet.anonymousApiUserName!,
-					anonymousPassword: screenlet.anonymousApiPassword!)
-			case .userId:
-				connector = LiferayServerContext.connectorFactory.createForgotPasswordByUserIdConnector(
-					viewModel: screenlet.viewModel,
-					anonymousUsername: screenlet.anonymousApiUserName!,
-					anonymousPassword: screenlet.anonymousApiPassword!)
-			case .email:
-				connector = LiferayServerContext.connectorFactory.createForgotPasswordByEmailConnector(
-					viewModel: screenlet.viewModel,
-					anonymousUsername: screenlet.anonymousApiUserName!,
-					anonymousPassword: screenlet.anonymousApiPassword!)
+		case .screenName:
+			connector = LiferayServerContext.connectorFactory.createForgotPasswordByScreenNameConnector(
+				viewModel: screenlet.viewModel,
+				anonymousUsername: screenlet.anonymousApiUserName!,
+				anonymousPassword: screenlet.anonymousApiPassword!)
+		case .userId:
+			connector = LiferayServerContext.connectorFactory.createForgotPasswordByUserIdConnector(
+				viewModel: screenlet.viewModel,
+				anonymousUsername: screenlet.anonymousApiUserName!,
+				anonymousPassword: screenlet.anonymousApiPassword!)
+		case .email:
+			connector = LiferayServerContext.connectorFactory.createForgotPasswordByEmailConnector(
+				viewModel: screenlet.viewModel,
+				anonymousUsername: screenlet.anonymousApiUserName!,
+				anonymousPassword: screenlet.anonymousApiPassword!)
 		}
 
 		connector!.companyId = screenlet.companyId
