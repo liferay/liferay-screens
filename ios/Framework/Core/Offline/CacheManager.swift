@@ -382,7 +382,7 @@ public enum CacheStrategyType: String {
 		})
 	}
 
-	//MARK "protected" methods
+	// MARK: "protected" methods
 
 	open class func databasePath(_ name: String) -> String {
 		let cacheFolderPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]

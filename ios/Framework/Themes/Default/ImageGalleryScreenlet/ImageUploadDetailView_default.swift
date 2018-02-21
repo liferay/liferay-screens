@@ -22,7 +22,7 @@ open class ImageUploadDetailView_default: ImageUploadDetailViewBase, UITextViewD
 
 	@IBOutlet weak var hintLabel: UILabel!
 
-	//MARK ImageUploadDetailVeiewBase
+	// MARK: ImageUploadDetailVeiewBase
 
 	override open var image: UIImage? {
 		didSet {

@@ -34,7 +34,7 @@ open class ForgotPasswordBaseLiferayConnector: ServerConnector {
 		super.init()
 	}
 
-	//MARK ServerConnector
+	// MARK: ServerConnector
 
 	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
