@@ -121,11 +121,11 @@ open class BaseCredentialsStoreKeyChain: NSObject, CredentialsStore {
 
 		if shouldLoadServer {
 			if let companyId = companyId {
-				LiferayServerContext.companyId = companyId
+				LiferayServerContext.companyId = companyId!
 			}
 
 			if let groupId = groupId {
-				LiferayServerContext.groupId = groupId
+				LiferayServerContext.groupId = groupId!
 			}
 
 		}
