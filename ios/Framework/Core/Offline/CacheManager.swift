@@ -123,7 +123,7 @@ public enum CacheStrategyType: String {
 	open func getAnyWithAttributes(
 			collection: String,
 			key: String,
-			result: @escaping (AnyObject?, [String:AnyObject]?) -> Void) {
+			result: @escaping (AnyObject?, [String: AnyObject]?) -> Void) {
 
 		getSomeWithAttributes(
 				collection: collection,
@@ -136,7 +136,7 @@ public enum CacheStrategyType: String {
 	open func getSomeWithAttributes(
 			collection: String,
 			keys: [String],
-			result: @escaping ([AnyObject?], [[String:AnyObject]?]) -> Void) {
+			result: @escaping ([AnyObject?], [[String: AnyObject]?]) -> Void) {
 
 		var objects = [AnyObject?]()
 		var attributes = [[String: AnyObject]?]()
@@ -187,7 +187,7 @@ public enum CacheStrategyType: String {
 			collection: String,
 			key: String,
 			value: NSCoding,
-			attributes: [String:AnyObject],
+			attributes: [String: AnyObject],
 			onCompletion: (() -> Void)? = nil) {
 
 		// The item becomes clean (the opposite of dirty,
@@ -205,7 +205,7 @@ public enum CacheStrategyType: String {
 			collection: String,
 			key: String,
 			localFileURL: URL,
-			attributes: [String:AnyObject],
+			attributes: [String: AnyObject],
 			onCompletion: (() -> Void)? = nil) {
 
 		guard localFileURL.isFileURL else {
@@ -229,7 +229,7 @@ public enum CacheStrategyType: String {
 			collection: String,
 			keys: [String],
 			values: [NSCoding],
-			attributes: [String:AnyObject],
+			attributes: [String: AnyObject],
 			onCompletion: (() -> Void)? = nil) {
 
 		set(collection: collection,
@@ -244,7 +244,7 @@ public enum CacheStrategyType: String {
 			collection: String,
 			key: String,
 			value: NSCoding,
-			attributes: [String:AnyObject],
+			attributes: [String: AnyObject],
 			onCompletion: (() -> Void)? = nil) {
 
 		// The item becomes dirty: fresh received date but nil sent date
@@ -261,7 +261,7 @@ public enum CacheStrategyType: String {
 			keys: [String],
 			values: [NSCoding],
 			synchronized: Date?,
-			attributes: [String:AnyObject],
+			attributes: [String: AnyObject],
 			onCompletion: (() -> Void)? = nil) {
 
 		assert(keys.count == values.count,
@@ -286,7 +286,7 @@ public enum CacheStrategyType: String {
 	open func setClean(
 			collection: String,
 			key: String,
-			attributes: [String:AnyObject],
+			attributes: [String: AnyObject],
 			onCompletion: (() -> Void)? = nil) {
 
 		setMetadata(collection: collection,
@@ -300,7 +300,7 @@ public enum CacheStrategyType: String {
 			collection: String,
 			key: String,
 			synchronized: Date?,
-			attributes: [String:AnyObject],
+			attributes: [String: AnyObject],
 			onCompletion: (() -> Void)? = nil) {
 
 		writeConnection.asyncReadWrite ({ transaction in
@@ -357,7 +357,7 @@ public enum CacheStrategyType: String {
 	}
 
 	open func pendingToSync(
-			_ result: @escaping (String, String, [String:AnyObject]) -> Bool,
+			_ result: @escaping (String, String, [String: AnyObject]) -> Bool,
 			onCompletion: (() -> Void)? = nil) {
 
 		pendingToSyncTransaction ({ transaction in
@@ -382,7 +382,7 @@ public enum CacheStrategyType: String {
 		})
 	}
 
-	//MARK "protected" methods
+	// MARK: "protected" methods
 
 	open class func databasePath(_ name: String) -> String {
 		let cacheFolderPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]

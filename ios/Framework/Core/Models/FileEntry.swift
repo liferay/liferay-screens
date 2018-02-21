@@ -18,22 +18,22 @@ open class FileEntry: Asset {
 
 	override open var url: String {
 		let obj = attributes["object"]
-		let objDict = obj as! [String:AnyObject]
+		let objDict = obj as! [String: AnyObject]
 		let url = objDict["url"]
 		return url as! String
 	}
 
 	open var fileExtension: String? {
 		if let assetObject = attributes["object"] {
-			if let fileEntry = assetObject["fileEntry"] as? [String : AnyObject] {
+			if let fileEntry = assetObject["fileEntry"] as? [String: AnyObject] {
 				return fileEntry["extension"] as? String
 			}
 		}
 		return ""
 	}
 
-	open var fileEntry: [String:AnyObject] {
-		return attributes["object"]!["fileEntry"] as! [String:AnyObject]
+	open var fileEntry: [String: AnyObject] {
+		return attributes["object"]!["fileEntry"] as! [String: AnyObject]
 	}
 
 	open var fileEntryId: Int64 {

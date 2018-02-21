@@ -57,7 +57,7 @@ open class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel,
 		}
 	}
 
-	override open var progressMessages: [String:ProgressMessages] {
+	override open var progressMessages: [String: ProgressMessages] {
 		return [
 			"load-portrait": [
 				.working: ""

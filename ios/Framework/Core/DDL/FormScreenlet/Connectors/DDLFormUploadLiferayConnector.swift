@@ -26,7 +26,7 @@ open class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFilePro
 
 	let onUploadedBytes: OnProgress?
 
-	var uploadResult: [String:AnyObject]?
+	var uploadResult: [String: AnyObject]?
 
 	fileprivate var requestSemaphore: DispatchSemaphore?
 
@@ -118,7 +118,7 @@ open class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFilePro
 
 	open func onSuccess(_ result: Any!) {
 		lastError = nil
-		uploadResult = result as? [String:AnyObject]
+		uploadResult = result as? [String: AnyObject]
 
 		requestSemaphore!.signal()
 	}

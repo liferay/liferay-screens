@@ -30,7 +30,7 @@ open class BaseListCollectionView: BaseListView, UICollectionViewDataSource, UIC
 		}
 	}
 
-	override open var progressMessages: [String:ProgressMessages] {
+	override open var progressMessages: [String: ProgressMessages] {
 		return [
 			BaseListScreenlet.LoadInitialPageAction: [
 				.working: LocalizedString("core", key: "base-list-loading-message", obj: self),
@@ -60,7 +60,7 @@ open class BaseListCollectionView: BaseListView, UICollectionViewDataSource, UIC
 		collectionView?.collectionViewLayout = doCreateLayout()
 	}
 
-	override open func onChangedRows(_ oldRows: [String : [AnyObject?]]) {
+	override open func onChangedRows(_ oldRows: [String: [AnyObject?]]) {
 		super.onChangedRows(oldRows)
 
 		if oldRows[BaseListView.DefaultSection]!.isEmpty {
@@ -88,11 +88,11 @@ open class BaseListCollectionView: BaseListView, UICollectionViewDataSource, UIC
 		updateVisibleRows(visibleRows)
 	}
 
-	override open func onAddedRows(_ oldRows: [String : [AnyObject?]]) {
+	override open func onAddedRows(_ oldRows: [String: [AnyObject?]]) {
 		collectionView?.reloadData()
 	}
 
-	open override func onClearRows(_ oldRows: [String : [AnyObject?]]) {
+	open override func onClearRows(_ oldRows: [String: [AnyObject?]]) {
 		clearAllRows(oldRows)
 	}
 
@@ -326,7 +326,7 @@ open class BaseListCollectionView: BaseListView, UICollectionViewDataSource, UIC
 		collectionView!.insertItems(at: indexPaths)
 	}
 
-	internal func clearAllRows(_ currentRows: [String : [AnyObject?]]) {
+	internal func clearAllRows(_ currentRows: [String: [AnyObject?]]) {
 		collectionView?.reloadData()
 	}
 

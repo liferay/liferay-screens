@@ -35,7 +35,7 @@ open class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 		return NetworkActivityIndicatorPresenter()
 	}
 
-	override open var progressMessages: [String:ProgressMessages] {
+	override open var progressMessages: [String: ProgressMessages] {
 		return [
 			RatingScreenlet.LoadRatingsAction: [.working: ""],
 			RatingScreenlet.UpdateRatingAction: [.working: ""],

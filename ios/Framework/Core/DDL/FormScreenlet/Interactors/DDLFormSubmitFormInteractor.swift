@@ -176,7 +176,7 @@ class DDLFormSubmitFormInteractor: ServerWriteConnectorInteractor {
 
 	// MARK: Private methods
 
-	fileprivate func cacheAttributes() -> [String:AnyObject] {
+	fileprivate func cacheAttributes() -> [String: AnyObject] {
 		let attrs = ["record": record]
 
 		if record.recordId == nil {

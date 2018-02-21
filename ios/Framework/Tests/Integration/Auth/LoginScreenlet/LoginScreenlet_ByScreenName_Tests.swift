@@ -41,9 +41,9 @@ class LoginScreenlet_ByScreenName_Tests: BaseLoginScreenletTestCase {
 					XCTAssertFalse(result is NSError)
 				}
 				assertThat("the attributes should be populated") {
-					XCTAssertTrue(result is [String:AnyObject])
+					XCTAssertTrue(result is [String: AnyObject])
 
-					let attrs = result as! [String:AnyObject]
+					let attrs = result as! [String: AnyObject]
 
 					XCTAssertTrue(!attrs.isEmpty)
 					XCTAssertNotNil(attrs["screenName"])

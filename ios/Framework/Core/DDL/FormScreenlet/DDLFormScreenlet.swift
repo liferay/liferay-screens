@@ -101,7 +101,7 @@ public protocol DDLFormScreenletDelegate: BaseScreenletDelegate {
 	///   - result: Document data attributes.
 	@objc optional func screenlet(_ screenlet: DDLFormScreenlet,
 			onDocumentField field: DDMFieldDocument,
-			uploadResult result: [String:AnyObject])
+			uploadResult result: [String: AnyObject])
 
 	/// Called when an error occurs in the Documents and Media upload process.
 	/// The NSError object describes the error.
@@ -379,7 +379,7 @@ open class DDLFormScreenlet: BaseScreenlet {
 
 		func onUploadedBytes(_ document: DDMFieldDocument, sent: UInt64, total: UInt64) {
 			switch uploadStatus {
-				case .uploading(_, _):
+				case .uploading:
 					formView.changeDocumentUploadStatus(document)
 
 					ddlFormDelegate?.screenlet?(self,
@@ -472,7 +472,7 @@ open class DDLFormScreenlet: BaseScreenlet {
 
 	fileprivate func waitForInProgressUpload(_ interactor: Interactor) -> Bool {
 		switch uploadStatus {
-			case .failed(_):
+			case .failed:
 				retryUploads(interactor)
 
 				return true
@@ -503,7 +503,7 @@ open class DDLFormScreenlet: BaseScreenlet {
 		let failedDocumentFields = formView.record?.fields.filter {
 			if let fieldUploadStatus = ($0 as? DDMFieldDocument)?.uploadStatus {
 				switch fieldUploadStatus {
-					case .failed(_): return true
+					case .failed: return true
 					default: ()
 				}
 			}

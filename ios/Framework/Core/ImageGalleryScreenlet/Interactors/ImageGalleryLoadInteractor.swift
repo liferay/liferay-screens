@@ -53,7 +53,7 @@ open class ImageGalleryLoadInteractor: BaseListPageLoadInteractor {
 
 	// MARK: BaseListPageLoadInteractor
 
-    override open func convertResult(_ serverResult: [String : AnyObject]) -> AnyObject {
+    override open func convertResult(_ serverResult: [String: AnyObject]) -> AnyObject {
         return ImageEntry(attributes:serverResult)
     }
 

@@ -83,7 +83,7 @@ open class DDMTypedValuesXMLParser {
 	        defaultLocale: Locale) -> DDMField? {
 
 		let editor = DDMField.Editor.from(
-			attributes: xmlElement.attributes as! [String:AnyObject])
+			attributes: xmlElement.attributes as! [String: AnyObject])
 
 		return editor.defaultDataType.createField(
 			attributes: xmlElement.attributes as! [String:AnyObject],

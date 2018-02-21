@@ -41,7 +41,7 @@ extension DDMField {
 
 		// swiftlint:disable cyclomatic_complexity
 		public func createField(
-				attributes: [String:AnyObject],
+				attributes: [String: AnyObject],
 				locale: Locale,
 				version: LiferayServerVersion)
 				-> DDMField? {

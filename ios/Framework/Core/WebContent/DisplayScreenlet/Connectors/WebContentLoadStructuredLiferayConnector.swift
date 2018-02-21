@@ -73,13 +73,13 @@ open class Liferay62WebContentLoadStructuredConnector: WebContentLoadStructuredL
 			guard results?.count == 2 else {
 				return nil
 			}
-			guard var structureResult = results?[0] as? [String:AnyObject] else {
+			guard var structureResult = results?[0] as? [String: AnyObject] else {
 				return nil
 			}
 			guard let xsd = structureResult["xsd"] as? String else {
 				return nil
 			}
-			guard var articleResult = results?[1] as? [String:AnyObject] else {
+			guard var articleResult = results?[1] as? [String: AnyObject] else {
 				return nil
 			}
 			guard let xmlContent = articleResult["content"] as? String else {
@@ -133,13 +133,13 @@ open class Liferay70WebContentLoadStructuredConnector: WebContentLoadStructuredL
 			guard results?.count == 2 else {
 				return nil
 			}
-			guard var structureResult = results?[0] as? [String:AnyObject] else {
+			guard var structureResult = results?[0] as? [String: AnyObject] else {
 				return nil
 			}
 			guard let json = structureResult["definition"] as? String else {
 				return nil
 			}
-			guard var articleResult = results?[1] as? [String:AnyObject] else {
+			guard var articleResult = results?[1] as? [String: AnyObject] else {
 				return nil
 			}
 			guard let xmlContent = articleResult["content"] as? String else {

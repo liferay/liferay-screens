@@ -84,7 +84,7 @@ open class DDMField: NSObject, NSCoding {
 	internal(set) var required: Bool
 	internal(set) var showLabel: Bool
 
-	public init(attributes: [String:AnyObject], locale: Locale) {
+	public init(attributes: [String: AnyObject], locale: Locale) {
 		dataType = DataType(rawValue: valueAsString(attributes, key:"dataType")) ?? .Unsupported
 		editorType = Editor.from(attributes: attributes)
 
@@ -216,6 +216,6 @@ public func == (left: DDMField, right: DDMField) -> Bool {
 
 // MARK: Util func
 
-private func valueAsString(_ dict: [String:AnyObject], key: String) -> String {
+private func valueAsString(_ dict: [String: AnyObject], key: String) -> String {
 	return dict[key] as? String ?? ""
 }

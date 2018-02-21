@@ -19,7 +19,7 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 	open var groupId: Int64?
 	open var classNameId: Int64?
 	open var portletItemName: String?
-	open var customEntryQuery: [String:AnyObject]?
+	open var customEntryQuery: [String: AnyObject]?
 
 	// MARK: ServerConnector
 
@@ -101,7 +101,7 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 
 	// MARK: Public methods
 
-	open func doGetEntries(_ session: LRSession, rowCount: Int32) throws -> [[String:AnyObject]]? {
+	open func doGetEntries(_ session: LRSession, rowCount: Int32) throws -> [[String: AnyObject]]? {
 		return nil
 	}
 
@@ -111,7 +111,7 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 	open func doGetRowCount(session: LRBatchSession, entryQuery: LRJSONObjectWrapper) {
 	}
 
-	open func configureEntryQuery() -> [String:AnyObject] {
+	open func configureEntryQuery() -> [String: AnyObject] {
 		var entryQuery = (customEntryQuery != nil)
 			? customEntryQuery!
 			: [String: AnyObject]()
@@ -144,7 +144,7 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 	/// - parameter values: initial entryQuery values.
 	///
 	/// - returns: final values for entryQuery.
-	fileprivate func handleUserVisibleFlag(_ values: [String : AnyObject]) -> [String : AnyObject] {
+	fileprivate func handleUserVisibleFlag(_ values: [String: AnyObject]) -> [String: AnyObject] {
 		if classNameId == AssetClasses.getClassNameId(AssetClassNameKey_User) {
 			var newValues = values
 
@@ -160,14 +160,14 @@ open class Liferay62AssetListPageConnector: AssetListPageLiferayConnector {
 
 	// MARK: AssetListPageLiferayConnector
 
-	override open func doGetEntries(_ session: LRSession, rowCount: Int32) throws -> [[String:AnyObject]]? {
+	override open func doGetEntries(_ session: LRSession, rowCount: Int32) throws -> [[String: AnyObject]]? {
 		let service = LRScreensassetentryService_v62(session: session)
 
 		return try service?.getAssetEntries(withCompanyId: LiferayServerContext.companyId,
 			groupId: groupId!,
 			portletItemName: portletItemName!,
 			locale: NSLocale.currentLocaleString,
-			max: rowCount) as? [[String:AnyObject]]
+			max: rowCount) as? [[String: AnyObject]]
 	}
 
 	override open func doGetPageRows(session: LRBatchSession, entryQuery: LRJSONObjectWrapper, obc: LRJSONObjectWrapper?) {
@@ -196,14 +196,14 @@ open class Liferay70AssetListPageConnector: AssetListPageLiferayConnector {
 
 	// MARK: AssetListPageLiferayConnector
 
-	override open func doGetEntries(_ session: LRSession, rowCount: Int32) throws -> [[String:AnyObject]]? {
+	override open func doGetEntries(_ session: LRSession, rowCount: Int32) throws -> [[String: AnyObject]]? {
 		let service = LRScreensassetentryService_v70(session: session)
 
 		return try service?.getAssetEntries(withCompanyId: LiferayServerContext.companyId,
 			groupId: groupId!,
 			portletItemName: portletItemName!,
 			locale: NSLocale.currentLocaleString,
-			max: rowCount) as? [[String:AnyObject]]
+			max: rowCount) as? [[String: AnyObject]]
 	}
 
 	override open func doGetPageRows(

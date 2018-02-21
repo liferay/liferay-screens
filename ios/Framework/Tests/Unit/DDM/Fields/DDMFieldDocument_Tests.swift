@@ -232,7 +232,7 @@ class DDMFieldDocument_Tests: XCTestCase {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as! DDMFieldDocument
 
-		let json: [String:AnyObject] = [
+		let json: [String: AnyObject] = [
 			"groupId": 1234 as AnyObject,
 			"uuid": "abcd" as AnyObject,
 			"version": "1.0" as AnyObject,
@@ -256,7 +256,7 @@ class DDMFieldDocument_Tests: XCTestCase {
 
 		switch docField.uploadStatus {
 			case .uploaded(let uploadedAttributes):
-				let expectedJson: [String:AnyObject] = [
+				let expectedJson: [String: AnyObject] = [
 						"groupId": 1234 as AnyObject,
 						"uuid": "abcd" as AnyObject,
 						"version": "1.0" as AnyObject]

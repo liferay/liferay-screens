@@ -16,7 +16,7 @@ import UIKit
 @objc(DDLFormView_default)
 open class DDLFormView_default: DDLFormTableView {
 
-	override open var progressMessages: [String:ProgressMessages] {
+	override open var progressMessages: [String: ProgressMessages] {
 		return [
 			DDLFormScreenlet.LoadFormAction: [
 				.working: LocalizedString("default", key: "ddlform-loading-message", obj: self),

@@ -41,7 +41,7 @@ open class DDMFieldDate: DDMField {
 
 	// MARK: DDMField
 
-	override fileprivate init(attributes: [String:AnyObject], locale: Locale) {
+	override fileprivate init(attributes: [String: AnyObject], locale: Locale) {
 		super.init(attributes: attributes, locale: locale)
 	}
 
@@ -98,7 +98,7 @@ open class DDMFieldDate: DDMField {
 
 open class DDMFieldDate_v62: DDMFieldDate {
 
-	override public init(attributes: [String:AnyObject], locale: Locale) {
+	override public init(attributes: [String: AnyObject], locale: Locale) {
 		super.init(attributes: attributes, locale: locale)
 	}
 
@@ -121,7 +121,7 @@ open class DDMFieldDate_v62: DDMFieldDate {
 
 open class DDMFieldDate_v70: DDMFieldDate {
 
-	override public init(attributes: [String:AnyObject], locale: Locale) {
+	override public init(attributes: [String: AnyObject], locale: Locale) {
 		super.init(attributes: attributes, locale: locale)
 	}
 

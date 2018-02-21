@@ -29,7 +29,7 @@ open class Comment: NSObject, NSCoding {
 
 	fileprivate let AllowedTags = ["strong", "i", "b", "a"]
 
-	open let attributes: [String:AnyObject]
+	open let attributes: [String: AnyObject]
 
 	open var originalBody: String {
 		return attributes["body"]!.description
@@ -104,14 +104,14 @@ open class Comment: NSObject, NSCoding {
 
 	// MARK: Initializers
 
-	public init(attributes: [String:AnyObject]) {
+	public init(attributes: [String: AnyObject]) {
 		self.attributes = attributes
 
 		super.init()
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
-		self.attributes = aDecoder.decodeObject(forKey: "comment-attrs") as? [String:AnyObject] ?? [:]
+		self.attributes = aDecoder.decodeObject(forKey: "comment-attrs") as? [String: AnyObject] ?? [:]
 
 		super.init()
 	}

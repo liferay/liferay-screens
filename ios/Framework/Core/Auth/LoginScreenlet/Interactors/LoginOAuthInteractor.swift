@@ -17,7 +17,7 @@ import LRMobileSDK
 
 class LoginOAuthInteractor: Interactor, LRCallback {
 
-	var resultUserAttributes: [String:AnyObject]?
+	var resultUserAttributes: [String: AnyObject]?
 
 	let consumerKey: String
 
@@ -139,7 +139,7 @@ class LoginOAuthInteractor: Interactor, LRCallback {
 	}
 
 	func onSuccess(_ result: Any!) {
-		if let resultValue = result as? [String:AnyObject] {
+		if let resultValue = result as? [String: AnyObject] {
 			resultUserAttributes = resultValue
 
 			SessionContext.loginWithOAuth(

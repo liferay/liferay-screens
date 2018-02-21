@@ -16,8 +16,8 @@ import Foundation
 @objc(BlogsEntry)
 open class BlogsEntry: Asset {
 
-	open var blogsEntry: [String:AnyObject]? {
-		return attributes["object"]?["blogsEntry"] as? [String:AnyObject]
+	open var blogsEntry: [String: AnyObject]? {
+		return attributes["object"]?["blogsEntry"] as? [String: AnyObject]
 	}
 
 	open var blogId: Int64 {

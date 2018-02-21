@@ -16,7 +16,7 @@ import UIKit
 @objc(CredentialsStorage)
 open class CredentialsStorage: NSObject {
 
-	public typealias LoadResult = (session: LRSession, userAttributes: [String:AnyObject])
+	public typealias LoadResult = (session: LRSession, userAttributes: [String: AnyObject])
 
 	open let credentialsStore: CredentialsStore
 
@@ -35,7 +35,7 @@ open class CredentialsStorage: NSObject {
 		return CredentialsStorage(store: store)
 	}
 
-	open func store(session: LRSession?, userAttributes: [String:AnyObject]) -> Bool {
+	open func store(session: LRSession?, userAttributes: [String: AnyObject]) -> Bool {
 		if session == nil || userAttributes.isEmpty {
 			return false
 		}

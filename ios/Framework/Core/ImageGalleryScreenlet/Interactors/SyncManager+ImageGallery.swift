@@ -17,7 +17,7 @@ extension SyncManager {
 
 	func imageGallerySynchronizer(
 			_ key: String,
-			attributes: [String : AnyObject])
+			attributes: [String: AnyObject])
 			-> (@escaping Signal) -> Void {
 
 		return { signal in

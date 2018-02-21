@@ -26,7 +26,7 @@ public protocol SignUpScreenletDelegate: BaseScreenletDelegate {
 	///   - screenlet: Sign up screenlet instance.
 	///   - attributes: User attributes.
 	@objc optional func screenlet(_ screenlet: SignUpScreenlet,
-			onSignUpResponseUserAttributes attributes: [String:AnyObject])
+			onSignUpResponseUserAttributes attributes: [String: AnyObject])
 
 	/// Called when an error occurs in the process.
 	/// The NSError object describes the error.
@@ -158,8 +158,8 @@ open class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 		return interactor
 	}
 
-	fileprivate func doAutoLogin(_ userAttributes: [String:AnyObject]) {
-		let userNameKeys: [BasicAuthMethod:String] = [
+	fileprivate func doAutoLogin(_ userAttributes: [String: AnyObject]) {
+		let userNameKeys: [BasicAuthMethod: String] = [
 			.email: "emailAddress",
 			.screenName: "screenName",
 			.userId: "userId"

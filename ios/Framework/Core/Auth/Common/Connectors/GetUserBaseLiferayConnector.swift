@@ -15,7 +15,7 @@ import UIKit
 
 open class GetUserBaseLiferayConnector: ServerConnector {
 
-	open var resultUserAttributes: [String:AnyObject]?
+	open var resultUserAttributes: [String: AnyObject]?
 
 	open var userName: String?
 	open var password: String?

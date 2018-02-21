@@ -15,7 +15,7 @@ import UIKit
 
 open class AssetListPageLoadInteractor: BaseListPageLoadInteractor {
 
-	open var customEntryQuery: [String:AnyObject]?
+	open var customEntryQuery: [String: AnyObject]?
 
 	fileprivate let groupId: Int64
 
@@ -57,7 +57,7 @@ open class AssetListPageLoadInteractor: BaseListPageLoadInteractor {
 		return connector
 	}
 
-	override open func convertResult(_ serverResult: [String:AnyObject]) -> AnyObject {
+	override open func convertResult(_ serverResult: [String: AnyObject]) -> AnyObject {
 		guard let className = serverResult["className"] as? String else {
 			return Asset(attributes: serverResult)
 		}

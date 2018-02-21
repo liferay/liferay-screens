@@ -25,7 +25,7 @@ open class LoginCookieInteractor: Interactor, LRCallback {
 
 	open var cookieSession: LRSession?
 
-	open var resultUserAttributes: [String:AnyObject]?
+	open var resultUserAttributes: [String: AnyObject]?
 
 	// MARK: Initializers
 
@@ -71,7 +71,7 @@ open class LoginCookieInteractor: Interactor, LRCallback {
 	}
 
 	public func onSuccess(_ result: Any!) {
-		if let resultValue = result as? [String:AnyObject] {
+		if let resultValue = result as? [String: AnyObject] {
 			self.resultUserAttributes = resultValue
 
 			SessionContext.loginWithCookie(

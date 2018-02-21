@@ -147,7 +147,7 @@ open class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMode
 		return DefaultProgressPresenter()
 	}
 
-	override open var progressMessages: [String : ProgressMessages] {
+	override open var progressMessages: [String: ProgressMessages] {
 		return [
 			CommentDisplayScreenlet.DeleteAction: [.working: NoProgressMessage],
 			CommentDisplayScreenlet.UpdateAction: [.working: NoProgressMessage]

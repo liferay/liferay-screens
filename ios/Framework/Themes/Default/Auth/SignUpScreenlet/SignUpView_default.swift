@@ -32,7 +32,7 @@ open class SignUpView_default: BaseScreenletView, SignUpViewModel {
 
 	// MARK: BaseScreenletView
 
-	override open var progressMessages: [String:ProgressMessages] {
+	override open var progressMessages: [String: ProgressMessages] {
 		return [
 			"signup-action": [.working: LocalizedString("default", key: "signup-loading-message", obj: self),
 				.failure: LocalizedString("default", key: "signup-loading-error", obj: self)],

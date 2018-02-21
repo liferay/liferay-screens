@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 
 # Develop
 
+## iOS
+
+### Refactor
+* Remove swift style guide and use SwiftLint guide
+
 ##Xamarin
 
 ###Samples
