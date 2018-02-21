@@ -106,8 +106,4 @@ import UIKit
 			}
 		}
 	}
-
-	override func canBeCookieExpiredError(session: LRSession) -> Bool {
-		return false
-	}
 }
