@@ -22,6 +22,8 @@ open class LoginCookieInteractor: Interactor, LRCallback {
 	open let emailAddress: String
 	open let password: String
 	open let companyId: Int64
+	open let shouldHandleCookieExpiration: Bool
+	open let cookieExpirationTime: Double
 
 	open var cookieSession: LRSession?
 
@@ -30,11 +32,13 @@ open class LoginCookieInteractor: Interactor, LRCallback {
 	// MARK: Initializers
 
 	public init(screenlet: BaseScreenlet?, companyId: Int64 = LiferayServerContext.companyId,
-			emailAddress: String, password: String) {
+			emailAddress: String, password: String, shouldHandleCookieExpiration: Bool, cookieExpirationTime: Double) {
 
 		self.companyId = companyId
 		self.emailAddress = emailAddress
 		self.password = password
+		self.shouldHandleCookieExpiration = shouldHandleCookieExpiration
+		self.cookieExpirationTime = cookieExpirationTime
 
 		super.init(screenlet: screenlet)
 	}
@@ -62,7 +66,7 @@ open class LoginCookieInteractor: Interactor, LRCallback {
 			}
 		}
 
-		LRCookieSignIn.signIn(with: session, callback: callback, challenge: challenge)
+		_ = try? LRCookieSignIn.signIn(with: session, callback: callback, challenge: challenge)
 		return true
 	}
 
