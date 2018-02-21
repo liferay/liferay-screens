@@ -57,22 +57,22 @@ public func then(_ str: String, code: @escaping () -> Void, action: Action) {
 	doPrint("\(indentation)\(icons.then) Then \(str)")
 
 	switch action {
-		case .testAndWaitFor:
-			doPrint("ERROR: TestAndWaitFor is not supported with given.when.then. Use given.when.eventually instead")
-		case .skip:
-			doPrint("\(indentation)\(icons.skipped) SKIPPED")
-		case .pending:
-			doPrint("\(indentation)\(icons.pending) PENDING")
-		case .testNow:
-			do {
-				try ObjCTryCatch.catch {
-					code()
-				}
-				doPrint("\(indentation)\(icons.passed) PASSED")
+	case .testAndWaitFor:
+		doPrint("ERROR: TestAndWaitFor is not supported with given.when.then. Use given.when.eventually instead")
+	case .skip:
+		doPrint("\(indentation)\(icons.skipped) SKIPPED")
+	case .pending:
+		doPrint("\(indentation)\(icons.pending) PENDING")
+	case .testNow:
+		do {
+			try ObjCTryCatch.catch {
+				code()
 			}
-			catch {
-				doPrint("\(indentation)\(icons.failed) FAILED")
-			}
+			doPrint("\(indentation)\(icons.passed) PASSED")
+		}
+		catch {
+			doPrint("\(indentation)\(icons.failed) FAILED")
+		}
 	}
 }
 
@@ -81,69 +81,69 @@ public func eventually(_ str: String, _ code: @escaping (AnyObject?) -> Void, _ 
 	let indentation = currentIndentation()
 
 	switch action {
-		case .testAndWaitFor(let notificationName, let testCase):
-			if lastDoneEvent?.name == notificationName {
-				// already called "done"
+	case .testAndWaitFor(let notificationName, let testCase):
+		if lastDoneEvent?.name == notificationName {
+			// already called "done"
+			do {
+				try ObjCTryCatch.catch {
+					code(lastDoneEvent?.result)
+				}
+				doPrint("\(indentation)\(icons.passed) PASSED")
+			}
+			catch {
+				doPrint("\(indentation)\(icons.failed) FAILED")
+			}
+		}
+		else {
+			let expectation = testCase.expectation(description: "\(str)-\(Date().timeIntervalSince1970)")
+
+			var signaled = false
+
+			let observer = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: notificationName),
+					object: nil,
+					// why is this working using main queue?
+					queue: OperationQueue.main,
+					using: { notif in
+
 				do {
 					try ObjCTryCatch.catch {
-						code(lastDoneEvent?.result)
+						code(notif.object as AnyObject?)
 					}
+				}
+				catch {
+					doPrint("\(indentation)\(icons.failed) FAILED")
+				}
+
+				signaled = true
+				expectation.fulfill()
+			})
+
+			do {
+				doPrint("\(indentation)\(icons.eventually) Eventually \(str)")
+
+				try ObjCTryCatch.catch {
+					testCase.waitForExpectations(timeout: 5, handler: nil)
+				}
+
+				if signaled {
 					doPrint("\(indentation)\(icons.passed) PASSED")
 				}
-				catch {
-					doPrint("\(indentation)\(icons.failed) FAILED")
+				else {
+					doPrint("\(indentation)\(icons.failed) FAILED (timeout)")
 				}
 			}
-			else {
-				let expectation = testCase.expectation(description: "\(str)-\(Date().timeIntervalSince1970)")
-
-				var signaled = false
-
-				let observer = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: notificationName),
-						object: nil,
-						// why is this working using main queue?
-						queue: OperationQueue.main,
-						using: { notif in
-
-					do {
-						try ObjCTryCatch.catch {
-							code(notif.object as AnyObject?)
-						}
-					}
-					catch {
-						doPrint("\(indentation)\(icons.failed) FAILED")
-					}
-
-					signaled = true
-					expectation.fulfill()
-				})
-
-				do {
-					doPrint("\(indentation)\(icons.eventually) Eventually \(str)")
-
-					try ObjCTryCatch.catch {
-						testCase.waitForExpectations(timeout: 5, handler: nil)
-					}
-
-					if signaled {
-						doPrint("\(indentation)\(icons.passed) PASSED")
-					}
-					else {
-						doPrint("\(indentation)\(icons.failed) FAILED (timeout)")
-					}
-				}
-				catch {
-					doPrint("\(indentation)\(icons.failed) FAILED")
-				}
-
-				NotificationCenter.default.removeObserver(observer)
+			catch {
+				doPrint("\(indentation)\(icons.failed) FAILED")
 			}
 
-			lastDoneEvent = nil
-		default:
-			then(str, code: {
-				code(nil)
-			}, action: action)
+			NotificationCenter.default.removeObserver(observer)
+		}
+
+		lastDoneEvent = nil
+	default:
+		then(str, code: {
+			code(nil)
+		}, action: action)
 	}
 }
 

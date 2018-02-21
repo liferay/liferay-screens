@@ -146,7 +146,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 				}
 				and ("server returns failure") {
 					mockServer.stubService("get-user-by-email-address",
-							withResult:mockServer.loginFailedAuthentication())
+							withResult: mockServer.loginFailedAuthentication())
 				}
 			}
 			when ("the request is sent and the response is received") {

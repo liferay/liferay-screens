@@ -94,7 +94,7 @@ class DDMFieldDocument_Tests: XCTestCase {
 		let docField = fields![0] as! DDMFieldDocument
 
 		docField.currentValue = UIImage(contentsOfFile: testResourcePath("tinyImage", ext: "png"))
-		docField.uploadStatus = .failed(NSError(domain: "", code: 0, userInfo:nil))
+		docField.uploadStatus = .failed(NSError(domain: "", code: 0, userInfo: nil))
 
 		XCTAssertFalse(docField.validate())
 	}
@@ -255,17 +255,17 @@ class DDMFieldDocument_Tests: XCTestCase {
 		docField.currentValueAsString = json
 
 		switch docField.uploadStatus {
-			case .uploaded(let uploadedAttributes):
-				let expectedJson: [String: AnyObject] = [
-						"groupId": 1234 as AnyObject,
-						"uuid": "abcd" as AnyObject,
-						"version": "1.0" as AnyObject]
-				for (k, v) in expectedJson {
-					XCTAssertEqual("\(v)", "\(uploadedAttributes[k]!)")
-				}
+		case .uploaded(let uploadedAttributes):
+			let expectedJson: [String: AnyObject] = [
+					"groupId": 1234 as AnyObject,
+					"uuid": "abcd" as AnyObject,
+					"version": "1.0" as AnyObject]
+			for (k, v) in expectedJson {
+				XCTAssertEqual("\(v)", "\(uploadedAttributes[k]!)")
+			}
 
-			default:
-				XCTFail("Upload status is expected to be 'Uploaded'")
+		default:
+			XCTFail("Upload status is expected to be 'Uploaded'")
 		}
 	}
 
