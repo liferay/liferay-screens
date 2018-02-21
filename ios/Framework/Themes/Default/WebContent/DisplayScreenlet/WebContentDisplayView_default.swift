@@ -76,7 +76,7 @@ open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayVi
 		}
 		set {
 			let styledHtml = "<style>\(injectedCss ?? "")</style><div class=\"MobileCSS\">\(newValue ?? "")</div>"
-			webView!.loadHTMLString(styledHtml, baseURL: URL(string:LiferayServerContext.server))
+			webView!.loadHTMLString(styledHtml, baseURL: URL(string: LiferayServerContext.server))
 		}
 	}
 

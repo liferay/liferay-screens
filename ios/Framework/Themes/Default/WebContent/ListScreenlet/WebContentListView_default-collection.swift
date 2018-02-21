@@ -89,7 +89,7 @@ open class WebViewCell: UICollectionViewCell {
 		set {
 			let styledHtml = "<style>\(styles)</style><div class=\"MobileCSS\">\(newValue)</div>"
 
-			webView?.loadHTMLString(styledHtml, baseURL: URL(string:LiferayServerContext.server))
+			webView?.loadHTMLString(styledHtml, baseURL: URL(string: LiferayServerContext.server))
 		}
 	}
 
