@@ -11,7 +11,6 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-// swiftlint:disable file_length
 import UIKit
 import QuartzCore
 

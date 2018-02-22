@@ -141,14 +141,14 @@ open class UserPortraitScreenlet: BaseScreenlet {
 		}
 
 		switch name {
-			case UserPortraitScreenlet.LoadPortrait:
-				let downloadInteractor = sender as! DownloadUserPortraitInteractor
-				return createLoadPortraitInteractor(downloadInteractor)
-			case UserPortraitScreenlet.UploadPortrait:
-				let image = sender as! UIImage
-				return createUploadPortraitInteractor(image)
-			default:
-				return nil
+		case UserPortraitScreenlet.LoadPortrait:
+			let downloadInteractor = sender as! DownloadUserPortraitInteractor
+			return createLoadPortraitInteractor(downloadInteractor)
+		case UserPortraitScreenlet.UploadPortrait:
+			let image = sender as! UIImage
+			return createUploadPortraitInteractor(image)
+		default:
+			return nil
 		}
 	}
 

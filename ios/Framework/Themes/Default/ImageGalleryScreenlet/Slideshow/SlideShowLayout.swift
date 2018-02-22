@@ -86,7 +86,7 @@ open class SlideShowLayout: UICollectionViewFlowLayout {
 				x: proposedContentOffset.x,
 				y: 0,
 				width: collectionView!.bounds.width,
-				height:  collectionView!.bounds.width)
+				height: collectionView!.bounds.width)
 
 		let attributes = super.layoutAttributesForElements(in: targetRect)
 
@@ -131,7 +131,7 @@ open class SlideShowLayout: UICollectionViewFlowLayout {
 		}
 		else {
 			let frame = attributes.frame
-			let newFrame = CGRect(origin: CGPoint(x:frame.origin.x, y:frame.origin.y + 50), size: frame.size)
+			let newFrame = CGRect(origin: CGPoint(x: frame.origin.x, y: frame.origin.y + 50), size: frame.size)
 
 			attributes.alpha = 0.5
 			attributes.frame = newFrame

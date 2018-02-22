@@ -85,12 +85,12 @@ open class DDMField: NSObject, NSCoding {
 	internal(set) var showLabel: Bool
 
 	public init(attributes: [String: AnyObject], locale: Locale) {
-		dataType = DataType(rawValue: valueAsString(attributes, key:"dataType")) ?? .Unsupported
+		dataType = DataType(rawValue: valueAsString(attributes, key: "dataType")) ?? .Unsupported
 		editorType = Editor.from(attributes: attributes)
 
-		name = valueAsString(attributes, key:"name")
-		label = valueAsString(attributes, key:"label")
-		tip = valueAsString(attributes, key:"tip")
+		name = valueAsString(attributes, key: "name")
+		label = valueAsString(attributes, key: "label")
+		tip = valueAsString(attributes, key: "tip")
 
 		readOnly = Bool.from(any: attributes["readOnly"] ?? "false" as AnyObject)
 		repeatable = Bool.from(any: attributes["repeatable"] ?? "false" as AnyObject)
@@ -145,18 +145,18 @@ open class DDMField: NSObject, NSCoding {
 	}
 
 	open func encode(with aCoder: NSCoder) {
-		aCoder.encode(currentLocale, forKey:"currentLocale")
-		aCoder.encode(dataType.rawValue, forKey:"dataType")
-		aCoder.encode(editorType.rawValue, forKey:"editorType")
-		aCoder.encode(name, forKey:"name")
-		aCoder.encode(label, forKey:"label")
-		aCoder.encode(tip, forKey:"tip")
-		aCoder.encode(readOnly, forKey:"readOnly")
-		aCoder.encode(repeatable, forKey:"repeatable")
-		aCoder.encode(required, forKey:"required")
-		aCoder.encode(showLabel, forKey:"showLabel")
-		aCoder.encode(convert(fromCurrentValue: currentValue), forKey:"currentValue")
-		aCoder.encode(convert(fromCurrentValue: predefinedValue), forKey:"predefinedValue")
+		aCoder.encode(currentLocale, forKey: "currentLocale")
+		aCoder.encode(dataType.rawValue, forKey: "dataType")
+		aCoder.encode(editorType.rawValue, forKey: "editorType")
+		aCoder.encode(name, forKey: "name")
+		aCoder.encode(label, forKey: "label")
+		aCoder.encode(tip, forKey: "tip")
+		aCoder.encode(readOnly, forKey: "readOnly")
+		aCoder.encode(repeatable, forKey: "repeatable")
+		aCoder.encode(required, forKey: "required")
+		aCoder.encode(showLabel, forKey: "showLabel")
+		aCoder.encode(convert(fromCurrentValue: currentValue), forKey: "currentValue")
+		aCoder.encode(convert(fromCurrentValue: predefinedValue), forKey: "predefinedValue")
 	}
 
 	open func validate() -> Bool {

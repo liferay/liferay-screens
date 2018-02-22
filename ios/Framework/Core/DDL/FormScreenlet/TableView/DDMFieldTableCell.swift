@@ -119,24 +119,21 @@ open class DDMFieldTableCell: UITableViewCell {
 
 		if let currentTextInput = currentView as? UITextInput {
 			switch currentTextInput.returnKeyType! {
+			case .next:
+				if let nextCell = nextCell(indexPath!) {
+					if currentView.canResignFirstResponder {
+						currentView.resignFirstResponder()
 
-				case .next:
-					if let nextCell = nextCell(indexPath!) {
-						if currentView.canResignFirstResponder {
-							currentView.resignFirstResponder()
-
-							if nextCell.canBecomeFirstResponder {
-								result = nextCell.becomeFirstResponder()
-							}
-
+						if nextCell.canBecomeFirstResponder {
+							result = nextCell.becomeFirstResponder()
 						}
+
 					}
-
-				case .send:
-					formView?.userAction(name: DDLFormScreenlet.SubmitFormAction)
-					result = true
-
-				default: ()
+				}
+			case .send:
+				formView?.userAction(name: DDLFormScreenlet.SubmitFormAction)
+				result = true
+			default: ()
 			}
 		}
 

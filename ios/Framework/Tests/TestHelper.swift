@@ -28,8 +28,8 @@ func XCTAssertOptional(_ expression:  @autoclosure () -> AnyObject?, _ message: 
 }
 
 func testResourcePath(_ name: String, ext: String) -> String {
-	let bundle = Bundle(for:IntegrationTestCase.self)
-	let path = bundle.path(forResource: name, ofType:ext)
+	let bundle = Bundle(for: IntegrationTestCase.self)
+	let path = bundle.path(forResource: name, ofType: ext)
 
 	if let pathValue = path {
 		return pathValue

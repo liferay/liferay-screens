@@ -93,7 +93,7 @@ extension Bundle {
 	public class func bundleForNibName(_ name: String, currentClass: AnyClass) -> Bundle? {
 		return Bundle.allBundles(currentClass)
 			.filter {
-				$0.path(forResource: name, ofType:"nib") != nil
+				$0.path(forResource: name, ofType: "nib") != nil
 			}
 			.first
 	}

@@ -54,7 +54,7 @@ open class MBProgressHUDPresenter: NSObject, ProgressPresenter {
 		if message != nil {
 			dispatch_main {
 				if self.instance == nil {
-					self.instance = MBProgressHUD.showAdded(to: view, animated:true)
+					self.instance = MBProgressHUD.showAdded(to: view, animated: true)
 				}
 
 				self.configureAndShowHUD(self.instance!,
@@ -71,7 +71,7 @@ open class MBProgressHUDPresenter: NSObject, ProgressPresenter {
 	open func showHUDInView(_ view: UIView, message: String?, forInteractor interactor: Interactor) {
 		dispatch_main {
 			if self.instance == nil {
-				self.instance = MBProgressHUD.showAdded(to: view, animated:true)
+				self.instance = MBProgressHUD.showAdded(to: view, animated: true)
 			}
 
 			self.configureAndShowHUD(self.instance!,

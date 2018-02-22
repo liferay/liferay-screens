@@ -46,7 +46,6 @@ extension UIImageView {
 		})))
 
 		switch ImageCache.screensOfflinePolicy {
-
 		case CacheStrategyType.remoteOnly.rawValue:
 			var optionsInfoFinal = optionsInfo ?? []
 			optionsInfoFinal.append(.forceRefresh)
@@ -76,7 +75,7 @@ extension UIImageView {
 					})
 
 		case CacheStrategyType.cacheFirst.rawValue:
-			self.kf.setImage(with:URL, placeholder: placeholderImage, options: optionsInfo)
+			self.kf.setImage(with: URL, placeholder: placeholderImage, options: optionsInfo)
 
 		case CacheStrategyType.cacheOnly.rawValue:
 			var optionsInfoFinal = optionsInfo ?? []

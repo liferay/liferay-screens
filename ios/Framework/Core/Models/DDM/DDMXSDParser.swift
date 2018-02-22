@@ -46,7 +46,7 @@ open class DDMXSDParser {
 
 		if let elements = document.childrenNamed("dynamic-element") {
 			let defaultLocale = Locale(
-				identifier:document.attributeNamed("default-locale") ?? "en_US")
+				identifier: document.attributeNamed("default-locale") ?? "en_US")
 
 			result = []
 
@@ -68,7 +68,7 @@ open class DDMXSDParser {
 			defaultLocale: Locale)
 			-> DDMField? {
 
-		let dataType = DDMField.DataType.from(xmlElement:xmlElement)
+		let dataType = DDMField.DataType.from(xmlElement: xmlElement)
 
 		let localizedMetadata = processLocalizedMetadata(xmlElement,
 				locale: locale,
@@ -202,7 +202,7 @@ open class DDMXSDParser {
 		var resultElement: SMXMLElement?
 
 		if let metadataElement = findElementWithAttribute("locale",
-				value:locale.identifier, elements:metadataElements!) {
+				value: locale.identifier, elements: metadataElements!) {
 			// cases 'a1' and 'b1'
 
 			resultElement = metadataElement
@@ -210,8 +210,8 @@ open class DDMXSDParser {
 		else {
 			if currentCountryCode != nil {
 				if let metadataElement = findElementWithAttribute("locale",
-						value:currentLanguageCode,
-						elements:metadataElements!) {
+						value: currentLanguageCode,
+						elements: metadataElements!) {
 					// case 'a2'
 
 					resultElement = metadataElement
@@ -238,7 +238,7 @@ open class DDMXSDParser {
 			// Final fallback (a4, b3): find default metadata
 
 			resultElement = findElementWithAttribute("locale",
-				value:defaultLocale.identifier, elements:metadataElements!)
+				value: defaultLocale.identifier, elements: metadataElements!)
 		}
 
 		return resultElement

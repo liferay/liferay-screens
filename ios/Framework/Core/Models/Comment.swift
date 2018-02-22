@@ -99,7 +99,7 @@ open class Comment: NSObject, NSCoding {
 	}
 
 	open func encode(with aCoder: NSCoder) {
-		aCoder.encode(self.attributes, forKey:"comment-attrs")
+		aCoder.encode(self.attributes, forKey: "comment-attrs")
 	}
 
 	// MARK: Initializers

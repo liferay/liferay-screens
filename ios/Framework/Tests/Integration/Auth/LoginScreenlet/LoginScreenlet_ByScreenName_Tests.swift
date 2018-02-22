@@ -27,7 +27,7 @@ class LoginScreenlet_ByScreenName_Tests: BaseLoginScreenletTestCase {
 				}
 				and("server returns ok") {
 					mockServer.stubService("get-user-by-screen-name",
-							withResult:mockServer.loginOK())
+							withResult: mockServer.loginOK())
 				}
 			}
 			when("the request is sent and the response is received") {

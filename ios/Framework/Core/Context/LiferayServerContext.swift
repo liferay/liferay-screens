@@ -214,14 +214,14 @@ open class LiferayServerContext: NSObject {
 			let bundle = bundles[i]
 			i += 1
 
-			if let path = bundle.path(forResource: PlistFile, ofType:"plist") {
+			if let path = bundle.path(forResource: PlistFile, ofType: "plist") {
 				StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: path)
 				createFactory()
 				createConnectorFactory()
 				found = true
 			}
 			else {
-				if let path = bundle.path(forResource: PlistFileSample, ofType:"plist") {
+				if let path = bundle.path(forResource: PlistFileSample, ofType: "plist") {
 					StaticInstance.serverProperties = NSMutableDictionary(contentsOfFile: path)
 					createFactory()
 					createConnectorFactory()

@@ -27,7 +27,7 @@ open class ImageGalleryGridCell: UICollectionViewCell {
 		set {
 			previewImage?.lr_setImageWithURL(
 					URL(string: newValue)!,
-					placeholderImage:  placeholderImage,
+					placeholderImage: placeholderImage,
 					optionsInfo: [.backgroundDecode])
 		}
 	}

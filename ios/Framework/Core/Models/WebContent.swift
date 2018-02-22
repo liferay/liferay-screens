@@ -123,13 +123,13 @@ open class WebContent: Asset {
 
 	override open func encode(with aCoder: NSCoder) {
 		if let structure = self.structure {
-			aCoder.encode(structure, forKey:"webcontent-structure")
+			aCoder.encode(structure, forKey: "webcontent-structure")
 		}
 		if let structuredRecord = self.structuredRecord {
-			aCoder.encode(structuredRecord, forKey:"webcontent-structuredRecord")
+			aCoder.encode(structuredRecord, forKey: "webcontent-structuredRecord")
 		}
 		if let html = self.html {
-			aCoder.encode(html, forKey:"webcontent-html")
+			aCoder.encode(html, forKey: "webcontent-html")
 		}
 	}
 

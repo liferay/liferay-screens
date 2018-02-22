@@ -67,7 +67,7 @@ open class GetUserBaseLiferayConnector: ServerConnector {
 				resultUserAttributes = extractUserAttributes(result)
 			}
 		}
-		catch (let error as NSError) {
+		catch let error as NSError {
 			lastError = error
 			resultUserAttributes = nil
 		}

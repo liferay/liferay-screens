@@ -142,7 +142,7 @@ open class DDLRecord: NSObject, NSCoding {
 		if let untypedValues = untypedValues {
 			aCoder.encode(untypedValues, forKey: "untypedValues")
 		}
-		aCoder.encode(attributes, forKey:"attributes")
+		aCoder.encode(attributes, forKey: "attributes")
 	}
 
 	open func fieldBy(name: String) -> DDMField? {

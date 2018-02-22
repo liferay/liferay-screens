@@ -24,12 +24,12 @@ open class DDLFieldTextTableCell_default: DDLBaseFieldTextboxTableCell_default {
 			-> Bool {
 
 		let newText = (textField.text! as NSString).replacingCharacters(in: range,
-				with:string)
+																		with: string)
 
 		field!.currentValue = newText as AnyObject?
 
 		return super.textField(textField, shouldChangeCharactersIn: range,
-				replacementString: string)
+							   replacementString: string)
 	}
 
 	// MARK: UITextFieldDelegate
