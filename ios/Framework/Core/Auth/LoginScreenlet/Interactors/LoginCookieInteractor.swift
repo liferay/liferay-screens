@@ -52,14 +52,7 @@ open class LoginCookieInteractor: Interactor, LRCallback {
 
 		let session = LRSession(server: LiferayServerContext.server, authentication: cookieAuth)
 
-		let callback = LRCookieBlockCallback { (session, error) in
-			if let session = session {
-				self.onCookieSuccess(session)
-			}
-			else {
-				self.onCookieFailure(error)
-			}
-		}
+		let callback = LRBlockCookieCallback(success: self.onCookieSuccess, failure: self.onCookieFailure)
 
 		var challenge: ((URLAuthenticationChallenge?,
 				((URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void)?) -> Swift.Void)? = nil
