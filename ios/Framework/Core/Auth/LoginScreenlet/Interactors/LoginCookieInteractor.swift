@@ -54,11 +54,11 @@ open class LoginCookieInteractor: Interactor, LRCallback {
 		return true
 	}
 
-	public func onCookieFailure(_ error: Error!) {
+	public func onCookieFailure(_ error: Error) {
 		self.callOnFailure(error as NSError)
 	}
 
-	public func onSuccess(_ result: Any!) {
+	public func onSuccess(_ result: Any) {
 		if let resultValue = result as? [String: AnyObject] {
 			self.resultUserAttributes = resultValue
 
@@ -70,11 +70,11 @@ open class LoginCookieInteractor: Interactor, LRCallback {
 		}
 	}
 
-	public func onFailure(_ error: Error!) {
+	public func onFailure(_ error: Error) {
 		self.callOnFailure(error as NSError)
 	}
 
-	public func onCookieSuccess(_ session: LRSession!) {
+	public func onCookieSuccess(_ session: LRSession) {
 		cookieSession = session
 		session.callback = self
 

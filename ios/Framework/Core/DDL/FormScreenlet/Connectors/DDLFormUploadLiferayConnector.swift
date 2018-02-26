@@ -104,7 +104,7 @@ open class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFilePro
 
 	// MARK: LRFileProgressDelegate
 
-	open func onProgress(_ data: Data!, totalBytes: Int64) {
+	open func onProgress(_ data: Data, totalBytes: Int64) {
 		let totalBytesSent = UInt64(totalBytes)
 		let totalBytesToSend = UInt64(self.bytesToSend)
 
@@ -114,14 +114,14 @@ open class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFilePro
 
 	// MARK: LRCallback
 
-	open func onFailure(_ error: Error!) {
+	open func onFailure(_ error: Error) {
 		lastError = error as NSError
 		uploadResult = nil
 
 		requestSemaphore!.signal()
 	}
 
-	open func onSuccess(_ result: Any!) {
+	open func onSuccess(_ result: Any) {
 		lastError = nil
 		uploadResult = result as? [String: AnyObject]
 
