@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 
 ### Refactor
 * Remove swift style guide and use SwiftLint guide
+* Remove deprecated `LIFERAY_SCREENS_FRAMEWORK` macro definition
 
 ## Xamarin
 
