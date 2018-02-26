@@ -1,7 +1,5 @@
 package com.liferay.mobile.screens.base.interactor;
 
-import com.liferay.mobile.android.auth.CookieSignIn;
-import com.liferay.mobile.android.auth.basic.CookieAuthentication;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
 import com.liferay.mobile.screens.cache.executor.Executor;
@@ -16,7 +14,6 @@ import java.lang.reflect.ParameterizedType;
 public abstract class BaseInteractor<L, E extends BasicEvent> implements Interactor<L> {
 
 	protected L listener;
-	protected boolean retried;
 	private int targetScreenletId;
 	private String actionName;
 
@@ -28,33 +25,17 @@ public abstract class BaseInteractor<L, E extends BasicEvent> implements Interac
 		Executor.execute(new Runnable() {
 			@Override
 			public void run() {
-				doInBackground(args);
+				try {
+					E event = execute(args);
+					if (event != null) {
+						decorateBaseEvent(event);
+						EventBusUtil.post(event);
+					}
+				} catch (Exception e) {
+					createErrorEvent(e);
+				}
 			}
 		});
-	}
-
-	protected void doInBackground(Object... args) {
-		try {
-			E event = execute(args);
-			if (event != null) {
-				decorateBaseEvent(event);
-				EventBusUtil.post(event);
-			}
-		} catch (Exception e) {
-			if (!retried && isCookieSessionAndAuthenticationError(e)) {
-				retried = true;
-				try {
-					Session session = CookieSignIn.signIn(getSession());
-					SessionContext.createCookieSession(session);
-				} catch (Exception ex) {
-					createErrorEvent(ex);
-					return;
-				}
-				doInBackground(args);
-			} else {
-				createErrorEvent(e);
-			}
-		}
 	}
 
 	protected void createErrorEvent(Exception e) {
@@ -115,18 +96,6 @@ public abstract class BaseInteractor<L, E extends BasicEvent> implements Interac
 	protected void decorateBaseEvent(BasicEvent event) {
 		event.setTargetScreenletId(getTargetScreenletId());
 		event.setActionName(getActionName());
-	}
-
-	protected boolean isCookieSessionAndAuthenticationError(Exception e) {
-		if (!SessionContext.isLoggedIn()) {
-			return false;
-		}
-
-		return getSession().getAuthentication() instanceof CookieAuthentication
-			&& e != null
-			&& e.getMessage() != null
-			&& (e.getMessage().contains("Response code: 403") || e.getMessage()
-			.contains("Authenticated access required") || e.getMessage().contains("SecurityException"));
 	}
 
 	protected Session getSession() {
