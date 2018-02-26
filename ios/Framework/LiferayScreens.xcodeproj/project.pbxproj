@@ -86,7 +86,7 @@
 		0B2180341D6C508200A23690 /* DDMFieldString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180031D6C4F6F00A23690 /* DDMFieldString.swift */; };
 		0B2180351D6C508200A23690 /* DDMFieldStringWithOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180041D6C4F6F00A23690 /* DDMFieldStringWithOptions.swift */; };
 		0B2180361D6C508200A23690 /* DDMFieldUntyped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180051D6C4F6F00A23690 /* DDMFieldUntyped.swift */; };
-		0B2677DE1D3D1E5700FDFC5B /* BuildFile in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
+		0B2677DE1D3D1E5700FDFC5B /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
 		0B2C41541D5A3C7C00764326 /* ImageGalleryCollectionViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C41421D5A3C7C00764326 /* ImageGalleryCollectionViewBase.swift */; };
 		0B2C415F1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C414D1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift */; };
 		0B2C41631D5A3C7C00764326 /* UploadProgressView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C41511D5A3C7C00764326 /* UploadProgressView_default.xib */; };
@@ -470,8 +470,7 @@
 		0B7784611F95F60C001C9134 /* LRScreensassetentryService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E05451C6A4DB000CA3807 /* LRScreensassetentryService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784621F95F60C001C9134 /* LRScreensjournalarticleService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E055A1C6A4DF700CA3807 /* LRScreensjournalarticleService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784631F95F60C001C9134 /* LRScreensassetentryService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E05561C6A4DF700CA3807 /* LRScreensassetentryService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0B7784641F95F60C001C9134 /* LiferayScreensFrameworkConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 88DE2AA11AD3ED3B00714701 /* LiferayScreensFrameworkConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0B7784651F95F60C001C9134 /* BuildFile in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
+		0B7784651F95F60C001C9134 /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784661F95F60C001C9134 /* LRScreensjournalarticleService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E05491C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784671F95F60C001C9134 /* LRScreenscommentService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BFE28381D87E13300261A66 /* LRScreenscommentService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784691F95F60C001C9134 /* SignUpView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E61C71ACBFC3400862B9E /* SignUpView_default.xib */; };
@@ -998,7 +997,6 @@
 		88DE250F1AD2AB0A00714701 /* LiferayServerContext_Load_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE24FD1AD2AB0A00714701 /* LiferayServerContext_Load_Tests.swift */; };
 		88DE25101AD2AB0A00714701 /* SessionContext_Basic_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE24FE1AD2AB0A00714701 /* SessionContext_Basic_Tests.swift */; };
 		88DE25111AD2AB0A00714701 /* SessionContext_Storage_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE24FF1AD2AB0A00714701 /* SessionContext_Storage_Tests.swift */; };
-		88DE2AA21AD3ED6800714701 /* LiferayScreensFrameworkConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 88DE2AA11AD3ED3B00714701 /* LiferayScreensFrameworkConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		88E7909B1C6CA22A00C90453 /* ScreensFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AA42CA1C624A6E00AA97FB /* ScreensFactory.swift */; };
 		88E7909D1C6CA3A700C90453 /* LiferayConnectorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E7909C1C6CA3A700C90453 /* LiferayConnectorFactory.swift */; };
 		88E7909E1C6CA3A700C90453 /* LiferayConnectorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E7909C1C6CA3A700C90453 /* LiferayConnectorFactory.swift */; };
@@ -1504,7 +1502,6 @@
 		88DE24FD1AD2AB0A00714701 /* LiferayServerContext_Load_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayServerContext_Load_Tests.swift; sourceTree = "<group>"; };
 		88DE24FE1AD2AB0A00714701 /* SessionContext_Basic_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionContext_Basic_Tests.swift; sourceTree = "<group>"; };
 		88DE24FF1AD2AB0A00714701 /* SessionContext_Storage_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionContext_Storage_Tests.swift; sourceTree = "<group>"; };
-		88DE2AA11AD3ED3B00714701 /* LiferayScreensFrameworkConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LiferayScreensFrameworkConfig.h; sourceTree = "<group>"; };
 		88E7909C1C6CA3A700C90453 /* LiferayConnectorFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayConnectorFactory.swift; sourceTree = "<group>"; };
 		88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicCredentialsStoreKeyChain.swift; sourceTree = "<group>"; };
 		9136B139BF9449FC75DBECA6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2771,7 +2768,6 @@
 		8892C6951ACB2FDC00192232 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				88DE2AA11AD3ED3B00714701 /* LiferayScreensFrameworkConfig.h */,
 				887E05441C6A4DB000CA3807 /* v62 */,
 				887E05551C6A4DF700CA3807 /* v70 */,
 			);
@@ -3015,8 +3011,7 @@
 				0B7784611F95F60C001C9134 /* LRScreensassetentryService_v62.h in Headers */,
 				0B7784621F95F60C001C9134 /* LRScreensjournalarticleService_v70.h in Headers */,
 				0B7784631F95F60C001C9134 /* LRScreensassetentryService_v70.h in Headers */,
-				0B7784641F95F60C001C9134 /* LiferayScreensFrameworkConfig.h in Headers */,
-				0B7784651F95F60C001C9134 /* BuildFile in Headers */,
+				0B7784651F95F60C001C9134 /* (null) in Headers */,
 				0B7784661F95F60C001C9134 /* LRScreensjournalarticleService_v62.h in Headers */,
 				0B7784671F95F60C001C9134 /* LRScreenscommentService_v70.h in Headers */,
 			);
@@ -3035,8 +3030,7 @@
 				887E054D1C6A4DB000CA3807 /* LRScreensassetentryService_v62.h in Headers */,
 				887E069B1C6A4DF800CA3807 /* LRScreensjournalarticleService_v70.h in Headers */,
 				887E06971C6A4DF800CA3807 /* LRScreensassetentryService_v70.h in Headers */,
-				88DE2AA21AD3ED6800714701 /* LiferayScreensFrameworkConfig.h in Headers */,
-				0B2677DE1D3D1E5700FDFC5B /* BuildFile in Headers */,
+				0B2677DE1D3D1E5700FDFC5B /* (null) in Headers */,
 				887E05511C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h in Headers */,
 				0BFE283A1D87E13300261A66 /* LRScreenscommentService_v70.h in Headers */,
 			);
@@ -4540,7 +4534,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
-					"LIFERAY_SCREENS_FRAMEWORK=1",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -4552,7 +4545,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"LIFERAY_SCREENS_FRAMEWORK\"";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4594,7 +4587,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"LIFERAY_SCREENS_FRAMEWORK\"";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

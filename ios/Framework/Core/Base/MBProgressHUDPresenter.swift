@@ -12,10 +12,7 @@
  * details.
  */
 import Foundation
-
-#if LIFERAY_SCREENS_FRAMEWORK
-	import MBProgressHUD
-#endif
+import MBProgressHUD
 
 @objc public enum ProgressCloseMode: Int {
 	case manualClose

@@ -12,11 +12,7 @@
  * details.
  */
 import UIKit
-
-#if LIFERAY_SCREENS_FRAMEWORK
-	import LRMobileSDK
-	import KeychainAccess
-#endif
+import KeychainAccess
 
 @objc(BaseCredentialsStoreKeyChain)
 open class BaseCredentialsStoreKeyChain: NSObject, CredentialsStore {

@@ -12,10 +12,7 @@
  * details.
  */
 import Foundation
-
-#if LIFERAY_SCREENS_FRAMEWORK
-	import SMXMLDocument
-#endif
+import SMXMLDocument
 
 extension DDMField {
 

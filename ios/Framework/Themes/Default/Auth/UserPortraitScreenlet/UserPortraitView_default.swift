@@ -13,10 +13,6 @@
  */
 import UIKit
 
-#if LIFERAY_SCREENS_FRAMEWORK
-	import AFNetworking
-#endif
-
 // Global initial load
 private func loadPlaceholderCache(_ done: ((UIImage?) -> Void)? = nil) {
 	var image: UIImage?

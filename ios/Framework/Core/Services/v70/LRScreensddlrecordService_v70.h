@@ -11,12 +11,7 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-
-#ifdef LIFERAY_SCREENS_FRAMEWORK
-	@import LRMobileSDK;
-#else
-	#import "LRBaseService.h"
-#endif
+@import LRMobileSDK;
 
 /**
  * @author Bruno Farache

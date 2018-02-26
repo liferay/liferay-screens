@@ -12,11 +12,8 @@
  * details.
  */
 import UIKit
-
-#if LIFERAY_SCREENS_FRAMEWORK
-	import MDRadialProgress
-	import DTPickerPresenter
-#endif
+import MDRadialProgress
+import DTPickerPresenter
 
 @objc(DDLFieldDocumentlibraryTableCell_default)
 open class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableCell_default {

@@ -12,10 +12,7 @@
  * details.
  */
 import UIKit
-
-#if LIFERAY_SCREENS_FRAMEWORK
-	import CryptoSwift
-#endif
+import CryptoSwift
 
 class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
@@ -325,23 +322,14 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
 		func encodedSHA1(_ input: String) -> String? {
 			var result: String?
-#if LIFERAY_SCREENS_FRAMEWORK
-			if let inputData = input.data(using: .utf8,
-					allowLossyConversion: false) {
+
+			if let inputData = input.data(using: .utf8, allowLossyConversion: false) {
 
 				let resultBytes = CryptoSwift.Digest.sha1(inputData.bytes)
 				let resultData = Data(bytes: resultBytes)
 				result = LRHttpUtil.encodeURL(resultData.base64EncodedString())
 			}
-#else
-			var buffer = [UInt8](count: Int(CC_SHA1_DIGEST_LENGTH), repeatedValue: 0)
 
-			CC_SHA1(input, CC_LONG(count(input)), &buffer)
-			let data = Data(bytes: buffer, length: buffer.count)
-			let encodedString = data.base64EncodedString(options: .init(rawValue: 0))
-
-			result = LRHttpUtil.encodeURL(encodedString)
-#endif
 			return result
 		}
 
