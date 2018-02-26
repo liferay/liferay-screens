@@ -12,10 +12,7 @@
  * details.
  */
 import UIKit
-
-#if LIFERAY_SCREENS_FRAMEWORK
-	import LRMobileSDK
-#endif
+import LRMobileSDK
 
 @objc(CredentialsStore)
 public protocol CredentialsStore {

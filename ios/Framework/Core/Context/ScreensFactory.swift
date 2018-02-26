@@ -12,11 +12,7 @@
  * details.
  */
 import Foundation
-
-#if LIFERAY_SCREENS_FRAMEWORK
-	import LRMobileSDK
-	import LROAuth
-#endif
+import LROAuth
 
 @objc public protocol ScreensFactory {
 

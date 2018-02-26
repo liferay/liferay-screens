@@ -12,12 +12,8 @@
  * details.
  */
 import UIKit
-
-#if LIFERAY_SCREENS_FRAMEWORK
-	import LRMobileSDK
-	import LROAuth
-	import KeychainAccess
-#endif
+import LROAuth
+import KeychainAccess
 
 open class OAuthCredentialsStoreKeyChain: BaseCredentialsStoreKeyChain {
 
