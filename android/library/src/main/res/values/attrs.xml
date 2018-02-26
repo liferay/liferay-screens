@@ -163,6 +163,8 @@
 		<attr name="loginMode"/>
 		<attr format="string" name="oauthConsumerKey"/>
 		<attr format="string" name="oauthConsumerSecret"/>
+		<attr format="boolean" name="shouldHandleCookieExpiration"/>
+		<attr format="integer" name="cookieExpirationTime"/>
 	</declare-styleable>
 
 	<declare-styleable name="SignUpScreenlet">
