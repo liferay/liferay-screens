@@ -322,14 +322,14 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
 		func encodedSHA1(_ input: String) -> String? {
 			var result: String?
-			
+
 			if let inputData = input.data(using: .utf8, allowLossyConversion: false) {
-				
+
 				let resultBytes = CryptoSwift.Digest.sha1(inputData.bytes)
 				let resultData = Data(bytes: resultBytes)
 				result = LRHttpUtil.encodeURL(resultData.base64EncodedString())
 			}
-			
+
 			return result
 		}
 
