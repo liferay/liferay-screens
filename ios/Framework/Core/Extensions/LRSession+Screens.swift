@@ -16,12 +16,8 @@ import Foundation
 extension LRSession {
 
 	public var serverName: String? {
-		if let server = self.server {
-			return server.hasSuffix("/")
+		return server.hasSuffix("/")
 				? String(server.dropLast())
 				: server
-		}
-
-		return nil
 	}
 }
