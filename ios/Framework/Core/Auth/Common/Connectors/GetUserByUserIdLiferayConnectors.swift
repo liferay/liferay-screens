@@ -57,7 +57,7 @@ open class GetUserByUserIdLiferay62Connector: GetUserByUserIdLiferayConnector {
 
 			let service = LRUserService_v62(session: session)
 
-			return try service?.getUserById(withUserId: userId) as NSDictionary? ?? [:]
+			return try service.getUserById(withUserId: userId) as NSDictionary? ?? [:]
 	}
 
 }
@@ -77,7 +77,7 @@ open class GetUserByUserIdLiferay70Connector: GetUserByUserIdLiferayConnector {
 
 			let service = LRUserService_v7(session: session)
 
-			return try service?.getUserById(withUserId: userId) as NSDictionary? ?? [:]
+			return try service.getUserById(withUserId: userId) as NSDictionary? ?? [:]
 	}
 
 }

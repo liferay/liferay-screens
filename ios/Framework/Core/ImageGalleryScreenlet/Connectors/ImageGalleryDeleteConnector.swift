@@ -48,11 +48,10 @@ open class Liferay70ImageGalleryDeleteConnector: ImageGalleryDeleteConnector {
 	open override func doRun(session: LRSession) {
 		let service = LRDLAppService_v7(session: session)
 
-		var error: NSError?
-
-		service?.deleteFileEntry(withFileEntryId: imageEntryId, error: &error)
-
-		lastError = error
+		do {
+			try service.deleteFileEntry(withFileEntryId: imageEntryId)
+		} catch let error as NSError {
+			lastError = error
+		}
 	}
-
 }

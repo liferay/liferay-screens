@@ -59,27 +59,27 @@ open class Liferay62WebContentLoadStructuredConnector: WebContentLoadStructuredL
 		let batchSession = LRBatchSession(session: session)
 
 		let structureSrv = LRDDMStructureService_v62(session: batchSession)
-		_ = try? structureSrv?.getStructureWithStructureId(self.structureId)
+		_ = try? structureSrv.getStructureWithStructureId(self.structureId)
 
 		let journalArticleSrv = LRJournalArticleService_v62(session: batchSession)
-		_ = try? journalArticleSrv?.getArticleWithGroupId(self.groupId, articleId: self.articleId)
+		_ = try? journalArticleSrv.getArticleWithGroupId(self.groupId, articleId: self.articleId)
 
-		guard batchSession?.commands.count == 2 else {
+		guard batchSession.commands.count == 2 else {
 			return nil
 		}
 
 		do {
-			let results = try batchSession?.invoke()
-			guard results?.count == 2 else {
+			let results = try batchSession.invoke()
+			guard results.count == 2 else {
 				return nil
 			}
-			guard var structureResult = results?[0] as? [String: AnyObject] else {
+			guard var structureResult = results[0] as? [String: AnyObject] else {
 				return nil
 			}
 			guard let xsd = structureResult["xsd"] as? String else {
 				return nil
 			}
-			guard var articleResult = results?[1] as? [String: AnyObject] else {
+			guard var articleResult = results[1] as? [String: AnyObject] else {
 				return nil
 			}
 			guard let xmlContent = articleResult["content"] as? String else {
@@ -119,27 +119,27 @@ open class Liferay70WebContentLoadStructuredConnector: WebContentLoadStructuredL
 		let batchSession = LRBatchSession(session: session)
 
 		let structureSrv = LRDDMStructureService_v7(session: batchSession)
-		_ = try? structureSrv?.getStructureWithStructureId(self.structureId)
+		_ = try? structureSrv.getStructureWithStructureId(self.structureId)
 
 		let journalArticleSrv = LRJournalArticleService_v7(session: batchSession)
-		_ = try? journalArticleSrv?.getArticleWithGroupId(self.groupId, articleId: self.articleId)
+		_ = try? journalArticleSrv.getArticleWithGroupId(self.groupId, articleId: self.articleId)
 
-		guard batchSession?.commands.count == 2 else {
+		guard batchSession.commands.count == 2 else {
 			return nil
 		}
 
 		do {
-			let results = try batchSession?.invoke()
-			guard results?.count == 2 else {
+			let results = try batchSession.invoke()
+			guard results.count == 2 else {
 				return nil
 			}
-			guard var structureResult = results?[0] as? [String: AnyObject] else {
+			guard var structureResult = results[0] as? [String: AnyObject] else {
 				return nil
 			}
 			guard let json = structureResult["definition"] as? String else {
 				return nil
 			}
-			guard var articleResult = results?[1] as? [String: AnyObject] else {
+			guard var articleResult = results[1] as? [String: AnyObject] else {
 				return nil
 			}
 			guard let xmlContent = articleResult["content"] as? String else {

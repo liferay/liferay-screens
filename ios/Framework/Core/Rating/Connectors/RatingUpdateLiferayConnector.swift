@@ -66,7 +66,7 @@ open class Liferay70RatingUpdateConnector: RatingUpdateLiferayConnector {
 		let service = LRScreensratingsentryService_v70(session: session)
 
 		do {
-			let result = try service?.updateRatingsEntry(withClassPK: classPK,
+			let result = try service.updateRatingsEntry(withClassPK: classPK,
 					className: className, score: score, ratingsLength: ratingsGroupCount)
 
 			lastError = nil

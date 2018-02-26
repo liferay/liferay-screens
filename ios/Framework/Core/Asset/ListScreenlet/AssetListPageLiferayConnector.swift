@@ -89,14 +89,14 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 
 		let entryQueryWrapper = LRJSONObjectWrapper(jsonObject: entryQuery)
 
-		doGetPageRows(session: session, entryQuery: entryQueryWrapper!, obc: obc)
+		doGetPageRows(session: session, entryQuery: entryQueryWrapper, obc: obc)
 	}
 
 	override open func doAddRowCountServiceCall(session: LRBatchSession) {
 		let entryQuery = configureEntryQuery()
 		let entryQueryWrapper = LRJSONObjectWrapper(jsonObject: entryQuery)
 
-		doGetRowCount(session: session, entryQuery: entryQueryWrapper!)
+		doGetRowCount(session: session, entryQuery: entryQueryWrapper)
 	}
 
 	// MARK: Public methods
@@ -163,7 +163,7 @@ open class Liferay62AssetListPageConnector: AssetListPageLiferayConnector {
 	override open func doGetEntries(_ session: LRSession, rowCount: Int32) throws -> [[String: AnyObject]]? {
 		let service = LRScreensassetentryService_v62(session: session)
 
-		return try service?.getAssetEntries(withCompanyId: LiferayServerContext.companyId,
+		return try service.getAssetEntries(withCompanyId: LiferayServerContext.companyId,
 			groupId: groupId!,
 			portletItemName: portletItemName!,
 			locale: NSLocale.currentLocaleString,
@@ -174,7 +174,7 @@ open class Liferay62AssetListPageConnector: AssetListPageLiferayConnector {
 		do {
 			//TODO add obc to screens plugin
 			let service = LRScreensassetentryService_v62(session: session)
-			try service?.getAssetEntries(withAssetEntryQuery: entryQuery,
+			try service.getAssetEntries(withAssetEntryQuery: entryQuery,
 				locale: NSLocale.currentLocaleString)
 		}
 		catch _ as NSError {
@@ -184,7 +184,7 @@ open class Liferay62AssetListPageConnector: AssetListPageLiferayConnector {
 	override open func doGetRowCount(session: LRBatchSession, entryQuery: LRJSONObjectWrapper) {
 		do {
 			let service = LRAssetEntryService_v62(session: session)
-			try service?.getEntriesCount(withEntryQuery: entryQuery)
+			try service.getEntriesCount(withEntryQuery: entryQuery)
 		}
 		catch _ as NSError {
 		}
@@ -199,7 +199,7 @@ open class Liferay70AssetListPageConnector: AssetListPageLiferayConnector {
 	override open func doGetEntries(_ session: LRSession, rowCount: Int32) throws -> [[String: AnyObject]]? {
 		let service = LRScreensassetentryService_v70(session: session)
 
-		return try service?.getAssetEntries(withCompanyId: LiferayServerContext.companyId,
+		return try service.getAssetEntries(withCompanyId: LiferayServerContext.companyId,
 			groupId: groupId!,
 			portletItemName: portletItemName!,
 			locale: NSLocale.currentLocaleString,
@@ -214,7 +214,7 @@ open class Liferay70AssetListPageConnector: AssetListPageLiferayConnector {
 		do {
 			//TODO add obc to plugin
 			let service = LRScreensassetentryService_v70(session: session)
-			try service?.getAssetEntries(withAssetEntryQuery: entryQuery,
+			try service.getAssetEntries(withAssetEntryQuery: entryQuery,
 				locale: NSLocale.currentLocaleString)
 		}
 		catch _ as NSError {
@@ -224,7 +224,7 @@ open class Liferay70AssetListPageConnector: AssetListPageLiferayConnector {
 	override open func doGetRowCount(session: LRBatchSession, entryQuery: LRJSONObjectWrapper) {
 		do {
 			let service = LRAssetEntryService_v7(session: session)
-			try service?.getEntriesCount(withEntryQuery: entryQuery)
+			try service.getEntriesCount(withEntryQuery: entryQuery)
 		}
 		catch _ as NSError {
 		}

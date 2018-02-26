@@ -32,12 +32,8 @@ open class BasicCredentialsStoreKeyChain: BaseCredentialsStoreKeyChain {
 		let username = try? keychain.get("basicauth_username")
 		let password = try? keychain.get("basicauth_password")
 
-		if let username = username,
-				let password = password {
-
-			return LRBasicAuthentication(
-					username: username,
-					password: password)
+		if let username = username, let password = password {
+			return LRBasicAuthentication(username: username! ,password: password!)
 		}
 
 		return nil

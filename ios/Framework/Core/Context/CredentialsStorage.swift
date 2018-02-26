@@ -67,7 +67,7 @@ open class CredentialsStorage: NSObject {
 				server: LiferayServerContext.server,
 				authentication: loadedAuth)
 
-		return (loadedSession!, loadedUserAttributes)
+		return (loadedSession, loadedUserAttributes)
 	}
 
 }

@@ -37,7 +37,7 @@ open class PaginationLiferayConnector: ServerConnector {
 	// MARK: ServerConnector
 
 	override open func doRun(session: LRSession) {
-		let batchSession = LRBatchSession(session: session)!
+		let batchSession = LRBatchSession(session: session)
 
 		resultPageContent = nil
 		resultRowCount = nil

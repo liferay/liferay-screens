@@ -88,7 +88,7 @@ open class Liferay62WebContentLoadHtmlConnector: WebContentLoadHtmlLiferayConnec
 		let service = LRScreensjournalarticleService_v62(session: session)
 
 		do {
-			let result = try service?.getJournalArticleContent(withGroupId: groupId,
+			let result = try service.getJournalArticleContent(withGroupId: groupId,
 				articleId: articleId,
 			    ddmTemplateId: templateId,
 			    locale: NSLocale.currentLocaleString)
@@ -108,7 +108,7 @@ open class Liferay62WebContentLoadHtmlConnector: WebContentLoadHtmlLiferayConnec
 		let service = LRJournalArticleService_v62(session: session)
 
 		do {
-			let result = try service?.getArticleContent(withGroupId: groupId,
+			let result = try service.getArticleContent(withGroupId: groupId,
 				articleId: articleId,
 			    languageId: NSLocale.currentLocaleString,
 			    themeDisplay: nil)
@@ -136,7 +136,7 @@ open class Liferay70WebContentLoadHtmlConnector: WebContentLoadHtmlLiferayConnec
 		let service = LRScreensjournalarticleService_v70(session: session)
 
 		do {
-			let result = try service?.getJournalArticleContent(withGroupId: groupId,
+			let result = try service.getJournalArticleContent(withGroupId: groupId,
 				articleId: articleId,
 				ddmTemplateId: templateId,
 				locale: NSLocale.currentLocaleString)
@@ -156,7 +156,7 @@ open class Liferay70WebContentLoadHtmlConnector: WebContentLoadHtmlLiferayConnec
 		let service = LRJournalArticleService_v7(session: session)
 
 		do {
-			let result = try service?.getArticleContent(withGroupId: groupId,
+			let result = try service.getArticleContent(withGroupId: groupId,
 				articleId: articleId,
 			    languageId: NSLocale.currentLocaleString,
 				themeDisplay: nil)

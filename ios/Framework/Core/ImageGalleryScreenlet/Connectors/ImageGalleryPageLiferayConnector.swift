@@ -66,7 +66,7 @@ open class Liferay70ImageGalleryPageLiferayConnector: ImageGalleryPageLiferayCon
         let service = LRDLAppService_v7(session: session)
 
         do {
-            try service?.getFileEntries(withRepositoryId: repositoryId,
+            try service.getFileEntries(withRepositoryId: repositoryId,
 					folderId: folderId,
 					mimeTypes: mimeTypes,
 					start: Int32(startRow),
@@ -81,7 +81,7 @@ open class Liferay70ImageGalleryPageLiferayConnector: ImageGalleryPageLiferayCon
         let service = LRDLAppService_v7(session: session)
 
         do {
-            try service?.getFileEntriesCount(withRepositoryId: repositoryId,
+            try service.getFileEntriesCount(withRepositoryId: repositoryId,
 					folderId: folderId,
 					mimeTypes: mimeTypes)
         }

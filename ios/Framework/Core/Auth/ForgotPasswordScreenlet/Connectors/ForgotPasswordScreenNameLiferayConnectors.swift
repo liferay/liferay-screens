@@ -22,7 +22,7 @@ open class ForgotPasswordScreenNameLiferay62Connector: ForgotPasswordBaseLiferay
 
 		let service = LRScreensuserService_v62(session: session)
 
-		try service?.sendPasswordByScreenName(withCompanyId: companyId,
+		try service.sendPasswordByScreenName(withCompanyId: companyId,
 			screenName: viewModel.userName!)
 
 		return true
@@ -38,7 +38,7 @@ open class ForgotPasswordScreenNameLiferay70Connector: ForgotPasswordBaseLiferay
 
 		let service = LRUserService_v7(session: session)
 
-		try service?.sendPasswordByScreenName(withCompanyId: companyId,
+		try service.sendPasswordByScreenName(withCompanyId: companyId,
 			screenName: viewModel.userName!)
 
 		return true

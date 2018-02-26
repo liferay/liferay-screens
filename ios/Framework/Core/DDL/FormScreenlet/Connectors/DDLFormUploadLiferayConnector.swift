@@ -34,12 +34,12 @@ open class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFilePro
 
 	// MARK: Initializers
 
-	public init(
-			document: DDMFieldDocument,
-			filePrefix: String,
-			repositoryId: Int64,
-			folderId: Int64,
-			onProgress: OnProgress?) {
+	public init(document: DDMFieldDocument,
+				filePrefix: String,
+				repositoryId: Int64,
+				folderId: Int64,
+				onProgress: OnProgress?) {
+		
 		self.document = document
 		self.filePrefix = filePrefix
 		self.repositoryId = repositoryId
@@ -71,19 +71,24 @@ open class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFilePro
 		session.callback = self
 
 		let fileName = "\(filePrefix)\(UUID().uuidString)"
-		let stream = document.getStream(&bytesToSend)
-		let uploadData = LRUploadData(
-			inputStream: stream,
-			length: bytesToSend,
-			fileName: fileName,
-			mimeType: document.mimeType,
-			progressDelegate: self)
-		uploadData?.progressDelegate = self
+		
+		guard let stream = document.getStream(&bytesToSend) else {
+			lastError = NSError.errorWithCause(.abortedDueToPreconditions, message: "Document stream cannot be nil")
+			return
+		}
+		
+		let uploadData = LRUploadData(inputStream: stream,
+									  length: bytesToSend,
+									  fileName: fileName,
+									  mimeType: document.mimeType ?? "",
+									  progressDelegate: self)
+		
+		uploadData.progressDelegate = self
 
 		requestSemaphore = DispatchSemaphore(value: 0)
 
 		do {
-			try doSendFile(session, name: fileName, data: uploadData!)
+			try doSendFile(session, name: fileName, data: uploadData)
 		}
 		catch {
 			// ignore the error because this is an async call
@@ -132,7 +137,7 @@ open class Liferay62DDLFormUploadConnector: DDLFormUploadLiferayConnector {
 	override open func doSendFile(_ session: LRSession, name: String, data: LRUploadData) throws {
 		let service = LRDLAppService_v62(session: session)
 
-		try service?.addFileEntry(withRepositoryId: repositoryId,
+		try service.addFileEntry(withRepositoryId: repositoryId,
 			folderId: folderId,
 			sourceFileName: name,
 			mimeType: document.mimeType,
@@ -152,7 +157,7 @@ open class Liferay70DDLFormUploadConnector: DDLFormUploadLiferayConnector {
 	override open func doSendFile(_ session: LRSession, name: String, data: LRUploadData) throws {
 		let service = LRDLAppService_v7(session: session)
 
-		try service?.addFileEntry(withRepositoryId: repositoryId,
+		try service.addFileEntry(withRepositoryId: repositoryId,
 			folderId: folderId,
 			sourceFileName: name,
 			mimeType: document.mimeType,

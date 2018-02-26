@@ -26,7 +26,7 @@ open class ForgotPasswordUserIdLiferay62Connector: ForgotPasswordBaseLiferayConn
 
 		// TODO change plugin service to return integer code instead of boolean.
 		// Xcode transpiler is messing it up.
-		try service?.sendPasswordByUserId(withUserId: userId)
+		try service.sendPasswordByUserId(withUserId: userId)
 
 		return true
 	}
@@ -45,7 +45,7 @@ open class ForgotPasswordUserIdLiferay70Connector: ForgotPasswordBaseLiferayConn
 
 		// TODO change plugin service to return integer code instead of boolean.
 		// Xcode transpiler is messing it up.
-		try service?.sendPasswordByUserId(withUserId: userId)
+		try service.sendPasswordByUserId(withUserId: userId)
 
 		return true
 	}

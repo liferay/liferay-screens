@@ -75,7 +75,7 @@ open class Liferay70ImageGalleryUploadConnector: ImageGalleryUploadConnector {
 		let service = LRDLAppService_v7(session: session)
 
 		let serviceContext = LRJSONObjectWrapper(jsonObject: ["addGuestPermissions": true])
-		try service?.addFileEntry(withRepositoryId: repositoryId,
+		try service.addFileEntry(withRepositoryId: repositoryId,
 				folderId: folderId,
 			 	sourceFileName: fileName,
 			 	mimeType: mimeType,

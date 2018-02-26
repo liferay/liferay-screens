@@ -80,8 +80,8 @@ open class Liferay62DDLFormRecordLoadConnector: DDLFormRecordLoadLiferayConnecto
 	override open func getRecord(_ session: LRSession, recordId: Int64, locale: String) throws -> [NSObject: AnyObject] {
 		let service = LRScreensddlrecordService_v62(session: session)
 
-		return try service!.getDdlRecord(withDdlRecordId: recordId,
-		locale: NSLocale.currentLocaleString) as [NSObject: AnyObject]
+		return try service.getDdlRecord(withDdlRecordId: recordId,
+		locale: NSLocale.currentLocaleString) as! [NSObject: AnyObject]
 	}
 
 }
@@ -93,7 +93,7 @@ open class Liferay70DDLFormRecordLoadConnector: DDLFormRecordLoadLiferayConnecto
 	override open func getRecord(_ session: LRSession, recordId: Int64, locale: String) throws ->  [NSObject: AnyObject] {
 		let service = LRScreensddlrecordService_v70(session: session)
 
-		return try service!.getDdlRecord(withDdlRecordId: recordId,
+		return try service.getDdlRecord(withDdlRecordId: recordId,
 			locale: NSLocale.currentLocaleString) as [NSObject: AnyObject]
 	}
 

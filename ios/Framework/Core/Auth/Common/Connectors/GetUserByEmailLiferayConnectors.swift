@@ -61,7 +61,7 @@ open class GetUserByEmailLiferay62Connector: GetUserByEmailLiferayConnector {
 
 			let service = LRUserService_v62(session: session)
 
-			return try service?.getUserByEmailAddress(withCompanyId: companyId,
+			return try service.getUserByEmailAddress(withCompanyId: companyId,
 				emailAddress: emailAddress) as NSDictionary? ?? [:]
 	}
 
@@ -84,7 +84,7 @@ open class GetUserByEmailLiferay70Connector: GetUserByEmailLiferayConnector {
 
 			let service = LRUserService_v7(session: session)
 
-			return try service?.getUserByEmailAddress(withCompanyId: companyId,
+			return try service.getUserByEmailAddress(withCompanyId: companyId,
 				emailAddress: emailAddress) as NSDictionary? ?? [:]
 	}
 
