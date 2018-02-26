@@ -209,7 +209,8 @@ public class SessionContext {
 		if (authentication instanceof CookieAuthentication) {
 			CookieAuthentication cookieAuthentication = (CookieAuthentication) authentication;
 			return new LoginCookieInteractor().execute(cookieAuthentication.getUsername(),
-				cookieAuthentication.getPassword(), cookieAuthenticator);
+				cookieAuthentication.getPassword(), cookieAuthenticator, cookieAuthentication.shouldHandleExpiration(),
+				cookieAuthentication.getCookieExpirationTime());
 		} else if (authentication instanceof OAuthAuthentication) {
 			OAuth oAuthAuthentication = (OAuth) authentication;
 			LoginOAuthInteractor oauthInteractor = new LoginOAuthInteractor();
