@@ -330,14 +330,6 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 				result = LRHttpUtil.encodeURL(resultData.base64EncodedString())
 			}
 			
-			var buffer = [UInt8](count: Int(CC_SHA1_DIGEST_LENGTH), repeatedValue: 0)
-			
-			CC_SHA1(input, CC_LONG(count(input)), &buffer)
-			let data = Data(bytes: buffer, length: buffer.count)
-			let encodedString = data.base64EncodedString(options: .init(rawValue: 0))
-			
-			result = LRHttpUtil.encodeURL(encodedString)
-			
 			return result
 		}
 
