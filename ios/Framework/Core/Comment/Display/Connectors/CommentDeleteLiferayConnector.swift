@@ -49,7 +49,8 @@ open class Liferay70CommentDeleteConnector: CommentDeleteLiferayConnector {
 
 		do {
 			try service.deleteComment(withCommentId: commentId)
-		} catch let error as NSError {
+		}
+		catch let error as NSError {
 			lastError = error
 		}
 	}

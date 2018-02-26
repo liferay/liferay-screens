@@ -50,7 +50,8 @@ open class Liferay70ImageGalleryDeleteConnector: ImageGalleryDeleteConnector {
 
 		do {
 			try service.deleteFileEntry(withFileEntryId: imageEntryId)
-		} catch let error as NSError {
+		}
+		catch let error as NSError {
 			lastError = error
 		}
 	}

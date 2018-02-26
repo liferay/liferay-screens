@@ -39,7 +39,7 @@ open class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFilePro
 				repositoryId: Int64,
 				folderId: Int64,
 				onProgress: OnProgress?) {
-		
+
 		self.document = document
 		self.filePrefix = filePrefix
 		self.repositoryId = repositoryId
@@ -71,18 +71,18 @@ open class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFilePro
 		session.callback = self
 
 		let fileName = "\(filePrefix)\(UUID().uuidString)"
-		
+
 		guard let stream = document.getStream(&bytesToSend) else {
 			lastError = NSError.errorWithCause(.abortedDueToPreconditions, message: "Document stream cannot be nil")
 			return
 		}
-		
+
 		let uploadData = LRUploadData(inputStream: stream,
 									  length: bytesToSend,
 									  fileName: fileName,
 									  mimeType: document.mimeType ?? "",
 									  progressDelegate: self)
-		
+
 		uploadData.progressDelegate = self
 
 		requestSemaphore = DispatchSemaphore(value: 0)

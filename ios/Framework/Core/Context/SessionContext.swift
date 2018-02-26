@@ -142,7 +142,7 @@ open class SessionContext: NSObject {
 									 callback: LRCookieBlockCallback) {
 
 		let currentAttrs = SessionContext.currentContext?.user.attributes ?? [:]
-		
+
 		_ = try? LRCookieSignIn.signIn(with: session!, callback: LRCookieBlockCallback { session, error in
 			SessionContext.loginWithCookie(authentication: session!.authentication as! LRCookieAuthentication,
 				userAttributes: currentAttrs)

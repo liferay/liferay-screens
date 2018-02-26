@@ -122,8 +122,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 			userHasDefaultPortrait = false
 		}
 		else if c.lastError == nil,
-			let getUserConnector =
-				(c as? ServerConnectorChain)?.currentConnector as? GetUserBaseLiferayConnector {
+			let c = (c as? ServerConnectorChain)?.currentConnector as? GetUserBaseLiferayConnector {
 
 			// If the current connector is not a HttpConnector and its not errored
 			// we are in the case that the user doesn't have a custom portrait

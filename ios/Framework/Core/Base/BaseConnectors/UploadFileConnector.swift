@@ -80,13 +80,13 @@ open class UploadFileConnector: ServerConnector, LRCallback, LRFileProgressDeleg
 		}
 
 		session.callback = self
-		
+
 		let uploadData = LRUploadData(inputStream: inputStream!,
 									  length: bytesToSend!,
 									  fileName: fileName,
 									  mimeType: mimeType,
 									  progressDelegate: self)
-		
+
 		uploadData.progressDelegate = self
 
 		requestSemaphore = DispatchSemaphore(value: 0)

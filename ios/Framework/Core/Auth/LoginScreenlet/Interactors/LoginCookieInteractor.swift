@@ -50,7 +50,7 @@ open class LoginCookieInteractor: Interactor, LRCallback {
 		let session = LRSession(server: LiferayServerContext.server, authentication: cookieAuth)
 		let callback = LRBlockCookieCallback(success: self.onCookieSuccess, failure: self.onCookieFailure)
 		_ = try? LRCookieSignIn.signIn(with: session, callback: callback, challenge: SessionContext.challengeResolver)
-		
+
 		return true
 	}
 
