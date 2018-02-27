@@ -16,7 +16,7 @@ import KeychainAccess
 
 open class CookieCredentialsStoreKeyChain: BaseCredentialsStoreKeyChain {
 
-	enum KeyChainKeys : String {
+	enum KeyChainKeys: String {
 		case cookieUsernameKey = "cookie_username"
 		case cookiePasswordKey = "cookie_password"
 		case cookieAuthTokenKey = "cookie_authToken"
