@@ -45,11 +45,6 @@ Pod::Spec.new do |s|
 		'LiferayScreens-default' => 'ios/Framework/Themes/Default/**/*.{xib,png,plist,lproj}'
 	}
 	
-	s.xcconfig = {
-		'GCC_PREPROCESSOR_DEFINITIONS' => 'LIFERAY_SCREENS_FRAMEWORK=1',
-		'OTHER_SWIFT_FLAGS' => '"-D" "LIFERAY_SCREENS_FRAMEWORK"'
-	}
-
 	# Core
 	s.dependency 'Liferay-iOS-SDK', '~> 7.0.9'
 	s.dependency 'Liferay-OAuth', '~> 1.2.0'
