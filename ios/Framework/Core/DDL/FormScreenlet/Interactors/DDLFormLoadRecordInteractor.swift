@@ -170,10 +170,9 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 
 			// load form and record
 
-			cacheManager.getSomeWithAttributes(
-					collection: ScreenletName(DDLFormScreenlet.self),
-					keys: ["structureId-\(String(describing: structureId))", "recordId-\(recordId)"]) {
-						objects, attributes in
+			cacheManager.getSomeWithAttributes(collection: ScreenletName(DDLFormScreenlet.self),
+											   keys: ["structureId-\(String(describing: structureId))",
+												"recordId-\(recordId)"]) { objects, attributes in
 
 				if let recordForm = objects[0] as? DDLRecord,
 						let recordUserId = attributes[0]?["userId"]?.int64Value,

@@ -461,7 +461,7 @@ open class ImageGalleryScreenlet: BaseListScreenlet {
 			return foundView
 		}
 
-		print("ERROR: Xib file doesn't found for \(String(describing:uploadDetailViewName))" +
+		print("ERROR: Xib file doesn't found for \(String(describing: uploadDetailViewName))" +
 			"and theme '\(String(describing: themeName))'\n")
 
 		return nil
