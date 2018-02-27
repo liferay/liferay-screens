@@ -123,8 +123,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 			userHasDefaultPortrait = false
 		}
 		else if c.lastError == nil,
-			let getUserConnector =
-				(c as? ServerConnectorChain)?.currentConnector as? GetUserBaseLiferayConnector {
+				(c as? ServerConnectorChain)?.currentConnector is GetUserBaseLiferayConnector {
 
 			// If the current connector is not a HttpConnector and its not errored
 			// we are in the case that the user doesn't have a custom portrait
@@ -156,7 +155,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 			cacheManager.setClean(
 				collection: ScreenletName(UserPortraitScreenlet.self),
 				key: "\(mode.cacheKey)",
-				value: user.attributes as NSCoding,
+				value: userAttributesToSave as NSCoding,
 				attributes: mode.cacheAttributes)
 		}
 	}
@@ -280,11 +279,9 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
 	fileprivate func createConnectorFor(attributes: [String: AnyObject]?) -> ServerConnector? {
 		let portraitEntry = attributes?["portraitId"]
-		let userEntry = attributes?["userId"]
 		if let attributes = attributes,
 				let portraitId = portraitEntry?.int64Value,
-				let uuid = attributes["uuid"] as? String,
-				let userId = userEntry?.int64Value {
+				let uuid = attributes["uuid"] as? String {
 
 			return createConnectorFor(
 				portraitId: portraitId,

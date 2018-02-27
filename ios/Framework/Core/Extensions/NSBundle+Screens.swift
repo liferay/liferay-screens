@@ -38,7 +38,7 @@ extension Bundle {
 			let screensPrefix = "LiferayScreens"
 			let bundleName = (($0.bundleIdentifier ?? "") as NSString).pathExtension
 
-			return bundleName.characters.count > screensPrefix.characters.count
+			return bundleName.count > screensPrefix.count
 					&& bundleName.hasPrefix(screensPrefix)
 		}
 	}
@@ -80,8 +80,8 @@ extension Bundle {
 			let coreBundle = bundlesForCore()[0]
 
 			if let range = coreBundle.resourcePath?.range(of: "Debug-iphonesimulator"),
-					let path = coreBundle.resourcePath?.substring(to: range.upperBound),
-					let appName = appFile(path),
+					let path = coreBundle.resourcePath?[..<range.upperBound],
+					let appName = appFile(String(path)),
 					let appBundle = Bundle(path: (path as NSString).appendingPathComponent(appName)) {
 				return [Bundle.main, appBundle]
 			}

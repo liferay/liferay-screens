@@ -25,17 +25,17 @@ open class BlogsEntryDisplayView_westeros: BlogsEntryDisplayView_default {
 		ratingScreenlet?.loadRatings()
 	}
 
-	open override class func defaultAttributedTextAttributes() -> [String: NSObject] {
+	open override class func defaultAttributedTextAttributes() -> [NSAttributedStringKey: NSObject] {
 		let paragrahpStyle = NSMutableParagraphStyle()
 		paragrahpStyle.lineBreakMode = .byWordWrapping
 
-		var attributes: [String: NSObject] = [NSParagraphStyleAttributeName: paragrahpStyle]
+		var attributes: [NSAttributedStringKey: NSObject] = [.paragraphStyle: paragrahpStyle]
 
 		let font = UIFont(name: "HelveticaNeue", size: 17)
 
 		if let font = font {
-			attributes[NSFontAttributeName] = font
-			attributes[NSForegroundColorAttributeName] = UIColor.white
+			attributes[.font] = font
+			attributes[.foregroundColor] = UIColor.white
 		}
 
 		return attributes

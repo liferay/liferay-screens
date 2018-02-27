@@ -16,6 +16,7 @@ import Foundation
 @objc(DDMFieldStringWithOptions)
 open class DDMFieldStringWithOptions: DDMField {
 
+	@objc(Option)
 	open class Option: NSObject, NSCoding {
 
 		open var label: String

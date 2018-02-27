@@ -15,6 +15,7 @@ import Foundation
 import LROAuth
 
 @objc(SessionContext)
+@objcMembers
 open class SessionContext: NSObject {
 
 	open static var currentContext: SessionContext?

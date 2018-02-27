@@ -30,7 +30,7 @@ open class AudioDisplayScreenlet: FileDisplayScreenlet {
 
 	override open var supportedMimeTypes: [String] {
 
-		return (mimeTypes.isEmpty) ? DefaultAudioMimeTypes : mimeTypes.characters.split(separator: ",")
+		return (mimeTypes.isEmpty) ? DefaultAudioMimeTypes : mimeTypes.split(separator: ",")
 			.map(String.init)
 	}
 

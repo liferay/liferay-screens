@@ -21,17 +21,17 @@ open class CommentDisplayView_westeros: CommentDisplayView_default {
 		return WesterosCardProgressPresenter(screenlet: self.screenlet)
 	}
 
-	override open class func defaultAttributedTextAttributes() -> [String: NSObject] {
+	override open class func defaultAttributedTextAttributes() -> [NSAttributedStringKey: NSObject] {
 		let paragrahpStyle = NSMutableParagraphStyle()
 		paragrahpStyle.lineBreakMode = .byWordWrapping
 
-		var attributes: [String: NSObject] = [NSParagraphStyleAttributeName: paragrahpStyle]
+		var attributes: [NSAttributedStringKey: NSObject] = [.paragraphStyle: paragrahpStyle]
 
 		let font = UIFont(name: "HelveticaNeue", size: 17)
  
 		if let font = font {
-			attributes[NSForegroundColorAttributeName] = UIColor.white
-			attributes[NSFontAttributeName] = font
+			attributes[.foregroundColor] = UIColor.white
+			attributes[.font] = font
 		}
 
 		return attributes

@@ -104,7 +104,7 @@ open class DefaultTextField: UITextField {
 		self.layer.borderColor = defaultColor.cgColor
 	}
 
-	internal func rightButtonClick() {
+	@objc internal func rightButtonClick() {
 		onRightButtonClick?()
 	}
 

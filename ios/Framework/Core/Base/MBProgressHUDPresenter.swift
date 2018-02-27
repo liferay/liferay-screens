@@ -36,7 +36,7 @@ open class MBProgressHUDPresenter: NSObject, ProgressPresenter {
 	open var customColor: UIColor?
 	open var customOpacity = Float(0.8)
 
-	internal dynamic func simpleTapDetected(_ recognizer: UIGestureRecognizer!) {
+	@objc internal func simpleTapDetected(_ recognizer: UIGestureRecognizer!) {
 		if let hud = recognizer.view as? MBProgressHUD {
 			hud.hide(true)
 			instance = nil
@@ -122,8 +122,8 @@ open class MBProgressHUDPresenter: NSObject, ProgressPresenter {
 
 		if closeMode == .autoclose_TouchClosable {
 			// compute autodelay based on text's length
-			let len = (hud.labelText ?? "").characters.count
-				+ (hud.detailsLabelText ?? "").characters.count
+			let len = (hud.labelText ?? "").count
+				+ (hud.detailsLabelText ?? "").count
 
 			let closeDelay = 1.5 + (Double(len) * 0.01)
 

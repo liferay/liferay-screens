@@ -67,13 +67,13 @@ open class ImageUploadDetailViewController_default: UIViewController {
 		imageUploadDetailview!.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 	}
 
-	open func startUploadClick() {
+	@objc open func startUploadClick() {
 		dismiss(animated: true) {
 			self.imageUploadDetailview?.startUpload()
 		}
 	}
 
-	open func cancelClick() {
+	@objc open func cancelClick() {
 		dismiss(animated: true) {}
 	}
 }

@@ -14,6 +14,7 @@
 import UIKit
 
 @objc(Interactor)
+@objcMembers
 open class Interactor: NSObject {
 
 	open var actionName: String?

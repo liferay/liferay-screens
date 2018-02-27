@@ -330,7 +330,7 @@ open class DDLFormTableView: DDLFormView,
 				return cell
 			}
 			else {
-				print("ERROR: Cell XIB \(themedNibName) couldn't be registered (no root view?)\n")
+				print("ERROR: Cell XIB \(String(describing: themedNibName)) couldn't be registered (no root view?)\n")
 			}
 		}
 

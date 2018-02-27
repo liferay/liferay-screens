@@ -17,6 +17,7 @@ import UIKit
  * BaseScreenletView is the base class from which all Screenlet's View classes must inherit.
  */
 @objc(BaseScreenletView)
+@objcMembers
 open class BaseScreenletView: UIView, UITextFieldDelegate {
 
 	open weak var screenlet: BaseScreenlet?

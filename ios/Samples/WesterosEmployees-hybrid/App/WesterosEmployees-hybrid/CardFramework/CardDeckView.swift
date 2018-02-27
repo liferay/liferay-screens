@@ -90,6 +90,7 @@ import PureLayout
 ///
 ///    cardDeck.addCards(["Top card", "Middle card", "Bottom card"])
 ///
+@objcMembers
 open class CardDeckView: UIView, CardDelegate {
 
 	//Default configuration constants

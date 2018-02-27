@@ -14,13 +14,13 @@
 import Foundation
 
 @objc(Comment)
+@objcMembers
 open class Comment: NSObject, NSCoding {
 
 	open static func plainBodyToHtml(_ plainBody: String) -> String {
 		return plainBody
 			.replacingOccurrences(of: "<", with: "&lt;")
 			.replacingOccurrences(of: ">", with: "&gt;")
-			.characters
 			.split(separator: "\n")
 			.map(String.init)
 			.map { "<p>\($0)</p>" }

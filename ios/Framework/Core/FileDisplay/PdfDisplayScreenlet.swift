@@ -30,7 +30,7 @@ open class PdfDisplayScreenlet: FileDisplayScreenlet {
 	override open var supportedMimeTypes: [String] {
 
 		return (mimeTypes.isEmpty) ? DefaultPdfMimeTypes :
-				mimeTypes.characters.split(separator: ",").map(String.init)
+				mimeTypes.split(separator: ",").map(String.init)
 	}
 
 }

@@ -87,11 +87,11 @@ open class HttpDownloadConnector: ServerConnector {
 
 	fileprivate func fileExtension(_ response: URLResponse?) -> String {
 
-		if let ext = response?.suggestedFilename?.characters.split(separator: ".").map(String.init).last {
+		if let ext = response?.suggestedFilename?.split(separator: ".").map(String.init).last {
 			return ext
 		}
 
-		if let ext = response?.mimeType?.characters.split(separator: "/").map(String.init)[1] {
+		if let ext = response?.mimeType?.split(separator: "/").map(String.init)[1] {
 			return ext
 		}
 

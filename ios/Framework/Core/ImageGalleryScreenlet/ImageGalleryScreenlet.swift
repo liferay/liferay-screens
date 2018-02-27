@@ -461,13 +461,14 @@ open class ImageGalleryScreenlet: BaseListScreenlet {
 			return foundView
 		}
 
-		print("ERROR: Xib file doesn't found for \(uploadDetailViewName) and theme '\(themeName)'\n")
+		print("ERROR: Xib file doesn't found for \(String(describing: uploadDetailViewName))" +
+			"and theme '\(String(describing: themeName))'\n")
 
 		return nil
 	}
 
 	internal func parseMimeTypes(_ mimeTypes: String) -> [String] {
-		return mimeTypes.characters.split(separator: ",").map(String.init)
+		return mimeTypes.split(separator: ",").map(String.init)
 	}
 
 }

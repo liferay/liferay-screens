@@ -14,6 +14,7 @@
 import Foundation
 
 @objc(DDMField)
+@objcMembers
 open class DDMField: NSObject, NSCoding {
 
 	open var onPostValidation: ((Bool) -> Void)?

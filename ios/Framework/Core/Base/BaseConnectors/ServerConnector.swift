@@ -13,7 +13,9 @@
  */
 import UIKit
 
-@objc open class ServerConnector: Operation {
+@objc(ServerConnector)
+@objcMembers
+open class ServerConnector: Operation {
 
 	fileprivate struct ConnectorsQueue {
 

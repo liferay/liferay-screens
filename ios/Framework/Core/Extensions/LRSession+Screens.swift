@@ -18,7 +18,7 @@ extension LRSession {
 	public var serverName: String? {
 		if let server = self.server {
 			return server.hasSuffix("/")
-				? String(server.characters.dropLast())
+				? String(server.dropLast())
 				: server
 		}
 

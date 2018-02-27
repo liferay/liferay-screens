@@ -54,7 +54,9 @@ import Foundation
 
 public typealias OfflineSynchronizer = (String, [String: AnyObject]) -> (@escaping Signal) -> Void
 
-@objc open class SyncManager: NSObject {
+@objc(SyncManager)
+@objcMembers
+open class SyncManager: NSObject {
 
 	open weak var delegate: SyncManagerDelegate?
 

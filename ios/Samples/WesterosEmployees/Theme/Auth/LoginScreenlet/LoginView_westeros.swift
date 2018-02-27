@@ -28,11 +28,11 @@ open class LoginView_westeros: LoginView_default {
 	override open func onShow() {
 		userNameField!.attributedPlaceholder = NSAttributedString(
 				string: userNameField!.placeholder!,
-				attributes: [NSForegroundColorAttributeName : UIColor.white])
+				attributes: [.foregroundColor : UIColor.white])
 
 		passwordField!.attributedPlaceholder = NSAttributedString(
 				string: passwordField!.placeholder!,
-				attributes: [NSForegroundColorAttributeName : UIColor.white])
+				attributes: [.foregroundColor : UIColor.white])
 	}
 
 	override open func onSetDefaultDelegate(_ delegate:AnyObject, view:UIView) -> Bool {

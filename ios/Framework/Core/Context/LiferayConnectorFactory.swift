@@ -717,7 +717,7 @@ open class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			computeRowCount: Bool,
 			repositoryId: Int64,
 			folderId: Int64,
-			mimeTypes: [String]) -> ImageGalleryPageLiferayConnector {
+			mimeTypes: [String]) -> ImageGalleryPageLiferayConnector? {
 		return Liferay70ImageGalleryPageLiferayConnector(startRow: startRow,
 			endRow: endRow,
 			computeRowCount: computeRowCount,
@@ -735,7 +735,7 @@ open class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			descrip: String,
 			changeLog: String,
 			image: UIImage,
-			onUploadBytes: ImageGalleryUploadConnector.OnProgress?) -> ImageGalleryUploadConnector {
+			onUploadBytes: ImageGalleryUploadConnector.OnProgress?) -> ImageGalleryUploadConnector? {
 
 		return Liferay70ImageGalleryUploadConnector(repositoryId: repositoryId, folderId: folderId,
 			sourceFileName: sourceFileName,

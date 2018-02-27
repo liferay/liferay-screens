@@ -100,7 +100,7 @@ open class ImageUploadDetailView_default: ImageUploadDetailViewBase, UITextViewD
 		textView.layer.borderColor = UIColor.lightGray.cgColor
 	}
 
-	open func dismissKeyboard() {
+	@objc open func dismissKeyboard() {
 		guard let descripText = descripText, let titleText = titleText else {
 			return
 		}
@@ -114,7 +114,7 @@ open class ImageUploadDetailView_default: ImageUploadDetailViewBase, UITextViewD
 
 	// MARK: Notifications
 
-	open func keyboardWillShow(_ notification: Notification) {
+	@objc open func keyboardWillShow(_ notification: Notification) {
 
 		let keyboardHeight =
 			(notification.userInfo![UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.height
@@ -128,7 +128,7 @@ open class ImageUploadDetailView_default: ImageUploadDetailViewBase, UITextViewD
 		scroll.setContentOffset(bottomOffset, animated: true)
 	}
 
-	open func keyboardWillHide(_ notification: Notification) {
+	@objc open func keyboardWillHide(_ notification: Notification) {
 		let keyboardHeight =
 			(notification.userInfo![UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.height
 

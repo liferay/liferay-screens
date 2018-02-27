@@ -16,6 +16,7 @@ import UIKit
 private let xibName = "CommentEditViewController_default"
 
 @objc(CommentEditViewController_default)
+@objcMembers
 open class CommentEditViewController_default: UIViewController, UITextViewDelegate {
 
 	// MARK: Outlets

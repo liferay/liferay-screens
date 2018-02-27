@@ -7,9 +7,12 @@ All notable changes to this project will be documented in this file.
 
 ## iOS
 
+* Updated to Swift 4
+
 ### Refactor
 * Remove swift style guide and use SwiftLint guide
 * Remove deprecated `LIFERAY_SCREENS_FRAMEWORK` macro definition
+* Fix Liferay Screens warnings
 
 ## Xamarin
 

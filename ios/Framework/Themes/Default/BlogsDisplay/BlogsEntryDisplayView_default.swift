@@ -105,16 +105,16 @@ open class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewMod
 				.toHtmlTextWithAttributes(type(of: self).defaultAttributedTextAttributes())
 	}
 
-	open class func defaultAttributedTextAttributes() -> [String: NSObject] {
+	open class func defaultAttributedTextAttributes() -> [NSAttributedStringKey: NSObject] {
 		let paragrahpStyle = NSMutableParagraphStyle()
 		paragrahpStyle.lineBreakMode = .byWordWrapping
 
-		var attributes: [String: NSObject] = [NSParagraphStyleAttributeName: paragrahpStyle]
+		var attributes: [NSAttributedStringKey: NSObject] = [.paragraphStyle: paragrahpStyle]
 
 		let font = UIFont(name: "HelveticaNeue", size: 17)
 
 		if let font = font {
-			attributes[NSFontAttributeName] = font
+			attributes[.font] = font
 		}
 
 		return attributes

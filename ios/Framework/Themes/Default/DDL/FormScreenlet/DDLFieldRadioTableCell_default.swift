@@ -151,7 +151,7 @@ open class DDLFieldRadioTableCell_default: DDMFieldTableCell {
 		return data
 	}
 
-	open dynamic func radioButtonSelected(_ notification: Notification) {
+	@objc open dynamic func radioButtonSelected(_ notification: Notification) {
 		if let stringField = field as? DDMFieldStringWithOptions {
 			stringField.currentValue = radioGroup!.selectedRadioButton!.data.labelText as AnyObject?
 

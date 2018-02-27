@@ -59,7 +59,7 @@ open class DDLFieldNumberTableCell_default: DDLBaseFieldTextboxTableCell_default
 			field!.currentValue = NSDecimalNumber(value: 0 as Double)
 		}
 
-		stepper?.value = Double(field!.currentValue as! NSNumber)
+		stepper?.value = Double(truncating: field!.currentValue as! NSNumber)
 
 		return super.textField(textField,
 				shouldChangeCharactersIn: range,
