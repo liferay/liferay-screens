@@ -12,17 +12,25 @@
  * details.
  */
 
-package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields;
+package com.liferay.mobile.screens.viewsets.events.ddl.form.fields;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.EditText;
+import android.view.View;
+import android.widget.TextView;
+import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.model.StringField;
+
+;
 
 /**
  * @author Silvio Santos
  */
-public class DDLFieldTextView extends BaseDDLFieldTextView<StringField> {
+public class DDLFieldTextView
+	extends com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldTextView {
+
+	private View requiredAsteriskView;
+	private TextView errorMessageView;
 
 	public DDLFieldTextView(Context context) {
 		super(context);
@@ -37,18 +45,29 @@ public class DDLFieldTextView extends BaseDDLFieldTextView<StringField> {
 	}
 
 	@Override
-	protected void onTextChanged(String text) {
-		getField().setCurrentValue(text);
-	}
+	protected void onFinishInflate() {
+		super.onFinishInflate();
 
+		requiredAsteriskView = findViewById(R.id.required_asterisk);
+		errorMessageView = (TextView) findViewById(R.id.error_message);
+	}
 
 	@Override
 	public void setField(StringField field) {
 		super.setField(field);
 
-		EditText editText = getTextEditText();
-		if (getField().isReadOnly()) {
-			editText.setVisibility(GONE);
-		}
+		requiredAsteriskView.setVisibility(field.isRequired() ? VISIBLE : GONE);
+	}
+
+	@Override
+	public void onPostValidation(boolean valid) {
+
+		textEditText.setBackgroundResource(
+			valid ? R.drawable.default_edit_text_selector : R.drawable.error_edit_text_selector);
+
+		String errorText = valid ? null : getResources().getString(com.liferay.mobile.screens.R.string.required_value);
+
+		errorMessageView.setVisibility(valid ? GONE : VISIBLE);
+		errorMessageView.setText(errorText);
 	}
 }

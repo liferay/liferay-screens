@@ -54,22 +54,6 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		super();
 	}
 
-	public String getVisibilityExpression() {
-		return visibilityExpression;
-	}
-
-	public void setVisibilityExpression(String visibilityExpression) {
-		this.visibilityExpression = visibilityExpression;
-	}
-
-	public String getDdmDataProviderInstance() {
-		return ddmDataProviderInstance;
-	}
-
-	public void setDdmDataProviderInstance(String ddmDataProviderInstance) {
-		this.ddmDataProviderInstance = ddmDataProviderInstance;
-	}
-
 	public Field(Map<String, Object> attributes, Locale currentLocale, Locale defaultLocale) {
 		this.currentLocale = currentLocale;
 		this.defaultLocale = defaultLocale;
@@ -251,6 +235,30 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	@Override
 	public int describeContents() {
 		return 0;
+	}
+
+	public Map<String, Object> getAttributes() {
+		return attributes;
+	}
+
+	public void setAttributes(Map<String, Object> attributes) {
+		this.attributes = attributes;
+	}
+
+	public String getVisibilityExpression() {
+		return visibilityExpression;
+	}
+
+	public void setVisibilityExpression(String visibilityExpression) {
+		this.visibilityExpression = visibilityExpression;
+	}
+
+	public String getDdmDataProviderInstance() {
+		return ddmDataProviderInstance;
+	}
+
+	public void setDdmDataProviderInstance(String ddmDataProviderInstance) {
+		this.ddmDataProviderInstance = ddmDataProviderInstance;
 	}
 
 	@Override

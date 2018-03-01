@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="checkbox_events">
+		<item name="android:padding">@dimen/default_edit_text_padding</item>
+		<item name="android:textColor">@color/colorAccent_default</item>
+		<item name="android:theme">?attr/theme</item>
+		<item name="android:textSize">14sp</item>
+	</style>
+
+	<style name="red_theme" parent="Theme.AppCompat.Light.NoActionBar">
+		<item name="colorPrimary">@color/clear_red_default</item>
+		<item name="colorAccent">@color/clear_red_default</item>
+
+		<item name="colorControlNormal">@color/clear_red_default</item>
+		<item name="colorControlHighlight">@color/clear_red_default</item>
+		<item name="colorControlActivated">@color/clear_red_default</item>
+
+
+		<item name="themeName">default_theme</item>
+	</style>
+
+</resources>

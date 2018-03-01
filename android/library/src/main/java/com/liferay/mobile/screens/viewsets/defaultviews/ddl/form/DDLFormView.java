@@ -30,6 +30,8 @@ import com.liferay.mobile.screens.ddl.form.view.DDLFormViewModel;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
+import com.liferay.mobile.screens.ddl.model.StringField;
+import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 import java.util.HashMap;
@@ -114,16 +116,20 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 		for (int i = 0; i < fieldsContainerView.getChildCount(); i++) {
 			View fieldView = fieldsContainerView.getChildAt(i);
 			DDLFieldViewModel fieldViewModel = (DDLFieldViewModel) fieldView;
-			boolean isFieldValid = fieldResults.get(fieldViewModel.getField());
 
-			fieldView.clearFocus();
+			if (fieldResults.containsKey(fieldViewModel.getField())) {
 
-			fieldViewModel.onPostValidation(isFieldValid);
+				boolean isFieldValid = fieldResults.get(fieldViewModel.getField());
 
-			if (!isFieldValid && autoscroll && !scrolled) {
-				fieldView.requestFocus();
-				smoothScrollTo(0, fieldView.getTop());
-				scrolled = true;
+				fieldView.clearFocus();
+
+				fieldViewModel.onPostValidation(isFieldValid);
+
+				if (!isFieldValid && autoscroll && !scrolled) {
+					fieldView.requestFocus();
+					smoothScrollTo(0, fieldView.getTop());
+					scrolled = true;
+				}
 			}
 		}
 	}
@@ -222,14 +228,35 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 		fieldsContainerView.removeAllViews();
 		fieldsContainerView.setVisibility(INVISIBLE);
 
-		for (int i = 0; i < record.getFieldCount(); ++i) {
-			addFieldView(record.getField(i), i);
+		int position = 0;
+
+		for (Record.Page page : record.getPages()) {
+
+			createPageTitle(page);
+
+			for (Field field : page.getFields()) {
+				addFieldView(field, position);
+				position++;
+			}
 		}
 
 		int visibility = getDDLFormScreenlet().isUpdateEnabled() ? VISIBLE : GONE;
 		submitButton.setVisibility(visibility);
 
 		DefaultAnimation.showViewWithReveal(fieldsContainerView);
+	}
+
+	private void createPageTitle(Record.Page page) {
+		HashMap<String, Object> attributes = new HashMap<>();
+		attributes.put("label", page.getDescription());
+		attributes.put("name", page.getDescription());
+		attributes.put("showLabel", true);
+		attributes.put("type", Field.EditorType.TEXT.getValue());
+		attributes.put("dataType", Field.DataType.STRING.getValue());
+		attributes.put("readOnly", true);
+		StringField titlePage =
+			new StringField(attributes, LiferayLocale.getDefaultLocale(), LiferayLocale.getDefaultLocale());
+		addFieldView(titlePage, 0);
 	}
 
 	@Override

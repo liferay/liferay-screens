@@ -384,5 +384,9 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
 		public String getTitle() {
 			return title;
 		}
+
+		public String getDescription() {
+			return description;
+		}
 	}
 }
