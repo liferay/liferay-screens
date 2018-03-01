@@ -86,7 +86,7 @@
 		0B2180341D6C508200A23690 /* DDMFieldString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180031D6C4F6F00A23690 /* DDMFieldString.swift */; };
 		0B2180351D6C508200A23690 /* DDMFieldStringWithOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180041D6C4F6F00A23690 /* DDMFieldStringWithOptions.swift */; };
 		0B2180361D6C508200A23690 /* DDMFieldUntyped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180051D6C4F6F00A23690 /* DDMFieldUntyped.swift */; };
-		0B2677DE1D3D1E5700FDFC5B /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
+		0B2677DE1D3D1E5700FDFC5B /* BuildFile in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
 		0B2C41541D5A3C7C00764326 /* ImageGalleryCollectionViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C41421D5A3C7C00764326 /* ImageGalleryCollectionViewBase.swift */; };
 		0B2C415F1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C414D1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift */; };
 		0B2C41631D5A3C7C00764326 /* UploadProgressView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C41511D5A3C7C00764326 /* UploadProgressView_default.xib */; };
@@ -466,7 +466,7 @@
 		0B7784611F95F60C001C9134 /* LRScreensassetentryService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E05451C6A4DB000CA3807 /* LRScreensassetentryService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784621F95F60C001C9134 /* LRScreensjournalarticleService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E055A1C6A4DF700CA3807 /* LRScreensjournalarticleService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784631F95F60C001C9134 /* LRScreensassetentryService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E05561C6A4DF700CA3807 /* LRScreensassetentryService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0B7784651F95F60C001C9134 /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
+		0B7784651F95F60C001C9134 /* BuildFile in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784661F95F60C001C9134 /* LRScreensjournalarticleService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E05491C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784671F95F60C001C9134 /* LRScreenscommentService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BFE28381D87E13300261A66 /* LRScreenscommentService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784691F95F60C001C9134 /* SignUpView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E61C71ACBFC3400862B9E /* SignUpView_default.xib */; };
@@ -2986,7 +2986,7 @@
 				0B7784611F95F60C001C9134 /* LRScreensassetentryService_v62.h in Headers */,
 				0B7784621F95F60C001C9134 /* LRScreensjournalarticleService_v70.h in Headers */,
 				0B7784631F95F60C001C9134 /* LRScreensassetentryService_v70.h in Headers */,
-				0B7784651F95F60C001C9134 /* (null) in Headers */,
+				0B7784651F95F60C001C9134 /* BuildFile in Headers */,
 				0B7784661F95F60C001C9134 /* LRScreensjournalarticleService_v62.h in Headers */,
 				0B7784671F95F60C001C9134 /* LRScreenscommentService_v70.h in Headers */,
 			);
@@ -3005,7 +3005,7 @@
 				887E054D1C6A4DB000CA3807 /* LRScreensassetentryService_v62.h in Headers */,
 				887E069B1C6A4DF800CA3807 /* LRScreensjournalarticleService_v70.h in Headers */,
 				887E06971C6A4DF800CA3807 /* LRScreensassetentryService_v70.h in Headers */,
-				0B2677DE1D3D1E5700FDFC5B /* (null) in Headers */,
+				0B2677DE1D3D1E5700FDFC5B /* BuildFile in Headers */,
 				887E05511C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h in Headers */,
 				0BFE283A1D87E13300261A66 /* LRScreenscommentService_v70.h in Headers */,
 			);
@@ -3505,7 +3505,6 @@
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/Cordova/Cordova.framework",
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
-				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/DTPickerPresenter/DTPickerPresenter.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -3525,7 +3524,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cordova.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTPickerPresenter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
