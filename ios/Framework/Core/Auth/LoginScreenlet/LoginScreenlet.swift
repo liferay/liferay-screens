@@ -86,6 +86,13 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 	/// Specifies the Consumer Secret to use in OAuth authentication.
 	@IBInspectable open var OAuthConsumerSecret: String = ""
 
+	/// Specifies if the system should handle the cookie expiration.
+	/// If true, the cookie will be refreshed when its about to expire
+	@IBInspectable open var shouldHandleCookieExpiration: Bool = true
+
+	/// Specifies the cookie expiration time. In Minutes
+	@IBInspectable open var cookieExpirationTime: Double = 1 * 60
+
 	/// The Screenlet’s authentication type. You can set this attribute to basic, oauth, or cookie. 
 	/// If you don’t set this attribute, the Screenlet defaults to basic authentication.
 	@IBInspectable open var loginMode: String = "login" {
@@ -208,7 +215,9 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 	fileprivate func createLoginCookieInteractor() -> LoginCookieInteractor {
 		let interactor = LoginCookieInteractor(screenlet: self,
 				emailAddress: viewModel.userName ?? "",
-				password: viewModel.password ?? "")
+				password: viewModel.password ?? "",
+				shouldHandleCookieExpiration: shouldHandleCookieExpiration,
+				cookieExpirationTime: cookieExpirationTime)
 
 		interactor.onSuccess = {
 			self.loginDelegate?.screenlet?(self,

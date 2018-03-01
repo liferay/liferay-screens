@@ -22,6 +22,8 @@ open class LoginCookieInteractor: Interactor, LRCallback {
 	open let emailAddress: String
 	open let password: String
 	open let companyId: Int64
+	open let shouldHandleCookieExpiration: Bool
+	open let cookieExpirationTime: Double
 
 	open var cookieSession: LRSession?
 
@@ -30,27 +32,27 @@ open class LoginCookieInteractor: Interactor, LRCallback {
 	// MARK: Initializers
 
 	public init(screenlet: BaseScreenlet?, companyId: Int64 = LiferayServerContext.companyId,
-			emailAddress: String, password: String) {
+			emailAddress: String, password: String, shouldHandleCookieExpiration: Bool, cookieExpirationTime: Double) {
 
 		self.companyId = companyId
 		self.emailAddress = emailAddress
 		self.password = password
+		self.shouldHandleCookieExpiration = shouldHandleCookieExpiration
+		self.cookieExpirationTime = cookieExpirationTime
 
 		super.init(screenlet: screenlet)
 	}
 
 	open override func start() -> Bool {
-		let basicAuth = LRBasicAuthentication(username: emailAddress, password: password)
-		let session = LRSession(server: LiferayServerContext.server, authentication: basicAuth)
+		let cookieAuth = LRCookieAuthentication(authToken: "", cookieHeader: "",
+			username: emailAddress, password: password)!
 
-		let callback = LRCookieBlockCallback { (session, error) in
-			if let session = session {
-				self.onCookieSuccess(session)
-			}
-			else {
-				self.onCookieFailure(error)
-			}
-		}
+		cookieAuth.shouldHandleExpiration = shouldHandleCookieExpiration
+		cookieAuth.cookieExpirationTime = cookieExpirationTime
+
+		let session = LRSession(server: LiferayServerContext.server, authentication: cookieAuth)
+
+		let callback = LRBlockCookieCallback(success: self.onCookieSuccess, failure: self.onCookieFailure)
 
 		var challenge: ((URLAuthenticationChallenge?,
 				((URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void)?) -> Swift.Void)? = nil
@@ -62,7 +64,7 @@ open class LoginCookieInteractor: Interactor, LRCallback {
 			}
 		}
 
-		LRCookieSignIn.signIn(with: session, callback: callback, challenge: challenge)
+		_ = try? LRCookieSignIn.signIn(with: session, callback: callback, challenge: challenge)
 		return true
 	}
 

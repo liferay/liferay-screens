@@ -159,7 +159,7 @@ open class SessionContext: NSObject {
 		return session!
 	}
 
-	open class func reloadCookieAuth(session: LRSession? = nil, callback: LRCookieBlockCallback) {
+	open class func reloadCookieAuth(session: LRSession? = nil, callback: LRBlockCookieCallback) {
 		var session = session
 		if session == nil {
 			session = SessionContext.currentContext?.createRequestSession()
@@ -176,18 +176,15 @@ open class SessionContext: NSObject {
 			}
 		}
 
-		LRCookieSignIn.signIn(with: session, callback: LRCookieBlockCallback { session, error in
+		let callback = LRBlockCookieCallback(success: { session in
+			SessionContext.loginWithCookie(authentication: session!.authentication as! LRCookieAuthentication,
+				userAttributes: currentAttrs)
+			callback.onSuccess(session)
+		}, failure: { error in
+			callback.onFailure(error)
+		})
 
-			if let session = session {
-				SessionContext.loginWithCookie(authentication: session.authentication as! LRCookieAuthentication,
-						userAttributes: currentAttrs)
-
-				callback.callback(session, nil)
-			}
-			else {
-				callback.callback(nil, error)
-			}
-		}, challenge: challenge)
+		_ = try? LRCookieSignIn.signIn(with: session, callback: callback, challenge: challenge)
 	}
 
 	open func createRequestSession() -> LRSession {
@@ -251,16 +248,11 @@ open class SessionContext: NSObject {
 			return false
 		}
 
-		SessionContext.reloadCookieAuth(session: self.session, callback: LRCookieBlockCallback { (session, error) in
-			guard session != nil, let auth = session?.authentication as? LRCookieAuthentication else {
-				print("Error reloading the cookie auth\(error!)")
-				completed?(nil)
-				return
-			}
-
+		let callback = LRBlockCookieCallback(success: { session in
+			let cookieAuth = session!.authentication as! LRCookieAuthentication
 			_ = SessionContext.currentContext?.refreshUserAttributes { attributes in
 				if let attributes = attributes {
-					SessionContext.loginWithCookie(authentication: auth, userAttributes: attributes)
+					SessionContext.loginWithCookie(authentication: cookieAuth, userAttributes: attributes)
 				}
 				else {
 					SessionContext.logout()
@@ -268,8 +260,12 @@ open class SessionContext: NSObject {
 
 				completed?(attributes)
 			}
+		}, failure: { error in
+			print("Error reloading the cookie auth\(error!)")
+			completed?(nil)
+		})!
 
-		})
+		SessionContext.reloadCookieAuth(session: self.session, callback: callback)
 
 		return true
 	}

@@ -362,7 +362,6 @@
 		0B7783F31F95F60C001C9134 /* WebContentDisplayScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8837FA6A1CAEF6AE00DCB1B4 /* WebContentDisplayScreenlet.swift */; };
 		0B7783F41F95F60C001C9134 /* DeleteRatingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8891259F1D5479E6006AFA08 /* DeleteRatingInteractor.swift */; };
 		0B7783F51F95F60C001C9134 /* DDLFormTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61631ACBEE0B00862B9E /* DDLFormTableView.swift */; };
-		0B7783F61F95F60C001C9134 /* LRCookieBlockCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF8CFA91E51A7B6009B1581 /* LRCookieBlockCallback.swift */; };
 		0B7783F71F95F60C001C9134 /* ImageGallerySlideshowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBEDA151D5B22FF00F8CB31 /* ImageGallerySlideshowCell.swift */; };
 		0B7783F81F95F60C001C9134 /* DDLFormUploadDocumentInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E615B1ACBEE0B00862B9E /* DDLFormUploadDocumentInteractor.swift */; };
 		0B7783F91F95F60C001C9134 /* DDLFieldDocumentlibraryTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61D51ACBFC3400862B9E /* DDLFieldDocumentlibraryTableCell_default.swift */; };
@@ -638,7 +637,6 @@
 		0BCB4FB11D37C08B0023E2CA /* LRScreensddlrecordService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BCB4FAF1D37C08B0023E2CA /* LRScreensddlrecordService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0BCB4FB21D37C08B0023E2CA /* LRScreensddlrecordService_v70.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BCB4FB01D37C08B0023E2CA /* LRScreensddlrecordService_v70.m */; };
 		0BE1E0F31D364E96000A2678 /* SequenceType+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1E0F21D364E96000A2678 /* SequenceType+Screens.swift */; };
-		0BF8CFAA1E51A7B6009B1581 /* LRCookieBlockCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF8CFA91E51A7B6009B1581 /* LRCookieBlockCallback.swift */; };
 		0BF917A01D76BE6900C86C85 /* CommentAddScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917881D76BE6900C86C85 /* CommentAddScreenlet.swift */; };
 		0BF917A11D76BE6900C86C85 /* CommentAddViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917891D76BE6900C86C85 /* CommentAddViewModel.swift */; };
 		0BF917A21D76BE6900C86C85 /* CommentAddLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9178B1D76BE6900C86C85 /* CommentAddLiferayConnector.swift */; };
@@ -669,7 +667,6 @@
 		0BF917CF1D76BFA800C86C85 /* NSDate+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917CE1D76BFA800C86C85 /* NSDate+Screens.swift */; };
 		0BFE283A1D87E13300261A66 /* LRScreenscommentService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BFE28381D87E13300261A66 /* LRScreenscommentService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0BFE283B1D87E13300261A66 /* LRScreenscommentService_v70.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE28391D87E13300261A66 /* LRScreenscommentService_v70.m */; };
-		57CFF6061E5A495700CB808E /* LRCookieBlockCallback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF8CFA91E51A7B6009B1581 /* LRCookieBlockCallback.swift */; };
 		57CFF6071E5A495D00CB808E /* CookieCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76FE8D1E4DADA80002D27F /* CookieCredentialsStoreKeyChain.swift */; };
 		57CFF6081E5A498000CB808E /* LoginCookieInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3699E81E4C929900B82F81 /* LoginCookieInteractor.swift */; };
 		5828D41A87AB2C8662D6FBB8 /* Pods_Screens_LiferayScreens.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 039C3B21F16B559B9C196029 /* Pods_Screens_LiferayScreens.framework */; };
@@ -1226,7 +1223,6 @@
 		0BCB4FAF1D37C08B0023E2CA /* LRScreensddlrecordService_v70.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreensddlrecordService_v70.h; sourceTree = "<group>"; };
 		0BCB4FB01D37C08B0023E2CA /* LRScreensddlrecordService_v70.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreensddlrecordService_v70.m; sourceTree = "<group>"; };
 		0BE1E0F21D364E96000A2678 /* SequenceType+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SequenceType+Screens.swift"; sourceTree = "<group>"; };
-		0BF8CFA91E51A7B6009B1581 /* LRCookieBlockCallback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LRCookieBlockCallback.swift; sourceTree = "<group>"; };
 		0BF917881D76BE6900C86C85 /* CommentAddScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentAddScreenlet.swift; sourceTree = "<group>"; };
 		0BF917891D76BE6900C86C85 /* CommentAddViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentAddViewModel.swift; sourceTree = "<group>"; };
 		0BF9178B1D76BE6900C86C85 /* CommentAddLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentAddLiferayConnector.swift; sourceTree = "<group>"; };
@@ -2808,7 +2804,6 @@
 				88E7909C1C6CA3A700C90453 /* LiferayConnectorFactory.swift */,
 				88AA42CA1C624A6E00AA97FB /* ScreensFactory.swift */,
 				8892C6B31ACBD95400192232 /* SessionContext.swift */,
-				0BF8CFA91E51A7B6009B1581 /* LRCookieBlockCallback.swift */,
 				88CA806C1B25EDE4004C1D59 /* Storage */,
 			);
 			name = Context;
@@ -3777,7 +3772,6 @@
 				0B7783F31F95F60C001C9134 /* WebContentDisplayScreenlet.swift in Sources */,
 				0B7783F41F95F60C001C9134 /* DeleteRatingInteractor.swift in Sources */,
 				0B7783F51F95F60C001C9134 /* DDLFormTableView.swift in Sources */,
-				0B7783F61F95F60C001C9134 /* LRCookieBlockCallback.swift in Sources */,
 				0B7783F71F95F60C001C9134 /* ImageGallerySlideshowCell.swift in Sources */,
 				0B7783F81F95F60C001C9134 /* DDLFormUploadDocumentInteractor.swift in Sources */,
 				0B7783F91F95F60C001C9134 /* DDLFieldDocumentlibraryTableCell_default.swift in Sources */,
@@ -4060,7 +4054,6 @@
 				8837FA7A1CAEF6AE00DCB1B4 /* WebContentDisplayScreenlet.swift in Sources */,
 				889125A91D5479E6006AFA08 /* DeleteRatingInteractor.swift in Sources */,
 				881E61851ACBEE0B00862B9E /* DDLFormTableView.swift in Sources */,
-				0BF8CFAA1E51A7B6009B1581 /* LRCookieBlockCallback.swift in Sources */,
 				0BBEDA1A1D5B22FF00F8CB31 /* ImageGallerySlideshowCell.swift in Sources */,
 				881E617F1ACBEE0B00862B9E /* DDLFormUploadDocumentInteractor.swift in Sources */,
 				881E623A1ACBFC3400862B9E /* DDLFieldDocumentlibraryTableCell_default.swift in Sources */,
@@ -4251,7 +4244,6 @@
 				88B844991C73D856007A447D /* ForgotPasswordScreenNameLiferayConnectors.swift in Sources */,
 				88B844431C73D6C0007A447D /* ServerWriteConnectorInteractor.swift in Sources */,
 				88B844B71C73D8A3007A447D /* SignUpLiferayConnector.swift in Sources */,
-				57CFF6061E5A495700CB808E /* LRCookieBlockCallback.swift in Sources */,
 				0B2180301D6C507B00A23690 /* DDMFieldDate.swift in Sources */,
 				0B2180291D6C506800A23690 /* DDMStructure.swift in Sources */,
 				881E62941ACBFEFC00862B9E /* BaseListPageLoadInteractor.swift in Sources */,
