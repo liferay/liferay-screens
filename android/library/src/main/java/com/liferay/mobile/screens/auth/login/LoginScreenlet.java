@@ -241,8 +241,8 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 		loginViewModel.setAuthenticationType(authenticationType);
 
-		if (authenticationType.equals(AuthenticationType.BASIC) || authenticationType.equals(
-			AuthenticationType.COOKIE)) {
+		if (AuthenticationType.BASIC.equals(authenticationType) || AuthenticationType.COOKIE.equals(
+				authenticationType)) {
 			int basicAuthMethodId = typedArray.getInt(R.styleable.LoginScreenlet_basicAuthMethod, 0);
 
 			basicAuthMethod = BasicAuthMethod.getValue(basicAuthMethodId);
@@ -256,9 +256,9 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 	@Override
 	protected BaseLoginInteractor createInteractor(String actionName) {
-		if (authenticationType.equals(AuthenticationType.COOKIE)) {
+		if (AuthenticationType.COOKIE.equals(authenticationType)) {
 			return new LoginCookieInteractor();
-		} else if (authenticationType.equals(AuthenticationType.OAUTH)) {
+		} else if (AuthenticationType.OAUTH.equals(authenticationType)) {
 			LoginOAuthInteractor oauthInteractor = new LoginOAuthInteractor();
 
 			OAuthConfig config =
