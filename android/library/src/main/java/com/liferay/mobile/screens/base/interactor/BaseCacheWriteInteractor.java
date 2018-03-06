@@ -1,13 +1,10 @@
 package com.liferay.mobile.screens.base.interactor;
 
-import com.liferay.mobile.android.auth.CookieSignIn;
-import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.base.interactor.event.CacheEvent;
 import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.cache.CachePolicy;
 import com.liferay.mobile.screens.cache.executor.Executor;
-import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
@@ -21,50 +18,31 @@ public abstract class BaseCacheWriteInteractor<L extends BaseCacheListener, E ex
 		Executor.execute(new Runnable() {
 			@Override
 			public void run() {
-				doInBackground(event);
+				try {
+					if (cachePolicy == CachePolicy.CACHE_ONLY) {
+						storeToCacheAndLaunchEvent(event);
+					} else if (cachePolicy == CachePolicy.CACHE_FIRST) {
+						try {
+							storeToCacheAndLaunchEvent(event);
+						} catch (Exception e) {
+							online(event);
+						}
+					} else if (cachePolicy == CachePolicy.REMOTE_FIRST) {
+						try {
+							online(event);
+						} catch (Exception e) {
+							event.setException(e);
+							storeToCacheAndLaunchEvent(event);
+							LiferayLogger.i("Store online first failed, trying to store locally version");
+						}
+					} else {
+						online(event);
+					}
+				} catch (Exception e) {
+					createErrorEvent(e);
+				}
 			}
 		});
-	}
-
-	protected void doInBackground(E event) {
-		try {
-			if (cachePolicy == CachePolicy.CACHE_ONLY) {
-				storeToCacheAndLaunchEvent(event);
-			} else if (cachePolicy == CachePolicy.CACHE_FIRST) {
-				try {
-					storeToCacheAndLaunchEvent(event);
-				} catch (Exception e) {
-					online(event);
-				}
-			} else if (cachePolicy == CachePolicy.REMOTE_FIRST) {
-				try {
-					online(event);
-				} catch (Exception e) {
-					if (isCookieSessionAndAuthenticationError(e)) {
-						throw e;
-					}
-					event.setException(e);
-					storeToCacheAndLaunchEvent(event);
-					LiferayLogger.i("Store online first failed, trying to store locally version");
-				}
-			} else {
-				online(event);
-			}
-		} catch (Exception e) {
-			if (!retried && isCookieSessionAndAuthenticationError(e)) {
-				retried = true;
-				try {
-					Session session = CookieSignIn.signIn(getSession());
-					SessionContext.createCookieSession(session);
-				} catch (Exception ex) {
-					createErrorEvent(ex);
-					return;
-				}
-				doInBackground(event);
-			} else {
-				createErrorEvent(e);
-			}
-		}
 	}
 
 	public void onEventMainThread(E event) {

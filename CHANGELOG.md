@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 
 # Develop
 
+## Android
+
+### Refactor
+* Cookie refresh is now handled by the mobile-sdk
+
+
 ## iOS
 
 * Updated to Swift 4

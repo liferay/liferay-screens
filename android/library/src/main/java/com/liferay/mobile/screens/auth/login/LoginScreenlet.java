@@ -21,6 +21,7 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import com.liferay.mobile.android.auth.basic.CookieAuthentication;
 import com.liferay.mobile.android.oauth.OAuthConfig;
 import com.liferay.mobile.android.oauth.activity.OAuthActivity;
 import com.liferay.mobile.screens.R;
@@ -56,6 +57,8 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 	private String oauthConsumerKey;
 	private String oauthConsumerSecret;
 	private Authenticator authenticator;
+	private boolean shouldHandleCookieExpiration;
+	private int cookieExpirationTime;
 
 	public LoginScreenlet(Context context) {
 		super(context);
@@ -196,6 +199,22 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 		this.authenticator = authenticator;
 	}
 
+	public boolean isShouldHandleCookieRefresh() {
+		return shouldHandleCookieExpiration;
+	}
+
+	public void setShouldHandleCookieExpiration(boolean shouldHandleCookieExpiration) {
+		this.shouldHandleCookieExpiration = shouldHandleCookieExpiration;
+	}
+
+	public int getCookieExpirationTime() {
+		return cookieExpirationTime;
+	}
+
+	public void setCookieExpirationTime(int cookieExpirationTime) {
+		this.cookieExpirationTime = cookieExpirationTime;
+	}
+
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(attributes, R.styleable.LoginScreenlet, 0, 0);
@@ -206,6 +225,10 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 		oauthConsumerKey = typedArray.getString(R.styleable.LoginScreenlet_oauthConsumerKey);
 		oauthConsumerSecret = typedArray.getString(R.styleable.LoginScreenlet_oauthConsumerSecret);
+
+		shouldHandleCookieExpiration = typedArray.getBoolean(R.styleable.LoginScreenlet_shouldHandleCookieExpiration, true);
+		cookieExpirationTime = typedArray.getInt(R.styleable.LoginScreenlet_cookieExpirationTime,
+			CookieAuthentication.COOKIE_EXPIRATION_TIME);
 
 		int layoutId = typedArray.getResourceId(R.styleable.LoginScreenlet_layoutId, getDefaultLayoutId());
 
@@ -218,7 +241,8 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 		loginViewModel.setAuthenticationType(authenticationType);
 
-		if (authenticationType.equals(AuthenticationType.BASIC) || authenticationType.equals(AuthenticationType.COOKIE)) {
+		if (AuthenticationType.BASIC.equals(authenticationType) || AuthenticationType.COOKIE.equals(
+				authenticationType)) {
 			int basicAuthMethodId = typedArray.getInt(R.styleable.LoginScreenlet_basicAuthMethod, 0);
 
 			basicAuthMethod = BasicAuthMethod.getValue(basicAuthMethodId);
@@ -232,9 +256,9 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 	@Override
 	protected BaseLoginInteractor createInteractor(String actionName) {
-		if (authenticationType.equals(AuthenticationType.COOKIE)) {
+		if (AuthenticationType.COOKIE.equals(authenticationType)) {
 			return new LoginCookieInteractor();
-		} else if (authenticationType.equals(AuthenticationType.OAUTH)) {
+		} else if (AuthenticationType.OAUTH.equals(authenticationType)) {
 			LoginOAuthInteractor oauthInteractor = new LoginOAuthInteractor();
 
 			OAuthConfig config =
@@ -252,7 +276,8 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 	protected void onUserAction(String userActionName, BaseLoginInteractor interactor, Object... args) {
 		if (AuthenticationType.COOKIE.equals(authenticationType)) {
 			LoginViewModel viewModel = getViewModel();
-			interactor.start(viewModel.getLogin(), viewModel.getPassword(), authenticator);
+			interactor.start(viewModel.getLogin(), viewModel.getPassword(), authenticator, shouldHandleCookieExpiration,
+				cookieExpirationTime);
 		} else if (AuthenticationType.BASIC.equals(authenticationType)) {
 			LoginViewModel viewModel = getViewModel();
 			interactor.start(viewModel.getLogin(), viewModel.getPassword(), viewModel.getBasicAuthMethod());
