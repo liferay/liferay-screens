@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 	s.name         = 'LiferayScreens'
 	s.module_name  = 'LiferayScreens'
-	s.version      = '3.0.3'
+	s.version      = '3.1.0'
 	s.summary      = 'A family of visual components called screenlets that are connected to the Liferay Platform used as a backend'
 	s.homepage     = 'https://www.liferay.com/liferay-screens'
 	s.license = { 
@@ -45,24 +45,19 @@ Pod::Spec.new do |s|
 		'LiferayScreens-default' => 'ios/Framework/Themes/Default/**/*.{xib,png,plist,lproj}'
 	}
 	
-	s.xcconfig = {
-		'GCC_PREPROCESSOR_DEFINITIONS' => 'LIFERAY_SCREENS_FRAMEWORK=1',
-		'OTHER_SWIFT_FLAGS' => '"-D" "LIFERAY_SCREENS_FRAMEWORK"'
-	}
-
 	# Core
-	s.dependency 'Liferay-iOS-SDK', '~> 7.0.9'
+	s.dependency 'Liferay-iOS-SDK', '~> 7.0.14'
 	s.dependency 'Liferay-OAuth', '~> 1.2.0'
 	s.dependency 'MBProgressHUD', '~> 0.9.1'
 	s.dependency 'SMXMLDocument', '~> 1.1'
 	s.dependency 'YapDatabase/SQLCipher', '2.9.2'
-	s.dependency 'Kingfisher', '~> 3.0'
+	s.dependency 'Kingfisher', '~> 4.0'
 
 	# Login & signup: save credentials
 	s.dependency 'KeychainAccess', '~> 3.0'
 
 	# UserPortrait
-	s.dependency 'CryptoSwift', '~> 0.7.0'
+	s.dependency 'CryptoSwift', '~> 0.7'
 
 	# DDLForm
 	s.dependency 'DTPickerPresenter', '~> 0.2.0'
@@ -70,7 +65,7 @@ Pod::Spec.new do |s|
 	s.dependency 'MDRadialProgress', '~> 1.3.2'
 
 	# RatingBar
-	s.dependency 'Cosmos', '~> 8.0'
+	s.dependency 'Cosmos', '~> 14.0'
 
 	s.dependency 'Cordova', '~> 4.0'
 

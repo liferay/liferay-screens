@@ -27,7 +27,7 @@ class LoginScreenlet_ByScreenName_Tests: BaseLoginScreenletTestCase {
 				}
 				and("server returns ok") {
 					mockServer.stubService("get-user-by-screen-name",
-							withResult:mockServer.loginOK())
+							withResult: mockServer.loginOK())
 				}
 			}
 			when("the request is sent and the response is received") {
@@ -41,9 +41,9 @@ class LoginScreenlet_ByScreenName_Tests: BaseLoginScreenletTestCase {
 					XCTAssertFalse(result is NSError)
 				}
 				assertThat("the attributes should be populated") {
-					XCTAssertTrue(result is [String:AnyObject])
+					XCTAssertTrue(result is [String: AnyObject])
 
-					let attrs = result as! [String:AnyObject]
+					let attrs = result as! [String: AnyObject]
 
 					XCTAssertTrue(!attrs.isEmpty)
 					XCTAssertNotNil(attrs["screenName"])

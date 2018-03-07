@@ -1,11 +1,16 @@
-//
-//  WKWebView+Screens.swift
-//  LiferayScreens
-//
-//  Created by Victor Galán on 16/03/2017.
-//  Copyright © 2017 Liferay. All rights reserved.
-//
-
+/**
+* Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+*
+* This library is free software; you can redistribute it and/or modify it under
+* the terms of the GNU Lesser General Public License as published by the Free
+* Software Foundation; either version 2.1 of the License, or (at your option)
+* any later version.
+*
+* This library is distributed in the hope that it will be useful, but WITHOUT
+* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+* FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+* details.
+*/
 import Foundation
 import WebKit
 
@@ -14,7 +19,7 @@ extension WKWebView {
 	public func loadCss(file: String, extension ext: String = "css") -> String {
 
 		let string = Bundle.resourceInBundle(name: file, ofType: ext,
-			currentClass: type(of:self)) { (path, _) -> String? in
+			currentClass: type(of: self)) { (path, _) -> String? in
 
 			return try! String(contentsOfFile: path)
 		}
@@ -27,7 +32,7 @@ extension WKWebView {
 				return
 		}
 
-		let jsessionID = authentication.cookieHeader.characters.split(separator: ";")
+		let jsessionID = authentication.cookieHeader.split(separator: ";")
 				.map(String.init).filter { $0.contains("JSESSIONID") }.first
 
 		if let jsessionID = jsessionID {

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <com.liferay.mobile.screens.web.WebScreenlet
+            android:id="@+id/web_screenlet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary"
+            app:autoLoad="false" />
+        <RelativeLayout
+            android:id="@+id/call_me_back_popover"
+            android:layout_width="wrap_content"
+            android:layout_height="375dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true">
+            <include
+                android:id="@+id/call_me_back"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                layout="@layout/callmeback" />
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

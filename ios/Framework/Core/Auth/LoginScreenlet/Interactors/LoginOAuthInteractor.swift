@@ -17,7 +17,7 @@ import LRMobileSDK
 
 class LoginOAuthInteractor: Interactor, LRCallback {
 
-	var resultUserAttributes: [String:AnyObject]?
+	var resultUserAttributes: [String: AnyObject]?
 
 	let consumerKey: String
 
@@ -70,13 +70,14 @@ class LoginOAuthInteractor: Interactor, LRCallback {
 					}
 					else {
 						let err = NSError.errorWithCause(.invalidServerResponse,
-								message: "OAuth's authorizeTokenURL is not valid: \($0?.authorizeTokenURL)\n")
+								message: "OAuth's authorizeTokenURL is not valid: " +
+							"\(String(describing: $0?.authorizeTokenURL))\n")
 						self.onFailure?(err)
 					}
 				},
 				onFailure: { err in
 					print("ERROR: Cannot get request token\n")
-					self.onFailure?(err as! NSError)
+					self.onFailure?(err! as NSError)
 				}
 		)
 
@@ -109,7 +110,7 @@ class LoginOAuthInteractor: Interactor, LRCallback {
 				},
 				onFailure: { err in
 					print("ERROR: Cannot get access token\n")
-					self.onFailure?(err as! NSError)
+					self.onFailure?(err! as NSError)
 				}
 		)
 	}
@@ -139,7 +140,7 @@ class LoginOAuthInteractor: Interactor, LRCallback {
 	}
 
 	func onSuccess(_ result: Any!) {
-		if let resultValue = result as? [String:AnyObject] {
+		if let resultValue = result as? [String: AnyObject] {
 			resultUserAttributes = resultValue
 
 			SessionContext.loginWithOAuth(

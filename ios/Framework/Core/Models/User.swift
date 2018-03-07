@@ -14,9 +14,10 @@
 import Foundation
 
 @objc(User)
+@objcMembers
 open class User: NSObject, NSCoding {
 
-	open let attributes: [String:AnyObject]
+	open let attributes: [String: AnyObject]
 
 	open var firstName: String {
 		return stringAttribute("firstName")
@@ -52,14 +53,14 @@ open class User: NSObject, NSCoding {
 
 	// MARK: Initializers
 
-	public init(attributes: [String : AnyObject]) {
+	public init(attributes: [String: AnyObject]) {
 		self.attributes = attributes
 
 		super.init()
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
-		self.attributes = aDecoder.decodeObject(forKey: "asset-attrs") as? [String:AnyObject] ?? [:]
+		self.attributes = aDecoder.decodeObject(forKey: "asset-attrs") as? [String: AnyObject] ?? [:]
 
 		super.init()
 	}

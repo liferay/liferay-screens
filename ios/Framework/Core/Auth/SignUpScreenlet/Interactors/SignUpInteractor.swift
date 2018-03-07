@@ -15,7 +15,7 @@ import UIKit
 
 class SignUpInteractor: ServerConnectorInteractor {
 
-	var resultUserAttributes: [String:AnyObject]?
+	var resultUserAttributes: [String: AnyObject]?
 
 	// MARK: ServerConnectorInteractor
 

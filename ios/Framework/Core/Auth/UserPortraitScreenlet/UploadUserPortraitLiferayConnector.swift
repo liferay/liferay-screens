@@ -19,7 +19,7 @@ open class UploadUserPortraitLiferayConnector: ServerConnector {
 	fileprivate let userId: Int64
 	fileprivate var image: UIImage?
 
-	var uploadResult: [String:AnyObject]?
+	var uploadResult: [String: AnyObject]?
 
 	fileprivate let maxSize = 300 * 1024
 	fileprivate var fileTooLarge = false
@@ -96,7 +96,7 @@ open class Liferay62UploadUserPortraitConnector: UploadUserPortraitLiferayConnec
 			let result = try service?.updatePortrait(withUserId: self.userId,
 				bytes: imageBytes)
 
-			if let result = result as? [String:AnyObject] {
+			if let result = result as? [String: AnyObject] {
 				uploadResult = result
 				lastError = nil
 			}
@@ -123,7 +123,7 @@ open class Liferay70UploadUserPortraitConnector: UploadUserPortraitLiferayConnec
 			let result = try service?.updatePortrait(withUserId: self.userId,
 				bytes: imageBytes)
 
-			if let result = result as? [String:AnyObject] {
+			if let result = result as? [String: AnyObject] {
 				uploadResult = result
 				lastError = nil
 			}

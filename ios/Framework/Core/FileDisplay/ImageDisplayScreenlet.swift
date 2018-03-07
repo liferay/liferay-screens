@@ -56,7 +56,7 @@ open class ImageDisplayScreenlet: FileDisplayScreenlet {
 	override open var supportedMimeTypes: [String] {
 
 		return (mimeTypes.isEmpty) ? DefaultImageMimeTypes :
-				mimeTypes.characters.split(separator: ",").map(String.init)
+				mimeTypes.split(separator: ",").map(String.init)
 	}
 
 	// MARK: BaseScreenlet

@@ -16,12 +16,13 @@ import Foundation
 //TODO: Unit test
 
 @objc(DDLRecord)
+@objcMembers
 open class DDLRecord: NSObject, NSCoding {
 
 	open var structure: DDMStructure?
 	open let untypedValues: [DDMField]?
 
-	open var attributes: [String:AnyObject] = [:]
+	open var attributes: [String: AnyObject] = [:]
 
 	open var recordId: Int64? {
 		get {
@@ -45,7 +46,7 @@ open class DDLRecord: NSObject, NSCoding {
 		return fieldBy(name: fieldName)
 	}
 
-	open var values: [String:AnyObject] {
+	open var values: [String: AnyObject] {
 		var result = [String: AnyObject]()
 
 		for field in self.fields {
@@ -86,7 +87,7 @@ open class DDLRecord: NSObject, NSCoding {
 		super.init()
 	}
 
-	public init(data: [String:AnyObject], attributes: [String:AnyObject]) {
+	public init(data: [String: AnyObject], attributes: [String: AnyObject]) {
 		structure = nil
 
 		let parsedFields = DDLUntypedValuesParser().parse(data)
@@ -102,10 +103,10 @@ open class DDLRecord: NSObject, NSCoding {
 		super.init()
 	}
 
-	public init(dataAndAttributes: [String:AnyObject]) {
+	public init(dataAndAttributes: [String: AnyObject]) {
 		structure = nil
 
-		if let recordFields = dataAndAttributes["modelValues"] as? [String:AnyObject] {
+		if let recordFields = dataAndAttributes["modelValues"] as? [String: AnyObject] {
 			let parsedFields = DDLUntypedValuesParser().parse(recordFields)
 		 	if parsedFields.isEmpty {
 				untypedValues = nil
@@ -118,7 +119,7 @@ open class DDLRecord: NSObject, NSCoding {
 			untypedValues = nil
 		}
 
-		if let recordAttributes = dataAndAttributes["modelAttributes"] as? [String:AnyObject] {
+		if let recordAttributes = dataAndAttributes["modelAttributes"] as? [String: AnyObject] {
 			attributes = recordAttributes
 		}
 
@@ -128,7 +129,7 @@ open class DDLRecord: NSObject, NSCoding {
 	public required init?(coder aDecoder: NSCoder) {
 		structure = aDecoder.decodeObject(forKey: "structure") as? DDMStructure
 		untypedValues = aDecoder.decodeObject(forKey: "untypedValues") as? [DDMField]
-		attributes = aDecoder.decodeObject(forKey: "attributes") as! [String:AnyObject]
+		attributes = aDecoder.decodeObject(forKey: "attributes") as! [String: AnyObject]
 
 		super.init()
 	}
@@ -142,7 +143,7 @@ open class DDLRecord: NSObject, NSCoding {
 		if let untypedValues = untypedValues {
 			aCoder.encode(untypedValues, forKey: "untypedValues")
 		}
-		aCoder.encode(attributes, forKey:"attributes")
+		aCoder.encode(attributes, forKey: "attributes")
 	}
 
 	open func fieldBy(name: String) -> DDMField? {
@@ -153,19 +154,19 @@ open class DDLRecord: NSObject, NSCoding {
 				}.first
 	}
 
-	open func fieldsBy(type: AnyClass) -> [DDMField] {
-		let typeName = NSStringFromClass(type)
+	open func fieldsBy(type: AnyObject.Type) -> [DDMField] {
+		let typeName = String(describing: type)
 
 		return structure?.fieldsBy(type: type)
 					??
 				untypedValues?.filter {
-					NSStringFromClass(type(of: $0)) == typeName
+					String(describing: $0.self) == typeName
 				}
 					??
 				[]
 	}
 
-	open func updateCurrentValues(values: [String:AnyObject]) {
+	open func updateCurrentValues(values: [String: AnyObject]) {
 		self.fields.forEach {
 			if let fieldValue = values[$0.name] {
 				if let fieldStringValue = fieldValue as? String {

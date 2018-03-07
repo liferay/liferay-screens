@@ -22,9 +22,9 @@ open class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 
 	open var obcClassName: String?
 
-	open var resultAllPagesContent: [String : [AnyObject?]]?
+	open var resultAllPagesContent: [String: [AnyObject?]]?
 
-	open var resultPageContent: [String : [AnyObject]]?
+	open var resultPageContent: [String: [AnyObject]]?
 
 	open var resultRowCount: Int?
 
@@ -61,7 +61,7 @@ open class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 	}
 
 	// swiftlint:disable cyclomatic_complexity
-	open func processLoadPageResult(_ serverRows: [[String : AnyObject]], rowCount: Int?) {
+	open func processLoadPageResult(_ serverRows: [[String: AnyObject]], rowCount: Int?) {
 		let screenlet = self.screenlet as! BaseListScreenlet
 		let baseListView = screenlet.screenletView as! BaseListView
 
@@ -176,7 +176,7 @@ open class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 	}
 	// swiftlint:enable cyclomatic_complexity
 
-	open func convertResult(_ serverResult: [String:AnyObject]) -> AnyObject {
+	open func convertResult(_ serverResult: [String: AnyObject]) -> AnyObject {
 		fatalError("convert(serverResult) must be overriden")
 	}
 
@@ -202,7 +202,7 @@ open class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 				collection: ScreenletName(type(of: screenlet!)),
 				keys: ["\(key)-\(page)", "\(key)-count"]) {
 
-					loadCon.resultPageContent = $0.first as? [[String:AnyObject]]
+					loadCon.resultPageContent = $0.first as? [[String: AnyObject]]
 					if $0.count > 1 {
 						loadCon.resultRowCount = $0.last as? Int
 					}

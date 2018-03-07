@@ -19,9 +19,9 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 
 	let structureId: Int64?
 
-	var resultRecordData: [String:AnyObject]?
+	var resultRecordData: [String: AnyObject]?
 
-	var resultRecordAttributes: [String:AnyObject]?
+	var resultRecordAttributes: [String: AnyObject]?
 
 	var resultRecordId: Int64?
 
@@ -71,8 +71,8 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 	}
 
 	override func completedConnector(_ c: ServerConnector) {
-		let recordData: [String:AnyObject]?
-		let recordAttributes: [String:AnyObject]?
+		let recordData: [String: AnyObject]?
+		let recordAttributes: [String: AnyObject]?
 		let recordId: Int64?
 
 		if let chain = c as? ServerConnectorChain,
@@ -127,7 +127,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 
 			cacheManager.setClean(
 				collection: ScreenletName(DDLFormScreenlet.self),
-				key: "structureId-\(self.structureId)",
+				key: "structureId-\(String(describing: self.structureId))",
 				value: recordForm,
 				attributes: [
 					"userId": formUserId.description as AnyObject])
@@ -170,13 +170,13 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 
 			// load form and record
 
-			cacheManager.getSomeWithAttributes(
-					collection: ScreenletName(DDLFormScreenlet.self),
-					keys: ["structureId-\(structureId)", "recordId-\(recordId)"]) { objects, attributes in
+			cacheManager.getSomeWithAttributes(collection: ScreenletName(DDLFormScreenlet.self),
+											   keys: ["structureId-\(String(describing: structureId))",
+												"recordId-\(recordId)"]) { objects, attributes in
 
 				if let recordForm = objects[0] as? DDLRecord,
 						let recordUserId = attributes[0]?["userId"]?.int64Value,
-						let recordData = objects[1] as? [String:AnyObject],
+						let recordData = objects[1] as? [String: AnyObject],
 						let recordAttributes = attributes[1] {
 
 					let record = recordAttributes["record"] as! DDLRecord
@@ -210,7 +210,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 
 				precondition(self.recordId == record.recordId, "RecordId is not consistent")
 
-				loadRecordCon.resultRecordData = object as? [String:AnyObject]
+				loadRecordCon.resultRecordData = object as? [String: AnyObject]
 				loadRecordCon.resultRecordAttributes = record.attributes
 				loadRecordCon.resultRecordId = loadRecordCon.recordId
 

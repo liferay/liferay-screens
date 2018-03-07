@@ -13,10 +13,6 @@
  */
 import UIKit
 
-#if LIFERAY_SCREENS_FRAMEWORK
-	import AFNetworking
-#endif
-
 // Global initial load
 private func loadPlaceholderCache(_ done: ((UIImage?) -> Void)? = nil) {
 	var image: UIImage?
@@ -57,7 +53,7 @@ open class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel,
 		}
 	}
 
-	override open var progressMessages: [String:ProgressMessages] {
+	override open var progressMessages: [String: ProgressMessages] {
 		return [
 			"load-portrait": [
 				.working: ""

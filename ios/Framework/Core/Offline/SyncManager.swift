@@ -30,17 +30,17 @@ import Foundation
 	@objc optional func syncManager(_ manager: SyncManager,
 		onItemSyncScreenlet screenlet: String,
 		startKey: String,
-		attributes: [String:AnyObject])
+		attributes: [String: AnyObject])
 
 	@objc optional func syncManager(_ manager: SyncManager,
 		onItemSyncScreenlet screenlet: String,
 		completedKey: String,
-		attributes: [String:AnyObject])
+		attributes: [String: AnyObject])
 
 	@objc optional func syncManager(_ manager: SyncManager,
 		onItemSyncScreenlet screenlet: String,
 		failedKey: String,
-		attributes: [String:AnyObject],
+		attributes: [String: AnyObject],
 		error: NSError)
 
 	@objc optional func syncManager(_ manager: SyncManager,
@@ -52,16 +52,18 @@ import Foundation
 
 }
 
-public typealias OfflineSynchronizer = (String, [String:AnyObject]) -> (@escaping Signal) -> Void
+public typealias OfflineSynchronizer = (String, [String: AnyObject]) -> (@escaping Signal) -> Void
 
-@objc open class SyncManager: NSObject {
+@objc(SyncManager)
+@objcMembers
+open class SyncManager: NSObject {
 
 	open weak var delegate: SyncManagerDelegate?
 
 	open let cacheManager: CacheManager
 
 	fileprivate let syncQueue: OperationQueue
-	fileprivate var synchronizers: [String:OfflineSynchronizer] = [:]
+	fileprivate var synchronizers: [String: OfflineSynchronizer] = [:]
 
 	public init(cacheManager: CacheManager) {
 		self.cacheManager = cacheManager
@@ -116,7 +118,7 @@ public typealias OfflineSynchronizer = (String, [String:AnyObject]) -> (@escapin
 	open func prepareInteractorForSync(
 			_ interactor: ServerConnectorInteractor,
 			key: String,
-			attributes: [String:AnyObject],
+			attributes: [String: AnyObject],
 			signal: @escaping Signal,
 			screenletClassName: String) {
 
@@ -147,7 +149,7 @@ public typealias OfflineSynchronizer = (String, [String:AnyObject]) -> (@escapin
 	fileprivate func enqueueSyncForScreenlet(
 			_ screenletName: String,
 			_ key: String,
-			_ attributes: [String:AnyObject]) {
+			_ attributes: [String: AnyObject]) {
 
 		if let syncBuilder = synchronizers[screenletName] {
 			let synchronizer = syncBuilder(key, attributes)

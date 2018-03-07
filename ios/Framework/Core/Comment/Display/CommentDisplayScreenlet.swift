@@ -153,17 +153,17 @@ open class CommentDisplayScreenlet: BaseScreenlet {
 
 	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
 		switch name {
-			case BaseScreenlet.DefaultAction:
-				return createCommentLoadInteractor()
-			case CommentDisplayScreenlet.DeleteAction:
-				return createCommentDeleteInteractor()
-			case CommentDisplayScreenlet.UpdateAction:
-				guard let body = sender as? String else {
-					return nil
-				}
-				return createCommentUpdateInteractor(body)
-			default:
+		case BaseScreenlet.DefaultAction:
+			return createCommentLoadInteractor()
+		case CommentDisplayScreenlet.DeleteAction:
+			return createCommentDeleteInteractor()
+		case CommentDisplayScreenlet.UpdateAction:
+			guard let body = sender as? String else {
 				return nil
+			}
+			return createCommentUpdateInteractor(body)
+		default:
+			return nil
 		}
 	}
 

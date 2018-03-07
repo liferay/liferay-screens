@@ -50,8 +50,7 @@ open class DDLFieldNumberTableCell_default: DDLBaseFieldTextboxTableCell_default
 			shouldChangeCharactersIn range: NSRange,
 			replacementString string: String) -> Bool {
 
-		let newText = (textField.text! as NSString).replacingCharacters(in: range,
-				with:string)
+		let newText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
 
 		if newText != "" {
 			field!.currentValueAsString = newText
@@ -60,7 +59,7 @@ open class DDLFieldNumberTableCell_default: DDLBaseFieldTextboxTableCell_default
 			field!.currentValue = NSDecimalNumber(value: 0 as Double)
 		}
 
-		stepper?.value = Double(field!.currentValue as! NSNumber)
+		stepper?.value = Double(truncating: field!.currentValue as! NSNumber)
 
 		return super.textField(textField,
 				shouldChangeCharactersIn: range,

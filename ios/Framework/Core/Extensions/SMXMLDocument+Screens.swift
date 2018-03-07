@@ -12,14 +12,11 @@
  * details.
  */
 import UIKit
-
-#if LIFERAY_SCREENS_FRAMEWORK
-	import SMXMLDocument
-#endif
+import SMXMLDocument
 
 public extension SMXMLElement {
 
-	public func deepChildWithAttribute(
+	@objc public func deepChildWithAttribute(
 			_ attributeName: String,
 			value attributeValue: String) -> SMXMLElement? {
 

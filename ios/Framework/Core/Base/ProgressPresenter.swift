@@ -33,4 +33,4 @@ public protocol ProgressPresenter {
 	case success
 }
 
-public typealias ProgressMessages = [ProgressMessageType:String]
+public typealias ProgressMessages = [ProgressMessageType: String]

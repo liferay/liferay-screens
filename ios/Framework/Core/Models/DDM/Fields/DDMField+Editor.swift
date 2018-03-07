@@ -13,10 +13,6 @@
  */
 import Foundation
 
-#if LIFERAY_SCREENS_FRAMEWORK
-	import SMXMLDocument
-#endif
-
 extension DDMField {
 
 	public enum Editor: String {
@@ -51,8 +47,8 @@ extension DDMField {
 			}
 		}
 
-		public static func from(attributes: [String:AnyObject]) -> Editor {
-			return from(attributeValue:((attributes["type"] as? String ?? "") ))
+		public static func from(attributes: [String: AnyObject]) -> Editor {
+			return from(attributeValue: ((attributes["type"] as? String ?? "") ))
 		}
 
 		public static func from(attributeValue: String) -> Editor {
@@ -83,10 +79,9 @@ extension DDMField {
 
 			// Capitalize first char
 
-			let secondCharIndex = typeName.characters.index(after: typeName.startIndex)
+			let secondCharIndex = typeName.index(after: typeName.startIndex)
 
-			return typeName.substring(to: secondCharIndex).uppercased() +
-					typeName.substring(from: secondCharIndex)
+			return typeName[..<secondCharIndex].uppercased() + typeName[secondCharIndex...]
 		}
 
 	}

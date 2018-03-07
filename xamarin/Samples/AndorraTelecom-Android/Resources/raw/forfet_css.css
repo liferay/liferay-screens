@@ -1,0 +1,21 @@
+﻿#main-content .shortcode-container.main-menu-shortcode,
+#main-content .product-prices .product-prices-general {
+    margin: 0px;    
+}
+
+#callmeback-main,
+#header,
+#footer,
+.cc-floating,
+.breadcrumb-container {
+    display: none;
+}
+
+h1.main-title, h2.global-subtitle {
+    text-transform: uppercase;
+}
+
+h2.global-subtitle {
+    padding-top: 40px;
+    font-size: 30px;
+}

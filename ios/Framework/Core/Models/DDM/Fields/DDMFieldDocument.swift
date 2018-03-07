@@ -22,7 +22,7 @@ open class DDMFieldDocument: DDMField {
 		case uploading(UInt64, UInt64)
 		case pending
 
-		public static func CachedStatusData(_ cacheKey: String) -> [String:AnyObject] {
+		public static func CachedStatusData(_ cacheKey: String) -> [String: AnyObject] {
 			return [
 				"cached": cacheKey as AnyObject,
 				"mimeType": "image/png" as AnyObject]
@@ -63,7 +63,7 @@ open class DDMFieldDocument: DDMField {
 			return "image/png"
 		case is URL:
 			return "video/mpeg"
-		case is [String:AnyObject]:
+		case is [String: AnyObject]:
 			return nil
 		default:
 			return nil
@@ -82,7 +82,7 @@ open class DDMFieldDocument: DDMField {
 
 	// MARK: DDMField
 
-	public override init(attributes: [String:AnyObject], locale: Locale) {
+	public override init(attributes: [String: AnyObject], locale: Locale) {
 		super.init(attributes: attributes, locale: locale)
 	}
 
@@ -91,7 +91,7 @@ open class DDMFieldDocument: DDMField {
 
 		switch uploadStatusHash {
 		case UploadStatus.uploaded([:]).hashValue:
-			let attributes = aDecoder.decodeObject(forKey: "uploadStatusUploadedAttributes") as!  [String:AnyObject]
+			let attributes = aDecoder.decodeObject(forKey: "uploadStatusUploadedAttributes") as!  [String: AnyObject]
 			uploadStatus = .uploaded(attributes)
 
 		case UploadStatus.failed(nil).hashValue:
@@ -138,7 +138,7 @@ open class DDMFieldDocument: DDMField {
 			let jsonObject = try? JSONSerialization.jsonObject(with: data!,
 				options: [])
 
-			if let jsonDict = jsonObject as? [String:AnyObject] {
+			if let jsonDict = jsonObject as? [String: AnyObject] {
 				uploadStatus = .uploaded(jsonDict)
 				result = jsonDict as AnyObject?
 			}
@@ -187,7 +187,7 @@ open class DDMFieldDocument: DDMField {
 			return LocalizedString("core", key: "an-image-has-been-selected", obj: self)
 		case is URL:
 			return LocalizedString("core", key: "a-video-has-been-selected", obj: self)
-		case is [String:AnyObject]:
+		case is [String: AnyObject]:
 			return LocalizedString("core", key: "a-file-is-already-uploaded", obj: self)
 		default: ()
 		}

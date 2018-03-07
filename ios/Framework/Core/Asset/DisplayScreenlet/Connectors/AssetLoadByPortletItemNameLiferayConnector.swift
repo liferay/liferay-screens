@@ -42,7 +42,7 @@ public class AssetLoadByPortletItemNameLiferayConnector: ServerConnector, LoadAs
 
 public class Liferay70AssetLoadByPortletItemNameConnector: AssetLoadByPortletItemNameLiferayConnector {
 
-	override public func doRun(session session: LRSession) {
+	override public func doRun(session: LRSession) {
 		resultAsset = nil
 
 		let service = LRScreensassetentryService_v70(session: session)
@@ -53,13 +53,13 @@ public class Liferay70AssetLoadByPortletItemNameConnector: AssetLoadByPortletIte
 					portletItemName: portletItemName!, locale: NSLocale.currentLocaleString,
 			max: 1) as? [[String: AnyObject]]
 
-			guard let assets = result, !assets.isEmpty, let asset = assets[0] as? [String: AnyObject] else {
+			guard let assets = result, !assets.isEmpty else {
 				lastError = NSError.errorWithCause(.invalidServerResponse,
 				                                   message: "There was an error retrieving the asset.")
 				return
 			}
 
-			resultAsset = Asset(attributes: asset)
+			resultAsset = Asset(attributes: assets[0])
 
 			lastError = nil
 		}

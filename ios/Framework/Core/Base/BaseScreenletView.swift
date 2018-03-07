@@ -17,13 +17,14 @@ import UIKit
  * BaseScreenletView is the base class from which all Screenlet's View classes must inherit.
  */
 @objc(BaseScreenletView)
+@objcMembers
 open class BaseScreenletView: UIView, UITextFieldDelegate {
 
 	open weak var screenlet: BaseScreenlet?
 
 	open weak var presentingViewController: UIViewController?
 
-	open var progressMessages: [String:ProgressMessages] { return [:] }
+	open var progressMessages: [String: ProgressMessages] { return [:] }
 
 	open let NoProgressMessage = ""
 
@@ -80,21 +81,21 @@ open class BaseScreenletView: UIView, UITextFieldDelegate {
 		if nextResponder != textField {
 
 			switch textField.returnKeyType {
-				case .next
-				where nextResponder is UITextInputTraits:
-					if textField.canResignFirstResponder {
-						textField.resignFirstResponder()
+			case .next
+			where nextResponder is UITextInputTraits:
+				if textField.canResignFirstResponder {
+					textField.resignFirstResponder()
 
-						if nextResponder.canBecomeFirstResponder {
-							nextResponder.becomeFirstResponder()
-						}
+					if nextResponder.canBecomeFirstResponder {
+						nextResponder.becomeFirstResponder()
 					}
+				}
 
-				case _
-				where nextResponder is UIControl:
-					userActionWithSender(nextResponder)
+			case _
+			where nextResponder is UIControl:
+				userActionWithSender(nextResponder)
 
-				default: ()
+			default: ()
 			}
 		}
 
@@ -239,7 +240,7 @@ open class BaseScreenletView: UIView, UITextFieldDelegate {
 
 	fileprivate func addDefaultDelegatesForView(_ view: UIView) {
 		if let textField = view as? UITextField {
-			if onSetDefaultDelegate(self, view:textField) {
+			if onSetDefaultDelegate(self, view: textField) {
 				textField.delegate = self
 			}
 		}

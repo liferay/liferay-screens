@@ -12,10 +12,7 @@
  * details.
  */
 import UIKit
-
-#if LIFERAY_SCREENS_FRAMEWORK
-	import TNRadioButtonGroup
-#endif
+import TNRadioButtonGroup
 
 @objc(DDLFieldRadioTableCell_default)
 open class DDLFieldRadioTableCell_default: DDMFieldTableCell {
@@ -72,7 +69,7 @@ open class DDLFieldRadioTableCell_default: DDMFieldTableCell {
 				(CGFloat(stringField.options.count) *
 					(DDLFieldRadioButtonHeight + DDLFieldRadioButtonMargin))
 
-			formView!.setCellHeight(height, forField:stringField)
+			formView!.setCellHeight(height, forField: stringField)
 			separator?.frame.origin.y = height
 
 			createRadioButtons(stringField)
@@ -154,7 +151,7 @@ open class DDLFieldRadioTableCell_default: DDMFieldTableCell {
 		return data
 	}
 
-	open dynamic func radioButtonSelected(_ notification: Notification) {
+	@objc open dynamic func radioButtonSelected(_ notification: Notification) {
 		if let stringField = field as? DDMFieldStringWithOptions {
 			stringField.currentValue = radioGroup!.selectedRadioButton!.data.labelText as AnyObject?
 

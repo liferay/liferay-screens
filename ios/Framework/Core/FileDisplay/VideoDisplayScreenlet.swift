@@ -30,7 +30,7 @@ open class VideoDisplayScreenlet: FileDisplayScreenlet {
 
 	override open var supportedMimeTypes: [String] {
 
-		return (mimeTypes.isEmpty) ? DefaultVideoMimeTypes : mimeTypes.characters.split(separator: ",")
+		return (mimeTypes.isEmpty) ? DefaultVideoMimeTypes : mimeTypes.split(separator: ",")
 			.map(String.init)
 	}
 

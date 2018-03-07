@@ -14,9 +14,7 @@
 
 import Foundation
 import LiferayScreens
-#if LIFERAY_SCREENS_FRAMEWORK
-    import MBProgressHUD
-#endif
+import MBProgressHUD
 
 open class AndorraTelecomProgressPresenter: MBProgressHUDPresenter {
 

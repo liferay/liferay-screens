@@ -12,10 +12,7 @@
  * details.
  */
 import Foundation
-
-#if LIFERAY_SCREENS_FRAMEWORK
-	import SMXMLDocument
-#endif
+import SMXMLDocument
 
 open class DDMTypedValuesXMLParser {
 
@@ -44,7 +41,7 @@ open class DDMTypedValuesXMLParser {
 
 		if let elements = document.childrenNamed("dynamic-element") {
 			let defaultLocale = Locale(
-				identifier:document.attributeNamed("default-locale") ?? "en_US")
+				identifier: document.attributeNamed("default-locale") ?? "en_US")
 
 			for element in (elements as! [SMXMLElement]) {
 				if let fieldName = element.attributeNamed("name"),
@@ -83,7 +80,7 @@ open class DDMTypedValuesXMLParser {
 	        defaultLocale: Locale) -> DDMField? {
 
 		let editor = DDMField.Editor.from(
-			attributes: xmlElement.attributes as! [String:AnyObject])
+			attributes: xmlElement.attributes as! [String: AnyObject])
 
 		return editor.defaultDataType.createField(
 			attributes: xmlElement.attributes as! [String:AnyObject],

@@ -12,10 +12,7 @@
  * details.
  */
 import Foundation
-
-#if LIFERAY_SCREENS_FRAMEWORK
-	import SMXMLDocument
-#endif
+import SMXMLDocument
 
 extension DDMField {
 
@@ -41,7 +38,7 @@ extension DDMField {
 
 		// swiftlint:disable cyclomatic_complexity
 		public func createField(
-				attributes: [String:AnyObject],
+				attributes: [String: AnyObject],
 				locale: Locale,
 				version: LiferayServerVersion)
 				-> DDMField? {
@@ -49,46 +46,46 @@ extension DDMField {
 			switch self {
 			case .DDMBoolean:
 				return DDMFieldBoolean(
-						attributes:attributes,
+						attributes: attributes,
 						locale: locale)
 
 			case .DDMString:
 				switch DDMField.Editor.from(attributes: attributes) {
-					case .Select, .Radio:
-						return DDMFieldStringWithOptions(
-								attributes: attributes,
-								locale: locale)
-					default:
-						return DDMFieldString(
-								attributes:attributes,
-								locale: locale)
+				case .Select, .Radio:
+					return DDMFieldStringWithOptions(
+							attributes: attributes,
+							locale: locale)
+				default:
+					return DDMFieldString(
+							attributes: attributes,
+							locale: locale)
 				}
 
 			case .DDMDate:
 				switch version {
 				case .v62:
 					return DDMFieldDate_v62(
-						attributes:attributes,
+						attributes: attributes,
 						locale: locale)
 				case .v70:
 					return DDMFieldDate_v70(
-						attributes:attributes,
+						attributes: attributes,
 						locale: locale)
 				}
 
 			case .DDMInteger, .DDMNumber, .DDMDouble:
 				return DDMFieldNumber(
-						attributes:attributes,
+						attributes: attributes,
 						locale: locale)
 
 			case .DDMDocument:
 				return DDMFieldDocument(
-						attributes:attributes,
+						attributes: attributes,
 						locale: locale)
 
 			case .DDMImage:
 				return DDMFieldImage(
-					attributes:attributes,
+					attributes: attributes,
 					locale: locale)
 
 			default: ()

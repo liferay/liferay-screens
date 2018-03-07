@@ -45,7 +45,7 @@ public protocol UserPortraitScreenletDelegate: BaseScreenletDelegate {
 	///   - screenlet: User portrait screenlet istance.
 	///   - attributes: User portrait attributes.
 	@objc optional func screenlet(_ screenlet: UserPortraitScreenlet,
-			onUserPortraitUploaded attributes: [String:AnyObject])
+			onUserPortraitUploaded attributes: [String: AnyObject])
 
 	/// Called when an error occurs in the upload process.
 	/// The NSError object describes the error.
@@ -141,14 +141,14 @@ open class UserPortraitScreenlet: BaseScreenlet {
 		}
 
 		switch name {
-			case UserPortraitScreenlet.LoadPortrait:
-				let downloadInteractor = sender as! DownloadUserPortraitInteractor
-				return createLoadPortraitInteractor(downloadInteractor)
-			case UserPortraitScreenlet.UploadPortrait:
-				let image = sender as! UIImage
-				return createUploadPortraitInteractor(image)
-			default:
-				return nil
+		case UserPortraitScreenlet.LoadPortrait:
+			let downloadInteractor = sender as! DownloadUserPortraitInteractor
+			return createLoadPortraitInteractor(downloadInteractor)
+		case UserPortraitScreenlet.UploadPortrait:
+			let image = sender as! UIImage
+			return createUploadPortraitInteractor(image)
+		default:
+			return nil
 		}
 	}
 

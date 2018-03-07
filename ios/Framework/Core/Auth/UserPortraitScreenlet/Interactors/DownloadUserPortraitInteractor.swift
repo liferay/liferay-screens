@@ -12,10 +12,7 @@
  * details.
  */
 import UIKit
-
-#if LIFERAY_SCREENS_FRAMEWORK
-	import CryptoSwift
-#endif
+import CryptoSwift
 
 class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
@@ -27,18 +24,18 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
 		var cacheKey: String {
 			switch self {
-				case .attributes(let portraitId, _, _):
-					return "portraitId-\(portraitId)"
-				case .userId(let userId):
-					return "userId-\(userId)"
-				case .emailAddress(let companyId, let emailAddress):
-					return "emailAddress-\(companyId)-\(emailAddress)"
-				case .screenName(let companyId, let screenName):
-					return "screenName-\(companyId)-\(screenName)"
+			case .attributes(let portraitId, _, _):
+				return "portraitId-\(portraitId)"
+			case .userId(let userId):
+				return "userId-\(userId)"
+			case .emailAddress(let companyId, let emailAddress):
+				return "emailAddress-\(companyId)-\(emailAddress)"
+			case .screenName(let companyId, let screenName):
+				return "screenName-\(companyId)-\(screenName)"
 			}
 		}
 
-		var cacheAttributes: [String:AnyObject] {
+		var cacheAttributes: [String: AnyObject] {
 			switch self {
 			case .attributes(let portraitId, _, _):
 				return ["portraitId": NSNumber(value: portraitId)]
@@ -126,8 +123,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 			userHasDefaultPortrait = false
 		}
 		else if c.lastError == nil,
-			let getUserConnector =
-				(c as? ServerConnectorChain)?.currentConnector as? GetUserBaseLiferayConnector {
+				(c as? ServerConnectorChain)?.currentConnector is GetUserBaseLiferayConnector {
 
 			// If the current connector is not a HttpConnector and its not errored
 			// we are in the case that the user doesn't have a custom portrait
@@ -159,7 +155,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 			cacheManager.setClean(
 				collection: ScreenletName(UserPortraitScreenlet.self),
 				key: "\(mode.cacheKey)",
-				value: user.attributes as NSCoding,
+				value: userAttributesToSave as NSCoding,
 				attributes: mode.cacheAttributes)
 		}
 	}
@@ -281,13 +277,11 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		return chain
 	}
 
-	fileprivate func createConnectorFor(attributes: [String:AnyObject]?) -> ServerConnector? {
+	fileprivate func createConnectorFor(attributes: [String: AnyObject]?) -> ServerConnector? {
 		let portraitEntry = attributes?["portraitId"]
-		let userEntry = attributes?["userId"]
 		if let attributes = attributes,
 				let portraitId = portraitEntry?.int64Value,
-				let uuid = attributes["uuid"] as? String,
-				let userId = userEntry?.int64Value {
+				let uuid = attributes["uuid"] as? String {
 
 			return createConnectorFor(
 				portraitId: portraitId,
@@ -309,7 +303,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		return nil
 	}
 
-	open func userHasPortrait(_ userAttrs: [String : AnyObject]?) -> Bool {
+	open func userHasPortrait(_ userAttrs: [String: AnyObject]?) -> Bool {
 		if let portraitId = userAttrs?["portraitId"]?.int64Value, portraitId == 0 {
 			return false
 		}
@@ -317,7 +311,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		return true
 	}
 
-	open func selectUserAttrsToSave(attrs: [String : AnyObject]) -> [String : AnyObject] {
+	open func selectUserAttrsToSave(attrs: [String: AnyObject]) -> [String: AnyObject] {
 		return attrs
 	}
 
@@ -325,23 +319,14 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
 		func encodedSHA1(_ input: String) -> String? {
 			var result: String?
-#if LIFERAY_SCREENS_FRAMEWORK
-			if let inputData = input.data(using: .utf8,
-					allowLossyConversion: false) {
+
+			if let inputData = input.data(using: .utf8, allowLossyConversion: false) {
 
 				let resultBytes = CryptoSwift.Digest.sha1(inputData.bytes)
 				let resultData = Data(bytes: resultBytes)
 				result = LRHttpUtil.encodeURL(resultData.base64EncodedString())
 			}
-#else
-			var buffer = [UInt8](count: Int(CC_SHA1_DIGEST_LENGTH), repeatedValue: 0)
 
-			CC_SHA1(input, CC_LONG(count(input)), &buffer)
-			let data = Data(bytes: buffer, length: buffer.count)
-			let encodedString = data.base64EncodedString(options: .init(rawValue: 0))
-
-			result = LRHttpUtil.encodeURL(encodedString)
-#endif
 			return result
 		}
 

@@ -12,21 +12,17 @@
  * details.
  */
 import UIKit
-
-#if LIFERAY_SCREENS_FRAMEWORK
-	import LRMobileSDK
-	import KeychainAccess
-#endif
+import KeychainAccess
 
 @objc(BaseCredentialsStoreKeyChain)
 open class BaseCredentialsStoreKeyChain: NSObject, CredentialsStore {
 
 	open var authentication: LRAuthentication?
-	open var userAttributes: [String:AnyObject]?
+	open var userAttributes: [String: AnyObject]?
 
 	open dynamic func storeCredentials(
 			_ session: LRSession?,
-			userAttributes: [String:AnyObject]?) -> Bool {
+			userAttributes: [String: AnyObject]?) -> Bool {
 
 		guard let auth = session?.authentication else {
 			return false
@@ -120,12 +116,12 @@ open class BaseCredentialsStoreKeyChain: NSObject, CredentialsStore {
 		let groupId = try? keychain.get("groupId").flatMap { Int64($0) }
 
 		if shouldLoadServer {
-			if let companyId = companyId ?? nil {
-				LiferayServerContext.companyId = companyId
+			if let companyId = companyId {
+				LiferayServerContext.companyId = companyId!
 			}
 
-			if let groupId = groupId ?? nil {
-				LiferayServerContext.groupId = groupId
+			if let groupId = groupId {
+				LiferayServerContext.groupId = groupId!
 			}
 
 		}
@@ -143,7 +139,7 @@ open class BaseCredentialsStoreKeyChain: NSObject, CredentialsStore {
 		if let userData = userData {
 			let json = try? JSONSerialization.jsonObject(with: userData, options: [])
 
-			userAttributes = json as? [String:AnyObject]
+			userAttributes = json as? [String: AnyObject]
 			authentication = loadAuth(keychain: keychain)
 
 			return (authentication != nil && userAttributes != nil)

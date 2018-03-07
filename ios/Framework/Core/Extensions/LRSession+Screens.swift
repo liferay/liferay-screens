@@ -13,16 +13,12 @@
  */
 import Foundation
 
-#if LIFERAY_SCREENS_FRAMEWORK
-	import LRMobileSDK
-#endif
-
 extension LRSession {
 
 	public var serverName: String? {
 		if let server = self.server {
 			return server.hasSuffix("/")
-				? String(server.characters.dropLast())
+				? String(server.dropLast())
 				: server
 		}
 

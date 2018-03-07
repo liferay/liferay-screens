@@ -45,7 +45,7 @@ public enum BasicAuthMethod: String {
 	}
 
 	public static func fromUserName(_ userName: String) -> BasicAuthMethod {
-		if userName.characters.index(of: "@") != nil {
+		if userName.index(of: "@") != nil {
 			return .email
 		}
 
@@ -57,7 +57,7 @@ public enum BasicAuthMethod: String {
 	}
 
 	public var iconType: String {
-		let iconTypes: [BasicAuthMethod:String] = [
+		let iconTypes: [BasicAuthMethod: String] = [
 				.email: "mail",
 				.screenName: "user",
 				.userId: "user"]
@@ -66,7 +66,7 @@ public enum BasicAuthMethod: String {
 	}
 
 	public var keyboardType: UIKeyboardType {
-		let keyboardTypes: [BasicAuthMethod:UIKeyboardType] = [
+		let keyboardTypes: [BasicAuthMethod: UIKeyboardType] = [
 				.email: .emailAddress,
 				.screenName: .asciiCapable,
 				.userId: .numberPad]
@@ -75,7 +75,7 @@ public enum BasicAuthMethod: String {
 	}
 
 	public var description: String {
-		let descriptions: [BasicAuthMethod : String] = [
+		let descriptions: [BasicAuthMethod: String] = [
 			.email: "auth-method-email",
 			.screenName: "auth-method-screenname",
 			.userId: "auth-method-userid"]

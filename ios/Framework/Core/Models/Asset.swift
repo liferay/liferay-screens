@@ -14,9 +14,10 @@
 import Foundation
 
 @objc(Asset)
+@objcMembers
 open class Asset: NSObject, NSCoding, MimeTypeable {
 
-	open let attributes: [String:AnyObject]
+	open let attributes: [String: AnyObject]
 
 	open let title: String
 
@@ -70,7 +71,7 @@ open class Asset: NSObject, NSCoding, MimeTypeable {
 
 	// MARK: Initializers
 
-	public init(attributes: [String:AnyObject]) {
+	public init(attributes: [String: AnyObject]) {
 		self.attributes = attributes
 
 		let xmlTitle = attributes["title"] as! String
@@ -80,7 +81,7 @@ open class Asset: NSObject, NSCoding, MimeTypeable {
 	}
 
 	public required init?(coder aDecoder: NSCoder) {
-		self.attributes = aDecoder.decodeObject(forKey: "asset-attrs") as? [String:AnyObject] ?? [:]
+		self.attributes = aDecoder.decodeObject(forKey: "asset-attrs") as? [String: AnyObject] ?? [:]
 
 		let xmlTitle = attributes["title"] as! String
 		title = xmlTitle.asLocalized(Locale(identifier: NSLocale.currentLocaleString))

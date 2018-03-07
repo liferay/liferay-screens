@@ -15,7 +15,7 @@ import UIKit
 
 open class GetUserBaseLiferayConnector: ServerConnector {
 
-	open var resultUserAttributes: [String:AnyObject]?
+	open var resultUserAttributes: [String: AnyObject]?
 
 	open var userName: String?
 	open var password: String?
@@ -67,7 +67,7 @@ open class GetUserBaseLiferayConnector: ServerConnector {
 				resultUserAttributes = extractUserAttributes(result)
 			}
 		}
-		catch (let error as NSError) {
+		catch let error as NSError {
 			lastError = error
 			resultUserAttributes = nil
 		}

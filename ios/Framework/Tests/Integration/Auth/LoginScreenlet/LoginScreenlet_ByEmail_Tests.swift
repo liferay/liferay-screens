@@ -44,9 +44,9 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 					XCTAssertFalse(result is NSError)
 				}
 				assertThat("the attributes should be populated") {
-					XCTAssertTrue(result is [String:AnyObject])
+					XCTAssertTrue(result is [String: AnyObject])
 
-					let attrs = result as! [String:AnyObject]
+					let attrs = result as! [String: AnyObject]
 
 					XCTAssertTrue(!attrs.isEmpty)
 					XCTAssertNotNil(attrs["emailAddress"])
@@ -146,7 +146,7 @@ class LoginScreenlet_ByEmail_Tests: BaseLoginScreenletTestCase {
 				}
 				and ("server returns failure") {
 					mockServer.stubService("get-user-by-email-address",
-							withResult:mockServer.loginFailedAuthentication())
+							withResult: mockServer.loginFailedAuthentication())
 				}
 			}
 			when ("the request is sent and the response is received") {

@@ -76,7 +76,7 @@ open class AssetClassEntry: NSObject {
 @objc(AssetClasses)
 open class AssetClasses: NSObject {
 
-	fileprivate static var classNameEntries: [String:AssetClassEntry] = {
+	fileprivate static var classNameEntries: [String: AssetClassEntry] = {
 
 		// These are the default values for a Liferay Portal 7.0 GA3
 		// installation.

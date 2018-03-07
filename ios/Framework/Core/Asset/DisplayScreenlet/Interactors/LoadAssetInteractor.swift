@@ -138,10 +138,8 @@ open class LoadAssetInteractor: ServerReadConnectorInteractor {
 			return "load-asset-cn-\(className)-cpk-\(classPK)"
 		}
 		else {
-			return "load-asset-pin-\(portletItemName)"
+			return "load-asset-pin-\(String(describing: portletItemName))"
 		}
-
-		fatalError("Need either assetEntryId, className+classPK or portletItemName")
 	}
 
 }

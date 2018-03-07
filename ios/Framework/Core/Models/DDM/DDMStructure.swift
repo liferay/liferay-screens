@@ -16,10 +16,11 @@ import Foundation
 //TODO: Unit test
 
 @objc(DDMStructure)
+@objcMembers
 open class DDMStructure: NSObject, NSCoding {
 
 	open var fields = [DDMField]()
-	open let attributes: [String:AnyObject]
+	open let attributes: [String: AnyObject]
 	open let locale: Locale
 
 	open subscript(fieldName: String) -> DDMField? {
@@ -32,7 +33,7 @@ open class DDMStructure: NSObject, NSCoding {
 
 	// MARK: Initializers
 
-	public init(fields: [DDMField], locale: Locale, attributes: [String:AnyObject]) {
+	public init(fields: [DDMField], locale: Locale, attributes: [String: AnyObject]) {
 		self.fields = fields
 		self.locale = locale
 		self.attributes = attributes
@@ -40,7 +41,7 @@ open class DDMStructure: NSObject, NSCoding {
 		super.init()
 	}
 
-	public convenience init?(xsd: String, locale: Locale, attributes: [String:AnyObject] = [:]) {
+	public convenience init?(xsd: String, locale: Locale, attributes: [String: AnyObject] = [:]) {
 		guard let parsedFields = DDMXSDParser().parse(xsd, locale: locale) else {
 			return nil
 		}
@@ -51,7 +52,7 @@ open class DDMStructure: NSObject, NSCoding {
 		self.init(fields: parsedFields, locale: locale, attributes: attributes)
 	}
 
-	public convenience init?(json: String, locale: Locale, attributes: [String:AnyObject] = [:]) {
+	public convenience init?(json: String, locale: Locale, attributes: [String: AnyObject] = [:]) {
 		guard let parsedFields = DDMJSONParser().parse(json, locale: locale) else {
 			return nil
 		}
@@ -62,7 +63,7 @@ open class DDMStructure: NSObject, NSCoding {
 		self.init(fields: parsedFields, locale: locale, attributes: attributes)
 	}
 
-	public convenience init?(structureData: [String:AnyObject], locale: Locale) {
+	public convenience init?(structureData: [String: AnyObject], locale: Locale) {
 		var newData = structureData
 
 		if let xsd = structureData["xsd"] as? String {
@@ -82,7 +83,7 @@ open class DDMStructure: NSObject, NSCoding {
 
 	public required init?(coder aDecoder: NSCoder) {
 		fields = aDecoder.decodeObject(forKey: "fields") as! [DDMField]
-		attributes = aDecoder.decodeObject(forKey: "attributes") as! [String:AnyObject]
+		attributes = aDecoder.decodeObject(forKey: "attributes") as! [String: AnyObject]
 		locale = aDecoder.decodeObject(forKey: "locale") as! Locale
 
 		super.init()
@@ -91,9 +92,9 @@ open class DDMStructure: NSObject, NSCoding {
 	// MARK: Public methods
 
 	open func encode(with aCoder: NSCoder) {
-		aCoder.encode(fields, forKey:"fields")
-		aCoder.encode(attributes, forKey:"attributes")
-		aCoder.encode(locale, forKey:"locale")
+		aCoder.encode(fields, forKey: "fields")
+		aCoder.encode(attributes, forKey: "attributes")
+		aCoder.encode(locale, forKey: "locale")
 	}
 
 	open func fieldBy(name: String) -> DDMField? {
@@ -102,11 +103,11 @@ open class DDMStructure: NSObject, NSCoding {
 		}.first
 	}
 
-	open func fieldsBy(type: AnyClass) -> [DDMField] {
-		let typeName = NSStringFromClass(type)
+	open func fieldsBy(type: AnyObject.Type) -> [DDMField] {
+		let typeName = String(describing: type)
 
 		return fields.filter {
-			NSStringFromClass(type(of: $0)) == typeName
+			String(describing: $0.self) == typeName
 		}
 	}
 

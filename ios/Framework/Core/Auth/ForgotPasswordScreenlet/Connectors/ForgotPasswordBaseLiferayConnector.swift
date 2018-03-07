@@ -34,7 +34,7 @@ open class ForgotPasswordBaseLiferayConnector: ServerConnector {
 		super.init()
 	}
 
-	//MARK ServerConnector
+	// MARK: ServerConnector
 
 	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -53,7 +53,7 @@ open class ForgotPasswordBaseLiferayConnector: ServerConnector {
 			resultPasswordSent = try sendForgotPasswordRequest(session)
 			lastError = nil
 		}
-		catch (let error as NSError) {
+		catch let error as NSError {
 			lastError = error
 			resultPasswordSent = nil
 		}

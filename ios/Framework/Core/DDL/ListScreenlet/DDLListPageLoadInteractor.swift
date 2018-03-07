@@ -50,7 +50,7 @@ open class DDLListPageLoadInteractor: BaseListPageLoadInteractor {
 		return connector
 	}
 
-	override open func convertResult(_ serverResult: [String:AnyObject]) -> AnyObject {
+	override open func convertResult(_ serverResult: [String: AnyObject]) -> AnyObject {
 		return DDLRecord(dataAndAttributes: serverResult)
 	}
 

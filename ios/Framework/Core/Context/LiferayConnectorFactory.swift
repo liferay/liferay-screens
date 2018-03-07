@@ -100,7 +100,7 @@ public protocol LiferayConnectorFactory {
 	func createDDLFormRecordLoadConnector(_ recordId: Int64) -> DDLFormRecordLoadLiferayConnector
 
 	func createDDLFormSubmitConnector(
-		values: [String:AnyObject],
+		values: [String: AnyObject],
 		viewModel: DDLFormViewModel?) -> DDLFormSubmitLiferayConnector
 
 	func createDDLFormUploadConnector(
@@ -345,7 +345,7 @@ open class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 	}
 
 	open func createDDLFormSubmitConnector(
-			values: [String:AnyObject],
+			values: [String: AnyObject],
 			viewModel: DDLFormViewModel?) -> DDLFormSubmitLiferayConnector {
 		return Liferay62DDLFormSubmitConnector(
 			values: values,
@@ -647,7 +647,7 @@ open class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 	}
 
 	open func createDDLFormSubmitConnector(
-			values: [String:AnyObject],
+			values: [String: AnyObject],
 			viewModel: DDLFormViewModel?) -> DDLFormSubmitLiferayConnector {
 		return Liferay70DDLFormSubmitConnector(
 			values: values,
@@ -717,10 +717,10 @@ open class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			computeRowCount: Bool,
 			repositoryId: Int64,
 			folderId: Int64,
-			mimeTypes: [String]) -> ImageGalleryPageLiferayConnector {
+			mimeTypes: [String]) -> ImageGalleryPageLiferayConnector? {
 		return Liferay70ImageGalleryPageLiferayConnector(startRow: startRow,
-			endRow:endRow,
-			computeRowCount:computeRowCount,
+			endRow: endRow,
+			computeRowCount: computeRowCount,
 			repositoryId: repositoryId,
 			folderId: folderId,
 			mimeTypes: mimeTypes
@@ -735,7 +735,7 @@ open class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			descrip: String,
 			changeLog: String,
 			image: UIImage,
-			onUploadBytes: ImageGalleryUploadConnector.OnProgress?) -> ImageGalleryUploadConnector {
+			onUploadBytes: ImageGalleryUploadConnector.OnProgress?) -> ImageGalleryUploadConnector? {
 
 		return Liferay70ImageGalleryUploadConnector(repositoryId: repositoryId, folderId: folderId,
 			sourceFileName: sourceFileName,

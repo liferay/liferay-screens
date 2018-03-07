@@ -58,7 +58,7 @@ open class BaseListScreenlet: BaseScreenlet {
 
 	// MARK: Private properties
 
-	fileprivate var paginationInteractors: [Int:BaseListPageLoadInteractor] = [:]
+	fileprivate var paginationInteractors: [Int: BaseListPageLoadInteractor] = [:]
 
 	// MARK: BaseScreenlet
 

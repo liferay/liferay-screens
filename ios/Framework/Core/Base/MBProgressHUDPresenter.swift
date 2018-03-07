@@ -12,10 +12,7 @@
  * details.
  */
 import Foundation
-
-#if LIFERAY_SCREENS_FRAMEWORK
-	import MBProgressHUD
-#endif
+import MBProgressHUD
 
 @objc public enum ProgressCloseMode: Int {
 	case manualClose
@@ -39,7 +36,7 @@ open class MBProgressHUDPresenter: NSObject, ProgressPresenter {
 	open var customColor: UIColor?
 	open var customOpacity = Float(0.8)
 
-	internal dynamic func simpleTapDetected(_ recognizer: UIGestureRecognizer!) {
+	@objc internal func simpleTapDetected(_ recognizer: UIGestureRecognizer!) {
 		if let hud = recognizer.view as? MBProgressHUD {
 			hud.hide(true)
 			instance = nil
@@ -54,7 +51,7 @@ open class MBProgressHUDPresenter: NSObject, ProgressPresenter {
 		if message != nil {
 			dispatch_main {
 				if self.instance == nil {
-					self.instance = MBProgressHUD.showAdded(to: view, animated:true)
+					self.instance = MBProgressHUD.showAdded(to: view, animated: true)
 				}
 
 				self.configureAndShowHUD(self.instance!,
@@ -71,7 +68,7 @@ open class MBProgressHUDPresenter: NSObject, ProgressPresenter {
 	open func showHUDInView(_ view: UIView, message: String?, forInteractor interactor: Interactor) {
 		dispatch_main {
 			if self.instance == nil {
-				self.instance = MBProgressHUD.showAdded(to: view, animated:true)
+				self.instance = MBProgressHUD.showAdded(to: view, animated: true)
 			}
 
 			self.configureAndShowHUD(self.instance!,
@@ -125,8 +122,8 @@ open class MBProgressHUDPresenter: NSObject, ProgressPresenter {
 
 		if closeMode == .autoclose_TouchClosable {
 			// compute autodelay based on text's length
-			let len = (hud.labelText ?? "").characters.count
-				+ (hud.detailsLabelText ?? "").characters.count
+			let len = (hud.labelText ?? "").count
+				+ (hud.detailsLabelText ?? "").count
 
 			let closeDelay = 1.5 + (Double(len) * 0.01)
 

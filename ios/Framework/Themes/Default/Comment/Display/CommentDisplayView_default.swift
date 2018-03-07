@@ -147,7 +147,7 @@ open class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMode
 		return DefaultProgressPresenter()
 	}
 
-	override open var progressMessages: [String : ProgressMessages] {
+	override open var progressMessages: [String: ProgressMessages] {
 		return [
 			CommentDisplayScreenlet.DeleteAction: [.working: NoProgressMessage],
 			CommentDisplayScreenlet.UpdateAction: [.working: NoProgressMessage]
@@ -181,16 +181,16 @@ open class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMode
 		return 110
 	}
 
-	open class func defaultAttributedTextAttributes() -> [String: NSObject] {
+	open class func defaultAttributedTextAttributes() -> [NSAttributedStringKey: NSObject] {
 		let paragrahpStyle = NSMutableParagraphStyle()
 		paragrahpStyle.lineBreakMode = .byWordWrapping
 
-		var attributes: [String: NSObject] = [NSParagraphStyleAttributeName: paragrahpStyle]
+		var attributes: [NSAttributedStringKey: NSObject] = [.paragraphStyle: paragrahpStyle]
 
 		let font = UIFont(name: "HelveticaNeue", size: 17)
 
 		if let font = font {
-			attributes[NSFontAttributeName] = font
+			attributes[.font] = font
 		}
 
 		return attributes

@@ -13,7 +13,9 @@
  */
 import UIKit
 
-@objc open class ServerConnector: Operation {
+@objc(ServerConnector)
+@objcMembers
+open class ServerConnector: Operation {
 
 	fileprivate struct ConnectorsQueue {
 
@@ -48,26 +50,6 @@ import UIKit
 			if preRun() {
 				if let session = createSession() {
 					doRun(session: session)
-
-					if !retried && canBeCookieExpiredError(session: session) {
-						retried = true
-						self.semaphore = DispatchSemaphore(value: 0)
-						SessionContext.reloadCookieAuth(session: session, callback: LRCookieBlockCallback { (session, error) in
-							if let session = session {
-								self.currentSession = session
-							}
-							else {
-								self.lastError = error! as NSError
-							}
-
-							self.semaphore?.signal()
-						})
-						_ = self.semaphore?.wait(timeout: .distantFuture)
-
-						if let currentSession = currentSession {
-							doRun(session: currentSession)
-						}
-					}
 					postRun()
 				}
 				else {
@@ -144,25 +126,5 @@ import UIKit
 				self.onComplete = nil
 			}
 		}
-	}
-
-	internal func canBeCookieExpiredError(session: LRSession) -> Bool {
-		guard session.authentication as? LRCookieAuthentication != nil, let error = lastError else { return false }
-
-		if case .v62 = LiferayServerContext.serverVersion {
-			return error.code == 2 && error.domain.contains("mobile.sdk")
-		}
-
-		// LRMobileSDK <= v7.0.9
-		if error.code == 403 {
-			return true
-		}
-
-		// LRMobileSDK > v7.0.9
-		if error.code == 2 && error.description.contains("SecurityException") {
-			return true
-		}
-
-		return false
 	}
 }

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Andorra Telecom</string>
+    <string name="help_text">How can we help you?</string>
+    <string name="phone_text">Telephone number</string>
+    <string name="legal_text">I accept the legal conditions</string>
+    <string name="button_call_me_now_text">CALL ME NOW</string>
+    <string name="or_text">or</string>
+    <string name="button_i_call_text">I CALL</string>
+    <string name="language_ca">Catalá</string>
+    <string name="language_es">Spanish</string>
+    <string name="language_en">English</string>
+    <string name="language_fr">French</string>
+    <string name="language_dialog_title">Choose your language</string>
+    <string name="dialog_button_cancel">Cancel</string>
+    <string name="call_me_now_message">We will call you soon to the telephone that you have given us</string>
+    <string name="i_call_message">Calling...</string>
+</resources>

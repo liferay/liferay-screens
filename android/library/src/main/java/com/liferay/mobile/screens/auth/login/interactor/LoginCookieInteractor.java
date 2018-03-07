@@ -1,6 +1,7 @@
 package com.liferay.mobile.screens.auth.login.interactor;
 
 import com.liferay.mobile.android.auth.CookieSignIn;
+import com.liferay.mobile.android.auth.basic.CookieAuthentication;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.auth.login.connector.CurrentUserConnector;
 import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
@@ -22,9 +23,17 @@ public class LoginCookieInteractor extends BaseLoginInteractor {
 		String password = (String) args[1];
 		Authenticator authenticator = (Authenticator) args[2];
 
+		boolean shouldHandleExpiration = (boolean) args[3];
+		int cookieExpirationTime = (int) args[4];
+
 		validate(login, password);
 
+		CookieAuthentication authentication =
+			new CookieAuthentication("", "", login, password, shouldHandleExpiration, cookieExpirationTime, 0);
+
 		Session session = SessionContext.createBasicSession(login, password);
+		session.setAuthentication(authentication);
+
 		Session cookieSession = CookieSignIn.signIn(session, authenticator);
 
 		SessionContext.createCookieSession(cookieSession);

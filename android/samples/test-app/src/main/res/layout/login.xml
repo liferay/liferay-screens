@@ -15,6 +15,7 @@
 		android:id="@+id/login_screenlet"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		liferay:loginMode="cookie"
 		liferay:basicAuthMethod="email"
 		liferay:credentialsStorage="shared_preferences"
 		/>

@@ -30,7 +30,7 @@ open class ImageGalleryUploadInteractor: ServerWriteConnectorInteractor {
 	// Initialized only when created from synchronizer
 	var cacheKeyUsed: String?
 
-	var result: [String : AnyObject]?
+	var result: [String: AnyObject]?
 
 	public init(
 			screenlet: ImageGalleryScreenlet?,
@@ -82,7 +82,7 @@ open class ImageGalleryUploadInteractor: ServerWriteConnectorInteractor {
 				descrip: imageUpload.notes,
 				changeLog: "",
 				image: imageUpload.image,
-				onUploadBytes:  onUploadedBytes)
+				onUploadBytes: onUploadedBytes)
 	}
 
 	override open func completedConnector(_ c: ServerConnector) {
@@ -144,7 +144,7 @@ open class ImageGalleryUploadInteractor: ServerWriteConnectorInteractor {
 
 				var newPage = [[String: AnyObject]]()
 
-				if let oldPage = $0.first as? [[String:AnyObject]] {
+				if let oldPage = $0.first as? [[String: AnyObject]] {
 					newPage.append(contentsOf: oldPage)
 				}
 
@@ -185,7 +185,7 @@ open class ImageGalleryUploadInteractor: ServerWriteConnectorInteractor {
 		}
 	}
 
-	fileprivate func storeNewImageEntry(_ page: [[String:AnyObject]], cacheKey: String) {
+	fileprivate func storeNewImageEntry(_ page: [[String: AnyObject]], cacheKey: String) {
 		SessionContext.currentContext?.cacheManager.setClean(
 				collection: ScreenletName(ImageGalleryScreenlet.self),
 				key: cacheKey,

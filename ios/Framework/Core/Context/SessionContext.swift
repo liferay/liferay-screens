@@ -12,13 +12,10 @@
  * details.
  */
 import Foundation
-
-#if LIFERAY_SCREENS_FRAMEWORK
-	import LRMobileSDK
-	import LROAuth
-#endif
+import LROAuth
 
 @objc(SessionContext)
+@objcMembers
 open class SessionContext: NSObject {
 
 	open static var currentContext: SessionContext?
@@ -36,7 +33,7 @@ open class SessionContext: NSObject {
 	}
 
 	@available(*, deprecated: 2.0.1, message: "Access it throught user.attributes")
-	open var userAttributes: [String : AnyObject] {
+	open var userAttributes: [String: AnyObject] {
 		return user.attributes
 	}
 
@@ -101,7 +98,7 @@ open class SessionContext: NSObject {
 	open class func loginWithBasic(
 			username: String,
 			password: String,
-			userAttributes: [String:AnyObject]) -> LRSession {
+			userAttributes: [String: AnyObject]) -> LRSession {
 
 		let authentication = LRBasicAuthentication(
 			username: username,
@@ -125,7 +122,7 @@ open class SessionContext: NSObject {
 	@discardableResult
 	open class func loginWithOAuth(
 			authentication: LROAuth,
-			userAttributes: [String:AnyObject]) -> LRSession {
+			userAttributes: [String: AnyObject]) -> LRSession {
 
 		let session = LRSession(
 			server: LiferayServerContext.server,
@@ -145,7 +142,7 @@ open class SessionContext: NSObject {
 	@discardableResult
 	open class func loginWithCookie(
 		authentication: LRCookieAuthentication,
-		userAttributes: [String:AnyObject]) -> LRSession {
+		userAttributes: [String: AnyObject]) -> LRSession {
 
 		let session = LRSession(
 			server: LiferayServerContext.server,
@@ -162,7 +159,7 @@ open class SessionContext: NSObject {
 		return session!
 	}
 
-	open class func reloadCookieAuth(session: LRSession? = nil, callback: LRCookieBlockCallback) {
+	open class func reloadCookieAuth(session: LRSession? = nil, callback: LRBlockCookieCallback) {
 		var session = session
 		if session == nil {
 			session = SessionContext.currentContext?.createRequestSession()
@@ -179,25 +176,22 @@ open class SessionContext: NSObject {
 			}
 		}
 
-		LRCookieSignIn.signIn(with: session, callback: LRCookieBlockCallback { session, error in
+		let callback = LRBlockCookieCallback(success: { session in
+			SessionContext.loginWithCookie(authentication: session!.authentication as! LRCookieAuthentication,
+				userAttributes: currentAttrs)
+			callback.onSuccess(session)
+		}, failure: { error in
+			callback.onFailure(error)
+		})
 
-			if let session = session {
-				SessionContext.loginWithCookie(authentication: session.authentication as! LRCookieAuthentication,
-						userAttributes: currentAttrs)
-
-				callback.callback(session, nil)
-			}
-			else {
-				callback.callback(nil, error)
-			}
-		}, challenge: challenge)
+		_ = try? LRCookieSignIn.signIn(with: session, callback: callback, challenge: challenge)
 	}
 
 	open func createRequestSession() -> LRSession {
 		return LRSession(session: session)
 	}
 
-	open func relogin(_ completed: (([String:AnyObject]?) -> Void)?) -> Bool {
+	open func relogin(_ completed: (([String: AnyObject]?) -> Void)?) -> Bool {
 		if session.authentication is LRBasicAuthentication {
 			return reloginBasic(completed)
 		}
@@ -211,7 +205,7 @@ open class SessionContext: NSObject {
 		return false
 	}
 
-	open func reloginBasic(_ completed: (([String:AnyObject]?) -> Void)?) -> Bool {
+	open func reloginBasic(_ completed: (([String: AnyObject]?) -> Void)?) -> Bool {
 		guard let userName = self.basicAuthUsername,
 				let password = self.basicAuthPassword else {
 			completed?(nil)
@@ -230,7 +224,7 @@ open class SessionContext: NSObject {
 		}
 	}
 
-	open func reloginOAuth(_ completed: (([String:AnyObject]?) -> Void)?) -> Bool {
+	open func reloginOAuth(_ completed: (([String: AnyObject]?) -> Void)?) -> Bool {
 		guard let auth = self.session.authentication as? LROAuth else {
 			completed?(nil)
 			return false
@@ -248,22 +242,17 @@ open class SessionContext: NSObject {
 		}
 	}
 
-	open func reloginCookie(_ completed: (([String:AnyObject]?) -> Void)?) -> Bool {
+	open func reloginCookie(_ completed: (([String: AnyObject]?) -> Void)?) -> Bool {
 		guard session.authentication is LRCookieAuthentication else {
 			completed?(nil)
 			return false
 		}
 
-		SessionContext.reloadCookieAuth(session: self.session, callback: LRCookieBlockCallback { (session, error) in
-			guard session != nil, let auth = session?.authentication as? LRCookieAuthentication else {
-				print("Error reloading the cookie auth\(error!)")
-				completed?(nil)
-				return
-			}
-
+		let callback = LRBlockCookieCallback(success: { session in
+			let cookieAuth = session!.authentication as! LRCookieAuthentication
 			_ = SessionContext.currentContext?.refreshUserAttributes { attributes in
 				if let attributes = attributes {
-					SessionContext.loginWithCookie(authentication: auth, userAttributes: attributes)
+					SessionContext.loginWithCookie(authentication: cookieAuth, userAttributes: attributes)
 				}
 				else {
 					SessionContext.logout()
@@ -271,13 +260,17 @@ open class SessionContext: NSObject {
 
 				completed?(attributes)
 			}
+		}, failure: { error in
+			print("Error reloading the cookie auth\(error!)")
+			completed?(nil)
+		})!
 
-		})
+		SessionContext.reloadCookieAuth(session: self.session, callback: callback)
 
 		return true
 	}
 
-	open func refreshUserAttributes(_ completed: (([String:AnyObject]?) -> Void)?) -> Bool {
+	open func refreshUserAttributes(_ completed: (([String: AnyObject]?) -> Void)?) -> Bool {
 		let session = self.createRequestSession()
 
 		session.callback = LRBlockCallback(

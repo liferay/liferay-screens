@@ -88,7 +88,7 @@ public func dispatch_main(_ forceDispatch: Bool, block: @escaping () -> Void) {
 public func ScreenletName(_ klass: AnyClass) -> String {
 	var className = NSStringFromClass(klass)
 
-	if className.characters.index(of: ".") != nil {
+	if className.index(of: ".") != nil {
 		className = className.components(separatedBy: ".")[1]
 	}
 
@@ -181,11 +181,11 @@ public func adjustRectForCurrentOrientation(_ rect: CGRect) -> CGRect {
 		// For 7.x and earlier, the width and height are reversed when
 		// the device is landscaped
 		switch UIDevice.current.orientation {
-			case .landscapeLeft, .landscapeRight:
-				adjustedRect = CGRect(
-						x: rect.origin.y, y: rect.origin.x,
-						width: rect.size.height, height: rect.size.width)
-			default: ()
+		case .landscapeLeft, .landscapeRight:
+			adjustedRect = CGRect(
+					x: rect.origin.y, y: rect.origin.x,
+					width: rect.size.height, height: rect.size.width)
+		default: ()
 		}
 	}
 

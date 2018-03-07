@@ -18,7 +18,7 @@ open class DDMFieldImage: DDMField {
 
 	// MARK: DDMField
 
-	public override init(attributes: [String:AnyObject], locale: Locale) {
+	public override init(attributes: [String: AnyObject], locale: Locale) {
 		super.init(attributes: attributes, locale: locale)
 	}
 

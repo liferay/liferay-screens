@@ -71,11 +71,11 @@ class Liferay62MockServer: MockServer, StubResponses {
 	var calledStoreCredential = false
 
 	var authentication: LRAuthentication?
-	var userAttributes: [String:AnyObject]?
+	var userAttributes: [String: AnyObject]?
 
 	var hasData = true
 
-	func storeCredentials(_ session: LRSession?, userAttributes: [String:AnyObject]?) -> Bool {
+	func storeCredentials(_ session: LRSession?, userAttributes: [String: AnyObject]?) -> Bool {
 		calledStoreCredential = true
 
 		// after the credentials are saved, the data is present

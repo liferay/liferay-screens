@@ -132,17 +132,17 @@ open class WebScreenlet: BaseScreenlet {
 		webViewModel.isScrollEnabled = isScrollEnabled
 
 		switch configuration.webType {
-			case .liferayAuthenticated:
-				guard SessionContext.isLoggedIn else {
-					webDelegate?.screenlet?(self, onError: NSError.errorWithCause(
-						.abortedDueToPreconditions, message: "You have to be logged to use this web type"))
-					return
-				}
+		case .liferayAuthenticated:
+			guard SessionContext.isLoggedIn else {
+				webDelegate?.screenlet?(self, onError: NSError.errorWithCause(
+					.abortedDueToPreconditions, message: "You have to be logged to use this web type"))
+				return
+			}
 
-				let html = configureInitialHtml(url: configuration.url)
-				webViewModel.load(htmlString: html)
-			case .other:
-				webViewModel.load(request: URLRequest(url: URL(string: configuration.url)!))
+			let html = configureInitialHtml(url: configuration.url)
+			webViewModel.load(htmlString: html)
+		case .other:
+			webViewModel.load(request: URLRequest(url: URL(string: configuration.url)!))
 		}
 	}
 

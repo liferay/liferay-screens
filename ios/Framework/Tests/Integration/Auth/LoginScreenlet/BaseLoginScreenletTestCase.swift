@@ -31,7 +31,7 @@ import XCTest
 	}
 
 	func screenlet(_ screenlet: BaseScreenlet,
-			onLoginResponseUserAttributes attributes: [String:AnyObject]) {
+			onLoginResponseUserAttributes attributes: [String: AnyObject]) {
 		onCompleted?(attributes as AnyObject)
 		self.strongLoop = nil
 	}
@@ -43,13 +43,13 @@ import XCTest
 	}
 
 	func screenlet(_ screenlet: BaseScreenlet,
-			onCredentialsSavedUserAttributes attributes: [String:AnyObject]) {
+			onCredentialsSavedUserAttributes attributes: [String: AnyObject]) {
 		credentialsSavedCalled = true
 		onCredentialsStored?()
 	}
 
 	func screenlet(_ screenlet: LoginScreenlet,
-			onCredentialsLoadedUserAttributes attributes: [String:AnyObject]) {
+			onCredentialsLoadedUserAttributes attributes: [String: AnyObject]) {
 		credentialsLoadedCalled = true
 	}
 

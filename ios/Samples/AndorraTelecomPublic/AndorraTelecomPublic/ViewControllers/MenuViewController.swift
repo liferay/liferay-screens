@@ -16,6 +16,7 @@ import UIKit
 import LiferayScreens
 import Hokusai
 
+@objcMembers
 class MenuViewController: UIViewController, WebScreenletDelegate, CallMeBackDelegate {
 
     @IBOutlet weak var webScreenlet: WebScreenlet!

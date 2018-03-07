@@ -12,10 +12,7 @@
  * details.
  */
 import Foundation
-
-#if LIFERAY_SCREENS_FRAMEWORK
-	import SMXMLDocument
-#endif
+import SMXMLDocument
 
 open class DDMXSDParser {
 
@@ -46,7 +43,7 @@ open class DDMXSDParser {
 
 		if let elements = document.childrenNamed("dynamic-element") {
 			let defaultLocale = Locale(
-				identifier:document.attributeNamed("default-locale") ?? "en_US")
+				identifier: document.attributeNamed("default-locale") ?? "en_US")
 
 			result = []
 
@@ -68,7 +65,7 @@ open class DDMXSDParser {
 			defaultLocale: Locale)
 			-> DDMField? {
 
-		let dataType = DDMField.DataType.from(xmlElement:xmlElement)
+		let dataType = DDMField.DataType.from(xmlElement: xmlElement)
 
 		let localizedMetadata = processLocalizedMetadata(xmlElement,
 				locale: locale,
@@ -85,11 +82,11 @@ open class DDMXSDParser {
 	}
 
 	fileprivate func mergeDictionaries(
-			dict1: [String:AnyObject],
-			dict2: [String:AnyObject])
-			-> [String:AnyObject] {
+			dict1: [String: AnyObject],
+			dict2: [String: AnyObject])
+			-> [String: AnyObject] {
 
-		var result: [String:AnyObject] = [:]
+		var result: [String: AnyObject] = [:]
 
 		for (key1, value1) in dict1 {
 			result.updateValue(value1, forKey: key1)
@@ -105,14 +102,14 @@ open class DDMXSDParser {
 	fileprivate func processLocalizedMetadata(_ dynamicElement: SMXMLElement,
 			locale: Locale,
 			defaultLocale: Locale)
-			-> [String:AnyObject] {
+			-> [String: AnyObject] {
 
-		var result: [String:AnyObject] = [:]
+		var result: [String: AnyObject] = [:]
 
 		func addElement(
 				name elementName: String,
 				metadata: SMXMLElement,
-				result: inout [String:AnyObject]) {
+				result: inout [String: AnyObject]) {
 
 			if let element = metadata.child(withAttribute: "name", value: elementName) {
 				result[elementName] = element.value as AnyObject
@@ -123,16 +120,16 @@ open class DDMXSDParser {
 				dynamicElement: SMXMLElement,
 				locale: Locale,
 				defaultLocale: Locale)
-				-> [[String:AnyObject]]? {
+				-> [[String: AnyObject]]? {
 
-			var options: [[String:AnyObject]] = []
+			var options: [[String: AnyObject]] = []
 
 			let optionElements = childrenWithAttribute("type",
 					value: "option",
 					parent: dynamicElement)
 
 			for optionElement in optionElements {
-				var option: [String:AnyObject] = [:]
+				var option: [String: AnyObject] = [:]
 
 				option["name"] = optionElement.attributeNamed("name") as AnyObject
 				option["value"] = optionElement.attributeNamed("value") as AnyObject
@@ -202,7 +199,7 @@ open class DDMXSDParser {
 		var resultElement: SMXMLElement?
 
 		if let metadataElement = findElementWithAttribute("locale",
-				value:locale.identifier, elements:metadataElements!) {
+				value: locale.identifier, elements: metadataElements!) {
 			// cases 'a1' and 'b1'
 
 			resultElement = metadataElement
@@ -210,8 +207,8 @@ open class DDMXSDParser {
 		else {
 			if currentCountryCode != nil {
 				if let metadataElement = findElementWithAttribute("locale",
-						value:currentLanguageCode,
-						elements:metadataElements!) {
+						value: currentLanguageCode,
+						elements: metadataElements!) {
 					// case 'a2'
 
 					resultElement = metadataElement
@@ -238,7 +235,7 @@ open class DDMXSDParser {
 			// Final fallback (a4, b3): find default metadata
 
 			resultElement = findElementWithAttribute("locale",
-				value:defaultLocale.identifier, elements:metadataElements!)
+				value: defaultLocale.identifier, elements: metadataElements!)
 		}
 
 		return resultElement

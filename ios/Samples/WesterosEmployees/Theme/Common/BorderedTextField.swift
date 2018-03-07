@@ -34,7 +34,7 @@ class BorderedTextField: UITextField, UITextFieldDelegate {
 
 		self.attributedPlaceholder = NSAttributedString(
 				string: self.placeholder!,
-				attributes: [NSForegroundColorAttributeName : self.unfocusedColor!])
+				attributes: [.foregroundColor : self.unfocusedColor!])
 
 		if self.textColor == self.focusedColor! {
 			self.textColor = .black
@@ -49,7 +49,7 @@ class BorderedTextField: UITextField, UITextFieldDelegate {
 
 		self.attributedPlaceholder = NSAttributedString(
 				string: self.placeholder!,
-				attributes: [NSForegroundColorAttributeName : self.focusedColor!])
+				attributes: [.foregroundColor : self.focusedColor!])
 
 		if revertTextColor {
 			self.textColor = self.focusedColor!
