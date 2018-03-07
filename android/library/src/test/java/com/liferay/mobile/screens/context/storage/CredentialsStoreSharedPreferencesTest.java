@@ -16,7 +16,12 @@ package com.liferay.mobile.screens.context.storage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.service.textservice.SpellCheckerService;
+
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
+import com.liferay.mobile.android.auth.basic.CookieAuthentication;
+import com.liferay.mobile.android.service.Session;
+import com.liferay.mobile.android.service.SessionImpl;
 import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
@@ -24,6 +29,8 @@ import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.context.storage.sharedPreferences.BaseCredentialsStorageSharedPreferences;
 import com.liferay.mobile.screens.context.storage.sharedPreferences.BasicCredentialsStorageSharedPreferences;
+import com.liferay.mobile.screens.context.storage.sharedPreferences.CookieCredentialsStorageSharedPreferences;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Before;
@@ -54,6 +61,21 @@ public class CredentialsStoreSharedPreferencesTest {
 		store.setUser(new User(userAttributes));
 
 		SessionContext.createBasicSession("user123", "pass123");
+		store.setAuthentication(SessionContext.getAuthentication());
+	}
+
+	private static void setCookieTestDataInStore(CredentialsStorage store) throws JSONException {
+		store.setContext(RuntimeEnvironment.application.getApplicationContext());
+
+		JSONObject userAttributes = new JSONObject();
+		userAttributes.put("userId", 123);
+		store.setUser(new User(userAttributes));
+
+		CookieAuthentication authentication =
+			new CookieAuthentication("authToken", "cookieHeader", "user123", "pass123", true, 1, 2);
+		Session session = new SessionImpl(LiferayServerContext.getServer(), authentication);
+
+		SessionContext.createCookieSession(session);
 		store.setAuthentication(SessionContext.getAuthentication());
 	}
 
@@ -190,6 +212,35 @@ public class CredentialsStoreSharedPreferencesTest {
 
 			BasicAuthentication auth = (BasicAuthentication) store.getAuthentication();
 
+			assertEquals("user123", auth.getUsername());
+			assertEquals("pass123", auth.getPassword());
+			assertEquals(123, store.getUser().getId());
+		}
+
+		@Test
+		public void shouldLoadTheStoredValuesForCookieStore() throws Exception {
+			CookieCredentialsStorageSharedPreferences store = new CookieCredentialsStorageSharedPreferences();
+			setCookieTestDataInStore(store);
+			store.storeCredentials();
+
+			CookieAuthentication savedAuth = (CookieAuthentication) store.getAuthentication();
+			User savedUser = store.getUser();
+
+			assertTrue(store.loadStoredCredentials());
+
+			assertNotNull(store.getAuthentication());
+			assertNotNull(store.getUser());
+
+			assertNotSame(savedAuth, store.getAuthentication());
+			assertNotSame(savedUser, store.getUser());
+
+			CookieAuthentication auth = (CookieAuthentication) store.getAuthentication();
+
+			assertEquals("authToken", auth.getAuthToken());
+			assertEquals("cookieHeader", auth.getCookieHeader());
+			assertEquals(true, auth.shouldHandleExpiration());
+			assertEquals(1, auth.getCookieExpirationTime());
+			assertEquals(2, auth.getLastCookieRefresh());
 			assertEquals("user123", auth.getUsername());
 			assertEquals("pass123", auth.getPassword());
 			assertEquals(123, store.getUser().getId());

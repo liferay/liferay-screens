@@ -26,7 +26,7 @@ public class CookieCredentialsStorageSharedPreferences extends BaseCredentialsSt
 	private static final String AUTH = "auth";
 	private static final String USERNAME = "username";
 	private static final String PASSWORD = "password";
-	private static final String AUTH_TOKEN = "password";
+	private static final String AUTH_TOKEN = "auth_token";
 	private static final String COOKIE_HEADER = "cookie_header";
 	private static final String SHOULD_HANDLE_EXPIRATION = "should_handle_expiration";
 	private static final String COOKIE_EXPIRATION_TIME = "cookie_expiration_time";

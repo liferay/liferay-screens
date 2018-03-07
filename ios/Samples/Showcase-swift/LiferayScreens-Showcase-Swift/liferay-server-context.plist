@@ -25,15 +25,15 @@
 	<key>commentScreenletClassPK</key>
 	<integer>57366</integer>
 	<key>ddlLabelField</key>
-	<string>Email</string>
+	<string>assignedTo</string>
 	<key>ddlRecordId</key>
-	<integer>42631</integer>
+	<real>33294</real>
 	<key>ddlRecordSetId</key>
-	<integer>42629</integer>
+	<real>33280</real>
 	<key>ddlStructureId</key>
-	<integer>29947</integer>
+	<integer>29823</integer>
 	<key>imageDisplayClassPK</key>
-	<integer>42369</integer>
+	<real>42369</real>
 	<key>audioDisplayClassPK</key>
 	<integer>72269</integer>
 	<key>videoDisplayClassPK</key>
