@@ -12,7 +12,6 @@
  * details.
  */
 import Foundation
-import LROAuth
 
 @objc public protocol ScreensFactory {
 
@@ -47,8 +46,6 @@ import LROAuth
 		switch authType {
 		case .basic:
 			return BasicCredentialsStoreKeyChain()
-		case .oAuth:
-			return OAuthCredentialsStoreKeyChain()
 		case .cookie:
 			return CookieCredentialsStoreKeyChain()
 		}

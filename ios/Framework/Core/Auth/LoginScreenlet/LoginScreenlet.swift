@@ -63,7 +63,7 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 
 	/// Specifies the basic authentication option to use. You can set this attribute to email,
 	/// screenName or userId. This must match the server’s authentication option. If you don’t set 
-	/// this attribute, and don’t set the loginMode attribute to oauth or cookie, the Screenlet 
+	/// this attribute, and don’t set the loginMode attribute to cookie, the Screenlet
 	/// defaults to basic authentication with the email option.
 	@IBInspectable open var basicAuthMethod: String? = BasicAuthMethod.email.rawValue {
 		didSet {
@@ -80,12 +80,6 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 	/// to 0, the Screenlet uses the companyId setting in LiferayServerContext.
 	@IBInspectable open var companyId: Int64 = 0
 
-	/// Specifies the Consumer Key to use in OAuth authentication.
-	@IBInspectable open var OAuthConsumerKey: String = ""
-
-	/// Specifies the Consumer Secret to use in OAuth authentication.
-	@IBInspectable open var OAuthConsumerSecret: String = ""
-
 	/// Specifies if the system should handle the cookie expiration.
 	/// If true, the cookie will be refreshed when its about to expire
 	@IBInspectable open var shouldHandleCookieExpiration: Bool = true
@@ -93,7 +87,7 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 	/// Specifies the cookie expiration time. In Minutes
 	@IBInspectable open var cookieExpirationTime: Double = 1 * 60
 
-	/// The Screenlet’s authentication type. You can set this attribute to basic, oauth, or cookie. 
+	/// The Screenlet’s authentication type. You can set this attribute to basic or cookie. 
 	/// If you don’t set this attribute, the Screenlet defaults to basic authentication.
 	@IBInspectable open var loginMode: String = "login" {
 		didSet {
@@ -132,8 +126,6 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 			return createLoginBasicInteractor()
 		case .cookie:
 			return createLoginCookieInteractor()
-		case.oAuth:
-			return createLoginOAuthInteractor()
 		}
 	}
 
@@ -181,32 +173,6 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 
 		interactor.onFailure = {
 			self.loginDelegate?.screenlet?(self, onLoginError: $0)
-		}
-
-		return interactor
-	}
-
-	fileprivate func createLoginOAuthInteractor() -> LoginOAuthInteractor {
-		let interactor = LoginOAuthInteractor(
-				screenlet: self,
-				consumerKey: OAuthConsumerKey,
-				consumerSecret: OAuthConsumerSecret)
-
-		interactor.onSuccess = {
-			self.loginDelegate?.screenlet?(self,
-					onLoginResponseUserAttributes: interactor.resultUserAttributes!)
-
-			if let ctx = SessionContext.currentContext, self.saveCredentials {
-				if ctx.storeCredentials() {
-					self.loginDelegate?.screenlet?(self,
-						onCredentialsSavedUserAttributes: interactor.resultUserAttributes!)
-				}
-			}
-		}
-
-		interactor.onFailure = {
-			self.loginDelegate?.screenlet?(self, onLoginError: $0)
-			return
 		}
 
 		return interactor

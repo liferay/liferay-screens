@@ -12,7 +12,6 @@
  * details.
  */
 import Foundation
-import LROAuth
 
 @objc(SessionContext)
 @objcMembers
@@ -120,26 +119,6 @@ open class SessionContext: NSObject {
 	}
 
 	@discardableResult
-	open class func loginWithOAuth(
-			authentication: LROAuth,
-			userAttributes: [String: AnyObject]) -> LRSession {
-
-		let session = LRSession(
-			server: LiferayServerContext.server,
-			authentication: authentication)
-
-		let store = LiferayServerContext.factory.createCredentialsStore(AuthType.oAuth)
-
-		SessionContext.currentContext =
-			LiferayServerContext.factory.createSessionContext(
-				session: session!,
-				attributes: userAttributes,
-				store: store)
-
-		return session!
-	}
-
-	@discardableResult
 	open class func loginWithCookie(
 		authentication: LRCookieAuthentication,
 		userAttributes: [String: AnyObject]) -> LRSession {
@@ -195,9 +174,6 @@ open class SessionContext: NSObject {
 		if session.authentication is LRBasicAuthentication {
 			return reloginBasic(completed)
 		}
-		else if session.authentication is LROAuth {
-			return reloginOAuth(completed)
-		}
 		else if session.authentication is LRCookieAuthentication {
 			return reloginCookie(completed)
 		}
@@ -218,24 +194,6 @@ open class SessionContext: NSObject {
 					username: userName,
 					password: password,
 					userAttributes: attributes)
-			}
-
-			completed?(attributes)
-		}
-	}
-
-	open func reloginOAuth(_ completed: (([String: AnyObject]?) -> Void)?) -> Bool {
-		guard let auth = self.session.authentication as? LROAuth else {
-			completed?(nil)
-			return false
-		}
-
-		return refreshUserAttributes { attributes in
-			if let attributes = attributes {
-				SessionContext.loginWithOAuth(authentication: auth, userAttributes: attributes)
-			}
-			else {
-				SessionContext.logout()
 			}
 
 			completed?(attributes)
