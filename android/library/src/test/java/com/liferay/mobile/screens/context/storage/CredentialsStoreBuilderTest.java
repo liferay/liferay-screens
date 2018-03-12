@@ -3,12 +3,9 @@ package com.liferay.mobile.screens.context.storage;
 import android.content.Context;
 import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
-import com.liferay.mobile.android.oauth.OAuthConfig;
 import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
-import com.liferay.mobile.screens.context.OAuthAuthentication;
 import com.liferay.mobile.screens.context.storage.sharedPreferences.BasicCredentialsStorageSharedPreferences;
-import com.liferay.mobile.screens.context.storage.sharedPreferences.OAuthCredentialsStorageSharedPreferences;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -54,19 +51,6 @@ public class CredentialsStoreBuilderTest {
 	}
 
 	@Test
-	public void shouldCreateASharedPreferencesWithAutoTypeAndOAuth() {
-		Authentication authentication = new OAuthAuthentication(new OAuthConfig("", "", ""));
-		Context context = RuntimeEnvironment.application.getApplicationContext();
-
-		CredentialsStorage storage = new CredentialsStorageBuilder().setContext(context)
-			.setAuthentication(authentication)
-			.setStorageType(CredentialsStorageBuilder.StorageType.AUTO)
-			.build();
-
-		Assert.assertTrue(storage instanceof OAuthCredentialsStorageSharedPreferences);
-	}
-
-	@Test
 	public void shouldCreateASharedPreferencesWithSharedPreferencesTypeAndBasicAuth() {
 		Authentication authentication = new BasicAuthentication("test", "test");
 		Context context = RuntimeEnvironment.application.getApplicationContext();
@@ -77,18 +61,5 @@ public class CredentialsStoreBuilderTest {
 			.build();
 
 		Assert.assertTrue(storage instanceof BasicCredentialsStorageSharedPreferences);
-	}
-
-	@Test
-	public void shouldCreateASharedPreferencesWithSharedPreferencesTypeAndOAuth() {
-		Authentication authentication = new OAuthAuthentication(new OAuthConfig("", "", ""));
-		Context context = RuntimeEnvironment.application.getApplicationContext();
-
-		CredentialsStorage storage = new CredentialsStorageBuilder().setContext(context)
-			.setAuthentication(authentication)
-			.setStorageType(CredentialsStorageBuilder.StorageType.SHARED_PREFERENCES)
-			.build();
-
-		Assert.assertTrue(storage instanceof OAuthCredentialsStorageSharedPreferences);
 	}
 }

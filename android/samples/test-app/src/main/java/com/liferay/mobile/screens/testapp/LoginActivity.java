@@ -41,11 +41,6 @@ public class LoginActivity extends ThemeActivity implements LoginListener {
 	}
 
 	@Override
-	public void onActivityResult(int request, int result, Intent intent) {
-		loginScreenlet.sendOAuthResult(result, intent);
-	}
-
-	@Override
 	public void onLoginSuccess(User user) {
 		info(getString(R.string.login_success_info));
 	}

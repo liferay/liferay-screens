@@ -13,8 +13,7 @@
 	</attr>
 	<attr format="enum" name="loginMode">
 		<enum name="basic" value="0"/>
-		<enum name="oauth" value="1"/>
-		<enum name="cookie" value="2"/>
+		<enum name="cookie" value="1"/>
 	</attr>
 	<attr format="enum" name="credentialsStorage">
 		<enum name="none" value="0"/>
@@ -161,8 +160,6 @@
 		<attr name="companyId"/>
 		<attr name="credentialsStorage"/>
 		<attr name="loginMode"/>
-		<attr format="string" name="oauthConsumerKey"/>
-		<attr format="string" name="oauthConsumerSecret"/>
 		<attr format="boolean" name="shouldHandleCookieExpiration"/>
 		<attr format="integer" name="cookieExpirationTime"/>
 	</declare-styleable>

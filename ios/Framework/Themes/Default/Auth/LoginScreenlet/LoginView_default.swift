@@ -113,9 +113,6 @@ open class LoginView_default: BaseScreenletView, LoginViewModel {
 
 	open func configureAuthType() {
 		let auth = AuthTypeFromString(authType ?? "") ?? .basic
-
-		authorizeButton?.isHidden = (auth != .oAuth)
-		loginButton?.superview?.isHidden = (auth == .oAuth)
 	}
 
 }

@@ -2,8 +2,6 @@
 "default-auth-method-screenname"="Nombre corto";
 "default-auth-method-userid"="ID de usuario";
 
-"default-oauth-close"="Cerrar";
-
 "default-login-loading-message"="Enviando petición...\nEspere unos segundos...";
 "default-login-loading-error"="Error intentando entrar.";
 

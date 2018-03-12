@@ -45,10 +45,6 @@ dependencies {
 		exclude group: 'com.google.android.gms', module: 'play-services-gcm'
 		exclude group: 'com.google.android', module: 'android'
 	}
-	api(libraries.oauth) {
-		exclude group: 'com.google.android', module: 'android'
-		exclude module: 'android'
-	}
 	api group: 'org.apache.cordova', name: 'framework', version: '6.2.3', classifier: 'debug', ext: 'aar'
 
 	implementation libraries.appCompat

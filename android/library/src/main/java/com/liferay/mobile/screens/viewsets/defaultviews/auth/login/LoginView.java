@@ -132,11 +132,7 @@ public class LoginView extends LinearLayout implements LoginViewModel, View.OnCl
 	public void onClick(View view) {
 
 		LoginScreenlet loginScreenlet = (LoginScreenlet) getScreenlet();
-		if (view.getId() == R.id.liferay_login_button) {
-			loginScreenlet.performUserAction(LoginScreenlet.BASIC_AUTH);
-		} else {
-			loginScreenlet.performUserAction(LoginScreenlet.OAUTH);
-		}
+		loginScreenlet.performUserAction(LoginScreenlet.BASIC_AUTH);
 	}
 
 	@Override
@@ -161,15 +157,6 @@ public class LoginView extends LinearLayout implements LoginViewModel, View.OnCl
 	@Override
 	protected void onAttachedToWindow() {
 		super.onAttachedToWindow();
-
-		if (oAuthButton != null) {
-			oAuthButton.setVisibility(AuthenticationType.OAUTH.equals(authenticationType) ? VISIBLE : GONE);
-		}
-
-		if (basicAuthenticationLayout != null) {
-			basicAuthenticationLayout.setVisibility(
-				AuthenticationType.OAUTH.equals(authenticationType) ? GONE : VISIBLE);
-		}
 
 		if (basicAuthMethod != null) {
 			loginEditText.setHint(getResources().getString(getLabelResourceForAuthMode()));

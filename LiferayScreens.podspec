@@ -47,7 +47,6 @@ Pod::Spec.new do |s|
 	
 	# Core
 	s.dependency 'Liferay-iOS-SDK', '~> 7.0.14'
-	s.dependency 'Liferay-OAuth', '~> 1.2.0'
 	s.dependency 'MBProgressHUD', '~> 0.9.1'
 	s.dependency 'SMXMLDocument', '~> 1.1'
 	s.dependency 'YapDatabase/SQLCipher', '2.9.2'
