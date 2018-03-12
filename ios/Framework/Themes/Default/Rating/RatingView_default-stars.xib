@@ -18,45 +18,60 @@
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CeO-hA-Dk5">
                     <rect key="frame" x="9" y="20" width="232" height="40"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I8p-OU-HWR">
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I8p-OU-HWR">
                             <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="Rem-uB-xzo"/>
                                 <constraint firstAttribute="width" constant="40" id="uTt-kN-i9l"/>
                             </constraints>
                             <state key="normal" backgroundImage="default-star-outline.png"/>
+                            <connections>
+                                <action selector="updateUserRating:" destination="iN0-l3-epB" eventType="touchUpInside" id="YXn-q8-PVU"/>
+                            </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lWA-ON-VIK">
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lWA-ON-VIK">
                             <rect key="frame" x="48" y="0.0" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="0Vc-dY-w4z"/>
                                 <constraint firstAttribute="width" constant="40" id="c59-eI-RNm"/>
                             </constraints>
                             <state key="normal" backgroundImage="default-star-outline.png"/>
+                            <connections>
+                                <action selector="updateUserRating:" destination="iN0-l3-epB" eventType="touchUpInside" id="vTf-0g-ox9"/>
+                            </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aS0-Kz-Op7">
+                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aS0-Kz-Op7">
                             <rect key="frame" x="96" y="0.0" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="Ypg-fR-Jyn"/>
                                 <constraint firstAttribute="width" constant="40" id="fxa-gp-2o1"/>
                             </constraints>
                             <state key="normal" backgroundImage="default-star-outline.png"/>
+                            <connections>
+                                <action selector="updateUserRating:" destination="iN0-l3-epB" eventType="touchUpInside" id="nYw-TG-vIZ"/>
+                            </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Jf-tA-Eff">
+                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Jf-tA-Eff">
                             <rect key="frame" x="144" y="0.0" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="9nZ-QZ-aIY"/>
                                 <constraint firstAttribute="width" constant="40" id="au0-PL-l8U"/>
                             </constraints>
                             <state key="normal" backgroundImage="default-star-outline.png"/>
+                            <connections>
+                                <action selector="updateUserRating:" destination="iN0-l3-epB" eventType="touchUpInside" id="Nbn-hb-tM8"/>
+                            </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M6B-0l-r91">
+                        <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M6B-0l-r91">
                             <rect key="frame" x="192" y="0.0" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="Ilp-gh-RBw"/>
                                 <constraint firstAttribute="height" constant="40" id="Xds-aY-7hq"/>
                             </constraints>
                             <state key="normal" backgroundImage="default-star-outline.png"/>
+                            <connections>
+                                <action selector="updateUserRating:" destination="iN0-l3-epB" eventType="touchUpInside" id="No4-In-cVy"/>
+                            </connections>
                         </button>
                     </subviews>
                 </stackView>
@@ -69,41 +84,46 @@
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="lZp-oz-pDS">
                     <rect key="frame" x="71" y="98.5" width="108" height="20"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-star-outline.png" translatesAutoresizingMaskIntoConstraints="NO" id="koK-p8-WHt">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcD-4Y-hq4">
                             <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="20" id="3X9-Nl-FUi"/>
-                                <constraint firstAttribute="height" constant="20" id="q24-uM-371"/>
+                                <constraint firstAttribute="width" constant="20" id="JOY-mD-1qz"/>
+                                <constraint firstAttribute="height" constant="20" id="ipb-Df-Fer"/>
                             </constraints>
-                        </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-star-outline.png" translatesAutoresizingMaskIntoConstraints="NO" id="cY6-0T-B1H">
+                            <state key="normal" backgroundImage="default-star-outline.png"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yxf-IB-vUL">
                             <rect key="frame" x="22" y="0.0" width="20" height="20"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="20" id="NY7-Xc-ioJ"/>
-                                <constraint firstAttribute="height" constant="20" id="ZQJ-Fh-8xm"/>
+                                <constraint firstAttribute="height" constant="20" id="QCz-11-BVo"/>
+                                <constraint firstAttribute="width" constant="20" id="dMy-F6-3c5"/>
                             </constraints>
-                        </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-star-outline.png" translatesAutoresizingMaskIntoConstraints="NO" id="NEW-Xh-uUB">
+                            <state key="normal" backgroundImage="default-star-outline.png"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JVM-1E-Mbn">
                             <rect key="frame" x="44" y="0.0" width="20" height="20"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="20" id="Mvw-S8-bkU"/>
-                                <constraint firstAttribute="height" constant="20" id="dBT-Hp-uMN"/>
+                                <constraint firstAttribute="height" constant="20" id="2rL-AQ-sKV"/>
+                                <constraint firstAttribute="width" constant="20" id="5nF-6c-20X"/>
                             </constraints>
-                        </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-star-outline.png" translatesAutoresizingMaskIntoConstraints="NO" id="GMi-oY-t2o">
+                            <state key="normal" backgroundImage="default-star-outline.png"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Byq-RF-R2w">
                             <rect key="frame" x="66" y="0.0" width="20" height="20"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="20" id="9no-gC-NSB"/>
-                                <constraint firstAttribute="width" constant="20" id="Jcd-mQ-wvb"/>
+                                <constraint firstAttribute="height" constant="20" id="COr-KH-pGs"/>
+                                <constraint firstAttribute="width" constant="20" id="cg4-xx-eoa"/>
                             </constraints>
-                        </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-star-outline.png" translatesAutoresizingMaskIntoConstraints="NO" id="FUu-SI-ZNG">
+                            <state key="normal" backgroundImage="default-star-outline.png"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qBe-ca-4L1">
                             <rect key="frame" x="88" y="0.0" width="20" height="20"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="20" id="XYO-cQ-jbV"/>
-                                <constraint firstAttribute="width" constant="20" id="snN-2U-2hr"/>
+                                <constraint firstAttribute="height" constant="20" id="Nq9-k9-qhr"/>
+                                <constraint firstAttribute="width" constant="20" id="fA2-Qq-3nv"/>
                             </constraints>
-                        </imageView>
+                            <state key="normal" backgroundImage="default-star-outline.png"/>
+                        </button>
                     </subviews>
                 </stackView>
             </subviews>
@@ -124,6 +144,11 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="averageRatingLabel" destination="cwZ-zF-4Fw" id="qlX-GA-nDZ"/>
+                <outlet property="averageRatingStars" destination="lZp-oz-pDS" id="Br9-d1-3KJ"/>
+                <outlet property="userRatingStars" destination="CeO-hA-Dk5" id="gC2-PS-uI7"/>
+            </connections>
             <point key="canvasLocation" x="-84" y="105.5"/>
         </view>
     </objects>
