@@ -57,10 +57,6 @@
 	<string name="liferay_video_entryId">38945</string>
 	<string name="liferay_user_entryId">20169</string>
 
-	<!-- OAuth values -->
-	<string name="liferay_oauth_consumer_key"> </string>
-	<string name="liferay_oauth_consumer_secret"> </string>
-
 	<!-- AssetListScreenlet values-->
 	<string name="default_class_name_id_user">20087</string>
 
