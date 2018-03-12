@@ -42,7 +42,7 @@ open class LoginCookieInteractor: Interactor, LRCallback {
 
 	open override func start() -> Bool {
 		let cookieAuth = LRCookieAuthentication(authToken: "", cookieHeader: "",
-			username: emailAddress, password: password)!
+			username: emailAddress, password: password)
 
 		cookieAuth.shouldHandleExpiration = shouldHandleCookieExpiration
 		cookieAuth.cookieExpirationTime = cookieExpirationTime

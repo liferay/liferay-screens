@@ -139,21 +139,18 @@ open class SessionContext: NSObject {
 	}
 
 	open class func reloadCookieAuth(session: LRSession? = SessionContext.currentContext?.createRequestSession(),
-									 callback: LRCookieBlockCallback) {
+									 callback: LRBlockCookieCallback) {
 
 		let currentAttrs = SessionContext.currentContext?.user.attributes ?? [:]
 
-		_ = try? LRCookieSignIn.signIn(with: session!, callback: LRCookieBlockCallback { session, error in
-			SessionContext.loginWithCookie(authentication: session!.authentication as! LRCookieAuthentication,
+		_ = try? LRCookieSignIn.signIn(with: session!, callback: LRBlockCookieCallback.init(success: { session in
+			SessionContext.loginWithCookie(authentication: session.authentication as! LRCookieAuthentication,
 				userAttributes: currentAttrs)
 			callback.onSuccess(session)
-		}, failure: { error in
+		}, failure: { (error) in
 			callback.onFailure(error)
-		})
-
-		_ = try? LRCookieSignIn.signIn(with: session, callback: callback, challenge: challenge)
+		}), challenge: SessionContext.challengeResolver)
 	}
-		}, challenge: challengeResolver)
 
 	open func createRequestSession() -> LRSession {
 		return LRSession(session: session)
@@ -196,7 +193,7 @@ open class SessionContext: NSObject {
 		}
 
 		let callback = LRBlockCookieCallback(success: { session in
-			let cookieAuth = session!.authentication as! LRCookieAuthentication
+			let cookieAuth = session.authentication as! LRCookieAuthentication
 			_ = SessionContext.currentContext?.refreshUserAttributes { attributes in
 				if let attributes = attributes {
 					SessionContext.loginWithCookie(authentication: cookieAuth, userAttributes: attributes)
@@ -208,9 +205,9 @@ open class SessionContext: NSObject {
 				completed?(attributes)
 			}
 		}, failure: { error in
-			print("Error reloading the cookie auth\(error!)")
+			print("Error reloading the cookie auth\(error)")
 			completed?(nil)
-		})!
+		})
 
 		SessionContext.reloadCookieAuth(session: self.session, callback: callback)
 
