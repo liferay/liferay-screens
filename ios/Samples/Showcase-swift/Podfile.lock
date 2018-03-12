@@ -31,7 +31,7 @@ PODS:
   - Cordova (4.5.4)
   - DTPickerPresenter (0.2.0)
   - KeychainAccess (3.1.0)
-  - Kingfisher (4.6.3)
+  - Kingfisher (4.6.2)
   - Liferay-iOS-SDK (7.0.14):
     - AFNetworking (= 2.6.3)
   - Liferay-OAuth (1.2.1):
@@ -119,10 +119,10 @@ SPEC CHECKSUMS:
   Cordova: 90a337977b8667a80483f559268c82062b1183da
   DTPickerPresenter: 1976573e3475534559b6ec1dad64b2ece16c966d
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
-  Kingfisher: 98e6d5b5e807645743e8ed5ececd25d688d38452
+  Kingfisher: 55b9c395bf8d3949676ad3861111923990ab68cf
   Liferay-iOS-SDK: 806e942eac81a1942a99ce77d39a2d18e7ae510f
   Liferay-OAuth: a9ff190558928bec8ebc18dd326b01bddd7e2968
-  LiferayScreens: 3da9db49a438fb91e14c881d9448e4b2b38141a9
+  LiferayScreens: 530468e88d487fa9d0a5c6cbede9fc2e9e6a5445
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MDRadialProgress: 1068574b9b4b870f64b605b07f734385bde5104d
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
