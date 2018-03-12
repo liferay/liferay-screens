@@ -5,7 +5,13 @@ All notable changes to this project will be documented in this file.
 
 # Develop
 
-Nothing yet
+## Android
+
+* Drop support for OAuth1
+
+## iOS
+
+* Drop support for OAuth1
 
 # 3.1.0
 
