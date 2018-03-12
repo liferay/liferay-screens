@@ -17,15 +17,12 @@ package com.liferay.mobile.screens.context;
 import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.auth.basic.CookieAuthentication;
-import com.liferay.mobile.android.oauth.OAuth;
-import com.liferay.mobile.android.oauth.OAuthConfig;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.interactor.LoginBasicInteractor;
 import com.liferay.mobile.screens.auth.login.interactor.LoginCookieInteractor;
-import com.liferay.mobile.screens.auth.login.interactor.LoginOAuthInteractor;
 import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
 import com.liferay.mobile.screens.cache.executor.Executor;
 import com.liferay.mobile.screens.context.storage.CredentialsStorage;
@@ -54,14 +51,6 @@ public class SessionContext {
 		Authentication authentication = new BasicAuthentication(username, password);
 
 		currentUserSession = new SessionImpl(LiferayServerContext.getServer(), authentication);
-
-		return currentUserSession;
-	}
-
-	public static Session createOAuthSession(OAuthConfig config) {
-		OAuth oAuth = new OAuthAuthentication(config);
-
-		currentUserSession = new SessionImpl(LiferayServerContext.getServer(), oAuth);
 
 		return currentUserSession;
 	}
@@ -211,11 +200,6 @@ public class SessionContext {
 			return new LoginCookieInteractor().execute(cookieAuthentication.getUsername(),
 				cookieAuthentication.getPassword(), cookieAuthenticator, cookieAuthentication.shouldHandleExpiration(),
 				cookieAuthentication.getCookieExpirationTime());
-		} else if (authentication instanceof OAuthAuthentication) {
-			OAuth oAuthAuthentication = (OAuth) authentication;
-			LoginOAuthInteractor oauthInteractor = new LoginOAuthInteractor();
-			oauthInteractor.setOAuthConfig(oAuthAuthentication.getConfig());
-			return oauthInteractor.execute(null);
 		} else {
 			BasicAuthentication basicAuthentication = (BasicAuthentication) authentication;
 			return new LoginBasicInteractor().execute(basicAuthentication.getUsername(),

@@ -17,8 +17,6 @@ package com.liferay.mobile.screens.context;
 import android.content.Context;
 import android.content.SharedPreferences;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
-import com.liferay.mobile.android.oauth.OAuth;
-import com.liferay.mobile.android.oauth.OAuthConfig;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.context.storage.sharedPreferences.BaseCredentialsStorageSharedPreferences;
@@ -208,36 +206,6 @@ public class SessionContextTest {
 		}
 
 		@Test
-		public void shouldStoreOAuthCredentialsInSharedPreferences() throws Exception {
-			OAuthConfig config = new OAuthConfig("my_consumerKey", "my_consumerSecret", "my_token", "my_tokenSecret");
-			SessionContext.createOAuthSession(config);
-
-			Context ctx = RuntimeEnvironment.application.getApplicationContext();
-			LiferayScreensContext.init(ctx);
-
-			JSONObject userAttributes = new JSONObject().put("userId", 123);
-			User user = new User(userAttributes);
-
-			SessionContext.setCurrentUser(user);
-
-			SessionContext.storeCredentials(SHARED_PREFERENCES);
-
-			String sharedPreferencesName = BaseCredentialsStorageSharedPreferences.getStoreName();
-
-			SharedPreferences sharedPref = ctx.getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE);
-
-			assertEquals(LiferayServerContext.getServer(), sharedPref.getString("server", "not-present"));
-			assertEquals(LiferayServerContext.getGroupId(), sharedPref.getLong("groupId", 0));
-			assertEquals(LiferayServerContext.getCompanyId(), sharedPref.getLong("companyId", 0));
-			assertEquals("{\"userId\":123}", sharedPref.getString("attributes", "not-present"));
-
-			assertEquals("my_consumerKey", sharedPref.getString("oauth_consumerKey", "not-present"));
-			assertEquals("my_consumerSecret", sharedPref.getString("oauth_consumerSecret", "not-present"));
-			assertEquals("my_token", sharedPref.getString("oauth_token", "not-present"));
-			assertEquals("my_tokenSecret", sharedPref.getString("oauth_tokenSecret", "not-present"));
-		}
-
-		@Test
 		public void shouldLoadBasicCredentials() throws Exception {
 			SessionContext.createBasicSession("user123", "pass123");
 
@@ -265,40 +233,6 @@ public class SessionContextTest {
 
 			assertEquals("user123", auth.getUsername());
 			assertEquals("pass123", auth.getPassword());
-		}
-
-		@Test
-		public void shouldLoadOAuthCredentials() throws Exception {
-			OAuthConfig config = new OAuthConfig("my_consumerKey", "my_consumerSecret", "my_token", "my_tokenSecret");
-			SessionContext.createOAuthSession(config);
-
-			Context ctx = RuntimeEnvironment.application.getApplicationContext();
-			LiferayScreensContext.init(ctx);
-
-			JSONObject userAttributes = new JSONObject().put("userId", 123);
-			User user = new User(userAttributes);
-			SessionContext.setCurrentUser(user);
-
-			SessionContext.storeCredentials(SHARED_PREFERENCES);
-			SessionContext.logout();
-			SessionContext.loadStoredCredentials(SHARED_PREFERENCES);
-
-			String sharedPreferencesName = BaseCredentialsStorageSharedPreferences.getStoreName();
-			SharedPreferences sharedPref = ctx.getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE);
-
-			assertEquals(sharedPref.getString("server", "not-present"), LiferayServerContext.getServer());
-			assertEquals(sharedPref.getLong("groupId", 0), LiferayServerContext.getGroupId());
-			assertEquals(sharedPref.getLong("companyId", 0), LiferayServerContext.getCompanyId());
-			assertEquals(sharedPref.getString("attributes", "not-present"), "{\"userId\":123}");
-
-			OAuth oauth = (OAuth) SessionContext.getAuthentication();
-
-			OAuthConfig oauthConfig = oauth.getConfig();
-
-			assertEquals("my_consumerKey", oauthConfig.getConsumerKey());
-			assertEquals("my_consumerSecret", oauthConfig.getConsumerSecret());
-			assertEquals("my_token", oauthConfig.getToken());
-			assertEquals("my_tokenSecret", oauthConfig.getTokenSecret());
 		}
 	}
 }
