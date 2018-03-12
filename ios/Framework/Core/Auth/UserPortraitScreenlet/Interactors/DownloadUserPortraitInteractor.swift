@@ -12,7 +12,6 @@
  * details.
  */
 import UIKit
-import CryptoSwift
 
 class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
@@ -317,31 +316,13 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 
 	fileprivate func URLForAttributes(portraitId: Int64, uuid: String, male: Bool) -> URL? {
 
-		func encodedSHA1(_ input: String) -> String? {
-			var result: String?
+		let session = SessionContext.createSessionFromCurrentSession()
+		let urlString = LRPortraitUtil.getPortraitURL(session, male: male, portraitId: portraitId, uuid: uuid)
 
-			if let inputData = input.data(using: .utf8, allowLossyConversion: false) {
-
-				let resultBytes = CryptoSwift.Digest.sha1(inputData.bytes)
-				let resultData = Data(bytes: resultBytes)
-				result = LRHttpUtil.encodeURL(resultData.base64EncodedString())
-			}
-
-			return result
-		}
-
-		if let hashedUUID = encodedSHA1(uuid) {
-			let maleString = male ? "male" : "female"
-
-			let url = "\(LiferayServerContext.server)/image/user_\(maleString)_portrait" +
-				"?img_id=\(portraitId)" +
-				"&img_id_token=\(hashedUUID)" +
-				"&t=\(Date.timeIntervalSinceReferenceDate)"
-
-			return URL(string: url)
+		if let urlString = urlString {
+			return URL(string: urlString)
 		}
 
 		return nil
 	}
-
 }

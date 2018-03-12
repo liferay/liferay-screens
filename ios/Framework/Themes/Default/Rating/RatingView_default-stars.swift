@@ -12,33 +12,38 @@
  * details.
  */
 import UIKit
-import Cosmos
 
 @objc(RatingView_default_stars)
 open class RatingView_default_stars: BaseScreenletView, RatingViewModel {
 
 	// MARK: Outlets
 
-	@IBOutlet weak var userRatingBar: CosmosView? {
-		didSet {
-			userRatingBar?.didFinishTouchingCosmos = {
-				let score = $0 / Double(self.userRatingBar!.settings.totalStars)
+	@IBOutlet weak var averageRatingLabel: UILabel?
 
-				if self.selectedUserScore != NSNumber(value: score) {
-					self.selectedUserScore = score as NSNumber?
-					self.userAction(
-						name: RatingScreenlet.UpdateRatingAction,
-						sender: score as AnyObject?)
-				}
-			}
-		}
-	}
+	@IBOutlet weak var userRatingStars: UIStackView?
 
-	@IBOutlet weak var averageRatingBar: CosmosView?
-
-	open var defaultRatingsGroupCount: Int32 = 1
+	@IBOutlet weak var averageRatingStars: UIStackView?
 
 	fileprivate var selectedUserScore: NSNumber?
+
+	fileprivate let fullStar = Bundle.imageInBundles(name: "default-star", currentClass: RatingView_default_stars.self)
+
+	fileprivate let halfStar = Bundle.imageInBundles(name: "default-star-half",
+													 currentClass: RatingView_default_stars.self)
+
+	fileprivate let emptyStar = Bundle.imageInBundles(name: "default-star-outline",
+													  currentClass: RatingView_default_stars.self)
+
+	// MARK: IBActions
+
+	@IBAction func updateUserRating(_ sender: UIButton) {
+
+		let score = Double(sender.tag) / Double(defaultRatingsGroupCount)
+
+		if self.selectedUserScore != NSNumber(value: score) {
+			self.userAction(name: RatingScreenlet.UpdateRatingAction, sender: score as AnyObject)
+		}
+	}
 
 	// MARK: BaseScreenletView
 
@@ -56,17 +61,39 @@ open class RatingView_default_stars: BaseScreenletView, RatingViewModel {
 
 	// MARK: RatingViewModel
 
+	open var defaultRatingsGroupCount: Int32 = 5
+
 	open var ratingEntry: RatingEntry? {
 		didSet {
 			if let rating = ratingEntry {
-				averageRatingBar?.rating =
-					rating.average * Double(self.averageRatingBar!.settings.totalStars)
-				averageRatingBar?.text = LocalizedPlural("default",
-					keySingular: "rating-ratings.one", keyPlural: "rating-ratings.other",
-					obj: self, count: NSNumber(value: rating.totalCount))
-				userRatingBar?.rating = rating.userScore * Double(self.userRatingBar!.settings.totalStars)
-				selectedUserScore = rating.userScore as NSNumber?
+				averageRatingLabel?.text = LocalizedPlural("default", keySingular: "rating-ratings.one",
+													  keyPlural: "rating-ratings.other", obj: self,
+													  count: NSNumber(value: rating.totalCount))
+
+				let userScore = rating.userScore < 0 ? 0 : rating.userScore * Double(defaultRatingsGroupCount)
+				let averageScore = rating.average * Double(defaultRatingsGroupCount)
+
+				setScore(score: userScore, stars: userRatingStars?.arrangedSubviews as! [UIButton])
+				setScore(score: averageScore, stars: averageRatingStars?.arrangedSubviews as! [UIButton])
 			}
 		}
+	}
+
+	open func setScore(score: Double, stars: [UIButton]) {
+		guard score <= Double(defaultRatingsGroupCount) else {
+			print("Score cannot be greater of numbers of stars")
+			return
+		}
+
+		let fullStarsNumber = Int(floor(score))
+		let halfStarNumber = (score - Double(fullStarsNumber)) >= 0.5 ? 1 : 0
+
+		let fullStars = stars[0..<fullStarsNumber]
+		let halfStars = stars[fullStarsNumber..<fullStarsNumber + halfStarNumber]
+		let emptyStars = stars[(fullStarsNumber + halfStarNumber)..<Int(defaultRatingsGroupCount)]
+
+		fullStars.forEach { $0.setBackgroundImage(fullStar, for: .normal) }
+		halfStars.forEach { $0.setBackgroundImage(halfStar, for: .normal) }
+		emptyStars.forEach { $0.setBackgroundImage(emptyStar, for: .normal) }
 	}
 }

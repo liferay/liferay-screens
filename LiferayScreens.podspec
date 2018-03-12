@@ -55,17 +55,12 @@ Pod::Spec.new do |s|
 	# Login & signup: save credentials
 	s.dependency 'KeychainAccess', '~> 3.0'
 
-	# UserPortrait
-	s.dependency 'CryptoSwift', '~> 0.7'
-
 	# DDLForm
 	s.dependency 'DTPickerPresenter', '~> 0.2.0'
 	s.dependency 'TNRadioButtonGroup', '~> 0.4'
 	s.dependency 'MDRadialProgress', '~> 1.3.2'
 
-	# RatingBar
-	s.dependency 'Cosmos', '~> 14.0'
-
+	# Cordova integration
 	s.dependency 'Cordova', '~> 4.0'
 
 end
