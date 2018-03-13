@@ -599,6 +599,8 @@
 		0B7784E91F95F60C001C9134 /* default-volumemute.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B5CD2FA1F62A21000C2285B /* default-volumemute.png */; };
 		0B7F45A21DA7BC5C00A3BDE3 /* ImageDisplayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B7F45A11DA7BC5C00A3BDE3 /* ImageDisplayViewModel.swift */; };
 		0B81C1B21EEED7A900D7DCF6 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 0B81C1B11EEED7A900D7DCF6 /* index.html */; };
+		0B8861F620582E9A0067F192 /* LoginByCookieConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4935A2035C44C00730299 /* LoginByCookieConnector.swift */; };
+		0B8861F720582E9D0067F192 /* LoginByCookieConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4935A2035C44C00730299 /* LoginByCookieConnector.swift */; };
 		0B89C9951D58B01200A9EAE7 /* SyncManager+ImageGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B89C9941D58B01200A9EAE7 /* SyncManager+ImageGallery.swift */; };
 		0B8B233A20482193000932EF /* default-star-half.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B8B233120482190000932EF /* default-star-half.png */; };
 		0B8B233B20482193000932EF /* default-star-outline.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B8B233220482191000932EF /* default-star-outline.png */; };
@@ -997,6 +999,7 @@
 		88F888551B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */; };
 		88F888561B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */; };
 		9408E484873051DBA2FC5F89 /* Pods_Screens_LiferayScreensTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76277052A489CACA834992A8 /* Pods_Screens_LiferayScreensTests.framework */; };
+		D6F4935B2035C44C00730299 /* LoginByCookieConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4935A2035C44C00730299 /* LoginByCookieConnector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1507,6 +1510,7 @@
 		A8B45C06052D105C65EF5C83 /* Pods-Screens-LiferayScreens.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreens.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreens/Pods-Screens-LiferayScreens.debug.xcconfig"; sourceTree = "<group>"; };
 		AD76E36E85BE8E49BD3D8E53 /* Pods-Screens-LiferayScreensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreensTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests.release.xcconfig"; sourceTree = "<group>"; };
 		ADC21DB5DD46A1A28344B494 /* Pods-Screens-LiferayScreensTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreensTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D6F4935A2035C44C00730299 /* LoginByCookieConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginByCookieConnector.swift; sourceTree = "<group>"; };
 		F87A66990734AE5230D0C891 /* Pods_Screens_LiferayScreensXamarin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Screens_LiferayScreensXamarin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -2893,6 +2897,7 @@
 				88B844A11C73D888007A447D /* LoginByEmailLiferayConnectors.swift */,
 				88B844A31C73D888007A447D /* LoginByScreenNameLiferayConnectors.swift */,
 				88B844A51C73D888007A447D /* LoginByUserIdLiferayConnectors.swift */,
+				D6F4935A2035C44C00730299 /* LoginByCookieConnector.swift */,
 			);
 			path = Connectors;
 			sourceTree = "<group>";
@@ -3708,6 +3713,7 @@
 				0B7783AD1F95F60C001C9134 /* HttpConnector.swift in Sources */,
 				0B7783AE1F95F60C001C9134 /* CommentListPageLoadInteractor.swift in Sources */,
 				0B7783AF1F95F60C001C9134 /* UserPortraitScreenlet.swift in Sources */,
+				0B8861F620582E9A0067F192 /* LoginByCookieConnector.swift in Sources */,
 				0B7783B01F95F60C001C9134 /* SyncManager+ImageGallery.swift in Sources */,
 				0B7783B11F95F60C001C9134 /* ImageGalleryCell.swift in Sources */,
 				0B7783B21F95F60C001C9134 /* PaginationLiferayConnector.swift in Sources */,
@@ -4126,6 +4132,7 @@
 				0B5B5E571D5869BB0007D4B1 /* MediaSelector.swift in Sources */,
 				881E60CD1ACBE56700862B9E /* BaseListPageLoadInteractor.swift in Sources */,
 				0BBEDA1E1D5B22FF00F8CB31 /* SlideShowLayout.swift in Sources */,
+				D6F4935B2035C44C00730299 /* LoginByCookieConnector.swift in Sources */,
 				0B217FCE1D6C4E7B00A23690 /* FileDisplayScreenlet.swift in Sources */,
 				0B2180271D6C504300A23690 /* HttpDownloadConnector.swift in Sources */,
 				88B8447C1C73D81D007A447D /* GetUserByEmailLiferayConnectors.swift in Sources */,
@@ -4226,6 +4233,7 @@
 				57CFF6071E5A495D00CB808E /* CookieCredentialsStoreKeyChain.swift in Sources */,
 				0B5B5EBB1D5871900007D4B1 /* BaseListCollectionView.swift in Sources */,
 				88B844B91C73D8A3007A447D /* UpdateCurrentUserLiferayConnector.swift in Sources */,
+				0B8861F720582E9D0067F192 /* LoginByCookieConnector.swift in Sources */,
 				88AF68391CBFF58700097014 /* WebContentListPageLoadInteractor.swift in Sources */,
 				88B273161B7109E200477E5E /* MBProgressHUDPresenter.swift in Sources */,
 				88CA806F1B25EE04004C1D59 /* CredentialsStore.swift in Sources */,

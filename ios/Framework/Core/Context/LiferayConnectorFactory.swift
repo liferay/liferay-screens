@@ -41,6 +41,11 @@ public protocol LiferayConnectorFactory {
 		userId: Int64,
 		password: String) -> GetUserByUserIdLiferayConnector
 
+	func createLoginByCookieConnector(
+		emailAddress: String, password: String,
+		shouldHandleCookieExpiration: Bool,
+		cookieExpirationTime: Double) -> LoginByCookieConnector
+
 	func createForgotPasswordByEmailConnector(
 		viewModel: ForgotPasswordViewModel,
 		anonymousUsername: String,
@@ -227,6 +232,17 @@ open class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			userId: Int64,
 			password: String) -> GetUserByUserIdLiferayConnector {
 		return LoginByUserIdLiferay62Connector(userId: userId, password: password)
+	}
+
+	open func createLoginByCookieConnector(
+		emailAddress: String, password: String,
+		shouldHandleCookieExpiration: Bool,
+		cookieExpirationTime: Double) -> LoginByCookieConnector {
+		return LoginByCookieLiferay62Connector(
+			emailAddress: emailAddress,
+			password: password,
+			shouldHandleCookieExpiration: shouldHandleCookieExpiration,
+			cookieExpirationTime: cookieExpirationTime)
 	}
 
 	open func createForgotPasswordByEmailConnector(
@@ -529,6 +545,17 @@ open class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			userId: Int64,
 			password: String) -> GetUserByUserIdLiferayConnector {
 		return LoginByUserIdLiferay70Connector(userId: userId, password: password)
+	}
+
+	open func createLoginByCookieConnector(
+		emailAddress: String, password: String,
+		shouldHandleCookieExpiration: Bool,
+		cookieExpirationTime: Double) -> LoginByCookieConnector {
+		return LoginByCookieLiferay70Connector(
+			emailAddress: emailAddress,
+			password: password,
+			shouldHandleCookieExpiration: shouldHandleCookieExpiration,
+			cookieExpirationTime: cookieExpirationTime)
 	}
 
 	open func createForgotPasswordByEmailConnector(
