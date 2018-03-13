@@ -317,9 +317,10 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 	fileprivate func URLForAttributes(portraitId: Int64, uuid: String, male: Bool) -> URL? {
 
 		let session = SessionContext.createSessionFromCurrentSession()
-		let urlString = LRPortraitUtil.getPortraitURL(session, male: male, portraitId: portraitId, uuid: uuid)
 
-		if let urlString = urlString {
+		if let session = session {
+			let urlString = LRPortraitUtil.getPortraitURL(session, male: male, portraitId: portraitId, uuid: uuid)
+
 			return URL(string: urlString)
 		}
 
