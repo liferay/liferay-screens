@@ -81,7 +81,7 @@ open class Liferay62DDLFormRecordLoadConnector: DDLFormRecordLoadLiferayConnecto
 		let service = LRScreensddlrecordService_v62(session: session)
 
 		return try service.getDdlRecord(withDdlRecordId: recordId,
-		locale: NSLocale.currentLocaleString) as! [NSObject: AnyObject]
+										locale: NSLocale.currentLocaleString) as [NSObject: AnyObject]
 	}
 
 }

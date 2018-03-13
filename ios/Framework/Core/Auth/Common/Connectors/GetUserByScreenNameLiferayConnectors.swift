@@ -62,7 +62,7 @@ open class GetUserByScreenNameLiferay62Connector: GetUserByScreenNameLiferayConn
 			let service = LRUserService_v62(session: session)
 
 			return try service.getUserByScreenName(withCompanyId: companyId,
-				screenName: screenName) as NSDictionary? ?? [:]
+												   screenName: screenName) as NSDictionary
 	}
 
 }
@@ -85,7 +85,7 @@ open class GetUserByScreenNameLiferay70Connector: GetUserByScreenNameLiferayConn
 			let service = LRUserService_v7(session: session)
 
 			return try service.getUserByScreenName(withCompanyId: companyId,
-				screenName: screenName) as NSDictionary? ?? [:]
+												   screenName: screenName) as NSDictionary
 	}
 
 }
