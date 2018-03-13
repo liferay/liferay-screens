@@ -81,14 +81,14 @@ open class Liferay62DDLFormSubmitConnector: DDLFormSubmitLiferayConnector {
 			let recordDictionary: [AnyHashable: Any]?
 
 			if recordId == nil {
-				recordDictionary = try service?.addRecord(withGroupId: groupId!,
+				recordDictionary = try service.addRecord(withGroupId: groupId!,
 					recordSetId: recordSetId!,
 					display: 0,
 					fieldsMap: values,
 					serviceContext: serviceContextWrapper)
 			}
 			else {
-				recordDictionary = try service?.updateRecord(withRecordId: recordId!,
+				recordDictionary = try service.updateRecord(withRecordId: recordId!,
 					display: 0,
 					fieldsMap: values,
 					mergeFields: true,
@@ -131,14 +131,14 @@ open class Liferay70DDLFormSubmitConnector: DDLFormSubmitLiferayConnector {
 			let recordDictionary: [AnyHashable: Any]?
 
 			if recordId == nil {
-				recordDictionary = try service?.addRecord(withGroupId: groupId!,
+				recordDictionary = try service.addRecord(withGroupId: groupId!,
 					recordSetId: recordSetId!,
 					display: 0,
 					fieldsMap: values,
 					serviceContext: serviceContextWrapper)
 			}
 			else {
-				recordDictionary = try service?.updateRecord(withRecordId: recordId!,
+				recordDictionary = try service.updateRecord(withRecordId: recordId!,
 					display: 0,
 					fieldsMap: values,
 					mergeFields: false,

@@ -14,9 +14,6 @@
 import UIKit
 import LRMobileSDK
 
-public typealias ChallengeResolver = (URLAuthenticationChallenge,
-		(URLSession.AuthChallengeDisposition, URLCredential) -> Void) -> Void
-
 open class LoginCookieInteractor: Interactor, LRCallback {
 
 	open let emailAddress: String
@@ -45,34 +42,23 @@ open class LoginCookieInteractor: Interactor, LRCallback {
 
 	open override func start() -> Bool {
 		let cookieAuth = LRCookieAuthentication(authToken: "", cookieHeader: "",
-			username: emailAddress, password: password)!
+			username: emailAddress, password: password)
 
 		cookieAuth.shouldHandleExpiration = shouldHandleCookieExpiration
 		cookieAuth.cookieExpirationTime = cookieExpirationTime
 
 		let session = LRSession(server: LiferayServerContext.server, authentication: cookieAuth)
-
 		let callback = LRBlockCookieCallback(success: self.onCookieSuccess, failure: self.onCookieFailure)
+		_ = try? LRCookieSignIn.signIn(with: session, callback: callback, challenge: SessionContext.challengeResolver)
 
-		var challenge: ((URLAuthenticationChallenge?,
-				((URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void)?) -> Swift.Void)? = nil
-
-		// FIXME: Objc nullability annotations in Mobile SDK
-		if let challengeResolver = SessionContext.challengeResolver {
-			challenge = { challenge, completion in
-				challengeResolver(challenge!, completion!)
-			}
-		}
-
-		_ = try? LRCookieSignIn.signIn(with: session, callback: callback, challenge: challenge)
 		return true
 	}
 
-	public func onCookieFailure(_ error: Error!) {
+	public func onCookieFailure(_ error: Error) {
 		self.callOnFailure(error as NSError)
 	}
 
-	public func onSuccess(_ result: Any!) {
+	public func onSuccess(_ result: Any) {
 		if let resultValue = result as? [String: AnyObject] {
 			self.resultUserAttributes = resultValue
 
@@ -84,11 +70,11 @@ open class LoginCookieInteractor: Interactor, LRCallback {
 		}
 	}
 
-	public func onFailure(_ error: Error!) {
+	public func onFailure(_ error: Error) {
 		self.callOnFailure(error as NSError)
 	}
 
-	public func onCookieSuccess(_ session: LRSession!) {
+	public func onCookieSuccess(_ session: LRSession) {
 		cookieSession = session
 		session.callback = self
 
@@ -96,12 +82,12 @@ open class LoginCookieInteractor: Interactor, LRCallback {
 		case .v62:
 			let srv = LRScreensuserService_v62(session: session)
 
-			_ = try? srv?.getCurrentUser()
+			_ = try? srv.getCurrentUser()
 
 		case .v70:
 			let srv = LRUserService_v7(session: session)
 
-			_ = try? srv?.getCurrentUser()
+			_ = try? srv.getCurrentUser()
 		}
 	}
 

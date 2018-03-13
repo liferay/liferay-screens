@@ -82,5 +82,4 @@ open class CookieCredentialsStoreKeyChain: BaseCredentialsStoreKeyChain {
 			return nil
 		}
 	}
-
 }

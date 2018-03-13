@@ -48,7 +48,7 @@ public class Liferay70AssetLoadByPortletItemNameConnector: AssetLoadByPortletIte
 		let service = LRScreensassetentryService_v70(session: session)
 
 		do {
-			let result = try service?.getAssetEntries(withCompanyId: LiferayServerContext.companyId,
+			let result = try service.getAssetEntries(withCompanyId: LiferayServerContext.companyId,
 					groupId: LiferayServerContext.groupId,
 					portletItemName: portletItemName!, locale: NSLocale.currentLocaleString,
 			max: 1) as? [[String: AnyObject]]

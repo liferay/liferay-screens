@@ -27,7 +27,7 @@ open class ForgotPasswordEmailLiferay62Connector: ForgotPasswordBaseLiferayConne
 		// TODO change plugin service to return integer code instead of boolean.
 		// Xcode transpiler is messing it up.
 
-		try service?.sendPasswordByEmailAddress(withCompanyId: companyId,
+		try service.sendPasswordByEmailAddress(withCompanyId: companyId,
 			emailAddress: viewModel.userName!)
 
 		return true
@@ -48,7 +48,7 @@ open class ForgotPasswordEmailLiferay70Connector: ForgotPasswordBaseLiferayConne
 		// TODO change plugin service to return integer code instead of boolean.
 		// Xcode transpiler is messing it up.
 
-		try service?.sendPasswordByEmailAddress(withCompanyId: companyId,
+		try service.sendPasswordByEmailAddress(withCompanyId: companyId,
 			emailAddress: viewModel.userName!)
 
 		return true

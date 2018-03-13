@@ -63,7 +63,7 @@ open class Liferay70CommentListPageConnector: CommentListPageLiferayConnector {
 		let service = LRScreenscommentService_v70(session: session)
 
 		do {
-			try service?.getCommentsWithClassName(className,
+			try service.getCommentsWithClassName(className,
 					classPK: classPK,
 					start: Int32(startRow),
 					end: Int32(endRow))
@@ -76,7 +76,7 @@ open class Liferay70CommentListPageConnector: CommentListPageLiferayConnector {
 		let service = LRScreenscommentService_v70(session: session)
 
 		do {
-			try service?.getCommentsCount(withClassName: className, classPK: classPK)
+			try service.getCommentsCount(withClassName: className, classPK: classPK)
 		}
 		catch _ as NSError {
 		}

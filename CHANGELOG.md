@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ---
 
 # Develop
+<!-- Possible categories for the changes: Bugs, New features, Refactor, Documentation, Samples, Deprecated, Contributions -->
 
 ## Android
 
@@ -211,7 +212,6 @@ All notable changes to this project will be documented in this file.
 
 # 2.1.0
 
-<!-- Possible categories for the changes: Bugs, New features, Refactor, Documentation, Samples, Deprecated, Contributions -->
 ## Android
 
 ### Bugs

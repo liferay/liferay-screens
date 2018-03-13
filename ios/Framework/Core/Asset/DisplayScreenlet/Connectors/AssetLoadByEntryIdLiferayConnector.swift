@@ -52,7 +52,7 @@ open class Liferay70AssetLoadByEntryIdConnector: AssetLoadByEntryIdLiferayConnec
 		let service = LRScreensassetentryService_v70(session: session)
 
 		do {
-			let result = try service?.getAssetEntry(withEntryId: entryId, locale: NSLocale.currentLocaleString)
+			let result = try service.getAssetEntry(withEntryId: entryId, locale: NSLocale.currentLocaleString)
 
 			resultAsset = Asset(attributes: result as! [String: AnyObject])
 			lastError = nil

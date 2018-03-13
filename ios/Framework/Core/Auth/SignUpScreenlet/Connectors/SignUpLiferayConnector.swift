@@ -68,7 +68,7 @@ open class Liferay62SignUpConnector: SignUpLiferayConnector {
 				: LiferayServerContext.companyId
 
 		do {
-			result = try service?.addUser(withCompanyId: companyId,
+			result = try service.addUser(withCompanyId: companyId,
 				autoPassword: (password == ""),
 				password1: password,
 				password2: password,
@@ -134,7 +134,7 @@ open class Liferay70SignUpConnector: SignUpLiferayConnector {
 			: LiferayServerContext.companyId
 
 		do {
-			result = try service?.addUser(withCompanyId: companyId,
+			result = try service.addUser(withCompanyId: companyId,
 				autoPassword: (password == ""),
 				password1: password,
 				password2: password,

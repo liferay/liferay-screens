@@ -60,7 +60,7 @@ open class Liferay70CommentUpdateConnector: CommentUpdateLiferayConnector {
 		let service = LRScreenscommentService_v70(session: session)
 
 		do {
-			let result = try service?.updateComment(withCommentId: commentId,
+			let result = try service.updateComment(withCommentId: commentId,
 					body: Comment.plainBodyToHtml(body))
 
 			if let result = result as? [String: AnyObject] {

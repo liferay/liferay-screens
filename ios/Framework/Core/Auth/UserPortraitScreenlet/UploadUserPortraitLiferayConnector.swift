@@ -93,7 +93,7 @@ open class Liferay62UploadUserPortraitConnector: UploadUserPortraitLiferayConnec
 		let service = LRUserService_v62(session: session)
 
 		do {
-			let result = try service?.updatePortrait(withUserId: self.userId,
+			let result = try service.updatePortrait(withUserId: self.userId,
 				bytes: imageBytes)
 
 			if let result = result as? [String: AnyObject] {
@@ -120,7 +120,7 @@ open class Liferay70UploadUserPortraitConnector: UploadUserPortraitLiferayConnec
 		let service = LRUserService_v7(session: session)
 
 		do {
-			let result = try service?.updatePortrait(withUserId: self.userId,
+			let result = try service.updatePortrait(withUserId: self.userId,
 				bytes: imageBytes)
 
 			if let result = result as? [String: AnyObject] {

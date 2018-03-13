@@ -43,7 +43,7 @@ open class Liferay62WebContentListPageConnector: WebContentListPageLiferayConnec
 		do {
 			let service = LRJournalArticleService_v62(session: session)
 
-			try service?.getArticlesWithGroupId(groupId,
+			try service.getArticlesWithGroupId(groupId,
 				folderId: folderId,
 				start: Int32(startRow),
 				end: Int32(endRow),
@@ -56,7 +56,7 @@ open class Liferay62WebContentListPageConnector: WebContentListPageLiferayConnec
 	override open func doAddRowCountServiceCall(session: LRBatchSession) {
 		do {
 			let service = LRJournalArticleService_v62(session: session)
-			try service?.getArticlesCount(withGroupId: groupId, folderId: folderId)
+			try service.getArticlesCount(withGroupId: groupId, folderId: folderId)
 		}
 		catch _ as NSError {
 		}
@@ -76,7 +76,7 @@ open class Liferay70WebContentListPageConnector: WebContentListPageLiferayConnec
 
 		do {
 			let service = LRJournalArticleService_v7(session: session)
-			try service?.getArticlesWithGroupId(groupId,
+			try service.getArticlesWithGroupId(groupId,
 			                                   folderId: folderId,
 			                                   start: Int32(startRow),
 			                                   end: Int32(endRow),
@@ -89,7 +89,7 @@ open class Liferay70WebContentListPageConnector: WebContentListPageLiferayConnec
 	override open func doAddRowCountServiceCall(session: LRBatchSession) {
 		do {
 			let service = LRJournalArticleService_v7(session: session)
-			try service?.getArticlesCount(withGroupId: groupId, folderId: folderId)
+			try service.getArticlesCount(withGroupId: groupId, folderId: folderId)
 		}
 		catch _ as NSError {
 		}

@@ -39,10 +39,10 @@ open class Liferay62DDLFormLoadConnector: DDLFormLoadLiferayConnector {
 		let service = LRDDMStructureService_v62(session: session)
 
 		do {
-			let structureDataDictionary = try service?.getStructureWithStructureId(structureId)
+			let structureDataDictionary = try service.getStructureWithStructureId(structureId)
 
-			if let xsd = structureDataDictionary?["xsd"]! as? String {
-				if let userIdValue = (structureDataDictionary?["userId"] as AnyObject).int64Value {
+			if let xsd = structureDataDictionary["xsd"]! as? String {
+				if let userIdValue = (structureDataDictionary["userId"] as AnyObject).int64Value {
 					resultUserId = userIdValue
 				}
 
@@ -75,10 +75,10 @@ open class Liferay70DDLFormLoadConnector: DDLFormLoadLiferayConnector {
 		let service = LRDDMStructureService_v7(session: session)
 
 		do {
-			let structureDataDictionary = try service?.getStructureWithStructureId(structureId)
+			let structureDataDictionary = try service.getStructureWithStructureId(structureId)
 
-			if let json = structureDataDictionary?["definition"]! as? String {
-				if let userIdValue = (structureDataDictionary?["userId"] as AnyObject).int64Value {
+			if let json = structureDataDictionary["definition"]! as? String {
+				if let userIdValue = (structureDataDictionary["userId"] as AnyObject).int64Value {
 					resultUserId = userIdValue
 				}
 

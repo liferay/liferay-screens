@@ -122,7 +122,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 			userHasDefaultPortrait = false
 		}
 		else if c.lastError == nil,
-				(c as? ServerConnectorChain)?.currentConnector is GetUserBaseLiferayConnector {
+			let c = (c as? ServerConnectorChain)?.currentConnector as? GetUserBaseLiferayConnector {
 
 			// If the current connector is not a HttpConnector and its not errored
 			// we are in the case that the user doesn't have a custom portrait
@@ -317,9 +317,10 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 	fileprivate func URLForAttributes(portraitId: Int64, uuid: String, male: Bool) -> URL? {
 
 		let session = SessionContext.createSessionFromCurrentSession()
-		let urlString = LRPortraitUtil.getPortraitURL(session, male: male, portraitId: portraitId, uuid: uuid)
 
-		if let urlString = urlString {
+		if let session = session {
+			let urlString = LRPortraitUtil.getPortraitURL(session, male: male, portraitId: portraitId, uuid: uuid)
+
 			return URL(string: urlString)
 		}
 

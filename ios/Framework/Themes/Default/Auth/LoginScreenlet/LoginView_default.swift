@@ -112,7 +112,7 @@ open class LoginView_default: BaseScreenletView, LoginViewModel {
 	// MARK: Public methods
 
 	open func configureAuthType() {
-		let auth = AuthTypeFromString(authType ?? "") ?? .basic
+		_ = AuthTypeFromString(authType ?? "") ?? .basic
 	}
 
 }

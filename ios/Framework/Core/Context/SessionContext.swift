@@ -18,7 +18,7 @@ import Foundation
 open class SessionContext: NSObject {
 
 	open static var currentContext: SessionContext?
-	open static var challengeResolver: ChallengeResolver?
+	open static var challengeResolver: ChallengeBlock?
 
 	open let session: LRSession
 	open let user: User
@@ -111,11 +111,11 @@ open class SessionContext: NSObject {
 
 		SessionContext.currentContext =
 			LiferayServerContext.factory.createSessionContext(
-				session: session!,
+				session: session,
 				attributes: userAttributes,
 				store: store)
 
-		return session!
+		return session
 	}
 
 	@discardableResult
@@ -131,39 +131,25 @@ open class SessionContext: NSObject {
 
 		SessionContext.currentContext =
 			LiferayServerContext.factory.createSessionContext(
-				session: session!,
+				session: session,
 				attributes: userAttributes,
 				store: store)
 
-		return session!
+		return session
 	}
 
-	open class func reloadCookieAuth(session: LRSession? = nil, callback: LRBlockCookieCallback) {
-		var session = session
-		if session == nil {
-			session = SessionContext.currentContext?.createRequestSession()
-		}
+	open class func reloadCookieAuth(session: LRSession? = SessionContext.currentContext?.createRequestSession(),
+									 callback: LRBlockCookieCallback) {
 
 		let currentAttrs = SessionContext.currentContext?.user.attributes ?? [:]
 
-		var challenge: ((URLAuthenticationChallenge?,
-			((URLSession.AuthChallengeDisposition, URLCredential?) -> Swift.Void)?) -> Swift.Void)? = nil
-
-		if let challengeResolver = SessionContext.challengeResolver {
-			challenge = { challenge, completion in
-				challengeResolver(challenge!, completion!)
-			}
-		}
-
-		let callback = LRBlockCookieCallback(success: { session in
-			SessionContext.loginWithCookie(authentication: session!.authentication as! LRCookieAuthentication,
+		_ = try? LRCookieSignIn.signIn(with: session!, callback: LRBlockCookieCallback.init(success: { session in
+			SessionContext.loginWithCookie(authentication: session.authentication as! LRCookieAuthentication,
 				userAttributes: currentAttrs)
 			callback.onSuccess(session)
-		}, failure: { error in
+		}, failure: { (error) in
 			callback.onFailure(error)
-		})
-
-		_ = try? LRCookieSignIn.signIn(with: session, callback: callback, challenge: challenge)
+		}), challenge: SessionContext.challengeResolver)
 	}
 
 	open func createRequestSession() -> LRSession {
@@ -207,7 +193,7 @@ open class SessionContext: NSObject {
 		}
 
 		let callback = LRBlockCookieCallback(success: { session in
-			let cookieAuth = session!.authentication as! LRCookieAuthentication
+			let cookieAuth = session.authentication as! LRCookieAuthentication
 			_ = SessionContext.currentContext?.refreshUserAttributes { attributes in
 				if let attributes = attributes {
 					SessionContext.loginWithCookie(authentication: cookieAuth, userAttributes: attributes)
@@ -219,9 +205,9 @@ open class SessionContext: NSObject {
 				completed?(attributes)
 			}
 		}, failure: { error in
-			print("Error reloading the cookie auth\(error!)")
+			print("Error reloading the cookie auth\(error)")
 			completed?(nil)
-		})!
+		})
 
 		SessionContext.reloadCookieAuth(session: self.session, callback: callback)
 
@@ -249,12 +235,12 @@ open class SessionContext: NSObject {
 		case .v62:
 			let srv = LRScreensuserService_v62(session: session)
 
-			_ = try? srv?.getCurrentUser()
+			_ = try? srv.getCurrentUser()
 
 		case .v70:
 			let srv = LRUserService_v7(session: session)
 
-			_ = try? srv?.getCurrentUser()
+			_ = try? srv.getCurrentUser()
 		}
 
 		return true
@@ -300,9 +286,6 @@ open class SessionContext: NSObject {
 	@discardableResult
 	open class func loadStoredCredentials(_ storage: CredentialsStorage, shouldLoadServer: Bool = false) -> Bool {
 		guard let result = storage.load(shouldLoadServer: shouldLoadServer) else {
-			return false
-		}
-		guard result.session.server != nil else {
 			return false
 		}
 

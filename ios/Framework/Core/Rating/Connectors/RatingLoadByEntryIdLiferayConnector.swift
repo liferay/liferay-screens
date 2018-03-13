@@ -56,7 +56,7 @@ open class Liferay70RatingLoadByEntryIdConnector: RatingLoadByEntryIdLiferayConn
 		let service = LRScreensratingsentryService_v70(session: session)
 
 		do {
-			let result = try service?.getRatingsEntries(withAssetEntryId: entryId, ratingsLength: ratingsGroupCount)
+			let result = try service.getRatingsEntries(withAssetEntryId: entryId, ratingsLength: ratingsGroupCount)
 			lastError = nil
 			resultRating = RatingEntry(attributes: result as! [String: AnyObject])
 		}
