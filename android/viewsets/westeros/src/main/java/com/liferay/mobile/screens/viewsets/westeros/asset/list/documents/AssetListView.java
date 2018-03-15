@@ -50,7 +50,7 @@ public class AssetListView
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.liferay_swipe_refresh);
+		swipeRefreshLayout = findViewById(R.id.liferay_swipe_refresh);
 		swipeRefreshLayout.setOnRefreshListener(this);
 		swipeRefreshLayout.setColorSchemeColors(ContextCompat.getColor(getContext(), R.color.colorPrimary_westeros));
 	}

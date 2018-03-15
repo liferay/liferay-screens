@@ -129,8 +129,7 @@ public class ViewPagerDDLFormView extends RecyclerViewPager
 
 	private boolean checkPage(Map<Field, Boolean> fieldResults) {
 
-		LinearLayout container =
-			(LinearLayout) findViewById(com.liferay.mobile.screens.viewsets.R.id.ddlfields_container);
+		LinearLayout container = findViewById(com.liferay.mobile.screens.viewsets.R.id.ddlfields_container);
 
 		boolean pageInvalid = false;
 
