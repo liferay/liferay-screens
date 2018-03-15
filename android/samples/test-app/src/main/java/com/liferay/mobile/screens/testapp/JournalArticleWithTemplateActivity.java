@@ -20,14 +20,14 @@ public class JournalArticleWithTemplateActivity extends ThemeActivity implements
 		super.onResume();
 
 		WebContentDisplayScreenlet journalArticleWithTemplate =
-			(WebContentDisplayScreenlet) findViewById(R.id.journal_article_with_template_screenlet);
+				findViewById(R.id.journal_article_with_template_screenlet);
 		journalArticleWithTemplate.load();
+		journalArticleWithTemplate.setListener(this);
 
 		WebContentDisplayScreenlet journalArticleWithTemplateAlternative =
-			(WebContentDisplayScreenlet) findViewById(R.id.journal_article_with_template_alternative);
+				findViewById(R.id.journal_article_with_template_alternative);
 		journalArticleWithTemplateAlternative.load();
-
-		journalArticleWithTemplate.setListener(this);
+		journalArticleWithTemplateAlternative.setListener(this);
 	}
 
 	@Override

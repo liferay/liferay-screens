@@ -22,12 +22,11 @@ public class ImageDisplayActivity extends ThemeActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.image_display);
 
-		screenlet = (ImageDisplayScreenlet) findViewById(R.id.image_display_screenlet);
-
-		screenlet.setListener(this);
+		screenlet = findViewById(R.id.image_display_screenlet);
 		screenlet.load();
+		screenlet.setListener(this);
 
-		Spinner spinner = (Spinner) findViewById(R.id.spinner_scale_type);
+		Spinner spinner = findViewById(R.id.spinner_scale_type);
 		spinner.setSelection(3);
 		spinner.setOnItemSelectedListener(this);
 	}

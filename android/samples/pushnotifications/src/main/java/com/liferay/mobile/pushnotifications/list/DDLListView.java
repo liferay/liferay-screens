@@ -79,7 +79,7 @@ public class DDLListView extends BaseListScreenletView<Record, DDLListAdapter.Im
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.liferay_swipe_refresh);
+		swipeRefreshLayout = findViewById(R.id.liferay_swipe_refresh);
 		swipeRefreshLayout.setOnRefreshListener(this);
 	}
 

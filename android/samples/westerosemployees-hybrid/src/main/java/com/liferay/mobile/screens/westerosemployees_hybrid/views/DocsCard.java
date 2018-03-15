@@ -61,7 +61,8 @@ public class DocsCard extends Card implements WebListener {
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
-		webScreenlet = (WebScreenlet) findViewById(R.id.portlet_docs);
+
+		webScreenlet = findViewById(R.id.portlet_docs);
 	}
 
 	@Override
@@ -89,8 +90,7 @@ public class DocsCard extends Card implements WebListener {
 						new WebScreenletConfiguration.Builder("/web/westeros-hybrid/detail?id=" + body).addRawCss(
 							R.raw.detail_css, "detail_css.css").addRawJs(R.raw.detail_js, "detail_js.js").load();
 
-					WebScreenlet webScreenlet =
-						(WebScreenlet) findViewById(R.id.portlet_doc_item);
+					WebScreenlet webScreenlet = findViewById(R.id.portlet_doc_item);
 
 					webScreenlet.setWebScreenletConfiguration(configuration);
 					webScreenlet.load();

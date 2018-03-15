@@ -78,9 +78,9 @@ public class BlogsCard extends com.liferay.mobile.screens.westerosemployees.view
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		blogsListScreenlet = (AssetListScreenlet) findViewById(R.id.asset_list_screenlet_blogs);
+		blogsListScreenlet = findViewById(R.id.asset_list_screenlet_blogs);
 		blogsListScreenlet.setListener(this);
 
-		blogDisplayScreenlet = (AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet_blog);
+		blogDisplayScreenlet = findViewById(R.id.asset_display_screenlet_blog);
 	}
 }

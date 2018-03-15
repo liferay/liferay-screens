@@ -68,7 +68,7 @@ public class GetUserView extends LinearLayout implements GetUserViewModel, View.
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		textValue = (EditText) findViewById(R.id.textValue);
+		textValue = findViewById(R.id.textValue);
 
 		View getUserButton = findViewById(R.id.getUserButton);
 		getUserButton.setOnClickListener(this);

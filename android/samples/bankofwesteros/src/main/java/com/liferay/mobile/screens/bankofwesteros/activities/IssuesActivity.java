@@ -58,21 +58,21 @@ public class IssuesActivity extends CardActivity
 
 		backgroundCard = findViewById(R.id.background);
 
-		card1ToBackgroundMenu = (ImageView) findViewById(R.id.card1_to_background_menu);
+		card1ToBackgroundMenu = findViewById(R.id.card1_to_background_menu);
 		card1ToBackgroundMenu.setOnClickListener(this);
-		card1ToBackground = (ImageView) findViewById(R.id.card1_to_background);
+		card1ToBackground = findViewById(R.id.card1_to_background);
 		card1ToBackground.setOnClickListener(this);
 
-		reportIssueTitle = (TextView) findViewById(R.id.report_issue_title);
+		reportIssueTitle = findViewById(R.id.report_issue_title);
 
-		ddlFormScreenlet = (DDLFormScreenlet) findViewById(R.id.ddlform);
+		ddlFormScreenlet = findViewById(R.id.ddlform);
 		ddlFormScreenlet.setListener(this);
-		ddlListScreenlet = (DDLListScreenlet) findViewById(R.id.ddllist);
+		ddlListScreenlet = findViewById(R.id.ddllist);
 		ddlListScreenlet.setListener(this);
 
-		sendButton = (Button) findViewById(R.id.liferay_form_submit);
+		sendButton = findViewById(R.id.liferay_form_submit);
 
-		TextView callMenuEntry = (TextView) findViewById(R.id.call_menu_entry);
+		TextView callMenuEntry = findViewById(R.id.call_menu_entry);
 		callMenuEntry.setText(getCallSpannableString(), TextView.BufferType.SPANNABLE);
 
 		tryToCall(callMenuEntry);
@@ -266,21 +266,21 @@ public class IssuesActivity extends CardActivity
 	}
 
 	private void goRightCard1(Record element) {
-		TextView issueTitle = (TextView) findViewById(R.id.issue_title);
+		TextView issueTitle = findViewById(R.id.issue_title);
 		Object serverValue = element.getServerValue(getString(R.string.liferay_recordset_fields));
 		issueTitle.setText(String.valueOf(serverValue));
 
 		String date = DateFormat.getDateTimeInstance().format(element.getServerAttribute("createDate"));
 		((TextView) findViewById(R.id.createdAt)).setText(getString(R.string.created, date));
 
-		TextView description = (TextView) findViewById(R.id.description);
+		TextView description = findViewById(R.id.description);
 		description.setText(String.valueOf(element.getServerValue("Description")));
 
 		String severity = String.valueOf(element.getServerValue("Severity"));
 		if (severity != null) {
 			severity = severity.replace("[\"", "");
 			severity = severity.replace("\"]", "");
-			TextView severityField = (TextView) findViewById(R.id.severity);
+			TextView severityField = findViewById(R.id.severity);
 			severityField.setText(getString(R.string.severity_detail, severity));
 		}
 

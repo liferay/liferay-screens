@@ -33,10 +33,9 @@ public class AssetListActivity extends ThemeActivity implements BaseListListener
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.asset_list);
 
-		assetListScreenlet = (AssetListScreenlet) findViewById(R.id.asset_list_screenlet);
+		assetListScreenlet = findViewById(R.id.asset_list_screenlet);
 		assetListScreenlet.setClassNameId(getIntent().getLongExtra("classNameId", 0));
 		assetListScreenlet.setListener(this);
 	}

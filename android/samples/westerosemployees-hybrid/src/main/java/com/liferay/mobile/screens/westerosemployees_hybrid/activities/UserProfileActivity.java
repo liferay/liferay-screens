@@ -28,8 +28,7 @@ public class UserProfileActivity extends WesterosActivity implements View.OnClic
 
 		observer = new CordovaLifeCycleObserver();
 
-		WebScreenlet webScreenlet =
-			(WebScreenlet) findViewById(R.id.portlet_user_profile);
+		WebScreenlet webScreenlet = findViewById(R.id.portlet_user_profile);
 
 		WebScreenletConfiguration configuration =
 			new WebScreenletConfiguration.Builder("/web/westeros-hybrid/userprofile").enableCordova(observer)

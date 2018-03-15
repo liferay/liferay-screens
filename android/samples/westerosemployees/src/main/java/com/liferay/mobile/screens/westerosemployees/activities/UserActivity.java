@@ -24,18 +24,20 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 
 		bindViews();
 
-		((AssetListScreenlet) findViewById(R.id.news_display_screenlet)).loadPage(0);
+		AssetListScreenlet assetListScreenlet = findViewById(R.id.news_display_screenlet);
+		assetListScreenlet.loadPage(0);
 	}
 
 	private void bindViews() {
-		TextView userNameTextView = (TextView) findViewById(R.id.liferay_username);
+		TextView userNameTextView = findViewById(R.id.liferay_username);
 		userNameTextView.setOnClickListener(this);
 
-		UserPortraitScreenlet userPortraitScreenlet = (UserPortraitScreenlet) findViewById(R.id.userscreenlet_home);
+		UserPortraitScreenlet userPortraitScreenlet = findViewById(R.id.userscreenlet_home);
 		userPortraitScreenlet.setOnClickListener(this);
 		userPortraitScreenlet.loadLoggedUserPortrait();
 
-		((AssetListScreenlet) findViewById(R.id.news_display_screenlet)).setListener(this);
+		AssetListScreenlet assetListScreenlet = findViewById(R.id.news_display_screenlet);
+		assetListScreenlet.setListener(this);
 
 		userNameTextView.setText(SessionContext.getCurrentUser().getFullName());
 	}

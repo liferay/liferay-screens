@@ -77,10 +77,10 @@ public class DocsCard extends com.liferay.mobile.screens.westerosemployees.views
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		docsListScreenlet = (AssetListScreenlet) findViewById(R.id.asset_list_screenlet_docs);
+		docsListScreenlet = findViewById(R.id.asset_list_screenlet_docs);
 		docsListScreenlet.setListener(this);
 
-		documentDisplayScreenlet = (AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet_doc);
+		documentDisplayScreenlet = findViewById(R.id.asset_display_screenlet_doc);
 	}
 
 	@Override

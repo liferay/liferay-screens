@@ -34,14 +34,12 @@ public class UserPortraitActivity extends ThemeActivity implements UserPortraitL
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.user_portrait);
 
-		screenlet = (UserPortraitScreenlet) findViewById(R.id.user_portrait_screenlet);
+		screenlet = findViewById(R.id.user_portrait_screenlet);
+		screenlet.setUserId(SessionContext.getUserId());
 		screenlet.setListener(this);
 		screenlet.setCacheListener(this);
-
-		screenlet.setUserId(SessionContext.getUserId());
 		screenlet.loadLoggedUserPortrait();
 	}
 
