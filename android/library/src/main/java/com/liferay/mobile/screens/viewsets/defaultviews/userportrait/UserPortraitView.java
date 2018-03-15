@@ -147,9 +147,9 @@ public class UserPortraitView extends FrameLayout implements UserPortraitViewMod
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		portraitImage = (ImageView) findViewById(R.id.liferay_portrait);
-		portraitProgress = (ProgressBar) findViewById(R.id.liferay_portrait_progress);
-		portraitAddButton = (ImageButton) findViewById(R.id.liferay_replace_image);
+		portraitImage = findViewById(R.id.liferay_portrait);
+		portraitProgress = findViewById(R.id.liferay_portrait_progress);
+		portraitAddButton = findViewById(R.id.liferay_replace_image);
 
 		setDefaultImagePlaceholder();
 

@@ -51,7 +51,7 @@ public class WebView extends FrameLayout implements WebViewModel, ScreensWebView
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		progressBar = (ProgressBar) findViewById(R.id.liferay_portlet_progress);
+		progressBar = findViewById(R.id.liferay_portlet_progress);
 	}
 
 	@Override

@@ -80,7 +80,8 @@ public abstract class BaseFileDisplayView extends RelativeLayout implements Base
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
-		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
+
+		progressBar = findViewById(R.id.liferay_progress);
 	}
 
 	@Override

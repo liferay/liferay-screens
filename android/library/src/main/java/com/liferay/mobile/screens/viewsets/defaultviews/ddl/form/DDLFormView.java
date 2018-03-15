@@ -291,16 +291,15 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		fieldsContainerView = (ViewGroup) findViewById(R.id.ddlfields_container);
+		fieldsContainerView = findViewById(R.id.ddlfields_container);
 
-		submitButton = (Button) findViewById(R.id.liferay_form_submit);
+		submitButton = findViewById(R.id.liferay_form_submit);
 		submitButton.setOnClickListener(this);
 
 		submitContainerView = findViewById(R.id.liferay_submit_container);
 
-		progressBar = (ProgressBar) findViewById(R.id.ddlform_progress_bar);
-		loadingFormProgressBar =
-			(ProgressBar) findViewById(R.id.ddlform_loading_screen_progress_bar);
+		progressBar = findViewById(R.id.ddlform_progress_bar);
+		loadingFormProgressBar =  findViewById(R.id.ddlform_loading_screen_progress_bar);
 	}
 
 	private DDLFieldViewModel findFieldView(Field field) {

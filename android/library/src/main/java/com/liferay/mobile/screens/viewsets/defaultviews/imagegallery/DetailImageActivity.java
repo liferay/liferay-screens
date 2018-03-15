@@ -30,7 +30,7 @@ public class DetailImageActivity extends AppCompatActivity implements SwipeListe
 		setContentView(R.layout.gallery_detailed_default);
 
 		Intent intent = getIntent();
-		detailedImageView = (ImageView) findViewById(R.id.detailed_image);
+		detailedImageView = findViewById(R.id.detailed_image);
 
 		if (intent != null) {
 

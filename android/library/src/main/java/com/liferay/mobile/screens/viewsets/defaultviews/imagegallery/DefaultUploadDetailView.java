@@ -40,15 +40,15 @@ public class DefaultUploadDetailView extends BaseDetailUploadView {
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		titleText = (TextView) findViewById(R.id.liferay_gallery_upload_title);
-		descriptionText = (TextView) findViewById(R.id.liferay_gallery_upload_description);
+		titleText = findViewById(R.id.liferay_gallery_upload_title);
+		descriptionText = findViewById(R.id.liferay_gallery_upload_description);
 	}
 
 	@Override
 	public void initializeUploadView(String actionName, Uri pictureUri, int screenletId) {
 		super.initializeUploadView(actionName, pictureUri, screenletId);
 
-		ImageView imageView = (ImageView) findViewById(R.id.liferay_gallery_upload_image);
+		ImageView imageView = findViewById(R.id.liferay_gallery_upload_image);
 		Picasso.with(getContext().getApplicationContext()).load(pictureUri).fit().into(imageView);
 	}
 

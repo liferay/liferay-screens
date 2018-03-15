@@ -111,7 +111,7 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
-		progressBar = (ProgressBar) findViewById(R.id.liferay_document_progress);
+		progressBar = findViewById(R.id.liferay_document_progress);
 		getTextEditText().setOnClickListener(this);
 	}
 

@@ -138,8 +138,8 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		labelTextView = (TextView) findViewById(R.id.liferay_ddl_label);
-		textEditText = (EditText) findViewById(R.id.liferay_ddl_edit_text);
+		labelTextView = findViewById(R.id.liferay_ddl_label);
+		textEditText = findViewById(R.id.liferay_ddl_edit_text);
 
 		textEditText.addTextChangedListener(this);
 

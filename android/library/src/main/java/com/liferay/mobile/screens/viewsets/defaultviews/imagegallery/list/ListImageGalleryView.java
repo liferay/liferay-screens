@@ -43,7 +43,7 @@ public class ListImageGalleryView
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
-		FloatingActionButton uploadFAB = (FloatingActionButton) findViewById(R.id.liferay_upload_fab);
+		FloatingActionButton uploadFAB = findViewById(R.id.liferay_upload_fab);
 		uploadFAB.setOnClickListener(this);
 	}
 

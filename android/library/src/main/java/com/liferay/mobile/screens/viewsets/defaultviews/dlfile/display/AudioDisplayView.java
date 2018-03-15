@@ -53,9 +53,9 @@ public class AudioDisplayView extends BaseFileDisplayView {
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		audioView = (VideoView) findViewById(R.id.liferay_audio_asset);
-		title = (TextView) findViewById(R.id.liferay_audio_title);
-		message = (TextView) findViewById(R.id.liferay_audio_message);
+		audioView = findViewById(R.id.liferay_audio_asset);
+		title = findViewById(R.id.liferay_audio_title);
+		message = findViewById(R.id.liferay_audio_message);
 	}
 
 	private void loadAudio(String url) {

@@ -118,9 +118,9 @@ public class UploadProgressView extends RelativeLayout implements View.OnClickLi
 	}
 
 	private void initialize() {
-		progressBar = (ProgressBar) findViewById(R.id.progress_view_progressbar);
-		image = (ImageView) findViewById(R.id.progress_view_image);
-		uploadText = (TextView) findViewById(R.id.default_progress_view_text);
+		progressBar = findViewById(R.id.progress_view_progressbar);
+		image = findViewById(R.id.progress_view_image);
+		uploadText = findViewById(R.id.default_progress_view_text);
 
 		findViewById(R.id.progress_view_cancel_button).setOnClickListener(this);
 	}

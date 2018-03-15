@@ -44,9 +44,9 @@ public class CommentAddView extends RelativeLayout implements CommentAddViewMode
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		sendButton = (Button) findViewById(R.id.comment_send);
+		sendButton = findViewById(R.id.comment_send);
 		sendButton.setOnClickListener(this);
-		addCommentEditText = (EditText) findViewById(R.id.comment_add);
+		addCommentEditText = findViewById(R.id.comment_add);
 	}
 
 	@Override

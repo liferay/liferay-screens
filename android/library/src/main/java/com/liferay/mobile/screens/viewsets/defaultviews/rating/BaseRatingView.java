@@ -123,8 +123,8 @@ public abstract class BaseRatingView extends LinearLayout implements RatingViewM
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		progressBar = (ProgressBar) findViewById(R.id.liferay_rating_progress);
-		content = (ViewGroup) findViewById(R.id.liferay_rating_content);
+		progressBar = findViewById(R.id.liferay_rating_progress);
+		content = findViewById(R.id.liferay_rating_content);
 
 		if (content != null) {
 			String buttonsTag = getContext().getString(R.string.screenlet_rating_button_tag);

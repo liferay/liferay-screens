@@ -91,20 +91,20 @@ public class PdfDisplayView extends BaseFileDisplayView implements View.OnClickL
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		imagePdf = (ImageView) findViewById(R.id.liferay_pdf_renderer);
+		imagePdf = findViewById(R.id.liferay_pdf_renderer);
 
-		progressText = (TextView) findViewById(R.id.liferay_asset_progress_number);
-		progressBarHorizontal = (ProgressBar) findViewById(R.id.liferay_asset_progress_horizontal);
+		progressText = findViewById(R.id.liferay_asset_progress_number);
+		progressBarHorizontal = findViewById(R.id.liferay_asset_progress_horizontal);
 
-		goToPage = (EditText) findViewById(R.id.liferay_go_to_page);
-		goToPageButton = (Button) findViewById(R.id.liferay_go_to_page_submit);
+		goToPage = findViewById(R.id.liferay_go_to_page);
+		goToPageButton = findViewById(R.id.liferay_go_to_page_submit);
 
-		previousPage = (Button) findViewById(R.id.liferay_previous_page);
-		nextPage = (Button) findViewById(R.id.liferay_next_page);
+		previousPage = findViewById(R.id.liferay_previous_page);
+		nextPage = findViewById(R.id.liferay_next_page);
 
-		linearLayoutButtons = (LinearLayout) findViewById(R.id.liferay_linear_buttons);
+		linearLayoutButtons = findViewById(R.id.liferay_linear_buttons);
 
-		title = (TextView) findViewById(R.id.liferay_asset_title);
+		title = findViewById(R.id.liferay_asset_title);
 	}
 
 	//TODO this should go in the screenlet class

@@ -115,10 +115,10 @@ public class ForgotPasswordView extends LinearLayout implements ForgotPasswordVi
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		loginEditText = (EditText) findViewById(R.id.liferay_forgot_login);
-		progressBar = (ModalProgressBar) findViewById(R.id.liferay_progress);
+		loginEditText = findViewById(R.id.liferay_forgot_login);
+		progressBar = findViewById(R.id.liferay_progress);
 
-		Button requestButton = (Button) findViewById(R.id.liferay_forgot_button);
+		Button requestButton = findViewById(R.id.liferay_forgot_button);
 		requestButton.setOnClickListener(this);
 	}
 
