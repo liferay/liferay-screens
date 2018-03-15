@@ -27,11 +27,11 @@ import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.util.LiferayLogger;
+import com.liferay.mobile.screens.util.ScriptReader;
 import com.liferay.mobile.screens.web.util.InjectableScript;
 import com.liferay.mobile.screens.web.util.JsScript;
 import com.liferay.mobile.screens.web.view.WebViewModel;
-import com.liferay.mobile.screens.util.ScriptReader;
-import com.liferay.mobile.screens.util.LiferayLogger;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URLEncoder;
@@ -40,8 +40,7 @@ import java.net.URLEncoder;
  * @author Sarai Díaz García
  * @author Victor Galán Grande
  */
-public class WebScreenlet extends BaseScreenlet<WebViewModel, Interactor>
-	implements WebListener {
+public class WebScreenlet extends BaseScreenlet<WebViewModel, Interactor> implements WebListener {
 
 	private boolean autoLoad;
 	private WebListener listener;
@@ -61,8 +60,7 @@ public class WebScreenlet extends BaseScreenlet<WebViewModel, Interactor>
 		super(context, attrs, defStyleAttr);
 	}
 
-	public WebScreenlet(Context context, AttributeSet attrs, int defStyleAttr,
-		int defStyleRes) {
+	public WebScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
@@ -91,8 +89,8 @@ public class WebScreenlet extends BaseScreenlet<WebViewModel, Interactor>
 				if (SessionContext.isLoggedIn()) {
 					getViewModel().postUrl(finalUrl, body);
 				} else {
-					Exception exception = new Exception(
-						"You have to be logged to use the LIFERAY_AUTHENTICATED web type");
+					Exception exception =
+						new Exception("You have to be logged to use the LIFERAY_AUTHENTICATED web type");
 					getViewModel().showFailedOperation(DEFAULT_ACTION, exception);
 					error(exception, DEFAULT_ACTION);
 				}
@@ -184,13 +182,11 @@ public class WebScreenlet extends BaseScreenlet<WebViewModel, Interactor>
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
 
-		TypedArray typedArray = context.getTheme()
-			.obtainStyledAttributes(attributes, R.styleable.WebScreenlet, 0, 0);
+		TypedArray typedArray = context.getTheme().obtainStyledAttributes(attributes, R.styleable.WebScreenlet, 0, 0);
 
 		autoLoad = typedArray.getBoolean(R.styleable.WebScreenlet_autoLoad, false);
 
-		int layoutId = typedArray.getResourceId(R.styleable.WebScreenlet_layoutId,
-			getDefaultLayoutId());
+		int layoutId = typedArray.getResourceId(R.styleable.WebScreenlet_layoutId, getDefaultLayoutId());
 
 		typedArray.recycle();
 
@@ -233,8 +229,7 @@ public class WebScreenlet extends BaseScreenlet<WebViewModel, Interactor>
 	private String buildPortletUrl(String url) {
 		try {
 			url = URLEncoder.encode(url, "UTF-8");
-			return String.format("%s/c/portal/login?redirect=%s", LiferayServerContext.getServer(),
-				url);
+			return String.format("%s/c/portal/login?redirect=%s", LiferayServerContext.getServer(), url);
 		} catch (UnsupportedEncodingException e) {
 			return "";
 		}

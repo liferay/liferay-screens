@@ -84,8 +84,8 @@ public class WebContentDisplayView extends FrameLayout implements WebContentDisp
 
 			LiferayLogger.i("article loaded: " + webContent);
 
-			String styledHtml = "<style>" + customCSs + "</style>"
-				+ "<div class=\"MobileCSS\">" + webContent.getHtml() + "</div>";
+			String styledHtml =
+				"<style>" + customCSs + "</style>" + "<div class=\"MobileCSS\">" + webContent.getHtml() + "</div>";
 
 			//TODO check encoding
 			webView.loadDataWithBaseURL(LiferayServerContext.getServer(), styledHtml, "text/html", "utf-8", null);
@@ -157,16 +157,14 @@ public class WebContentDisplayView extends FrameLayout implements WebContentDisp
 
 			@Override
 			@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-			public WebResourceResponse shouldInterceptRequest(WebView view,
-				WebResourceRequest request) {
+			public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
 				return getResource(request.getUrl().toString());
 			}
 
 			private WebResourceResponse getResource(String url) {
 				try {
 					OkHttpClient httpClient = LiferayServerContext.getOkHttpClientNoCache();
-					com.squareup.okhttp.Request.Builder builder =
-						new com.squareup.okhttp.Request.Builder().url(url);
+					com.squareup.okhttp.Request.Builder builder = new com.squareup.okhttp.Request.Builder().url(url);
 
 					Request request = builder.build();
 					com.squareup.okhttp.Response response = httpClient.newCall(request).execute();
@@ -174,8 +172,8 @@ public class WebContentDisplayView extends FrameLayout implements WebContentDisp
 					MediaType mediaType = response.body().contentType();
 					String name = mediaType.charset() == null ? "UTF-8" : mediaType.charset().name();
 
-					return new WebResourceResponse(mediaType.type() + "/" + mediaType.subtype(),
-                            name, response.body().byteStream());
+					return new WebResourceResponse(mediaType.type() + "/" + mediaType.subtype(), name,
+						response.body().byteStream());
 				} catch (Exception e) {
 					return null;
 				}

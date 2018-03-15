@@ -16,13 +16,13 @@ package com.liferay.mobile.screens.web;
 
 import android.support.v4.util.Pair;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
+import com.liferay.mobile.screens.util.ScriptReader;
+import com.liferay.mobile.screens.viewsets.defaultviews.web.cordova.CordovaLifeCycleObserver;
 import com.liferay.mobile.screens.web.util.CssScript;
 import com.liferay.mobile.screens.web.util.InjectableScript;
 import com.liferay.mobile.screens.web.util.JsScript;
 import com.liferay.mobile.screens.web.util.RemoteCssScript;
 import com.liferay.mobile.screens.web.util.RemoteJsScript;
-import com.liferay.mobile.screens.util.ScriptReader;
-import com.liferay.mobile.screens.viewsets.defaultviews.web.cordova.CordovaLifeCycleObserver;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -168,8 +168,7 @@ public class WebScreenletConfiguration {
 				allScripts.add(new RemoteCssScript(rCss, rCss));
 			}
 
-			return new WebScreenletConfiguration(url, allScripts, webType, observer,
-				isCordovaEnabled);
+			return new WebScreenletConfiguration(url, allScripts, webType, observer, isCordovaEnabled);
 		}
 
 		private String loadLocalContent(String fileName) {

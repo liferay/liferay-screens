@@ -30,8 +30,7 @@ public class ScreensCordovaWebView implements ScreensWebView, CordovaLifeCycleLi
 
 		webView = ((WebView) cordovaWebView.getView());
 
-		webView.setWebViewClient(
-			new ScreensCordovaWebViewClient((SystemWebViewEngine) cordovaWebView.getEngine()));
+		webView.setWebViewClient(new ScreensCordovaWebViewClient((SystemWebViewEngine) cordovaWebView.getEngine()));
 	}
 
 	public void onEvent(CordovaEvent event) {
@@ -108,8 +107,7 @@ public class ScreensCordovaWebView implements ScreensWebView, CordovaLifeCycleLi
 	}
 
 	@Override
-	public void onRequestPermissionsResult(int requestCode, String[] permissions,
-		int[] grantResults) {
+	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
 		cordovaActivity.onRequestPermissionsResult(requestCode, permissions, grantResults);
 	}
 }

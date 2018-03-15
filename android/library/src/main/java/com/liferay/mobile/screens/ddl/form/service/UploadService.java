@@ -26,11 +26,8 @@ import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector;
 import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadEvent;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.util.EventBusUtil;
-import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
@@ -76,12 +73,10 @@ public class UploadService extends IntentService {
 
 		try {
 			JSONObject jsonObject =
-				uploadFile(file, userId, groupId, repositoryId, folderId, filePrefix,
-					connectionTimeout);
+				uploadFile(file, userId, groupId, repositoryId, folderId, filePrefix, connectionTimeout);
 
 			DDLFormDocumentUploadEvent event =
-				new DDLFormDocumentUploadEvent(file, repositoryId, folderId, filePrefix,
-					connectionTimeout, jsonObject);
+				new DDLFormDocumentUploadEvent(file, repositoryId, folderId, filePrefix, connectionTimeout, jsonObject);
 			decorateEvent(event, groupId, userId, null, targetScreenletId, actionName);
 			EventBusUtil.post(event);
 		} catch (Exception e) {
@@ -92,8 +87,8 @@ public class UploadService extends IntentService {
 		}
 	}
 
-	public JSONObject uploadFile(DocumentField file, Long userId, Long groupId, Long repositoryId,
-		Long folderId, String filePrefix, Integer connectionTimeout) throws Exception {
+	public JSONObject uploadFile(DocumentField file, Long userId, Long groupId, Long repositoryId, Long folderId,
+		String filePrefix, Integer connectionTimeout) throws Exception {
 		String path = file.getCurrentValue().toString();
 		String name = path.substring(path.lastIndexOf('/') + 1);
 		String date = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(new Date());
@@ -110,10 +105,9 @@ public class UploadService extends IntentService {
 
 		String fileName = (filePrefix == null ? "" : filePrefix) + date + "_" + name;
 
-		return dlAppConnector.addFileEntry(repositoryId, folderId, name, getMimeType(path),
-			fileName, "", "", readBytes(inputStream), serviceContextWrapper);
+		return dlAppConnector.addFileEntry(repositoryId, folderId, name, getMimeType(path), fileName, "", "",
+			readBytes(inputStream), serviceContextWrapper);
 	}
-
 
 	public byte[] readBytes(InputStream inputStream) throws IOException {
 		ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
@@ -136,8 +130,8 @@ public class UploadService extends IntentService {
 		return new JSONObjectWrapper(serviceContextAttributes);
 	}
 
-	private void decorateEvent(CacheEvent event, long groupId, long userId, Locale locale,
-		int targetScreenletId, String actionName) {
+	private void decorateEvent(CacheEvent event, long groupId, long userId, Locale locale, int targetScreenletId,
+		String actionName) {
 		event.setGroupId(groupId);
 		event.setUserId(userId);
 		event.setLocale(locale);

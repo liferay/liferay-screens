@@ -292,8 +292,7 @@ public class AssetDisplayScreenlet extends BaseScreenlet<AssetDisplayViewModel, 
 		return configurationListener;
 	}
 
-	public void setConfigurationListener(
-		AssetDisplayInnerScreenletListener configurationListener) {
+	public void setConfigurationListener(AssetDisplayInnerScreenletListener configurationListener) {
 		this.configurationListener = configurationListener;
 	}
 

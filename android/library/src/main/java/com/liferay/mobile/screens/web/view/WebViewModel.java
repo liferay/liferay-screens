@@ -16,8 +16,8 @@ package com.liferay.mobile.screens.web.view;
 
 import android.webkit.WebView;
 import com.liferay.mobile.screens.base.view.BaseViewModel;
-import com.liferay.mobile.screens.web.util.InjectableScript;
 import com.liferay.mobile.screens.viewsets.defaultviews.web.cordova.CordovaLifeCycleObserver;
+import com.liferay.mobile.screens.web.util.InjectableScript;
 
 /**
  * @author Sarai Díaz García
@@ -65,7 +65,6 @@ public interface WebViewModel extends BaseViewModel {
 
 	/**
 	 * Controls wether or not the scroll of the webview should be enabled
-	 * @param enabled
 	 */
 	void setScrollEnabled(boolean enabled);
 

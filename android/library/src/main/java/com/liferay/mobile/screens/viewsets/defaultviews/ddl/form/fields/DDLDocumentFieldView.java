@@ -73,23 +73,19 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 	public void refresh() {
 		getTextEditText().setText(getField().toFormattedString());
 		if (getField().isUploaded()) {
-			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0,
-				R.drawable.default_circle_success, 0);
+			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_circle_success, 0);
 			progressBar.setVisibility(GONE);
 		} else if (getField().isUploadFailed()) {
-			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0,
-				R.drawable.default_circle_failed, 0);
+			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_circle_failed, 0);
 			progressBar.setVisibility(GONE);
 		} else if (getField().isUploading()) {
 			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 			progressBar.setVisibility(VISIBLE);
 		} else {
-			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_blue,
-				0);
+			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.default_blue, 0);
 			progressBar.setVisibility(GONE);
 		}
 	}
-
 
 	@Override
 	protected void onDetachedFromWindow() {
@@ -125,25 +121,21 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 		AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
 		LayoutInflater factory = LayoutInflater.from(activity);
-		final View customDialogView =
-			factory.inflate(R.layout.ddlfield_document_chose_option_default, null);
+		final View customDialogView = factory.inflate(R.layout.ddlfield_document_chose_option_default, null);
 
 		View takeVideoButton = customDialogView.findViewById(R.id.liferay_dialog_take_video_form);
 
 		RxPermissions rxPermissions = new RxPermissions(activity);
 		RxView.clicks(takeVideoButton)
-			.compose(rxPermissions.ensure(Manifest.permission.CAMERA,
-				Manifest.permission.WRITE_EXTERNAL_STORAGE))
+			.compose(rxPermissions.ensure(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE))
 			.subscribe(launchCamera(RECORD_VIDEO));
 
 		View takePhotoButton = customDialogView.findViewById(R.id.liferay_dialog_take_photo_form);
 		RxView.clicks(takePhotoButton)
-			.compose(rxPermissions.ensure(Manifest.permission.CAMERA,
-				Manifest.permission.WRITE_EXTERNAL_STORAGE))
+			.compose(rxPermissions.ensure(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE))
 			.subscribe(launchCamera(TAKE_PICTURE_WITH_CAMERA));
 
-		final View selectFileButton =
-			customDialogView.findViewById(R.id.liferay_dialog_select_file_form);
+		final View selectFileButton = customDialogView.findViewById(R.id.liferay_dialog_select_file_form);
 		RxView.clicks(selectFileButton)
 			.compose(rxPermissions.ensure(Manifest.permission.WRITE_EXTERNAL_STORAGE))
 			.subscribe(chooseFile());
@@ -162,16 +154,14 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 			@Override
 			public void call(Boolean result) {
 				if (result) {
-					fileDialog =
-						new SelectFileDialog().createDialog(DDLDocumentFieldView.this.getContext(),
-							new SelectFileDialog.SimpleFileDialogListener() {
-								@Override
-								public void onFileChosen(String path) {
-									DDLDocumentFieldView.this.startUpload(
-										Uri.fromFile(new File(path)));
-									choseOriginDialog.dismiss();
-								}
-							});
+					fileDialog = new SelectFileDialog().createDialog(DDLDocumentFieldView.this.getContext(),
+						new SelectFileDialog.SimpleFileDialogListener() {
+							@Override
+							public void onFileChosen(String path) {
+								DDLDocumentFieldView.this.startUpload(Uri.fromFile(new File(path)));
+								choseOriginDialog.dismiss();
+							}
+						});
 					fileDialog.show();
 				}
 				choseOriginDialog.dismiss();
@@ -186,13 +176,12 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 			public void call(Boolean result) {
 				if (result) {
 
-					MediaStoreRequestShadowActivity.show(getContext(), mediaStore,
-						new MediaStoreCallback() {
-							@Override
-							public void onUriReceived(Uri uri) {
-								DDLDocumentFieldView.this.startUpload(uri);
-							}
-						});
+					MediaStoreRequestShadowActivity.show(getContext(), mediaStore, new MediaStoreCallback() {
+						@Override
+						public void onUriReceived(Uri uri) {
+							DDLDocumentFieldView.this.startUpload(uri);
+						}
+					});
 				}
 				choseOriginDialog.dismiss();
 			}

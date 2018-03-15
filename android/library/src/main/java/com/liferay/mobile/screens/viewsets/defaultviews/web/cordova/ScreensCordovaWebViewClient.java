@@ -1,6 +1,5 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.web.cordova;
 
-import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebView;
@@ -21,8 +20,7 @@ public class ScreensCordovaWebViewClient extends SystemWebViewClient {
 	public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
 		if (error.getPrimaryError() == SslError.SSL_EXPIRED) {
 			handler.cancel();
-		}
-		else {
+		} else {
 			handler.proceed();
 		}
 	}

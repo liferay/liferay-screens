@@ -275,8 +275,7 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 	protected void addFieldView(Field field, int position) {
 
 		boolean containsKey = customLayoutIds.containsKey(field.getName());
-		int layoutId = containsKey ? getCustomFieldLayoutId(field.getName())
-			: getFieldLayoutId(field.getEditorType());
+		int layoutId = containsKey ? getCustomFieldLayoutId(field.getName()) : getFieldLayoutId(field.getEditorType());
 
 		View view = LayoutInflater.from(getContext()).inflate(layoutId, this, false);
 		DDLFieldViewModel viewModel = (DDLFieldViewModel) view;
@@ -299,7 +298,7 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 		submitContainerView = findViewById(R.id.liferay_submit_container);
 
 		progressBar = findViewById(R.id.ddlform_progress_bar);
-		loadingFormProgressBar =  findViewById(R.id.ddlform_loading_screen_progress_bar);
+		loadingFormProgressBar = findViewById(R.id.ddlform_loading_screen_progress_bar);
 	}
 
 	private DDLFieldViewModel findFieldView(Field field) {

@@ -8,6 +8,7 @@ public class CordovaEvent {
 
 	private CordovaEventType eventType;
 	private String param;
+
 	public CordovaEvent(CordovaEventType eventType, String param) {
 		this.eventType = eventType;
 		this.param = param;

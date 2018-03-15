@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.userportrait.interactor;
 
 import android.graphics.Bitmap;
-import android.net.Uri;
 import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
 import com.liferay.mobile.screens.context.User;
 
