@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:liferay="http://schemas.android.com/apk/res-auto"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:background="@android:color/white"
@@ -16,10 +16,10 @@
 		android:id="@+id/user_portrait_screenlet"
 		android:layout_width="100dp"
 		android:layout_height="100dp"
-		liferay:autoLoad="false"
-		liferay:cachePolicy="REMOTE_FIRST"
-		liferay:editable="true"
-		liferay:layoutId="@layout/userportrait_initials"
+		app:autoLoad="false"
+		app:cachePolicy="REMOTE_FIRST"
+		app:editable="true"
+		app:layoutId="@layout/userportrait_initials"
 		/>
 
 </LinearLayout>

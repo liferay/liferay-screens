@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.comment.display.CommentDisplayView xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:liferay="http://schemas.android.com/apk/res-auto"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
 			android:layout_width="70dp"
 			android:layout_height="70dp"
 			android:layout_alignParentLeft="true"
-			liferay:cachePolicy="REMOTE_FIRST"
+			app:cachePolicy="REMOTE_FIRST"
 			/>
 
 		<TextView

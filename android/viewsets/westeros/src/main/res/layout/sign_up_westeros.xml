@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.westeros.auth.signup.SignUpView xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:liferay="http://schemas.android.com/apk/res-auto"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:theme="@style/westeros_theme"
 	style="@style/westeros_screenlet"
 	>
@@ -99,7 +99,7 @@
 			android:layout_alignLeft="@id/liferay_sign_up_button"
 			android:layout_alignStart="@id/liferay_sign_up_button"
 			android:layout_alignTop="@id/liferay_sign_up_button"
-			liferay:actionViewId="@id/liferay_sign_up_button"
+			app:actionViewId="@id/liferay_sign_up_button"
 			style="@style/westeros_progress_bar"
 			/>
 	</RelativeLayout>

@@ -1,5 +1,5 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:liferay="http://schemas.android.com/apk/res-auto"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:id="@+id/main_view"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
@@ -53,8 +53,8 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_below="@id/title_sign_in_subview"
-				liferay:basicAuthMethod="email"
-				liferay:layoutId="@layout/login_westeros"
+				app:basicAuthMethod="email"
+				app:layoutId="@layout/login_westeros"
 				/>
 
 		</RelativeLayout>
@@ -97,9 +97,9 @@
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
 				android:layout_below="@+id/title_forgot_password_subview"
-				liferay:anonymousApiPassword="@string/liferay_anonymousApiPassword"
-				liferay:anonymousApiUserName="@string/liferay_anonymousApiUserName"
-				liferay:layoutId="@layout/forgotpassword_westeros"
+				app:anonymousApiPassword="@string/liferay_anonymousApiPassword"
+				app:anonymousApiUserName="@string/liferay_anonymousApiUserName"
+				app:layoutId="@layout/forgotpassword_westeros"
 				/>
 
 		</RelativeLayout>
@@ -147,9 +147,9 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_below="@id/title_sign_up_subview"
-				liferay:anonymousApiPassword="@string/liferay_anonymousApiPassword"
-				liferay:anonymousApiUserName="@string/liferay_anonymousApiUserName"
-				liferay:layoutId="@layout/sign_up_westeros"
+				app:anonymousApiPassword="@string/liferay_anonymousApiPassword"
+				app:anonymousApiUserName="@string/liferay_anonymousApiUserName"
+				app:layoutId="@layout/sign_up_westeros"
 				/>
 		</RelativeLayout>
 
