@@ -67,7 +67,7 @@ public class WebScreenletConfiguration {
 		return isCordovaEnabled;
 	}
 
-	public enum WebType {LIFERAY_AUTHENTICATED, OTHER}
+	public enum WebType { LIFERAY_AUTHENTICATED, OTHER }
 
 	public static class Builder {
 

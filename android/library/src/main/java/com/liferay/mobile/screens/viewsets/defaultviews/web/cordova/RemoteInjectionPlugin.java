@@ -22,7 +22,7 @@ public class RemoteInjectionPlugin extends CordovaPlugin {
 	private static Pattern REMOTE_URL_REGEX = Pattern.compile("^http(s)?://.*");
 
 	// List of files to inject before injecting Cordova.
-	private final ArrayList<String> preInjectionFileNames = new ArrayList<String>();
+	private final ArrayList<String> preInjectionFileNames = new ArrayList<>();
 
 	protected void pluginInitialize() {
 		String pref = webView.getPreferences().getString("CRIInjectFirstFiles", "");
@@ -40,7 +40,7 @@ public class RemoteInjectionPlugin extends CordovaPlugin {
 
 	@Override
 	public Object onMessage(String id, Object data) {
-		if (id.equals("onPageFinished")) {
+		if ("onPageFinished".equals(id)) {
 			if (data instanceof String) {
 				String url = (String) data;
 				if (isRemote(url)) {
@@ -58,11 +58,11 @@ public class RemoteInjectionPlugin extends CordovaPlugin {
 	 * @return true if the URL over HTTP or HTTPS
 	 */
 	private boolean isRemote(String url) {
-		return REMOTE_URL_REGEX.matcher((String) url).matches();
+		return REMOTE_URL_REGEX.matcher(url).matches();
 	}
 
 	private void injectCordova() {
-		List<String> jsPaths = new ArrayList<String>();
+		List<String> jsPaths = new ArrayList<>();
 		for (String path : preInjectionFileNames) {
 			jsPaths.add(path);
 		}
@@ -103,7 +103,7 @@ public class RemoteInjectionPlugin extends CordovaPlugin {
 		try {
 			InputStream stream = assets.open(filePath);
 			in = new BufferedReader(new InputStreamReader(stream));
-			String str = "";
+			String str;
 
 			while ((str = in.readLine()) != null) {
 				out.append(str);

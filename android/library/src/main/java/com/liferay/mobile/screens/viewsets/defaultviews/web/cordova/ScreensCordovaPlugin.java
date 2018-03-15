@@ -13,12 +13,11 @@ public class ScreensCordovaPlugin extends CordovaPlugin {
 
 	@Override
 	public Object onMessage(String id, Object data) {
-		if (id.equals("onPageFinished")) {
-			EventBusUtil.post(
-				new CordovaEvent(CordovaEvent.CordovaEventType.PAGE_FINISHED, (String) data));
-		} else if (id.equals("onPageStarted")) {
+		if ("onPageFinished".equals(id)) {
+			EventBusUtil.post(new CordovaEvent(CordovaEvent.CordovaEventType.PAGE_FINISHED, (String) data));
+		} else if ("onPageStarted".equals(id)) {
 			EventBusUtil.post(new CordovaEvent(CordovaEvent.CordovaEventType.PAGE_STARTED, ""));
-		} else if (id.equals("onReceivedError")) {
+		} else if ("onReceivedError".equals(id)) {
 			String description = "";
 			if (data instanceof JSONObject) {
 				try {

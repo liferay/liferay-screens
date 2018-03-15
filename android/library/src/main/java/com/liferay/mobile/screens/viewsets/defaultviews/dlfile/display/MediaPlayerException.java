@@ -11,7 +11,7 @@ public class MediaPlayerException extends Exception {
 	/**
 	 * The type of error and an ex
 	 *
-	 * @see MediaPlayer.OnErrorListener
+	 * @see {@link MediaPlayer.OnErrorListener}
 	 */
 	private final int what;
 	private final int extra;

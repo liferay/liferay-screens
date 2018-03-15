@@ -89,7 +89,7 @@ public class DDLFieldRadioView extends RadioGroup
 
 		if (selectedOptions != null) {
 			for (StringWithOptionsField.Option opt : selectedOptions) {
-				RadioButton radioButton = (RadioButton) findViewWithTag(opt);
+				RadioButton radioButton = findViewWithTag(opt);
 
 				if (radioButton != null) {
 					radioButton.setChecked(true);

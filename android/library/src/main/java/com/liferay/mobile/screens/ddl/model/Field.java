@@ -19,7 +19,6 @@ import android.os.Parcelable;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -31,7 +30,6 @@ import org.w3c.dom.Element;
 public abstract class Field<T extends Serializable> implements Parcelable {
 
 	private String text;
-	private Map<String, Object> attributes = new HashMap<>();
 	private DataType dataType;
 	private EditorType editorType;
 	private String name;
@@ -73,7 +71,6 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	public Field(Map<String, Object> attributes, Locale currentLocale, Locale defaultLocale) {
 		this.currentLocale = currentLocale;
 		this.defaultLocale = defaultLocale;
-		this.attributes = attributes;
 
 		dataType = DataType.valueOf(attributes);
 		editorType = EditorType.valueOf(attributes);

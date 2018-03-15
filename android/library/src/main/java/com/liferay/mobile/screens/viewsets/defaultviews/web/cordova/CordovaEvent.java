@@ -22,5 +22,5 @@ public class CordovaEvent {
 		return param;
 	}
 
-	public enum CordovaEventType {PAGE_STARTED, PAGE_FINISHED, ERROR}
+	public enum CordovaEventType { PAGE_STARTED, PAGE_FINISHED, ERROR }
 }
