@@ -91,33 +91,26 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 	override func createConnector() -> ServerConnector? {
 		switch mode {
 		case .attributes(let portraitId, let uuid, let male):
-			return createConnectorFor(
-				portraitId: portraitId,
-				uuid: uuid,
-				male: male)
+			return createConnectorFor(portraitId: portraitId, uuid: uuid, male: male)
 
 		case .userId(let userId):
 			return createConnectorFor(
-				LiferayServerContext.connectorFactory.createGetUserByUserIdConnector(
-					userId: userId))
+				LiferayServerContext.connectorFactory.createGetUserByUserIdConnector(userId: userId))
 
 		case .emailAddress(let companyId, let emailAddress):
 			return createConnectorFor(
-				LiferayServerContext.connectorFactory.createGetUserByEmailConnector(
-					companyId: companyId,
+				LiferayServerContext.connectorFactory.createGetUserByEmailConnector(companyId: companyId,
 					emailAddress: emailAddress))
 
 		case .screenName(let companyId, let screenName):
 			return createConnectorFor(
-				LiferayServerContext.connectorFactory.createGetUserByScreenNameConnector(
-					companyId: companyId,
+				LiferayServerContext.connectorFactory.createGetUserByScreenNameConnector(companyId: companyId,
 					screenName: screenName))
 		}
 	}
 
 	override func completedConnector(_ c: ServerConnector) {
-		if let httpOp = toHttpConnector(c),
-				let resultData = httpOp.resultData {
+		if let httpOp = toHttpConnector(c), let resultData = httpOp.resultData {
 			resultImage = UIImage(data: resultData)
 			userHasDefaultPortrait = false
 		}
@@ -177,7 +170,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 				else {
 					outputConnector.resultData = nil
 					outputConnector.lastError = NSError.errorWithCause(.notAvailable,
-					                                                   message: "Image from cache not available.")
+						message: "Image from cache not available.")
 					result(nil)
 				}
 			}
@@ -186,9 +179,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 		if (c as? ServerConnectorChain)?.currentConnector is GetUserBaseLiferayConnector {
 			// asking for user attributes. if the image is cached, we'd need to skip this step
 
-			cacheManager.getAny(
-					collection: ScreenletName(UserPortraitScreenlet.self),
-					key: mode.cacheKey) {
+			cacheManager.getAny(collection: ScreenletName(UserPortraitScreenlet.self), key: mode.cacheKey) {
 				if $0 == nil {
 					// not cached: continue
 					result(nil)
@@ -218,13 +209,10 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 			}
 		}
 		else if let httpOp = toHttpConnector(c) {
-			cacheManager.getAny(
-					collection: ScreenletName(UserPortraitScreenlet.self),
-					key: mode.cacheKey) {
+			cacheManager.getAny(collection: ScreenletName(UserPortraitScreenlet.self), key: mode.cacheKey) {
 				guard let cachedObject = $0 else {
 					httpOp.resultData = nil
-					httpOp.lastError = NSError.errorWithCause(.notAvailable,
-					                                          message: "Image from cache not available.")
+					httpOp.lastError = NSError.errorWithCause(.notAvailable, message: "Image from cache not available.")
 					result(nil)
 					return
 				}
@@ -279,23 +267,17 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 	fileprivate func createConnectorFor(attributes: [String: AnyObject]?) -> ServerConnector? {
 		let portraitEntry = attributes?["portraitId"]
 		if let attributes = attributes,
-				let portraitId = portraitEntry?.int64Value,
-				let uuid = attributes["uuid"] as? String {
+			let portraitId = portraitEntry?.int64Value,
+			let uuid = attributes["uuid"] as? String {
 
-			return createConnectorFor(
-				portraitId: portraitId,
-				uuid: uuid,
-				male: true)
+			return createConnectorFor(portraitId: portraitId, uuid: uuid, male: true)
 		}
 
 		return nil
 	}
 
 	fileprivate func createConnectorFor(portraitId: Int64, uuid: String, male: Bool) -> ServerConnector? {
-		if let url = URLForAttributes(
-				portraitId: portraitId,
-				uuid: uuid,
-				male: male) {
+		if let url = URLForAttributes(portraitId: portraitId, uuid: uuid, male: male) {
 			return HttpConnector(url: url)
 		}
 
