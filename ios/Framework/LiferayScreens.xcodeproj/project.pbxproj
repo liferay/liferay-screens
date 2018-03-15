@@ -612,6 +612,8 @@
 		0B8B234120482193000932EF /* default-star-half@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B8B233820482192000932EF /* default-star-half@2x.png */; };
 		0B8B234220482193000932EF /* default-star-outline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B8B233920482192000932EF /* default-star-outline@2x.png */; };
 		0BA1CEDF1F4C64CE0079DD4B /* ScreensWKUIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA1CEDE1F4C64CE0079DD4B /* ScreensWKUIDelegate.swift */; };
+		0BA6AC62205A8D0900BB83D4 /* AsyncServerConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F493582035A73A00730299 /* AsyncServerConnector.swift */; };
+		0BA6AC63205A8D0A00BB83D4 /* AsyncServerConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F493582035A73A00730299 /* AsyncServerConnector.swift */; };
 		0BB4678B1D8707280044523E /* comment-add-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BB467851D8707280044523E /* comment-add-screenlet.strings */; };
 		0BB4678C1D8707280044523E /* comment-display-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BB467871D8707280044523E /* comment-display-screenlet.strings */; };
 		0BB4678D1D8707280044523E /* comment-list-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BB467891D8707280044523E /* comment-list-screenlet.strings */; };
@@ -999,6 +1001,7 @@
 		88F888551B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */; };
 		88F888561B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */; };
 		9408E484873051DBA2FC5F89 /* Pods_Screens_LiferayScreensTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76277052A489CACA834992A8 /* Pods_Screens_LiferayScreensTests.framework */; };
+		D6F493592035A73A00730299 /* AsyncServerConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F493582035A73A00730299 /* AsyncServerConnector.swift */; };
 		D6F4935B2035C44C00730299 /* LoginByCookieConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4935A2035C44C00730299 /* LoginByCookieConnector.swift */; };
 /* End PBXBuildFile section */
 
@@ -1510,6 +1513,7 @@
 		A8B45C06052D105C65EF5C83 /* Pods-Screens-LiferayScreens.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreens.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreens/Pods-Screens-LiferayScreens.debug.xcconfig"; sourceTree = "<group>"; };
 		AD76E36E85BE8E49BD3D8E53 /* Pods-Screens-LiferayScreensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreensTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests.release.xcconfig"; sourceTree = "<group>"; };
 		ADC21DB5DD46A1A28344B494 /* Pods-Screens-LiferayScreensTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreensTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D6F493582035A73A00730299 /* AsyncServerConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncServerConnector.swift; sourceTree = "<group>"; };
 		D6F4935A2035C44C00730299 /* LoginByCookieConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginByCookieConnector.swift; sourceTree = "<group>"; };
 		F87A66990734AE5230D0C891 /* Pods_Screens_LiferayScreensXamarin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Screens_LiferayScreensXamarin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -2865,6 +2869,7 @@
 				88B844351C73D6C0007A447D /* ServerConnectorInteractor.swift */,
 				88B844361C73D6C0007A447D /* ServerReadConnectorInteractor.swift */,
 				88B844371C73D6C0007A447D /* ServerWriteConnectorInteractor.swift */,
+				D6F493582035A73A00730299 /* AsyncServerConnector.swift */,
 			);
 			path = BaseConnectors;
 			sourceTree = "<group>";
@@ -3831,6 +3836,7 @@
 				0B7784251F95F60C001C9134 /* DDLListPageLoadInteractor.swift in Sources */,
 				0B7784261F95F60C001C9134 /* DDLFormSubmitLiferayConnector.swift in Sources */,
 				0B7784271F95F60C001C9134 /* PdfDisplayView_default.swift in Sources */,
+				0BA6AC62205A8D0900BB83D4 /* AsyncServerConnector.swift in Sources */,
 				0B7784281F95F60C001C9134 /* ScreensCordovaViewController.swift in Sources */,
 				0B7784291F95F60C001C9134 /* WKWebView+Screens.swift in Sources */,
 				0B77842A1F95F60C001C9134 /* CommentDisplayScreenlet.swift in Sources */,
@@ -3966,6 +3972,7 @@
 				881E62491ACBFC3400862B9E /* DDLSubmitButtonTableCell_default.swift in Sources */,
 				0B217FB91D6C4E6F00A23690 /* AssetLoadByEntryIdLiferayConnector.swift in Sources */,
 				88B844921C73D856007A447D /* ForgotPasswordBaseLiferayConnector.swift in Sources */,
+				D6F493592035A73A00730299 /* AsyncServerConnector.swift in Sources */,
 				0B21800C1D6C4F6F00A23690 /* DDMField.swift in Sources */,
 				881E60C01ACBE43200862B9E /* KeyboardManager.swift in Sources */,
 				88F888551B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift in Sources */,
@@ -4173,6 +4180,7 @@
 				88B844391C73D6C0007A447D /* HttpConnector.swift in Sources */,
 				0B1F30E61DA240460053424E /* UserPortrait_connector_Test.swift in Sources */,
 				88DE250F1AD2AB0A00714701 /* LiferayServerContext_Load_Tests.swift in Sources */,
+				0BA6AC63205A8D0A00BB83D4 /* AsyncServerConnector.swift in Sources */,
 				881E62A51ACBFF4500862B9E /* UIButton+Screens.swift in Sources */,
 				0B21802D1D6C507300A23690 /* DDMField+Editor.swift in Sources */,
 				881E629A1ACBFF1800862B9E /* Interactor.swift in Sources */,
