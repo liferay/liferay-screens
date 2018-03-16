@@ -18,12 +18,12 @@ import Foundation
 public protocol LiferayConnectorFactory {
 
 	func createGetUserByEmailConnector(
-			companyId: Int64,
-			emailAddress: String) -> GetUserByEmailLiferayConnector
+		companyId: Int64,
+		emailAddress: String) -> GetUserByEmailLiferayConnector
 
 	func createGetUserByScreenNameConnector(
-			companyId: Int64,
-			screenName: String) -> GetUserByScreenNameLiferayConnector
+		companyId: Int64,
+		screenName: String) -> GetUserByScreenNameLiferayConnector
 
 	func createGetUserByUserIdConnector(userId: Int64) -> GetUserByUserIdLiferayConnector
 
@@ -42,7 +42,8 @@ public protocol LiferayConnectorFactory {
 		password: String) -> GetUserByUserIdLiferayConnector
 
 	func createLoginByCookieConnector(
-		emailAddress: String, password: String,
+		username: String,
+		password: String,
 		shouldHandleCookieExpiration: Bool,
 		cookieExpirationTime: Double) -> LoginByCookieConnector
 
@@ -235,11 +236,12 @@ open class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 	}
 
 	open func createLoginByCookieConnector(
-		emailAddress: String, password: String,
+		username: String,
+		password: String,
 		shouldHandleCookieExpiration: Bool,
 		cookieExpirationTime: Double) -> LoginByCookieConnector {
 		return LoginByCookieLiferay62Connector(
-			emailAddress: emailAddress,
+			username: username,
 			password: password,
 			shouldHandleCookieExpiration: shouldHandleCookieExpiration,
 			cookieExpirationTime: cookieExpirationTime)
@@ -548,11 +550,12 @@ open class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 	}
 
 	open func createLoginByCookieConnector(
-		emailAddress: String, password: String,
+		username: String,
+		password: String,
 		shouldHandleCookieExpiration: Bool,
 		cookieExpirationTime: Double) -> LoginByCookieConnector {
 		return LoginByCookieLiferay70Connector(
-			emailAddress: emailAddress,
+			username: username,
 			password: password,
 			shouldHandleCookieExpiration: shouldHandleCookieExpiration,
 			cookieExpirationTime: cookieExpirationTime)

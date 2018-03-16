@@ -15,7 +15,7 @@ import UIKit
 
 open class LoginCookieInteractor: ServerConnectorInteractor {
 
-	open let emailAddress: String
+	open let username: String
 	open let password: String
 	open let shouldHandleCookieExpiration: Bool
 	open let cookieExpirationTime: Double
@@ -25,10 +25,10 @@ open class LoginCookieInteractor: ServerConnectorInteractor {
 
 	// MARK: Initializers
 
-	public init(screenlet: BaseScreenlet?, emailAddress: String, password: String,
+	public init(screenlet: BaseScreenlet?, username: String, password: String,
 				shouldHandleCookieExpiration: Bool, cookieExpirationTime: Double) {
 
-		self.emailAddress = emailAddress
+		self.username = username
 		self.password = password
 		self.shouldHandleCookieExpiration = shouldHandleCookieExpiration
 		self.cookieExpirationTime = cookieExpirationTime
@@ -39,7 +39,7 @@ open class LoginCookieInteractor: ServerConnectorInteractor {
 	open override func createConnector() -> ServerConnector? {
 
 		return LiferayServerContext.connectorFactory.createLoginByCookieConnector(
-			emailAddress: emailAddress,
+			username: username,
 			password: password,
 			shouldHandleCookieExpiration: shouldHandleCookieExpiration,
 			cookieExpirationTime: cookieExpirationTime)

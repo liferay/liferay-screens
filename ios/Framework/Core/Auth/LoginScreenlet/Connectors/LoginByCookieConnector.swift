@@ -15,7 +15,7 @@ import UIKit
 
 open class LoginByCookieConnector: ServerConnector {
 
-	open let emailAddress: String
+	open let username: String
 	open let password: String
 	open let shouldHandleCookieExpiration: Bool
 	open let cookieExpirationTime: Double
@@ -23,10 +23,10 @@ open class LoginByCookieConnector: ServerConnector {
 	open var resultUserAttributes: [String: AnyObject]?
 	open var cookieSession: LRSession?
 
-	public init(emailAddress: String, password: String, shouldHandleCookieExpiration: Bool,
+	public init(username: String, password: String, shouldHandleCookieExpiration: Bool,
 				cookieExpirationTime: Double) {
 
-		self.emailAddress = emailAddress
+		self.username = username
 		self.password = password
 		self.shouldHandleCookieExpiration = shouldHandleCookieExpiration
 		self.cookieExpirationTime = cookieExpirationTime
@@ -38,7 +38,7 @@ open class LoginByCookieConnector: ServerConnector {
 		let error = super.validateData()
 
 		if error == nil {
-			if emailAddress.isEmpty {
+			if username.isEmpty {
 				return ValidationError("login-screenlet", "undefined-username")
 			}
 			if password.isEmpty {
@@ -54,9 +54,9 @@ open class LoginByCookieConnector: ServerConnector {
 
 	override open func createSession() -> LRSession? {
 
-		let authentication = LRCookieAuthentication(authToken: "", cookieHeader: "", username: emailAddress,
-				password: password, shouldHandleExpiration: shouldHandleCookieExpiration,
-				cookieExpirationTime: cookieExpirationTime, lastCookieRefresh: 0)
+		let authentication = LRCookieAuthentication(authToken: "", cookieHeader: "", username: username,
+			password: password, shouldHandleExpiration: shouldHandleCookieExpiration,
+			cookieExpirationTime: cookieExpirationTime, lastCookieRefresh: 0)
 
 		return LRSession(server: LiferayServerContext.server, authentication: authentication)
 	}
@@ -65,7 +65,7 @@ open class LoginByCookieConnector: ServerConnector {
 
 		do {
 			let session = try LRCookieSignIn.signIn(with: session, callback: nil,
-													challenge: SessionContext.challengeResolver)
+				challenge: SessionContext.challengeResolver)
 
 			resultUserAttributes = try getCurrentUser(session: session)
 

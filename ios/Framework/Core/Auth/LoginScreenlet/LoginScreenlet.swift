@@ -180,7 +180,7 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 
 	fileprivate func createLoginCookieInteractor() -> LoginCookieInteractor {
 		let interactor = LoginCookieInteractor(screenlet: self,
-				emailAddress: viewModel.userName ?? "",
+				username: viewModel.userName ?? "",
 				password: viewModel.password ?? "",
 				shouldHandleCookieExpiration: shouldHandleCookieExpiration,
 				cookieExpirationTime: cookieExpirationTime)
