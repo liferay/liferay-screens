@@ -64,7 +64,7 @@ open class LoginByCookieConnector: ServerConnector {
 	open override func doRun(session: LRSession) {
 
 		do {
-			let session = try LRCookieSignIn.signIn(with: session, callback: nil,
+			cookieSession = try LRCookieSignIn.signIn(with: session, callback: nil,
 				challenge: SessionContext.challengeResolver)
 
 			resultUserAttributes = try getCurrentUser(session: session)
@@ -72,6 +72,15 @@ open class LoginByCookieConnector: ServerConnector {
 		}
 		catch let error as NSError {
 			lastError = error
+		}
+	}
+
+	override open func postRun() {
+		if lastError == nil {
+			SessionContext.currentContext?.removeStoredCredentials()
+			let cookieAuthentication = cookieSession?.authentication as! LRCookieAuthentication
+			SessionContext.loginWithCookie(authentication: cookieAuthentication,
+				userAttributes: resultUserAttributes ?? [:])
 		}
 	}
 
