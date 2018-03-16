@@ -33,7 +33,6 @@ open class ServerConnector: Operation {
 	}
 
 	var retried = false
-	var semaphore: DispatchSemaphore?
 	var currentSession: LRSession?
 
 	open var lastError: NSError?

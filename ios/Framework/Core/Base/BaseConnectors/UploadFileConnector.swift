@@ -14,19 +14,18 @@
 import Foundation
 import LRMobileSDK
 
-open class UploadFileConnector: ServerConnector, LRCallback, LRFileProgressDelegate {
+open class UploadFileConnector: AsyncServerConnector, LRCallback, LRFileProgressDelegate {
 
 	public typealias OnProgress = (Any?, UInt64, UInt64) -> Void
 
 	var inputStream: InputStream?
 	var bytesToSend: Int64?
 	var image: UIImage?
+
 	open let fileName: String
 	open let mimeType: String
 	let parameter: Any?
 	let onUploadedBytes: OnProgress?
-
-	var requestSemaphore: DispatchSemaphore?
 
 	var uploadResult: [String: AnyObject]?
 
@@ -66,7 +65,7 @@ open class UploadFileConnector: ServerConnector, LRCallback, LRFileProgressDeleg
 		super.init()
 	}
 
-	// MARK: ServerConnector
+	// MARK: AsyncServerConnector
 
 	override open func doRun(session: LRSession) {
 		if inputStream == nil {
@@ -89,16 +88,7 @@ open class UploadFileConnector: ServerConnector, LRCallback, LRFileProgressDeleg
 
 		uploadData.progressDelegate = self
 
-		requestSemaphore = DispatchSemaphore(value: 0)
-
-		do {
-			try doSendFile(session, data: uploadData)
-		}
-		catch {
-
-		}
-
-		_ = requestSemaphore!.wait(timeout: .distantFuture)
+		try? doSendFile(session, data: uploadData)
 	}
 
 	// MARK: Public methods
@@ -112,7 +102,6 @@ open class UploadFileConnector: ServerConnector, LRCallback, LRFileProgressDeleg
 
 	open func onFailure(_ error: Error) {
 		lastError = error as NSError
-		requestSemaphore!.signal()
 	}
 
 	open func doSendFile(_ session: LRSession, data: LRUploadData) throws {
@@ -121,9 +110,7 @@ open class UploadFileConnector: ServerConnector, LRCallback, LRFileProgressDeleg
 
 	open func onSuccess(_ result: Any) {
 		lastError = nil
-
 		uploadResult = result as? [String: AnyObject]
-		requestSemaphore!.signal()
+		callOnComplete()
 	}
-
 }

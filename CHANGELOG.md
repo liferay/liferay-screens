@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 ### Refactor
 
 * Remove non essentials libraries: Cosmos and Cryptoswift
+* Create AsyncServerConnector and remove the semaphores
 
 # 3.1.0
 

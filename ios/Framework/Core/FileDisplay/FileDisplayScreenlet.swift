@@ -129,8 +129,7 @@ open class FileDisplayScreenlet: BaseScreenlet {
 			interactor = LoadAssetInteractor(screenlet: self, assetEntryId: assetEntryId)
 		}
 		else {
-			interactor = LoadAssetInteractor(
-				screenlet: self, className: self.className, classPK: self.classPK)
+			interactor = LoadAssetInteractor(screenlet: self, className: self.className, classPK: self.classPK)
 		}
 
 		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .remoteFirst

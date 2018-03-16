@@ -14,21 +14,17 @@
 import UIKit
 import LRMobileSDK
 
-open class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFileProgressDelegate {
+open class DDLFormUploadLiferayConnector: AsyncServerConnector, LRCallback, LRFileProgressDelegate {
 
 	public typealias OnProgress = (DDMFieldDocument, UInt64, UInt64) -> Void
 
 	let document: DDMFieldDocument
 	let filePrefix: String
-
 	let repositoryId: Int64
 	let folderId: Int64
-
 	let onUploadedBytes: OnProgress?
 
 	var uploadResult: [String: AnyObject]?
-
-	fileprivate var requestSemaphore: DispatchSemaphore?
 
 	fileprivate var bytesToSend: Int64 = 0
 
@@ -49,7 +45,7 @@ open class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFilePro
 		super.init()
 	}
 
-	// MARK: ServerConnector
+	// MARK: AsyncServerConnector
 
 	override open func validateData() -> ValidationError? {
 		let error = super.validateData()
@@ -85,17 +81,7 @@ open class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFilePro
 
 		uploadData.progressDelegate = self
 
-		requestSemaphore = DispatchSemaphore(value: 0)
-
-		do {
-			try doSendFile(session, name: fileName, data: uploadData)
-		}
-		catch {
-			// ignore the error because this is an async call
-			// (the ObjC-Swift bridge is not working well in this scenario)
-		}
-
-		_ = requestSemaphore!.wait(timeout: .distantFuture)
+		try? doSendFile(session, name: fileName, data: uploadData)
 	}
 
 	open func doSendFile(_ session: LRSession, name: String, data: LRUploadData) throws {
@@ -117,15 +103,12 @@ open class DDLFormUploadLiferayConnector: ServerConnector, LRCallback, LRFilePro
 	open func onFailure(_ error: Error) {
 		lastError = error as NSError
 		uploadResult = nil
-
-		requestSemaphore!.signal()
 	}
 
 	open func onSuccess(_ result: Any) {
 		lastError = nil
 		uploadResult = result as? [String: AnyObject]
-
-		requestSemaphore!.signal()
+		callOnComplete()
 	}
 
 }

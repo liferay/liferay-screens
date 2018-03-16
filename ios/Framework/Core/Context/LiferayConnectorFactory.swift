@@ -18,12 +18,12 @@ import Foundation
 public protocol LiferayConnectorFactory {
 
 	func createGetUserByEmailConnector(
-			companyId: Int64,
-			emailAddress: String) -> GetUserByEmailLiferayConnector
+		companyId: Int64,
+		emailAddress: String) -> GetUserByEmailLiferayConnector
 
 	func createGetUserByScreenNameConnector(
-			companyId: Int64,
-			screenName: String) -> GetUserByScreenNameLiferayConnector
+		companyId: Int64,
+		screenName: String) -> GetUserByScreenNameLiferayConnector
 
 	func createGetUserByUserIdConnector(userId: Int64) -> GetUserByUserIdLiferayConnector
 
@@ -40,6 +40,12 @@ public protocol LiferayConnectorFactory {
 	func createLoginByUserIdConnector(
 		userId: Int64,
 		password: String) -> GetUserByUserIdLiferayConnector
+
+	func createLoginByCookieConnector(
+		username: String,
+		password: String,
+		shouldHandleCookieExpiration: Bool,
+		cookieExpirationTime: Double) -> LoginByCookieConnector
 
 	func createForgotPasswordByEmailConnector(
 		viewModel: ForgotPasswordViewModel,
@@ -227,6 +233,18 @@ open class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			userId: Int64,
 			password: String) -> GetUserByUserIdLiferayConnector {
 		return LoginByUserIdLiferay62Connector(userId: userId, password: password)
+	}
+
+	open func createLoginByCookieConnector(
+		username: String,
+		password: String,
+		shouldHandleCookieExpiration: Bool,
+		cookieExpirationTime: Double) -> LoginByCookieConnector {
+		return LoginByCookieLiferay62Connector(
+			username: username,
+			password: password,
+			shouldHandleCookieExpiration: shouldHandleCookieExpiration,
+			cookieExpirationTime: cookieExpirationTime)
 	}
 
 	open func createForgotPasswordByEmailConnector(
@@ -529,6 +547,18 @@ open class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			userId: Int64,
 			password: String) -> GetUserByUserIdLiferayConnector {
 		return LoginByUserIdLiferay70Connector(userId: userId, password: password)
+	}
+
+	open func createLoginByCookieConnector(
+		username: String,
+		password: String,
+		shouldHandleCookieExpiration: Bool,
+		cookieExpirationTime: Double) -> LoginByCookieConnector {
+		return LoginByCookieLiferay70Connector(
+			username: username,
+			password: password,
+			shouldHandleCookieExpiration: shouldHandleCookieExpiration,
+			cookieExpirationTime: cookieExpirationTime)
 	}
 
 	open func createForgotPasswordByEmailConnector(
