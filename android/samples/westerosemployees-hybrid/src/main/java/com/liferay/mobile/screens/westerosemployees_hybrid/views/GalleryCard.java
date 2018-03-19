@@ -54,8 +54,8 @@ public class GalleryCard extends Card implements ImageGalleryListener, WebListen
 		if (!loaded && state.equals(CardState.NORMAL)) {
 			loaded = true;
 
-			uploadDetailView = (BaseDetailUploadView) findViewById(R.id.upload_detail_view);
-			uploadImageCard = (Card) findViewById(R.id.upload_image_card);
+			uploadDetailView = findViewById(R.id.upload_detail_view);
+			uploadImageCard = findViewById(R.id.upload_image_card);
 
 			loadGallery();
 		}
@@ -68,7 +68,7 @@ public class GalleryCard extends Card implements ImageGalleryListener, WebListen
 			new WebScreenletConfiguration.Builder("/web/westeros-hybrid/gallery").addRawCss(R.raw.gallery_portlet_css,
 				"gallery_portlet_css.css").addRawJs(R.raw.gallery_portlet_js, "gallery_portlet_js.js").load();
 
-		webScreenlet = (WebScreenlet) findViewById(R.id.portlet_gallery);
+		webScreenlet = findViewById(R.id.portlet_gallery);
 
 		webScreenlet.setWebScreenletConfiguration(configuration);
 		webScreenlet.load();
@@ -78,7 +78,7 @@ public class GalleryCard extends Card implements ImageGalleryListener, WebListen
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
-		imageGalleryScreenlet = (ImageGalleryScreenlet) findViewById(R.id.gallery_screenlet);
+		imageGalleryScreenlet = findViewById(R.id.gallery_screenlet);
 		imageGalleryScreenlet.setListener(this);
 
 		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
@@ -121,8 +121,7 @@ public class GalleryCard extends Card implements ImageGalleryListener, WebListen
 						new WebScreenletConfiguration.Builder("/web/westeros-hybrid/detail?id=" + body).addRawCss(
 							R.raw.detail_css, "detail_css.css").addRawJs(R.raw.detail_js, "detail_js.js").load();
 
-					WebScreenlet webScreenlet =
-						(WebScreenlet) findViewById(R.id.portlet_gallery_item);
+					WebScreenlet webScreenlet = findViewById(R.id.portlet_gallery_item);
 
 					webScreenlet.setWebScreenletConfiguration(configuration);
 					webScreenlet.load();

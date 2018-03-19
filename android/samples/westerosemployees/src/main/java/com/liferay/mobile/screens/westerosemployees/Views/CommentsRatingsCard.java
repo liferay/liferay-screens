@@ -20,10 +20,8 @@ import com.liferay.mobile.screens.westerosemployees.utils.CardState;
 public abstract class CommentsRatingsCard extends Card implements CommentAddListener {
 
 	private RatingScreenlet ratingScreenlet;
-
 	private CommentListScreenlet commentListScreenlet;
 	private CommentAddScreenlet commentAddScreenlet;
-
 	private Card commentAddCard;
 
 	public CommentsRatingsCard(Context context) {
@@ -46,12 +44,12 @@ public abstract class CommentsRatingsCard extends Card implements CommentAddList
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		ratingScreenlet = (RatingScreenlet) findViewById(R.id.rating_screenlet);
-		commentListScreenlet = (CommentListScreenlet) findViewById(R.id.comment_list_screenlet);
-		commentAddScreenlet = (CommentAddScreenlet) findViewById(R.id.comment_add_screenlet);
+		ratingScreenlet = findViewById(R.id.rating_screenlet);
+		commentListScreenlet = findViewById(R.id.comment_list_screenlet);
+		commentAddScreenlet = findViewById(R.id.comment_add_screenlet);
 		commentAddScreenlet.setListener(this);
 
-		commentAddCard = (Card) findViewById(R.id.comment_add_card);
+		commentAddCard = findViewById(R.id.comment_add_card);
 	}
 
 	protected void initializeRatingsAndComments(String className, long classPK) {

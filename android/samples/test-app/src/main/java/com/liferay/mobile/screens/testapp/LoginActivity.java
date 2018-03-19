@@ -31,10 +31,9 @@ public class LoginActivity extends ThemeActivity implements LoginListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.login);
 
-		loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
+		loginScreenlet = findViewById(R.id.login_screenlet);
 		loginScreenlet.setListener(this);
 
 		setDefaultValues();

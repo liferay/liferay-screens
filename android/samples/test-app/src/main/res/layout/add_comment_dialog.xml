@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:liferay="http://schemas.android.com/apk/res-auto"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:orientation="vertical"
@@ -13,8 +13,8 @@
 		android:id="@+id/comment_add_screenlet"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		liferay:className="@string/liferay_comment_asset_className"
-		liferay:classPK="@string/liferay_comment_asset_id"
+		app:className="@string/liferay_comment_asset_className"
+		app:classPK="@string/liferay_comment_asset_id"
 		/>
 
 </LinearLayout>

@@ -54,8 +54,8 @@ public class VideoDisplayView extends BaseFileDisplayView {
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		videoView = (VideoView) findViewById(R.id.liferay_video_asset);
-		message = (TextView) findViewById(R.id.liferay_video_message);
+		videoView = findViewById(R.id.liferay_video_asset);
+		message = findViewById(R.id.liferay_video_message);
 	}
 
 	private void loadVideo(String url) {

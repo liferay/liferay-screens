@@ -2,7 +2,6 @@ package com.liferay.mobile.screens.viewsets.defaultviews.webcontent.list;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.AttributeSet;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;

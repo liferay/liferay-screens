@@ -139,18 +139,18 @@ public class LoginView extends LinearLayout implements LoginViewModel, View.OnCl
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		loginEditText = (EditText) findViewById(R.id.liferay_login);
-		passwordEditText = (EditText) findViewById(R.id.liferay_password);
-		progressBar = (ModalProgressBar) findViewById(R.id.liferay_progress);
+		loginEditText = findViewById(R.id.liferay_login);
+		passwordEditText = findViewById(R.id.liferay_password);
+		progressBar = findViewById(R.id.liferay_progress);
 
-		basicAuthenticationLayout = (LinearLayout) findViewById(R.id.basic_authentication_login);
+		basicAuthenticationLayout = findViewById(R.id.basic_authentication_login);
 
-		oAuthButton = (Button) findViewById(R.id.oauth_authentication_login);
+		oAuthButton = findViewById(R.id.oauth_authentication_login);
 		if (oAuthButton != null) {
 			oAuthButton.setOnClickListener(this);
 		}
 
-		submitButton = (Button) findViewById(R.id.liferay_login_button);
+		submitButton = findViewById(R.id.liferay_login_button);
 		submitButton.setOnClickListener(this);
 	}
 

@@ -29,8 +29,6 @@ import com.liferay.mobile.screens.auth.login.interactor.LoginCookieInteractor;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.AuthenticationType;
-import com.liferay.mobile.screens.context.LiferayScreensContext;
-import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
 import com.squareup.okhttp.Authenticator;
@@ -161,7 +159,8 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 		credentialsStorage = StorageType.valueOf(storeValue);
 
-		shouldHandleCookieExpiration = typedArray.getBoolean(R.styleable.LoginScreenlet_shouldHandleCookieExpiration, true);
+		shouldHandleCookieExpiration =
+			typedArray.getBoolean(R.styleable.LoginScreenlet_shouldHandleCookieExpiration, true);
 		cookieExpirationTime = typedArray.getInt(R.styleable.LoginScreenlet_cookieExpirationTime,
 			CookieAuthentication.COOKIE_EXPIRATION_TIME);
 
@@ -177,7 +176,7 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 		loginViewModel.setAuthenticationType(authenticationType);
 
 		if (AuthenticationType.BASIC.equals(authenticationType) || AuthenticationType.COOKIE.equals(
-				authenticationType)) {
+			authenticationType)) {
 			int basicAuthMethodId = typedArray.getInt(R.styleable.LoginScreenlet_basicAuthMethod, 0);
 
 			basicAuthMethod = BasicAuthMethod.getValue(basicAuthMethodId);

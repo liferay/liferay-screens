@@ -54,8 +54,8 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 	}
 
 	private void findViews() {
-		LoginScreenlet loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
-		deck = (Deck) findViewById(R.id.deck);
+		LoginScreenlet loginScreenlet = findViewById(R.id.login_screenlet);
+		deck = findViewById(R.id.deck);
 
 		loginScreenlet.setListener(this);
 	}

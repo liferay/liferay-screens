@@ -54,7 +54,7 @@ public class CommentListAdapter extends BaseListAdapter<CommentEntry, CommentLis
 
 		public CommentViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
-			commentDisplayScreenlet = (CommentDisplayScreenlet) view.findViewById(R.id.comment_view);
+			commentDisplayScreenlet = view.findViewById(R.id.comment_view);
 			commentDisplayScreenlet.setListener(commentDisplayListener);
 		}
 

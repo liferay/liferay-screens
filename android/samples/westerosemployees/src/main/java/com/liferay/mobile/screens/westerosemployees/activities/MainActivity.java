@@ -53,8 +53,8 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 	}
 
 	private void findViews() {
-		LoginScreenlet loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
-		deck = (Deck) findViewById(R.id.deck);
+		LoginScreenlet loginScreenlet = findViewById(R.id.login_screenlet);
+		deck = findViewById(R.id.deck);
 
 		loginScreenlet.setListener(this);
 	}
@@ -68,7 +68,7 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 
 	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 	private void toNextActivity() {
-		ImageView viewById = (ImageView) findViewById(R.id.background);
+		ImageView viewById = findViewById(R.id.background);
 		ViewPropertyAnimator animate = viewById.animate();
 		animate.alpha(0f).withEndAction(new Runnable() {
 			@Override

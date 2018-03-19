@@ -31,7 +31,6 @@ import org.w3c.dom.Element;
 public abstract class Field<T extends Serializable> implements Parcelable {
 
 	private String text;
-	private Map<String, Object> attributes = new HashMap<>();
 	private DataType dataType;
 	private EditorType editorType;
 	private String name;
@@ -49,6 +48,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	private String visibilityExpression;
 	private String ddmDataProviderInstance;
 	private List<Field> fields = new ArrayList<>();
+	private Map<String, Object> attributes = new HashMap<>();
 
 	public Field() {
 		super();
@@ -286,6 +286,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 	public void setFields(List<Field> fields) {
 		this.fields = fields;
+	}
+
+	public Map<String, Object> getAttributes() {
+		return attributes;
 	}
 
 	protected String getAttributeStringValue(Map<String, Object> attributes, String key) {

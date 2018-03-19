@@ -21,7 +21,7 @@ public class ReloginActivity extends ThemeActivity implements LoginListener, Vie
 		setContentView(R.layout.relogin);
 
 		if (SessionContext.isLoggedIn()) {
-			userName = (TextView) findViewById(R.id.user_name);
+			userName = findViewById(R.id.user_name);
 			userName.setText(SessionContext.getCurrentUser().getLastName());
 		}
 

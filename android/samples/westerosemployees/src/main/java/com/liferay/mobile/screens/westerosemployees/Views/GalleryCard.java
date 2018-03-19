@@ -64,13 +64,13 @@ public class GalleryCard extends com.liferay.mobile.screens.westerosemployees.vi
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		imageGalleryScreenlet = (ImageGalleryScreenlet) findViewById(R.id.gallery_screenlet);
+		imageGalleryScreenlet = findViewById(R.id.gallery_screenlet);
 		imageGalleryScreenlet.setListener(this);
 
-		uploadDetailView = (BaseDetailUploadView) findViewById(R.id.upload_detail_view);
-		uploadImageCard = (com.liferay.mobile.screens.westerosemployees.views.Card) findViewById(R.id.upload_image_card);
+		uploadDetailView = findViewById(R.id.upload_detail_view);
+		uploadImageCard = findViewById(R.id.upload_image_card);
 
-		imageAssetDisplayScreenlet = (AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet_image);
+		imageAssetDisplayScreenlet = findViewById(R.id.asset_display_screenlet_image);
 
 		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
 		RxPermissions rxPermissions = new RxPermissions(activity);

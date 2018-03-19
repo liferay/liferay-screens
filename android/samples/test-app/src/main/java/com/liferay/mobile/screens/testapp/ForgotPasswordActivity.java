@@ -26,10 +26,9 @@ public class ForgotPasswordActivity extends ThemeActivity implements ForgotPassw
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.forgot_password);
 
-		ForgotPasswordScreenlet screenlet = (ForgotPasswordScreenlet) findViewById(R.id.forgot_password_screenlet);
+		ForgotPasswordScreenlet screenlet = findViewById(R.id.forgot_password_screenlet);
 		screenlet.setListener(this);
 	}
 

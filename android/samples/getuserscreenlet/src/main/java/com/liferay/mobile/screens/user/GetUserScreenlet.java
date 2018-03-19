@@ -113,7 +113,7 @@ public class GetUserScreenlet extends BaseScreenlet<GetUserViewModel, GetUserInt
 	}
 
 	private void setListViewAdapter(BaseAdapter adapter) {
-		ListView listView = (ListView) findViewById(R.id.listView);
+		ListView listView = findViewById(R.id.listView);
 		listView.setAdapter(adapter);
 	}
 

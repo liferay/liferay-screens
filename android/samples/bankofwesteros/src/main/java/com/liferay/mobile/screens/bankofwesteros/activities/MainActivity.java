@@ -45,25 +45,24 @@ public class MainActivity extends CardActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		background = (ImageView) findViewById(R.id.background);
+		background = findViewById(R.id.background);
 		background.setOnClickListener(this);
 
 		//TODO move to the screenlet?
 		View forgotPasswordText = findViewById(R.id.liferay_forgot_link);
 		forgotPasswordText.setOnClickListener(this);
-		forgotPasswordField = (EditText) findViewById(R.id.liferay_forgot_login);
+		forgotPasswordField = findViewById(R.id.liferay_forgot_login);
 
-		LoginScreenlet loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
+		LoginScreenlet loginScreenlet = findViewById(R.id.login_screenlet);
 		loginScreenlet.setListener(this);
 
 		((TextView) findViewById(R.id.liferay_login)).setText(getResources().getString(R.string.liferay_login));
 		((TextView) findViewById(R.id.liferay_password)).setText(getResources().getString(R.string.liferay_password));
 
-		ForgotPasswordScreenlet forgotPasswordScreenlet =
-			(ForgotPasswordScreenlet) findViewById(R.id.forgot_password_screenlet);
+		ForgotPasswordScreenlet forgotPasswordScreenlet = findViewById(R.id.forgot_password_screenlet);
 		forgotPasswordScreenlet.setListener(this);
 
-		SignUpScreenlet signUpScreenlet = (SignUpScreenlet) findViewById(R.id.signup_screenlet);
+		SignUpScreenlet signUpScreenlet = findViewById(R.id.signup_screenlet);
 		signUpScreenlet.setListener(this);
 	}
 
@@ -114,7 +113,6 @@ public class MainActivity extends CardActivity
 
 	@Override
 	protected void animateScreenAfterLoad() {
-
 		card1.setY(card1FoldedPosition);
 		card2.setY(card2FoldedPosition);
 		card1RestPosition = convertDpToPx(CARD1_REST_POSITION);

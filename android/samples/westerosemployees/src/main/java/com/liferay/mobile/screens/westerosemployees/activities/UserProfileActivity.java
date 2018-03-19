@@ -29,7 +29,7 @@ public class UserProfileActivity extends WesterosActivity
 
 		bindViews();
 
-		AssetDisplayScreenlet screenlet = ((AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet));
+		AssetDisplayScreenlet screenlet = findViewById(R.id.asset_display_screenlet);
 		screenlet.setClassName("com.liferay.portal.kernel.model.User");
 		screenlet.setClassPK(SessionContext.getCurrentUser().getId());
 		screenlet.setConfigurationListener(this);
@@ -50,11 +50,11 @@ public class UserProfileActivity extends WesterosActivity
 			view.findViewById(R.id.sign_out_button).setOnClickListener(this);
 
 			UserPortraitScreenlet userPortraitScreenlet =
-				(UserPortraitScreenlet) view.findViewById(R.id.user_portrait_screenlet);
-			userNameText = (TextView) view.findViewById(R.id.user_name_text);
-			jobTitleText = (TextView) view.findViewById(R.id.user_job_title_text);
-			emailText = (TextView) view.findViewById(R.id.user_email_text);
-			screenNameText = (TextView) view.findViewById(R.id.user_screen_name_text);
+					view.findViewById(R.id.user_portrait_screenlet);
+			userNameText = view.findViewById(R.id.user_name_text);
+			jobTitleText = view.findViewById(R.id.user_job_title_text);
+			emailText = view.findViewById(R.id.user_email_text);
+			screenNameText = view.findViewById(R.id.user_screen_name_text);
 
 			userPortraitScreenlet.loadLoggedUserPortrait();
 
@@ -80,9 +80,9 @@ public class UserProfileActivity extends WesterosActivity
 	}
 
 	private void bindViews() {
-		userNameText = (TextView) findViewById(R.id.user_name_text);
-		jobTitleText = (TextView) findViewById(R.id.user_job_title_text);
-		emailText = (TextView) findViewById(R.id.user_email_text);
-		screenNameText = (TextView) findViewById(R.id.user_screen_name_text);
+		userNameText = findViewById(R.id.user_name_text);
+		jobTitleText = findViewById(R.id.user_job_title_text);
+		emailText = findViewById(R.id.user_email_text);
+		screenNameText = findViewById(R.id.user_screen_name_text);
 	}
 }

@@ -51,7 +51,7 @@ public class WebView extends FrameLayout implements WebViewModel, ScreensWebView
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		progressBar = (ProgressBar) findViewById(R.id.liferay_portlet_progress);
+		progressBar = findViewById(R.id.liferay_portlet_progress);
 	}
 
 	@Override
@@ -128,8 +128,8 @@ public class WebView extends FrameLayout implements WebViewModel, ScreensWebView
 
 	@Override
 	public void showFinishOperation(String actionName) {
-		throw new UnsupportedOperationException("showFinishOperation(String) is not supported."
-			+ " Use showFinishOperation(String, String) instead.");
+		throw new UnsupportedOperationException(
+			"showFinishOperation(String) is not supported." + " Use showFinishOperation(String, String) instead.");
 	}
 
 	@Override
@@ -150,19 +150,17 @@ public class WebView extends FrameLayout implements WebViewModel, ScreensWebView
 		}
 
 		if (isCordovaEnabled) {
-			screensWebView = new ScreensCordovaWebView(
-				LiferayScreensContext.getActivityFromContext(getContext()), observer);
+			screensWebView =
+				new ScreensCordovaWebView(LiferayScreensContext.getActivityFromContext(getContext()), observer);
 		} else {
-			screensWebView = new ScreensNativeWebView(
-				LiferayScreensContext.getActivityFromContext(getContext()));
+			screensWebView = new ScreensNativeWebView(LiferayScreensContext.getActivityFromContext(getContext()));
 		}
 
 		screensWebView.setListener(this);
 
 		webView = screensWebView.getView();
-		webView.setLayoutParams(
-			new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-				LinearLayout.LayoutParams.MATCH_PARENT));
+		webView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+			LinearLayout.LayoutParams.MATCH_PARENT));
 
 		// Disable selection in webView
 		webView.setOnLongClickListener(new OnLongClickListener() {
@@ -198,7 +196,8 @@ public class WebView extends FrameLayout implements WebViewModel, ScreensWebView
 	}
 
 	@Override
-	public void onPageStarted() { }
+	public void onPageStarted() {
+	}
 
 	@Override
 	public void onPageFinished(String url) {

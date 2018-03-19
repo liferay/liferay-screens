@@ -36,17 +36,17 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 		findViewById(R.id.account_settings_save).setOnClickListener(this);
 
 		User user = SessionContext.getCurrentUser();
-		firstName = (EditText) findViewById(R.id.first_name);
+		firstName = findViewById(R.id.first_name);
 		firstName.setText(user.getFirstName());
-		lastName = (EditText) findViewById(R.id.last_name);
+		lastName = findViewById(R.id.last_name);
 		lastName.setText(user.getLastName());
-		emailAddress = (EditText) findViewById(R.id.email_address);
+		emailAddress = findViewById(R.id.email_address);
 		emailAddress.setText(user.getEmail());
-		password = (EditText) findViewById(R.id.password);
+		password = findViewById(R.id.password);
 		BasicAuthentication basicAuth = (BasicAuthentication) SessionContext.getAuthentication();
 		password.setText(basicAuth.getPassword());
 
-		UserPortraitScreenlet userPortraitScreenlet = (UserPortraitScreenlet) findViewById(R.id.userportrait);
+		UserPortraitScreenlet userPortraitScreenlet = findViewById(R.id.userportrait);
 		userPortraitScreenlet.setListener(this);
 	}
 

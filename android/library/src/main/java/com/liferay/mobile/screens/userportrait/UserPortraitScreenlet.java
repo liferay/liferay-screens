@@ -71,8 +71,7 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 		super(context, attrs, defStyleAttr);
 	}
 
-	public UserPortraitScreenlet(Context context, AttributeSet attrs, int defStyleAttr,
-		int defStyleRes) {
+	public UserPortraitScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
@@ -95,8 +94,8 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 	 * Selects a new user portrait from the device camera.
 	 */
 	public void openCamera() {
-		MediaStoreRequestShadowActivity.show(getContext(),
-			MediaStoreRequestShadowActivity.TAKE_PICTURE_WITH_CAMERA, new MediaStoreCallback(){
+		MediaStoreRequestShadowActivity.show(getContext(), MediaStoreRequestShadowActivity.TAKE_PICTURE_WITH_CAMERA,
+			new MediaStoreCallback() {
 
 				@Override
 				public void onUriReceived(Uri uri) {
@@ -109,8 +108,8 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 	 * Selects a new user portrait from the device image gallery.
 	 */
 	public void openGallery() {
-		MediaStoreRequestShadowActivity.show(getContext(),
-			MediaStoreRequestShadowActivity.SELECT_IMAGE_FROM_GALLERY, new MediaStoreCallback(){
+		MediaStoreRequestShadowActivity.show(getContext(), MediaStoreRequestShadowActivity.SELECT_IMAGE_FROM_GALLERY,
+			new MediaStoreCallback() {
 
 				@Override
 				public void onUriReceived(Uri uri) {
@@ -244,8 +243,8 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray = context.getTheme()
-			.obtainStyledAttributes(attributes, R.styleable.UserPortraitScreenlet, 0, 0);
+		TypedArray typedArray =
+			context.getTheme().obtainStyledAttributes(attributes, R.styleable.UserPortraitScreenlet, 0, 0);
 
 		autoLoad = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_autoLoad, true);
 		male = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_male, true);
@@ -254,8 +253,7 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 		editable = typedArray.getBoolean(R.styleable.UserPortraitScreenlet_editable, false);
 		userId = typedArray.getInt(R.styleable.UserPortraitScreenlet_userId, 0);
 
-		int layoutId = typedArray.getResourceId(R.styleable.UserPortraitScreenlet_layoutId,
-			getDefaultLayoutId());
+		int layoutId = typedArray.getResourceId(R.styleable.UserPortraitScreenlet_layoutId, getDefaultLayoutId());
 
 		typedArray.recycle();
 
@@ -285,8 +283,7 @@ public class UserPortraitScreenlet extends BaseScreenlet<UserPortraitViewModel, 
 			case LOAD_CURRENT_USER:
 				UserPortraitLoadInteractor userPortraitLoadInteractorCurrentUser =
 					(UserPortraitLoadInteractor) getInteractor(userActionName);
-				long currentUserId =
-					SessionContext.isLoggedIn() ? SessionContext.getCurrentUser().getId() : 0;
+				long currentUserId = SessionContext.isLoggedIn() ? SessionContext.getCurrentUser().getId() : 0;
 				userPortraitLoadInteractorCurrentUser.start(currentUserId);
 				break;
 			default:

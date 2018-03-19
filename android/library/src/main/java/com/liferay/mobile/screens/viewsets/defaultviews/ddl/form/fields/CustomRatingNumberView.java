@@ -56,7 +56,7 @@ public class CustomRatingNumberView extends LinearLayout
 	public void setField(NumberField field) {
 		this.field = field;
 
-		TextView label = (TextView) findViewById(R.id.liferay_ddl_label);
+		TextView label = findViewById(R.id.liferay_ddl_label);
 
 		if (this.field.isShowLabel()) {
 			label.setText(this.field.getLabel());
@@ -120,7 +120,7 @@ public class CustomRatingNumberView extends LinearLayout
 
 		setSaveEnabled(false);
 
-		ratingBar = (RatingBar) findViewById(R.id.liferay_ddl_custom_rating);
+		ratingBar = findViewById(R.id.liferay_ddl_custom_rating);
 
 		ratingBar.setOnRatingBarChangeListener(this);
 	}

@@ -37,8 +37,8 @@ public class AssetDisplayView extends FrameLayout implements AssetDisplayViewMod
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
-		container = (ViewGroup) findViewById(R.id.inner_screenlet_container);
+		progressBar = findViewById(R.id.liferay_progress);
+		container = findViewById(R.id.inner_screenlet_container);
 	}
 
 	@Override

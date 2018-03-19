@@ -35,16 +35,18 @@ public class CommentsActivity extends ThemeActivity
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.comment_list);
 
 		noCommentView = findViewById(R.id.no_comment_display);
-		((SwitchCompat) findViewById(R.id.comment_switch_editable)).setOnCheckedChangeListener(this);
+
+		SwitchCompat switchCompat = findViewById(R.id.comment_switch_editable);
+		switchCompat.setOnCheckedChangeListener(this);
 
 		findViewById(R.id.add_comment_button).setOnClickListener(this);
-		listScreenlet = (CommentListScreenlet) findViewById(R.id.comment_list_screenlet);
+		listScreenlet = findViewById(R.id.comment_list_screenlet);
 		listScreenlet.setListener(this);
-		displayScreenlet = (CommentDisplayScreenlet) findViewById(R.id.comment_display_screenlet);
+
+		displayScreenlet = findViewById(R.id.comment_display_screenlet);
 		displayScreenlet.setListener(this);
 	}
 
@@ -131,7 +133,7 @@ public class CommentsActivity extends ThemeActivity
 		View dialogView = getLayoutInflater().inflate(R.layout.add_comment_dialog, null);
 		builder.setView(dialogView);
 
-		CommentAddScreenlet screenlet = (CommentAddScreenlet) dialogView.findViewById(R.id.comment_add_screenlet);
+		CommentAddScreenlet screenlet = dialogView.findViewById(R.id.comment_add_screenlet);
 		screenlet.setListener(this);
 
 		return builder.create();

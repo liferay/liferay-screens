@@ -15,6 +15,7 @@ public interface VideoDisplayListener extends AssetDisplayListener {
 
 	/**
 	 * Called when there is an error displaying the video.
+	 *
 	 * @param e exception error
 	 */
 	void onVideoError(Exception e);

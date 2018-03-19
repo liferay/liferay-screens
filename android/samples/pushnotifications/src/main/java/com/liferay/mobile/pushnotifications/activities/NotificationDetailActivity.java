@@ -26,7 +26,7 @@ public class NotificationDetailActivity extends AppCompatActivity implements DDL
 			startActivity(new Intent(this, LoginActivity.class));
 		}
 
-		ddlFormScreenlet = (DDLFormScreenlet) findViewById(R.id.ddl_form_screenlet);
+		ddlFormScreenlet = findViewById(R.id.ddl_form_screenlet);
 		ddlFormScreenlet.setRecordId(getIntent().getLongExtra("recordId", 0));
 		ddlFormScreenlet.setListener(this);
 	}

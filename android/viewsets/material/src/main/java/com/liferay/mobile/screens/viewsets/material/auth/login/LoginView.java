@@ -66,8 +66,8 @@ public class LoginView extends com.liferay.mobile.screens.viewsets.defaultviews.
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		drawableLogin = (ImageView) findViewById(R.id.drawable_login);
-		drawablePassword = (ImageView) findViewById(R.id.drawable_password);
+		drawableLogin = findViewById(R.id.drawable_login);
+		drawablePassword = findViewById(R.id.drawable_password);
 
 		changeColorOfImageView(drawableLogin, drawablePassword);
 	}

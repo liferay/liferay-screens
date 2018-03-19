@@ -29,18 +29,16 @@ public class WebContentDisplayActivity extends ThemeActivity implements WebConte
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.web_content_display);
 
-		WebContentDisplayScreenlet screenlet =
-			(WebContentDisplayScreenlet) findViewById(R.id.web_content_display_screenlet);
-		screenlet.setListener(this);
+		WebContentDisplayScreenlet screenlet = findViewById(R.id.web_content_display_screenlet);
 
 		if (getIntent().hasExtra("articleId")) {
 			screenlet.setArticleId(getIntent().getStringExtra("articleId"));
 		}
 
 		screenlet.setCustomCssFile(R.raw.custom);
+		screenlet.setListener(this);
 		screenlet.load();
 	}
 

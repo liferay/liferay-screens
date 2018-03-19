@@ -31,7 +31,7 @@ public class NotificationsActivity extends PushScreensActivity implements BaseLi
 			startActivity(new Intent(this, LoginActivity.class));
 		}
 
-		ddlList = (DDLListScreenlet) findViewById(R.id.ddl_list_screenlet);
+		ddlList = findViewById(R.id.ddl_list_screenlet);
 		ddlList.setListener(this);
 	}
 

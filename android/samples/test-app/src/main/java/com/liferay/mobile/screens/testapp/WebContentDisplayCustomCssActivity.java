@@ -31,8 +31,7 @@ public class WebContentDisplayCustomCssActivity extends ThemeActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.web_content_display_customcss);
 
-		WebContentDisplayScreenlet screenlet =
-			(WebContentDisplayScreenlet) findViewById(R.id.web_content_display_screenlet);
+		WebContentDisplayScreenlet screenlet = findViewById(R.id.web_content_display_screenlet);
 		screenlet.setListener(this);
 	}
 

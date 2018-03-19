@@ -70,7 +70,7 @@ public class ImageDisplayView extends BaseFileDisplayView implements ImageDispla
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		imageView = (ImageView) findViewById(R.id.liferay_image_asset);
+		imageView = findViewById(R.id.liferay_image_asset);
 	}
 
 	private void loadImage(String url) {

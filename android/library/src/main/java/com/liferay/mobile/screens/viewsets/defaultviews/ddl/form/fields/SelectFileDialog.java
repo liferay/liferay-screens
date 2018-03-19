@@ -49,7 +49,7 @@ public class SelectFileDialog {
 			}
 		});
 
-		final EditText editText = (EditText) view.findViewById(R.id.default_dialog_edit_text);
+		final EditText editText = view.findViewById(R.id.default_dialog_edit_text);
 		dialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface d, int arg1) {
@@ -61,7 +61,7 @@ public class SelectFileDialog {
 		final List<String> files = getFileEntries(currentDir);
 		final ArrayAdapter<String> adapter =
 			new ArrayAdapter<>(context, android.R.layout.select_dialog_item, android.R.id.text1, files);
-		ListView listView = (ListView) view.findViewById(R.id.default_list);
+		ListView listView = view.findViewById(R.id.default_list);
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(createListener(files, editText, adapter));
 

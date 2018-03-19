@@ -19,7 +19,7 @@ public class CustomInteractorActivity extends ThemeActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.content_custom_interactor);
 
-		LoginScreenlet loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet_custom_interactor);
+		LoginScreenlet loginScreenlet = findViewById(R.id.login_screenlet_custom_interactor);
 		loginScreenlet.setListener(this);
 		loginScreenlet.setCustomInteractorListener(this);
 	}

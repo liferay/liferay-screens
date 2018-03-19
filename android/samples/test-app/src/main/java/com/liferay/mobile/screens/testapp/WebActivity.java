@@ -19,14 +19,11 @@ public class WebActivity extends ThemeActivity implements WebListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.web);
 
 		observer = new CordovaLifeCycleObserver();
 
-		setContentView(R.layout.web);
-
-		WebScreenlet screenlet =
-			(WebScreenlet) findViewById(R.id.web_screenlet
-			);
+		WebScreenlet screenlet = findViewById(R.id.web_screenlet);
 
 		if (getIntent().getStringExtra("url") != null) {
 			WebScreenletConfiguration webScreenletConfiguration =
@@ -38,9 +35,8 @@ public class WebActivity extends ThemeActivity implements WebListener {
 					.load();
 
 			screenlet.setWebScreenletConfiguration(webScreenletConfiguration);
-
-			screenlet.setListener(this);
 			screenlet.setScrollEnabled(true);
+			screenlet.setListener(this);
 			screenlet.load();
 		}
 	}

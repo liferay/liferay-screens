@@ -60,8 +60,8 @@ public class BlogsCard extends Card implements WebListener {
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
-		webScreenlet = (WebScreenlet) findViewById(R.id.portlet_blogs);
 
+		webScreenlet = findViewById(R.id.portlet_blogs);
 	}
 
 	@Override
@@ -86,8 +86,7 @@ public class BlogsCard extends Card implements WebListener {
 							.addRawJs(R.raw.blog_portlet_js, "blog_portlet_js.js")
 							.load();
 
-					WebScreenlet webScreenlet =
-						(WebScreenlet) findViewById(R.id.portlet_blog_item);
+					WebScreenlet webScreenlet = findViewById(R.id.portlet_blog_item);
 
 					webScreenlet.setWebScreenletConfiguration(configuration);
 					webScreenlet.load();

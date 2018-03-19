@@ -27,10 +27,9 @@ public class SignUpActivity extends ThemeActivity implements SignUpListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.signup);
 
-		SignUpScreenlet screenlet = (SignUpScreenlet) findViewById(R.id.signup_screenlet);
+		SignUpScreenlet screenlet = findViewById(R.id.signup_screenlet);
 		screenlet.setListener(this);
 	}
 
