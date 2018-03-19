@@ -5,7 +5,7 @@
 		<item name="android:layout_width">match_parent</item>
 		<item name="android:layout_height">@dimen/westeros_card_title_height</item>
 		<item name="android:gravity">center</item>
-		<item name="android:textColor">@color/colorPrimary</item>
+		<item name="android:textColor">?colorPrimary</item>
 		<item name="android:textSize">18sp</item>
 		<item name="android:textAllCaps">true</item>
 	</style>
@@ -31,6 +31,5 @@
 		<item name="android:height">@dimen/westeros_block_height</item>
 		<item name="android:textColor">@color/textColorPrimary_westeros</item>
 	</style>
-
 
 </resources>
