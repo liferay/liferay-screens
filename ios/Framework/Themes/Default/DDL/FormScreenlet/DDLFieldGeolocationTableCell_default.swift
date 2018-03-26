@@ -65,11 +65,11 @@ open class DDLFieldGeolocationTableCell_default: DDMFieldTableCell, UITextFieldD
 	// MARK: UITextViewDelegate
 
 	public func textFieldDidEndEditing(_ textField: UITextField) {
-		let latitudeText = latitudeTextField?.text
-		let longitudeText = longitudeTextField?.text
+		let latitudeText = latitudeTextField?.text ?? ""
+		let longitudeText = longitudeTextField?.text ?? ""
 
-		let latitude = (latitudeText as! NSString).doubleValue ?? DDLFieldGeolocationTableCell_default.InvalidLatitude
-		let longitude = (longitudeText as! NSString).doubleValue ?? DDLFieldGeolocationTableCell_default.InvalidLongitude
+		let latitude = Double(latitudeText) ?? DDLFieldGeolocationTableCell_default.InvalidLatitude
+		let longitude = Double(longitudeText) ?? DDLFieldGeolocationTableCell_default.InvalidLongitude
 
 		if field != nil {
 			let geolocation = Geolocation(latitude: latitude, longitude: longitude)
