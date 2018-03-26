@@ -32,6 +32,8 @@ All notable changes to this project will be documented in this file.
 
 * Updated to Swift 4
 
+### New features
+* Add Geolocation field support
 
 ### Refactor
 * Remove swift style guide and use SwiftLint guide
