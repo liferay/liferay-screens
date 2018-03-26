@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		069DA62B61E96C4B7F9348C3 /* Pods_Screens_LiferayScreensXamarin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F87A66990734AE5230D0C891 /* Pods_Screens_LiferayScreensXamarin.framework */; };
+		0B0F974B2062A6480078CE2F /* DDLFieldGeolocationTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0F974A2062A6480078CE2F /* DDLFieldGeolocationTableCell_default.swift */; };
+		0B0F974D2062A7520078CE2F /* DDLFieldGeolocationTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B0F974C2062A7510078CE2F /* DDLFieldGeolocationTableCell_default.xib */; };
 		0B1063161D49E7C9001D8DE3 /* WebContentListView_default-collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1063151D49E7C9001D8DE3 /* WebContentListView_default-collection.swift */; };
 		0B1063181D49E7DE001D8DE3 /* WebContentListView_default-collection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B1063171D49E7DE001D8DE3 /* WebContentListView_default-collection.xib */; };
 		0B139A831EB9EE1E00628D24 /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 0B139A821EB9EE1E00628D24 /* default.css */; };
@@ -614,6 +616,7 @@
 		0BA1CEDF1F4C64CE0079DD4B /* ScreensWKUIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA1CEDE1F4C64CE0079DD4B /* ScreensWKUIDelegate.swift */; };
 		0BA6AC62205A8D0900BB83D4 /* AsyncServerConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F493582035A73A00730299 /* AsyncServerConnector.swift */; };
 		0BA6AC63205A8D0A00BB83D4 /* AsyncServerConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F493582035A73A00730299 /* AsyncServerConnector.swift */; };
+		0BA6F481204977E50008624B /* DDMFieldGeolocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA6F480204977E50008624B /* DDMFieldGeolocation.swift */; };
 		0BB4678B1D8707280044523E /* comment-add-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BB467851D8707280044523E /* comment-add-screenlet.strings */; };
 		0BB4678C1D8707280044523E /* comment-display-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BB467871D8707280044523E /* comment-display-screenlet.strings */; };
 		0BB4678D1D8707280044523E /* comment-list-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0BB467891D8707280044523E /* comment-list-screenlet.strings */; };
@@ -674,6 +677,10 @@
 		0BF917CC1D76BEA000C86C85 /* CommentTableViewCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917C21D76BEA000C86C85 /* CommentTableViewCell_default.swift */; };
 		0BF917CD1D76BEA000C86C85 /* CommentTableViewCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BF917C31D76BEA000C86C85 /* CommentTableViewCell_default.xib */; };
 		0BF917CF1D76BFA800C86C85 /* NSDate+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917CE1D76BFA800C86C85 /* NSDate+Screens.swift */; };
+		0BF9623B206945FF008B56AF /* DDMFieldGeolocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA6F480204977E50008624B /* DDMFieldGeolocation.swift */; };
+		0BF9623C206945FF008B56AF /* DDMFieldGeolocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA6F480204977E50008624B /* DDMFieldGeolocation.swift */; };
+		0BF9623E20694606008B56AF /* DDLFieldGeolocationTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B0F974A2062A6480078CE2F /* DDLFieldGeolocationTableCell_default.swift */; };
+		0BF9624020694628008B56AF /* DDLFieldGeolocationTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B0F974C2062A7510078CE2F /* DDLFieldGeolocationTableCell_default.xib */; };
 		0BFE283A1D87E13300261A66 /* LRScreenscommentService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BFE28381D87E13300261A66 /* LRScreenscommentService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0BFE283B1D87E13300261A66 /* LRScreenscommentService_v70.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE28391D87E13300261A66 /* LRScreenscommentService_v70.m */; };
 		57CFF6071E5A495D00CB808E /* CookieCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76FE8D1E4DADA80002D27F /* CookieCredentialsStoreKeyChain.swift */; };
@@ -1020,6 +1027,8 @@
 
 /* Begin PBXFileReference section */
 		039C3B21F16B559B9C196029 /* Pods_Screens_LiferayScreens.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Screens_LiferayScreens.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B0F974A2062A6480078CE2F /* DDLFieldGeolocationTableCell_default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDLFieldGeolocationTableCell_default.swift; sourceTree = "<group>"; };
+		0B0F974C2062A7510078CE2F /* DDLFieldGeolocationTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFieldGeolocationTableCell_default.xib; sourceTree = "<group>"; };
 		0B1063151D49E7C9001D8DE3 /* WebContentListView_default-collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WebContentListView_default-collection.swift"; sourceTree = "<group>"; };
 		0B1063171D49E7DE001D8DE3 /* WebContentListView_default-collection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "WebContentListView_default-collection.xib"; sourceTree = "<group>"; };
 		0B139A821EB9EE1E00628D24 /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
@@ -1204,6 +1213,7 @@
 		0B8B233820482192000932EF /* default-star-half@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-star-half@2x.png"; sourceTree = "<group>"; };
 		0B8B233920482192000932EF /* default-star-outline@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-star-outline@2x.png"; sourceTree = "<group>"; };
 		0BA1CEDE1F4C64CE0079DD4B /* ScreensWKUIDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreensWKUIDelegate.swift; sourceTree = "<group>"; };
+		0BA6F480204977E50008624B /* DDMFieldGeolocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDMFieldGeolocation.swift; sourceTree = "<group>"; };
 		0BB467861D8707280044523E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/comment-add-screenlet.strings"; sourceTree = "<group>"; };
 		0BB467881D8707280044523E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/comment-display-screenlet.strings"; sourceTree = "<group>"; };
 		0BB4678A1D8707280044523E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/comment-list-screenlet.strings"; sourceTree = "<group>"; };
@@ -1737,6 +1747,7 @@
 				0B2180031D6C4F6F00A23690 /* DDMFieldString.swift */,
 				0B2180041D6C4F6F00A23690 /* DDMFieldStringWithOptions.swift */,
 				0B2180051D6C4F6F00A23690 /* DDMFieldUntyped.swift */,
+				0BA6F480204977E50008624B /* DDMFieldGeolocation.swift */,
 			);
 			path = Fields;
 			sourceTree = "<group>";
@@ -2391,6 +2402,8 @@
 				881E61E31ACBFC3400862B9E /* DDLFormView_default.xib */,
 				881E61E41ACBFC3400862B9E /* DDLSubmitButtonTableCell_default.swift */,
 				881E61E51ACBFC3400862B9E /* DDLSubmitButtonTableCell_default.xib */,
+				0B0F974A2062A6480078CE2F /* DDLFieldGeolocationTableCell_default.swift */,
+				0B0F974C2062A7510078CE2F /* DDLFieldGeolocationTableCell_default.xib */,
 			);
 			path = FormScreenlet;
 			sourceTree = "<group>";
@@ -3169,6 +3182,7 @@
 				0B7784701F95F60C001C9134 /* default-point@3x.png in Resources */,
 				0B7784711F95F60C001C9134 /* AudioDisplayView_default.xib in Resources */,
 				0B7784721F95F60C001C9134 /* default-play.png in Resources */,
+				0BF9624020694628008B56AF /* DDLFieldGeolocationTableCell_default.xib in Resources */,
 				0B7784741F95F60C001C9134 /* default-thumb-up@3x.png in Resources */,
 				0B7784751F95F60C001C9134 /* comment-display-screenlet.strings in Resources */,
 				0B7784761F95F60C001C9134 /* default-portrait-placeholder.png in Resources */,
@@ -3427,6 +3441,7 @@
 				0BBEDA2E1D5B230E00F8CB31 /* ImageGalleryGridCell.xib in Resources */,
 				0B5CD3091F62A21000C2285B /* default-fast-rewind@2x.png in Resources */,
 				881E624C1ACBFC3400862B9E /* DDLListView_default.xib in Resources */,
+				0B0F974D2062A7520078CE2F /* DDLFieldGeolocationTableCell_default.xib in Resources */,
 				0B5CD3011F62A21000C2285B /* default-calendar@2x.png in Resources */,
 				0B5CD3101F62A21000C2285B /* default-field@2x.png in Resources */,
 				0B8B233C20482193000932EF /* default-star-outline@3x.png in Resources */,
@@ -3612,6 +3627,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B7783441F95F60C001C9134 /* SyncManager+DDLForm.swift in Sources */,
+				0BF9623E20694606008B56AF /* DDLFieldGeolocationTableCell_default.swift in Sources */,
 				0B7783451F95F60C001C9134 /* BlogsEntryDisplayScreenlet.swift in Sources */,
 				0B7783461F95F60C001C9134 /* AssetDisplayViewModel.swift in Sources */,
 				0B7783471F95F60C001C9134 /* WebContentDisplayViewModel.swift in Sources */,
@@ -3638,6 +3654,7 @@
 				0B77835C1F95F60C001C9134 /* BaseListCollectionView.swift in Sources */,
 				0B77835D1F95F60C001C9134 /* ScreensWebView.swift in Sources */,
 				0B77835E1F95F60C001C9134 /* ImageGalleryScreenlet.swift in Sources */,
+				0BF9623C206945FF008B56AF /* DDMFieldGeolocation.swift in Sources */,
 				0B77835F1F95F60C001C9134 /* CommentEditViewController_default.swift in Sources */,
 				0B7783601F95F60C001C9134 /* LRScreensjournalarticleService_v62.m in Sources */,
 				0B7783611F95F60C001C9134 /* ForgotPasswordScreenNameLiferayConnectors.swift in Sources */,
@@ -3893,6 +3910,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				886FCCB31BA6D96E00494BB0 /* SyncManager+DDLForm.swift in Sources */,
+				0B0F974B2062A6480078CE2F /* DDLFieldGeolocationTableCell_default.swift in Sources */,
 				0B2180201D6C500C00A23690 /* BlogsEntryDisplayScreenlet.swift in Sources */,
 				0B217FB71D6C4E6F00A23690 /* AssetDisplayViewModel.swift in Sources */,
 				8837FA7C1CAEF6AE00DCB1B4 /* WebContentDisplayViewModel.swift in Sources */,
@@ -4040,6 +4058,7 @@
 				0BA1CEDF1F4C64CE0079DD4B /* ScreensWKUIDelegate.swift in Sources */,
 				0BBE45711F1D0B8100812015 /* ScreensCordovaWebView.swift in Sources */,
 				881E623C1ACBFC3400862B9E /* DDLFieldNumberTableCell_default.swift in Sources */,
+				0BA6F481204977E50008624B /* DDMFieldGeolocation.swift in Sources */,
 				887E069C1C6A4DF800CA3807 /* LRScreensjournalarticleService_v70.m in Sources */,
 				0B21801A1D6C4FEF00A23690 /* User.swift in Sources */,
 				88B844521C73D750007A447D /* DDLListPageLiferayConnector.swift in Sources */,
@@ -4195,6 +4214,7 @@
 				886F4EDD1CA156710018229E /* DDLListScreenlet_ParseFields_Tests.swift in Sources */,
 				88DE250E1AD2AB0A00714701 /* BaseScreenlet_Theme_Tests.swift in Sources */,
 				88A2B71E1ACDEF5D000C2065 /* LoginView_default.swift in Sources */,
+				0BF9623B206945FF008B56AF /* DDMFieldGeolocation.swift in Sources */,
 				88A4823A1BFFEB7B0033DEBA /* UserPortraitViewModel.swift in Sources */,
 				8837FA7B1CAEF6AE00DCB1B4 /* WebContentDisplayScreenlet.swift in Sources */,
 				88B844C91C73D8F7007A447D /* DDLFormUploadLiferayConnector.swift in Sources */,
