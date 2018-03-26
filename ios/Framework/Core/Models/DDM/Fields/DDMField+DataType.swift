@@ -26,6 +26,7 @@ extension DDMField {
 		case DDMDouble = "double"
 		case DDMDocument = "document-library"
 		case DDMImage = "image"
+		case DDMGeolocation = "geolocation"
 		case Unsupported = ""
 
 		public static func from(xmlElement: SMXMLElement) -> DataType {
@@ -85,6 +86,11 @@ extension DDMField {
 
 			case .DDMImage:
 				return DDMFieldImage(
+					attributes: attributes,
+					locale: locale)
+
+			case .DDMGeolocation:
+				return DDMFieldGeolocation(
 					attributes: attributes,
 					locale: locale)
 
