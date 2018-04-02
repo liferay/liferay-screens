@@ -36,13 +36,13 @@ open class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 			updateButton()
 		}
 	}
-	
+
 	// MARK: Actions
-	
+
 	@IBAction func addComment(_ sender: Any) {
 		self.userAction(name: CommentAddScreenlet.DefaultAction, sender: addCommentTextField)
 	}
-	
+
 	@IBAction func editingDidChangeAction() {
 		updateButton()
 	}
