@@ -160,15 +160,6 @@ open class BaseScreenletView: UIView {
 		return nil
 	}
 
-	open dynamic func userActionWithSender(_ sender: AnyObject?) {
-		if let controlSender = sender as? UIControl {
-			userAction(name: controlSender.restorationIdentifier, sender: sender)
-		}
-		else {
-			userAction(name: nil, sender: sender)
-		}
-	}
-
 	open dynamic func userAction(name: String?) {
 		userAction(name: name, sender: nil)
 	}
