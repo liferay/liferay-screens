@@ -36,6 +36,16 @@ open class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 			updateButton()
 		}
 	}
+	
+	// MARK: Actions
+	
+	@IBAction func addComment(_ sender: Any) {
+		self.userAction(name: CommentAddScreenlet.DefaultAction, sender: addCommentTextField)
+	}
+	
+	@IBAction func editingDidChangeAction() {
+		updateButton()
+	}
 
 	// MARK: Public methods
 
@@ -58,11 +68,5 @@ open class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 
 	override open func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
-	}
-
-	// MARK: Actions
-
-	@IBAction func editingDidChangeAction() {
-		updateButton()
 	}
 }
