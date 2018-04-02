@@ -23,7 +23,7 @@ open class DDLSubmitButtonTableCell_default: DDMFieldTableCell {
 	// MARK: Actions
 
 	@IBAction fileprivate func submitButtonAction(_ sender: AnyObject) {
-		formView!.userActionWithSender(sender)
+		formView?.userAction(name: DDLFormScreenlet.SubmitFormAction, sender: sender)
 	}
 
 	// MARK: DDMFieldTableCell
@@ -41,5 +41,4 @@ open class DDLSubmitButtonTableCell_default: DDMFieldTableCell {
 	override open var canBecomeFirstResponder: Bool {
 		return false
 	}
-
 }

@@ -19,6 +19,7 @@ All notable changes to this project will be documented in this file.
 
 * Remove non essentials libraries: Cosmos and Cryptoswift
 * Create AsyncServerConnector and remove the semaphores
+* Remove trigger action with identifier and UITextFieldDelegate in BaseScreenletView
 
 # 3.1.0
 
