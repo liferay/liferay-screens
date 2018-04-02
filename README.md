@@ -39,7 +39,7 @@ Brief descriptions of this repository's contents are listed here:
 * **Audio Display Screenlet** [[iOS](https://dev.liferay.com/develop/reference/-/knowledge_base/7-0/audio-display-screenlet-for-ios) / [Android](https://dev.liferay.com/develop/reference/-/knowledge_base/7-0/audio-display-screenlet-for-android)]: Shows a single audio file from a Liferay instance's Documents and Media Library.
 * **PDF Display Screenlet** [[iOS](https://dev.liferay.com/develop/reference/-/knowledge_base/7-0/pdf-display-screenlet-for-ios) / [Android](https://dev.liferay.com/develop/reference/-/knowledge_base/7-0/pdf-display-screenlet-for-android)]: Shows a single PDF file from a Liferay instance's Documents and Media Library.
 * **File Display Screenlet** [[iOS](https://dev.liferay.com/develop/reference/-/knowledge_base/7-0/file-display-screenlet-for-ios)]: Shows a single file from a Liferay instance's Documents and Media Library. Use this Screenlet to display file types not covered by the other display Screenlets (e.g., DOC, PPT, XLS). Only available for iOS.
-
+* **Web Screenlet** [[iOS](https://dev.liferay.com/develop/reference/-/knowledge_base/7-0/web-screenlet-for-ios) / [Android](https://dev.liferay.com/develop/reference/-/knowledge_base/7-0/web-screenlet-for-android)]: Displays any web page. You can also customize the web page through injection of local and remote JavaScript and CSS files.
 
 ## Contributing
 
