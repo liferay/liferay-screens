@@ -38,6 +38,9 @@ open class DDLFieldDateTableCell_default: DDLBaseFieldTextboxTableCell_default {
 			if fieldValue.currentValue != nil {
 				textField?.text = fieldValue.currentValueAsLabel
 			}
+			else {
+				textField?.text = ""
+			}
 		}
 	}
 

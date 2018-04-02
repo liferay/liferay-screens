@@ -25,6 +25,7 @@ extension DDMField {
 		case Date = "date"
 		case Number = "number"
 		case Document = "documentlibrary"
+		case Geolocation = "geolocation"
 		case Image = "image"
 		case Unsupported = ""
 
@@ -42,6 +43,8 @@ extension DDMField {
 				return DataType.DDMDocument
 			case .Image:
 				return DataType.DDMImage
+			case .Geolocation:
+				return DataType.DDMGeolocation
 			case .Unsupported:
 				return DataType.Unsupported
 			}
@@ -65,7 +68,7 @@ extension DDMField {
 		}
 
 		public static func all() -> [Editor] {
-			return [Checkbox, Text, Textarea, Select, Radio, Date, Number, Document]
+			return [Checkbox, Text, Textarea, Select, Radio, Date, Number, Document, Geolocation]
 		}
 
 		public func toCapitalizedName() -> String {

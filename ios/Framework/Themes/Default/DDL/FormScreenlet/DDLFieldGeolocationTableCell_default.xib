@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeueLights.ttc">
+            <string>HelveticaNeue-Thin</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="119" id="WWD-jz-pJ6" customClass="DDLFieldGeolocationTableCell_default">
+            <rect key="frame" x="0.0" y="0.0" width="318" height="119"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WWD-jz-pJ6" id="h6C-76-TvA">
+                <rect key="frame" x="0.0" y="0.0" width="318" height="118.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JT4-5T-4gp">
+                        <rect key="frame" x="8" y="8" width="34" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="JhR-qk-LhH"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fus-kx-qK3" customClass="DefaultTextField">
+                        <rect key="frame" x="8" y="33" width="147" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="147" id="0ag-6L-Ckv"/>
+                            <constraint firstAttribute="height" constant="44" id="8kp-qW-3rh"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                        <connections>
+                            <outlet property="delegate" destination="WWD-jz-pJ6" id="9KI-XB-QdE"/>
+                        </connections>
+                    </textField>
+                    <view contentMode="TopLeft" translatesAutoresizingMaskIntoConstraints="NO" id="0Cg-Uy-Tyo" userLabel="Separator">
+                        <rect key="frame" x="18" y="85" width="14" height="1"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="yy7-B4-sAZ"/>
+                        </constraints>
+                    </view>
+                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zgw-hb-qhG" customClass="DefaultTextField">
+                        <rect key="frame" x="163" y="33" width="147" height="44"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="44" id="HWB-Qs-14f"/>
+                            <constraint firstAttribute="width" constant="147" id="Ohf-gr-GkN"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                        <connections>
+                            <outlet property="delegate" destination="WWD-jz-pJ6" id="v41-AG-rwz"/>
+                        </connections>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="fus-kx-qK3" firstAttribute="leading" secondItem="h6C-76-TvA" secondAttribute="leading" constant="8" id="2m9-a3-nNA"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="zgw-hb-qhG" secondAttribute="trailing" constant="8" id="AdF-q5-6qX"/>
+                    <constraint firstItem="JT4-5T-4gp" firstAttribute="leading" secondItem="h6C-76-TvA" secondAttribute="leading" constant="8" id="L21-Ze-trr"/>
+                    <constraint firstItem="0Cg-Uy-Tyo" firstAttribute="top" secondItem="zgw-hb-qhG" secondAttribute="bottom" constant="8" id="NRz-fp-pEr"/>
+                    <constraint firstItem="zgw-hb-qhG" firstAttribute="leading" secondItem="fus-kx-qK3" secondAttribute="trailing" constant="8" id="Ny3-oF-TMi"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="0Cg-Uy-Tyo" secondAttribute="trailing" constant="2" id="alg-gU-jZN"/>
+                    <constraint firstItem="fus-kx-qK3" firstAttribute="top" secondItem="JT4-5T-4gp" secondAttribute="bottom" constant="5" id="cRq-bD-UFQ"/>
+                    <constraint firstItem="JT4-5T-4gp" firstAttribute="top" secondItem="h6C-76-TvA" secondAttribute="top" constant="8" id="cxy-rD-P7G"/>
+                    <constraint firstItem="0Cg-Uy-Tyo" firstAttribute="leading" secondItem="h6C-76-TvA" secondAttribute="leadingMargin" constant="2" id="fML-UY-Fa4"/>
+                    <constraint firstItem="zgw-hb-qhG" firstAttribute="top" secondItem="JT4-5T-4gp" secondAttribute="bottom" constant="5" id="k4d-tj-4gi"/>
+                    <constraint firstItem="zgw-hb-qhG" firstAttribute="leading" secondItem="fus-kx-qK3" secondAttribute="trailing" constant="8" id="oIP-VH-aGo"/>
+                    <constraint firstAttribute="trailing" secondItem="JT4-5T-4gp" secondAttribute="trailing" constant="8" id="oJD-ad-H1U"/>
+                    <constraint firstItem="0Cg-Uy-Tyo" firstAttribute="top" secondItem="fus-kx-qK3" secondAttribute="bottom" constant="8" id="z9G-OY-ZSL"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="label" destination="JT4-5T-4gp" id="GzM-g9-FC9"/>
+                <outlet property="latitudeTextField" destination="fus-kx-qK3" id="GQo-to-mbX"/>
+                <outlet property="longitudeTextField" destination="zgw-hb-qhG" id="MmX-Wb-AcZ"/>
+            </connections>
+            <point key="canvasLocation" x="325" y="476.5"/>
+        </tableViewCell>
+    </objects>
+</document>
