@@ -18,7 +18,6 @@ import Foundation
 open class SessionContext: NSObject {
 
 	open static var currentContext: SessionContext?
-	open static var challengeResolver: ChallengeBlock?
 
 	open let session: LRSession
 	open let user: User
@@ -149,7 +148,7 @@ open class SessionContext: NSObject {
 			callback.onSuccess(session)
 		}, failure: { (error) in
 			callback.onFailure(error)
-		}), challenge: SessionContext.challengeResolver)
+		}))
 	}
 
 	open func createRequestSession() -> LRSession {
@@ -301,6 +300,10 @@ open class SessionContext: NSObject {
 	// Deprecated. Will be removed in next version
 	open class func createSessionFromCurrentSession() -> LRSession? {
 		return SessionContext.currentContext?.createRequestSession()
+	}
+
+	open class func register(authenticationChallenge: @escaping ChallengeBlock, for server: String) {
+		LRCookieSignIn.registerAuthenticationChallenge(authenticationChallenge, forServer: server)
 	}
 
 }

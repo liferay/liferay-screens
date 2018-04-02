@@ -64,8 +64,7 @@ open class LoginByCookieConnector: ServerConnector {
 	open override func doRun(session: LRSession) {
 
 		do {
-			cookieSession = try LRCookieSignIn.signIn(with: session, callback: nil,
-				challenge: SessionContext.challengeResolver)
+			cookieSession = try LRCookieSignIn.signIn(with: session, callback: nil)
 
 			resultUserAttributes = try getCurrentUser(session: session)
 
