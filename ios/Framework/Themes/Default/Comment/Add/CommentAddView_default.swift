@@ -51,10 +51,6 @@ open class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 
 	// MARK: BaseScreenletView
 
-	override open func onShow() {
-		addCommentTextField?.delegate = self
-	}
-
 	override open func onSetTranslations() {
 		addCommentTextField?.placeholder = LocalizedString("default", key: "comment-add-placeholder", obj: self)
 		sendCommentButton?.titleLabel?.text = LocalizedString("default", key: "comment-add-send", obj: self)
@@ -68,12 +64,5 @@ open class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 
 	@IBAction func editingDidChangeAction() {
 		updateButton()
-	}
-
-	// MARK: UITextFieldDelegate
-
-	override open func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		userAction(name: "add-comment", sender: textField)
-		return super.textFieldShouldReturn(textField)
 	}
 }
