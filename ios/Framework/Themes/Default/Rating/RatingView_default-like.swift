@@ -55,11 +55,9 @@ open class RatingView_default_like: BaseScreenletView, RatingViewModel {
 
 				if rating.userScore == -1 {
 					self.likeButton?.tintColor = UIColor.gray
-					self.likeButton?.restorationIdentifier = RatingScreenlet.UpdateRatingAction
 				}
 				else {
 					self.likeButton?.tintColor = DefaultThemeBasicBlue
-					self.likeButton?.restorationIdentifier = RatingScreenlet.DeleteRatingAction
 				}
 			}
 		}
@@ -68,10 +66,13 @@ open class RatingView_default_like: BaseScreenletView, RatingViewModel {
 	// MARK: Actions
 
 	@IBAction func likeButtonClicked(_ sender: AnyObject) {
-		let sender = self.ratingEntry?.userScore == -1 ? 1 : 0
-		self.userAction(
-			name: self.likeButton?.restorationIdentifier,
-			sender: sender as AnyObject?)
+		if let rating = ratingEntry {
+			if rating.userScore == -1 {
+				self.userAction(name: RatingScreenlet.UpdateRatingAction, sender: 1 as AnyObject?)
+			}
+			else {
+				self.userAction(name: RatingScreenlet.DeleteRatingAction, sender: 0 as AnyObject?)
+			}
+		}
 	}
-
 }
