@@ -18,6 +18,13 @@ import Foundation
 open class SessionContext: NSObject {
 
 	open static var currentContext: SessionContext?
+	open static var challengeResolver: ChallengeBlock? {
+		didSet {
+			guard let challengeResolver = challengeResolver else { return }
+			LRCookieSignIn.registerAuthenticationChallenge(challengeResolver, forServer: LiferayServerContext.server)
+		}
+	}
+	open static var oauth2AuthorizationFlow: LROAuth2AuthorizationFlow?
 
 	open let session: LRSession
 	open let user: User
@@ -338,6 +345,14 @@ open class SessionContext: NSObject {
 
 	open class func register(authenticationChallenge: @escaping ChallengeBlock, for server: String) {
 		LRCookieSignIn.registerAuthenticationChallenge(authenticationChallenge, forServer: server)
+	}
+
+	open class func oauth2ResumeAuthorization(url: URL) -> Bool {
+		return SessionContext.oauth2AuthorizationFlow?.resumeAuthorizationFlow(with: url) ?? false
+	}
+
+	open class func oauth2CancelAuthorization() {
+		SessionContext.oauth2AuthorizationFlow?.cancel()
 	}
 
 }
