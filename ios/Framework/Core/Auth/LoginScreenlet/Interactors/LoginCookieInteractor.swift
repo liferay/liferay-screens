@@ -13,7 +13,7 @@
  */
 import UIKit
 
-open class LoginCookieInteractor: ServerConnectorInteractor {
+open class LoginCookieInteractor: ServerConnectorInteractor, LoginResult {
 
 	open let username: String
 	open let password: String

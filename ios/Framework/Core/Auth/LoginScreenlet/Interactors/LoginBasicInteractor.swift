@@ -13,7 +13,7 @@
  */
 import UIKit
 
-open class LoginBasicInteractor: ServerConnectorInteractor {
+open class LoginBasicInteractor: ServerConnectorInteractor, LoginResult {
 
 	open let companyId: Int64
 
