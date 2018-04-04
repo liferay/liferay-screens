@@ -109,10 +109,15 @@ open class LoginView_default: BaseScreenletView, LoginViewModel {
 		return DefaultProgressPresenter()
 	}
 
+	// MARK: Actions
+
+	@IBAction func loginButtonClicked(_ sender: UIButton) {
+		self.userAction(name: LoginScreenlet.DefaultAction, sender: sender)
+	}
+
 	// MARK: Public methods
 
 	open func configureAuthType() {
 		_ = AuthTypeFromString(authType ?? "") ?? .basic
 	}
-
 }
