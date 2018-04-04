@@ -87,12 +87,19 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 	/// Specifies the cookie expiration time. In Minutes
 	@IBInspectable open var cookieExpirationTime: Double = 1 * 60
 
+	/// Scpecifies the clientId of the OAuth2 application
+	@IBInspectable open var oauth2clientId: String = ""
+
+	/// Scpecifies the clientId of the OAuth2 application. This is not needed for redirect flow.
+	@IBInspectable open var oauth2clientSecret: String? = ""
+
+	@IBInspectable open var oauth2redirectURL: String? = ""
+
 	/// The Screenlet’s authentication type. You can set this attribute to basic or cookie. 
 	/// If you don’t set this attribute, the Screenlet defaults to basic authentication.
 	@IBInspectable open var loginMode: String = "login" {
 		didSet {
 			authType = AuthTypeFromString(loginMode) ?? .basic
-			copyAuthType()
 		}
 	}
 
@@ -106,7 +113,11 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 		return screenletView as! LoginViewModel
 	}
 
-	open var authType: AuthType = .basic
+	open var authType: AuthType = .basic {
+		didSet {
+			copyAuthType()
+		}
+	}
 
 	// MARK: BaseScreenlet
 
@@ -116,7 +127,6 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 		(screenletView as? BasicAuthBasedType)?.basicAuthMethod = basicAuthMethod
 
 		copyAuthType()
-
 	}
 
 	override open func createInteractor(name: String, sender: Any?) -> Interactor? {
@@ -205,7 +215,8 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 	}
 
 	fileprivate func copyAuthType() {
-		(screenletView as? LoginViewModel)?.authType = StringFromAuthType(authType)
+		let loginViewModel = screenletView as? LoginViewModel
+		loginViewModel?.authType = StringFromAuthType(authType)
 	}
 
 }
