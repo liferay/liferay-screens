@@ -31,7 +31,7 @@
                         <action selector="editingDidChangeAction" destination="iN0-l3-epB" eventType="editingChanged" id="6kM-1c-Xmr"/>
                     </connections>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" restorationIdentifier="add-comment" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KOW-5A-wES">
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KOW-5A-wES">
                     <rect key="frame" x="333" y="8" width="80" height="50"/>
                     <color key="backgroundColor" red="0.083623558279999996" green="0.66497266290000001" blue="0.84832382200000001" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
