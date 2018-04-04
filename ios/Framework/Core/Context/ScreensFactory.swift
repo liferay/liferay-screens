@@ -48,6 +48,8 @@ import Foundation
 			return BasicCredentialsStoreKeyChain()
 		case .cookie:
 			return CookieCredentialsStoreKeyChain()
+		case .oauth2Redirect, .oauth2UsernameAndPassword:
+			return OAuth2CredentialsStoreKeyChain()
 		}
 	}
 
