@@ -62,10 +62,10 @@ public protocol UserPortraitScreenletDelegate: BaseScreenletDelegate {
 @objc(UserPortraitScreenlet)
 open class UserPortraitScreenlet: BaseScreenlet {
 
-	// MARK: Class properties
+	// MARK: Static properties
 
-	open class var LoadPortrait: String { return "load-portrait" }
-	open class var UploadPortrait: String { return "upload-portrait" }
+	open static let LoadPortrait = "loadPortrait"
+	open static let UploadPortrait = "uploadPortrait"
 
 	// MARK: Inspectables
 
