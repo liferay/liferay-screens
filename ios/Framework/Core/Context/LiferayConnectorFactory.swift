@@ -47,6 +47,8 @@ public protocol LiferayConnectorFactory {
 		shouldHandleCookieExpiration: Bool,
 		cookieExpirationTime: Double) -> LoginByCookieConnector
 
+	func createGetCurrentUserConnector(session: LRSession) -> GetCurrentUserConnector?
+
 	func createForgotPasswordByEmailConnector(
 		viewModel: ForgotPasswordViewModel,
 		anonymousUsername: String,
@@ -245,6 +247,11 @@ open class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 			password: password,
 			shouldHandleCookieExpiration: shouldHandleCookieExpiration,
 			cookieExpirationTime: cookieExpirationTime)
+	}
+
+
+	open func createGetCurrentUserConnector(session: LRSession) -> GetCurrentUserConnector? {
+		return Liferay62GetCurrentUserConnector(session: session)
 	}
 
 	open func createForgotPasswordByEmailConnector(
@@ -559,6 +566,11 @@ open class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 			password: password,
 			shouldHandleCookieExpiration: shouldHandleCookieExpiration,
 			cookieExpirationTime: cookieExpirationTime)
+	}
+
+
+	open func createGetCurrentUserConnector(session: LRSession) -> GetCurrentUserConnector? {
+		return Liferay70GetCurrentUserConnector(session: session)
 	}
 
 	open func createForgotPasswordByEmailConnector(
