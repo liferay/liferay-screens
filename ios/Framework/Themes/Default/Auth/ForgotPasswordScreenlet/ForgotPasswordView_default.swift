@@ -94,4 +94,9 @@ open class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMode
 		return DefaultProgressPresenter()
 	}
 
+	// MARK: Actions
+
+	@IBAction func requestPasswordButtonClicked(_ sender: UIButton) {
+		self.userAction(name: ForgotPasswordScreenlet.DefaultAction, sender: sender)
+	}
 }

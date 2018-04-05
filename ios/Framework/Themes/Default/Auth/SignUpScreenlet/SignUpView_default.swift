@@ -113,11 +113,9 @@ open class SignUpView_default: BaseScreenletView, SignUpViewModel {
 	open var editCurrentUser: Bool = false {
 		didSet {
 			let key: String
-			let actionName: String
 
 			if editCurrentUser {
 				key = "save-button"
-				actionName = "save-action"
 
 				self.firstName = SessionContext.currentContext?.user.firstName
 				self.middleName = SessionContext.currentContext?.user.middleName
@@ -129,14 +127,22 @@ open class SignUpView_default: BaseScreenletView, SignUpViewModel {
 			}
 			else {
 				key = "signup-button"
-				actionName = "signup-action"
 			}
 
 			self.signUpButton?.replaceAttributedTitle(
 					LocalizedString("default", key: key, obj: self),
 					forState: .normal)
+		}
+	}
 
-			self.signUpButton?.restorationIdentifier = actionName
+	// MARK: Actions
+
+	@IBAction func signUpAction(_ sender: UIButton) {
+		if editCurrentUser {
+			self.userAction(name: SignUpScreenlet.SaveSignUpAction, sender: sender)
+		}
+		else {
+			self.userAction(name: SignUpScreenlet.SignUpAction, sender: sender)
 		}
 	}
 
@@ -157,5 +163,4 @@ open class SignUpView_default: BaseScreenletView, SignUpViewModel {
 		get { return nil }
 		set {}
 	}
-
 }

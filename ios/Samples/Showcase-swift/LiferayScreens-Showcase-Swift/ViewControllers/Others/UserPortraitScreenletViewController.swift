@@ -109,5 +109,4 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 
 		LiferayLogger.logDelegateMessage(args: attributes as AnyObject?)
 	}
-
 }

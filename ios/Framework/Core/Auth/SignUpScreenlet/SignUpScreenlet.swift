@@ -46,6 +46,11 @@ public protocol SignUpScreenletDelegate: BaseScreenletDelegate {
 @objc(SignUpScreenlet)
 open class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 
+	// MARK: Static properties
+
+	open static let SaveSignUpAction = "saveSignUp"
+	open static let SignUpAction = "signUp"
+
 	// MARK: Inspectables
 
 	/// The user name, email address, or user ID (depending on the portal’s authentication method) 
@@ -85,9 +90,9 @@ open class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
 
 		switch name {
-		case "signup-action":
+		case SignUpScreenlet.SignUpAction:
 			return createSignUpConnectorInteractor()
-		case "save-action":
+		case SignUpScreenlet.SaveSignUpAction:
 			return createSaveInteractor()
 		default:
 			return nil

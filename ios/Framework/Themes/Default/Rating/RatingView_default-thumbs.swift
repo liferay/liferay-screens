@@ -72,25 +72,16 @@ open class RatingView_default_thumbs: BaseScreenletView, RatingViewModel {
 					// thumbs down
 					self.possitiveButton?.tintColor = UIColor.gray
 					self.negativeButton?.tintColor = DefaultThemeBasicBlue
-
-					self.possitiveButton?.restorationIdentifier = RatingScreenlet.UpdateRatingAction
-					self.negativeButton?.restorationIdentifier = RatingScreenlet.DeleteRatingAction
 				}
 				else if score > 0 {
 					// thumbs up
 					self.possitiveButton?.tintColor = DefaultThemeBasicBlue
 					self.negativeButton?.tintColor = UIColor.gray
-
-					self.possitiveButton?.restorationIdentifier = RatingScreenlet.DeleteRatingAction
-					self.negativeButton?.restorationIdentifier = RatingScreenlet.UpdateRatingAction
 				}
 				else if score == -1 {
 					// no rating yet
 					self.possitiveButton?.tintColor = UIColor.gray
 					self.negativeButton?.tintColor = UIColor.gray
-
-					self.possitiveButton?.restorationIdentifier = RatingScreenlet.UpdateRatingAction
-					self.negativeButton?.restorationIdentifier = RatingScreenlet.UpdateRatingAction
 				}
 			}
 		}
@@ -99,9 +90,24 @@ open class RatingView_default_thumbs: BaseScreenletView, RatingViewModel {
 	// MARK: Actions
 
 	@IBAction func possitiveButtonClicked(_ sender: UIButton) {
-		self.userAction(name: sender.restorationIdentifier, sender: 1 as AnyObject?)
+		if let rating = ratingEntry {
+			if rating.userScore > 0 {
+				self.userAction(name: RatingScreenlet.DeleteRatingAction, sender: 1 as AnyObject?)
+			}
+			else {
+				self.userAction(name: RatingScreenlet.UpdateRatingAction, sender: 1 as AnyObject?)
+			}
+		}
 	}
+
 	@IBAction func negativeButtonClicked(_ sender: UIButton) {
-		self.userAction(name: sender.restorationIdentifier, sender: 0 as AnyObject?)
+		if let rating = ratingEntry {
+			if rating.userScore == 0 {
+				self.userAction(name: RatingScreenlet.DeleteRatingAction, sender: 0 as AnyObject?)
+			}
+			else {
+				self.userAction(name: RatingScreenlet.UpdateRatingAction, sender: 0 as AnyObject?)
+			}
+		}
 	}
 }
