@@ -249,7 +249,7 @@ open class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 		password: String,
 		shouldHandleCookieExpiration: Bool,
 		cookieExpirationTime: Double) -> LoginByCookieConnector {
-		return LoginByCookieLiferay62Connector(
+		return LoginByCookieConnector(
 			username: username,
 			password: password,
 			shouldHandleCookieExpiration: shouldHandleCookieExpiration,
@@ -577,7 +577,7 @@ open class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 		password: String,
 		shouldHandleCookieExpiration: Bool,
 		cookieExpirationTime: Double) -> LoginByCookieConnector {
-		return LoginByCookieLiferay70Connector(
+		return LoginByCookieConnector(
 			username: username,
 			password: password,
 			shouldHandleCookieExpiration: shouldHandleCookieExpiration,

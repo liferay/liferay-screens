@@ -38,14 +38,38 @@ open class LoginCookieInteractor: ServerConnectorInteractor, LoginResult {
 
 	open override func createConnector() -> ServerConnector? {
 
-		return LiferayServerContext.connectorFactory.createLoginByCookieConnector(
+		let cookieConnector = LiferayServerContext.connectorFactory.createLoginByCookieConnector(
 			username: username,
 			password: password,
 			shouldHandleCookieExpiration: shouldHandleCookieExpiration,
 			cookieExpirationTime: cookieExpirationTime)
+
+		let chain = ServerConnectorChain(head: cookieConnector)
+
+		chain.onNextStep = { c, _ in
+			guard let c = c as? LoginByCookieConnector,
+				c.lastError == nil else {
+					return nil
+			}
+
+			return LiferayServerContext.connectorFactory.createGetCurrentUserConnector(session: c.cookieSession!)
+		}
+
+		return chain
 	}
 
 	open override func completedConnector(_ c: ServerConnector) {
-		self.resultUserAttributes = (c as! LoginByCookieConnector).resultUserAttributes
+		if let c = (c as? ServerConnectorChain)?.currentConnector as? GetCurrentUserConnector {
+			self.resultUserAttributes = c.resultUserAttributes
+			self.cookieSession = c.session
+			self.loginWithResult()
+		}
+	}
+
+	open func loginWithResult() {
+		SessionContext.currentContext?.removeStoredCredentials()
+		let cookieAuthentication = self.cookieSession?.authentication as! LRCookieAuthentication
+		SessionContext.loginWithCookie(authentication: cookieAuthentication,
+				userAttributes: resultUserAttributes ?? [:])
 	}
 }
