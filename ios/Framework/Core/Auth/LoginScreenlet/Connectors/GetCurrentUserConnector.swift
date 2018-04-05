@@ -78,4 +78,3 @@ open class Liferay70GetCurrentUserConnector: GetCurrentUserConnector {
 		return try service.getCurrentUser() as! [String: AnyObject]
 	}
 }
-

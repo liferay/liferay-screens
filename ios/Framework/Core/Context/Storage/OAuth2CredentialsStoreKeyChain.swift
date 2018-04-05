@@ -69,7 +69,8 @@ open class OAuth2CredentialsStoreKeyChain: BaseCredentialsStoreKeyChain {
 			else {
 				return nil
 			}
-		} catch {
+		}
+		catch {
 			return nil
 		}
 	}

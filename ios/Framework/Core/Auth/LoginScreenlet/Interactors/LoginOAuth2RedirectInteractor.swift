@@ -83,4 +83,3 @@ open class LoginOAuth2RedirectInteractor: Interactor, LoginResult {
 									   userAttributes: resultUserAttributes ?? [:])
 	}
 }
-

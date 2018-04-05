@@ -61,8 +61,13 @@ open class LoginByOAuth2UsernamePasswordConnector: ServerConnector {
 
 	open override func doRun(session: LRSession) {
 		do {
-			oauth2Session = try LROAuth2SignIn.signIn(withUsername: username, password: password, session: LRSession(server: LiferayServerContext.server),
-				clientId: clientId, clientSecret: clientSecret, scopes: scopes, callback: nil)
+			oauth2Session = try LROAuth2SignIn.signIn(withUsername: username,
+				password: password,
+				session: LRSession(server: LiferayServerContext.server),
+				clientId: clientId,
+				clientSecret: clientSecret,
+				scopes: scopes,
+				callback: nil)
 		}
 		catch let error as NSError {
 			lastError = error
