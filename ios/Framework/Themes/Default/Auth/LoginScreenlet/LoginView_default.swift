@@ -28,7 +28,7 @@ open class LoginView_default: BaseScreenletView, LoginViewModel {
 
 	override open var progressMessages: [String: ProgressMessages] {
 		let auth = AuthTypeFromString(authType ?? "basic")
-			
+
 		if auth == .oauth2Redirect {
 			return [:]
 		}
