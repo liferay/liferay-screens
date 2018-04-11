@@ -189,11 +189,11 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 
 	// MARK: Private methods
 
-	fileprivate func createLoginBasicInteractor() -> Interactor & LoginResult {
+	fileprivate func createLoginBasicInteractor() -> LoginBasicInteractor {
 		return LoginBasicInteractor(loginScreenlet: self)
 	}
 
-	fileprivate func createLoginCookieInteractor() -> Interactor & LoginResult {
+	fileprivate func createLoginCookieInteractor() -> LoginCookieInteractor {
 		return LoginCookieInteractor(screenlet: self,
 				username: viewModel.userName ?? "",
 				password: viewModel.password ?? "",
@@ -201,12 +201,12 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 				cookieExpirationTime: cookieExpirationTime)
 	}
 
-	fileprivate func createOAuth2RedirectInteractor() -> Interactor & LoginResult {
+	fileprivate func createOAuth2RedirectInteractor() -> LoginOAuth2RedirectInteractor {
 		return LoginOAuth2RedirectInteractor(redirectURL: oauth2redirectURL ?? "",
 			clientId: oauth2clientId)
 	}
 
-	fileprivate func createOAuth2UsernameAndPasswordInteractor() -> Interactor & LoginResult {
+	fileprivate func createOAuth2UsernameAndPasswordInteractor() -> LoginOAuth2UsernamePasswordInteractor {
 		return LoginOAuth2UsernamePasswordInteractor(screenlet: self,
 			username: viewModel.userName ?? "",
 			password: viewModel.password ?? "",
