@@ -5,5 +5,5 @@ import com.liferay.mobile.screens.base.view.BaseViewModel;
 /**
  * @author Paulo Cruz
  */
-public interface FormViewModel extends BaseViewModel {
+public interface DDMFormViewModel extends BaseViewModel {
 }

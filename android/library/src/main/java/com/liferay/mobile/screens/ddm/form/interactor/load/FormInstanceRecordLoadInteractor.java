@@ -1,8 +1,8 @@
 package com.liferay.mobile.screens.ddm.form.interactor.load;
 
 import com.liferay.mobile.screens.base.interactor.BaseCacheReadInteractor;
-import com.liferay.mobile.screens.ddm.form.FormListener;
-import com.liferay.mobile.screens.ddm.form.FormScreenlet;
+import com.liferay.mobile.screens.ddm.form.DDMFormListener;
+import com.liferay.mobile.screens.ddm.form.DDMFormScreenlet;
 import com.liferay.mobile.screens.ddm.form.connector.FormInstanceRecordConnector;
 import com.liferay.mobile.screens.ddm.form.interactor.FormInstanceRecordEvent;
 import com.liferay.mobile.screens.ddm.form.model.FormInstanceRecord;
@@ -12,7 +12,7 @@ import com.liferay.mobile.screens.util.ServiceProvider;
  * @author Paulo Cruz
  */
 public class FormInstanceRecordLoadInteractor
-    extends BaseCacheReadInteractor<FormListener, FormInstanceRecordEvent> {
+    extends BaseCacheReadInteractor<DDMFormListener, FormInstanceRecordEvent> {
 
     @Override
     public FormInstanceRecordEvent execute(Object... args) throws Exception {
@@ -39,7 +39,7 @@ public class FormInstanceRecordLoadInteractor
     @Override
     public void onFailure(FormInstanceRecordEvent event) {
         if (getListener() != null) {
-            getListener().error(event.getException(), FormScreenlet.LOAD_RECORD_ACTION);
+            getListener().error(event.getException(), DDMFormScreenlet.LOAD_RECORD_ACTION);
         }
     }
 

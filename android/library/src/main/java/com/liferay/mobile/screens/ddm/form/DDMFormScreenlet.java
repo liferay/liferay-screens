@@ -6,6 +6,8 @@ import android.view.View;
 
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.interactor.Interactor;
+import com.liferay.mobile.screens.ddm.form.interactor.FormContextEvent;
+import com.liferay.mobile.screens.ddm.form.interactor.FormInstanceRecordEvent;
 import com.liferay.mobile.screens.ddm.form.interactor.add.FormInstanceRecordAddInteractor;
 import com.liferay.mobile.screens.ddm.form.interactor.evaluate.FormContextEvaluateInteractor;
 import com.liferay.mobile.screens.ddm.form.interactor.load.FormInstanceLoadInteractor;
@@ -14,13 +16,13 @@ import com.liferay.mobile.screens.ddm.form.interactor.update.FormInstanceRecordU
 import com.liferay.mobile.screens.ddm.form.model.FormContext;
 import com.liferay.mobile.screens.ddm.form.model.FormInstance;
 import com.liferay.mobile.screens.ddm.form.model.FormInstanceRecord;
-import com.liferay.mobile.screens.ddm.form.view.FormViewModel;
+import com.liferay.mobile.screens.ddm.form.view.DDMFormViewModel;
 
 /**
  * @author Paulo Cruz
  */
-public class FormScreenlet extends BaseScreenlet<FormViewModel, Interactor<FormListener>>
-        implements FormListener {
+public class DDMFormScreenlet extends BaseScreenlet<DDMFormViewModel, Interactor<DDMFormListener>>
+        implements DDMFormListener {
 
     public static final String EVALUATE_CONTEXT_ACTION = "evaluateContext";
     public static final String LOAD_FORM_ACTION = "loadForm";
@@ -28,29 +30,42 @@ public class FormScreenlet extends BaseScreenlet<FormViewModel, Interactor<FormL
     public static final String ADD_RECORD_ACTION = "addRecord";
     public static final String UPDATE_RECORD_ACTION = "updateRecord";
 
-    private FormListener listener;
+    private long formInstanceId;
+    private DDMFormListener listener;
 
-    public FormScreenlet(Context context) {
+    public DDMFormScreenlet(Context context) {
         super(context);
     }
 
-    public FormScreenlet(Context context, AttributeSet attrs) {
+    public DDMFormScreenlet(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public FormScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+    public DDMFormScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
-    public FormScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public DDMFormScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
-    public FormListener getListener() {
+    public void load() {
+        performUserAction(LOAD_FORM_ACTION);
+    }
+
+    public long getFormInstanceId() {
+        return formInstanceId;
+    }
+
+    public void setFormInstanceId(long formInstanceId) {
+        this.formInstanceId = formInstanceId;
+    }
+
+    public DDMFormListener getListener() {
         return listener;
     }
 
-    public void setListener(FormListener listener) {
+    public void setListener(DDMFormListener listener) {
         this.listener = listener;
     }
 
@@ -102,7 +117,7 @@ public class FormScreenlet extends BaseScreenlet<FormViewModel, Interactor<FormL
     }
 
     @Override
-    protected Interactor<FormListener> createInteractor(String actionName) {
+    protected Interactor<DDMFormListener> createInteractor(String actionName) {
         switch (actionName) {
             case EVALUATE_CONTEXT_ACTION:
                 return new FormContextEvaluateInteractor();
@@ -120,22 +135,27 @@ public class FormScreenlet extends BaseScreenlet<FormViewModel, Interactor<FormL
     }
 
     @Override
-    protected void onUserAction(String userActionName, Interactor<FormListener> interactor, Object... args) {
+    protected void onUserAction(String userActionName, Interactor<DDMFormListener> interactor, Object... args) {
         switch (userActionName) {
             case EVALUATE_CONTEXT_ACTION:
-                ((FormContextEvaluateInteractor) interactor).start();
+                FormContextEvent evaluateContextEvent = new FormContextEvent(null, getFormInstanceId(), null);
+                ((FormContextEvaluateInteractor) interactor).start(evaluateContextEvent);
                 break;
             case LOAD_FORM_ACTION:
-                ((FormInstanceLoadInteractor) interactor).start();
+                ((FormInstanceLoadInteractor) interactor).start(getFormInstanceId());
                 break;
             case LOAD_RECORD_ACTION:
+                // TODO Get FormInstanceRecordId
                 ((FormInstanceRecordLoadInteractor) interactor).start();
                 break;
             case ADD_RECORD_ACTION:
-                ((FormInstanceRecordAddInteractor) interactor).start();
+                FormInstanceRecordEvent addRecordEvent = new FormInstanceRecordEvent(null, getFormInstanceId(), true);
+                ((FormInstanceRecordAddInteractor) interactor).start(addRecordEvent);
                 break;
             case UPDATE_RECORD_ACTION:
-                ((FormInstanceRecordUpdateInteractor) interactor).start();
+                // TODO Get FormInstanceRecordId
+                FormInstanceRecordEvent updateRecordEvent = new FormInstanceRecordEvent(null, getFormInstanceId(), 0, true);
+                ((FormInstanceRecordUpdateInteractor) interactor).start(updateRecordEvent);
                 break;
         }
     }

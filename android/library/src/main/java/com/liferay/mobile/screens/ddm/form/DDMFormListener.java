@@ -8,7 +8,7 @@ import com.liferay.mobile.screens.ddm.form.model.FormInstanceRecord;
 /**
  * @author Paulo Cruz
  */
-public interface FormListener extends BaseCacheListener {
+public interface DDMFormListener extends BaseCacheListener {
 
     /**
      * Called when the form definition successfully loads.

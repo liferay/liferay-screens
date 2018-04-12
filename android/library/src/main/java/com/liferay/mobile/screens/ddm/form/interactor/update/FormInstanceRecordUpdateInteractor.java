@@ -1,8 +1,8 @@
 package com.liferay.mobile.screens.ddm.form.interactor.update;
 
 import com.liferay.mobile.screens.base.interactor.BaseCacheWriteInteractor;
-import com.liferay.mobile.screens.ddm.form.FormListener;
-import com.liferay.mobile.screens.ddm.form.FormScreenlet;
+import com.liferay.mobile.screens.ddm.form.DDMFormListener;
+import com.liferay.mobile.screens.ddm.form.DDMFormScreenlet;
 import com.liferay.mobile.screens.ddm.form.connector.FormInstanceRecordConnector;
 import com.liferay.mobile.screens.ddm.form.interactor.FormInstanceRecordEvent;
 import com.liferay.mobile.screens.ddm.form.model.FormInstanceRecord;
@@ -12,7 +12,7 @@ import com.liferay.mobile.screens.util.ServiceProvider;
  * @author Paulo Cruz
  */
 public class FormInstanceRecordUpdateInteractor
-    extends BaseCacheWriteInteractor<FormListener, FormInstanceRecordEvent> {
+    extends BaseCacheWriteInteractor<DDMFormListener, FormInstanceRecordEvent> {
 
     @Override
     public FormInstanceRecordEvent execute(FormInstanceRecordEvent event)
@@ -39,7 +39,7 @@ public class FormInstanceRecordUpdateInteractor
     @Override
     public void onFailure(FormInstanceRecordEvent event) {
         if (getListener() != null) {
-            getListener().error(event.getException(), FormScreenlet.UPDATE_RECORD_ACTION);
+            getListener().error(event.getException(), DDMFormScreenlet.UPDATE_RECORD_ACTION);
         }
     }
 }
