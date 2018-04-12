@@ -28,7 +28,9 @@ public class ServiceProvider {
 			if (!LiferayServerContext.getVersionFactory().isEmpty()) {
 				return (ServiceVersionFactory) Class.forName(LiferayServerContext.getVersionFactory()).newInstance();
 			}
-			if (LiferayServerContext.isLiferay7()) {
+			if (LiferayServerContext.isLiferay71()) {
+				return new ServiceVersionFactory71();
+			} else if (LiferayServerContext.isLiferay7()) {
 				return new ServiceVersionFactory70();
 			} else {
 				return new ServiceVersionFactory62();
