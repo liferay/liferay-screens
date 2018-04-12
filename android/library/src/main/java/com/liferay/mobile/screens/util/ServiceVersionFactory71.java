@@ -2,85 +2,112 @@ package com.liferay.mobile.screens.util;
 
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.asset.list.connector.AssetEntryConnector;
-import com.liferay.mobile.screens.asset.list.connector.AssetEntryConnector62;
+import com.liferay.mobile.screens.asset.list.connector.AssetEntryConnector70;
 import com.liferay.mobile.screens.asset.list.connector.ScreensAssetEntryConnector;
-import com.liferay.mobile.screens.asset.list.connector.ScreensAssetEntryConnector62;
+import com.liferay.mobile.screens.asset.list.connector.ScreensAssetEntryConnector70;
 import com.liferay.mobile.screens.auth.forgotpassword.connector.ForgotPasswordConnector;
 import com.liferay.mobile.screens.auth.login.connector.CurrentUserConnector;
-import com.liferay.mobile.screens.auth.login.connector.ScreensUserConnector62;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
-import com.liferay.mobile.screens.auth.login.connector.UserConnector62;
+import com.liferay.mobile.screens.auth.login.connector.UserConnector70;
+import com.liferay.mobile.screens.comment.connector.CommentConnector70;
 import com.liferay.mobile.screens.comment.connector.ScreensCommentConnector;
+import com.liferay.mobile.screens.comment.connector.ScreensCommentConnector70;
 import com.liferay.mobile.screens.comment.display.interactor.delete.CommentConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DDLRecordConnector;
-import com.liferay.mobile.screens.ddl.form.connector.DDLRecordConnector62;
+import com.liferay.mobile.screens.ddl.form.connector.DDLRecordConnector70;
 import com.liferay.mobile.screens.ddl.form.connector.DDLRecordSetConnector;
-import com.liferay.mobile.screens.ddl.form.connector.DDLRecordSetConnector62;
+import com.liferay.mobile.screens.ddl.form.connector.DDLRecordSetConnector70;
 import com.liferay.mobile.screens.ddl.form.connector.DDMStructureConnector;
-import com.liferay.mobile.screens.ddl.form.connector.DDMStructureConnector62;
 import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector;
-import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector62;
+import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector70;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector;
-import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector62;
+import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector70;
+import com.liferay.mobile.screens.ddl.form.connector.ScreensDDMStructureConnector70;
 import com.liferay.mobile.screens.ddm.form.connector.FormInstanceConnector;
+import com.liferay.mobile.screens.ddm.form.connector.FormInstanceConnector71;
 import com.liferay.mobile.screens.ddm.form.connector.FormInstanceRecordConnector;
+import com.liferay.mobile.screens.ddm.form.connector.FormInstanceRecordConnector71;
+import com.liferay.mobile.screens.ddm.form.model.FormInstanceRecord;
 import com.liferay.mobile.screens.rating.connector.ScreensRatingsConnector;
+import com.liferay.mobile.screens.rating.connector.ScreensRatingsConnector70;
 import com.liferay.mobile.screens.webcontent.display.connector.JournalContentConnector;
-import com.liferay.mobile.screens.webcontent.display.connector.JournalContentConnector62;
+import com.liferay.mobile.screens.webcontent.display.connector.JournalContentConnector70;
 import com.liferay.mobile.screens.webcontent.display.connector.ScreensJournalContentConnector;
-import com.liferay.mobile.screens.webcontent.display.connector.ScreensJournalContentConnector62;
+import com.liferay.mobile.screens.webcontent.display.connector.ScreensJournalContentConnector70;
 
 /**
  * @author Javier Gamarra
  */
-public class ServiceVersionFactory62 implements ServiceVersionFactory {
+public class ServiceVersionFactory71 implements ServiceVersionFactory {
 
-	public ForgotPasswordConnector getForgotPasswordConnector(Session session) {
-		return new ScreensUserConnector62(session);
+	@Override
+	public FormInstanceConnector getFormInstanceConnector(Session session) {
+		return new FormInstanceConnector71(session);
 	}
 
+	@Override
+	public FormInstanceRecordConnector getFormInstanceRecordConnector(Session session) {
+		return new FormInstanceRecordConnector71(session);
+	}
+
+	@Override
 	public UserConnector getUserConnector(Session session) {
-		return new UserConnector62(session);
+		return null;
 	}
 
+	@Override
 	public CurrentUserConnector getCurrentUserConnector(Session session) {
-		return new ScreensUserConnector62(session);
+		return null;
 	}
 
+	@Override
+	public ForgotPasswordConnector getForgotPasswordConnector(Session session) {
+		return null;
+	}
+
+	@Override
 	public DLAppConnector getDLAppConnector(Session session) {
-		return new DLAppConnector62(session);
+		return null;
 	}
 
+	@Override
 	public DDLRecordConnector getDDLRecordConnector(Session session) {
-		return new DDLRecordConnector62(session);
+		return null;
 	}
 
+	@Override
 	public ScreensDDLRecordConnector getScreensDDLRecordConnector(Session session) {
-		return new ScreensDDLRecordConnector62(session);
+		return null;
 	}
 
+	@Override
 	public DDLRecordSetConnector getDDLRecordSetConnector(Session session) {
-		return new DDLRecordSetConnector62(session);
+		return null;
 	}
 
+	@Override
 	public DDMStructureConnector getDDMStructureConnector(Session session) {
-		return new DDMStructureConnector62(session);
+		return null;
 	}
 
+	@Override
 	public AssetEntryConnector getAssetEntryConnector(Session session) {
-		return new AssetEntryConnector62(session);
+		return null;
 	}
 
+	@Override
 	public ScreensAssetEntryConnector getScreensAssetEntryConnector(Session session) {
-		return new ScreensAssetEntryConnector62(session);
+		return null;
 	}
 
+	@Override
 	public JournalContentConnector getJournalContentConnector(Session session) {
-		return new JournalContentConnector62(session);
+		return null;
 	}
 
+	@Override
 	public ScreensJournalContentConnector getScreensJournalContentConnector(Session session) {
-		return new ScreensJournalContentConnector62(session);
+		return null;
 	}
 
 	@Override
@@ -95,16 +122,6 @@ public class ServiceVersionFactory62 implements ServiceVersionFactory {
 
 	@Override
 	public CommentConnector getCommentConnector(Session session) {
-		return null;
-	}
-
-	@Override
-	public FormInstanceConnector getFormInstanceConnector(Session session) {
-		return null;
-	}
-
-	@Override
-	public FormInstanceRecordConnector getFormInstanceRecordConnector(Session session) {
 		return null;
 	}
 }

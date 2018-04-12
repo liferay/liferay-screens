@@ -13,6 +13,8 @@ import com.liferay.mobile.screens.ddl.form.connector.DDLRecordSetConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DDMStructureConnector;
 import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector;
+import com.liferay.mobile.screens.ddm.form.connector.FormInstanceConnector;
+import com.liferay.mobile.screens.ddm.form.connector.FormInstanceRecordConnector;
 import com.liferay.mobile.screens.rating.connector.ScreensRatingsConnector;
 import com.liferay.mobile.screens.webcontent.display.connector.JournalContentConnector;
 import com.liferay.mobile.screens.webcontent.display.connector.ScreensJournalContentConnector;
@@ -51,4 +53,8 @@ public interface ServiceVersionFactory {
 	ScreensRatingsConnector getScreensRatingsConnector(Session session);
 
 	CommentConnector getCommentConnector(Session session);
+
+	FormInstanceConnector getFormInstanceConnector(Session session);
+
+	FormInstanceRecordConnector getFormInstanceRecordConnector(Session session);
 }
