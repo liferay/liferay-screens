@@ -17,36 +17,36 @@ extension DDMField {
 
 	public enum Editor: String {
 
-		case Checkbox = "checkbox"
-		case Text = "text"
-		case Textarea = "textarea"
-		case Select = "select"
-		case Radio = "radio"
-		case Date = "date"
-		case Number = "number"
-		case Document = "documentlibrary"
-		case Geolocation = "geolocation"
-		case Image = "image"
-		case Unsupported = ""
+		case checkbox = "checkbox"
+		case text = "text"
+		case textarea = "textarea"
+		case select = "select"
+		case radio = "radio"
+		case date = "date"
+		case number = "number"
+		case document = "documentlibrary"
+		case geolocation = "geolocation"
+		case image = "image"
+		case unsupported = ""
 
 		public var defaultDataType: DataType {
 			switch self {
-			case .Checkbox:
-				return DataType.DDMBoolean
-			case .Text, .Textarea, .Select, .Radio:
-				return DataType.DDMString
-			case .Date:
-				return DataType.DDMDate
-			case .Number:
-				return DataType.DDMNumber
-			case .Document:
-				return DataType.DDMDocument
-			case .Image:
-				return DataType.DDMImage
-			case .Geolocation:
-				return DataType.DDMGeolocation
-			case .Unsupported:
-				return DataType.Unsupported
+			case .checkbox:
+				return DataType.ddmBoolean
+			case .text, .textarea, .select, .radio:
+				return DataType.ddmString
+			case .date:
+				return DataType.ddmDate
+			case .number:
+				return DataType.ddmNumber
+			case .document:
+				return DataType.ddmDocument
+			case .image:
+				return DataType.ddmImage
+			case .geolocation:
+				return DataType.ddmGeolocation
+			case .unsupported:
+				return DataType.unsupported
 			}
 		}
 
@@ -59,16 +59,16 @@ extension DDMField {
 
 			switch value {
 			case "integer", "decimal":
-				return .Number
+				return .number
 			case "boolean":
-				return .Checkbox
+				return .checkbox
 			default:
-				return Editor(rawValue: value) ?? .Unsupported
+				return Editor(rawValue: value) ?? .unsupported
 			}
 		}
 
 		public static func all() -> [Editor] {
-			return [Checkbox, Text, Textarea, Select, Radio, Date, Number, Document, Geolocation]
+			return [checkbox, text, textarea, select, radio, date, number, document, geolocation]
 		}
 
 		public func toCapitalizedName() -> String {

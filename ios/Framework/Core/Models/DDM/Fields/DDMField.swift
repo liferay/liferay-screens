@@ -86,7 +86,7 @@ open class DDMField: NSObject, NSCoding {
 	internal(set) var showLabel: Bool
 
 	public init(attributes: [String: AnyObject], locale: Locale) {
-		dataType = DataType(rawValue: valueAsString(attributes, key: "dataType")) ?? .Unsupported
+		dataType = DataType(rawValue: valueAsString(attributes, key: "dataType")) ?? .unsupported
 		editorType = Editor.from(attributes: attributes)
 
 		name = valueAsString(attributes, key: "name")
@@ -102,7 +102,7 @@ open class DDMField: NSObject, NSCoding {
 
 		super.init()
 
-		if dataType == .Unsupported && editorType != .Unsupported {
+		if dataType == .unsupported && editorType != .unsupported {
 			dataType = editorType.defaultDataType
 		}
 
@@ -120,10 +120,10 @@ open class DDMField: NSObject, NSCoding {
 
 	public required init?(coder aDecoder: NSCoder) {
 		let dataTypeValue = aDecoder.decodeObject(forKey: "dataType") as? String
-		dataType = DataType(rawValue: dataTypeValue ?? "") ?? .Unsupported
+		dataType = DataType(rawValue: dataTypeValue ?? "") ?? .unsupported
 
 		let editorTypeValue = aDecoder.decodeObject(forKey: "editorType") as? String
-		editorType = Editor(rawValue: editorTypeValue ?? "") ?? .Unsupported
+		editorType = Editor(rawValue: editorTypeValue ?? "") ?? .unsupported
 
 		name = aDecoder.decodeObject(forKey: "name") as! String
 		label = aDecoder.decodeObject(forKey: "label") as! String

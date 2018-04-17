@@ -20,7 +20,7 @@ open class DDMFieldNumber: DDMField {
 	open var minimumDecimalDigits = 2
 
 	open var isDecimal: Bool {
-		return dataType != DataType.DDMInteger
+		return dataType != DataType.ddmInteger
 	}
 
 	// MARK: DDMField
