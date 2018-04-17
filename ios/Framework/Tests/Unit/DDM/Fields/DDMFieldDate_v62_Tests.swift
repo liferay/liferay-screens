@@ -45,8 +45,8 @@ class DDMFieldDate_v62_Tests: XCTestCase {
 
 		let dateField = fields![0] as! DDMFieldDate
 
-		XCTAssertEqual(DDMField.DataType.DDMDate, dateField.dataType)
-		XCTAssertEqual(DDMField.Editor.Date, dateField.editorType)
+		XCTAssertEqual(DDMField.DataType.ddmDate, dateField.dataType)
+		XCTAssertEqual(DDMField.Editor.date, dateField.editorType)
 		XCTAssertEqual("A_Date", dateField.name)
 		XCTAssertEqual("A Date", dateField.label)
 		XCTAssertEqual("The tip", dateField.tip)

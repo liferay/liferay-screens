@@ -43,8 +43,8 @@ class DDMFieldDocument_Tests: XCTestCase {
 		XCTAssertTrue(fields![0] is DDMFieldDocument)
 		let docField = fields![0] as! DDMFieldDocument
 
-		XCTAssertEqual(DDMField.DataType.DDMDocument, docField.dataType)
-		XCTAssertEqual(DDMField.Editor.Document, docField.editorType)
+		XCTAssertEqual(DDMField.DataType.ddmDocument, docField.dataType)
+		XCTAssertEqual(DDMField.Editor.document, docField.editorType)
 		XCTAssertNil(docField.predefinedValue)
 		XCTAssertEqual("A_Document", docField.name)
 		XCTAssertEqual("A Document", docField.label)
@@ -72,8 +72,8 @@ class DDMFieldDocument_Tests: XCTestCase {
 		XCTAssertTrue(fields![0] is DDMFieldDocument)
 		let docField = fields![0] as! DDMFieldDocument
 
-		XCTAssertEqual(DDMField.DataType.DDMDocument, docField.dataType)
-		XCTAssertEqual(DDMField.Editor.Document, docField.editorType)
+		XCTAssertEqual(DDMField.DataType.ddmDocument, docField.dataType)
+		XCTAssertEqual(DDMField.Editor.document, docField.editorType)
 		XCTAssertNil(docField.predefinedValue)
 		XCTAssertEqual("A_Document", docField.name)
 		XCTAssertEqual("A Document", docField.label)

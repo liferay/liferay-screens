@@ -50,8 +50,8 @@ class DDMFieldString_Tests: XCTestCase {
 
 		let stringField = fields![0] as! DDMFieldString
 
-		XCTAssertEqual(DDMField.DataType.DDMString, stringField.dataType)
-		XCTAssertEqual(DDMField.Editor.Text, stringField.editorType)
+		XCTAssertEqual(DDMField.DataType.ddmString, stringField.dataType)
+		XCTAssertEqual(DDMField.Editor.text, stringField.editorType)
 		XCTAssertEqual("A_Text", stringField.name)
 		XCTAssertEqual("A Text", stringField.label)
 		XCTAssertEqual("The tip", stringField.tip)
@@ -90,8 +90,8 @@ class DDMFieldString_Tests: XCTestCase {
 
 		let stringField = fields![0] as! DDMFieldString
 
-		XCTAssertEqual(DDMField.DataType.DDMString, stringField.dataType)
-		XCTAssertEqual(DDMField.Editor.Text, stringField.editorType)
+		XCTAssertEqual(DDMField.DataType.ddmString, stringField.dataType)
+		XCTAssertEqual(DDMField.Editor.text, stringField.editorType)
 		XCTAssertEqual("A_Text", stringField.name)
 		XCTAssertEqual("A Text", stringField.label)
 		XCTAssertEqual("The tip", stringField.tip)

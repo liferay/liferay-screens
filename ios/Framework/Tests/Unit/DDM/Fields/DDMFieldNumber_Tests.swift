@@ -25,8 +25,8 @@ class DDMFieldNumber_Tests: XCTestCase {
 		XCTAssertTrue(fields![0] is DDMFieldNumber)
 		let numberField = fields![0] as! DDMFieldNumber
 
-		XCTAssertEqual(DDMField.DataType.DDMInteger, numberField.dataType)
-		XCTAssertEqual(DDMField.Editor.Number, numberField.editorType)
+		XCTAssertEqual(DDMField.DataType.ddmInteger, numberField.dataType)
+		XCTAssertEqual(DDMField.Editor.number, numberField.editorType)
 		XCTAssertTrue(numberField.predefinedValue is NSInteger)
 		XCTAssertEqual(NSInteger(16), numberField.predefinedValue as? NSInteger)
 	}
@@ -37,8 +37,8 @@ class DDMFieldNumber_Tests: XCTestCase {
 		XCTAssertTrue(fields![0] is DDMFieldNumber)
 		let numberField = fields![0] as! DDMFieldNumber
 
-		XCTAssertEqual(DDMField.DataType.DDMNumber, numberField.dataType)
-		XCTAssertEqual(DDMField.Editor.Number, numberField.editorType)
+		XCTAssertEqual(DDMField.DataType.ddmNumber, numberField.dataType)
+		XCTAssertEqual(DDMField.Editor.number, numberField.editorType)
 		XCTAssertTrue(numberField.predefinedValue is NSInteger)
 		XCTAssertEqual(NSInteger(16), numberField.predefinedValue as? NSInteger)
 	}
@@ -49,8 +49,8 @@ class DDMFieldNumber_Tests: XCTestCase {
 		XCTAssertTrue(fields![0] is DDMFieldNumber)
 		let numberField = fields![0] as! DDMFieldNumber
 
-		XCTAssertEqual(DDMField.DataType.DDMDouble, numberField.dataType)
-		XCTAssertEqual(DDMField.Editor.Number, numberField.editorType)
+		XCTAssertEqual(DDMField.DataType.ddmDouble, numberField.dataType)
+		XCTAssertEqual(DDMField.Editor.number, numberField.editorType)
 		XCTAssertTrue(numberField.predefinedValue is NSDecimalNumber)
 		XCTAssertEqualWithAccuracy(Float(16.05),
 			(numberField.predefinedValue as! NSDecimalNumber).floatValue, accuracy: 0.001)
@@ -70,8 +70,8 @@ class DDMFieldNumber_Tests: XCTestCase {
 		XCTAssertTrue(fields![0] is DDMFieldNumber)
 		let numberField = fields![0] as! DDMFieldNumber
 
-		XCTAssertEqual(DDMField.DataType.DDMInteger, numberField.dataType)
-		XCTAssertEqual(DDMField.Editor.Number, numberField.editorType)
+		XCTAssertEqual(DDMField.DataType.ddmInteger, numberField.dataType)
+		XCTAssertEqual(DDMField.Editor.number, numberField.editorType)
 		XCTAssertTrue(numberField.predefinedValue is NSInteger)
 		XCTAssertEqual(NSInteger(16), numberField.predefinedValue as? NSInteger)
 	}
@@ -82,8 +82,8 @@ class DDMFieldNumber_Tests: XCTestCase {
 		XCTAssertTrue(fields![0] is DDMFieldNumber)
 		let numberField = fields![0] as! DDMFieldNumber
 
-		XCTAssertEqual(DDMField.DataType.DDMNumber, numberField.dataType)
-		XCTAssertEqual(DDMField.Editor.Number, numberField.editorType)
+		XCTAssertEqual(DDMField.DataType.ddmNumber, numberField.dataType)
+		XCTAssertEqual(DDMField.Editor.number, numberField.editorType)
 		XCTAssertTrue(numberField.predefinedValue is NSInteger)
 		XCTAssertEqual(NSInteger(16), numberField.predefinedValue as? NSInteger)
 	}
@@ -94,8 +94,8 @@ class DDMFieldNumber_Tests: XCTestCase {
 		XCTAssertTrue(fields![0] is DDMFieldNumber)
 		let numberField = fields![0] as! DDMFieldNumber
 
-		XCTAssertEqual(DDMField.DataType.DDMDouble, numberField.dataType)
-		XCTAssertEqual(DDMField.Editor.Number, numberField.editorType)
+		XCTAssertEqual(DDMField.DataType.ddmDouble, numberField.dataType)
+		XCTAssertEqual(DDMField.Editor.number, numberField.editorType)
 		XCTAssertTrue(numberField.predefinedValue is NSDecimalNumber)
 		XCTAssertEqualWithAccuracy(Float(16.05),
 			(numberField.predefinedValue as! NSDecimalNumber).floatValue, accuracy: 0.001)

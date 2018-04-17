@@ -28,8 +28,8 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 		let stringField = fields![0] as! DDMFieldStringWithOptions
 
-		XCTAssertEqual(DDMField.DataType.DDMString, stringField.dataType)
-		XCTAssertEqual(DDMField.Editor.Select, stringField.editorType)
+		XCTAssertEqual(DDMField.DataType.ddmString, stringField.dataType)
+		XCTAssertEqual(DDMField.Editor.select, stringField.editorType)
 		XCTAssertEqual("A_Select", stringField.name)
 		XCTAssertEqual("A Select", stringField.label)
 		XCTAssertTrue(stringField.multiple)
@@ -97,8 +97,8 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 		let stringField = fields![0] as! DDMFieldStringWithOptions
 
-		XCTAssertEqual(DDMField.DataType.DDMString, stringField.dataType)
-		XCTAssertEqual(DDMField.Editor.Select, stringField.editorType)
+		XCTAssertEqual(DDMField.DataType.ddmString, stringField.dataType)
+		XCTAssertEqual(DDMField.Editor.select, stringField.editorType)
 		XCTAssertEqual("A_Select", stringField.name)
 		XCTAssertEqual("A Select", stringField.label)
 		XCTAssertTrue(stringField.multiple)

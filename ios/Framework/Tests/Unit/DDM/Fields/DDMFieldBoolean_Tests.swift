@@ -190,8 +190,8 @@ class DDMFieldBoolean_Tests: XCTestCase {
 
 		let booleanField = fields![0] as! DDMFieldBoolean
 
-		XCTAssertEqual(DDMField.DataType.DDMBoolean, booleanField.dataType)
-		XCTAssertEqual(DDMField.Editor.Checkbox, booleanField.editorType)
+		XCTAssertEqual(DDMField.DataType.ddmBoolean, booleanField.dataType)
+		XCTAssertEqual(DDMField.Editor.checkbox, booleanField.editorType)
 		XCTAssertEqual("A_Boolean", booleanField.name)
 		XCTAssertEqual("A Boolean", booleanField.label)
 		XCTAssertEqual("The tip", booleanField.tip)
@@ -229,8 +229,8 @@ class DDMFieldBoolean_Tests: XCTestCase {
 
 		let booleanField = fields![0] as! DDMFieldBoolean
 
-		XCTAssertEqual(DDMField.DataType.DDMBoolean, booleanField.dataType)
-		XCTAssertEqual(DDMField.Editor.Checkbox, booleanField.editorType)
+		XCTAssertEqual(DDMField.DataType.ddmBoolean, booleanField.dataType)
+		XCTAssertEqual(DDMField.Editor.checkbox, booleanField.editorType)
 		XCTAssertEqual("A_Boolean", booleanField.name)
 		XCTAssertEqual("A Boolean", booleanField.label)
 		XCTAssertEqual("The tip", booleanField.tip)
