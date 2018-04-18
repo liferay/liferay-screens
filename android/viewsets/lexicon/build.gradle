@@ -1,0 +1,35 @@
+apply plugin: 'com.android.library'
+
+android {
+	compileSdkVersion rootProject.ext.compileSdkVersion
+	buildToolsVersion rootProject.ext.buildToolsVersion
+
+	defaultConfig {
+		minSdkVersion rootProject.ext.minSdkVersion
+		targetSdkVersion rootProject.ext.targetSdkVersion
+		versionCode rootProject.ext.versionCode
+		versionName rootProject.ext.versionName
+	}
+
+	buildTypes {
+		release {
+			minifyEnabled false
+			proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+		}
+	}
+}
+
+dependencies {
+	implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+	api project(':liferay-screens')
+
+	implementation libraries.design
+	implementation libraries.recyclerView
+
+	implementation 'com.daimajia.swipelayout:library:1.2.0'
+	implementation 'com.makeramen:roundedimageview:2.2.1'
+}
+
+apply from: '../../bintray.gradle'
+apply from: '../../install.gradle'
