@@ -1,9 +1,12 @@
 package com.liferay.mobile.screens.ddm.form;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 
+import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.interactor.Interactor;
 import com.liferay.mobile.screens.ddm.form.interactor.FormContextEvent;
@@ -33,6 +36,11 @@ public class DDMFormScreenlet extends BaseScreenlet<DDMFormViewModel, Interactor
     private long formInstanceId;
     private DDMFormListener listener;
 
+    private FormInstance formInstance;
+    private FormInstanceRecord formInstanceRecord;
+
+    private String currentLanguageId;
+
     public DDMFormScreenlet(Context context) {
         super(context);
     }
@@ -45,7 +53,9 @@ public class DDMFormScreenlet extends BaseScreenlet<DDMFormViewModel, Interactor
         super(context, attrs, defStyleAttr);
     }
 
-    public DDMFormScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public DDMFormScreenlet(Context context, AttributeSet attrs, int defStyleAttr,
+                            int defStyleRes) {
+
         super(context, attrs, defStyleAttr, defStyleRes);
     }
 
@@ -113,7 +123,18 @@ public class DDMFormScreenlet extends BaseScreenlet<DDMFormViewModel, Interactor
 
     @Override
     protected View createScreenletView(Context context, AttributeSet attributes) {
-        return null;
+        TypedArray typedArray =
+                context.getTheme().obtainStyledAttributes(attributes, R.styleable.DDMFormScreenlet, 0, 0);
+
+        formInstanceId = castToLong(typedArray.getString(R.styleable.DDMFormScreenlet_formInstanceId));
+
+        int layoutId = typedArray.getResourceId(R.styleable.DDMFormScreenlet_layoutId, getDefaultLayoutId());
+
+        View view = LayoutInflater.from(context).inflate(layoutId, null);
+
+        typedArray.recycle();
+
+        return view;
     }
 
     @Override
@@ -135,26 +156,34 @@ public class DDMFormScreenlet extends BaseScreenlet<DDMFormViewModel, Interactor
     }
 
     @Override
-    protected void onUserAction(String userActionName, Interactor<DDMFormListener> interactor, Object... args) {
+    protected void onUserAction(String userActionName, Interactor<DDMFormListener> interactor,
+                                Object... args) {
+
         switch (userActionName) {
             case EVALUATE_CONTEXT_ACTION:
-                FormContextEvent evaluateContextEvent = new FormContextEvent(null, getFormInstanceId(), null);
+                FormContextEvent evaluateContextEvent = new FormContextEvent(formInstance,
+
+                        formInstanceRecord, currentLanguageId);
+
                 ((FormContextEvaluateInteractor) interactor).start(evaluateContextEvent);
                 break;
             case LOAD_FORM_ACTION:
                 ((FormInstanceLoadInteractor) interactor).start(getFormInstanceId());
                 break;
             case LOAD_RECORD_ACTION:
-                // TODO Get FormInstanceRecordId
-                ((FormInstanceRecordLoadInteractor) interactor).start();
+                long formInstanceRecordId = formInstanceRecord.getFormInstanceRecordId();
+                ((FormInstanceRecordLoadInteractor) interactor).start(formInstanceRecordId);
                 break;
             case ADD_RECORD_ACTION:
-                FormInstanceRecordEvent addRecordEvent = new FormInstanceRecordEvent(null, getFormInstanceId(), true);
+                FormInstanceRecordEvent addRecordEvent = new FormInstanceRecordEvent(formInstance,
+                        formInstanceRecord);
+
                 ((FormInstanceRecordAddInteractor) interactor).start(addRecordEvent);
                 break;
             case UPDATE_RECORD_ACTION:
-                // TODO Get FormInstanceRecordId
-                FormInstanceRecordEvent updateRecordEvent = new FormInstanceRecordEvent(null, getFormInstanceId(), 0, true);
+                FormInstanceRecordEvent updateRecordEvent = new FormInstanceRecordEvent(
+                        formInstance, formInstanceRecord);
+
                 ((FormInstanceRecordUpdateInteractor) interactor).start(updateRecordEvent);
                 break;
         }
