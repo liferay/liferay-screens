@@ -1,68 +1,57 @@
 package com.liferay.mobile.screens.ddm.form.interactor;
 
 import com.liferay.mobile.screens.base.list.interactor.ListEvent;
+import com.liferay.mobile.screens.ddm.form.model.FormInstance;
 import com.liferay.mobile.screens.ddm.form.model.FormInstanceRecord;
 
 import org.json.JSONArray;
+
+import static com.liferay.mobile.screens.cache.Cache.SEPARATOR;
 
 /**
  * @author Paulo Cruz
  */
 public class FormInstanceRecordEvent extends ListEvent<FormInstanceRecord> {
 
+    private FormInstance formInstance;
+    private FormInstanceRecord formInstanceRecord;
+
     public FormInstanceRecordEvent(FormInstanceRecord formInstanceRecord) {
-        _formInstanceRecord = formInstanceRecord;
+        this.formInstanceRecord = formInstanceRecord;
     }
 
-    public FormInstanceRecordEvent(JSONArray fieldValues, long formInstanceId, boolean isDraft) {
-        _fieldValues = fieldValues;
-        _formInstanceId = formInstanceId;
-        _isDraft = isDraft;
-    }
+    public FormInstanceRecordEvent(FormInstance formInstance,
+                                   FormInstanceRecord formInstanceRecord) {
 
-    public FormInstanceRecordEvent(JSONArray fieldValues, long formInstanceId,
-        long formInstanceRecordId, boolean isDraft) {
-
-        _fieldValues = fieldValues;
-        _formInstanceId = formInstanceId;
-        _formInstanceRecordId = formInstanceRecordId;
-        _isDraft = isDraft;
-    }
-
-    public JSONArray getFieldValues() {
-        return _fieldValues;
-    }
-
-    public long getFormInstanceId() {
-        return _formInstanceId;
-    }
-
-    public long getFormInstanceRecordId() {
-        return _formInstanceRecordId;
+        this.formInstance = formInstance;
+        this.formInstanceRecord = formInstanceRecord;
     }
 
     @Override
     public String getListKey() {
-        return null;
+        long formInstanceId = formInstance.getFormInstanceId();
+        long formInstanceRecordId = formInstanceRecord.getFormInstanceRecordId();
+        return formInstanceId + SEPARATOR + formInstanceRecordId;
     }
 
     @Override
     public FormInstanceRecord getModel() {
-        return _formInstanceRecord;
+        return getFormInstanceRecord();
     }
 
-    public boolean isDraft() {
-        return _isDraft;
+    public FormInstance getFormInstance() {
+        return formInstance;
     }
 
-    public void setModel(FormInstanceRecord formInstanceRecord) {
-        _formInstanceRecord = formInstanceRecord;
+    public void setFormInstance(FormInstance formInstance) {
+        this.formInstance = formInstance;
     }
 
-    private JSONArray _fieldValues;
-    private long _formInstanceId;
-    private long _formInstanceRecordId;
-    private boolean _isDraft;
+    public FormInstanceRecord getFormInstanceRecord() {
+        return formInstanceRecord;
+    }
 
-    private FormInstanceRecord _formInstanceRecord;
+    public void setFormInstanceRecord(FormInstanceRecord formInstanceRecord) {
+        this.formInstanceRecord = formInstanceRecord;
+    }
 }

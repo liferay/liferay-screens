@@ -6,7 +6,11 @@ import com.liferay.mobile.screens.ddm.form.DDMFormScreenlet;
 import com.liferay.mobile.screens.ddm.form.connector.FormInstanceConnector;
 import com.liferay.mobile.screens.ddm.form.interactor.FormContextEvent;
 import com.liferay.mobile.screens.ddm.form.model.FormContext;
+import com.liferay.mobile.screens.ddm.form.model.FormInstance;
+import com.liferay.mobile.screens.ddm.form.model.FormInstanceRecord;
 import com.liferay.mobile.screens.util.ServiceProvider;
+
+import org.json.JSONArray;
 
 /**
  * @author Paulo Cruz
@@ -19,10 +23,15 @@ public class FormContextEvaluateInteractor
         FormInstanceConnector connector =
                 ServiceProvider.getInstance().getFormInstanceConnector(getSession());
 
-        FormContext formContext = connector.evaluateContext(
-                event.getFormInstanceId(), event.getLanguageId(), event.getFieldValues());
+        FormInstance formInstance = event.getFormInstance();
+        FormInstanceRecord formInstanceRecord = event.getFormInstanceRecord();
 
-        event.setModel(formContext);
+        JSONArray fieldValuesJson = new JSONArray(formInstanceRecord.getFieldValues());
+
+        FormContext formContext = connector.evaluateContext(formInstance.getFormInstanceId(),
+                event.getLanguageId(), fieldValuesJson);
+
+        event.setFormContext(formContext);
 
         return event;
     }

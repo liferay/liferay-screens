@@ -8,6 +8,8 @@ import com.liferay.mobile.screens.ddm.form.interactor.FormInstanceRecordEvent;
 import com.liferay.mobile.screens.ddm.form.model.FormInstanceRecord;
 import com.liferay.mobile.screens.util.ServiceProvider;
 
+import org.json.JSONArray;
+
 /**
  * @author Paulo Cruz
  */
@@ -15,16 +17,18 @@ public class FormInstanceRecordUpdateInteractor
     extends BaseCacheWriteInteractor<DDMFormListener, FormInstanceRecordEvent> {
 
     @Override
-    public FormInstanceRecordEvent execute(FormInstanceRecordEvent event)
-        throws Exception {
-
+    public FormInstanceRecordEvent execute(FormInstanceRecordEvent event) throws Exception {
         FormInstanceRecordConnector connector =
                 ServiceProvider.getInstance().getFormInstanceRecordConnector(getSession());
 
-        FormInstanceRecord formInstanceRecord = connector.updateFormInstanceRecord(
-                event.getFormInstanceRecordId(), event.isDraft(), event.getFieldValues());
+        FormInstanceRecord currentFormInstanceRecord = event.getModel();
+        JSONArray fieldValuesJson = new JSONArray(currentFormInstanceRecord.getFieldValues());
 
-        event.setModel(formInstanceRecord);
+        FormInstanceRecord formInstanceRecord = connector.updateFormInstanceRecord(
+                currentFormInstanceRecord.getFormInstanceRecordId(),
+                currentFormInstanceRecord.isDraft(), fieldValuesJson);
+
+        event.setFormInstanceRecord(formInstanceRecord);
 
         return event;
     }

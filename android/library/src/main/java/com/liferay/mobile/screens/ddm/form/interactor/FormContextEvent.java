@@ -2,51 +2,66 @@ package com.liferay.mobile.screens.ddm.form.interactor;
 
 import com.liferay.mobile.screens.base.list.interactor.ListEvent;
 import com.liferay.mobile.screens.ddm.form.model.FormContext;
+import com.liferay.mobile.screens.ddm.form.model.FormInstance;
+import com.liferay.mobile.screens.ddm.form.model.FormInstanceRecord;
 
 import org.json.JSONArray;
+
+import static com.liferay.mobile.screens.cache.Cache.SEPARATOR;
 
 /**
  * @author Paulo Cruz
  */
 public class FormContextEvent extends ListEvent<FormContext> {
 
-    public FormContextEvent(JSONArray fieldValues, long formInstanceId, String languageId) {
-        _fieldValues = fieldValues;
-        _formInstanceId = formInstanceId;
-        _languageId = languageId;
+    private final String CONTEXT = "CONTEXT";
+
+    private FormContext formContext;
+    private FormInstance formInstance;
+    private FormInstanceRecord formInstanceRecord;
+    private String languageId;
+
+    public FormContextEvent() {
+        super();
     }
 
-    public JSONArray getFieldValues() {
-        return _fieldValues;
-    }
+    public FormContextEvent(FormInstance formInstance, FormInstanceRecord formInstanceRecord,
+                            String languageId) {
 
-    public long getFormInstanceId() {
-        return _formInstanceId;
-    }
-
-    public String getLanguageId() {
-        return _languageId;
+        this.formInstance = formInstance;
+        this.formInstanceRecord = formInstanceRecord;
+        this.languageId = languageId;
     }
 
     @Override
     public String getListKey() {
-        return null;
+        long formInstanceId = formInstance.getFormInstanceId();
+        long formInstanceRecordId = formInstanceRecord.getFormInstanceRecordId();
+        return CONTEXT + formInstanceId + SEPARATOR + formInstanceRecordId;
     }
 
     @Override
     public FormContext getModel() {
-        return _formContext;
+        return getFormContext();
     }
 
-
-    public void setModel(FormContext formInstanceRecord) {
-        _formContext = formInstanceRecord;
+    public FormContext getFormContext() {
+        return formContext;
     }
 
-    private JSONArray _fieldValues;
-    private long _formInstanceId;
-    private String _languageId;
+    public void setFormContext(FormContext formContext) {
+        this.formContext = formContext;
+    }
 
-    private FormContext _formContext;
+    public FormInstance getFormInstance() {
+        return formInstance;
+    }
 
+    public FormInstanceRecord getFormInstanceRecord() {
+        return formInstanceRecord;
+    }
+
+    public String getLanguageId() {
+        return languageId;
+    }
 }

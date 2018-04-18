@@ -8,33 +8,31 @@ import com.liferay.mobile.screens.ddm.form.model.FormInstance;
  */
 public class FormInstanceEvent extends ListEvent<FormInstance> {
 
-    public FormInstanceEvent(long formInstanceId) {
-        _formInstanceId = formInstanceId;
+    private FormInstance formInstance;
+
+    public FormInstanceEvent() {
+        super();
     }
 
     public FormInstanceEvent(FormInstance formInstance) {
-        _formInstance = formInstance;
-    }
-
-    public long getFormInstanceId() {
-        return _formInstanceId;
+        this.formInstance = formInstance;
     }
 
     @Override
     public String getListKey() {
-        return null;
+        return formInstance.getFormInstanceId() + "";
     }
 
     @Override
     public FormInstance getModel() {
-        return _formInstance;
+        return getFormInstance();
     }
 
-    public void setModel(FormInstance formInstance) {
-        _formInstance = formInstance;
+    public FormInstance getFormInstance() {
+        return formInstance;
     }
 
-    private long _formInstanceId;
-
-    private FormInstance _formInstance;
+    public void setFormInstance(FormInstance formInstance) {
+        this.formInstance = formInstance;
+    }
 }

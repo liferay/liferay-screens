@@ -8,6 +8,8 @@ import com.liferay.mobile.screens.ddm.form.interactor.FormInstanceRecordEvent;
 import com.liferay.mobile.screens.ddm.form.model.FormInstanceRecord;
 import com.liferay.mobile.screens.util.ServiceProvider;
 
+import org.json.JSONArray;
+
 /**
  * @author Paulo Cruz
  */
@@ -19,10 +21,14 @@ public class FormInstanceRecordAddInteractor
         FormInstanceRecordConnector connector =
             ServiceProvider.getInstance().getFormInstanceRecordConnector(getSession());
 
-        FormInstanceRecord formInstanceRecord = connector.addFormInstanceRecord(
-                event.getFormInstanceId(), event.isDraft(), event.getFieldValues());
+        FormInstanceRecord currentFormInstanceRecord = event.getModel();
+        JSONArray fieldValuesJson = new JSONArray(currentFormInstanceRecord.getFieldValues());
 
-        event.setModel(formInstanceRecord);
+        FormInstanceRecord updatedFormInstanceRecord = connector.addFormInstanceRecord(
+                currentFormInstanceRecord.getFormInstanceRecordId(),
+                currentFormInstanceRecord.isDraft(), fieldValuesJson);
+
+        event.setFormInstanceRecord(updatedFormInstanceRecord);
 
         return event;
     }
