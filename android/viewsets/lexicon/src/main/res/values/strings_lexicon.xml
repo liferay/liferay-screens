@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">liferay-lexicon-viewset</string>
+    <string name="DDLFormScreenlet_lexicon">ddl_form_lexicon</string>
 </resources>
