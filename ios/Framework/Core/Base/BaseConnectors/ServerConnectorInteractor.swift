@@ -75,7 +75,7 @@ open class ServerConnectorInteractor: Interactor {
 	open func completedConnector(_ c: ServerConnector) {
 	}
 
-	open func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> Void) {
+	open func readFromCache(_ c: ServerConnector, result: @escaping (Any?) -> Void) {
 		result(nil)
 	}
 

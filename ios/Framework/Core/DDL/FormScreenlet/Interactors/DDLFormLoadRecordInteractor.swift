@@ -159,7 +159,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
-	override func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> Void) {
+	override func readFromCache(_ c: ServerConnector, result: @escaping (Any?) -> Void) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return
@@ -193,7 +193,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 					loadRecordOp.resultRecordId = self.recordId
 					chain.currentConnector = loadRecordOp
 
-					result(true as AnyObject?)
+					result(true)
 				}
 				else {
 					result(nil)
@@ -214,7 +214,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 				loadRecordCon.resultRecordAttributes = record.attributes
 				loadRecordCon.resultRecordId = loadRecordCon.recordId
 
-				result(loadRecordCon.resultRecordData as AnyObject?)
+				result(loadRecordCon.resultRecordData)
 			}
 		}
 		else {

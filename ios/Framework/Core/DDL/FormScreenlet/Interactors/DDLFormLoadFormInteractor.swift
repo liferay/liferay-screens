@@ -54,7 +54,7 @@ class DDLFormLoadFormInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
-	override func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> Void) {
+	override func readFromCache(_ c: ServerConnector, result: @escaping (Any?) -> Void) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return

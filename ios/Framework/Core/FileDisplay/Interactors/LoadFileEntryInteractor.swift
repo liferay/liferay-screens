@@ -43,7 +43,7 @@ class LoadFileEntryInteractor: ServerReadConnectorInteractor {
 
 	// MARK: Cache methods
 
-	override func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> Void) {
+	override func readFromCache(_ c: ServerConnector, result: @escaping (Any?) -> Void) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return
@@ -57,7 +57,7 @@ class LoadFileEntryInteractor: ServerReadConnectorInteractor {
 				collection: "load-file-entry",
 				key: "filEntryId-\(fileEntry.fileEntryId)") {
 			loadCon.resultUrl = $0
-			result($0 as AnyObject?)
+			result($0)
 		}
 	}
 

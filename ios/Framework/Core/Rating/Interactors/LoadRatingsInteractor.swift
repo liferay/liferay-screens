@@ -86,7 +86,7 @@ open class LoadRatingsInteractor: ServerReadConnectorInteractor {
 
 	// MARK: Cache methods
 
-	override open func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> Void) {
+	override open func readFromCache(_ c: ServerConnector, result: @escaping (Any?) -> Void) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return

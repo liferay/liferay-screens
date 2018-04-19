@@ -148,7 +148,7 @@ open class BaseListScreenlet: BaseScreenlet {
 		synchronized(paginationInteractors as AnyObject) {
 			if self.paginationInteractors.index(forKey: page) == nil {
 
-				self.performAction(name: BaseListScreenlet.LoadPageAction, sender: page as AnyObject?)
+				self.performAction(name: BaseListScreenlet.LoadPageAction, sender: page)
 			}
 		}
 	}
