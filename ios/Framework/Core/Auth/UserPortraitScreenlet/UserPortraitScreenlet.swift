@@ -135,7 +135,7 @@ open class UserPortraitScreenlet: BaseScreenlet {
 		screenletView?.editable = self.editable
 	}
 
-	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
+	override open func createInteractor(name: String, sender: Any?) -> Interactor? {
 		if isActionRunning(name) {
 			cancelInteractorsForAction(name)
 		}

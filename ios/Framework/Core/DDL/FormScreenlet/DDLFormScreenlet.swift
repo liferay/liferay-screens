@@ -235,7 +235,7 @@ open class DDLFormScreenlet: BaseScreenlet {
 		}
 	}
 
-	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
+	override open func createInteractor(name: String, sender: Any?) -> Interactor? {
 		switch name {
 		case DDLFormScreenlet.LoadFormAction:
 			return createLoadFormInteractor()
@@ -253,7 +253,7 @@ open class DDLFormScreenlet: BaseScreenlet {
 		return nil
 	}
 
-	override open func onAction(name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
+	override open func onAction(name: String, interactor: Interactor, sender: Any?) -> Bool {
 		let result = super.onAction(name: name, interactor: interactor, sender: sender)
 
 		if result && name == DDLFormScreenlet.UploadDocumentAction {

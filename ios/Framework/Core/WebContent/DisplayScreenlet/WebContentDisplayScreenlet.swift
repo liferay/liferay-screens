@@ -105,7 +105,7 @@ open class WebContentDisplayScreenlet: BaseScreenlet {
 		}
 	}
 
-	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
+	override open func createInteractor(name: String, sender: Any?) -> Interactor? {
 		let interactor = WebContentDisplayLoadInteractor(
 			screenlet: self,
 			groupId: self.groupId,

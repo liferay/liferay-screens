@@ -95,7 +95,7 @@ open class ForgotPasswordScreenlet: BaseScreenlet, BasicAuthBasedType, Anonymous
 		}
 	}
 
-	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
+	override open func createInteractor(name: String, sender: Any?) -> Interactor? {
 		let interactor = ForgotPasswordInteractor(screenlet: self)
 
 		interactor.onSuccess = {

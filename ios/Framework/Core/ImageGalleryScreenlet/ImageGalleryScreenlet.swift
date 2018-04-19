@@ -271,7 +271,7 @@ open class ImageGalleryScreenlet: BaseListScreenlet {
 	}
 
 	@discardableResult
-	override open func performAction(name: String, sender: AnyObject?) -> Bool {
+	override open func performAction(name: String, sender: Any?) -> Bool {
 		if name == ImageGalleryScreenlet.EnqueueUploadAction {
 			guard let uploadEntry = sender as? ImageEntryUpload else {
 				return false
@@ -294,7 +294,7 @@ open class ImageGalleryScreenlet: BaseListScreenlet {
 		return super.performAction(name: name, sender: sender)
 	}
 
-	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
+	override open func createInteractor(name: String, sender: Any?) -> Interactor? {
 		switch name {
 		case BaseListScreenlet.LoadInitialPageAction, BaseListScreenlet.LoadPageAction:
 			return super.createInteractor(name: name, sender: sender)

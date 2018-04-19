@@ -36,7 +36,7 @@ open class BaseScreenletView: UIView {
 
 	open var themeName = "default"
 
-	internal var onPerformAction: ((String, AnyObject?) -> Bool)?
+	internal var onPerformAction: ((String, Any?) -> Bool)?
 
 	deinit {
 		onDestroy()
@@ -125,7 +125,7 @@ open class BaseScreenletView: UIView {
 	 * onPreAction is invoked just before any user action is invoked.
 	 * Override this method to decide whether or not the user action should be fired.
 	 */
-	open dynamic func onPreAction(name: String, sender: AnyObject?) -> Bool {
+	open dynamic func onPreAction(name: String, sender: Any) -> Bool {
 		return true
 	}
 
@@ -164,7 +164,7 @@ open class BaseScreenletView: UIView {
 		userAction(name: name, sender: nil)
 	}
 
-	open dynamic func userAction(name: String?, sender: AnyObject?) {
+	open dynamic func userAction(name: String?, sender: Any?) {
 		let actionName = name ?? BaseScreenlet.DefaultAction
 
 		if onPreAction(name: actionName, sender: sender) {

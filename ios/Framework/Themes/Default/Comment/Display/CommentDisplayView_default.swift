@@ -160,7 +160,7 @@ open class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMode
 		editViewController?.dismiss(animated: true, completion: nil)
 
 		if let updatedBody = body, updatedBody != comment?.plainBody {
-			userAction(name: CommentDisplayScreenlet.UpdateAction, sender: updatedBody as AnyObject?)
+			userAction(name: CommentDisplayScreenlet.UpdateAction, sender: updatedBody)
 		}
 	}
 

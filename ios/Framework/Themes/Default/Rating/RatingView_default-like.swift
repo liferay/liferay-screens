@@ -68,10 +68,10 @@ open class RatingView_default_like: BaseScreenletView, RatingViewModel {
 	@IBAction func likeButtonClicked(_ sender: AnyObject) {
 		if let rating = ratingEntry {
 			if rating.userScore == -1 {
-				self.userAction(name: RatingScreenlet.UpdateRatingAction, sender: 1 as AnyObject?)
+				self.userAction(name: RatingScreenlet.UpdateRatingAction, sender: 1)
 			}
 			else {
-				self.userAction(name: RatingScreenlet.DeleteRatingAction, sender: 0 as AnyObject?)
+				self.userAction(name: RatingScreenlet.DeleteRatingAction, sender: 0)
 			}
 		}
 	}

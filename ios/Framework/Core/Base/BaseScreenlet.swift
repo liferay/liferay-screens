@@ -28,7 +28,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	/// - Returns: Custom interactor.
 	@objc optional func screenlet(_ screenlet: BaseScreenlet,
 		customInteractorForAction: String,
-		withSender: AnyObject?) -> Interactor?
+		withSender: Any?) -> Interactor?
 
 }
 
@@ -257,7 +257,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	///   - sender: Source of the event.
 	/// - Returns: False interactor ready to be started.
 	@discardableResult
-	open dynamic func performAction(name: String, sender: AnyObject? = nil) -> Bool {
+	open dynamic func performAction(name: String, sender: Any? = nil) -> Bool {
 		guard !isRunningOnInterfaceBuilder else {
 			return false
 		}
@@ -299,7 +299,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	///   - sender: Source of the event.
 	/// - Returns: Call for starting the interactor.
 	@discardableResult
-	open dynamic func onAction(name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
+	open dynamic func onAction(name: String, interactor: Interactor, sender: Any?) -> Bool {
 		onStartInteraction()
 		screenletView?.onStartInteraction()
 
@@ -337,7 +337,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	///   - name: Action name.
 	///   - sender: Source of the event.
 	/// - Returns: Proper interactor for each use case.
-	open dynamic func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
+	open dynamic func createInteractor(name: String, sender: Any?) -> Interactor? {
 		return nil
 	}
 
