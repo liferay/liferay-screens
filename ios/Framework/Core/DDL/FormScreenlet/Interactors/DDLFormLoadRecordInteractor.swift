@@ -175,7 +175,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 												"recordId-\(recordId)"]) { objects, attributes in
 
 				if let recordForm = objects[0] as? DDLRecord,
-						let recordUserId = attributes[0]?["userId"]?.int64Value,
+						let recordUserId = attributes[0]?["userId"] as? Int64,
 						let recordData = objects[1] as? [String: AnyObject],
 						let recordAttributes = attributes[1] {
 
