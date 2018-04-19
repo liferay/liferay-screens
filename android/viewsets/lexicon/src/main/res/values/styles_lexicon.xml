@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="lexicon_theme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary_lexicon</item>
+        <item name="colorAccent">@color/colorPrimaryLight_lexicon</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_lexicon</item>
+
+        <item name="colorControlNormal">@color/colorPrimary_lexicon</item>
+        <item name="colorControlHighlight">@color/colorAccent_default</item>
+        <item name="colorControlActivated">@color/colorPrimary_lexicon</item>
+
+        <item name="android:textColorPrimary">@color/textColorPrimary_default</item>
+        <item name="android:textColorSecondary">@color/textColorSecondary_default</item>
+
+        <item name="android:textViewStyle">@style/lexicon_text_view</item>
+        <item name="android:editTextStyle">@style/lexicon_edit_text</item>
+        <item name="android:buttonStyle">@style/lexicon_button</item>
+
+        <item name="editTextStyle">@style/lexicon_edit_text</item>
+        <item name="buttonStyle">@style/lexicon_button</item>
+
+        <!--<item name="android:fontFamily">sans-serif</item>-->
+
+        <item name="themeName">lexicon_theme</item>
+    </style>
+
+    <style name="lexicon_date_picker" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/colorPrimaryDark_lexicon</item>
+        <item name="colorAccent">@color/colorPrimaryDark_lexicon</item>
+    </style>
+
+    <style name="lexicon_button" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/lexicon_button_selector</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="lexicon_edit_text" parent="Widget.AppCompat.EditText">
+        <item name="android:paddingTop">@dimen/default_edit_text_padding</item>
+        <item name="android:paddingBottom">@dimen/default_edit_text_padding</item>
+        <item name="android:paddingLeft">@dimen/default_edit_text_drawable_padding</item>
+        <item name="android:paddingRight">@dimen/default_edit_text_padding</item>
+        <item name="android:background">@drawable/default_edit_text_selector</item>
+        <item name="android:drawablePadding">@dimen/default_edit_text_drawable_padding</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColorHint">@color/textColorSecondary_default</item>
+    </style>
+
+    <style name="lexicon_text_view" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/colorPrimaryDark_lexicon</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="lexicon_list_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">52dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="lexicon_list_item_title">
+        <item name="android:padding">0dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:gravity">bottom</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="lexicon_list_item_subtitle">
+        <item name="android:padding">0dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:gravity">top</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="lexicon_row">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+    </style>
+
+    <style name="lexicon_icon">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:layout_margin">12dp</item>
+    </style>
+
+</resources>

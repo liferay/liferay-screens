@@ -1,2 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.liferay.mobile.screens.viewsets.lexicon"/>
+<manifest package="com.liferay.mobile.screens.viewsets.lexicon">
+
+    <application/>
+
+</manifest>

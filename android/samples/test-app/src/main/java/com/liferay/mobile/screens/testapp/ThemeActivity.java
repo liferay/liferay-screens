@@ -29,9 +29,9 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  */
 public abstract class ThemeActivity extends AppCompatActivity {
 
-	private final int[] themes = { R.style.default_theme, R.style.material_theme, R.style.westeros_theme };
+	private final int[] themes = { R.style.default_theme, R.style.lexicon_theme, R.style.material_theme, R.style.westeros_theme };
 	private final int[] colors =
-		{ R.color.colorPrimary_default, R.color.colorPrimary_material, R.color.colorPrimary_westeros };
+		{ R.color.colorPrimary_default, R.color.colorPrimary_lexicon, R.color.colorPrimary_material, R.color.colorPrimary_westeros };
 	private Integer currentThemePosition;
 	private View content;
 
