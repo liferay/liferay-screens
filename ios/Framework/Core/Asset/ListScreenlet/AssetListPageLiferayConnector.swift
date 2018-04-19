@@ -130,7 +130,6 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 				entryQuery[k] = v
 			}
 		}
-		// swiftlint:enable for_where
 
 		return entryQuery
 	}
