@@ -166,7 +166,7 @@ open class DDLFieldTextareaTableCell_default: DDMFieldTableCell, UITextViewDeleg
 
 			placeholder!.changeVisibility(visible: newText != "")
 
-			field?.currentValue = newText as AnyObject?
+			field?.currentValue = newText
 
 			if field!.lastValidationResult != nil && !field!.lastValidationResult! {
 				field!.lastValidationResult = true

@@ -25,13 +25,13 @@ open class DDMFieldNumber: DDMField {
 
 	// MARK: DDMField
 
-	override internal func convert(fromString value: String?) -> AnyObject? {
+	override internal func convert(fromString value: String?) -> Any? {
 		if let value = value {
 			// server may return the number is one format that uses , as decimal separator
 			let number = value.replacingOccurrences(of: ",", with: ".").trim()
 
 			if !isDecimal {
-				return Int(round(Double(number) ?? 0)) as AnyObject?
+				return Int(round(Double(number) ?? 0))
 			}
 
 			let enFormatter = NumberFormatter()
@@ -44,7 +44,7 @@ open class DDMFieldNumber: DDMField {
 				case .doubleType:
 					return NSDecimalNumber(value: result.doubleValue as Double)
 				default:
-					return NSInteger(result.intValue) as AnyObject?
+					return NSInteger(result.intValue)
 				}
 			}
 		}
@@ -52,7 +52,7 @@ open class DDMFieldNumber: DDMField {
 		return nil
 	}
 
-	override internal func convert(fromLabel label: String?) -> AnyObject? {
+	override internal func convert(fromLabel label: String?) -> Any? {
 		if label != nil {
 			let formatter = NumberFormatter()
 
@@ -71,19 +71,19 @@ open class DDMFieldNumber: DDMField {
 		return nil
 	}
 
-	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
+	override internal func convert(fromCurrentValue value: Any?) -> String? {
 		return formatNumber(value as? NSNumber,
 				locale: Locale(identifier: "en_US"))
 	}
 
-	override internal func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
+	override internal func convertToLabel(fromCurrentValue value: Any?) -> String? {
 		return formatNumber(value as? NSNumber, locale: self.currentLocale)
 	}
 
 	override internal func onChangedCurrentValue() {
 		if !isDecimal && currentValue is NSInteger == false {
 			let decimal = (currentValue as! NSNumber).doubleValue
-			currentValue = NSNumber(value: decimal + 0.5 as Double).intValue as AnyObject?
+			currentValue = NSNumber(value: decimal + 0.5 as Double).intValue
 		}
 	}
 

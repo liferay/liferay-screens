@@ -25,7 +25,7 @@ open class DDLFieldCheckboxTableCell_default: DDMFieldTableCell {
 	// MARK: Actions
 
 	@IBAction fileprivate func switchValueChanged(_ sender: AnyObject) {
-		field?.currentValue = switchView?.isOn as AnyObject?
+		field?.currentValue = switchView?.isOn
 
 		if field!.lastValidationResult != nil && !field!.lastValidationResult! {
 			field!.lastValidationResult = true

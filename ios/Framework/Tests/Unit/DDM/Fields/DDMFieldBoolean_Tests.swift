@@ -29,7 +29,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 	func test_ConvertFromString_ShouldReturnBool_WhenTrueStringIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
 
-		let convertedValue: AnyObject? = boolField.convert(fromString: "true")
+		let convertedValue: Any? = boolField.convert(fromString: "true")
 
 		XCTAssertNotNil(convertedValue)
 		XCTAssertTrue(convertedValue is Bool)
@@ -39,7 +39,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 	func test_ConvertFromString_ShouldReturnBool_WhenFalseStringIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
 
-		let convertedValue: AnyObject? = boolField.convert(fromString: "false")
+		let convertedValue: Any? = boolField.convert(fromString: "false")
 
 		XCTAssertNotNil(convertedValue)
 		XCTAssertTrue(convertedValue is Bool)

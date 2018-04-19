@@ -49,7 +49,7 @@ open class DDMFieldDate: DDMField {
 		super.init(coder: aDecoder)
 	}
 
-	override internal func convert(fromString value: String?) -> AnyObject? {
+	override internal func convert(fromString value: String?) -> Any? {
 		func convertFromDateStr(_ str: String) -> Date? {
 			let separator = str[str.index(str.endIndex, offsetBy: -3)]
 			let format = separator == "/" ? "MM/dd/yy" : serverDateFormat
@@ -72,10 +72,10 @@ open class DDMFieldDate: DDMField {
 			return nil
 		}
 
-		return convertFromDateStr(stringValue) as AnyObject? ?? convertFromJavaEpoch(stringValue) as AnyObject?
+		return convertFromDateStr(stringValue) ?? convertFromJavaEpoch(stringValue)
 	}
 
-	override func convert(fromLabel label: String?) -> AnyObject? {
+	override func convert(fromLabel label: String?) -> Any? {
 		guard let label = label else {
 			return nil
 		}
@@ -83,10 +83,10 @@ open class DDMFieldDate: DDMField {
 			return nil
 		}
 
-		return clientDateFormatter.date(from: label) as AnyObject?
+		return clientDateFormatter.date(from: label)
 	}
 
-	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
+	override func convertToLabel(fromCurrentValue value: Any?) -> String? {
 		guard let date = currentValue as? Date else {
 			return nil
 		}
@@ -106,7 +106,7 @@ open class DDMFieldDate_v62: DDMFieldDate {
 		super.init(coder: aDecoder)
 	}
 
-	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
+	override internal func convert(fromCurrentValue value: Any?) -> String? {
 		guard let date = value as? Date else {
 			return nil
 		}
@@ -133,7 +133,7 @@ open class DDMFieldDate_v70: DDMFieldDate {
 		return "yyyy'-'MM'-'dd"
 	}
 
-	override internal func convert(fromString value: String?) -> AnyObject? {
+	override internal func convert(fromString value: String?) -> Any? {
 		guard let stringValue = value else {
 			return nil
 		}
@@ -142,10 +142,10 @@ open class DDMFieldDate_v70: DDMFieldDate {
 		// It uses MM/dd/YYYY in predefinedValue field.
 
 		return super.convert(fromString: value)
-			?? formatterWithFormat("M'/'d'/'yyyy").date(from: stringValue) as AnyObject?
+			?? formatterWithFormat("M'/'d'/'yyyy").date(from: stringValue) as Any?
 	}
 
-	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
+	override internal func convert(fromCurrentValue value: Any?) -> String? {
 		guard let date = value as? Date else {
 			return nil
 		}

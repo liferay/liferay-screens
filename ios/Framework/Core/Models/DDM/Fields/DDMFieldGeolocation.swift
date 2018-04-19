@@ -25,7 +25,7 @@ open class DDMFieldGeolocation: DDMField {
 		return currentValue as? Geolocation
 	}
 
-	override func convert(fromString value: String?) -> AnyObject? {
+	override func convert(fromString value: String?) -> Any? {
 		var result: Geolocation?
 
 		guard let valueString = value, value != "" else {
@@ -42,10 +42,10 @@ open class DDMFieldGeolocation: DDMField {
 			result = Geolocation(latitude: latitude, longitude: longitude)
 		}
 
-		return result as AnyObject
+		return result
 	}
 
-	override func convert(fromCurrentValue value: AnyObject?) -> String? {
+	override func convert(fromCurrentValue value: Any?) -> String? {
 		guard let geolocation = geolocation else {
 			return nil
 		}

@@ -20,7 +20,7 @@ open class DDMField: NSObject, NSCoding {
 	open var onPostValidation: ((Bool) -> Void)?
 	open var lastValidationResult: Bool?
 
-	open var currentValue: AnyObject? {
+	open var currentValue: Any? {
 		didSet {
 			onChangedCurrentValue()
 		}
@@ -78,7 +78,7 @@ open class DDMField: NSObject, NSCoding {
 	internal(set) var label: String
 	internal(set) var tip: String
 
-	internal(set) var predefinedValue: AnyObject?
+	internal(set) var predefinedValue: Any?
 
 	internal(set) var readOnly: Bool
 	internal(set) var repeatable: Bool
@@ -93,10 +93,10 @@ open class DDMField: NSObject, NSCoding {
 		label = valueAsString(attributes, key: "label")
 		tip = valueAsString(attributes, key: "tip")
 
-		readOnly = Bool.from(any: attributes["readOnly"] ?? "false" as AnyObject)
-		repeatable = Bool.from(any: attributes["repeatable"] ?? "false" as AnyObject)
-		required = Bool.from(any: attributes["required"] ?? "true" as AnyObject)
-		showLabel = Bool.from(any: attributes["showLabel"] ?? "false" as AnyObject)
+		readOnly = Bool.from(any: attributes["readOnly"] ?? "false")
+		repeatable = Bool.from(any: attributes["repeatable"] ?? "false")
+		required = Bool.from(any: attributes["required"] ?? "true")
+		showLabel = Bool.from(any: attributes["showLabel"] ?? "false")
 
 		currentLocale = locale
 
@@ -180,15 +180,15 @@ open class DDMField: NSObject, NSCoding {
 		return true
 	}
 
-	internal func convert(fromString value: String?) -> AnyObject? {
-		return value as AnyObject?
+	internal func convert(fromString value: String?) -> Any? {
+		return value
 	}
 
-	internal func convert(fromLabel value: String?) -> AnyObject? {
-		return value as AnyObject?
+	internal func convert(fromLabel value: String?) -> Any? {
+		return value
 	}
 
-	internal func convert(fromCurrentValue value: AnyObject?) -> String? {
+	internal func convert(fromCurrentValue value: Any?) -> String? {
 		if let value = value {
 			return "\(value)"
 		}
@@ -196,7 +196,7 @@ open class DDMField: NSObject, NSCoding {
 		return nil
 	}
 
-	internal func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
+	internal func convertToLabel(fromCurrentValue value: Any?) -> String? {
 		if let value = value {
 			return "\(value)"
 		}

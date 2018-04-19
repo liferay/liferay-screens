@@ -22,7 +22,7 @@ extension Bool {
 		return (boolValue == "true" || boolValue == "1")
 	}
 
-	public static func from(any value: AnyObject) -> Bool {
+	public static func from(any value: Any) -> Bool {
 		if let stringValue = value as? String {
 			return Bool.from(string: stringValue)
 		}

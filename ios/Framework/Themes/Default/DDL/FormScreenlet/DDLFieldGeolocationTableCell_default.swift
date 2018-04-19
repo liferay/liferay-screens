@@ -73,7 +73,7 @@ open class DDLFieldGeolocationTableCell_default: DDMFieldTableCell, UITextFieldD
 
 		if field != nil {
 			let geolocation = Geolocation(latitude: latitude, longitude: longitude)
-			field?.currentValue = geolocation as AnyObject
+			field?.currentValue = geolocation
 		}
 	}
 }

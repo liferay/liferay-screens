@@ -128,8 +128,8 @@ open class DDMFieldDocument: DDMField {
 		}
 	}
 
-	override internal func convert(fromString value: String?) -> AnyObject? {
-		var result: AnyObject?
+	override internal func convert(fromString value: String?) -> Any? {
+		var result: Any?
 
 		if let valueString = value {
 			let data = valueString.data(using: String.Encoding.utf8,
@@ -140,22 +140,22 @@ open class DDMFieldDocument: DDMField {
 
 			if let jsonDict = jsonObject as? [String: AnyObject] {
 				uploadStatus = .uploaded(jsonDict)
-				result = jsonDict as AnyObject?
+				result = jsonDict
 			}
 			else if valueString != "" {
 				uploadStatus = .pending
-				result = valueString as AnyObject?
+				result = valueString
 			}
 		}
 
 		return result
 	}
 
-	override func convert(fromLabel label: String?) -> AnyObject? {
+	override func convert(fromLabel label: String?) -> Any? {
 		return nil
 	}
 
-	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
+	override internal func convert(fromCurrentValue value: Any?) -> String? {
 		switch uploadStatus {
 		case .uploaded(let json):
 			let groupEntry = json["groupId"]
@@ -181,7 +181,7 @@ open class DDMFieldDocument: DDMField {
 		return nil
 	}
 
-	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
+	override func convertToLabel(fromCurrentValue value: Any?) -> String? {
 		switch currentValue {
 		case is UIImage:
 			return LocalizedString("core", key: "an-image-has-been-selected", obj: self)
