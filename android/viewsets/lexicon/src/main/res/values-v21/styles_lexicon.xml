@@ -20,7 +20,7 @@
         <item name="editTextStyle">@style/lexicon_edit_text</item>
         <item name="buttonStyle">@style/lexicon_button</item>
 
-        <!--<item name="android:fontFamily">sans-serif</item>-->
+        <item name="android:fontFamily">sans-serif</item>
 
         <item name="themeName">lexicon_theme</item>
     </style>
@@ -41,10 +41,11 @@
         <item name="android:paddingBottom">@dimen/default_edit_text_padding</item>
         <item name="android:paddingLeft">@dimen/default_edit_text_drawable_padding</item>
         <item name="android:paddingRight">@dimen/default_edit_text_padding</item>
-        <item name="android:background">@drawable/default_edit_text_selector</item>
+        <item name="android:background">@drawable/lexicon_edit_text_selector</item>
         <item name="android:drawablePadding">@dimen/default_edit_text_drawable_padding</item>
+        <item name="android:textColor">@color/colorPrimaryDark_lexicon</item>
+        <item name="android:textColorHint">@color/textColorSecondary_lexicon</item>
         <item name="android:singleLine">true</item>
-        <item name="android:textColorHint">@color/textColorSecondary_default</item>
     </style>
 
     <style name="lexicon_text_view" parent="android:Widget.TextView">

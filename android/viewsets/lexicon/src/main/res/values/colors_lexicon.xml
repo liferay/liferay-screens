@@ -4,9 +4,16 @@
     <color name="colorPrimaryLight_lexicon">#0b5fff</color>
     <color name="colorPrimaryDark_lexicon">#272833</color>
 
+    <color name="textColorPrimary_lexicon">#f1f2f5</color>
+    <color name="textColorSecondary_lexicon">#6b6c7e</color>
+    <color name="textColorTertiary_lexicon">#e7e7ed</color>
+
     <color name="colorPrimary">#393a4a</color>
     <color name="colorPrimaryLight">#0b5fff</color>
     <color name="colorPrimaryDark">#272833</color>
 
-    <color name="light_blue">#b3cdff</color>
+    <color name="lightBlue_lexicon">#f0f5ff</color>
+    <color name="lightBlue2_lexicon">#b3cdff</color>
+    <color name="lightBlue3_lexicon">#71a2ff</color>
+
 </resources>
