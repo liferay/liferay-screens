@@ -52,19 +52,20 @@ public enum CacheStrategyType: String {
 	}
 
 	open func getString(collection: String, key: String, result: @escaping (String?) -> Void) {
-		var value: AnyObject?
+		var value: Any?
+
 		readConnection.asyncRead({ transaction in
-				value = transaction.object(forKey: key, inCollection: collection) as AnyObject?
+				value = transaction.object(forKey: key, inCollection: collection)
 			}, completionBlock: {
 				result((value as? NSObject)?.description)
 			})
 	}
 
 	open func getLocalFileURL(collection: String, key: String, result: @escaping (URL?) -> Void) {
-		var value: AnyObject?
+		var value: Any?
 
 		readConnection.asyncRead({ transaction in
-				value = transaction.object(forKey: key, inCollection: collection) as AnyObject?
+				value = transaction.object(forKey: key, inCollection: collection)
 			},
 			completionBlock: {
 				guard let localFileURL = value as? URL else {
@@ -93,10 +94,10 @@ public enum CacheStrategyType: String {
 	}
 
 	open func getImage(collection: String, key: String, result: @escaping (UIImage?) -> Void) {
-		var value: AnyObject?
+		var value: Any?
 
 		readConnection.asyncRead({ transaction in
-				value = transaction.object(forKey: key, inCollection: collection) as AnyObject?
+				value = transaction.object(forKey: key, inCollection: collection)
 			}, completionBlock: {
 				if let image = value as? UIImage {
 					result(image)
@@ -110,11 +111,11 @@ public enum CacheStrategyType: String {
 		})
 	}
 
-	open func getAny(collection: String, key: String, result: @escaping (AnyObject?) -> Void) {
-		var value: AnyObject?
+	open func getAny(collection: String, key: String, result: @escaping (Any?) -> Void) {
+		var value: Any?
 
 		readConnection.asyncRead ({ transaction in
-			value = transaction.object(forKey: key, inCollection: collection) as AnyObject?
+			value = transaction.object(forKey: key, inCollection: collection)
 			}, completionBlock: {
 				result(value)
 		})
@@ -123,7 +124,7 @@ public enum CacheStrategyType: String {
 	open func getAnyWithAttributes(
 			collection: String,
 			key: String,
-			result: @escaping (AnyObject?, [String: AnyObject]?) -> Void) {
+			result: @escaping (Any?, [String: Any]?) -> Void) {
 
 		getSomeWithAttributes(
 				collection: collection,
@@ -136,10 +137,10 @@ public enum CacheStrategyType: String {
 	open func getSomeWithAttributes(
 			collection: String,
 			keys: [String],
-			result: @escaping ([AnyObject?], [[String: AnyObject]?]) -> Void) {
+			result: @escaping ([Any?], [[String: Any]?]) -> Void) {
 
-		var objects = [AnyObject?]()
-		var attributes = [[String: AnyObject]?]()
+		var objects = [Any?]()
+		var attributes = [[String: Any]?]()
 
 		readConnection.asyncRead ({ transaction in
 			let keyCount = keys.count
@@ -148,7 +149,7 @@ public enum CacheStrategyType: String {
 			attributes = [[String: AnyObject]?](repeating: nil, count: keyCount)
 
 			for (i, k) in keys.enumerated() {
-				objects[i] = transaction.object(forKey: k, inCollection: collection) as AnyObject?
+				objects[i] = transaction.object(forKey: k, inCollection: collection)
 
 				let metadata = transaction.metadata(forKey: k, inCollection: collection) as? CacheMetadata
 				attributes[i] = metadata?.attributes
@@ -159,13 +160,13 @@ public enum CacheStrategyType: String {
 		})
 	}
 
-	open func getSome(collection: String, keys: [String], result: @escaping ([AnyObject?]) -> Void) {
-		var values = [AnyObject?]()
+	open func getSome(collection: String, keys: [String], result: @escaping ([Any?]) -> Void) {
+		var values = [Any?]()
 
 		readConnection.asyncRead ({ transaction in
 			for k in keys {
 				values.append(transaction.object(forKey: k,
-					inCollection: collection) as AnyObject?)
+					inCollection: collection))
 			}
 
 		}, completionBlock: {
@@ -174,10 +175,10 @@ public enum CacheStrategyType: String {
 	}
 
 	open func getMetadata(collection: String, key: String, result: @escaping (CacheMetadata?) -> Void) {
-		var value: AnyObject?
+		var value: Any?
 
 		readConnection.asyncRead ({ transaction in
-			value = transaction.metadata(forKey: key, inCollection: collection) as AnyObject?
+			value = transaction.metadata(forKey: key, inCollection: collection)
 		}, completionBlock: {
 			result(value as? CacheMetadata)
 		})
