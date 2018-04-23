@@ -121,8 +121,7 @@ class DDMFieldDocument_Tests: XCTestCase {
 		let fields = DDMXSDParser().parse(requiredDocumentElementXSD, locale: spanishLocale)
 		let docField = fields![0] as! DDMFieldDocument
 
-		docField.currentValue =
-				URL(fileURLWithPath: "/this/is/a/path/to/video.mpg", isDirectory: false) as AnyObject?
+		docField.currentValue = URL(fileURLWithPath: "/this/is/a/path/to/video.mpg", isDirectory: false)
 
 		XCTAssertEqual("video/mpeg", docField.mimeType ?? "nil mimeType")
 	}
@@ -163,7 +162,7 @@ class DDMFieldDocument_Tests: XCTestCase {
 				try? FileManager.default.attributesOfItem(atPath: url!.path)
 		let imageLength = attributes![FileAttributeKey.size] as! NSNumber
 
-		docField.currentValue = url as AnyObject?
+		docField.currentValue = url
 
 		var size: Int64 = 0
 		let stream = docField.getStream(&size)
@@ -194,7 +193,7 @@ class DDMFieldDocument_Tests: XCTestCase {
 		let docField = fields![0] as! DDMFieldDocument
 
 		docField.currentValue =
-				URL(fileURLWithPath: "/this/is/a/path/to/video.mpg", isDirectory: false) as AnyObject?
+				URL(fileURLWithPath: "/this/is/a/path/to/video.mpg", isDirectory: false)
 
 		XCTAssertEqual("A video has been selected", docField.currentValueAsLabel!)
 	}

@@ -115,7 +115,7 @@ class DDMFieldNumber_Tests: XCTestCase {
 		let fields = DDMXSDParser().parse(integerXSD, locale: spanishLocale)
 		let numberField = fields![0] as! DDMFieldNumber
 
-		numberField.currentValue = 1.1 as AnyObject?
+		numberField.currentValue = 1.1
 		XCTAssertTrue(numberField.currentValue is NSInteger)
 		XCTAssertEqual(NSInteger(1), numberField.currentValue as? NSInteger)
 	}
@@ -126,7 +126,7 @@ class DDMFieldNumber_Tests: XCTestCase {
 		let fields = DDMXSDParser().parse(integerXSD, locale: spanishLocale)
 		let numberField = fields![0] as! DDMFieldNumber
 
-		numberField.currentValue = 99 as AnyObject?
+		numberField.currentValue = 99
 
 		XCTAssertEqual("99", numberField.currentValueAsString!)
 	}
@@ -135,7 +135,7 @@ class DDMFieldNumber_Tests: XCTestCase {
 		let fields = DDMXSDParser().parse(decimalXSD, locale: spanishLocale)
 		let numberField = fields![0] as! DDMFieldNumber
 
-		numberField.currentValue = 16.0599 as AnyObject?
+		numberField.currentValue = 16.0599
 
 		XCTAssertEqual("16.06", numberField.currentValueAsString!)
 	}
@@ -144,7 +144,7 @@ class DDMFieldNumber_Tests: XCTestCase {
 		let fields = DDMXSDParser().parse(decimalXSD, locale: spanishLocale)
 		let numberField = fields![0] as! DDMFieldNumber
 
-		numberField.currentValue = 16 as AnyObject?
+		numberField.currentValue = 16
 
 		XCTAssertEqual("16.00", numberField.currentValueAsString!)
 	}
@@ -191,7 +191,7 @@ class DDMFieldNumber_Tests: XCTestCase {
 		let fields = DDMXSDParser().parse(decimalXSD, locale: spanishLocale)
 		let numberField = fields![0] as! DDMFieldNumber
 
-		numberField.currentValue = 16.0599 as AnyObject?
+		numberField.currentValue = 16.0599
 
 		XCTAssertEqual("16,06", numberField.currentValueAsLabel!)
 	}
@@ -201,7 +201,7 @@ class DDMFieldNumber_Tests: XCTestCase {
 		let numberField = fields![0] as! DDMFieldNumber
 
 		numberField.currentLocale = Locale(identifier: "en_US")
-		numberField.currentValue = 16.0599 as AnyObject?
+		numberField.currentValue = 16.0599
 
 		XCTAssertEqual("16.06", numberField.currentValueAsLabel!)
 	}

@@ -108,7 +108,7 @@ class DDMFieldString_Tests: XCTestCase {
 
 		let stringField = fields![0] as! DDMFieldString
 
-		stringField.currentValue = "" as AnyObject?
+		stringField.currentValue = ""
 
 		XCTAssertFalse(stringField.validate())
 	}
@@ -118,7 +118,7 @@ class DDMFieldString_Tests: XCTestCase {
 
 		let stringField = fields![0] as! DDMFieldString
 
-		stringField.currentValue = "  " as AnyObject?
+		stringField.currentValue = "  "
 
 		XCTAssertFalse(stringField.validate())
 	}

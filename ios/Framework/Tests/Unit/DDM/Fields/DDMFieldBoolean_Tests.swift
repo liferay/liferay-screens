@@ -57,7 +57,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 	func test_ConvertFromCurrentValue_ShouldReturnTrueString_WhenTrueIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
 
-		let convertedValue = boolField.convert(fromCurrentValue: true as AnyObject?)
+		let convertedValue = boolField.convert(fromCurrentValue: true)
 
 		XCTAssertNotNil(convertedValue)
 		XCTAssertEqual("true", convertedValue!)
@@ -66,7 +66,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 	func test_ConvertFromCurrentValue_ShouldReturnFalseString_WhenFalseIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
 
-		let convertedValue = boolField.convert(fromCurrentValue: false as AnyObject?)
+		let convertedValue = boolField.convert(fromCurrentValue: false)
 
 		XCTAssertNotNil(convertedValue)
 		XCTAssertEqual("false", convertedValue!)
@@ -83,7 +83,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 	func test_CurrentValueAsString_ShouldReturnTrueString_WhenTrueIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
 
-		boolField.currentValue = true as AnyObject?
+		boolField.currentValue = true
 
 		XCTAssertNotNil(boolField.currentValueAsString)
 		XCTAssertEqual("true", boolField.currentValueAsString!)
@@ -92,7 +92,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 	func test_CurrentValueAsString_ShouldReturnFalseString_WhenFalseIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
 
-		boolField.currentValue = false as AnyObject?
+		boolField.currentValue = false
 
 		XCTAssertNotNil(boolField.currentValueAsString)
 		XCTAssertEqual("false", boolField.currentValueAsString!)
@@ -109,7 +109,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 	func test_CurrentValueAsLabel_ShouldReturnTrueString_WhenTrueIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
 
-		boolField.currentValue = true as AnyObject?
+		boolField.currentValue = true
 
 		XCTAssertNotNil(boolField.currentValueAsLabel)
 
@@ -120,7 +120,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 	func test_CurrentValueAsLabel_ShouldReturnFalseString_WhenFalseIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
 
-		boolField.currentValue = false as AnyObject?
+		boolField.currentValue = false
 
 		XCTAssertNotNil(boolField.currentValueAsLabel)
 		XCTAssertEqual("No", boolField.currentValueAsLabel!)

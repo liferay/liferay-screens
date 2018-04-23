@@ -177,7 +177,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 		let stringField = fields![0] as! DDMFieldStringWithOptions
 
-		stringField.currentValue = "Option 3" as AnyObject?
+		stringField.currentValue = "Option 3"
 
 		XCTAssertTrue(stringField.currentValue is [DDMFieldStringWithOptions.Option])
 		let currentOptions = stringField.currentValue as! [DDMFieldStringWithOptions.Option]
@@ -194,7 +194,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 		let stringField = fields![0] as! DDMFieldStringWithOptions
 
-		stringField.currentValue = "this is not a valid option label" as AnyObject?
+		stringField.currentValue = "this is not a valid option label"
 
 		XCTAssertTrue(stringField.currentValue is [DDMFieldStringWithOptions.Option])
 		XCTAssertTrue((stringField.currentValue as! [DDMFieldStringWithOptions.Option]).isEmpty)
@@ -207,7 +207,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 		let stringField = fields![0] as! DDMFieldStringWithOptions
 
-		stringField.currentValue = "Option 3" as AnyObject?
+		stringField.currentValue = "Option 3"
 
 		XCTAssertEqual("[\"value 3\"]", stringField.currentValueAsString!)
 	}
@@ -283,7 +283,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 		let stringField = fields![0] as! DDMFieldStringWithOptions
 
-		stringField.currentValue = "Option 3" as AnyObject?
+		stringField.currentValue = "Option 3"
 
 		XCTAssertEqual("Option 3", stringField.currentValueAsLabel!)
 	}
@@ -325,7 +325,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 		let stringField = fields![0] as! DDMFieldStringWithOptions
 
-		stringField.currentValue = "Option 3" as AnyObject?
+		stringField.currentValue = "Option 3"
 
 		XCTAssertTrue(stringField.validate())
 	}
@@ -343,7 +343,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 		let stringField = fields![0] as! DDMFieldStringWithOptions
 
-		stringField.currentValue = "Option 3,Option 1" as AnyObject?
+		stringField.currentValue = "Option 3,Option 1"
 
 		XCTAssertTrue(stringField.currentValue is [DDMFieldStringWithOptions.Option])
 		let currentOptions = stringField.currentValue as! [DDMFieldStringWithOptions.Option]
@@ -364,7 +364,7 @@ class DDMFieldStringWithOptions_Tests: XCTestCase {
 
 		let stringField = fields![0] as! DDMFieldStringWithOptions
 
-		stringField.currentValue = "Option 3, Option 1" as AnyObject?
+		stringField.currentValue = "Option 3, Option 1"
 
 		XCTAssertEqual("[\"value 3\", \"value 1\"]", stringField.currentValueAsString)
 	}

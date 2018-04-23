@@ -85,7 +85,7 @@ class DDMFieldDate_v70_Tests: XCTestCase {
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 		dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
 
-		dateField.currentValue = dateFormatter.date(from: "19/06/2004") as AnyObject?
+		dateField.currentValue = dateFormatter.date(from: "19/06/2004")
 
 		XCTAssertEqual("2004-06-19", dateField.currentValueAsString!)
 	}
@@ -114,7 +114,7 @@ class DDMFieldDate_v70_Tests: XCTestCase {
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
 		dateField.currentLocale = Locale(identifier: "en_US")
-		dateField.currentValue = dateFormatter.date(from: "19/06/2004") as AnyObject?
+		dateField.currentValue = dateFormatter.date(from: "19/06/2004")
 
 		XCTAssertEqual("June 19, 2004", dateField.currentValueAsLabel!)
 	}
@@ -126,7 +126,7 @@ class DDMFieldDate_v70_Tests: XCTestCase {
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "dd/MM/yyyy"
 
-		dateField.currentValue = dateFormatter.date(from: "19/06/2004") as AnyObject?
+		dateField.currentValue = dateFormatter.date(from: "19/06/2004")
 
 		XCTAssertEqual("19 de junio de 2004", dateField.currentValueAsLabel!)
 	}
