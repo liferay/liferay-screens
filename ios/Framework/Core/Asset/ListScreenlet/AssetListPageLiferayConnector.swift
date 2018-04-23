@@ -84,8 +84,8 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 
 		var entryQuery = configureEntryQuery()
 
-		entryQuery["start"] = startRow as AnyObject?
-		entryQuery["end"] = endRow as AnyObject?
+		entryQuery["start"] = startRow
+		entryQuery["end"] = endRow
 
 		let entryQueryWrapper = LRJSONObjectWrapper(jsonObject: entryQuery)
 
@@ -111,10 +111,10 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 	open func doGetRowCount(session: LRBatchSession, entryQuery: LRJSONObjectWrapper) {
 	}
 
-	open func configureEntryQuery() -> [String: AnyObject] {
+	open func configureEntryQuery() -> [String: Any] {
 		var entryQuery = (customEntryQuery != nil)
 			? customEntryQuery!
-			: [String: AnyObject]()
+			: [String: Any]()
 
 		let defaultValues = [
 			"classNameIds": NSNumber(value: classNameId! as Int64),
@@ -143,11 +143,11 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 	/// - parameter values: initial entryQuery values.
 	///
 	/// - returns: final values for entryQuery.
-	fileprivate func handleUserVisibleFlag(_ values: [String: AnyObject]) -> [String: AnyObject] {
+	fileprivate func handleUserVisibleFlag(_ values: [String: Any]) -> [String: Any] {
 		if classNameId == AssetClasses.getClassNameId(AssetClassNameKey_User) {
 			var newValues = values
 
-			newValues["visible"] = false as AnyObject?
+			newValues["visible"] = false
 
 			return newValues
 		}
