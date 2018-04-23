@@ -96,7 +96,7 @@ open class BaseListCollectionView: BaseListView, UICollectionViewDataSource, UIC
 		clearAllRows(oldRows)
 	}
 
-	override open func onFinishInteraction(_ result: AnyObject?, error: NSError?) {
+	override open func onFinishInteraction(_ result: Any?, error: NSError?) {
 		if let currentRefreshControl = refreshControlView {
 			dispatch_delayed(0.3) {
 				currentRefreshControl.endRefreshing()

@@ -360,7 +360,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 
 		untrackInteractor(interactor)
 
-		let result: AnyObject? = interactor.interactionResult()
+		let result = interactor.interactionResult()
 		onFinishInteraction(result, error: error)
 		screenletView?.onFinishInteraction(result, error: error)
 		hideHUDWithMessage(getMessage(), forInteractor: interactor, withError: error)
@@ -371,7 +371,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	}
 
 	/// onFinishInteraction is called when the server response arrives
-	open dynamic func onFinishInteraction(_ result: AnyObject?, error: NSError?) {
+	open dynamic func onFinishInteraction(_ result: Any?, error: NSError?) {
 	}
 
 	// MARK: HUD methods

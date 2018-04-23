@@ -58,8 +58,8 @@ class ForgotPasswordInteractor: ServerConnectorInteractor {
 
 	// MARK: Interactor
 
-	override func interactionResult() -> AnyObject? {
-		return resultPasswordSent as AnyObject?
+	override func interactionResult() -> Any? {
+		return resultPasswordSent
 	}
 
 }

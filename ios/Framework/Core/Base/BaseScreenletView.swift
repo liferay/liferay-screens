@@ -139,7 +139,7 @@ open class BaseScreenletView: UIView {
 	open dynamic func onStartInteraction() {
 	}
 
-	open dynamic func onFinishInteraction(_ result: AnyObject?, error: NSError?) {
+	open dynamic func onFinishInteraction(_ result: Any?, error: NSError?) {
 	}
 
 	open dynamic func createProgressPresenter() -> ProgressPresenter {
