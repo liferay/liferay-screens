@@ -29,7 +29,7 @@ class DDLFormUploadDocumentInteractor: ServerWriteConnectorInteractor {
 
 	let onProgressClosure: OnProgress?
 
-	var resultResponse: [String: AnyObject]?
+	var resultResponse: [String: Any]?
 
 	var lastCacheKey: String?
 

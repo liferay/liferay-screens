@@ -101,7 +101,7 @@ public protocol DDLFormScreenletDelegate: BaseScreenletDelegate {
 	///   - result: Document data attributes.
 	@objc optional func screenlet(_ screenlet: DDLFormScreenlet,
 			onDocumentField field: DDMFieldDocument,
-			uploadResult result: [String: AnyObject])
+			uploadResult result: [String: Any])
 
 	/// Called when an error occurs in the Documents and Media upload process.
 	/// The NSError object describes the error.

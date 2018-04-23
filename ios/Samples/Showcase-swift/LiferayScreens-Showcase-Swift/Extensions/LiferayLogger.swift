@@ -15,7 +15,7 @@ import UIKit
 
 public struct LiferayLogger {
 	
-	public static func logDelegateMessage(_ function: String = #function, args: AnyObject?...) {
+	public static func logDelegateMessage(_ function: String = #function, args: Any?...) {
 		let message = "DELEGATE: \(function) called"
 		
 		if args.count > 0 {

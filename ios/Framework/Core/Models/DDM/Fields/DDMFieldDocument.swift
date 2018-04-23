@@ -17,15 +17,15 @@ import UIKit
 open class DDMFieldDocument: DDMField {
 
 	public enum UploadStatus: Hashable, Equatable {
-		case uploaded([String:AnyObject])
+		case uploaded([String: Any])
 		case failed(NSError?)
 		case uploading(UInt64, UInt64)
 		case pending
 
-		public static func CachedStatusData(_ cacheKey: String) -> [String: AnyObject] {
+		public static func CachedStatusData(_ cacheKey: String) -> [String: Any] {
 			return [
-				"cached": cacheKey as AnyObject,
-				"mimeType": "image/png" as AnyObject]
+				"cached": cacheKey,
+				"mimeType": "image/png"]
 		}
 
 		public var hashValue: Int {
@@ -159,7 +159,7 @@ open class DDMFieldDocument: DDMField {
 		switch uploadStatus {
 		case .uploaded(let json):
 			let groupEntry = json["groupId"]
-			if let groupId = groupEntry?.int64Value,
+			if let groupId = groupEntry as? Int64,
 					let uuid = json["uuid"] as? String,
 					let version = json["version"] as? String {
 				return "{\"groupId\":\(groupId)," +

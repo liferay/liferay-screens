@@ -88,8 +88,8 @@ class DDLFormScreenletViewController: UIViewController, DDLFormScreenletDelegate
 	
 	func screenlet(_ screenlet: DDLFormScreenlet,
 	               onDocumentField field: DDMFieldDocument,
-	               uploadResult result: [String : AnyObject]) {
-		LiferayLogger.logDelegateMessage(args: field, result as AnyObject?)
+	               uploadResult result: [String : Any]) {
+		LiferayLogger.logDelegateMessage(args: field, result)
 	}
 	
 	func screenlet(_ screenlet: DDLFormScreenlet,
