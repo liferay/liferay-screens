@@ -3,4 +3,7 @@
     <dimen name="field_padding">10dp</dimen>
     <dimen name="icon_padding">16dp</dimen>
     <dimen name="field_radius">4dp</dimen>
+    <dimen name="text_padding_dialog_title_horizontal">23dp</dimen>
+    <dimen name="text_padding_dialog_title_top">21dp</dimen>
+    <dimen name="text_size_dialog_title">20sp</dimen>
 </resources>

@@ -91,4 +91,9 @@
         <item name="android:layout_margin">12dp</item>
     </style>
 
+    <style name="lexicon_theme_dialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="colorAccent">@color/colorPrimaryDark_lexicon</item>
+    </style>
+
 </resources>
