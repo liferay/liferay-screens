@@ -313,7 +313,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	open dynamic func isActionRunning(_ name: String) -> Bool {
 		var firstInteractor: Interactor? = nil
 
-		synchronized(_runningInteractors as AnyObject) {
+		synchronized(_runningInteractors) {
 			firstInteractor = self._runningInteractors[name]?.first
 		}
 
@@ -473,7 +473,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	}
 
 	fileprivate func trackInteractor(_ interactor: Interactor, withName name: String) {
-		synchronized(_runningInteractors as AnyObject) {
+		synchronized(_runningInteractors) {
 			var interactors = self._runningInteractors[name]
 			if interactors?.count ?? 0 == 0 {
 				interactors = [Interactor]()
@@ -487,7 +487,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	}
 
 	fileprivate func untrackInteractor(_ interactor: Interactor) {
-		synchronized(_runningInteractors as AnyObject) {
+		synchronized(_runningInteractors) {
 			let name = interactor.actionName!
 			let interactors = self._runningInteractors[name] ?? []
 

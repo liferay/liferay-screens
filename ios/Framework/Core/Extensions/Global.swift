@@ -32,7 +32,7 @@ public func nullIfEmpty(_ string: String?) -> String? {
 	return string
 }
 
-public func synchronized(_ lock: AnyObject, closure: () -> Void) {
+public func synchronized(_ lock: Any, closure: () -> Void) {
 	objc_sync_enter(lock)
 	closure()
 	objc_sync_exit(lock)

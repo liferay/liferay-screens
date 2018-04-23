@@ -145,7 +145,7 @@ open class BaseListScreenlet: BaseScreenlet {
 		let page = pageFromRow(row)
 
 		// make sure we don't create two interactors for the same page
-		synchronized(paginationInteractors as AnyObject) {
+		synchronized(paginationInteractors) {
 			if self.paginationInteractors.index(forKey: page) == nil {
 
 				self.performAction(name: BaseListScreenlet.LoadPageAction, sender: page)
