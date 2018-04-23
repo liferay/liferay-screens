@@ -17,7 +17,7 @@ extension SyncManager {
 
 	func formSynchronizer(
 			key: String,
-			attributes: [String: AnyObject])
+			attributes: [String: Any])
 			-> (@escaping Signal) -> Void {
 
 		let recordSynchronizer = { (signal: @escaping Signal) -> Void in
@@ -59,7 +59,7 @@ extension SyncManager {
 	private func checkConflictAndSendLocalRecord(
 			record localRecord: DDLRecord,
 			key: String,
-			attributes: [String: AnyObject],
+			attributes: [String: Any],
 			signal: @escaping Signal) {
 
 		precondition(localRecord.recordId != nil, "RecordId must be defined")
@@ -111,7 +111,7 @@ extension SyncManager {
 			remoteRecord: DDLRecord,
 			localRecord: DDLRecord,
 			key: String,
-			attributes: [String: AnyObject],
+			attributes: [String: Any],
 			signal: @escaping Signal) {
 
 		self.delegate?.syncManager?(self,
@@ -182,7 +182,7 @@ extension SyncManager {
 	private func sendLocalRecord(
 			record localRecord: DDLRecord,
 			key: String,
-			attributes: [String: AnyObject],
+			attributes: [String: Any],
 			signal: @escaping Signal) {
 
 		let cachedDocument = localRecord.fieldsBy(type: DDMFieldDocument.self)
@@ -231,7 +231,7 @@ extension SyncManager {
 			document: DDMFieldDocument,
 			record: DDLRecord,
 			recordKey: String,
-			recordAttributes: [String: AnyObject],
+			recordAttributes: [String: Any],
 			signal: @escaping Signal) {
 
 		precondition(

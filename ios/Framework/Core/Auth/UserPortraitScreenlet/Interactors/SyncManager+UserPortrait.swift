@@ -17,11 +17,11 @@ extension SyncManager {
 
 	func userPortraitSynchronizer(
 			_ key: String,
-			attributes: [String: AnyObject])
+			attributes: [String: Any])
 			-> (@escaping Signal) -> Void {
 
 		return { signal in
-			let userId = attributes["userId"]!.int64Value
+			let userId = attributes["userId"] as! Int64
 
 			self.cacheManager.getImage(
 					collection: ScreenletName(UserPortraitScreenlet.self),
@@ -30,7 +30,7 @@ extension SyncManager {
 				if let image = $0 {
 					let interactor = UploadUserPortraitInteractor(
 						screenlet: nil,
-						userId: userId!,
+						userId: userId,
 						image: image)
 
 					self.prepareInteractorForSync(interactor,
