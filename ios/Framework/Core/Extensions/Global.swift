@@ -105,12 +105,12 @@ public func dynamicInit(_ className: String) -> NSObject? {
 	return type.init()
 }
 
-public func LocalizedString(_ tableName: String, key: String, obj: AnyObject) -> String {
+public func LocalizedString(_ tableName: String, key: String, obj: Any) -> String {
 	return LocalizedString(tableName, key: key, obj: obj, lang: NSLocale.currentLanguageString)
 }
 
 public func LocalizedPlural(_ tableName: String, keySingular key1: String, keyPlural key2: String,
-		obj: AnyObject, count: NSNumber) -> String {
+		obj: Any, count: NSNumber) -> String {
 	if count == 1 {
 		return LocalizedString(tableName, key: key1, obj: obj)
 	}
@@ -119,7 +119,7 @@ public func LocalizedPlural(_ tableName: String, keySingular key1: String, keyPl
 		LocalizedString(tableName, key: key2, obj: obj) as NSString, count.int32Value) as String
 }
 
-public func LocalizedString(_ tableName: String, key: String, obj: AnyObject, lang: String) -> String {
+public func LocalizedString(_ tableName: String, key: String, obj: Any, lang: String) -> String {
 	let namespacedKey = "\(tableName)-\(key)"
 
 	func getString(_ bundle: Bundle) -> String? {
@@ -131,8 +131,8 @@ public func LocalizedString(_ tableName: String, key: String, obj: AnyObject, la
 
 		return (res.lowercased() != namespacedKey.lowercased()) ? res : nil
 	}
-
-	let bundles = Bundle.allBundles(type(of: obj))
+	
+	let bundles = Bundle.allBundles(type(of: obj as AnyObject))
 
 	for bundle in bundles {
 		// use forced language bundle
