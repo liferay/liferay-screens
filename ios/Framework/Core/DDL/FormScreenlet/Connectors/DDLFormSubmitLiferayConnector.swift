@@ -26,12 +26,12 @@ open class DDLFormSubmitLiferayConnector: ServerConnector {
 	open var resultRecordId: Int64?
 	open var resultAttributes: NSDictionary?
 
-	fileprivate let values: [String: AnyObject]
+	fileprivate let values: [String: Any]
 	fileprivate let viewModel: DDLFormViewModel?
 
 	// MARK: Initializers
 
-	public init(values: [String: AnyObject], viewModel: DDLFormViewModel?) {
+	public init(values: [String: Any], viewModel: DDLFormViewModel?) {
 		self.values = values
 		self.viewModel = viewModel
 
