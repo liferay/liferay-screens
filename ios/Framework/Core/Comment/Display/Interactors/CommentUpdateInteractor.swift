@@ -72,7 +72,7 @@ open class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 			"" as NSCoding,
 			[
 				"commentId": NSNumber(value: updateCon.commentId),
-				"body": updateCon.body as AnyObject
+				"body": updateCon.body
 			],
 			nil)
 	}
@@ -87,7 +87,7 @@ open class CommentUpdateInteractor: ServerWriteConnectorInteractor {
 				value: "" as NSCoding,
 				attributes: [
 					"commentId": NSNumber(value: commentId),
-					"body": body as AnyObject
+					"body": body
 				],
 				onCompletion: nil)
 		}

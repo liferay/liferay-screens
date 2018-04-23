@@ -49,8 +49,7 @@ class DDLFormLoadFormInteractor: ServerReadConnectorInteractor {
 				collection: ScreenletName(DDLFormScreenlet.self),
 				key: "structureId-\(loadCon.structureId)",
 				value: record,
-				attributes: [
-					"userId": userId.description as AnyObject])
+				attributes: ["userId": userId.description])
 		}
 	}
 

@@ -188,7 +188,7 @@ public enum CacheStrategyType: String {
 			collection: String,
 			key: String,
 			value: NSCoding,
-			attributes: [String: AnyObject],
+			attributes: [String: Any],
 			onCompletion: (() -> Void)? = nil) {
 
 		// The item becomes clean (the opposite of dirty,
@@ -206,7 +206,7 @@ public enum CacheStrategyType: String {
 			collection: String,
 			key: String,
 			localFileURL: URL,
-			attributes: [String: AnyObject],
+			attributes: [String: Any],
 			onCompletion: (() -> Void)? = nil) {
 
 		guard localFileURL.isFileURL else {
@@ -230,7 +230,7 @@ public enum CacheStrategyType: String {
 			collection: String,
 			keys: [String],
 			values: [NSCoding],
-			attributes: [String: AnyObject],
+			attributes: [String: Any],
 			onCompletion: (() -> Void)? = nil) {
 
 		set(collection: collection,
@@ -245,7 +245,7 @@ public enum CacheStrategyType: String {
 			collection: String,
 			key: String,
 			value: NSCoding,
-			attributes: [String: AnyObject],
+			attributes: [String: Any],
 			onCompletion: (() -> Void)? = nil) {
 
 		// The item becomes dirty: fresh received date but nil sent date
@@ -262,7 +262,7 @@ public enum CacheStrategyType: String {
 			keys: [String],
 			values: [NSCoding],
 			synchronized: Date?,
-			attributes: [String: AnyObject],
+			attributes: [String: Any],
 			onCompletion: (() -> Void)? = nil) {
 
 		assert(keys.count == values.count,
@@ -287,7 +287,7 @@ public enum CacheStrategyType: String {
 	open func setClean(
 			collection: String,
 			key: String,
-			attributes: [String: AnyObject],
+			attributes: [String: Any],
 			onCompletion: (() -> Void)? = nil) {
 
 		setMetadata(collection: collection,
@@ -301,7 +301,7 @@ public enum CacheStrategyType: String {
 			collection: String,
 			key: String,
 			synchronized: Date?,
-			attributes: [String: AnyObject],
+			attributes: [String: Any],
 			onCompletion: (() -> Void)? = nil) {
 
 		writeConnection.asyncReadWrite ({ transaction in
@@ -358,7 +358,7 @@ public enum CacheStrategyType: String {
 	}
 
 	open func pendingToSync(
-			_ result: @escaping (String, String, [String: AnyObject]) -> Bool,
+			_ result: @escaping (String, String, [String: Any]) -> Bool,
 			onCompletion: (() -> Void)? = nil) {
 
 		pendingToSyncTransaction ({ transaction in

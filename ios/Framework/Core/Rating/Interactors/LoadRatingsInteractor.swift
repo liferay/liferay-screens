@@ -142,7 +142,7 @@ open class LoadRatingsInteractor: ServerReadConnectorInteractor {
 			value: resultRating,
 			attributes: [
 				"ratingEntryId": NSNumber(value: self.entryId ?? 0),
-				"className": self.className as AnyObject? ?? "" as AnyObject,
+				"className": self.className ?? "",
 				"classPK": NSNumber(value: self.classPK ?? 0)
 			])
 	}

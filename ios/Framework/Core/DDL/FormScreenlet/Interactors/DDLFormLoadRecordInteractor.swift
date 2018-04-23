@@ -129,8 +129,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 				collection: ScreenletName(DDLFormScreenlet.self),
 				key: "structureId-\(String(describing: self.structureId))",
 				value: recordForm,
-				attributes: [
-					"userId": formUserId.description as AnyObject])
+				attributes: ["userId": formUserId.description])
 
 			let record = DDLRecord(
 				data: recordData,

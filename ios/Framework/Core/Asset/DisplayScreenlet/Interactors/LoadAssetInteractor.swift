@@ -124,9 +124,9 @@ open class LoadAssetInteractor: ServerReadConnectorInteractor {
 			value: asset,
 			attributes: [
 				"entryId": NSNumber(value: assetEntryId ?? 0),
-				"className": className as AnyObject? ?? "" as AnyObject,
+				"className": className ?? "",
 				"classPK": NSNumber(value: classPK ?? 0),
-				"portletItemName": portletItemName as AnyObject? ?? ""  as AnyObject
+				"portletItemName": portletItemName ?? ""
 			])
 	}
 

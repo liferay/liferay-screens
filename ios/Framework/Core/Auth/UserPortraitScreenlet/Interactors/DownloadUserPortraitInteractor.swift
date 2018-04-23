@@ -34,7 +34,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 			}
 		}
 
-		var cacheAttributes: [String: AnyObject] {
+		var cacheAttributes: [String: Any] {
 			switch self {
 			case .attributes(let portraitId, _, _):
 				return ["portraitId": NSNumber(value: portraitId)]
@@ -43,11 +43,11 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 			case .emailAddress(let companyId, let emailAddress):
 				return [
 					"companyId": NSNumber(value: companyId),
-					"emailAddress": emailAddress as AnyObject]
+					"emailAddress": emailAddress]
 			case .screenName(let companyId, let screenName):
 				return [
 					"companyId": NSNumber(value: companyId),
-					"screenName": screenName as AnyObject]
+					"screenName": screenName]
 			}
 		}
 	}

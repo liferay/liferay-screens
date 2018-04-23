@@ -123,7 +123,7 @@ class WebContentDisplayLoadInteractor: ServerReadConnectorInteractor {
 			value: value,
 			attributes: [
 				"groupId": NSNumber(value: groupId),
-				"articleId": loadCon.articleId as AnyObject])
+				"articleId": loadCon.articleId])
 	}
 
 	// MARK: Private methods
