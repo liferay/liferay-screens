@@ -146,7 +146,7 @@ extension Bundle {
 	public class func rootNibObjectForThemeOrDefault(
 			name: String,
 			themeName: String,
-			currentClass: AnyClass) -> AnyObject? {
+			currentClass: AnyClass) -> Any? {
 
 		if let foundObject = Bundle.rootNibObjectForTheme(
 				name: name,
@@ -174,7 +174,7 @@ extension Bundle {
 	public class func rootNibObjectForTheme(
 			name: String,
 			themeName: String,
-			currentClass: AnyClass) -> AnyObject? {
+			currentClass: AnyClass) -> Any? {
 
 		let nibName = "\(name)_\(themeName)"
 		return resourceInBundle(
@@ -186,7 +186,7 @@ extension Bundle {
 
 			assert(objects == nil || !objects!.isEmpty, "Malformed xib \(nibName). Without objects")
 
-			return objects![0] as AnyObject?
+			return objects![0]
 		}
 	}
 
