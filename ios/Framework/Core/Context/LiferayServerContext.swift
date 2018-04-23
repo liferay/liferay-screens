@@ -109,14 +109,14 @@ open class LiferayServerContext: NSObject {
 		return StaticInstance.serverProperties![key] = value
 	}
 
-	open class func propertyForKey(_ key: String) -> AnyObject {
+	open class func propertyForKey(_ key: String) -> Any {
 		loadContextFile()
 
 		guard let value = StaticInstance.serverProperties?[key] else {
 			fatalError("Missing key \(key) on liferay-server-context.plist file")
 		}
 
-		return value as AnyObject
+		return value
 	}
 
 	open class func numberPropertyForKey(_ key: String) -> NSNumber {
