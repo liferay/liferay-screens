@@ -5,7 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import com.liferay.mobile.screens.base.interactor.event.CacheEvent;
+import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
+import com.liferay.mobile.screens.context.LiferayServerContext;
+import com.liferay.mobile.screens.context.SessionContext;
+import com.liferay.mobile.screens.ddl.form.interactor.DDLFormEvent;
+import com.liferay.mobile.screens.ddl.form.interactor.upload.DDLFormDocumentUploadEvent;
+import com.liferay.mobile.screens.rating.interactor.RatingEvent;
+import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadEvent;
+import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.snappydb.DB;
 import com.snappydb.DBFactory;
@@ -108,6 +116,18 @@ public class Cache {
 		}
 	}
 
+	public static int pendingItemsToSync() {
+		int ddlFormItems = pendingItemsByClass(DDLFormEvent.class);
+		int commentItems = pendingItemsByClass(CommentEvent.class);
+		int ratingItems = pendingItemsByClass(RatingEvent.class);
+		int userPortraitItems = pendingItemsByClass(UserPortraitUploadEvent.class);
+		int ddlFormDocumentItems = pendingItemsByClass(DDLFormDocumentUploadEvent.class);
+
+		int totalItems = ddlFormItems + commentItems + ratingItems + userPortraitItems + ddlFormDocumentItems;
+
+		return totalItems;
+	}
+
 	public static void resync() {
 		Context context = LiferayScreensContext.getContext();
 		ComponentName component = new ComponentName(context.getPackageName(), CacheSyncService.class.getName());
@@ -133,6 +153,27 @@ public class Cache {
 
 	private static String databaseName(Long groupId, Long userId) {
 		return "DB" + SEPARATOR + (groupId == null ? 0 : groupId) + SEPARATOR + (userId == null ? 0 : userId);
+	}
+
+	private static int pendingItemsByClass(Class aClass) {
+		Long groupId = LiferayServerContext.getGroupId();
+		Long userId = SessionContext.getUserId();
+		Locale locale = LiferayLocale.getDefaultLocale();
+
+		int totalCount = 0;
+		try {
+			String[] keys = Cache.findKeys(aClass, groupId, userId, locale, 0, Integer.MAX_VALUE);
+			for (String key : keys) {
+				CacheEvent event = Cache.getObject(aClass, groupId, userId, key);
+				if (event.isDirty()) {
+					totalCount++;
+				}
+			}
+		} catch (Exception e) {
+			LiferayLogger.e("Error in pendingItemsByClass method with class " + aClass.getName(), e);
+		}
+
+		return totalCount;
 	}
 
 	interface Func1<R> {
