@@ -22,9 +22,9 @@ import java.util.List;
 public class FormInstance {
 
     private long formInstanceId;
-    private List<Field> fields;
+    private List<DDMField> fields;
 
-    public FormInstance(long formInstanceId, List<Field> fields) {
+    public FormInstance(long formInstanceId, List<DDMField> fields) {
         this.formInstanceId = formInstanceId;
         this.fields = fields;
     }
@@ -37,11 +37,11 @@ public class FormInstance {
         this.formInstanceId = formInstanceId;
     }
 
-    public List<Field> getFields() {
+    public List<DDMField> getFields() {
         return fields;
     }
 
-    public void setFields(List<Field> fields) {
+    public void setFields(List<DDMField> fields) {
         this.fields = fields;
     }
 }
