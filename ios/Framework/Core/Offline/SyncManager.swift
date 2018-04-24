@@ -96,16 +96,18 @@ open class SyncManager: NSObject {
 		self.cacheManager.removeAll()
 	}
 
+	open func pendingItemsToSync(_ completed: @escaping (UInt) -> Void) {
+		cacheManager.countPendingToSync(completed)
+	}
+
 	open func startSync() {
-		cacheManager.countPendingToSync { totalCount in
+		pendingItemsToSync { totalCount in
 			self.delegate?.syncManager?(self, itemsCount: totalCount)
 
 			if totalCount > 0 {
 				self.cacheManager.pendingToSync({ (screenlet, key, attributes) -> Bool in
 					self.delegate?.syncManager?(self,
-						onItemSyncScreenlet: screenlet,
-						startKey: key,
-						attributes: attributes)
+						onItemSyncScreenlet: screenlet,startKey: key,attributes: attributes)
 
 					self.enqueueSyncForScreenlet(screenlet, key, attributes)
 
