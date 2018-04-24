@@ -131,7 +131,7 @@ public func LocalizedString(_ tableName: String, key: String, obj: Any, lang: St
 
 		return (res.lowercased() != namespacedKey.lowercased()) ? res : nil
 	}
-	
+
 	let bundles = Bundle.allBundles(type(of: obj as AnyObject))
 
 	for bundle in bundles {
