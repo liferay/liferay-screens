@@ -90,9 +90,10 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 	/// Scpecifies the clientId of the OAuth2 application
 	@IBInspectable open var oauth2clientId: String = ""
 
-	/// Scpecifies the clientId of the OAuth2 application. This is not needed for redirect flow.
+	/// Specifies the clientSecret of the OAuth2 application. This is not needed for redirect flow.
 	@IBInspectable open var oauth2clientSecret: String? = ""
 
+	/// Specifies the redirectUrl. This has to be the same than the one configured in the server.
 	@IBInspectable open var oauth2redirectURL: String? = ""
 
 	/// Specifies the scopes that are going to be requested. Separated by a blank space
