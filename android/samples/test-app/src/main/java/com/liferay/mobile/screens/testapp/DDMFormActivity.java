@@ -22,7 +22,7 @@ public class DDMFormActivity extends ThemeActivity implements DDMFormListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ddm_form);
 
-        DDMFormScreenlet screenlet = findViewById(R.id.ddm_form_screenlet);
+        screenlet = findViewById(R.id.ddm_form_screenlet);
         screenlet.setListener(this);
 
         initScreenletFromIntent(getIntent());
