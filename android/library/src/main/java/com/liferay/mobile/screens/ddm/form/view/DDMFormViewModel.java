@@ -15,9 +15,72 @@
 package com.liferay.mobile.screens.ddm.form.view;
 
 import com.liferay.mobile.screens.base.view.BaseViewModel;
+import com.liferay.mobile.screens.ddm.form.model.DDMField;
+import com.liferay.mobile.screens.ddm.form.model.FormInstance;
+
+import java.util.Map;
 
 /**
  * @author Paulo Cruz
  */
 public interface DDMFormViewModel extends BaseViewModel {
+
+    /**
+     * The layout associated with each form field.
+     *
+     * @return a layout resource id associated with the field editor type
+     */
+    int getFieldLayoutId(DDMField.EditorType editorType);
+
+    /**
+     * Sets the layout associated a field
+     * You should use this method if you want to change the layout of your fields
+     *
+     * @param editorType EditorType associated with this layout
+     * @param layoutId the layout resource id for this editor type
+     */
+    void setFieldLayoutId(DDMField.EditorType editorType, int layoutId);
+
+    /**
+     * Sets the default layout associated a field
+     * You should use this method if you want to use the default/standard layout for this field
+     *
+     * @param editorType EditorType associated with this layout
+     */
+    void resetFieldLayoutId(DDMField.EditorType editorType);
+
+    /**
+     * The layout associated with one specific field.
+     *
+     * @return a layout resource id associated with specified field
+     */
+    int getCustomFieldLayoutId(String fieldName);
+
+    /**
+     * Sets the layout associated a specific field
+     * You should use this method if you want to change the layout of one specific field
+     *
+     * @param fieldName the name of the field to change its layout
+     * @param layoutId the layout resource id for the specified field
+     */
+    void setCustomFieldLayoutId(String fieldName, int layoutId);
+
+    /**
+     * Sets the default layout corresponding to fieldName's editor
+     * You should use this method if you want to use the default/standard layout
+     *
+     * @param fieldName the name of the field to change its layout
+     */
+    void resetCustomFieldLayoutId(String fieldName);
+
+    void showValidationResults(Map<DDMField, Boolean> fieldResults, boolean autoscroll);
+
+    void showFormFields(FormInstance formInstance);
+
+    void showStartOperation(String actionName, Object argument);
+
+    void showFinishOperation(String actionName, Object argument);
+
+    void showFailedOperation(String actionName, Exception e, Object argument);
+
 }
