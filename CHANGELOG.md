@@ -11,6 +11,10 @@ All notable changes to this project will be documented in this file.
 * Drop support for OAuth1
 * Give a pass to the code and solve minor issues
 
+### New features
+
+* Add a new method to the sync service to know if there are items to synchronize
+
 ## iOS
 
 * Drop support for OAuth1
