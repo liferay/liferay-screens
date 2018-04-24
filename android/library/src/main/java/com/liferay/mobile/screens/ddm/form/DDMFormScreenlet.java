@@ -30,6 +30,7 @@ import com.liferay.mobile.screens.ddm.form.interactor.evaluate.FormContextEvalua
 import com.liferay.mobile.screens.ddm.form.interactor.load.FormInstanceLoadInteractor;
 import com.liferay.mobile.screens.ddm.form.interactor.load.FormInstanceRecordLoadInteractor;
 import com.liferay.mobile.screens.ddm.form.interactor.update.FormInstanceRecordUpdateInteractor;
+import com.liferay.mobile.screens.ddm.form.model.DDMField;
 import com.liferay.mobile.screens.ddm.form.model.FormContext;
 import com.liferay.mobile.screens.ddm.form.model.FormInstance;
 import com.liferay.mobile.screens.ddm.form.model.FormInstanceRecord;
@@ -102,6 +103,8 @@ public class DDMFormScreenlet extends BaseScreenlet<DDMFormViewModel, Interactor
 
     @Override
     public void onFormInstanceLoaded(FormInstance formInstance) {
+        getViewModel().showFinishOperation(LOAD_FORM_ACTION, formInstance);
+
         if (listener != null) {
             listener.onFormInstanceLoaded(formInstance);
         }
@@ -145,6 +148,10 @@ public class DDMFormScreenlet extends BaseScreenlet<DDMFormViewModel, Interactor
         int layoutId = typedArray.getResourceId(R.styleable.DDMFormScreenlet_layoutId, getDefaultLayoutId());
 
         View view = LayoutInflater.from(context).inflate(layoutId, null);
+
+        DDMFormViewModel viewModel = (DDMFormViewModel) view;
+
+        viewModel.resetFieldLayoutId(DDMField.EditorType.TEXT);
 
         typedArray.recycle();
 
@@ -200,6 +207,18 @@ public class DDMFormScreenlet extends BaseScreenlet<DDMFormViewModel, Interactor
 
                 ((FormInstanceRecordUpdateInteractor) interactor).start(updateRecordEvent);
                 break;
+        }
+    }
+
+    private void setFieldLayoutId(DDMFormViewModel viewModel, TypedArray typedArray, DDMField.EditorType editorType,
+                                  Integer id) {
+
+        int resourceId = typedArray.getResourceId(id, 0);
+
+        if (resourceId == 0) {
+            viewModel.resetFieldLayoutId(editorType);
+        } else {
+            viewModel.setFieldLayoutId(editorType, resourceId);
         }
     }
 }

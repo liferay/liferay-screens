@@ -9,6 +9,7 @@
 	<string name="ForgotPasswordScreenlet_default">forgotpassword_default</string>
 	<string name="DDLFormScreenlet_default">ddl_form_default</string>
 	<string name="DDLListScreenlet_default">ddl_list_default</string>
+	<string name="DDMFormScreenlet_default">ddm_form_default</string>
 	<string name="ImageDisplayScreenlet_default">image_display_default</string>
 	<string name="PdfDisplayScreenlet_default">pdf_display_default</string>
 	<string name="UserPortraitScreenlet_default">userportrait_default</string>
