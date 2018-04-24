@@ -107,7 +107,7 @@ open class SyncManager: NSObject {
 			if totalCount > 0 {
 				self.cacheManager.pendingToSync({ (screenlet, key, attributes) -> Bool in
 					self.delegate?.syncManager?(self,
-						onItemSyncScreenlet: screenlet,startKey: key,attributes: attributes)
+						onItemSyncScreenlet: screenlet, startKey: key, attributes: attributes)
 
 					self.enqueueSyncForScreenlet(screenlet, key, attributes)
 
