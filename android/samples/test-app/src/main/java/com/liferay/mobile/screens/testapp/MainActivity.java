@@ -138,7 +138,9 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				}
 				break;
 			case R.id.sync_cache:
-				Cache.resync();
+				if (Cache.pendingItemsToSync() > 0) {
+					Cache.resync();
+				}
 				info(getString(R.string.resync_cache_info));
 				break;
 			case R.id.custom_interactor:
