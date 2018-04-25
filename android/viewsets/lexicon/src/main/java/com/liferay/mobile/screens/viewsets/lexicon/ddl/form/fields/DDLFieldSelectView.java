@@ -61,13 +61,18 @@ public class DDLFieldSelectView
 
 		int index = (currentValue.isEmpty()) ? -1: availableOptions.indexOf(currentValue.get(0));
 		builder.setSingleChoiceItems(labels, index, selectOptionHandler);
+		builder.setPositiveButton(android.R.string.ok, selectOptionHandler);
+		builder.setNegativeButton(android.R.string.cancel, selectOptionHandler);
 	}
 
 	@Override
 	public void onClick(DialogInterface dialog, int which) {
-		getField().selectOption(getField().getAvailableOptions().get(which));
-		refresh();
-		dialog.dismiss();
+		if (which >= 0) {
+			getField().selectOption(getField().getAvailableOptions().get(which));
+			refresh();
+		} else {
+			dialog.dismiss();
+		}
 	}
 
 	@Override
