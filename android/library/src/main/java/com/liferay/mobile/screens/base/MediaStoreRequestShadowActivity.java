@@ -20,8 +20,10 @@ import java.io.File;
 public class MediaStoreRequestShadowActivity extends Activity {
 
 	public static final int SELECT_IMAGE_FROM_GALLERY = 0;
-	public static final int TAKE_PICTURE_WITH_CAMERA = 1;
-	public static final int RECORD_VIDEO = 2;
+	public static final int SELECT_VIDEO_FROM_GALLERY = 1;
+	public static final int TAKE_PICTURE_WITH_CAMERA = 2;
+	public static final int RECORD_VIDEO = 3;
+	public static final int SELECT_ANY_FROM_GALLERY = 4;
 
 	public static final String MEDIA_STORE_TYPE = "MEDIA_STORE_TYPE";
 	public static final String MEDIA_STORE_RECEIVER = "MEDIA_STORE_RECEIVER";
@@ -58,11 +60,20 @@ public class MediaStoreRequestShadowActivity extends Activity {
 		super.onActivityResult(requestCode, resultCode, data);
 
 		if (resultCode == RESULT_OK) {
-			Uri uri = mediaStoreType == SELECT_IMAGE_FROM_GALLERY ? data.getData() : fileUri;
+			Uri uri = fileUri;
+			if (isSelectFromGallery()) {
+				uri = data.getData();
+			}
 			sendEvent(uri);
 		}
 
 		finish();
+	}
+
+	private boolean isSelectFromGallery() {
+		return mediaStoreType == SELECT_ANY_FROM_GALLERY
+			|| mediaStoreType == SELECT_IMAGE_FROM_GALLERY
+			|| mediaStoreType == SELECT_VIDEO_FROM_GALLERY;
 	}
 
 	private void sendEvent(Uri uri) {
@@ -73,17 +84,35 @@ public class MediaStoreRequestShadowActivity extends Activity {
 	}
 
 	private void sendIntent() {
-		if (mediaStoreType == SELECT_IMAGE_FROM_GALLERY) {
-			openGallery();
-		} else if (mediaStoreType == TAKE_PICTURE_WITH_CAMERA) {
-			openCamera();
-		} else if (mediaStoreType == RECORD_VIDEO) {
-			openVideCamera();
+		switch (mediaStoreType) {
+
+			case SELECT_ANY_FROM_GALLERY:
+				openGallery("image/*, video/*");
+				break;
+			case SELECT_IMAGE_FROM_GALLERY:
+				openGallery("image/*");
+				break;
+			case SELECT_VIDEO_FROM_GALLERY:
+				openGallery("video/*");
+				break;
+
+			case TAKE_PICTURE_WITH_CAMERA:
+				openCamera();
+				break;
+
+			case RECORD_VIDEO:
+				openVideoCamera();
+				break;
+
+			default:
+				break;
 		}
 	}
 
-	private void openGallery() {
+	private void openGallery(String type) {
 		Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+		galleryIntent.setType(type);
+
 		startActivityForResult(galleryIntent, mediaStoreType);
 	}
 
@@ -98,7 +127,7 @@ public class MediaStoreRequestShadowActivity extends Activity {
 		}
 	}
 
-	private void openVideCamera() {
+	private void openVideoCamera() {
 		Intent cameraIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
 
 		if (cameraIntent.resolveActivity(getPackageManager()) != null) {
