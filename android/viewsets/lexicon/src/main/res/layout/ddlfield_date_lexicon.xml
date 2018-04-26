@@ -12,6 +12,7 @@
 		android:layout_height="wrap_content"
 		android:labelFor="@+id/liferay_ddl_edit_text"
 		android:visibility="gone"
+		style="@style/lexicon_label"
 		/>
 
 	<EditText

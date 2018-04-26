@@ -37,10 +37,9 @@
     </style>
 
     <style name="lexicon_edit_text" parent="Widget.AppCompat.EditText">
-        <item name="android:paddingTop">@dimen/default_edit_text_padding</item>
-        <item name="android:paddingBottom">@dimen/default_edit_text_padding</item>
-        <item name="android:paddingLeft">@dimen/default_edit_text_drawable_padding</item>
-        <item name="android:paddingRight">@dimen/default_edit_text_padding</item>
+        <item name="android:minHeight">@dimen/field_min_height</item>
+        <item name="android:paddingLeft">@dimen/field_padding</item>
+        <item name="android:paddingStart">@dimen/field_padding</item>
         <item name="android:background">@drawable/lexicon_edit_text_selector</item>
         <item name="android:drawablePadding">@dimen/default_edit_text_drawable_padding</item>
         <item name="android:textColor">@color/colorPrimaryDark_lexicon</item>
@@ -50,7 +49,17 @@
 
     <style name="lexicon_text_view" parent="android:Widget.TextView">
         <item name="android:textColor">@color/colorPrimaryDark_lexicon</item>
+        <item name="android:textSize">@dimen/text_view_size</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="lexicon_label" parent="lexicon_text_view">
+        <item name="android:layout_marginBottom">5dp</item>
+    </style>
+
+    <style name="lexicon_bottom_sheet_text_view" parent="lexicon_text_view">
+        <item name="android:textStyle">normal</item>
+        <item name="android:layout_height">@dimen/text_view_bottom_sheet_height</item>
     </style>
 
     <style name="lexicon_list_item">

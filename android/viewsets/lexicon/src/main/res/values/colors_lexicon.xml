@@ -8,6 +8,8 @@
     <color name="textColorSecondary_lexicon">#6b6c7e</color>
     <color name="textColorTertiary_lexicon">#e7e7ed</color>
 
+    <color name="lightGray_lexicon">#cdced9</color>
+
     <color name="colorPrimary">#393a4a</color>
     <color name="colorPrimaryLight">#0b5fff</color>
     <color name="colorPrimaryDark">#272833</color>

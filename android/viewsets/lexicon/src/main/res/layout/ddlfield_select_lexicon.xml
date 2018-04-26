@@ -3,7 +3,7 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:orientation="vertical"
-	android:padding="10dp"
+	android:padding="@dimen/field_padding"
 	>
 
 	<TextView
@@ -11,6 +11,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:visibility="gone"
+		style="@style/lexicon_label"
 		/>
 
 	<EditText

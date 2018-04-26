@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.viewsets.lexicon.ddl.form.fields.DDLDocumentFieldView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/field_padding"
+    >
+
+    <TextView
+        android:id="@+id/liferay_ddl_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        style="@style/lexicon_label"
+        />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <EditText
+            android:id="@+id/liferay_ddl_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/lexicon_clip_tinted"
+            android:drawableRight="@drawable/lexicon_clip_tinted"
+            android:hint="@string/select_a_file"
+            android:inputType="none"
+            android:focusable="false"
+            />
+
+        <ProgressBar
+            android:id="@+id/liferay_document_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end|center_vertical"
+            android:visibility="invisible"
+            />
+    </FrameLayout>
+
+</com.liferay.mobile.screens.viewsets.lexicon.ddl.form.fields.DDLDocumentFieldView>
