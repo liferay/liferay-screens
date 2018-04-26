@@ -23,6 +23,7 @@ import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.base.interactor.Interactor;
+import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddm.form.interactor.FormContextEvent;
 import com.liferay.mobile.screens.ddm.form.interactor.FormInstanceRecordEvent;
 import com.liferay.mobile.screens.ddm.form.interactor.add.FormInstanceRecordAddInteractor;
@@ -30,7 +31,6 @@ import com.liferay.mobile.screens.ddm.form.interactor.evaluate.FormContextEvalua
 import com.liferay.mobile.screens.ddm.form.interactor.load.FormInstanceLoadInteractor;
 import com.liferay.mobile.screens.ddm.form.interactor.load.FormInstanceRecordLoadInteractor;
 import com.liferay.mobile.screens.ddm.form.interactor.update.FormInstanceRecordUpdateInteractor;
-import com.liferay.mobile.screens.ddm.form.model.DDMField;
 import com.liferay.mobile.screens.ddm.form.model.FormContext;
 import com.liferay.mobile.screens.ddm.form.model.FormInstance;
 import com.liferay.mobile.screens.ddm.form.model.FormInstanceRecord;
@@ -145,14 +145,45 @@ public class DDMFormScreenlet extends BaseScreenlet<DDMFormViewModel, Interactor
 
         formInstanceId = castToLong(typedArray.getString(R.styleable.DDMFormScreenlet_formInstanceId));
 
-        int layoutId = typedArray.getResourceId(R.styleable.DDMFormScreenlet_layoutId, getDefaultLayoutId());
+        int layoutId = typedArray.getResourceId(R.styleable.DDMFormScreenlet_layoutId,
+                getDefaultLayoutId());
 
         View view = LayoutInflater.from(context).inflate(layoutId, null);
 
         DDMFormViewModel viewModel = (DDMFormViewModel) view;
 
-        viewModel.resetFieldLayoutId(DDMField.EditorType.TEXT);
+        setFieldLayoutId(viewModel, typedArray, Field.EditorType.CHECKBOX,
+                R.styleable.DDMFormScreenlet_checkboxFieldLayoutId);
 
+        setFieldLayoutId(viewModel, typedArray, Field.EditorType.DATE,
+                R.styleable.DDMFormScreenlet_dateFieldLayoutId);
+
+        setFieldLayoutId(viewModel, typedArray, Field.EditorType.NUMBER,
+                R.styleable.DDMFormScreenlet_numberFieldLayoutId);
+
+        setFieldLayoutId(viewModel, typedArray, Field.EditorType.INTEGER,
+                R.styleable.DDMFormScreenlet_numberFieldLayoutId);
+
+        setFieldLayoutId(viewModel, typedArray, Field.EditorType.DECIMAL,
+                R.styleable.DDMFormScreenlet_numberFieldLayoutId);
+
+        setFieldLayoutId(viewModel, typedArray, Field.EditorType.RADIO,
+                R.styleable.DDMFormScreenlet_radioFieldLayoutId);
+
+        setFieldLayoutId(viewModel, typedArray, Field.EditorType.SELECT,
+                R.styleable.DDMFormScreenlet_selectFieldLayoutId);
+
+        setFieldLayoutId(viewModel, typedArray, Field.EditorType.TEXT,
+                R.styleable.DDMFormScreenlet_textFieldLayoutId);
+
+        setFieldLayoutId(viewModel, typedArray, Field.EditorType.TEXT_AREA,
+                R.styleable.DDMFormScreenlet_textAreaFieldLayoutId);
+
+        setFieldLayoutId(viewModel, typedArray, Field.EditorType.DOCUMENT,
+                R.styleable.DDMFormScreenlet_documentFieldLayoutId);
+
+        setFieldLayoutId(viewModel, typedArray, Field.EditorType.GEO,
+                R.styleable.DDMFormScreenlet_geoFieldLayoutId);
         typedArray.recycle();
 
         return view;
@@ -210,7 +241,7 @@ public class DDMFormScreenlet extends BaseScreenlet<DDMFormViewModel, Interactor
         }
     }
 
-    private void setFieldLayoutId(DDMFormViewModel viewModel, TypedArray typedArray, DDMField.EditorType editorType,
+    private void setFieldLayoutId(DDMFormViewModel viewModel, TypedArray typedArray, Field.EditorType editorType,
                                   Integer id) {
 
         int resourceId = typedArray.getResourceId(id, 0);

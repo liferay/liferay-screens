@@ -153,6 +153,15 @@
 		<attr name="cachePolicy"/>
 		<attr name="formInstanceId"/>
 		<attr name="userId"/>
+		<attr name="checkboxFieldLayoutId"/>
+		<attr name="dateFieldLayoutId"/>
+		<attr name="numberFieldLayoutId"/>
+		<attr name="radioFieldLayoutId"/>
+		<attr name="selectFieldLayoutId"/>
+		<attr name="textFieldLayoutId"/>
+		<attr name="textAreaFieldLayoutId"/>
+		<attr name="documentFieldLayoutId"/>
+		<attr name="geoFieldLayoutId"/>
 	</declare-styleable>
 
 	<declare-styleable name="ForgotPasswordScreenlet">
