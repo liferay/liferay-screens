@@ -271,6 +271,10 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 		if (AuthenticationType.COOKIE.equals(authenticationType)) {
 			return new LoginCookieInteractor();
+		} else if (AuthenticationType.OAUTH2USERNAMEANDPASSWORD.equals(authenticationType)) {
+			return new LoginOAuth2UsernameAndPasswordInteractor();
+		} else if (AuthenticationType.OAUTH2REDIRECT.equals(authenticationType)) {
+			return new LoginOAuth2RedirectInteractor();
 		} else {
 			return new LoginBasicInteractor();
 		}
@@ -282,13 +286,18 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 			interactor.start(args);
 			return;
 		}
+
+		LoginViewModel viewModel = getViewModel();
 		if (AuthenticationType.COOKIE.equals(authenticationType)) {
-			LoginViewModel viewModel = getViewModel();
 			interactor.start(viewModel.getLogin(), viewModel.getPassword(), authenticator, shouldHandleCookieExpiration,
 				cookieExpirationTime);
 		} else if (AuthenticationType.BASIC.equals(authenticationType)) {
-			LoginViewModel viewModel = getViewModel();
 			interactor.start(viewModel.getLogin(), viewModel.getPassword(), viewModel.getBasicAuthMethod());
+		} else if (AuthenticationType.OAUTH2USERNAMEANDPASSWORD.equals(authenticationType)) {
+			interactor.start(viewModel.getLogin(), viewModel.getPassword(), oauth2ClientId, oauth2ClientSecret,
+				oauth2Scopes);
+		} else if (AuthenticationType.OAUTH2REDIRECT.equals(authenticationType)) {
+			interactor.start(oauth2ClientId, oauth2Scopes, oauth2RedirectUrl, oauth2CustomTabsIntent, getContext());
 		}
 	}
 }
