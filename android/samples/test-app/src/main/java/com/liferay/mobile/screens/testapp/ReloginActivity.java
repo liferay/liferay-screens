@@ -58,6 +58,11 @@ public class ReloginActivity extends ThemeActivity implements LoginListener, Vie
 		error(getString(R.string.relogin_error), e);
 	}
 
+	@Override
+	public void onAuthenticationBrowserShown() {
+
+	}
+
 	public void change() {
 		if (SessionContext.isLoggedIn()) {
 			final User user = SessionContext.getCurrentUser();

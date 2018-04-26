@@ -49,6 +49,11 @@ public class LoginActivity extends ThemeActivity implements LoginListener {
 		error(getString(R.string.login_screenlet_error), e);
 	}
 
+	@Override
+	public void onAuthenticationBrowserShown() {
+
+	}
+
 	private void setDefaultValues() {
 		EditText login = (EditText) loginScreenlet.findViewById(R.id.liferay_login);
 		login.setText(getString(R.string.liferay_default_user_name));
