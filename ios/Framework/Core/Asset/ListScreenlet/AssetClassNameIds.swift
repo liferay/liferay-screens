@@ -13,13 +13,6 @@
  */
 import UIKit
 
-// Users and sites
-public let AssetClassNameKey_Group = "Group"
-public let AssetClassNameKey_Layout = "Layout"
-public let AssetClassNameKey_Organization = "Organization"
-public let AssetClassNameKey_User = "User"
-public let AssetClassNameKey_UserGroup = "UserGroup"
-
 // Blogs
 public let AssetClassNameKey_BlogsEntry = "BlogsEntry"
 
@@ -27,36 +20,39 @@ public let AssetClassNameKey_BlogsEntry = "BlogsEntry"
 public let AssetClassNameKey_BookmarksEntry = "BookmarksEntry"
 public let AssetClassNameKey_BookmarksFolder = "BookmarksFolder"
 
-// Document Library
-public let AssetClassNameKey_DLFileEntry = "DLFileEntry"
-public let AssetClassNameKey_DLFolder = "DLFolder"
-public let AssetClassNameKey_DLFileEntryMetadata = "DLFileEntryMetadata"
-public let AssetClassNameKey_DLFileEntryType = "DLFileEntryType"
-public let AssetClassNameKey_DLFileRank = "DLFileRank"
-public let AssetClassNameKey_DLFileShortcut = "DLFileShortcut"
-public let AssetClassNameKey_DLFileVersion = "DLFileVersion"
+// Calendar
+public let AssetClassNameKey_CalendarBooking = "CalendarBooking"
 
 // DDL
 public let AssetClassNameKey_DDLRecord = "DDLRecord"
-public let AssetClassNameKey_DDLRecordSet = "DDLRecordSet"
-public let AssetClassNameKey_DDLRecordVersion = "DDLRecordVersion"
+
+// DDM
+public let AssetClassNameKey_DDLFormRecord = "DDLFormRecord"
+
+// Document Library
+public let AssetClassNameKey_DLFileEntry = "DLFileEntry"
+public let AssetClassNameKey_DLFolder = "DLFolder"
 
 // Journal
 public let AssetClassNameKey_JournalArticle = "JournalArticle"
-public let AssetClassNameKey_JournalArticleImage = "JournalArticleImage"
 public let AssetClassNameKey_JournalFolder = "JournalFolder"
 
-// MessageBoard
-public let AssetClassNameKey_MBMessage = "MBMessage"
-public let AssetClassNameKey_MBThread = "MBThread"
+// Users and sites
+public let AssetClassNameKey_Layout = "Layout"
+public let AssetClassNameKey_LayoutRevision = "LayoutRevision"
+public let AssetClassNameKey_Organization = "Organization"
+public let AssetClassNameKey_Site = "Website"
+public let AssetClassNameKey_User = "User"
+
+// Comment
 public let AssetClassNameKey_MBCategory = "MBCategory"
-public let AssetClassNameKey_MBDiscussion = "MBDiscussion"
-public let AssetClassNameKey_MBMailingList = "MBMailingList"
+public let AssetClassNameKey_MBMessage = "MBMessage"
+
+// Microblogs
+public let AssetClassNameKey_MicroblogsEntry = "MicroblogsEntry"
 
 // Wiki
 public let AssetClassNameKey_WikiPage = "WikiPage"
-public let AssetClassNameKey_WikiPageResource = "WikiPageResource"
-public let AssetClassNameKey_WikiNode = "WikiNode"
 
 @objc(AssetClassEntry)
 open class AssetClassEntry: NSObject {
@@ -84,60 +80,47 @@ open class AssetClasses: NSObject {
 		// you probably we'll need to overwrite these values like this:
 		//		AssetClassNameKey_s.setClassNameId(AssetClassNameKey_Group, 1234)
 		return [
-			// Users and sites
-			AssetClassNameKey_Group: AssetClassEntry(20045, "com.liferay.portal.kernel.model.Group"),
-			AssetClassNameKey_Layout: AssetClassEntry(20047, "com.liferay.portal.kernel.model.Layout"),
-			AssetClassNameKey_Organization: AssetClassEntry(20059, "com.liferay.portal.kernel.model.Organization"),
-			AssetClassNameKey_User: AssetClassEntry(20087, "com.liferay.portal.kernel.model.User"),
-			AssetClassNameKey_UserGroup: AssetClassEntry(20088, "com.liferay.portal.kernel.model.UserGroup"),
-
 			// Blogs
 			AssetClassNameKey_BlogsEntry: AssetClassEntry(20011, "com.liferay.blogs.kernel.model.BlogsEntry"),
 
 			// Bookmarks
-			AssetClassNameKey_BookmarksEntry: AssetClassEntry(27401, "com.liferay.bookmarks.model.BookmarksEntry"),
-			AssetClassNameKey_BookmarksFolder: AssetClassEntry(27402, "com.liferay.bookmarks.model.BookmarksFolder"),
+			AssetClassNameKey_BookmarksEntry: AssetClassEntry(28401, "com.liferay.bookmarks.model.BookmarksEntry"),
+			AssetClassNameKey_BookmarksFolder: AssetClassEntry(28402, "com.liferay.bookmarks.model.BookmarksFolder"),
 
-			// Document Library
-			AssetClassNameKey_DLFileEntry: AssetClassEntry(20015,
-					"com.liferay.document.library.kernel.model.DLFileEntry"),
-			AssetClassNameKey_DLFolder: AssetClassEntry(20021, "com.liferay.document.library.kernel.model.DLFolder"),
-			AssetClassNameKey_DLFileEntryMetadata: AssetClassEntry(20016,
-					"com.liferay.document.library.kernel.model.DLFileEntryMetadata"),
-			AssetClassNameKey_DLFileEntryType: AssetClassEntry(20017,
-					"com.liferay.document.library.kernel.model.DLFileEntryType"),
-			AssetClassNameKey_DLFileRank: AssetClassEntry(20018,
-					"com.liferay.document.library.kernel.model.DLFileRank"),
-			AssetClassNameKey_DLFileShortcut: AssetClassEntry(20019,
-					"com.liferay.document.library.kernel.model.DLFileShortcut"),
-			AssetClassNameKey_DLFileVersion: AssetClassEntry(20020,
-					"com.liferay.document.library.kernel.model.DLFileVersion"),
+			// Calendar
+			AssetClassNameKey_CalendarBooking: AssetClassEntry(27702, "com.liferay.calendar.model.CalendarBooking"),
 
 			// DDL
-			AssetClassNameKey_DDLRecord: AssetClassEntry(29101, "com.liferay.dynamic.data.lists.model.DDLRecord"),
-			AssetClassNameKey_DDLRecordSet: AssetClassEntry(29102, "com.liferay.dynamic.data.lists.model.DDLRecordSet"),
-			AssetClassNameKey_DDLRecordVersion: AssetClassEntry(29103,
-					"com.liferay.dynamic.data.lists.model.DDLRecordVersion"),
+			AssetClassNameKey_DDLRecord: AssetClassEntry(29501, "com.liferay.dynamic.data.lists.model.DDLRecord"),
 
-			// Journal
-			AssetClassNameKey_JournalArticle: AssetClassEntry(29501, "com.liferay.journal.model.JournalArticle"),
-			AssetClassNameKey_JournalArticleImage: AssetClassEntry(29502,
-					"com.liferay.journal.model.JournalArticleImage"),
-			AssetClassNameKey_JournalFolder: AssetClassEntry(29506, "com.liferay.journal.model.JournalFolder"),
+			// DDMForm
+			AssetClassNameKey_DDLFormRecord: AssetClassEntry(31330, "com.liferay.dynamic.data.lists.model.DDLFormRecord"),
 
-			// MessageBoard
+			// Document Library
+			AssetClassNameKey_DLFileEntry: AssetClassEntry(20015, "com.liferay.document.library.kernel.model.DLFileEntry"),
+			AssetClassNameKey_DLFolder: AssetClassEntry(20021, "com.liferay.document.library.kernel.model.DLFolder"),
+
+			// WebContent
+			AssetClassNameKey_JournalArticle: AssetClassEntry(29634, "com.liferay.journal.model.JournalArticle"),
+			AssetClassNameKey_JournalFolder: AssetClassEntry(29639, "com.liferay.journal.model.JournalFolder"),
+
+			// Users and sites
+			AssetClassNameKey_Layout: AssetClassEntry(20047, "com.liferay.portal.kernel.model.Layout"),
+			AssetClassNameKey_LayoutRevision: AssetClassEntry(20051, "com.liferay.portal.kernel.model.LayoutRevision"),
+			AssetClassNameKey_Organization: AssetClassEntry(20059, "com.liferay.portal.kernel.model.Organization"),
+			AssetClassNameKey_Site: AssetClassEntry(20098, "com.liferay.portal.kernel.model.Website"),
+			AssetClassNameKey_User: AssetClassEntry(20087, "com.liferay.portal.kernel.model.User"),
+
+			// Message boards
+			AssetClassNameKey_MBCategory: AssetClassEntry(20029, "com.liferay.message.boards.kernel.model.MBCategory"),
 			AssetClassNameKey_MBMessage: AssetClassEntry(20032, "com.liferay.message.boards.kernel.model.MBMessage"),
 			AssetClassNameKey_MBThread: AssetClassEntry(20034, "com.liferay.message.boards.kernel.model.MBThread"),
-			AssetClassNameKey_MBCategory: AssetClassEntry(20029, "com.liferay.message.boards.kernel.model.MBCategory"),
-			AssetClassNameKey_MBDiscussion: AssetClassEntry(20030,
-					"com.liferay.message.boards.kernel.model.MBDiscussion"),
-			AssetClassNameKey_MBMailingList: AssetClassEntry(20031,
-					"com.liferay.message.boards.kernel.model.MBMailingList"),
+
+			// Microblogs
+			AssetClassNameKey_MicroblogsEntry: AssetClassEntry(28701, "com.liferay.microblogs.model.MicroblogsEntry"),
 
 			// Wiki
-			AssetClassNameKey_WikiPage: AssetClassEntry(27902, "com.liferay.wiki.model.WikiPage"),
-			AssetClassNameKey_WikiPageResource: AssetClassEntry(27903, "com.liferay.wiki.model.WikiPageResource"),
-			AssetClassNameKey_WikiNode: AssetClassEntry(27901, "com.liferay.wiki.model.WikiNode")
+			AssetClassNameKey_WikiPage: AssetClassEntry(28802, "com.liferay.wiki.model.WikiPage")
 		]
 	}()
 

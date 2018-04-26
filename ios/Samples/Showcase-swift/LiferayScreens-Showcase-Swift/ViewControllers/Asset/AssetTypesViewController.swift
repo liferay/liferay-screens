@@ -18,32 +18,25 @@ import LiferayScreens
 class AssetTypesViewController: UITableViewController {
 	
 	let assetClasses = [
-		AssetClassNameKey_Group,
-		AssetClassNameKey_Layout,
-		AssetClassNameKey_Organization,
-		AssetClassNameKey_User,
-		AssetClassNameKey_UserGroup,
 		AssetClassNameKey_BlogsEntry,
 		AssetClassNameKey_BookmarksEntry,
 		AssetClassNameKey_BookmarksFolder,
-		AssetClassNameKey_DLFileEntry,
-		AssetClassNameKey_DLFileEntryMetadata,
-		AssetClassNameKey_DLFileEntryType,
-		AssetClassNameKey_DLFileRank,
-		AssetClassNameKey_DLFileShortcut,
-		AssetClassNameKey_DLFileVersion,
+		AssetClassNameKey_CalendarBooking,
 		AssetClassNameKey_DDLRecord,
-		AssetClassNameKey_DDLRecordSet,
+		AssetClassNameKey_DDLFormRecord,
+		AssetClassNameKey_DLFileEntry,
+		AssetClassNameKey_DLFolder,
 		AssetClassNameKey_JournalArticle,
 		AssetClassNameKey_JournalFolder,
-		AssetClassNameKey_MBMessage,
-		AssetClassNameKey_MBThread,
+		AssetClassNameKey_Layout,
+		AssetClassNameKey_LayoutRevision,
+		AssetClassNameKey_Organization,
+		AssetClassNameKey_Site,
+		AssetClassNameKey_User,
 		AssetClassNameKey_MBCategory,
-		AssetClassNameKey_MBDiscussion,
-		AssetClassNameKey_MBMailingList,
-		AssetClassNameKey_WikiPage,
-		AssetClassNameKey_WikiPageResource,
-		AssetClassNameKey_WikiNode
+		AssetClassNameKey_MBMessage,
+		AssetClassNameKey_MicroblogsEntry,
+		AssetClassNameKey_WikiPage
 	]
 	
 	let AssetListSegue = "assetList"
@@ -53,35 +46,25 @@ class AssetTypesViewController: UITableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		AssetClasses.set(AssetClassNameKey_Group, newId: 20045)
-		AssetClasses.set(AssetClassNameKey_Layout, newId: 20047)
-		AssetClasses.set(AssetClassNameKey_Organization, newId: 20059)
-		AssetClasses.set(AssetClassNameKey_User, newId: 20087)
-		AssetClasses.set(AssetClassNameKey_UserGroup, newId: 20088)
 		AssetClasses.set(AssetClassNameKey_BlogsEntry, newId: 20011)
-		AssetClasses.set(AssetClassNameKey_BookmarksEntry, newId: 27301)
-		AssetClasses.set(AssetClassNameKey_BookmarksFolder, newId: 27302)
+		AssetClasses.set(AssetClassNameKey_BookmarksEntry, newId: 28401)
+		AssetClasses.set(AssetClassNameKey_BookmarksFolder, newId: 28402)
+		AssetClasses.set(AssetClassNameKey_CalendarBooking, newId: 27702)
+		AssetClasses.set(AssetClassNameKey_DDLRecord, newId: 29501)
+		AssetClasses.set(AssetClassNameKey_DDLFormRecord, newId: 31330)
 		AssetClasses.set(AssetClassNameKey_DLFileEntry, newId: 20015)
 		AssetClasses.set(AssetClassNameKey_DLFolder, newId: 20021)
-		AssetClasses.set(AssetClassNameKey_DLFileEntryMetadata, newId: 20016)
-		AssetClasses.set(AssetClassNameKey_DLFileEntryType, newId: 20017)
-		AssetClasses.set(AssetClassNameKey_DLFileRank, newId: 20018)
-		AssetClasses.set(AssetClassNameKey_DLFileShortcut, newId: 20019)
-		AssetClasses.set(AssetClassNameKey_DLFileVersion, newId: 20020)
-		AssetClasses.set(AssetClassNameKey_DDLRecord, newId: 29413)
-		AssetClasses.set(AssetClassNameKey_DDLRecordSet, newId: 29414)
-		AssetClasses.set(AssetClassNameKey_DDLRecordVersion, newId: 29415)
-		AssetClasses.set(AssetClassNameKey_JournalArticle, newId: 29591)
-		AssetClasses.set(AssetClassNameKey_JournalArticleImage, newId: 29592)
-		AssetClasses.set(AssetClassNameKey_JournalFolder, newId: 29596)
-		AssetClasses.set(AssetClassNameKey_MBMessage, newId: 20032)
-		AssetClasses.set(AssetClassNameKey_MBThread, newId: 20034)
+		AssetClasses.set(AssetClassNameKey_JournalArticle, newId: 29634)
+		AssetClasses.set(AssetClassNameKey_JournalFolder, newId: 29639)
+		AssetClasses.set(AssetClassNameKey_Layout, newId: 20047)
+		AssetClasses.set(AssetClassNameKey_LayoutRevision, newId: 20051)
+		AssetClasses.set(AssetClassNameKey_Organization, newId: 20059)
+		AssetClasses.set(AssetClassNameKey_Site, newId: 20098)
+		AssetClasses.set(AssetClassNameKey_User, newId: 20087)
 		AssetClasses.set(AssetClassNameKey_MBCategory, newId: 20029)
-		AssetClasses.set(AssetClassNameKey_MBDiscussion, newId: 20030)
-		AssetClasses.set(AssetClassNameKey_MBMailingList, newId: 20031)
-		AssetClasses.set(AssetClassNameKey_WikiPage, newId: 27802)
-		AssetClasses.set(AssetClassNameKey_WikiPageResource, newId: 27803)
-		AssetClasses.set(AssetClassNameKey_WikiNode, newId: 27801)
+		AssetClasses.set(AssetClassNameKey_MBMessage, newId: 20032)
+		AssetClasses.set(AssetClassNameKey_MicroblogsEntry, newId: 28701)
+		AssetClasses.set(AssetClassNameKey_WikiPage, newId: 28802)
 
 		setTranslations()
 	}
