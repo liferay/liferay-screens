@@ -46,7 +46,7 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 	implements DDLFieldViewModel<DocumentField>, View.OnClickListener {
 
 	protected ProgressBar progressBar;
-	protected AlertDialog choseOriginDialog;
+	protected AlertDialog chooseOriginDialog;
 	protected AlertDialog fileDialog;
 
 	public DDLDocumentFieldView(Context context) {
@@ -64,8 +64,8 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 	@Override
 	public void onClick(final View view) {
 		if (view.getId() == R.id.liferay_ddl_edit_text) {
-			choseOriginDialog = createOriginDialog();
-			choseOriginDialog.show();
+			chooseOriginDialog = createOriginDialog();
+			chooseOriginDialog.show();
 		}
 	}
 
@@ -92,9 +92,9 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 		super.onDetachedFromWindow();
 
 		// Avoid WindowLeak error on orientation changes
-		if (choseOriginDialog != null) {
-			choseOriginDialog.dismiss();
-			choseOriginDialog = null;
+		if (chooseOriginDialog != null) {
+			chooseOriginDialog.dismiss();
+			chooseOriginDialog = null;
 		}
 
 		// Avoid WindowLeak error on orientation changes
@@ -159,12 +159,12 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 							@Override
 							public void onFileChosen(String path) {
 								DDLDocumentFieldView.this.startUpload(Uri.fromFile(new File(path)));
-								choseOriginDialog.dismiss();
+								chooseOriginDialog.dismiss();
 							}
 						});
 					fileDialog.show();
 				}
-				choseOriginDialog.dismiss();
+				chooseOriginDialog.dismiss();
 			}
 		};
 	}
@@ -183,7 +183,7 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 						}
 					});
 				}
-				choseOriginDialog.dismiss();
+				chooseOriginDialog.dismiss();
 			}
 		};
 	}
