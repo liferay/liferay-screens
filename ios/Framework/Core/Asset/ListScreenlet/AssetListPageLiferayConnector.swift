@@ -19,7 +19,7 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 	open var groupId: Int64?
 	open var classNameId: Int64?
 	open var portletItemName: String?
-	open var customEntryQuery: [String: AnyObject]?
+	open var customEntryQuery: [String: Any]?
 
 	// MARK: ServerConnector
 
@@ -116,16 +116,18 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 			? customEntryQuery!
 			: [String: Any]()
 
-		let defaultValues = [
+		var defaultValues: [String: Any] = [
 			"classNameIds": NSNumber(value: classNameId! as Int64),
 			"groupIds": NSNumber(value: groupId! as Int64),
 			"visible": true
 		]
 
-		let finalValues = self.handleUserVisibleFlag(defaultValues)
+		if classNameId == AssetClasses.getClassNameId(AssetClassNameKey_User) {
+			defaultValues = handleUserVisibleFlag(defaultValues)
+		}
 
 		// swiftlint:disable for_where
-		for (k, v) in finalValues {
+		for (k, v) in defaultValues {
 			if entryQuery[k] == nil {
 				entryQuery[k] = v
 			}
@@ -144,14 +146,10 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 	///
 	/// - returns: final values for entryQuery.
 	fileprivate func handleUserVisibleFlag(_ values: [String: Any]) -> [String: Any] {
-		if classNameId == AssetClasses.getClassNameId(AssetClassNameKey_User) {
-			var newValues = values
+		var newValues = values
+		newValues["visible"] = false
 
-			newValues["visible"] = false
-
-			return newValues
-		}
-		return values
+		return newValues
 	}
 }
 

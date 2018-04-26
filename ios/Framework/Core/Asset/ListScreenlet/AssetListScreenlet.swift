@@ -78,7 +78,7 @@ open class AssetListScreenlet: BaseListScreenlet {
 		return delegate as? AssetListScreenletDelegate
 	}
 
-	open var customEntryQuery: [String: AnyObject]?
+	open var customEntryQuery: [String: Any]?
 
 	// MARK: BaseListScreenlet
 
