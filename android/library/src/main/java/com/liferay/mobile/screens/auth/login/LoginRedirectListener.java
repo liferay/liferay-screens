@@ -14,17 +14,12 @@
 
 package com.liferay.mobile.screens.auth.login;
 
-import com.liferay.mobile.screens.context.AuthenticationType;
-import com.liferay.mobile.screens.context.User;
-
-public interface LoginListener {
+public interface LoginRedirectListener {
 
 	/**
-	 * Called when login successfully completes. The `user` parameter contains
-	 * a set of the logged in user’s attributes. The supported keys are
-	 * the same as those in the portal’s {@link User} entity.
+	 * Called when the authentication browser is shown
 	 */
-	void onLoginSuccess(User user);
+	void onAuthenticationBrowserShown();
 
 	/**
 	 * Called when an error occurs in the process.
@@ -32,11 +27,4 @@ public interface LoginListener {
 	 * @param e exception
 	 */
 	void onLoginFailure(Exception e);
-
-
-	/**
-	 * Called when the browser is opened to authenticate.
-	 * {@link AuthenticationType} should be OAUTH2REDIRECT
-	 */
-	void onAuthenticationBrowserShown();
 }

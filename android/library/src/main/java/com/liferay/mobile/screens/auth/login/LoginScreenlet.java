@@ -26,6 +26,7 @@ import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.login.interactor.BaseLoginInteractor;
 import com.liferay.mobile.screens.auth.login.interactor.LoginBasicInteractor;
 import com.liferay.mobile.screens.auth.login.interactor.LoginCookieInteractor;
+import com.liferay.mobile.screens.auth.login.interactor.LoginOAuth2UsernameAndPasswordInteractor;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.AuthenticationType;
@@ -38,7 +39,7 @@ import static com.liferay.mobile.screens.context.storage.CredentialsStorageBuild
 /**
  * @author Silvio Santos
  */
-public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInteractor> implements LoginListener {
+public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInteractor> implements LoginListener, LoginRedirectListener {
 
 	public static final String BASIC_AUTH = "BASIC_AUTH";
 	public static final String LOGIN_SUCCESSFUL = "com.liferay.mobile.screens.auth.login.success";
@@ -72,6 +73,13 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 		if (listener != null) {
 			listener.onLoginFailure(e);
+		}
+	}
+
+	@Override
+	public void onAuthenticationBrowserShown() {
+		if (listener != null) {
+			getListener().onAuthenticationBrowserShown();
 		}
 	}
 
