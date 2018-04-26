@@ -35,8 +35,6 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.AuthenticationType;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
-import com.squareup.okhttp.Authenticator;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -54,7 +52,6 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 	private BasicAuthMethod basicAuthMethod;
 	private AuthenticationType authenticationType;
 	private StorageType credentialsStorage;
-	private Authenticator authenticator;
 	private boolean shouldHandleCookieExpiration;
 	private int cookieExpirationTime;
 	private List<String> oauth2Scopes;
@@ -149,14 +146,6 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 	public void setAuthenticationType(AuthenticationType authenticationType) {
 		this.authenticationType = authenticationType;
-	}
-
-	public Authenticator getAuthenticator() {
-		return authenticator;
-	}
-
-	public void setAuthenticator(Authenticator authenticator) {
-		this.authenticator = authenticator;
 	}
 
 	public boolean isShouldHandleCookieRefresh() {
@@ -289,7 +278,7 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 		LoginViewModel viewModel = getViewModel();
 		if (AuthenticationType.COOKIE.equals(authenticationType)) {
-			interactor.start(viewModel.getLogin(), viewModel.getPassword(), authenticator, shouldHandleCookieExpiration,
+			interactor.start(viewModel.getLogin(), viewModel.getPassword(), shouldHandleCookieExpiration,
 				cookieExpirationTime);
 		} else if (AuthenticationType.BASIC.equals(authenticationType)) {
 			interactor.start(viewModel.getLogin(), viewModel.getPassword(), viewModel.getBasicAuthMethod());

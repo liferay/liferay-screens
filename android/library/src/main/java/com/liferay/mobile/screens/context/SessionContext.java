@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.context;
 
 import com.liferay.mobile.android.auth.Authentication;
+import com.liferay.mobile.android.auth.CookieSignIn;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.auth.basic.CookieAuthentication;
 import com.liferay.mobile.android.service.Session;
@@ -156,32 +157,35 @@ public class SessionContext {
 	}
 
 	public static void relogin(LoginListener loginListener) {
-		relogin(loginListener, BasicAuthMethod.EMAIL, null);
+		relogin(loginListener, BasicAuthMethod.EMAIL);
 	}
 
 	public static void relogin(LoginListener loginListener, BasicAuthMethod basicAuthMethod) {
-		relogin(loginListener, basicAuthMethod, null);
-	}
-
-	public static void relogin(LoginListener loginListener, BasicAuthMethod basicAuthMethod,
-		Authenticator cookieAuthenticator) {
 		if (currentUserSession == null || currentUserSession.getAuthentication() == null) {
 			loginListener.onLoginFailure(new AccessControlException("Missing user attributes"));
 		}
 
 		refreshUserAttributes(loginListener,
-			new SessionImpl(LiferayServerContext.getServer(), currentUserSession.getAuthentication()), basicAuthMethod,
-			cookieAuthenticator);
+			new SessionImpl(LiferayServerContext.getServer(), currentUserSession.getAuthentication()), basicAuthMethod);
+	}
+
+	public void setAuthenticator(Authenticator authenticator) {
+		String server = LiferayServerContext.getServer();
+		CookieSignIn.registerAuthenticatorForServer(server, authenticator);
+	}
+
+	public void setAuthenticator(String server, Authenticator authenticator) {
+		CookieSignIn.registerAuthenticatorForServer(server, authenticator);
 	}
 
 	private static void refreshUserAttributes(final LoginListener loginListener, final Session session,
-		final BasicAuthMethod basicAuthMethod, final Authenticator cookieAuthenticator) {
+		final BasicAuthMethod basicAuthMethod) {
 
 		Executor.execute(new Runnable() {
 			@Override
 			public void run() {
 				try {
-					BasicEvent basicEvent = loginWithAuthentication(session, basicAuthMethod, cookieAuthenticator);
+					BasicEvent basicEvent = loginWithAuthentication(session, basicAuthMethod);
 
 					if (!basicEvent.isFailed()) {
 						User user = new User(basicEvent.getJSONObject());
@@ -198,15 +202,15 @@ public class SessionContext {
 		});
 	}
 
-	private static BasicEvent loginWithAuthentication(Session session, BasicAuthMethod basicAuthMethod,
-		Authenticator cookieAuthenticator) throws Exception {
+	private static BasicEvent loginWithAuthentication(Session session, BasicAuthMethod basicAuthMethod)
+		throws Exception {
 
 		Authentication authentication = session.getAuthentication();
 
 		if (authentication instanceof CookieAuthentication) {
 			CookieAuthentication cookieAuthentication = (CookieAuthentication) authentication;
 			return new LoginCookieInteractor().execute(cookieAuthentication.getUsername(),
-				cookieAuthentication.getPassword(), cookieAuthenticator, cookieAuthentication.shouldHandleExpiration(),
+				cookieAuthentication.getPassword(), cookieAuthentication.shouldHandleExpiration(),
 				cookieAuthentication.getCookieExpirationTime());
 		} else {
 			BasicAuthentication basicAuthentication = (BasicAuthentication) authentication;
