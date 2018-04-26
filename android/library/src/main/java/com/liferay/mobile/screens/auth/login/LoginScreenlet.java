@@ -41,6 +41,7 @@ import static com.liferay.mobile.screens.context.storage.CredentialsStorageBuild
  */
 public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInteractor> implements LoginListener, LoginRedirectListener {
 
+	public static final String RESUME_REDIRECT_ACTION = "RESUME_REDIRECT_ACTION";
 	public static final String BASIC_AUTH = "BASIC_AUTH";
 	public static final String LOGIN_SUCCESSFUL = "com.liferay.mobile.screens.auth.login.success";
 	private LoginListener listener;
@@ -65,6 +66,10 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 	public LoginScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
 		super(context, attrs, defStyleAttr, defStyleRes);
+	}
+
+	public void resumeOAuth2RedirectFlow(Intent intent) {
+		performUserAction(RESUME_REDIRECT_ACTION, intent);
 	}
 
 	@Override
@@ -198,6 +203,10 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 	@Override
 	protected BaseLoginInteractor createInteractor(String actionName) {
+		if (RESUME_REDIRECT_ACTION.equals(actionName)) {
+			return new LoginOAuth2ResumeRedirectInteractor();
+		}
+
 		if (AuthenticationType.COOKIE.equals(authenticationType)) {
 			return new LoginCookieInteractor();
 		} else {
@@ -207,6 +216,10 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 	@Override
 	protected void onUserAction(String userActionName, BaseLoginInteractor interactor, Object... args) {
+		if (RESUME_REDIRECT_ACTION.equals(userActionName)) {
+			interactor.start(args);
+			return;
+		}
 		if (AuthenticationType.COOKIE.equals(authenticationType)) {
 			LoginViewModel viewModel = getViewModel();
 			interactor.start(viewModel.getLogin(), viewModel.getPassword(), authenticator, shouldHandleCookieExpiration,
