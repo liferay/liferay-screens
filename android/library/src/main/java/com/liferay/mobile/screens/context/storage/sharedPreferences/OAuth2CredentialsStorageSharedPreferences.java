@@ -11,12 +11,12 @@ import java.util.List;
 public class OAuth2CredentialsStorageSharedPreferences extends BaseCredentialsStorageSharedPreferences {
 
 	private static final String AUTH = "auth";
-	private static final String ACCESSTOKEN = "accesstoken";
-	private static final String REFRESHTOKEN = "refreshtoken";
+	private static final String ACCESSTOKEN = "accessToken";
+	private static final String REFRESHTOKEN = "refreshToken";
 	private static final String SCOPE = "scope";
-	private static final String ACCESSTOKENEXPIRATIONDATE = "accessetokenexpirationdat";
-	private static final String CLIENTID = "clientid";
-	private static final String CLIENTSECRET = "clientsecret";
+	private static final String ACCESSTOKENEXPIRATIONDATE = "accessTokenExpirationDate";
+	private static final String CLIENTID = "clientId";
+	private static final String CLIENTSECRET = "clientSecret";
 
 	@Override
 	protected void storeAuth(Authentication auth) {
