@@ -9,10 +9,10 @@ import android.widget.ScrollView;
 
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.BaseScreenlet;
+import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
+import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddm.form.DDMFormScreenlet;
-import com.liferay.mobile.screens.ddm.form.model.DDMField;
 import com.liferay.mobile.screens.ddm.form.model.FormInstance;
-import com.liferay.mobile.screens.ddm.form.view.DDMFieldViewModel;
 import com.liferay.mobile.screens.ddm.form.view.DDMFormViewModel;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 
@@ -24,13 +24,23 @@ import java.util.Map;
  */
 public class DDMFormView extends ScrollView implements DDMFormViewModel, View.OnClickListener {
 
-    private static final Map<DDMField.EditorType, Integer> DEFAULT_LAYOUT_IDS = new HashMap<>(1);
+    private static final Map<Field.EditorType, Integer> DEFAULT_LAYOUT_IDS = new HashMap<>(1);
 
     static {
-        DEFAULT_LAYOUT_IDS.put(DDMField.EditorType.TEXT, R.layout.ddmfield_text_default);
+        DEFAULT_LAYOUT_IDS.put(Field.EditorType.CHECKBOX, R.layout.ddlfield_checkbox_default);
+        DEFAULT_LAYOUT_IDS.put(Field.EditorType.DATE, R.layout.ddlfield_date_default);
+        DEFAULT_LAYOUT_IDS.put(Field.EditorType.NUMBER, R.layout.ddlfield_number_default);
+        DEFAULT_LAYOUT_IDS.put(Field.EditorType.INTEGER, R.layout.ddlfield_number_default);
+        DEFAULT_LAYOUT_IDS.put(Field.EditorType.DECIMAL, R.layout.ddlfield_number_default);
+        DEFAULT_LAYOUT_IDS.put(Field.EditorType.RADIO, R.layout.ddlfield_radio_default);
+        DEFAULT_LAYOUT_IDS.put(Field.EditorType.SELECT, R.layout.ddlfield_select_default);
+        DEFAULT_LAYOUT_IDS.put(Field.EditorType.TEXT, R.layout.ddlfield_text_default);
+        DEFAULT_LAYOUT_IDS.put(Field.EditorType.TEXT_AREA, R.layout.ddlfield_text_area_default);
+        DEFAULT_LAYOUT_IDS.put(Field.EditorType.DOCUMENT, R.layout.ddlfield_document_default);
+        DEFAULT_LAYOUT_IDS.put(Field.EditorType.GEO, R.layout.ddlfield_geo_default);
     }
 
-    private final Map<DDMField.EditorType, Integer> layoutIds = new HashMap<>();
+    private final Map<Field.EditorType, Integer> layoutIds = new HashMap<>();
     private final Map<String, Integer> customLayoutIds = new HashMap<>();
 
     protected ViewGroup fieldsContainerView;
@@ -49,14 +59,14 @@ public class DDMFormView extends ScrollView implements DDMFormViewModel, View.On
         super(context, attrs, defStyleAttr);
     }
 
-    protected void addFieldView(DDMField field) {
+    protected void addFieldView(Field field) {
         //boolean containsKey = customLayoutIds.containsKey(field.getName());
         //int layoutId = containsKey ? getCustomFieldLayoutId(field.getName()) : getFieldLayoutId(field.getEditorType());
 
         int layoutId = this.getFieldLayoutId(field.getEditorType());
 
         View view = LayoutInflater.from(getContext()).inflate(layoutId, this, false);
-        DDMFieldViewModel viewModel = (DDMFieldViewModel) view;
+        DDLFieldViewModel viewModel = (DDLFieldViewModel) view;
 
         viewModel.setField(field);
         viewModel.setParentView(this);
@@ -115,17 +125,17 @@ public class DDMFormView extends ScrollView implements DDMFormViewModel, View.On
     }
 
     @Override
-    public int getFieldLayoutId(DDMField.EditorType editorType) {
+    public int getFieldLayoutId(Field.EditorType editorType) {
         return layoutIds.get(editorType);
     }
 
     @Override
-    public void setFieldLayoutId(DDMField.EditorType editorType, int layoutId) {
+    public void setFieldLayoutId(Field.EditorType editorType, int layoutId) {
         layoutIds.put(editorType, layoutId);
     }
 
     @Override
-    public void resetFieldLayoutId(DDMField.EditorType editorType) {
+    public void resetFieldLayoutId(Field.EditorType editorType) {
         layoutIds.put(editorType, DEFAULT_LAYOUT_IDS.get(editorType));
     }
 
@@ -145,7 +155,7 @@ public class DDMFormView extends ScrollView implements DDMFormViewModel, View.On
     }
 
     @Override
-    public void showValidationResults(Map<DDMField, Boolean> fieldResults, boolean autoscroll) {
+    public void showValidationResults(Map<Field, Boolean> fieldResults, boolean autoscroll) {
 
     }
 
@@ -154,7 +164,7 @@ public class DDMFormView extends ScrollView implements DDMFormViewModel, View.On
         fieldsContainerView.removeAllViews();
         fieldsContainerView.setVisibility(INVISIBLE);
 
-        for(DDMField field : formInstance.getFields()) {
+        for(Field field : formInstance.getFields()) {
             addFieldView(field);
         }
 

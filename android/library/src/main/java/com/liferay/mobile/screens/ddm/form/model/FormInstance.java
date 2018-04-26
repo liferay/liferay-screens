@@ -14,6 +14,8 @@
 
 package com.liferay.mobile.screens.ddm.form.model;
 
+import com.liferay.mobile.screens.ddl.model.Field;
+
 import java.util.List;
 
 /**
@@ -22,9 +24,11 @@ import java.util.List;
 public class FormInstance {
 
     private long formInstanceId;
-    private List<DDMField> fields;
+    private List<Field> fields;
 
-    public FormInstance(long formInstanceId, List<DDMField> fields) {
+    public FormInstance() { }
+
+    public FormInstance(long formInstanceId, List<Field> fields) {
         this.formInstanceId = formInstanceId;
         this.fields = fields;
     }
@@ -37,11 +41,11 @@ public class FormInstance {
         this.formInstanceId = formInstanceId;
     }
 
-    public List<DDMField> getFields() {
+    public List<Field> getFields() {
         return fields;
     }
 
-    public void setFields(List<DDMField> fields) {
+    public void setFields(List<Field> fields) {
         this.fields = fields;
     }
 }
