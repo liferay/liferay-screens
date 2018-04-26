@@ -63,6 +63,14 @@ public class SessionContext {
 		return currentUserSession;
 	}
 
+	public static Session createOAuth2Session(Session session) {
+		Authentication oauth2Authentication = session.getAuthentication();
+
+		currentUserSession = new SessionImpl(LiferayServerContext.getServer(), oauth2Authentication);
+
+		return currentUserSession;
+	}
+
 	public static Session createSessionFromCurrentSession() {
 		if (currentUserSession == null) {
 			throw new IllegalStateException("You need to be logged in to get a session");
