@@ -8,6 +8,11 @@ All notable changes to this project will be documented in this file.
 
 ## Android
 
+## New Features
+* Add OAuth2 authentication
+
+### Refactor
+
 * Drop support for OAuth1
 * Give a pass to the code and solve minor issues
 * FormsScreenlet - Add support to upload images and videos from gallery
