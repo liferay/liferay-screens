@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+	<item>
+		<shape android:shape="rectangle" >
+			<stroke
+				android:color="@color/lightGray_lexicon"
+				android:width="1dip"/>
+			<corners
+				android:topRightRadius="@dimen/field_radius"
+				android:bottomRightRadius="@dimen/field_radius"/>
+			<solid android:color="@android:color/white"/>
+			<size
+				android:width="42dp"
+				android:height="40dp" />
+		</shape>
+	</item>
+	<item>
+		<bitmap
+			android:src="@drawable/lexicon_clip"
+			android:gravity="center"
+			android:tint="@color/colorPrimary_lexicon" />
+	</item>
+</layer-list>
