@@ -184,6 +184,10 @@ public class DDMFormScreenlet extends BaseScreenlet<DDMFormViewModel, Interactor
 
         setFieldLayoutId(viewModel, typedArray, Field.EditorType.GEO,
                 R.styleable.DDMFormScreenlet_geoFieldLayoutId);
+
+        setFieldLayoutId(viewModel, typedArray, Field.EditorType.CHECKBOX_MULTIPLE,
+                R.styleable.DDMFormScreenlet_checkboxMultipleFieldLayoutId);
+
         typedArray.recycle();
 
         return view;

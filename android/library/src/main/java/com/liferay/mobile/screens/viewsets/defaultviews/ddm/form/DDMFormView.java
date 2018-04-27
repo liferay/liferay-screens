@@ -28,6 +28,9 @@ public class DDMFormView extends ScrollView implements DDMFormViewModel, View.On
 
     static {
         DEFAULT_LAYOUT_IDS.put(Field.EditorType.CHECKBOX, R.layout.ddlfield_checkbox_default);
+        DEFAULT_LAYOUT_IDS.put(Field.EditorType.CHECKBOX_MULTIPLE,
+            R.layout.ddmfield_checkbox_multiple_default);
+
         DEFAULT_LAYOUT_IDS.put(Field.EditorType.DATE, R.layout.ddlfield_date_default);
         DEFAULT_LAYOUT_IDS.put(Field.EditorType.NUMBER, R.layout.ddlfield_number_default);
         DEFAULT_LAYOUT_IDS.put(Field.EditorType.INTEGER, R.layout.ddlfield_number_default);

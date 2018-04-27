@@ -154,6 +154,7 @@
 		<attr name="formInstanceId"/>
 		<attr name="userId"/>
 		<attr name="checkboxFieldLayoutId"/>
+		<attr format="reference" name="checkboxMultipleFieldLayoutId"/>
 		<attr name="dateFieldLayoutId"/>
 		<attr name="numberFieldLayoutId"/>
 		<attr name="radioFieldLayoutId"/>
