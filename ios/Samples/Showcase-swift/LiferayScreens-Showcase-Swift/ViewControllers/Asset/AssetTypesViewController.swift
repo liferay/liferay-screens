@@ -34,6 +34,7 @@ class AssetTypesViewController: UITableViewController {
 		AssetClassNameKey_Site,
 		AssetClassNameKey_User,
 		AssetClassNameKey_MBCategory,
+		AssetClassNameKey_MBDiscussion,
 		AssetClassNameKey_MBMessage,
 		AssetClassNameKey_MicroblogsEntry,
 		AssetClassNameKey_WikiPage
