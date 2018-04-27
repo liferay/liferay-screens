@@ -15,47 +15,49 @@
 	<key>anonymousPassword</key>
 	<string>anonymous1</string>
 	<key>assetDisplayEntryId</key>
-	<real>40521</real>
+	<real>54500</real>
 	<key>assetDisplayPortletItemName</key>
-	<string>image</string>
+	<string>manual</string>
 	<key>blogDisplayClassPK</key>
-	<string>40515</string>
+	<string>57366</string>
 	<key>commentScreenletClassName</key>
 	<string>com.liferay.blogs.kernel.model.BlogsEntry</string>
 	<key>commentScreenletClassPK</key>
 	<integer>57366</integer>
+	<key>commentId</key>
+	<integer>65105</integer>
 	<key>ddlLabelField</key>
-	<string>assignedTo</string>
+	<string>description</string>
 	<key>ddlRecordId</key>
-	<real>33294</real>
+	<integer>33294</integer>
 	<key>ddlRecordSetId</key>
-	<real>33280</real>
+	<integer>33280</integer>
 	<key>ddlStructureId</key>
 	<integer>29823</integer>
 	<key>imageDisplayClassPK</key>
-	<real>42369</real>
+	<real>54498</real>
 	<key>audioDisplayClassPK</key>
-	<integer>72269</integer>
+	<real>57433</real>
 	<key>videoDisplayClassPK</key>
-	<real>72049</real>
+	<integer>38943</integer>
 	<key>pdfDisplayClassPK</key>
-	<real>42656</real>
+	<real>38930</real>
 	<key>fileDisplayClassPK</key>
-	<real>34286</real>
+	<real>38930</real>
 	<key>imageGalleryFolderId</key>
 	<real>54469</real>
 	<key>imageGalleryMimeType</key>
 	<string>image/png,image/jpeg</string>
 	<key>imageGalleryRepositoryId</key>
-	<real>20143</real>
+	<integer>20143</integer>
 	<key>ratingEmojisEntryId</key>
-	<real>40521</real>
+	<real>54500</real>
 	<key>ratingLikeEntryId</key>
-	<real>40521</real>
+	<real>54500</real>
 	<key>ratingStarsEntryId</key>
-	<real>40521</real>
+	<real>54500</real>
 	<key>ratingThumbsEntryId</key>
-	<real>40521</real>
+	<real>54500</real>
 	<key>webContentDisplayArticleId</key>
 	<string>57343</string>
 	<key>WebUrl</key>
