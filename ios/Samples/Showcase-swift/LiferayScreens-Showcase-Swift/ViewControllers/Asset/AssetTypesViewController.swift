@@ -69,6 +69,12 @@ class AssetTypesViewController: UITableViewController {
 		setTranslations()
 	}
 	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		LiferayServerContext.groupId = 20143
+	}
+	
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		
@@ -108,6 +114,10 @@ class AssetTypesViewController: UITableViewController {
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == AssetListSegue {
 			let viewController = segue.destination as? AssetListScreenletViewController
+			if selectedAssetType == "User" || selectedAssetType == "Organization" {
+				LiferayServerContext.groupId = 20152
+			}
+
 			viewController?.assetType = selectedAssetType
 		}
 	}
