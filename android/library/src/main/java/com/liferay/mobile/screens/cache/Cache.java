@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import com.liferay.mobile.screens.base.interactor.event.CacheEvent;
+import com.liferay.mobile.screens.cache.executor.Executor;
 import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.LiferayServerContext;
@@ -116,16 +117,21 @@ public class Cache {
 		}
 	}
 
-	public static int pendingItemsToSync() {
-		int ddlFormItems = pendingItemsByClass(DDLFormEvent.class);
-		int commentItems = pendingItemsByClass(CommentEvent.class);
-		int ratingItems = pendingItemsByClass(RatingEvent.class);
-		int userPortraitItems = pendingItemsByClass(UserPortraitUploadEvent.class);
-		int ddlFormDocumentItems = pendingItemsByClass(DDLFormDocumentUploadEvent.class);
+	public static void pendingItemsToSync(final PendingItemsToSyncListener pendingItemsToSyncListener) {
+		Executor.execute(new Runnable() {
+			@Override
+			public void run() {
+				int ddlItems = pendingItemsByClass(DDLFormEvent.class);
+				int commentItems = pendingItemsByClass(CommentEvent.class);
+				int ratingItems = pendingItemsByClass(RatingEvent.class);
+				int userPortraitItems = pendingItemsByClass(UserPortraitUploadEvent.class);
+				int ddlDocumentItems = pendingItemsByClass(DDLFormDocumentUploadEvent.class);
 
-		int totalItems = ddlFormItems + commentItems + ratingItems + userPortraitItems + ddlFormDocumentItems;
+				int totalCount = ddlItems + commentItems + ratingItems + userPortraitItems + ddlDocumentItems;
 
-		return totalItems;
+				pendingItemsToSyncListener.getItemsCount(totalCount);
+			}
+		});
 	}
 
 	public static void resync() {
