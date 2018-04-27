@@ -36,6 +36,7 @@ class AssetTypesViewController: UITableViewController {
 		AssetClassNameKey_MBCategory,
 		AssetClassNameKey_MBDiscussion,
 		AssetClassNameKey_MBMessage,
+		AssetClassNameKey_MBThread,
 		AssetClassNameKey_MicroblogsEntry,
 		AssetClassNameKey_WikiPage
 	]
@@ -64,6 +65,7 @@ class AssetTypesViewController: UITableViewController {
 		AssetClasses.set(AssetClassNameKey_User, newId: 20087)
 		AssetClasses.set(AssetClassNameKey_MBCategory, newId: 20029)
 		AssetClasses.set(AssetClassNameKey_MBMessage, newId: 20032)
+		AssetClasses.set(AssetClassNameKey_MBThread, newId: 20034)
 		AssetClasses.set(AssetClassNameKey_MicroblogsEntry, newId: 28701)
 		AssetClasses.set(AssetClassNameKey_WikiPage, newId: 28802)
 

@@ -48,6 +48,7 @@ public let AssetClassNameKey_User = "User"
 public let AssetClassNameKey_MBCategory = "MBCategory"
 public let AssetClassNameKey_MBDiscussion = "MBDiscussion"
 public let AssetClassNameKey_MBMessage = "MBMessage"
+public let AssetClassNameKey_MBThread = "MBThread"
 
 // Microblogs
 public let AssetClassNameKey_MicroblogsEntry = "MicroblogsEntry"
@@ -100,7 +101,7 @@ open class AssetClasses: NSObject {
 			// Document Library
 			AssetClassNameKey_DLFileEntry: AssetClassEntry(20015, "com.liferay.document.library.kernel.model.DLFileEntry"),
 			AssetClassNameKey_DLFolder: AssetClassEntry(20021, "com.liferay.document.library.kernel.model.DLFolder"),
-			
+
 			// WebContent
 			AssetClassNameKey_JournalArticle: AssetClassEntry(29634, "com.liferay.journal.model.JournalArticle"),
 			AssetClassNameKey_JournalFolder: AssetClassEntry(29639, "com.liferay.journal.model.JournalFolder"),
@@ -111,7 +112,7 @@ open class AssetClasses: NSObject {
 			AssetClassNameKey_Organization: AssetClassEntry(20059, "com.liferay.portal.kernel.model.Organization"),
 			AssetClassNameKey_Site: AssetClassEntry(20045, "com.liferay.portal.kernel.model.Group"),
 			AssetClassNameKey_User: AssetClassEntry(20087, "com.liferay.portal.kernel.model.User"),
-			
+
 			// Message boards
 			AssetClassNameKey_MBCategory: AssetClassEntry(20029, "com.liferay.message.boards.kernel.model.MBCategory"),
 			AssetClassNameKey_MBDiscussion: AssetClassEntry(20030, "com.liferay.message.boards.kernel.model.MBDiscussion"),
