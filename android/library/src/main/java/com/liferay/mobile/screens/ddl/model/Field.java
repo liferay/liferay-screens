@@ -393,11 +393,12 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	}
 
 	public enum EditorType {
-		CHECKBOX("checkbox"), TEXT("text"), TEXT_AREA("textarea", "paragraph", "ddm-text-html"), DATE("ddm-date",
-			"date"), NUMBER("ddm-number", "number", "numeric"), INTEGER("ddm-integer", "integer"), DECIMAL(
-			"ddm-decimal", "decimal"), SELECT("select", "checkbox_multiple"), RADIO("radio"), DOCUMENT(
-			"ddm-documentlibrary", "documentlibrary", "wcm-image"), GEO("ddm-geolocation", "geolocation"), UNSUPPORTED(
-			"");
+		CHECKBOX("checkbox"), TEXT("text"), TEXT_AREA("textarea", "paragraph", "ddm-text-html"),
+		DATE("ddm-date", "date"), NUMBER("ddm-number", "number", "numeric"),
+		INTEGER("ddm-integer", "integer"), DECIMAL("ddm-decimal", "decimal"), SELECT("select"),
+		CHECKBOX_MULTIPLE("checkbox_multiple"), RADIO("radio"),
+		DOCUMENT("ddm-documentlibrary", "documentlibrary", "wcm-image"),
+		GEO("ddm-geolocation", "geolocation"), UNSUPPORTED("");
 
 		private final String[] values;
 
