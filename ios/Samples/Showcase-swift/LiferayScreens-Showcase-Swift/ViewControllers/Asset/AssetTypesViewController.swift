@@ -115,7 +115,8 @@ class AssetTypesViewController: UITableViewController {
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == AssetListSegue {
 			let viewController = segue.destination as? AssetListScreenletViewController
-			if selectedAssetType == AssetClassNameKey_Organization ||
+			if selectedAssetType == AssetClassNameKey_MicroblogsEntry ||
+				selectedAssetType == AssetClassNameKey_Organization ||
 				selectedAssetType == AssetClassNameKey_Site ||
 				selectedAssetType == AssetClassNameKey_User {
 				LiferayServerContext.groupId = 20152
