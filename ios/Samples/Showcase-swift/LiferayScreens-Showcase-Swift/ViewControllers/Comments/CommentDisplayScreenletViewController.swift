@@ -16,7 +16,7 @@ import LiferayScreens
 
 class CommentDisplayScreenletViewController: UIViewController, CommentDisplayScreenletDelegate {
 
-	
+
 	//MARK: IBOutlet
 	
 	@IBOutlet weak var screenlet: CommentDisplayScreenlet? {
@@ -24,13 +24,19 @@ class CommentDisplayScreenletViewController: UIViewController, CommentDisplayScr
 			screenlet?.delegate = self
 		}
 	}
-	@IBOutlet weak var commentIdText: UITextField?
+	
+	@IBOutlet weak var commentIdTextField: UITextField? {
+		didSet {
+			commentIdTextField?.text =
+				String(LiferayServerContext.longPropertyForKey("commentId"))
+		}
+	}
 	
 	
 	//MARK: IBAction
 
 	@IBAction func loadComment(_ sender: AnyObject) {
-		if let commentId = Int(commentIdText?.text ?? "") {
+		if let commentId = Int(commentIdTextField?.text ?? "") {
 			screenlet?.commentId = Int64(commentId)
 			screenlet?.load()
 		}
