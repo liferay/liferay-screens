@@ -41,7 +41,7 @@ public let AssetClassNameKey_JournalFolder = "JournalFolder"
 public let AssetClassNameKey_Layout = "Layout"
 public let AssetClassNameKey_LayoutRevision = "LayoutRevision"
 public let AssetClassNameKey_Organization = "Organization"
-public let AssetClassNameKey_Site = "Website"
+public let AssetClassNameKey_Site = "Group"
 public let AssetClassNameKey_User = "User"
 
 // Comment
@@ -108,7 +108,7 @@ open class AssetClasses: NSObject {
 			AssetClassNameKey_Layout: AssetClassEntry(20047, "com.liferay.portal.kernel.model.Layout"),
 			AssetClassNameKey_LayoutRevision: AssetClassEntry(20051, "com.liferay.portal.kernel.model.LayoutRevision"),
 			AssetClassNameKey_Organization: AssetClassEntry(20059, "com.liferay.portal.kernel.model.Organization"),
-			AssetClassNameKey_Site: AssetClassEntry(20098, "com.liferay.portal.kernel.model.Website"),
+			AssetClassNameKey_Site: AssetClassEntry(20045, "com.liferay.portal.kernel.model.Group"),
 			AssetClassNameKey_User: AssetClassEntry(20087, "com.liferay.portal.kernel.model.User"),
 
 			// Message boards

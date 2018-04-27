@@ -59,7 +59,7 @@ class AssetTypesViewController: UITableViewController {
 		AssetClasses.set(AssetClassNameKey_Layout, newId: 20047)
 		AssetClasses.set(AssetClassNameKey_LayoutRevision, newId: 20051)
 		AssetClasses.set(AssetClassNameKey_Organization, newId: 20059)
-		AssetClasses.set(AssetClassNameKey_Site, newId: 20098)
+		AssetClasses.set(AssetClassNameKey_Site, newId: 20045)
 		AssetClasses.set(AssetClassNameKey_User, newId: 20087)
 		AssetClasses.set(AssetClassNameKey_MBCategory, newId: 20029)
 		AssetClasses.set(AssetClassNameKey_MBMessage, newId: 20032)
@@ -114,7 +114,9 @@ class AssetTypesViewController: UITableViewController {
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == AssetListSegue {
 			let viewController = segue.destination as? AssetListScreenletViewController
-			if selectedAssetType == "User" || selectedAssetType == "Organization" {
+			if selectedAssetType == AssetClassNameKey_Organization ||
+				selectedAssetType == AssetClassNameKey_Site ||
+				selectedAssetType == AssetClassNameKey_User {
 				LiferayServerContext.groupId = 20152
 			}
 

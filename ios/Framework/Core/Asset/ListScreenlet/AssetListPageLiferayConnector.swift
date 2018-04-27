@@ -125,6 +125,7 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 		if classNameId == AssetClasses.getClassNameId(AssetClassNameKey_DDLFormRecord) ||
 			classNameId == AssetClasses.getClassNameId(AssetClassNameKey_Layout) ||
 			classNameId == AssetClasses.getClassNameId(AssetClassNameKey_Organization) ||
+			classNameId == AssetClasses.getClassNameId(AssetClassNameKey_Site) ||
 			classNameId == AssetClasses.getClassNameId(AssetClassNameKey_User) {
 				defaultValues = self.handleVisibleFlag(defaultValues)
 		}
