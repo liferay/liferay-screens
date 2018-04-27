@@ -159,7 +159,7 @@ open class DDMFieldDocument: DDMField {
 		switch uploadStatus {
 		case .uploaded(let json):
 			let groupEntry = json["groupId"]
-			if let groupId = groupEntry as? Int64,
+			if let groupId = (groupEntry as AnyObject).int64Value,
 					let uuid = json["uuid"] as? String,
 					let version = json["version"] as? String {
 				return "{\"groupId\":\(groupId)," +

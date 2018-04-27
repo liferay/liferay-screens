@@ -243,9 +243,9 @@ extension SyncManager {
 				key: document.cachedKey!) { object, attributes in
 
 			if let filePrefix = attributes?["filePrefix"] as? String,
-					let folderId = attributes?["folderId"] as? Int64,
-					let repositoryId = attributes?["repositoryId"] as? Int64,
-					let groupId = attributes?["groupId"] as? Int64 {
+					let folderId = (attributes?["folderId"] as AnyObject).int64Value,
+					let repositoryId = (attributes?["repositoryId"] as AnyObject).int64Value,
+					let groupId = (attributes?["groupId"] as AnyObject).int64Value {
 
 				document.currentValue = object
 

@@ -21,9 +21,9 @@ extension SyncManager {
 			-> (@escaping Signal) -> Void {
 
 		return { signal in
-			let folderId = attributes["folderId"] as! Int64
-			let repositoryId = attributes["repositoryId"] as! Int64
-			let page = attributes["page"]! as! Int
+			let folderId = (attributes["folderId"] as AnyObject).int64Value
+			let repositoryId = (attributes["repositoryId"] as AnyObject).int64Value
+			let page = attributes["page"] as! Int
 
 			self.cacheManager.getAny(collection: ScreenletName(ImageGalleryScreenlet.self), key: key) {
 
@@ -32,8 +32,8 @@ extension SyncManager {
 					let interactor = ImageGalleryUploadInteractor(
 							screenlet: nil,
 							imageUpload: imageEntryUpload,
-							repositoryId: repositoryId,
-							folderId: folderId,
+							repositoryId: repositoryId!,
+							folderId: folderId!,
 							page: page,
 							onUploadedBytes: nil,
 							cacheKeyUsed: key)

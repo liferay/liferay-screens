@@ -65,7 +65,7 @@ class DDLFormLoadFormInteractor: ServerReadConnectorInteractor {
 					key: "structureId-\(loadCon.structureId)") { record, attributes in
 
 				loadCon.resultRecord = record as? DDLRecord
-				loadCon.resultUserId = attributes?["userId"] as? Int64
+				loadCon.resultUserId = (attributes?["userId"] as AnyObject).int64Value
 
 				result(loadCon.resultRecord)
 			}
