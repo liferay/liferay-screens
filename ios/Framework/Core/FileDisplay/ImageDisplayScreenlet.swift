@@ -49,7 +49,7 @@ open class ImageDisplayScreenlet: FileDisplayScreenlet {
 		}
 	}
 
-	let DefaultImageMimeTypes = ["image/png", "image/jpeg", "image/gif"]
+	let DefaultImageMimeTypes = ["image/png", "image/jpg", "image/jpeg", "image/gif"]
 
 	// MARK: FileDisplayScreenlet
 

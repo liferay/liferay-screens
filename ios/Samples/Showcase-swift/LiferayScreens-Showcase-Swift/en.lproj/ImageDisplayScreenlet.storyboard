@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="6Md-6K-l5a">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="6Md-6K-l5a">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,20 +22,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grP-4O-Chu" customClass="ImageDisplayScreenlet">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <rect key="frame" x="0.0" y="84" width="375" height="511"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="image" keyPath="placeholder" value="default-placeholder"/>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="mimeTypes" value="image/jpg"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="grP-4O-Chu" firstAttribute="top" secondItem="z6u-FI-AcG" secondAttribute="top" id="2MG-AF-gVx"/>
-                            <constraint firstAttribute="trailing" secondItem="grP-4O-Chu" secondAttribute="trailing" id="H4V-jg-ALq"/>
-                            <constraint firstItem="wp5-TE-kgd" firstAttribute="top" secondItem="grP-4O-Chu" secondAttribute="bottom" id="Pmc-tR-SN6"/>
-                            <constraint firstItem="grP-4O-Chu" firstAttribute="leading" secondItem="z6u-FI-AcG" secondAttribute="leading" id="TyM-j3-191"/>
+                            <constraint firstItem="grP-4O-Chu" firstAttribute="leading" secondItem="z6u-FI-AcG" secondAttribute="leading" id="A7o-S7-cVc"/>
+                            <constraint firstAttribute="trailing" secondItem="grP-4O-Chu" secondAttribute="trailing" id="Abt-wh-3Fh"/>
+                            <constraint firstItem="grP-4O-Chu" firstAttribute="top" secondItem="C9g-59-kez" secondAttribute="bottom" constant="20" id="OlK-RC-agQ"/>
+                            <constraint firstItem="wp5-TE-kgd" firstAttribute="top" secondItem="grP-4O-Chu" secondAttribute="bottom" constant="20" id="XaP-M7-CgU"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
