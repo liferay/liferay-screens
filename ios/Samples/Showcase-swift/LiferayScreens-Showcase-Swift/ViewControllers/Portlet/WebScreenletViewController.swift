@@ -14,8 +14,7 @@
 import UIKit
 import LiferayScreens
 
-class WebViewController: UIViewController, WebScreenletDelegate {
-
+class WebScreenletViewController: UIViewController, WebScreenletDelegate {
 
 	//MARK: IBOutlet
 
@@ -31,13 +30,14 @@ class WebViewController: UIViewController, WebScreenletDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		let url = LiferayServerContext.stringPropertyForKey("WebUrl")
+		let url = LiferayServerContext.stringPropertyForKey("webUrl")
 
 		let configuration = WebScreenletConfigurationBuilder(url: url)
 				.set(webType: .liferayAuthenticated)
 				.enableCordova()
-				.addCss(localFile: "bigger_pagination")
 				.addJs(localFile: "gallery")
+				.addCss(localFile: "gallery")
+				.addCss(localFile: "bigger_pagination")
 				.load()
 
 		screenlet?.configuration = configuration
