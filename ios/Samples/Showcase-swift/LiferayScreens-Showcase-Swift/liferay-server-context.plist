@@ -19,7 +19,7 @@
 	<key>assetDisplayPortletItemName</key>
 	<string>manual</string>
 	<key>blogDisplayClassPK</key>
-	<string>57366</string>
+	<string>40515</string>
 	<key>commentScreenletClassName</key>
 	<string>com.liferay.blogs.kernel.model.BlogsEntry</string>
 	<key>commentScreenletClassPK</key>
