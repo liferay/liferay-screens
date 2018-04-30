@@ -57,8 +57,9 @@
 		0B7077091F331535001A0158 /* bigger_pagination.css in Resources */ = {isa = PBXBuildFile; fileRef = 0B7077061F331535001A0158 /* bigger_pagination.css */; };
 		0B70770A1F331535001A0158 /* gallery_custom.css in Resources */ = {isa = PBXBuildFile; fileRef = 0B7077071F331535001A0158 /* gallery_custom.css */; };
 		0B70770D1F332146001A0158 /* publisherlist.css in Resources */ = {isa = PBXBuildFile; fileRef = 0B70770C1F332146001A0158 /* publisherlist.css */; };
+		0BA10FB92097255300D272F5 /* gallery.css in Resources */ = {isa = PBXBuildFile; fileRef = 0BA10FB82097255300D272F5 /* gallery.css */; };
 		0BC700C71EB20741006DD475 /* gallery.js in Resources */ = {isa = PBXBuildFile; fileRef = 0BC700C51EB20741006DD475 /* gallery.js */; };
-		0BC700C81EB20741006DD475 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC700C61EB20741006DD475 /* WebViewController.swift */; };
+		0BC700C81EB20741006DD475 /* WebScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC700C61EB20741006DD475 /* WebScreenletViewController.swift */; };
 		0BC700D61EB20915006DD475 /* WebScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BC700D41EB20915006DD475 /* WebScreenlet.storyboard */; };
 		0BC700DB1EB2425A006DD475 /* WebDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC700DA1EB2425A006DD475 /* WebDetailViewController.swift */; };
 		0BCAD3C21DD5F42200BB89EA /* VideoDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BCAD3C01DD5F42200BB89EA /* VideoDisplayScreenlet.storyboard */; };
@@ -141,8 +142,9 @@
 		0B7077061F331535001A0158 /* bigger_pagination.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = bigger_pagination.css; path = css/bigger_pagination.css; sourceTree = "<group>"; };
 		0B7077071F331535001A0158 /* gallery_custom.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = gallery_custom.css; path = css/gallery_custom.css; sourceTree = "<group>"; };
 		0B70770C1F332146001A0158 /* publisherlist.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = publisherlist.css; path = css/publisherlist.css; sourceTree = "<group>"; };
+		0BA10FB82097255300D272F5 /* gallery.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = gallery.css; sourceTree = "<group>"; };
 		0BC700C51EB20741006DD475 /* gallery.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = gallery.js; sourceTree = "<group>"; };
-		0BC700C61EB20741006DD475 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		0BC700C61EB20741006DD475 /* WebScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebScreenletViewController.swift; sourceTree = "<group>"; };
 		0BC700D51EB20915006DD475 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/WebScreenlet.storyboard; sourceTree = "<group>"; };
 		0BC700DA1EB2425A006DD475 /* WebDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebDetailViewController.swift; sourceTree = "<group>"; };
 		0BCAD3C11DD5F42200BB89EA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/VideoDisplayScreenlet.storyboard; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 				0B70770C1F332146001A0158 /* publisherlist.css */,
 				0B7077061F331535001A0158 /* bigger_pagination.css */,
 				0B7077071F331535001A0158 /* gallery_custom.css */,
+				0BA10FB82097255300D272F5 /* gallery.css */,
 			);
 			name = css;
 			sourceTree = "<group>";
@@ -389,7 +392,7 @@
 			children = (
 				0B980AF91EC04CC8009BD8C8 /* css */,
 				0BC700C41EB20741006DD475 /* js */,
-				0BC700C61EB20741006DD475 /* WebViewController.swift */,
+				0BC700C61EB20741006DD475 /* WebScreenletViewController.swift */,
 				0BC700DA1EB2425A006DD475 /* WebDetailViewController.swift */,
 			);
 			name = Web;
@@ -563,7 +566,7 @@
 				TargetAttributes = {
 					88DE2A6B1AD3DDE600714701 = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = JWC89658Q6;
+						DevelopmentTeam = 7H3SPU5TB9;
 						LastSwiftMigration = 0820;
 					};
 				};
@@ -594,6 +597,7 @@
 			files = (
 				0B6147FD1DABD741004FAC7C /* SignUpScreenlet.storyboard in Resources */,
 				0B54FBAF1DACF71700E0EE0C /* RatingScreenlet.storyboard in Resources */,
+				0BA10FB92097255300D272F5 /* gallery.css in Resources */,
 				88DE2A921AD3DF2200714701 /* liferay-server-context.plist in Resources */,
 				0B70770D1F332146001A0158 /* publisherlist.css in Resources */,
 				0B54FBA41DACEF8600E0EE0C /* CommentAddScreenlet.storyboard in Resources */,
@@ -757,7 +761,7 @@
 				88DE2AAF1AD3EFEF00714701 /* HomeScreenletsViewController.swift in Sources */,
 				0B54FB8A1DACE91000E0EE0C /* CommentListScreenletViewController.swift in Sources */,
 				0B54FBA31DACEF7F00E0EE0C /* CommentAddScreenletViewController.swift in Sources */,
-				0BC700C81EB20741006DD475 /* WebViewController.swift in Sources */,
+				0BC700C81EB20741006DD475 /* WebScreenletViewController.swift in Sources */,
 				88CC3B021CC158C800E0AEB7 /* HtmlTableViewCell.swift in Sources */,
 				0B54FBCA1DAD14C500E0EE0C /* DDLListScreenletViewController.swift in Sources */,
 				0B61480B1DABE86F004FAC7C /* WebContentDisplayScreenletViewController.swift in Sources */,
@@ -1079,6 +1083,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 7H3SPU5TB9;
 				INFOPLIST_FILE = "LiferayScreens-Showcase-Swift/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1096,6 +1101,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = 7H3SPU5TB9;
 				INFOPLIST_FILE = "LiferayScreens-Showcase-Swift/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
