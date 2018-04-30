@@ -52,8 +52,7 @@ open class FileDisplayScreenlet: BaseScreenlet {
 	/// The file’s fully qualified class name. Since files in a Documents and Media Library are 
 	/// DLFileEntry objects, their className is com.liferay.document.library.kernel.model.DLFileEntry. 
 	/// The className and classPK attributes are required to instantiate the Screenlet.
-	@IBInspectable open var className: String =
-		AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!
+	@IBInspectable open var className: String = AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!
 
 	/// The file’s unique identifier. The className and classPK attributes are required to 
 	/// instantiate the Screenlet.
@@ -77,7 +76,7 @@ open class FileDisplayScreenlet: BaseScreenlet {
 	}
 
 	open var supportedMimeTypes: [String] {
-		return []
+		return ["text/plain"]
 	}
 
 	open var fileEntry: FileEntry?

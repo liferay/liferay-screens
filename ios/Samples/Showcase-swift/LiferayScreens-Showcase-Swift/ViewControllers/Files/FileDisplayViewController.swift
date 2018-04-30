@@ -18,7 +18,7 @@ import LiferayScreens
 class FileDisplayViewController: UIViewController, FileDisplayScreenletDelegate {
 
 
-	//MARK: IBOutlet
+	// MARK: IBOutlet
 
 	@IBOutlet var screenlet: FileDisplayScreenlet? {
 		didSet {
@@ -26,5 +26,15 @@ class FileDisplayViewController: UIViewController, FileDisplayScreenletDelegate 
 			screenlet?.presentingViewController = self
 			screenlet?.classPK = LiferayServerContext.longPropertyForKey("fileDisplayClassPK")
 		}
+	}
+	
+	// MARK: FileDisplayScreenletDelegate
+	
+	func screenlet(_ screenlet: FileDisplayScreenlet, onFileAssetResponse url: URL) {
+		LiferayLogger.logDelegateMessage(args: url.absoluteString)
+	}
+	
+	func screenlet(_ screenlet: FileDisplayScreenlet, onFileAssetError error: NSError) {
+		LiferayLogger.logDelegateMessage(args: error)
 	}
 }
