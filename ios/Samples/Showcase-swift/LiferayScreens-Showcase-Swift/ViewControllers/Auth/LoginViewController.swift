@@ -49,7 +49,7 @@ class LoginViewController: UIViewController, LoginScreenletDelegate {
 			return print("Session doesn't exist")
 		}
 
-		ctx.relogin {
+		_ = ctx.relogin {
 			guard let attributes = $0 else {
 				print("Relogin failed")
 				self.showLogged(animated: true)

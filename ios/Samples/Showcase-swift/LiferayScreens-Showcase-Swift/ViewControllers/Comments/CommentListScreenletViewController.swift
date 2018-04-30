@@ -111,7 +111,7 @@ class CommentListScreenletViewController: UIViewController,
 				LiferayLogger.logDelegateMessage(args: $0)
 			}
 
-			interactor.start()
+			_ = interactor.start()
 		}
 	}
 
