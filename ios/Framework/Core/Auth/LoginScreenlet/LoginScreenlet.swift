@@ -207,7 +207,7 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 
 	fileprivate func createOAuth2RedirectInteractor() -> LoginOAuth2RedirectInteractor {
 		return LoginOAuth2RedirectInteractor(redirectURL: oauth2redirectURL ?? "",
-			scopes: oauth2Scopes?.components(separatedBy: " ") ?? [],
+			scopes: parseScopes(),
 			clientId: oauth2clientId)
 	}
 
@@ -215,9 +215,18 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 		return LoginOAuth2UsernamePasswordInteractor(screenlet: self,
 			username: viewModel.userName ?? "",
 			password: viewModel.password ?? "",
-			scopes: oauth2Scopes?.components(separatedBy: " ") ?? [],
+			scopes: parseScopes(),
 			clientId: oauth2clientId,
 			clientSecret: oauth2clientSecret ?? "")
+	}
+
+	fileprivate func parseScopes() -> [String] {
+		guard let oauth2Scopes = oauth2Scopes,
+			!oauth2Scopes.isEmpty else {
+			return []
+		}
+
+		return oauth2Scopes.components(separatedBy: " ")
 	}
 
 	fileprivate func copyAuthType() {
