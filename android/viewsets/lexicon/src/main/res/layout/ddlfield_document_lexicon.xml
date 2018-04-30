@@ -23,8 +23,8 @@
             android:id="@+id/liferay_ddl_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/lexicon_clip_tinted"
-            android:drawableRight="@drawable/lexicon_clip_tinted"
+            android:drawableEnd="@drawable/lexicon_icon_clip_tinted"
+            android:drawableRight="@drawable/lexicon_icon_clip_tinted"
             android:hint="@string/select_a_file"
             android:inputType="none"
             android:focusable="false"
@@ -32,8 +32,10 @@
 
         <ProgressBar
             android:id="@+id/liferay_document_progress"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/field_min_height"
+            android:layout_height="@dimen/field_min_height"
+            android:padding="@dimen/field_padding"
+            android:backgroundTint="@color/textColorSecondary_lexicon"
             android:layout_gravity="end|center_vertical"
             android:visibility="invisible"
             />

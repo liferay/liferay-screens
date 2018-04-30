@@ -53,16 +53,16 @@ public class DDLDocumentFieldView
 		editText.setText(field.toFormattedString());
 
 		if (field.isUploaded()) {
-			setRightDrawable(editText, com.liferay.mobile.screens.R.drawable.default_circle_success);
+			setRightDrawable(editText, R.drawable.lexicon_icon_clip_success_tinted);
 			progressBar.setVisibility(GONE);
 		} else if (field.isUploadFailed()) {
-			setRightDrawable(editText, com.liferay.mobile.screens.R.drawable.default_circle_failed);
+			setRightDrawable(editText, R.drawable.lexicon_icon_cancel_error_tinted);
 			progressBar.setVisibility(GONE);
 		} else if (field.isUploading()) {
-			setRightDrawable(editText, 0);
+			setRightDrawable(editText, R.drawable.lexicon_icon_clip_white_background);
 			progressBar.setVisibility(VISIBLE);
 		} else {
-			setRightDrawable(editText, R.drawable.lexicon_clip_tinted);
+			setRightDrawable(editText, R.drawable.lexicon_icon_clip_tinted);
 			progressBar.setVisibility(GONE);
 		}
 	}

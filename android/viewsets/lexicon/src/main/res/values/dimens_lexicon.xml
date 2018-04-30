@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="field_edit_drawable_right">42dp</dimen>
     <dimen name="field_min_height">40dp</dimen>
     <dimen name="field_radius">4dp</dimen>
     <dimen name="field_padding">10dp</dimen>

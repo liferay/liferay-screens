@@ -24,7 +24,7 @@
 				android:layout_height="match_parent"
 				android:layout_gravity="center"
 				android:padding="@dimen/icon_padding_dialog"
-				android:src="@drawable/lexicon_document"
+				android:src="@drawable/lexicon_icon_document"
 				/>
 
 			<TextView
@@ -50,7 +50,7 @@
 				android:layout_height="match_parent"
 				android:layout_gravity="center"
 				android:padding="@dimen/icon_padding_dialog"
-				android:src="@drawable/lexicon_photo"
+				android:src="@drawable/lexicon_icon_photo"
 				/>
 
 			<TextView
@@ -74,7 +74,7 @@
 				android:layout_height="match_parent"
 				android:layout_gravity="center"
 				android:padding="@dimen/icon_padding_dialog"
-				android:src="@drawable/lexicon_photo"
+				android:src="@drawable/lexicon_icon_photo"
 				/>
 
 			<TextView
@@ -98,7 +98,7 @@
 				android:layout_height="match_parent"
 				android:layout_gravity="center"
 				android:padding="@dimen/icon_padding_dialog"
-				android:src="@drawable/lexicon_camera"
+				android:src="@drawable/lexicon_icon_camera"
 				/>
 
 			<TextView
@@ -122,7 +122,7 @@
 				android:layout_height="match_parent"
 				android:layout_gravity="center"
 				android:padding="@dimen/icon_padding_dialog"
-				android:src="@drawable/lexicon_camera"
+				android:src="@drawable/lexicon_icon_camera"
 				/>
 
 			<TextView
