@@ -35,7 +35,7 @@
 	<key>ddlStructureId</key>
 	<integer>29823</integer>
 	<key>imageDisplayClassPK</key>
-	<integer>54612</integer>
+	<real>54612</real>
 	<key>audioDisplayClassPK</key>
 	<real>57433</real>
 	<key>videoDisplayClassPK</key>
@@ -43,7 +43,7 @@
 	<key>pdfDisplayClassPK</key>
 	<integer>66976</integer>
 	<key>fileDisplayClassPK</key>
-	<integer>67025</integer>
+	<real>67025</real>
 	<key>imageGalleryFolderId</key>
 	<real>54469</real>
 	<key>imageGalleryMimeType</key>

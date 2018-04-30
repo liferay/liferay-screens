@@ -65,6 +65,10 @@ open class FileDisplayScreenlet: BaseScreenlet {
 	/// The offline mode setting. The default value is remote-first.
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
+	/// Supported screenlet mime types. If the mime type not matches with the requested file mime
+	/// type, the file doesn't show in the screenlet.
+	@IBInspectable open var mimeTypes: String = ""
+
 	// MARK: Public properties
 
 	open var fileDisplayDelegate: FileDisplayScreenletDelegate? {
@@ -75,8 +79,11 @@ open class FileDisplayScreenlet: BaseScreenlet {
 		return screenletView as? FileDisplayViewModel
 	}
 
+	let DefaultFileMimeTypes = ["text/plain"]
+
 	open var supportedMimeTypes: [String] {
-		return ["text/plain"]
+		return (mimeTypes.isEmpty) ? DefaultFileMimeTypes :
+			mimeTypes.split(separator: ",").map(String.init)
 	}
 
 	open var fileEntry: FileEntry?

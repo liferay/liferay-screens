@@ -18,12 +18,6 @@ import Foundation
 @objc(AudioDisplayScreenlet)
 open class AudioDisplayScreenlet: FileDisplayScreenlet {
 
-	// MARK: Inspectables
-
-	/// Supported screenlet mime types. If the mime type not matches with the requested audio mime
-	/// type, the audio doesn't show in the screenlet.
-	@IBInspectable open var mimeTypes: String = ""
-
 	let DefaultAudioMimeTypes = ["audio/mpeg", "audio/mpeg3", "audio/wav"]
 
 	// MARK: FileDisplayScreenlet
