@@ -45,7 +45,6 @@ public let AssetClassNameKey_Site = "Group"
 public let AssetClassNameKey_User = "User"
 
 // Comment
-public let AssetClassNameKey_MBCategory = "MBCategory"
 public let AssetClassNameKey_MBDiscussion = "MBDiscussion"
 public let AssetClassNameKey_MBMessage = "MBMessage"
 public let AssetClassNameKey_MBThread = "MBThread"
@@ -114,7 +113,6 @@ open class AssetClasses: NSObject {
 			AssetClassNameKey_User: AssetClassEntry(20087, "com.liferay.portal.kernel.model.User"),
 
 			// Message boards
-			AssetClassNameKey_MBCategory: AssetClassEntry(20029, "com.liferay.message.boards.kernel.model.MBCategory"),
 			AssetClassNameKey_MBDiscussion: AssetClassEntry(20030, "com.liferay.message.boards.kernel.model.MBDiscussion"),
 			AssetClassNameKey_MBMessage: AssetClassEntry(20032, "com.liferay.message.boards.kernel.model.MBMessage"),
 			AssetClassNameKey_MBThread: AssetClassEntry(20034, "com.liferay.message.boards.kernel.model.MBThread"),
