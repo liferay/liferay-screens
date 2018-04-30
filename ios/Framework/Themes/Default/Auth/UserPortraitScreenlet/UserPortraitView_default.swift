@@ -67,7 +67,7 @@ open class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel,
 
 	fileprivate let imagePicker = UIImagePickerController()
 
-	// MARK: SignUpViewModel
+	// MARK: UserPortraitViewModel
 
 	open var image: UIImage? {
 		get {
@@ -93,6 +93,10 @@ open class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel,
 		didSet {
 			portraitImage?.layer.borderColor = (borderColor ?? DefaultThemeBasicBlue).cgColor
 		}
+	}
+
+	open func loadPlaceholder(for user: User) {
+		loadDefaultPlaceholder()
 	}
 
 	// MARK: BaseScreenletView
@@ -137,11 +141,6 @@ open class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel,
 	}
 
 	// MARK: Public methods
-
-	/// Loads the placeholder with user information
-	open func loadPlaceholder(for user: User) {
-		loadDefaultPlaceholder()
-	}
 
 	open func loadDefaultPlaceholder() {
 		dispatch_main {
