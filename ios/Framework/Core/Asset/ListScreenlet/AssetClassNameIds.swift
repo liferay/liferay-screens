@@ -105,12 +105,11 @@ open class AssetClasses: NSObject {
 			AssetClassNameKey_JournalArticle: AssetClassEntry(29634, "com.liferay.journal.model.JournalArticle"),
 			AssetClassNameKey_JournalFolder: AssetClassEntry(29639, "com.liferay.journal.model.JournalFolder"),
 
-			// Users and sites
-			AssetClassNameKey_Layout: AssetClassEntry(20047, "com.liferay.portal.kernel.model.Layout"),
-			AssetClassNameKey_LayoutRevision: AssetClassEntry(20051, "com.liferay.portal.kernel.model.LayoutRevision"),
-			AssetClassNameKey_Organization: AssetClassEntry(20059, "com.liferay.portal.kernel.model.Organization"),
-			AssetClassNameKey_Site: AssetClassEntry(20045, "com.liferay.portal.kernel.model.Group"),
-			AssetClassNameKey_User: AssetClassEntry(20087, "com.liferay.portal.kernel.model.User"),
+			// Journal
+			AssetClassNameKey_JournalArticle: AssetClassEntry(29634, "com.liferay.journal.model.JournalArticle"),
+			AssetClassNameKey_JournalArticleImage: AssetClassEntry(29502,
+					"com.liferay.journal.model.JournalArticleImage"),
+			AssetClassNameKey_JournalFolder: AssetClassEntry(29506, "com.liferay.journal.model.JournalFolder"),
 
 			// Message boards
 			AssetClassNameKey_MBDiscussion: AssetClassEntry(20030, "com.liferay.message.boards.kernel.model.MBDiscussion"),
