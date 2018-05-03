@@ -146,6 +146,8 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 	public void setAuthenticationType(AuthenticationType authenticationType) {
 		this.authenticationType = authenticationType;
+
+		getViewModel().setAuthenticationType(authenticationType);
 	}
 
 	public boolean isShouldHandleCookieRefresh() {
