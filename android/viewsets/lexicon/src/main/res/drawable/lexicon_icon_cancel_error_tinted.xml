@@ -4,7 +4,7 @@
 	<item>
 		<bitmap
 			android:src="@drawable/lexicon_icon_cancel"
-			android:tint="@android:color/holo_red_dark"
+			android:tint="@color/colorTextErrorSecondary"
 			android:gravity="center"/>
 	</item>
 </layer-list>

@@ -21,8 +21,8 @@ import com.liferay.mobile.screens.viewsets.lexicon.util.FormViewUtil;
 /**
  * @author Victor Oliveira
  */
-public class DDLFieldTextView extends
-	com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldTextView {
+public class DDLFieldTextView
+	extends com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldTextView {
 
 	public DDLFieldTextView(Context context) {
 		super(context);

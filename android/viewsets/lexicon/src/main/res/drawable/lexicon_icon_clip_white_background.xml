@@ -10,7 +10,7 @@
 				android:bottomRightRadius="@dimen/field_radius"/>
 			<solid android:color="@android:color/white"/>
 			<size
-				android:width="42dp"
+				android:width="@dimen/field_edit_drawable_right"
 				android:height="@dimen/field_min_height" />
 		</shape>
 	</item>

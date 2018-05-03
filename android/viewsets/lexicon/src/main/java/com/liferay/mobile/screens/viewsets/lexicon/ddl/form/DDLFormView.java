@@ -39,7 +39,6 @@ public class DDLFormView extends com.liferay.mobile.screens.viewsets.defaultview
 		LEXICON_LAYOUT_IDS.put(Field.EditorType.TEXT_AREA, R.layout.ddlfield_text_area_lexicon);
 		LEXICON_LAYOUT_IDS.put(Field.EditorType.DOCUMENT, R.layout.ddlfield_document_lexicon);
 		LEXICON_LAYOUT_IDS.put(Field.EditorType.GEO, R.layout.ddlfield_geo_lexicon);
-
 	}
 
 	public DDLFormView(Context context) {
