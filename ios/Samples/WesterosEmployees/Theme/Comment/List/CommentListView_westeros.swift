@@ -14,12 +14,11 @@
 import UIKit
 import LiferayScreens
 
-
 open class CommentListView_westeros: CommentListView_default {
 
 	let CommentCellId = "commentCell"
 
-	//MARK: BaseListTableView
+	// MARK: BaseListTableView
 
 	override open func doRegisterCellNibs() {
 		let nib = Bundle.nibInBundles(
@@ -30,7 +29,7 @@ open class CommentListView_westeros: CommentListView_default {
 		}
 	}
 
-	override open func doFillLoadedCell(row: Int, cell: UITableViewCell, object:AnyObject) {
+	override open func doFillLoadedCell(row: Int, cell: UITableViewCell, object: AnyObject) {
 		if let comment = object as? Comment, let commentCell = cell as? CommentTableViewCell_default {
 			commentCell.commentDisplayScreenlet?.comment = comment
 
@@ -40,20 +39,18 @@ open class CommentListView_westeros: CommentListView_default {
 		}
 	}
 
-
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
 	override open func createProgressPresenter() -> ProgressPresenter {
 		return WesterosCardProgressPresenter(screenlet: self.screenlet)
 	}
 
-
-	//MARK: UITableViewDelegate
+	// MARK: UITableViewDelegate
 
 	override open func tableView(_ tableView: UITableView,
 	                      editActionsForRowAtIndexPath indexPath: IndexPath) -> [AnyObject]? {
 		let editRowAction = UITableViewRowAction(style: .normal,
-			title: "Edit", handler:{action, indexPath in
+			title: "Edit", handler: { action, indexPath in
 				if let comment = self.rows[self.sections[indexPath.section]]?[indexPath.row] as? Comment {
 					self.userAction(name: "edit-comment", sender: comment)
 				}
@@ -62,13 +59,13 @@ open class CommentListView_westeros: CommentListView_default {
 		})
 
 		let deleteRowAction = UITableViewRowAction(style: .destructive,
-			title: "Delete", handler:{action, indexPath in
+			title: "Delete", handler: { action, indexPath in
 				let cell = tableView.cellForRow(at: indexPath) as? CommentTableViewCell_default
 				cell?.commentDisplayScreenlet?.deleteComment()
 				tableView.setEditing(false, animated: true)
 		})
 		deleteRowAction.backgroundColor = DefaultResources.OddColorBackground
 
-		return [deleteRowAction, editRowAction];
+		return [deleteRowAction, editRowAction]
 	}
 }

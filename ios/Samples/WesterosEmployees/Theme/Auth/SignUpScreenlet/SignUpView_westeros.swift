@@ -14,7 +14,6 @@
 import UIKit
 import LiferayScreens
 
-
 open class SignUpView_westeros: SignUpView_default {
 
 	override open func onCreated() {
@@ -43,7 +42,7 @@ open class SignUpView_westeros: SignUpView_default {
 		return WesterosProgressPresenter()
 	}
 
-	override open func onSetDefaultDelegate(_ delegate:AnyObject, view:UIView) -> Bool {
+	override open func onSetDefaultDelegate(_ delegate: AnyObject, view: UIView) -> Bool {
 		return false
 	}
 

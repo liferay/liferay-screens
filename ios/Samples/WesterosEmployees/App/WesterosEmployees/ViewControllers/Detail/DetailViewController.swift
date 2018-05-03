@@ -16,8 +16,8 @@ import LiferayScreens
 
 class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 	CardDeckDelegate, CardDeckDataSource {
-	
-	//MARK: Outlets
+
+	// MARK: Outlets
 
 	@IBOutlet weak var assetDisplayScreenlet: AssetDisplayScreenlet? {
 		didSet {
@@ -33,14 +33,13 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 	}
 	@IBOutlet weak var goBackButton: UIButton? {
 		didSet {
-			goBackButton?.titleEdgeInsets = UIEdgeInsetsMake(0, 70, 0, 70)
+			goBackButton?.titleEdgeInsets = UIEdgeInsets(top: 0, left: 70, bottom: 0, right: 70)
 		}
 	}
 	@IBOutlet weak var arrowImageView: UIImageView?
 	@IBOutlet weak var ratingScreenlet: RatingScreenlet?
 
-
-	//MARK: Card controllers
+	// MARK: Card controllers
 
 	var commentsViewController: CommentsViewController? {
 		didSet {
@@ -48,15 +47,13 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		}
 	}
 
-
-	//MARK: View methods
+	// MARK: Actions
 
 	@IBAction func goBackButtonClicked() {
 		dismiss(animated: true, completion: nil)
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	func load(_ assetEntry: Asset?) {
 
@@ -79,51 +76,47 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 					className: AssetClasses.getClassNameFromId(asset.classNameId)!,
 					classPK: asset.classPK)
 			}
-			
+
 			ratingScreenlet?.className = AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!
 			ratingScreenlet?.classPK = classPK
 			ratingScreenlet?.loadRatings()
 		}
 	}
-	
-	
-	//MARK: CardViewController
-	
+
+	// MARK: CardViewController
+
 	override func pageWillDisappear() {
 		//Remove inner screenlet to avoid infinite media loops
 		self.assetDisplayScreenlet?.removeInnerScreenlet()
-		
+
 		//Hide comment card
 		self.commentsViewController?.hideAddCommentCard()
 		self.cardDeck?.cards[safe: 0]?.changeToState(.minimized)
 	}
-	
 
-	//MARK: UIViewController
-	
+	// MARK: UIViewController
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+
 		commentsViewController = CommentsViewController()
 	}
 
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		
+
 		//Hide all views
 		self.assetDisplayScreenlet?.alpha = 0
 		self.ratingScreenlet?.alpha = 0
 	}
 
-
-	//MARK: Init methods
+	// MARK: Initializers
 
 	convenience init(nibName: String) {
 		self.init(nibName: nibName, bundle: nil)
 	}
 
-
-	//MARK: AssetDisplayScreenletDelegate
+	// MARK: AssetDisplayScreenletDelegate
 
 	func screenlet(_ screenlet: AssetDisplayScreenlet, onAssetResponse asset: Asset) {
 		//Change buttons text
@@ -134,11 +127,10 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 		UIView.animate(withDuration: 1.0, animations: {
 			self.assetDisplayScreenlet?.alpha = 1.0
 			self.ratingScreenlet?.alpha = 1.0
-		}) 
+		})
 	}
-	
 
-	//MARK: CardDeckDataSource
+	// MARK: CardDeckDataSource
 
 	func numberOfCardsIn(_ cardDeck: CardDeckView) -> Int {
 		return 1
@@ -153,8 +145,7 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
 			return commentsViewController
 	}
 
-
-	//MARK: CardDeckDelegate
+	// MARK: CardDeckDelegate
 
 	func cardDeck(_ cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
 		if let cardView = self.cardView {

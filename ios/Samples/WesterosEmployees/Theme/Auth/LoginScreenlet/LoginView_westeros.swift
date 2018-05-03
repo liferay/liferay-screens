@@ -14,7 +14,6 @@
 import UIKit
 import LiferayScreens
 
-
 open class LoginView_westeros: LoginView_default {
 
 	@IBAction func showPassword(_ sender: AnyObject) {
@@ -35,7 +34,7 @@ open class LoginView_westeros: LoginView_default {
 				attributes: [.foregroundColor : UIColor.white])
 	}
 
-	override open func onSetDefaultDelegate(_ delegate:AnyObject, view:UIView) -> Bool {
+	override open func onSetDefaultDelegate(_ delegate: AnyObject, view: UIView) -> Bool {
 		return false
 	}
 

@@ -15,45 +15,42 @@ import UIKit
 import LiferayScreens
 
 class TermsViewController: CardViewController, AssetDisplayScreenletDelegate {
-    
-    
-    //MARK: Outlets
-    
+
+    // MARK: Outlets
+
     @IBOutlet weak var assetDisplayScreenlet: AssetDisplayScreenlet? {
         didSet {
             assetDisplayScreenlet?.delegate = self
         }
     }
-    
-    //MARK: Init methods
-    
+
+    // MARK: Initializers
+
     convenience init() {
         self.init(nibName: "TermsViewController", bundle: nil)
     }
-    
-    
-    //MARK: UIViewController
-    
+
+    // MARK: UIViewController
+
     override func viewWillAppear(_ animated: Bool) {
-        
+
         //Login anonymous user
         SessionContext.loginWithBasic(
             username: LiferayServerContext.stringPropertyForKey("anonymousUsername"),
             password: LiferayServerContext.stringPropertyForKey("anonymousPassword"),
             userAttributes: [:])
-        
+
         AssetClasses.set(AssetClassNameKey_JournalArticle, newClassName: "com.liferay.journal.model.JournalArticle")
-        
+
         AssetClasses.set(AssetClassNameKey_JournalArticle, newId: 29634)
-        
+
         //Load article data into screenlet
         self.assetDisplayScreenlet?.assetEntryId = LiferayServerContext.longPropertyForKey("termsAndConditionsAssetEntryId")
         self.assetDisplayScreenlet?.load()
     }
-    
-    
-    //MARK: AssetDisplayScreenletDelegate
-    
+
+    // MARK: AssetDisplayScreenletDelegate
+
     func screenlet(_ screenlet: AssetDisplayScreenlet, onAssetError error: NSError) {
         print("Couldn't load terms and conditions. Error: \(error)")
     }

@@ -13,6 +13,4 @@
 */
 import UIKit
 
-
 let WesterosThemeBasicRed = UIColor(red: 228.0/255.0, green: 71.0/255.0, blue: 64.0/255.0, alpha: 1)
-

@@ -27,7 +27,7 @@ open class WebContentDisplayView_westeros: WebContentDisplayView_default {
 		return WesterosCardProgressPresenter(screenlet: screenlet)
 	}
 
-	//MARK: WebContentDisplayViewModel
+	// MARK: WebContentDisplayViewModel
 
 	open override var htmlContent: String? {
 		get {

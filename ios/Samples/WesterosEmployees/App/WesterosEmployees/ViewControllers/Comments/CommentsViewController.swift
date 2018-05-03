@@ -31,7 +31,7 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 		}
 	}
 
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet weak var commentListScreenlet: CommentListScreenlet? {
 		didSet {
@@ -46,22 +46,19 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 		}
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	func hideAddCommentCard() {
 		self.cardDeck?.cards[safe: 0]?.changeToState(.minimized)
 	}
-	
-	
-	//MARK: CardViewController
-	
+
+	// MARK: CardViewController
+
 	override func pageWillAppear() {
 		commentListScreenlet?.loadList()
 	}
 
-
-	//MARK: Init methods
+	// MARK: Initializers
 
 	convenience init() {
 		self.init(nibName: "CommentsViewController", bundle: nil)
@@ -70,7 +67,7 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 	func load(className: String, classPK: Int64) {
 		commentListScreenlet?.className = className
 		commentListScreenlet?.classPK = classPK
-		
+
 		addCommentViewController?.load(className: className, classPK: classPK)
 
 		//Change color depending on asset
@@ -93,7 +90,7 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 		}
 	}
 
-	//MARK: UIViewController
+	// MARK: UIViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -103,8 +100,7 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 		addCommentViewController = AddCommentViewController()
 	}
 
-
-	//MARK: CardDeckDataSource
+	// MARK: CardDeckDataSource
 
 	func numberOfCardsIn(_ cardDeck: CardDeckView) -> Int {
 		return 1
@@ -115,8 +111,7 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 			return addCommentViewController
 	}
 
-
-	//MARK: CardDeckDelegate
+	// MARK: CardDeckDelegate
 
 	func cardDeck(_ cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
 		card.normalHeight = UIScreen.main.bounds.height * 0.7
@@ -126,8 +121,7 @@ class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckData
 		return "Add Comment"
 	}
 
-
-	//MARK: CommentListScreenletDelegate
+	// MARK: CommentListScreenletDelegate
 	func screenlet(_ screenlet: BaseScreenlet, customInteractorForAction action: String, withSender sender: AnyObject?) -> Interactor? {
 		if action == "edit-comment" {
 			if let comment = sender as? Comment {

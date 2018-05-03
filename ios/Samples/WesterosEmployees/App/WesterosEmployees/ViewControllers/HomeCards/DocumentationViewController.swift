@@ -20,8 +20,7 @@ class DocumentationViewController: CardViewController, AssetListScreenletDelegat
 
 	var loaded: Bool = false
 
-	
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet weak var assetListScreenlet: AssetListScreenlet? {
 		didSet {
@@ -33,14 +32,13 @@ class DocumentationViewController: CardViewController, AssetListScreenletDelegat
 		}
 	}
 
-	//MARK: Init methods
+	// MARK: Initializers
 
 	convenience init() {
 		self.init(nibName: "DocumentationViewController", bundle: nil)
 	}
 
-
-	//MARK: CardViewController
+	// MARK: CardViewController
 
 	override func pageWillAppear() {
 		if !loaded {
@@ -49,8 +47,7 @@ class DocumentationViewController: CardViewController, AssetListScreenletDelegat
 		}
 	}
 
-
-	//MARK: AssetListScreenletDelegate
+	// MARK: AssetListScreenletDelegate
 
 	func screenlet(_ screenlet: AssetListScreenlet, onAssetSelected asset: Asset) {
 		self.selectedFileEntry = FileEntry(attributes: asset.attributes)

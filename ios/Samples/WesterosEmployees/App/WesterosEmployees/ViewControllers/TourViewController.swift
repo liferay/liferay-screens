@@ -13,7 +13,6 @@ class TourViewController: UIViewController, UIScrollViewDelegate {
 	@IBOutlet weak var scrollView: UIScrollView?
 	@IBOutlet weak var pageControl: UIPageControl?
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
 		scrollView?.delegate = self

@@ -28,8 +28,7 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 
 	var loaded: Bool = false
 
-	
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet weak var imageGalleryScreenlet: ImageGalleryScreenlet? {
 		didSet {
@@ -50,8 +49,7 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 		}
 	}
 
-
-	//MARK: CardViewController
+	// MARK: CardViewController
 
 	override func pageWillDisappear() {
 		hideUploadCard()
@@ -64,23 +62,21 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 		}
 	}
 
-
-	//MARK: UIViewController
+	// MARK: UIViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+
 		uploadImageViewController = UploadImageViewController()
 	}
 
-	//MARK: Init methods
+	// MARK: Initializers
 
 	convenience init() {
 		self.init(nibName: "GalleryViewController", bundle: nil)
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	func onImageSelected(_ image: UIImage) {
 		let title = "westeros-\(UUID().uuidString).png"
@@ -98,7 +94,7 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 		}
 	}
 
-	//MARK: ImageGalleryScreenletDelegate
+	// MARK: ImageGalleryScreenletDelegate
 
 	func screenlet(_ screenlet: ImageGalleryScreenlet, onImageEntrySelected imageEntry: ImageEntry) {
 		self.selectedImageEntry = imageEntry
@@ -115,8 +111,7 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 		hideUploadCard()
 	}
 
-
-	//MARK: CardDeckDataSource
+	// MARK: CardDeckDataSource
 
 	func numberOfCardsIn(_ cardDeck: CardDeckView) -> Int {
 		return 1
@@ -130,8 +125,7 @@ class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
 		return uploadImageViewController
 	}
 
-
-	//MARK: CardDeckDelegate
+	// MARK: CardDeckDelegate
 
 	func cardDeck(_ cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
 		if let firstCardDeck = self.cardView?.superview {

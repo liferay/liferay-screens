@@ -18,7 +18,7 @@ class AssetListView_westeros_doc: AssetListView_westeros {
 
 	let DocumentCellId = "documentCell"
 
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
 	override func doGetCellId(row: Int, object: AnyObject?) -> String {
 		if let _ = object {
@@ -44,7 +44,7 @@ class AssetListView_westeros_doc: AssetListView_westeros {
 		}
 	}
 
-	override func doFillLoadedCell(row: Int, cell: UITableViewCell, object:AnyObject) {
+	override func doFillLoadedCell(row: Int, cell: UITableViewCell, object: AnyObject) {
 		guard let docCell = cell as? DocumentationTableViewCell_westeros, let entry = object as? Asset else {
 			return
 		}

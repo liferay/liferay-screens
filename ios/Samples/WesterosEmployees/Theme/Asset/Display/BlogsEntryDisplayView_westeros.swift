@@ -17,7 +17,7 @@ import LiferayScreens
 open class BlogsEntryDisplayView_westeros: BlogsEntryDisplayView_default {
 
 	@IBOutlet weak var ratingScreenlet: RatingScreenlet?
-	
+
 	open override func loadBlog() {
 		super.loadBlog()
 		ratingScreenlet?.classPK = blogsEntry!.classPK
