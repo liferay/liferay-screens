@@ -97,21 +97,22 @@
 		0B3699E91E4C929900B82F81 /* LoginCookieInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3699E81E4C929900B82F81 /* LoginCookieInteractor.swift */; };
 		0B3B0C851EFBE8AF002EAA76 /* InjectableScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B0C841EFBE8AF002EAA76 /* InjectableScript.swift */; };
 		0B3B0C871EFD1375002EAA76 /* WebScreenletConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B0C861EFD1375002EAA76 /* WebScreenletConfiguration.swift */; };
+		0B3B9AB6209AF8C800EC2975 /* ImageGalleryDeleteConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AA9209AF8C800EC2975 /* ImageGalleryDeleteConnector.swift */; };
+		0B3B9AB7209AF8C800EC2975 /* ImageGalleryPageLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AAA209AF8C800EC2975 /* ImageGalleryPageLiferayConnector.swift */; };
+		0B3B9AB8209AF8C900EC2975 /* ImageGalleryUploadConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AAB209AF8C800EC2975 /* ImageGalleryUploadConnector.swift */; };
+		0B3B9AB9209AF8C900EC2975 /* ImageEntryUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AAC209AF8C800EC2975 /* ImageEntryUpload.swift */; };
+		0B3B9ABA209AF8C900EC2975 /* ImageGalleryScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AAD209AF8C800EC2975 /* ImageGalleryScreenlet.swift */; };
+		0B3B9ABB209AF8C900EC2975 /* ImageGalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AAE209AF8C800EC2975 /* ImageGalleryViewModel.swift */; };
+		0B3B9ABC209AF8C900EC2975 /* ImageUploadDetailViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AAF209AF8C800EC2975 /* ImageUploadDetailViewBase.swift */; };
+		0B3B9ABD209AF8C900EC2975 /* ImageGalleryDeleteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AB1209AF8C800EC2975 /* ImageGalleryDeleteInteractor.swift */; };
+		0B3B9ABE209AF8C900EC2975 /* ImageGalleryLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AB2209AF8C800EC2975 /* ImageGalleryLoadInteractor.swift */; };
+		0B3B9ABF209AF8C900EC2975 /* ImageGalleryUploadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AB3209AF8C800EC2975 /* ImageGalleryUploadInteractor.swift */; };
+		0B3B9AC0209AF8C900EC2975 /* SyncManager+ImageGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AB4209AF8C800EC2975 /* SyncManager+ImageGallery.swift */; };
+		0B3B9AC1209AF8C900EC2975 /* UploadProgressViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AB5209AF8C800EC2975 /* UploadProgressViewBase.swift */; };
 		0B4460851F176668007D12E5 /* ScreensCordovaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4460841F176668007D12E5 /* ScreensCordovaViewController.swift */; };
 		0B4C27521E40F83300F6B01D /* AssetLoadByPortletItemNameLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C27511E40F83300F6B01D /* AssetLoadByPortletItemNameLiferayConnector.swift */; };
 		0B5619FA1E7A7D3E00FDF397 /* WKWebView+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5619F91E7A7D3E00FDF397 /* WKWebView+Screens.swift */; };
 		0B5B5E571D5869BB0007D4B1 /* MediaSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E561D5869BB0007D4B1 /* MediaSelector.swift */; };
-		0B5B5E821D5869DB0007D4B1 /* ImageGalleryDeleteConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E751D5869DB0007D4B1 /* ImageGalleryDeleteConnector.swift */; };
-		0B5B5E831D5869DB0007D4B1 /* ImageGalleryPageLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E761D5869DB0007D4B1 /* ImageGalleryPageLiferayConnector.swift */; };
-		0B5B5E841D5869DB0007D4B1 /* ImageGalleryUploadConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E771D5869DB0007D4B1 /* ImageGalleryUploadConnector.swift */; };
-		0B5B5E861D5869DB0007D4B1 /* ImageEntryUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E791D5869DB0007D4B1 /* ImageEntryUpload.swift */; };
-		0B5B5E871D5869DB0007D4B1 /* ImageGalleryScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E7A1D5869DB0007D4B1 /* ImageGalleryScreenlet.swift */; };
-		0B5B5E881D5869DB0007D4B1 /* ImageGalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E7B1D5869DB0007D4B1 /* ImageGalleryViewModel.swift */; };
-		0B5B5E891D5869DB0007D4B1 /* ImageUploadDetailViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E7C1D5869DB0007D4B1 /* ImageUploadDetailViewBase.swift */; };
-		0B5B5E8A1D5869DB0007D4B1 /* ImageGalleryDeleteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E7E1D5869DB0007D4B1 /* ImageGalleryDeleteInteractor.swift */; };
-		0B5B5E8B1D5869DB0007D4B1 /* ImageGalleryLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E7F1D5869DB0007D4B1 /* ImageGalleryLoadInteractor.swift */; };
-		0B5B5E8C1D5869DB0007D4B1 /* ImageGalleryUploadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E801D5869DB0007D4B1 /* ImageGalleryUploadInteractor.swift */; };
-		0B5B5E8D1D5869DB0007D4B1 /* UploadProgressViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E811D5869DB0007D4B1 /* UploadProgressViewBase.swift */; };
 		0B5B5E8F1D58703D0007D4B1 /* UploadFileConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E8E1D58703D0007D4B1 /* UploadFileConnector.swift */; };
 		0B5B5E911D5870630007D4B1 /* UIImageView+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E901D5870630007D4B1 /* UIImageView+Screens.swift */; };
 		0B5B5E931D58706E0007D4B1 /* UIImage+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E921D58706E0007D4B1 /* UIImage+Screens.swift */; };
@@ -212,13 +213,11 @@
 		0B77835B1F95F60C001C9134 /* SignUpView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61C61ACBFC3400862B9E /* SignUpView_default.swift */; };
 		0B77835C1F95F60C001C9134 /* BaseListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884F92681D58D02A002EE6B3 /* BaseListCollectionView.swift */; };
 		0B77835D1F95F60C001C9134 /* ScreensWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBE45741F1D0BFB00812015 /* ScreensWebView.swift */; };
-		0B77835E1F95F60C001C9134 /* ImageGalleryScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E7A1D5869DB0007D4B1 /* ImageGalleryScreenlet.swift */; };
 		0B77835F1F95F60C001C9134 /* CommentEditViewController_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917BD1D76BEA000C86C85 /* CommentEditViewController_default.swift */; };
 		0B7783601F95F60C001C9134 /* LRScreensjournalarticleService_v62.m in Sources */ = {isa = PBXBuildFile; fileRef = 887E054A1C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.m */; };
 		0B7783611F95F60C001C9134 /* ForgotPasswordScreenNameLiferayConnectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8448E1C73D856007A447D /* ForgotPasswordScreenNameLiferayConnectors.swift */; };
 		0B7783621F95F60C001C9134 /* DDLFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61511ACBEE0B00862B9E /* DDLFormView.swift */; };
 		0B7783631F95F60C001C9134 /* UserPortraitView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61C91ACBFC3400862B9E /* UserPortraitView_default.swift */; };
-		0B7783641F95F60C001C9134 /* ImageGalleryDeleteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E7E1D5869DB0007D4B1 /* ImageGalleryDeleteInteractor.swift */; };
 		0B7783651F95F60C001C9134 /* ImageGalleryView_default-list.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBEDA221D5B230700F8CB31 /* ImageGalleryView_default-list.swift */; };
 		0B7783661F95F60C001C9134 /* DDMTypedValuesXMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FF81D6C4F6F00A23690 /* DDMTypedValuesXMLParser.swift */; };
 		0B7783671F95F60C001C9134 /* ScreensBridgePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1527331F2F8BFD00B60188 /* ScreensBridgePlugin.m */; };
@@ -230,11 +229,9 @@
 		0B77836D1F95F60C001C9134 /* Bool+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6A51ACBD89400192232 /* Bool+Screens.swift */; };
 		0B77836E1F95F60C001C9134 /* CommentUpdateLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917941D76BE6900C86C85 /* CommentUpdateLiferayConnector.swift */; };
 		0B77836F1F95F60C001C9134 /* LRSession+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D111B99A79A0007AECE /* LRSession+Screens.swift */; };
-		0B7783701F95F60C001C9134 /* ImageUploadDetailViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E7C1D5869DB0007D4B1 /* ImageUploadDetailViewBase.swift */; };
 		0B7783711F95F60C001C9134 /* DownloadUserPortraitInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E49C51B95CE65007DBEC9 /* DownloadUserPortraitInteractor.swift */; };
 		0B7783721F95F60C001C9134 /* Dictionary+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882CDC561C64B2C00043A9FD /* Dictionary+Screens.swift */; };
 		0B7783731F95F60C001C9134 /* DDMField+Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FFC1D6C4F6F00A23690 /* DDMField+Editor.swift */; };
-		0B7783741F95F60C001C9134 /* ImageGalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E7B1D5869DB0007D4B1 /* ImageGalleryViewModel.swift */; };
 		0B7783751F95F60C001C9134 /* SequenceType+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE1E0F21D364E96000A2678 /* SequenceType+Screens.swift */; };
 		0B7783761F95F60C001C9134 /* ServerReadConnectorInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844361C73D6C0007A447D /* ServerReadConnectorInteractor.swift */; };
 		0B7783771F95F60C001C9134 /* AssetListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FB11D6C4E6F00A23690 /* AssetListPageLoadInteractor.swift */; };
@@ -273,7 +270,6 @@
 		0B7783981F95F60C001C9134 /* LRScreensratingsentryService_v70.m in Sources */ = {isa = PBXBuildFile; fileRef = 889125B01D547A10006AFA08 /* LRScreensratingsentryService_v70.m */; };
 		0B7783991F95F60C001C9134 /* DDLListView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61E71ACBFC3400862B9E /* DDLListView_default.swift */; };
 		0B77839A1F95F60C001C9134 /* LoadRatingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889125A01D5479E6006AFA08 /* LoadRatingsInteractor.swift */; };
-		0B77839B1F95F60C001C9134 /* ImageEntryUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E791D5869DB0007D4B1 /* ImageEntryUpload.swift */; };
 		0B77839C1F95F60C001C9134 /* BlogsDisplayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B21801C1D6C500C00A23690 /* BlogsDisplayViewModel.swift */; };
 		0B77839D1F95F60C001C9134 /* FileDisplayView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B147A181E78047C00EDE7B7 /* FileDisplayView_default.swift */; };
 		0B77839E1F95F60C001C9134 /* DDMFieldStringWithOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180041D6C4F6F00A23690 /* DDMFieldStringWithOptions.swift */; };
@@ -289,16 +285,13 @@
 		0B7783A91F95F60C001C9134 /* AuthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CA80651B25D72A004C1D59 /* AuthType.swift */; };
 		0B7783AA1F95F60C001C9134 /* AssetListView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FEC1D6C4F0100A23690 /* AssetListView_default.swift */; };
 		0B7783AB1F95F60C001C9134 /* WebContentLoadHtmlLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AF681E1CBF82A400097014 /* WebContentLoadHtmlLiferayConnector.swift */; };
-		0B7783AC1F95F60C001C9134 /* ImageGalleryUploadConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E771D5869DB0007D4B1 /* ImageGalleryUploadConnector.swift */; };
 		0B7783AD1F95F60C001C9134 /* HttpConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844321C73D6C0007A447D /* HttpConnector.swift */; };
 		0B7783AE1F95F60C001C9134 /* CommentListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9179F1D76BE6900C86C85 /* CommentListPageLoadInteractor.swift */; };
 		0B7783AF1F95F60C001C9134 /* UserPortraitScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E610A1ACBE5F000862B9E /* UserPortraitScreenlet.swift */; };
-		0B7783B01F95F60C001C9134 /* SyncManager+ImageGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B89C9941D58B01200A9EAE7 /* SyncManager+ImageGallery.swift */; };
 		0B7783B11F95F60C001C9134 /* ImageGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBEDA201D5B230700F8CB31 /* ImageGalleryCell.swift */; };
 		0B7783B21F95F60C001C9134 /* PaginationLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B8442E1C73D215007A447D /* PaginationLiferayConnector.swift */; };
 		0B7783B31F95F60C001C9134 /* AudioDisplayScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FC21D6C4E7B00A23690 /* AudioDisplayScreenlet.swift */; };
 		0B7783B41F95F60C001C9134 /* BaseScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60B61ACBE3FF00862B9E /* BaseScreenlet.swift */; };
-		0B7783B51F95F60C001C9134 /* ImageGalleryLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E7F1D5869DB0007D4B1 /* ImageGalleryLoadInteractor.swift */; };
 		0B7783B61F95F60C001C9134 /* SessionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8892C6B31ACBD95400192232 /* SessionContext.swift */; };
 		0B7783B71F95F60C001C9134 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60E61ACBE5F000862B9E /* ForgotPasswordViewModel.swift */; };
 		0B7783B81F95F60C001C9134 /* ScreensFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AA42CA1C624A6E00AA97FB /* ScreensFactory.swift */; };
@@ -309,7 +302,6 @@
 		0B7783BE1F95F60C001C9134 /* LoadAssetInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FAD1D6C4E6F00A23690 /* LoadAssetInteractor.swift */; };
 		0B7783BF1F95F60C001C9134 /* WebContentListView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC3AF11CC12C2600E0AEB7 /* WebContentListView_default.swift */; };
 		0B7783C01F95F60C001C9134 /* RatingScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889125A31D5479E6006AFA08 /* RatingScreenlet.swift */; };
-		0B7783C11F95F60C001C9134 /* ImageGalleryPageLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E761D5869DB0007D4B1 /* ImageGalleryPageLiferayConnector.swift */; };
 		0B7783C21F95F60C001C9134 /* ImageGalleryView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBEDA2B1D5B230E00F8CB31 /* ImageGalleryView_default.swift */; };
 		0B7783C31F95F60C001C9134 /* BlogsEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180151D6C4FEF00A23690 /* BlogsEntry.swift */; };
 		0B7783C41F95F60C001C9134 /* CommentAddInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9178D1D76BE6900C86C85 /* CommentAddInteractor.swift */; };
@@ -393,7 +385,6 @@
 		0B7784141F95F60C001C9134 /* DDMStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FF71D6C4F6F00A23690 /* DDMStructure.swift */; };
 		0B7784151F95F60C001C9134 /* LoadFileEntryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FC81D6C4E7B00A23690 /* LoadFileEntryInteractor.swift */; };
 		0B7784161F95F60C001C9134 /* CommentDisplayView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF917BB1D76BEA000C86C85 /* CommentDisplayView_default.swift */; };
-		0B7784171F95F60C001C9134 /* ImageGalleryDeleteConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E751D5869DB0007D4B1 /* ImageGalleryDeleteConnector.swift */; };
 		0B7784181F95F60C001C9134 /* DDLFormLoadRecordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61591ACBEE0B00862B9E /* DDLFormLoadRecordInteractor.swift */; };
 		0B7784191F95F60C001C9134 /* LoginByUserIdLiferayConnectors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844A51C73D888007A447D /* LoginByUserIdLiferayConnectors.swift */; };
 		0B77841A1F95F60C001C9134 /* DDMFieldNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180021D6C4F6F00A23690 /* DDMFieldNumber.swift */; };
@@ -422,7 +413,6 @@
 		0B7784311F95F60C001C9134 /* ImageGalleryGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBEDA291D5B230E00F8CB31 /* ImageGalleryGridCell.swift */; };
 		0B7784321F95F60C001C9134 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E60F21ACBE5F000862B9E /* LoginViewModel.swift */; };
 		0B7784331F95F60C001C9134 /* DDLRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB503191D37C04A00ABD6B3 /* DDLRecord.swift */; };
-		0B7784341F95F60C001C9134 /* ImageGalleryUploadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E801D5869DB0007D4B1 /* ImageGalleryUploadInteractor.swift */; };
 		0B7784351F95F60C001C9134 /* SignUpLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844B41C73D8A3007A447D /* SignUpLiferayConnector.swift */; };
 		0B7784361F95F60C001C9134 /* DefaultTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B66FFCD1DAF83E900963DEB /* DefaultTextField.swift */; };
 		0B7784371F95F60C001C9134 /* DDLBaseFieldTextFieldTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61CD1ACBFC3400862B9E /* DDLBaseFieldTextFieldTableCell_default.swift */; };
@@ -445,7 +435,6 @@
 		0B7784481F95F60C001C9134 /* DDLFormView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61E21ACBFC3400862B9E /* DDLFormView_default.swift */; };
 		0B7784491F95F60C001C9134 /* DDMFieldImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180011D6C4F6F00A23690 /* DDMFieldImage.swift */; };
 		0B77844A1F95F60C001C9134 /* DDLFormScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61501ACBEE0B00862B9E /* DDLFormScreenlet.swift */; };
-		0B77844B1F95F60C001C9134 /* UploadProgressViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E811D5869DB0007D4B1 /* UploadProgressViewBase.swift */; };
 		0B77844C1F95F60C001C9134 /* ServerConnectorChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844341C73D6C0007A447D /* ServerConnectorChain.swift */; };
 		0B77844D1F95F60C001C9134 /* RatingLoadByEntryIdLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8891259C1D5479E6006AFA08 /* RatingLoadByEntryIdLiferayConnector.swift */; };
 		0B77844E1F95F60C001C9134 /* AssetDisplayBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FA61D6C4E6F00A23690 /* AssetDisplayBuilder.swift */; };
@@ -603,7 +592,6 @@
 		0B81C1B21EEED7A900D7DCF6 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 0B81C1B11EEED7A900D7DCF6 /* index.html */; };
 		0B8861F620582E9A0067F192 /* LoginByCookieConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4935A2035C44C00730299 /* LoginByCookieConnector.swift */; };
 		0B8861F720582E9D0067F192 /* LoginByCookieConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4935A2035C44C00730299 /* LoginByCookieConnector.swift */; };
-		0B89C9951D58B01200A9EAE7 /* SyncManager+ImageGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B89C9941D58B01200A9EAE7 /* SyncManager+ImageGallery.swift */; };
 		0B8B233A20482193000932EF /* default-star-half.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B8B233120482190000932EF /* default-star-half.png */; };
 		0B8B233B20482193000932EF /* default-star-outline.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B8B233220482191000932EF /* default-star-outline.png */; };
 		0B8B233C20482193000932EF /* default-star-outline@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B8B233320482191000932EF /* default-star-outline@3x.png */; };
@@ -1100,22 +1088,23 @@
 		0B3699E81E4C929900B82F81 /* LoginCookieInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCookieInteractor.swift; sourceTree = "<group>"; };
 		0B3B0C841EFBE8AF002EAA76 /* InjectableScript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InjectableScript.swift; sourceTree = "<group>"; };
 		0B3B0C861EFD1375002EAA76 /* WebScreenletConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebScreenletConfiguration.swift; sourceTree = "<group>"; };
+		0B3B9AA9209AF8C800EC2975 /* ImageGalleryDeleteConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryDeleteConnector.swift; sourceTree = "<group>"; };
+		0B3B9AAA209AF8C800EC2975 /* ImageGalleryPageLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryPageLiferayConnector.swift; sourceTree = "<group>"; };
+		0B3B9AAB209AF8C800EC2975 /* ImageGalleryUploadConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryUploadConnector.swift; sourceTree = "<group>"; };
+		0B3B9AAC209AF8C800EC2975 /* ImageEntryUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEntryUpload.swift; sourceTree = "<group>"; };
+		0B3B9AAD209AF8C800EC2975 /* ImageGalleryScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryScreenlet.swift; sourceTree = "<group>"; };
+		0B3B9AAE209AF8C800EC2975 /* ImageGalleryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryViewModel.swift; sourceTree = "<group>"; };
+		0B3B9AAF209AF8C800EC2975 /* ImageUploadDetailViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUploadDetailViewBase.swift; sourceTree = "<group>"; };
+		0B3B9AB1209AF8C800EC2975 /* ImageGalleryDeleteInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryDeleteInteractor.swift; sourceTree = "<group>"; };
+		0B3B9AB2209AF8C800EC2975 /* ImageGalleryLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryLoadInteractor.swift; sourceTree = "<group>"; };
+		0B3B9AB3209AF8C800EC2975 /* ImageGalleryUploadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryUploadInteractor.swift; sourceTree = "<group>"; };
+		0B3B9AB4209AF8C800EC2975 /* SyncManager+ImageGallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncManager+ImageGallery.swift"; sourceTree = "<group>"; };
+		0B3B9AB5209AF8C800EC2975 /* UploadProgressViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadProgressViewBase.swift; sourceTree = "<group>"; };
 		0B4460841F176668007D12E5 /* ScreensCordovaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreensCordovaViewController.swift; sourceTree = "<group>"; };
 		0B4C27511E40F83300F6B01D /* AssetLoadByPortletItemNameLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetLoadByPortletItemNameLiferayConnector.swift; sourceTree = "<group>"; };
 		0B5619F91E7A7D3E00FDF397 /* WKWebView+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebView+Screens.swift"; sourceTree = "<group>"; };
 		0B5B5E541D5868B80007D4B1 /* BaseListCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListCollectionView.swift; sourceTree = "<group>"; };
 		0B5B5E561D5869BB0007D4B1 /* MediaSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaSelector.swift; sourceTree = "<group>"; };
-		0B5B5E751D5869DB0007D4B1 /* ImageGalleryDeleteConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryDeleteConnector.swift; sourceTree = "<group>"; };
-		0B5B5E761D5869DB0007D4B1 /* ImageGalleryPageLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryPageLiferayConnector.swift; sourceTree = "<group>"; };
-		0B5B5E771D5869DB0007D4B1 /* ImageGalleryUploadConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryUploadConnector.swift; sourceTree = "<group>"; };
-		0B5B5E791D5869DB0007D4B1 /* ImageEntryUpload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageEntryUpload.swift; sourceTree = "<group>"; };
-		0B5B5E7A1D5869DB0007D4B1 /* ImageGalleryScreenlet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryScreenlet.swift; sourceTree = "<group>"; };
-		0B5B5E7B1D5869DB0007D4B1 /* ImageGalleryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryViewModel.swift; sourceTree = "<group>"; };
-		0B5B5E7C1D5869DB0007D4B1 /* ImageUploadDetailViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageUploadDetailViewBase.swift; sourceTree = "<group>"; };
-		0B5B5E7E1D5869DB0007D4B1 /* ImageGalleryDeleteInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryDeleteInteractor.swift; sourceTree = "<group>"; };
-		0B5B5E7F1D5869DB0007D4B1 /* ImageGalleryLoadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryLoadInteractor.swift; sourceTree = "<group>"; };
-		0B5B5E801D5869DB0007D4B1 /* ImageGalleryUploadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryUploadInteractor.swift; sourceTree = "<group>"; };
-		0B5B5E811D5869DB0007D4B1 /* UploadProgressViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadProgressViewBase.swift; sourceTree = "<group>"; };
 		0B5B5E8E1D58703D0007D4B1 /* UploadFileConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadFileConnector.swift; sourceTree = "<group>"; };
 		0B5B5E901D5870630007D4B1 /* UIImageView+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Screens.swift"; sourceTree = "<group>"; };
 		0B5B5E921D58706E0007D4B1 /* UIImage+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Screens.swift"; sourceTree = "<group>"; };
@@ -1202,7 +1191,6 @@
 		0B85DF971DDE225B0015EDCF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/ddllist-screenlet.strings"; sourceTree = "<group>"; };
 		0B85DF981DDE24B40015EDCF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/rating-screenlet.strings"; sourceTree = "<group>"; };
 		0B85DF991DDE25D90015EDCF /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = "es.lproj/webcontentdisplay-screenlet.strings"; sourceTree = "<group>"; };
-		0B89C9941D58B01200A9EAE7 /* SyncManager+ImageGallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncManager+ImageGallery.swift"; sourceTree = "<group>"; };
 		0B8B233120482190000932EF /* default-star-half.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-star-half.png"; sourceTree = "<group>"; };
 		0B8B233220482191000932EF /* default-star-outline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-star-outline.png"; sourceTree = "<group>"; };
 		0B8B233320482191000932EF /* default-star-outline@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default-star-outline@3x.png"; sourceTree = "<group>"; };
@@ -1786,6 +1774,41 @@
 			path = ImageGalleryScreenlet;
 			sourceTree = "<group>";
 		};
+		0B3B9AA7209AF8C800EC2975 /* ImageGallery */ = {
+			isa = PBXGroup;
+			children = (
+				0B3B9AA8209AF8C800EC2975 /* Connectors */,
+				0B3B9AAC209AF8C800EC2975 /* ImageEntryUpload.swift */,
+				0B3B9AAD209AF8C800EC2975 /* ImageGalleryScreenlet.swift */,
+				0B3B9AAE209AF8C800EC2975 /* ImageGalleryViewModel.swift */,
+				0B3B9AAF209AF8C800EC2975 /* ImageUploadDetailViewBase.swift */,
+				0B3B9AB0209AF8C800EC2975 /* Interactors */,
+				0B3B9AB5209AF8C800EC2975 /* UploadProgressViewBase.swift */,
+			);
+			path = ImageGallery;
+			sourceTree = "<group>";
+		};
+		0B3B9AA8209AF8C800EC2975 /* Connectors */ = {
+			isa = PBXGroup;
+			children = (
+				0B3B9AA9209AF8C800EC2975 /* ImageGalleryDeleteConnector.swift */,
+				0B3B9AAA209AF8C800EC2975 /* ImageGalleryPageLiferayConnector.swift */,
+				0B3B9AAB209AF8C800EC2975 /* ImageGalleryUploadConnector.swift */,
+			);
+			path = Connectors;
+			sourceTree = "<group>";
+		};
+		0B3B9AB0209AF8C800EC2975 /* Interactors */ = {
+			isa = PBXGroup;
+			children = (
+				0B3B9AB1209AF8C800EC2975 /* ImageGalleryDeleteInteractor.swift */,
+				0B3B9AB2209AF8C800EC2975 /* ImageGalleryLoadInteractor.swift */,
+				0B3B9AB3209AF8C800EC2975 /* ImageGalleryUploadInteractor.swift */,
+				0B3B9AB4209AF8C800EC2975 /* SyncManager+ImageGallery.swift */,
+			);
+			path = Interactors;
+			sourceTree = "<group>";
+		};
 		0B4460831F176655007D12E5 /* cordova */ = {
 			isa = PBXGroup;
 			children = (
@@ -1803,41 +1826,6 @@
 				0B5B5E541D5868B80007D4B1 /* BaseListCollectionView.swift */,
 			);
 			path = CollectionView;
-			sourceTree = "<group>";
-		};
-		0B5B5E731D5869DB0007D4B1 /* ImageGalleryScreenlet */ = {
-			isa = PBXGroup;
-			children = (
-				0B5B5E791D5869DB0007D4B1 /* ImageEntryUpload.swift */,
-				0B5B5E7A1D5869DB0007D4B1 /* ImageGalleryScreenlet.swift */,
-				0B5B5E7B1D5869DB0007D4B1 /* ImageGalleryViewModel.swift */,
-				0B5B5E7C1D5869DB0007D4B1 /* ImageUploadDetailViewBase.swift */,
-				0B5B5E811D5869DB0007D4B1 /* UploadProgressViewBase.swift */,
-				0B5B5E741D5869DB0007D4B1 /* Connectors */,
-				0B5B5E7D1D5869DB0007D4B1 /* Interactors */,
-			);
-			path = ImageGalleryScreenlet;
-			sourceTree = "<group>";
-		};
-		0B5B5E741D5869DB0007D4B1 /* Connectors */ = {
-			isa = PBXGroup;
-			children = (
-				0B5B5E751D5869DB0007D4B1 /* ImageGalleryDeleteConnector.swift */,
-				0B5B5E761D5869DB0007D4B1 /* ImageGalleryPageLiferayConnector.swift */,
-				0B5B5E771D5869DB0007D4B1 /* ImageGalleryUploadConnector.swift */,
-			);
-			path = Connectors;
-			sourceTree = "<group>";
-		};
-		0B5B5E7D1D5869DB0007D4B1 /* Interactors */ = {
-			isa = PBXGroup;
-			children = (
-				0B5B5E7E1D5869DB0007D4B1 /* ImageGalleryDeleteInteractor.swift */,
-				0B5B5E7F1D5869DB0007D4B1 /* ImageGalleryLoadInteractor.swift */,
-				0B5B5E801D5869DB0007D4B1 /* ImageGalleryUploadInteractor.swift */,
-				0B89C9941D58B01200A9EAE7 /* SyncManager+ImageGallery.swift */,
-			);
-			path = Interactors;
 			sourceTree = "<group>";
 		};
 		0B6402641EDC635500F6DC53 /* js */ = {
@@ -2780,7 +2768,7 @@
 				881E614C1ACBEE0B00862B9E /* DDL */,
 				8892C6A41ACBD89400192232 /* Extensions */,
 				0B217FC01D6C4E7B00A23690 /* FileDisplay */,
-				0B5B5E731D5869DB0007D4B1 /* ImageGalleryScreenlet */,
+				0B3B9AA7209AF8C800EC2975 /* ImageGallery */,
 				0BB503171D37C04A00ABD6B3 /* Models */,
 				887F0D071B999CD90007AECE /* Offline */,
 				0BC700CE1EB207B1006DD475 /* WebScreenlet */,
@@ -3653,14 +3641,12 @@
 				0B77835B1F95F60C001C9134 /* SignUpView_default.swift in Sources */,
 				0B77835C1F95F60C001C9134 /* BaseListCollectionView.swift in Sources */,
 				0B77835D1F95F60C001C9134 /* ScreensWebView.swift in Sources */,
-				0B77835E1F95F60C001C9134 /* ImageGalleryScreenlet.swift in Sources */,
 				0BF9623C206945FF008B56AF /* DDMFieldGeolocation.swift in Sources */,
 				0B77835F1F95F60C001C9134 /* CommentEditViewController_default.swift in Sources */,
 				0B7783601F95F60C001C9134 /* LRScreensjournalarticleService_v62.m in Sources */,
 				0B7783611F95F60C001C9134 /* ForgotPasswordScreenNameLiferayConnectors.swift in Sources */,
 				0B7783621F95F60C001C9134 /* DDLFormView.swift in Sources */,
 				0B7783631F95F60C001C9134 /* UserPortraitView_default.swift in Sources */,
-				0B7783641F95F60C001C9134 /* ImageGalleryDeleteInteractor.swift in Sources */,
 				0B7783651F95F60C001C9134 /* ImageGalleryView_default-list.swift in Sources */,
 				0B7783661F95F60C001C9134 /* DDMTypedValuesXMLParser.swift in Sources */,
 				0B7783671F95F60C001C9134 /* ScreensBridgePlugin.m in Sources */,
@@ -3672,11 +3658,9 @@
 				0B77836D1F95F60C001C9134 /* Bool+Screens.swift in Sources */,
 				0B77836E1F95F60C001C9134 /* CommentUpdateLiferayConnector.swift in Sources */,
 				0B77836F1F95F60C001C9134 /* LRSession+Screens.swift in Sources */,
-				0B7783701F95F60C001C9134 /* ImageUploadDetailViewBase.swift in Sources */,
 				0B7783711F95F60C001C9134 /* DownloadUserPortraitInteractor.swift in Sources */,
 				0B7783721F95F60C001C9134 /* Dictionary+Screens.swift in Sources */,
 				0B7783731F95F60C001C9134 /* DDMField+Editor.swift in Sources */,
-				0B7783741F95F60C001C9134 /* ImageGalleryViewModel.swift in Sources */,
 				0B7783751F95F60C001C9134 /* SequenceType+Screens.swift in Sources */,
 				0B7783761F95F60C001C9134 /* ServerReadConnectorInteractor.swift in Sources */,
 				0B7783771F95F60C001C9134 /* AssetListPageLoadInteractor.swift in Sources */,
@@ -3715,7 +3699,6 @@
 				0B7783981F95F60C001C9134 /* LRScreensratingsentryService_v70.m in Sources */,
 				0B7783991F95F60C001C9134 /* DDLListView_default.swift in Sources */,
 				0B77839A1F95F60C001C9134 /* LoadRatingsInteractor.swift in Sources */,
-				0B77839B1F95F60C001C9134 /* ImageEntryUpload.swift in Sources */,
 				0B77839C1F95F60C001C9134 /* BlogsDisplayViewModel.swift in Sources */,
 				0B77839D1F95F60C001C9134 /* FileDisplayView_default.swift in Sources */,
 				0B77839E1F95F60C001C9134 /* DDMFieldStringWithOptions.swift in Sources */,
@@ -3731,17 +3714,14 @@
 				0B7783A91F95F60C001C9134 /* AuthType.swift in Sources */,
 				0B7783AA1F95F60C001C9134 /* AssetListView_default.swift in Sources */,
 				0B7783AB1F95F60C001C9134 /* WebContentLoadHtmlLiferayConnector.swift in Sources */,
-				0B7783AC1F95F60C001C9134 /* ImageGalleryUploadConnector.swift in Sources */,
 				0B7783AD1F95F60C001C9134 /* HttpConnector.swift in Sources */,
 				0B7783AE1F95F60C001C9134 /* CommentListPageLoadInteractor.swift in Sources */,
 				0B7783AF1F95F60C001C9134 /* UserPortraitScreenlet.swift in Sources */,
 				0B8861F620582E9A0067F192 /* LoginByCookieConnector.swift in Sources */,
-				0B7783B01F95F60C001C9134 /* SyncManager+ImageGallery.swift in Sources */,
 				0B7783B11F95F60C001C9134 /* ImageGalleryCell.swift in Sources */,
 				0B7783B21F95F60C001C9134 /* PaginationLiferayConnector.swift in Sources */,
 				0B7783B31F95F60C001C9134 /* AudioDisplayScreenlet.swift in Sources */,
 				0B7783B41F95F60C001C9134 /* BaseScreenlet.swift in Sources */,
-				0B7783B51F95F60C001C9134 /* ImageGalleryLoadInteractor.swift in Sources */,
 				0B7783B61F95F60C001C9134 /* SessionContext.swift in Sources */,
 				0B7783B71F95F60C001C9134 /* ForgotPasswordViewModel.swift in Sources */,
 				0B7783B81F95F60C001C9134 /* ScreensFactory.swift in Sources */,
@@ -3752,7 +3732,6 @@
 				0B7783BE1F95F60C001C9134 /* LoadAssetInteractor.swift in Sources */,
 				0B7783BF1F95F60C001C9134 /* WebContentListView_default.swift in Sources */,
 				0B7783C01F95F60C001C9134 /* RatingScreenlet.swift in Sources */,
-				0B7783C11F95F60C001C9134 /* ImageGalleryPageLiferayConnector.swift in Sources */,
 				0B7783C21F95F60C001C9134 /* ImageGalleryView_default.swift in Sources */,
 				0B7783C31F95F60C001C9134 /* BlogsEntry.swift in Sources */,
 				0B7783C41F95F60C001C9134 /* CommentAddInteractor.swift in Sources */,
@@ -3836,7 +3815,6 @@
 				0B7784141F95F60C001C9134 /* DDMStructure.swift in Sources */,
 				0B7784151F95F60C001C9134 /* LoadFileEntryInteractor.swift in Sources */,
 				0B7784161F95F60C001C9134 /* CommentDisplayView_default.swift in Sources */,
-				0B7784171F95F60C001C9134 /* ImageGalleryDeleteConnector.swift in Sources */,
 				0B7784181F95F60C001C9134 /* DDLFormLoadRecordInteractor.swift in Sources */,
 				0B7784191F95F60C001C9134 /* LoginByUserIdLiferayConnectors.swift in Sources */,
 				0B77841A1F95F60C001C9134 /* DDMFieldNumber.swift in Sources */,
@@ -3866,7 +3844,6 @@
 				0B7784311F95F60C001C9134 /* ImageGalleryGridCell.swift in Sources */,
 				0B7784321F95F60C001C9134 /* LoginViewModel.swift in Sources */,
 				0B7784331F95F60C001C9134 /* DDLRecord.swift in Sources */,
-				0B7784341F95F60C001C9134 /* ImageGalleryUploadInteractor.swift in Sources */,
 				0B7784351F95F60C001C9134 /* SignUpLiferayConnector.swift in Sources */,
 				0B7784361F95F60C001C9134 /* DefaultTextField.swift in Sources */,
 				0B7784371F95F60C001C9134 /* DDLBaseFieldTextFieldTableCell_default.swift in Sources */,
@@ -3889,7 +3866,6 @@
 				0B7784481F95F60C001C9134 /* DDLFormView_default.swift in Sources */,
 				0B7784491F95F60C001C9134 /* DDMFieldImage.swift in Sources */,
 				0B77844A1F95F60C001C9134 /* DDLFormScreenlet.swift in Sources */,
-				0B77844B1F95F60C001C9134 /* UploadProgressViewBase.swift in Sources */,
 				0B77844C1F95F60C001C9134 /* ServerConnectorChain.swift in Sources */,
 				0B77844D1F95F60C001C9134 /* RatingLoadByEntryIdLiferayConnector.swift in Sources */,
 				0B77844E1F95F60C001C9134 /* AssetDisplayBuilder.swift in Sources */,
@@ -3915,6 +3891,7 @@
 				0B217FB71D6C4E6F00A23690 /* AssetDisplayViewModel.swift in Sources */,
 				8837FA7C1CAEF6AE00DCB1B4 /* WebContentDisplayViewModel.swift in Sources */,
 				0B5B5E911D5870630007D4B1 /* UIImageView+Screens.swift in Sources */,
+				0B3B9AB8209AF8C900EC2975 /* ImageGalleryUploadConnector.swift in Sources */,
 				0B3B0C871EFD1375002EAA76 /* WebScreenletConfiguration.swift in Sources */,
 				0B2180191D6C4FEF00A23690 /* FileEntry.swift in Sources */,
 				881E611E1ACBE5F000862B9E /* SignUpScreenlet.swift in Sources */,
@@ -3926,23 +3903,23 @@
 				0B217FF41D6C4F4E00A23690 /* MimeTypeable.swift in Sources */,
 				0B76FE8E1E4DADA80002D27F /* CookieCredentialsStoreKeyChain.swift in Sources */,
 				889125A51D5479E6006AFA08 /* RatingDeleteLiferayConnector.swift in Sources */,
+				0B3B9AC0209AF8C900EC2975 /* SyncManager+ImageGallery.swift in Sources */,
 				88B844421C73D6C0007A447D /* ServerWriteConnectorInteractor.swift in Sources */,
 				881E61871ACBEE0B00862B9E /* DDLListScreenlet.swift in Sources */,
 				881E611F1ACBE5F000862B9E /* SignUpViewModel.swift in Sources */,
 				881E617E1ACBEE0B00862B9E /* DDLFormSubmitFormInteractor.swift in Sources */,
+				0B3B9AC1209AF8C900EC2975 /* UploadProgressViewBase.swift in Sources */,
 				0BFE283B1D87E13300261A66 /* LRScreenscommentService_v70.m in Sources */,
 				0BF917A11D76BE6900C86C85 /* CommentAddViewModel.swift in Sources */,
 				0B3699E91E4C929900B82F81 /* LoginCookieInteractor.swift in Sources */,
 				881E622E1ACBFC3400862B9E /* SignUpView_default.swift in Sources */,
 				884F926A1D58D7D3002EE6B3 /* BaseListCollectionView.swift in Sources */,
 				0BBE45751F1D0BFB00812015 /* ScreensWebView.swift in Sources */,
-				0B5B5E871D5869DB0007D4B1 /* ImageGalleryScreenlet.swift in Sources */,
 				0BF917C81D76BEA000C86C85 /* CommentEditViewController_default.swift in Sources */,
 				887E05521C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.m in Sources */,
 				88B844981C73D856007A447D /* ForgotPasswordScreenNameLiferayConnectors.swift in Sources */,
 				881E61791ACBEE0B00862B9E /* DDLFormView.swift in Sources */,
 				881E62301ACBFC3400862B9E /* UserPortraitView_default.swift in Sources */,
-				0B5B5E8A1D5869DB0007D4B1 /* ImageGalleryDeleteInteractor.swift in Sources */,
 				0BBEDA261D5B230700F8CB31 /* ImageGalleryView_default-list.swift in Sources */,
 				0B2180081D6C4F6F00A23690 /* DDMTypedValuesXMLParser.swift in Sources */,
 				0B1527351F2F8BFD00B60188 /* ScreensBridgePlugin.m in Sources */,
@@ -3954,11 +3931,9 @@
 				8892C6AB1ACBD89400192232 /* Bool+Screens.swift in Sources */,
 				0BF917A81D76BE6900C86C85 /* CommentUpdateLiferayConnector.swift in Sources */,
 				887F0D121B99A79A0007AECE /* LRSession+Screens.swift in Sources */,
-				0B5B5E891D5869DB0007D4B1 /* ImageUploadDetailViewBase.swift in Sources */,
 				881E49C61B95CE66007DBEC9 /* DownloadUserPortraitInteractor.swift in Sources */,
 				887DAAA91CC670330011FEBF /* Dictionary+Screens.swift in Sources */,
 				0B21800B1D6C4F6F00A23690 /* DDMField+Editor.swift in Sources */,
-				0B5B5E881D5869DB0007D4B1 /* ImageGalleryViewModel.swift in Sources */,
 				0BE1E0F31D364E96000A2678 /* SequenceType+Screens.swift in Sources */,
 				88B844401C73D6C0007A447D /* ServerReadConnectorInteractor.swift in Sources */,
 				0B217FBD1D6C4E6F00A23690 /* AssetListPageLoadInteractor.swift in Sources */,
@@ -3970,6 +3945,7 @@
 				88CA91B81B8DE3AD000B92F2 /* UserPortraitDefaultProgressPresenter.swift in Sources */,
 				88AF68361CBFF58700097014 /* WebContentListPageLiferayConnector.swift in Sources */,
 				0B217FBC1D6C4E6F00A23690 /* AssetListPageLiferayConnector.swift in Sources */,
+				0B3B9ABE209AF8C900EC2975 /* ImageGalleryLoadInteractor.swift in Sources */,
 				0B217FD31D6C4E7B00A23690 /* VideoDisplayScreenlet.swift in Sources */,
 				881E62361ACBFC3400862B9E /* DDLFieldDateTableCell_default.swift in Sources */,
 				889125C81D549757006AFA08 /* RatingView_default-thumbs.swift in Sources */,
@@ -3998,13 +3974,14 @@
 				889125B21D547A10006AFA08 /* LRScreensratingsentryService_v70.m in Sources */,
 				881E624B1ACBFC3400862B9E /* DDLListView_default.swift in Sources */,
 				889125AA1D5479E6006AFA08 /* LoadRatingsInteractor.swift in Sources */,
-				0B5B5E861D5869DB0007D4B1 /* ImageEntryUpload.swift in Sources */,
+				0B3B9AB6209AF8C800EC2975 /* ImageGalleryDeleteConnector.swift in Sources */,
 				0B21801F1D6C500C00A23690 /* BlogsDisplayViewModel.swift in Sources */,
 				0B147A191E78047C00EDE7B7 /* FileDisplayView_default.swift in Sources */,
 				0B2180131D6C4F6F00A23690 /* DDMFieldStringWithOptions.swift in Sources */,
 				0BF917A21D76BE6900C86C85 /* CommentAddLiferayConnector.swift in Sources */,
 				0BF917A91D76BE6900C86C85 /* CommentDeleteInteractor.swift in Sources */,
 				88B844C21C73D8F7007A447D /* DDLFormLoadLiferayConnector.swift in Sources */,
+				0B3B9AB7209AF8C800EC2975 /* ImageGalleryPageLiferayConnector.swift in Sources */,
 				0BF917A61D76BE6900C86C85 /* CommentDeleteLiferayConnector.swift in Sources */,
 				0BF917AA1D76BE6900C86C85 /* CommentLoadInteractor.swift in Sources */,
 				88B273121B7109C300477E5E /* DefaultProgressPresenter.swift in Sources */,
@@ -4014,16 +3991,13 @@
 				88CA80661B25D72A004C1D59 /* AuthType.swift in Sources */,
 				0B217FF01D6C4F0100A23690 /* AssetListView_default.swift in Sources */,
 				88AF681F1CBF82A400097014 /* WebContentLoadHtmlLiferayConnector.swift in Sources */,
-				0B5B5E841D5869DB0007D4B1 /* ImageGalleryUploadConnector.swift in Sources */,
 				88B844381C73D6C0007A447D /* HttpConnector.swift in Sources */,
 				0BF917AF1D76BE6900C86C85 /* CommentListPageLoadInteractor.swift in Sources */,
 				881E61271ACBE5F000862B9E /* UserPortraitScreenlet.swift in Sources */,
-				0B89C9951D58B01200A9EAE7 /* SyncManager+ImageGallery.swift in Sources */,
 				0BBEDA241D5B230700F8CB31 /* ImageGalleryCell.swift in Sources */,
 				88B8442F1C73D215007A447D /* PaginationLiferayConnector.swift in Sources */,
 				0B217FCD1D6C4E7B00A23690 /* AudioDisplayScreenlet.swift in Sources */,
 				881E60B91ACBE3FF00862B9E /* BaseScreenlet.swift in Sources */,
-				0B5B5E8B1D5869DB0007D4B1 /* ImageGalleryLoadInteractor.swift in Sources */,
 				8892C6B51ACBD95400192232 /* SessionContext.swift in Sources */,
 				881E610F1ACBE5F000862B9E /* ForgotPasswordViewModel.swift in Sources */,
 				88E7909B1C6CA22A00C90453 /* ScreensFactory.swift in Sources */,
@@ -4034,7 +4008,6 @@
 				0B217FBA1D6C4E6F00A23690 /* LoadAssetInteractor.swift in Sources */,
 				88CC3AF51CC12C2600E0AEB7 /* WebContentListView_default.swift in Sources */,
 				889125AD1D5479E6006AFA08 /* RatingScreenlet.swift in Sources */,
-				0B5B5E831D5869DB0007D4B1 /* ImageGalleryPageLiferayConnector.swift in Sources */,
 				0BBEDA2F1D5B230E00F8CB31 /* ImageGalleryView_default.swift in Sources */,
 				0B2180181D6C4FEF00A23690 /* BlogsEntry.swift in Sources */,
 				0BF917A31D76BE6900C86C85 /* CommentAddInteractor.swift in Sources */,
@@ -4068,9 +4041,11 @@
 				881E610E1ACBE5F000862B9E /* ForgotPasswordScreenlet.swift in Sources */,
 				8892C6B01ACBD89400192232 /* UIView+Screens.swift in Sources */,
 				0B7F45A21DA7BC5C00A3BDE3 /* ImageDisplayViewModel.swift in Sources */,
+				0B3B9ABA209AF8C900EC2975 /* ImageGalleryScreenlet.swift in Sources */,
 				88B844821C73D81D007A447D /* GetUserByScreenNameLiferayConnectors.swift in Sources */,
 				0BF917CF1D76BFA800C86C85 /* NSDate+Screens.swift in Sources */,
 				0BF917A01D76BE6900C86C85 /* CommentAddScreenlet.swift in Sources */,
+				0B3B9ABF209AF8C900EC2975 /* ImageGalleryUploadInteractor.swift in Sources */,
 				8837FA761CAEF6AE00DCB1B4 /* WebContentLoadBaseLiferayConnector.swift in Sources */,
 				88AF683A1CBFF58700097014 /* WebContentListScreenlet.swift in Sources */,
 				0BF917AC1D76BE6900C86C85 /* CommentListScreenlet.swift in Sources */,
@@ -4105,11 +4080,14 @@
 				881E62381ACBFC3400862B9E /* DDLFieldDocumentlibraryPresenterViewController_default.swift in Sources */,
 				889125B81D547C14006AFA08 /* RatingEntry.swift in Sources */,
 				0B217FBF1D6C4E6F00A23690 /* AssetListTableView.swift in Sources */,
+				0B3B9ABC209AF8C900EC2975 /* ImageUploadDetailViewBase.swift in Sources */,
 				881E610D1ACBE5F000862B9E /* ForgotPasswordInteractor.swift in Sources */,
 				88B844B81C73D8A3007A447D /* UpdateCurrentUserLiferayConnector.swift in Sources */,
 				881E62461ACBFC3400862B9E /* DDLFormDefaultThemeConstants.swift in Sources */,
 				887F0D181B99BD640007AECE /* CacheMetadata.swift in Sources */,
 				881E61761ACBEE0B00862B9E /* DDLValuesParser.swift in Sources */,
+				0B3B9AB9209AF8C900EC2975 /* ImageEntryUpload.swift in Sources */,
+				0B3B9ABD209AF8C900EC2975 /* ImageGalleryDeleteInteractor.swift in Sources */,
 				881E623E1ACBFC3400862B9E /* DDLFieldRadioTableCell_default.swift in Sources */,
 				0BF917AD1D76BE6900C86C85 /* CommentListViewModel.swift in Sources */,
 				0B217FCF1D6C4E7B00A23690 /* FileDisplayViewModel.swift in Sources */,
@@ -4119,7 +4097,6 @@
 				0B2180071D6C4F6F00A23690 /* DDMStructure.swift in Sources */,
 				0B217FD11D6C4E7B00A23690 /* LoadFileEntryInteractor.swift in Sources */,
 				0BF917C61D76BEA000C86C85 /* CommentDisplayView_default.swift in Sources */,
-				0B5B5E821D5869DB0007D4B1 /* ImageGalleryDeleteConnector.swift in Sources */,
 				881E617D1ACBEE0B00862B9E /* DDLFormLoadRecordInteractor.swift in Sources */,
 				88B844AF1C73D888007A447D /* LoginByUserIdLiferayConnectors.swift in Sources */,
 				0B2180111D6C4F6F00A23690 /* DDMFieldNumber.swift in Sources */,
@@ -4129,6 +4106,7 @@
 				881E622A1ACBFC3400862B9E /* ForgotPasswordView_default.swift in Sources */,
 				887E05541C6A4DB000CA3807 /* LRScreensuserService_v62.m in Sources */,
 				0BF917CA1D76BEA000C86C85 /* CommentListView_default.swift in Sources */,
+				0B3B9ABB209AF8C900EC2975 /* ImageGalleryViewModel.swift in Sources */,
 				0BF917AB1D76BE6900C86C85 /* CommentUpdateInteractor.swift in Sources */,
 				887E06981C6A4DF800CA3807 /* LRScreensassetentryService_v70.m in Sources */,
 				0BCB4FB21D37C08B0023E2CA /* LRScreensddlrecordService_v70.m in Sources */,
@@ -4148,7 +4126,6 @@
 				0BBEDA2D1D5B230E00F8CB31 /* ImageGalleryGridCell.swift in Sources */,
 				888DF5B21ACC9FC200EB7DA1 /* LoginViewModel.swift in Sources */,
 				0BB5032D1D37C04A00ABD6B3 /* DDLRecord.swift in Sources */,
-				0B5B5E8C1D5869DB0007D4B1 /* ImageGalleryUploadInteractor.swift in Sources */,
 				88B844B61C73D8A3007A447D /* SignUpLiferayConnector.swift in Sources */,
 				0B66FFCE1DAF83E900963DEB /* DefaultTextField.swift in Sources */,
 				881E62321ACBFC3400862B9E /* DDLBaseFieldTextFieldTableCell_default.swift in Sources */,
@@ -4172,7 +4149,6 @@
 				881E62471ACBFC3400862B9E /* DDLFormView_default.swift in Sources */,
 				0B2180101D6C4F6F00A23690 /* DDMFieldImage.swift in Sources */,
 				881E61781ACBEE0B00862B9E /* DDLFormScreenlet.swift in Sources */,
-				0B5B5E8D1D5869DB0007D4B1 /* UploadProgressViewBase.swift in Sources */,
 				88B8443C1C73D6C0007A447D /* ServerConnectorChain.swift in Sources */,
 				889125A71D5479E6006AFA08 /* RatingLoadByEntryIdLiferayConnector.swift in Sources */,
 				0B217FB51D6C4E6F00A23690 /* AssetDisplayBuilder.swift in Sources */,
