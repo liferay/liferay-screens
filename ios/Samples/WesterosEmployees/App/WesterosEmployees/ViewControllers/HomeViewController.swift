@@ -217,16 +217,13 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate, CardDeck
 
 		//Load user profile
 		let userId = SessionContext.currentContext!.user.userId
-		if self.userPortraitScreenlet?.userId != userId {
-			self.userPortraitScreenlet?.load(userId: userId)
-			let firstName =
-				SessionContext.currentContext!.user.firstName
-			let lastName =
-				SessionContext.currentContext!.user.lastName
-			self.userNameLabel?.text = "\(firstName) \(lastName)"
-					.trimmingCharacters(in: .whitespacesAndNewlines)
+		
+		self.userPortraitScreenlet?.load(userId: userId)
+			
+		let firstName = SessionContext.currentContext!.user.firstName
+		let lastName = SessionContext.currentContext!.user.lastName
 
-		}
+		self.userNameLabel?.text = "\(firstName) \(lastName)".trimmingCharacters(in: .whitespacesAndNewlines)
 
 		self.assetListScreenlet?.loadList()
 
