@@ -16,24 +16,22 @@ import LiferayScreens
 
 class CommentDisplayScreenletViewController: UIViewController, CommentDisplayScreenletDelegate {
 
+	// MARK: Outlets
 
-	//MARK: IBOutlet
-	
 	@IBOutlet weak var screenlet: CommentDisplayScreenlet? {
 		didSet {
 			screenlet?.delegate = self
 		}
 	}
-	
+
 	@IBOutlet weak var commentIdTextField: UITextField? {
 		didSet {
 			commentIdTextField?.text =
 				String(LiferayServerContext.longPropertyForKey("commentId"))
 		}
 	}
-	
-	
-	//MARK: IBAction
+
+	// MARK: Actions
 
 	@IBAction func loadComment(_ sender: AnyObject) {
 		if let commentId = Int(commentIdTextField?.text ?? "") {
@@ -41,9 +39,8 @@ class CommentDisplayScreenletViewController: UIViewController, CommentDisplayScr
 			screenlet?.load()
 		}
 	}
-	
-	
-	//MARK: CommentDisplayScreenletDelegate
+
+	// MARK: CommentDisplayScreenletDelegate
 
 	func screenlet(_ screenlet: CommentDisplayScreenlet, onCommentLoaded comment: Comment) {
 		LiferayLogger.logDelegateMessage(args: comment)
@@ -68,7 +65,7 @@ class CommentDisplayScreenletViewController: UIViewController, CommentDisplayScr
 	func screenlet(_ screenlet: CommentDisplayScreenlet, onCommentUpdated comment: Comment) {
 		LiferayLogger.logDelegateMessage(args: comment)
 	}
-	
+
 	func screenlet(_ screenlet: CommentDisplayScreenlet, onUpdateComment comment: Comment,
 			onError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)

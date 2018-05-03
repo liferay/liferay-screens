@@ -12,6 +12,7 @@
 		0B24399B1DAD3120009DA1E4 /* ImageDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B24399A1DAD3120009DA1E4 /* ImageDisplayViewController.swift */; };
 		0B24399C1DAD314D009DA1E4 /* BlogDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B24399E1DAD314D009DA1E4 /* BlogDisplayScreenlet.storyboard */; };
 		0B2439A21DAD318A009DA1E4 /* ImageDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B2439A41DAD318A009DA1E4 /* ImageDisplayScreenlet.storyboard */; };
+		0B3B9AC3209AF94500EC2975 /* ImageGalleryScreenletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AC2209AF94500EC2975 /* ImageGalleryScreenletController.swift */; };
 		0B4460821F16427A007D12E5 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 0B4460811F16427A007D12E5 /* config.xml */; };
 		0B4460891F177BD4007D12E5 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 0B4460881F177BD4007D12E5 /* www */; };
 		0B44608C1F177CDE007D12E5 /* NetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B44608A1F177CDE007D12E5 /* NetworkActivityIndicator.m */; };
@@ -33,7 +34,6 @@
 		0B54FBAF1DACF71700E0EE0C /* RatingScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FBB11DACF71700E0EE0C /* RatingScreenlet.storyboard */; };
 		0B54FBB31DACF77B00E0EE0C /* RatingScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FBB21DACF77B00E0EE0C /* RatingScreenletViewController.swift */; };
 		0B54FBB61DACFA7C00E0EE0C /* ImageGalleryScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FBB81DACFA7C00E0EE0C /* ImageGalleryScreenlet.storyboard */; };
-		0B54FBBA1DACFAAA00E0EE0C /* ImageGalleryScreenletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FBB91DACFAAA00E0EE0C /* ImageGalleryScreenletController.swift */; };
 		0B54FBBD1DAD002100E0EE0C /* UserPortraitScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FBBF1DAD002100E0EE0C /* UserPortraitScreenlet.storyboard */; };
 		0B54FBC11DAD004300E0EE0C /* UserPortraitScreenletViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FBC01DAD004300E0EE0C /* UserPortraitScreenletViewController.swift */; };
 		0B54FBC41DAD149D00E0EE0C /* DDLListScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B54FBC61DAD149D00E0EE0C /* DDLListScreenlet.storyboard */; };
@@ -96,6 +96,7 @@
 		0B24399A1DAD3120009DA1E4 /* ImageDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDisplayViewController.swift; sourceTree = "<group>"; };
 		0B24399D1DAD314D009DA1E4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/BlogDisplayScreenlet.storyboard; sourceTree = "<group>"; };
 		0B2439A31DAD318A009DA1E4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/ImageDisplayScreenlet.storyboard; sourceTree = "<group>"; };
+		0B3B9AC2209AF94500EC2975 /* ImageGalleryScreenletController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryScreenletController.swift; sourceTree = "<group>"; };
 		0B4460811F16427A007D12E5 /* config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
 		0B4460881F177BD4007D12E5 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		0B44608A1F177CDE007D12E5 /* NetworkActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkActivityIndicator.m; sourceTree = "<group>"; };
@@ -118,7 +119,6 @@
 		0B54FBB01DACF71700E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/RatingScreenlet.storyboard; sourceTree = "<group>"; };
 		0B54FBB21DACF77B00E0EE0C /* RatingScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingScreenletViewController.swift; sourceTree = "<group>"; };
 		0B54FBB71DACFA7C00E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/ImageGalleryScreenlet.storyboard; sourceTree = "<group>"; };
-		0B54FBB91DACFAAA00E0EE0C /* ImageGalleryScreenletController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryScreenletController.swift; sourceTree = "<group>"; };
 		0B54FBBE1DAD002100E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/UserPortraitScreenlet.storyboard; sourceTree = "<group>"; };
 		0B54FBC01DAD004300E0EE0C /* UserPortraitScreenletViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortraitScreenletViewController.swift; sourceTree = "<group>"; };
 		0B54FBC51DAD149D00E0EE0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/DDLListScreenlet.storyboard; sourceTree = "<group>"; };
@@ -268,8 +268,8 @@
 			isa = PBXGroup;
 			children = (
 				0B54FBC01DAD004300E0EE0C /* UserPortraitScreenletViewController.swift */,
-				0B54FBB91DACFAAA00E0EE0C /* ImageGalleryScreenletController.swift */,
 				0B54FBAB1DACF1C100E0EE0C /* BlogDisplayScreenletViewController.swift */,
+				0B3B9AC2209AF94500EC2975 /* ImageGalleryScreenletController.swift */,
 				0B54FBB21DACF77B00E0EE0C /* RatingScreenletViewController.swift */,
 			);
 			path = Others;
@@ -743,7 +743,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B6148071DABE2B0004FAC7C /* SignUpScreenletViewController.swift in Sources */,
-				0B54FBBA1DACFAAA00E0EE0C /* ImageGalleryScreenletController.swift in Sources */,
 				0B24399B1DAD3120009DA1E4 /* ImageDisplayViewController.swift in Sources */,
 				0B6148061DABE2B0004FAC7C /* LoginViewController.swift in Sources */,
 				0BFD32451F30634700017DCA /* CDVWKWebViewUIDelegate.m in Sources */,
@@ -779,6 +778,7 @@
 				0B6147F81DABC853004FAC7C /* UIImageExtension.swift in Sources */,
 				88DE2A721AD3DDE600714701 /* AppDelegate.swift in Sources */,
 				0B575EE21E6F10F400A8B021 /* UserPortraitView_initials.swift in Sources */,
+				0B3B9AC3209AF94500EC2975 /* ImageGalleryScreenletController.swift in Sources */,
 				0B147A141E7802B100EDE7B7 /* FileDisplayViewController.swift in Sources */,
 				0B54FB891DACE91000E0EE0C /* CommentDisplayScreenletViewController.swift in Sources */,
 				0B54FB771DACC95500E0EE0C /* UserView.swift in Sources */,

@@ -43,7 +43,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	open static let DefaultAction = "defaultAction"
 	open static let DefaultThemeName = "default"
 
-	// MARK: IBOutlets
+	// MARK: Outlets
 
 	@IBOutlet open weak var delegate: BaseScreenletDelegate?
 

@@ -14,11 +14,9 @@
 import UIKit
 import LiferayScreens
 
-
 class VideoDisplayViewController: UIViewController, FileDisplayScreenletDelegate {
 
-
-	//MARK: IBOutlet
+	// MARK: Outlets
 
 	@IBOutlet var screenlet: VideoDisplayScreenlet? {
 		didSet {

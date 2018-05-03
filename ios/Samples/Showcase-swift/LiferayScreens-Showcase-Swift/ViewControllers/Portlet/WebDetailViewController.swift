@@ -16,18 +16,15 @@ import WebKit
 
 class WebDetailViewController: UIViewController {
 
-
-	//MARK: IBOutlet
+	// MARK: Outlets
 
 	@IBOutlet var imageView: UIImageView?
 
-
-	//MARK: Public variables
+	// MARK: Public variables
 
 	open var url: String?
 
-
-	//MARK: UIViewController
+	// MARK: UIViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()

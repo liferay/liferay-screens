@@ -16,7 +16,7 @@ import LiferayScreens
 
 class WebScreenletViewController: UIViewController, WebScreenletDelegate {
 
-	//MARK: IBOutlet
+	// MARK: Outlets
 
 	@IBOutlet var screenlet: WebScreenlet? {
 		didSet {
@@ -25,7 +25,7 @@ class WebScreenletViewController: UIViewController, WebScreenletDelegate {
 		}
 	}
 
-	//MARK: UIViewController
+	// MARK: UIViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -45,8 +45,7 @@ class WebScreenletViewController: UIViewController, WebScreenletDelegate {
 		screenlet?.load()
 	}
 
-
-	//MARK: WebScreenletDelegate
+	// MARK: WebScreenletDelegate
 
     func onWebLoad(_ screenlet: WebScreenlet, url: String) {
 

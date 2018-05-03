@@ -14,22 +14,19 @@
 import UIKit
 import LiferayScreens
 
-
 class RatingScreenletViewController: UIViewController, RatingScreenletDelegate {
 
-	
-	//MARK: IBOutlet
-	
+	// MARK: Outlets
+
 	@IBOutlet weak var screenlet: RatingScreenlet? {
 		didSet {
 			screenlet?.delegate = self
 			screenlet?.entryId = LiferayServerContext.longPropertyForKey("ratingThumbsEntryId")
 		}
 	}
-	
-	
-	//MARK: IBAction
-	
+
+	// MARK: Actions
+
 	@IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
 		switch sender.selectedSegmentIndex {
 			case 1:
@@ -56,22 +53,21 @@ class RatingScreenletViewController: UIViewController, RatingScreenletDelegate {
     @IBAction func switchChange(_ sender: UISwitch) {
 		screenlet?.editable = sender.isOn
     }
-	
-	
-	//MARK: RatingScreenletDelegate
-	
+
+	// MARK: RatingScreenletDelegate
+
 	func screenlet(_ screenlet: RatingScreenlet, onRatingRetrieve rating: RatingEntry) {
 		LiferayLogger.logDelegateMessage(args: rating)
 	}
-	
+
 	func screenlet(_ screenlet: RatingScreenlet, onRatingDeleted rating: RatingEntry) {
 		LiferayLogger.logDelegateMessage(args: rating)
 	}
-	
+
 	func screenlet(_ screenlet: RatingScreenlet, onRatingUpdated rating: RatingEntry) {
 		LiferayLogger.logDelegateMessage(args: rating)
 	}
-	
+
 	func screenlet(_ screenlet: RatingScreenlet, onRatingError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}

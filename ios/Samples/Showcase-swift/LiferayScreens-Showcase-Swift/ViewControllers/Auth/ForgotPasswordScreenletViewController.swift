@@ -14,20 +14,17 @@
 import UIKit
 import LiferayScreens
 
-
 class ForgotPasswordScreenletViewController: UIViewController, ForgotPasswordScreenletDelegate {
 
-	
-	//MARK: IBOutlet
-	
+	// MARK: Outlets
+
 	@IBOutlet var screenlet: ForgotPasswordScreenlet! {
 		didSet {
 			screenlet.delegate = self
 		}
 	}
-	
-	
-	//MARK: ForgotPasswordScreenletDelegate
+
+	// MARK: ForgotPasswordScreenletDelegate
 
 	func screenlet(_ screenlet: ForgotPasswordScreenlet, onForgotPasswordSent passwordSent: Bool) {
 		LiferayLogger.logDelegateMessage(args: passwordSent as AnyObject?)
@@ -37,6 +34,4 @@ class ForgotPasswordScreenletViewController: UIViewController, ForgotPasswordScr
 		LiferayLogger.logDelegateMessage(args: error)
 	}
 
-
 }
-

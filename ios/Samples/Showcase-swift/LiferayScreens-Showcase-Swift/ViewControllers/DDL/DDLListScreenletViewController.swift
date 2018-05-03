@@ -14,12 +14,9 @@
 import UIKit
 import LiferayScreens
 
+class DDLListScreenletViewController: UIViewController, DDLListScreenletDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
 
-class DDLListScreenletViewController:
-		UIViewController, DDLListScreenletDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
-
-	
-	//MARK: IBOutlet
+	// MARK: Outlets
 
 	@IBOutlet weak var pickerView: UIPickerView? {
 		didSet {
@@ -49,10 +46,9 @@ class DDLListScreenletViewController:
 			                                   forState: .normal)
 		}
 	}
-	
-	
-	//MARK: IBAction
-	
+
+	// MARK: Actions
+
 	@IBAction func loadList(_ sender: AnyObject) {
 		if let id = recordSetIdTextField?.text, let recordSetId = Int64(id) {
 			screenlet?.recordSetId = recordSetId
@@ -71,22 +67,20 @@ class DDLListScreenletViewController:
 
 	var selectedObcClassName = ""
 
-	
-	//MARK: DDLListScreenletDelegate
+	// MARK: DDLListScreenletDelegate
 
 	func screenlet(_ screenlet: DDLListScreenlet, onDDLListError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
-	
+
 	func screenlet(_ screenlet: DDLListScreenlet, onDDLSelectedRecord record: DDLRecord) {
 		LiferayLogger.logDelegateMessage(args: record)
 	}
-	
+
 	func screenlet(_ screenlet: DDLListScreenlet, onDDLListResponseRecords records: [DDLRecord]) {
 		LiferayLogger.logDelegateMessage(args: records as AnyObject?)
 	}
 
-	
 	// MARK: UIPickerViewDataSource
 
 	func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -96,9 +90,8 @@ class DDLListScreenletViewController:
 	func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
 		return pickerData.count
 	}
-	
-	
-	//MARK: UIPickerViewDelegate
+
+	// MARK: UIPickerViewDelegate
 
 	func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 		selectedObcClassName = pickerData[row].className

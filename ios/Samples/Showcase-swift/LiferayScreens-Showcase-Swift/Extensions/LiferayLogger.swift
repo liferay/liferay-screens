@@ -14,10 +14,10 @@
 import UIKit
 
 public struct LiferayLogger {
-	
+
 	public static func logDelegateMessage(_ function: String = #function, args: Any?...) {
 		let message = "DELEGATE: \(function) called"
-		
+
 		if args.count > 0 {
 			guard let error = args[0] as? NSError else {
 				print("\n+++++++++++++++++++++")
@@ -25,7 +25,7 @@ public struct LiferayLogger {
 				print("+++++++++++++++++++++\n")
 				return
 			}
-			
+
 			self.error(message, error: error)
 		} else {
 			print("\n+++++++++++++++++++++")
@@ -33,7 +33,7 @@ public struct LiferayLogger {
 			print("+++++++++++++++++++++\n")
 		}
 	}
-	
+
 	fileprivate static func error(_ message: String, error: NSError) {
 		print("\n=====================")
 		print(message)

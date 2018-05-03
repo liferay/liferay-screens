@@ -41,9 +41,8 @@ class OfflineSyncViewController: UIViewController, SyncManagerDelegate {
 		syncManager?.clear()
 		log.text = log.text + "Cleared!\n\n"
 	}
-	
-	
-	//MARK: SyncManagerDelegate
+
+	// MARK: SyncManagerDelegate
 
 	func syncManager(_ manager: SyncManager, itemsCount: UInt) {
 		log.text.append("Start sync...  \(itemsCount) items\n\n")
@@ -52,7 +51,7 @@ class OfflineSyncViewController: UIViewController, SyncManagerDelegate {
 	func syncManager(_ manager: SyncManager,
 			onItemSyncScreenlet screenlet: String,
 			startKey: String,
-			attributes: [String:AnyObject]) {
+			attributes: [String: AnyObject]) {
 		log.text.append("[o] Start item. screenlet=\(screenlet) " +
 			"key=\(startKey) attrs=\(attributes)\n\n")
 	}
@@ -60,7 +59,7 @@ class OfflineSyncViewController: UIViewController, SyncManagerDelegate {
 	func syncManager(_ manager: SyncManager,
 			onItemSyncScreenlet screenlet: String,
 			completedKey: String,
-			attributes: [String:AnyObject]) {
+			attributes: [String: AnyObject]) {
 		log.text.append("[o] Item completed. screenlet=\(screenlet) " +
 			"key=\(completedKey) attrs=\(attributes)\n\n")
 	}
@@ -68,18 +67,18 @@ class OfflineSyncViewController: UIViewController, SyncManagerDelegate {
 	func syncManager(_ manager: SyncManager,
 			onItemSyncScreenlet screenlet: String,
 			failedKey: String,
-			attributes: [String:AnyObject],
+			attributes: [String: AnyObject],
 			error: NSError) {
 		log.text.append("[o] Item failed. screenlet=\(screenlet) " +
 			"key=\(failedKey) attrs=\(attributes) error=\(error)\n\n")
 	}
 
 	func syncManager(_ manager: SyncManager,
-		onItemSyncScreenlet screenlet: String,
-		conflictedKey: String,
-		remoteValue: AnyObject,
-		localValue: AnyObject,
-		resolve: @escaping (SyncConflictResolution) -> ()) {
+					 onItemSyncScreenlet screenlet: String,
+					 conflictedKey: String,
+					 remoteValue: AnyObject,
+					 localValue: AnyObject,
+					 resolve: @escaping (SyncConflictResolution) -> Void) {
 
 		log.text.append("[o] Item conflicted. screenlet=\(screenlet) " +
 			"key=\(conflictedKey) remote=\(remoteValue) local=\(localValue)\nProcessing... ")
@@ -88,22 +87,22 @@ class OfflineSyncViewController: UIViewController, SyncManagerDelegate {
 		                              preferredStyle: .actionSheet)
 
 		alert.addAction(
-			UIAlertAction(title: "Use local", style: .default) { action in
+			UIAlertAction(title: "Use local", style: .default) { _ in
 				self.log.text.append("using local version\n\n")
 				resolve(.useLocal)
 			})
 		alert.addAction(
-			UIAlertAction(title: "Use remote", style: .default) { action in
+			UIAlertAction(title: "Use remote", style: .default) { _ in
 				self.log.text.append("using remote version\n\n")
 				resolve(.useRemote)
 			})
 		alert.addAction(
-			UIAlertAction(title: "Discard", style: .destructive) { action in
+			UIAlertAction(title: "Discard", style: .destructive) { _ in
 				self.log.text.append("conflict discarded\n\n")
 				resolve(.discard)
 			})
 		alert.addAction(
-			UIAlertAction(title: "Ignore", style: .cancel) { action in
+			UIAlertAction(title: "Ignore", style: .cancel) { _ in
 				self.log.text.append("conflict ignored\n\n")
 				resolve(.ignore)
 			})

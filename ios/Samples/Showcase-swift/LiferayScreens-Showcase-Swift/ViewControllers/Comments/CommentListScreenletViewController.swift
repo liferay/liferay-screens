@@ -14,13 +14,11 @@
 import UIKit
 import LiferayScreens
 
-
 class CommentListScreenletViewController: UIViewController,
 		CommentListScreenletDelegate {
 
-	
-	//MARK: IBOutlet
-	
+	// MARK: Outlets
+
 	@IBOutlet weak var listScreenlet: CommentListScreenlet? {
 		didSet {
 			listScreenlet?.delegate = self
@@ -34,17 +32,15 @@ class CommentListScreenletViewController: UIViewController,
 
 	var editViewController: CommentEditViewController_default?
 
-	
-	//MARK: UIViewController
-	
+	// MARK: UIViewController
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		self.definesPresentationContext = true
 	}
-	
-	
-	//MARK: IBAction
+
+	// MARK: Actions
 
 	@IBAction func insertButtonPressed(_ sender: AnyObject) {
 		if editViewController == nil {
@@ -56,7 +52,7 @@ class CommentListScreenletViewController: UIViewController,
 		}
 	}
 
-	//MARK: CommentListScreenletDelegate
+	// MARK: CommentListScreenletDelegate
 
 	func screenlet(_ screenlet: CommentListScreenlet, onCommentListError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
@@ -88,7 +84,7 @@ class CommentListScreenletViewController: UIViewController,
 		LiferayLogger.logDelegateMessage(args: error)
 	}
 
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func addComment(_ body: String?) {
 		editViewController?.dismiss(animated: true) {

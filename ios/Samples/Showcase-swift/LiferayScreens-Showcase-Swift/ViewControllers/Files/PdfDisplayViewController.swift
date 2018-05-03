@@ -14,11 +14,9 @@
 import UIKit
 import LiferayScreens
 
-
 class PdfDisplayViewController: UIViewController, FileDisplayScreenletDelegate {
 
-
-	//MARK: IBOutlet
+	// MARK: Outlets
 
 	@IBOutlet var screenlet: PdfDisplayScreenlet? {
 		didSet {
