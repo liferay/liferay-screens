@@ -70,6 +70,8 @@ class LoginViewController: UIViewController, LoginScreenletDelegate {
 
 		SessionContext.loadStoredCredentials()
 
+		loginScreenlet.authType = .cookie
+
 		setTranslations()
 	}
 
