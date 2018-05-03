@@ -1,83 +1,158 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10117"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RatingView_default_stars" customModule="LiferayScreens">
-            <rect key="frame" x="0.0" y="0.0" width="240" height="85"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RatingView_default_stars">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="141"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XED-9f-V1z" userLabel="User Rating Bar" customClass="CosmosView" customModule="Cosmos">
-                    <rect key="frame" x="8" y="8" width="224" height="40"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="nI9-cB-h4c"/>
-                    </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="rating">
-                            <real key="value" value="2"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="starSize">
-                            <real key="value" value="30"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="emptyBorderColor">
-                            <color key="value" red="0.89411764705882346" green="0.27843137254901962" blue="0.25098039215686274" alpha="0.87" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="filledBorderColor">
-                            <color key="value" red="0.89411764705882346" green="0.27843137254901962" blue="0.25098039215686274" alpha="0.87" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
-                            <color key="value" red="0.89411764705882346" green="0.27843137254901962" blue="0.25098039215686274" alpha="0.87" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </view>
-                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uTk-1X-Fw0" userLabel="Average Rating Bar" customClass="CosmosView" customModule="Cosmos">
-                    <rect key="frame" x="8" y="56" width="224" height="21"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <accessibility key="accessibilityConfiguration">
-                        <accessibilityTraits key="traits" notEnabled="YES"/>
-                    </accessibility>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="rating">
-                            <real key="value" value="2"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="starSize">
-                            <real key="value" value="15"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="emptyBorderColor">
-                            <color key="value" red="0.89411764705882346" green="0.27843137254901962" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="filledBorderColor">
-                            <color key="value" red="0.89411764705882346" green="0.27843137254901962" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
-                            <color key="value" red="0.89411764705882346" green="0.27843137254901962" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="string" keyPath="text" value="2 Ratings"/>
-                    </userDefinedRuntimeAttributes>
-                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CeO-hA-Dk5">
+                    <rect key="frame" x="9" y="20" width="232" height="40"/>
+                    <subviews>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I8p-OU-HWR">
+                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="Rem-uB-xzo"/>
+                                <constraint firstAttribute="width" constant="40" id="uTt-kN-i9l"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="default-star-outline.png"/>
+                            <connections>
+                                <action selector="updateUserRating:" destination="iN0-l3-epB" eventType="touchUpInside" id="YXn-q8-PVU"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lWA-ON-VIK">
+                            <rect key="frame" x="48" y="0.0" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="0Vc-dY-w4z"/>
+                                <constraint firstAttribute="width" constant="40" id="c59-eI-RNm"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="default-star-outline.png"/>
+                            <connections>
+                                <action selector="updateUserRating:" destination="iN0-l3-epB" eventType="touchUpInside" id="vTf-0g-ox9"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aS0-Kz-Op7">
+                            <rect key="frame" x="96" y="0.0" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="Ypg-fR-Jyn"/>
+                                <constraint firstAttribute="width" constant="40" id="fxa-gp-2o1"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="default-star-outline.png"/>
+                            <connections>
+                                <action selector="updateUserRating:" destination="iN0-l3-epB" eventType="touchUpInside" id="nYw-TG-vIZ"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Jf-tA-Eff">
+                            <rect key="frame" x="144" y="0.0" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="9nZ-QZ-aIY"/>
+                                <constraint firstAttribute="width" constant="40" id="au0-PL-l8U"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="default-star-outline.png"/>
+                            <connections>
+                                <action selector="updateUserRating:" destination="iN0-l3-epB" eventType="touchUpInside" id="Nbn-hb-tM8"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M6B-0l-r91">
+                            <rect key="frame" x="192" y="0.0" width="40" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="Ilp-gh-RBw"/>
+                                <constraint firstAttribute="height" constant="40" id="Xds-aY-7hq"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="default-star-outline.png"/>
+                            <connections>
+                                <action selector="updateUserRating:" destination="iN0-l3-epB" eventType="touchUpInside" id="No4-In-cVy"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 Ratings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cwZ-zF-4Fw">
+                    <rect key="frame" x="9" y="76" width="232" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="lZp-oz-pDS">
+                    <rect key="frame" x="71" y="98.5" width="108" height="20"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcD-4Y-hq4">
+                            <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="JOY-mD-1qz"/>
+                                <constraint firstAttribute="height" constant="20" id="ipb-Df-Fer"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="default-star-outline.png"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yxf-IB-vUL">
+                            <rect key="frame" x="22" y="0.0" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="QCz-11-BVo"/>
+                                <constraint firstAttribute="width" constant="20" id="dMy-F6-3c5"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="default-star-outline.png"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JVM-1E-Mbn">
+                            <rect key="frame" x="44" y="0.0" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="2rL-AQ-sKV"/>
+                                <constraint firstAttribute="width" constant="20" id="5nF-6c-20X"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="default-star-outline.png"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Byq-RF-R2w">
+                            <rect key="frame" x="66" y="0.0" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="COr-KH-pGs"/>
+                                <constraint firstAttribute="width" constant="20" id="cg4-xx-eoa"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="default-star-outline.png"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qBe-ca-4L1">
+                            <rect key="frame" x="88" y="0.0" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="Nq9-k9-qhr"/>
+                                <constraint firstAttribute="width" constant="20" id="fA2-Qq-3nv"/>
+                            </constraints>
+                            <state key="normal" backgroundImage="default-star-outline.png"/>
+                        </button>
+                    </subviews>
+                </stackView>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="uTk-1X-Fw0" secondAttribute="bottom" constant="8" id="5oG-ol-yR3"/>
-                <constraint firstItem="XED-9f-V1z" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="DPD-xL-XBo"/>
-                <constraint firstAttribute="trailing" secondItem="uTk-1X-Fw0" secondAttribute="trailing" constant="8" id="VJO-ay-Cp6"/>
-                <constraint firstAttribute="trailing" secondItem="XED-9f-V1z" secondAttribute="trailing" constant="8" id="Wed-aN-2yA"/>
-                <constraint firstItem="uTk-1X-Fw0" firstAttribute="top" secondItem="XED-9f-V1z" secondAttribute="bottom" constant="8" id="c6O-Rk-UPX"/>
-                <constraint firstItem="XED-9f-V1z" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="hZ8-gB-uEa"/>
-                <constraint firstItem="uTk-1X-Fw0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="k3V-hv-Fsj"/>
+                <constraint firstItem="cwZ-zF-4Fw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="9" id="8oD-ys-XZL"/>
+                <constraint firstItem="CeO-hA-Dk5" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="K9J-WG-HMK"/>
+                <constraint firstAttribute="trailing" secondItem="cwZ-zF-4Fw" secondAttribute="trailing" constant="9" id="Mbv-aX-lZL"/>
+                <constraint firstItem="lZp-oz-pDS" firstAttribute="top" secondItem="cwZ-zF-4Fw" secondAttribute="bottom" constant="8" id="QqD-Gf-20Y"/>
+                <constraint firstItem="cwZ-zF-4Fw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="SUO-Xm-egL"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="CeO-hA-Dk5" secondAttribute="trailing" constant="9" id="SeN-Pm-4m4"/>
+                <constraint firstItem="CeO-hA-Dk5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" constant="9" id="T2m-XQ-8Zw"/>
+                <constraint firstItem="lZp-oz-pDS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" constant="71" id="TWI-dc-FSu"/>
+                <constraint firstItem="cwZ-zF-4Fw" firstAttribute="top" secondItem="CeO-hA-Dk5" secondAttribute="bottom" constant="16" id="VfU-WB-v7V"/>
+                <constraint firstItem="CeO-hA-Dk5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="WXc-u3-5gV"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lZp-oz-pDS" secondAttribute="trailing" constant="71" id="kiY-lG-TE4"/>
+                <constraint firstItem="lZp-oz-pDS" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="mVJ-RO-kO7"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="averageRatingBar" destination="uTk-1X-Fw0" id="9OR-np-EjM"/>
-                <outlet property="userRatingBar" destination="XED-9f-V1z" id="C2D-sg-9pW"/>
+                <outlet property="averageRatingLabel" destination="cwZ-zF-4Fw" id="qlX-GA-nDZ"/>
+                <outlet property="averageRatingStars" destination="lZp-oz-pDS" id="Br9-d1-3KJ"/>
+                <outlet property="userRatingStars" destination="CeO-hA-Dk5" id="gC2-PS-uI7"/>
             </connections>
-            <point key="canvasLocation" x="484" y="311.5"/>
+            <point key="canvasLocation" x="-84" y="105.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="default-star-outline.png" width="24" height="24"/>
+    </resources>
 </document>

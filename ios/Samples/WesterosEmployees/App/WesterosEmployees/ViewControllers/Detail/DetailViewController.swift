@@ -71,9 +71,10 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate, C
 				commentsViewController?.load(className: className, classPK: classPK)
 			}
 			else {
-				commentsViewController?.load(
-					className: AssetClasses.getClassNameFromId(asset.classNameId)!,
-					classPK: asset.classPK)
+				let className = AssetClasses.getClassNameFromId(asset.classNameId)!
+				classPK = asset.classPK
+				
+				commentsViewController?.load(className: className, classPK: classPK)
 			}
 
 			ratingScreenlet?.className = AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!
