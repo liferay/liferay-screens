@@ -14,8 +14,7 @@
 import UIKit
 import LiferayScreens
 
-class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate,
-		CardDeckDataSource, CardDeckDelegate {
+class GalleryViewController: CardViewController, ImageGalleryScreenletDelegate, CardDeckDataSource, CardDeckDelegate {
 
 	var selectedImageEntry: ImageEntry?
 

@@ -13,8 +13,7 @@
 */
 import UIKit
 
-class UploadImageViewController: CardViewController,
-		UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class UploadImageViewController: CardViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
 	var imagePicker: UIImagePickerController? {
 		didSet {

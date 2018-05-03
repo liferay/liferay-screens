@@ -14,9 +14,7 @@
 import UIKit
 import LiferayScreens
 
-class ForgotPasswordViewController: CardViewController,
-		ForgotPasswordScreenletDelegate,
-		KeyboardListener {
+class ForgotPasswordViewController: CardViewController, ForgotPasswordScreenletDelegate, KeyboardListener {
 
 	// MARK: Outlets
 

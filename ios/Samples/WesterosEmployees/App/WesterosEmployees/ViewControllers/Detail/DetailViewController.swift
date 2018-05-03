@@ -14,8 +14,7 @@
 import UIKit
 import LiferayScreens
 
-class DetailViewController: CardViewController, AssetDisplayScreenletDelegate,
-	CardDeckDelegate, CardDeckDataSource {
+class DetailViewController: CardViewController, AssetDisplayScreenletDelegate, CardDeckDelegate, CardDeckDataSource {
 
 	// MARK: Outlets
 

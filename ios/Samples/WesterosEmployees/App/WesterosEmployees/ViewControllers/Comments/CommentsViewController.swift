@@ -14,8 +14,7 @@
 import UIKit
 import LiferayScreens
 
-class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckDataSource,
-	CommentListScreenletDelegate {
+class CommentsViewController: CardViewController, CardDeckDelegate, CardDeckDataSource, CommentListScreenletDelegate {
 
 	var addCommentViewController: AddCommentViewController? {
 		didSet {

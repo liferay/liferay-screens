@@ -17,8 +17,7 @@ import LiferayScreens
 
 public var tourCompleted = false
 
-class HomeViewController: UIViewController, AssetListScreenletDelegate,
-	CardDeckDelegate, CardDeckDataSource {
+class HomeViewController: UIViewController, AssetListScreenletDelegate, CardDeckDelegate, CardDeckDataSource {
 
 	///Flag to control if the home has been initialized
 	var homeInitialized = false
