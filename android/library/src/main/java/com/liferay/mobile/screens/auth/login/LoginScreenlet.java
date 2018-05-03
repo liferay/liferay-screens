@@ -35,6 +35,7 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.AuthenticationType;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -227,6 +228,8 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 		if (scopesString != null) {
 			oauth2Scopes = Arrays.asList(scopesString.split(" "));
+		} else {
+			oauth2Scopes = new ArrayList<>();
 		}
 
 		int layoutId = typedArray.getResourceId(R.styleable.LoginScreenlet_layoutId, getDefaultLayoutId());
