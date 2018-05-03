@@ -113,6 +113,7 @@ public class DDLFieldGeoView extends LinearLayout implements DDLFieldViewModel<G
 		labelTextView = findViewById(R.id.liferay_ddl_label);
 		latitudeEditText = findViewById(R.id.liferay_latitude_edit_text);
 		longitudeEditText = findViewById(R.id.liferay_longitude_edit_text);
+		//TODO Add new button to get LAT and LON from GPS Location
 
 		latitudeEditText.addTextChangedListener(this);
 		longitudeEditText.addTextChangedListener(this);

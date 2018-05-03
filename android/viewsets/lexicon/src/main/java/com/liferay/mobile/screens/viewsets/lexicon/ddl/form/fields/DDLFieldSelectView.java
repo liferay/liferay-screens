@@ -20,6 +20,7 @@ import android.content.DialogInterface;
 import android.util.AttributeSet;
 import com.liferay.mobile.screens.ddl.model.StringWithOptionsField;
 import com.liferay.mobile.screens.viewsets.lexicon.R;
+import com.liferay.mobile.screens.viewsets.lexicon.util.FormViewUtil;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,13 +54,13 @@ public class DDLFieldSelectView
 	}
 
 	@Override
-	protected void setupSingleChoice(AlertDialog.Builder builder,
-		DialogInterface.OnClickListener selectOptionHandler, String[] labels) {
+	protected void setupSingleChoice(AlertDialog.Builder builder, DialogInterface.OnClickListener selectOptionHandler,
+		String[] labels) {
 
 		List<StringWithOptionsField.Option> availableOptions = getField().getAvailableOptions();
 		ArrayList<StringWithOptionsField.Option> currentValue = getField().getCurrentValue();
 
-		int index = (currentValue.isEmpty()) ? -1: availableOptions.indexOf(currentValue.get(0));
+		int index = (currentValue.isEmpty()) ? -1 : availableOptions.indexOf(currentValue.get(0));
 		builder.setSingleChoiceItems(labels, index, selectOptionHandler);
 		builder.setPositiveButton(android.R.string.ok, selectOptionHandler);
 		builder.setNegativeButton(android.R.string.cancel, selectOptionHandler);
@@ -73,6 +74,11 @@ public class DDLFieldSelectView
 		} else {
 			dialog.dismiss();
 		}
+	}
+
+	@Override
+	public void onPostValidation(boolean valid) {
+		FormViewUtil.setupTextFieldLayout(getContext(), valid, labelTextView, textEditText);
 	}
 
 	@Override

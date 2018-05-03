@@ -10,8 +10,8 @@
 		android:id="@+id/liferay_ddl_label"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:labelFor="@+id/liferay_ddl_edit_text"
 		android:visibility="gone"
-		style="@style/lexicon_label"
 		/>
 
 	<EditText

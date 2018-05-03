@@ -19,4 +19,7 @@
     <color name="lightBlue2_lexicon">#b3cdff</color>
     <color name="lightBlue3_lexicon">#71a2ff</color>
 
+    <color name="colorTextErrorPrimary">#feefef</color>
+    <color name="colorTextErrorSecondary">#da1414</color>
+
 </resources>

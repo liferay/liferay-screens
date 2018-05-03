@@ -26,6 +26,7 @@ import android.widget.EditText;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.viewsets.lexicon.R;
+import com.liferay.mobile.screens.viewsets.lexicon.util.FormViewUtil;
 
 /**
  * @author Victor Oliveira
@@ -85,5 +86,10 @@ public class DDLDocumentFieldView
 		setupDialogListeners(activity, customDialogView);
 
 		return bottomSheetDialog;
+	}
+
+	@Override
+	public void onPostValidation(boolean valid) {
+		FormViewUtil.setupTextFieldLayout(getContext(), valid, labelTextView, textEditText);
 	}
 }
