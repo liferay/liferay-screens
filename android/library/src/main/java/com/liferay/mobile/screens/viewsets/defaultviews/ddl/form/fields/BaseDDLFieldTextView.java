@@ -16,7 +16,10 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields;
 
 import android.content.Context;
 import android.text.Editable;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.TextWatcher;
+import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.EditText;
@@ -80,6 +83,13 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 			if (labelTextView != null) {
 				labelTextView.setText(this.field.getLabel());
 				labelTextView.setVisibility(VISIBLE);
+
+				if (this.field.isRequired()) {
+					Spannable requiredAlert = getRequiredSpannable();
+					if (requiredAlert != null) {
+						labelTextView.append(requiredAlert);
+					}
+				}
 			}
 		} else {
 			textEditText.setHint(this.field.getLabel());
@@ -149,5 +159,15 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 		textEditText.setSaveEnabled(false);
 	}
 
+	protected Spannable getRequiredSpannable() {
+		Spannable requiredAlert = new SpannableString(" *");
+
+		int color = getResources().getColor(R.color.colorRequiredField);
+		requiredAlert.setSpan(new ForegroundColorSpan(color), 0, requiredAlert.length(),
+			Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+		return requiredAlert;
+	}
+	
 	protected abstract void onTextChanged(String text);
 }
