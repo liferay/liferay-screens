@@ -48,10 +48,7 @@
         <item name="android:textColor">@color/colorPrimaryDark_lexicon</item>
         <item name="android:textSize">@dimen/text_view_size</item>
         <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="lexicon_label" parent="lexicon_text_view">
-        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
     </style>
 
     <style name="lexicon_bottom_sheet_text_view" parent="lexicon_text_view">

@@ -1,0 +1,77 @@
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.mobile.screens.viewsets.lexicon.ddl.form.fields;
+
+import android.content.Context;
+import android.support.v4.content.res.ResourcesCompat;
+import android.util.AttributeSet;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RadioButton;
+import com.liferay.mobile.screens.ddl.model.StringWithOptionsField;
+import com.liferay.mobile.screens.viewsets.lexicon.R;
+import com.liferay.mobile.screens.viewsets.lexicon.util.FormViewUtil;
+import java.util.List;
+
+/**
+ * @author Victor Oliveira
+ */
+public class DDLFieldRadioView
+	extends com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldRadioView {
+
+	public DDLFieldRadioView(Context context) {
+		super(context);
+	}
+
+	public DDLFieldRadioView(Context context, AttributeSet attributes) {
+		super(context, attributes);
+	}
+
+	@Override
+	public void renderOptions(StringWithOptionsField field) {
+		LayoutParams layoutParams =
+			new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+		int margin = FormViewUtil.convertDpToPx(getContext(), 18);
+		layoutParams.setMargins(0, margin, 0, margin);
+
+		List<StringWithOptionsField.Option> availableOptions = field.getAvailableOptions();
+
+		for (int i = 0; i < availableOptions.size(); ++i) {
+			StringWithOptionsField.Option opt = availableOptions.get(i);
+
+			RadioButton radioButton = new RadioButton(getContext());
+			radioButton.setLayoutParams(layoutParams);
+			radioButton.setText(opt.label);
+			radioButton.setTag(opt);
+			radioButton.setOnCheckedChangeListener(this);
+			radioButton.setSaveEnabled(true);
+			addView(radioButton);
+
+			boolean isLast = availableOptions.size() - 1 == i;
+			if (!isLast) {
+				LayoutParams params =
+					new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, FormViewUtil.convertDpToPx(getContext(), 1));
+
+				View separator = new View(getContext());
+				separator.setLayoutParams(params);
+				separator.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.textColorTertiary_lexicon,
+					getContext().getTheme()));
+
+				addView(separator);
+			}
+		}
+	}
+}

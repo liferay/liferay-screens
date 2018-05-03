@@ -62,6 +62,12 @@ public class DDLFieldRadioView extends RadioGroup
 			label.setVisibility(VISIBLE);
 		}
 
+		renderOptions(field);
+
+		refresh();
+	}
+
+	public void renderOptions(StringWithOptionsField field) {
 		LayoutParams layoutParams =
 			new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
@@ -79,8 +85,6 @@ public class DDLFieldRadioView extends RadioGroup
 			radioButton.setSaveEnabled(true);
 			addView(radioButton);
 		}
-
-		refresh();
 	}
 
 	@Override
