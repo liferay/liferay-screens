@@ -13,6 +13,7 @@
  */
 import UIKit
 import LiferayScreens
+import LRMobileSDK
 
 class LoginViewController: UIViewController, LoginScreenletDelegate {
 
@@ -27,14 +28,19 @@ class LoginViewController: UIViewController, LoginScreenletDelegate {
 			self.loginScreenlet.delegate = self
 		}
 	}
+
 	@IBOutlet weak var saveCredentialsLabel: UILabel!
 	@IBOutlet weak var forgetPasswordButton: UIButton!
 	@IBOutlet weak var signUpButton: UIButton!
 	@IBOutlet weak var loggedLabel: UILabel!
 	@IBOutlet weak var signOutButton: UIButton!
 	@IBOutlet weak var reloginButton: UIButton!
+	@IBOutlet weak var basicModeSwitch: UISwitch!
+	@IBOutlet weak var cookieModeSwitch: UISwitch!
+	@IBOutlet weak var OAuth2redirectModeSwitch: UISwitch!
+	@IBOutlet weak var OAuth2UsernameAndPasswordModeSwitch: UISwitch!
 
-	// MARK: Actions
+	//MARK: IBActions
 
 	@IBAction func signOutAction() {
 		SessionContext.currentContext?.removeStoredCredentials()
@@ -63,7 +69,36 @@ class LoginViewController: UIViewController, LoginScreenletDelegate {
 		loginScreenlet.saveCredentials = sender.isOn
 	}
 
-	// MARK: UIViewController
+	@IBAction func onLoginModeSelected(_ sender: UISwitch) {
+
+		basicModeSwitch.isOn = false
+		cookieModeSwitch.isOn = false
+		OAuth2redirectModeSwitch.isOn = false
+		OAuth2UsernameAndPasswordModeSwitch.isOn = false
+
+		let authType = AuthType(rawValue: sender.tag)!
+
+		sender.isOn = true
+
+		switch authType {
+		case .basic:
+			loginScreenlet.authType = .basic
+		case .cookie:
+			loginScreenlet.authType = .cookie
+			loginScreenlet.cookieExpirationTime = 20
+			loginScreenlet.shouldHandleCookieExpiration = true
+		case .oauth2Redirect:
+			loginScreenlet.authType = .oauth2Redirect
+			loginScreenlet.oauth2clientId = LiferayServerContext.stringPropertyForKey("clientIdRedirect")
+			loginScreenlet.oauth2redirectURL = LiferayServerContext.stringPropertyForKey("redirectUrl")
+		case .oauth2UsernameAndPassword:
+			loginScreenlet.authType = .oauth2UsernameAndPassword
+			loginScreenlet.oauth2clientId = LiferayServerContext.stringPropertyForKey("clientId")
+			loginScreenlet.oauth2clientSecret = LiferayServerContext.stringPropertyForKey("clientSecret")
+		}
+	}
+
+	//MARK: UIViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
