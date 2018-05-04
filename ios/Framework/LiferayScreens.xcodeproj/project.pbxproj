@@ -630,6 +630,18 @@
 		0BBEDA2E1D5B230E00F8CB31 /* ImageGalleryGridCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBEDA2A1D5B230E00F8CB31 /* ImageGalleryGridCell.xib */; };
 		0BBEDA2F1D5B230E00F8CB31 /* ImageGalleryView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBEDA2B1D5B230E00F8CB31 /* ImageGalleryView_default.swift */; };
 		0BBEDA301D5B230E00F8CB31 /* ImageGalleryView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBEDA2C1D5B230E00F8CB31 /* ImageGalleryView_default.xib */; };
+		0BC5A337209C8EFC005E2E57 /* ImageGalleryDeleteConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AA9209AF8C800EC2975 /* ImageGalleryDeleteConnector.swift */; };
+		0BC5A338209C8F03005E2E57 /* ImageGalleryPageLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AAA209AF8C800EC2975 /* ImageGalleryPageLiferayConnector.swift */; };
+		0BC5A339209C8F05005E2E57 /* ImageGalleryUploadConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AAB209AF8C800EC2975 /* ImageGalleryUploadConnector.swift */; };
+		0BC5A33A209C8F08005E2E57 /* ImageEntryUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AAC209AF8C800EC2975 /* ImageEntryUpload.swift */; };
+		0BC5A33B209C8F0A005E2E57 /* ImageGalleryScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AAD209AF8C800EC2975 /* ImageGalleryScreenlet.swift */; };
+		0BC5A33C209C8F0C005E2E57 /* ImageGalleryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AAE209AF8C800EC2975 /* ImageGalleryViewModel.swift */; };
+		0BC5A33D209C8F0F005E2E57 /* ImageUploadDetailViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AAF209AF8C800EC2975 /* ImageUploadDetailViewBase.swift */; };
+		0BC5A33E209C8F14005E2E57 /* ImageGalleryDeleteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AB1209AF8C800EC2975 /* ImageGalleryDeleteInteractor.swift */; };
+		0BC5A33F209C8F17005E2E57 /* ImageGalleryLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AB2209AF8C800EC2975 /* ImageGalleryLoadInteractor.swift */; };
+		0BC5A340209C8F19005E2E57 /* ImageGalleryUploadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AB3209AF8C800EC2975 /* ImageGalleryUploadInteractor.swift */; };
+		0BC5A341209C8F1B005E2E57 /* SyncManager+ImageGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AB4209AF8C800EC2975 /* SyncManager+ImageGallery.swift */; };
+		0BC5A342209C8F1E005E2E57 /* UploadProgressViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AB5209AF8C800EC2975 /* UploadProgressViewBase.swift */; };
 		0BC700CC1EB20795006DD475 /* WebView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC700CA1EB20795006DD475 /* WebView_default.swift */; };
 		0BC700CD1EB20795006DD475 /* WebView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BC700CB1EB20795006DD475 /* WebView_default.xib */; };
 		0BC700D11EB207B1006DD475 /* WebScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC700CF1EB207B1006DD475 /* WebScreenlet.swift */; };
@@ -3620,6 +3632,7 @@
 				0B7783461F95F60C001C9134 /* AssetDisplayViewModel.swift in Sources */,
 				0B7783471F95F60C001C9134 /* WebContentDisplayViewModel.swift in Sources */,
 				0B7783481F95F60C001C9134 /* UIImageView+Screens.swift in Sources */,
+				0BC5A339209C8F05005E2E57 /* ImageGalleryUploadConnector.swift in Sources */,
 				0B7783491F95F60C001C9134 /* WebScreenletConfiguration.swift in Sources */,
 				0B77834A1F95F60C001C9134 /* FileEntry.swift in Sources */,
 				0B77834B1F95F60C001C9134 /* SignUpScreenlet.swift in Sources */,
@@ -3631,10 +3644,12 @@
 				0B7783511F95F60C001C9134 /* MimeTypeable.swift in Sources */,
 				0B7783521F95F60C001C9134 /* CookieCredentialsStoreKeyChain.swift in Sources */,
 				0B7783531F95F60C001C9134 /* RatingDeleteLiferayConnector.swift in Sources */,
+				0BC5A341209C8F1B005E2E57 /* SyncManager+ImageGallery.swift in Sources */,
 				0B7783541F95F60C001C9134 /* ServerWriteConnectorInteractor.swift in Sources */,
 				0B7783551F95F60C001C9134 /* DDLListScreenlet.swift in Sources */,
 				0B7783561F95F60C001C9134 /* SignUpViewModel.swift in Sources */,
 				0B7783571F95F60C001C9134 /* DDLFormSubmitFormInteractor.swift in Sources */,
+				0BC5A342209C8F1E005E2E57 /* UploadProgressViewBase.swift in Sources */,
 				0B7783581F95F60C001C9134 /* LRScreenscommentService_v70.m in Sources */,
 				0B7783591F95F60C001C9134 /* CommentAddViewModel.swift in Sources */,
 				0B77835A1F95F60C001C9134 /* LoginCookieInteractor.swift in Sources */,
@@ -3671,6 +3686,7 @@
 				0B77837C1F95F60C001C9134 /* ServerConnectorInteractor.swift in Sources */,
 				0B77837D1F95F60C001C9134 /* UserPortraitDefaultProgressPresenter.swift in Sources */,
 				0B77837E1F95F60C001C9134 /* WebContentListPageLiferayConnector.swift in Sources */,
+				0BC5A33F209C8F17005E2E57 /* ImageGalleryLoadInteractor.swift in Sources */,
 				0B77837F1F95F60C001C9134 /* AssetListPageLiferayConnector.swift in Sources */,
 				0B7783801F95F60C001C9134 /* VideoDisplayScreenlet.swift in Sources */,
 				0B7783811F95F60C001C9134 /* DDLFieldDateTableCell_default.swift in Sources */,
@@ -3699,12 +3715,14 @@
 				0B7783981F95F60C001C9134 /* LRScreensratingsentryService_v70.m in Sources */,
 				0B7783991F95F60C001C9134 /* DDLListView_default.swift in Sources */,
 				0B77839A1F95F60C001C9134 /* LoadRatingsInteractor.swift in Sources */,
+				0BC5A337209C8EFC005E2E57 /* ImageGalleryDeleteConnector.swift in Sources */,
 				0B77839C1F95F60C001C9134 /* BlogsDisplayViewModel.swift in Sources */,
 				0B77839D1F95F60C001C9134 /* FileDisplayView_default.swift in Sources */,
 				0B77839E1F95F60C001C9134 /* DDMFieldStringWithOptions.swift in Sources */,
 				0B77839F1F95F60C001C9134 /* CommentAddLiferayConnector.swift in Sources */,
 				0B7783A01F95F60C001C9134 /* CommentDeleteInteractor.swift in Sources */,
 				0B7783A21F95F60C001C9134 /* DDLFormLoadLiferayConnector.swift in Sources */,
+				0BC5A338209C8F03005E2E57 /* ImageGalleryPageLiferayConnector.swift in Sources */,
 				0B7783A31F95F60C001C9134 /* CommentDeleteLiferayConnector.swift in Sources */,
 				0B7783A41F95F60C001C9134 /* CommentLoadInteractor.swift in Sources */,
 				0B7783A51F95F60C001C9134 /* DefaultProgressPresenter.swift in Sources */,
@@ -3764,9 +3782,11 @@
 				0B7783DF1F95F60C001C9134 /* ForgotPasswordScreenlet.swift in Sources */,
 				0B7783E01F95F60C001C9134 /* UIView+Screens.swift in Sources */,
 				0B7783E11F95F60C001C9134 /* ImageDisplayViewModel.swift in Sources */,
+				0BC5A33B209C8F0A005E2E57 /* ImageGalleryScreenlet.swift in Sources */,
 				0B7783E21F95F60C001C9134 /* GetUserByScreenNameLiferayConnectors.swift in Sources */,
 				0B7783E31F95F60C001C9134 /* NSDate+Screens.swift in Sources */,
 				0B7783E41F95F60C001C9134 /* CommentAddScreenlet.swift in Sources */,
+				0BC5A340209C8F19005E2E57 /* ImageGalleryUploadInteractor.swift in Sources */,
 				0B7783E51F95F60C001C9134 /* WebContentLoadBaseLiferayConnector.swift in Sources */,
 				0B7783E61F95F60C001C9134 /* WebContentListScreenlet.swift in Sources */,
 				0B7783E71F95F60C001C9134 /* CommentListScreenlet.swift in Sources */,
@@ -3801,11 +3821,14 @@
 				0B7784061F95F60C001C9134 /* DDLFieldDocumentlibraryPresenterViewController_default.swift in Sources */,
 				0B7784071F95F60C001C9134 /* RatingEntry.swift in Sources */,
 				0B7784081F95F60C001C9134 /* AssetListTableView.swift in Sources */,
+				0BC5A33D209C8F0F005E2E57 /* ImageUploadDetailViewBase.swift in Sources */,
 				0B7784091F95F60C001C9134 /* ForgotPasswordInteractor.swift in Sources */,
 				0B77840A1F95F60C001C9134 /* UpdateCurrentUserLiferayConnector.swift in Sources */,
 				0B77840B1F95F60C001C9134 /* DDLFormDefaultThemeConstants.swift in Sources */,
 				0B77840C1F95F60C001C9134 /* CacheMetadata.swift in Sources */,
 				0B77840D1F95F60C001C9134 /* DDLValuesParser.swift in Sources */,
+				0BC5A33A209C8F08005E2E57 /* ImageEntryUpload.swift in Sources */,
+				0BC5A33E209C8F14005E2E57 /* ImageGalleryDeleteInteractor.swift in Sources */,
 				0B77840E1F95F60C001C9134 /* DDLFieldRadioTableCell_default.swift in Sources */,
 				0B77840F1F95F60C001C9134 /* CommentListViewModel.swift in Sources */,
 				0B7784101F95F60C001C9134 /* FileDisplayViewModel.swift in Sources */,
@@ -3824,6 +3847,7 @@
 				0B77841E1F95F60C001C9134 /* ForgotPasswordView_default.swift in Sources */,
 				0B77841F1F95F60C001C9134 /* LRScreensuserService_v62.m in Sources */,
 				0B7784201F95F60C001C9134 /* CommentListView_default.swift in Sources */,
+				0BC5A33C209C8F0C005E2E57 /* ImageGalleryViewModel.swift in Sources */,
 				0B7784211F95F60C001C9134 /* CommentUpdateInteractor.swift in Sources */,
 				0B7784221F95F60C001C9134 /* LRScreensassetentryService_v70.m in Sources */,
 				0B7784231F95F60C001C9134 /* LRScreensddlrecordService_v70.m in Sources */,
