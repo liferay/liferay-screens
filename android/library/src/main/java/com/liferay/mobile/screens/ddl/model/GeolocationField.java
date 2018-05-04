@@ -63,22 +63,22 @@ public class GeolocationField extends Field<GeoLocation> {
 	protected boolean doValidate() {
 		GeoLocation currentValue = getCurrentValue();
 
-		if (currentValue == null) {
-			return false;
+		if (currentValue != null) {
+			double latitude = currentValue.getLatitude();
+			double longitude = currentValue.getLongitude();
+
+			if (latitude > 90.0 || latitude < -90.0) {
+				return false;
+			}
+
+			if (longitude > 180.0 || longitude < -180.0) {
+				return false;
+			}
+
+			return true;
+		} else {
+			return !isRequired();
 		}
-
-		double latitude = currentValue.getLatitude();
-		double longitude = currentValue.getLongitude();
-
-		if (latitude > 90.0 || latitude < -90.0) {
-			return false;
-		}
-
-		if (longitude > 180.0 || longitude < -180.0) {
-			return false;
-		}
-
-		return true;
 	}
 
 	@Override
