@@ -17,6 +17,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.annotation.IntegerRes;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -81,10 +82,10 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 
 	protected void createAlertDialog() {
 
-		AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.default_theme_dialog);
+		AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), getAlertDialogStyle());
 
 		LayoutInflater factory = LayoutInflater.from(getContext());
-		final View customDialogView = factory.inflate(R.layout.ddlfield_select_dialog_default, null);
+		final View customDialogView = factory.inflate(getAlertDialogLayout(), null);
 		TextView title = customDialogView.findViewById(R.id.liferay_dialog_title);
 		title.setText(getField().getLabel());
 
@@ -96,31 +97,15 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 		String[] labels = getOptionsLabels().toArray(new String[availableOptions.size()]);
 
 		if (getField().isMultiple()) {
-			final boolean[] checked = getCheckedOptions();
-			builder.setMultiChoiceItems(labels, checked, new DialogInterface.OnMultiChoiceClickListener() {
-				public void onClick(DialogInterface dialog, int whichButton, boolean isChecked) {
-					checked[whichButton] = isChecked;
-				}
-			});
-			builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					checkField(checked, availableOptions);
-					refresh();
-					alertDialog.dismiss();
-				}
-			});
-
-			builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-				@Override
-				public void onClick(DialogInterface dialog, int which) {
-					alertDialog.dismiss();
-				}
-			});
+			setupMultipleChoice(builder, availableOptions, labels);
 		} else {
-			builder.setItems(labels, selectOptionHandler);
+			setupSingleChoice(builder, selectOptionHandler, labels);
 		}
 		alertDialog = builder.create();
+	}
+
+	protected int getAlertDialogLayout() {
+		return R.layout.ddlfield_select_dialog_default;
 	}
 
 	protected DialogInterface.OnClickListener getAlertDialogListener() {
@@ -130,6 +115,10 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 				refresh();
 			}
 		};
+	}
+
+	protected int getAlertDialogStyle() {
+		return R.style.default_theme_dialog;
 	}
 
 	protected List<String> getOptionsLabels() {
@@ -148,6 +137,38 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 			checked[i] = getField().isSelected(availableOption);
 		}
 		return checked;
+	}
+
+	protected void setupMultipleChoice(AlertDialog.Builder builder,
+		final List<StringWithOptionsField.Option> availableOptions, String[] labels) {
+
+		final boolean[] checked = getCheckedOptions();
+		builder.setMultiChoiceItems(labels, checked, new DialogInterface.OnMultiChoiceClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton, boolean isChecked) {
+				checked[whichButton] = isChecked;
+			}
+		});
+		builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				checkField(checked, availableOptions);
+				refresh();
+				alertDialog.dismiss();
+			}
+		});
+
+		builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				alertDialog.dismiss();
+			}
+		});
+	}
+
+	protected void setupSingleChoice(AlertDialog.Builder builder,
+		DialogInterface.OnClickListener selectOptionHandler, String[] labels) {
+
+		builder.setItems(labels, selectOptionHandler);
 	}
 
 	private void checkField(boolean[] checked, List<StringWithOptionsField.Option> availableOptions) {

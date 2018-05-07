@@ -61,18 +61,24 @@ public class GeolocationField extends Field<GeoLocation> {
 
 	@Override
 	protected boolean doValidate() {
-		double latitude = getCurrentValue().getLatitude();
-		double longitude = getCurrentValue().getLongitude();
+		GeoLocation currentValue = getCurrentValue();
 
-		if (latitude > 90.0 || latitude < -90.0) {
-			return false;
+		if (currentValue != null) {
+			double latitude = currentValue.getLatitude();
+			double longitude = currentValue.getLongitude();
+
+			if (latitude > 90.0 || latitude < -90.0) {
+				return false;
+			}
+
+			if (longitude > 180.0 || longitude < -180.0) {
+				return false;
+			}
+
+			return true;
+		} else {
+			return !isRequired();
 		}
-
-		if (longitude > 180.0 || longitude < -180.0) {
-			return false;
-		}
-
-		return true;
 	}
 
 	@Override

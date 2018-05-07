@@ -8,6 +8,7 @@
 	<color name="textColorPrimary_default">@color/textColorPrimary</color>
 	<color name="textColorSecondary_default">@color/textColorSecondary</color>
 
+	<color name="colorRequiredField">#FFFF0000</color>
 	<color name="pure_red_default">#FFFF0000</color>
 	<color name="red_default">#FFE00000</color>
 	<color name="clear_red_default">#FFFFDCC8</color>
