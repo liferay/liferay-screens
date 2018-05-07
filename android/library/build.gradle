@@ -25,9 +25,6 @@ android {
 		}
 	}
 
-	buildTypes {
-		xamarin {}
-	}
 	sourceSets {
 		release {
 			java.srcDirs = ['src/debug/java']

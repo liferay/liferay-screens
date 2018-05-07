@@ -39,4 +39,3 @@ include ':westerosemployees-hybrid'
 project(':westerosemployees-hybrid').projectDir = new File(settingsDir, '/samples/westerosemployees-hybrid')
 
 include ':liferay-services-integration'
-
