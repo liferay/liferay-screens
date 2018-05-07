@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.testapp.postings.view.BlogPostingDetailCustom
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	>
+
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		>
+
+		<RelativeLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:clipToPadding="false"
+			android:padding="20dp"
+			>
+
+			<TextView
+				android:id="@+id/headline"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:textColor="@color/colorPrimaryText"
+				android:textSize="25sp"
+				android:textStyle="bold"
+				/>
+
+			<com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
+				android:id="@+id/creator_avatar"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@id/headline"
+				android:layout_marginTop="15dp"
+				app:scenario="portrait_small"
+				/>
+
+			<TextView
+				android:id="@+id/by"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_below="@id/headline"
+				android:layout_marginLeft="10dp"
+				android:layout_marginStart="10dp"
+				android:layout_marginTop="12dp"
+				android:layout_toEndOf="@+id/creator_avatar"
+				android:layout_toRightOf="@+id/creator_avatar"
+				android:text="By "
+				android:textColor="@color/colorSecondaryText"
+				android:textSize="18sp"
+				/>
+
+			<com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
+				android:id="@+id/creator_detail"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentEnd="true"
+				android:layout_alignParentRight="true"
+				android:layout_below="@id/headline"
+				android:layout_marginTop="12dp"
+				android:layout_toEndOf="@+id/by"
+				android:layout_toRightOf="@+id/by"
+				app:scenario="detail-small"
+				/>
+
+			<TextView
+				android:id="@+id/create_date"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_alignParentEnd="true"
+				android:layout_alignParentRight="true"
+				android:layout_below="@id/creator_detail"
+				android:layout_marginLeft="10dp"
+				android:layout_marginStart="10dp"
+				android:layout_marginTop="3dp"
+				android:layout_toEndOf="@+id/creator_avatar"
+				android:layout_toRightOf="@+id/creator_avatar"
+				android:textColor="@color/colorSecondaryText"
+				android:textSize="16sp"
+				/>
+
+			<TextView
+				android:id="@+id/alternative_headline"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_below="@id/create_date"
+				android:layout_marginTop="15dp"
+				android:textColor="@color/colorSecondaryText"
+				android:textSize="20sp"
+				android:textStyle="italic"
+				/>
+
+			<TextView
+				android:id="@+id/article_body"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_below="@+id/alternative_headline"
+				android:lineSpacingExtra="2dp"
+				android:paddingTop="10dp"
+				android:textSize="18sp"
+				/>
+
+		</RelativeLayout>
+
+	</ScrollView>
+
+</com.liferay.mobile.screens.testapp.postings.view.BlogPostingDetailCustom>
