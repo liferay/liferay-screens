@@ -14,9 +14,9 @@
 
 package com.liferay.mobile.screens.thingscreenlet.screens.views
 
-import com.liferay.mobile.screens.thingscreenlet.model.Thing
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
+import com.liferay.mobile.sdk.apio.model.Thing
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.error
 

@@ -15,9 +15,9 @@
 package com.liferay.mobile.screens.thingscreenlet.screens.events
 
 import android.view.View
-import com.liferay.mobile.screens.thingscreenlet.model.Thing
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
+import com.liferay.mobile.sdk.apio.model.Thing
 
 sealed class Event<T> {
 	class Click(val view: View, val thing: Thing) : Event<View.OnClickListener>()

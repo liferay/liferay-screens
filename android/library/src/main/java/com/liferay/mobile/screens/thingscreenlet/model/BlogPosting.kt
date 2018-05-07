@@ -18,6 +18,7 @@ import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Row
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
+import com.liferay.mobile.sdk.apio.model.Relation
 import java.util.Date
 
 data class BlogPosting(

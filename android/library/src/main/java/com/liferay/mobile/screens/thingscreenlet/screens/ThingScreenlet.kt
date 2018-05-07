@@ -20,13 +20,10 @@ import android.view.View
 import android.widget.FrameLayout
 import com.github.kittinunf.result.failure
 import com.liferay.mobile.screens.R
-import com.liferay.mobile.screens.thingscreenlet.delegates.observe
 import com.liferay.mobile.screens.thingscreenlet.extensions.inflate
-import com.liferay.mobile.screens.thingscreenlet.fetch
 import com.liferay.mobile.screens.thingscreenlet.model.BlogPosting
 import com.liferay.mobile.screens.thingscreenlet.model.Collection
 import com.liferay.mobile.screens.thingscreenlet.model.Person
-import com.liferay.mobile.screens.thingscreenlet.model.Thing
 import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
 import com.liferay.mobile.screens.thingscreenlet.screens.events.ScreenletEvents
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
@@ -34,7 +31,10 @@ import com.liferay.mobile.screens.thingscreenlet.screens.views.Custom
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Row
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
-import okhttp3.HttpUrl
+import com.liferay.mobile.sdk.apio.delegates.observe
+import com.liferay.mobile.sdk.apio.fetch
+import com.liferay.mobile.sdk.apio.model.Thing
+import com.squareup.okhttp.HttpUrl
 
 open class BaseScreenlet @JvmOverloads constructor(
 	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) :

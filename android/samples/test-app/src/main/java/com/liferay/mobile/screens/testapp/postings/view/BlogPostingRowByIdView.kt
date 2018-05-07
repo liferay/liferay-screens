@@ -19,12 +19,12 @@ import android.util.AttributeSet
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
-import com.liferay.mobile.screens.thingscreenlet.delegates.converter
 import com.liferay.mobile.screens.thingscreenlet.model.BlogPosting
-import com.liferay.mobile.screens.thingscreenlet.model.Thing
 import com.liferay.mobile.screens.testapp.R
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
+import com.liferay.mobile.sdk.apio.delegates.converter
+import com.liferay.mobile.sdk.apio.model.Thing
 
 class BlogPostingRowByIdView @JvmOverloads constructor(
 	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : BaseView,

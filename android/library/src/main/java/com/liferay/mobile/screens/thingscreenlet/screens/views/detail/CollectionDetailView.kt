@@ -22,14 +22,14 @@ import android.view.View
 import android.widget.RelativeLayout
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
-import com.liferay.mobile.screens.thingscreenlet.delegates.converter
 import com.liferay.mobile.screens.thingscreenlet.model.Collection
-import com.liferay.mobile.screens.thingscreenlet.model.Thing
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.adapter.ThingAdapter
 import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
+import com.liferay.mobile.sdk.apio.delegates.converter
+import com.liferay.mobile.sdk.apio.model.Thing
 
 open class CollectionDetailView @JvmOverloads constructor(
 	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : BaseView,

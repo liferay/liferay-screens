@@ -21,9 +21,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.thingscreenlet.delegates.bind
-import com.liferay.mobile.screens.thingscreenlet.delegates.observeNonNull
-import com.liferay.mobile.screens.thingscreenlet.model.Thing
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
+import com.liferay.mobile.sdk.apio.delegates.observeNonNull
+import com.liferay.mobile.sdk.apio.model.Thing
 
 class ThingView @JvmOverloads constructor(
 	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : BaseView,

@@ -17,15 +17,15 @@ package com.liferay.mobile.screens.thingscreenlet.screens.adapter
 import android.support.v7.widget.RecyclerView.Adapter
 import android.view.View
 import android.view.ViewGroup
-import com.liferay.mobile.screens.thingscreenlet.delegates.convert
 import com.liferay.mobile.screens.thingscreenlet.extensions.inflate
-import com.liferay.mobile.screens.thingscreenlet.fetch
 import com.liferay.mobile.screens.thingscreenlet.model.Collection
-import com.liferay.mobile.screens.thingscreenlet.model.Thing
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
-import okhttp3.HttpUrl
+import com.liferay.mobile.sdk.apio.delegates.convert
+import com.liferay.mobile.sdk.apio.fetch
+import com.liferay.mobile.sdk.apio.model.Thing
+import com.squareup.okhttp.HttpUrl
 
 class ThingAdapter(collection: Collection, val listener: Listener) :
 	Adapter<ThingViewHolder>(), ThingViewHolder.Listener {
