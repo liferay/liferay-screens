@@ -18,28 +18,28 @@ import com.liferay.mobile.screens.thingscreenlet.model.BlogPosting
 import com.liferay.mobile.screens.thingscreenlet.model.Collection
 import com.liferay.mobile.screens.thingscreenlet.model.Pages
 import com.liferay.mobile.screens.thingscreenlet.model.Person
+import com.liferay.mobile.sdk.apio.delegates.converters
 import com.liferay.mobile.sdk.apio.extensions.asDate
 import com.liferay.mobile.sdk.apio.graph
 import com.liferay.mobile.sdk.apio.model.Relation
 import com.liferay.mobile.sdk.apio.model.Thing
 import com.liferay.mobile.sdk.apio.model.get
-import com.liferay.mobile.sdk.apio.delegates.addConverter;
-
 
 class ConverterDelegate {
 
     companion object {
         @JvmStatic
         fun initializeConverter() {
-            addConverter({ it: Thing ->
+            converters[BlogPosting::class.java.name] = { it: Thing ->
                 BlogPosting(
                     it["headline"] as? String, it["alternativeHeadline"] as? String, it["articleBody"] as? String,
                     it["creator"] as? Relation, (it["dateCreated"] as? String)?.asDate())
-            }, BlogPosting::class.java.name)
-            addConverter({ it: Thing ->
-                val member = (it["member"] as? List<Relation>)?.map {
+            }
+
+            converters[Collection::class.java.name] = { it: Thing ->
+                val member = (it["member"] as? List<Relation>)?.mapNotNull {
                     graph[it.id]?.value
-                }?.filterNotNull()
+                }
 
                 val totalItems = (it["totalItems"] as? Double)?.toInt()
 
@@ -48,8 +48,9 @@ class ConverterDelegate {
                 val pages = nextPage?.let(::Pages)
 
                 Collection(member, totalItems, pages)
-            }, Collection::class.java.name)
-            addConverter({ it: Thing ->
+            }
+
+            converters[Person::class.java.name] = { it: Thing ->
                 val name = it["name"] as? String
 
                 val email = it["email"] as? String
@@ -61,7 +62,7 @@ class ConverterDelegate {
                 val image = it["image"] as? String
 
                 Person(name, email, jobTitle, birthDate, image)
-            }, Person::class.java.name)
+            }
         }
     }
 }
