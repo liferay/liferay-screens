@@ -23,8 +23,6 @@ import com.liferay.mobile.screens.ddl.form.connector.DLAppConnector70;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDLRecordConnector70;
 import com.liferay.mobile.screens.ddl.form.connector.ScreensDDMStructureConnector70;
-import com.liferay.mobile.screens.ddm.form.connector.FormInstanceConnector;
-import com.liferay.mobile.screens.ddm.form.connector.FormInstanceRecordConnector;
 import com.liferay.mobile.screens.rating.connector.ScreensRatingsConnector;
 import com.liferay.mobile.screens.rating.connector.ScreensRatingsConnector70;
 import com.liferay.mobile.screens.webcontent.display.connector.JournalContentConnector;
@@ -100,13 +98,4 @@ public class ServiceVersionFactory70 implements ServiceVersionFactory {
 		return new CommentConnector70(session);
 	}
 
-	@Override
-	public FormInstanceConnector getFormInstanceConnector(Session session) {
-		return null;
-	}
-
-	@Override
-	public FormInstanceRecordConnector getFormInstanceRecordConnector(Session session) {
-		return null;
-	}
 }

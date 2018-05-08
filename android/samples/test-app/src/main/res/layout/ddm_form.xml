@@ -4,12 +4,11 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.liferay.mobile.screens.ddm.form.DDMFormScreenlet
+    <com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
         android:id="@+id/ddm_form_screenlet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cachePolicy="REMOTE_FIRST"
-        app:formInstanceId="36511"
-        app:userId="100"/>
+        />
+        <!--app:layoutId="ddm_form_default"-->
 
 </LinearLayout>
