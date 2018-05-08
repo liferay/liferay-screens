@@ -81,6 +81,7 @@ class ThingScreenlet @JvmOverloads constructor(
 
 	val baseView: BaseView? get() = layout as? BaseView
 
+	@JvmOverloads
 	fun load(thingId: String, credentials: String? = null, scenario: Scenario? = null,
 		onComplete: ((ThingScreenlet) -> Unit)? = null) {
 
