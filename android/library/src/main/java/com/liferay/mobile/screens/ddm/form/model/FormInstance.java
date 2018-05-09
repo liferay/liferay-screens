@@ -23,12 +23,47 @@ public class FormInstance {
 
 	private long formInstanceId;
 	private DDMStructure ddmStructure;
-
-	public FormInstance() { }
+	private boolean requiredAuthentication;
+	private boolean requiredCaptcha;
+	private String redirectURL;
 
 	public FormInstance(long formInstanceId, DDMStructure ddmStructure) {
 		this.formInstanceId = formInstanceId;
 		this.ddmStructure = ddmStructure;
+	}
+
+	public FormInstance(long formInstanceId, DDMStructure ddmStructure, boolean requiredAuthentication,
+		boolean requiredCaptcha, String redirectURL) {
+
+		this.formInstanceId = formInstanceId;
+		this.ddmStructure = ddmStructure;
+		this.requiredAuthentication = requiredAuthentication;
+		this.requiredCaptcha = requiredCaptcha;
+		this.redirectURL = redirectURL;
+	}
+
+	public boolean isRequiredAuthentication() {
+		return requiredAuthentication;
+	}
+
+	public void setRequiredAuthentication(boolean requiredAuthentication) {
+		this.requiredAuthentication = requiredAuthentication;
+	}
+
+	public boolean isRequiredCaptcha() {
+		return requiredCaptcha;
+	}
+
+	public void setRequiredCaptcha(boolean requiredCaptcha) {
+		this.requiredCaptcha = requiredCaptcha;
+	}
+
+	public String getRedirectURL() {
+		return redirectURL;
+	}
+
+	public void setRedirectURL(String redirectURL) {
+		this.redirectURL = redirectURL;
 	}
 
 	public long getFormInstanceId() {

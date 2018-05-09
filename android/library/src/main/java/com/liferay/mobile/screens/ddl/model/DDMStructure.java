@@ -5,6 +5,7 @@ import android.os.Parcelable;
 import com.liferay.mobile.screens.ddl.DDMStructureParser;
 import com.liferay.mobile.screens.ddl.JsonParser;
 import com.liferay.mobile.screens.ddl.XSDParser;
+import com.liferay.mobile.screens.ddm.form.model.SuccessPage;
 import com.liferay.mobile.screens.util.LiferayLocale;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -112,6 +113,10 @@ public class DDMStructure implements Parcelable {
 
 	public void setLocale(Locale locale) {
 		this.locale = locale;
+	}
+
+	public SuccessPage getSuccessPage() {
+		return successPage;
 	}
 
 	public void parse(JSONObject jsonObject) throws JSONException {

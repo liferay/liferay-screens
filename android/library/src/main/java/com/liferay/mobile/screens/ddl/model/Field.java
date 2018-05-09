@@ -36,6 +36,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	private String name;
 	private String label;
 	private String tip;
+	private String placeHolder;
 	private boolean readOnly;
 	private boolean repeatable;
 	private boolean required;
@@ -81,6 +82,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		name = getAttributeStringValue(attributes, "name");
 		label = getAttributeStringValue(attributes, "label");
 		tip = getAttributeStringValue(attributes, "tip");
+		placeHolder = getAttributeStringValue(attributes, "placeHolder");
 
 		readOnly = Boolean.valueOf(getAttributeStringValue(attributes, "readOnly"));
 		repeatable = Boolean.valueOf(getAttributeStringValue(attributes, "repeatable"));
@@ -110,6 +112,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		name = in.readString();
 		label = in.readString();
 		tip = in.readString();
+		placeHolder = in.readString();
 
 		readOnly = (in.readInt() == 1);
 		repeatable = (in.readInt() == 1);
@@ -212,6 +215,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		return tip;
 	}
 
+	public String getPlaceHolder() {
+		return placeHolder;
+	}
+
 	public T getPredefinedValue() {
 		return predefinedValue;
 	}
@@ -263,6 +270,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		destination.writeString(name);
 		destination.writeString(label);
 		destination.writeString(tip);
+		destination.writeString(placeHolder);
 
 		destination.writeInt(readOnly ? 1 : 0);
 		destination.writeInt(repeatable ? 1 : 0);
