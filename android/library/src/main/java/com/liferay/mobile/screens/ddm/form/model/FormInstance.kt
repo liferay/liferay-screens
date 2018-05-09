@@ -21,14 +21,14 @@ import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
 
 /**
  * @author Paulo Cruz
- * @author Sarai Díaz
+ * @author Sarai Díaz García
  */
-data class FormInstance(
+data class FormInstance @JvmOverloads constructor(
     val formInstanceId: Long,
     val ddmStructure: DDMStructure,
-    val isRequiredAuthentication: Boolean,
-    val isRequiredCaptcha: Boolean,
-    val redirectURL: String?) {
+    val isRequiredAuthentication: Boolean = false,
+    val isRequiredCaptcha: Boolean = false,
+    val redirectURL: String? = null) {
 
     companion object {
         val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
