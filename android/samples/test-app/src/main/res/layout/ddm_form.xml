@@ -8,7 +8,6 @@
         android:id="@+id/ddm_form_screenlet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutId="@layout/ddm_form_default"
         />
 
 
