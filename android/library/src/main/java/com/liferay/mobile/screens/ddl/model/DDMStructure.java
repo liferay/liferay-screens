@@ -46,6 +46,7 @@ public class DDMStructure implements Parcelable {
 	private String structureId;
 	private Long classNameId;
 	private String classPK;
+	private SuccessPage successPage;
 
 	public DDMStructure() {
 		super();
