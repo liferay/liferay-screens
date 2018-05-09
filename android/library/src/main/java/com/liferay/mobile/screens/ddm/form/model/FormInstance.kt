@@ -15,9 +15,13 @@
 package com.liferay.mobile.screens.ddm.form.model
 
 import com.liferay.mobile.screens.R
-import com.liferay.mobile.screens.ddl.model.DDMStructure
+import com.liferay.mobile.screens.ddl.model.*
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
+import com.liferay.mobile.sdk.apio.model.Relation
+import com.liferay.mobile.sdk.apio.model.Thing
+import com.liferay.mobile.sdk.apio.model.get
+import java.util.*
 
 /**
  * @author Paulo Cruz
@@ -36,5 +40,103 @@ data class FormInstance @JvmOverloads constructor(
             mutableMapOf(
                 Detail to R.layout.ddm_form_default
             )
+
+        val converter: (Thing) -> Any = { it: Thing ->
+
+            val name = it["name"] as String
+            val description = it["description"] as String
+
+            val structureRelation = it.attributes["structure"] as Relation
+
+            val structureDescription = structureRelation["description"] as String
+            val structureName = structureRelation["name"] as String
+
+            val textFieldAttributes = mapOf(
+                "dataType" to Field.DataType.STRING.value,
+                "readOnly" to false,
+                "type" to Field.EditorType.TEXT.value,
+                "required" to false,
+                "showLabel" to true,
+                "repeatable" to false,
+                "label" to "TextField single",
+                "name" to "TextFieldSingle",
+                "tip" to "TextField hint",
+                "placeHolder" to ""
+            )
+
+            val textField = StringField(textFieldAttributes, Locale.ENGLISH, Locale.ENGLISH)
+
+            val textAreaAttributes = mapOf(
+                "dataType" to Field.DataType.STRING.value,
+                "readOnly" to false,
+                "type" to Field.EditorType.TEXT_AREA.value,
+                "required" to false,
+                "showLabel" to true,
+                "repeatable" to false,
+                "label" to "TextField multiple",
+                "name" to "TextFieldMultiple",
+                "tip" to "TextField multiple hint",
+                "placeHolder" to ""
+            )
+
+            val textAreaField = StringField(textAreaAttributes, Locale.ENGLISH, Locale.ENGLISH)
+
+            val checkBoxMultipleAttributes = mapOf(
+                "dataType" to Field.DataType.STRING.value,
+                "readOnly" to false,
+                "type" to Field.EditorType.CHECKBOX_MULTIPLE.value,
+                "required" to false,
+                "showLabel" to true,
+                "repeatable" to false,
+                "label" to "CheckboxField multiple",
+                "name" to "CheckboxFieldMultiple",
+                "tip" to "Checkbox multiple hint",
+                "showAsSwitcher" to false,
+                "placeHolder" to ""
+            )
+
+            val checkBoxMultipleField = CheckboxMultipleField(checkBoxMultipleAttributes, Locale.ENGLISH, Locale.ENGLISH)
+
+            val dateAttributes = mapOf(
+                "dataType" to Field.DataType.DATE.value,
+                "readOnly" to false,
+                "type" to Field.EditorType.DATE.value,
+                "required" to false,
+                "showLabel" to true,
+                "repeatable" to false,
+                "label" to "DateField",
+                "name" to "DateField",
+                "tip" to "DateField hint",
+                "placeHolder" to ""
+            )
+
+            val dateField = DateField(dateAttributes, Locale.ENGLISH, Locale.ENGLISH)
+
+            val numberAttributes = mapOf(
+                "dataType" to Field.DataType.NUMBER.value,
+                "readOnly" to false,
+                "type" to Field.EditorType.INTEGER.value,
+                "required" to false,
+                "showLabel" to true,
+                "repeatable" to false,
+                "label" to "Number",
+                "name" to "Number",
+                "tip" to "Number hint",
+                "placeHolder" to ""
+            )
+
+            val numberField = NumberField(numberAttributes, Locale.ENGLISH, Locale.ENGLISH)
+
+            val fields = ArrayList<Field<*>>()
+            fields.add(textField)
+            fields.add(textAreaField)
+            fields.add(checkBoxMultipleField)
+            fields.add(dateField)
+            fields.add(numberField)
+
+            val ddmStructure = DDMStructure(structureName, structureDescription, fields)
+
+            FormInstance(name, description, ddmStructure)
+        }
     }
 }

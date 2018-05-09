@@ -28,6 +28,7 @@ class ConverterDelegate {
             converters[BlogPosting::class.java.name] = BlogPosting.converter
             converters[Collection::class.java.name] = Collection.converter
             converters[Person::class.java.name] = Person.converter
+            converters[FormInstance::class.java.name] = FormInstance.converter
         }
     }
 }
