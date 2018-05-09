@@ -18,20 +18,38 @@ import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Custom
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
-import java.util.Date
+import com.liferay.mobile.sdk.apio.extensions.asDate
+import com.liferay.mobile.sdk.apio.model.Thing
+import com.liferay.mobile.sdk.apio.model.get
+import java.util.*
 
 data class Person(
-	val name: String?,
-	val email: String?,
-	val jobTitle: String?,
-	val birthDate: Date?,
-	val image: String?) {
+    val name: String?,
+    val email: String?,
+    val jobTitle: String?,
+    val birthDate: Date?,
+    val image: String?) {
 
-	companion object {
-		val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
-			mutableMapOf(
-				Detail to R.layout.person_detail_default,
-				Custom("portrait") to R.layout.person_portrait_default
-			)
-	}
+    companion object {
+        val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
+            mutableMapOf(
+                Detail to R.layout.person_detail_default,
+                Custom("portrait") to R.layout.person_portrait_default
+            )
+
+        val converter: (Thing) -> Any = { it: Thing ->
+
+            val name = it["name"] as? String
+
+            val email = it["email"] as? String
+
+            val jobTitle = it["jobTitle"] as? String
+
+            val birthDate = (it["birthDate"] as? String)?.asDate()
+
+            val image = it["image"] as? String
+
+            Person(name, email, jobTitle, birthDate, image)
+        }
+    }
 }
