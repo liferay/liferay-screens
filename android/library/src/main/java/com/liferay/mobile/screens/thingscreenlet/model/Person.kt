@@ -21,7 +21,11 @@ import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
 import java.util.Date
 
 data class Person(
-	val name: String?, val email: String?, val jobTitle: String?, val birthDate: Date?, val image: String?) {
+	val name: String?,
+	val email: String?,
+	val jobTitle: String?,
+	val birthDate: Date?,
+	val image: String?) {
 
 	companion object {
 		val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
