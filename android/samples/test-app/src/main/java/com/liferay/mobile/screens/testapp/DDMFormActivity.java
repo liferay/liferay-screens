@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet;
-import com.liferay.mobile.sdk.auth.BasicAuthentication;
+import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail;
 import okhttp3.Credentials;
 
 /**
@@ -31,7 +31,7 @@ public class DDMFormActivity extends ThemeActivity {
 
         String url = "http://192.168.50.125:8080/o/api/p/form-instance/36582";
 
-        screenlet.load(url, Credentials.basic("test@liferay.com", "test"));
+        screenlet.load(url, Credentials.basic("test@liferay.com", "test"), Detail.INSTANCE);
     }
 
     private void initScreenletFromIntent(Intent intent) {
