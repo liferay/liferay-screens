@@ -10,18 +10,24 @@ import com.liferay.mobile.screens.ddl.model.DDMStructure;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.StringField;
 import com.liferay.mobile.screens.ddm.form.model.FormInstance;
+import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet;
+import com.liferay.mobile.screens.thingscreenlet.screens.events.Event;
+import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView;
+import com.liferay.mobile.sdk.apio.model.Thing;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
  * @author Paulo Cruz
  */
-public class DDMFormView extends ScrollView implements View.OnClickListener {
+public class DDMFormView extends ScrollView implements BaseView {
 
 	private static final Map<Field.EditorType, Integer> DEFAULT_LAYOUT_IDS = new HashMap<>(1);
 
@@ -42,8 +48,9 @@ public class DDMFormView extends ScrollView implements View.OnClickListener {
 
 	private final Map<Field.EditorType, Integer> layoutIds = new HashMap<>();
 	private final Map<String, Integer> customLayoutIds = new HashMap<>();
-
 	protected ViewGroup fieldsContainerView;
+	private ThingScreenlet thingScreenlet;
+	private Thing thing;
 
 	public DDMFormView(Context context) {
 		super(context);
@@ -73,8 +80,10 @@ public class DDMFormView extends ScrollView implements View.OnClickListener {
 	//}
 
 	@Override
-	public void onClick(View view) {
+	protected void onFinishInflate() {
+		super.onFinishInflate();
 
+		fieldsContainerView = findViewById(R.id.ddmfields_container);
 	}
 
 	private FormInstance mockFormInstance() throws JSONException {
@@ -119,13 +128,50 @@ public class DDMFormView extends ScrollView implements View.OnClickListener {
 		ddmStructure.parse(jsonObject);
 		ddmStructure.setFields(fields);
 
-		return new FormInstance(36582, ddmStructure);
+		return new FormInstance(36582, ddmStructure, false, false, null);
+	}
+
+	@Nullable
+	@Override
+	public ThingScreenlet getScreenlet() {
+		return thingScreenlet;
 	}
 
 	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
+	public void setScreenlet(@Nullable ThingScreenlet thingScreenlet) {
+		this.thingScreenlet = thingScreenlet;
+	}
 
-		fieldsContainerView = findViewById(R.id.ddmfields_container);
+	@Nullable
+	@Override
+	public Thing getThing() {
+		return thing;
+	}
+
+	@Override
+	public void setThing(@Nullable Thing thing) {
+		this.thing = thing;
+	}
+
+	@NotNull
+	@Override
+	public String getLoggerTag() {
+		return null;
+	}
+
+	@Nullable
+	@Override
+	public <T> T sendEvent(@NotNull Event<T> event) {
+		return null;
+	}
+
+	@Override
+	public void onDestroy() {
+
+	}
+
+	@Override
+	public void showError(@Nullable String message) {
+
 	}
 }
