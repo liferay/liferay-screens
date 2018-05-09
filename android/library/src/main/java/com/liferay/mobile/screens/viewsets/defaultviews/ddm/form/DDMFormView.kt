@@ -3,9 +3,16 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddm.form
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.ScrollView
+import android.widget.TextView
 import com.liferay.mobile.screens.R
+import com.liferay.mobile.screens.base.BaseScreenlet
+import com.liferay.mobile.screens.base.interactor.Interactor
+import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
+import com.liferay.mobile.screens.ddl.form.view.FormViewModel
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.ddm.form.model.FormInstance
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
@@ -14,7 +21,6 @@ import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.mobile.sdk.apio.delegates.converter
 import com.liferay.mobile.sdk.apio.model.Thing
-import java.util.*
 
 /**
  * @author Paulo Cruz
@@ -24,7 +30,7 @@ class DDMFormView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : BaseView,
     ScrollView(context, attrs, defStyleAttr) {
 
-    private val layoutIds = HashMap<Field.EditorType, Int>()
+    private val layoutIds = mutableMapOf<Field.EditorType, Int?>()
     private val fieldsContainerView by bindNonNull<LinearLayout>(R.id.ddmfields_container)
 
     override var screenlet: ThingScreenlet? = null
@@ -33,19 +39,15 @@ class DDMFormView @JvmOverloads constructor(
         for (field in it.ddmStructure.fields) {
             addFieldView(field)
         }
-
-//        it.creator?.also {
-//            creator.load(it.id)
-//            creator.setOnClickListener { view ->
-//                sendEvent(Event.Click(view, Thing(it.id, listOf("Person"), emptyMap())))?.onClick(view)
-//            }
-//        }
     }
 
     private fun addFieldView(field: Field<*>) {
         val layoutId = DEFAULT_LAYOUT_IDS[field.editorType]
 
         val view = LayoutInflater.from(context).inflate(layoutId!!, this, false)
+
+        val viewModel = view as DDLFieldViewModel<*>
+        viewModel.field = field
 
         fieldsContainerView.addView(view)
     }

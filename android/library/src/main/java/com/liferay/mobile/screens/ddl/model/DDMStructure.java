@@ -52,6 +52,15 @@ public class DDMStructure implements Parcelable {
 		super();
 	}
 
+	public DDMStructure(String name, String description, List<Field> fields) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.fields = fields;
+
+		parsed = true;
+	}
+
 	public DDMStructure(Locale locale) {
 		this.locale = locale;
 		parsed = false;

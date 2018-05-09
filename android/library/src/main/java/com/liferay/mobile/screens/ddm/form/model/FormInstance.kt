@@ -24,7 +24,8 @@ import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
  * @author Sarai Díaz García
  */
 data class FormInstance @JvmOverloads constructor(
-    val formInstanceId: Long,
+    val name: String,
+    val description: String,
     val ddmStructure: DDMStructure,
     val isRequiredAuthentication: Boolean = false,
     val isRequiredCaptcha: Boolean = false,
