@@ -94,6 +94,10 @@ data class FormInstance @JvmOverloads constructor(
                 getMockMapping(Field.DataType.STRING.value, Field.EditorType.RADIO.value, availableOptionsData),
                 Locale.ENGLISH, Locale.ENGLISH)
 
+            val selectField = StringWithOptionsField(
+                getMockMapping(Field.DataType.STRING.value, Field.EditorType.SELECT.value, availableOptionsData),
+                Locale.ENGLISH, Locale.ENGLISH)
+
             val documentField = DocumentField(
                 getMockMapping(Field.DataType.STRING.value, Field.EditorType.DOCUMENT.value),
                 Locale.ENGLISH, Locale.ENGLISH)
@@ -108,6 +112,7 @@ data class FormInstance @JvmOverloads constructor(
             fields.add(numberField)
             fields.add(decimalField)
             fields.add(radioField)
+            fields.add(selectField)
             fields.add(documentField)
 
             val ddmStructure = DDMStructure(structureName, structureDescription, fields)

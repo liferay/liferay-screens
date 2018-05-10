@@ -72,12 +72,12 @@ class DDMFormView @JvmOverloads constructor(
             DEFAULT_LAYOUT_IDS[Field.EditorType.CHECKBOX] = R.layout.ddlfield_checkbox_default;
             DEFAULT_LAYOUT_IDS[Field.EditorType.CHECKBOX_MULTIPLE] = R.layout.ddmfield_checkbox_multiple_default;
             DEFAULT_LAYOUT_IDS[Field.EditorType.DATE] = R.layout.ddlfield_date_default;
-            DEFAULT_LAYOUT_IDS.put(Field.EditorType.NUMBER, R.layout.ddlfield_number_default);
+            DEFAULT_LAYOUT_IDS[Field.EditorType.NUMBER] = R.layout.ddlfield_number_default;
             DEFAULT_LAYOUT_IDS[Field.EditorType.INTEGER] = R.layout.ddlfield_number_default;
-            DEFAULT_LAYOUT_IDS.put(Field.EditorType.DECIMAL, R.layout.ddlfield_number_default);
+            DEFAULT_LAYOUT_IDS[Field.EditorType.DECIMAL] = R.layout.ddlfield_number_default;
             DEFAULT_LAYOUT_IDS[Field.EditorType.RADIO] = R.layout.ddlfield_radio_default;
             DEFAULT_LAYOUT_IDS[Field.EditorType.TEXT] = R.layout.ddlfield_text_default
-//            DEFAULT_LAYOUT_IDS.put(Field.EditorType.SELECT, R.layout.ddlfield_select_default);
+            DEFAULT_LAYOUT_IDS.put(Field.EditorType.SELECT, R.layout.ddlfield_select_default);
             DEFAULT_LAYOUT_IDS[Field.EditorType.TEXT_AREA] = R.layout.ddlfield_text_area_default
             DEFAULT_LAYOUT_IDS[Field.EditorType.DOCUMENT] = R.layout.ddlfield_document_default;
             //DEFAULT_LAYOUT_IDS.put(Field.EditorType.GEO, R.layout.ddlfield_geo_default);
