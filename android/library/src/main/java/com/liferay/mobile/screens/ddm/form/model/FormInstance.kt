@@ -79,8 +79,16 @@ data class FormInstance @JvmOverloads constructor(
                 getMockMapping(Field.DataType.DATE.value, Field.EditorType.DATE.value),
                 Locale.ENGLISH, Locale.ENGLISH)
 
-            val numberField = NumberField(
+            val integerField = NumberField(
                 getMockMapping(Field.DataType.NUMBER.value, Field.EditorType.INTEGER.value),
+                Locale.ENGLISH, Locale.ENGLISH)
+
+            val numberField = NumberField(
+                getMockMapping(Field.DataType.STRING.value, Field.EditorType.NUMBER.value),
+                Locale.ENGLISH, Locale.ENGLISH)
+
+            val decimalField = NumberField(
+                getMockMapping(Field.DataType.NUMBER.value, Field.EditorType.DECIMAL.value),
                 Locale.ENGLISH, Locale.ENGLISH)
 
             val fields = ArrayList<Field<*>>()
@@ -89,7 +97,9 @@ data class FormInstance @JvmOverloads constructor(
             fields.add(checkBoxMultipleField)
             fields.add(checkBoxShowAsSwitcherField)
             fields.add(dateField)
+            fields.add(integerField)
             fields.add(numberField)
+            fields.add(decimalField)
 
             val ddmStructure = DDMStructure(structureName, structureDescription, fields)
 
