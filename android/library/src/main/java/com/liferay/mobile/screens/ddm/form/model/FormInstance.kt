@@ -21,6 +21,7 @@ import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
 import com.liferay.mobile.sdk.apio.model.Relation
 import com.liferay.mobile.sdk.apio.model.Thing
 import com.liferay.mobile.sdk.apio.model.get
+import org.w3c.dom.Document
 import java.util.*
 
 /**
@@ -68,12 +69,10 @@ data class FormInstance @JvmOverloads constructor(
                     availableOptionsData),
                 Locale.ENGLISH, Locale.ENGLISH)
 
-
             val checkBoxShowAsSwitcherField = CheckboxMultipleField(
                 getMockMapping(Field.DataType.STRING.value, Field.EditorType.CHECKBOX_MULTIPLE.value,
                     availableOptionsData, true),
                 Locale.ENGLISH, Locale.ENGLISH)
-
 
             val dateField = DateField(
                 getMockMapping(Field.DataType.DATE.value, Field.EditorType.DATE.value),
@@ -91,6 +90,14 @@ data class FormInstance @JvmOverloads constructor(
                 getMockMapping(Field.DataType.NUMBER.value, Field.EditorType.DECIMAL.value),
                 Locale.ENGLISH, Locale.ENGLISH)
 
+            val radioField = StringWithOptionsField(
+                getMockMapping(Field.DataType.STRING.value, Field.EditorType.RADIO.value, availableOptionsData),
+                Locale.ENGLISH, Locale.ENGLISH)
+
+            val documentField = DocumentField(
+                getMockMapping(Field.DataType.STRING.value, Field.EditorType.DOCUMENT.value),
+                Locale.ENGLISH, Locale.ENGLISH)
+
             val fields = ArrayList<Field<*>>()
             fields.add(textField)
             fields.add(textAreaField)
@@ -100,6 +107,8 @@ data class FormInstance @JvmOverloads constructor(
             fields.add(integerField)
             fields.add(numberField)
             fields.add(decimalField)
+            fields.add(radioField)
+            fields.add(documentField)
 
             val ddmStructure = DDMStructure(structureName, structureDescription, fields)
 
