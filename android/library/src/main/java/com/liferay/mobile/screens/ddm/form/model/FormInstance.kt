@@ -51,92 +51,67 @@ data class FormInstance @JvmOverloads constructor(
             val structureDescription = structureRelation["description"] as String
             val structureName = structureRelation["name"] as String
 
-            val textFieldAttributes = mapOf(
-                "dataType" to Field.DataType.STRING.value,
-                "readOnly" to false,
-                "type" to Field.EditorType.TEXT.value,
-                "required" to false,
-                "showLabel" to true,
-                "repeatable" to false,
-                "label" to "TextField single",
-                "name" to "TextFieldSingle",
-                "tip" to "TextField hint",
-                "placeHolder" to ""
-            )
+            val textField = StringField(
+                getMockMapping(Field.DataType.STRING.value, Field.EditorType.TEXT.value),
+                Locale.ENGLISH, Locale.ENGLISH)
 
-            val textField = StringField(textFieldAttributes, Locale.ENGLISH, Locale.ENGLISH)
+            val textAreaField = StringField(
+                getMockMapping(Field.DataType.STRING.value, Field.EditorType.TEXT_AREA.value),
+                Locale.ENGLISH, Locale.ENGLISH)
 
-            val textAreaAttributes = mapOf(
-                "dataType" to Field.DataType.STRING.value,
-                "readOnly" to false,
-                "type" to Field.EditorType.TEXT_AREA.value,
-                "required" to false,
-                "showLabel" to true,
-                "repeatable" to false,
-                "label" to "TextField multiple",
-                "name" to "TextFieldMultiple",
-                "tip" to "TextField multiple hint",
-                "placeHolder" to ""
-            )
+            val optionData1 = mapOf("label" to "Option 1", "value" to "option1")
+            val optionData2 = mapOf("label" to "Option 2", "value" to "option2")
+            val availableOptionsData = listOf(optionData1, optionData2)
 
-            val textAreaField = StringField(textAreaAttributes, Locale.ENGLISH, Locale.ENGLISH)
+            val checkBoxMultipleField = CheckboxMultipleField(
+                getMockMapping(Field.DataType.STRING.value, Field.EditorType.CHECKBOX_MULTIPLE.value,
+                    availableOptionsData),
+                Locale.ENGLISH, Locale.ENGLISH)
 
-            val checkBoxMultipleAttributes = mapOf(
-                "dataType" to Field.DataType.STRING.value,
-                "readOnly" to false,
-                "type" to Field.EditorType.CHECKBOX_MULTIPLE.value,
-                "required" to false,
-                "showLabel" to true,
-                "repeatable" to false,
-                "label" to "CheckboxField multiple",
-                "name" to "CheckboxFieldMultiple",
-                "tip" to "Checkbox multiple hint",
-                "showAsSwitcher" to false,
-                "placeHolder" to ""
-            )
 
-            val checkBoxMultipleField = CheckboxMultipleField(checkBoxMultipleAttributes, Locale.ENGLISH, Locale.ENGLISH)
+            val checkBoxShowAsSwitcherField = CheckboxMultipleField(
+                getMockMapping(Field.DataType.STRING.value, Field.EditorType.CHECKBOX_MULTIPLE.value,
+                    availableOptionsData, true),
+                Locale.ENGLISH, Locale.ENGLISH)
 
-            val dateAttributes = mapOf(
-                "dataType" to Field.DataType.DATE.value,
-                "readOnly" to false,
-                "type" to Field.EditorType.DATE.value,
-                "required" to false,
-                "showLabel" to true,
-                "repeatable" to false,
-                "label" to "DateField",
-                "name" to "DateField",
-                "tip" to "DateField hint",
-                "placeHolder" to ""
-            )
 
-            val dateField = DateField(dateAttributes, Locale.ENGLISH, Locale.ENGLISH)
+            val dateField = DateField(
+                getMockMapping(Field.DataType.DATE.value, Field.EditorType.DATE.value),
+                Locale.ENGLISH, Locale.ENGLISH)
 
-            val numberAttributes = mapOf(
-                "dataType" to Field.DataType.NUMBER.value,
-                "readOnly" to false,
-                "type" to Field.EditorType.INTEGER.value,
-                "required" to false,
-                "showLabel" to true,
-                "repeatable" to false,
-                "label" to "Number",
-                "name" to "Number",
-                "tip" to "Number hint",
-                "placeHolder" to ""
-            )
-
-            val numberField = NumberField(numberAttributes, Locale.ENGLISH, Locale.ENGLISH)
+            val numberField = NumberField(
+                getMockMapping(Field.DataType.NUMBER.value, Field.EditorType.INTEGER.value),
+                Locale.ENGLISH, Locale.ENGLISH)
 
             val fields = ArrayList<Field<*>>()
             fields.add(textField)
             fields.add(textAreaField)
             fields.add(checkBoxMultipleField)
+            fields.add(checkBoxShowAsSwitcherField)
             fields.add(dateField)
             fields.add(numberField)
 
             val ddmStructure = DDMStructure(structureName, structureDescription, fields)
 
             FormInstance(name, description, ddmStructure)
+        }
+
+        private fun getMockMapping(dataType: String, type: String, options: List<Map<String, String>> = listOf(),
+            showAsSwitcher: Boolean = false): Map<String, Any> {
+            return mapOf(
+                "dataType" to dataType,
+                "readOnly" to false,
+                "type" to type,
+                "required" to false,
+                "showLabel" to true,
+                "repeatable" to false,
+                "label" to "Label $type",
+                "name" to "Name $type",
+                "tip" to "Tip $type",
+                "placeHolder" to "",
+                "showAsSwitcher" to showAsSwitcher,
+                "options" to options
+            )
         }
     }
 }
