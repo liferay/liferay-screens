@@ -68,7 +68,7 @@ data class FormInstance @JvmOverloads constructor(
                 "      \"label\": \"label\",\n" +
                 "      \"predefinedValue\": \"\",\n" +
                 "      \"tip\": \"tip\",\n" +
-                "      \"dataSourceType\": \"text\",\n" +
+                "      \"additionalType\": \"text\",\n" +
                 "      \"dataType\": \"string\",\n" +
                 "      \"name\": \"fields name\",\n" +
                 "      \"placeholder\": \"placeholder\",\n" +
@@ -107,20 +107,21 @@ data class FormInstance @JvmOverloads constructor(
                     val label = field["label"] as String
                     val predefinedValue = field["predefinedValue"] as String
                     val tip = field["tip"] as String
-                    val dataSourceType = field["dataSourceType"] as String
-                    //val dataType  = field["dataType"] as String
+                    val additionalType = field["additionalType"] as String
+                    val dataType  = field["dataType"] as String
                     val name = field["name"] as String
                     val placeholder = field["placeholder"] as String
                     val text = field["text"] as String
 
                     val mock = getMockMapping(isAutocomplete, isInline, isLocalizable, isMultiple, isReadOnly,
                         isRepeatable, isRequired, isShowAsSwitcher, isShowLabel, isTransient, label,
-                        predefinedValue, tip, dataSourceType, Field.DataType.STRING.value, Field.EditorType.TEXT.value,
+                        predefinedValue, tip, dataType, additionalType,
                         name, placeholder, text)
 
                     val stringField = StringField(mock, Locale.ENGLISH, Locale.ENGLISH)
                     val fields2 = listOf(stringField)
 
+                    pages.add(FormPage(headlinePage, textPage, fields2))
                     pages.add(FormPage(headlinePage, textPage, fields2))
                 }
             }
@@ -131,7 +132,7 @@ data class FormInstance @JvmOverloads constructor(
         private fun getMockMapping(isAutocomplete: Boolean, isInline: Boolean, isLocalizable: Boolean,
             isMultiple: Boolean, isReadOnly: Boolean, isRepeatable: Boolean, isRequired: Boolean,
             isShowAsSwitcher: Boolean, isShowLabel: Boolean, isTransient: Boolean, label: String,
-            predefinedValue: String, tip: String, dataSourceType: String, dataType: String,
+            predefinedValue: String, tip: String, dataType: String,
             type: String, name: String, placeholder: String, text: String): Map<String, Any> {
 
             return mapOf(
