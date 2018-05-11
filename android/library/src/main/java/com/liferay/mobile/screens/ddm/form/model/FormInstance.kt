@@ -81,6 +81,8 @@ data class FormInstance @JvmOverloads constructor(
             val formDescription = json["description"] as String
             val jsonPages = json["pages"] as JSONArray
 
+            val pages = mutableListOf<FormPage>()
+
             for (i in 0..(jsonPages.length() - 1)) {
                 val page = jsonPages.getJSONObject(i)
 
@@ -116,18 +118,13 @@ data class FormInstance @JvmOverloads constructor(
                         name, placeholder, text)
 
                     val stringField = StringField(mock, Locale.ENGLISH, Locale.ENGLISH)
-                    val fields = ArrayList<Field<*>>()
-                    fields.add(stringField)
+                    val fields2 = listOf(stringField)
 
-                    val pages = ArrayList<ArrayList<Field<*>>>()
-                    //val pages = FormPages(headlinePage, textPage, fields)
-                    pages.add(fields)
-
-                    val ddmStructure = DDMStructure(formName,formDescription, pages)
-
-                    FormInstance(formName, formDescription, ddmStructure)
+                    pages.add(FormPage(headlinePage, textPage, fields2))
                 }
             }
+            val ddmStructure = DDMStructure(formName,formDescription, pages)
+            FormInstance(formName, formDescription, ddmStructure)
         }
 
         private fun getMockMapping(isAutocomplete: Boolean, isInline: Boolean, isLocalizable: Boolean,

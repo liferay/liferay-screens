@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import com.liferay.mobile.screens.ddm.form.model.FieldValidation;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,7 +32,9 @@ import org.w3c.dom.Element;
 public abstract class Field<T extends Serializable> implements Parcelable {
 
 	private String text;
+	//dataSourceType
 	private DataType dataType;
+	//additionalType
 	private EditorType editorType;
 	private String name;
 	private String label;
@@ -50,6 +53,17 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	private String ddmDataProviderInstance;
 	private List<Field> fields = new ArrayList<>();
 	private Map<String, Object> attributes = new HashMap<>();
+
+	private boolean autocomplete = false;
+	private boolean inLine = false;
+	private boolean localizable = false;
+	private boolean multiple = false;
+	private boolean showAsSwitcher = false;
+	private boolean isTransient = false;
+	private String style;
+	private String displayStyle;
+	private String indexType;
+	private FieldValidation fieldValidation;
 
 	public Field() {
 		super();

@@ -36,8 +36,10 @@ class DDMFormView @JvmOverloads constructor(
     override var screenlet: ThingScreenlet? = null
     override var thing: Thing? by converter<FormInstance> {
 
-        for (field in it.ddmStructure.fields) {
-            addFieldView(field)
+        for (page in it.ddmStructure.pages) {
+            for (field in page.fields) {
+                addFieldView(field)
+            }
         }
     }
 

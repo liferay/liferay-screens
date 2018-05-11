@@ -14,7 +14,9 @@
 
 package com.liferay.mobile.screens.ddm.form.model
 
+import com.liferay.mobile.screens.ddl.model.Field
+
 /**
  * @author Victor Oliveira
  */
-class SuccessPage(val headline: String, val text: String, val enabled: Boolean)
+class FormPage(val headline: String, val text: String, val fields: List<Field<*>>)
