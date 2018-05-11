@@ -132,8 +132,8 @@ data class FormInstance @JvmOverloads constructor(
         private fun getMockMapping(isAutocomplete: Boolean, isInline: Boolean, isLocalizable: Boolean,
             isMultiple: Boolean, isReadOnly: Boolean, isRepeatable: Boolean, isRequired: Boolean,
             isShowAsSwitcher: Boolean, isShowLabel: Boolean, isTransient: Boolean, label: String,
-            predefinedValue: String, tip: String, dataType: String,
-            type: String, name: String, placeholder: String, text: String): Map<String, Any> {
+            predefinedValue: String, tip: String, dataType: String, type: String, name: String,
+            placeholder: String, text: String): Map<String, Any> {
 
             return mapOf(
                 "isAutocomplete" to isAutocomplete,
@@ -149,7 +149,6 @@ data class FormInstance @JvmOverloads constructor(
                 FormFieldKeys.LABEL to label,
                 FormFieldKeys.PREDEFINED_VALUE to predefinedValue,
                 FormFieldKeys.TIP to tip,
-                "dataSourceType" to dataSourceType,
                 "dataType" to dataType,
                 "type" to type,
                 FormFieldKeys.NAME to name,
