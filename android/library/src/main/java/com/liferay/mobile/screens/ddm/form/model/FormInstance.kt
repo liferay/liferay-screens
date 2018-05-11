@@ -15,18 +15,21 @@
 package com.liferay.mobile.screens.ddm.form.model
 
 import com.liferay.mobile.screens.R
-import com.liferay.mobile.screens.ddl.model.*
+import com.liferay.mobile.screens.ddl.model.DDMStructure
+import com.liferay.mobile.screens.ddl.model.Field
+import com.liferay.mobile.screens.ddl.model.StringField
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
-import com.liferay.mobile.sdk.apio.model.Relation
 import com.liferay.mobile.sdk.apio.model.Thing
-import com.liferay.mobile.sdk.apio.model.get
-import org.w3c.dom.Document
+import org.json.JSONArray
+import org.json.JSONObject
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * @author Paulo Cruz
  * @author Sarai Díaz García
+ * @author Victor Oliveira
  */
 data class FormInstance @JvmOverloads constructor(
     val name: String,
@@ -44,97 +47,115 @@ data class FormInstance @JvmOverloads constructor(
 
         val converter: (Thing) -> Any = { it: Thing ->
 
-            val name = it["name"] as String
-            val description = it["description"] as String
+            val jsonString = "{\n" +
+                "  \"description\": \"description\",\n" +
+                "  \"name\": \"name\",\n" +
+                "  \"pages\": [{\n" +
+                "    \"headline\": \"headline\",\n" +
+                "    \"text\": \"text\",\n" +
+                "    \"fields\": [{\n" +
+                "      \"isAutocomplete\": false,\n" +
+                "      \"isInline\": false,\n" +
+                "      \"isLocalizable\": false,\n" +
+                "      \"isMultiple\": false,\n" +
+                "      \"isReadOnly\": false,\n" +
+                "      \"isRepeatable\": false,\n" +
+                "      \"isRequired\": false,\n" +
+                "      \"isShowAsSwitcher\": false,\n" +
+                "      \"isShowLabel\": true,\n" +
+                "      \"isTransient\": false,\n" +
+                "      \"label\": \"label\",\n" +
+                "      \"predefinedValue\": \"\",\n" +
+                "      \"tip\": \"tip\",\n" +
+                "      \"dataSourceType\": \"text\",\n" +
+                "      \"dataType\": \"string\",\n" +
+                "      \"name\": \"fields name\",\n" +
+                "      \"placeholder\": \"placeholder\",\n" +
+                "      \"text\": \"field text\"\n" +
+                "      }]\n" +
+                "  }]\n" +
+                "}"
 
-            val structureRelation = it.attributes["structure"] as Relation
+            val json = JSONObject(jsonString)
+            val formName = json["name"] as String
+            val formDescription = json["description"] as String
+            val jsonPages = json["pages"] as JSONArray
 
-            val structureDescription = structureRelation["description"] as String
-            val structureName = structureRelation["name"] as String
+            for (i in 0..(jsonPages.length() - 1)) {
+                val page = jsonPages.getJSONObject(i)
 
-            val textField = StringField(
-                getMockMapping(Field.DataType.STRING.value, Field.EditorType.TEXT.value),
-                Locale.ENGLISH, Locale.ENGLISH)
+                val headlinePage = page["headline"] as String
+                val textPage = page["text"] as String
+                val fields = page["fields"] as JSONArray
 
-            val textAreaField = StringField(
-                getMockMapping(Field.DataType.STRING.value, Field.EditorType.TEXT_AREA.value),
-                Locale.ENGLISH, Locale.ENGLISH)
+                for (j in 0..(fields.length() - 1)) {
+                    val field = fields.getJSONObject(i)
 
-            val optionData1 = mapOf("label" to "Option 1", "value" to "option1")
-            val optionData2 = mapOf("label" to "Option 2", "value" to "option2")
-            val availableOptionsData = listOf(optionData1, optionData2)
+                    val isAutocomplete = field["isAutocomplete"] as Boolean
+                    val isInline = field["isInline"] as Boolean
+                    val isLocalizable = field["isLocalizable"] as Boolean
+                    val isMultiple = field["isMultiple"] as Boolean
+                    val isReadOnly = field["isReadOnly"] as Boolean
+                    val isRepeatable = field["isRepeatable"] as Boolean
+                    val isRequired = field["isRequired"] as Boolean
+                    val isShowAsSwitcher = field["isShowAsSwitcher"] as Boolean
+                    val isShowLabel = field["isShowLabel"] as Boolean
+                    val isTransient = field["isTransient"] as Boolean
+                    val label = field["label"] as String
+                    val predefinedValue = field["predefinedValue"] as String
+                    val tip = field["tip"] as String
+                    val dataSourceType = field["dataSourceType"] as String
+                    //val dataType  = field["dataType"] as String
+                    val name = field["name"] as String
+                    val placeholder = field["placeholder"] as String
+                    val text = field["text"] as String
 
-            val checkBoxMultipleField = CheckboxMultipleField(
-                getMockMapping(Field.DataType.STRING.value, Field.EditorType.CHECKBOX_MULTIPLE.value,
-                    availableOptionsData),
-                Locale.ENGLISH, Locale.ENGLISH)
+                    val mock = getMockMapping(isAutocomplete, isInline, isLocalizable, isMultiple, isReadOnly,
+                        isRepeatable, isRequired, isShowAsSwitcher, isShowLabel, isTransient, label,
+                        predefinedValue, tip, dataSourceType, Field.DataType.STRING.value, Field.EditorType.TEXT.value,
+                        name, placeholder, text)
 
-            val checkBoxShowAsSwitcherField = CheckboxMultipleField(
-                getMockMapping(Field.DataType.STRING.value, Field.EditorType.CHECKBOX_MULTIPLE.value,
-                    availableOptionsData, true),
-                Locale.ENGLISH, Locale.ENGLISH)
+                    val stringField = StringField(mock, Locale.ENGLISH, Locale.ENGLISH)
+                    val fields = ArrayList<Field<*>>()
+                    fields.add(stringField)
 
-            val dateField = DateField(
-                getMockMapping(Field.DataType.DATE.value, Field.EditorType.DATE.value),
-                Locale.ENGLISH, Locale.ENGLISH)
+                    val pages = ArrayList<ArrayList<Field<*>>>()
+                    //val pages = FormPages(headlinePage, textPage, fields)
+                    pages.add(fields)
 
-            val integerField = NumberField(
-                getMockMapping(Field.DataType.NUMBER.value, Field.EditorType.INTEGER.value),
-                Locale.ENGLISH, Locale.ENGLISH)
+                    val ddmStructure = DDMStructure(formName,formDescription, pages)
 
-            val numberField = NumberField(
-                getMockMapping(Field.DataType.STRING.value, Field.EditorType.NUMBER.value),
-                Locale.ENGLISH, Locale.ENGLISH)
-
-            val decimalField = NumberField(
-                getMockMapping(Field.DataType.NUMBER.value, Field.EditorType.DECIMAL.value),
-                Locale.ENGLISH, Locale.ENGLISH)
-
-            val radioField = StringWithOptionsField(
-                getMockMapping(Field.DataType.STRING.value, Field.EditorType.RADIO.value, availableOptionsData),
-                Locale.ENGLISH, Locale.ENGLISH)
-
-            val selectField = StringWithOptionsField(
-                getMockMapping(Field.DataType.STRING.value, Field.EditorType.SELECT.value, availableOptionsData),
-                Locale.ENGLISH, Locale.ENGLISH)
-
-            val documentField = DocumentField(
-                getMockMapping(Field.DataType.STRING.value, Field.EditorType.DOCUMENT.value),
-                Locale.ENGLISH, Locale.ENGLISH)
-
-            val fields = ArrayList<Field<*>>()
-            fields.add(textField)
-            fields.add(textAreaField)
-            fields.add(checkBoxMultipleField)
-            fields.add(checkBoxShowAsSwitcherField)
-            fields.add(dateField)
-            fields.add(integerField)
-            fields.add(numberField)
-            fields.add(decimalField)
-            fields.add(radioField)
-            fields.add(selectField)
-            fields.add(documentField)
-
-            val ddmStructure = DDMStructure(structureName, structureDescription, fields)
-
-            FormInstance(name, description, ddmStructure)
+                    FormInstance(formName, formDescription, ddmStructure)
+                }
+            }
         }
 
-        private fun getMockMapping(dataType: String, type: String, options: List<Map<String, String>> = listOf(),
-            showAsSwitcher: Boolean = false): Map<String, Any> {
+        private fun getMockMapping(isAutocomplete: Boolean, isInline: Boolean, isLocalizable: Boolean,
+            isMultiple: Boolean, isReadOnly: Boolean, isRepeatable: Boolean, isRequired: Boolean,
+            isShowAsSwitcher: Boolean, isShowLabel: Boolean, isTransient: Boolean, label: String,
+            predefinedValue: String, tip: String, dataSourceType: String, dataType: String,
+            type: String, name: String, placeholder: String, text: String): Map<String, Any> {
+
             return mapOf(
+                "isAutocomplete" to isAutocomplete,
+                "isInline" to isInline,
+                "isLocalizable" to isLocalizable,
+                "isMultiple" to isMultiple,
+                "isReadOnly" to isReadOnly,
+                "isRepeatable" to isRepeatable,
+                "isRequired" to isRequired,
+                "isShowAsSwitcher" to isShowAsSwitcher,
+                "isShowLabel" to isShowLabel,
+                "isTransient" to isTransient,
+                "label" to label,
+                "predefinedValue" to predefinedValue,
+                "tip" to tip,
+                "dataSourceType" to dataSourceType,
                 "dataType" to dataType,
-                "readOnly" to false,
                 "type" to type,
-                "required" to false,
-                "showLabel" to true,
-                "repeatable" to false,
-                "label" to "Label $type",
-                "name" to "Name $type",
-                "tip" to "Tip $type",
-                "placeHolder" to "",
-                "showAsSwitcher" to showAsSwitcher,
-                "options" to options
+                "name" to name,
+                "placeHolder" to placeholder,
+                "text" to text
             )
         }
     }
