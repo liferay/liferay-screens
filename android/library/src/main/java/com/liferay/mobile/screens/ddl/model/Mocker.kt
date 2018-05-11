@@ -1,5 +1,8 @@
 package com.liferay.mobile.screens.ddl.model
 
+import com.liferay.mobile.screens.ddm.form.model.CheckboxMultipleField
+import java.util.*
+
 
 /**
  * @author Victor Oliveira
@@ -78,4 +81,52 @@ fun getMockMapping(dataType: String, type: String, options: List<Map<String, Str
         "placeHolder" to "",
         "showAsSwitcher" to showAsSwitcher,
         "options" to options)
+}
+
+fun getAllMockedFields(): List<Field<*>> {
+    val optionData1 = mapOf("label" to "Option 1", "value" to "option1")
+    val optionData2 = mapOf("label" to "Option 2", "value" to "option2")
+    val availableOptionsData = listOf(optionData1, optionData2)
+
+    val checkBoxMultipleField = CheckboxMultipleField(
+        getMockMapping(Field.DataType.STRING.value, Field.EditorType.CHECKBOX_MULTIPLE.value,
+            availableOptionsData),
+        Locale.ENGLISH, Locale.ENGLISH)
+
+    val checkBoxShowAsSwitcherField = CheckboxMultipleField(
+        getMockMapping(Field.DataType.STRING.value, Field.EditorType.CHECKBOX_MULTIPLE.value,
+            availableOptionsData, true),
+        Locale.ENGLISH, Locale.ENGLISH)
+
+    val dateField = DateField(
+        getMockMapping(Field.DataType.DATE.value, Field.EditorType.DATE.value),
+        Locale.ENGLISH, Locale.ENGLISH)
+
+    val integerField = NumberField(
+        getMockMapping(Field.DataType.NUMBER.value, Field.EditorType.INTEGER.value),
+        Locale.ENGLISH, Locale.ENGLISH)
+
+    val numberField = NumberField(
+        getMockMapping(Field.DataType.STRING.value, Field.EditorType.NUMBER.value),
+        Locale.ENGLISH, Locale.ENGLISH)
+
+    val decimalField = NumberField(
+        getMockMapping(Field.DataType.NUMBER.value, Field.EditorType.DECIMAL.value),
+        Locale.ENGLISH, Locale.ENGLISH)
+
+    val radioField = StringWithOptionsField(
+        getMockMapping(Field.DataType.STRING.value, Field.EditorType.RADIO.value, availableOptionsData),
+        Locale.ENGLISH, Locale.ENGLISH)
+
+    val selectField = StringWithOptionsField(
+        getMockMapping(Field.DataType.STRING.value, Field.EditorType.SELECT.value,
+            availableOptionsData),
+        Locale.ENGLISH, Locale.ENGLISH)
+
+    val documentField = DocumentField(
+        getMockMapping(Field.DataType.STRING.value, Field.EditorType.DOCUMENT.value),
+        Locale.ENGLISH, Locale.ENGLISH)
+
+    return listOf(checkBoxMultipleField, checkBoxShowAsSwitcherField, dateField, integerField, numberField,
+        decimalField, radioField, selectField, documentField)
 }
