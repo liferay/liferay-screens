@@ -17,6 +17,7 @@ package com.liferay.mobile.screens.ddm.form.model
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.model.DDMStructure
 import com.liferay.mobile.screens.ddl.model.Field
+import com.liferay.mobile.screens.ddl.model.FormFieldKeys
 import com.liferay.mobile.screens.ddl.model.StringField
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
@@ -138,21 +139,21 @@ data class FormInstance @JvmOverloads constructor(
                 "isInline" to isInline,
                 "isLocalizable" to isLocalizable,
                 "isMultiple" to isMultiple,
-                "isReadOnly" to isReadOnly,
-                "isRepeatable" to isRepeatable,
-                "isRequired" to isRequired,
+                FormFieldKeys.READ_ONLY to isReadOnly,
+                FormFieldKeys.REPEATABLE to isRepeatable,
+                FormFieldKeys.REQUIRED to isRequired,
                 "isShowAsSwitcher" to isShowAsSwitcher,
-                "isShowLabel" to isShowLabel,
+                FormFieldKeys.SHOW_LABEL to isShowLabel,
                 "isTransient" to isTransient,
-                "label" to label,
-                "predefinedValue" to predefinedValue,
-                "tip" to tip,
+                FormFieldKeys.LABEL to label,
+                FormFieldKeys.PREDEFINED_VALUE to predefinedValue,
+                FormFieldKeys.TIP to tip,
                 "dataSourceType" to dataSourceType,
                 "dataType" to dataType,
                 "type" to type,
-                "name" to name,
-                "placeHolder" to placeholder,
-                "text" to text
+                FormFieldKeys.NAME to name,
+                FormFieldKeys.PLACEHOLDER to placeholder,
+                FormFieldKeys.TEXT to text
             )
         }
     }

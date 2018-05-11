@@ -93,23 +93,23 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		dataType = DataType.valueOf(attributes);
 		editorType = EditorType.valueOf(attributes);
 
-		name = getAttributeStringValue(attributes, "name");
-		label = getAttributeStringValue(attributes, "label");
-		tip = getAttributeStringValue(attributes, "tip");
-		placeHolder = getAttributeStringValue(attributes, "placeHolder");
+		name = getAttributeStringValue(attributes, FormFieldKeys.NAME);
+		label = getAttributeStringValue(attributes, FormFieldKeys.LABEL);
+		tip = getAttributeStringValue(attributes, FormFieldKeys.TIP);
+		placeHolder = getAttributeStringValue(attributes, FormFieldKeys.PLACEHOLDER);
 
-		readOnly = Boolean.valueOf(getAttributeStringValue(attributes, "readOnly"));
-		repeatable = Boolean.valueOf(getAttributeStringValue(attributes, "repeatable"));
-		required = Boolean.valueOf(getAttributeStringValue(attributes, "required"));
-		showLabel = Boolean.valueOf(getAttributeStringValue(attributes, "showLabel"));
-		visibilityExpression = getAttributeStringValue(attributes, "visibilityExpression");
-		ddmDataProviderInstance = getAttributeStringValue(attributes, "ddmDataProviderInstance");
+		readOnly = Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.READ_ONLY));
+		repeatable = Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.REPEATABLE));
+		required = Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.REQUIRED));
+		showLabel = Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.SHOW_LABEL));
+		visibilityExpression = getAttributeStringValue(attributes, FormFieldKeys.VISIBILITY_EXPRESSION);
+		ddmDataProviderInstance = getAttributeStringValue(attributes, FormFieldKeys.DDM_DATA_PROVIDER_INSTANCE);
 
-		String predefinedValue = getAttributeStringValue(attributes, "predefinedValue");
+		String predefinedValue = getAttributeStringValue(attributes, FormFieldKeys.PREDEFINED_VALUE);
 		this.predefinedValue = convertFromString(predefinedValue);
 		currentValue = this.predefinedValue;
 
-		String text = getAttributeStringValue(attributes, "text");
+		String text = getAttributeStringValue(attributes, FormFieldKeys.TEXT);
 		if (!text.isEmpty()) {
 			this.text = text;
 			currentValue = convertFromString(text);
