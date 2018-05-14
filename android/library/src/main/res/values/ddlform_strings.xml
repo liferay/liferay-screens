@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<string name="back">Back</string>
+	<string name="next">Next</string>
 	<string name="document">Document</string>
 	<string name="photo_and_video_library">Photo \u0026 video library</string>
 	<string name="submit">Submit</string>

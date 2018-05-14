@@ -22,6 +22,12 @@
 			>
 
 			<Button
+				android:id="@+id/ddm_form"
+				android:text="@string/ddm_form"
+				style="@style/test_app_button"
+				/>
+
+			<Button
 				android:id="@+id/thing"
 				android:text="@string/thing_screenlet"
 				style="@style/test_app_button"
@@ -154,8 +160,8 @@
 				/>
 
 			<Button
-				android:id="@+id/ddm_form"
-				android:text="@string/ddm_form"
+				android:id="@+id/gallery"
+				android:text="@string/image_gallery"
 				style="@style/test_app_button"
 				/>
 
@@ -168,12 +174,6 @@
 			<Button
 				android:id="@+id/ratings"
 				android:text="@string/ratings"
-				style="@style/test_app_button"
-				/>
-
-			<Button
-				android:id="@+id/gallery"
-				android:text="@string/image_gallery"
 				style="@style/test_app_button"
 				/>
 

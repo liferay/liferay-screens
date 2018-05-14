@@ -1,63 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.DDMFormView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="0dp"
-    android:padding="0dp"
-    style="@style/default_screenlet"
-    >
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:layout_margin="0dp"
+	android:fillViewport="true"
+	android:padding="0dp"
+	style="@style/default_screenlet"
+	>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="10dp"
-        >
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		>
 
-        <LinearLayout
-            android:id="@+id/ddmfields_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="24dp"
-            android:orientation="vertical"
-            android:showDividers="middle|end"
-            />
+		<com.liferay.mobile.screens.viewsets.defaultviews.ddm.pager.WrapContentViewPager
+			android:id="@+id/ddmfields_container"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			/>
 
-        <ProgressBar
-            android:id="@+id/ddmform_loading_screen_progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:visibility="invisible"
-            />
+		<ProgressBar
+			android:id="@+id/ddmform_loading_screen_progress_bar"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:visibility="gone"
+			/>
 
-        <FrameLayout
-            android:id="@+id/liferay_submit_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="10dp"
-            >
+		<LinearLayout
+			android:id="@+id/liferay_submit_container"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="30dp"
+			android:layout_marginLeft="30dp"
+			android:layout_marginRight="30dp"
+			android:layout_marginTop="10dp"
+			android:orientation="horizontal"
+			android:weightSum="2"
 
-            <Button
-                android:id="@+id/liferay_form_submit"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/submit"
-                android:visibility="gone"
-                />
+			>
 
-            <ProgressBar
-                android:id="@+id/ddmform_progress_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical|start"
-                android:theme="@style/white_theme"
-                android:visibility="invisible"
-                />
-        </FrameLayout>
-    </LinearLayout>
+			<Button
+				android:id="@+id/liferay_form_back"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_marginEnd="10dp"
+				android:layout_marginRight="10dp"
+				android:layout_weight="1"
+				android:text="@string/back"
+				android:visibility="visible"
+				android:enabled="false"
+				/>
+
+			<Button
+				android:id="@+id/liferay_form_submit"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_marginLeft="10dp"
+				android:layout_marginStart="10dp"
+				android:layout_weight="1"
+				android:text="@string/next"
+				android:visibility="visible"
+				/>
+
+		</LinearLayout>
+	</LinearLayout>
+
+
 </com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.DDMFormView>
