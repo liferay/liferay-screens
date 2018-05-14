@@ -29,7 +29,7 @@ val mockedJSONStructure = "{\n" +
     "      \"predefinedValue\": \"\",\n" +
     "      \"tip\": \"tip\",\n" +
     "      \"dataSourceType\": \"text\",\n" +
-    "      \"dataType\": \"string\",\n" +
+    "      \"additionalType\": \"string\",\n" +
     "      \"name\": \"fields name\",\n" +
     "      \"placeholder\": \"placeholder\",\n" +
     "      \"text\": \"field text\"\n" +
@@ -40,8 +40,8 @@ val mockedJSONStructure = "{\n" +
 fun getMockMapping(isAutocomplete: Boolean, isInline: Boolean, isLocalizable: Boolean,
     isMultiple: Boolean, isReadOnly: Boolean, isRepeatable: Boolean, isRequired: Boolean,
     isShowAsSwitcher: Boolean, isShowLabel: Boolean, isTransient: Boolean, label: String,
-    predefinedValue: String, tip: String, dataSourceType: String, dataType: String,
-    type: String, name: String, placeholder: String, text: String): Map<String, Any> {
+    predefinedValue: String, tip: String, dataSourceType: String, additionalType: String,
+    name: String, placeholder: String, text: String): Map<String, Any> {
 
     return mapOf(
         "isAutocomplete" to isAutocomplete,
@@ -57,9 +57,8 @@ fun getMockMapping(isAutocomplete: Boolean, isInline: Boolean, isLocalizable: Bo
         FormFieldKeys.LABEL to label,
         FormFieldKeys.PREDEFINED_VALUE to predefinedValue,
         FormFieldKeys.TIP to tip,
-        "dataSourceType" to dataSourceType,
-        "dataType" to dataType,
-        "type" to type,
+        "dataType" to additionalType,
+        "type" to dataSourceType,
         FormFieldKeys.NAME to name,
         FormFieldKeys.PLACEHOLDER to placeholder,
         FormFieldKeys.TEXT to text

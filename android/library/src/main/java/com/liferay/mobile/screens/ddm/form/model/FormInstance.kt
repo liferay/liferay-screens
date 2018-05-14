@@ -74,16 +74,15 @@ data class FormInstance @JvmOverloads constructor(
                     val label = field["label"] as String
                     val predefinedValue = field["predefinedValue"] as String
                     val tip = field["tip"] as String
+                    val additionalType = field["additionalType"] as String
                     val dataSourceType = field["dataSourceType"] as String
-                    //val dataType  = field["dataType"] as String
                     val name = field["name"] as String
                     val placeholder = field["placeholder"] as String
                     val text = field["text"] as String
 
                     val mock = getMockMapping(isAutocomplete, isInline, isLocalizable, isMultiple, isReadOnly,
-                        isRepeatable, isRequired, isShowAsSwitcher, isShowLabel, isTransient, label,
-                        predefinedValue, tip, dataSourceType, Field.DataType.STRING.value, Field.EditorType.TEXT.value,
-                        name, placeholder, text)
+                        isRepeatable, isRequired, isShowAsSwitcher, isShowLabel, isTransient, label, predefinedValue,
+                        tip, dataSourceType, additionalType, name, placeholder, text)
 
                     val stringField = StringField(mock, Locale.ENGLISH, Locale.ENGLISH)
 
