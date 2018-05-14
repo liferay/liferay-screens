@@ -39,6 +39,7 @@ dependencies {
 	implementation libraries.design
 	implementation libraries.picasso
 
+	implementation 'com.android.support.constraint:constraint-layout:1.1.0'
 	debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5'
 	releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
 	testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
@@ -51,3 +52,9 @@ dependencies {
 	androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.0.1'
 	androidTestImplementation 'com.android.support.test.espresso:espresso-idling-resource:3.0.1'
 }
+
+repositories {
+	mavenCentral()
+}
+
+apply plugin: 'kotlin-android-extensions'

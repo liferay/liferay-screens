@@ -15,9 +15,12 @@
 package com.liferay.mobile.screens.testapp.postings.view
 
 import android.content.Context
+import android.support.design.widget.Snackbar
+import android.support.design.widget.Snackbar.LENGTH_SHORT
 import android.text.Html
 import android.util.AttributeSet
 import android.view.View
+import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.TextView
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
@@ -29,6 +32,9 @@ import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.mobile.sdk.apio.delegates.converter
 import com.liferay.mobile.sdk.apio.extensions.fullFormat
 import com.liferay.mobile.sdk.apio.model.Thing
+import com.liferay.mobile.sdk.apio.model.containsOperation
+import com.liferay.mobile.sdk.apio.performOperation
+import kotlinx.android.synthetic.main.activity_main.view.*
 
 class BlogPostingDetailCustom @JvmOverloads constructor(
 	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : BaseView,
@@ -42,6 +48,8 @@ class BlogPostingDetailCustom @JvmOverloads constructor(
 	val creatorDetail by bindNonNull<ThingScreenlet>(R.id.creator_detail)
 	val articleBody by bindNonNull<TextView>(R.id.article_body)
 	val createDate by bindNonNull<TextView>(R.id.create_date)
+	val removeButton by bindNonNull<Button>(R.id.remove_button)
+	val updateButton by bindNonNull<Button>(R.id.update_button)
 	val by by bindNonNull<TextView>(R.id.by)
 
 	override var thing: Thing? by converter<BlogPosting> {
@@ -72,7 +80,24 @@ class BlogPostingDetailCustom @JvmOverloads constructor(
 			createDate.visibility = View.GONE
 		}
 
+		if (thing!!.containsOperation("delete")) {
+			removeButton.visibility = View.GONE
+		}
+
+		if (thing!!.containsOperation("update")) {
+			updateButton.visibility = View.GONE
+		}
+
+		removeButton.setOnClickListener {
+			sendEvent(Event.CustomEvent("delete", this, thing!!))
+		}
+
+		updateButton.setOnClickListener {
+			sendEvent(Event.CustomEvent("update", this, thing!!))
+		}
+
 		createDate.text = it.createDate?.fullFormat()
+
 	}
 
 }

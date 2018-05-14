@@ -101,6 +101,24 @@
 				android:textSize="18sp"
 				/>
 
+			<Button
+				android:id="@+id/remove_button"
+				android:layout_width="150dp"
+				android:layout_height="50dp"
+				android:text="Remove"
+				android:layout_centerHorizontal="true"
+				android:layout_below="@id/article_body"
+				/>
+
+			<Button
+				android:id="@+id/update_button"
+				android:layout_width="150dp"
+				android:layout_height="50dp"
+				android:text="Update"
+				android:layout_centerHorizontal="true"
+				android:layout_below="@id/remove_button"
+				/>
+
 		</RelativeLayout>
 
 	</ScrollView>

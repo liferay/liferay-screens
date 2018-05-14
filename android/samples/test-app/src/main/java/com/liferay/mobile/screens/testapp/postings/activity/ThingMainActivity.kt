@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.testapp.postings.activity
 
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
@@ -25,8 +26,13 @@ import com.liferay.mobile.screens.thingscreenlet.model.Person
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.events.ScreenletEvents
 import com.liferay.mobile.screens.thingscreenlet.screens.views.*
+import com.liferay.mobile.screens.util.LiferayLogger
+import com.liferay.mobile.sdk.apio.fetch
 import com.liferay.mobile.sdk.apio.model.Thing
 import com.liferay.mobile.sdk.apio.model.get
+import com.liferay.mobile.sdk.apio.model.getFormProperties
+import com.liferay.mobile.sdk.apio.performOperation
+import com.squareup.okhttp.HttpUrl
 import okhttp3.Credentials
 import org.jetbrains.anko.startActivity
 
@@ -43,7 +49,7 @@ class ThingMainActivity : AppCompatActivity(), ScreenletEvents {
 //		val id = "http://192.168.56.1:8080/p/blog-postings"
 		val id = "https://apiosample.wedeploy.io/p/blog-postings"
 
-		thingScreenlet.load(id, Credentials.basic("test@liferay.com", "test"))
+		thingScreenlet.load(id, "Basic YXBpb0BsaWZlcmF5LmNvbTphcGlvZGV2cw==")
 
 		thingScreenlet.screenletEvents = this
 	}
@@ -69,12 +75,24 @@ class ThingMainActivity : AppCompatActivity(), ScreenletEvents {
 		startActivity<DetailActivity>("id" to thing.id)
 	}
 
+	override fun <T : BaseView> onCustomEvent(name: String, screenlet: ThingScreenlet, parentView: T?, thing: Thing) {
+		if (name.equals("create")) {
+			val operationKey = thing.operations.keys.filter { it.contains("create") }.firstOrNull()
+
+			operationKey?.let {
+				val operation = thing.operations[it]
+				operation!!.form!!.getFormProperties {
+					startActivity<EditActivity>("properties" to it.map { it.name }, "values" to emptyMap<String, String>(), "id" to thing.id, "operation" to operation.id)
+				}
+			}
+		}
+	}
+
 	override fun <T : BaseView> onGetCustomLayout(screenlet: ThingScreenlet, parentView: T?, thing: Thing,
 		scenario: Scenario): Int? =
 		if (thing["headline"] == "My blog") R.layout.blog_posting_row_by_id
 		else super.onGetCustomLayout(screenlet, parentView, thing, scenario)
 
 }
-
 
 object DetailSmall : Scenario

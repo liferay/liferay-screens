@@ -1,17 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.thingscreenlet.screens.views.detail.CollectionDetailView
+<com.liferay.mobile.screens.testapp.postings.view.CollectionDetailCustomView
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	>
 
-	<android.support.v7.widget.RecyclerView
-		android:id="@+id/collection_recycler_view"
+	<android.support.design.widget.CoordinatorLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:clipToPadding="false"
-		android:paddingBottom="15dp"
-		android:paddingTop="15dp"
-		/>
+		>
 
-</com.liferay.mobile.screens.thingscreenlet.screens.views.detail.CollectionDetailView>
+		<android.support.v7.widget.RecyclerView
+			android:id="@+id/collection_recycler_view"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:clipToPadding="false"
+			android:paddingBottom="15dp"
+			android:paddingTop="15dp"
+			/>
+
+		<android.support.design.widget.FloatingActionButton
+			android:id="@+id/add_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="bottom|right"
+			android:src="@drawable/ic_add"
+			android:layout_margin="16dp"
+			app:layout_anchorGravity="bottom|right|end" />
+
+	</android.support.design.widget.CoordinatorLayout>
+
+</com.liferay.mobile.screens.testapp.postings.view.CollectionDetailCustomView>

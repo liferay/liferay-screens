@@ -19,6 +19,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.View
+import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.RelativeLayout
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
@@ -33,7 +35,7 @@ import com.liferay.mobile.sdk.apio.model.Thing
 
 open class CollectionDetailView @JvmOverloads constructor(
 	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : BaseView,
-	RelativeLayout(context, attrs, defStyleAttr), ThingAdapter.Listener {
+	FrameLayout(context, attrs, defStyleAttr), ThingAdapter.Listener {
 
 	override var screenlet: ThingScreenlet? = null
 
