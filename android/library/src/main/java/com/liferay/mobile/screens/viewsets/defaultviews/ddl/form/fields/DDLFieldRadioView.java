@@ -18,6 +18,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
@@ -34,11 +35,12 @@ import java.util.List;
 /**
  * @author Jose Manuel Navarro
  */
-public class DDLFieldRadioView extends RadioGroup
+public class DDLFieldRadioView extends LinearLayout
 	implements DDLFieldViewModel<SelectableOptionsField>, CompoundButton.OnCheckedChangeListener {
 
 	protected View parentView;
 	private SelectableOptionsField field;
+	private RadioGroup radioGroup;
 
 	public DDLFieldRadioView(Context context) {
 		super(context);
@@ -65,11 +67,7 @@ public class DDLFieldRadioView extends RadioGroup
 		}
 
 		if (this.field.isInline()) {
-			LinearLayout linearLayout = findViewById(R.id.radio_group);
-			LayoutParams layoutParams =
-				new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-			linearLayout.setLayoutParams(layoutParams);
-			linearLayout.setOrientation(HORIZONTAL);
+			radioGroup.setOrientation(HORIZONTAL);
 		}
 
 		renderOptions(field);
@@ -79,7 +77,7 @@ public class DDLFieldRadioView extends RadioGroup
 
 	public void renderOptions(SelectableOptionsField field) {
 		LayoutParams layoutParams =
-			new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+			new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f);
 
 		List<Option> availableOptions = field.getAvailableOptions();
 
@@ -93,7 +91,12 @@ public class DDLFieldRadioView extends RadioGroup
 			radioButton.setOnCheckedChangeListener(this);
 			radioButton.setTypeface(getTypeface());
 			radioButton.setSaveEnabled(true);
-			addView(radioButton);
+
+			if(this.field.isInline()) {
+				radioButton.setGravity(Gravity.TOP);
+			}
+
+			radioGroup.addView(radioButton);
 		}
 	}
 
@@ -159,6 +162,8 @@ public class DDLFieldRadioView extends RadioGroup
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
+
+		radioGroup = findViewById(R.id.radio_group);
 
 		setSaveEnabled(true);
 	}
