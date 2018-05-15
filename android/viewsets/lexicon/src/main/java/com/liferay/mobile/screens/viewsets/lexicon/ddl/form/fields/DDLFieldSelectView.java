@@ -18,6 +18,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.util.AttributeSet;
+import com.liferay.mobile.screens.ddl.model.Option;
 import com.liferay.mobile.screens.ddl.model.SelectableOptionsField;
 import com.liferay.mobile.screens.viewsets.lexicon.R;
 import com.liferay.mobile.screens.viewsets.lexicon.util.FormViewUtil;
@@ -57,8 +58,8 @@ public class DDLFieldSelectView
 	protected void setupSingleChoice(AlertDialog.Builder builder, DialogInterface.OnClickListener selectOptionHandler,
 		String[] labels) {
 
-		List<SelectableOptionsField.Option> availableOptions = getField().getAvailableOptions();
-		ArrayList<SelectableOptionsField.Option> currentValue = getField().getCurrentValue();
+		List<Option> availableOptions = getField().getAvailableOptions();
+		ArrayList<Option> currentValue = getField().getCurrentValue();
 
 		int index = (currentValue.isEmpty()) ? -1 : availableOptions.indexOf(currentValue.get(0));
 		builder.setSingleChoiceItems(labels, index, selectOptionHandler);

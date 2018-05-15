@@ -24,6 +24,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.ddl.model.Option;
 import com.liferay.mobile.screens.ddl.model.SelectableOptionsField;
 import java.util.ArrayList;
 import java.util.List;
@@ -92,7 +93,7 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<SelectableOptionsFi
 
 		builder.setCustomTitle(customDialogView);
 
-		final List<SelectableOptionsField.Option> availableOptions = getField().getAvailableOptions();
+		final List<Option> availableOptions = getField().getAvailableOptions();
 		String[] labels = getOptionsLabels().toArray(new String[availableOptions.size()]);
 
 		if (getField().isMultiple()) {
@@ -122,24 +123,24 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<SelectableOptionsFi
 
 	protected List<String> getOptionsLabels() {
 		List<String> result = new ArrayList<>();
-		for (SelectableOptionsField.Option opt : getField().getAvailableOptions()) {
+		for (Option opt : getField().getAvailableOptions()) {
 			result.add(opt.label);
 		}
 		return result;
 	}
 
 	private boolean[] getCheckedOptions() {
-		List<SelectableOptionsField.Option> availableOptions = getField().getAvailableOptions();
+		List<Option> availableOptions = getField().getAvailableOptions();
 		boolean[] checked = new boolean[availableOptions.size()];
 		for (int i = 0; i < availableOptions.size(); i++) {
-			SelectableOptionsField.Option availableOption = availableOptions.get(i);
+			Option availableOption = availableOptions.get(i);
 			checked[i] = getField().isSelected(availableOption);
 		}
 		return checked;
 	}
 
 	protected void setupMultipleChoice(AlertDialog.Builder builder,
-		final List<SelectableOptionsField.Option> availableOptions, String[] labels) {
+		final List<Option> availableOptions, String[] labels) {
 
 		final boolean[] checked = getCheckedOptions();
 		builder.setMultiChoiceItems(labels, checked, new DialogInterface.OnMultiChoiceClickListener() {
@@ -170,9 +171,9 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<SelectableOptionsFi
 		builder.setItems(labels, selectOptionHandler);
 	}
 
-	private void checkField(boolean[] checked, List<SelectableOptionsField.Option> availableOptions) {
+	private void checkField(boolean[] checked, List<Option> availableOptions) {
 		for (int i = 0; i < checked.length; i++) {
-			SelectableOptionsField.Option option = availableOptions.get(i);
+			Option option = availableOptions.get(i);
 			if (checked[i]) {
 				getField().selectOption(option);
 			} else {

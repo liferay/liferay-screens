@@ -27,6 +27,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
+import com.liferay.mobile.screens.ddl.model.Option;
 import com.liferay.mobile.screens.ddl.model.SelectableOptionsField;
 import java.util.List;
 
@@ -80,10 +81,10 @@ public class DDLFieldRadioView extends RadioGroup
 		LayoutParams layoutParams =
 			new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-		List<SelectableOptionsField.Option> availableOptions = field.getAvailableOptions();
+		List<Option> availableOptions = field.getAvailableOptions();
 
 		for (int i = 0; i < availableOptions.size(); ++i) {
-			SelectableOptionsField.Option opt = availableOptions.get(i);
+			Option opt = availableOptions.get(i);
 
 			RadioButton radioButton = new RadioButton(getContext());
 			radioButton.setLayoutParams(layoutParams);
@@ -98,10 +99,10 @@ public class DDLFieldRadioView extends RadioGroup
 
 	@Override
 	public void refresh() {
-		List<SelectableOptionsField.Option> selectedOptions = field.getCurrentValue();
+		List<Option> selectedOptions = field.getCurrentValue();
 
 		if (selectedOptions != null) {
-			for (SelectableOptionsField.Option opt : selectedOptions) {
+			for (Option opt : selectedOptions) {
 				RadioButton radioButton = findViewWithTag(opt);
 
 				if (radioButton != null) {
@@ -119,8 +120,8 @@ public class DDLFieldRadioView extends RadioGroup
 			TextView label = findViewById(R.id.liferay_ddl_label);
 			label.setError(errorText);
 		} else {
-			List<SelectableOptionsField.Option> availableOptions = field.getAvailableOptions();
-			SelectableOptionsField.Option opt = availableOptions.get(0);
+			List<Option> availableOptions = field.getAvailableOptions();
+			Option opt = availableOptions.get(0);
 			RadioButton radioButton = findViewWithTag(opt);
 			if (radioButton != null) {
 				radioButton.setError(errorText);
@@ -147,7 +148,7 @@ public class DDLFieldRadioView extends RadioGroup
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		RadioButton radioButton = (RadioButton) buttonView;
 
-		SelectableOptionsField.Option opt = (SelectableOptionsField.Option) radioButton.getTag();
+		Option opt = (Option) radioButton.getTag();
 		if (isChecked) {
 			field.selectOption(opt);
 		} else {

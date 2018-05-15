@@ -27,6 +27,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
+import com.liferay.mobile.screens.ddl.model.Option;
 import com.liferay.mobile.screens.ddm.form.model.CheckboxMultipleField;
 import java.util.List;
 
@@ -54,7 +55,7 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
 
 	@Override
 	public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-		CheckboxMultipleField.Option opt = (CheckboxMultipleField.Option) compoundButton.getTag();
+		Option opt = (Option) compoundButton.getTag();
 
 		if (isChecked) {
 			field.selectOption(opt);
@@ -81,15 +82,15 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
 
 		LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
-		List<CheckboxMultipleField.Option> availableOptions = field.getAvailableOptions();
+		List<Option> availableOptions = field.getAvailableOptions();
 
 		if (field.isShowAsSwitcher()) {
-			for (CheckboxMultipleField.Option opt : availableOptions) {
+			for (Option opt : availableOptions) {
 				Switch switchView = createSwitchView(opt, layoutParams);
 				addView(switchView);
 			}
 		} else {
-			for (CheckboxMultipleField.Option opt : availableOptions) {
+			for (Option opt : availableOptions) {
 				CheckBox checkBoxView = createCheckBoxView(opt, layoutParams);
 				addView(checkBoxView);
 			}
@@ -98,7 +99,7 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
 		refresh();
 	}
 
-	private CheckBox createCheckBoxView(CheckboxMultipleField.Option option, LayoutParams layoutParams) {
+	private CheckBox createCheckBoxView(Option option, LayoutParams layoutParams) {
 
 		CheckBox checkBoxView = new CheckBox(getContext());
 		checkBoxView.setLayoutParams(layoutParams);
@@ -111,7 +112,7 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
 		return checkBoxView;
 	}
 
-	private Switch createSwitchView(CheckboxMultipleField.Option option, LayoutParams layoutParams) {
+	private Switch createSwitchView(Option option, LayoutParams layoutParams) {
 
 		Switch switchView = new Switch(getContext());
 		switchView.setLayoutParams(layoutParams);
@@ -126,10 +127,10 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
 
 	@Override
 	public void refresh() {
-		List<CheckboxMultipleField.Option> selectedOptions = field.getCurrentValue();
+		List<Option> selectedOptions = field.getCurrentValue();
 
 		if (selectedOptions != null) {
-			for (CheckboxMultipleField.Option opt : selectedOptions) {
+			for (Option opt : selectedOptions) {
 				CheckBox checkBox = findViewWithTag(opt);
 
 				if (checkBox != null) {
@@ -147,8 +148,8 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
 			TextView label = findViewById(R.id.liferay_ddm_label);
 			label.setError(errorText);
 		} else {
-			List<CheckboxMultipleField.Option> availableOptions = field.getAvailableOptions();
-			CheckboxMultipleField.Option opt = availableOptions.get(0);
+			List<Option> availableOptions = field.getAvailableOptions();
+			Option opt = availableOptions.get(0);
 			CheckBox checkBox = findViewWithTag(opt);
 			if (checkBox != null) {
 				checkBox.setError(errorText);

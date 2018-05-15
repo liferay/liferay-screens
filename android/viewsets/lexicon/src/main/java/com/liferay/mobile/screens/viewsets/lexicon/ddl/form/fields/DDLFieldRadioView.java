@@ -20,6 +20,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
+import com.liferay.mobile.screens.ddl.model.Option;
 import com.liferay.mobile.screens.ddl.model.SelectableOptionsField;
 import com.liferay.mobile.screens.viewsets.lexicon.R;
 import com.liferay.mobile.screens.viewsets.lexicon.util.FormViewUtil;
@@ -47,10 +48,10 @@ public class DDLFieldRadioView
 		int margin = FormViewUtil.convertDpToPx(getContext(), 18);
 		layoutParams.setMargins(0, margin, 0, margin);
 
-		List<SelectableOptionsField.Option> availableOptions = field.getAvailableOptions();
+		List<Option> availableOptions = field.getAvailableOptions();
 
 		for (int i = 0; i < availableOptions.size(); ++i) {
-			SelectableOptionsField.Option opt = availableOptions.get(i);
+			Option opt = availableOptions.get(i);
 
 			RadioButton radioButton = new RadioButton(getContext());
 			radioButton.setLayoutParams(layoutParams);

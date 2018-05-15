@@ -26,6 +26,7 @@ import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;
 import com.liferay.mobile.screens.ddl.form.connector.DDMStructureConnector;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormEvent;
 import com.liferay.mobile.screens.ddl.model.Field;
+import com.liferay.mobile.screens.ddl.model.Option;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.ddl.model.SelectableOptionsField;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -98,7 +99,7 @@ public class DDLFormLoadInteractor extends BaseCacheReadInteractor<DDLFormListen
 
 					JSONArray values = new JSONArray(body);
 					for (int i = 0; i < values.length(); i++) {
-						SelectableOptionsField.Option option = parseOption(values.getJSONObject(i), dataProvider);
+						Option option = parseOption(values.getJSONObject(i), dataProvider);
 						optionsField.getAvailableOptions().add(option);
 					}
 				}
@@ -120,13 +121,13 @@ public class DDLFormLoadInteractor extends BaseCacheReadInteractor<DDLFormListen
 	}
 
 	@NonNull
-	private SelectableOptionsField.Option parseOption(JSONObject jsonObject,
-		SelectableOptionsField.DataProvider dataProvider) throws JSONException {
+	private Option parseOption(JSONObject jsonObject, SelectableOptionsField.DataProvider dataProvider)
+		throws JSONException {
 
 		String optionName = jsonObject.getString(dataProvider.name);
 		String optionValue = jsonObject.getString(dataProvider.value);
 
-		return new SelectableOptionsField.Option(optionName, optionName, optionValue, jsonObject);
+		return new Option(optionName, optionName, optionValue, jsonObject);
 	}
 
 	private String requestDataFromDataProvider(String url, String username, String password) throws Exception {

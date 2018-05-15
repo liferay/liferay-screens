@@ -14,7 +14,7 @@
 
 package com.liferay.mobile.screens.ddm.form.model
 
-import com.liferay.mobile.screens.ddl.model.SelectableOptionsField
+import com.liferay.mobile.screens.ddl.model.Option
 
 
 /**
@@ -22,11 +22,9 @@ import com.liferay.mobile.screens.ddl.model.SelectableOptionsField
  */
 class GridField(val columns: List<GridColumn>, val row: List<GridRow>)
 
-class GridRow(label: String, options: List<SelectableOptionsField.Option>, value: String) : GridMember(label, options,
-    value)
+class GridRow(label: String, options: List<Option>, value: String) : GridMember(label, options, value)
 
-class GridColumn(label: String, options: List<SelectableOptionsField.Option>, value: String) : GridMember(label,
-    options, value)
+class GridColumn(label: String, options: List<Option>, value: String) : GridMember(label, options, value)
 
-abstract class GridMember(val label: String, val options: List<SelectableOptionsField.Option>, val value: String)
+abstract class GridMember(val label: String, val options: List<Option>, val value: String)
 
