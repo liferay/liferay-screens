@@ -141,7 +141,7 @@ data class FormInstance @JvmOverloads constructor(
 
             return mapOf(
                 "isAutocomplete" to isAutocomplete,
-                "isInline" to isInline,
+                FormFieldKeys.INLINE to isInline,
                 "isLocalizable" to isLocalizable,
                 "isMultiple" to isMultiple,
                 FormFieldKeys.READ_ONLY to isReadOnly,

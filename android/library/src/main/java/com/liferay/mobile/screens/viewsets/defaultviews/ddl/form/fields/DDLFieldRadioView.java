@@ -21,6 +21,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -60,6 +61,14 @@ public class DDLFieldRadioView extends RadioGroup
 
 			label.setText(field.getLabel());
 			label.setVisibility(VISIBLE);
+		}
+
+		if (this.field.isInline()) {
+			LinearLayout linearLayout = findViewById(R.id.radio_group);
+			LayoutParams layoutParams =
+				new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+			linearLayout.setLayoutParams(layoutParams);
+			linearLayout.setOrientation(HORIZONTAL);
 		}
 
 		renderOptions(field);

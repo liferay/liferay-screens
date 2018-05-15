@@ -44,6 +44,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	private boolean repeatable;
 	private boolean required;
 	private boolean showLabel;
+	private boolean inline = false;
 	private T predefinedValue;
 	private T currentValue;
 	private boolean lastValidationResult = true;
@@ -55,7 +56,6 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	private Map<String, Object> attributes = new HashMap<>();
 
 	private boolean autocomplete = false;
-	private boolean inLine = false;
 	private boolean localizable = false;
 	private boolean multiple = false;
 	private boolean showAsSwitcher = false;
@@ -102,6 +102,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		repeatable = Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.REPEATABLE));
 		required = Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.REQUIRED));
 		showLabel = Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.SHOW_LABEL));
+		inline = Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.INLINE));
 		visibilityExpression = getAttributeStringValue(attributes, FormFieldKeys.VISIBILITY_EXPRESSION);
 		ddmDataProviderInstance = getAttributeStringValue(attributes, FormFieldKeys.DDM_DATA_PROVIDER_INSTANCE);
 
@@ -132,6 +133,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		repeatable = (in.readInt() == 1);
 		required = (in.readInt() == 1);
 		showLabel = (in.readInt() == 1);
+		inline = (in.readInt() == 1);
 
 		predefinedValue = (T) in.readSerializable();
 		currentValue = (T) in.readSerializable();
@@ -199,6 +201,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 	public boolean isShowLabel() {
 		return showLabel;
+	}
+
+	public boolean isInline() {
+		return inline;
 	}
 
 	public boolean isValid() {
