@@ -143,7 +143,7 @@ data class FormInstance @JvmOverloads constructor(
                 "isAutocomplete" to isAutocomplete,
                 FormFieldKeys.INLINE to isInline,
                 "isLocalizable" to isLocalizable,
-                "isMultiple" to isMultiple,
+                FormFieldKeys.MULTIPLE to isMultiple,
                 FormFieldKeys.READ_ONLY to isReadOnly,
                 FormFieldKeys.REPEATABLE to isRepeatable,
                 FormFieldKeys.REQUIRED to isRequired,

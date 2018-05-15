@@ -45,6 +45,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	private boolean required;
 	private boolean showLabel;
 	private boolean inline = false;
+	private boolean multiple = false;
 	private T predefinedValue;
 	private T currentValue;
 	private boolean lastValidationResult = true;
@@ -57,7 +58,6 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 	private boolean autocomplete = false;
 	private boolean localizable = false;
-	private boolean multiple = false;
 	private boolean showAsSwitcher = false;
 	private boolean isTransient = false;
 	private String style;
@@ -103,6 +103,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		required = Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.REQUIRED));
 		showLabel = Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.SHOW_LABEL));
 		inline = Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.INLINE));
+		multiple = Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.MULTIPLE));
 		visibilityExpression = getAttributeStringValue(attributes, FormFieldKeys.VISIBILITY_EXPRESSION);
 		ddmDataProviderInstance = getAttributeStringValue(attributes, FormFieldKeys.DDM_DATA_PROVIDER_INSTANCE);
 
@@ -134,6 +135,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		required = (in.readInt() == 1);
 		showLabel = (in.readInt() == 1);
 		inline = (in.readInt() == 1);
+		multiple = (in.readInt() == 1);
 
 		predefinedValue = (T) in.readSerializable();
 		currentValue = (T) in.readSerializable();
@@ -206,6 +208,8 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	public boolean isInline() {
 		return inline;
 	}
+
+	public boolean isMultiple() { return multiple; }
 
 	public boolean isValid() {
 		boolean valid = !((currentValue == null) && isRequired());
@@ -296,6 +300,8 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		destination.writeInt(repeatable ? 1 : 0);
 		destination.writeInt(required ? 1 : 0);
 		destination.writeInt(showLabel ? 1 : 0);
+		destination.writeInt(inline ? 1 : 0);
+		destination.writeInt(multiple ? 1 : 0);
 
 		destination.writeSerializable(predefinedValue);
 		destination.writeSerializable(currentValue);

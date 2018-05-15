@@ -53,7 +53,7 @@ public class SelectableOptionsField extends OptionsField<ArrayList<Option>> {
 	public SelectableOptionsField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
 		super(attributes, locale, defaultLocale);
 
-		Object multipleValue = attributes.get("multiple");
+		Object multipleValue = attributes.get(FormFieldKeys.MULTIPLE);
 		multiple = (multipleValue != null) ? Boolean.valueOf(multipleValue.toString()) : false;
 		if ("checkbox_multiple".equals(attributes.get("type"))) {
 			multiple = true;
