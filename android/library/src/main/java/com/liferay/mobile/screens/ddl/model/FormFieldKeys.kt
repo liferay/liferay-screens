@@ -9,6 +9,8 @@ import org.objectweb.asm.Label
 class FormFieldKeys {
     companion object {
         const val NAME = "name"
+        const val DATA_TYPE = "dataType"
+        const val TYPE = "type"
         const val LABEL = "label"
         const val TIP = "tip"
         const val PLACEHOLDER = "placeHolder"

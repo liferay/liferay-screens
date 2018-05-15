@@ -143,8 +143,8 @@ data class FormInstance @JvmOverloads constructor(
                 FormFieldKeys.LABEL to label,
                 FormFieldKeys.PREDEFINED_VALUE to predefinedValue,
                 FormFieldKeys.TIP to tip,
-                "dataType" to dataType,
-                "type" to additionalType,
+                FormFieldKeys.DATA_TYPE to dataType,
+                FormFieldKeys.TYPE to additionalType,
                 FormFieldKeys.NAME to name,
                 FormFieldKeys.PLACEHOLDER to placeholder,
                 FormFieldKeys.TEXT to text

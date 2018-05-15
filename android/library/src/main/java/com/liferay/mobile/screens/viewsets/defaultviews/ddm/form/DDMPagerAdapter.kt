@@ -19,6 +19,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.TextView
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddm.form.model.FormPage
@@ -46,6 +47,14 @@ class DDMPagerAdapter(val pages: List<FormPage>) : PagerAdapter() {
 
         val view = inflater.inflate(R.layout.ddm_form_page_item, container, false)
         val linearLayout = view.findViewById<LinearLayout>(R.id.dmm_page_container)
+
+        linearLayout.findViewById<TextView>(R.id.headline_text_view)?.let {
+            it.text = page.headline
+        }
+
+        linearLayout.findViewById<TextView>(R.id.description_text_view)?.let {
+            it.text = page.description
+        }
 
         for (field in page.fields) {
             val layoutId = DDMFormView.DEFAULT_LAYOUT_IDS[field.editorType]
