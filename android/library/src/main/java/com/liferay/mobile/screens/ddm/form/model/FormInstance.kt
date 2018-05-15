@@ -92,6 +92,10 @@ data class FormInstance @JvmOverloads constructor(
 
         private fun getFields(map: Map<String, Any>, locale: Locale): List<Field<*>> {
 
+            if (map["totalItems"] as Double <= 0) {
+                return mutableListOf()
+            }
+
             return (map["member"] as List<Map<String, Any>>).mapTo(mutableListOf(), {
 
                 val isAutocomplete = it["isAutocomplete"] as? Boolean
@@ -156,4 +160,3 @@ data class FormInstance @JvmOverloads constructor(
         }
     }
 }
-
