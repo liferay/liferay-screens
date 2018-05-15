@@ -404,6 +404,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 				return new ImageField(attributes, locale, defaultLocale);
 			} else if (GEO.equals(this)) {
 				return new GeolocationField(attributes, locale, defaultLocale);
+			} else {
+				if (EditorType.valueOf(attributes).equals(EditorType.TEXT_AREA)) {
+					return new StringField(attributes, locale, defaultLocale);
+				}
 			}
 			return null;
 		}
