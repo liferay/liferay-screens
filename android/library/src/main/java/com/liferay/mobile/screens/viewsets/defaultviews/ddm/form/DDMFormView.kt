@@ -15,10 +15,14 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.ddm.form
 
 import android.content.Context
+import android.support.design.widget.Snackbar
+import android.support.design.widget.Snackbar.LENGTH_SHORT
 import android.support.v4.view.ViewPager
 import android.util.AttributeSet
 import android.widget.Button
 import android.widget.ScrollView
+import com.github.kittinunf.result.map
+import com.google.gson.Gson
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.ddm.form.model.FormInstance
@@ -26,9 +30,15 @@ import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
+import com.liferay.mobile.screens.util.JSONUtil
 import com.liferay.mobile.screens.util.LiferayLogger
 import com.liferay.mobile.sdk.apio.delegates.converter
+import com.liferay.mobile.sdk.apio.fetch
+import com.liferay.mobile.sdk.apio.model.Relation
 import com.liferay.mobile.sdk.apio.model.Thing
+import com.liferay.mobile.sdk.apio.model.getOperation
+import com.liferay.mobile.sdk.apio.performOperation
+import com.squareup.okhttp.HttpUrl
 
 /**
  * @author Paulo Cruz
@@ -43,9 +53,11 @@ class DDMFormView @JvmOverloads constructor(
     private val backButton by bindNonNull<Button>(R.id.liferay_form_back)
     private val nextButton by bindNonNull<Button>(R.id.liferay_form_submit)
 
+    var formInstance: FormInstance? = null
+
     override var screenlet: ThingScreenlet? = null
     override var thing: Thing? by converter<FormInstance> {
-
+        formInstance = it
         val ddmPagerAdapter = DDMPagerAdapter(it.ddmStructure.pages)
         ddmFieldViewPages.adapter = ddmPagerAdapter
     }
@@ -75,9 +87,51 @@ class DDMFormView @JvmOverloads constructor(
                     nextButton.text = context.getString(R.string.submit)
                 }
             } else {
-                LiferayLogger.d("Submit")
+                submit()
             }
         })
+    }
+
+    fun submit() {
+        val formInstanceRecords = thing?.attributes?.get("formInstanceRecords") as? Relation
+
+        if (formInstanceRecords != null) {
+            fetch(HttpUrl.parse(formInstanceRecords.id)) {
+                val thing = it.component1()
+                if (thing != null) {
+                    performSubmitOperation(thing)
+                }
+            }
+        }
+        else {
+            LiferayLogger.e("Can't submit")
+        }
+    }
+
+    private fun performSubmitOperation(thing: Thing) {
+        val operation = thing.getOperation("create")
+
+        operation?.let {
+            performOperation(thing.id, it.id, {
+                val values = mutableMapOf<String, Any>()
+
+
+                if (!it.filter { it.name == "isDraft" }.isEmpty()) {
+                    values.put("isDraft", false)
+                }
+
+                val fieldsList = formInstance!!
+                    .fields.map { mapOf("identifier" to "", "name" to it.name, "value" to it.currentValue ) }
+
+                val fieldValues = Gson().toJson(fieldsList)
+
+                values.put("fieldValues", fieldValues)
+
+                values
+            }) {
+               Snackbar.make(this, "Form Submitted", LENGTH_SHORT).show()
+            }
+        }
     }
 
     companion object {
