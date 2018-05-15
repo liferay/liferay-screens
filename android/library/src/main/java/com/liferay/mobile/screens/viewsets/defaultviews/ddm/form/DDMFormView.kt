@@ -21,16 +21,13 @@ import android.support.v4.view.ViewPager
 import android.util.AttributeSet
 import android.widget.Button
 import android.widget.ScrollView
-import com.github.kittinunf.result.map
 import com.google.gson.Gson
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.ddm.form.model.FormInstance
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
-import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
-import com.liferay.mobile.screens.util.JSONUtil
 import com.liferay.mobile.screens.util.LiferayLogger
 import com.liferay.mobile.sdk.apio.delegates.converter
 import com.liferay.mobile.sdk.apio.fetch
@@ -102,8 +99,7 @@ class DDMFormView @JvmOverloads constructor(
                     performSubmitOperation(thing)
                 }
             }
-        }
-        else {
+        } else {
             LiferayLogger.e("Can't submit")
         }
     }
@@ -121,7 +117,7 @@ class DDMFormView @JvmOverloads constructor(
                 }
 
                 val fieldsList = formInstance!!
-                    .fields.map { mapOf("identifier" to "", "name" to it.name, "value" to it.currentValue ) }
+                    .fields.map { mapOf("identifier" to "", "name" to it.name, "value" to it.currentValue) }
 
                 val fieldValues = Gson().toJson(fieldsList)
 
@@ -129,7 +125,7 @@ class DDMFormView @JvmOverloads constructor(
 
                 values
             }) {
-               Snackbar.make(this, "Form Submitted", LENGTH_SHORT).show()
+                Snackbar.make(this, "Form Submitted", LENGTH_SHORT).show()
             }
         }
     }
