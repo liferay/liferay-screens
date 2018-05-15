@@ -112,10 +112,13 @@ data class FormInstance @JvmOverloads constructor(
                 val name = it["name"] as? String
                 val placeholder = it["placeholder"] as? String
                 val text = it["text"] as? String
+                val options = (it["options"] as? Map<String, Any>)?.let {
+                    it["member"] as? List<Map<String, Any>>
+                }
 
                 val attributes = mapKeysToAllValues(isAutocomplete, isInline, isLocalizable, isMultiple, isReadOnly,
                     isRepeatable, isRequired, isShowAsSwitcher, isShowLabel, isTransient, label, predefinedValue,
-                    tip, dataType, additionalType, name, placeholder, text)
+                    tip, dataType, additionalType, name, placeholder, text, options)
 
 
                 val fieldDataType = Field.DataType.assignDataTypeFromString(dataType)
@@ -127,7 +130,7 @@ data class FormInstance @JvmOverloads constructor(
             isMultiple: Boolean?, isReadOnly: Boolean?, isRepeatable: Boolean?, isRequired: Boolean?,
             isShowAsSwitcher: Boolean?, isShowLabel: Boolean?, isTransient: Boolean?, label: String?,
             predefinedValue: String?, tip: String?, dataType: String?, additionalType: String?,
-            name: String?, placeholder: String?, text: String?): Map<String, Any?> {
+            name: String?, placeholder: String?, text: String?, options: List<Map<String, Any>>?): Map<String, Any?> {
 
             return mapOf(
                 "isAutocomplete" to isAutocomplete,
@@ -147,7 +150,8 @@ data class FormInstance @JvmOverloads constructor(
                 FormFieldKeys.TYPE to additionalType,
                 FormFieldKeys.NAME to name,
                 FormFieldKeys.PLACEHOLDER to placeholder,
-                FormFieldKeys.TEXT to text
+                FormFieldKeys.TEXT to text,
+                FormFieldKeys.OPTIONS to options
             )
         }
     }
