@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.ParagraphFieldTextView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:padding="10dp"
+	>
+
+	<TextView
+		android:id="@+id/liferay_ddl_label"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:labelFor="@+id/liferay_ddl_edit_text"
+		android:visibility="gone"
+		/>
+
+	<EditText
+		android:id="@+id/liferay_ddl_edit_text"
+		android:cursorVisible="false"
+		android:focusable="false"
+		android:focusableInTouchMode="false"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:inputType="textMultiLine"
+		/>
+</com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.ParagraphFieldTextView>
