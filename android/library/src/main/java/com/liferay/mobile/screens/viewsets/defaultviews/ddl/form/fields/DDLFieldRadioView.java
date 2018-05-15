@@ -26,17 +26,17 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
-import com.liferay.mobile.screens.ddl.model.StringWithOptionsField;
+import com.liferay.mobile.screens.ddl.model.SelectableOptionsField;
 import java.util.List;
 
 /**
  * @author Jose Manuel Navarro
  */
 public class DDLFieldRadioView extends RadioGroup
-	implements DDLFieldViewModel<StringWithOptionsField>, CompoundButton.OnCheckedChangeListener {
+	implements DDLFieldViewModel<SelectableOptionsField>, CompoundButton.OnCheckedChangeListener {
 
 	protected View parentView;
-	private StringWithOptionsField field;
+	private SelectableOptionsField field;
 
 	public DDLFieldRadioView(Context context) {
 		super(context);
@@ -47,12 +47,12 @@ public class DDLFieldRadioView extends RadioGroup
 	}
 
 	@Override
-	public StringWithOptionsField getField() {
+	public SelectableOptionsField getField() {
 		return field;
 	}
 
 	@Override
-	public void setField(StringWithOptionsField field) {
+	public void setField(SelectableOptionsField field) {
 		this.field = field;
 
 		if (this.field.isShowLabel()) {
@@ -67,14 +67,14 @@ public class DDLFieldRadioView extends RadioGroup
 		refresh();
 	}
 
-	public void renderOptions(StringWithOptionsField field) {
+	public void renderOptions(SelectableOptionsField field) {
 		LayoutParams layoutParams =
 			new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-		List<StringWithOptionsField.Option> availableOptions = field.getAvailableOptions();
+		List<SelectableOptionsField.Option> availableOptions = field.getAvailableOptions();
 
 		for (int i = 0; i < availableOptions.size(); ++i) {
-			StringWithOptionsField.Option opt = availableOptions.get(i);
+			SelectableOptionsField.Option opt = availableOptions.get(i);
 
 			RadioButton radioButton = new RadioButton(getContext());
 			radioButton.setLayoutParams(layoutParams);
@@ -89,10 +89,10 @@ public class DDLFieldRadioView extends RadioGroup
 
 	@Override
 	public void refresh() {
-		List<StringWithOptionsField.Option> selectedOptions = field.getCurrentValue();
+		List<SelectableOptionsField.Option> selectedOptions = field.getCurrentValue();
 
 		if (selectedOptions != null) {
-			for (StringWithOptionsField.Option opt : selectedOptions) {
+			for (SelectableOptionsField.Option opt : selectedOptions) {
 				RadioButton radioButton = findViewWithTag(opt);
 
 				if (radioButton != null) {
@@ -110,8 +110,8 @@ public class DDLFieldRadioView extends RadioGroup
 			TextView label = findViewById(R.id.liferay_ddl_label);
 			label.setError(errorText);
 		} else {
-			List<StringWithOptionsField.Option> availableOptions = field.getAvailableOptions();
-			StringWithOptionsField.Option opt = availableOptions.get(0);
+			List<SelectableOptionsField.Option> availableOptions = field.getAvailableOptions();
+			SelectableOptionsField.Option opt = availableOptions.get(0);
 			RadioButton radioButton = findViewWithTag(opt);
 			if (radioButton != null) {
 				radioButton.setError(errorText);
@@ -138,7 +138,7 @@ public class DDLFieldRadioView extends RadioGroup
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		RadioButton radioButton = (RadioButton) buttonView;
 
-		StringWithOptionsField.Option opt = (StringWithOptionsField.Option) radioButton.getTag();
+		SelectableOptionsField.Option opt = (SelectableOptionsField.Option) radioButton.getTag();
 		if (isChecked) {
 			field.selectOption(opt);
 		} else {

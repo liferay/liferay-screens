@@ -528,9 +528,9 @@ public class Record70Test {
 			modelValues.put("modelValues", values);
 			record.setValuesAndAttributes(modelValues);
 
-			StringWithOptionsField stringWithOptionsField =
-				(StringWithOptionsField) record.getField(record.getFieldCount() - 1);
-			stringWithOptionsField.selectOption(stringWithOptionsField.getAvailableOptions().get(0));
+			SelectableOptionsField selectableOptionsField =
+				(SelectableOptionsField) record.getField(record.getFieldCount() - 1);
+			selectableOptionsField.selectOption(selectableOptionsField.getAvailableOptions().get(0));
 
 			Parcel parcel = Parcel.obtain();
 

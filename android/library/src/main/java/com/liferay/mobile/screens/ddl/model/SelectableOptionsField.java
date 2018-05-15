@@ -26,33 +26,33 @@ import org.json.JSONObject;
 /**
  * @author Jose Manuel Navarro
  */
-public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsField.Option>> {
+public class SelectableOptionsField extends Field<ArrayList<SelectableOptionsField.Option>> {
 
-	public static final Parcelable.ClassLoaderCreator<StringWithOptionsField> CREATOR =
-		new Parcelable.ClassLoaderCreator<StringWithOptionsField>() {
+	public static final Parcelable.ClassLoaderCreator<SelectableOptionsField> CREATOR =
+		new Parcelable.ClassLoaderCreator<SelectableOptionsField>() {
 
 			@Override
-			public StringWithOptionsField createFromParcel(Parcel source, ClassLoader loader) {
-				return new StringWithOptionsField(source, loader);
+			public SelectableOptionsField createFromParcel(Parcel source, ClassLoader loader) {
+				return new SelectableOptionsField(source, loader);
 			}
 
-			public StringWithOptionsField createFromParcel(Parcel in) {
+			public SelectableOptionsField createFromParcel(Parcel in) {
 				throw new AssertionError();
 			}
 
-			public StringWithOptionsField[] newArray(int size) {
-				return new StringWithOptionsField[size];
+			public SelectableOptionsField[] newArray(int size) {
+				return new SelectableOptionsField[size];
 			}
 		};
 	private ArrayList<Option> availableOptions;
 	private boolean multiple;
 	private DataProvider dataProvider;
 
-	public StringWithOptionsField() {
+	public SelectableOptionsField() {
 		super();
 	}
 
-	public StringWithOptionsField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
+	public SelectableOptionsField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
 		super(attributes, locale, defaultLocale);
 
 		List<Map<String, String>> availableOptions = (List<Map<String, String>>) attributes.get("options");
@@ -79,7 +79,7 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 		setCurrentValue(predefinedOptions);
 	}
 
-	protected StringWithOptionsField(Parcel in, ClassLoader loader) {
+	protected SelectableOptionsField(Parcel in, ClassLoader loader) {
 		super(in, loader);
 
 		availableOptions = (ArrayList<Option>) in.readSerializable();

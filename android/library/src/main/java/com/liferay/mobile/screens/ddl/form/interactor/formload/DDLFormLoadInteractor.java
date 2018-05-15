@@ -27,7 +27,7 @@ import com.liferay.mobile.screens.ddl.form.connector.DDMStructureConnector;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormEvent;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
-import com.liferay.mobile.screens.ddl.model.StringWithOptionsField;
+import com.liferay.mobile.screens.ddl.model.SelectableOptionsField;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.util.ServiceProvider;
 import org.json.JSONArray;
@@ -79,7 +79,7 @@ public class DDLFormLoadInteractor extends BaseCacheReadInteractor<DDLFormListen
 					JSONArray jsonArray = new JSONArray(ddmDataProviderInstance);
 					long ddmDataProviderInstanceId = jsonArray.getLong(0);
 
-					StringWithOptionsField optionsField = (StringWithOptionsField) field;
+					SelectableOptionsField optionsField = (SelectableOptionsField) field;
 
 					DdmdataproviderinstanceService ddmdataproviderinstanceService =
 						new DdmdataproviderinstanceService(getSession());
@@ -90,7 +90,7 @@ public class DDLFormLoadInteractor extends BaseCacheReadInteractor<DDLFormListen
 					String definition = jsonDataProvider.getString("definition");
 					JSONObject jsonDefinition = new JSONObject(definition);
 
-					StringWithOptionsField.DataProvider dataProvider = parseDataProvider(jsonDefinition);
+					SelectableOptionsField.DataProvider dataProvider = parseDataProvider(jsonDefinition);
 					optionsField.setDataProvider(dataProvider);
 
 					String body =
@@ -98,7 +98,7 @@ public class DDLFormLoadInteractor extends BaseCacheReadInteractor<DDLFormListen
 
 					JSONArray values = new JSONArray(body);
 					for (int i = 0; i < values.length(); i++) {
-						StringWithOptionsField.Option option = parseOption(values.getJSONObject(i), dataProvider);
+						SelectableOptionsField.Option option = parseOption(values.getJSONObject(i), dataProvider);
 						optionsField.getAvailableOptions().add(option);
 					}
 				}
@@ -109,24 +109,24 @@ public class DDLFormLoadInteractor extends BaseCacheReadInteractor<DDLFormListen
 	}
 
 	@NonNull
-	private StringWithOptionsField.DataProvider parseDataProvider(JSONObject jsonDefinition) throws JSONException {
+	private SelectableOptionsField.DataProvider parseDataProvider(JSONObject jsonDefinition) throws JSONException {
 		JSONArray fieldValues = jsonDefinition.getJSONArray("fieldValues");
 		String url = findAttributeValue(fieldValues, "url");
 		String username = findAttributeValue(fieldValues, "username");
 		String password = findAttributeValue(fieldValues, "password");
 		String key = findAttributeValue(fieldValues, "key");
 		String value = findAttributeValue(fieldValues, "value");
-		return new StringWithOptionsField.DataProvider(url, username, password, key, value);
+		return new SelectableOptionsField.DataProvider(url, username, password, key, value);
 	}
 
 	@NonNull
-	private StringWithOptionsField.Option parseOption(JSONObject jsonObject,
-		StringWithOptionsField.DataProvider dataProvider) throws JSONException {
+	private SelectableOptionsField.Option parseOption(JSONObject jsonObject,
+		SelectableOptionsField.DataProvider dataProvider) throws JSONException {
 
 		String optionName = jsonObject.getString(dataProvider.name);
 		String optionValue = jsonObject.getString(dataProvider.value);
 
-		return new StringWithOptionsField.Option(optionName, optionName, optionValue, jsonObject);
+		return new SelectableOptionsField.Option(optionName, optionName, optionValue, jsonObject);
 	}
 
 	private String requestDataFromDataProvider(String url, String username, String password) throws Exception {

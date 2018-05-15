@@ -16,7 +16,7 @@ package com.liferay.mobile.screens.ddm.form.model;
 
 import android.os.Parcel;
 
-import com.liferay.mobile.screens.ddl.model.StringWithOptionsField;
+import com.liferay.mobile.screens.ddl.model.SelectableOptionsField;
 
 import java.util.Locale;
 import java.util.Map;
@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * @author Paulo Cruz
  */
-public class CheckboxMultipleField extends StringWithOptionsField {
+public class CheckboxMultipleField extends SelectableOptionsField {
 
     private boolean showAsSwitcher;
 

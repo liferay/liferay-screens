@@ -384,7 +384,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 				EditorType editor = EditorType.valueOf(attributes);
 
 				if (editor == EditorType.SELECT || editor == EditorType.RADIO) {
-					return new StringWithOptionsField(attributes, locale, defaultLocale);
+					return new SelectableOptionsField(attributes, locale, defaultLocale);
 				} else if (editor == EditorType.DATE) {
 					return new DateField(attributes, locale, defaultLocale);
 				} else {
