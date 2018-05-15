@@ -50,18 +50,6 @@ class DDMFormView @JvmOverloads constructor(
         ddmFieldViewPages.adapter = ddmPagerAdapter
     }
 
-    override fun <T> sendEvent(event: Event<T>): T? {
-        return null
-    }
-
-    override fun onDestroy() {
-
-    }
-
-    override fun showError(message: String?) {
-
-    }
-
     override fun onFinishInflate() {
         super.onFinishInflate()
 
