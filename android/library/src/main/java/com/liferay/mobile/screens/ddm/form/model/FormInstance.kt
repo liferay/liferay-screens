@@ -33,6 +33,7 @@ import java.util.*
 data class FormInstance @JvmOverloads constructor(
     val name: String,
     val description: String,
+    val defaultLanguage: String,
     val ddmStructure: DDMStructure,
     val isRequiredAuthentication: Boolean = false,
     val isRequiredCaptcha: Boolean = false,
@@ -46,60 +47,80 @@ data class FormInstance @JvmOverloads constructor(
 
         val converter: (Thing) -> FormInstance = { it: Thing ->
 
-            val formName = it.get("name") as String
-            val formDescription = it.get("description") as String
-            val structure = it.get("structure") as Relation
-            val jsonPages = structure.get("pages") as Map<String, Any>
-            val pagesList = jsonPages["member"] as List<Map<String, Any>>
-            val language = it.get("defaultLanguage") as String
+            val name = it["name"] as String
 
-            val pages = mutableListOf<FormPage>()
+            val description = it["description"] as String
 
-            for (i in 0 until pagesList.size) {
-                val page = pagesList[i]
+            val defaultLanguage = it["defaultLanguage"] as String
 
-                val headlinePage = page["headline"] as String
-                val textPage = page["text"] as String
-                val fieldsMap = page["fields"] as Map<String, Any>
-                val fieldsList = fieldsMap["member"] as List<Map<String, Any>>
+            val locale = Locale(defaultLanguage)
 
-                val fields = mutableListOf<Field<*>>()
-
-                for (j in 0 until fieldsList.size) {
-                    val fieldValues = fieldsList[j]
-
-                    val isAutocomplete = fieldValues["isAutocomplete"] as? Boolean
-                    val isInline = fieldValues["isInline"] as? Boolean
-                    val isLocalizable = fieldValues["isLocalizable"] as? Boolean
-                    val isMultiple = fieldValues["isMultiple"] as? Boolean
-                    val isReadOnly = fieldValues["isReadOnly"] as? Boolean
-                    val isRepeatable = fieldValues["isRepeatable"] as? Boolean
-                    val isRequired = fieldValues["isRequired"] as? Boolean
-                    val isShowAsSwitcher = fieldValues["isShowAsSwitcher"] as? Boolean
-                    val isShowLabel = fieldValues["isShowLabel"] as? Boolean
-                    val isTransient = fieldValues["isTransient"] as? Boolean
-                    val label = fieldValues["label"] as? String
-                    val predefinedValue = fieldValues["predefinedValue"] as? String
-                    val tip = fieldValues["tip"] as? String
-                    val dataType = fieldValues["dataType"] as? String
-                    val additionalType = fieldValues["additionalType"] as? String
-                    val name = fieldValues["name"] as? String
-                    val placeholder = fieldValues["placeholder"] as? String
-                    val text = fieldValues["text"] as? String
-
-                    val attributes = mapKeysToAllValues(isAutocomplete, isInline, isLocalizable, isMultiple, isReadOnly,
-                        isRepeatable, isRequired, isShowAsSwitcher, isShowLabel, isTransient, label, predefinedValue,
-                        tip, dataType, additionalType, name, placeholder, text)
-
-                    val locale = Locale(language)
-                    val fieldDataType = Field.DataType.assignDataTypeFromString(dataType)
-                    val field = fieldDataType.createField(attributes, locale, locale)
-                    fields.add(field)
-                }
-                pages.add(FormPage(headlinePage, textPage, fields))
+            val ddmStructure = (it["structure"] as Relation).let {
+                getStructure(it, locale)
             }
-            val ddmStructure = DDMStructure(formName, formDescription, pages)
-            FormInstance(formName, formDescription, ddmStructure)
+
+            FormInstance(name, description, defaultLanguage, ddmStructure)
+        }
+
+
+        private fun getStructure(relation: Relation, locale: Locale): DDMStructure {
+
+            val name = relation["name"] as String
+
+            val description = relation["description"] as String
+
+            val pages = (relation["pages"] as Map<String, Any>).let {
+                getPages(it, locale)
+            }
+
+            return DDMStructure(name, description, pages)
+        }
+
+        private fun getPages(mapper: Map<String, Any>, locale: Locale): List<FormPage> {
+
+            return (mapper["member"] as List<Map<String, Any>>).mapTo(mutableListOf(), {
+
+                val headlinePage = it["headline"] as String
+                val textPage = it["text"] as String
+                val fields = (it["fields"] as Map<String, Any>).let {
+                    getFields(it, locale)
+                }
+
+                FormPage(headlinePage, textPage, fields)
+            })
+        }
+
+        private fun getFields(map: Map<String, Any>, locale: Locale): List<Field<*>> {
+
+            return (map["member"] as List<Map<String, Any>>).mapTo(mutableListOf(), {
+
+                val isAutocomplete = it["isAutocomplete"] as? Boolean
+                val isInline = it["isInline"] as? Boolean
+                val isLocalizable = it["isLocalizable"] as? Boolean
+                val isMultiple = it["isMultiple"] as? Boolean
+                val isReadOnly = it["isReadOnly"] as? Boolean
+                val isRepeatable = it["isRepeatable"] as? Boolean
+                val isRequired = it["isRequired"] as? Boolean
+                val isShowAsSwitcher = it["isShowAsSwitcher"] as? Boolean
+                val isShowLabel = it["isShowLabel"] as? Boolean
+                val isTransient = it["isTransient"] as? Boolean
+                val label = it["label"] as? String
+                val predefinedValue = it["predefinedValue"] as? String
+                val tip = it["tip"] as? String
+                val dataType = it["dataType"] as? String
+                val additionalType = it["additionalType"] as? String
+                val name = it["name"] as? String
+                val placeholder = it["placeholder"] as? String
+                val text = it["text"] as? String
+
+                val attributes = mapKeysToAllValues(isAutocomplete, isInline, isLocalizable, isMultiple, isReadOnly,
+                    isRepeatable, isRequired, isShowAsSwitcher, isShowLabel, isTransient, label, predefinedValue,
+                    tip, dataType, additionalType, name, placeholder, text)
+
+
+                val fieldDataType = Field.DataType.assignDataTypeFromString(dataType)
+                fieldDataType.createField(attributes, locale, locale)
+            })
         }
 
         fun mapKeysToAllValues(isAutocomplete: Boolean?, isInline: Boolean?, isLocalizable: Boolean?,
