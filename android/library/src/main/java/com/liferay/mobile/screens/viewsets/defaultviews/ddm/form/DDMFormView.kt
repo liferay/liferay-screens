@@ -94,6 +94,7 @@ class DDMFormView @JvmOverloads constructor(
                     }
                 } else {
                     submit()
+                    evaluateContext(thing)
                 }
             } else {
                 highLightInvalidFields(invalidFields, true)
@@ -155,6 +156,42 @@ class DDMFormView @JvmOverloads constructor(
             }
         } else {
             LiferayLogger.e("Can't submit")
+        }
+    }
+
+    fun evaluateContext(thing: Thing?) {
+        val operation = thing!!.getOperation("evaluate-context")
+
+        operation?.let {
+            performOperation(thing.id, it.id, {
+                val values = mutableMapOf<String, Any>()
+
+                val fieldsList = formInstance!!
+                    .fields.map { mapOf("identifier" to "", "name" to it.name, "value" to it.currentValue) }
+
+                val fieldValues = Gson().toJson(fieldsList)
+
+                values["inLanguage"] = "es_ES"
+                values["fieldValues"] = fieldValues
+
+                values
+            }) {
+                val (response, exception) = it
+
+                response?.let {
+
+                    var message = "Evaluating context"
+
+                    if (!it.isSuccessful) {
+                        message = exception?.message ?: response.message()
+
+                        if (message.isEmpty()) message = "Unknown Error"
+                    }
+
+                    Snackbar.make(this, message, LENGTH_SHORT).show()
+
+                } ?: LiferayLogger.d(exception?.message)
+            }
         }
     }
 
