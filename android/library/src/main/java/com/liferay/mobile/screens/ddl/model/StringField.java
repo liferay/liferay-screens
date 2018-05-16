@@ -16,6 +16,8 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import com.liferay.mobile.screens.ddm.form.model.StringValidation;
+import com.liferay.mobile.screens.ddm.form.model.StringValidatorParser;
 import java.util.Locale;
 import java.util.Map;
 
@@ -23,6 +25,8 @@ import java.util.Map;
  * @author Jose Manuel Navarro
  */
 public class StringField extends OptionsField<String> {
+
+	private StringValidation stringValidation;
 
 	public static final Parcelable.ClassLoaderCreator<StringField> CREATOR =
 		new Parcelable.ClassLoaderCreator<StringField>() {
@@ -48,6 +52,10 @@ public class StringField extends OptionsField<String> {
 	public StringField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
 		super(attributes, locale, defaultLocale);
 
+		Map<String, String> validation = (Map<String, String>) attributes.get("validation");
+
+		stringValidation = new StringValidatorParser().parseStringValidation(validation);
+
 		if (getText() != null) {
 			setReadOnly(true);
 		}
@@ -69,7 +77,7 @@ public class StringField extends OptionsField<String> {
 			valid = !trimmedString.isEmpty();
 		}
 
-		return valid;
+		return valid && stringValidation.validate(currentValue);
 	}
 
 	@Override
