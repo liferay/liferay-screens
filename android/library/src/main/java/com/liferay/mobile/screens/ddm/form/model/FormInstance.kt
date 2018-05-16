@@ -83,7 +83,7 @@ data class FormInstance @JvmOverloads constructor(
 
             return (mapper["member"] as List<Map<String, Any>>).mapTo(mutableListOf(), {
 
-                val headlinePage = it["headline"] as String
+                val headlinePage = it["headline"] as? String ?: ""
                 val textPage = it["text"] as? String ?: ""
                 val fields = (it["fields"] as Map<String, Any>).let {
                     getFields(it, locale)
