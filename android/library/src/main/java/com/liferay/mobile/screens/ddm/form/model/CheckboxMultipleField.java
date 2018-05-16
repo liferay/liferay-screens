@@ -15,9 +15,7 @@
 package com.liferay.mobile.screens.ddm.form.model;
 
 import android.os.Parcel;
-
 import com.liferay.mobile.screens.ddl.model.SelectableOptionsField;
-
 import java.util.Locale;
 import java.util.Map;
 
