@@ -15,9 +15,11 @@
 
         <item name="android:textViewStyle">@style/lexicon_text_view</item>
         <item name="android:editTextStyle">@style/lexicon_edit_text</item>
+        <item name="android:autoCompleteTextViewStyle">@style/lexicon_edit_text</item>
         <item name="android:buttonStyle">@style/lexicon_button</item>
 
         <item name="editTextStyle">@style/lexicon_edit_text</item>
+        <item name="autoCompleteTextViewStyle">@style/lexicon_edit_text</item>
         <item name="buttonStyle">@style/lexicon_button</item>
 
         <item name="android:fontFamily">sans-serif</item>

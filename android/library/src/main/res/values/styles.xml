@@ -17,7 +17,9 @@
 		<item name="android:textViewStyle">@style/default_text_view</item>
 		<item name="android:editTextStyle">@style/default_edit_text</item>
 		<item name="android:buttonStyle">@style/default_button</item>
+		<item name="android:autoCompleteTextViewStyle">@style/default_edit_text</item>
 
+		<item name="autoCompleteTextViewStyle">@style/default_edit_text</item>
 		<item name="editTextStyle">@style/default_edit_text</item>
 		<item name="buttonStyle">@style/default_button</item>
 
