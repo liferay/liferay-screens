@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import com.liferay.mobile.screens.ddm.form.model.CheckboxMultipleField;
 import com.liferay.mobile.screens.ddm.form.model.FieldValidation;
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -19,7 +19,7 @@ class FormFieldKeys {
         const val REQUIRED = "required"
         const val SHOW_LABEL = "showLabel"
         const val INLINE = "inline"
-        const val MULTIPLE = "inline"
+        const val MULTIPLE = "multiple"
         const val VISIBILITY_EXPRESSION = "visibilityExpression"
         const val DDM_DATA_PROVIDER_INSTANCE = "ddmDataProviderInstance"
         const val PREDEFINED_VALUE = "predefinedValue"
