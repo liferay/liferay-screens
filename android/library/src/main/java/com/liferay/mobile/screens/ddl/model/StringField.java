@@ -22,7 +22,7 @@ import java.util.Map;
 /**
  * @author Jose Manuel Navarro
  */
-public class StringField extends Field<String> {
+public class StringField extends OptionsField<String> {
 
 	public static final Parcelable.ClassLoaderCreator<StringField> CREATOR =
 		new Parcelable.ClassLoaderCreator<StringField>() {

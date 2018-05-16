@@ -56,7 +56,7 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 		DEFAULT_LAYOUT_IDS.put(Field.EditorType.PARAGRAPH, R.layout.ddlfield_text_area_default);
 		DEFAULT_LAYOUT_IDS.put(Field.EditorType.DOCUMENT, R.layout.ddlfield_document_default);
 		DEFAULT_LAYOUT_IDS.put(Field.EditorType.GEO, R.layout.ddlfield_geo_default);
-	}
+}
 
 	private final Map<Field.EditorType, Integer> layoutIds = new HashMap<>();
 	private final Map<String, Integer> customLayoutIds = new HashMap<>();

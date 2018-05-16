@@ -15,11 +15,12 @@
 		android:visibility="gone"
 		/>
 
-	<EditText
+	<AutoCompleteTextView
 		android:id="@+id/liferay_ddl_edit_text"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:inputType="text"
+		style="@style/default_edit_text"
 		/>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldTextView>
