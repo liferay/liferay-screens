@@ -399,6 +399,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 					return new SelectableOptionsField(attributes, locale, defaultLocale);
 				} else if (editor == EditorType.DATE) {
 					return new DateField(attributes, locale, defaultLocale);
+				} else if (editor == EditorType.DOCUMENT) {
+					return new DocumentField(attributes, locale, defaultLocale);
+				} else if (editor == EditorType.CHECKBOX_MULTIPLE) {
+					return new CheckboxMultipleField(attributes, locale, defaultLocale);
 				} else {
 					return new StringField(attributes, locale, defaultLocale);
 				}
