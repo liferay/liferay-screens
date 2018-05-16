@@ -25,7 +25,7 @@ import java.util.Map;
  */
 public class CheckboxMultipleField extends SelectableOptionsField {
 
-	private boolean showAsSwitcher;
+	private boolean isShowAsSwitcher;
 
 	public CheckboxMultipleField() {
 	}
@@ -33,7 +33,7 @@ public class CheckboxMultipleField extends SelectableOptionsField {
 	public CheckboxMultipleField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
 		super(attributes, locale, defaultLocale);
 
-		showAsSwitcher = Boolean.valueOf(attributes.get(FormFieldKeys.SWITCHER).toString());
+		isShowAsSwitcher = Boolean.valueOf(attributes.get(FormFieldKeys.SWITCHER).toString());
 	}
 
 	public CheckboxMultipleField(Parcel in, ClassLoader loader) {
@@ -41,6 +41,6 @@ public class CheckboxMultipleField extends SelectableOptionsField {
 	}
 
 	public boolean isShowAsSwitcher() {
-		return showAsSwitcher;
+		return isShowAsSwitcher;
 	}
 }

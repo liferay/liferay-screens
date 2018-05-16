@@ -43,6 +43,8 @@ public class SelectableOptionsField extends OptionsField<ArrayList<Option>> {
 				return new SelectableOptionsField[size];
 			}
 		};
+
+	private boolean inline;
 	private boolean multiple;
 	private DataProvider dataProvider;
 
@@ -54,7 +56,11 @@ public class SelectableOptionsField extends OptionsField<ArrayList<Option>> {
 		super(attributes, locale, defaultLocale);
 
 		Object multipleValue = attributes.get(FormFieldKeys.MULTIPLE);
+		Object inlineValue = attributes.get(FormFieldKeys.INLINE);
+
 		multiple = (multipleValue != null) ? Boolean.valueOf(multipleValue.toString()) : false;
+		inline = (inlineValue != null) ? Boolean.valueOf(inlineValue.toString()) : false;
+
 		if ("checkbox_multiple".equals(attributes.get("type"))) {
 			multiple = true;
 		}
@@ -69,6 +75,7 @@ public class SelectableOptionsField extends OptionsField<ArrayList<Option>> {
 		super(in, loader);
 
 		multiple = in.readInt() == 1;
+		inline = in.readInt() == 1;
 		dataProvider = (DataProvider) in.readSerializable();
 	}
 
@@ -133,6 +140,10 @@ public class SelectableOptionsField extends OptionsField<ArrayList<Option>> {
 	public boolean isMultiple() {
 		// Multiple selection is supported on select fields
 		return multiple;
+	}
+
+	public boolean isInline() {
+		return inline;
 	}
 
 	@Override
