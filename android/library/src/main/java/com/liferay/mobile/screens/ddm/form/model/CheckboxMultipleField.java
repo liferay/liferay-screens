@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.ddm.form.model;
 
 import android.os.Parcel;
+import com.liferay.mobile.screens.ddl.model.FormFieldKeys;
 import com.liferay.mobile.screens.ddl.model.SelectableOptionsField;
 import java.util.Locale;
 import java.util.Map;
@@ -24,26 +25,22 @@ import java.util.Map;
  */
 public class CheckboxMultipleField extends SelectableOptionsField {
 
-    private boolean showAsSwitcher;
+	private boolean showAsSwitcher;
 
-    public CheckboxMultipleField() {
-    }
+	public CheckboxMultipleField() {
+	}
 
-    public CheckboxMultipleField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
-        super(attributes, locale, defaultLocale);
+	public CheckboxMultipleField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
+		super(attributes, locale, defaultLocale);
 
-        showAsSwitcher = Boolean.valueOf(attributes.get("showAsSwitcher").toString());
-    }
+		showAsSwitcher = Boolean.valueOf(attributes.get(FormFieldKeys.SWITCHER).toString());
+	}
 
-    public CheckboxMultipleField(Parcel in, ClassLoader loader) {
-        super(in, loader);
-    }
+	public CheckboxMultipleField(Parcel in, ClassLoader loader) {
+		super(in, loader);
+	}
 
-    public boolean isShowAsSwitcher() {
-        return showAsSwitcher;
-    }
-
-    public void setShowAsSwitcher(boolean showAsSwitcher) {
-        this.showAsSwitcher = showAsSwitcher;
-    }
+	public boolean isShowAsSwitcher() {
+		return showAsSwitcher;
+	}
 }

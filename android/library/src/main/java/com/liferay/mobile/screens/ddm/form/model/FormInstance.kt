@@ -147,7 +147,7 @@ data class FormInstance @JvmOverloads constructor(
                 FormFieldKeys.READ_ONLY to isReadOnly,
                 FormFieldKeys.REPEATABLE to isRepeatable,
                 FormFieldKeys.REQUIRED to isRequired,
-                "isShowAsSwitcher" to isShowAsSwitcher,
+                FormFieldKeys.SWITCHER to isShowAsSwitcher,
                 FormFieldKeys.SHOW_LABEL to isShowLabel,
                 "isTransient" to isTransient,
                 FormFieldKeys.LABEL to label,

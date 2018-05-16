@@ -31,6 +31,7 @@ class FormFieldKeys {
         const val SHOW_LABEL = "showLabel"
         const val INLINE = "inline"
         const val MULTIPLE = "multiple"
+        const val SWITCHER = "switcher"
         const val VISIBILITY_EXPRESSION = "visibilityExpression"
         const val DDM_DATA_PROVIDER_INSTANCE = "ddmDataProviderInstance"
         const val PREDEFINED_VALUE = "predefinedValue"
