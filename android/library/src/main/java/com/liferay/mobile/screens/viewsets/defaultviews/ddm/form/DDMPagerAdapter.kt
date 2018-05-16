@@ -71,6 +71,7 @@ class DDMPagerAdapter(val pages: List<FormPage>, val view: DDMFormView) : PagerA
             linearLayout.addView(view)
         }
 
+        linearLayout.tag = position
         container?.addView(linearLayout)
 
         return linearLayout

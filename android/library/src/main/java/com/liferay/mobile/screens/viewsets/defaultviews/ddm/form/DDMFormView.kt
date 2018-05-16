@@ -17,12 +17,13 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddm.form
 import android.content.Context
 import android.support.design.widget.Snackbar
 import android.support.design.widget.Snackbar.LENGTH_SHORT
-import android.support.v4.view.ViewPager
 import android.util.AttributeSet
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.ScrollView
 import com.google.gson.Gson
 import com.liferay.mobile.screens.R
+import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.DocumentField
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.ddm.form.model.FormInstance
@@ -31,6 +32,7 @@ import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.mobile.screens.util.LiferayLogger
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
+import com.liferay.mobile.screens.viewsets.defaultviews.ddm.pager.WrapContentViewPager
 import com.liferay.mobile.sdk.apio.delegates.converter
 import com.liferay.mobile.sdk.apio.fetch
 import com.liferay.mobile.sdk.apio.model.Relation
@@ -48,7 +50,7 @@ class DDMFormView @JvmOverloads constructor(
     ScrollView(context, attrs, defStyleAttr), DDLDocumentFieldView.UploadListener {
 
     private val layoutIds = mutableMapOf<Field.EditorType, Int?>()
-    private val ddmFieldViewPages by bindNonNull<ViewPager>(R.id.ddmfields_container)
+    private val ddmFieldViewPages by bindNonNull<WrapContentViewPager>(R.id.ddmfields_container)
     private val backButton by bindNonNull<Button>(R.id.liferay_form_back)
     private val nextButton by bindNonNull<Button>(R.id.liferay_form_submit)
 
@@ -59,6 +61,9 @@ class DDMFormView @JvmOverloads constructor(
         formInstance = it
         val ddmPagerAdapter = DDMPagerAdapter(it.ddmStructure.pages, this)
         ddmFieldViewPages.adapter = ddmPagerAdapter
+
+        if (it.ddmStructure.pages.size == 1)
+            nextButton.text = context.getString(R.string.submit)
     }
 
     override fun onFinishInflate() {
@@ -77,18 +82,65 @@ class DDMFormView @JvmOverloads constructor(
 
         nextButton.setOnClickListener({
             val size = ddmFieldViewPages.adapter.count - 1
+            val invalidFields = getInvalidFields()
 
-            if (ddmFieldViewPages.currentItem < size) {
-                ddmFieldViewPages.currentItem += 1
+            if (invalidFields.isEmpty()) {
+                if (ddmFieldViewPages.currentItem < size) {
+                    ddmFieldViewPages.currentItem += 1
 
-                backButton.isEnabled = true
-                if (ddmFieldViewPages.currentItem == size) {
-                    nextButton.text = context.getString(R.string.submit)
+                    backButton.isEnabled = true
+                    if (ddmFieldViewPages.currentItem == size) {
+                        nextButton.text = context.getString(R.string.submit)
+                    }
+                } else {
+                    submit()
                 }
             } else {
-                submit()
+                highLightInvalidFields(invalidFields, true)
+
+                Snackbar.make(this, "Invalid", LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun getInvalidFields(): Map<Field<*>, String> {
+        var invalidResults = mapOf<Field<*>, String>()
+        val page = formInstance?.ddmStructure?.pages?.get(ddmFieldViewPages.currentItem)
+
+        page?.let {
+            invalidResults = it.fields.filter { !it.isValid }.associateBy({ it }, { "Error Msg Goes Here" })
+        }
+
+        return invalidResults
+    }
+
+    /*
+     * XXX Copied code
+     */
+    private fun highLightInvalidFields(fieldResults: Map<Field<*>, String>, autoscroll: Boolean) {
+        var scrolled = false
+
+        val fieldsContainerView = ddmFieldViewPages.findViewWithTag<LinearLayout>(ddmFieldViewPages.currentItem)
+
+        for (i in 0 until fieldsContainerView.childCount) {
+            val fieldView = fieldsContainerView.getChildAt(i)
+            val fieldViewModel = fieldView as? DDLFieldViewModel<*>
+
+            fieldViewModel?.let {
+
+                fieldResults[fieldViewModel.field]?.let {
+
+                    fieldView.clearFocus()
+                    fieldViewModel.onPostValidation(false)
+
+                    if (autoscroll && !scrolled) {
+                        fieldView.requestFocus()
+                        smoothScrollTo(0, fieldView.top)
+                        scrolled = true
+                    }
+                }
+            }
+        }
     }
 
     fun submit() {
@@ -114,8 +166,8 @@ class DDMFormView @JvmOverloads constructor(
                 val values = mutableMapOf<String, Any>()
 
 
-                if (!it.filter { it.name == "isDraft" }.isEmpty()) {
-                    values.put("isDraft", false)
+                if (!it.none { it.name == "isDraft" }) {
+                    values["isDraft"] = false
                 }
 
                 val fieldsList = formInstance!!
@@ -123,11 +175,25 @@ class DDMFormView @JvmOverloads constructor(
 
                 val fieldValues = Gson().toJson(fieldsList)
 
-                values.put("fieldValues", fieldValues)
+                values["fieldValues"] = fieldValues
 
                 values
             }) {
-                Snackbar.make(this, "Form Submitted", LENGTH_SHORT).show()
+                val (response, exception) = it
+
+                response?.let {
+
+                    var message = "Form Submitted"
+
+                    if (!it.isSuccessful) {
+                        message = exception?.message ?: response.message()
+
+                        if (message.isEmpty()) message = "Unknown Error"
+                    }
+
+                    Snackbar.make(this, message, LENGTH_SHORT).show()
+
+                } ?: LiferayLogger.d(exception?.message)
             }
         }
     }

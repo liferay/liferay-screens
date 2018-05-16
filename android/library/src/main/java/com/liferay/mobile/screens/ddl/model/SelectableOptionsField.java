@@ -148,10 +148,15 @@ public class SelectableOptionsField extends OptionsField<ArrayList<Option>> {
 
 	@Override
 	protected boolean doValidate() {
+		if (isRequired()) {
 
-		List<Option> options = getCurrentValue();
+			List<Option> options = getCurrentValue();
 
-		return (options != null && !options.isEmpty());
+			return (options != null && !options.isEmpty());
+
+		} else {
+			return true;
+		}
 	}
 
 	@Override
