@@ -421,7 +421,9 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 			} else if (GEO.equals(this)) {
 				return new GeolocationField(attributes, locale, defaultLocale);
 			} else {
-				if (EditorType.valueOf(attributes).equals(EditorType.PARAGRAPH)) {
+				EditorType editor = EditorType.valueOf(attributes);
+
+				if (editor == EditorType.TEXT_AREA || editor == EditorType.PARAGRAPH) {
 					return new StringField(attributes, locale, defaultLocale);
 				}
 			}
