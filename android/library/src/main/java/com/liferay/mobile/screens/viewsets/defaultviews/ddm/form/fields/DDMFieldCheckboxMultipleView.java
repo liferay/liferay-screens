@@ -19,6 +19,7 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -39,6 +40,7 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
 
 	protected View parentView;
 	private CheckboxMultipleField field;
+	private LinearLayout linearLayout;
 
 	public DDMFieldCheckboxMultipleView(Context context) {
 		super(context);
@@ -80,19 +82,23 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
 			label.setVisibility(VISIBLE);
 		}
 
-		LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		if (this.field.isInline()) {
+			linearLayout.setOrientation(HORIZONTAL);
+		}
+
+		LayoutParams layoutParams = calculateLayoutParams(this.field.isInline(), this.field.isShowAsSwitcher());
 
 		List<Option> availableOptions = field.getAvailableOptions();
 
 		if (field.isShowAsSwitcher()) {
 			for (Option opt : availableOptions) {
 				Switch switchView = createSwitchView(opt, layoutParams);
-				addView(switchView);
+				linearLayout.addView(switchView);
 			}
 		} else {
 			for (Option opt : availableOptions) {
 				CheckBox checkBoxView = createCheckBoxView(opt, layoutParams);
-				addView(checkBoxView);
+				linearLayout.addView(checkBoxView);
 			}
 		}
 
@@ -109,6 +115,10 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
 		checkBoxView.setTypeface(getTypeface());
 		checkBoxView.setSaveEnabled(true);
 
+		if (this.field.isInline()) {
+			checkBoxView.setGravity(Gravity.TOP);
+		}
+
 		return checkBoxView;
 	}
 
@@ -122,7 +132,20 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
 		switchView.setTypeface(getTypeface());
 		switchView.setSaveEnabled(true);
 
+		if (this.field.isInline()) {
+			switchView.setGravity(Gravity.TOP);
+		}
+
 		return switchView;
+	}
+
+	private LayoutParams calculateLayoutParams(Boolean isInline, Boolean isShowAsSwitcher) {
+
+		if (isShowAsSwitcher && !isInline) {
+			return new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		} else {
+			return new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1.0f);
+		}
 	}
 
 	@Override
@@ -175,6 +198,8 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
+
+		linearLayout = findViewById(R.id.linear_layout_multiple_checkbox);
 
 		setSaveEnabled(true);
 	}

@@ -92,7 +92,7 @@ public class DDLFieldRadioView extends LinearLayout
 			radioButton.setTypeface(getTypeface());
 			radioButton.setSaveEnabled(true);
 
-			if(this.field.isInline()) {
+			if (this.field.isInline()) {
 				radioButton.setGravity(Gravity.TOP);
 			}
 
