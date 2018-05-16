@@ -37,5 +37,6 @@ class FormFieldKeys {
         const val PREDEFINED_VALUE = "predefinedValue"
         const val TEXT = "text"
         const val OPTIONS = "options"
+        const val VALIDATION = "validation"
     }
 }
