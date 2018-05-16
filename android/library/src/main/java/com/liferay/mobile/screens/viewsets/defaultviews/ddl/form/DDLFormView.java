@@ -32,13 +32,15 @@ import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
+import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * @author Silvio Santos
  */
-public class DDLFormView extends ScrollView implements DDLFormViewModel, View.OnClickListener {
+public class DDLFormView extends ScrollView implements DDLFormViewModel, View.OnClickListener,
+	DDLDocumentFieldView.UploadListener {
 
 	private static final Map<Field.EditorType, Integer> DEFAULT_LAYOUT_IDS = new HashMap<>(16);
 
@@ -275,11 +277,15 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 	}
 
 	protected void addFieldView(Field field, int position) {
-
 		boolean containsKey = customLayoutIds.containsKey(field.getName());
 		int layoutId = containsKey ? getCustomFieldLayoutId(field.getName()) : getFieldLayoutId(field.getEditorType());
 
 		View view = LayoutInflater.from(getContext()).inflate(layoutId, this, false);
+
+		if (view instanceof DDLDocumentFieldView) {
+			((DDLDocumentFieldView) view).setUploadListener(this);
+		}
+
 		DDLFieldViewModel viewModel = (DDLFieldViewModel) view;
 
 		viewModel.setField(field);

@@ -23,12 +23,14 @@ import android.widget.Button
 import android.widget.ScrollView
 import com.google.gson.Gson
 import com.liferay.mobile.screens.R
+import com.liferay.mobile.screens.ddl.model.DocumentField
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.ddm.form.model.FormInstance
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.mobile.screens.util.LiferayLogger
+import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
 import com.liferay.mobile.sdk.apio.delegates.converter
 import com.liferay.mobile.sdk.apio.fetch
 import com.liferay.mobile.sdk.apio.model.Relation
@@ -43,7 +45,7 @@ import com.squareup.okhttp.HttpUrl
  */
 class DDMFormView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : BaseView,
-    ScrollView(context, attrs, defStyleAttr) {
+    ScrollView(context, attrs, defStyleAttr), DDLDocumentFieldView.UploadListener {
 
     private val layoutIds = mutableMapOf<Field.EditorType, Int?>()
     private val ddmFieldViewPages by bindNonNull<ViewPager>(R.id.ddmfields_container)
@@ -55,7 +57,7 @@ class DDMFormView @JvmOverloads constructor(
     override var screenlet: ThingScreenlet? = null
     override var thing: Thing? by converter<FormInstance> {
         formInstance = it
-        val ddmPagerAdapter = DDMPagerAdapter(it.ddmStructure.pages)
+        val ddmPagerAdapter = DDMPagerAdapter(it.ddmStructure.pages, this)
         ddmFieldViewPages.adapter = ddmPagerAdapter
     }
 
@@ -128,6 +130,10 @@ class DDMFormView @JvmOverloads constructor(
                 Snackbar.make(this, "Form Submitted", LENGTH_SHORT).show()
             }
         }
+    }
+
+    override fun startUploadField(field: DocumentField) {
+
     }
 
     companion object {

@@ -23,11 +23,12 @@ import android.widget.TextView
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddm.form.model.FormPage
+import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
 
 /**
  * @author Victor Oliveira
  */
-class DDMPagerAdapter(val pages: List<FormPage>) : PagerAdapter() {
+class DDMPagerAdapter(val pages: List<FormPage>, val view: DDMFormView) : PagerAdapter() {
 
     override fun getCount(): Int {
         return pages.size
@@ -59,6 +60,10 @@ class DDMPagerAdapter(val pages: List<FormPage>) : PagerAdapter() {
         for (field in page.fields) {
             val layoutId = DDMFormView.DEFAULT_LAYOUT_IDS[field.editorType]
             val view = inflater.inflate(layoutId!!, linearLayout, false)
+
+            if (view is DDLDocumentFieldView) {
+                view.setUploadListener(this.view)
+            }
 
             val viewModel = view as DDLFieldViewModel<*>
             viewModel.field = field

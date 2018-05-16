@@ -36,7 +36,6 @@ import com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity.MediaStor
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
-import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.DDLFormView;
 import com.tbruyelle.rxpermissions.RxPermissions;
 import java.io.File;
 import rx.functions.Action1;
@@ -53,9 +52,14 @@ import static com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity.TA
 public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 	implements DDLFieldViewModel<DocumentField>, View.OnClickListener {
 
+	public interface UploadListener {
+		void startUploadField(DocumentField field);
+	}
+
 	protected ProgressBar progressBar;
 	protected Dialog chooseOriginDialog;
 	protected AlertDialog fileDialog;
+	protected UploadListener uploadListener;
 
 	public DDLDocumentFieldView(Context context) {
 		super(context);
@@ -97,6 +101,10 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 			setRightDrawable(editText, R.drawable.default_blue);
 			progressBar.setVisibility(GONE);
 		}
+	}
+
+	public void setUploadListener(UploadListener uploadListener) {
+		this.uploadListener = uploadListener;
 	}
 
 	@Override
@@ -241,6 +249,6 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
 		getField().createLocalFile(uri.toString());
 		getTextEditText().setText(uri.getPath());
 
-		((DDLFormView) getParentView()).startUploadField(getField());
+		uploadListener.startUploadField(getField());
 	}
 }
