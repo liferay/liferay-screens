@@ -28,6 +28,8 @@ import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.Field;
+import com.liferay.mobile.screens.thingscreenlet.screens.events.Event;
+import com.liferay.mobile.screens.util.EventBusUtil;
 
 /**
  * @author Silvio Santos
@@ -156,6 +158,15 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 		textEditText = findViewById(R.id.liferay_ddl_edit_text);
 
 		textEditText.addTextChangedListener(this);
+		textEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
+
+			@Override
+			public void onFocusChange(View v, boolean hasFocus) {
+				if (field != null && field.hasFormRules() && !hasFocus) {
+					EventBusUtil.post(new Event.RequestEvaluationEvent());
+				}
+			}
+		});
 
 		//We are not saving the text view state because when state is restored,
 		//the ids of other DDLFields are conflicting.

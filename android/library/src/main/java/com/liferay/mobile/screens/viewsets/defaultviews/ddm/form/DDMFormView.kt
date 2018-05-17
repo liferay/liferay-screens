@@ -29,7 +29,9 @@ import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.ddm.form.model.FormInstance
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
+import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
+import com.liferay.mobile.screens.util.EventBusUtil
 import com.liferay.mobile.screens.util.LiferayLogger
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.pager.WrapContentViewPager
@@ -40,6 +42,7 @@ import com.liferay.mobile.sdk.apio.model.Thing
 import com.liferay.mobile.sdk.apio.model.getOperation
 import com.liferay.mobile.sdk.apio.performOperation
 import com.squareup.okhttp.HttpUrl
+import com.squareup.otto.Subscribe
 
 /**
  * @author Paulo Cruz
@@ -237,6 +240,21 @@ class DDMFormView @JvmOverloads constructor(
 
     override fun startUploadField(field: DocumentField) {
 
+    }
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        EventBusUtil.register(this)
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        EventBusUtil.unregister(this)
+    }
+
+    @Subscribe
+    fun onEvent(event: Event.RequestEvaluationEvent) {
+        evaluateContext(thing)
     }
 
     companion object {

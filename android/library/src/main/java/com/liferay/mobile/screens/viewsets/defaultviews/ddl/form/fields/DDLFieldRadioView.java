@@ -30,6 +30,8 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.Option;
 import com.liferay.mobile.screens.ddl.model.SelectableOptionsField;
+import com.liferay.mobile.screens.thingscreenlet.screens.events.Event;
+import com.liferay.mobile.screens.util.EventBusUtil;
 import java.util.List;
 
 /**
@@ -156,6 +158,10 @@ public class DDLFieldRadioView extends LinearLayout
 			field.selectOption(opt);
 		} else {
 			field.clearOption(opt);
+		}
+
+		if (field.hasFormRules()) {
+			EventBusUtil.post(new Event.RequestEvaluationEvent());
 		}
 	}
 

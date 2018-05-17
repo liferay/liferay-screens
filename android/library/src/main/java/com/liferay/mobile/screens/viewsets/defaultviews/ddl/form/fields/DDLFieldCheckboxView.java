@@ -23,6 +23,8 @@ import android.widget.LinearLayout;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.BooleanField;
+import com.liferay.mobile.screens.thingscreenlet.screens.events.Event;
+import com.liferay.mobile.screens.util.EventBusUtil;
 
 /**
  * @author Jose Manuel Navarro
@@ -94,6 +96,10 @@ public class DDLFieldCheckboxView extends LinearLayout
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		field.setCurrentValue(isChecked);
+
+		if (field.hasFormRules()) {
+			EventBusUtil.post(new Event.RequestEvaluationEvent());
+		}
 	}
 
 	@Override
