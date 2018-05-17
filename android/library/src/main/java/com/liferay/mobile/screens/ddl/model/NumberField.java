@@ -54,10 +54,10 @@ public class NumberField extends Field<Number> {
 	public NumberField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
 		super(attributes, locale, defaultLocale);
 
-		Object map = attributes.get("validation");
+		Object validationObj = attributes.get("validation");
 
-		if (map != null) {
-			Map<String, String> validation = (Map<String, String>) map;
+		if (validationObj != null && validationObj instanceof Map) {
+			Map<String, String> validation = (Map<String, String>) validationObj;
 			numberValidator = NumberValidator.parseNumberValidator(validation);
 		}
 	}
@@ -86,7 +86,9 @@ public class NumberField extends Field<Number> {
 
 	@Override
 	protected boolean doValidate() {
-		if (numberValidator != null) {
+		if (getCurrentValue() == null && isRequired()) {
+			return false;
+		} else if (getCurrentValue() != null && numberValidator != null) {
 			return numberValidator.validate(getCurrentValue());
 		}
 
