@@ -13,29 +13,43 @@ public class DocumentRemoteFile extends DocumentFile {
 	private int version;
 	private String title;
 
+	private String url;
+
 	public DocumentRemoteFile(String json) throws JSONException {
-		JSONObject jsonObject = new JSONObject(json);
+		if (json.startsWith("http")) {
+			url = json;
 
-		uuid = jsonObject.getString("uuid");
-		version = jsonObject.getInt("version");
-		groupId = jsonObject.getInt("groupId");
+		} else {
 
-		// this is empty if we're retrieving the record
-		title = jsonObject.optString("title");
+			JSONObject jsonObject = new JSONObject(json);
+			uuid = jsonObject.getString("uuid");
+			version = jsonObject.getInt("version");
+			groupId = jsonObject.getInt("groupId");
+
+			// this is empty if we're retrieving the record
+			title = jsonObject.optString("title");
+		}
 	}
 
 	@Override
 	public String toData() {
+		if (url != null) {
+			return url;
+		}
 		return "{\"groupId\":" + groupId + ", " + "\"uuid\":\"" + uuid + "\", " + "\"version\":" + version + "}";
 	}
 
 	@Override
 	public String toString() {
+		if (url != null) {
+			return url;
+		}
+
 		return title.isEmpty() ? "File in server" : title;
 	}
 
 	@Override
 	public boolean isValid() {
-		return uuid != null;
+		return url != null || uuid != null;
 	}
 }

@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.ddm.form
 
 import android.content.Context
+import android.net.Uri
 import android.support.design.widget.Snackbar
 import android.support.design.widget.Snackbar.LENGTH_SHORT
 import android.util.AttributeSet
@@ -22,7 +23,9 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.liferay.mobile.screens.R
+import com.liferay.mobile.screens.context.LiferayScreensContext
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.DocumentField
 import com.liferay.mobile.screens.ddl.model.Field
@@ -31,6 +34,7 @@ import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
+
 import com.liferay.mobile.screens.util.EventBusUtil
 import com.liferay.mobile.screens.util.LiferayLogger
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
@@ -43,6 +47,12 @@ import com.liferay.mobile.sdk.apio.model.getOperation
 import com.liferay.mobile.sdk.apio.performOperation
 import com.squareup.okhttp.HttpUrl
 import com.squareup.otto.Subscribe
+import com.squareup.okhttp.MultipartBuilder
+import com.squareup.okhttp.RequestBody
+import okhttp3.MultipartBody
+import java.io.File
+import java.net.URI
+import java.util.*
 
 /**
  * @author Paulo Cruz
@@ -67,6 +77,7 @@ class DDMFormView @JvmOverloads constructor(
 
         if (it.ddmStructure.pages.size == 1)
             nextButton.text = context.getString(R.string.submit)
+
     }
 
     override fun onFinishInflate() {
@@ -97,7 +108,7 @@ class DDMFormView @JvmOverloads constructor(
                     }
                 } else {
                     submit()
-                    evaluateContext(thing)
+//                    evaluateContext(thing)
                 }
             } else {
                 highLightInvalidFields(invalidFields, true)
@@ -205,13 +216,12 @@ class DDMFormView @JvmOverloads constructor(
             performOperation(thing.id, it.id, {
                 val values = mutableMapOf<String, Any>()
 
-
                 if (!it.none { it.name == "isDraft" }) {
                     values["isDraft"] = false
                 }
 
                 val fieldsList = formInstance!!
-                    .fields.map { mapOf("identifier" to "", "name" to it.name, "value" to it.currentValue) }
+                    .fields.map { mapOf("identifier" to "", "name" to it.name, "value" to it.currentValue.toString()) }
 
                 val fieldValues = Gson().toJson(fieldsList)
 
@@ -239,7 +249,36 @@ class DDMFormView @JvmOverloads constructor(
     }
 
     override fun startUploadField(field: DocumentField) {
+        val operation = thing?.getOperation("uploadFileToRootFolder")
 
+        val filePath = field.currentValue.toString()
+        val fileUri = Uri.parse(filePath)
+
+        val inputStream = context.contentResolver.openInputStream(fileUri)
+
+        operation?.let {
+            performOperation(thing!!.id, it.id, {
+                val values = mutableMapOf<String, Any>()
+
+                val randomName = UUID.randomUUID().toString()
+                values["changeLog"] = ""
+                values["description"] = ""
+                values["name"] = randomName
+                values["title"] = randomName
+                values["binaryFile"] = inputStream
+
+                values
+            }) {
+                val (response, exception) = it
+
+                response?.let {
+                    val json = Gson().fromJson<Map<String, Any>>(it.body().string(), TypeToken.getParameterized(Map::class.java, String::class.java, Any::class.java).type)
+
+                    field.setCurrentStringValue(json["@id"] as String)
+                    field.moveToUploadCompleteState()
+                }
+            }
+        }
     }
 
     override fun onAttachedToWindow() {
