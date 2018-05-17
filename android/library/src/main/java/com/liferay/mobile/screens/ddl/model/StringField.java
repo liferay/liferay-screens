@@ -18,6 +18,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import com.liferay.mobile.screens.ddm.form.model.StringValidation;
 import com.liferay.mobile.screens.ddm.form.model.StringValidatorParser;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -52,13 +53,23 @@ public class StringField extends OptionsField<String> {
 	public StringField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
 		super(attributes, locale, defaultLocale);
 
-		Map<String, String> validation = (Map<String, String>) attributes.get("validation");
-
-		stringValidation = new StringValidatorParser().parseStringValidation(validation);
+		initializeValidation(attributes);
 
 		if (getText() != null) {
 			setReadOnly(true);
 		}
+	}
+
+	private void initializeValidation(Map<String, Object> attributes) {
+		Map<String, String> validation;
+		if (attributes.get("validation") instanceof Map) {
+			 validation = (Map<String, String>) attributes.get("validation");
+
+		} else {
+			validation = new HashMap<>();
+		}
+
+		stringValidation = new StringValidatorParser().parseStringValidation(validation);
 	}
 
 	protected StringField(Parcel source, ClassLoader loader) {
