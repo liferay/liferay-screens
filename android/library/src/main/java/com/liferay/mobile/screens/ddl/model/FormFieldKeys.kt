@@ -38,5 +38,9 @@ class FormFieldKeys {
         const val TEXT = "text"
         const val OPTIONS = "options"
         const val VALIDATION = "validation"
+        const val HAS_FORM_RULES = "hasFormRules"
+        const val IS_TRANSIENT = "isTransient"
+        const val IS_LOCALIZABLE = "isLocalizable"
+        const val IS_AUTOCOMPLETE = "isAutocomplete"
     }
 }

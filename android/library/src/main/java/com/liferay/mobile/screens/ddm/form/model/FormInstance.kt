@@ -111,6 +111,7 @@ data class FormInstance @JvmOverloads constructor(
                 val isShowAsSwitcher = it["isShowAsSwitcher"] as? Boolean
                 val isShowLabel = it["isShowLabel"] as? Boolean
                 val isTransient = it["isTransient"] as? Boolean
+                val hasFormRules = it["hasFormRules"] as? Boolean
                 val label = it["label"] as? String
                 val predefinedValue = it["predefinedValue"] as? String
                 val tip = it["tip"] as? String
@@ -125,8 +126,8 @@ data class FormInstance @JvmOverloads constructor(
                 val validation = it["validation"] as? Map<String, String> ?: emptyMap()
 
                 val attributes = mapKeysToAllValues(isAutocomplete, isInline, isLocalizable, isMultiple, isReadOnly,
-                    isRepeatable, isRequired, isShowAsSwitcher, isShowLabel, isTransient, label, predefinedValue,
-                    tip, dataType, additionalType, name, placeholder, text, options, validation)
+                    isRepeatable, isRequired, isShowAsSwitcher, isShowLabel, isTransient, hasFormRules, label,
+                    predefinedValue, tip, dataType, additionalType, name, placeholder, text, options, validation)
 
 
                 val fieldDataType = Field.DataType.assignDataTypeFromString(dataType)
@@ -136,22 +137,23 @@ data class FormInstance @JvmOverloads constructor(
 
         fun mapKeysToAllValues(isAutocomplete: Boolean?, isInline: Boolean?, isLocalizable: Boolean?,
             isMultiple: Boolean?, isReadOnly: Boolean?, isRepeatable: Boolean?, isRequired: Boolean?,
-            isShowAsSwitcher: Boolean?, isShowLabel: Boolean?, isTransient: Boolean?, label: String?,
-            predefinedValue: String?, tip: String?, dataType: String?, additionalType: String?,
+            isShowAsSwitcher: Boolean?, isShowLabel: Boolean?, isTransient: Boolean?, hasFormRules: Boolean?,
+            label: String?, predefinedValue: String?, tip: String?, dataType: String?, additionalType: String?,
             name: String?, placeholder: String?, text: String?, options: List<Map<String, Any>>?,
             validation: Map<String, String>): Map<String, Any?> {
 
             return mapOf(
-                "isAutocomplete" to isAutocomplete,
+                FormFieldKeys.IS_AUTOCOMPLETE to isAutocomplete,
                 FormFieldKeys.INLINE to isInline,
-                "isLocalizable" to isLocalizable,
+                FormFieldKeys.IS_LOCALIZABLE to isLocalizable,
                 FormFieldKeys.MULTIPLE to isMultiple,
                 FormFieldKeys.READ_ONLY to isReadOnly,
                 FormFieldKeys.REPEATABLE to isRepeatable,
                 FormFieldKeys.REQUIRED to isRequired,
                 FormFieldKeys.SWITCHER to isShowAsSwitcher,
                 FormFieldKeys.SHOW_LABEL to isShowLabel,
-                "isTransient" to isTransient,
+                FormFieldKeys.IS_TRANSIENT to isTransient,
+                FormFieldKeys.HAS_FORM_RULES to hasFormRules,
                 FormFieldKeys.LABEL to label,
                 FormFieldKeys.PREDEFINED_VALUE to predefinedValue,
                 FormFieldKeys.TIP to tip,

@@ -17,7 +17,6 @@ package com.liferay.mobile.screens.ddl.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.liferay.mobile.screens.ddm.form.model.CheckboxMultipleField;
-import com.liferay.mobile.screens.ddm.form.model.FieldValidation;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,6 +44,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	private boolean repeatable;
 	private boolean required;
 	private boolean showLabel;
+	private boolean hasFormRules;
 	private T predefinedValue;
 	private T currentValue;
 	private boolean lastValidationResult = true;
@@ -61,8 +61,6 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	private String style;
 	private String displayStyle;
 	private String indexType;
-	private FieldValidation fieldValidation;
-
 	public Field() {
 		super();
 	}
@@ -100,6 +98,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		repeatable = Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.REPEATABLE));
 		required = Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.REQUIRED));
 		showLabel = Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.SHOW_LABEL));
+		hasFormRules = Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.HAS_FORM_RULES));
 		visibilityExpression = getAttributeStringValue(attributes, FormFieldKeys.VISIBILITY_EXPRESSION);
 		ddmDataProviderInstance = getAttributeStringValue(attributes, FormFieldKeys.DDM_DATA_PROVIDER_INSTANCE);
 
@@ -130,6 +129,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		repeatable = (in.readInt() == 1);
 		required = (in.readInt() == 1);
 		showLabel = (in.readInt() == 1);
+		hasFormRules = (in.readInt() == 1);
 
 		predefinedValue = (T) in.readSerializable();
 		currentValue = (T) in.readSerializable();
@@ -267,6 +267,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		return convertToFormattedString(currentValue);
 	}
 
+	public boolean hasFormRules() {
+		return hasFormRules;
+	}
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -288,6 +292,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		destination.writeInt(repeatable ? 1 : 0);
 		destination.writeInt(required ? 1 : 0);
 		destination.writeInt(showLabel ? 1 : 0);
+		destination.writeInt(hasFormRules ? 1 : 0);
 
 		destination.writeSerializable(predefinedValue);
 		destination.writeSerializable(currentValue);
