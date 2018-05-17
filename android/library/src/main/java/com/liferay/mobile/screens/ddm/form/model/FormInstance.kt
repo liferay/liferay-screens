@@ -32,7 +32,7 @@ import java.util.*
  */
 data class FormInstance @JvmOverloads constructor(
     val name: String,
-    val description: String,
+    val description: String?,
     val defaultLanguage: String,
     val ddmStructure: DDMStructure,
     val isRequiredAuthentication: Boolean = false,
@@ -50,7 +50,7 @@ data class FormInstance @JvmOverloads constructor(
 
             val name = it["name"] as String
 
-            val description = it["description"] as String
+            val description = it["description"] as? String
 
             val defaultLanguage = it["defaultLanguage"] as String
 
@@ -70,7 +70,7 @@ data class FormInstance @JvmOverloads constructor(
 
             val name = relation["name"] as String
 
-            val description = relation["description"] as String
+            val description = relation["description"] as? String
 
             val pages = (relation["pages"] as Map<String, Any>).let {
                 getPages(it, locale)
