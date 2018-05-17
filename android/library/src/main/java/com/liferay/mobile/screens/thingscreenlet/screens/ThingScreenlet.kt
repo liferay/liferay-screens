@@ -62,20 +62,23 @@ class ThingScreenlet @JvmOverloads constructor(
 	val layoutId: Int
 
 	var thing: Thing? by observe {
-		val layoutId = getLayoutIdFor(thing = it) ?: R.layout.thing_default
 
-		layout?.also {
-			baseView?.onDestroy()
-			this.removeView(it)
-		}
+		if (layout == null) {
+			val layoutId = getLayoutIdFor(thing = it) ?: R.layout.thing_default
 
-		layout = this.inflate(layoutId)
+			layout?.also {
+				baseView?.onDestroy()
+				this.removeView(it)
+			}
 
-		addView(layout)
+			layout = this.inflate(layoutId)
 
-		baseView?.apply {
-			screenlet = this@ThingScreenlet
-			thing = it
+			addView(layout)
+
+			baseView?.apply {
+				screenlet = this@ThingScreenlet
+				thing = it
+			}
 		}
 	}
 
