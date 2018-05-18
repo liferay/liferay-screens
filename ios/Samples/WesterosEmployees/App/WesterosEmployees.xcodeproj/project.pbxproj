@@ -639,7 +639,6 @@
 				0B0A22911D6B0CD90061B50D /* Frameworks */,
 				0B0A22921D6B0CD90061B50D /* Resources */,
 				2070FAA2751BD8D74B8CD721 /* [CP] Embed Pods Frameworks */,
-				6463B09C1F9E076055894585 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -800,21 +799,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WesterosEmployees/Pods-WesterosEmployees-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6463B09C1F9E076055894585 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WesterosEmployees/Pods-WesterosEmployees-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		87EDEC10A8A457FAFDD297FA /* [CP] Check Pods Manifest.lock */ = {

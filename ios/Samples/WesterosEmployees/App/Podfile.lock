@@ -112,9 +112,29 @@ DEPENDENCIES:
   - PureLayout
   - TPKeyboardAvoiding
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - CocoaLumberjack
+    - Cordova
+    - DTPickerPresenter
+    - KeychainAccess
+    - Kingfisher
+    - Liferay-iOS-SDK
+    - MBProgressHUD
+    - MDRadialProgress
+    - MGSwipeTableCell
+    - PureLayout
+    - Reachability
+    - SMXMLDocument
+    - SQLCipher
+    - TNRadioButtonGroup
+    - TPKeyboardAvoiding
+    - YapDatabase
+
 EXTERNAL SOURCES:
   LiferayScreens:
-    :path: ../../../..
+    :path: "../../../.."
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
@@ -138,4 +158,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: c621bc69fb46715ee74352f924d3add66ca54924
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.2
