@@ -71,7 +71,7 @@ open class Interactor: NSObject {
 		cancelled = true
 	}
 
-	open func interactionResult() -> AnyObject? {
+	open func interactionResult() -> Any? {
 		return nil
 	}
 

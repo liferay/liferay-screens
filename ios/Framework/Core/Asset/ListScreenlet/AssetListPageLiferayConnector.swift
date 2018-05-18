@@ -19,7 +19,7 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 	open var groupId: Int64?
 	open var classNameId: Int64?
 	open var portletItemName: String?
-	open var customEntryQuery: [String: AnyObject]?
+	open var customEntryQuery: [String: Any]?
 
 	// MARK: ServerConnector
 
@@ -84,8 +84,8 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 
 		var entryQuery = configureEntryQuery()
 
-		entryQuery["start"] = startRow as AnyObject?
-		entryQuery["end"] = endRow as AnyObject?
+		entryQuery["start"] = startRow
+		entryQuery["end"] = endRow
 
 		let entryQueryWrapper = LRJSONObjectWrapper(jsonObject: entryQuery)
 
@@ -111,26 +111,27 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 	open func doGetRowCount(session: LRBatchSession, entryQuery: LRJSONObjectWrapper) {
 	}
 
-	open func configureEntryQuery() -> [String: AnyObject] {
+	open func configureEntryQuery() -> [String: Any] {
 		var entryQuery = (customEntryQuery != nil)
 			? customEntryQuery!
-			: [String: AnyObject]()
+			: [String: Any]()
 
-		let defaultValues = [
+		var defaultValues: [String: Any] = [
 			"classNameIds": NSNumber(value: classNameId! as Int64),
 			"groupIds": NSNumber(value: groupId! as Int64),
 			"visible": true
 		]
 
-		let finalValues = self.handleUserVisibleFlag(defaultValues)
+		if classNameId == AssetClasses.getClassNameId(AssetClassNameKey_User) {
+			defaultValues = handleUserVisibleFlag(defaultValues)
+		}
 
 		// swiftlint:disable for_where
-		for (k, v) in finalValues {
+		for (k, v) in defaultValues {
 			if entryQuery[k] == nil {
 				entryQuery[k] = v
 			}
 		}
-		// swiftlint:enable for_where
 
 		return entryQuery
 	}
@@ -144,15 +145,11 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 	/// - parameter values: initial entryQuery values.
 	///
 	/// - returns: final values for entryQuery.
-	fileprivate func handleUserVisibleFlag(_ values: [String: AnyObject]) -> [String: AnyObject] {
-		if classNameId == AssetClasses.getClassNameId(AssetClassNameKey_User) {
-			var newValues = values
+	fileprivate func handleUserVisibleFlag(_ values: [String: Any]) -> [String: Any] {
+		var newValues = values
+		newValues["visible"] = false
 
-			newValues["visible"] = false as AnyObject?
-
-			return newValues
-		}
-		return values
+		return newValues
 	}
 }
 

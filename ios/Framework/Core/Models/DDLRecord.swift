@@ -46,8 +46,8 @@ open class DDLRecord: NSObject, NSCoding {
 		return fieldBy(name: fieldName)
 	}
 
-	open var values: [String: AnyObject] {
-		var result = [String: AnyObject]()
+	open var values: [String: Any] {
+		var result = [String: Any]()
 
 		for field in self.fields {
 			if let value = field.currentValueAsString {
@@ -56,7 +56,7 @@ open class DDLRecord: NSObject, NSCoding {
 				// This way we workaround the problem but a field can't be
 				// emptied when you're editing an existing row.
 				if value != "" {
-					result[field.name] = value as AnyObject?
+					result[field.name] = value
 				}
 			}
 		}

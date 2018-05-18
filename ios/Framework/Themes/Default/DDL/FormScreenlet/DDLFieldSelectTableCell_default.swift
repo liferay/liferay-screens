@@ -135,7 +135,7 @@ open class DDLFieldSelectTableCell_default: DDLBaseFieldTextboxTableCell_default
 			.sorted()
 			.reduce("", { $0 + "," + $1 }) ?? ""
 
-		field?.currentValue = currentValue as AnyObject?
+		field?.currentValue = currentValue
 		textField?.text = currentValue
 				.replacingOccurrences(of: ",", with: " ")
 				.trim()

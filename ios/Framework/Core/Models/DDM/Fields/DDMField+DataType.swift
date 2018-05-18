@@ -18,23 +18,23 @@ extension DDMField {
 
 	public enum DataType: String {
 
-		case DDMBoolean = "boolean"
-		case DDMString = "string"
-		case DDMDate = "date"
-		case DDMInteger = "integer"
-		case DDMNumber = "number"
-		case DDMDouble = "double"
-		case DDMDocument = "document-library"
-		case DDMImage = "image"
-		case DDMGeolocation = "geolocation"
-		case Unsupported = ""
+		case ddmBoolean = "boolean"
+		case ddmString = "string"
+		case ddmDate = "date"
+		case ddmInteger = "integer"
+		case ddmNumber = "number"
+		case ddmDouble = "double"
+		case ddmDocument = "document-library"
+		case ddmImage = "image"
+		case ddmGeolocation = "geolocation"
+		case unsupported = ""
 
 		public static func from(xmlElement: SMXMLElement) -> DataType {
-			return DataType(rawValue: xmlElement.attributeNamed("dataType") ?? "") ?? .Unsupported
+			return DataType(rawValue: xmlElement.attributeNamed("dataType") ?? "") ?? .unsupported
 		}
 
 		public static func from(json: JSONObject) -> DataType {
-			return DataType(rawValue: (json["dataType"] as? String) ?? "") ?? .Unsupported
+			return DataType(rawValue: (json["dataType"] as? String) ?? "") ?? .unsupported
 		}
 
 		// swiftlint:disable cyclomatic_complexity
@@ -45,14 +45,14 @@ extension DDMField {
 				-> DDMField? {
 
 			switch self {
-			case .DDMBoolean:
+			case .ddmBoolean:
 				return DDMFieldBoolean(
 						attributes: attributes,
 						locale: locale)
 
-			case .DDMString:
+			case .ddmString:
 				switch DDMField.Editor.from(attributes: attributes) {
-				case .Select, .Radio:
+				case .select, .radio:
 					return DDMFieldStringWithOptions(
 							attributes: attributes,
 							locale: locale)
@@ -62,7 +62,7 @@ extension DDMField {
 							locale: locale)
 				}
 
-			case .DDMDate:
+			case .ddmDate:
 				switch version {
 				case .v62:
 					return DDMFieldDate_v62(
@@ -74,22 +74,22 @@ extension DDMField {
 						locale: locale)
 				}
 
-			case .DDMInteger, .DDMNumber, .DDMDouble:
+			case .ddmInteger, .ddmNumber, .ddmDouble:
 				return DDMFieldNumber(
 						attributes: attributes,
 						locale: locale)
 
-			case .DDMDocument:
+			case .ddmDocument:
 				return DDMFieldDocument(
 						attributes: attributes,
 						locale: locale)
 
-			case .DDMImage:
+			case .ddmImage:
 				return DDMFieldImage(
 					attributes: attributes,
 					locale: locale)
 
-			case .DDMGeolocation:
+			case .ddmGeolocation:
 				return DDMFieldGeolocation(
 					attributes: attributes,
 					locale: locale)
@@ -101,5 +101,4 @@ extension DDMField {
 		}
 
 	}
-	// swiftlint:enable cyclomatic_complexity
 }

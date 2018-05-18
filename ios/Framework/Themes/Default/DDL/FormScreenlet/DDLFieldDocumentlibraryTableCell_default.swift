@@ -149,7 +149,7 @@ open class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableCel
 		textField?.resignFirstResponder()
 
 		if image != nil || url != nil {
-			field!.currentValue = image ?? url as AnyObject?
+			field!.currentValue = image ?? url
 
 			textField?.text = field?.currentValueAsLabel
 

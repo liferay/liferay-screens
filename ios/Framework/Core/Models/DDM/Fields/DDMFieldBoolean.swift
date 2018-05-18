@@ -16,27 +16,27 @@ import Foundation
 @objc(DDMFieldBoolean)
 open class DDMFieldBoolean: DDMField {
 
-	override internal func convert(fromString value: String?) -> AnyObject? {
+	override internal func convert(fromString value: String?) -> Any? {
 		return value.map {
-				Bool.from(string: $0) as AnyObject
+				Bool.from(string: $0)
 			}
 	}
 
-	override func convert(fromLabel label: String?) -> AnyObject? {
+	override func convert(fromLabel label: String?) -> Any? {
 		let trueLabel = LocalizedString("core", key: "yes", obj: self).lowercased()
 		let falseLabel = LocalizedString("core", key: "no", obj: self).lowercased()
 
 		if label?.lowercased() == trueLabel {
-			return true as AnyObject?
+			return true
 		}
 		else if label?.lowercased() == falseLabel {
-			return false as AnyObject?
+			return false
 		}
 
 		return nil
 	}
 
-	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
+	override internal func convert(fromCurrentValue value: Any?) -> String? {
 		guard let boolValue = value as? Bool else {
 			return nil
 		}
@@ -44,7 +44,7 @@ open class DDMFieldBoolean: DDMField {
 		return boolValue ? "true" : "false"
 	}
 
-	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
+	override func convertToLabel(fromCurrentValue value: Any?) -> String? {
 		guard let boolValue = value as? Bool else {
 			return nil
 		}

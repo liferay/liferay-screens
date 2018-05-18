@@ -142,9 +142,9 @@ open class ImageGalleryUploadInteractor: ServerWriteConnectorInteractor {
 					collection: ScreenletName(ImageGalleryScreenlet.self),
 					keys: [cacheKeyList, cacheKeyCount], result: {
 
-				var newPage = [[String: AnyObject]]()
+				var newPage = [[String: Any]]()
 
-				if let oldPage = $0.first as? [[String: AnyObject]] {
+				if let oldPage = $0.first as? [[String: Any]] {
 					newPage.append(contentsOf: oldPage)
 				}
 
@@ -185,7 +185,7 @@ open class ImageGalleryUploadInteractor: ServerWriteConnectorInteractor {
 		}
 	}
 
-	fileprivate func storeNewImageEntry(_ page: [[String: AnyObject]], cacheKey: String) {
+	fileprivate func storeNewImageEntry(_ page: [[String: Any]], cacheKey: String) {
 		SessionContext.currentContext?.cacheManager.setClean(
 				collection: ScreenletName(ImageGalleryScreenlet.self),
 				key: cacheKey,

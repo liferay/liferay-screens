@@ -92,10 +92,10 @@ open class RatingView_default_thumbs: BaseScreenletView, RatingViewModel {
 	@IBAction func possitiveButtonClicked(_ sender: UIButton) {
 		if let rating = ratingEntry {
 			if rating.userScore > 0 {
-				self.userAction(name: RatingScreenlet.DeleteRatingAction, sender: 1 as AnyObject?)
+				self.userAction(name: RatingScreenlet.DeleteRatingAction, sender: 1)
 			}
 			else {
-				self.userAction(name: RatingScreenlet.UpdateRatingAction, sender: 1 as AnyObject?)
+				self.userAction(name: RatingScreenlet.UpdateRatingAction, sender: 1)
 			}
 		}
 	}
@@ -103,10 +103,10 @@ open class RatingView_default_thumbs: BaseScreenletView, RatingViewModel {
 	@IBAction func negativeButtonClicked(_ sender: UIButton) {
 		if let rating = ratingEntry {
 			if rating.userScore == 0 {
-				self.userAction(name: RatingScreenlet.DeleteRatingAction, sender: 0 as AnyObject?)
+				self.userAction(name: RatingScreenlet.DeleteRatingAction, sender: 0)
 			}
 			else {
-				self.userAction(name: RatingScreenlet.UpdateRatingAction, sender: 0 as AnyObject?)
+				self.userAction(name: RatingScreenlet.UpdateRatingAction, sender: 0)
 			}
 		}
 	}

@@ -57,7 +57,7 @@ open class DDMFieldStringWithOptions: DDMField {
 	fileprivate(set) var options: [Option] = []
 
 	override public init(attributes: [String: AnyObject], locale: Locale) {
-		multiple = Bool.from(any: attributes["multiple"] ?? "false" as AnyObject)
+		multiple = Bool.from(any: attributes["multiple"] ?? "false")
 
 		if let optionsArray = attributes["options"] as? [[String: AnyObject]] {
 			for optionDict in optionsArray {
@@ -90,7 +90,7 @@ open class DDMFieldStringWithOptions: DDMField {
 
 	// MARK: DDMField
 
-	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
+	override internal func convert(fromCurrentValue value: Any?) -> String? {
 		var result = "["
 
 		if let currentOptions = value as? [NSObject] {
@@ -110,7 +110,7 @@ open class DDMFieldStringWithOptions: DDMField {
 		return result + "]"
 	}
 
-	override internal func convert(fromString value: String?) -> AnyObject? {
+	override internal func convert(fromString value: String?) -> Any? {
 		var result = [Option]()
 
 		let optionsValue = extractOptions(value)
@@ -124,10 +124,10 @@ open class DDMFieldStringWithOptions: DDMField {
 			}
 		}
 
-		return result as AnyObject?
+		return result
 	}
 
-	override func convert(fromLabel labels: String?) -> AnyObject? {
+	override func convert(fromLabel labels: String?) -> Any? {
 		var options =  [Option]()
 
 		let optionsString = extractOptions(labels)
@@ -138,10 +138,10 @@ open class DDMFieldStringWithOptions: DDMField {
 			}
 		}
 
-		return options as AnyObject?
+		return options
 	}
 
-	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
+	override func convertToLabel(fromCurrentValue value: Any?) -> String? {
 		if let currentOptions = currentValue as? [Option] {
 			if let firstOption = currentOptions.first {
 				return firstOption.label

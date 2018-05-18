@@ -29,7 +29,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 	func test_ConvertFromString_ShouldReturnBool_WhenTrueStringIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
 
-		let convertedValue: AnyObject? = boolField.convert(fromString: "true")
+		let convertedValue: Any? = boolField.convert(fromString: "true")
 
 		XCTAssertNotNil(convertedValue)
 		XCTAssertTrue(convertedValue is Bool)
@@ -39,7 +39,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 	func test_ConvertFromString_ShouldReturnBool_WhenFalseStringIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
 
-		let convertedValue: AnyObject? = boolField.convert(fromString: "false")
+		let convertedValue: Any? = boolField.convert(fromString: "false")
 
 		XCTAssertNotNil(convertedValue)
 		XCTAssertTrue(convertedValue is Bool)
@@ -57,7 +57,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 	func test_ConvertFromCurrentValue_ShouldReturnTrueString_WhenTrueIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
 
-		let convertedValue = boolField.convert(fromCurrentValue: true as AnyObject?)
+		let convertedValue = boolField.convert(fromCurrentValue: true)
 
 		XCTAssertNotNil(convertedValue)
 		XCTAssertEqual("true", convertedValue!)
@@ -66,7 +66,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 	func test_ConvertFromCurrentValue_ShouldReturnFalseString_WhenFalseIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
 
-		let convertedValue = boolField.convert(fromCurrentValue: false as AnyObject?)
+		let convertedValue = boolField.convert(fromCurrentValue: false)
 
 		XCTAssertNotNil(convertedValue)
 		XCTAssertEqual("false", convertedValue!)
@@ -83,7 +83,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 	func test_CurrentValueAsString_ShouldReturnTrueString_WhenTrueIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
 
-		boolField.currentValue = true as AnyObject?
+		boolField.currentValue = true
 
 		XCTAssertNotNil(boolField.currentValueAsString)
 		XCTAssertEqual("true", boolField.currentValueAsString!)
@@ -92,7 +92,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 	func test_CurrentValueAsString_ShouldReturnFalseString_WhenFalseIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
 
-		boolField.currentValue = false as AnyObject?
+		boolField.currentValue = false
 
 		XCTAssertNotNil(boolField.currentValueAsString)
 		XCTAssertEqual("false", boolField.currentValueAsString!)
@@ -109,7 +109,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 	func test_CurrentValueAsLabel_ShouldReturnTrueString_WhenTrueIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
 
-		boolField.currentValue = true as AnyObject?
+		boolField.currentValue = true
 
 		XCTAssertNotNil(boolField.currentValueAsLabel)
 
@@ -120,7 +120,7 @@ class DDMFieldBoolean_Tests: XCTestCase {
 	func test_CurrentValueAsLabel_ShouldReturnFalseString_WhenFalseIsSupplied() {
 		let boolField = DDMFieldBoolean(attributes: [:], locale: usLocale)
 
-		boolField.currentValue = false as AnyObject?
+		boolField.currentValue = false
 
 		XCTAssertNotNil(boolField.currentValueAsLabel)
 		XCTAssertEqual("No", boolField.currentValueAsLabel!)
@@ -190,8 +190,8 @@ class DDMFieldBoolean_Tests: XCTestCase {
 
 		let booleanField = fields![0] as! DDMFieldBoolean
 
-		XCTAssertEqual(DDMField.DataType.DDMBoolean, booleanField.dataType)
-		XCTAssertEqual(DDMField.Editor.Checkbox, booleanField.editorType)
+		XCTAssertEqual(DDMField.DataType.ddmBoolean, booleanField.dataType)
+		XCTAssertEqual(DDMField.Editor.checkbox, booleanField.editorType)
 		XCTAssertEqual("A_Boolean", booleanField.name)
 		XCTAssertEqual("A Boolean", booleanField.label)
 		XCTAssertEqual("The tip", booleanField.tip)
@@ -229,8 +229,8 @@ class DDMFieldBoolean_Tests: XCTestCase {
 
 		let booleanField = fields![0] as! DDMFieldBoolean
 
-		XCTAssertEqual(DDMField.DataType.DDMBoolean, booleanField.dataType)
-		XCTAssertEqual(DDMField.Editor.Checkbox, booleanField.editorType)
+		XCTAssertEqual(DDMField.DataType.ddmBoolean, booleanField.dataType)
+		XCTAssertEqual(DDMField.Editor.checkbox, booleanField.editorType)
 		XCTAssertEqual("A_Boolean", booleanField.name)
 		XCTAssertEqual("A Boolean", booleanField.label)
 		XCTAssertEqual("The tip", booleanField.tip)

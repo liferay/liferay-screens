@@ -15,7 +15,7 @@ import UIKit
 
 open class AssetListPageLoadInteractor: BaseListPageLoadInteractor {
 
-	open var customEntryQuery: [String: AnyObject]?
+	open var customEntryQuery: [String: Any]?
 
 	fileprivate let groupId: Int64
 

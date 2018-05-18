@@ -125,7 +125,7 @@ open class AssetDisplayScreenlet: BaseScreenlet {
 		}
 	}
 
-	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
+	override open func createInteractor(name: String, sender: Any?) -> Interactor? {
 		let interactor: LoadAssetInteractor
 
 		if assetEntryId != 0 {

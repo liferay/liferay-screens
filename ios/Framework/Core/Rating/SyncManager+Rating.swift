@@ -17,7 +17,7 @@ extension SyncManager {
 
 	func ratingsSynchronizer(
 			_ key: String,
-			attributes: [String: AnyObject])
+			attributes: [String: Any])
 			-> (@escaping Signal) -> Void {
 
 		if key.hasPrefix("delete-") {
@@ -32,7 +32,7 @@ extension SyncManager {
 
 	func deleteRatingSynchronizer(
 			_ key: String,
-			attributes: [String: AnyObject])
+			attributes: [String: Any])
 			-> (@escaping Signal) -> Void {
 		return { signal in
 			let className = attributes["className"] as! String
@@ -64,7 +64,7 @@ extension SyncManager {
 
 	func updateRatingSynchronizer(
 			_ key: String,
-			attributes: [String: AnyObject])
+			attributes: [String: Any])
 			-> (@escaping Signal) -> Void {
 		return { signal in
 			let className = attributes["className"] as! String

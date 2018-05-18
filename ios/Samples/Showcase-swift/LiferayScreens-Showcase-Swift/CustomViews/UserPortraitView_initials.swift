@@ -28,8 +28,8 @@ class UserPortraitView_initials: UserPortraitView_default {
 	override func loadPlaceholder(for user: User) {
 		portraitImage?.image = nil
 
-		let nameInitial = String(user.firstName.characters.first!).uppercased()
-		let surnameInitial = user.lastName.isEmpty ? "" : String(user.lastName.characters.first!)
+		let nameInitial = String(user.firstName.first!).uppercased()
+		let surnameInitial = user.lastName.isEmpty ? "" : String(user.lastName.first!)
 
 		initalsLabel.text = "\(nameInitial)\(surnameInitial.uppercased())"
 		initalsLabel.isHidden = false

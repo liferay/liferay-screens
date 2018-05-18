@@ -100,7 +100,7 @@ open class LoginView_default: BaseScreenletView, LoginViewModel {
 		authorizeButton?.isEnabled = false
 	}
 
-	override open func onFinishInteraction(_ result: AnyObject?, error: NSError?) {
+	override open func onFinishInteraction(_ result: Any?, error: NSError?) {
 		loginButton?.isEnabled = true
 		authorizeButton?.isEnabled = true
 	}

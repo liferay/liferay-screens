@@ -41,7 +41,7 @@ open class RatingView_default_stars: BaseScreenletView, RatingViewModel {
 		let score = Double(sender.tag) / Double(defaultRatingsGroupCount)
 
 		if self.selectedUserScore != NSNumber(value: score) {
-			self.userAction(name: RatingScreenlet.UpdateRatingAction, sender: score as AnyObject)
+			self.userAction(name: RatingScreenlet.UpdateRatingAction, sender: score)
 		}
 	}
 

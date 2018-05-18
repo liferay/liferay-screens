@@ -119,7 +119,7 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 
 	}
 
-	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
+	override open func createInteractor(name: String, sender: Any?) -> Interactor? {
 
 		switch authType {
 		case .basic:

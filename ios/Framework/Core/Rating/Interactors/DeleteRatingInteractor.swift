@@ -72,9 +72,9 @@ open class DeleteRatingInteractor: ServerWriteConnectorInteractor {
 			"delete-className=\(className)-classPK=\(classPK)",
 			"" as NSCoding,
 			[
-				"className": className as AnyObject,
+				"className": className,
 				"classPK": NSNumber(value: classPK),
-				"ratingsGroupCount": Int(ratingsGroupCount) as AnyObject
+				"ratingsGroupCount": Int(ratingsGroupCount)
 			],
 			nil)
 	}
@@ -88,9 +88,9 @@ open class DeleteRatingInteractor: ServerWriteConnectorInteractor {
 				key: "delete-className=\(className)-classPK=\(classPK)",
 				value: "" as NSCoding,
 				attributes: [
-					"className": className as AnyObject,
+					"className": className,
 					"classPK": NSNumber(value: classPK),
-					"ratingsGroupCount": Int(ratingsGroupCount) as AnyObject
+					"ratingsGroupCount": Int(ratingsGroupCount)
 				],
 				onCompletion: nil)
 		}

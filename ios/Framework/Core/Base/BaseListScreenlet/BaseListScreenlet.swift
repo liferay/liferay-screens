@@ -82,7 +82,7 @@ open class BaseListScreenlet: BaseScreenlet {
 		}
 	}
 
-	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
+	override open func createInteractor(name: String, sender: Any?) -> Interactor? {
 		let page = (sender as? Int) ?? 0
 
 		let interactor = createPageLoadInteractor(
@@ -115,7 +115,7 @@ open class BaseListScreenlet: BaseScreenlet {
 		return interactor
 	}
 
-	override open func onAction(name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
+	override open func onAction(name: String, interactor: Interactor, sender: Any?) -> Bool {
 
 		if name == BaseListScreenlet.LoadInitialPageAction {
 			// clear list while it's loading
@@ -145,10 +145,10 @@ open class BaseListScreenlet: BaseScreenlet {
 		let page = pageFromRow(row)
 
 		// make sure we don't create two interactors for the same page
-		synchronized(paginationInteractors as AnyObject) {
+		synchronized(paginationInteractors) {
 			if self.paginationInteractors.index(forKey: page) == nil {
 
-				self.performAction(name: BaseListScreenlet.LoadPageAction, sender: page as AnyObject?)
+				self.performAction(name: BaseListScreenlet.LoadPageAction, sender: page)
 			}
 		}
 	}

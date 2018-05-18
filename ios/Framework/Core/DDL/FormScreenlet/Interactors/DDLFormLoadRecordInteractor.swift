@@ -129,8 +129,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 				collection: ScreenletName(DDLFormScreenlet.self),
 				key: "structureId-\(String(describing: self.structureId))",
 				value: recordForm,
-				attributes: [
-					"userId": formUserId.description as AnyObject])
+				attributes: ["userId": formUserId.description])
 
 			let record = DDLRecord(
 				data: recordData,
@@ -159,7 +158,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 		}
 	}
 
-	override func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> Void) {
+	override func readFromCache(_ c: ServerConnector, result: @escaping (Any?) -> Void) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return
@@ -175,7 +174,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 												"recordId-\(recordId)"]) { objects, attributes in
 
 				if let recordForm = objects[0] as? DDLRecord,
-						let recordUserId = attributes[0]?["userId"]?.int64Value,
+						let recordUserId = attributes[0]?["userId"] as? Int64,
 						let recordData = objects[1] as? [String: AnyObject],
 						let recordAttributes = attributes[1] {
 
@@ -193,7 +192,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 					loadRecordOp.resultRecordId = self.recordId
 					chain.currentConnector = loadRecordOp
 
-					result(true as AnyObject?)
+					result(true)
 				}
 				else {
 					result(nil)
@@ -214,7 +213,7 @@ class DDLFormLoadRecordInteractor: ServerReadConnectorInteractor {
 				loadRecordCon.resultRecordAttributes = record.attributes
 				loadRecordCon.resultRecordId = loadRecordCon.recordId
 
-				result(loadRecordCon.resultRecordData as AnyObject?)
+				result(loadRecordCon.resultRecordData)
 			}
 		}
 		else {

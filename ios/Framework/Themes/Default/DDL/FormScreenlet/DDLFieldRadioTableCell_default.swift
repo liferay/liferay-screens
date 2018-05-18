@@ -153,7 +153,7 @@ open class DDLFieldRadioTableCell_default: DDMFieldTableCell {
 
 	@objc open dynamic func radioButtonSelected(_ notification: Notification) {
 		if let stringField = field as? DDMFieldStringWithOptions {
-			stringField.currentValue = radioGroup!.selectedRadioButton!.data.labelText as AnyObject?
+			stringField.currentValue = radioGroup!.selectedRadioButton!.data.labelText
 
 			if stringField.lastValidationResult != nil && !stringField.lastValidationResult! {
 				stringField.lastValidationResult = true

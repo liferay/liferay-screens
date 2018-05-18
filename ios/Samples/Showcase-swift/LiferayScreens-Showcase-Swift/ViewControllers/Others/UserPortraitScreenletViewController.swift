@@ -68,7 +68,7 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 		else if let text = userIdField?.text, text != "" {
 			let company = LiferayServerContext.companyId
 
-			if text.characters.index(of: "@") != nil {
+			if text.index(of: "@") != nil {
 				screenlet?.load(companyId: company, emailAddress: text)
 				screenletWithDelegate?.load(companyId: company, emailAddress: text)
 				editableScreenlet?.load(companyId: company, emailAddress: text)

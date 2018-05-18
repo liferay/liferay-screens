@@ -139,8 +139,8 @@ open class DDLFormTableView: DDLFormView,
 			var shouldWorkaroundUIPickerViewBug = false
 			if let cellValue = cell {
 				shouldWorkaroundUIPickerViewBug =
-						cellValue.field!.editorType == DDMField.Editor.Document ||
-						cellValue.field!.editorType == DDMField.Editor.Select
+						cellValue.field!.editorType == DDMField.Editor.document ||
+						cellValue.field!.editorType == DDMField.Editor.select
 			}
 
 			if shouldWorkaroundUIPickerViewBug {

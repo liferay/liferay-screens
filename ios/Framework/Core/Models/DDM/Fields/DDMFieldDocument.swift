@@ -17,15 +17,15 @@ import UIKit
 open class DDMFieldDocument: DDMField {
 
 	public enum UploadStatus: Hashable, Equatable {
-		case uploaded([String:AnyObject])
+		case uploaded([String: Any])
 		case failed(NSError?)
 		case uploading(UInt64, UInt64)
 		case pending
 
-		public static func CachedStatusData(_ cacheKey: String) -> [String: AnyObject] {
+		public static func CachedStatusData(_ cacheKey: String) -> [String: Any] {
 			return [
-				"cached": cacheKey as AnyObject,
-				"mimeType": "image/png" as AnyObject]
+				"cached": cacheKey,
+				"mimeType": "image/png"]
 		}
 
 		public var hashValue: Int {
@@ -128,8 +128,8 @@ open class DDMFieldDocument: DDMField {
 		}
 	}
 
-	override internal func convert(fromString value: String?) -> AnyObject? {
-		var result: AnyObject?
+	override internal func convert(fromString value: String?) -> Any? {
+		var result: Any?
 
 		if let valueString = value {
 			let data = valueString.data(using: String.Encoding.utf8,
@@ -140,26 +140,26 @@ open class DDMFieldDocument: DDMField {
 
 			if let jsonDict = jsonObject as? [String: AnyObject] {
 				uploadStatus = .uploaded(jsonDict)
-				result = jsonDict as AnyObject?
+				result = jsonDict
 			}
 			else if valueString != "" {
 				uploadStatus = .pending
-				result = valueString as AnyObject?
+				result = valueString
 			}
 		}
 
 		return result
 	}
 
-	override func convert(fromLabel label: String?) -> AnyObject? {
+	override func convert(fromLabel label: String?) -> Any? {
 		return nil
 	}
 
-	override internal func convert(fromCurrentValue value: AnyObject?) -> String? {
+	override internal func convert(fromCurrentValue value: Any?) -> String? {
 		switch uploadStatus {
 		case .uploaded(let json):
 			let groupEntry = json["groupId"]
-			if let groupId = groupEntry?.int64Value,
+			if let groupId = (groupEntry as AnyObject).int64Value,
 					let uuid = json["uuid"] as? String,
 					let version = json["version"] as? String {
 				return "{\"groupId\":\(groupId)," +
@@ -181,7 +181,7 @@ open class DDMFieldDocument: DDMField {
 		return nil
 	}
 
-	override func convertToLabel(fromCurrentValue value: AnyObject?) -> String? {
+	override func convertToLabel(fromCurrentValue value: Any?) -> String? {
 		switch currentValue {
 		case is UIImage:
 			return LocalizedString("core", key: "an-image-has-been-selected", obj: self)

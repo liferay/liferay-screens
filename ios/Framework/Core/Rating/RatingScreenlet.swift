@@ -128,7 +128,7 @@ open class RatingScreenlet: BaseScreenlet {
 		}
 	}
 
-	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
+	override open func createInteractor(name: String, sender: Any?) -> Interactor? {
 		let interactor: ServerConnectorInteractor?
 
 		switch name {
@@ -137,7 +137,7 @@ open class RatingScreenlet: BaseScreenlet {
 		case RatingScreenlet.DeleteRatingAction:
 			interactor = createDeleteRatingInteractor()
 		case RatingScreenlet.UpdateRatingAction:
-			let selectedScore = sender!.doubleValue!
+			let selectedScore = sender as! Double
 			interactor = createUpdateRatingInteractor(selectedScore)
 		default:
 			return nil

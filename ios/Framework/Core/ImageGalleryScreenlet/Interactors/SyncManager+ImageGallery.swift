@@ -17,13 +17,13 @@ extension SyncManager {
 
 	func imageGallerySynchronizer(
 			_ key: String,
-			attributes: [String: AnyObject])
+			attributes: [String: Any])
 			-> (@escaping Signal) -> Void {
 
 		return { signal in
-			let folderId = attributes["folderId"]!.int64Value
-			let repositoryId = attributes["repositoryId"]!.int64Value
-			let page = attributes["page"]!.description.asNumber!.intValue
+			let folderId = (attributes["folderId"] as AnyObject).int64Value
+			let repositoryId = (attributes["repositoryId"] as AnyObject).int64Value
+			let page = attributes["page"] as! Int
 
 			self.cacheManager.getAny(collection: ScreenletName(ImageGalleryScreenlet.self), key: key) {
 

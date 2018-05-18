@@ -30,33 +30,33 @@ extension Date {
 		switch (components.year ?? -1, components.month ?? -1, components.day ?? -1,
 		        components.hour ?? -1, components.minute ?? -1, components.second ?? -1) {
 		case (1, _, _, _, _, _):
-			return LocalizedString("default", key: "time-last-year", obj: self as AnyObject)
+			return LocalizedString("default", key: "time-last-year", obj: self)
 		case let (y, _, _, _, _, _) where y > 1:
-			return String(format: LocalizedString("default", key: "time-ago-years", obj: self as AnyObject), y)
+			return String(format: LocalizedString("default", key: "time-ago-years", obj: self), y)
 		case (0, 1, _, _, _, _):
-			return LocalizedString("default", key: "time-last-month", obj: self as AnyObject)
+			return LocalizedString("default", key: "time-last-month", obj: self)
 		case let (0, m, _, _, _, _) where m > 1:
-			return String(format: LocalizedString("default", key: "time-ago-months", obj: self as AnyObject), m)
+			return String(format: LocalizedString("default", key: "time-ago-months", obj: self), m)
 		case (0, 0, 7...13, _, _, _):
-			return LocalizedString("default", key: "time-last-week", obj: self as AnyObject)
+			return LocalizedString("default", key: "time-last-week", obj: self )
 		case let (0, 0, d, _, _, _) where d > 13:
-			return String(format: LocalizedString("default", key: "time-ago-weeks", obj: self as AnyObject), d/7)
+			return String(format: LocalizedString("default", key: "time-ago-weeks", obj: self), d/7)
 		case (0, 0, 1, _, _, _):
-			return LocalizedString("default", key: "time-yesterday", obj: self as AnyObject)
+			return LocalizedString("default", key: "time-yesterday", obj: self)
 		case let (0, 0, d, _, _, _) where d > 1:
-			return String(format: LocalizedString("default", key: "time-ago-days", obj: self as AnyObject), d)
+			return String(format: LocalizedString("default", key: "time-ago-days", obj: self), d)
 		case (0, 0, 0, 1, _, _):
-			return LocalizedString("default", key: "time-ago-hour", obj: self as AnyObject)
+			return LocalizedString("default", key: "time-ago-hour", obj: self)
 		case let (0, 0, 0, h, _, _) where h > 1:
-			return String(format: LocalizedString("default", key: "time-ago-hours", obj: self as AnyObject), h)
+			return String(format: LocalizedString("default", key: "time-ago-hours", obj: self), h)
 		case (0, 0, 0, 0, 1, _):
-			return LocalizedString("default", key: "time-ago-minute", obj: self as AnyObject)
+			return LocalizedString("default", key: "time-ago-minute", obj: self)
 		case let (0, 0, 0, 0, m, _) where m > 1:
-			return String(format: LocalizedString("default", key: "time-ago-minutes", obj: self as AnyObject), m)
+			return String(format: LocalizedString("default", key: "time-ago-minutes", obj: self), m)
 		case let (0, 0, 0, 0, 0, s) where s > 5:
-			return String(format: LocalizedString("default", key: "time-ago-seconds", obj: self as AnyObject), s)
+			return String(format: LocalizedString("default", key: "time-ago-seconds", obj: self), s)
 		default:
-			return LocalizedString("default", key: "time-now", obj: self as AnyObject)
+			return LocalizedString("default", key: "time-now", obj: self)
 		}
 	}
 
