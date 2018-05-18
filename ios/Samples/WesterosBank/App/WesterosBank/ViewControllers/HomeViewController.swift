@@ -146,7 +146,7 @@ class HomeViewController: UIViewController {
 		issuesCard.enabledButton(false)
 	}
 
-	func goBackAction(_ sender: AnyObject?) {
+	@objc func goBackAction(_ sender: AnyObject?) {
 		issuesController?.scrollToShowList()
 
 		goBackCard.nextState = .hidden
