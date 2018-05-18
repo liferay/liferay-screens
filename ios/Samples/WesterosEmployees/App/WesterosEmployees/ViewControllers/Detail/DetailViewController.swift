@@ -73,7 +73,7 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate, C
 			else {
 				let className = AssetClasses.getClassNameFromId(asset.classNameId)!
 				classPK = asset.classPK
-				
+
 				commentsViewController?.load(className: className, classPK: classPK)
 			}
 
@@ -130,9 +130,9 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate, C
 			self.ratingScreenlet?.alpha = 1.0
 		})
 	}
-	
+
 	// MARK: RatingScreenletDelegate
-	
+
 	func screenlet(_ screenlet: RatingScreenlet, onRatingError error: NSError) {
 		print("Couldn't load rating. Error: \(error.debugDescription)")
 	}

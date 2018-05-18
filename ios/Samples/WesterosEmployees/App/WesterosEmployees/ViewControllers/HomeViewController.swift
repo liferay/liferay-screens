@@ -217,9 +217,9 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate, CardDeck
 
 		//Load user profile
 		let userId = SessionContext.currentContext!.user.userId
-		
+
 		self.userPortraitScreenlet?.load(userId: userId)
-			
+
 		let firstName = SessionContext.currentContext!.user.firstName
 		let lastName = SessionContext.currentContext!.user.lastName
 
