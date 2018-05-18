@@ -543,7 +543,6 @@
 				88855A2A1AE6537000D352D5 /* Frameworks */,
 				88855A2B1AE6537000D352D5 /* Resources */,
 				4D60439964A7579B807D5590 /* [CP] Embed Pods Frameworks */,
-				ACA49D06153A9442F06F9F61 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -692,7 +691,6 @@
 				"${BUILT_PRODUCTS_DIR}/DTPickerPresenter/DTPickerPresenter.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/Liferay-OAuth/LROAuth.framework",
 				"${BUILT_PRODUCTS_DIR}/Liferay-iOS-SDK/LRMobileSDK.framework",
 				"${BUILT_PRODUCTS_DIR}/LiferayScreens/LiferayScreens.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
@@ -713,7 +711,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTPickerPresenter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LROAuth.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LRMobileSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LiferayScreens.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
@@ -729,21 +726,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WesterosBank/Pods-WesterosBank-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		ACA49D06153A9442F06F9F61 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WesterosBank/Pods-WesterosBank-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D720E3A86241626BEEA42E5E /* [CP] Check Pods Manifest.lock */ = {
