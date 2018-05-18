@@ -14,7 +14,7 @@
 import UIKit
 import LiferayScreens
 
-class DetailViewController: CardViewController, AssetDisplayScreenletDelegate, CardDeckDelegate, CardDeckDataSource {
+class DetailViewController: CardViewController, AssetDisplayScreenletDelegate, CardDeckDelegate, CardDeckDataSource, RatingScreenletDelegate {
 
 	// MARK: Outlets
 
@@ -77,6 +77,7 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate, C
 				commentsViewController?.load(className: className, classPK: classPK)
 			}
 
+			ratingScreenlet?.delegate = self
 			ratingScreenlet?.className = AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!
 			ratingScreenlet?.classPK = classPK
 			ratingScreenlet?.loadRatings()
@@ -128,6 +129,12 @@ class DetailViewController: CardViewController, AssetDisplayScreenletDelegate, C
 			self.assetDisplayScreenlet?.alpha = 1.0
 			self.ratingScreenlet?.alpha = 1.0
 		})
+	}
+	
+	// MARK: RatingScreenletDelegate
+	
+	func screenlet(_ screenlet: RatingScreenlet, onRatingError error: NSError) {
+		print("Couldn't load rating. Error: \(error.debugDescription)")
 	}
 
 	// MARK: CardDeckDataSource
