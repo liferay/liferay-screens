@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 * FormsScreenlet - Add support to upload images and videos from gallery
 * FormsScreenlet - Required fields are now marked with an asterisk (*)
 * Add Lexicon Theme
+* WebScreenlet now correctly inject the script when navigate to another page
 
 ### New features
 
