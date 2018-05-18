@@ -205,7 +205,7 @@ class CardView: UIView, CAAnimationDelegate {
 		var t1 = t0
 		t1.m34 = t0.m34
 		t1 = CATransform3DScale(t1, 0.95, 0.95, 1)
-		t1 = CATransform3DRotate(t1, CGFloat(10.0 * M_PI/180.0), 1, 0, 0)
+		t1 = CATransform3DRotate(t1, CGFloat(10.0 * Double.pi/180.0), 1, 0, 0)
 
 		let animation1 = CABasicAnimation(keyPath: "transform")
 		animation1.toValue = NSValue(caTransform3D: t1)

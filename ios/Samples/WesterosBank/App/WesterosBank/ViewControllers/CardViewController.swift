@@ -15,7 +15,7 @@ import UIKit
 
 class CardViewController: UIViewController {
 
-	var onDone: ((Void) -> Void)?
+	var onDone: (() -> Void)?
 
 	let cardView: CardView?
 
