@@ -50,21 +50,22 @@ class CardDeckView: UIView {
 
 	func addButton(_ card: CardView, fontColor: UIColor) {
 		let actionName = card === topCard
-				? "topCardTouchUpInside:" : "bottomCardTouchUpInside:"
+				? #selector(CardDeckView.topCardTouchUpInside(_:))
+				: #selector(CardDeckView.bottomCardTouchUpInside(_:))
 
 		card.createButton(fontColor)
 				.addTarget(self,
-					action: Selector(actionName),
+					action: actionName,
 					for: .touchUpInside)
 
 		card.createArrow(fontColor)
 	}
 
-	func topCardTouchUpInside(_ sender: UIButton) {
+	@objc func topCardTouchUpInside(_ sender: UIButton) {
 		onButtonTouched?(topCard!)
 	}
 
-	func bottomCardTouchUpInside(_ sender: UIButton) {
+	@objc func bottomCardTouchUpInside(_ sender: UIButton) {
 		onButtonTouched?(bottomCard!)
 	}
 
