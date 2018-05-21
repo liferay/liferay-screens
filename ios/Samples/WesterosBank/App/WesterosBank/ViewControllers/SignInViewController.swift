@@ -39,8 +39,8 @@ class SignInViewController: CardViewController,
 	convenience init(card: CardView) {
 		self.init(card: card, nibName: "SignInViewController")
 
-		loginScreenlet?.viewModel.userName = "test@liferay.com"
-		loginScreenlet?.viewModel.password = "test"
+		loginScreenlet?.viewModel.userName = "demo@liferay.com"
+		loginScreenlet?.viewModel.password = "demo"
 	}
 
 	required init?(coder aDecoder: NSCoder) {
