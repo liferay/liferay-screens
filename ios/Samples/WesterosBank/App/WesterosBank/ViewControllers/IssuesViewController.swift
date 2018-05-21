@@ -55,8 +55,6 @@ class IssuesViewController: CardViewController,
 
 		scroll.contentSize = CGSize(width: scroll.frame.size.width * 2, height: scroll.frame.size.height)
 
-		scroll.contentSize = CGSize(width: scroll.frame.size.width * 2, height: scroll.frame.size.height)
-
 		listScreenlet.frame = scroll.frame
 		formScreenlet.frame = CGRectMake(scroll.frame.size.width, y: scroll.frame.origin.y, size: scroll.frame.size)
 	}
