@@ -22,11 +22,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kb4-aG-bMM" userLabel="Settings" customClass="CardView" customModule="westerosbank" customModuleProvider="target">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kb4-aG-bMM" userLabel="Settings" customClass="CardView" customModule="westerosbank" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="652"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACCOUNT SETTINGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Psz-Ul-p0e">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ACCOUNT SETTINGS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Psz-Ul-p0e">
                                         <rect key="frame" x="71" y="4" width="232" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -34,7 +34,7 @@
                                         <color key="textColor" red="0.85728287696838379" green="0.18751269578933716" blue="0.19454109668731689" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8lR-vt-Vko" customClass="UserPortraitScreenlet">
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8lR-vt-Vko" customClass="UserPortraitScreenlet">
                                         <rect key="frame" x="150" y="92" width="75" height="75"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -49,7 +49,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jwh-qv-Zuh" customClass="SignUpScreenlet">
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jwh-qv-Zuh" customClass="SignUpScreenlet">
                                         <rect key="frame" x="25" y="213" width="325" height="393"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -57,7 +57,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="themeName" value="westeros_edit"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lee-EH-LFT">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lee-EH-LFT">
                                         <rect key="frame" x="295" y="5" width="80" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
@@ -313,7 +313,7 @@
         <!--Tour View Controller-->
         <scene sceneID="eKI-7J-OtA">
             <objects>
-                <viewController id="sTB-Yh-1Z2" customClass="TourViewController" customModule="WesterosEmployees" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="sTB-Yh-1Z2" customClass="TourViewController" customModule="westerosbank" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="47Q-ds-TL9"/>
                         <viewControllerLayoutGuide type="bottom" id="nVg-6t-LwY"/>
@@ -560,6 +560,6 @@
         <image name="tour-step3.png" width="86" height="177"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zIU-iW-dAF"/>
+        <segue reference="pXg-YE-7Bz"/>
     </inferredMetricsTieBreakers>
 </document>
