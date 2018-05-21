@@ -49,7 +49,7 @@ class ReportIssueViewController: CardViewController, DDLFormScreenletDelegate {
 		}
 		else {
 			screenlet?.recordId = 0
-			
+
 			if (screenlet!.isFormLoaded) {
 				screenlet?.clearForm()
 			}

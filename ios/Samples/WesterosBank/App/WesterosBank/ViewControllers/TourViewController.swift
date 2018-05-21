@@ -15,33 +15,32 @@ import UIKit
 
 class TourViewController: UIViewController, UIScrollViewDelegate {
 
-	@IBOutlet weak var scrollView: UIScrollView!
-	@IBOutlet weak var contentView: UIView!
-	@IBOutlet weak var pageControl: UIPageControl!
+	@IBOutlet weak var scrollView: UIScrollView?
+	@IBOutlet weak var pageControl: UIPageControl?
 
-	@IBOutlet weak var page1: UIView!
-	@IBOutlet weak var page2: UIView!
-	@IBOutlet weak var page3: UIView!
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		scrollView?.delegate = self
+	}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-		scrollView.contentSize = contentView.frame.size
-
-		page1.frame = scrollView.frame
-		page2.frame = CGRectMake(scrollView.frame.size.width * 1, y: scrollView.frame.origin.y, size: scrollView.frame.size)
-		page3.frame = CGRectMake(scrollView.frame.size.width * 2, y: scrollView.frame.origin.y, size: scrollView.frame.size)
-    }
+	override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
+		if let scroll = scrollView {
+			scroll.contentSize = CGSize(width: scroll.frame.width * 3, height: scroll.frame.width)
+		}
+	}
 
 	@IBAction func nextAction(_ sender: AnyObject) {
-		if pageControl.currentPage + 1 == pageControl.numberOfPages {
-			tourCompleted = true
-			self.dismiss(animated: true, completion: nil)
-		}
-		else {
-			let newX = CGFloat((pageControl.currentPage + 1) * Int(scrollView.frame.width))
-			let newRect = CGRectMake(newX, y: scrollView.contentOffset.y, size: scrollView.frame.size)
-			scrollView.scrollRectToVisible(newRect, animated: true)
+		if let control = pageControl, let scroll = scrollView {
+			if control.currentPage + 1 == control.numberOfPages {
+				tourCompleted = true
+				self.dismiss(animated: true, completion: nil)
+			}
+			else {
+				let newX = CGFloat((control.currentPage + 1) * Int(scroll.frame.size.width))
+				let newRect = CGRectMake(newX, y: scroll.contentOffset.y, size: scroll.frame.size)
+				scroll.scrollRectToVisible(newRect, animated: true)
+			}
 		}
 	}
 
@@ -49,7 +48,6 @@ class TourViewController: UIViewController, UIScrollViewDelegate {
 		let width = scrollView.frame.size.width
 		let xPos = scrollView.contentOffset.x + 10
 
-		pageControl.currentPage = Int(xPos/width)
+		pageControl?.currentPage = Int(xPos/width)
 	}
-
 }

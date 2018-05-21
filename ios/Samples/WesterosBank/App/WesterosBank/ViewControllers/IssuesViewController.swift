@@ -18,7 +18,7 @@ class IssuesViewController: CardViewController,
 		DDLListScreenletDelegate, DDLFormScreenletDelegate {
 
 	@IBOutlet weak var scroll: UIScrollView!
-	
+
 	@IBOutlet weak var listScreenlet: DDLListScreenlet?
 	@IBOutlet weak var formScreenlet: DDLFormScreenlet?
 
