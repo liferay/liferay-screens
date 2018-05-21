@@ -16,7 +16,6 @@ import LiferayScreens
 
 var tourCompleted = false
 
-
 class HomeViewController: UIViewController {
 
 	@IBOutlet weak var issuesDeck: CardDeckView!
@@ -32,16 +31,12 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
 		issuesController = IssuesViewController(card: issuesCard)
-
 		issuesController?.onEditIssue = onEditIssue
 		issuesController?.onViewIssue = onViewIssue
-
 		issuesDeck.topCard = issuesCard
 
 		reportIssueCard.normalHeight = issuesDeck.frame.size.height - 50
-
 		reportIssueCard.frame.size.height = reportIssueCard.normalHeight - reportIssueCard.minimizedHeight
-
 		reportIssueController = ReportIssueViewController(card: reportIssueCard)
 		reportIssueController!.onDone = {
 		}
@@ -81,7 +76,7 @@ class HomeViewController: UIViewController {
 
 			issuesCard.isHidden = false
 
-			issuesCard.changeToNextState() { Bool -> Void in
+			issuesCard.changeToNextState { _ in
 				self.reportIssueCard.currentState = .hidden
 				self.reportIssueCard.resetToCurrentState()
 				self.reportIssueCard.isHidden = false
@@ -90,7 +85,7 @@ class HomeViewController: UIViewController {
 
 			UIView.animate(withDuration: 1.5, animations: {
 				self.settingsView.alpha = 1.0
-			}) 
+			})
 		}
 	}
 
@@ -136,7 +131,7 @@ class HomeViewController: UIViewController {
 
 		reportIssueCard.nextState = .hidden
 
-		reportIssueCard.changeToNextState() { Bool -> Void in
+		reportIssueCard.changeToNextState { _ in
 			self.goBackCard.currentState = .hidden
 			self.goBackCard.resetToCurrentState()
 			self.goBackCard.nextState = .minimized

@@ -14,7 +14,6 @@
 import UIKit
 import LiferayScreens
 
-
 class ViewController: UIViewController {
 
 	@IBOutlet var cardDeck: CardDeckView!
@@ -24,11 +23,10 @@ class ViewController: UIViewController {
 	var signInController: SignInViewController?
 	var signUpController: SignUpViewController?
 
-
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		let onDone: () -> () = {
+		let onDone: () -> Void = {
 			self.dismiss(animated: true, completion: nil)
 		}
 

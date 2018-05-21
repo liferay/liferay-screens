@@ -14,7 +14,6 @@
 import UIKit
 import LiferayScreens
 
-
 class SignInViewController: CardViewController,
 		LoginScreenletDelegate,
 		ForgotPasswordScreenletDelegate,
@@ -30,7 +29,6 @@ class SignInViewController: CardViewController,
 	@IBOutlet weak var loginScreenlet: LoginScreenlet!
 	@IBOutlet weak var forgotPasswordScreenlet: ForgotPasswordScreenlet!
 
-
 	override init(card: CardView, nibName: String) {
 		let save = card.minimizedHeight
 		card.minimizedHeight = 0
@@ -39,7 +37,7 @@ class SignInViewController: CardViewController,
 	}
 
 	convenience init(card: CardView) {
-		self.init(card: card, nibName:"SignInViewController")
+		self.init(card: card, nibName: "SignInViewController")
 
 		loginScreenlet.viewModel.userName = "test@liferay.com"
 		loginScreenlet.viewModel.password = "test"
@@ -102,13 +100,11 @@ class SignInViewController: CardViewController,
 		scroll.scrollRectToVisible(newRect, animated: true)
 	}
 
-	func screenlet(_ screenlet: BaseScreenlet,
-			onLoginResponseUserAttributes attributes: [String:AnyObject]) {
+	func screenlet(_ screenlet: BaseScreenlet, onLoginResponseUserAttributes attributes: [String: AnyObject]) {
 		onDone?()
 	}
 
-	func screenlet(_ screenlet: ForgotPasswordScreenlet,
-			onForgotPasswordSent passwordSent: Bool) {
+	func screenlet(_ screenlet: ForgotPasswordScreenlet, onForgotPasswordSent passwordSent: Bool) {
 		backAction(self)
 	}
 

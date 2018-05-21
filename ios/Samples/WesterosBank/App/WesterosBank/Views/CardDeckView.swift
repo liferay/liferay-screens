@@ -41,7 +41,6 @@ class CardDeckView: UIView {
 
 	var onButtonTouched: ((CardView) -> Void)?
 
-
 	func setUpCard(_ card: CardView) {
 		card.currentState = .minimized
 		card.nextState = .normal
@@ -60,7 +59,6 @@ class CardDeckView: UIView {
 
 		card.createArrow(fontColor)
 	}
-
 
 	func topCardTouchUpInside(_ sender: UIButton) {
 		onButtonTouched?(topCard!)

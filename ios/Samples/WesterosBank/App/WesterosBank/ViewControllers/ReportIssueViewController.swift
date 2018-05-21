@@ -19,7 +19,7 @@ class ReportIssueViewController: CardViewController, DDLFormScreenletDelegate {
 	@IBOutlet weak var screenlet: DDLFormScreenlet!
 	@IBOutlet weak var saveButton: UIButton!
 
-	var issueRecord : DDLRecord?
+	var issueRecord: DDLRecord?
 	var editable: Bool = true
 
 	override init(card: CardView, nibName: String) {
@@ -27,7 +27,7 @@ class ReportIssueViewController: CardViewController, DDLFormScreenletDelegate {
 	}
 
 	convenience init(card: CardView) {
-		self.init(card: card, nibName:"ReportIssueViewController")
+		self.init(card: card, nibName: "ReportIssueViewController")
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -42,7 +42,6 @@ class ReportIssueViewController: CardViewController, DDLFormScreenletDelegate {
 	override func cardWillAppear() {
 		screenlet.editable = editable
 		saveButton.isHidden = !editable
-
 
 		if let recordValue = issueRecord {
 			screenlet.recordId = recordValue.recordId!
@@ -60,8 +59,7 @@ class ReportIssueViewController: CardViewController, DDLFormScreenletDelegate {
 		}
 	}
 
-	func screenlet(_ screenlet: DDLFormScreenlet,
-			onFormSubmitted record: DDLRecord) {
+	func screenlet(_ screenlet: DDLFormScreenlet, onFormSubmitted record: DDLRecord) {
 		onDone?()
 	}
 

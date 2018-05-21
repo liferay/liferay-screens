@@ -9,7 +9,6 @@
 import UIKit
 import LiferayScreens
 
-
 class AccountSettingsViewController: UIViewController,
 		UserPortraitScreenletDelegate,
 		SignUpScreenletDelegate,
@@ -62,10 +61,8 @@ class AccountSettingsViewController: UIViewController,
 		}
 	}
 
-	func screenlet(_ screenlet: SignUpScreenlet,
-			onSignUpResponseUserAttributes attributes: [String:AnyObject]) {
+	func screenlet(_ screenlet: SignUpScreenlet, onSignUpResponseUserAttributes attributes: [String: AnyObject]) {
 		closeAction(screenlet)
 	}
-
 
 }

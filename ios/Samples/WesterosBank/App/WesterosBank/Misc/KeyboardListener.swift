@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 @objc protocol KeyboardListener {
 
 	func showKeyboard(_ notif: Notification)

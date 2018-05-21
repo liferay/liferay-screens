@@ -13,11 +13,9 @@
 */
 import UIKit
 
-
 func CGRectMake(_ x: CGFloat, y: CGFloat, size: CGSize) -> CGRect {
 	return CGRect(x: x, y: y, width: size.width, height: size.height)
 }
-
 
 class CardView: UIView, CAAnimationDelegate {
 
@@ -48,7 +46,6 @@ class CardView: UIView, CAAnimationDelegate {
 		}
 
 	}
-
 
 	@IBInspectable var minimizedHeight: CGFloat = 50
 	@IBInspectable var normalHeight: CGFloat = 200
@@ -108,8 +105,7 @@ class CardView: UIView, CAAnimationDelegate {
 				animations: {
 					if self.nextState == .normal || self.nextState == .maximized {
 						self.arrow?.alpha = 1.0
-					}
-					else {
+					} else {
 						self.arrow?.alpha = 0.0
 					}
 				}, completion: nil)
@@ -186,7 +182,7 @@ class CardView: UIView, CAAnimationDelegate {
 		animation.isRemovedOnCompletion = false
 		animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
 
-		return animation;
+		return animation
 	}
 
 	fileprivate func backgroundAnimation(_ animationTime: Double) -> CAAnimation {
@@ -237,7 +233,7 @@ class CardView: UIView, CAAnimationDelegate {
 
 		group.delegate = self
 
-		return group;
+		return group
 	}
 
 	func animationDidStop(_ theAnimation: CAAnimation, finished flag: Bool) {

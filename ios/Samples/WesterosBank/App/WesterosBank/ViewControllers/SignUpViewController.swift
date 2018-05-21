@@ -23,7 +23,7 @@ class SignUpViewController: CardViewController, SignUpScreenletDelegate {
 	}
 
 	convenience init(card: CardView) {
-		self.init(card: card, nibName:"SignUpViewController")
+		self.init(card: card, nibName: "SignUpViewController")
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -39,8 +39,7 @@ class SignUpViewController: CardViewController, SignUpScreenletDelegate {
 				LiferayServerContext.propertyForKey("anonymousPassword") as? String
 	}
 
-	func screenlet(_ screenlet: SignUpScreenlet,
-			onSignUpResponseUserAttributes attributes: [String:AnyObject]) {
+	func screenlet(_ screenlet: SignUpScreenlet, onSignUpResponseUserAttributes attributes: [String: AnyObject]) {
 		onDone?()
 	}
 

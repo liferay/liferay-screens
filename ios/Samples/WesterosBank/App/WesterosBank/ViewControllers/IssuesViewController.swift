@@ -42,7 +42,7 @@ class IssuesViewController: CardViewController,
 	}
 
 	convenience init(card: CardView) {
-		self.init(card: card, nibName:"IssuesViewController")
+		self.init(card: card, nibName: "IssuesViewController")
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -67,8 +67,7 @@ class IssuesViewController: CardViewController,
 		}
 	}
 
-	func screenlet(_ screenlet: DDLListScreenlet,
-			onDDLSelectedRecord record: DDLRecord) {
+	func screenlet(_ screenlet: DDLListScreenlet, onDDLSelectedRecord record: DDLRecord) {
 		onEditIssue?(record)
 	}
 
