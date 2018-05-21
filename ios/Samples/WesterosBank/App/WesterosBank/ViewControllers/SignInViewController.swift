@@ -26,8 +26,8 @@ class SignInViewController: CardViewController,
 	@IBOutlet weak var signInPage: UIView!
 	@IBOutlet weak var forgotPage: UIView!
 
-	@IBOutlet weak var loginScreenlet: LoginScreenlet!
-	@IBOutlet weak var forgotPasswordScreenlet: ForgotPasswordScreenlet!
+	@IBOutlet weak var loginScreenlet: LoginScreenlet?
+	@IBOutlet weak var forgotPasswordScreenlet: ForgotPasswordScreenlet?
 
 	override init(card: CardView, nibName: String) {
 		let save = card.minimizedHeight
@@ -39,8 +39,8 @@ class SignInViewController: CardViewController,
 	convenience init(card: CardView) {
 		self.init(card: card, nibName: "SignInViewController")
 
-		loginScreenlet.viewModel.userName = "test@liferay.com"
-		loginScreenlet.viewModel.password = "test"
+		loginScreenlet?.viewModel.userName = "test@liferay.com"
+		loginScreenlet?.viewModel.password = "test"
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -55,12 +55,12 @@ class SignInViewController: CardViewController,
 			y: scroll.frame.origin.y,
 			size: scroll.frame.size)
 
-		self.loginScreenlet.delegate = self
-		self.forgotPasswordScreenlet.delegate = self
+		self.loginScreenlet?.delegate = self
+		self.forgotPasswordScreenlet?.delegate = self
 
-		self.forgotPasswordScreenlet.anonymousApiUserName =
+		self.forgotPasswordScreenlet?.anonymousApiUserName =
 				LiferayServerContext.propertyForKey("anonymousUsername") as? String
-		self.forgotPasswordScreenlet.anonymousApiPassword =
+		self.forgotPasswordScreenlet?.anonymousApiPassword =
 				LiferayServerContext.propertyForKey("anonymousPassword") as? String
 	}
 

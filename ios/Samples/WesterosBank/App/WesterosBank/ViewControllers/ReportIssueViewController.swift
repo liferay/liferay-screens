@@ -16,7 +16,7 @@ import LiferayScreens
 
 class ReportIssueViewController: CardViewController, DDLFormScreenletDelegate {
 
-	@IBOutlet weak var screenlet: DDLFormScreenlet!
+	@IBOutlet weak var screenlet: DDLFormScreenlet?
 	@IBOutlet weak var saveButton: UIButton!
 
 	var issueRecord: DDLRecord?
@@ -35,26 +35,26 @@ class ReportIssueViewController: CardViewController, DDLFormScreenletDelegate {
 	}
 
 	override func viewDidLoad() {
-		screenlet.delegate = self
+		screenlet?.delegate = self
 
 	}
 
 	override func cardWillAppear() {
-		screenlet.editable = editable
+		screenlet?.editable = editable
 		saveButton.isHidden = !editable
 
 		if let recordValue = issueRecord {
-			screenlet.recordId = recordValue.recordId!
-			screenlet.loadRecord()
+			screenlet?.recordId = recordValue.recordId!
+			screenlet?.loadRecord()
 		}
 		else {
-			screenlet.recordId = 0
-
-			if screenlet.isFormLoaded {
-				screenlet.clearForm()
+			screenlet?.recordId = 0
+			
+			if (screenlet!.isFormLoaded) {
+				screenlet?.clearForm()
 			}
 			else {
-				screenlet.loadForm()
+				screenlet?.loadForm()
 			}
 		}
 	}
@@ -64,7 +64,7 @@ class ReportIssueViewController: CardViewController, DDLFormScreenletDelegate {
 	}
 
 	@IBAction func saveButtonClick(_ sender: UIButton) {
-		screenlet.performAction(name: sender.restorationIdentifier!)
+		screenlet?.performAction(name: sender.restorationIdentifier!)
 	}
 
 }

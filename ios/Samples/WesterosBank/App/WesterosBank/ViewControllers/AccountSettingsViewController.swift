@@ -14,8 +14,8 @@ class AccountSettingsViewController: UIViewController,
 		SignUpScreenletDelegate,
 		KeyboardListener {
 
-	@IBOutlet weak var portraitScreenlet: UserPortraitScreenlet!
-	@IBOutlet weak var signUpScreenlet: SignUpScreenlet!
+	@IBOutlet weak var portraitScreenlet: UserPortraitScreenlet?
+	@IBOutlet weak var signUpScreenlet: SignUpScreenlet?
 
 	fileprivate var initialSignUpPosition: CGFloat?
 
@@ -24,17 +24,17 @@ class AccountSettingsViewController: UIViewController,
 	}
 
 	override func viewDidLoad() {
-		portraitScreenlet.presentingViewController = self
-		portraitScreenlet.delegate = self
+		portraitScreenlet?.presentingViewController = self
+		portraitScreenlet?.delegate = self
 
-		signUpScreenlet.delegate = self
+		signUpScreenlet?.delegate = self
 
-		initialSignUpPosition = signUpScreenlet.frame.origin.y
+		initialSignUpPosition = signUpScreenlet?.frame.origin.y
 	}
 
 	override func viewWillAppear(_ animated: Bool) {
-		portraitScreenlet.loadLoggedUserPortrait()
-		signUpScreenlet.loadCurrentUser()
+		portraitScreenlet?.loadLoggedUserPortrait()
+		signUpScreenlet?.loadCurrentUser()
 
 		registerKeyboardListener(self)
 	}
@@ -45,19 +45,19 @@ class AccountSettingsViewController: UIViewController,
 
 	func showKeyboard(_ notif: Notification) {
 		UIView.animate(withDuration: 1.0) {
-			self.signUpScreenlet.frame = CGRectMake(
-				self.signUpScreenlet.frame.origin.x,
+			self.signUpScreenlet?.frame = CGRectMake(
+				self.signUpScreenlet!.frame.origin.x,
 				y: 0,
-				size: self.signUpScreenlet.frame.size)
+				size: self.signUpScreenlet!.frame.size)
 		}
 	}
 
 	func hideKeyboard(_ notif: Notification) {
 		UIView.animate(withDuration: 1.0) {
-			self.signUpScreenlet.frame = CGRectMake(
-				self.signUpScreenlet.frame.origin.x,
+			self.signUpScreenlet?.frame = CGRectMake(
+				self.signUpScreenlet!.frame.origin.x,
 				y: self.initialSignUpPosition!,
-				size: self.signUpScreenlet.frame.size)
+				size: self.signUpScreenlet!.frame.size)
 		}
 	}
 
