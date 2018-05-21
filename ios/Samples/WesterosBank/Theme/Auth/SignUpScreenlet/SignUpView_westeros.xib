@@ -135,7 +135,7 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="signup-action" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="8Dg-hz-3Al">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="8Dg-hz-3Al">
                             <rect key="frame" x="0.0" y="330" width="325" height="60"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -157,6 +157,9 @@
                                     <integer key="value" value="4"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="signUpAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="PnB-vh-8sk"/>
+                            </connections>
                         </button>
                     </subviews>
                 </scrollView>
