@@ -13,6 +13,12 @@
 		0B62BB2720B44F3000684727 /* DDLCustomFielddescriptionTableCell_westeros_view.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B62BB2420B44F3000684727 /* DDLCustomFielddescriptionTableCell_westeros_view.xib */; };
 		0B62BB2820B44F3000684727 /* DDLCustomFieldseverityTableCell_westeros_view.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B62BB2520B44F3000684727 /* DDLCustomFieldseverityTableCell_westeros_view.xib */; };
 		0B62BB2920B44F3000684727 /* DDLCustomFieldtitleTableCell_westeros_view.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B62BB2620B44F3000684727 /* DDLCustomFieldtitleTableCell_westeros_view.xib */; };
+		0B62BB2B20B4554700684727 /* DDLCustomFieldassignedToTableCell_westeros_view.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B62BB2A20B4554700684727 /* DDLCustomFieldassignedToTableCell_westeros_view.xib */; };
+		0B62BB2D20B4566500684727 /* DDLCustomFieldattachmentTableCell_westeros_view.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B62BB2C20B4566500684727 /* DDLCustomFieldattachmentTableCell_westeros_view.xib */; };
+		0B62BB2F20B459DE00684727 /* DDLCustomFieldcommentsTableCell_westeros_view.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B62BB2E20B459DE00684727 /* DDLCustomFieldcommentsTableCell_westeros_view.xib */; };
+		0B62BB3120B45A0400684727 /* DDLCustomFieldissueIdTableCell_westeros_view.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B62BB3020B45A0400684727 /* DDLCustomFieldissueIdTableCell_westeros_view.xib */; };
+		0B62BB3520B45A7600684727 /* DDLCustomFielddueDateTableCell_westeros_view.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B62BB3420B45A7600684727 /* DDLCustomFielddueDateTableCell_westeros_view.xib */; };
+		0B62BB3720B45AD900684727 /* DDLCustomFieldstatusTableCell_westeros_view.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B62BB3620B45AD900684727 /* DDLCustomFieldstatusTableCell_westeros_view.xib */; };
 		0BA745B420B40CED00CFFDBD /* DDLCustomFieldassignedToTableCell_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA745B320B40CED00CFFDBD /* DDLCustomFieldassignedToTableCell_westeros.xib */; };
 		0BA745BC20B41C3C00CFFDBD /* DDLCustomFielddueDateTableCell_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA745BB20B41C3C00CFFDBD /* DDLCustomFielddueDateTableCell_westeros.xib */; };
 		0BA745BE20B41DF200CFFDBD /* DDLCustomFieldissueIdTableCell_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA745BD20B41DF200CFFDBD /* DDLCustomFieldissueIdTableCell_westeros.xib */; };
@@ -130,6 +136,12 @@
 		0B62BB2420B44F3000684727 /* DDLCustomFielddescriptionTableCell_westeros_view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFielddescriptionTableCell_westeros_view.xib; sourceTree = "<group>"; };
 		0B62BB2520B44F3000684727 /* DDLCustomFieldseverityTableCell_westeros_view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldseverityTableCell_westeros_view.xib; sourceTree = "<group>"; };
 		0B62BB2620B44F3000684727 /* DDLCustomFieldtitleTableCell_westeros_view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldtitleTableCell_westeros_view.xib; sourceTree = "<group>"; };
+		0B62BB2A20B4554700684727 /* DDLCustomFieldassignedToTableCell_westeros_view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldassignedToTableCell_westeros_view.xib; sourceTree = "<group>"; };
+		0B62BB2C20B4566500684727 /* DDLCustomFieldattachmentTableCell_westeros_view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldattachmentTableCell_westeros_view.xib; sourceTree = "<group>"; };
+		0B62BB2E20B459DE00684727 /* DDLCustomFieldcommentsTableCell_westeros_view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldcommentsTableCell_westeros_view.xib; sourceTree = "<group>"; };
+		0B62BB3020B45A0400684727 /* DDLCustomFieldissueIdTableCell_westeros_view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldissueIdTableCell_westeros_view.xib; sourceTree = "<group>"; };
+		0B62BB3420B45A7600684727 /* DDLCustomFielddueDateTableCell_westeros_view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFielddueDateTableCell_westeros_view.xib; sourceTree = "<group>"; };
+		0B62BB3620B45AD900684727 /* DDLCustomFieldstatusTableCell_westeros_view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldstatusTableCell_westeros_view.xib; sourceTree = "<group>"; };
 		0BA745B320B40CED00CFFDBD /* DDLCustomFieldassignedToTableCell_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldassignedToTableCell_westeros.xib; sourceTree = "<group>"; };
 		0BA745BB20B41C3C00CFFDBD /* DDLCustomFielddueDateTableCell_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFielddueDateTableCell_westeros.xib; sourceTree = "<group>"; };
 		0BA745BD20B41DF200CFFDBD /* DDLCustomFieldissueIdTableCell_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldissueIdTableCell_westeros.xib; sourceTree = "<group>"; };
@@ -529,6 +541,12 @@
 				0B62BB2420B44F3000684727 /* DDLCustomFielddescriptionTableCell_westeros_view.xib */,
 				0B62BB2520B44F3000684727 /* DDLCustomFieldseverityTableCell_westeros_view.xib */,
 				0B62BB2620B44F3000684727 /* DDLCustomFieldtitleTableCell_westeros_view.xib */,
+				0B62BB2A20B4554700684727 /* DDLCustomFieldassignedToTableCell_westeros_view.xib */,
+				0B62BB2C20B4566500684727 /* DDLCustomFieldattachmentTableCell_westeros_view.xib */,
+				0B62BB2E20B459DE00684727 /* DDLCustomFieldcommentsTableCell_westeros_view.xib */,
+				0B62BB3020B45A0400684727 /* DDLCustomFieldissueIdTableCell_westeros_view.xib */,
+				0B62BB3420B45A7600684727 /* DDLCustomFielddueDateTableCell_westeros_view.xib */,
+				0B62BB3620B45AD900684727 /* DDLCustomFieldstatusTableCell_westeros_view.xib */,
 			);
 			path = FormScreenlet;
 			sourceTree = "<group>";
@@ -631,6 +649,7 @@
 				889CD56C1AEE456200FAC48E /* icon_LEFT@2x.png in Resources */,
 				88ADE17A1AF76B190073E889 /* status_FREEZE.png in Resources */,
 				88897D951AF57FCE0051DEF2 /* DDLListView_westeros.xib in Resources */,
+				0B62BB2F20B459DE00684727 /* DDLCustomFieldcommentsTableCell_westeros_view.xib in Resources */,
 				889F4D9B1AF26846002E233D /* flat7-field.png in Resources */,
 				88EDE3CB1AEF859C00D61C91 /* Avenir-Next.ttc in Resources */,
 				889CD56D1AEE456200FAC48E /* icon_LEFT@3x.png in Resources */,
@@ -642,6 +661,7 @@
 				88ADE1791AF76B190073E889 /* status_DONE@3x.png in Resources */,
 				88735F8E1AEA4077000D35F9 /* tour-step2.png in Resources */,
 				889F4D9F1AF26846002E233D /* flat7-portrait-placeholder.png in Resources */,
+				0B62BB3720B45AD900684727 /* DDLCustomFieldstatusTableCell_westeros_view.xib in Resources */,
 				889F4D9D1AF26846002E233D /* flat7-gradient-form.png in Resources */,
 				0BA745C220B41F7100CFFDBD /* DDLCustomFieldstatusTableCell_westeros.xib in Resources */,
 				889CD56F1AEE82F900FAC48E /* liferay-server-context.plist in Resources */,
@@ -657,6 +677,7 @@
 				88735F8B1AEA4077000D35F9 /* tour-step1.png in Resources */,
 				88897D971AF582330051DEF2 /* DDLListViewCell_westeros.xib in Resources */,
 				888540C31B0368AD00B8D193 /* DDLFormView_westeros_view.xib in Resources */,
+				0B62BB2B20B4554700684727 /* DDLCustomFieldassignedToTableCell_westeros_view.xib in Resources */,
 				88ADE17B1AF76B190073E889 /* status_FREEZE@2x.png in Resources */,
 				0B62BB2020B44ED600684727 /* DDLCustomFieldcommentsTableCell_westeros.xib in Resources */,
 				889F4D951AF26846002E233D /* LoginView_westeros.xib in Resources */,
@@ -665,6 +686,7 @@
 				889F4D971AF26846002E233D /* SignUpView_westeros.xib in Resources */,
 				0BA745BC20B41C3C00CFFDBD /* DDLCustomFielddueDateTableCell_westeros.xib in Resources */,
 				88BF87041AFA4D9E00373A32 /* logo_BG_grey@3x.png in Resources */,
+				0B62BB2D20B4566500684727 /* DDLCustomFieldattachmentTableCell_westeros_view.xib in Resources */,
 				88EDE3CD1AEF85AB00D61C91 /* Avenir.ttc in Resources */,
 				88ADE1811AF76B190073E889 /* status_REJECT@2x.png in Resources */,
 				88897D8B1AF549D50051DEF2 /* circle_see pasword_ON@3x.png in Resources */,
@@ -683,6 +705,7 @@
 				88735F9C1AEA6451000D35F9 /* icon_DOWN_W.png in Resources */,
 				0B62BB2820B44F3000684727 /* DDLCustomFieldseverityTableCell_westeros_view.xib in Resources */,
 				8820EEF71AE79C2D00FA79A6 /* IssuesViewController.xib in Resources */,
+				0B62BB3520B45A7600684727 /* DDLCustomFielddueDateTableCell_westeros_view.xib in Resources */,
 				88ADE1921AF781FD0073E889 /* DDLCustomFieldtitleTableCell_westeros.xib in Resources */,
 				889F4D9C1AF26846002E233D /* flat7-field@2x.png in Resources */,
 				0B62BB2320B44EF000684727 /* DDLCustomFielddescriptionTableCell_westeros.xib in Resources */,
@@ -699,6 +722,7 @@
 				88735FA01AEA6451000D35F9 /* icon_DOWN@2x.png in Resources */,
 				0B62BB2120B44ED600684727 /* DDLCustomFieldattachmentTableCell_westeros.xib in Resources */,
 				889CD56B1AEE456200FAC48E /* icon_LEFT.png in Resources */,
+				0B62BB3120B45A0400684727 /* DDLCustomFieldissueIdTableCell_westeros_view.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
