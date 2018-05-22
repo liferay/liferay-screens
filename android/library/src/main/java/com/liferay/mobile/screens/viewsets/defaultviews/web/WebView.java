@@ -33,7 +33,6 @@ public class WebView extends FrameLayout implements WebViewModel, ScreensWebView
 	private ProgressBar progressBar;
 	private static final String URL_LOGIN = "/c/portal/login";
 	private List<InjectableScript> scriptsToInject = new ArrayList<>();
-	private boolean isLoaded;
 
 	public WebView(Context context) {
 		super(context);
@@ -101,7 +100,6 @@ public class WebView extends FrameLayout implements WebViewModel, ScreensWebView
 	@Override
 	public void postUrl(String url, String body) {
 		if (webView != null) {
-			isLoaded = false;
 			webView.postUrl(url, body.getBytes());
 		}
 	}
@@ -109,7 +107,6 @@ public class WebView extends FrameLayout implements WebViewModel, ScreensWebView
 	@Override
 	public void loadUrl(String url) {
 		if (webView != null) {
-			isLoaded = false;
 			webView.loadUrl(url);
 		}
 	}
@@ -145,7 +142,6 @@ public class WebView extends FrameLayout implements WebViewModel, ScreensWebView
 	@Override
 	public void configureView(boolean isCordovaEnabled, CordovaLifeCycleObserver observer) {
 		if (screensWebView != null) {
-			isLoaded = false;
 			return;
 		}
 
@@ -197,12 +193,15 @@ public class WebView extends FrameLayout implements WebViewModel, ScreensWebView
 
 	@Override
 	public void onPageStarted() {
+		webView.setVisibility(GONE);
+		if (progressBar != null) {
+			progressBar.setVisibility(VISIBLE);
+		}
 	}
 
 	@Override
 	public void onPageFinished(String url) {
-		if (!isLoaded && !url.contains(URL_LOGIN)) {
-			isLoaded = true;
+		if (!url.contains(URL_LOGIN)) {
 
 			for (InjectableScript script : scriptsToInject) {
 				injectScript(script);
