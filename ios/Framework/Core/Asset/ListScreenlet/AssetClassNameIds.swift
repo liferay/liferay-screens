@@ -84,6 +84,9 @@ open class AssetClasses: NSObject {
 			// Blogs
 			AssetClassNameKey_BlogsEntry: AssetClassEntry(20011, "com.liferay.blogs.kernel.model.BlogsEntry"),
 
+			// Users
+			AssetClassNameKey_User: AssetClassEntry(20087, "com.liferay.portal.kernel.model.User"),
+
 			// Bookmarks
 			AssetClassNameKey_BookmarksEntry: AssetClassEntry(28401, "com.liferay.bookmarks.model.BookmarksEntry"),
 			AssetClassNameKey_BookmarksFolder: AssetClassEntry(28402, "com.liferay.bookmarks.model.BookmarksFolder"),
