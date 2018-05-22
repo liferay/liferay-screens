@@ -15,17 +15,16 @@ import UIKit
 import LiferayScreens
 
 class UserView: UIView {
-	
-	
-	//MARK: IBOutlet
-	
+
+	// MARK: Outlets
+
 	@IBOutlet weak var contentView: UIView?
 	@IBOutlet weak var userPortraitScreenlet: UserPortraitScreenlet?
 	@IBOutlet weak var usernameLabel: UILabel?
 	@IBOutlet weak var jobTitleLabel: UILabel?
 	@IBOutlet weak var emailLabel: UILabel?
 	@IBOutlet weak var nicknameLabel: UILabel?
-	
+
 	var user: User? {
 		didSet {
 			userPortraitScreenlet?.load(userId: user!.userId)
@@ -35,31 +34,29 @@ class UserView: UIView {
 			nicknameLabel?.text = user!.screenName
 		}
 	}
-	
-	
-	//MARK: Initializers
-	
+
+	// MARK: Initializers
+
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		setup()
 	}
-	
+
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		setup()
 	}
-	
-	
-	//MARK: Private methods
-	
+
+	// MARK: Private methods
+
 	fileprivate func setup() {
 		let nib = Bundle.main.loadNibNamed("UserView", owner: self, options: nil)
 		if let view = nib?.last as? UIView {
 			self.contentView = view
 			self.addSubview(view)
-			
+
 			view.translatesAutoresizingMaskIntoConstraints = false
-			
+
 			//Pin all edges from Screenlet View to the Screenlet's edges
 			let top = NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal,
 			                             toItem: self, attribute: .top, multiplier: 1, constant: 0)
@@ -69,7 +66,7 @@ class UserView: UIView {
 			                                 toItem: self, attribute: .leading, multiplier: 1, constant: 0)
 			let trailing = NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal,
 			                                  toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
-			
+
 			NSLayoutConstraint.activate([top, bottom, leading, trailing])
 		}
 	}

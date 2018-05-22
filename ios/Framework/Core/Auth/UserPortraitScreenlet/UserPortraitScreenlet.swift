@@ -123,7 +123,7 @@ open class UserPortraitScreenlet: BaseScreenlet {
 
 	override open func onShow() {
 		if autoLoad {
-			loadLoggedUserPortrait()
+			loadPlaceholder()
 		}
 	}
 

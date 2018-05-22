@@ -14,10 +14,9 @@
 import UIKit
 import LiferayScreens
 
-
 open class WebContentListView_book: WebContentListView_default {
 
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
 	override open func doRegisterCellNibs() {
 		// register html cell
@@ -48,7 +47,7 @@ open class WebContentListView_book: WebContentListView_default {
 		return super.doGetCellId(row: row, object: object)
 	}
 
-	override open func doFillLoadedCell(row: Int, cell: UITableViewCell, object:AnyObject) {
+	override open func doFillLoadedCell(row: Int, cell: UITableViewCell, object: AnyObject) {
 		if let entry = object as? WebContent {
 			if let record = entry.structuredRecord,
 					let bookCell = cell as? BookTableViewCell {
@@ -68,13 +67,12 @@ open class WebContentListView_book: WebContentListView_default {
 	open func tableView(_ tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
 
 		let rows = rowsForSectionIndex(indexPath.section)
-		
+
 		if let entry = rows[indexPath.row] as? WebContent {
 			return (entry.structuredRecord == nil) ? 50 : 75
 		}
 
 		return 50
 	}
-
 
 }

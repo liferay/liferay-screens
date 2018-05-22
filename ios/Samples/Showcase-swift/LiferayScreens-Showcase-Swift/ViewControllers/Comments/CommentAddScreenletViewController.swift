@@ -16,9 +16,8 @@ import LiferayScreens
 
 class CommentAddScreenletViewController: UIViewController, CommentAddScreenletDelegate {
 
-	
-	//MARK: IBOutlet
-	
+	// MARK: Outlets
+
 	@IBOutlet weak var screenlet: CommentAddScreenlet? {
 		didSet {
 			screenlet?.delegate = self
@@ -28,14 +27,13 @@ class CommentAddScreenletViewController: UIViewController, CommentAddScreenletDe
 				LiferayServerContext.longPropertyForKey("commentScreenletClassPK")
 		}
 	}
-	
-	
-	//MARK: CommentAddScreenletDelegate
+
+	// MARK: CommentAddScreenletDelegate
 
 	func screenlet(_ screenlet: CommentAddScreenlet, onCommentAdded comment: Comment) {
 		LiferayLogger.logDelegateMessage(args: comment)
 	}
-	
+
 	func screenlet(_ screenlet: CommentAddScreenlet, onAddCommentError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}

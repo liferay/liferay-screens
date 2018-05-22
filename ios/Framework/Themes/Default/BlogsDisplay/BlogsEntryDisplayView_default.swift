@@ -102,7 +102,7 @@ open class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewMod
 
 	open func loadContent() {
 		contentLabel?.attributedText = self.blogsEntry!.content
-				.toHtmlTextWithAttributes(type(of: self).defaultAttributedTextAttributes())
+			.toHtmlTextWithAttributes(type(of: self).defaultAttributedTextAttributes())
 	}
 
 	open class func defaultAttributedTextAttributes() -> [NSAttributedStringKey: NSObject] {

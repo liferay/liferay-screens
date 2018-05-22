@@ -14,12 +14,10 @@
 import LiferayScreens
 import UIKit
 
+open class ImageGalleryScreenletViewController: UIViewController, ImageGalleryScreenletDelegate {
 
-open class ImageGalleryScreenletController : UIViewController, ImageGalleryScreenletDelegate {
+	// MARK: Outlets
 
-	
-	//MARK: IBOutlet
-	
 	@IBOutlet weak var screenlet: ImageGalleryScreenlet? {
 		didSet {
 			screenlet?.delegate = self
@@ -31,8 +29,7 @@ open class ImageGalleryScreenletController : UIViewController, ImageGalleryScree
 		}
 	}
 
-	
-	//MARK: IBAction
+	// MARK: Actions
 
 	@IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl) {
 
@@ -54,46 +51,45 @@ open class ImageGalleryScreenletController : UIViewController, ImageGalleryScree
 		screenlet?.startMediaSelectorAndUpload()
 	}
 
-	
 	// MARK: ImageGalleryScreenletDelegate
 
 	open func screenlet(_ screenlet: ImageGalleryScreenlet,
 	                      onImageEntryDeleted imageEntry: ImageEntry) {
 		LiferayLogger.logDelegateMessage(args: imageEntry)
 	}
-	
+
 	open func screenlet(_ screenlet: ImageGalleryScreenlet, onImageUploaded image: ImageEntry) {
 		LiferayLogger.logDelegateMessage(args: image)
 	}
-	
+
 	open func screenlet(_ screenlet: ImageGalleryScreenlet, onImageUploadError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
-	
+
 	open func screenlet(_ screenlet: ImageGalleryScreenlet, onImageEntriesError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
-	
+
 	open func screenlet(_ screenlet: ImageGalleryScreenlet,
 	                      onImageEntryDeleteError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
-	
+
 	open func screenlet(_ screenlet: ImageGalleryScreenlet,
 	                      onImageEntrySelected imageEntry: ImageEntry) {
 		LiferayLogger.logDelegateMessage(args: imageEntry)
 	}
-	
+
 	open func screenlet(_ screenlet: ImageGalleryScreenlet,
 	                      onImageEntriesResponse imageEntries: [ImageEntry]) {
 		LiferayLogger.logDelegateMessage(args: imageEntries as AnyObject?)
 	}
-	
+
 	open func screenlet(_ screenlet: ImageGalleryScreenlet,
 	                      onImageUploadStart imageEntryUpload: ImageEntryUpload) {
 		LiferayLogger.logDelegateMessage(args: imageEntryUpload)
 	}
-	
+
 	open func screenlet(_ screenlet: ImageGalleryScreenlet,
 	                      onImageUploadProgress imageEntryUpload: ImageEntryUpload,
 	                      totalBytesSent: UInt64,

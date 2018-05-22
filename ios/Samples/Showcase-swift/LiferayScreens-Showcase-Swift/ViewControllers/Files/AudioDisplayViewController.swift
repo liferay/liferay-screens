@@ -14,11 +14,9 @@
 import UIKit
 import LiferayScreens
 
-
 class AudioDisplayViewController: UIViewController, FileDisplayScreenletDelegate {
 
-
-	//MARK: IBOutlet
+	// MARK: Outlets
 
 	@IBOutlet var screenlet: AudioDisplayScreenlet? {
 		didSet {

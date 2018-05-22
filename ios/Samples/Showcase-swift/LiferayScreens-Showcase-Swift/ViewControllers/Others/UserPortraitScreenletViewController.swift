@@ -14,12 +14,10 @@
 import UIKit
 import LiferayScreens
 
-
 class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenletDelegate {
 
+	// MARK: Outlets
 
-	//MARK: Outlets
-	
 	@IBOutlet weak var userIdField: UITextField? {
 		didSet {
 			if let userId = SessionContext.currentContext?.user.userId.description {
@@ -55,8 +53,7 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 		}
 	}
 
-
-	//MARK: Actions
+	// MARK: Actions
 
 	@IBAction func loadPortrait(_ sender: AnyObject) {
 		if let id = userIdField?.text, let userId = Int64(id) {
@@ -73,7 +70,7 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 				screenletWithDelegate?.load(companyId: company, emailAddress: text)
 				editableScreenlet?.load(companyId: company, emailAddress: text)
 			}
-			else  {
+			else {
 				screenlet?.load(companyId: company, screenName: text)
 				screenletWithDelegate?.load(companyId: company, screenName: text)
 				editableScreenlet?.load(companyId: company, screenName: text)
@@ -86,26 +83,26 @@ class UserPortraitScreenletViewController: UIViewController, UserPortraitScreenl
 		}
 	}
 
-	//MARK: UserPortraitScreenletDelegate
+	// MARK: UserPortraitScreenletDelegate
 
 	func screenlet(_ screenlet: UserPortraitScreenlet,
 	               onUserPortraitResponseImage image: UIImage) -> UIImage {
 
 		LiferayLogger.logDelegateMessage(args: image)
-		
+
 		return image.grayScaleImage()
 	}
-	
+
 	func screenlet(_ screenlet: UserPortraitScreenlet, onUserPortraitError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
-	
+
 	func screenlet(_ screenlet: UserPortraitScreenlet, onUserPortraitUploadError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
-	
+
 	func screenlet(_ screenlet: UserPortraitScreenlet,
-	               onUserPortraitUploaded attributes: [String : AnyObject]) {
+	               onUserPortraitUploaded attributes: [String: AnyObject]) {
 
 		LiferayLogger.logDelegateMessage(args: attributes as AnyObject?)
 	}

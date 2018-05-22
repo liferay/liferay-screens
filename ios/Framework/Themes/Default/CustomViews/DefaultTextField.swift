@@ -22,7 +22,7 @@ open class DefaultTextField: UITextField {
 
 	open var onRightButtonClick: (() -> Void)?
 
-	// MARK: IBInspectable
+	// MARK: Inspectables
 
 	@IBInspectable open var defaultColor: UIColor = .lightGray
 

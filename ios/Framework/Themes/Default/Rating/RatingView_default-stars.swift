@@ -34,7 +34,7 @@ open class RatingView_default_stars: BaseScreenletView, RatingViewModel {
 	fileprivate let emptyStar = Bundle.imageInBundles(name: "default-star-outline",
 													  currentClass: RatingView_default_stars.self)
 
-	// MARK: IBActions
+	// MARK: Actions
 
 	@IBAction func updateUserRating(_ sender: UIButton) {
 

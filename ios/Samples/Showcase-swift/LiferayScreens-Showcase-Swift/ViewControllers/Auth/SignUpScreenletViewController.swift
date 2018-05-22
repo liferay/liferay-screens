@@ -14,12 +14,10 @@
 import UIKit
 import LiferayScreens
 
-
 class SignUpScreenletViewController: UIViewController, SignUpScreenletDelegate, LoginScreenletDelegate {
 
-	
-	//MARK: IBOutlet
-	
+	// MARK: Outlets
+
 	@IBOutlet var screenlet: SignUpScreenlet! {
 		didSet {
 			screenlet.delegate = self
@@ -30,9 +28,8 @@ class SignUpScreenletViewController: UIViewController, SignUpScreenletDelegate, 
 				LiferayServerContext.stringPropertyForKey("anonymousPassword")
 		}
 	}
-	
-	
-	//MARK: IBAction
+
+	// MARK: Actions
 
 	@IBAction func credentialsValueChangedAction(_ sender: UISwitch) {
 		self.screenlet?.autoLogin = sender.isOn
@@ -42,9 +39,8 @@ class SignUpScreenletViewController: UIViewController, SignUpScreenletDelegate, 
 		self.screenlet?.saveCredentials = sender.isOn
 	}
 
+	// MARK: SignUpScreenletDelegate
 
-	//MARK: SignUpScreenletDelegate
-	
 	func screenlet(_ screenlet: SignUpScreenlet,
 			onSignUpResponseUserAttributes attributes: [String: AnyObject]) {
 		LiferayLogger.logDelegateMessage(args: attributes as AnyObject?)
@@ -54,12 +50,11 @@ class SignUpScreenletViewController: UIViewController, SignUpScreenletDelegate, 
 	func screenlet(_ screenlet: SignUpScreenlet, onSignUpError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
-	
-	
-	//MARK: LoginScreenletDelegate
+
+	// MARK: LoginScreenletDelegate
 
 	func screenlet(_ screenlet: BaseScreenlet,
-			onLoginResponseUserAttributes attributes: [String:AnyObject]) {
+			onLoginResponseUserAttributes attributes: [String: AnyObject]) {
 		LiferayLogger.logDelegateMessage(args: attributes as AnyObject?)
 	}
 
@@ -76,4 +71,3 @@ class SignUpScreenletViewController: UIViewController, SignUpScreenletDelegate, 
 	}
 
 }
-

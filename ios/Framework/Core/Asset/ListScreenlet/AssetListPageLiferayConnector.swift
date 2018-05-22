@@ -122,8 +122,13 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 			"visible": true
 		]
 
-		if classNameId == AssetClasses.getClassNameId(AssetClassNameKey_User) {
-			defaultValues = handleUserVisibleFlag(defaultValues)
+		if classNameId == AssetClasses.getClassNameId(AssetClassNameKey_DDLFormRecord) ||
+			classNameId == AssetClasses.getClassNameId(AssetClassNameKey_Layout) ||
+			classNameId == AssetClasses.getClassNameId(AssetClassNameKey_MBThread) ||
+			classNameId == AssetClasses.getClassNameId(AssetClassNameKey_Organization) ||
+			classNameId == AssetClasses.getClassNameId(AssetClassNameKey_Site) ||
+			classNameId == AssetClasses.getClassNameId(AssetClassNameKey_User) {
+				defaultValues = self.handleVisibleFlag(defaultValues)
 		}
 
 		// swiftlint:disable for_where
@@ -138,18 +143,17 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 
 	// MARK: Private methods
 
-	/// AssetListScreenlet only list Asset with visible attribute set to true. But User objects have it by
-	/// default in false. So this method update this attribute of entryQuery values to list
-	/// all users.
+	/// AssetListScreenlet only list Asset with visible attribute set to true. But for example User,
+	/// have it by default in true. This method update this attribute of entryQuery.
 	///
 	/// - parameter values: initial entryQuery values.
 	///
 	/// - returns: final values for entryQuery.
-	fileprivate func handleUserVisibleFlag(_ values: [String: Any]) -> [String: Any] {
-		var newValues = values
-		newValues["visible"] = false
+	fileprivate func handleVisibleFlag(_ values: [String: Any]) -> [String: Any] {
+			var newValues = values
+			newValues["visible"] = false
 
-		return newValues
+			return newValues
 	}
 }
 

@@ -14,12 +14,10 @@
 import UIKit
 import LiferayScreens
 
-
 class BlogDisplayScreenletViewController: UIViewController, BlogsEntryDisplayScreenletDelegate {
 
-	
-	//MARK: IBOutlet
-	
+	// MARK: Outlets
+
 	@IBOutlet weak var screenlet: BlogsEntryDisplayScreenlet? {
 		didSet {
 			screenlet?.delegate = self
@@ -37,9 +35,8 @@ class BlogDisplayScreenletViewController: UIViewController, BlogsEntryDisplayScr
 		}
 	}
 
-	
-	//MARK: IBAction
-	
+	// MARK: Actions
+
 	@IBAction func loadBlog(_ sender: AnyObject) {
 		if let classPK = Int(blogClassPKLabel?.text ?? "") {
 			screenlet?.classPK = Int64(classPK)
@@ -47,14 +44,13 @@ class BlogDisplayScreenletViewController: UIViewController, BlogsEntryDisplayScr
 		}
 	}
 
-	
-	//MARK: BlogsEntryDisplayScreenletDelegate
-	
+	// MARK: BlogsEntryDisplayScreenletDelegate
+
 	func screenlet(_ screenlet: BlogsEntryDisplayScreenlet, onBlogEntryError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 		screenlet.isHidden = true
 	}
-	
+
 	func screenlet(_ screenlet: BlogsEntryDisplayScreenlet, onBlogEntryResponse blogEntry: BlogsEntry) {
 		LiferayLogger.logDelegateMessage(args: blogEntry)
 		screenlet.isHidden = false
