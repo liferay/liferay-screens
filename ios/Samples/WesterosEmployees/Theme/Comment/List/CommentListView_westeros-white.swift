@@ -14,10 +14,9 @@
 import UIKit
 import LiferayScreens
 
-
 open class CommentListView_westeros_white: CommentListView_westeros {
 
-	//MARK: BaseListTableView
+	// MARK: BaseListTableView
 
 	override open func doRegisterCellNibs() {
 		let nib = Bundle.nibInBundles(

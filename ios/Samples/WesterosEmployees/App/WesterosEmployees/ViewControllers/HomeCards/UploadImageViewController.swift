@@ -13,8 +13,7 @@
 */
 import UIKit
 
-class UploadImageViewController: CardViewController,
-		UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class UploadImageViewController: CardViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
 	var imagePicker: UIImagePickerController? {
 		didSet {
@@ -24,10 +23,9 @@ class UploadImageViewController: CardViewController,
 	}
 
 	///Called when an user has selected an image from a picker
-	var onImageSelected: ((UIImage) -> ())?
+	var onImageSelected: ((UIImage) -> Void)?
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet weak var takePhotoButton: UIButton? {
 		didSet {
@@ -36,8 +34,7 @@ class UploadImageViewController: CardViewController,
 		}
 	}
 
-
-	//MARK: View methods
+	// MARK: Actions
 
 	@IBAction func selectImageButtonClicked() {
 		openImagePicker(.photoLibrary)
@@ -47,23 +44,21 @@ class UploadImageViewController: CardViewController,
 		openImagePicker(.camera)
 	}
 
-	//MARK: Init methods
+	// MARK: Initializers
 
 	convenience init() {
 		self.init(nibName: "UploadImageViewController", bundle: nil)
 	}
 
-
-	//MARK: UIViewController
+	// MARK: UIViewController
 
 	override func viewDidLoad() {
 		imagePicker = UIImagePickerController()
 	}
 
+	// MARK: UIImagePickerControllerDelegate
 
-	//MARK: UIImagePickerControllerDelegate
-
-	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
 		if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
 			onImageSelected?(image)
 		} else {
@@ -77,8 +72,7 @@ class UploadImageViewController: CardViewController,
 		imagePicker?.dismiss(animated: true, completion: nil)
 	}
 
-
-	//MARK: Private methods
+	// MARK: Private methods
 
 	fileprivate func openImagePicker(_ sourceType: UIImagePickerControllerSourceType) {
 		if let picker = imagePicker {

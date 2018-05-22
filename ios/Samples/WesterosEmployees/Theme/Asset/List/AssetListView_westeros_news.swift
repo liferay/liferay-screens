@@ -21,7 +21,7 @@ class AssetListView_westeros_news: AssetListView_default {
 
 	static let MinimumTimeDifference: Double = 5000
 
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
 	override func createProgressPresenter() -> ProgressPresenter {
 		return NetworkActivityIndicatorPresenter()
@@ -74,7 +74,7 @@ class AssetListView_westeros_news: AssetListView_default {
 		}
 	}
 
-	override func doFillLoadedCell(row: Int, cell: UITableViewCell, object:AnyObject) {
+	override func doFillLoadedCell(row: Int, cell: UITableViewCell, object: AnyObject) {
 		if let asset = object as? Asset {
 
 			cell.backgroundColor = .clear

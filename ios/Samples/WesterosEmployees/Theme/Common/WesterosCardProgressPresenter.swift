@@ -14,7 +14,6 @@
 import Foundation
 import LiferayScreens
 
-
 open class WesterosCardProgressPresenter: ProgressPresenter {
 
 	let screenlet: BaseScreenlet?

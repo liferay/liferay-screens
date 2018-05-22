@@ -17,6 +17,6 @@
 	<key>documentationPortletItemName</key>
 	<string>Docs</string>
 	<key>termsAndConditionsAssetEntryId</key>
-	<real>39228</real>
+	<integer>39228</integer>
 </dict>
 </plist>

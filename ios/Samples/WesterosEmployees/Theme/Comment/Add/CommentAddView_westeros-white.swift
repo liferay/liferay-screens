@@ -14,7 +14,6 @@
 import UIKit
 import LiferayScreens
 
-
 open class CommentAddView_westeros_white: CommentAddView_westeros {
 
 	@IBOutlet weak var sendButton: UIButton? {

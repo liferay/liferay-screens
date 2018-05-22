@@ -26,7 +26,7 @@ class AssetListView_westeros_blog: AssetListView_westeros {
 		return dateFormatter
 	}()
 
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
 	override func doGetCellId(row: Int, object: AnyObject?) -> String {
 		if let _ = object {
@@ -52,7 +52,7 @@ class AssetListView_westeros_blog: AssetListView_westeros {
 		}
 	}
 
-	override func doFillLoadedCell(row: Int, cell: UITableViewCell, object:AnyObject) {
+	override func doFillLoadedCell(row: Int, cell: UITableViewCell, object: AnyObject) {
 		guard let blogsCell = cell as? BlogsEntryTableViewCell_westeros, let entry = object as? Asset else {
 			return
 		}

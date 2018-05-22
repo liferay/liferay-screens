@@ -257,6 +257,10 @@ open class RatingScreenlet: BaseScreenlet {
 			}
 		}
 
+		interactor.onFailure = {
+			self.ratingDisplayDelegate?.screenlet?(self, onRatingError: $0)
+		}
+
 		return interactor
 	}
 

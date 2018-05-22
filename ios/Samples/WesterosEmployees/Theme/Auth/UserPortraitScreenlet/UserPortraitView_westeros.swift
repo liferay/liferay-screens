@@ -14,7 +14,6 @@
 import UIKit
 import LiferayScreens
 
-
 open class UserPortraitView_westeros: UserPortraitView_default {
 
 	override open func onShow() {

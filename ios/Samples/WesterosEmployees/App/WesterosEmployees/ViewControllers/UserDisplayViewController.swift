@@ -16,8 +16,7 @@ import LiferayScreens
 
 open class UserDisplayViewController: UIViewController, AssetDisplayScreenletDelegate {
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet var screenlet: AssetDisplayScreenlet? {
 		didSet {
@@ -28,25 +27,23 @@ open class UserDisplayViewController: UIViewController, AssetDisplayScreenletDel
 		}
 	}
 
-
-	//MARK: UIViewController
+	// MARK: UIViewController
 
 	open override func viewDidLoad() {
 		super.viewDidLoad()
 		self.screenlet?.load()
 	}
 
-
-	//MARK: AssetDisplayScreenletDelegate
+	// MARK: AssetDisplayScreenletDelegate
 
 	open func screenlet(_ screenlet: AssetDisplayScreenlet, onAsset asset: Asset) -> UIView? {
 		if let type = asset.attributes["object"]?.allKeys.first as? String {
 			if type == "user" {
 				let view = Bundle.main.loadNibNamed("UserProfileView", owner: self, options: nil)![safe: 0] as? UserProfileView
 
-				let object = asset.attributes["object"] as! [String : AnyObject]
+				let object = asset.attributes["object"] as! [String: AnyObject]
 
-				view?.user = User(attributes: object["user"] as! [String : AnyObject])
+				view?.user = User(attributes: object["user"] as! [String: AnyObject])
 				view?.goBackButtonClicked = {
 					self.dismiss(animated: true, completion: nil)
 				}

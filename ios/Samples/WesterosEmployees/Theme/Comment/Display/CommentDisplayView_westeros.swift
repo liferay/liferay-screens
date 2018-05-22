@@ -14,7 +14,6 @@
 import UIKit
 import LiferayScreens
 
-
 open class CommentDisplayView_westeros: CommentDisplayView_default {
 
 	open override func createProgressPresenter() -> ProgressPresenter {
@@ -28,7 +27,7 @@ open class CommentDisplayView_westeros: CommentDisplayView_default {
 		var attributes: [NSAttributedStringKey: NSObject] = [.paragraphStyle: paragrahpStyle]
 
 		let font = UIFont(name: "HelveticaNeue", size: 17)
- 
+
 		if let font = font {
 			attributes[.foregroundColor] = UIColor.white
 			attributes[.font] = font

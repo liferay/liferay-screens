@@ -16,13 +16,13 @@ import LiferayScreens
 
 class AssetListView_westeros: AssetListView_default {
 
-	//MARK: BaseScreenletView
-	
+	// MARK: BaseScreenletView
+
 	override func createProgressPresenter() -> ProgressPresenter {
 		return WesterosCardProgressPresenter(screenlet: self.screenlet)
 	}
 
-	override func doFillLoadedCell(row: Int, cell: UITableViewCell, object:AnyObject) {
+	override func doFillLoadedCell(row: Int, cell: UITableViewCell, object: AnyObject) {
 		if let entry = object as? Asset {
 			cell.backgroundColor = .clear
 			cell.textLabel?.text = entry.title

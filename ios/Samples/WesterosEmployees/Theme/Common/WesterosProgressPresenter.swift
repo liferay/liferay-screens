@@ -14,7 +14,6 @@
 import Foundation
 import LiferayScreens
 
-
 open class WesterosProgressPresenter: MBProgressHUDPresenter {
 
 	override public init() {

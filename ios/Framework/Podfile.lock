@@ -106,6 +106,24 @@ DEPENDENCIES:
   - TNRadioButtonGroup (~> 0.4)
   - YapDatabase/SQLCipher (= 2.9.2)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - CocoaLumberjack
+    - Cordova
+    - DTPickerPresenter
+    - KeychainAccess
+    - Kingfisher
+    - Liferay-iOS-SDK
+    - MBProgressHUD
+    - MDRadialProgress
+    - Nocilla
+    - Reachability
+    - SMXMLDocument
+    - SQLCipher
+    - TNRadioButtonGroup
+    - YapDatabase
+
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   CocoaLumberjack: aa9dcab71bdf9eaf2a63bbd9ddc87863efe45457
@@ -125,4 +143,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: f022a3058f52942ddf6451d1deb34125995f8904
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.2
