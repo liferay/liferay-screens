@@ -105,12 +105,6 @@ open class AssetClasses: NSObject {
 			AssetClassNameKey_JournalArticle: AssetClassEntry(29634, "com.liferay.journal.model.JournalArticle"),
 			AssetClassNameKey_JournalFolder: AssetClassEntry(29639, "com.liferay.journal.model.JournalFolder"),
 
-			// Journal
-			AssetClassNameKey_JournalArticle: AssetClassEntry(29634, "com.liferay.journal.model.JournalArticle"),
-			AssetClassNameKey_JournalArticleImage: AssetClassEntry(29502,
-					"com.liferay.journal.model.JournalArticleImage"),
-			AssetClassNameKey_JournalFolder: AssetClassEntry(29506, "com.liferay.journal.model.JournalFolder"),
-
 			// Message boards
 			AssetClassNameKey_MBDiscussion: AssetClassEntry(20030, "com.liferay.message.boards.kernel.model.MBDiscussion"),
 			AssetClassNameKey_MBMessage: AssetClassEntry(20032, "com.liferay.message.boards.kernel.model.MBMessage"),
