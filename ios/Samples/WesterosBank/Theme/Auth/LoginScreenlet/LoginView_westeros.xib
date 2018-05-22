@@ -98,7 +98,7 @@
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="login-action" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lVZ-lw-qdv">
                     <rect key="frame" x="0.0" y="165" width="325" height="60"/>
-                    <color key="backgroundColor" red="0.85728287700000005" green="0.18751269579999999" blue="0.1945410967" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.85882352941176465" green="0.18823529411764706" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="60" id="SQM-Fm-lr9"/>
                     </constraints>
