@@ -15,7 +15,6 @@ import UIKit
 import LiferayScreens
 import MGSwipeTableCell
 
-
 open class DDLListViewCell_westeros: MGSwipeTableCell {
 
 	@IBOutlet weak var statusIcon: UIImageView!

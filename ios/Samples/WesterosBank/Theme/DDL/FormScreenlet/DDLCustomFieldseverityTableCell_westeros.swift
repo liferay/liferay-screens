@@ -14,7 +14,7 @@
 import UIKit
 import LiferayScreens
 
-class DDLCustomFieldseverityTableCell_westeros : DDLFieldSelectTableCell_default {
+class DDLCustomFieldseverityTableCell_westeros: DDLFieldSelectTableCell_default {
 
 	override func awakeFromNib() {
 		super.awakeFromNib()

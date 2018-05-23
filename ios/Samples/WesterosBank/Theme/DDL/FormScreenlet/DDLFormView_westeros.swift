@@ -14,7 +14,6 @@
 import UIKit
 import LiferayScreens
 
-
 open class DDLFormView_westeros: DDLFormView_default {
 
 	override open func createProgressPresenter() -> ProgressPresenter {

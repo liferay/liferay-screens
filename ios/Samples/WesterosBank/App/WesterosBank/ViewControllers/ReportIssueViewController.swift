@@ -62,11 +62,11 @@ class ReportIssueViewController: CardViewController, DDLFormScreenletDelegate {
 	func screenlet(_ screenlet: DDLFormScreenlet, onFormSubmitted record: DDLRecord) {
 		onDone?()
 	}
-	
+
 	func screenlet(_ screenlet: DDLFormScreenlet, onFormLoadError error: NSError) {
 		print("Load form error: \(error.debugDescription)")
 	}
-	
+
 	func screenlet(_ screenlet: DDLFormScreenlet, onFormSubmitError error: NSError) {
 		print("Submit form error: \(error.debugDescription)")
 	}
