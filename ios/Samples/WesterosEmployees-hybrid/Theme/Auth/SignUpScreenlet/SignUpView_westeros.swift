@@ -50,7 +50,7 @@ open class SignUpView_westeros: SignUpView_default {
 	open override func onStartInteraction() {
 	}
 
-	open override func onFinishInteraction(_ result: AnyObject?, error: NSError?) {
+	open override func onFinishInteraction(_ result: Any?, error: NSError?) {
 	}
 
 }
