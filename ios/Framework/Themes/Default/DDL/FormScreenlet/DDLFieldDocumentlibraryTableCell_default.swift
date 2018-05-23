@@ -21,11 +21,23 @@ open class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableCel
 	// MARK: Outlets
 
 	@IBOutlet open var progress: MDRadialProgressView?
+	
+	open lazy var presenterViewController: UIViewController = {
+		
+		let themeName = formView?.screenlet?.themeName ?? "default"
+		let nibName = "DDLFieldDocumentlibraryPresenterViewController_\(themeName)"
+		
+		if let view = Bundle.nibInBundles(name: nibName, currentClass: type(of: self)) {
+			return DDMFieldDocumentlibraryPresenterViewController_default(
+				nibName: nibName,
+				bundle: Bundle.bundleForNibName(nibName, currentClass: type(of: self)))
+		}
+		return DDMFieldDocumentlibraryPresenterViewController_default(
+			nibName: "DDLFieldDocumentlibraryPresenterViewController_default",
+			bundle: Bundle.bundleForNibName(nibName, currentClass: type(of: self)))
+	}()
 
 	// MARK: Constants
-
-	fileprivate let presenterViewController =
-		DDMFieldDocumentlibraryPresenterViewController_default()
 
 	fileprivate let completedColor = [
 			DDMFieldDocument.UploadStatus.uploading(0, 0): DefaultThemeBasicBlue,
@@ -64,7 +76,8 @@ open class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableCel
 		if let docField = field as? DDMFieldDocument {
 			textField?.text = docField.currentValueAsLabel
 
-			presenterViewController.selectedDocumentClosure = selectedDocumentClosure
+			(presenterViewController as! DDMFieldDocumentlibraryPresenterViewController_default)
+				.selectedDocumentClosure = selectedDocumentClosure
 
 			setFieldPresenter(docField)
 			setProgress(docField)

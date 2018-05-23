@@ -19,6 +19,7 @@
 		0B62BB3120B45A0400684727 /* DDLCustomFieldissueIdTableCell_westeros_view.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B62BB3020B45A0400684727 /* DDLCustomFieldissueIdTableCell_westeros_view.xib */; };
 		0B62BB3520B45A7600684727 /* DDLCustomFielddueDateTableCell_westeros_view.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B62BB3420B45A7600684727 /* DDLCustomFielddueDateTableCell_westeros_view.xib */; };
 		0B62BB3720B45AD900684727 /* DDLCustomFieldstatusTableCell_westeros_view.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B62BB3620B45AD900684727 /* DDLCustomFieldstatusTableCell_westeros_view.xib */; };
+		0B62BB4320B5A5F600684727 /* DDLFieldDocumentlibraryPresenterViewController_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B62BB4220B5A5F600684727 /* DDLFieldDocumentlibraryPresenterViewController_westeros.xib */; };
 		0BA745B420B40CED00CFFDBD /* DDLCustomFieldassignedToTableCell_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA745B320B40CED00CFFDBD /* DDLCustomFieldassignedToTableCell_westeros.xib */; };
 		0BA745BC20B41C3C00CFFDBD /* DDLCustomFielddueDateTableCell_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA745BB20B41C3C00CFFDBD /* DDLCustomFielddueDateTableCell_westeros.xib */; };
 		0BA745BE20B41DF200CFFDBD /* DDLCustomFieldissueIdTableCell_westeros.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BA745BD20B41DF200CFFDBD /* DDLCustomFieldissueIdTableCell_westeros.xib */; };
@@ -142,6 +143,7 @@
 		0B62BB3020B45A0400684727 /* DDLCustomFieldissueIdTableCell_westeros_view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldissueIdTableCell_westeros_view.xib; sourceTree = "<group>"; };
 		0B62BB3420B45A7600684727 /* DDLCustomFielddueDateTableCell_westeros_view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFielddueDateTableCell_westeros_view.xib; sourceTree = "<group>"; };
 		0B62BB3620B45AD900684727 /* DDLCustomFieldstatusTableCell_westeros_view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldstatusTableCell_westeros_view.xib; sourceTree = "<group>"; };
+		0B62BB4220B5A5F600684727 /* DDLFieldDocumentlibraryPresenterViewController_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFieldDocumentlibraryPresenterViewController_westeros.xib; sourceTree = "<group>"; };
 		0BA745B320B40CED00CFFDBD /* DDLCustomFieldassignedToTableCell_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldassignedToTableCell_westeros.xib; sourceTree = "<group>"; };
 		0BA745BB20B41C3C00CFFDBD /* DDLCustomFielddueDateTableCell_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFielddueDateTableCell_westeros.xib; sourceTree = "<group>"; };
 		0BA745BD20B41DF200CFFDBD /* DDLCustomFieldissueIdTableCell_westeros.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLCustomFieldissueIdTableCell_westeros.xib; sourceTree = "<group>"; };
@@ -547,6 +549,7 @@
 				0B62BB3020B45A0400684727 /* DDLCustomFieldissueIdTableCell_westeros_view.xib */,
 				0B62BB3420B45A7600684727 /* DDLCustomFielddueDateTableCell_westeros_view.xib */,
 				0B62BB3620B45AD900684727 /* DDLCustomFieldstatusTableCell_westeros_view.xib */,
+				0B62BB4220B5A5F600684727 /* DDLFieldDocumentlibraryPresenterViewController_westeros.xib */,
 			);
 			path = FormScreenlet;
 			sourceTree = "<group>";
@@ -694,6 +697,7 @@
 				889F4D9A1AF26846002E233D /* westeros.strings in Resources */,
 				889F4DA01AF26846002E233D /* flat7-portrait-placeholder@2x.png in Resources */,
 				88ADE1841AF76B190073E889 /* status_WAITING@2x.png in Resources */,
+				0B62BB4320B5A5F600684727 /* DDLFieldDocumentlibraryPresenterViewController_westeros.xib in Resources */,
 				88ADE1801AF76B190073E889 /* status_REJECT.png in Resources */,
 				88ADE18C1AF77DFF0073E889 /* icon_more_options@2x.png in Resources */,
 				88735F8D1AEA4077000D35F9 /* tour-step1@3x.png in Resources */,

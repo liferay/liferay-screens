@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DDMFieldDocumentlibraryPresenterViewController_default">
             <connections>
-                <outlet property="cancelButton" destination="sp4-EC-b28" id="I7I-v6-JjR"/>
+                <outlet property="cancelButton" destination="sp4-EC-b28" id="oFZ-bO-buu"/>
                 <outlet property="selectPhotoButton" destination="xh9-eS-GoW" id="FyC-qq-VD0"/>
                 <outlet property="selectVideoButton" destination="kGL-1K-6Co" id="zOU-6d-f7e"/>
                 <outlet property="takeNewButton" destination="HDe-WK-Ctt" id="g5O-Cr-S6T"/>
@@ -26,7 +26,7 @@
                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="sp4-EC-b28">
                     <rect key="frame" x="8" y="143" width="254" height="36"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" red="0.057840337152370774" green="0.47049217733654602" blue="0.60271843112244894" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.70061671729999997" green="0.1567041576" blue="0.16195255519999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal">
                         <attributedString key="attributedTitle">
                             <fragment content="Cancel">
@@ -45,7 +45,7 @@
                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="kGL-1K-6Co">
                     <rect key="frame" x="8" y="98" width="254" height="36"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.083623558282852173" green="0.66497266292572021" blue="0.84832382202148438" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.85882352939999995" green="0.18823529410000001" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal">
                         <attributedString key="attributedTitle">
                             <fragment content="Select existing video...">
@@ -64,7 +64,7 @@
                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="xh9-eS-GoW">
                     <rect key="frame" x="8" y="53" width="254" height="36"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.083623558282852173" green="0.66497266292572021" blue="0.84832382202148438" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.85882352939999995" green="0.18823529410000001" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal">
                         <attributedString key="attributedTitle">
                             <fragment content="Select existing photo...">
@@ -83,7 +83,7 @@
                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="HDe-WK-Ctt">
                     <rect key="frame" x="8" y="8" width="254" height="36"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.083623558282852173" green="0.66497266292572021" blue="0.84832382202148438" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.85882352939999995" green="0.18823529410000001" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal">
                         <attributedString key="attributedTitle">
                             <fragment content="Take new photo or video...">
