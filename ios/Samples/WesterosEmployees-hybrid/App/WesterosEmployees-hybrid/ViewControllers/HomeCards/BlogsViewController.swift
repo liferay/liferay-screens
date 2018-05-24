@@ -20,7 +20,19 @@ class BlogsViewController: CardViewController, WebScreenletDelegate {
 
 	var loaded: Bool = false
 
-    @IBOutlet weak var webScreenlet: WebScreenlet!
+	@IBOutlet weak var webScreenlet: WebScreenlet? {
+		didSet {
+			let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/companynews")
+				.addCss(localFile: "blogs")
+				.addJs(localFile: "blogs")
+				.load()
+
+			webScreenlet?.backgroundColor = .clear
+			webScreenlet?.presentingViewController = self
+			webScreenlet?.configuration = webScreenletConfiguration
+			webScreenlet?.delegate = self
+		}
+	}
 
 	// MARK: Init methods
 
@@ -28,17 +40,10 @@ class BlogsViewController: CardViewController, WebScreenletDelegate {
 		self.init(nibName: "BlogsViewController", bundle: nil)
 	}
 
-    func loadWebScreenlet() {
-        let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/companynews").addCss(localFile: "blogs").addJs(localFile: "blogs").load()
-        webScreenlet.configuration = webScreenletConfiguration
-        webScreenlet.load()
-        webScreenlet.delegate = self
-    }
-
 	// MARK: CardViewController
 	override func pageWillAppear() {
 		if !loaded {
-			loadWebScreenlet()
+			webScreenlet?.load()
 			loaded = true
 		}
 	}
@@ -50,5 +55,4 @@ class BlogsViewController: CardViewController, WebScreenletDelegate {
         selectedBlogEntry = message
         cardView?.moveRight()
 	}
-
 }

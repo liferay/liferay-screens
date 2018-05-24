@@ -31,12 +31,18 @@ class GalleryViewController: CardViewController, WebScreenletDelegate,
 
 	// MARK: Outlets
 
-    @IBOutlet weak var webScreenlet: WebScreenlet! {
-        didSet {
-            let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/gallery").addCss(localFile: "gallery").addJs(localFile: "gallery").load()
-            webScreenlet.configuration = webScreenletConfiguration
-            webScreenlet.delegate = self
-        }
+    @IBOutlet weak var webScreenlet: WebScreenlet? {
+		didSet {
+			let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/gallery")
+				.addCss(localFile: "gallery")
+				.addJs(localFile: "gallery")
+				.load()
+		
+			webScreenlet?.backgroundColor = .clear
+			webScreenlet?.presentingViewController = self
+			webScreenlet?.configuration = webScreenletConfiguration
+			webScreenlet?.delegate = self
+		}
     }
 
 	@IBOutlet weak var cardDeck: CardDeckView? {
@@ -52,14 +58,10 @@ class GalleryViewController: CardViewController, WebScreenletDelegate,
 		hideUploadCard()
 	}
 
-    func loadWebScreenlet() {
-        webScreenlet.load()
-    }
-
     // MARK: CardViewController
     override func pageWillAppear() {
         if !loaded {
-            loadWebScreenlet()
+            webScreenlet?.load()
             loaded = true
         }
     }
@@ -157,7 +159,7 @@ class GalleryViewController: CardViewController, WebScreenletDelegate,
     }
 
     func screenlet(_ screenlet: ImageGalleryScreenlet, onImageUploaded image: ImageEntry) {
-        loadWebScreenlet()
+        webScreenlet?.load()
     }
 
     // MARK: WebScreenletDelegate

@@ -46,7 +46,19 @@ class HomeViewController: UIViewController, WebScreenletDelegate,
 		}
 	}
 
-    @IBOutlet weak var webScreenlet: WebScreenlet!
+	@IBOutlet weak var webScreenlet: WebScreenlet? {
+		didSet {
+			let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/lastchanges")
+				.addCss(localFile: "last_changes")
+				.addJs(localFile: "last_changes")
+				.load()
+			
+			webScreenlet?.backgroundColor = .clear
+			webScreenlet?.presentingViewController = self
+			webScreenlet?.configuration = webScreenletConfiguration
+			webScreenlet?.delegate = self
+		}
+	}
 
 	// MARK: Card controllers
 
@@ -76,16 +88,9 @@ class HomeViewController: UIViewController, WebScreenletDelegate,
 
 	// MARK: UIViewController
 
-    func loadWebScreenlet() {
-        let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/lastchanges").addCss(localFile: "last_changes").addJs(localFile: "last_changes").load()
-        webScreenlet.configuration = webScreenletConfiguration
-        webScreenlet.load()
-        webScreenlet.delegate = self
-    }
-
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
+		
 		documentationViewController = DocumentationViewController()
 		blogsViewController = BlogsViewController()
 		galleryViewController = GalleryViewController()
@@ -219,7 +224,7 @@ class HomeViewController: UIViewController, WebScreenletDelegate,
 
 	fileprivate func initializeHome() {
 
-        loadWebScreenlet()
+        webScreenlet?.load()
 
 		//Load user profile
 		let userId = SessionContext.currentContext!.user.userId

@@ -22,7 +22,19 @@ class DocumentationViewController: CardViewController, WebScreenletDelegate {
 
 	// MARK: Outlets
 
-    @IBOutlet weak var webScreenlet: WebScreenlet!
+	@IBOutlet weak var webScreenlet: WebScreenlet? {
+		didSet {
+			let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/documents")
+				.addCss(localFile: "docs")
+				.addJs(localFile: "docs")
+				.load()
+			
+			webScreenlet?.backgroundColor = .clear
+			webScreenlet?.presentingViewController = self
+			webScreenlet?.configuration = webScreenletConfiguration
+			webScreenlet?.delegate = self
+		}
+	}
 
 	// MARK: Init methods
 
@@ -30,17 +42,10 @@ class DocumentationViewController: CardViewController, WebScreenletDelegate {
 		self.init(nibName: "DocumentationViewController", bundle: nil)
 	}
 
-    func loadWebScreenlet() {
-        let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/documents").addCss(localFile: "docs").addJs(localFile: "docs").load()
-        webScreenlet.configuration = webScreenletConfiguration
-        webScreenlet.load()
-        webScreenlet.delegate = self
-    }
-
     // MARK: CardViewController
     override func pageWillAppear() {
         if !loaded {
-            loadWebScreenlet()
+            webScreenlet?.load()
             loaded = true
         }
     }
@@ -52,5 +57,4 @@ class DocumentationViewController: CardViewController, WebScreenletDelegate {
         selectedFileEntry = message
         cardView?.moveRight()
     }
-
 }
