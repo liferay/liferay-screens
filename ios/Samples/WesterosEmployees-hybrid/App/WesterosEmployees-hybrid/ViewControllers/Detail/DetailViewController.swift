@@ -34,7 +34,7 @@ class DetailViewController: CardViewController, CardDeckDelegate, WebScreenletDe
 	}
 	@IBOutlet weak var arrowImageView: UIImageView?
 
-	// MARK: View methods
+	// MARK: Actions
 
 	@IBAction func goBackButtonClicked() {
 		dismiss(animated: true, completion: nil)
@@ -60,7 +60,7 @@ class DetailViewController: CardViewController, CardDeckDelegate, WebScreenletDe
 		self.cardDeck?.cards[safe: 0]?.changeToState(.minimized)
 	}
 
-	// MARK: Init methods
+	// MARK: Initializers
 
 	convenience init(nibName: String) {
 		self.init(nibName: nibName, bundle: nil)

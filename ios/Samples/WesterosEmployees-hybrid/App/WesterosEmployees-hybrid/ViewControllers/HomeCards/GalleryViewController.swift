@@ -75,12 +75,14 @@ class GalleryViewController: CardViewController, WebScreenletDelegate, CardDeckD
 		uploadImageViewController?.onImageSelected = onImageSelected
 	}
 
-	// MARK: Init methods
+	// MARK: Initializers
 
 	convenience init() {
 		self.init(nibName: "GalleryViewController", bundle: nil)
 		loadImageGalleryScreenlet()
 	}
+	
+	// MARK: Private methods
 
 	func loadImageGalleryScreenlet() {
 		imageGalleryScreenlet?.delegate = self
@@ -91,8 +93,6 @@ class GalleryViewController: CardViewController, WebScreenletDelegate, CardDeckD
 			LiferayServerContext.longPropertyForKey("galleryFolderId")
 
 	}
-
-	// MARK: Private methods
 
 	func hideUploadCard() {
 		if let uploadCard = cardDeck?.cards[safe: 0] {

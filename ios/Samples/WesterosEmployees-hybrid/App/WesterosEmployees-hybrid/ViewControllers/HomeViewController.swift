@@ -79,7 +79,7 @@ class HomeViewController: UIViewController, WebScreenletDelegate, CardDeckDelega
 		}
 	}
 
-	// MARK: View actions
+	// MARK: Actions
 
 	@IBAction func userButtonClicked() {
 		performSegue(withIdentifier: "user_profile", sender: self)
@@ -194,6 +194,7 @@ class HomeViewController: UIViewController, WebScreenletDelegate, CardDeckDelega
 	}
 
 	// MARK: WebScreenletDelegate
+
 	func screenlet(_ screenlet: WebScreenlet,
 				   onScriptMessageNamespace namespace: String,
 				   onScriptMessage message: String) {

@@ -34,7 +34,7 @@ class BlogsViewController: CardViewController, WebScreenletDelegate {
 		}
 	}
 
-	// MARK: Init methods
+	// MARK: Initializers
 
 	convenience init() {
 		self.init(nibName: "BlogsViewController", bundle: nil)

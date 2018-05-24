@@ -16,10 +16,6 @@ import LiferayScreens
 
 class DocumentationViewController: CardViewController, WebScreenletDelegate {
 
-	var selectedFileEntry: String?
-
-	var loaded: Bool = false
-
 	// MARK: Outlets
 
 	@IBOutlet weak var webScreenlet: WebScreenlet? {
@@ -35,8 +31,14 @@ class DocumentationViewController: CardViewController, WebScreenletDelegate {
 			webScreenlet?.delegate = self
 		}
 	}
+	
+	// MARK: Variables
+	
+	var selectedFileEntry: String?
+	
+	var loaded: Bool = false
 
-	// MARK: Init methods
+	// MARK: Initializers
 
 	convenience init() {
 		self.init(nibName: "DocumentationViewController", bundle: nil)

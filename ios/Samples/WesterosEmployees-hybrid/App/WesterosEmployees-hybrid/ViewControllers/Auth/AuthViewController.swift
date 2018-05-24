@@ -16,14 +16,19 @@ import LiferayScreens
 
 class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource {
 
+	// MARK: Outlets
+
 	@IBOutlet var cardDeck: CardDeckView?
 
+	// MARK: Variables
+	
 	var signInController: SignInViewController?
 	var signUpController: SignUpViewController?
 	var forgotPasswordController: ForgotPasswordViewController?
 	var termsController: TermsViewController?
 
 	// MARK: UIViewController
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 

@@ -43,7 +43,7 @@ open class UserProfileView: UIView {
 		}
 	}
 
-	// MARK: View actions
+	// MARK: Actions
 
 	@IBAction func goBackButtonClick() {
 		goBackButtonClicked?()

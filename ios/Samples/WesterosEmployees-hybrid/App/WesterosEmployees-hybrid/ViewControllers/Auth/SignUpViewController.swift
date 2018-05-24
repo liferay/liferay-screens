@@ -21,13 +21,13 @@ class SignUpViewController: CardViewController, SignUpScreenletDelegate {
 	@IBOutlet weak var screenlet: SignUpScreenlet?
 	@IBOutlet weak var signUpButton: UIButton?
 
-	// MARK: Init methods
+	// MARK: Initializers
 
 	convenience init() {
 		self.init(nibName: "SignUpViewController", bundle: nil)
 	}
 
-	// MARK: View actions
+	// MARK: Actions
 
 	@IBAction func termsButtonClicked() {
 		cardView?.moveRight()

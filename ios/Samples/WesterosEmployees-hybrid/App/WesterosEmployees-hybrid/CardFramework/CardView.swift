@@ -252,8 +252,6 @@ open class CardView: UIView, CAAnimationDelegate {
 		}
 	}
 
-	// MARK: View methods
-
 	///Adds the button and arrow to the view. Sets the title view (button and arrow) properties
 	///of this card
 	/// - parameters:

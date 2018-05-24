@@ -35,7 +35,7 @@ class UploadImageViewController: CardViewController,
 		}
 	}
 
-	// MARK: View methods
+	// MARK: Actions
 
 	@IBAction func selectImageButtonClicked() {
 		openImagePicker(.photoLibrary)
@@ -45,7 +45,7 @@ class UploadImageViewController: CardViewController,
 		openImagePicker(.camera)
 	}
 
-	// MARK: Init methods
+	// MARK: Initializers
 
     convenience init() {
 		self.init(nibName: "UploadImageViewController", bundle: nil)

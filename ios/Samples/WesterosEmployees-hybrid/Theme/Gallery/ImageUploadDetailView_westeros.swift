@@ -31,7 +31,7 @@ open class ImageUploadDetailView_westeros: ImageUploadDetailViewBase {
 		}
 	}
 
-	// MARK: View actions
+	// MARK: Actions
 
 	@IBAction func uploadButtonClicked(_ sender: AnyObject) {
 		startUpload()

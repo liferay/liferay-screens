@@ -20,7 +20,7 @@ class ForgotPasswordViewController: CardViewController, ForgotPasswordScreenletD
 
 	@IBOutlet weak var forgotPasswordScreenlet: ForgotPasswordScreenlet?
 
-	// MARK: Init methods
+	// MARK: Initializers
 
 	convenience init() {
 		self.init(nibName: "ForgotPasswordViewController", bundle: nil)

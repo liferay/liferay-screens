@@ -24,7 +24,7 @@ class TermsViewController: CardViewController, AssetDisplayScreenletDelegate {
 		}
 	}
 
-	// MARK: Init methods
+	// MARK: Initializers
 
 	convenience init() {
 		self.init(nibName: "TermsViewController", bundle: nil)
