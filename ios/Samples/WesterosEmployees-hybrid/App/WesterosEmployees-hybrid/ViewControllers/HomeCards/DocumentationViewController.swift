@@ -20,11 +20,11 @@ class DocumentationViewController: CardViewController, WebScreenletDelegate {
 
 	var loaded: Bool = false
 
-	//MARK: Outlets
-    
+	// MARK: Outlets
+
     @IBOutlet weak var webScreenlet: WebScreenlet!
 
-	//MARK: Init methods
+	// MARK: Init methods
 
 	convenience init() {
 		self.init(nibName: "DocumentationViewController", bundle: nil)
@@ -36,8 +36,8 @@ class DocumentationViewController: CardViewController, WebScreenletDelegate {
         webScreenlet.load()
         webScreenlet.delegate = self
     }
-    
-    //MARK: CardViewController
+
+    // MARK: CardViewController
     override func pageWillAppear() {
         if !loaded {
             loadWebScreenlet()
@@ -45,12 +45,12 @@ class DocumentationViewController: CardViewController, WebScreenletDelegate {
         }
     }
 
-    //MARK: WebScreenletDelegate
+    // MARK: WebScreenletDelegate
     func screenlet(_ screenlet: WebScreenlet,
                    onScriptMessageNamespace namespace: String,
                    onScriptMessage message: String) {
         selectedFileEntry = message
         cardView?.moveRight()
     }
-    
+
 }

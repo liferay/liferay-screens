@@ -16,22 +16,21 @@ import LiferayScreens
 
 open class UserDisplayViewController: UIViewController {
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
     @IBAction func goBack(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
+
     @IBAction func signOut(_ sender: Any) {
         SessionContext.currentContext?.removeStoredCredentials()
         SessionContext.logout()
         self.dismiss(animated: true, completion: nil)
     }
-    
+
     @IBOutlet weak var webScreenlet: WebScreenlet!
-        
-	//MARK: UIViewController
+
+	// MARK: UIViewController
 
 	open override func viewDidLoad() {
 		super.viewDidLoad()
@@ -43,5 +42,5 @@ open class UserDisplayViewController: UIViewController {
         webScreenlet.configuration = webScreenletConfiguration
         webScreenlet.load()
     }
-    
+
 }

@@ -16,14 +16,12 @@ import LiferayScreens
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
+
     var window: UIWindow?
-    
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         AssetClasses.set(AssetClassNameKey_JournalArticle, newId: 29591)
         return true
     }
-    
-}
 
+}

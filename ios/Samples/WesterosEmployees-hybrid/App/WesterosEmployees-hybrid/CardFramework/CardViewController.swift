@@ -27,7 +27,7 @@ open class CardViewController: UIViewController {
 		}
 	}
 
-	//MARK: card view state methods
+	// MARK: card view state methods
 
 	///Method triggered when the card page is going to appear on screen (maximized and normal
 	///states). You should override this method.

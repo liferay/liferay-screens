@@ -16,18 +16,18 @@ import LiferayScreens
 
 class BlogsViewController: CardViewController, WebScreenletDelegate {
 
-	var selectedBlogEntry:String?
+	var selectedBlogEntry: String?
 
 	var loaded: Bool = false
-	
+
     @IBOutlet weak var webScreenlet: WebScreenlet!
 
-	//MARK: Init methods
+	// MARK: Init methods
 
 	convenience init() {
 		self.init(nibName: "BlogsViewController", bundle: nil)
 	}
-    
+
     func loadWebScreenlet() {
         let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/companynews").addCss(localFile: "blogs").addJs(localFile: "blogs").load()
         webScreenlet.configuration = webScreenletConfiguration
@@ -35,8 +35,7 @@ class BlogsViewController: CardViewController, WebScreenletDelegate {
         webScreenlet.delegate = self
     }
 
-
-	//MARK: CardViewController
+	// MARK: CardViewController
 	override func pageWillAppear() {
 		if !loaded {
 			loadWebScreenlet()
@@ -44,8 +43,7 @@ class BlogsViewController: CardViewController, WebScreenletDelegate {
 		}
 	}
 
-
-	//MARK: WebScreenletDelegate
+	// MARK: WebScreenletDelegate
     func screenlet(_ screenlet: WebScreenlet,
                    onScriptMessageNamespace namespace: String,
                    onScriptMessage message: String) {

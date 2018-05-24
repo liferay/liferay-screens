@@ -16,26 +16,26 @@ import LiferayScreens
 
 class DetailViewController: CardViewController,
 	CardDeckDelegate {
-	
-	//MARK: Outlets
+
+	// MARK: Outlets
 
     @IBOutlet weak var webScreenlet: WebScreenlet!
-    
+
 	@IBOutlet weak var cardDeck: CardDeckView? {
 		didSet {
 			cardDeck?.delegate = self
 			cardDeck?.layer.zPosition = 0
 		}
 	}
-    
+
 	@IBOutlet weak var goBackButton: UIButton? {
 		didSet {
-			goBackButton?.titleEdgeInsets = UIEdgeInsetsMake(0, 70, 0, 70)
+			goBackButton?.titleEdgeInsets = UIEdgeInsets(top: 0, left: 70, bottom: 0, right: 70)
 		}
 	}
 	@IBOutlet weak var arrowImageView: UIImageView?
 
-	//MARK: View methods
+	// MARK: View methods
 
 	@IBAction func goBackButtonClicked() {
         webScreenlet.themeName = "westeros"
@@ -48,23 +48,23 @@ class DetailViewController: CardViewController,
         webScreenlet.configuration = webScreenletConfiguration
         webScreenlet.load()
     }
-	
-	//MARK: CardViewController
-	
+
+	// MARK: CardViewController
+
 	override func pageWillDisappear() {
         webScreenlet.themeName = "westeros"
-        
+
 		//Hide comment card
 		self.cardDeck?.cards[safe: 0]?.changeToState(.minimized)
 	}
-	
-	//MARK: Init methods
+
+	// MARK: Init methods
 
 	convenience init(nibName: String) {
 		self.init(nibName: nibName, bundle: nil)
 	}
 
-	//MARK: CardDeckDataSource
+	// MARK: CardDeckDataSource
 
 	func numberOfCardsIn(_ cardDeck: CardDeckView) -> Int {
 		return 1
@@ -74,7 +74,7 @@ class DetailViewController: CardViewController,
 		return WesterosCardView.newAutoLayout()
 	}
 
-	//MARK: CardDeckDelegate
+	// MARK: CardDeckDelegate
 
 	func cardDeck(_ cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
 		if let cardView = self.cardView {

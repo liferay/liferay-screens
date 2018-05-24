@@ -12,7 +12,7 @@
 * details.
 */
 extension Array {
-	
+
 	///Splits an array into two halves, using as midpoint the index parameter
 	/// - parameter index: index to split the array
 	/// - returns: a tuple with the two array halves
@@ -28,4 +28,3 @@ extension Array {
 		return indices.contains(index) ? self[index] : nil
 	}
 }
-

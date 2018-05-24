@@ -13,10 +13,9 @@
 */
 import UIKit
 
-
 extension CGRect {
 
-	init(x: CGFloat, y: CGFloat, size: CGSize){
+	init(x: CGFloat, y: CGFloat, size: CGSize) {
 		self.init(x: x, y: y, width: size.width, height: size.height)
 	}
 }
