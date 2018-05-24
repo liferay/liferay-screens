@@ -81,7 +81,6 @@ class GalleryViewController: CardViewController, WebScreenletDelegate,
 	}
 
     func loadImageGalleryScreenlet() {
-        imageGalleryScreenlet = ImageGalleryScreenlet(frame: .zero, themeName: "westeros")
         imageGalleryScreenlet?.delegate = self
         imageGalleryScreenlet?.presentingViewController = self
 
