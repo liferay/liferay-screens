@@ -45,6 +45,7 @@ class DocumentationViewController: CardViewController, WebScreenletDelegate {
 	}
 
 	// MARK: CardViewController
+
 	override func pageWillAppear() {
 		if !loaded {
 			webScreenlet?.load()
@@ -53,10 +54,15 @@ class DocumentationViewController: CardViewController, WebScreenletDelegate {
 	}
 
 	// MARK: WebScreenletDelegate
+
 	func screenlet(_ screenlet: WebScreenlet,
 				   onScriptMessageNamespace namespace: String,
 				   onScriptMessage message: String) {
 		selectedFileEntry = message
 		cardView?.moveRight()
+	}
+	
+	func screenlet(_ screenlet: WebScreenlet, onError error: NSError) {
+		print("WebScreenlet error (DocumentationViewController): \(error.debugDescription)")
 	}
 }

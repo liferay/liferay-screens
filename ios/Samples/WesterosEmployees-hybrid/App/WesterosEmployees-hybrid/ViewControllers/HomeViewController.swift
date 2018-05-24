@@ -216,7 +216,10 @@ class HomeViewController: UIViewController, WebScreenletDelegate, CardDeckDelega
 			}
 
 		}
-
+	}
+	
+	func screenlet(_ screenlet: WebScreenlet, onError error: NSError) {
+		print("WebScreenlet error (HomeViewController): \(error.debugDescription)")
 	}
 
 	// MARK: Private functions

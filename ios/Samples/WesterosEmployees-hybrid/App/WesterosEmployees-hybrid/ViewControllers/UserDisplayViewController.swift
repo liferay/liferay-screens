@@ -14,7 +14,7 @@
 import UIKit
 import LiferayScreens
 
-open class UserDisplayViewController: UIViewController, WebScreenletDelegate {
+class UserDisplayViewController: UIViewController, WebScreenletDelegate {
 
 	// MARK: Outlets
 
@@ -51,5 +51,11 @@ open class UserDisplayViewController: UIViewController, WebScreenletDelegate {
 		super.viewDidLoad()
 
 		webScreenlet?.load()
+	}
+	
+	// MARK: WebScreenletDelegate
+
+	func screenlet(_ screenlet: WebScreenlet, onError error: NSError) {
+		print("WebScreenlet error (UserDisplayViewController): \(error.debugDescription)")
 	}
 }

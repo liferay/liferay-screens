@@ -56,4 +56,8 @@ class BlogsViewController: CardViewController, WebScreenletDelegate {
 		selectedBlogEntry = message
 		cardView?.moveRight()
 	}
+
+	func screenlet(_ screenlet: WebScreenlet, onError error: NSError) {
+		print("WebScreenlet error (BlogsViewController): \(error.debugDescription)")
+	}
 }

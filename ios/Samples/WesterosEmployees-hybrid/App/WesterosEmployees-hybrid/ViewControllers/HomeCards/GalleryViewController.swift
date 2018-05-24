@@ -172,4 +172,8 @@ class GalleryViewController: CardViewController, WebScreenletDelegate, CardDeckD
 		selectedImageEntry = message
 		cardView?.moveRight()
 	}
+	
+	func screenlet(_ screenlet: WebScreenlet, onError error: NSError) {
+		print("WebScreenlet error (GalleryViewController): \(error.debugDescription)")
+	}
 }
