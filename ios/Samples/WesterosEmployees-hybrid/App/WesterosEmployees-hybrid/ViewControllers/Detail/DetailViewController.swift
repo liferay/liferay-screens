@@ -14,12 +14,11 @@
 import UIKit
 import LiferayScreens
 
-class DetailViewController: CardViewController,
-	CardDeckDelegate {
+class DetailViewController: CardViewController, CardDeckDelegate, WebScreenletDelegate {
 
 	// MARK: Outlets
 
-    @IBOutlet weak var webScreenlet: WebScreenlet!
+	@IBOutlet weak var webScreenlet: WebScreenlet?
 
 	@IBOutlet weak var cardDeck: CardDeckView? {
 		didSet {
@@ -38,22 +37,25 @@ class DetailViewController: CardViewController,
 	// MARK: View methods
 
 	@IBAction func goBackButtonClicked() {
-        webScreenlet.themeName = "westeros"
-
 		dismiss(animated: true, completion: nil)
 	}
 
     func load(file: String, id: String) {
-        let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/detail?id=\(id)").addCss(localFile: file).addJs(localFile: file).load()
-        webScreenlet.configuration = webScreenletConfiguration
-        webScreenlet.load()
+        let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/detail?id=\(id)")
+			.addCss(localFile: file)
+			.addJs(localFile: file)
+			.load()
+		
+		webScreenlet?.backgroundColor = .clear
+		webScreenlet?.presentingViewController = self
+		webScreenlet?.configuration = webScreenletConfiguration
+		webScreenlet?.delegate = self
+		webScreenlet?.load()
     }
 
 	// MARK: CardViewController
 
 	override func pageWillDisappear() {
-        webScreenlet.themeName = "westeros"
-
 		//Hide comment card
 		self.cardDeck?.cards[safe: 0]?.changeToState(.minimized)
 	}
