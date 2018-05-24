@@ -32,9 +32,7 @@ open class DDLFieldDocumentlibraryTableCell_default: DDLBaseFieldTextboxTableCel
 				nibName: nibName,
 				bundle: Bundle.bundleForNibName(nibName, currentClass: type(of: self)))
 		}
-		return DDMFieldDocumentlibraryPresenterViewController_default(
-			nibName: "DDLFieldDocumentlibraryPresenterViewController_default",
-			bundle: Bundle.bundleForNibName(nibName, currentClass: type(of: self)))
+		return DDMFieldDocumentlibraryPresenterViewController_default()
 	}()
 
 	// MARK: Constants
