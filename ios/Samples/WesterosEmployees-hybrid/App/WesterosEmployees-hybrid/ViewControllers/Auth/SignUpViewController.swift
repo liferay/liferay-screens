@@ -35,7 +35,7 @@ class SignUpViewController: CardViewController, SignUpScreenletDelegate {
 
 	@IBAction func signUpButtonClicked() {
 		signUpButton?.isEnabled = false
-		screenlet?.performAction(name: "signup-action")
+		screenlet?.performAction(name: SignUpScreenlet.SignUpAction)
 	}
 
 	// MARK: UIViewController
