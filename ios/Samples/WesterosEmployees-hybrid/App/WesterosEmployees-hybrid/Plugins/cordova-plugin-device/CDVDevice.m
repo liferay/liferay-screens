@@ -21,7 +21,7 @@
 #include <sys/sysctl.h>
 #include "TargetConditionals.h"
 
-#import <Cordova/CDV.h>
+#import "CDV.h"
 #import "CDVDevice.h"
 
 @implementation UIDevice (ModelVersion)
