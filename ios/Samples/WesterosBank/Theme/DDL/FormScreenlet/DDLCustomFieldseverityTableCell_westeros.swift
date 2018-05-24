@@ -14,10 +14,11 @@
 import UIKit
 import LiferayScreens
 
-open class DDLFormView_westeros: DDLFormView_default {
+class DDLCustomFieldseverityTableCell_westeros: DDLFieldSelectTableCell_default {
 
-	override open func createProgressPresenter() -> ProgressPresenter {
-		return WesterosProgressPresenter()
+	override func awakeFromNib() {
+		super.awakeFromNib()
+
+		cellBackgroundColor = WesterosThemeBasicRed
 	}
-
 }

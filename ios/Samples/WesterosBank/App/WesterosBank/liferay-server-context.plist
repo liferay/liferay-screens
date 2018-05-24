@@ -2,16 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>server</key>
+	<string>http://screens.liferay.org.es/</string>
+	<key>companyId</key>
+	<real>20116</real>
+	<key>groupId</key>
+	<real>33300</real>
 	<key>version</key>
 	<string>70</string>
-	<key>companyId</key>
-	<integer>20116</integer>
-	<key>server</key>
-	<string>http://screens-demo.liferay.org.es</string>
-	<key>groupId</key>
-	<integer>20147</integer>
 	<key>anonymousUsername</key>
-	<string>anonymous@liferay.com</string>
+	<string>anonymous1@liferay.com</string>
 	<key>anonymousPassword</key>
 	<string>anonymous1</string>
 </dict>

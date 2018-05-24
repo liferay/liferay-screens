@@ -11,25 +11,25 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="Jfs-JQ-eQD" customClass="DDLFieldTextTableCell_default">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="4Jr-dH-6eA" customClass="DDLFieldTextTableCell_default">
             <rect key="frame" x="0.0" y="0.0" width="411" height="100"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jfs-JQ-eQD" id="saA-yM-D6X">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Jr-dH-6eA" id="kAu-v3-9zc">
                 <rect key="frame" x="0.0" y="0.0" width="411" height="99.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2gb-RF-AjG">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2bZ-u1-x5h">
                         <rect key="frame" x="0.0" y="0.0" width="411" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" id="FsM-9W-vth">
+                    <view contentMode="scaleToFill" id="QXw-99-gTZ">
                         <rect key="frame" x="0.0" y="33" width="411" height="55"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Description" minimumFontSize="17" id="DGi-5s-k00" customClass="BorderedTextField" customModule="westerosbank" customModuleProvider="target">
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Title" minimumFontSize="17" id="c9B-Et-Uyr" customClass="BorderedTextField" customModule="westerosbank" customModuleProvider="target">
                                 <rect key="frame" x="22" y="0.0" width="381" height="55"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -47,7 +47,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <outlet property="delegate" destination="Jfs-JQ-eQD" id="tsU-gs-h94"/>
+                                    <outlet property="delegate" destination="4Jr-dH-6eA" id="jZR-gz-7KX"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -60,10 +60,10 @@
                     </view>
                 </subviews>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.85728287700000005" green="0.18751269579999999" blue="0.1945410967" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.85882352941176465" green="0.18823529411764706" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
-                <outlet property="label" destination="2gb-RF-AjG" id="aJV-ab-IEs"/>
-                <outlet property="textField" destination="DGi-5s-k00" id="FHR-8k-8eP"/>
+                <outlet property="label" destination="2bZ-u1-x5h" id="YmM-rS-7bt"/>
+                <outlet property="textField" destination="c9B-Et-Uyr" id="JYb-18-63G"/>
             </connections>
             <point key="canvasLocation" x="344" y="308"/>
         </tableViewCell>
