@@ -32,37 +32,37 @@ import PureLayout
 	/// - parameter titleForCard position: position for the title
 	/// - returns: title for the page
 	@objc optional func cardDeck(_ cardDeck: CardDeckView,
-	                       titleForCard position: CardPosition) -> String?
+								 titleForCard position: CardPosition) -> String?
 
 	///Get the background color for a card
 	/// - parameter colorForCardIndex index: position of the card
 	/// - returns: background color for the card
 	@objc optional func cardDeck(_ cardDeck: CardDeckView,
-	                       colorForCardIndex index: Int) -> UIColor?
+								 colorForCardIndex index: Int) -> UIColor?
 
 	///Get the button text color for a card
 	/// - parameter colorForButtonIndex index: position of the card
 	/// - returns: color for the button text of the card
 	@objc optional func cardDeck(_ cardDeck: CardDeckView,
-	                       colorForButtonIndex index: Int) -> UIColor?
+								 colorForButtonIndex index: Int) -> UIColor?
 
 	///Get the button image for a card
 	/// - parameter buttonImageForCardIndex index: position of the card
 	/// - returns: image for the button of the card
 	@objc optional func cardDeck(_ cardDeck: CardDeckView,
-	                       buttonImageForCardIndex index: Int) -> UIImage?
+								 buttonImageForCardIndex index: Int) -> UIImage?
 
 	///Customize visual aspects of the card
 	/// - parameters:
 	///    - customizeCard card: card to be customized
 	///    - atIndex index: index of the card
 	@objc optional func cardDeck(_ cardDeck: CardDeckView,
-	                       customizeCard card: CardView, atIndex index: Int)
+								 customizeCard card: CardView, atIndex index: Int)
 
 	///Notify that a card page have changed
 	/// - parameter onPageChange position: position of the change
 	@objc optional func cardDeck(_ cardDeck: CardDeckView,
-	                       onPageChange position: CardPosition)
+								 onPageChange position: CardPosition)
 }
 
 ///Data source for card decks
@@ -78,7 +78,7 @@ import PureLayout
 	/// - parameter controllerForCard position: position for the controller
 	/// - returns: controller for given position
 	func cardDeck(_ cardDeck: CardDeckView,
-	              controllerForCard position: CardPosition) -> CardViewController?
+				  controllerForCard position: CardPosition) -> CardViewController?
 }
 
 ///View used to hold an array of cards. This class will auto arrange them in screen and handle
@@ -212,7 +212,7 @@ open class CardDeckView: UIView, CardDelegate {
 	///    - card: card to be changed
 	///    - toState: next state for the card
 	open func change(_ card: CardView, toState state: ShowState, animateArrow: Bool = true,
-			time: Double? = nil, delay: Double = 0.0, onComplete: ((Bool) -> Void)? = nil) {
+					 time: Double? = nil, delay: Double = 0.0, onComplete: ((Bool) -> Void)? = nil) {
 		card.nextState = state
 		card.changeToNextState(animateArrow, time: time, delay: delay, onComplete: onComplete)
 	}
@@ -242,13 +242,13 @@ open class CardDeckView: UIView, CardDelegate {
 		let title = self.delegate?.cardDeck?(self, titleForCard: cardPosition)
 
 		card.initializeView(backgroundColor: cardBackgroundColor,
-		    buttonTitle: title, buttonFontColor: buttonFontColor,
-			buttonImage: arrowImage)
+							buttonTitle: title, buttonFontColor: buttonFontColor,
+							buttonImage: arrowImage)
 
 		card.delegate = self
 
 		card.button.addTarget(self, action: #selector(CardDeckView.cardTouchUpInside(_:)),
-			for: .touchUpInside)
+							  for: .touchUpInside)
 
 		let controller = dataSource?.cardDeck(self, controllerForCard: cardPosition)
 		controller?.cardView = card

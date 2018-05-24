@@ -49,10 +49,11 @@ class BlogsViewController: CardViewController, WebScreenletDelegate {
 	}
 
 	// MARK: WebScreenletDelegate
-    func screenlet(_ screenlet: WebScreenlet,
-                   onScriptMessageNamespace namespace: String,
-                   onScriptMessage message: String) {
-        selectedBlogEntry = message
-        cardView?.moveRight()
+	func screenlet(_ screenlet: WebScreenlet,
+				   onScriptMessageNamespace namespace: String,
+				   onScriptMessage message: String) {
+
+		selectedBlogEntry = message
+		cardView?.moveRight()
 	}
 }

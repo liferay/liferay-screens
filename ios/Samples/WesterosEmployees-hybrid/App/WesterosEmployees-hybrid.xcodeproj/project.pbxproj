@@ -231,8 +231,6 @@
 			isa = PBXGroup;
 			children = (
 				4B0BA0F31F1609F20083D523 /* ViewControllers */,
-				4B0BA0F11F1609E90083D523 /* Westeros+Array.swift */,
-				4B0BA0EF1F1609DD0083D523 /* UserProfile.storyboard */,
 				4B0BA0ED1F1609A70083D523 /* Assets.xcassets */,
 				4B0BA0E31F1609A10083D523 /* Base.lproj */,
 				4B0BA0DC1F1609980083D523 /* CardFramework */,
@@ -285,6 +283,7 @@
 		4B0BA0D41F16098A0083D523 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				4B0BA0F11F1609E90083D523 /* Westeros+Array.swift */,
 				4B0BA0D51F16098A0083D523 /* Westeros+CGRect.swift */,
 			);
 			path = Extensions;
@@ -312,6 +311,7 @@
 		4B0BA0E31F1609A10083D523 /* Base.lproj */ = {
 			isa = PBXGroup;
 			children = (
+				4B0BA0EF1F1609DD0083D523 /* UserProfile.storyboard */,
 				4B0BA0E41F1609A10083D523 /* Auth.storyboard */,
 				4B0BA0E61F1609A10083D523 /* LaunchScreen.storyboard */,
 				4B0BA0E81F1609A10083D523 /* Main.storyboard */,

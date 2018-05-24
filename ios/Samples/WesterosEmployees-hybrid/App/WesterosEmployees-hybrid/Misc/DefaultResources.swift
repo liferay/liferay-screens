@@ -38,5 +38,4 @@ struct DefaultResources {
 		let imageName = index % 2 == 0 ? "icon_DOWN" : "icon_DOWN_W"
 		return UIImage(named: imageName)!
 	}
-
 }

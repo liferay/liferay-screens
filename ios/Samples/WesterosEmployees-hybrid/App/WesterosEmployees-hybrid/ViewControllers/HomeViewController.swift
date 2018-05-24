@@ -17,8 +17,7 @@ import LiferayScreens
 
 public var tourCompleted = false
 
-class HomeViewController: UIViewController, WebScreenletDelegate,
-	CardDeckDelegate, CardDeckDataSource {
+class HomeViewController: UIViewController, WebScreenletDelegate, CardDeckDelegate, CardDeckDataSource {
 
 	///Flag to control if the home has been initialized
 	var homeInitialized = false
@@ -52,7 +51,7 @@ class HomeViewController: UIViewController, WebScreenletDelegate,
 				.addCss(localFile: "last_changes")
 				.addJs(localFile: "last_changes")
 				.load()
-			
+
 			webScreenlet?.backgroundColor = .clear
 			webScreenlet?.presentingViewController = self
 			webScreenlet?.configuration = webScreenletConfiguration
@@ -90,7 +89,7 @@ class HomeViewController: UIViewController, WebScreenletDelegate,
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+
 		documentationViewController = DocumentationViewController()
 		blogsViewController = BlogsViewController()
 		galleryViewController = GalleryViewController()
@@ -113,12 +112,10 @@ class HomeViewController: UIViewController, WebScreenletDelegate,
 				dispatch_delayed(0.5) {
 					self.performSegue(withIdentifier: "tour", sender: nil)
 				}
-			}
-			else {
+			} else {
 				self.performSegue(withIdentifier: "login", sender: nil)
 			}
-		}
-		else if !homeInitialized {
+		} else if !homeInitialized {
 			tourCompleted = true
 
 			//Initialize home only once
@@ -180,51 +177,52 @@ class HomeViewController: UIViewController, WebScreenletDelegate,
 			self.userProfileButton?.isEnabled = position.page == 0
 		}
 
-		if let vc = cardDeck.cards[position.card].presentingControllers[safe: position.page]
-				as? DetailViewController {
+		if let viewController = cardDeck.cards[position.card]
+			.presentingControllers[safe: position.page] as? DetailViewController {
 
 			switch (position.card, position.page) {
 			case (0, 1):
-                vc.load(file: "detail", id: (documentationViewController?.selectedFileEntry)!)
+				viewController.load(file: "detail", id: (documentationViewController?.selectedFileEntry)!)
 			case (1, 1):
-                vc.load(file: "blog", id: (blogsViewController?.selectedBlogEntry)!)
+				viewController.load(file: "blog", id: (blogsViewController?.selectedBlogEntry)!)
 			case (2, 1):
-                vc.load(file: "detail", id: (galleryViewController?.selectedImageEntry)!)
+				viewController.load(file: "detail", id: (galleryViewController?.selectedImageEntry)!)
 			default:
 				break
 			}
 		}
 	}
 
-    // MARK: WebScreenletDelegate
-    func screenlet(_ screenlet: WebScreenlet,
-                   onScriptMessageNamespace namespace: String,
-                   onScriptMessage message: String) {
+	// MARK: WebScreenletDelegate
+	func screenlet(_ screenlet: WebScreenlet,
+				   onScriptMessageNamespace namespace: String,
+				   onScriptMessage message: String) {
 
-        let bodyArray = message.components(separatedBy: "|")
+		let bodyArray = message.components(separatedBy: "|")
 
-        if bodyArray[1] != "blog"{
-            let detail: DetailViewController? = DetailViewController(nibName: "ModalWebDetailViewController")
+		if bodyArray[1] != "blog"{
+			let detail: DetailViewController? = DetailViewController(nibName: "ModalWebDetailViewController")
 
-            self.present(detail!, animated: true) {
-                detail?.load(file: "detail", id: bodyArray[0])
-            }
-        } else {
-            let detail: DetailViewController? = DetailViewController(nibName: "ModalWebBlogDetailViewController")
+			self.present(detail!, animated: true) {
+				detail?.load(file: "detail", id: bodyArray[0])
+			}
+		}
+		else {
+			let detail: DetailViewController? = DetailViewController(nibName: "ModalWebBlogDetailViewController")
 
-            self.present(detail!, animated: true) {
-                detail?.load(file: "blog", id: bodyArray[0])
-            }
+			self.present(detail!, animated: true) {
+				detail?.load(file: "blog", id: bodyArray[0])
+			}
 
-        }
+		}
 
-    }
+	}
 
 	// MARK: Private functions
 
 	fileprivate func initializeHome() {
 
-        webScreenlet?.load()
+		webScreenlet?.load()
 
 		//Load user profile
 		let userId = SessionContext.currentContext!.user.userId
@@ -235,7 +233,7 @@ class HomeViewController: UIViewController, WebScreenletDelegate,
 			let lastName =
 				SessionContext.currentContext!.user.lastName
 			self.userNameLabel?.text = "\(firstName) \(lastName)"
-					.trimmingCharacters(in: .whitespacesAndNewlines)
+				.trimmingCharacters(in: .whitespacesAndNewlines)
 
 		}
 
@@ -266,12 +264,12 @@ class HomeViewController: UIViewController, WebScreenletDelegate,
 	fileprivate func showSyncAlert(_ syncCount: UInt) {
 
 		let message = syncCount > 1 ? "There are \(syncCount) elements to be synchronized" :
-				"There is \(syncCount) element to be synchronized"
+		"There is \(syncCount) element to be synchronized"
 
 		let alert = UIAlertController(
-				title: "Pending synchronization",
-				message: message,
-				preferredStyle: .alert)
+			title: "Pending synchronization",
+			message: message,
+			preferredStyle: .alert)
 
 		let syncAction = UIAlertAction(title: "Start syncing", style: .default) { _ in
 			if let cacheManager = SessionContext.currentContext?.cacheManager {

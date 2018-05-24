@@ -11,6 +11,7 @@
 * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 * details.
 */
+
 extension Array {
 
 	///Splits an array into two halves, using as midpoint the index parameter

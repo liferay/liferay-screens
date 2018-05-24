@@ -38,5 +38,4 @@ open class CardViewController: UIViewController {
 	///states). You should override this method.
 	open func pageWillDisappear() {
 	}
-
 }

@@ -14,9 +14,7 @@
 import UIKit
 import LiferayScreens
 
-class ForgotPasswordViewController: CardViewController,
-		ForgotPasswordScreenletDelegate,
-		KeyboardListener {
+class ForgotPasswordViewController: CardViewController, ForgotPasswordScreenletDelegate, KeyboardListener {
 
 	// MARK: Outlets
 
@@ -40,8 +38,7 @@ class ForgotPasswordViewController: CardViewController,
 
 	// MARK: ForgotPasswordScreenletDelegate
 
-	func screenlet(_ screenlet: ForgotPasswordScreenlet,
-			onForgotPasswordSent passwordSent: Bool) {
+	func screenlet(_ screenlet: ForgotPasswordScreenlet, onForgotPasswordSent passwordSent: Bool) {
 		cardView?.moveLeft()
 	}
 

@@ -28,7 +28,7 @@ class DocumentationViewController: CardViewController, WebScreenletDelegate {
 				.addCss(localFile: "docs")
 				.addJs(localFile: "docs")
 				.load()
-			
+
 			webScreenlet?.backgroundColor = .clear
 			webScreenlet?.presentingViewController = self
 			webScreenlet?.configuration = webScreenletConfiguration
@@ -42,19 +42,19 @@ class DocumentationViewController: CardViewController, WebScreenletDelegate {
 		self.init(nibName: "DocumentationViewController", bundle: nil)
 	}
 
-    // MARK: CardViewController
-    override func pageWillAppear() {
-        if !loaded {
-            webScreenlet?.load()
-            loaded = true
-        }
-    }
+	// MARK: CardViewController
+	override func pageWillAppear() {
+		if !loaded {
+			webScreenlet?.load()
+			loaded = true
+		}
+	}
 
-    // MARK: WebScreenletDelegate
-    func screenlet(_ screenlet: WebScreenlet,
-                   onScriptMessageNamespace namespace: String,
-                   onScriptMessage message: String) {
-        selectedFileEntry = message
-        cardView?.moveRight()
-    }
+	// MARK: WebScreenletDelegate
+	func screenlet(_ screenlet: WebScreenlet,
+				   onScriptMessageNamespace namespace: String,
+				   onScriptMessage message: String) {
+		selectedFileEntry = message
+		cardView?.moveRight()
+	}
 }

@@ -14,7 +14,6 @@
 import Foundation
 import LiferayScreens
 
-
 open class WesterosProgressPresenter: MBProgressHUDPresenter {
 
 	override public init() {
@@ -23,5 +22,4 @@ open class WesterosProgressPresenter: MBProgressHUDPresenter {
 		self.customColor = WesterosThemeBasicRed
 		self.customOpacity = 0.6
 	}
-
 }

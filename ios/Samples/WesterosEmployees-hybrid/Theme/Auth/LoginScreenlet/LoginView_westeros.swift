@@ -14,7 +14,6 @@
 import UIKit
 import LiferayScreens
 
-
 open class LoginView_westeros: LoginView_default {
 
 	@IBAction func showPassword(_ sender: AnyObject) {
@@ -27,20 +26,19 @@ open class LoginView_westeros: LoginView_default {
 
 	override open func onShow() {
 		userNameField!.attributedPlaceholder = NSAttributedString(
-				string: userNameField!.placeholder!,
-				attributes: [.foregroundColor : UIColor.white])
+			string: userNameField!.placeholder!,
+			attributes: [.foregroundColor : UIColor.white])
 
 		passwordField!.attributedPlaceholder = NSAttributedString(
-				string: passwordField!.placeholder!,
-				attributes: [.foregroundColor : UIColor.white])
+			string: passwordField!.placeholder!,
+			attributes: [.foregroundColor : UIColor.white])
 	}
 
-	override open func onSetDefaultDelegate(_ delegate:AnyObject, view:UIView) -> Bool {
+	override open func onSetDefaultDelegate(_ delegate: AnyObject, view: UIView) -> Bool {
 		return false
 	}
 
 	override open func onSetUserActionForControl(_ control: UIControl) -> Bool {
 		return control == self.loginButton
 	}
-
 }

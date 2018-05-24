@@ -40,18 +40,18 @@ class DetailViewController: CardViewController, CardDeckDelegate, WebScreenletDe
 		dismiss(animated: true, completion: nil)
 	}
 
-    func load(file: String, id: String) {
-        let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/detail?id=\(id)")
+	func load(file: String, id: String) {
+		let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/detail?id=\(id)")
 			.addCss(localFile: file)
 			.addJs(localFile: file)
 			.load()
-		
+
 		webScreenlet?.backgroundColor = .clear
 		webScreenlet?.presentingViewController = self
 		webScreenlet?.configuration = webScreenletConfiguration
 		webScreenlet?.delegate = self
 		webScreenlet?.load()
-    }
+	}
 
 	// MARK: CardViewController
 

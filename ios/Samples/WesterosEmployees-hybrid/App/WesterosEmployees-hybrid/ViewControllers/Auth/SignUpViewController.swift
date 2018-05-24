@@ -51,8 +51,7 @@ class SignUpViewController: CardViewController, SignUpScreenletDelegate {
 
 	// MARK: SignUpScreenletDelegate
 
-	func screenlet(_ screenlet: SignUpScreenlet,
-			onSignUpResponseUserAttributes attributes: [String: AnyObject]) {
+	func screenlet(_ screenlet: SignUpScreenlet, onSignUpResponseUserAttributes attributes: [String: AnyObject]) {
 		signUpButton?.isEnabled = true
 		onDone?()
 	}
