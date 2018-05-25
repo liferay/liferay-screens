@@ -11,7 +11,6 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-
 import Foundation
 import LiferayScreens
 import Hokusai
@@ -19,30 +18,38 @@ import Hokusai
 @objcMembers
 class ForfetViewController: UIViewController, WebScreenletDelegate {
 
-    var url: String = ""
-    var menuList: String = ""
+	// MARK: Outlets
+	
+	@IBOutlet weak var webScreenlet: WebScreenlet? {
+		didSet {
+			let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: self.url)
+				.set(webType: .other)
+				.addCss(localFile: "forfet")
+				.addJs(localFile: "forfet")
+				.load()
 
-    @IBOutlet weak var webScreenlet: WebScreenlet!
+			webScreenlet?.presentingViewController = self
+			webScreenlet?.configuration = webScreenletConfiguration
+			webScreenlet?.backgroundColor = UIColor(red:0.83, green:0.02, blue:0.45, alpha:1.0)
+			webScreenlet?.delegate = self
+		}
+	}
+	
+	// MARK: Variables
+	
+	var url: String = ""
+	var menuList: String = ""
+
+	// MARK: UIViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadWebScreenlet()
+		
         addLogoToNavigationBar()
+		webScreenlet?.load()
     }
-
-    func loadWebScreenlet() {
-        let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: self.url)
-            .set(webType: .other)
-            .addCss(localFile: "forfet")
-            .addJs(localFile: "forfet")
-            .load()
-
-        webScreenlet.configuration = webScreenletConfiguration
-
-        webScreenlet.backgroundColor = UIColor(red:0.83, green:0.02, blue:0.45, alpha:1.0)
-        webScreenlet.load()
-        webScreenlet.delegate = self
-    }
+	
+	// MARK: Private methods
 
     func addLogoToNavigationBar() {
         let logo = UIImage(named: "Logo") as UIImage?
@@ -75,7 +82,7 @@ class ForfetViewController: UIViewController, WebScreenletDelegate {
             var dividedItem = item.components(separatedBy: ",")
 
             let itemAction: UIAlertAction = UIAlertAction(title: dividedItem[0], style: .default) { _ -> Void in
-                self.webScreenlet.inject(injectableScript: JsScript(name: dividedItem[0], js: "gotoId(\"\(dividedItem[1])\")"))
+                self.webScreenlet?.inject(injectableScript: JsScript(name: dividedItem[0], js: "gotoId(\"\(dividedItem[1])\")"))
             }
             actionSheetController.addAction(itemAction)
         }
@@ -100,14 +107,19 @@ class ForfetViewController: UIViewController, WebScreenletDelegate {
             var dividedItem = item.components(separatedBy: ",")
 
             hokusai.addButton(dividedItem[0]) {
-                self.webScreenlet.inject(injectableScript: JsScript(name: dividedItem[0], js: "gotoId(\"\(dividedItem[1])\")"))
+                self.webScreenlet?.inject(injectableScript: JsScript(name: dividedItem[0], js: "gotoId(\"\(dividedItem[1])\")"))
             }
         }
 
         hokusai.show()
     }
+	
+	// MARK: WebScreenletDelegate
 
-    func screenlet(_ screenlet: WebScreenlet, onScriptMessageNamespace namespace: String, onScriptMessage message: String) {
+    func screenlet(_ screenlet: WebScreenlet,
+				   onScriptMessageNamespace namespace: String,
+				   onScriptMessage message: String) {
+
         switch namespace {
         case "menu":
             menuList = message
@@ -117,5 +129,4 @@ class ForfetViewController: UIViewController, WebScreenletDelegate {
         }
 
     }
-
 }
