@@ -40,17 +40,23 @@ class DetailViewController: CardViewController, CardDeckDelegate, WebScreenletDe
 		dismiss(animated: true, completion: nil)
 	}
 
+	private var isLoading = false
+
 	func load(file: String, id: String) {
 		let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/detail?id=\(id)")
 			.addCss(localFile: file)
 			.addJs(localFile: file)
 			.load()
 
-		webScreenlet?.backgroundColor = .clear
-		webScreenlet?.presentingViewController = self
-		webScreenlet?.configuration = webScreenletConfiguration
-		webScreenlet?.delegate = self
-		webScreenlet?.load()
+		if !isLoading {
+			isLoading = true
+
+			webScreenlet?.backgroundColor = .clear
+			webScreenlet?.presentingViewController = self
+			webScreenlet?.configuration = webScreenletConfiguration
+			webScreenlet?.delegate = self
+			webScreenlet?.load()
+		}
 	}
 
 	// MARK: CardViewController
@@ -58,6 +64,7 @@ class DetailViewController: CardViewController, CardDeckDelegate, WebScreenletDe
 	override func pageWillDisappear() {
 		//Hide comment card
 		self.cardDeck?.cards[safe: 0]?.changeToState(.minimized)
+		isLoading = false
 	}
 
 	// MARK: Initializers
