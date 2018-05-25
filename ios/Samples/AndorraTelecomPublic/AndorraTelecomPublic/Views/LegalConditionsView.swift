@@ -11,51 +11,54 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-
 import UIKit
 import LiferayScreens
 
 class LegalConditionsView: UIView, WebScreenletDelegate {
 
+	// MARK: Outlets
+	
     @IBOutlet var view: UIView!
 
-    @IBOutlet weak var webScreenlet: WebScreenlet!
+	@IBOutlet weak var webScreenlet: WebScreenlet? {
+		didSet {
+			let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: LanguageHelper.shared().url(page: .legal))
+				.set(webType: .other)
+				.addCss(localFile: "legal")
+				.addJs(localFile: "legal")
+				.load()
 
+			webScreenlet?.backgroundColor = .clear
+			webScreenlet?.configuration = webScreenletConfiguration
+			webScreenlet?.delegate = self
+		}
+	}
+
+	// MARK: Initializers
+	
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         Bundle.main.loadNibNamed("LegalConditionsView", owner: self, options: nil)
-        self.addSubview(view)
+        addSubview(view)
         view.frame = frame
         view.layer.cornerRadius = 5
         view.layer.masksToBounds = true
-        loadWebScreenlet()
-
+		
+		webScreenlet?.load()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
         Bundle.main.loadNibNamed("LegalConditionsView", owner: self, options: nil)
-        self.addSubview(view)
+        addSubview(view)
         view.frame = self.bounds
     }
 
-    func loadWebScreenlet() {
-        let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: LanguageHelper.shared().url(page: .legal))
-            .set(webType: .other)
-            .addCss(localFile: "legal")
-            .addJs(localFile: "legal")
-            .load()
+	// MARK: WebScreenletDelegate
 
-        webScreenlet.backgroundColor = .clear
-        webScreenlet.configuration = webScreenletConfiguration
-        webScreenlet.delegate = self
-        webScreenlet.load()
-    }
-
-    func screenlet(_ screenlet: WebScreenlet,
-                   onPortletError error: NSError) {
-        print("Legal Condition PDS Error: \(error)")
-    }
+	func screenlet(_ screenlet: WebScreenlet, onError error: NSError) {
+		print("WebScreenlet error (LegalConditionsView): \(error.debugDescription)")
+	}
 }
