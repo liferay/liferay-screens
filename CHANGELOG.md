@@ -27,6 +27,7 @@ All notable changes to this project will be documented in this file.
 * Update WesterosEmployees demo app
 * Update WesterosBank demo app
 * Update WesterosEmployees-hybrid demo app
+* Update AndorraTelecomPublic demo app
 
 ### Refactor
 
