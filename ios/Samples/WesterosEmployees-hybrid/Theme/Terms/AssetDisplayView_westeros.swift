@@ -11,29 +11,12 @@
 * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 * details.
 */
-import UIKit
+import Foundation
 import LiferayScreens
 
-open class ImageUploadDetailView_westeros: ImageUploadDetailViewBase {
-
-	open override var image: UIImage? {
-		didSet {
-			self.imagePreview?.image = image
-		}
-	}
-
-	// MARK: Outlets
-
-	@IBOutlet weak var uploadButton: UIButton? {
-		didSet {
-			uploadButton?.layer.borderWidth = 3.0
-			uploadButton?.layer.borderColor = DefaultResources.EvenColorBackground.cgColor
-		}
-	}
-
-	// MARK: Actions
-
-	@IBAction func uploadButtonClicked(_ sender: AnyObject) {
-		startUpload()
+open class AssetDisplayView_westeros: AssetDisplayView_default {
+	
+	override open func createProgressPresenter() -> ProgressPresenter {
+		return WesterosProgressPresenter()
 	}
 }

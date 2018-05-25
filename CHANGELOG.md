@@ -26,6 +26,7 @@ All notable changes to this project will be documented in this file.
 * Update Showcase-swift demo app
 * Update WesterosEmployees demo app
 * Update WesterosBank demo app
+* Update WesterosEmployees-hybrid demo app
 
 ### Refactor
 

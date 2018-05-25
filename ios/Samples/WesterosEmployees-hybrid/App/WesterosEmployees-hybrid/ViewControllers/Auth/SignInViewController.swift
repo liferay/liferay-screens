@@ -14,45 +14,39 @@
 import UIKit
 import LiferayScreens
 
-
 class SignInViewController: CardViewController, LoginScreenletDelegate, KeyboardListener {
 
-	
-	//MARK: Outlets
+	// MARK: Outlets
+
 	@IBOutlet weak var loginScreenlet: LoginScreenlet?
 
-
-	//MARK: Init methods
+	// MARK: Initializers
 
 	convenience init() {
 		self.init(nibName: "SignInViewController", bundle: nil)
 	}
 
-
-	//MARK: View actions
+	// MARK: Actions
 
 	@IBAction func forgotPasswordAction() {
 		cardView?.moveRight()
 	}
 
-
-	//MARK: UIViewController
+	// MARK: UIViewController
 
 	override func viewDidLoad() {
 		self.loginScreenlet?.delegate = self
 	}
 
-
-	//MARK: LoginScreenletDelegate
+	// MARK: LoginScreenletDelegate
 
 	func screenlet(_ screenlet: BaseScreenlet,
-			onLoginResponseUserAttributes attributes: [String:AnyObject]) {
+			onLoginResponseUserAttributes attributes: [String: AnyObject]) {
 		SessionContext.currentContext?.storeCredentials()
 		onDone?()
 	}
 
-
-	//MARK: CardViewController
+	// MARK: CardViewController
 
 	override func pageWillAppear() {
 		registerKeyboardListener(self)
@@ -63,8 +57,7 @@ class SignInViewController: CardViewController, LoginScreenletDelegate, Keyboard
 		unregisterKeyboardListener(self)
 	}
 
-
-	//MARK: KeyboardListener
+	// MARK: KeyboardListener
 
 	func showKeyboard(_ notif: Notification) {
 		if cardView?.currentState == .normal {

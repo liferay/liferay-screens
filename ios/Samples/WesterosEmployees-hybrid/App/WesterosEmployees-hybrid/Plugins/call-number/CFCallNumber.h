@@ -1,4 +1,4 @@
-#import <Cordova/CDVPlugin.h>
+#import "CDVPlugin.h"
 
 @interface CFCallNumber : CDVPlugin
 

@@ -14,11 +14,11 @@
 import UIKit
 import LiferayScreens
 
-class GalleryViewController: CardViewController, WebScreenletDelegate,
-		CardDeckDataSource, CardDeckDelegate, ImageGalleryScreenletDelegate {
+class GalleryViewController: CardViewController, WebScreenletDelegate, CardDeckDataSource, CardDeckDelegate,
+		ImageGalleryScreenletDelegate {
 
 	var selectedImageEntry: String?
-    var imageGalleryScreenlet: ImageGalleryScreenlet?
+	var imageGalleryScreenlet: ImageGalleryScreenlet?
 
 	var uploadImageViewController: UploadImageViewController? {
 		didSet {
@@ -29,17 +29,21 @@ class GalleryViewController: CardViewController, WebScreenletDelegate,
 
 	var loaded: Bool = false
 
-	
-	//MARK: Outlets
+	// MARK: Outlets
 
-    @IBOutlet weak var webScreenlet: WebScreenlet! {
-        didSet {
-            let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/gallery").addCss(localFile: "gallery").addJs(localFile: "gallery").load()
-            webScreenlet.configuration = webScreenletConfiguration
-            webScreenlet.delegate = self
-        }
-    }
-	
+	@IBOutlet weak var webScreenlet: WebScreenlet? {
+		didSet {
+			let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/gallery")
+				.addCss(localFile: "gallery")
+				.addJs(localFile: "gallery")
+				.load()
+
+			webScreenlet?.backgroundColor = .clear
+			webScreenlet?.presentingViewController = self
+			webScreenlet?.configuration = webScreenletConfiguration
+			webScreenlet?.delegate = self
+		}
+	}
 
 	@IBOutlet weak var cardDeck: CardDeckView? {
 		didSet {
@@ -48,55 +52,48 @@ class GalleryViewController: CardViewController, WebScreenletDelegate,
 		}
 	}
 
-
-	//MARK: CardViewController
+	// MARK: CardViewController
 
 	override func pageWillDisappear() {
 		hideUploadCard()
 	}
 
-    func loadWebScreenlet() {
-        webScreenlet.load()
-    }
-    
-    //MARK: CardViewController
-    override func pageWillAppear() {
-        if !loaded {
-            loadWebScreenlet()
-            loaded = true
-        }
-    }
+	// MARK: CardViewController
+	override func pageWillAppear() {
+		if !loaded {
+			webScreenlet?.load()
+			loaded = true
+		}
+	}
 
-
-	//MARK: UIViewController
+	// MARK: UIViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-        uploadImageViewController = UploadImageViewController()
-        uploadImageViewController?.onImageSelected = onImageSelected
+
+		uploadImageViewController = UploadImageViewController()
+		uploadImageViewController?.onImageSelected = onImageSelected
 	}
 
-	//MARK: Init methods
+	// MARK: Initializers
 
 	convenience init() {
 		self.init(nibName: "GalleryViewController", bundle: nil)
-        loadImageGalleryScreenlet()
+		loadImageGalleryScreenlet()
 	}
-    
-    func loadImageGalleryScreenlet() {
-        imageGalleryScreenlet = ImageGalleryScreenlet(frame: .zero, themeName: "westeros")
-        imageGalleryScreenlet?.delegate = self
-        imageGalleryScreenlet?.presentingViewController = self
-        
-        imageGalleryScreenlet?.repositoryId = LiferayServerContext.groupId
-        imageGalleryScreenlet?.folderId =
-            LiferayServerContext.longPropertyForKey("galleryFolderId")
-        
-    }
+	
+	// MARK: Private methods
 
+	func loadImageGalleryScreenlet() {
+		imageGalleryScreenlet = ImageGalleryScreenlet(frame: .zero, themeName: "westeros")
+		imageGalleryScreenlet?.delegate = self
+		imageGalleryScreenlet?.presentingViewController = self
 
-	//MARK: Private methods
+		imageGalleryScreenlet?.repositoryId = LiferayServerContext.groupId
+		imageGalleryScreenlet?.folderId =
+			LiferayServerContext.longPropertyForKey("galleryFolderId")
+
+	}
 
 	func hideUploadCard() {
 		if let uploadCard = cardDeck?.cards[safe: 0] {
@@ -108,7 +105,7 @@ class GalleryViewController: CardViewController, WebScreenletDelegate,
 		}
 	}
 
-    //MARK: CardDeckDataSource
+	// MARK: CardDeckDataSource
 
 	func numberOfCardsIn(_ cardDeck: CardDeckView) -> Int {
 		return 1
@@ -121,17 +118,16 @@ class GalleryViewController: CardViewController, WebScreenletDelegate,
 	func cardDeck(_ cardDeck: CardDeckView, controllerForCard position: CardPosition) -> CardViewController? {
 		return uploadImageViewController
 	}
-    
-    //MARK: Private methods
-    
-    func onImageSelected(_ image: UIImage) {
-        let title = "westeros-\(UUID().uuidString).png"
-        let imageUpload = ImageEntryUpload(image: image, title: title)
-        self.imageGalleryScreenlet?.showDetailUploadView(imageUpload)
-    }
 
+	// MARK: Private methods
 
-	//MARK: CardDeckDelegate
+	func onImageSelected(_ image: UIImage) {
+		let title = "westeros-\(UUID().uuidString).png"
+		let imageUpload = ImageEntryUpload(image: image, title: title)
+		self.imageGalleryScreenlet?.showDetailUploadView(imageUpload)
+	}
+
+	// MARK: CardDeckDelegate
 
 	func cardDeck(_ cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
 		if let firstCardDeck = self.cardView?.superview {
@@ -150,29 +146,35 @@ class GalleryViewController: CardViewController, WebScreenletDelegate,
 	func cardDeck(_ cardDeck: CardDeckView, buttonImageForCardIndex index: Int) -> UIImage? {
 		return UIImage(named: "icon_DOWN_W")
 	}
-    
-    //MARK: ImageGalleryScreenletDelegate
-    
-    func screenlet(_ screenlet: ImageGalleryScreenlet, onImageUploadDetailViewCreated detailUploadView: ImageUploadDetailViewBase) -> Bool {
-        self.cardDeck?.cards[safe: 0]?.addPage(detailUploadView)
-        self.cardDeck?.cards[safe: 0]?.moveRight()
-        return true
-    }
-    
-    func screenlet(_ screenlet: ImageGalleryScreenlet, onImageUploadStart image: ImageEntryUpload) {
-        hideUploadCard()
-    }
-    
-    func screenlet(_ screenlet: ImageGalleryScreenlet, onImageUploaded image: ImageEntry) {
-        loadWebScreenlet()
-    }
 
-    
-    //MARK: WebScreenletDelegate
-    func screenlet(_ screenlet: WebScreenlet,
-                   onScriptMessageNamespace namespace: String,
-                   onScriptMessage message: String) {
-        selectedImageEntry = message
-        cardView?.moveRight()
-    }
+	// MARK: ImageGalleryScreenletDelegate
+
+	func screenlet(_ screenlet: ImageGalleryScreenlet,
+				   onImageUploadDetailViewCreated detailUploadView: ImageUploadDetailViewBase) -> Bool {
+
+		self.cardDeck?.cards[safe: 0]?.addPage(detailUploadView)
+		self.cardDeck?.cards[safe: 0]?.moveRight()
+		return true
+	}
+
+	func screenlet(_ screenlet: ImageGalleryScreenlet, onImageUploadStart image: ImageEntryUpload) {
+		hideUploadCard()
+	}
+
+	func screenlet(_ screenlet: ImageGalleryScreenlet, onImageUploaded image: ImageEntry) {
+		webScreenlet?.load()
+	}
+
+	// MARK: WebScreenletDelegate
+
+	func screenlet(_ screenlet: WebScreenlet,
+				   onScriptMessageNamespace namespace: String,
+				   onScriptMessage message: String) {
+		selectedImageEntry = message
+		cardView?.moveRight()
+	}
+	
+	func screenlet(_ screenlet: WebScreenlet, onError error: NSError) {
+		print("WebScreenlet error (GalleryViewController): \(error.debugDescription)")
+	}
 }

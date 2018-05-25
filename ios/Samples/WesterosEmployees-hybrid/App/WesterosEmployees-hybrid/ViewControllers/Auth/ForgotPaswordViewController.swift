@@ -14,26 +14,19 @@
 import UIKit
 import LiferayScreens
 
+class ForgotPasswordViewController: CardViewController, ForgotPasswordScreenletDelegate, KeyboardListener {
 
-class ForgotPasswordViewController: CardViewController,
-		ForgotPasswordScreenletDelegate,
-		KeyboardListener {
+	// MARK: Outlets
 
-
-	//MARK: Outlets
-	
 	@IBOutlet weak var forgotPasswordScreenlet: ForgotPasswordScreenlet?
 
-
-	//MARK: Init methods
+	// MARK: Initializers
 
 	convenience init() {
 		self.init(nibName: "ForgotPasswordViewController", bundle: nil)
 	}
 
-
-	//MARK: UIViewController
-
+	// MARK: UIViewController
 
 	override func viewDidLoad() {
 		self.forgotPasswordScreenlet?.delegate = self
@@ -43,16 +36,13 @@ class ForgotPasswordViewController: CardViewController,
 				LiferayServerContext.stringPropertyForKey("anonymousPassword")
 	}
 
+	// MARK: ForgotPasswordScreenletDelegate
 
-	//MARK: ForgotPasswordScreenletDelegate
-
-	func screenlet(_ screenlet: ForgotPasswordScreenlet,
-			onForgotPasswordSent passwordSent: Bool) {
+	func screenlet(_ screenlet: ForgotPasswordScreenlet, onForgotPasswordSent passwordSent: Bool) {
 		cardView?.moveLeft()
 	}
 
-
-	//MARK: CardViewController
+	// MARK: CardViewController
 
 	override func pageWillAppear() {
 		registerKeyboardListener(self)
@@ -63,8 +53,7 @@ class ForgotPasswordViewController: CardViewController,
 		unregisterKeyboardListener(self)
 	}
 
-
-	//MARK: KeyboardListener
+	// MARK: KeyboardListener
 
 	func showKeyboard(_ notif: Notification) {
 		if cardView?.currentState == .normal {

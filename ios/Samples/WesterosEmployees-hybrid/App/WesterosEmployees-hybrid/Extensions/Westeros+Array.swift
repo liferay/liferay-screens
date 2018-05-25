@@ -11,29 +11,21 @@
 * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 * details.
 */
-import UIKit
-import LiferayScreens
 
-open class ImageUploadDetailView_westeros: ImageUploadDetailViewBase {
+extension Array {
 
-	open override var image: UIImage? {
-		didSet {
-			self.imagePreview?.image = image
-		}
+	///Splits an array into two halves, using as midpoint the index parameter
+	/// - parameter index: index to split the array
+	/// - returns: a tuple with the two array halves
+	func splitAtIndex(_ index: Int) -> ([Element], [Element]) {
+		let leftSplit  = self[0 ..< index]
+		let rightSplit = self[(index + 1) ..< self.count]
+
+		return (Array(leftSplit), Array(rightSplit))
 	}
 
-	// MARK: Outlets
-
-	@IBOutlet weak var uploadButton: UIButton? {
-		didSet {
-			uploadButton?.layer.borderWidth = 3.0
-			uploadButton?.layer.borderColor = DefaultResources.EvenColorBackground.cgColor
-		}
-	}
-
-	// MARK: Actions
-
-	@IBAction func uploadButtonClicked(_ sender: AnyObject) {
-		startUpload()
+	///Returns the element at the specified index if it exist, otherwise return nil
+	subscript (safe index: Index) -> Iterator.Element? {
+		return indices.contains(index) ? self[index] : nil
 	}
 }

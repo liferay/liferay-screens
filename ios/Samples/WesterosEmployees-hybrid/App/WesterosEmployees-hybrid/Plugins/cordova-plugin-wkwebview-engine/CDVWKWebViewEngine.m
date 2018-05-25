@@ -20,7 +20,7 @@
 #import "CDVWKWebViewEngine.h"
 #import "CDVWKWebViewUIDelegate.h"
 #import "CDVWKProcessPoolFactory.h"
-#import <Cordova/NSDictionary+CordovaPreferences.h>
+#import "NSDictionary+CordovaPreferences.h"
 
 #import <objc/message.h>
 

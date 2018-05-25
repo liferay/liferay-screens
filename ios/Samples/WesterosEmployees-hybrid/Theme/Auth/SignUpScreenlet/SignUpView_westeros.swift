@@ -14,7 +14,6 @@
 import UIKit
 import LiferayScreens
 
-
 open class SignUpView_westeros: SignUpView_default {
 
 	override open func onCreated() {
@@ -23,34 +22,33 @@ open class SignUpView_westeros: SignUpView_default {
 		let color = (firstNameField as! BorderedTextField).focusedColor!
 
 		firstNameField?.attributedPlaceholder = NSAttributedString(
-				string: firstNameField!.placeholder!,
-				attributes: [.foregroundColor : color])
+			string: firstNameField!.placeholder!,
+			attributes: [.foregroundColor : color])
 
 		lastNameField?.attributedPlaceholder = NSAttributedString(
-				string: lastNameField!.placeholder!,
-				attributes: [.foregroundColor : color])
+			string: lastNameField!.placeholder!,
+			attributes: [.foregroundColor : color])
 
 		emailAddressField?.attributedPlaceholder = NSAttributedString(
-				string: emailAddressField!.placeholder!,
-				attributes: [.foregroundColor : color])
+			string: emailAddressField!.placeholder!,
+			attributes: [.foregroundColor : color])
 
 		passwordField?.attributedPlaceholder = NSAttributedString(
-				string: passwordField!.placeholder!,
-				attributes: [.foregroundColor : color])
+			string: passwordField!.placeholder!,
+			attributes: [.foregroundColor : color])
 	}
 
 	override open func createProgressPresenter() -> ProgressPresenter {
 		return WesterosProgressPresenter()
 	}
 
-	override open func onSetDefaultDelegate(_ delegate:AnyObject, view:UIView) -> Bool {
+	override open func onSetDefaultDelegate(_ delegate: AnyObject, view: UIView) -> Bool {
 		return false
 	}
 
 	open override func onStartInteraction() {
 	}
 
-	open override func onFinishInteraction(_ result: AnyObject?, error: NSError?) {
+	open override func onFinishInteraction(_ result: Any?, error: NSError?) {
 	}
-
 }

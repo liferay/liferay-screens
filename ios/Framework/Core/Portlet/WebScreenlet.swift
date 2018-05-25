@@ -115,7 +115,7 @@ open class WebScreenlet: BaseScreenlet {
 	open func load() {
 		guard let configuration = configuration else {
 			webDelegate?.screenlet?(self, onError: NSError.errorWithCause(
-				.invalidServerResponse, message: "You need to specify a web screnlet configuration first"))
+				.invalidServerResponse, message: "You need to specify a web screenlet configuration first"))
 			return
 		}
 

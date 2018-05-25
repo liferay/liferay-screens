@@ -14,57 +14,66 @@
 import UIKit
 import LiferayScreens
 
-class DetailViewController: CardViewController,
-	CardDeckDelegate {
-	
-	//MARK: Outlets
+class DetailViewController: CardViewController, CardDeckDelegate, WebScreenletDelegate {
 
-    @IBOutlet weak var webScreenlet: WebScreenlet!
-    
+	// MARK: Outlets
+
+	@IBOutlet weak var webScreenlet: WebScreenlet?
+
 	@IBOutlet weak var cardDeck: CardDeckView? {
 		didSet {
 			cardDeck?.delegate = self
 			cardDeck?.layer.zPosition = 0
 		}
 	}
-    
+
 	@IBOutlet weak var goBackButton: UIButton? {
 		didSet {
-			goBackButton?.titleEdgeInsets = UIEdgeInsetsMake(0, 70, 0, 70)
+			goBackButton?.titleEdgeInsets = UIEdgeInsets(top: 0, left: 70, bottom: 0, right: 70)
 		}
 	}
 	@IBOutlet weak var arrowImageView: UIImageView?
 
-	//MARK: View methods
+	// MARK: Actions
 
 	@IBAction func goBackButtonClicked() {
-        webScreenlet.themeName = "westeros"
-
 		dismiss(animated: true, completion: nil)
 	}
 
-    func load(file: String, id: String) {
-        let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/detail?id=\(id)").addCss(localFile: file).addJs(localFile: file).load()
-        webScreenlet.configuration = webScreenletConfiguration
-        webScreenlet.load()
-    }
-	
-	//MARK: CardViewController
-	
+	private var isLoading = false
+
+	func load(file: String, id: String) {
+		let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/detail?id=\(id)")
+			.addCss(localFile: file)
+			.addJs(localFile: file)
+			.load()
+
+		if !isLoading {
+			isLoading = true
+
+			webScreenlet?.backgroundColor = .clear
+			webScreenlet?.presentingViewController = self
+			webScreenlet?.configuration = webScreenletConfiguration
+			webScreenlet?.delegate = self
+			webScreenlet?.load()
+		}
+	}
+
+	// MARK: CardViewController
+
 	override func pageWillDisappear() {
-        webScreenlet.themeName = "westeros"
-        
 		//Hide comment card
 		self.cardDeck?.cards[safe: 0]?.changeToState(.minimized)
+		isLoading = false
 	}
-	
-	//MARK: Init methods
+
+	// MARK: Initializers
 
 	convenience init(nibName: String) {
 		self.init(nibName: nibName, bundle: nil)
 	}
 
-	//MARK: CardDeckDataSource
+	// MARK: CardDeckDataSource
 
 	func numberOfCardsIn(_ cardDeck: CardDeckView) -> Int {
 		return 1
@@ -74,7 +83,7 @@ class DetailViewController: CardViewController,
 		return WesterosCardView.newAutoLayout()
 	}
 
-	//MARK: CardDeckDelegate
+	// MARK: CardDeckDelegate
 
 	func cardDeck(_ cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
 		if let cardView = self.cardView {

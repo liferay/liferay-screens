@@ -17,14 +17,12 @@ import LiferayScreens
 
 public var tourCompleted = false
 
-class HomeViewController: UIViewController, WebScreenletDelegate,
-	CardDeckDelegate, CardDeckDataSource {
-	
+class HomeViewController: UIViewController, WebScreenletDelegate, CardDeckDelegate, CardDeckDataSource {
+
 	///Flag to control if the home has been initialized
 	var homeInitialized = false
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet weak var cardDeck: CardDeckView? {
 		didSet {
@@ -46,12 +44,22 @@ class HomeViewController: UIViewController, WebScreenletDelegate,
 			latestChangesLabel?.alpha = 0
 		}
 	}
-    
-    @IBOutlet weak var webScreenlet: WebScreenlet!
-    
 
+	@IBOutlet weak var webScreenlet: WebScreenlet? {
+		didSet {
+			let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/lastchanges")
+				.addCss(localFile: "last_changes")
+				.addJs(localFile: "last_changes")
+				.load()
 
-	//MARK: Card controllers
+			webScreenlet?.backgroundColor = .clear
+			webScreenlet?.presentingViewController = self
+			webScreenlet?.configuration = webScreenletConfiguration
+			webScreenlet?.delegate = self
+		}
+	}
+
+	// MARK: Card controllers
 
 	var documentationViewController: DocumentationViewController? {
 		didSet {
@@ -71,27 +79,17 @@ class HomeViewController: UIViewController, WebScreenletDelegate,
 		}
 	}
 
-
-	//MARK: View actions
+	// MARK: Actions
 
 	@IBAction func userButtonClicked() {
 		performSegue(withIdentifier: "user_profile", sender: self)
 	}
 
+	// MARK: UIViewController
 
-	//MARK: UIViewController
-
-    func loadWebScreenlet() {
-        let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/lastchanges").addCss(localFile: "last_changes").addJs(localFile: "last_changes").load()
-        webScreenlet.themeName = "westeros"
-        webScreenlet.configuration = webScreenletConfiguration
-        webScreenlet.load()
-        webScreenlet.delegate = self
-    }
-    
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        
+
 		documentationViewController = DocumentationViewController()
 		blogsViewController = BlogsViewController()
 		galleryViewController = GalleryViewController()
@@ -104,32 +102,29 @@ class HomeViewController: UIViewController, WebScreenletDelegate,
 
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-        
+
 		SessionContext.loadStoredCredentials()
-        
+
 		if !SessionContext.isLoggedIn {
 			homeInitialized = false
-			
+
 			if !tourCompleted {
 				dispatch_delayed(0.5) {
 					self.performSegue(withIdentifier: "tour", sender: nil)
 				}
-			}
-			else {
+			} else {
 				self.performSegue(withIdentifier: "login", sender: nil)
 			}
-		}
-		else if !homeInitialized {
+		} else if !homeInitialized {
 			tourCompleted = true
-			
+
 			//Initialize home only once
 			initializeHome()
 			homeInitialized = true
 		}
 	}
 
-	
-	//MARK: CardDeckDataSource
+	// MARK: CardDeckDataSource
 
 	func numberOfCardsIn(_ cardDeck: CardDeckView) -> Int {
 		return 3
@@ -139,7 +134,6 @@ class HomeViewController: UIViewController, WebScreenletDelegate,
 		return WesterosCardView.newAutoLayout()
 	}
 
-    
 	func cardDeck(_ cardDeck: CardDeckView, controllerForCard position: CardPosition)
 		-> CardViewController? {
 			switch (position.card, position.page) {
@@ -155,9 +149,8 @@ class HomeViewController: UIViewController, WebScreenletDelegate,
 				return nil
 			}
 	}
- 
 
-	//MARK: CardDeckDelegate
+	// MARK: CardDeckDelegate
 
 	func cardDeck(_ cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
 		if index % 2 == 0 {
@@ -184,52 +177,57 @@ class HomeViewController: UIViewController, WebScreenletDelegate,
 			self.userProfileButton?.isEnabled = position.page == 0
 		}
 
-		if let vc = cardDeck.cards[position.card].presentingControllers[safe: position.page]
-				as? DetailViewController {
-            
+		if let viewController = cardDeck.cards[position.card]
+			.presentingControllers[safe: position.page] as? DetailViewController {
+
 			switch (position.card, position.page) {
 			case (0, 1):
-                vc.load(file: "detail", id: (documentationViewController?.selectedFileEntry)!)
+				viewController.load(file: "detail", id: (documentationViewController?.selectedFileEntry)!)
 			case (1, 1):
-                vc.load(file: "blog", id: (blogsViewController?.selectedBlogEntry)!)
+				viewController.load(file: "blog", id: (blogsViewController?.selectedBlogEntry)!)
 			case (2, 1):
-                vc.load(file: "detail", id: (galleryViewController?.selectedImageEntry)!)
+				viewController.load(file: "detail", id: (galleryViewController?.selectedImageEntry)!)
 			default:
 				break
 			}
 		}
 	}
-    
-    //MARK: WebScreenletDelegate
-    func screenlet(_ screenlet: WebScreenlet,
-                   onScriptMessageNamespace namespace: String,
-                   onScriptMessage message: String) {
-        
-        let bodyArray = message.components(separatedBy: "|")
-        
-        if bodyArray[1] != "blog"{
-            let detail: DetailViewController? = DetailViewController(nibName: "ModalWebDetailViewController")
-            
-            self.present(detail!, animated: true) {
-                detail?.load(file: "detail", id: bodyArray[0])
-            }
-        } else {
-            let detail: DetailViewController? = DetailViewController(nibName: "ModalWebBlogDetailViewController")
-            
-            self.present(detail!, animated: true) {
-                detail?.load(file: "blog", id: bodyArray[0])
-            }
 
-        }
-        
-    }
+	// MARK: WebScreenletDelegate
 
-	//MARK: Private functions
+	func screenlet(_ screenlet: WebScreenlet,
+				   onScriptMessageNamespace namespace: String,
+				   onScriptMessage message: String) {
+
+		let bodyArray = message.components(separatedBy: "|")
+
+		if bodyArray[1] != "blog"{
+			let detail: DetailViewController? = DetailViewController(nibName: "ModalWebDetailViewController")
+
+			self.present(detail!, animated: true) {
+				detail?.load(file: "detail", id: bodyArray[0])
+			}
+		}
+		else {
+			let detail: DetailViewController? = DetailViewController(nibName: "ModalWebBlogDetailViewController")
+
+			self.present(detail!, animated: true) {
+				detail?.load(file: "blog", id: bodyArray[0])
+			}
+
+		}
+	}
+	
+	func screenlet(_ screenlet: WebScreenlet, onError error: NSError) {
+		print("WebScreenlet error (HomeViewController): \(error.debugDescription)")
+	}
+
+	// MARK: Private functions
 
 	fileprivate func initializeHome() {
-        
-        loadWebScreenlet()
-    
+
+		webScreenlet?.load()
+
 		//Load user profile
 		let userId = SessionContext.currentContext!.user.userId
 		if self.userPortraitScreenlet?.userId != userId {
@@ -239,7 +237,7 @@ class HomeViewController: UIViewController, WebScreenletDelegate,
 			let lastName =
 				SessionContext.currentContext!.user.lastName
 			self.userNameLabel?.text = "\(firstName) \(lastName)"
-					.trimmingCharacters(in: .whitespacesAndNewlines)
+				.trimmingCharacters(in: .whitespacesAndNewlines)
 
 		}
 
@@ -263,19 +261,19 @@ class HomeViewController: UIViewController, WebScreenletDelegate,
 						self.showSyncAlert(count)
 					}
 				}
-			}) 
+			})
 		})
 	}
 
 	fileprivate func showSyncAlert(_ syncCount: UInt) {
 
 		let message = syncCount > 1 ? "There are \(syncCount) elements to be synchronized" :
-				"There is \(syncCount) element to be synchronized"
+		"There is \(syncCount) element to be synchronized"
 
 		let alert = UIAlertController(
-				title: "Pending synchronization",
-				message: message,
-				preferredStyle: .alert)
+			title: "Pending synchronization",
+			message: message,
+			preferredStyle: .alert)
 
 		let syncAction = UIAlertAction(title: "Start syncing", style: .default) { _ in
 			if let cacheManager = SessionContext.currentContext?.cacheManager {
@@ -292,4 +290,3 @@ class HomeViewController: UIViewController, WebScreenletDelegate,
 		present(alert, animated: true, completion: nil)
 	}
 }
-
