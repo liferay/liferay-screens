@@ -11,7 +11,6 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-
 import UIKit
 import LiferayScreens
 import Hokusai
@@ -19,40 +18,81 @@ import Hokusai
 @objcMembers
 class MenuViewController: UIViewController, WebScreenletDelegate, CallMeBackDelegate {
 
-    @IBOutlet weak var webScreenlet: WebScreenlet!
+	// MARK: Outlets
+
     @IBOutlet weak var heightCallMeBack: NSLayoutConstraint!
     @IBOutlet weak var headerCallmeBack: UIView!
     @IBOutlet weak var viewCallmeBack: UIView!
     @IBOutlet weak var labelCallMeBack: UILabel!
-    @IBOutlet weak var callMeBack: CallMeBackView!
-    @IBOutlet weak var coverForClick: UIVisualEffectView!
+	@IBOutlet weak var coverForClick: UIVisualEffectView!
+
+	@IBOutlet weak var callMeBack: CallMeBackView! {
+		didSet {
+			callMeBack.delegate = self
+		}
+	}
+
+	@IBOutlet weak var webScreenlet: WebScreenlet? {
+		didSet {
+			let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: LanguageHelper.shared().url(page: .index))
+				.set(webType: .other)
+				.addCss(localFile: "menu")
+				.addJs(localFile: "menu")
+				.load()
+
+			webScreenlet?.presentingViewController = self
+			webScreenlet?.configuration = webScreenletConfiguration
+			webScreenlet?.isScrollEnabled = false
+			webScreenlet?.backgroundColor = UIColor.lightPurple
+			webScreenlet?.delegate = self
+		}
+	}
+
+	// MARK: Variables
 
     var coverNavegationBar: UIView?
+
+	// MARK: UIViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         addLogoToNavigationBar()
         modifyHeightCallMeBack(height: 0)
-        callMeBack.delegate = self
-
         buttonChangeLanguage(language: LanguageHelper.shared().threeLettersFormatted)
         textButtonBack()
-        loadWebScreenlet()
+        webScreenlet?.load()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == "forfet" ,
+			let viewController = segue.destination as? ForfetViewController {
+			switch sender as? String {
+			case "0":
+				viewController.url = LanguageHelper.shared().url(page: .mobile)
+			case "1":
+				viewController.url = LanguageHelper.shared().url(page: .roaming)
+			case "2":
+				viewController.url = LanguageHelper.shared().url(page: .paquete69)
+			case "3":
+				viewController.url = LanguageHelper.shared().url(page: .optima)
+			default:
+				print("Sorry, we don't have more cases")
+			}
+
+		}
+	}
+
+	// MARK: Private methods
 
     func modifyHeightCallMeBack(height: CGFloat) {
-        heightCallMeBack.constant = height
+        self.heightCallMeBack.constant = height
         self.viewCallmeBack.layoutIfNeeded()
     }
 
     func addLogoToNavigationBar() {
         let logo = UIImage(named: "Logo") as UIImage?
-        let imageView = UIImageView(image:logo)
+        let imageView = UIImageView(image: logo)
         imageView.frame.size.width = 100
         imageView.frame.size.height = 32
         imageView.contentMode = UIViewContentMode.scaleAspectFill
@@ -61,7 +101,7 @@ class MenuViewController: UIViewController, WebScreenletDelegate, CallMeBackDele
     }
 
     func buttonChangeLanguage(language: String) {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: language,
             style: .plain,
             target: self,
@@ -69,7 +109,9 @@ class MenuViewController: UIViewController, WebScreenletDelegate, CallMeBackDele
     }
 
     func menuChangeLanguage() {
-        let actionSheetController: UIAlertController = UIAlertController(title: "language".localized(), message: "choose".localized(), preferredStyle: .actionSheet)
+        let actionSheetController: UIAlertController = UIAlertController(title: "language".localized(),
+																		 message: "choose".localized(),
+																		 preferredStyle: .actionSheet)
 
         for value in LanguageHelper.shared().listLanguages {
             let itemAction: UIAlertAction = UIAlertAction(title: value, style: .default) { _ -> Void in
@@ -106,10 +148,10 @@ class MenuViewController: UIViewController, WebScreenletDelegate, CallMeBackDele
 
     func actionChangeLanguage(value: String) {
         LanguageHelper.shared().change(language: value)
-        self.buttonChangeLanguage(language: LanguageHelper.shared().threeLettersFormatted)
-        self.loadWebScreenlet()
+		self.buttonChangeLanguage(language: LanguageHelper.shared().threeLettersFormatted)
         self.textButtonBack()
         self.callMeBack.setTextOutlets()
+		webScreenlet?.load()
     }
 
     func textButtonBack() {
@@ -118,11 +160,14 @@ class MenuViewController: UIViewController, WebScreenletDelegate, CallMeBackDele
     }
 
     func attachClickHeaderCallBack() {
-        let headerGesture = UITapGestureRecognizer(target: self, action:  #selector (MenuViewController.callBackActions(sender:)))
+        let headerGesture = UITapGestureRecognizer(target: self,
+												   action:  #selector (MenuViewController.callBackActions(sender:)))
 
-        let touchUpViewGesture = UITapGestureRecognizer(target: self, action:  #selector (MenuViewController.callBackActions(sender:)))
+        let touchUpViewGesture = UITapGestureRecognizer(target: self,
+														action:  #selector (MenuViewController.callBackActions(sender:)))
 
-        let navBarViewGesture = UITapGestureRecognizer(target: self, action:  #selector (MenuViewController.callBackActions(sender:)))
+        let navBarViewGesture = UITapGestureRecognizer(target: self,
+													   action:  #selector (MenuViewController.callBackActions(sender:)))
 
         self.headerCallmeBack.addGestureRecognizer(headerGesture)
         self.coverForClick.addGestureRecognizer(touchUpViewGesture)
@@ -139,15 +184,17 @@ class MenuViewController: UIViewController, WebScreenletDelegate, CallMeBackDele
                 self.heightCallMeBack.constant = smallSize
                 self.viewCallmeBack.superview?.layoutIfNeeded()
 
-                self.navigationController?.navigationBar.dismissChangeBackgroundColor(view: self.coverNavegationBar!, isUserInteraccionEnable: false)
+                self.navigationController?.navigationBar.dismissChangeBackgroundColor(view: self.coverNavegationBar!,
+																					  isUserInteraccionEnable: false)
                 self.coverForClick.dismissChangeBackgroundColor(isHidden: true)
                 self.coverNavegationBar?.isUserInteractionEnabled = false
             }
-            else {
+			else {
                 self.heightCallMeBack.constant = bigSize
                 self.viewCallmeBack.superview?.layoutIfNeeded()
 
-                self.navigationController?.navigationBar.animatedChangeBackgroundColor(view: self.coverNavegationBar!, isUserInteraccionEnable: true)
+                self.navigationController?.navigationBar.animatedChangeBackgroundColor(view: self.coverNavegationBar!,
+																					   isUserInteraccionEnable: true)
                 self.coverForClick.animatedChangeBackgroundColor(isHidden: false)
                 self.coverNavegationBar?.isUserInteractionEnabled = true
             }
@@ -168,19 +215,23 @@ class MenuViewController: UIViewController, WebScreenletDelegate, CallMeBackDele
         self.coverNavegationBar?.isUserInteractionEnabled = false
     }
 
-    func loadWebScreenlet() {
-        let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: LanguageHelper.shared().url(page: .index))
-            .set(webType: .other)
-            .addCss(localFile: "menu")
-            .addJs(localFile: "menu")
-            .load()
-        webScreenlet.configuration = webScreenletConfiguration
-        webScreenlet.isScrollEnabled = false
-        webScreenlet.backgroundColor = UIColor.lightPurple
+	func createPopOverCallMeBack(message: String) {
+		labelCallMeBack.text = message
+		UIView.animate(withDuration: 1, animations: {
+			self.heightCallMeBack.constant = 50
+			self.viewCallmeBack.superview?.layoutIfNeeded()
+		})
+	}
 
-        webScreenlet.load()
-        webScreenlet.delegate = self
-    }
+	func goNextForfet(position: String) {
+		performSegue(withIdentifier: "forfet", sender: position)
+	}
+
+	func goToMap() {
+		performSegue(withIdentifier: "map", sender: nil)
+	}
+
+	// MARK: WebScreenletDelegate
 
     func onWebLoad(_ screenlet: WebScreenlet, url: String) {
         prepareCoverNavegationBar()
@@ -188,53 +239,19 @@ class MenuViewController: UIViewController, WebScreenletDelegate, CallMeBackDele
     }
 
     func screenlet(_ screenlet: WebScreenlet, onScriptMessageNamespace namespace: String, onScriptMessage message: String) {
-        switch namespace {
-            case "call-me-back":
-                createPopOverCallMeBack(message: message)
-            case "click-button":
-                goNextForfet(position: message)
-            case "map":
-                goToMap()
-            default:
-                print("Any event")
-        }
-
+		switch namespace {
+		case "call-me-back":
+			createPopOverCallMeBack(message: message)
+		case "click-button":
+			goNextForfet(position: message)
+		case "map":
+			goToMap()
+		default:
+			print("Any event")
+		}
     }
 
-    func createPopOverCallMeBack(message: String) {
-        labelCallMeBack.text = message
-        UIView.animate(withDuration: 1, animations: {
-            self.heightCallMeBack.constant = 50
-            self.viewCallmeBack.superview?.layoutIfNeeded()
-        })
-    }
-
-    func goNextForfet(position: String) {
-        performSegue(withIdentifier: "forfet", sender: position)
-    }
-
-    func goToMap() {
-        performSegue(withIdentifier: "map", sender: nil)
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "forfet" ,
-            let vc = segue.destination as? ForfetViewController {
-            switch sender as! String {
-            case "0":
-                vc.url = LanguageHelper.shared().url(page: .mobile)
-            case "1":
-                vc.url = LanguageHelper.shared().url(page: .roaming)
-            case "2":
-                vc.url = LanguageHelper.shared().url(page: .paquete69)
-            case "3":
-                vc.url = LanguageHelper.shared().url(page: .optima)
-            default:
-                print("Sorry, we don't have more cases")
-            }
-
-        }
-    }
+	// MARK: CallMeBackDelegate
 
     func showAlertLegalNotAccepted(callMeBackView: CallMeBackView, title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
@@ -244,18 +261,31 @@ class MenuViewController: UIViewController, WebScreenletDelegate, CallMeBackDele
     }
 
     func showLegalCoditions(callMeBackView: CallMeBackView) {
-        let alertController = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        let alertController = UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+												message: nil,
+												preferredStyle: UIAlertControllerStyle.actionSheet)
 
         let margin: CGFloat = 10.0
-        let rect = CGRect(x: margin, y: margin, width: alertController.view.bounds.size.width - margin * 6.0, height: 340)
+        let rect = CGRect(x: margin,
+						  y: margin,
+						  width: alertController.view.bounds.size.width - margin * 6.0,
+						  height: 340)
 
         let legalConditionView = LegalConditionsView(frame: rect)
 
         alertController.view.addSubview(legalConditionView)
 
-        let acceptAction = UIAlertAction(title: "accept".localized(), style: .default, handler: { (_: UIAlertAction!) in self.callMeBack.legalConditionsChange(isAccepted: true) })
+        let acceptAction = UIAlertAction(title: "accept".localized(),
+										 style: .default,
+										 handler: { (_: UIAlertAction!) in
+											self.callMeBack.legalConditionsChange(isAccepted: true)
+		})
 
-        let cancelAction = UIAlertAction(title: "cancel".localized(), style: .cancel, handler: { (_: UIAlertAction!) in self.callMeBack.legalConditionsChange(isAccepted: false) })
+        let cancelAction = UIAlertAction(title: "cancel".localized(),
+										 style: .cancel,
+										 handler: { (_: UIAlertAction!) in
+											self.callMeBack.legalConditionsChange(isAccepted: false)
+		})
 
         alertController.addAction(acceptAction)
         alertController.addAction(cancelAction)
@@ -265,6 +295,5 @@ class MenuViewController: UIViewController, WebScreenletDelegate, CallMeBackDele
         DispatchQueue.main.async {
             self.present(alertController, animated: true, completion: {})
         }
-
     }
 }

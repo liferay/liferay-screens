@@ -11,17 +11,14 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-
 import UIKit
 import Alamofire
 
-@objcMembers
 class CallMeBackView: UIView {
 
-    weak var delegate: CallMeBackDelegate?
+	// MARK: Outlets
 
     @IBOutlet var view: UIView!
-
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var phoneTextField: UITextFieldExtended!
@@ -31,53 +28,71 @@ class CallMeBackView: UIView {
     @IBOutlet weak var orLabel: UILabel!
     @IBOutlet weak var iCallButton: UIButton!
 
+	// MARK: Variables
+
+	open weak var delegate: CallMeBackDelegate?
+
+	// MARK: Actions
+
+	@IBAction func callMeNow(_ sender: UIButton) {
+		let phoneCount = phoneTextField.text?.count
+		if phoneCount != 6 {
+			delegate?.showAlertLegalNotAccepted(callMeBackView: self,
+												title: "title-legal".localized()!,
+												message: "phone-not-valid".localized()!)
+		}
+		if legalSwitch.isOn {
+			delegate?.showAlertLegalNotAccepted(callMeBackView: self,
+												title: "title-call".localized()!,
+												message: "call".localized()!)
+		}
+		else {
+			delegate?.showAlertLegalNotAccepted(callMeBackView: self,
+												title: "title-legal".localized()!,
+												message: "legal-no-accept".localized()!)
+		}
+	}
+
+	@IBAction func iCall(_ sender: UIButton) {
+		if let url = URL(string: "tel://100900900") {
+			if #available(iOS 10, *) {
+				UIApplication.shared.open(url, options: [:], completionHandler: nil)
+			}
+			else {
+				UIApplication.shared.openURL(url as URL)
+			}
+		}
+	}
+
+	// MARK: Initializers
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
         Bundle.main.loadNibNamed("CallMeBackView", owner: self, options: nil)
-        self.addSubview(view)
+        addSubview(view)
         view.frame = self.bounds
 
         setTextOutlets()
         addTouchUpToLegalLabel()
     }
 
+	// MARK: Private methods
+
     func addTouchUpToLegalLabel() {
         legalLabel.isUserInteractionEnabled = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(legalTouchUpPopOver(tapGestureRecognizer:)))
+        let tapGesture = UITapGestureRecognizer(target: self,
+												action: #selector(legalTouchUpPopOver(tapGestureRecognizer:)))
+
         legalLabel.addGestureRecognizer(tapGesture)
     }
 
-    func legalTouchUpPopOver(tapGestureRecognizer: UITapGestureRecognizer) {
+	@objc func legalTouchUpPopOver(tapGestureRecognizer: UITapGestureRecognizer) {
         delegate?.showLegalCoditions(callMeBackView: self)
     }
 
     func legalConditionsChange(isAccepted: Bool) {
         legalSwitch.setOn(isAccepted, animated: true)
-    }
-
-    @IBAction func callMeNow(_ sender: UIButton) {
-        let phoneCount = phoneTextField.text?.count
-        if phoneCount != 6 {
-            delegate?.showAlertLegalNotAccepted(callMeBackView: self, title: "title-legal".localized()!, message: "phone-not-valid".localized()!)
-        }
-        if legalSwitch.isOn {
-            delegate?.showAlertLegalNotAccepted(callMeBackView: self, title: "title-call".localized()!, message: "call".localized()!)
-        }
-        else {
-            delegate?.showAlertLegalNotAccepted(callMeBackView: self, title: "title-legal".localized()!, message: "legal-no-accept".localized()!)
-        }
-    }
-
-    @IBAction func iCall(_ sender: UIButton) {
-        if let url = URL(string: "tel://100900900") {
-            if #available(iOS 10, *) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            }
-            else {
-                UIApplication.shared.openURL(url as URL)
-            }
-        }
     }
 
     func setTextOutlets() {
@@ -87,8 +102,8 @@ class CallMeBackView: UIView {
         let mutableString = NSMutableAttributedString(string: "accept-legal".localized()!, attributes: nil)
         let range = rangeLastTwoWords(words: "accept-legal".localized()!)
         let attributtes =
-            [.foregroundColor: UIColor(red:0.83, green:0.02, blue:0.45, alpha:1.0),
-            .underlineStyle: 1] as [NSAttributedStringKey : Any]
+            [.foregroundColor: UIColor(red: 0.83, green: 0.02, blue: 0.45, alpha: 1.0),
+            .underlineStyle: 1] as [NSAttributedStringKey: Any]
         mutableString.addAttributes(attributtes, range: range)
 
         legalLabel.attributedText = mutableString
@@ -99,11 +114,11 @@ class CallMeBackView: UIView {
     }
 
     func rangeLastTwoWords(words: String) -> NSRange {
-        let countWords = words.characters.count
+        let countWords = words.count
         let arrayWords = words.components(separatedBy: " ")
         let lastPosition = arrayWords.count - 1
 
-        let countLastTwoWords = arrayWords[lastPosition].characters.count + arrayWords[lastPosition - 1].characters.count + 1
+        let countLastTwoWords = arrayWords[lastPosition].count + arrayWords[lastPosition - 1].count + 1
 
         return NSRange(location: countWords - countLastTwoWords, length: countLastTwoWords)
     }

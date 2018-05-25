@@ -11,7 +11,6 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-
 import Foundation
 import UIKit
 
@@ -33,7 +32,12 @@ extension UIView {
                        delay: 0.0,
                        usingSpringWithDamping: 100.0,
                        initialSpringVelocity: 0.6,
-                       options: [.beginFromCurrentState, .allowUserInteraction, .overrideInheritedOptions, .curveEaseOut],
+                       options: [
+							.beginFromCurrentState,
+							.allowUserInteraction,
+							.overrideInheritedOptions,
+							.curveEaseOut
+						],
                        animations: { self.backgroundColor = UIColor.clear },
                        completion: {(_) in
 							if let hidden = isHidden {
@@ -42,10 +46,13 @@ extension UIView {
 					   })
     }
 
-    func animatedChangeBackgroundColor(view: UIView, isUserInteraccionEnable: Bool? = nil, color: UIColor = UIColor(white: 1.0, alpha: 0.7)) {
+    func animatedChangeBackgroundColor(view: UIView,
+									   isUserInteraccionEnable: Bool? = nil,
+									   color: UIColor = UIColor(white: 1.0, alpha: 0.7)) {
         if let userInteraccion = isUserInteraccionEnable {
             view.isUserInteractionEnabled = userInteraccion
         }
+
         UIView.animate(withDuration: 0.8 * 0.4,
                        delay: 0.0,
                        options: UIViewAnimationOptions.curveEaseOut,
@@ -58,7 +65,12 @@ extension UIView {
                        delay: 0.0,
                        usingSpringWithDamping: 100.0,
                        initialSpringVelocity: 0.6,
-                       options: [.beginFromCurrentState, .allowUserInteraction, .overrideInheritedOptions, .curveEaseOut],
+                       options: [
+							.beginFromCurrentState,
+							.allowUserInteraction,
+							.overrideInheritedOptions,
+							.curveEaseOut
+						],
                        animations: { view.backgroundColor = UIColor.clear },
                        completion: {(_) in
 							if let userInteraccion = isUserInteraccionEnable {
