@@ -11,34 +11,39 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-
 import UIKit
 import LiferayScreens
 
-class MapViewController: UIViewController {
+@objcMembers
+class MapViewController: UIViewController, WebScreenletDelegate {
 
-    @IBOutlet weak var webScreenlet: WebScreenlet!
+	// MARK: Outlets
+	
+	@IBOutlet weak var webScreenlet: WebScreenlet? {
+		didSet {
+			let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: LanguageHelper.shared().url(page: .map))
+				.set(webType: .other)
+				.addCss(localFile: "map")
+				.addJs(localFile: "map")
+				.load()
 
+			webScreenlet?.presentingViewController = self
+			webScreenlet?.configuration = webScreenletConfiguration
+			webScreenlet?.backgroundColor = UIColor(red:0.83, green:0.02, blue:0.45, alpha:1.0)
+			webScreenlet?.delegate = self
+		}
+	}
+
+	// MARK: UIViewController
+	
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadWebScreenlet()
+
         addLogoToNavigationBar()
+		webScreenlet?.load()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
-    func loadWebScreenlet() {
-        let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: LanguageHelper.shared().url(page: .map))
-            .set(webType: .other)
-            .addCss(localFile: "map")
-            .addJs(localFile: "map")
-            .load()
-        webScreenlet.configuration = webScreenletConfiguration
-        webScreenlet.backgroundColor = UIColor(red:0.83, green:0.02, blue:0.45, alpha:1.0)
-        webScreenlet.load()
-    }
+	
+	// MARK: Private methods
 
     func addLogoToNavigationBar() {
         let logo = UIImage(named: "Logo") as UIImage?
