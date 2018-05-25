@@ -17,7 +17,7 @@ import LiferayScreens
 class LegalConditionsView: UIView, WebScreenletDelegate {
 
 	// MARK: Outlets
-	
+
     @IBOutlet var view: UIView!
 
 	@IBOutlet weak var webScreenlet: WebScreenlet? {
@@ -35,7 +35,7 @@ class LegalConditionsView: UIView, WebScreenletDelegate {
 	}
 
 	// MARK: Initializers
-	
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -44,7 +44,7 @@ class LegalConditionsView: UIView, WebScreenletDelegate {
         view.frame = frame
         view.layer.cornerRadius = 5
         view.layer.masksToBounds = true
-		
+
 		webScreenlet?.load()
     }
 

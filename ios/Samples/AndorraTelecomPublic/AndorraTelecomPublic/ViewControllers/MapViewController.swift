@@ -18,7 +18,7 @@ import LiferayScreens
 class MapViewController: UIViewController, WebScreenletDelegate {
 
 	// MARK: Outlets
-	
+
 	@IBOutlet weak var webScreenlet: WebScreenlet? {
 		didSet {
 			let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: LanguageHelper.shared().url(page: .map))
@@ -29,25 +29,25 @@ class MapViewController: UIViewController, WebScreenletDelegate {
 
 			webScreenlet?.presentingViewController = self
 			webScreenlet?.configuration = webScreenletConfiguration
-			webScreenlet?.backgroundColor = UIColor(red:0.83, green:0.02, blue:0.45, alpha:1.0)
+			webScreenlet?.backgroundColor = UIColor(red: 0.83, green: 0.02, blue: 0.45, alpha: 1.0)
 			webScreenlet?.delegate = self
 		}
 	}
 
 	// MARK: UIViewController
-	
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         addLogoToNavigationBar()
 		webScreenlet?.load()
     }
-	
+
 	// MARK: Private methods
 
     func addLogoToNavigationBar() {
         let logo = UIImage(named: "Logo") as UIImage?
-        let imageView = UIImageView(image:logo)
+        let imageView = UIImageView(image: logo)
         imageView.frame.size.width = 100
         imageView.frame.size.height = 32
         imageView.contentMode = UIViewContentMode.scaleAspectFill

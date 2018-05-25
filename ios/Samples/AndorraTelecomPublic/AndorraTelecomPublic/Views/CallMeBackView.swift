@@ -15,7 +15,7 @@ import UIKit
 import Alamofire
 
 class CallMeBackView: UIView {
-	
+
 	// MARK: Outlets
 
     @IBOutlet var view: UIView!
@@ -30,23 +30,29 @@ class CallMeBackView: UIView {
 
 	// MARK: Variables
 
-	weak var delegate: CallMeBackDelegate?
-	
+	open weak var delegate: CallMeBackDelegate?
+
 	// MARK: Actions
 
 	@IBAction func callMeNow(_ sender: UIButton) {
 		let phoneCount = phoneTextField.text?.count
 		if phoneCount != 6 {
-			delegate?.showAlertLegalNotAccepted(callMeBackView: self, title: "title-legal".localized()!, message: "phone-not-valid".localized()!)
+			delegate?.showAlertLegalNotAccepted(callMeBackView: self,
+												title: "title-legal".localized()!,
+												message: "phone-not-valid".localized()!)
 		}
 		if legalSwitch.isOn {
-			delegate?.showAlertLegalNotAccepted(callMeBackView: self, title: "title-call".localized()!, message: "call".localized()!)
+			delegate?.showAlertLegalNotAccepted(callMeBackView: self,
+												title: "title-call".localized()!,
+												message: "call".localized()!)
 		}
 		else {
-			delegate?.showAlertLegalNotAccepted(callMeBackView: self, title: "title-legal".localized()!, message: "legal-no-accept".localized()!)
+			delegate?.showAlertLegalNotAccepted(callMeBackView: self,
+												title: "title-legal".localized()!,
+												message: "legal-no-accept".localized()!)
 		}
 	}
-	
+
 	@IBAction func iCall(_ sender: UIButton) {
 		if let url = URL(string: "tel://100900900") {
 			if #available(iOS 10, *) {
@@ -70,7 +76,7 @@ class CallMeBackView: UIView {
         setTextOutlets()
         addTouchUpToLegalLabel()
     }
-	
+
 	// MARK: Private methods
 
     func addTouchUpToLegalLabel() {
@@ -96,8 +102,8 @@ class CallMeBackView: UIView {
         let mutableString = NSMutableAttributedString(string: "accept-legal".localized()!, attributes: nil)
         let range = rangeLastTwoWords(words: "accept-legal".localized()!)
         let attributtes =
-            [.foregroundColor: UIColor(red:0.83, green:0.02, blue:0.45, alpha:1.0),
-            .underlineStyle: 1] as [NSAttributedStringKey : Any]
+            [.foregroundColor: UIColor(red: 0.83, green: 0.02, blue: 0.45, alpha: 1.0),
+            .underlineStyle: 1] as [NSAttributedStringKey: Any]
         mutableString.addAttributes(attributtes, range: range)
 
         legalLabel.attributedText = mutableString

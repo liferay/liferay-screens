@@ -132,7 +132,6 @@
 				4B9A91021F3C666C007DB477 /* Resources */,
 				4B1FF3381F274C8000ECB73F /* AppDelegate.swift */,
 				4B1FF3441F274C8000ECB73F /* Info.plist */,
-				4B45A5A11F5EFB46002E2052 /* ColourfulFlag.swift */,
 			);
 			path = AndorraTelecomPublic;
 			sourceTree = "<group>";
@@ -203,6 +202,7 @@
 		4B9A91241F3C680C007DB477 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				4B45A5A11F5EFB46002E2052 /* ColourfulFlag.swift */,
 				4B9A91251F3C681A007DB477 /* LanguageHelper.swift */,
 				4B7A386B1F48AD9B00567D19 /* UITextFieldExtension.swift */,
 				4B45A5991F5D8FC2002E2052 /* UIColor.swift */,

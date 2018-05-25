@@ -21,7 +21,7 @@ open class AndorraTelecomProgressPresenter: MBProgressHUDPresenter {
 	override public init() {
 		super.init()
 
-		self.customColor = UIColor(red:0.55, green:0.05, blue:0.34, alpha:1.0)
+		self.customColor = UIColor(red: 0.55, green: 0.05, blue: 0.34, alpha: 1.0)
 		self.customOpacity = 0.6
 	}
 
