@@ -95,8 +95,8 @@
 		self.loginView.alpha = SessionContext.isLoggedIn ? 0.0 : 1.0;
 
 		if (!SessionContext.isLoggedIn) {
-			self.loginScreenlet.viewModel.userName = @"test@liferay.com";
-			self.loginScreenlet.viewModel.password = @"test";
+			self.loginScreenlet.viewModel.userName = @"demo@liferay.com";
+			self.loginScreenlet.viewModel.password = @"demo";
 		}
 	}];
 }
