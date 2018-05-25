@@ -85,6 +85,7 @@ class GalleryViewController: CardViewController, WebScreenletDelegate, CardDeckD
 	// MARK: Private methods
 
 	func loadImageGalleryScreenlet() {
+		imageGalleryScreenlet = ImageGalleryScreenlet(frame: .zero, themeName: "westeros")
 		imageGalleryScreenlet?.delegate = self
 		imageGalleryScreenlet?.presentingViewController = self
 
