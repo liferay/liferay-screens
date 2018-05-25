@@ -61,6 +61,7 @@ class AssetTypesViewController: UITableViewController {
 		AssetClasses.set(AssetClassNameKey_Organization, newId: 20059)
 		AssetClasses.set(AssetClassNameKey_Site, newId: 20045)
 		AssetClasses.set(AssetClassNameKey_User, newId: 20087)
+		AssetClasses.set(AssetClassNameKey_MBDiscussion, newId: 20030)
 		AssetClasses.set(AssetClassNameKey_MBMessage, newId: 20032)
 		AssetClasses.set(AssetClassNameKey_MBThread, newId: 20034)
 		AssetClasses.set(AssetClassNameKey_MicroblogsEntry, newId: 28701)

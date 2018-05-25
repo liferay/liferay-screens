@@ -542,7 +542,6 @@
 				88DE2A691AD3DDE600714701 /* Frameworks */,
 				88DE2A6A1AD3DDE600714701 /* Resources */,
 				CC9B893C1A360F59A614C416 /* [CP] Embed Pods Frameworks */,
-				8C35AA1FA3B3ECC035742080 /* [CP] Copy Pods Resources */,
 				7AE72E640B25C3017D6FAFE2 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -672,21 +671,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiferayScreens-Showcase-Swift/Pods-LiferayScreens-Showcase-Swift-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8C35AA1FA3B3ECC035742080 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LiferayScreens-Showcase-Swift/Pods-LiferayScreens-Showcase-Swift-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CC9B893C1A360F59A614C416 /* [CP] Embed Pods Frameworks */ = {
