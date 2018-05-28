@@ -28,6 +28,7 @@ All notable changes to this project will be documented in this file.
 * Update WesterosBank demo app
 * Update WesterosEmployees-hybrid demo app
 * Update AndorraTelecomPublic demo app
+* Update Showcase-ObjectiveC demo app
 
 ### Refactor
 
