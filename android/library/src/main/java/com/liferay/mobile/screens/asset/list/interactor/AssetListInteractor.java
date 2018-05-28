@@ -138,7 +138,21 @@ public class AssetListInteractor extends BaseListInteractor<BaseListInteractorLi
 			entryQueryParams.put("visible", true);
 		}
 
-		handleUserVisibleFlag(classNameId, entryQueryParams);
+		if (classNameId == Long.parseLong(
+			LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_ddl_form_record))
+			|| classNameId == Long.parseLong(
+			LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_layout))
+			|| classNameId == Long.parseLong(
+			LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_mb_thread))
+			|| classNameId == Long.parseLong(
+			LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_organization))
+			|| classNameId == Long.parseLong(
+			LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_site))
+			|| classNameId == Long.parseLong(
+			LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_user))) {
+			
+			handleVisibleFlag(classNameId, entryQueryParams);
+		}
 
 		return entryQueryParams;
 	}
@@ -155,23 +169,16 @@ public class AssetListInteractor extends BaseListInteractor<BaseListInteractorLi
 	}
 
 	/**
-	 * AssetListScreenlet only list Asset with visible attribute set to true. But User objects have it by
-	 * default in false. So this method update this attribute of entryQuery values to list
-	 * all users.
+	 * AssetListScreenlet only list Asset with visible attribute set to true. But for example User,
+	 * have it by default in true. This method update this attribute of entryQuery.
 	 *
 	 * @param classNameId identifier of the asset’s class name.
 	 * @param entryQueryParams initial entryQuery parameters.
 	 * @return final entryQuery parameters.
 	 * @throws JSONException when can't parse the result
 	 */
-	private JSONObject handleUserVisibleFlag(long classNameId, JSONObject entryQueryParams) throws JSONException {
-		if (classNameId == Long.parseLong(
-			LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_user))) {
-
-			entryQueryParams.put("visible", false);
-
-			return entryQueryParams;
-		}
+	private JSONObject handleVisibleFlag(long classNameId, JSONObject entryQueryParams) throws JSONException {
+		entryQueryParams.put("visible", false);
 
 		return entryQueryParams;
 	}

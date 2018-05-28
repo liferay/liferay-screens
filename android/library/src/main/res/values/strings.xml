@@ -67,6 +67,12 @@
 		<item>application/pdf</item>
 	</string-array>
 
+	<string name="default_class_name_id_ddl_form_record">31330</string>
+	<string name="default_class_name_id_layout">20047</string>
+	<string name="default_class_name_id_mb_thread">20034</string>
+	<string name="default_class_name_id_microblogs">28701</string>
+	<string name="default_class_name_id_organization">20059</string>
+	<string name="default_class_name_id_site">20045</string>
 	<string name="default_class_name_id_user">20087</string>
 	<string name="latitude">latitude:</string>
 	<string name="longitude">longitude:</string>

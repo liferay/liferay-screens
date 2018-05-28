@@ -20,6 +20,8 @@ import android.view.View;
 import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.asset.list.AssetListScreenlet;
 import com.liferay.mobile.screens.base.list.BaseListListener;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
+import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 import java.util.List;
 
@@ -29,14 +31,30 @@ import java.util.List;
 public class AssetListActivity extends ThemeActivity implements BaseListListener<AssetEntry> {
 
 	private AssetListScreenlet assetListScreenlet;
+	private long classNameId;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.asset_list);
 
+		classNameId = getIntent().getLongExtra("classNameId", 0);
+
 		assetListScreenlet = findViewById(R.id.asset_list_screenlet);
-		assetListScreenlet.setClassNameId(getIntent().getLongExtra("classNameId", 0));
+		assetListScreenlet.setClassNameId(classNameId);
+
+		if (classNameId == Long.parseLong(
+			LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_microblogs))
+			|| classNameId == Long.parseLong(
+			LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_organization))
+			|| classNameId == Long.parseLong(
+			LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_site))
+			|| classNameId == Long.parseLong(
+			LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_user))) {
+
+			assetListScreenlet.setGroupId(Long.parseLong(getResources().getString(R.string.liferay_parent_group_id)));
+		}
+
 		assetListScreenlet.setListener(this);
 	}
 
@@ -44,6 +62,7 @@ public class AssetListActivity extends ThemeActivity implements BaseListListener
 	protected void onResume() {
 		super.onResume();
 
+		LiferayServerContext.setGroupId(Long.parseLong(getResources().getString(R.string.liferay_group_id)));
 		assetListScreenlet.loadPage(0);
 	}
 
