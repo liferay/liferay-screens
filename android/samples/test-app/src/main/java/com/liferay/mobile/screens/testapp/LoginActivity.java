@@ -14,7 +14,6 @@
 
 package com.liferay.mobile.screens.testapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -99,10 +98,10 @@ public class LoginActivity extends ThemeActivity implements LoginListener, View.
 	}
 
 	private void setDefaultValues() {
-		EditText login = (EditText) loginScreenlet.findViewById(R.id.liferay_login);
+		EditText login = loginScreenlet.findViewById(R.id.liferay_login);
 		login.setText(getString(R.string.liferay_default_user_name));
 
-		EditText password = (EditText) loginScreenlet.findViewById(R.id.liferay_password);
+		EditText password = loginScreenlet.findViewById(R.id.liferay_password);
 		password.setText(getString(R.string.liferay_default_password));
 	}
 
