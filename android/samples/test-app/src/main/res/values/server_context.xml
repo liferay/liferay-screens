@@ -13,8 +13,8 @@
 	<string name="client_secret">12345</string>
 
 	<!--SignupScreenlet values-->
-	<string name="liferay_anonymousApiUserName">demo@liferay.com</string>
-	<string name="liferay_anonymousApiPassword">demo</string>
+	<string name="liferay_anonymousApiUserName">anonymous1@liferay.com</string>
+	<string name="liferay_anonymousApiPassword">anonymous1</string>
 
 	<!--Default user & password-->
 	<string name="liferay_default_user_name">demo@liferay.com</string>
