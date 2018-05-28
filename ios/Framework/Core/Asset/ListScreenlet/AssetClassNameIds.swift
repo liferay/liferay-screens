@@ -111,7 +111,7 @@ open class AssetClasses: NSObject {
 			AssetClassNameKey_Organization: AssetClassEntry(20059, "com.liferay.portal.kernel.model.User"),
 			AssetClassNameKey_Site: AssetClassEntry(20045, "com.liferay.portal.kernel.model.User"),
 			AssetClassNameKey_User: AssetClassEntry(20087, "com.liferay.portal.kernel.model.User"),
-			
+
 			// Message boards
 			AssetClassNameKey_MBDiscussion: AssetClassEntry(20030, "com.liferay.message.boards.kernel.model.MBDiscussion"),
 			AssetClassNameKey_MBMessage: AssetClassEntry(20032, "com.liferay.message.boards.kernel.model.MBMessage"),
