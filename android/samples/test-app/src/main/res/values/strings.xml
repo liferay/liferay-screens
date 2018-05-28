@@ -10,7 +10,7 @@
 	<string name="webview_list">WebContent List</string>
 	<string name="asset_list">Asset List</string>
 	<string name="get_user">Get User</string>
-	<string name="asset_display">Asset Display with portletItemName</string>
+	<string name="asset_display">Asset Display with or without portletItemName</string>
 	<string name="user_display">User Display</string>
 	<string name="image_display">Image Display</string>
 	<string name="ddl_form">DDL Form</string>
@@ -39,7 +39,7 @@
 	<string name="customizing_a_screenlet">Customizing an screenlet</string>
 	<string name="image_gallery_label">Image Gallery Screenlet: Shows a gallery of photos from a folder in Liferay.</string>
 	<string name="add_a_bookmark">Add a Bookmark</string>
-	<string name="journal_article_with_template">Journal Article with Template</string>
+	<string name="web_content_with_template">WebContent with template</string>
 	<string name="filtered_asset">Filtered Asset</string>
 	<string name="email_address">Email Address</string>
 	<string name="sign_in">Sign In</string>
