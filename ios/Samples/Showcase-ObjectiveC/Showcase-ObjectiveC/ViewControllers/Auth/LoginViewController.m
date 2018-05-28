@@ -109,7 +109,7 @@
 }
 
 - (void)screenlet:(BaseScreenlet *)screenlet onLoginError:(NSError *)error {
-	LiferayLog(error);
+	LiferayLog(error.debugDescription);
 }
 
 - (void)screenlet:(BaseScreenlet *)screenlet onCredentialsSavedUserAttributes:(NSDictionary<NSString *,id> *)attributes {

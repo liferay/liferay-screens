@@ -35,7 +35,7 @@
 #pragma mark FileDisplayScreenletDelegate
 
 - (void)screenlet:(FileDisplayScreenlet *)screenlet onFileAssetError:(NSError *)error {
-	LiferayLog(error);
+	LiferayLog(error.debugDescription);
 }
 
 - (void)screenlet:(FileDisplayScreenlet *)screenlet onFileAssetResponse:(NSURL *)url {

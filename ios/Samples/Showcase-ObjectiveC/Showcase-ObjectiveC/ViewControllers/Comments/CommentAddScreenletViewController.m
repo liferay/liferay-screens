@@ -35,11 +35,11 @@
 #pragma mark CommentAddScreenleteDelegate
 
 - (void)screenlet:(CommentAddScreenlet *)screenlet onCommentAdded:(Comment *)comment {
-	LiferayLog(comment);
+	LiferayLog(comment.attributes);
 }
 
 - (void)screenlet:(CommentAddScreenlet *)screenlet onAddCommentError:(NSError *)error {
-	LiferayLog(error);
+	LiferayLog(error.debugDescription);
 }
 
 @end

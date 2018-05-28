@@ -76,29 +76,28 @@
 }
 
 - (void)screenlet:(CommentListScreenlet *)screenlet onCommentListError:(NSError *)error {
-	LiferayLog(error);
+	LiferayLog(error.debugDescription);
 }
 
 - (void)screenlet:(CommentListScreenlet *)screenlet onSelectedComment:(Comment *)comment {
-	LiferayLog(comment);
+	LiferayLog(comment.attributes);
 }
 
 - (void)screenlet:(CommentListScreenlet *)screenlet onDeletedComment:(Comment *)comment {
-	LiferayLog(comment);
+	LiferayLog(comment.attributes);
 }
 
 - (void)screenlet:(CommentListScreenlet *)screenlet onCommentDelete:(Comment *)comment onError:(NSError *)error {
-	LiferayLog(comment, error);
+	LiferayLog(comment.attributes, error.debugDescription);
 }
 
 - (void)screenlet:(CommentListScreenlet *)screenlet onUpdatedComment:(Comment *)comment {
-	LiferayLog(comment);
+	LiferayLog(comment.attributes);
 }
 
 - (void)screenlet:(CommentListScreenlet *)screenlet onCommentUpdate:(Comment *)comment onError:(NSError *)error {
 
-	LiferayLog(comment, error);
+	LiferayLog(comment.attributes, error.debugDescription);
 }
-
 
 @end

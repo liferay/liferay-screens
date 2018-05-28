@@ -40,24 +40,23 @@
 #pragma mark CommentDisplayScreenletDelegate
 
 - (void)screenlet:(CommentDisplayScreenlet *)screenlet onCommentLoaded:(Comment *)comment {
-	LiferayLog(comment);
+	LiferayLog(comment.attributes);
 }
 
 - (void)screenlet:(CommentDisplayScreenlet *)screenlet onLoadCommentError:(NSError *)error {
-	LiferayLog(error);
+	LiferayLog(error.debugDescription);
 }
 
 - (void)screenlet:(CommentDisplayScreenlet *)screenlet onCommentDeleted:(Comment *)comment {
-	LiferayLog(comment);
+	LiferayLog(comment.attributes);
 }
 
 - (void)screenlet:(CommentDisplayScreenlet *)screenlet onCommentUpdated:(Comment *)comment {
-	LiferayLog(comment);
+	LiferayLog(comment.attributes);
 }
 
-- (void)screenlet:(CommentDisplayScreenlet *)screenlet
-		onUpdateComment:(Comment *)comment onError:(NSError *)error {
-	LiferayLog(comment, error);
+- (void)screenlet:(CommentDisplayScreenlet *)screenlet onUpdateComment:(Comment *)comment onError:(NSError *)error {
+	LiferayLog(comment.attributes, error.debugDescription);
 }
 
 @end

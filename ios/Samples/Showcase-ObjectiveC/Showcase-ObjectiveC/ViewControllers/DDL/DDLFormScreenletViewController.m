@@ -50,29 +50,29 @@
 #pragma mark DDLFormScreenletDelegate
 
 - (void)screenlet:(DDLFormScreenlet *)screenlet onFormLoaded:(DDLRecord *)record {
-	LiferayLog(record);
+	LiferayLog(record.attributes);
 }
 
 - (void)screenlet:(DDLFormScreenlet *)screenlet onFormLoadError:(NSError *)error {
-	LiferayLog(error);
+	LiferayLog(error.debugDescription);
 }
 
 - (void)screenlet:(DDLFormScreenlet *)screenlet onFormSubmitError:(NSError *)error {
-	LiferayLog(error);
+	LiferayLog(error.debugDescription);
 }
 
 - (void)screenlet:(DDLFormScreenlet *)screenlet onRecordLoaded:(DDLRecord *)record {
-	LiferayLog(record);
+	LiferayLog(record.attributes);
 	self.screenlet.hidden = NO;
 }
 
 - (void)screenlet:(DDLFormScreenlet *)screenlet onRecordLoadError:(NSError *)error {
-	LiferayLog(error);
+	LiferayLog(error.debugDescription);
 	self.screenlet.hidden = YES;
 }
 
 - (void)screenlet:(DDLFormScreenlet *)screenlet onFormSubmitted:(DDLRecord *)record {
-	LiferayLog(record);
+	LiferayLog(record.attributes);
 }
 
 - (void)screenlet:(DDLFormScreenlet *)screenlet
