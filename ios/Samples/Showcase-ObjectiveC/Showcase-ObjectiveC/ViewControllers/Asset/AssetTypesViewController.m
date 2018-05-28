@@ -20,6 +20,8 @@
 
 @property (nonatomic, copy) NSArray *assetClasses;
 @property (nonatomic, copy) NSArray *assetClassesIds;
+@property (nonatomic, copy) NSString *selectedAssetType;
+@property (nonatomic) NSNumber *assetClassId;
 
 @end
 
@@ -76,6 +78,12 @@
 
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	
+	LiferayServerContext.groupId = 20143;
+}
+
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
 
@@ -106,17 +114,24 @@
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSString *selectedAssetType = self.assetClasses[indexPath.row];
-	NSNumber *assetClassId = self.assetClassesIds[indexPath.row];
+	self.selectedAssetType = self.assetClasses[indexPath.row];
+	self.assetClassId = self.assetClassesIds[indexPath.row];
 
-	[self performSegueWithIdentifier:@"assetList" sender:@[selectedAssetType, assetClassId]];
+	[self performSegueWithIdentifier:@"assetList" sender:@[self.selectedAssetType, self.assetClassId]];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
 	AssetListScreenletViewController *vc = segue.destinationViewController;
-	vc.assetType = sender[0];
-	vc.assetClassId = [((NSNumber *)sender[1]) longLongValue];
+	if ([self.selectedAssetType  isEqual: @"MicroblogsEntry"] ||
+		[self.selectedAssetType  isEqual: @"Organization"] ||
+		[self.selectedAssetType  isEqual: @"Site"] ||
+		[self.selectedAssetType  isEqual: @"User"]) {
+		LiferayServerContext.groupId = 20152;
+	}
+
+	vc.assetType = self.selectedAssetType;
+	vc.assetClassId = [self.assetClassId longLongValue];
 }
 
 @end
