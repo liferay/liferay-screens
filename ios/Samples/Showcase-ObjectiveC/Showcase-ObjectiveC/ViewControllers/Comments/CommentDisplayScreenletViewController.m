@@ -28,6 +28,9 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.screenlet.delegate = self;
+	
+	self.commentIdText.text = [NSString stringWithFormat:@"%lld",
+							   [LiferayServerContext longPropertyForKey:@"commentId"]];
 }
 
 - (IBAction)loadComment:(id)sender {
@@ -41,14 +44,17 @@
 
 - (void)screenlet:(CommentDisplayScreenlet *)screenlet onCommentLoaded:(Comment *)comment {
 	LiferayLog(comment.attributes);
+	self.screenlet.hidden = false;
 }
 
 - (void)screenlet:(CommentDisplayScreenlet *)screenlet onLoadCommentError:(NSError *)error {
 	LiferayLog(error.debugDescription);
+	self.screenlet.hidden = true;
 }
 
 - (void)screenlet:(CommentDisplayScreenlet *)screenlet onCommentDeleted:(Comment *)comment {
 	LiferayLog(comment.attributes);
+	self.screenlet.hidden = true;
 }
 
 - (void)screenlet:(CommentDisplayScreenlet *)screenlet onCommentUpdated:(Comment *)comment {
