@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B0139BC20BBFD4C0092B8CC /* WebScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B0139BB20BBFD4C0092B8CC /* WebScreenlet.storyboard */; };
+		0B0139C120BBFDD00092B8CC /* WebScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B0139C020BBFDD00092B8CC /* WebScreenletViewController.m */; };
+		0B0139C620BC0A060092B8CC /* gallery.css in Resources */ = {isa = PBXBuildFile; fileRef = 0B0139C520BC0A060092B8CC /* gallery.css */; };
+		0B0139C820BC0A0F0092B8CC /* gallery.js in Resources */ = {isa = PBXBuildFile; fileRef = 0B0139C720BC0A0F0092B8CC /* gallery.js */; };
+		0B0139CA20BC0A1E0092B8CC /* bigger_pagination.css in Resources */ = {isa = PBXBuildFile; fileRef = 0B0139C920BC0A1E0092B8CC /* bigger_pagination.css */; };
 		0B21AECC1E4484C50037F00D /* LiferayLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B21AECB1E4484C50037F00D /* LiferayLogger.m */; };
 		0B21AECF1E4491000037F00D /* ForgotPasswordScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B21AECE1E4491000037F00D /* ForgotPasswordScreenletViewController.m */; };
 		0B21AED21E4492370037F00D /* SignUpScreenletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B21AED11E4492370037F00D /* SignUpScreenletViewController.m */; };
@@ -64,6 +69,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B0139BB20BBFD4C0092B8CC /* WebScreenlet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WebScreenlet.storyboard; sourceTree = "<group>"; };
+		0B0139BF20BBFDD00092B8CC /* WebScreenletViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebScreenletViewController.h; sourceTree = "<group>"; };
+		0B0139C020BBFDD00092B8CC /* WebScreenletViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebScreenletViewController.m; sourceTree = "<group>"; };
+		0B0139C520BC0A060092B8CC /* gallery.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = gallery.css; sourceTree = "<group>"; };
+		0B0139C720BC0A0F0092B8CC /* gallery.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = gallery.js; sourceTree = "<group>"; };
+		0B0139C920BC0A1E0092B8CC /* bigger_pagination.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = bigger_pagination.css; sourceTree = "<group>"; };
 		0B21AECA1E4484C50037F00D /* LiferayLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiferayLogger.h; sourceTree = "<group>"; };
 		0B21AECB1E4484C50037F00D /* LiferayLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LiferayLogger.m; sourceTree = "<group>"; };
 		0B21AECD1E4491000037F00D /* ForgotPasswordScreenletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordScreenletViewController.h; sourceTree = "<group>"; };
@@ -164,6 +175,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B0139C220BC09EB0092B8CC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0B0139C420BC09F70092B8CC /* js */,
+				0B0139C320BC09F30092B8CC /* css */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		0B0139C320BC09F30092B8CC /* css */ = {
+			isa = PBXGroup;
+			children = (
+				0B0139C520BC0A060092B8CC /* gallery.css */,
+				0B0139C920BC0A1E0092B8CC /* bigger_pagination.css */,
+			);
+			path = css;
+			sourceTree = "<group>";
+		};
+		0B0139C420BC09F70092B8CC /* js */ = {
+			isa = PBXGroup;
+			children = (
+				0B0139C720BC0A0F0092B8CC /* gallery.js */,
+			);
+			path = js;
+			sourceTree = "<group>";
+		};
 		0B21AEC21E4471DA0037F00D /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +271,7 @@
 				0B313D2C1E438B5E00D02CB8 /* ImageGalleryScreenlet.storyboard */,
 				0B313D141E438B5400D02CB8 /* RatingScreenlet.storyboard */,
 				0B313D161E438B5400D02CB8 /* UserPortraitScreenlet.storyboard */,
+				0B0139BB20BBFD4C0092B8CC /* WebScreenlet.storyboard */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -261,6 +299,7 @@
 		0B2994031E48C4BC0028F5F2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0B0139C220BC09EB0092B8CC /* Resources */,
 				0B2994041E48C4D50028F5F2 /* Asset */,
 				0B2994051E48C4F20028F5F2 /* Auth */,
 				0B2994061E48C53B0028F5F2 /* Comments */,
@@ -363,6 +402,8 @@
 				0B21AEFD1E463EC80037F00D /* RatingScreenletViewController.m */,
 				0B2993ED1E485D490028F5F2 /* UserPortraitScreenletViewController.h */,
 				0B2993EE1E485D490028F5F2 /* UserPortraitScreenletViewController.m */,
+				0B0139BF20BBFDD00092B8CC /* WebScreenletViewController.h */,
+				0B0139C020BBFDD00092B8CC /* WebScreenletViewController.m */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -507,8 +548,10 @@
 				0B313D301E438B5E00D02CB8 /* BlogDisplayScreenlet.storyboard in Resources */,
 				0B313D331E438B5E00D02CB8 /* CommentListScreenlet.storyboard in Resources */,
 				0B313D1D1E438B5400D02CB8 /* UserPortraitScreenlet.storyboard in Resources */,
+				0B0139C620BC0A060092B8CC /* gallery.css in Resources */,
 				0B313CAF1E43526500D02CB8 /* LaunchScreen.storyboard in Resources */,
 				0B313D361E438B5E00D02CB8 /* ForgotPasswordScreenlet.storyboard in Resources */,
+				0B0139CA20BC0A1E0092B8CC /* bigger_pagination.css in Resources */,
 				0B313D311E438B5E00D02CB8 /* CommentAddScreenlet.storyboard in Resources */,
 				0B313D321E438B5E00D02CB8 /* CommentDisplayScreenlet.storyboard in Resources */,
 				0B313D201E438B5400D02CB8 /* WebContentListScreenlet.storyboard in Resources */,
@@ -521,10 +564,12 @@
 				0B313CAC1E43526500D02CB8 /* Assets.xcassets in Resources */,
 				0B313D121E438A9800D02CB8 /* Main.storyboard in Resources */,
 				0B313D381E438B5E00D02CB8 /* ImageGalleryScreenlet.storyboard in Resources */,
+				0B0139C820BC0A0F0092B8CC /* gallery.js in Resources */,
 				0B313D371E438B5E00D02CB8 /* ImageDisplayScreenlet.storyboard in Resources */,
 				0B313D1F1E438B5400D02CB8 /* WebContentDisplayScreenlet.storyboard in Resources */,
 				0B313D1C1E438B5400D02CB8 /* SignUpScreenlet.storyboard in Resources */,
 				0B313D2E1E438B5E00D02CB8 /* AssetListScreenlet.storyboard in Resources */,
+				0B0139BC20BBFD4C0092B8CC /* WebScreenlet.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,6 +668,7 @@
 				0B21AEE91E462C9F0037F00D /* DDLFormScreenletViewController.m in Sources */,
 				0B313CA41E43526500D02CB8 /* AppDelegate.m in Sources */,
 				0B21AED81E44A4AD0037F00D /* AssetDisplayViewController.m in Sources */,
+				0B0139C120BBFDD00092B8CC /* WebScreenletViewController.m in Sources */,
 				0B2993FB1E487AA20028F5F2 /* AssetTypesViewController.m in Sources */,
 				0B21AECF1E4491000037F00D /* ForgotPasswordScreenletViewController.m in Sources */,
 				0B21AECC1E4484C50037F00D /* LiferayLogger.m in Sources */,
