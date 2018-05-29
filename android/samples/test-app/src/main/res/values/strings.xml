@@ -10,7 +10,8 @@
 	<string name="webview_list">WebContent List</string>
 	<string name="asset_list">Asset List</string>
 	<string name="get_user">Get User</string>
-	<string name="asset_display">Asset Display with or without portletItemName</string>
+	<string name="asset_display">Asset Display</string>
+	<string name="asset_display_with_portlet_item_name">Asset Display (portletItemName)</string>
 	<string name="user_display">User Display</string>
 	<string name="image_display">Image Display</string>
 	<string name="ddl_form">DDL Form</string>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
 	<string name="liferay_server">http://screens.liferay.org.es</string>
 	<integer name="liferay_portal_version">70</integer>
 	<string name="liferay_company_id">20116</string>
@@ -58,15 +57,15 @@
 	<string name="liferay_rating_like_asset_id">33713</string>
 	<string name="liferay_rating_reactions_emojis_asset_id">33713</string>
 
-	<string name="liferay_image_entryId">41638</string>
-	<string name="liferay_portlet_item_name">documents</string>
-
+	<!--AssetDisplayScreenlet values-->
+	<string name="liferay_portlet_item_name">image</string>
+	<string name="liferay_image_entry_id">54500</string>
 	<string name="liferay_video_entryId">38945</string>
 	<string name="liferay_user_entryId">20169</string>
 
-	<!-- AssetListScreenlet values-->
+	<!--AssetListScreenlet values-->
 	<string name="default_class_name_id_user">20087</string>
 
-	<!-- PortletDisplayScreenlet values -->
+	<!--PortletDisplayScreenlet values-->
 	<string name="liferay_portlet_url">/web/portletdisplay-demo/gallery</string>
 </resources>
