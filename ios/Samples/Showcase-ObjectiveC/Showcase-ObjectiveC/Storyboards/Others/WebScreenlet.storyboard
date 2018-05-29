@@ -34,11 +34,43 @@
                     </view>
                     <connections>
                         <outlet property="screenlet" destination="qkt-gG-QOT" id="HKj-NW-ajp"/>
+                        <segue destination="52K-je-Msb" kind="show" identifier="detail" id="eDU-ui-zJN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HSD-zp-RLB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-16.800000000000001" y="-10.344827586206897"/>
+        </scene>
+        <!--Image Detail View Controller-->
+        <scene sceneID="WtE-Jr-ftj">
+            <objects>
+                <viewController id="52K-je-Msb" customClass="ImageDetailViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0H6-vP-0jb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ztc-Ad-wt6">
+                                <rect key="frame" x="37" y="201" width="300" height="265"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="UCE-7M-9Kw"/>
+                                    <constraint firstAttribute="height" constant="265" id="v8V-ah-i1t"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ztc-Ad-wt6" firstAttribute="top" secondItem="z6n-m2-Fkg" secondAttribute="top" constant="181" id="bRo-fr-9ef"/>
+                            <constraint firstItem="ztc-Ad-wt6" firstAttribute="centerX" secondItem="0H6-vP-0jb" secondAttribute="centerX" id="nXr-kY-uMl"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="z6n-m2-Fkg"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="ztc-Ad-wt6" id="cD3-Q8-gQz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zdj-dF-aiZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="751.20000000000005" y="-28.335832083958024"/>
         </scene>
     </scenes>
 </document>

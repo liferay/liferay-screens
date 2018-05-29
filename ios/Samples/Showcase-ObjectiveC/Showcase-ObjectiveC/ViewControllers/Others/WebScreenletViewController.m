@@ -14,6 +14,7 @@
 @import LiferayScreens;
 #import "LiferayLogger.h"
 #import "WebScreenletViewController.h"
+#import "ImageDetailViewController.h"
 
 @interface WebScreenletViewController () <WebScreenletDelegate>
 
@@ -54,6 +55,13 @@
 - (void)screenlet:(WebScreenlet *)screenlet onScriptMessageNamespace:(NSString *)namespace_ onScriptMessage:(NSString *)message {
 	LiferayLog(namespace_)
 	LiferayLog(message)
+
+	[self performSegueWithIdentifier:@"detail" sender:message];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+	ImageDetailViewController *vc = segue.destinationViewController;
+	vc.imageUrl = [NSString stringWithFormat:@"http://%@", sender];
 }
 
 @end

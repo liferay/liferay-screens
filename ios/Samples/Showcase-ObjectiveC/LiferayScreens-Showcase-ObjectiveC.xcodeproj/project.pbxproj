@@ -65,6 +65,7 @@
 		0B313D361E438B5E00D02CB8 /* ForgotPasswordScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B313D2A1E438B5E00D02CB8 /* ForgotPasswordScreenlet.storyboard */; };
 		0B313D371E438B5E00D02CB8 /* ImageDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B313D2B1E438B5E00D02CB8 /* ImageDisplayScreenlet.storyboard */; };
 		0B313D381E438B5E00D02CB8 /* ImageGalleryScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B313D2C1E438B5E00D02CB8 /* ImageGalleryScreenlet.storyboard */; };
+		D6DDE61620BD4FBD0002B471 /* ImageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6DDE61520BD4FBD0002B471 /* ImageDetailViewController.m */; };
 		EF0B13406D0ED81D4FB5D566 /* Pods_LiferayScreens_Showcase_ObjectiveC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC64480DBDFF055AA2448208 /* Pods_LiferayScreens_Showcase_ObjectiveC.framework */; };
 /* End PBXBuildFile section */
 
@@ -160,6 +161,8 @@
 		0B313D2C1E438B5E00D02CB8 /* ImageGalleryScreenlet.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ImageGalleryScreenlet.storyboard; sourceTree = "<group>"; };
 		9A2BB752B1DBFD56137CF2B2 /* Pods-LiferayScreens-Showcase-ObjectiveC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreens-Showcase-ObjectiveC.release.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreens-Showcase-ObjectiveC/Pods-LiferayScreens-Showcase-ObjectiveC.release.xcconfig"; sourceTree = "<group>"; };
 		A13BB7BE9A9298F2F9373648 /* Pods-LiferayScreens-Showcase-ObjectiveC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreens-Showcase-ObjectiveC.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LiferayScreens-Showcase-ObjectiveC/Pods-LiferayScreens-Showcase-ObjectiveC.debug.xcconfig"; sourceTree = "<group>"; };
+		D6DDE61420BD4FBD0002B471 /* ImageDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageDetailViewController.h; sourceTree = "<group>"; };
+		D6DDE61520BD4FBD0002B471 /* ImageDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageDetailViewController.m; sourceTree = "<group>"; };
 		EC64480DBDFF055AA2448208 /* Pods_LiferayScreens_Showcase_ObjectiveC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LiferayScreens_Showcase_ObjectiveC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -404,6 +407,8 @@
 				0B2993EE1E485D490028F5F2 /* UserPortraitScreenletViewController.m */,
 				0B0139BF20BBFDD00092B8CC /* WebScreenletViewController.h */,
 				0B0139C020BBFDD00092B8CC /* WebScreenletViewController.m */,
+				D6DDE61420BD4FBD0002B471 /* ImageDetailViewController.h */,
+				D6DDE61520BD4FBD0002B471 /* ImageDetailViewController.m */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -669,6 +674,7 @@
 				0B313CA41E43526500D02CB8 /* AppDelegate.m in Sources */,
 				0B21AED81E44A4AD0037F00D /* AssetDisplayViewController.m in Sources */,
 				0B0139C120BBFDD00092B8CC /* WebScreenletViewController.m in Sources */,
+				D6DDE61620BD4FBD0002B471 /* ImageDetailViewController.m in Sources */,
 				0B2993FB1E487AA20028F5F2 /* AssetTypesViewController.m in Sources */,
 				0B21AECF1E4491000037F00D /* ForgotPasswordScreenletViewController.m in Sources */,
 				0B21AECC1E4484C50037F00D /* LiferayLogger.m in Sources */,
