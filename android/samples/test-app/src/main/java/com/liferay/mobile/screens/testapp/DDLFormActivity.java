@@ -39,8 +39,6 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 
 		screenlet = findViewById(R.id.ddl_form_screenlet);
 		screenlet.setListener(this);
-
-		initScreenletFromIntent(getIntent());
 	}
 
 	@Override
@@ -98,13 +96,5 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 	protected void onRestoreInstanceState(Bundle savedInstanceState) {
 		super.onRestoreInstanceState(savedInstanceState);
 		loaded = savedInstanceState.getBoolean(STATE_LOADED);
-	}
-
-	private void initScreenletFromIntent(Intent intent) {
-		if (intent.hasExtra("recordId")) {
-			screenlet.setRecordId(intent.getLongExtra("recordId", 0));
-			screenlet.setRecordSetId(intent.getLongExtra("recordSetId", 0));
-			screenlet.setStructureId(intent.getLongExtra("structureId", 0));
-		}
 	}
 }
