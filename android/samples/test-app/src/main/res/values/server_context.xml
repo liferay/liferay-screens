@@ -61,7 +61,7 @@
 	<string name="liferay_portlet_item_name">image</string>
 	<string name="liferay_image_entry_id">54500</string>
 	<string name="liferay_video_entryId">38945</string>
-	<string name="liferay_user_entryId">20169</string>
+	<string name="liferay_user_entryId">57602</string>
 
 	<!--AssetListScreenlet values-->
 	<string name="default_class_name_id_user">20087</string>
