@@ -45,7 +45,7 @@ public enum AssetClassnameIds70 {
 
 	// Users and sites
 	LAYOUT(20047, "com.liferay.portal.kernel.model.User"), LAYOUT_REVISION(20051,
-		"com.liferay.portal.kernel.model.User"), ORGANIZATION(20059, "com.liferay.portal.kernel.model.User"), SITE(
+		"com.liferay.portal.kernel.model.User"), ORGANIZATION(20059, "com.liferay.portal.kernel.model.User"), GROUP(
 		20045, "com.liferay.portal.kernel.model.User"), USER(20087, "com.liferay.portal.kernel.model.User"),
 
 	// Message boards
