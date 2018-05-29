@@ -37,7 +37,7 @@
 	[builder addCssWithLocalFile:@"gallery"];
 	[builder addCssWithLocalFile:@"bigger_pagination"];
 	
-	WebScreenletConfiguration *configuration = builder.load;
+	WebScreenletConfiguration *configuration = [builder load];
 	
 	self.screenlet.configuration = configuration;
 	[self.screenlet load];
