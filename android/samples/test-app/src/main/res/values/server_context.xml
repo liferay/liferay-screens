@@ -20,11 +20,13 @@
 	<string name="liferay_default_user_name">demo@liferay.com</string>
 	<string name="liferay_default_password">demo</string>
 
-	<!--DDLFormScreenlet values-->
-	<string name="liferay_structure_id">64388</string>
-	<string name="liferay_recordset_id">64391</string>
-	<string name="liferay_record_id">64398</string>
-	<string name="liferay_recordset_fields">Title</string>
+	<!--DDLFormScreenlet and DDLListScreenlet values-->
+	<string name="liferay_structure_id">29823</string>
+	<string name="liferay_recordset_id">33280</string>
+	<string name="liferay_record_id">33294</string>
+	<string name="liferay_recordset_fields">name</string>
+	<string name="liferay_user_id">20156</string>
+
 	<string name="liferay_ddm_folder_id">54469</string>
 	<string name="liferay_ddm_repository_id">20143</string>
 
