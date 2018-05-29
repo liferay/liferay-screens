@@ -38,10 +38,10 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 
 		//Asset
 		findViewById(R.id.asset_list).setOnClickListener(this);
+		findViewById(R.id.asset_list_with_portlet_item_name).setOnClickListener(this);
 		findViewById(R.id.asset_display).setOnClickListener(this);
 		findViewById(R.id.asset_display_with_portlet_item_name).setOnClickListener(this);
 		findViewById(R.id.user_display).setOnClickListener(this);
-		findViewById(R.id.filtered_asset).setOnClickListener(this);
 
 		//Comment
 		findViewById(R.id.comment_list).setOnClickListener(this);
@@ -112,6 +112,9 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 			case R.id.asset_list:
 				start(SelectAssetActivity.class);
 				break;
+			case R.id.asset_list_with_portlet_item_name:
+				start(FilteredAssetActivity.class);
+				break;
 			case R.id.asset_display:
 				Intent intentAsset = getIntentWithTheme(AssetDisplayActivity.class);
 				intentAsset.putExtra("entryId",
@@ -128,9 +131,6 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				Intent intentUser = getIntentWithTheme(AssetDisplayActivity.class);
 				intentUser.putExtra("entryId", Long.valueOf(getResources().getString(R.string.liferay_user_entryId)));
 				DefaultAnimation.startActivityWithAnimation(this, intentUser);
-				break;
-			case R.id.filtered_asset:
-				start(FilteredAssetActivity.class);
 				break;
 			case R.id.comment_list:
 				start(CommentsActivity.class);

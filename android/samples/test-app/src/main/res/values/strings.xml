@@ -9,6 +9,7 @@
 	<string name="webview_customcss">WebContent with custom CSS</string>
 	<string name="webview_list">WebContent List</string>
 	<string name="asset_list">Asset List</string>
+	<string name="asset_list_portlet_item_name">Asset List (portletItemName)</string>
 	<string name="get_user">Get User</string>
 	<string name="asset_display">Asset Display</string>
 	<string name="asset_display_with_portlet_item_name">Asset Display (portletItemName)</string>
@@ -41,7 +42,6 @@
 	<string name="image_gallery_label">Image Gallery Screenlet: Shows a gallery of photos from a folder in Liferay.</string>
 	<string name="add_a_bookmark">Add a Bookmark</string>
 	<string name="web_content_with_template">WebContent with template</string>
-	<string name="filtered_asset">Filtered Asset</string>
 	<string name="email_address">Email Address</string>
 	<string name="sign_in">Sign In</string>
 	<string name="list_comments">Comment List</string>

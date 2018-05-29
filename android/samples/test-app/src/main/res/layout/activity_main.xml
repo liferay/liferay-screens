@@ -64,6 +64,12 @@
 				/>
 
 			<Button
+				android:id="@+id/asset_list_with_portlet_item_name"
+				android:text="@string/asset_list_portlet_item_name"
+				style="@style/test_app_button"
+				/>
+
+			<Button
 				android:id="@+id/asset_display"
 				android:text="@string/asset_display"
 				style="@style/test_app_button"
@@ -78,12 +84,6 @@
 			<Button
 				android:id="@+id/user_display"
 				android:text="@string/user_display"
-				style="@style/test_app_button"
-				/>
-
-			<Button
-				android:id="@+id/filtered_asset"
-				android:text="@string/filtered_asset"
 				style="@style/test_app_button"
 				/>
 
