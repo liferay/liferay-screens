@@ -106,9 +106,26 @@ PODS:
 DEPENDENCIES:
   - LiferayScreens (from `../../..`)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - CocoaLumberjack
+    - Cordova
+    - DTPickerPresenter
+    - KeychainAccess
+    - Kingfisher
+    - Liferay-iOS-SDK
+    - MBProgressHUD
+    - MDRadialProgress
+    - Reachability
+    - SMXMLDocument
+    - SQLCipher
+    - TNRadioButtonGroup
+    - YapDatabase
+
 EXTERNAL SOURCES:
   LiferayScreens:
-    :path: ../../..
+    :path: "../../.."
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
@@ -129,4 +146,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 1675674d5ba4ade6289186a39151c92c3eeb9454
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.2

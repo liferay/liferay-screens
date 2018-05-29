@@ -47,12 +47,12 @@
 	onBlogEntryResponse:(BlogsEntry *)blogEntry {
 
 	screenlet.hidden = NO;
-	LiferayLog(blogEntry);
+	LiferayLog(blogEntry.attributes);
 }
 
 - (void)screenlet:(BlogsEntryDisplayScreenlet *)screenlet onBlogEntryError:(NSError *)error {
 	screenlet.hidden = YES;
-	LiferayLog(error);
+	LiferayLog(error.debugDescription);
 }
 
 @end

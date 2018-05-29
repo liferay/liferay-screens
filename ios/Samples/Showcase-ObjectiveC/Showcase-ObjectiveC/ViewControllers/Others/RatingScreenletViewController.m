@@ -66,19 +66,19 @@
 #pragma mark RatingScreenletDelegate
 
 - (void)screenlet:(RatingScreenlet *)screenlet onRatingRetrieve:(RatingEntry *)rating {
-	LiferayLog(rating);
+	LiferayLog(rating.attributes);
 }
 
 - (void)screenlet:(RatingScreenlet *)screenlet onRatingError:(NSError *)error {
-	LiferayLog(error);
+	LiferayLog(error.debugDescription);
 }
 
 - (void)screenlet:(RatingScreenlet *)screenlet onRatingDeleted:(RatingEntry *)rating {
-	LiferayLog(rating);
+	LiferayLog(rating.attributes);
 }
 
 - (void)screenlet:(RatingScreenlet *)screenlet onRatingUpdated:(RatingEntry *)rating {
-	LiferayLog(rating);
+	LiferayLog(rating.attributes);
 }
 
 @end

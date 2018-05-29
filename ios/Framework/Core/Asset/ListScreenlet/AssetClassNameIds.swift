@@ -84,9 +84,6 @@ open class AssetClasses: NSObject {
 			// Blogs
 			AssetClassNameKey_BlogsEntry: AssetClassEntry(20011, "com.liferay.blogs.kernel.model.BlogsEntry"),
 
-			// Users
-			AssetClassNameKey_User: AssetClassEntry(20087, "com.liferay.portal.kernel.model.User"),
-
 			// Bookmarks
 			AssetClassNameKey_BookmarksEntry: AssetClassEntry(28401, "com.liferay.bookmarks.model.BookmarksEntry"),
 			AssetClassNameKey_BookmarksFolder: AssetClassEntry(28402, "com.liferay.bookmarks.model.BookmarksFolder"),
@@ -107,6 +104,13 @@ open class AssetClasses: NSObject {
 			// WebContent
 			AssetClassNameKey_JournalArticle: AssetClassEntry(29634, "com.liferay.journal.model.JournalArticle"),
 			AssetClassNameKey_JournalFolder: AssetClassEntry(29639, "com.liferay.journal.model.JournalFolder"),
+
+			// Users and sites
+			AssetClassNameKey_Layout: AssetClassEntry(20047, "com.liferay.portal.kernel.model.User"),
+			AssetClassNameKey_LayoutRevision: AssetClassEntry(20051, "com.liferay.portal.kernel.model.User"),
+			AssetClassNameKey_Organization: AssetClassEntry(20059, "com.liferay.portal.kernel.model.User"),
+			AssetClassNameKey_Site: AssetClassEntry(20045, "com.liferay.portal.kernel.model.User"),
+			AssetClassNameKey_User: AssetClassEntry(20087, "com.liferay.portal.kernel.model.User"),
 
 			// Message boards
 			AssetClassNameKey_MBDiscussion: AssetClassEntry(20030, "com.liferay.message.boards.kernel.model.MBDiscussion"),

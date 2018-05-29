@@ -33,6 +33,7 @@ public class WebScreenletConfiguration: NSObject {
 }
 
 @objc(WebScreenletConfigurationBuilder)
+@objcMembers
 public class WebScreenletConfigurationBuilder: NSObject {
 	let url: String
 	var localJs: [String]

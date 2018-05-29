@@ -20,6 +20,8 @@
 
 @property (nonatomic, copy) NSArray *assetClasses;
 @property (nonatomic, copy) NSArray *assetClassesIds;
+@property (nonatomic, copy) NSString *selectedAssetType;
+@property (nonatomic) NSNumber *assetClassId;
 
 @end
 
@@ -29,69 +31,57 @@
 	[super viewDidLoad];
 
 	self.assetClasses = @[
-		@"Group",
-		@"Layout",
-		@"Organization",
-		@"User",
-		@"UserGroup",
-		@"BlogsEntry",
-		@"BookmarksEntry",
-		@"BookmarksFolder",
-		@"DLFileEntry",
-		@"DLFolder",
-		@"DLFileEntryMetadata",
-		@"DLFileEntryType",
-		@"DLFileRank",
-		@"DLFileShortcut",
-		@"DLFileVersion",
-		@"DDLRecord",
-		@"DDLRecordSet",
-		@"DDLRecordVersion",
-		@"JournalArticle",
-		@"JournalArticleImage",
-		@"JournalFolder",
-		@"MBMessage",
-		@"MBThread",
-		@"MBCategory",
-		@"MBDiscussion",
-		@"MBMailingList",
-		@"WikiPage",
-		@"WikiPageResource",
-		@"WikiNode"
+	  @"BlogsEntry",
+	  @"BookmarksEntry",
+	  @"BookmarksFolder",
+	  @"CalendarBooking",
+	  @"DDLRecord",
+	  @"DDLFormRecord",
+	  @"DLFileEntry",
+	  @"DLFolder",
+	  @"JournalArticle",
+	  @"JournalFolder",
+	  @"Layout",
+	  @"LayoutRevision",
+	  @"Organization",
+	  @"Site",
+	  @"User",
+	  @"MBDiscussion",
+	  @"MBMessage",
+	  @"MBThread",
+	  @"MicroblogsEntry",
+	  @"WikiPage"
 	];
 
 	self.assetClassesIds = @[
-		@20045,
-		@20047,
-		@20059,
-		@20087,
-		@20088,
-		@20011,
-		@27301,
-		@27302,
-		@20015,
-		@20021,
-		@20016,
-		@20017,
-		@20018,
-		@20019,
-		@20020,
-		@29413,
-		@29414,
-		@29415,
-		@29591,
-		@29592,
-		@29596,
-		@20032,
-		@20034,
-		@20029,
-		@20030,
-		@20031,
-		@27802,
-		@27803,
-		@27801
+		 @20011,
+		 @28401,
+		 @28402,
+		 @27702,
+		 @29501,
+		 @31330,
+		 @20015,
+		 @20021,
+		 @29634,
+		 @29639,
+		 @20047,
+		 @20051,
+		 @20059,
+		 @20045,
+		 @20087,
+		 @20030,
+		 @20032,
+		 @20034,
+		 @28701,
+		 @28802
 	];
 
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	
+	LiferayServerContext.groupId = 20143;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -124,17 +114,24 @@
 #pragma mark UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSString *selectedAssetType = self.assetClasses[indexPath.row];
-	NSNumber *assetClassId = self.assetClassesIds[indexPath.row];
+	self.selectedAssetType = self.assetClasses[indexPath.row];
+	self.assetClassId = self.assetClassesIds[indexPath.row];
 
-	[self performSegueWithIdentifier:@"assetList" sender:@[selectedAssetType, assetClassId]];
+	[self performSegueWithIdentifier:@"assetList" sender:@[self.selectedAssetType, self.assetClassId]];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
 	AssetListScreenletViewController *vc = segue.destinationViewController;
-	vc.assetType = sender[0];
-	vc.assetClassId = [((NSNumber *)sender[1]) longLongValue];
+	if ([self.selectedAssetType  isEqual: @"MicroblogsEntry"] ||
+		[self.selectedAssetType  isEqual: @"Organization"] ||
+		[self.selectedAssetType  isEqual: @"Site"] ||
+		[self.selectedAssetType  isEqual: @"User"]) {
+		LiferayServerContext.groupId = 20152;
+	}
+
+	vc.assetType = self.selectedAssetType;
+	vc.assetClassId = [self.assetClassId longLongValue];
 }
 
 @end

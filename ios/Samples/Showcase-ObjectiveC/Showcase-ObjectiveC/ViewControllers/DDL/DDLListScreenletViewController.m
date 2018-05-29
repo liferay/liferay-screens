@@ -75,11 +75,11 @@ UIPickerViewDelegate, UIPickerViewDataSource>
 #pragma mark DDListScreenletDelegate
 
 - (void)screenlet:(DDLListScreenlet *)screenlet onDDLListError:(NSError *)error {
-	LiferayLog(error);
+	LiferayLog(error.debugDescription);
 }
 
 - (void)screenlet:(DDLListScreenlet *)screenlet onDDLSelectedRecord:(DDLRecord *)record {
-	LiferayLog(record);
+	LiferayLog(record.attributes);
 }
 
 - (void)screenlet:(DDLListScreenlet *)screenlet
