@@ -35,4 +35,4 @@ before_script:
    fi
  
 script:
-- ./scripts/travis.sh
+- sh scripts/travis.sh
