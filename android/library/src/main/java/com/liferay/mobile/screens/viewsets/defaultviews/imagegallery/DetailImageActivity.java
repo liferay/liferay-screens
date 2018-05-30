@@ -2,7 +2,6 @@ package com.liferay.mobile.screens.viewsets.defaultviews.imagegallery;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -25,7 +24,7 @@ public class DetailImageActivity extends AppCompatActivity implements SwipeListe
 	public ImageView detailedImageView;
 
 	@Override
-	protected void onCreate(@Nullable Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.gallery_detailed_default);
 

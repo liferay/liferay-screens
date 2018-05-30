@@ -2,16 +2,13 @@ package com.liferay.mobile.screens.testapp;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
-
 import com.liferay.mobile.screens.base.interactor.listener.CacheListener;
 import com.liferay.mobile.screens.imagegallery.ImageGalleryListener;
 import com.liferay.mobile.screens.imagegallery.ImageGalleryScreenlet;
 import com.liferay.mobile.screens.imagegallery.model.ImageEntry;
 import com.liferay.mobile.screens.util.LiferayLogger;
-
 import java.util.List;
 
 import static android.view.View.GONE;
@@ -28,7 +25,7 @@ public class GalleryActivity extends ThemeActivity implements ImageGalleryListen
 	private ImageGalleryScreenlet imageGalleryScreenletList;
 
 	@Override
-	protected void onCreate(@Nullable Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.gallery);
 
