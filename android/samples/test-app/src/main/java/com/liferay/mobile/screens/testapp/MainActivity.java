@@ -91,9 +91,6 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-			case R.id.login_full_screenlet:
-				start(LoginFullActivity.class);
-				break;
 			case R.id.sign_up:
 				start(SignUpActivity.class);
 				break;
@@ -175,6 +172,9 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				break;
 			case R.id.add_bookmark:
 				start(AddBookmarkActivity.class);
+				break;
+			case R.id.login_full_screenlet:
+				start(LoginFullActivity.class);
 				break;
 			case R.id.clear_cache:
 
