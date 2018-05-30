@@ -35,13 +35,13 @@
 
 	<!--WebContentDisplayScreenlet values-->
 	<string name="liferay_article_id">57343</string>
-	<string name="liferay_article_structured_structure_id">29641</string>
-	<string name="liferay_article_structured_article_id">57615</string>
-	<string name="liferay_article_structured_label_fields_first_field">Text</string>
-	<string name="liferay_article_structured_label_fields">Text,TextBox</string>
-	<string name="liferay_article_id_with_template">57615</string>
-	<string name="liferay_template_id1">33617</string>
-	<string name="liferay_template_id2">33649</string>
+	<string name="liferay_article_structured_structure_id">64601</string>
+	<string name="liferay_article_structured_article_id">64614</string>
+	<string name="liferay_article_structured_label_fields_first_field">Field1</string>
+	<string name="liferay_article_structured_label_fields">Field1,Field2</string>
+	<string name="liferay_article_id_with_template">64614</string>
+	<string name="liferay_template_id1">64609</string>
+	<string name="liferay_template_id2">64623</string>
 
 	<string name="liferay_web_content_folder_id">0</string>
 	<string name="liferay_images_folder">54469</string>
