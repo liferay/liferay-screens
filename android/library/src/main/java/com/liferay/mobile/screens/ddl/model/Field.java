@@ -58,6 +58,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	private boolean autocomplete = false;
 	private boolean localizable = false;
 	private boolean isTransient = false;
+	private boolean isValidByRules = true;
 	private String style;
 	private String displayStyle;
 	private String indexType;
@@ -195,12 +196,16 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		return required;
 	}
 
+	public void setRequired(boolean required) {
+		this.required = required;
+	}
+
 	public boolean isShowLabel() {
 		return showLabel;
 	}
 
 	public boolean isValid() {
-		boolean valid = !((currentValue == null) && isRequired());
+		boolean valid = !((currentValue == null) && isRequired()) && isValidByRules();
 
 		if (valid) {
 			valid = doValidate();
@@ -209,6 +214,14 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		lastValidationResult = valid;
 
 		return valid;
+	}
+
+	public boolean isValidByRules() {
+		return isValidByRules;
+	}
+
+	public void setValidByRules(boolean validByRules) {
+		isValidByRules = validByRules;
 	}
 
 	public String getLabel() {

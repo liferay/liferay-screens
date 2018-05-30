@@ -19,16 +19,23 @@ import android.net.Uri
 import android.support.design.widget.Snackbar
 import android.support.design.widget.Snackbar.LENGTH_SHORT
 import android.util.AttributeSet
+import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import com.liferay.mobile.screens.R
-import com.liferay.mobile.screens.context.LiferayScreensContext
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.DocumentField
 import com.liferay.mobile.screens.ddl.model.Field
+import com.liferay.mobile.screens.ddl.model.Option
+import com.liferay.mobile.screens.ddl.model.SelectableOptionsField
+import com.liferay.mobile.screens.ddm.form.OptionSerializer
+import com.liferay.mobile.screens.ddm.form.model.FieldContext
+import com.liferay.mobile.screens.ddm.form.model.FormContext
+import com.liferay.mobile.screens.ddm.form.model.FormContextPage
 import com.liferay.mobile.screens.ddm.form.model.FormInstance
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
@@ -37,7 +44,9 @@ import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 
 import com.liferay.mobile.screens.util.EventBusUtil
 import com.liferay.mobile.screens.util.LiferayLogger
+import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.BaseDDLFieldTextView
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
+import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldSelectView
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.pager.WrapContentViewPager
 import com.liferay.mobile.sdk.apio.delegates.converter
 import com.liferay.mobile.sdk.apio.fetch
@@ -45,13 +54,11 @@ import com.liferay.mobile.sdk.apio.model.Relation
 import com.liferay.mobile.sdk.apio.model.Thing
 import com.liferay.mobile.sdk.apio.model.getOperation
 import com.liferay.mobile.sdk.apio.performOperation
+import com.liferay.mobile.sdk.apio.performOperationAndParse
 import com.squareup.okhttp.HttpUrl
 import com.squareup.otto.Subscribe
-import com.squareup.okhttp.MultipartBuilder
-import com.squareup.okhttp.RequestBody
-import okhttp3.MultipartBody
-import java.io.File
-import java.net.URI
+import org.jetbrains.anko.childrenSequence
+import java.io.Serializable
 import java.util.*
 
 /**
@@ -78,6 +85,9 @@ class DDMFormView @JvmOverloads constructor(
         if (it.ddmStructure.pages.size == 1)
             nextButton.text = context.getString(R.string.submit)
 
+        formInstance?.fields
+
+        evaluateContext(thing)
     }
 
     override fun onFinishInflate() {
@@ -108,7 +118,6 @@ class DDMFormView @JvmOverloads constructor(
                     }
                 } else {
                     submit()
-//                    evaluateContext(thing)
                 }
             } else {
                 highLightInvalidFields(invalidFields, true)
@@ -158,14 +167,14 @@ class DDMFormView @JvmOverloads constructor(
         }
     }
 
-    fun submit() {
+    fun submit(isDraft: Boolean = false) {
         val formInstanceRecords = thing?.attributes?.get("formInstanceRecords") as? Relation
 
         if (formInstanceRecords != null) {
             fetch(HttpUrl.parse(formInstanceRecords.id)) {
                 val thing = it.component1()
                 if (thing != null) {
-                    performSubmitOperation(thing)
+                    performSubmitOperation(thing, isDraft)
                 }
             }
         } else {
@@ -173,43 +182,107 @@ class DDMFormView @JvmOverloads constructor(
         }
     }
 
-    fun evaluateContext(thing: Thing?) {
+    private fun evaluateContext(thing: Thing?) {
         val operation = thing!!.getOperation("evaluate-context")
 
         operation?.let {
-            performOperation(thing.id, it.id, {
+            performOperationAndParse(thing.id, it.id, {
                 val values = mutableMapOf<String, Any>()
 
-                val fieldsList = formInstance!!
-                    .fields.map { mapOf("identifier" to "", "name" to it.name, "value" to it.currentValue) }
+                val fieldsList = formInstance!!.fields.map {
 
-                val fieldValues = Gson().toJson(fieldsList)
+                    val selectableOptionsField = it.currentValue as? SelectableOptionsField
 
-                values["inLanguage"] = "es_ES"
+                    val currentValue = selectableOptionsField?.let {
+                        if(!it.isMultiple && it.currentValue.count() > 0) {
+                            it.currentValue[0]
+                        }
+                    } ?: it.currentValue
+
+                    mapOf("name" to it.name, "value" to currentValue)
+                }
+
+                val gson = GsonBuilder().registerTypeAdapter(Option::class.java, OptionSerializer()).create()
+
+                val fieldValues = gson.toJson(fieldsList)
+
                 values["fieldValues"] = fieldValues
 
                 values
             }) {
-                val (response, exception) = it
+                val (thing, exception) = it
+                val message = ""
 
-                response?.let {
+                thing?.let {
+                    val formContext = FormContext.converter(it)
 
-                    var message = "Evaluating context"
-
-                    if (!it.isSuccessful) {
-                        message = exception?.message ?: response.message()
-
-                        if (message.isEmpty()) message = "Unknown Error"
-                    }
+                    updateFields(formContext)
+                } ?: exception?.let {
+                    val message = it.message ?: "Unknown Error"
 
                     Snackbar.make(this, message, LENGTH_SHORT).show()
-
-                } ?: LiferayLogger.d(exception?.message)
+                } ?: LiferayLogger.d(message)
             }
         }
     }
 
-    private fun performSubmitOperation(thing: Thing) {
+    private fun updateFields(formContext: FormContext) {
+        val fieldsContainerView =
+                ddmFieldViewPages.findViewWithTag<LinearLayout>(ddmFieldViewPages.currentItem)
+
+        val fieldContexts =
+                formContext.pages.flatMap(FormContextPage::fields).map { Pair(it.name, it) }.toMap()
+
+        fieldsContainerView.childrenSequence().forEach {
+            val fieldView = it
+            val fieldViewModel = fieldView as? DDLFieldViewModel<*>
+            val fieldTextView = fieldView as? BaseDDLFieldTextView<*>
+
+            fieldViewModel?.let {
+                val field = it.field
+
+                fieldContexts[field.name]?.let {
+                    setOptions(it, fieldView)
+                    setVisibility(it, fieldView)
+
+                    field.isReadOnly = it.isReadOnly ?: field.isReadOnly
+                    field.isRequired = it.isRequired ?: field.isRequired
+                    field.isValidByRules = it.isValid ?: true
+
+                    if (it.isValueChanged == true) {
+                        field.currentValue = it.value as Serializable?
+                    }
+
+                    fieldTextView?.setupFieldLayout()
+                    fieldViewModel.refresh()
+                }
+            }
+        }
+    }
+
+    private fun setOptions(fieldContext: FieldContext, fieldView: View) {
+        val fieldSelectView = fieldView as? DDLFieldSelectView
+
+        fieldSelectView?.let {
+            val field = it.field
+            val availableOptions = fieldContext.options as? List<Map<String, String>>
+
+            availableOptions?.let {
+                field.availableOptions = ArrayList(availableOptions.map { Option(it) })
+            }
+        }
+    }
+
+    private fun setVisibility(fieldContext: FieldContext, fieldView: View) {
+        if (fieldContext.isVisible != false) {
+            fieldView.visibility = View.VISIBLE
+        }
+        else {
+            fieldView.visibility = View.GONE
+        }
+    }
+
+    private fun performSubmitOperation(thing: Thing, isDraft: Boolean = false) {
         val operation = thing.getOperation("create")
 
         operation?.let {
@@ -217,11 +290,11 @@ class DDMFormView @JvmOverloads constructor(
                 val values = mutableMapOf<String, Any>()
 
                 if (!it.none { it.name == "isDraft" }) {
-                    values["isDraft"] = false
+                    values["isDraft"] = isDraft
                 }
 
                 val fieldsList = formInstance!!
-                    .fields.map { mapOf("identifier" to "", "name" to it.name, "value" to it.currentValue.toString()) }
+                    .fields.map { mapOf("name" to it.name, "value" to it.currentValue.toString()) }
 
                 val fieldValues = Gson().toJson(fieldsList)
 
