@@ -1,0 +1,40 @@
+buildscript {
+	ext.kotlin_version = '1.2.41'
+	repositories {
+		jcenter()
+		maven { url 'https://maven.google.com' }
+	}
+
+	dependencies {
+		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+	}
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+	compileSdkVersion 27
+	defaultConfig {
+		minSdkVersion 15
+		targetSdkVersion 27
+		versionCode 1
+		versionName "1.0"
+	}
+
+	testOptions {
+		unitTests {
+			includeAndroidResources = true
+		}
+	}
+}
+
+dependencies {
+	implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+	testImplementation 'junit:junit:4.12'
+	testImplementation project(':liferay-screens')
+	testImplementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+	testImplementation 'org.jetbrains.kotlin:kotlin-test-junit:1.0.6'
+	testImplementation libraries.json
+}
