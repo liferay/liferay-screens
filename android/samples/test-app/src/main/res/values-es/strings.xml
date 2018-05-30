@@ -35,4 +35,5 @@
 	<string name="list">Lista</string>
 	<string name="no_loaded_comment">Ningún comentario cargado</string>
 	<string name="change_image_scale_type">Cambiar el escalado de la imagen</string>
+	<string name="list_bookmarks_label">Bookmark List Screenlet: Muestra los bookmarks de una carpeta</string>
 </resources>

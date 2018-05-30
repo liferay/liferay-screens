@@ -30,8 +30,8 @@
 	<string name="liferay_ddm_folder_id">54469</string>
 	<string name="liferay_ddm_repository_id">20143</string>
 
-	<!--AddBookmarkScreenlet values-->
-	<string name="liferay_bookmark_folder">33583</string>
+	<!--BookmarkListScreenlet and AddBookmarkScreenlet values-->
+	<string name="liferay_bookmark_folder">0</string>
 
 	<!--WebContentDisplayScreenlet values-->
 	<string name="liferay_article_id">57343</string>

@@ -22,6 +22,7 @@
 	<string name="sync_cache">Sync Cache</string>
 	<string name="change_theme">Change Theme</string>
 	<string name="image_gallery">Image Gallery</string>
+	<string name="list_bookmarks_label">Bookmark List Screenlet: Shows the bookmarks from a folder</string>
 	<string name="portlet_label">Web Screenlet: It allows you to display any web page. It also allow customization of the web page through injection of JS and CSS files.</string>
 	<string name="getuser_label">Get User Screenlet: Shows the user info given its userId, screenName or emailAddress.</string>
 	<string name="webview_label">Web Content Display Screenlet: Shows the HTML of a web content given its articleId.</string>
