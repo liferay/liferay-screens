@@ -2,7 +2,7 @@ if [ "$PLATFORM" = Android ]; then
 	cd android
 	sh gradlew clean
 	sh gradlew assemble
-	sh gradlew testDebug
+	sh gradlew liferay-screens:testDebug
 elif [ "$PLATFORM" = iOS ]; then
 	cd ios/Framework
 	pod install --repo-update
@@ -14,4 +14,9 @@ elif [ "${DANGER}" -eq 1 ]; then
 	gem install danger 
 	gem install danger-swiftlint
 	danger
+fi
+
+if [ "$TRAVIS_EVENT_TYPE" = cron ]; then
+	cd android
+	sh gradlew liferay-services-integration:testDebug
 fi
