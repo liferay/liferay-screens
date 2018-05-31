@@ -6,6 +6,12 @@
 	<string name="liferay_company_id">20116</string>
 	<string name="liferay_group_id">20143</string>
 
+	<!--LoginScreenletValues-->
+	<string name="client_id_redirect">1234</string>
+	<string name="redirect_uri">my-app://my-app</string>
+	<string name="client_id">12345</string>
+	<string name="client_secret">12345</string>
+
 	<!--SignupScreenlet values-->
 	<string name="liferay_anonymousApiUserName">demo@liferay.com</string>
 	<string name="liferay_anonymousApiPassword">demo</string>
