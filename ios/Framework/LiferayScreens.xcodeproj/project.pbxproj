@@ -170,7 +170,7 @@
 		0B2180341D6C508200A23690 /* DDMFieldString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180031D6C4F6F00A23690 /* DDMFieldString.swift */; };
 		0B2180351D6C508200A23690 /* DDMFieldStringWithOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180041D6C4F6F00A23690 /* DDMFieldStringWithOptions.swift */; };
 		0B2180361D6C508200A23690 /* DDMFieldUntyped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180051D6C4F6F00A23690 /* DDMFieldUntyped.swift */; };
-		0B2677DE1D3D1E5700FDFC5B /* BuildFile in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
+		0B2677DE1D3D1E5700FDFC5B /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
 		0B2C41541D5A3C7C00764326 /* ImageGalleryCollectionViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C41421D5A3C7C00764326 /* ImageGalleryCollectionViewBase.swift */; };
 		0B2C415F1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C414D1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift */; };
 		0B2C41631D5A3C7C00764326 /* UploadProgressView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C41511D5A3C7C00764326 /* UploadProgressView_default.xib */; };
@@ -477,7 +477,7 @@
 		0B7784611F95F60C001C9134 /* LRScreensassetentryService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E05451C6A4DB000CA3807 /* LRScreensassetentryService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784621F95F60C001C9134 /* LRScreensjournalarticleService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E055A1C6A4DF700CA3807 /* LRScreensjournalarticleService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784631F95F60C001C9134 /* LRScreensassetentryService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E05561C6A4DF700CA3807 /* LRScreensassetentryService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0B7784651F95F60C001C9134 /* BuildFile in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
+		0B7784651F95F60C001C9134 /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784661F95F60C001C9134 /* LRScreensjournalarticleService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E05491C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784671F95F60C001C9134 /* LRScreenscommentService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BFE28381D87E13300261A66 /* LRScreenscommentService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784691F95F60C001C9134 /* SignUpView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E61C71ACBFC3400862B9E /* SignUpView_default.xib */; };
@@ -612,16 +612,6 @@
 		0B81C1B21EEED7A900D7DCF6 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 0B81C1B11EEED7A900D7DCF6 /* index.html */; };
 		0B8861F620582E9A0067F192 /* LoginByCookieConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4935A2035C44C00730299 /* LoginByCookieConnector.swift */; };
 		0B8861F720582E9D0067F192 /* LoginByCookieConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4935A2035C44C00730299 /* LoginByCookieConnector.swift */; };
-		0B8B233A20482193000932EF /* default-star-half.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B8B233120482190000932EF /* default-star-half.png */; };
-		0B8B233B20482193000932EF /* default-star-outline.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B8B233220482191000932EF /* default-star-outline.png */; };
-		0B8B233C20482193000932EF /* default-star-outline@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B8B233320482191000932EF /* default-star-outline@3x.png */; };
-		0B8B233D20482193000932EF /* default-star-half@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B8B233420482191000932EF /* default-star-half@3x.png */; };
-		0B8B233E20482193000932EF /* default-star.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B8B233520482192000932EF /* default-star.png */; };
-		0B8B233F20482193000932EF /* default-star@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B8B233620482192000932EF /* default-star@3x.png */; };
-		0B8B234020482193000932EF /* default-star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B8B233720482192000932EF /* default-star@2x.png */; };
-		0B8B234120482193000932EF /* default-star-half@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B8B233820482192000932EF /* default-star-half@2x.png */; };
-		0B8B234220482193000932EF /* default-star-outline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B8B233920482192000932EF /* default-star-outline@2x.png */; };
-		0B89C9951D58B01200A9EAE7 /* SyncManager+ImageGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B89C9941D58B01200A9EAE7 /* SyncManager+ImageGallery.swift */; };
 		0BA1CEDF1F4C64CE0079DD4B /* ScreensWKUIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA1CEDE1F4C64CE0079DD4B /* ScreensWKUIDelegate.swift */; };
 		0BA6AC62205A8D0900BB83D4 /* AsyncServerConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F493582035A73A00730299 /* AsyncServerConnector.swift */; };
 		0BA6AC63205A8D0A00BB83D4 /* AsyncServerConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F493582035A73A00730299 /* AsyncServerConnector.swift */; };
@@ -1039,6 +1029,8 @@
 		D62E6E6A20736A1000CEABA4 /* GetCurrentUserConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E6E6920736A1000CEABA4 /* GetCurrentUserConnector.swift */; };
 		D69C30F720BFF73900404993 /* GetCurrentUserConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E6E6920736A1000CEABA4 /* GetCurrentUserConnector.swift */; };
 		D69C30F820BFF84900404993 /* GetCurrentUserConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E6E6920736A1000CEABA4 /* GetCurrentUserConnector.swift */; };
+		D69C30F920C006B700404993 /* LoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DC48112073AB220031DCB2 /* LoginResult.swift */; };
+		D69C30FA20C006B800404993 /* LoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DC48112073AB220031DCB2 /* LoginResult.swift */; };
 		D6D48D622072226F005C0420 /* OAuth2CredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D48D612072226F005C0420 /* OAuth2CredentialsStoreKeyChain.swift */; };
 		D6D48D632072227C005C0420 /* OAuth2CredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D48D612072226F005C0420 /* OAuth2CredentialsStoreKeyChain.swift */; };
 		D6D48D642072227D005C0420 /* OAuth2CredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D48D612072226F005C0420 /* OAuth2CredentialsStoreKeyChain.swift */; };
@@ -3085,7 +3077,7 @@
 				0B7784611F95F60C001C9134 /* LRScreensassetentryService_v62.h in Headers */,
 				0B7784621F95F60C001C9134 /* LRScreensjournalarticleService_v70.h in Headers */,
 				0B7784631F95F60C001C9134 /* LRScreensassetentryService_v70.h in Headers */,
-				0B7784651F95F60C001C9134 /* BuildFile in Headers */,
+				0B7784651F95F60C001C9134 /* (null) in Headers */,
 				0B7784661F95F60C001C9134 /* LRScreensjournalarticleService_v62.h in Headers */,
 				0B7784671F95F60C001C9134 /* LRScreenscommentService_v70.h in Headers */,
 			);
@@ -3104,7 +3096,7 @@
 				887E054D1C6A4DB000CA3807 /* LRScreensassetentryService_v62.h in Headers */,
 				887E069B1C6A4DF800CA3807 /* LRScreensjournalarticleService_v70.h in Headers */,
 				887E06971C6A4DF800CA3807 /* LRScreensassetentryService_v70.h in Headers */,
-				0B2677DE1D3D1E5700FDFC5B /* BuildFile in Headers */,
+				0B2677DE1D3D1E5700FDFC5B /* (null) in Headers */,
 				887E05511C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h in Headers */,
 				0BFE283A1D87E13300261A66 /* LRScreenscommentService_v70.h in Headers */,
 			);
@@ -3574,11 +3566,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/Cordova/Cordova.framework",
 				"${BUILT_PRODUCTS_DIR}/DTPickerPresenter/DTPickerPresenter.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/Liferay-iOS-SDK/LRMobileSDK.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/MDRadialProgress/MDRadialProgress.framework",
 				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
@@ -3590,11 +3585,14 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppAuth.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cordova.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTPickerPresenter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LRMobileSDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MDRadialProgress.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
@@ -3676,6 +3674,7 @@
 				0B7783681F95F60C001C9134 /* CacheManager.swift in Sources */,
 				0B7783691F95F60C001C9134 /* WebContentListPageLoadInteractor.swift in Sources */,
 				0B77836A1F95F60C001C9134 /* CredentialsStorage.swift in Sources */,
+				D69C30FA20C006B800404993 /* LoginResult.swift in Sources */,
 				0B77836B1F95F60C001C9134 /* LoginByScreenNameLiferayConnectors.swift in Sources */,
 				0B77836C1F95F60C001C9134 /* Asset.swift in Sources */,
 				0B77836D1F95F60C001C9134 /* Bool+Screens.swift in Sources */,
@@ -4303,6 +4302,7 @@
 				0B2180301D6C507B00A23690 /* DDMFieldDate.swift in Sources */,
 				0B2180291D6C506800A23690 /* DDMStructure.swift in Sources */,
 				881E62941ACBFEFC00862B9E /* BaseListPageLoadInteractor.swift in Sources */,
+				D69C30F920C006B700404993 /* LoginResult.swift in Sources */,
 				886F4EE21CA156710018229E /* DDMXSDParser_i18n_Tests.swift in Sources */,
 				881E62B61ACBFFFA00862B9E /* LiferayServerContext.swift in Sources */,
 				881E62911ACBFEA200862B9E /* SignUpScreenlet.swift in Sources */,

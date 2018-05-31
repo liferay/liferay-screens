@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>server</key>
-	<string>https://liferay-oauth2.wedeploy.io/</string>
+	<string>http://screens.liferay.org.es</string>
 	<key>version</key>
 	<integer>70</integer>
 	<key>companyId</key>
@@ -63,7 +63,7 @@
 	<key>webUrl</key>
 	<string>/web/guest/webscreenlet-gallery</string>
 	<key>clientIdRedirect</key>
-	<string>54321</string>
+	<string>1234</string>
 	<key>clientId</key>
 	<string>12345</string>
 	<key>clientSecret</key>
