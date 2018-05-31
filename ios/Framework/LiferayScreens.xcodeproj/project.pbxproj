@@ -1037,6 +1037,8 @@
 		D62E6E6720725F7800CEABA4 /* LoginOAuth2RedirectInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E6E6520725F7800CEABA4 /* LoginOAuth2RedirectInteractor.swift */; };
 		D62E6E6820725F7800CEABA4 /* LoginOAuth2RedirectInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E6E6520725F7800CEABA4 /* LoginOAuth2RedirectInteractor.swift */; };
 		D62E6E6A20736A1000CEABA4 /* GetCurrentUserConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E6E6920736A1000CEABA4 /* GetCurrentUserConnector.swift */; };
+		D69C30F720BFF73900404993 /* GetCurrentUserConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E6E6920736A1000CEABA4 /* GetCurrentUserConnector.swift */; };
+		D69C30F820BFF84900404993 /* GetCurrentUserConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E6E6920736A1000CEABA4 /* GetCurrentUserConnector.swift */; };
 		D6D48D622072226F005C0420 /* OAuth2CredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D48D612072226F005C0420 /* OAuth2CredentialsStoreKeyChain.swift */; };
 		D6D48D632072227C005C0420 /* OAuth2CredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D48D612072226F005C0420 /* OAuth2CredentialsStoreKeyChain.swift */; };
 		D6D48D642072227D005C0420 /* OAuth2CredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D48D612072226F005C0420 /* OAuth2CredentialsStoreKeyChain.swift */; };
@@ -3783,6 +3785,7 @@
 				0B7783DA1F95F60C001C9134 /* User.swift in Sources */,
 				0B7783DB1F95F60C001C9134 /* DDLListPageLiferayConnector.swift in Sources */,
 				0B7783DC1F95F60C001C9134 /* PdfDisplayScreenlet.swift in Sources */,
+				D69C30F820BFF84900404993 /* GetCurrentUserConnector.swift in Sources */,
 				0B7783DD1F95F60C001C9134 /* RatingView_default-like.swift in Sources */,
 				0B7783DE1F95F60C001C9134 /* DDLFieldTextTableCell_default.swift in Sources */,
 				0B7783DF1F95F60C001C9134 /* ForgotPasswordScreenlet.swift in Sources */,
@@ -4229,6 +4232,7 @@
 				8837FA771CAEF6AE00DCB1B4 /* WebContentLoadBaseLiferayConnector.swift in Sources */,
 				886F4EDD1CA156710018229E /* DDLListScreenlet_ParseFields_Tests.swift in Sources */,
 				88DE250E1AD2AB0A00714701 /* BaseScreenlet_Theme_Tests.swift in Sources */,
+				D69C30F720BFF73900404993 /* GetCurrentUserConnector.swift in Sources */,
 				D62E6E6720725F7800CEABA4 /* LoginOAuth2RedirectInteractor.swift in Sources */,
 				D6D48D632072227C005C0420 /* OAuth2CredentialsStoreKeyChain.swift in Sources */,
 				88A2B71E1ACDEF5D000C2065 /* LoginView_default.swift in Sources */,
