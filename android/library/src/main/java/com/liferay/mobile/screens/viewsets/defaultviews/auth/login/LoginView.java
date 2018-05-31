@@ -40,7 +40,7 @@ public class LoginView extends LinearLayout implements LoginViewModel, View.OnCl
 	protected EditText passwordEditText;
 	protected Button submitButton;
 	protected LinearLayout basicAuthenticationLayout;
-	protected Button oAuthButton;
+	protected Button oAuth2Button;
 	protected ModalProgressBar progressBar;
 	private AuthenticationType authenticationType;
 	private BasicAuthMethod basicAuthMethod;
@@ -145,9 +145,9 @@ public class LoginView extends LinearLayout implements LoginViewModel, View.OnCl
 
 		basicAuthenticationLayout = findViewById(R.id.basic_authentication_login);
 
-		oAuthButton = findViewById(R.id.oauth_authentication_login);
-		if (oAuthButton != null) {
-			oAuthButton.setOnClickListener(this);
+		oAuth2Button = findViewById(R.id.oauth2_authentication_login);
+		if (oAuth2Button != null) {
+			oAuth2Button.setOnClickListener(this);
 		}
 
 		submitButton = findViewById(R.id.liferay_login_button);
@@ -158,8 +158,13 @@ public class LoginView extends LinearLayout implements LoginViewModel, View.OnCl
 	protected void onAttachedToWindow() {
 		super.onAttachedToWindow();
 
-		if (basicAuthMethod != null) {
-			loginEditText.setHint(getResources().getString(getLabelResourceForAuthMode()));
+		if (oAuth2Button != null) {
+			oAuth2Button.setVisibility(AuthenticationType.OAUTH2REDIRECT.equals(authenticationType) ? VISIBLE : GONE);
+		}
+
+		if (basicAuthenticationLayout != null) {
+			basicAuthenticationLayout.setVisibility(
+				AuthenticationType.OAUTH2REDIRECT.equals(authenticationType) ? GONE : VISIBLE);
 		}
 
 		refreshLoginEditTextStyle();
@@ -167,6 +172,7 @@ public class LoginView extends LinearLayout implements LoginViewModel, View.OnCl
 
 	protected void refreshLoginEditTextStyle() {
 		if (basicAuthMethod != null) {
+			loginEditText.setHint(getResources().getString(getLabelResourceForAuthMode()));
 			loginEditText.setInputType(basicAuthMethod.getInputType());
 			loginEditText.setCompoundDrawablesWithIntrinsicBounds(
 				ContextCompat.getDrawable(getContext(), getLoginEditTextDrawableId()), null, null, null);

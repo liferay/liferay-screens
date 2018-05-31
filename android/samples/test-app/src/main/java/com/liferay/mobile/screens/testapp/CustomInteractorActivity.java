@@ -35,6 +35,11 @@ public class CustomInteractorActivity extends ThemeActivity
 	}
 
 	@Override
+	public void onAuthenticationBrowserShown() {
+
+	}
+
+	@Override
 	public BaseLoginInteractor createInteractor(String actionName) {
 		return new CustomLoginInteractor();
 	}

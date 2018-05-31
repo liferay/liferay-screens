@@ -14,6 +14,8 @@
 	<attr format="enum" name="loginMode">
 		<enum name="basic" value="0"/>
 		<enum name="cookie" value="1"/>
+		<enum name="oauth2Redirect" value="2"/>
+		<enum name="oauth2UsernameAndPassword" value="3"/>
 	</attr>
 	<attr format="enum" name="credentialsStorage">
 		<enum name="none" value="0"/>
@@ -162,6 +164,10 @@
 		<attr name="loginMode"/>
 		<attr format="boolean" name="shouldHandleCookieExpiration"/>
 		<attr format="integer" name="cookieExpirationTime"/>
+		<attr format="string" name="oauth2ClientId"/>
+		<attr format="string" name="oauth2ClientSecret"/>
+		<attr format="string" name="oauth2Scopes"/>
+		<attr format="string" name="oauth2Redirect"/>
 	</declare-styleable>
 
 	<declare-styleable name="SignUpScreenlet">

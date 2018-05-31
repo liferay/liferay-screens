@@ -86,6 +86,11 @@ public class MainActivity extends CardActivity
 	}
 
 	@Override
+	public void onAuthenticationBrowserShown() {
+
+	}
+
+	@Override
 	public void onForgotPasswordRequestSuccess(boolean passwordSent) {
 		forgotPasswordField.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.circle_email, 0);
 		WesterosSnackbar.showSnackbar(this, "Password requested!", R.color.green_westeros);

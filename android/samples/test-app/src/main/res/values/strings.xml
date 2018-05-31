@@ -73,4 +73,8 @@
 	<string name="email">Email</string>
 	<string name="nickname">Nickname</string>
 	<string name="change_image_scale_type">Change Image Scale Type</string>
+	<string name="basic">Basic</string>
+	<string name="cookie">Cookie</string>
+	<string name="oauth2_with_redirect">OAuth2 redirect</string>
+	<string name="oauth2_username_and_password">OAuth2 Username and password</string>
 </resources>

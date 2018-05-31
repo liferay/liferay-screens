@@ -32,6 +32,11 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
 
 	}
 
+	@Override
+	public void onAuthenticationBrowserShown() {
+
+	}
+
 	private void setDefaultValuesForUserAndPassword() {
 		EditText login = findViewById(R.id.liferay_login);
 		login.setText(R.string.default_user);

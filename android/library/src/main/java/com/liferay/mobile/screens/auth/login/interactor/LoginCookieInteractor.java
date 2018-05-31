@@ -21,10 +21,8 @@ public class LoginCookieInteractor extends BaseLoginInteractor {
 
 		String login = (String) args[0];
 		String password = (String) args[1];
-		Authenticator authenticator = (Authenticator) args[2];
-
-		boolean shouldHandleExpiration = (boolean) args[3];
-		int cookieExpirationTime = (int) args[4];
+		boolean shouldHandleExpiration = (boolean) args[2];
+		int cookieExpirationTime = (int) args[3];
 
 		validate(login, password);
 
@@ -34,7 +32,7 @@ public class LoginCookieInteractor extends BaseLoginInteractor {
 		Session session = SessionContext.createBasicSession(login, password);
 		session.setAuthentication(authentication);
 
-		Session cookieSession = CookieSignIn.signIn(session, authenticator);
+		Session cookieSession = CookieSignIn.signIn(session);
 
 		SessionContext.createCookieSession(cookieSession);
 		CurrentUserConnector userConnector = getCurrentUserConnector(cookieSession);

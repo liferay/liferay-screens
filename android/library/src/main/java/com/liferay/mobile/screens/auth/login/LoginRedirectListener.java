@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -12,12 +12,19 @@
  * details.
  */
 
-package com.liferay.mobile.screens.context;
+package com.liferay.mobile.screens.auth.login;
 
-/**
- * @author Javier Gamarra
- */
-public enum AuthenticationType {
+public interface LoginRedirectListener {
 
-	BASIC, COOKIE, OAUTH2REDIRECT, OAUTH2USERNAMEANDPASSWORD,  VOID
+	/**
+	 * Called when the authentication browser is shown
+	 */
+	void onAuthenticationBrowserShown();
+
+	/**
+	 * Called when an error occurs in the process.
+	 *
+	 * @param e exception
+	 */
+	void onLoginFailure(Exception e);
 }
