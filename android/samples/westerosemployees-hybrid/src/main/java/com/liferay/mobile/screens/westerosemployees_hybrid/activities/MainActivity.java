@@ -82,4 +82,9 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 	public void onLoginFailure(Exception e) {
 		WesterosSnackbar.showSnackbar(this, "Login failed!", R.color.colorAccent_westeros);
 	}
+
+	@Override
+	public void onAuthenticationBrowserShown() {
+
+	}
 }
