@@ -20,7 +20,6 @@ open class LoginByCookieConnector: ServerConnector {
 	open let shouldHandleCookieExpiration: Bool
 	open let cookieExpirationTime: Double
 
-	open var resultUserAttributes: [String: AnyObject]?
 	open var cookieSession: LRSession?
 
 	public init(username: String, password: String, shouldHandleCookieExpiration: Bool,
@@ -64,49 +63,10 @@ open class LoginByCookieConnector: ServerConnector {
 	open override func doRun(session: LRSession) {
 
 		do {
-			cookieSession = try LRCookieSignIn.signIn(with: session, callback: nil,
-				challenge: SessionContext.challengeResolver)
-
-			resultUserAttributes = try getCurrentUser(session: session)
-
+			cookieSession = try LRCookieSignIn.signIn(with: session, callback: nil)
 		}
 		catch let error as NSError {
 			lastError = error
 		}
-	}
-
-	override open func postRun() {
-		if lastError == nil {
-			SessionContext.currentContext?.removeStoredCredentials()
-			let cookieAuthentication = cookieSession?.authentication as! LRCookieAuthentication
-			SessionContext.loginWithCookie(authentication: cookieAuthentication,
-				userAttributes: resultUserAttributes ?? [:])
-		}
-	}
-
-	internal func getCurrentUser(session: LRSession) throws -> [String: AnyObject] {
-		fatalError("getCurrentUser method must be overwritten")
-	}
-}
-
-open class LoginByCookieLiferay62Connector: LoginByCookieConnector {
-
-	// MARK: LoginByCookieConnector
-
-	override func getCurrentUser(session: LRSession) throws -> [String: AnyObject] {
-		let service = LRScreensuserService_v62(session: session)
-
-		return try service.getCurrentUser() as! [String: AnyObject]
-	}
-}
-
-open class LoginByCookieLiferay70Connector: LoginByCookieConnector {
-
-	// MARK: LoginByCookieConnector
-
-	override func getCurrentUser(session: LRSession) throws -> [String: AnyObject] {
-		let service = LRUserService_v7(session: session)
-
-		return try service.getCurrentUser() as! [String: AnyObject]
 	}
 }

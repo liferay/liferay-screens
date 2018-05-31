@@ -30,6 +30,9 @@ All notable changes to this project will be documented in this file.
 * Update AndorraTelecomPublic demo app
 * Update Showcase-ObjectiveC demo app
 
+### Features
+* Add OAuth2 authentication
+
 ### Refactor
 
 * Remove non essentials libraries: Cosmos and Cryptoswift

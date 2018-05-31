@@ -47,6 +47,15 @@ public protocol LiferayConnectorFactory {
 		shouldHandleCookieExpiration: Bool,
 		cookieExpirationTime: Double) -> LoginByCookieConnector
 
+	func createLoginByOAuth2PasswordConnector(
+		username: String,
+		password: String,
+		scopes: [String],
+		clientId: String,
+		clientSecret: String) -> LoginByOAuth2UsernamePasswordConnector?
+
+	func createGetCurrentUserConnector(session: LRSession) -> GetCurrentUserConnector?
+
 	func createForgotPasswordByEmailConnector(
 		viewModel: ForgotPasswordViewModel,
 		anonymousUsername: String,
@@ -240,11 +249,25 @@ open class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 		password: String,
 		shouldHandleCookieExpiration: Bool,
 		cookieExpirationTime: Double) -> LoginByCookieConnector {
-		return LoginByCookieLiferay62Connector(
+		return LoginByCookieConnector(
 			username: username,
 			password: password,
 			shouldHandleCookieExpiration: shouldHandleCookieExpiration,
 			cookieExpirationTime: cookieExpirationTime)
+	}
+
+	open func createLoginByOAuth2PasswordConnector(
+		username: String,
+		password: String,
+		scopes: [String],
+		clientId: String,
+		clientSecret: String) -> LoginByOAuth2UsernamePasswordConnector? {
+		print("Unsupported connector in Liferay 6.2: LoginByOAuth2PasswordConnector")
+		return nil
+	}
+
+	open func createGetCurrentUserConnector(session: LRSession) -> GetCurrentUserConnector? {
+		return Liferay62GetCurrentUserConnector(session: session)
 	}
 
 	open func createForgotPasswordByEmailConnector(
@@ -554,11 +577,29 @@ open class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 		password: String,
 		shouldHandleCookieExpiration: Bool,
 		cookieExpirationTime: Double) -> LoginByCookieConnector {
-		return LoginByCookieLiferay70Connector(
+		return LoginByCookieConnector(
 			username: username,
 			password: password,
 			shouldHandleCookieExpiration: shouldHandleCookieExpiration,
 			cookieExpirationTime: cookieExpirationTime)
+	}
+
+	open func createLoginByOAuth2PasswordConnector(
+		username: String,
+		password: String,
+		scopes: [String],
+		clientId: String,
+		clientSecret: String) -> LoginByOAuth2UsernamePasswordConnector? {
+		return LoginByOAuth2UsernamePasswordConnector(
+			username: username,
+			password: password,
+			scopes: scopes,
+			clientId: clientId,
+			clientSecret: clientSecret)
+	}
+
+	open func createGetCurrentUserConnector(session: LRSession) -> GetCurrentUserConnector? {
+		return Liferay70GetCurrentUserConnector(session: session)
 	}
 
 	open func createForgotPasswordByEmailConnector(

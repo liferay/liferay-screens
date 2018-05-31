@@ -170,7 +170,7 @@
 		0B2180341D6C508200A23690 /* DDMFieldString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180031D6C4F6F00A23690 /* DDMFieldString.swift */; };
 		0B2180351D6C508200A23690 /* DDMFieldStringWithOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180041D6C4F6F00A23690 /* DDMFieldStringWithOptions.swift */; };
 		0B2180361D6C508200A23690 /* DDMFieldUntyped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180051D6C4F6F00A23690 /* DDMFieldUntyped.swift */; };
-		0B2677DE1D3D1E5700FDFC5B /* BuildFile in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
+		0B2677DE1D3D1E5700FDFC5B /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
 		0B2C41541D5A3C7C00764326 /* ImageGalleryCollectionViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C41421D5A3C7C00764326 /* ImageGalleryCollectionViewBase.swift */; };
 		0B2C415F1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C414D1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift */; };
 		0B2C41631D5A3C7C00764326 /* UploadProgressView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C41511D5A3C7C00764326 /* UploadProgressView_default.xib */; };
@@ -477,7 +477,7 @@
 		0B7784611F95F60C001C9134 /* LRScreensassetentryService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E05451C6A4DB000CA3807 /* LRScreensassetentryService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784621F95F60C001C9134 /* LRScreensjournalarticleService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E055A1C6A4DF700CA3807 /* LRScreensjournalarticleService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784631F95F60C001C9134 /* LRScreensassetentryService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E05561C6A4DF700CA3807 /* LRScreensassetentryService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0B7784651F95F60C001C9134 /* BuildFile in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
+		0B7784651F95F60C001C9134 /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784661F95F60C001C9134 /* LRScreensjournalarticleService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E05491C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784671F95F60C001C9134 /* LRScreenscommentService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BFE28381D87E13300261A66 /* LRScreenscommentService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784691F95F60C001C9134 /* SignUpView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E61C71ACBFC3400862B9E /* SignUpView_default.xib */; };
@@ -612,16 +612,6 @@
 		0B81C1B21EEED7A900D7DCF6 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 0B81C1B11EEED7A900D7DCF6 /* index.html */; };
 		0B8861F620582E9A0067F192 /* LoginByCookieConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4935A2035C44C00730299 /* LoginByCookieConnector.swift */; };
 		0B8861F720582E9D0067F192 /* LoginByCookieConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4935A2035C44C00730299 /* LoginByCookieConnector.swift */; };
-		0B8B233A20482193000932EF /* default-star-half.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B8B233120482190000932EF /* default-star-half.png */; };
-		0B8B233B20482193000932EF /* default-star-outline.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B8B233220482191000932EF /* default-star-outline.png */; };
-		0B8B233C20482193000932EF /* default-star-outline@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B8B233320482191000932EF /* default-star-outline@3x.png */; };
-		0B8B233D20482193000932EF /* default-star-half@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B8B233420482191000932EF /* default-star-half@3x.png */; };
-		0B8B233E20482193000932EF /* default-star.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B8B233520482192000932EF /* default-star.png */; };
-		0B8B233F20482193000932EF /* default-star@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B8B233620482192000932EF /* default-star@3x.png */; };
-		0B8B234020482193000932EF /* default-star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B8B233720482192000932EF /* default-star@2x.png */; };
-		0B8B234120482193000932EF /* default-star-half@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B8B233820482192000932EF /* default-star-half@2x.png */; };
-		0B8B234220482193000932EF /* default-star-outline@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B8B233920482192000932EF /* default-star-outline@2x.png */; };
-		0B89C9951D58B01200A9EAE7 /* SyncManager+ImageGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B89C9941D58B01200A9EAE7 /* SyncManager+ImageGallery.swift */; };
 		0BA1CEDF1F4C64CE0079DD4B /* ScreensWKUIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA1CEDE1F4C64CE0079DD4B /* ScreensWKUIDelegate.swift */; };
 		0BA6AC62205A8D0900BB83D4 /* AsyncServerConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F493582035A73A00730299 /* AsyncServerConnector.swift */; };
 		0BA6AC63205A8D0A00BB83D4 /* AsyncServerConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F493582035A73A00730299 /* AsyncServerConnector.swift */; };
@@ -1029,6 +1019,24 @@
 		88F888551B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */; };
 		88F888561B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */; };
 		9408E484873051DBA2FC5F89 /* Pods_Screens_LiferayScreensTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76277052A489CACA834992A8 /* Pods_Screens_LiferayScreensTests.framework */; };
+		D62E6E612072337700CEABA4 /* LoginByOAuth2UsernamePasswordConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D48D6520722B15005C0420 /* LoginByOAuth2UsernamePasswordConnector.swift */; };
+		D62E6E622072337700CEABA4 /* LoginByOAuth2UsernamePasswordConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D48D6520722B15005C0420 /* LoginByOAuth2UsernamePasswordConnector.swift */; };
+		D62E6E632072337900CEABA4 /* LoginOAuth2UsernamePasswordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D48D6720722B29005C0420 /* LoginOAuth2UsernamePasswordInteractor.swift */; };
+		D62E6E642072337A00CEABA4 /* LoginOAuth2UsernamePasswordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D48D6720722B29005C0420 /* LoginOAuth2UsernamePasswordInteractor.swift */; };
+		D62E6E6620725F7800CEABA4 /* LoginOAuth2RedirectInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E6E6520725F7800CEABA4 /* LoginOAuth2RedirectInteractor.swift */; };
+		D62E6E6720725F7800CEABA4 /* LoginOAuth2RedirectInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E6E6520725F7800CEABA4 /* LoginOAuth2RedirectInteractor.swift */; };
+		D62E6E6820725F7800CEABA4 /* LoginOAuth2RedirectInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E6E6520725F7800CEABA4 /* LoginOAuth2RedirectInteractor.swift */; };
+		D62E6E6A20736A1000CEABA4 /* GetCurrentUserConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E6E6920736A1000CEABA4 /* GetCurrentUserConnector.swift */; };
+		D69C30F720BFF73900404993 /* GetCurrentUserConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E6E6920736A1000CEABA4 /* GetCurrentUserConnector.swift */; };
+		D69C30F820BFF84900404993 /* GetCurrentUserConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62E6E6920736A1000CEABA4 /* GetCurrentUserConnector.swift */; };
+		D69C30F920C006B700404993 /* LoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DC48112073AB220031DCB2 /* LoginResult.swift */; };
+		D69C30FA20C006B800404993 /* LoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DC48112073AB220031DCB2 /* LoginResult.swift */; };
+		D6D48D622072226F005C0420 /* OAuth2CredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D48D612072226F005C0420 /* OAuth2CredentialsStoreKeyChain.swift */; };
+		D6D48D632072227C005C0420 /* OAuth2CredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D48D612072226F005C0420 /* OAuth2CredentialsStoreKeyChain.swift */; };
+		D6D48D642072227D005C0420 /* OAuth2CredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D48D612072226F005C0420 /* OAuth2CredentialsStoreKeyChain.swift */; };
+		D6D48D6620722B15005C0420 /* LoginByOAuth2UsernamePasswordConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D48D6520722B15005C0420 /* LoginByOAuth2UsernamePasswordConnector.swift */; };
+		D6D48D6820722B29005C0420 /* LoginOAuth2UsernamePasswordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D48D6720722B29005C0420 /* LoginOAuth2UsernamePasswordInteractor.swift */; };
+		D6DC48122073AB220031DCB2 /* LoginResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DC48112073AB220031DCB2 /* LoginResult.swift */; };
 		D6F493592035A73A00730299 /* AsyncServerConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F493582035A73A00730299 /* AsyncServerConnector.swift */; };
 		D6F4935B2035C44C00730299 /* LoginByCookieConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6F4935A2035C44C00730299 /* LoginByCookieConnector.swift */; };
 /* End PBXBuildFile section */
@@ -1544,6 +1552,12 @@
 		A8B45C06052D105C65EF5C83 /* Pods-Screens-LiferayScreens.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreens.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreens/Pods-Screens-LiferayScreens.debug.xcconfig"; sourceTree = "<group>"; };
 		AD76E36E85BE8E49BD3D8E53 /* Pods-Screens-LiferayScreensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreensTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests.release.xcconfig"; sourceTree = "<group>"; };
 		ADC21DB5DD46A1A28344B494 /* Pods-Screens-LiferayScreensTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreensTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D62E6E6520725F7800CEABA4 /* LoginOAuth2RedirectInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOAuth2RedirectInteractor.swift; sourceTree = "<group>"; };
+		D62E6E6920736A1000CEABA4 /* GetCurrentUserConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrentUserConnector.swift; sourceTree = "<group>"; };
+		D6D48D612072226F005C0420 /* OAuth2CredentialsStoreKeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2CredentialsStoreKeyChain.swift; sourceTree = "<group>"; };
+		D6D48D6520722B15005C0420 /* LoginByOAuth2UsernamePasswordConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginByOAuth2UsernamePasswordConnector.swift; sourceTree = "<group>"; };
+		D6D48D6720722B29005C0420 /* LoginOAuth2UsernamePasswordInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOAuth2UsernamePasswordInteractor.swift; sourceTree = "<group>"; };
+		D6DC48112073AB220031DCB2 /* LoginResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResult.swift; sourceTree = "<group>"; };
 		D6F493582035A73A00730299 /* AsyncServerConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncServerConnector.swift; sourceTree = "<group>"; };
 		D6F4935A2035C44C00730299 /* LoginByCookieConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginByCookieConnector.swift; sourceTree = "<group>"; };
 		F87A66990734AE5230D0C891 /* Pods_Screens_LiferayScreensXamarin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Screens_LiferayScreensXamarin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2937,6 +2951,8 @@
 				88B844A31C73D888007A447D /* LoginByScreenNameLiferayConnectors.swift */,
 				88B844A51C73D888007A447D /* LoginByUserIdLiferayConnectors.swift */,
 				D6F4935A2035C44C00730299 /* LoginByCookieConnector.swift */,
+				D6D48D6520722B15005C0420 /* LoginByOAuth2UsernamePasswordConnector.swift */,
+				D62E6E6920736A1000CEABA4 /* GetCurrentUserConnector.swift */,
 			);
 			path = Connectors;
 			sourceTree = "<group>";
@@ -2966,6 +2982,9 @@
 			children = (
 				88CA80581B25AF48004C1D59 /* LoginBasicInteractor.swift */,
 				0B3699E81E4C929900B82F81 /* LoginCookieInteractor.swift */,
+				D6D48D6720722B29005C0420 /* LoginOAuth2UsernamePasswordInteractor.swift */,
+				D62E6E6520725F7800CEABA4 /* LoginOAuth2RedirectInteractor.swift */,
+				D6DC48112073AB220031DCB2 /* LoginResult.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -2977,6 +2996,7 @@
 				88CA80701B25EF69004C1D59 /* BaseCredentialsStoreKeyChain.swift */,
 				88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */,
 				0B76FE8D1E4DADA80002D27F /* CookieCredentialsStoreKeyChain.swift */,
+				D6D48D612072226F005C0420 /* OAuth2CredentialsStoreKeyChain.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -3057,7 +3077,7 @@
 				0B7784611F95F60C001C9134 /* LRScreensassetentryService_v62.h in Headers */,
 				0B7784621F95F60C001C9134 /* LRScreensjournalarticleService_v70.h in Headers */,
 				0B7784631F95F60C001C9134 /* LRScreensassetentryService_v70.h in Headers */,
-				0B7784651F95F60C001C9134 /* BuildFile in Headers */,
+				0B7784651F95F60C001C9134 /* (null) in Headers */,
 				0B7784661F95F60C001C9134 /* LRScreensjournalarticleService_v62.h in Headers */,
 				0B7784671F95F60C001C9134 /* LRScreenscommentService_v70.h in Headers */,
 			);
@@ -3076,7 +3096,7 @@
 				887E054D1C6A4DB000CA3807 /* LRScreensassetentryService_v62.h in Headers */,
 				887E069B1C6A4DF800CA3807 /* LRScreensjournalarticleService_v70.h in Headers */,
 				887E06971C6A4DF800CA3807 /* LRScreensassetentryService_v70.h in Headers */,
-				0B2677DE1D3D1E5700FDFC5B /* BuildFile in Headers */,
+				0B2677DE1D3D1E5700FDFC5B /* (null) in Headers */,
 				887E05511C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h in Headers */,
 				0BFE283A1D87E13300261A66 /* LRScreenscommentService_v70.h in Headers */,
 			);
@@ -3547,6 +3567,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/Cordova/Cordova.framework",
 				"${BUILT_PRODUCTS_DIR}/DTPickerPresenter/DTPickerPresenter.framework",
@@ -3565,6 +3586,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppAuth.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cordova.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTPickerPresenter.framework",
@@ -3652,6 +3674,7 @@
 				0B7783681F95F60C001C9134 /* CacheManager.swift in Sources */,
 				0B7783691F95F60C001C9134 /* WebContentListPageLoadInteractor.swift in Sources */,
 				0B77836A1F95F60C001C9134 /* CredentialsStorage.swift in Sources */,
+				D69C30FA20C006B800404993 /* LoginResult.swift in Sources */,
 				0B77836B1F95F60C001C9134 /* LoginByScreenNameLiferayConnectors.swift in Sources */,
 				0B77836C1F95F60C001C9134 /* Asset.swift in Sources */,
 				0B77836D1F95F60C001C9134 /* Bool+Screens.swift in Sources */,
@@ -3761,6 +3784,7 @@
 				0B7783DA1F95F60C001C9134 /* User.swift in Sources */,
 				0B7783DB1F95F60C001C9134 /* DDLListPageLiferayConnector.swift in Sources */,
 				0B7783DC1F95F60C001C9134 /* PdfDisplayScreenlet.swift in Sources */,
+				D69C30F820BFF84900404993 /* GetCurrentUserConnector.swift in Sources */,
 				0B7783DD1F95F60C001C9134 /* RatingView_default-like.swift in Sources */,
 				0B7783DE1F95F60C001C9134 /* DDLFieldTextTableCell_default.swift in Sources */,
 				0B7783DF1F95F60C001C9134 /* ForgotPasswordScreenlet.swift in Sources */,
@@ -3801,6 +3825,7 @@
 				0B7784021F95F60C001C9134 /* ProgressPresenter.swift in Sources */,
 				0B7784031F95F60C001C9134 /* DDLFieldSelectTableCell_default.swift in Sources */,
 				0B7784041F95F60C001C9134 /* CommentAddView_default.swift in Sources */,
+				D62E6E642072337A00CEABA4 /* LoginOAuth2UsernamePasswordInteractor.swift in Sources */,
 				0B7784051F95F60C001C9134 /* ImageDisplayScreenlet.swift in Sources */,
 				0B7784061F95F60C001C9134 /* DDLFieldDocumentlibraryPresenterViewController_default.swift in Sources */,
 				0B7784071F95F60C001C9134 /* RatingEntry.swift in Sources */,
@@ -3814,6 +3839,7 @@
 				0BC5A33A209C8F08005E2E57 /* ImageEntryUpload.swift in Sources */,
 				0BC5A33E209C8F14005E2E57 /* ImageGalleryDeleteInteractor.swift in Sources */,
 				0B77840E1F95F60C001C9134 /* DDLFieldRadioTableCell_default.swift in Sources */,
+				D6D48D642072227D005C0420 /* OAuth2CredentialsStoreKeyChain.swift in Sources */,
 				0B77840F1F95F60C001C9134 /* CommentListViewModel.swift in Sources */,
 				0B7784101F95F60C001C9134 /* FileDisplayViewModel.swift in Sources */,
 				0B7784111F95F60C001C9134 /* String+Screens.swift in Sources */,
@@ -3856,6 +3882,7 @@
 				0B7784361F95F60C001C9134 /* DefaultTextField.swift in Sources */,
 				0B7784371F95F60C001C9134 /* DDLBaseFieldTextFieldTableCell_default.swift in Sources */,
 				0B7784381F95F60C001C9134 /* DDLListViewModel.swift in Sources */,
+				D62E6E6820725F7800CEABA4 /* LoginOAuth2RedirectInteractor.swift in Sources */,
 				0B7784391F95F60C001C9134 /* ScreensWKWebView.swift in Sources */,
 				0B77843A1F95F60C001C9134 /* RatingView_default-stars.swift in Sources */,
 				0B77843B1F95F60C001C9134 /* MediaSelector.swift in Sources */,
@@ -3864,6 +3891,7 @@
 				0B77843E1F95F60C001C9134 /* FileDisplayScreenlet.swift in Sources */,
 				0B77843F1F95F60C001C9134 /* HttpDownloadConnector.swift in Sources */,
 				0B7784401F95F60C001C9134 /* GetUserByEmailLiferayConnectors.swift in Sources */,
+				D62E6E622072337700CEABA4 /* LoginByOAuth2UsernamePasswordConnector.swift in Sources */,
 				0B7784411F95F60C001C9134 /* Interactor.swift in Sources */,
 				0B7784421F95F60C001C9134 /* ImageEntry.swift in Sources */,
 				0B7784431F95F60C001C9134 /* ImageGalleryCollectionViewBase.swift in Sources */,
@@ -3921,6 +3949,7 @@
 				0BF917A11D76BE6900C86C85 /* CommentAddViewModel.swift in Sources */,
 				0B3699E91E4C929900B82F81 /* LoginCookieInteractor.swift in Sources */,
 				881E622E1ACBFC3400862B9E /* SignUpView_default.swift in Sources */,
+				D6D48D6820722B29005C0420 /* LoginOAuth2UsernamePasswordInteractor.swift in Sources */,
 				884F926A1D58D7D3002EE6B3 /* BaseListCollectionView.swift in Sources */,
 				0BBE45751F1D0BFB00812015 /* ScreensWebView.swift in Sources */,
 				0BF917C81D76BEA000C86C85 /* CommentEditViewController_default.swift in Sources */,
@@ -3985,6 +4014,7 @@
 				0B3B9AB6209AF8C800EC2975 /* ImageGalleryDeleteConnector.swift in Sources */,
 				0B21801F1D6C500C00A23690 /* BlogsDisplayViewModel.swift in Sources */,
 				0B147A191E78047C00EDE7B7 /* FileDisplayView_default.swift in Sources */,
+				D6DC48122073AB220031DCB2 /* LoginResult.swift in Sources */,
 				0B2180131D6C4F6F00A23690 /* DDMFieldStringWithOptions.swift in Sources */,
 				0BF917A21D76BE6900C86C85 /* CommentAddLiferayConnector.swift in Sources */,
 				0BF917A91D76BE6900C86C85 /* CommentDeleteInteractor.swift in Sources */,
@@ -4009,6 +4039,7 @@
 				8892C6B51ACBD95400192232 /* SessionContext.swift in Sources */,
 				881E610F1ACBE5F000862B9E /* ForgotPasswordViewModel.swift in Sources */,
 				88E7909B1C6CA22A00C90453 /* ScreensFactory.swift in Sources */,
+				D6D48D6620722B15005C0420 /* LoginByOAuth2UsernamePasswordConnector.swift in Sources */,
 				0B2180061D6C4F6F00A23690 /* DDMJSONParser.swift in Sources */,
 				88B844BB1C73D8C1007A447D /* UploadUserPortraitLiferayConnector.swift in Sources */,
 				0B217FB81D6C4E6F00A23690 /* AssetLoadByClassPKLiferayConnector.swift in Sources */,
@@ -4066,6 +4097,7 @@
 				8892C6B41ACBD95400192232 /* LiferayServerContext.swift in Sources */,
 				88B844A71C73D888007A447D /* LoginByEmailLiferayConnectors.swift in Sources */,
 				0B2C415F1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift in Sources */,
+				D62E6E6A20736A1000CEABA4 /* GetCurrentUserConnector.swift in Sources */,
 				8839B87D1B0CD539006C18F1 /* SignUpInteractor.swift in Sources */,
 				8837FA7A1CAEF6AE00DCB1B4 /* WebContentDisplayScreenlet.swift in Sources */,
 				889125A91D5479E6006AFA08 /* DeleteRatingInteractor.swift in Sources */,
@@ -4097,6 +4129,7 @@
 				0B3B9AB9209AF8C900EC2975 /* ImageEntryUpload.swift in Sources */,
 				0B3B9ABD209AF8C900EC2975 /* ImageGalleryDeleteInteractor.swift in Sources */,
 				881E623E1ACBFC3400862B9E /* DDLFieldRadioTableCell_default.swift in Sources */,
+				D6D48D622072226F005C0420 /* OAuth2CredentialsStoreKeyChain.swift in Sources */,
 				0BF917AD1D76BE6900C86C85 /* CommentListViewModel.swift in Sources */,
 				0B217FCF1D6C4E7B00A23690 /* FileDisplayViewModel.swift in Sources */,
 				887F0D151B99AABB0007AECE /* String+Screens.swift in Sources */,
@@ -4138,6 +4171,7 @@
 				0B66FFCE1DAF83E900963DEB /* DefaultTextField.swift in Sources */,
 				881E62321ACBFC3400862B9E /* DDLBaseFieldTextFieldTableCell_default.swift in Sources */,
 				881E61881ACBEE0B00862B9E /* DDLListViewModel.swift in Sources */,
+				D62E6E6620725F7800CEABA4 /* LoginOAuth2RedirectInteractor.swift in Sources */,
 				0BBE45731F1D0BC200812015 /* ScreensWKWebView.swift in Sources */,
 				889125C61D549757006AFA08 /* RatingView_default-stars.swift in Sources */,
 				0B5B5E571D5869BB0007D4B1 /* MediaSelector.swift in Sources */,
@@ -4197,6 +4231,9 @@
 				8837FA771CAEF6AE00DCB1B4 /* WebContentLoadBaseLiferayConnector.swift in Sources */,
 				886F4EDD1CA156710018229E /* DDLListScreenlet_ParseFields_Tests.swift in Sources */,
 				88DE250E1AD2AB0A00714701 /* BaseScreenlet_Theme_Tests.swift in Sources */,
+				D69C30F720BFF73900404993 /* GetCurrentUserConnector.swift in Sources */,
+				D62E6E6720725F7800CEABA4 /* LoginOAuth2RedirectInteractor.swift in Sources */,
+				D6D48D632072227C005C0420 /* OAuth2CredentialsStoreKeyChain.swift in Sources */,
 				88A2B71E1ACDEF5D000C2065 /* LoginView_default.swift in Sources */,
 				0BF9623B206945FF008B56AF /* DDMFieldGeolocation.swift in Sources */,
 				88A4823A1BFFEB7B0033DEBA /* UserPortraitViewModel.swift in Sources */,
@@ -4265,6 +4302,7 @@
 				0B2180301D6C507B00A23690 /* DDMFieldDate.swift in Sources */,
 				0B2180291D6C506800A23690 /* DDMStructure.swift in Sources */,
 				881E62941ACBFEFC00862B9E /* BaseListPageLoadInteractor.swift in Sources */,
+				D69C30F920C006B700404993 /* LoginResult.swift in Sources */,
 				886F4EE21CA156710018229E /* DDMXSDParser_i18n_Tests.swift in Sources */,
 				881E62B61ACBFFFA00862B9E /* LiferayServerContext.swift in Sources */,
 				881E62911ACBFEA200862B9E /* SignUpScreenlet.swift in Sources */,
@@ -4288,6 +4326,7 @@
 				887F0D191B99BD640007AECE /* CacheMetadata.swift in Sources */,
 				88B844BC1C73D8C1007A447D /* UploadUserPortraitLiferayConnector.swift in Sources */,
 				886F4EE41CA156710018229E /* DDMField_validation_XSD_Tests.swift in Sources */,
+				D62E6E632072337900CEABA4 /* LoginOAuth2UsernamePasswordInteractor.swift in Sources */,
 				881E62FC1ACC066A00862B9E /* DDLListView_default.swift in Sources */,
 				88B844B01C73D888007A447D /* LoginByUserIdLiferayConnectors.swift in Sources */,
 				88AA42CC1C624A6E00AA97FB /* ScreensFactory.swift in Sources */,
@@ -4312,6 +4351,7 @@
 				88B844C71C73D8F7007A447D /* DDLFormSubmitLiferayConnector.swift in Sources */,
 				88B8443F1C73D6C0007A447D /* ServerConnectorInteractor.swift in Sources */,
 				886F4EE91CA156710018229E /* DDMFieldNumber_Tests.swift in Sources */,
+				D62E6E612072337700CEABA4 /* LoginByOAuth2UsernamePasswordConnector.swift in Sources */,
 				887F0D161B99AABB0007AECE /* String+Screens.swift in Sources */,
 				880ACA5C1B01FBF0007AD007 /* UploadUserPortraitInteractor.swift in Sources */,
 				0B2180331D6C508200A23690 /* DDMFieldNumber.swift in Sources */,

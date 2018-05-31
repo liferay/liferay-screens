@@ -65,6 +65,7 @@ import UIKit
 
 		if let validationError = doStep(0, headConnector, waitGroup) {
 			self.lastError = validationError
+			waitGroup.leave()
 		}
 
 		_ = waitGroup.wait(timeout: .distantFuture)

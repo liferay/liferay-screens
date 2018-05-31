@@ -1,25 +1,20 @@
 PODS:
-  - AFNetworking (2.6.3):
-    - AFNetworking/NSURLConnection (= 2.6.3)
-    - AFNetworking/NSURLSession (= 2.6.3)
-    - AFNetworking/Reachability (= 2.6.3)
-    - AFNetworking/Security (= 2.6.3)
-    - AFNetworking/Serialization (= 2.6.3)
-    - AFNetworking/UIKit (= 2.6.3)
-  - AFNetworking/NSURLConnection (2.6.3):
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.6.3):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.6.3)
-  - AFNetworking/Security (2.6.3)
-  - AFNetworking/Serialization (2.6.3)
-  - AFNetworking/UIKit (2.6.3):
-    - AFNetworking/NSURLConnection
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - AppAuth (0.92.0)
   - CocoaLumberjack (2.4.0):
     - CocoaLumberjack/Default (= 2.4.0)
     - CocoaLumberjack/Extensions (= 2.4.0)
@@ -30,16 +25,17 @@ PODS:
     - CocoaLumberjack/Default
   - Cordova (4.5.4)
   - DTPickerPresenter (0.2.0)
-  - KeychainAccess (3.1.0)
-  - Kingfisher (4.6.3)
-  - Liferay-iOS-SDK (7.1-beta1):
-    - AFNetworking (= 2.6.3)
+  - KeychainAccess (3.1.1)
+  - Kingfisher (4.8.0)
+  - Liferay-iOS-SDK (7.1-beta2):
+    - AFNetworking (~> 3.0)
+    - AppAuth (= 0.92)
   - LiferayScreens (3.1.0):
     - Cordova (~> 4.0)
     - DTPickerPresenter (~> 0.2.0)
     - KeychainAccess (~> 3.0)
     - Kingfisher (~> 4.0)
-    - Liferay-iOS-SDK (~> 7.1-beta1)
+    - Liferay-iOS-SDK (~> 7.1-beta2)
     - MBProgressHUD (~> 0.9.1)
     - MDRadialProgress (~> 1.3.2)
     - SMXMLDocument (~> 1.1)
@@ -109,6 +105,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - AppAuth
     - CocoaLumberjack
     - Cordova
     - DTPickerPresenter
@@ -128,14 +125,15 @@ EXTERNAL SOURCES:
     :path: "../../.."
 
 SPEC CHECKSUMS:
-  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  AppAuth: 3f4f1d6d85ad631d0bbf15ffcdc10c447face97a
   CocoaLumberjack: aa9dcab71bdf9eaf2a63bbd9ddc87863efe45457
   Cordova: 90a337977b8667a80483f559268c82062b1183da
   DTPickerPresenter: 1976573e3475534559b6ec1dad64b2ece16c966d
-  KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
-  Kingfisher: 98e6d5b5e807645743e8ed5ececd25d688d38452
-  Liferay-iOS-SDK: fabf30a6ad419ee0d2f4a3a9ae8a2bf79e5c2228
-  LiferayScreens: 05da44abf3913a1172a2a93ea07c7217f06400e3
+  KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
+  Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
+  Liferay-iOS-SDK: ab249a9bcd51c9db5ded1d7ebf9f688f6f24cb89
+  LiferayScreens: 02566d538ae06bb49813ae4b0d92262a0d8a9d9f
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MDRadialProgress: 1068574b9b4b870f64b605b07f734385bde5104d
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96

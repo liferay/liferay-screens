@@ -93,6 +93,13 @@ open class UploadFileConnector: AsyncServerConnector, LRCallback, LRFileProgress
 
 	// MARK: Public methods
 
+	open func onProgress(_ progress: Progress) {
+		let totalBytesSent = UInt64(progress.totalUnitCount)
+		let totalBytesToSend = UInt64(progress.completedUnitCount)
+
+		onUploadedBytes?(parameter, totalBytesSent, totalBytesToSend)
+	}
+
 	open func onProgress(_ data: Data, totalBytes: Int64) {
 		let totalBytesSent = UInt64(totalBytes)
 		let totalBytesToSend = UInt64(self.bytesToSend ?? 0)

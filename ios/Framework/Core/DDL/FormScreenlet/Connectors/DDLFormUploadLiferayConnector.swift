@@ -90,9 +90,9 @@ open class DDLFormUploadLiferayConnector: AsyncServerConnector, LRCallback, LRFi
 
 	// MARK: LRFileProgressDelegate
 
-	open func onProgress(_ data: Data, totalBytes: Int64) {
-		let totalBytesSent = UInt64(totalBytes)
-		let totalBytesToSend = UInt64(self.bytesToSend)
+	open func onProgress(_ progress: Progress) {
+		let totalBytesSent = UInt64(progress.totalUnitCount)
+		let totalBytesToSend = UInt64(progress.completedUnitCount)
 
 		document.uploadStatus = .uploading(totalBytesSent, totalBytesToSend)
 		onUploadedBytes?(document, totalBytesSent, totalBytesToSend)

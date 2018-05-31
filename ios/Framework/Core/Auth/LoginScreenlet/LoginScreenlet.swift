@@ -87,12 +87,23 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 	/// Specifies the cookie expiration time. In Minutes
 	@IBInspectable open var cookieExpirationTime: Double = 1 * 60
 
+	/// Scpecifies the clientId of the OAuth2 application
+	@IBInspectable open var oauth2clientId: String = ""
+
+	/// Specifies the clientSecret of the OAuth2 application. This is not needed for redirect flow.
+	@IBInspectable open var oauth2clientSecret: String? = ""
+
+	/// Specifies the redirectUrl. This has to be the same than the one configured in the server.
+	@IBInspectable open var oauth2redirectURL: String? = ""
+
+	/// Specifies the scopes that are going to be requested. Separated by a blank space
+	@IBInspectable open var oauth2Scopes: String? = ""
+
 	/// The Screenlet’s authentication type. You can set this attribute to basic or cookie. 
 	/// If you don’t set this attribute, the Screenlet defaults to basic authentication.
 	@IBInspectable open var loginMode: String = "login" {
 		didSet {
 			authType = AuthTypeFromString(loginMode) ?? .basic
-			copyAuthType()
 		}
 	}
 
@@ -106,7 +117,11 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 		return screenletView as! LoginViewModel
 	}
 
-	open var authType: AuthType = .basic
+	open var authType: AuthType = .basic {
+		didSet {
+			copyAuthType()
+		}
+	}
 
 	// MARK: BaseScreenlet
 
@@ -116,17 +131,39 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 		(screenletView as? BasicAuthBasedType)?.basicAuthMethod = basicAuthMethod
 
 		copyAuthType()
-
 	}
 
 	override open func createInteractor(name: String, sender: Any?) -> Interactor? {
+		let interactor: Interactor & LoginResult
 
 		switch authType {
 		case .basic:
-			return createLoginBasicInteractor()
+			interactor = createLoginBasicInteractor()
 		case .cookie:
-			return createLoginCookieInteractor()
+			interactor = createLoginCookieInteractor()
+		case .oauth2Redirect:
+			interactor = createOAuth2RedirectInteractor()
+		case .oauth2UsernameAndPassword:
+			interactor = createOAuth2UsernameAndPasswordInteractor()
 		}
+
+		interactor.onSuccess = {
+			self.loginDelegate?.screenlet?(self,
+				onLoginResponseUserAttributes: interactor.resultUserAttributes!)
+
+			if let ctx = SessionContext.currentContext, self.saveCredentials {
+				if ctx.storeCredentials() {
+					self.loginDelegate?.screenlet?(self,
+						onCredentialsSavedUserAttributes: interactor.resultUserAttributes!)
+				}
+			}
+		}
+
+		interactor.onFailure = {
+			self.loginDelegate?.screenlet?(self, onLoginError: $0)
+		}
+
+		return interactor
 	}
 
 	// MARK: Public methods
@@ -157,55 +194,44 @@ open class LoginScreenlet: BaseScreenlet, BasicAuthBasedType {
 	// MARK: Private methods
 
 	fileprivate func createLoginBasicInteractor() -> LoginBasicInteractor {
-		let interactor = LoginBasicInteractor(loginScreenlet: self)
-
-		interactor.onSuccess = {
-			self.loginDelegate?.screenlet?(self,
-					onLoginResponseUserAttributes: interactor.resultUserAttributes!)
-
-			if let ctx = SessionContext.currentContext, self.saveCredentials {
-				if ctx.storeCredentials() {
-					self.loginDelegate?.screenlet?(self,
-						onCredentialsSavedUserAttributes: interactor.resultUserAttributes!)
-				}
-			}
-		}
-
-		interactor.onFailure = {
-			self.loginDelegate?.screenlet?(self, onLoginError: $0)
-		}
-
-		return interactor
+		return LoginBasicInteractor(loginScreenlet: self)
 	}
 
 	fileprivate func createLoginCookieInteractor() -> LoginCookieInteractor {
-		let interactor = LoginCookieInteractor(screenlet: self,
+		return LoginCookieInteractor(screenlet: self,
 				username: viewModel.userName ?? "",
 				password: viewModel.password ?? "",
 				shouldHandleCookieExpiration: shouldHandleCookieExpiration,
 				cookieExpirationTime: cookieExpirationTime)
+	}
 
-		interactor.onSuccess = {
-			self.loginDelegate?.screenlet?(self,
-			                               onLoginResponseUserAttributes: interactor.resultUserAttributes!)
+	fileprivate func createOAuth2RedirectInteractor() -> LoginOAuth2RedirectInteractor {
+		return LoginOAuth2RedirectInteractor(redirectURL: oauth2redirectURL ?? "",
+			scopes: parseScopes(),
+			clientId: oauth2clientId)
+	}
 
-			if let ctx = SessionContext.currentContext, self.saveCredentials {
-				if ctx.storeCredentials() {
-					self.loginDelegate?.screenlet?(self,
-					                               onCredentialsSavedUserAttributes: interactor.resultUserAttributes!)
-				}
-			}
+	fileprivate func createOAuth2UsernameAndPasswordInteractor() -> LoginOAuth2UsernamePasswordInteractor {
+		return LoginOAuth2UsernamePasswordInteractor(screenlet: self,
+			username: viewModel.userName ?? "",
+			password: viewModel.password ?? "",
+			scopes: parseScopes(),
+			clientId: oauth2clientId,
+			clientSecret: oauth2clientSecret ?? "")
+	}
+
+	fileprivate func parseScopes() -> [String] {
+		guard let oauth2Scopes = oauth2Scopes,
+			!oauth2Scopes.isEmpty else {
+			return []
 		}
 
-		interactor.onFailure = {
-			self.loginDelegate?.screenlet?(self, onLoginError: $0)
-		}
-
-		return interactor
+		return oauth2Scopes.components(separatedBy: " ")
 	}
 
 	fileprivate func copyAuthType() {
-		(screenletView as? LoginViewModel)?.authType = StringFromAuthType(authType)
+		let loginViewModel = screenletView as? LoginViewModel
+		loginViewModel?.authType = StringFromAuthType(authType)
 	}
 
 }

@@ -1,5 +1,7 @@
 "login-screenlet-undefined-user"="User is undefined";
 "login-screenlet-undefined-username"="User name is undefined";
 "login-screenlet-undefined-password"="Password is undefined";
+"login-screenlet-undefined-clientId"="ClientId is undefined";
+"login-screenlet-undefined-clientSecret"="ClientSecret is undefined";
 "login-screenlet-validation-email"="Enter the email address";
 "login-screenlet-undefined-screenname"="Screen name is undefined";

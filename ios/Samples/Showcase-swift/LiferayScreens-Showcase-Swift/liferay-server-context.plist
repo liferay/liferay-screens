@@ -7,7 +7,7 @@
 	<key>version</key>
 	<integer>70</integer>
 	<key>companyId</key>
-	<integer>20116</integer>
+	<real>20116</real>
 	<key>groupId</key>
 	<real>20143</real>
 	<key>anonymousUsername</key>
@@ -62,5 +62,13 @@
 	<string>57343</string>
 	<key>webUrl</key>
 	<string>/web/guest/webscreenlet-gallery</string>
+	<key>clientIdRedirect</key>
+	<string>1234</string>
+	<key>clientId</key>
+	<string>12345</string>
+	<key>clientSecret</key>
+	<string>12345</string>
+	<key>redirectUrl</key>
+	<string>my-app://my-app</string>
 </dict>
 </plist>
