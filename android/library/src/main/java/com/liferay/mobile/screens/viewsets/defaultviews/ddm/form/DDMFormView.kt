@@ -192,16 +192,7 @@ class DDMFormView @JvmOverloads constructor(
                 val values = mutableMapOf<String, Any>()
 
                 val fieldsList = formInstance!!.fields.map {
-
-                    val selectableOptionsField = it.currentValue as? SelectableOptionsField
-
-                    val currentValue = selectableOptionsField?.let {
-                        if(!it.isMultiple && it.currentValue.count() > 0) {
-                            it.currentValue[0]
-                        }
-                    } ?: it.currentValue
-
-                    mapOf("name" to it.name, "value" to currentValue)
+                    mapOf("name" to it.name, "value" to it.currentValue)
                 }
 
                 val gson = GsonBuilder().registerTypeAdapter(Option::class.java, OptionSerializer()).create()
@@ -238,7 +229,6 @@ class DDMFormView @JvmOverloads constructor(
         fieldsContainerView.childrenSequence().forEach {
             val fieldView = it
             val fieldViewModel = fieldView as? DDLFieldViewModel<*>
-            val fieldTextView = fieldView as? BaseDDLFieldTextView<*>
 
             fieldViewModel?.let {
                 val field = it.field
@@ -250,9 +240,8 @@ class DDMFormView @JvmOverloads constructor(
 
                     field.isReadOnly = it.isReadOnly ?: field.isReadOnly
                     field.isRequired = it.isRequired ?: field.isRequired
-                    field.isValidByRules = it.isValid ?: true
 
-                    fieldTextView?.setupFieldLayout()
+                    fieldViewModel.onPostValidation(it.isValid ?: true)
                     fieldViewModel.refresh()
                 }
             }
@@ -277,7 +266,6 @@ class DDMFormView @JvmOverloads constructor(
             fieldContext.value?.toString()?.let {
                 when(field) {
                     is SelectableOptionsField -> setSelectableFieldValues(it, field)
-                    is DocumentField -> setDocumentFieldValue(it, field)
                     else -> setBasicFieldValue(it, field)
                 }
             }
@@ -291,10 +279,6 @@ class DDMFormView @JvmOverloads constructor(
             Field.DataType.DATE -> SimpleDateFormat("MMMM dd, yyyy hh:mm:ss", Locale.US).parse(stringValue)
             else -> stringValue
         }
-    }
-
-    private fun setDocumentFieldValue(stringValue: String, field: DocumentField) {
-
     }
 
     private fun setSelectableFieldValues(stringValue: String, field: SelectableOptionsField) {
