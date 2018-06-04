@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddm.form
 
 import android.content.Context
 import android.net.Uri
+import android.os.Build
 import android.support.design.widget.Snackbar
 import android.support.design.widget.Snackbar.LENGTH_SHORT
 import android.util.AttributeSet
@@ -58,7 +59,8 @@ import com.liferay.mobile.sdk.apio.performOperationAndParse
 import com.squareup.okhttp.HttpUrl
 import com.squareup.otto.Subscribe
 import org.jetbrains.anko.childrenSequence
-import java.io.Serializable
+import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.*
 
 /**
@@ -243,15 +245,12 @@ class DDMFormView @JvmOverloads constructor(
 
                 fieldContexts[field.name]?.let {
                     setOptions(it, fieldView)
+                    setValue(it, field)
                     setVisibility(it, fieldView)
 
                     field.isReadOnly = it.isReadOnly ?: field.isReadOnly
                     field.isRequired = it.isRequired ?: field.isRequired
                     field.isValidByRules = it.isValid ?: true
-
-                    if (it.isValueChanged == true) {
-                        field.currentValue = it.value as Serializable?
-                    }
 
                     fieldTextView?.setupFieldLayout()
                     fieldViewModel.refresh()
@@ -269,6 +268,46 @@ class DDMFormView @JvmOverloads constructor(
 
             availableOptions?.let {
                 field.availableOptions = ArrayList(availableOptions.map { Option(it) })
+            }
+        }
+    }
+
+    private fun setValue(fieldContext: FieldContext, field: Field<*>) {
+        if (fieldContext.isValueChanged == true) {
+            fieldContext.value?.toString()?.let {
+                when(field) {
+                    is SelectableOptionsField -> setSelectableFieldValues(it, field)
+                    is DocumentField -> setDocumentFieldValue(it, field)
+                    else -> setBasicFieldValue(it, field)
+                }
+            }
+        }
+    }
+
+    private fun setBasicFieldValue(stringValue: String, field: Field<*>) {
+        field.currentValue = when (field.dataType) {
+            Field.DataType.BOOLEAN -> stringValue.toBoolean()
+            Field.DataType.NUMBER -> stringValue.toDouble()
+            Field.DataType.DATE -> SimpleDateFormat("MMMM dd, yyyy hh:mm:ss", Locale.US).parse(stringValue)
+            else -> stringValue
+        }
+    }
+
+    private fun setDocumentFieldValue(stringValue: String, field: DocumentField) {
+
+    }
+
+    private fun setSelectableFieldValues(stringValue: String, field: SelectableOptionsField) {
+        if(stringValue.isNotEmpty()) {
+            val optionValues = stringValue
+                    .removePrefix("[")
+                    .removeSuffix("]")
+                    .split(',')
+
+            field.availableOptions.filter {
+                optionValues.contains(it.value)
+            }.forEach {
+                field.selectOption(it)
             }
         }
     }
@@ -294,7 +333,7 @@ class DDMFormView @JvmOverloads constructor(
                 }
 
                 val fieldsList = formInstance!!
-                    .fields.map { mapOf("name" to it.name, "value" to it.currentValue.toString()) }
+                    .fields.map { mapOf("name" to it.name, "value" to it.currentValue?.toString()) }
 
                 val fieldValues = Gson().toJson(fieldsList)
 
