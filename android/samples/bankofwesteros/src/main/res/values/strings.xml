@@ -28,6 +28,7 @@
 	<string name="report_issue">Report Issue</string>
 	<string name="account_settings">Account Settings</string>
 	<string name="severity">Severity</string>
+	<string name="description_detail">Description: %s</string>
 	<string name="severity_detail">Severity: %s</string>
 	<string name="send">Send Issue</string>
 	<string name="reset_password_text">We will send you a link to reset your password.\n\nThe link will be valid 24 hours</string>

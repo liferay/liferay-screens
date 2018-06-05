@@ -273,10 +273,11 @@ public class IssuesActivity extends CardActivity
 		String date = DateFormat.getDateTimeInstance().format(element.getServerAttribute("createDate"));
 		((TextView) findViewById(R.id.createdAt)).setText(getString(R.string.created, date));
 
-		TextView description = findViewById(R.id.description);
-		description.setText(String.valueOf(element.getServerValue("Description")));
+		TextView descriptionField = findViewById(R.id.description);
+		String description = String.valueOf(element.getServerValue("description"));
+		descriptionField.setText(getString(R.string.description_detail, description));
 
-		String severity = String.valueOf(element.getServerValue("Severity"));
+		String severity = String.valueOf(element.getServerValue("severity"));
 		if (severity != null) {
 			severity = severity.replace("[\"", "");
 			severity = severity.replace("\"]", "");
