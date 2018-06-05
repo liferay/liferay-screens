@@ -32,7 +32,7 @@
 	<string name="severity">Severity</string>
 	<string name="severity_detail">Severity: %s</string>
 	<string name="send">Send Issue</string>
-	<string name="reset_password_text">We will send you a link to reset your password.\r\n\r\nThe link will be valid 24 hours</string>
+	<string name="reset_password_text">We will send you a link to reset your password.\n\nThe link will be valid 24 hours</string>
 	<string name="send_password">Send Password</string>
 	<string name="send_a_message">Send a message</string>
 	<string name="sign_out">Sign Out</string>
