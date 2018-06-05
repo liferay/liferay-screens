@@ -44,9 +44,9 @@ public class AssetListAdapter extends BaseListAdapter<AssetEntry, AssetListAdapt
 		public AssetListViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 
-			titleTextView = (TextView) view.findViewById(R.id.liferay_list_title);
-			descriptionTextView = (TextView) view.findViewById(R.id.liferay_list_description);
-			documentExtensionImage = (ImageView) view.findViewById(R.id.asset_list_document_type_image);
+			titleTextView = view.findViewById(R.id.liferay_list_title);
+			descriptionTextView = view.findViewById(R.id.liferay_list_description);
+			documentExtensionImage = view.findViewById(R.id.asset_list_document_type_image);
 		}
 
 		public void bind(AssetEntry entry) {

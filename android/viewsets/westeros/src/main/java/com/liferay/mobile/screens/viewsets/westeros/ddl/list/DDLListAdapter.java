@@ -46,7 +46,7 @@ public class DDLListAdapter extends BaseListAdapter<Record, DDLListAdapter.Swipe
 
 		if (viewType == LAYOUT_TYPE_DEFAULT) {
 			view = inflater.inflate(getLayoutId(), parent, false);
-			SwipeLayout swipe = (SwipeLayout) view.findViewById(R.id.liferay_swipe_layout);
+			SwipeLayout swipe = view.findViewById(R.id.liferay_swipe_layout);
 			swipe.setShowMode(SwipeLayout.ShowMode.LayDown);
 			swipe.setDragEdge(SwipeLayout.DragEdge.Right);
 		} else {
