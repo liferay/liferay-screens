@@ -55,32 +55,28 @@
 		android:id="@+id/password_validation"
 		/>
 
-	<RelativeLayout
+	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_weight="1"
-		android:gravity="center_vertical"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
 		style="@style/westeros_card"
 		>
 
 		<CheckBox
 			android:id="@+id/sign_up_checkbox"
 			android:layout_width="wrap_content"
-			android:layout_height="match_parent"
+			android:layout_height="wrap_content"
 			android:button="@drawable/westeros_checkbox"
 			/>
 
 		<TextView
 			android:id="@+id/terms"
 			android:layout_width="wrap_content"
-			android:layout_height="match_parent"
-			android:layout_toEndOf="@id/sign_up_checkbox"
-			android:layout_toRightOf="@id/sign_up_checkbox"
-			android:gravity="center_vertical"
+			android:layout_height="wrap_content"
 			android:text="@string/accept_terms_and_conditions"
 			android:textColor="@android:color/white"
 			/>
-	</RelativeLayout>
+	</LinearLayout>
 
 	<RelativeLayout
 		android:layout_width="match_parent"
