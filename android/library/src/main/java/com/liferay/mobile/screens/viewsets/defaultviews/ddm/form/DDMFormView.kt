@@ -97,7 +97,7 @@ class DDMFormView @JvmOverloads constructor(
 
         backButton.setOnClickListener({
             if (ddmFieldViewPages.currentItem >= 1) {
-                ddmFieldViewPages.currentItem -= 1
+                ddmFieldViewPages.currentItem = getPreviousEnabledPage().toInt()
 
                 nextButton.text = context.getString(R.string.next)
                 if (ddmFieldViewPages.currentItem == 0) {
@@ -112,7 +112,7 @@ class DDMFormView @JvmOverloads constructor(
 
             if (invalidFields.isEmpty()) {
                 if (ddmFieldViewPages.currentItem < size) {
-                    ddmFieldViewPages.currentItem += 1
+                    ddmFieldViewPages.currentItem = getNextEnabledPage().toInt()
 
                     backButton.isEnabled = true
                     if (ddmFieldViewPages.currentItem == size) {
@@ -127,6 +127,22 @@ class DDMFormView @JvmOverloads constructor(
                 Snackbar.make(this, "Invalid", LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun getPreviousEnabledPage(): Number {
+        (ddmFieldViewPages.adapter as DDMPagerAdapter).let {
+            val dropPages = it.pages.size - ddmFieldViewPages.currentItem
+
+            return it.pages.dropLast(dropPages).indexOfLast { it.isEnabled }
+        }
+    }
+
+    private fun getNextEnabledPage(): Number {
+        (ddmFieldViewPages.adapter as DDMPagerAdapter).let {
+            val dropPages = ddmFieldViewPages.currentItem + 1
+
+            return it.pages.drop(dropPages).indexOfFirst { it.isEnabled } + dropPages
+        }
     }
 
     private fun getInvalidFields(): Map<Field<*>, String> {
@@ -209,12 +225,21 @@ class DDMFormView @JvmOverloads constructor(
                 thing?.let {
                     val formContext = FormContext.converter(it)
 
+                    updatePages(formContext)
                     updateFields(formContext)
                 } ?: exception?.let {
                     val message = it.message ?: "Unknown Error"
 
                     Snackbar.make(this, message, LENGTH_SHORT).show()
                 } ?: LiferayLogger.d(message)
+            }
+        }
+    }
+
+    private fun updatePages(formContext: FormContext) {
+        (ddmFieldViewPages.adapter as DDMPagerAdapter)?.let {
+            for((index, page) in it.pages.withIndex()) {
+                page.isEnabled = formContext.pages[index].isEnabled
             }
         }
     }
@@ -229,6 +254,7 @@ class DDMFormView @JvmOverloads constructor(
         fieldsContainerView.childrenSequence().forEach {
             val fieldView = it
             val fieldViewModel = fieldView as? DDLFieldViewModel<*>
+            val fieldTextView = fieldView as? BaseDDLFieldTextView<*>
 
             fieldViewModel?.let {
                 val field = it.field
@@ -241,6 +267,7 @@ class DDMFormView @JvmOverloads constructor(
                     field.isReadOnly = it.isReadOnly ?: field.isReadOnly
                     field.isRequired = it.isRequired ?: field.isRequired
 
+                    fieldTextView?.setupFieldLayout()
                     fieldViewModel.onPostValidation(it.isValid ?: true)
                     fieldViewModel.refresh()
                 }

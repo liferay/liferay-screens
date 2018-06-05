@@ -19,4 +19,4 @@ import com.liferay.mobile.screens.ddl.model.Field
 /**
  * @author Victor Oliveira
  */
-class FormPage(val headline: String, val description: String, val fields: List<Field<*>>)
+class FormPage(val headline: String, val description: String, val fields: List<Field<*>>, var isEnabled: Boolean = true)
