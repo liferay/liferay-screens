@@ -20,6 +20,8 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.view.ViewPropertyAnimator;
 import android.widget.ImageView;
+import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
+import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordScreenlet;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.cache.Cache;
@@ -31,7 +33,7 @@ import com.liferay.mobile.screens.westerosemployees.R;
 import com.liferay.mobile.screens.westerosemployees.utils.CardState;
 import com.liferay.mobile.screens.westerosemployees.views.Deck;
 
-public class MainActivity extends WesterosActivity implements LoginListener {
+public class MainActivity extends WesterosActivity implements LoginListener, ForgotPasswordListener {
 
 	private Deck deck;
 
@@ -53,17 +55,13 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 	}
 
 	private void findViews() {
-		LoginScreenlet loginScreenlet = findViewById(R.id.login_screenlet);
 		deck = findViewById(R.id.deck);
 
+		LoginScreenlet loginScreenlet = findViewById(R.id.login_screenlet);
 		loginScreenlet.setListener(this);
-	}
 
-	@Override
-	public void onLoginSuccess(User user) {
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-			toNextActivity();
-		}
+		ForgotPasswordScreenlet forgotPasswordScreenlet = findViewById(R.id.forgot_password_screenlet);
+		forgotPasswordScreenlet.setListener(this);
 	}
 
 	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -81,8 +79,25 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 	}
 
 	@Override
+	public void onLoginSuccess(User user) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+			toNextActivity();
+		}
+	}
+
+	@Override
 	public void onLoginFailure(Exception e) {
 		WesterosSnackbar.showSnackbar(this, "Login failed!", R.color.colorAccent_westeros);
+	}
+
+	@Override
+	public void onForgotPasswordRequestFailure(Exception e) {
+		WesterosSnackbar.showSnackbar(this, "Request password failed!", R.color.colorAccent_westeros);
+	}
+
+	@Override
+	public void onForgotPasswordRequestSuccess(boolean passwordSent) {
+		WesterosSnackbar.showSnackbar(this, "Request password succeed!", R.color.green_westeros);
 	}
 
 	@Override
