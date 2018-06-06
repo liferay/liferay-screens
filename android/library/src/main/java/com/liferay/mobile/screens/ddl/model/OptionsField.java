@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * @author Victor Oliveira
  */
-abstract class OptionsField<T extends Serializable> extends Field<T> {
+public abstract class OptionsField<T extends Serializable> extends Field<T> {
 
 	public ArrayList<Option> getAvailableOptions() {
 		return availableOptions;

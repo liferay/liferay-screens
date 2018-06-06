@@ -102,6 +102,8 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		visibilityExpression = getAttributeStringValue(attributes, FormFieldKeys.VISIBILITY_EXPRESSION);
 		ddmDataProviderInstance = getAttributeStringValue(attributes, FormFieldKeys.DDM_DATA_PROVIDER_INSTANCE);
 
+		autocomplete = Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.IS_AUTOCOMPLETE));
+
 		String predefinedValue = getAttributeStringValue(attributes, FormFieldKeys.PREDEFINED_VALUE);
 		this.predefinedValue = convertFromString(predefinedValue);
 		currentValue = this.predefinedValue;
@@ -140,6 +142,8 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		lastValidationResult = (in.readInt() == 1);
 		visibilityExpression = in.readString();
 		ddmDataProviderInstance = in.readString();
+
+        autocomplete = (in.readInt() == 1);
 	}
 
 	@Override
@@ -177,6 +181,11 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 	public String getText() {
 		return text;
+	}
+
+
+	public boolean isAutocomplete() {
+		return autocomplete;
 	}
 
 	public boolean isReadOnly() {
@@ -307,7 +316,9 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		destination.writeInt(lastValidationResult ? 1 : 0);
 		destination.writeString(visibilityExpression);
 		destination.writeString(ddmDataProviderInstance);
-	}
+
+        destination.writeInt(autocomplete ? 1 : 0);
+    }
 
 	public List<Field> getFields() {
 		return fields;

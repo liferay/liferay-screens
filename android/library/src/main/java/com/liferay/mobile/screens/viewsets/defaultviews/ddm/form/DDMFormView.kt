@@ -29,10 +29,7 @@ import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
-import com.liferay.mobile.screens.ddl.model.DocumentField
-import com.liferay.mobile.screens.ddl.model.Field
-import com.liferay.mobile.screens.ddl.model.Option
-import com.liferay.mobile.screens.ddl.model.SelectableOptionsField
+import com.liferay.mobile.screens.ddl.model.*
 import com.liferay.mobile.screens.ddm.form.OptionSerializer
 import com.liferay.mobile.screens.ddm.form.model.FieldContext
 import com.liferay.mobile.screens.ddm.form.model.FormContext
@@ -275,15 +272,14 @@ class DDMFormView @JvmOverloads constructor(
         }
     }
 
-    private fun setOptions(fieldContext: FieldContext, fieldView: View) {
-        val fieldSelectView = fieldView as? DDLFieldSelectView
+    private fun setOptions(fieldContext: FieldContext, fieldViewModel: DDLFieldViewModel<*>) {
+        val optionsField = fieldViewModel.field as? OptionsField<*>
 
-        fieldSelectView?.let {
-            val field = it.field
+        optionsField?.let {
             val availableOptions = fieldContext.options as? List<Map<String, String>>
 
             availableOptions?.let {
-                field.availableOptions = ArrayList(availableOptions.map { Option(it) })
+                optionsField.availableOptions = ArrayList(availableOptions.map { Option(it) })
             }
         }
     }
