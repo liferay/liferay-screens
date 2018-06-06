@@ -51,7 +51,7 @@
 
 	<!--CommentListScreenlet values-->
 	<string name="liferay_comment_asset_className">com.liferay.blogs.kernel.model.BlogsEntry</string>
-	<string name="liferay_comment_asset_id">33712</string>
+	<string name="liferay_comment_asset_id">57366</string>
 
 	<!--RatingScreenlet-->
 	<string name="liferay_rating_thumb_asset_id">54500</string>
