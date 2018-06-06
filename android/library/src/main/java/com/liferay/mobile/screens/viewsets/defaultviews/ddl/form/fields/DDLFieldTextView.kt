@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields
 
+import android.R
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.ArrayAdapter
@@ -30,6 +31,10 @@ open class DDLFieldTextView @JvmOverloads constructor(context: Context, attrs: A
     override fun setField(field: StringField) {
         super.setField(field)
 
+        setupAutocomplete(field)
+    }
+
+    private fun setupAutocomplete(field: StringField) {
         if (textEditText is AutoCompleteTextView && field.availableOptions.isNotEmpty()) {
 
             val stringOptions = field.availableOptions.map {
@@ -37,11 +42,17 @@ open class DDLFieldTextView @JvmOverloads constructor(context: Context, attrs: A
             }
 
             (textEditText as AutoCompleteTextView).setAdapter(
-                ArrayAdapter<String>(context, android.R.layout.simple_dropdown_item_1line, stringOptions))
+                    ArrayAdapter<String>(context, R.layout.simple_dropdown_item_1line, stringOptions))
         }
     }
 
     override fun onTextChanged(text: String) {
         field.currentValue = text
+    }
+
+    override fun refresh() {
+        super.refresh()
+
+        setupAutocomplete(field)
     }
 }
