@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.viewsets.westeros.auth.signup.SignUpView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.liferay.mobile.screens.viewsets.westeros.auth.signup.SignUpView
+	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:theme="@style/westeros_theme"
 	style="@style/westeros_screenlet"
@@ -55,32 +56,28 @@
 		android:id="@+id/password_validation"
 		/>
 
-	<RelativeLayout
+	<LinearLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_weight="1"
-		android:gravity="center_vertical"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
 		style="@style/westeros_card"
 		>
 
 		<CheckBox
 			android:id="@+id/sign_up_checkbox"
 			android:layout_width="wrap_content"
-			android:layout_height="match_parent"
+			android:layout_height="wrap_content"
 			android:button="@drawable/westeros_checkbox"
 			/>
 
 		<TextView
 			android:id="@+id/terms"
 			android:layout_width="wrap_content"
-			android:layout_height="match_parent"
-			android:layout_toEndOf="@id/sign_up_checkbox"
-			android:layout_toRightOf="@id/sign_up_checkbox"
-			android:gravity="center_vertical"
+			android:layout_height="wrap_content"
 			android:text="@string/accept_terms_and_conditions"
 			android:textColor="@android:color/white"
 			/>
-	</RelativeLayout>
+	</LinearLayout>
 
 	<RelativeLayout
 		android:layout_width="match_parent"

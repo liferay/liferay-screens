@@ -98,6 +98,8 @@
 	<style name="westeros_card">
 		<item name="android:paddingLeft">@dimen/westeros_side_margin</item>
 		<item name="android:paddingRight">@dimen/westeros_side_margin</item>
+		<item name="android:paddingTop">@dimen/westeros_side_margin</item>
+		<item name="android:paddingBottom">@dimen/westeros_side_margin</item>
 	</style>
 
 	<style name="westeros_list_item_title">
