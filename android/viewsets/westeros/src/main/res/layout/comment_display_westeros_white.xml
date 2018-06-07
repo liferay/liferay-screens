@@ -28,6 +28,7 @@
 			android:layout_width="70dp"
 			android:layout_height="70dp"
 			android:layout_alignParentLeft="true"
+			android:layout_alignParentStart="true"
 			app:cachePolicy="REMOTE_FIRST"
 			/>
 
@@ -35,9 +36,10 @@
 			android:id="@+id/comment_user_name"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:layout_marginEnd="10dp"
 			android:layout_marginRight="10dp"
 			android:layout_marginTop="10dp"
-			android:layout_toLeftOf="@+id/comment_edit_or_confirm"
+			android:layout_toEndOf="@+id/comment_user_portrait"
 			android:layout_toRightOf="@+id/comment_user_portrait"
 			android:padding="0dp"
 			android:textColor="@android:color/white"
@@ -52,8 +54,10 @@
 			android:layout_above="@+id/comment_body_group"
 			android:layout_below="@+id/comment_user_name"
 			android:layout_marginBottom="10dp"
+			android:layout_marginEnd="3dp"
 			android:layout_marginRight="3dp"
 			android:layout_marginTop="5dp"
+			android:layout_toEndOf="@+id/comment_user_portrait"
 			android:layout_toRightOf="@+id/comment_user_portrait"
 			android:padding="0dp"
 			android:textColor="@android:color/white"
@@ -68,9 +72,10 @@
 			android:layout_above="@+id/comment_body_group"
 			android:layout_below="@+id/comment_user_name"
 			android:layout_marginBottom="10dp"
+			android:layout_marginEnd="10dp"
 			android:layout_marginRight="10dp"
 			android:layout_marginTop="5dp"
-			android:layout_toLeftOf="@+id/comment_edit_or_confirm"
+			android:layout_toEndOf="@+id/comment_create_date"
 			android:layout_toRightOf="@+id/comment_create_date"
 			android:padding="0dp"
 			android:text="@string/edited"
@@ -81,40 +86,58 @@
 			tools:visibility="visible"
 			/>
 
-		<ImageButton
-			android:id="@+id/comment_edit_or_confirm"
+		<LinearLayout
+			android:id="@+id/comment_buttons"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginRight="10dp"
-			android:layout_marginTop="10dp"
-			android:layout_toLeftOf="@+id/comment_delete_or_cancel"
-			android:contentDescription="@string/edit_comment"
-			android:src="@drawable/default_comment_edit"
-			android:visibility="gone"
-			tools:visibility="visible"
-			/>
+			android:layout_alignParentEnd="true"
+			android:layout_alignParentRight="true"
+			android:orientation="horizontal"
+			>
 
-		<ImageButton
-			android:id="@+id/comment_delete_or_cancel"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_alignRight="@+id/comment_body_group"
-			android:layout_marginTop="10dp"
-			android:contentDescription="@string/delete_comment"
-			android:src="@drawable/default_comment_delete"
-			android:visibility="gone"
-			tools:visibility="visible"
-			/>
+			<ImageButton
+				android:id="@+id/comment_edit_or_confirm"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="10dp"
+				android:layout_marginRight="10dp"
+				android:layout_marginTop="10dp"
+				android:backgroundTint="@android:color/white"
+				android:contentDescription="@string/edit_comment"
+				android:src="@drawable/default_comment_edit"
+				android:tint="@color/colorPrimary_westeros"
+				android:visibility="gone"
+				tools:visibility="visible"
+				/>
+
+			<ImageButton
+				android:id="@+id/comment_delete_or_cancel"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:backgroundTint="@android:color/white"
+				android:contentDescription="@string/delete_comment"
+				android:src="@drawable/default_comment_delete"
+				android:tint="@color/colorPrimary_westeros"
+				android:visibility="gone"
+				tools:visibility="visible"
+				/>
+
+		</LinearLayout>
+
 
 		<FrameLayout
 			android:id="@+id/comment_body_group"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:layout_alignParentEnd="true"
 			android:layout_alignParentLeft="true"
 			android:layout_alignParentRight="true"
+			android:layout_alignParentStart="true"
 			android:layout_below="@+id/comment_user_portrait"
 			android:layout_marginBottom="10dp"
 			android:layout_marginLeft="10dp"
+			android:layout_marginStart="10dp"
 			>
 
 			<TextView
