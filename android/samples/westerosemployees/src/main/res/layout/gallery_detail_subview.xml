@@ -50,12 +50,14 @@
 
 			<com.liferay.mobile.screens.rating.RatingScreenlet
 				android:id="@+id/rating_screenlet"
-				android:layout_width="match_parent"
+				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
+				android:layout_gravity="center_horizontal"
 				app:autoLoad="false"
 				app:layoutId="@layout/rating_star_bar_westeros_red"
 				/>
 		</LinearLayout>
+
 	</ScrollView>
 
 	<com.liferay.mobile.screens.westerosemployees.views.Deck
