@@ -35,7 +35,7 @@ public class BlogsEntry extends AssetEntry {
 	}
 
 	public long getCoverImage() {
-		if (getBlogsEntry().get("coverImageFileEntryId") != null) {
+		if (getBlogsEntry() != null && getBlogsEntry().get("coverImageFileEntryId") != null) {
 			String cover = getBlogsEntry().get("coverImageFileEntryId").toString();
 			return Long.parseLong(cover);
 		}
