@@ -14,15 +14,10 @@
 	<string name="liferay_anonymousApiUserName">anonymous1@liferay.com</string>
 	<string name="liferay_anonymousApiPassword">anonymous1</string>
 
-	<!-- DDLFormScreenlet values -->
-	<string name="liferay_recordset_id">20593</string>
-	<string name="liferay_structure_id">20589</string>
-	<string name="liferay_recordset_fields">Title</string>
-
 	<!-- WebContentDisplayScreenlet values -->
 	<string name="liferay_article_id">39224</string>
 
 	<!-- GalleryScreenlet values -->
-	<string name="folderId">44059</string>
+	<string name="folderId">38636</string>
 
 </resources>
