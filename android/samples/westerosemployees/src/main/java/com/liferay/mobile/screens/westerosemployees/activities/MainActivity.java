@@ -91,6 +91,11 @@ public class MainActivity extends WesterosActivity implements LoginListener, For
 	}
 
 	@Override
+	public void onAuthenticationBrowserShown() {
+
+	}
+
+	@Override
 	public void onForgotPasswordRequestFailure(Exception e) {
 		WesterosSnackbar.showSnackbar(this, "Request password failed!", R.color.colorAccent_westeros);
 	}
@@ -98,10 +103,5 @@ public class MainActivity extends WesterosActivity implements LoginListener, For
 	@Override
 	public void onForgotPasswordRequestSuccess(boolean passwordSent) {
 		WesterosSnackbar.showSnackbar(this, "Request password succeed!", R.color.green_westeros);
-	}
-
-	@Override
-	public void onAuthenticationBrowserShown() {
-
 	}
 }
