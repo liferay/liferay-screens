@@ -24,6 +24,10 @@ All notable changes to this project will be documented in this file.
 
 * Add a new method to the sync service to know if there are items to synchronize
 
+### Samples
+
+* Update westerosemployees demo app
+
 ## iOS
 
 * Drop support for OAuth1
