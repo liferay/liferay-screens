@@ -22,7 +22,7 @@ public class WebContentListActivity extends ThemeActivity implements BaseListLis
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.web_content_display_list);
 
-		webContentListScreenlet = (WebContentListScreenlet) findViewById(R.id.web_content_list_screenlet);
+		webContentListScreenlet = findViewById(R.id.web_content_list_screenlet);
 		webContentListScreenlet.setListener(this);
 	}
 

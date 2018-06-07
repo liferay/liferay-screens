@@ -83,9 +83,9 @@ public class StarsRatingView extends BaseRatingView implements RatingBar.OnRatin
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		userRatingBar = (RatingBar) findViewById(R.id.userRatingBar);
-		averageRatingBar = (RatingBar) findViewById(R.id.averageRatingBar);
-		totalCountTextView = (TextView) findViewById(R.id.totalCountTextView);
+		userRatingBar = findViewById(R.id.userRatingBar);
+		averageRatingBar = findViewById(R.id.averageRatingBar);
+		totalCountTextView = findViewById(R.id.totalCountTextView);
 
 		userRatingBar.setOnRatingBarChangeListener(this);
 	}

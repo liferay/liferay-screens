@@ -40,7 +40,7 @@ public class SlideshowImageGalleryAdapter
 		public SlideshowGalleryViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 
-			imageView = (ImageView) view.findViewById(R.id.gallery_item_image);
+			imageView = view.findViewById(R.id.gallery_item_image);
 		}
 
 		public void bind(ImageEntry entry) {

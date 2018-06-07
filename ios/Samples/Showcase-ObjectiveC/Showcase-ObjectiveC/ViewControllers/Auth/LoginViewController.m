@@ -95,8 +95,8 @@
 		self.loginView.alpha = SessionContext.isLoggedIn ? 0.0 : 1.0;
 
 		if (!SessionContext.isLoggedIn) {
-			self.loginScreenlet.viewModel.userName = @"test@liferay.com";
-			self.loginScreenlet.viewModel.password = @"test";
+			self.loginScreenlet.viewModel.userName = @"demo@liferay.com";
+			self.loginScreenlet.viewModel.password = @"demo";
 		}
 	}];
 }
@@ -109,7 +109,7 @@
 }
 
 - (void)screenlet:(BaseScreenlet *)screenlet onLoginError:(NSError *)error {
-	LiferayLog(error);
+	LiferayLog(error.debugDescription);
 }
 
 - (void)screenlet:(BaseScreenlet *)screenlet onCredentialsSavedUserAttributes:(NSDictionary<NSString *,id> *)attributes {

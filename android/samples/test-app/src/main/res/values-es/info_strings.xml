@@ -21,6 +21,7 @@
 	<string name="ddlform_delete_cache_entries_info">Los registos DDLFormEvent en caché se han borrado con éxito:</string>
 	<string name="ddlform_cache_cleared_info">Cache borrada:</string>
 	<string name="resync_cache_info">Lanzando proceso de sincronización</string>
+	<string name="resync_cache_empty">No hay elementos para sincronizar</string>
 	<string name="forgot_password_info">Petición completada!</string>
 	<string name="screenlet_info">Screenlet cargado con éxito</string>
 	<string name="user_portrait_info">Imagen de usuario recibida!</string>

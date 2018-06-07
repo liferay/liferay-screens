@@ -24,7 +24,7 @@ open class AssetListView_default: AssetListTableView {
 
 	override open func doFillLoadedCell(row: Int, cell: UITableViewCell, object: AnyObject) {
 		if let entry = object as? Asset {
-			cell.textLabel?.text = entry.title
+			cell.textLabel?.text = entry.title.isEmpty ? "Empty title" : entry.title
 			cell.accessoryType = .disclosureIndicator
 			cell.accessoryView = nil
 		}

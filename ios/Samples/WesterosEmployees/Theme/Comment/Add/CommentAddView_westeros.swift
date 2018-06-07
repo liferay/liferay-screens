@@ -14,7 +14,6 @@
 import UIKit
 import LiferayScreens
 
-
 open class CommentAddView_westeros: CommentAddView_default, UITextViewDelegate {
 
 	@IBOutlet weak var addCommentTextView: UITextView? {
@@ -39,8 +38,7 @@ open class CommentAddView_westeros: CommentAddView_default, UITextViewDelegate {
 		}
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	override open func updateButton() {
 		sendCommentButton?.isEnabled = !(addCommentTextView?.text?.isEmpty ?? true)
@@ -50,8 +48,7 @@ open class CommentAddView_westeros: CommentAddView_default, UITextViewDelegate {
 		placeholderLabel?.isHidden = !(addCommentTextView?.text?.isEmpty ?? true)
 	}
 
-
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
 	open override func onShow() {
 		super.onShow()
@@ -59,8 +56,7 @@ open class CommentAddView_westeros: CommentAddView_default, UITextViewDelegate {
 		self.sendCommentButton?.titleLabel?.text = previousText?.uppercased()
 	}
 
-
-	//MARK: UITextViewDelegate
+	// MARK: UITextViewDelegate
 
 	open func textViewDidChange(_ textView: UITextView) {
 		updateButton()

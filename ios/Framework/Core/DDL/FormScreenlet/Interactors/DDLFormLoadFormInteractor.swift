@@ -49,12 +49,11 @@ class DDLFormLoadFormInteractor: ServerReadConnectorInteractor {
 				collection: ScreenletName(DDLFormScreenlet.self),
 				key: "structureId-\(loadCon.structureId)",
 				value: record,
-				attributes: [
-					"userId": userId.description as AnyObject])
+				attributes: ["userId": userId.description])
 		}
 	}
 
-	override func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> Void) {
+	override func readFromCache(_ c: ServerConnector, result: @escaping (Any?) -> Void) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return
@@ -66,7 +65,7 @@ class DDLFormLoadFormInteractor: ServerReadConnectorInteractor {
 					key: "structureId-\(loadCon.structureId)") { record, attributes in
 
 				loadCon.resultRecord = record as? DDLRecord
-				loadCon.resultUserId = attributes?["userId"]?.int64Value
+				loadCon.resultUserId = (attributes?["userId"] as AnyObject).int64Value
 
 				result(loadCon.resultRecord)
 			}

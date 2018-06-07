@@ -34,12 +34,12 @@ public class TourActivity extends FragmentActivity implements View.OnClickListen
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tour);
 
-		tourButton = (Button) findViewById(R.id.tour_button);
+		tourButton = findViewById(R.id.tour_button);
 		tourButton.setOnClickListener(this);
 
-		viewPager = (ViewPager) findViewById(R.id.pager);
+		viewPager = findViewById(R.id.pager);
 		viewPager.setAdapter(new ScreenSlidePagerAdapter(getSupportFragmentManager()));
-		viewPager.setOnPageChangeListener(this);
+		viewPager.addOnPageChangeListener(this);
 	}
 
 	@Override

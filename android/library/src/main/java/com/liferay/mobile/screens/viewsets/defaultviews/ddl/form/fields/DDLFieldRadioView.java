@@ -56,12 +56,18 @@ public class DDLFieldRadioView extends RadioGroup
 		this.field = field;
 
 		if (this.field.isShowLabel()) {
-			TextView label = (TextView) findViewById(R.id.liferay_ddl_label);
+			TextView label = findViewById(R.id.liferay_ddl_label);
 
 			label.setText(field.getLabel());
 			label.setVisibility(VISIBLE);
 		}
 
+		renderOptions(field);
+
+		refresh();
+	}
+
+	public void renderOptions(StringWithOptionsField field) {
 		LayoutParams layoutParams =
 			new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
@@ -79,8 +85,6 @@ public class DDLFieldRadioView extends RadioGroup
 			radioButton.setSaveEnabled(true);
 			addView(radioButton);
 		}
-
-		refresh();
 	}
 
 	@Override
@@ -89,7 +93,7 @@ public class DDLFieldRadioView extends RadioGroup
 
 		if (selectedOptions != null) {
 			for (StringWithOptionsField.Option opt : selectedOptions) {
-				RadioButton radioButton = (RadioButton) findViewWithTag(opt);
+				RadioButton radioButton = findViewWithTag(opt);
 
 				if (radioButton != null) {
 					radioButton.setChecked(true);
@@ -103,12 +107,12 @@ public class DDLFieldRadioView extends RadioGroup
 		String errorText = valid ? null : getContext().getString(R.string.required_value);
 
 		if (field.isShowLabel()) {
-			TextView label = (TextView) findViewById(R.id.liferay_ddl_label);
+			TextView label = findViewById(R.id.liferay_ddl_label);
 			label.setError(errorText);
 		} else {
 			List<StringWithOptionsField.Option> availableOptions = field.getAvailableOptions();
 			StringWithOptionsField.Option opt = availableOptions.get(0);
-			RadioButton radioButton = (RadioButton) findViewWithTag(opt);
+			RadioButton radioButton = findViewWithTag(opt);
 			if (radioButton != null) {
 				radioButton.setError(errorText);
 			}

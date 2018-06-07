@@ -14,6 +14,7 @@
 
 package com.liferay.mobile.screens.auth.login;
 
+import com.liferay.mobile.screens.context.AuthenticationType;
 import com.liferay.mobile.screens.context.User;
 
 public interface LoginListener {
@@ -31,4 +32,11 @@ public interface LoginListener {
 	 * @param e exception
 	 */
 	void onLoginFailure(Exception e);
+
+
+	/**
+	 * Called when the browser is opened to authenticate.
+	 * {@link AuthenticationType} should be OAUTH2REDIRECT
+	 */
+	void onAuthenticationBrowserShown();
 }

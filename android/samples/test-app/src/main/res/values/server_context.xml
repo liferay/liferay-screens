@@ -6,6 +6,12 @@
 	<string name="liferay_company_id">20116</string>
 	<string name="liferay_group_id">20143</string>
 
+	<!--LoginScreenletValues-->
+	<string name="client_id_redirect">1234</string>
+	<string name="redirect_uri">my-app://my-app</string>
+	<string name="client_id">12345</string>
+	<string name="client_secret">12345</string>
+
 	<!--SignupScreenlet values-->
 	<string name="liferay_anonymousApiUserName">demo@liferay.com</string>
 	<string name="liferay_anonymousApiPassword">demo</string>
@@ -56,10 +62,6 @@
 
 	<string name="liferay_video_entryId">38945</string>
 	<string name="liferay_user_entryId">20169</string>
-
-	<!-- OAuth values -->
-	<string name="liferay_oauth_consumer_key"> </string>
-	<string name="liferay_oauth_consumer_secret"> </string>
 
 	<!-- AssetListScreenlet values-->
 	<string name="default_class_name_id_user">20087</string>

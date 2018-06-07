@@ -13,7 +13,7 @@
  */
 import UIKit
 
-open class HttpConnector: ServerConnector {
+open class HttpConnector: AsyncServerConnector {
 
 	open var url: URL
 
@@ -27,18 +27,14 @@ open class HttpConnector: ServerConnector {
 		super.init()
 	}
 
-	// MARK: ServerConnector
+	// MARK: AsyncServerConnector
 
 	override open func doRun(session: LRSession) {
 		let session = URLSession(configuration: .default)
 
-		let requestSemaphore = DispatchSemaphore(value: 0)
-
 		let urlRequest = NSMutableURLRequest(url: self.url)
 
-		if let auth
-			= SessionContext.currentContext?.session.authentication as? LRCookieAuthentication {
-
+		if let auth = SessionContext.currentContext?.session.authentication as? LRCookieAuthentication {
 			auth.authenticate(urlRequest)
 		}
 
@@ -50,12 +46,9 @@ open class HttpConnector: ServerConnector {
 			else {
 				self.resultData = data
 				self.lastError = nil
+				self.callOnComplete()
 			}
-			requestSemaphore.signal()
-
 		}).resume()
-
-		_ = requestSemaphore.wait(timeout: .distantFuture)
 	}
 
 	override open func createSession() -> LRSession? {
@@ -63,5 +56,4 @@ open class HttpConnector: ServerConnector {
 		let port = (url.port == nil) ? "" : ":\(url.port!)"
 		return LRSession(server: "http://\(url.host!)\(port)")
 	}
-
 }

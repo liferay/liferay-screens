@@ -16,11 +16,10 @@ import LiferayScreens
 
 class AddCommentViewController: CardViewController, CommentAddScreenletDelegate {
 
-	var onCommentAdded: ((Comment) -> ())?
-	var onCommentUpdated: ((Comment) -> ())?
+	var onCommentAdded: ((Comment) -> Void)?
+	var onCommentUpdated: ((Comment) -> Void)?
 
-	
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet weak var commentAddScreenlet: CommentAddScreenlet? {
 		didSet {
@@ -28,15 +27,13 @@ class AddCommentViewController: CardViewController, CommentAddScreenletDelegate 
 		}
 	}
 
-
-	//MARK: Init methods
+	// MARK: Initializers
 
 	convenience init() {
 		self.init(nibName: "AddCommentViewController", bundle: nil)
 	}
 
-
-	//MARK: Public methods
+	// MARK: Public methods
 
 	func editComment(_ comment: Comment) {
 		self.commentAddScreenlet?.comment = comment
@@ -63,8 +60,7 @@ class AddCommentViewController: CardViewController, CommentAddScreenletDelegate 
 		}
 	}
 
-	
-	//MARK: CardViewController
+	// MARK: CardViewController
 
 	override func pageWillDisappear() {
 		self.cardView?.changeButtonText("Add Comment")
@@ -73,8 +69,7 @@ class AddCommentViewController: CardViewController, CommentAddScreenletDelegate 
 		self.view.endEditing(true)
 	}
 
-
-	//MARK: CommentAddScreenletDelegate
+	// MARK: CommentAddScreenletDelegate
 
 	func screenlet(_ screenlet: CommentAddScreenlet, onCommentAdded comment: Comment) {
 		onCommentAdded?(comment)

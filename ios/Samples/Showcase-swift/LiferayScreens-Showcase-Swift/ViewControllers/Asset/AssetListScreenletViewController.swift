@@ -14,14 +14,12 @@
 import UIKit
 import LiferayScreens
 
-
 class AssetListScreenletViewController: UIViewController, AssetListScreenletDelegate {
-	
+
 	let AssetDisplaySegue = "assetDisplay"
-	
-	
-	//MARK: IBOutlet
-	
+
+	// MARK: Outlets
+
 	@IBOutlet var screenlet: AssetListScreenlet? {
 		didSet {
 			screenlet?.delegate = self
@@ -33,31 +31,29 @@ class AssetListScreenletViewController: UIViewController, AssetListScreenletDele
 			assetTypeLabel?.text = assetType
 		}
 	}
-	
+
 	var assetType: String = ""
-	
+
 	var selectAssetEntry: Asset?
-	
-	
-	//MARK: AssetListScreenletDelegate
-	
+
+	// MARK: AssetListScreenletDelegate
+
 	func screenlet(_ screenlet: AssetListScreenlet, onAssetListResponse assets: [Asset]) {
 		LiferayLogger.logDelegateMessage(args: assets as AnyObject?)
 	}
-	
+
 	func screenlet(_ screenlet: AssetListScreenlet, onAssetListError error: NSError) {
 		LiferayLogger.logDelegateMessage(args: error)
 	}
-	
+
 	func screenlet(_ screenlet: AssetListScreenlet, onAssetSelected asset: Asset) {
 		LiferayLogger.logDelegateMessage(args: asset)
 		selectAssetEntry = asset
 		performSegue(withIdentifier: AssetDisplaySegue, sender: self)
 	}
-	
-	
-	//MARK: UIViewController
-	
+
+	// MARK: UIViewController
+
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == AssetDisplaySegue {
 			let viewController = segue.destination as? AssetDisplayViewController

@@ -86,7 +86,6 @@ public class DDLFieldCheckboxView extends LinearLayout
 		parentView = view;
 	}
 
-
 	@Override
 	public void setUpdateMode(boolean enabled) {
 		switchCompat.setEnabled(enabled);
@@ -103,7 +102,7 @@ public class DDLFieldCheckboxView extends LinearLayout
 
 		setSaveEnabled(false);
 
-		switchCompat = (SwitchCompat) findViewById(R.id.liferay_ddl_switch);
+		switchCompat = findViewById(R.id.liferay_ddl_switch);
 
 		switchCompat.setOnCheckedChangeListener(this);
 	}

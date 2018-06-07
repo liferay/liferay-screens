@@ -81,9 +81,9 @@ open class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 			"update-className=\(className)-classPK=\(classPK)",
 			"" as NSCoding,
 			[
-				"className": className as AnyObject,
+				"className": className,
 				"classPK": NSNumber(value: classPK as Int64),
-				"ratingsGroupCount": Int(ratingsGroupCount) as AnyObject,
+				"ratingsGroupCount": Int(ratingsGroupCount),
 				"score": NSNumber(value: score as Double)
 			],
 			nil)
@@ -98,9 +98,9 @@ open class UpdateRatingInteractor: ServerWriteConnectorInteractor {
 				key: "update-className=\(className)-classPK=\(classPK)",
 				value: "" as NSCoding,
 				attributes: [
-					"className": className as AnyObject,
+					"className": className,
 					"classPK": NSNumber(value: classPK as Int64),
-					"ratingsGroupCount": Int(ratingsGroupCount) as AnyObject,
+					"ratingsGroupCount": Int(ratingsGroupCount),
 					"score": NSNumber(value: score as Double)
 				],
 				onCompletion: nil)

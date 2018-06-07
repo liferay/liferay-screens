@@ -80,18 +80,18 @@ public class BlogsEntryView extends RelativeLayout implements BlogsEntryDisplayV
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
+		progressBar = findViewById(R.id.liferay_progress);
 
-		imageDisplayScreenlet = (ImageDisplayScreenlet) findViewById(R.id.liferay_blog_image);
+		imageDisplayScreenlet = findViewById(R.id.liferay_blog_image);
 
-		userPortraitScreenlet = (UserPortraitScreenlet) findViewById(R.id.user_portrait_screenlet);
+		userPortraitScreenlet = findViewById(R.id.user_portrait_screenlet);
 
-		userName = (TextView) findViewById(R.id.liferay_blog_username);
-		date = (TextView) findViewById(R.id.liferay_blog_date);
+		userName = findViewById(R.id.liferay_blog_username);
+		date = findViewById(R.id.liferay_blog_date);
 
-		title = (TextView) findViewById(R.id.liferay_blog_title);
-		subtitle = (TextView) findViewById(R.id.liferay_blog_subtitle);
-		content = (TextView) findViewById(R.id.liferay_blog_content);
+		title = findViewById(R.id.liferay_blog_title);
+		subtitle = findViewById(R.id.liferay_blog_subtitle);
+		content = findViewById(R.id.liferay_blog_content);
 	}
 
 	@Override

@@ -8,6 +8,7 @@ public class CordovaEvent {
 
 	private CordovaEventType eventType;
 	private String param;
+
 	public CordovaEvent(CordovaEventType eventType, String param) {
 		this.eventType = eventType;
 		this.param = param;
@@ -21,5 +22,5 @@ public class CordovaEvent {
 		return param;
 	}
 
-	public enum CordovaEventType {PAGE_STARTED, PAGE_FINISHED, ERROR}
+	public enum CordovaEventType { PAGE_STARTED, PAGE_FINISHED, ERROR }
 }

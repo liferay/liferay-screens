@@ -14,34 +14,48 @@
 import UIKit
 import LiferayScreens
 
-open class UserDisplayViewController: UIViewController {
+class UserDisplayViewController: UIViewController, WebScreenletDelegate {
 
+	// MARK: Outlets
 
-	//MARK: Outlets
+	@IBOutlet weak var webScreenlet: WebScreenlet? {
+		didSet {
+			let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/userprofile")
+				.enableCordova()
+				.addCss(localFile: "user_profile")
+				.addJs(localFile: "user_profile")
+				.load()
 
-    @IBAction func goBack(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func signOut(_ sender: Any) {
-        SessionContext.currentContext?.removeStoredCredentials()
-        SessionContext.logout()
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    @IBOutlet weak var webScreenlet: WebScreenlet!
-        
-	//MARK: UIViewController
+			webScreenlet?.backgroundColor = .clear
+			webScreenlet?.presentingViewController = self
+			webScreenlet?.configuration = webScreenletConfiguration
+			webScreenlet?.delegate = self
+		}
+	}
+
+	// MARK: Actions
+
+	@IBAction func goBack(_ sender: Any) {
+		dismiss(animated: true, completion: nil)
+	}
+
+	@IBAction func signOut(_ sender: Any) {
+		SessionContext.currentContext?.removeStoredCredentials()
+		SessionContext.logout()
+		self.dismiss(animated: true, completion: nil)
+	}
+
+	// MARK: UIViewController
 
 	open override func viewDidLoad() {
 		super.viewDidLoad()
-        loadWebScreenlet()
-	}
 
-    func loadWebScreenlet() {
-        let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/userprofile").enableCordova().addCss(localFile: "user_profile").addJs(localFile: "user_profile").load()
-        webScreenlet.configuration = webScreenletConfiguration
-        webScreenlet.load()
-    }
-    
+		webScreenlet?.load()
+	}
+	
+	// MARK: WebScreenletDelegate
+
+	func screenlet(_ screenlet: WebScreenlet, onError error: NSError) {
+		print("WebScreenlet error (UserDisplayViewController): \(error.debugDescription)")
+	}
 }

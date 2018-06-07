@@ -57,7 +57,7 @@ open class Liferay70AssetLoadByClassPKConnector: AssetLoadByClassPKLiferayConnec
 		let service = LRScreensassetentryService_v70(session: session)
 
 		do {
-			let result = try service?.getAssetEntry(withClassName: className, classPK: classPK,
+			let result = try service.getAssetEntry(withClassName: className, classPK: classPK,
 				locale: NSLocale.currentLocaleString)
 
 			resultAsset = Asset(attributes: result as! [String: AnyObject])

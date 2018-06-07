@@ -155,16 +155,16 @@ public class CommentDisplayView extends FrameLayout implements CommentDisplayVie
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		userNameTextView = (TextView) findViewById(R.id.comment_user_name);
-		bodyTextView = (TextView) findViewById(R.id.comment_body);
-		userPortraitScreenlet = (UserPortraitScreenlet) findViewById(R.id.comment_user_portrait);
-		createDateTextView = (TextView) findViewById(R.id.comment_create_date);
-		editedTextView = (TextView) findViewById(R.id.comment_edited);
-		editImageButton = (ImageButton) findViewById(R.id.comment_edit_or_confirm);
-		deleteImageButton = (ImageButton) findViewById(R.id.comment_delete_or_cancel);
-		editBodyEditText = (EditText) findViewById(R.id.comment_edit_body);
-		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
-		contentGroup = (ViewGroup) findViewById(R.id.comment_display_content);
+		userNameTextView = findViewById(R.id.comment_user_name);
+		bodyTextView = findViewById(R.id.comment_body);
+		userPortraitScreenlet = findViewById(R.id.comment_user_portrait);
+		createDateTextView = findViewById(R.id.comment_create_date);
+		editedTextView = findViewById(R.id.comment_edited);
+		editImageButton = findViewById(R.id.comment_edit_or_confirm);
+		deleteImageButton = findViewById(R.id.comment_delete_or_cancel);
+		editBodyEditText = findViewById(R.id.comment_edit_body);
+		progressBar = findViewById(R.id.liferay_progress);
+		contentGroup = findViewById(R.id.comment_display_content);
 	}
 
 	@Override

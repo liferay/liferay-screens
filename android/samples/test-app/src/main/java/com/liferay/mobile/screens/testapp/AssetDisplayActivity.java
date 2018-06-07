@@ -23,7 +23,7 @@ public class AssetDisplayActivity extends ThemeActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.asset_display);
 
-		AssetDisplayScreenlet screenlet = ((AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet));
+		AssetDisplayScreenlet screenlet = findViewById(R.id.asset_display_screenlet);
 
 		long entryId = getIntent().getLongExtra("entryId", 0);
 		String portletItemName = getIntent().getStringExtra("portletItemName");
@@ -65,13 +65,12 @@ public class AssetDisplayActivity extends ThemeActivity
 			View view = getLayoutInflater().inflate(R.layout.user_display, null);
 			User user = (User) assetEntry;
 
-			TextView greeting = (TextView) view.findViewById(R.id.liferay_user_greeting);
-			UserPortraitScreenlet userPortraitScreenlet =
-				(UserPortraitScreenlet) view.findViewById(R.id.user_portrait_screenlet);
-			TextView name = (TextView) view.findViewById(R.id.liferay_user_name);
-			TextView jobTitle = (TextView) view.findViewById(R.id.liferay_user_jobtitle);
-			TextView email = (TextView) view.findViewById(R.id.liferay_user_email);
-			TextView nickname = (TextView) view.findViewById(R.id.liferay_user_nickname);
+			TextView greeting = view.findViewById(R.id.liferay_user_greeting);
+			UserPortraitScreenlet userPortraitScreenlet = view.findViewById(R.id.user_portrait_screenlet);
+			TextView name = view.findViewById(R.id.liferay_user_name);
+			TextView jobTitle = view.findViewById(R.id.liferay_user_jobtitle);
+			TextView email = view.findViewById(R.id.liferay_user_email);
+			TextView nickname = view.findViewById(R.id.liferay_user_nickname);
 
 			greeting.setText(user.getGreeting());
 

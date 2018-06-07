@@ -92,7 +92,7 @@ open class CommentAddScreenlet: BaseScreenlet {
 
 	// MARK: BaseScreenlet
 
-	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
+	override open func createInteractor(name: String, sender: Any?) -> Interactor? {
 		if comment != nil {
 			return createUpdateCommentInteractor()
 		}

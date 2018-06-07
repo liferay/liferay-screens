@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -14,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="421" height="190"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="add-comment" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b6Z-hx-qYJ">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b6Z-hx-qYJ">
                     <rect key="frame" x="25" y="85" width="371" height="60"/>
                     <color key="backgroundColor" red="0.85728287696838379" green="0.18751269578933716" blue="0.19454109668731689" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -38,6 +39,9 @@
                             <integer key="value" value="4"/>
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="addComment:" destination="iN0-l3-epB" eventType="touchUpInside" id="CWM-e2-od4"/>
+                    </connections>
                 </button>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xAv-Gl-q9i">
                     <rect key="frame" x="25" y="0.0" width="371" height="60"/>
@@ -72,7 +76,6 @@
             <connections>
                 <outlet property="addCommentTextView" destination="xAv-Gl-q9i" id="E4D-WK-M8U"/>
                 <outlet property="placeholderLabel" destination="oWO-vt-LjF" id="QUR-YS-5WG"/>
-                <outlet property="sendCommentButton" destination="b6Z-hx-qYJ" id="KQw-te-H5V"/>
             </connections>
             <point key="canvasLocation" x="315.5" y="335"/>
         </view>

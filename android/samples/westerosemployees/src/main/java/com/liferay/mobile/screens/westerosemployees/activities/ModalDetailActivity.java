@@ -43,22 +43,22 @@ public class ModalDetailActivity extends AppCompatActivity implements CommentAdd
 	private void findViews(String className, String mimeType) {
 		if (className.contains("BlogsEntry")) {
 			setContentView(R.layout.blogs_detail_subview);
-			assetDisplayScreenlet = (AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet_blog);
+			assetDisplayScreenlet = findViewById(R.id.asset_display_screenlet_blog);
 		} else if (className.contains("DLFileEntry")) {
 			if (mimeType.contains("image")) {
 				setContentView(R.layout.gallery_detail_subview);
-				assetDisplayScreenlet = (AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet_image);
+				assetDisplayScreenlet = findViewById(R.id.asset_display_screenlet_image);
 			} else {
 				setContentView(R.layout.documents_detail_subview);
-				assetDisplayScreenlet = (AssetDisplayScreenlet) findViewById(R.id.asset_display_screenlet_doc);
+				assetDisplayScreenlet = findViewById(R.id.asset_display_screenlet_doc);
 			}
 		}
 
-		ratingScreenlet = (RatingScreenlet) findViewById(R.id.rating_screenlet);
-		commentListScreenlet = (CommentListScreenlet) findViewById(R.id.comment_list_screenlet);
-		commentAddScreenlet = (CommentAddScreenlet) findViewById(R.id.comment_add_screenlet);
+		ratingScreenlet = findViewById(R.id.rating_screenlet);
+		commentListScreenlet = findViewById(R.id.comment_list_screenlet);
+		commentAddScreenlet = findViewById(R.id.comment_add_screenlet);
 
-		commentAddCard = (Card) findViewById(R.id.comment_add_card);
+		commentAddCard = findViewById(R.id.comment_add_card);
 	}
 
 	private void loadScreenlets(String className, long classPK) {

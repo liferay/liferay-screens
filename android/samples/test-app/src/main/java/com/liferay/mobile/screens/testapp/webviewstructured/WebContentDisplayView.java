@@ -31,10 +31,10 @@ public class WebContentDisplayView extends WebContentStructuredDisplayView {
 
 		DDMStructure ddmStructure = webContent.getDDMStructure();
 
-		TextView firstField = (TextView) findViewById(R.id.web_content_first_field);
+		TextView firstField = findViewById(R.id.web_content_first_field);
 		firstField.setText(String.valueOf(ddmStructure.getField(0).getCurrentValue()));
 
-		TextView secondField = (TextView) findViewById(R.id.web_content_second_field);
+		TextView secondField = findViewById(R.id.web_content_second_field);
 		secondField.setText(String.valueOf(ddmStructure.getField(1).getCurrentValue()));
 	}
 }

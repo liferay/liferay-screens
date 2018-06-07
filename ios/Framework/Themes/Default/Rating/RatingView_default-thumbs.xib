@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,7 +27,7 @@
                             </constraints>
                             <state key="normal" backgroundImage="default-thumb-down.png"/>
                             <connections>
-                                <action selector="negativeButtonClicked:" destination="o2h-u5-MSY" eventType="touchUpInside" id="AcL-Gx-vbk"/>
+                                <action selector="negativeButtonClicked:" destination="o2h-u5-MSY" eventType="touchUpInside" id="2Qk-Pc-nX6"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qr5-pr-nKb" userLabel="Negative count label">
@@ -63,7 +64,7 @@
                             </constraints>
                             <state key="normal" backgroundImage="default-thumb-up.png"/>
                             <connections>
-                                <action selector="possitiveButtonClicked:" destination="o2h-u5-MSY" eventType="touchUpInside" id="olz-2B-H5O"/>
+                                <action selector="possitiveButtonClicked:" destination="o2h-u5-MSY" eventType="touchUpInside" id="SyF-Iq-4JX"/>
                             </connections>
                         </button>
                     </subviews>

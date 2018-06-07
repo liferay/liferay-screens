@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import com.liferay.mobile.screens.cache.Cache;
+import com.liferay.mobile.screens.cache.PendingItemsToSyncListener;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.storage.CredentialsStorageBuilder;
@@ -138,8 +139,17 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				}
 				break;
 			case R.id.sync_cache:
-				Cache.resync();
-				info(getString(R.string.resync_cache_info));
+				Cache.pendingItemsToSync(new PendingItemsToSyncListener() {
+					@Override
+					public void getItemsCount(int totalCount) {
+						if (totalCount > 0) {
+							Cache.resync();
+							info(getString(R.string.resync_cache_info));
+						} else {
+							info(getString(R.string.resync_cache_empty));
+						}
+					}
+				});
 				break;
 			case R.id.custom_interactor:
 				start(CustomInteractorActivity.class);

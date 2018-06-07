@@ -61,7 +61,7 @@ open class Liferay70RatingLoadByClassPKConnector: RatingLoadByClassPKLiferayConn
 		let service = LRScreensratingsentryService_v70(session: session)
 
 		do {
-			let result = try service?.getRatingsEntries(withClassPK: classPK,
+			let result = try service.getRatingsEntries(withClassPK: classPK,
 					className: className, ratingsLength: ratingsGroupCount)
 
 			lastError = nil

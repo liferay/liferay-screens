@@ -151,7 +151,7 @@ open class CommentDisplayScreenlet: BaseScreenlet {
 		}
 	}
 
-	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
+	override open func createInteractor(name: String, sender: Any?) -> Interactor? {
 		switch name {
 		case BaseScreenlet.DefaultAction:
 			return createCommentLoadInteractor()

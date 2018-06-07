@@ -57,7 +57,7 @@ class UploadUserPortraitInteractor: ServerWriteConnectorInteractor {
 			ScreenletName(UserPortraitScreenlet.self),
 			"userId-\(userId)",
 			image,
-			["userId": userId.description as AnyObject],
+			["userId": userId.description],
 			nil)
 	}
 
@@ -70,7 +70,7 @@ class UploadUserPortraitInteractor: ServerWriteConnectorInteractor {
 				collection: ScreenletName(UserPortraitScreenlet.self),
 				key: "userId-\(userId)",
 				attributes: [
-					"userId": userId.description as AnyObject])
+					"userId": userId.description])
 		}
 
 		super.callOnSuccess()

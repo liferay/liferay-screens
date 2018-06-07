@@ -44,15 +44,15 @@
 #pragma mark AssetDisplayScreenletDelegate
 
 - (void)screenlet:(AssetDisplayScreenlet *)screenlet onConfigureScreenlet:(BaseScreenlet *)childScreenlet onAsset:(Asset *)asset {
-	LiferayLog(childScreenlet, asset);
+	LiferayLog(childScreenlet, asset.attributes);
 }
 
 - (void)screenlet:(AssetDisplayScreenlet *)screenlet onAssetResponse:(Asset *)asset {
-	LiferayLog(asset);
+	LiferayLog(asset.attributes);
 }
 
 - (void)screenlet:(AssetDisplayScreenlet *)screenlet onAssetError:(NSError *)error {
-	LiferayLog(error);
+	LiferayLog(error.debugDescription);
 }
 
 - (UIView *)screenlet:(AssetDisplayScreenlet *)screenlet onAsset:(Asset *)asset {

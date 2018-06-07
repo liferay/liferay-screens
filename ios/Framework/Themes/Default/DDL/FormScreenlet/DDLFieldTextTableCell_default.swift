@@ -26,7 +26,7 @@ open class DDLFieldTextTableCell_default: DDLBaseFieldTextboxTableCell_default {
 		let newText = (textField.text! as NSString).replacingCharacters(in: range,
 																		with: string)
 
-		field!.currentValue = newText as AnyObject?
+		field!.currentValue = newText
 
 		return super.textField(textField, shouldChangeCharactersIn: range,
 							   replacementString: string)

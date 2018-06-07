@@ -21,6 +21,7 @@
 	<string name="ddlform_delete_cache_entries_info">Deleted DDLFormEvent cache entries:</string>
 	<string name="ddlform_cache_cleared_info">Cache cleared:</string>
 	<string name="resync_cache_info">Launched resync process</string>
+	<string name="resync_cache_empty">No items to resync</string>
 	<string name="forgot_password_info">Request completed!</string>
 	<string name="screenlet_info">Screenlet loaded successfully</string>
 	<string name="user_portrait_info">User portrait received!</string>

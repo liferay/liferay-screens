@@ -22,5 +22,5 @@ class BookTableViewCell: UITableViewCell {
 		titleLabel.text = title
 		authorLabel.text = author
 	}
-    
+
 }

@@ -2,8 +2,6 @@
 "default-auth-method-screenname"="Screen Name";
 "default-auth-method-userid"="User ID";
 
-"default-oauth-close"="Close";
-
 "default-login-loading-message"="Signing in...\nWait few seconds...";
 "default-login-loading-error"="Error signing in.";
 

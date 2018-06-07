@@ -62,10 +62,10 @@ public protocol UserPortraitScreenletDelegate: BaseScreenletDelegate {
 @objc(UserPortraitScreenlet)
 open class UserPortraitScreenlet: BaseScreenlet {
 
-	// MARK: Class properties
+	// MARK: Static properties
 
-	open class var LoadPortrait: String { return "load-portrait" }
-	open class var UploadPortrait: String { return "upload-portrait" }
+	open static let LoadPortrait = "loadPortrait"
+	open static let UploadPortrait = "uploadPortrait"
 
 	// MARK: Inspectables
 
@@ -123,7 +123,7 @@ open class UserPortraitScreenlet: BaseScreenlet {
 
 	override open func onShow() {
 		if autoLoad {
-			loadLoggedUserPortrait()
+			loadPlaceholder()
 		}
 	}
 
@@ -135,7 +135,7 @@ open class UserPortraitScreenlet: BaseScreenlet {
 		screenletView?.editable = self.editable
 	}
 
-	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
+	override open func createInteractor(name: String, sender: Any?) -> Interactor? {
 		if isActionRunning(name) {
 			cancelInteractorsForAction(name)
 		}

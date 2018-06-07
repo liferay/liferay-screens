@@ -63,7 +63,7 @@ open class Liferay70CommentAddConnector: CommentAddLiferayConnector {
 		let service = LRScreenscommentService_v70(session: session)
 
 		do {
-			let result = try service?.addComment(withClassName: className,
+			let result = try service.addComment(withClassName: className,
 					classPK: classPK,
 					body: Comment.plainBodyToHtml(body))
 

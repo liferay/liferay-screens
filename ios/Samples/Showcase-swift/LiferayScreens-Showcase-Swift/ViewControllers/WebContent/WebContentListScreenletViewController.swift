@@ -16,19 +16,17 @@ import LiferayScreens
 
 class WebContentListScreenletViewController: UIViewController, WebContentListScreenletDelegate {
 
-	
-	//MARK: IBOutlet
-	
+	// MARK: Outlets
+
 	@IBOutlet weak var screenlet: WebContentListScreenlet! {
 		didSet {
 			screenlet.delegate = self
 		}
 	}
-	
+
 	var selectedArticleId = ""
 
-
-	//MARK: WebContentListScreenletDelegate
+	// MARK: WebContentListScreenletDelegate
 
 	func screenlet(_ screenlet: WebContentListScreenlet,
 			onWebContentListResponse entries: [WebContent]) {
@@ -44,15 +42,13 @@ class WebContentListScreenletViewController: UIViewController, WebContentListScr
 		selectedArticleId = entry.attributes["articleId"] as! String
 		performSegue(withIdentifier: "WebContentDisplay", sender: self)
 	}
-	
-	
-	//MARK: UIViewController
-	
+
+	// MARK: UIViewController
+
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if let vc = segue.destination as? WebContentDisplayScreenletViewController {
 			vc.articleId = selectedArticleId
 		}
-		
-	}
 
+	}
 }

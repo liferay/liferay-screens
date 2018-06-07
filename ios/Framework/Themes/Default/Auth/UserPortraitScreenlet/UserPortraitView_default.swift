@@ -67,7 +67,7 @@ open class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel,
 
 	fileprivate let imagePicker = UIImagePickerController()
 
-	// MARK: SignUpViewModel
+	// MARK: UserPortraitViewModel
 
 	open var image: UIImage? {
 		get {
@@ -95,6 +95,10 @@ open class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel,
 		}
 	}
 
+	open func loadPlaceholder(for user: User) {
+		loadDefaultPlaceholder()
+	}
+
 	// MARK: BaseScreenletView
 
 	override open func createProgressPresenter() -> ProgressPresenter {
@@ -115,37 +119,28 @@ open class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel,
 		portraitImage?.layer.cornerRadius = DefaultThemeButtonCornerRadius
 	}
 
-	override open func onPreAction(name: String, sender: AnyObject?) -> Bool {
-		if name == "edit-portrait" {
-			let takeNewPicture = LocalizedString(
-				"default", key: "userportrait-take-new-picture", obj: self)
+	// MARK: Actions
 
-			let chooseExisting = LocalizedString(
-				"default", key: "userportrait-choose-existing-picture", obj: self)
+	@IBAction func editPortraitButtonClicked(_ sender: UIButton) {
+		let takeNewPicture = LocalizedString(
+			"default", key: "userportrait-take-new-picture", obj: self)
 
-			let alert = MediaSelector(
-					viewController: self.presentingViewController!,
-					types: [.imageEdited: chooseExisting, .camera: takeNewPicture],
-					cancelMessage: "Cancel",
-					alertTitle: "Change portrait") { (image, _) in
+		let chooseExisting = LocalizedString(
+			"default", key: "userportrait-choose-existing-picture", obj: self)
 
-				self.userAction(name: "upload-portrait", sender: image)
-			}
+		let alert = MediaSelector(
+			viewController: self.presentingViewController!,
+			types: [.imageEdited: chooseExisting, .camera: takeNewPicture],
+			cancelMessage: "Cancel",
+			alertTitle: "Change portrait") { (image, _) in
 
-			alert.show()
-
-			return false
+				self.userAction(name: UserPortraitScreenlet.UploadPortrait, sender: image)
 		}
 
-		return true
+		alert.show()
 	}
 
 	// MARK: Public methods
-
-	/// Loads the placeholder with user information
-	open func loadPlaceholder(for user: User) {
-		loadDefaultPlaceholder()
-	}
 
 	open func loadDefaultPlaceholder() {
 		dispatch_main {

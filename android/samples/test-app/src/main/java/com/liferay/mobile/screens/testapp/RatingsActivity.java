@@ -29,12 +29,11 @@ public class RatingsActivity extends ThemeActivity
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.ratings);
 
-		container = (LinearLayout) findViewById(R.id.rating_screenlet_container);
+		container = findViewById(R.id.rating_screenlet_container);
 
-		readOnlySwitch = (SwitchCompat) findViewById(R.id.switch_read_only);
+		readOnlySwitch = findViewById(R.id.switch_read_only);
 		readOnlySwitch.setOnCheckedChangeListener(this);
 
 		buttons.add(findViewById(R.id.button_rating_thumb));

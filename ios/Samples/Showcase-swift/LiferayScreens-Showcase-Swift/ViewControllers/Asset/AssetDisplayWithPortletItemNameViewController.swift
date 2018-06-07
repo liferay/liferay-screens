@@ -14,11 +14,9 @@
 import UIKit
 import LiferayScreens
 
-
 class AssetDisplayWithPortletItemNameViewController: UIViewController, AssetDisplayScreenletDelegate {
 
-
-	//MARK: IBOutlet
+	// MARK: Outlets
 
 	@IBOutlet var screenlet: AssetDisplayScreenlet! {
 		didSet {
@@ -32,8 +30,7 @@ class AssetDisplayWithPortletItemNameViewController: UIViewController, AssetDisp
 
 	var portletItemName: String?
 
-
-	//MARK: UIViewController
+	// MARK: UIViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -41,8 +38,7 @@ class AssetDisplayWithPortletItemNameViewController: UIViewController, AssetDisp
 		self.screenlet?.load()
 	}
 
-
-	//MARK: AssetDisplayScreenletDelegate
+	// MARK: AssetDisplayScreenletDelegate
 
 	func screenlet(_ screenlet: AssetDisplayScreenlet, onAssetResponse asset: Asset) {
 		LiferayLogger.logDelegateMessage(args: asset)

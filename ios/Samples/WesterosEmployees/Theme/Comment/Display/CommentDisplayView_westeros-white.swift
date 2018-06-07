@@ -14,7 +14,6 @@
 import UIKit
 import LiferayScreens
 
-
 open class CommentDisplayView_westeros_white: CommentDisplayView_default {
 
 	open override func createProgressPresenter() -> ProgressPresenter {

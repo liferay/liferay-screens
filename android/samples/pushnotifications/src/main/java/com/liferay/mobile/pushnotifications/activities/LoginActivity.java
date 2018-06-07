@@ -16,7 +16,7 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		LoginScreenlet loginScreenlet = (LoginScreenlet) findViewById(R.id.login_screenlet);
+		LoginScreenlet loginScreenlet = findViewById(R.id.login_screenlet);
 		loginScreenlet.setListener(this);
 
 		setDefaultValuesForUserAndPassword();
@@ -32,11 +32,16 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
 
 	}
 
+	@Override
+	public void onAuthenticationBrowserShown() {
+
+	}
+
 	private void setDefaultValuesForUserAndPassword() {
-		EditText login = (EditText) findViewById(R.id.liferay_login);
+		EditText login = findViewById(R.id.liferay_login);
 		login.setText(R.string.default_user);
 
-		EditText password = (EditText) findViewById(R.id.liferay_password);
+		EditText password = findViewById(R.id.liferay_password);
 		password.setText(R.string.default_password);
 	}
 }

@@ -35,10 +35,9 @@ public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.ddl_form);
 
-		screenlet = (DDLFormScreenlet) findViewById(R.id.ddl_form_screenlet);
+		screenlet = findViewById(R.id.ddl_form_screenlet);
 		screenlet.setListener(this);
 
 		initScreenletFromIntent(getIntent());

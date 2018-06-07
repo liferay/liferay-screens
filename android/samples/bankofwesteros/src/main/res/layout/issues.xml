@@ -1,5 +1,5 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:liferay="http://schemas.android.com/apk/res-auto"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:id="@+id/main_view"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
@@ -93,9 +93,9 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_below="@id/divider_issues"
-				liferay:labelFields="@string/liferay_recordset_fields"
-				liferay:layoutId="@layout/ddl_list_westeros_with_drawable"
-				liferay:recordSetId="@string/liferay_recordset_id"
+				app:labelFields="@string/liferay_recordset_fields"
+				app:layoutId="@layout/ddl_list_westeros_with_drawable"
+				app:recordSetId="@string/liferay_recordset_id"
 				/>
 
 		</RelativeLayout>
@@ -194,13 +194,13 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_below="@id/report_issue_title"
-			liferay:cachePolicy="REMOTE_FIRST"
-			liferay:layoutId="@layout/ddl_form_westeros"
-			liferay:recordSetId="@string/liferay_recordset_id"
-			liferay:selectFieldLayoutId="@layout/ddlfield_select_westeros"
-			liferay:structureId="@string/liferay_structure_id"
-			liferay:textAreaFieldLayoutId="@layout/ddlfield_text_area_westeros"
-			liferay:textFieldLayoutId="@layout/ddlfield_text_westeros"
+			app:cachePolicy="REMOTE_FIRST"
+			app:layoutId="@layout/ddl_form_westeros"
+			app:recordSetId="@string/liferay_recordset_id"
+			app:selectFieldLayoutId="@layout/ddlfield_select_westeros"
+			app:structureId="@string/liferay_structure_id"
+			app:textAreaFieldLayoutId="@layout/ddlfield_text_area_westeros"
+			app:textFieldLayoutId="@layout/ddlfield_text_westeros"
 			/>
 	</RelativeLayout>
 

@@ -16,41 +16,53 @@ import LiferayScreens
 
 class DocumentationViewController: CardViewController, WebScreenletDelegate {
 
-	var selectedFileEntry: String?
+	// MARK: Outlets
 
+	@IBOutlet weak var webScreenlet: WebScreenlet? {
+		didSet {
+			let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/documents")
+				.addCss(localFile: "docs")
+				.addJs(localFile: "docs")
+				.load()
+
+			webScreenlet?.backgroundColor = .clear
+			webScreenlet?.presentingViewController = self
+			webScreenlet?.configuration = webScreenletConfiguration
+			webScreenlet?.delegate = self
+		}
+	}
+	
+	// MARK: Variables
+	
+	var selectedFileEntry: String?
+	
 	var loaded: Bool = false
 
-	//MARK: Outlets
-    
-    @IBOutlet weak var webScreenlet: WebScreenlet!
-
-	//MARK: Init methods
+	// MARK: Initializers
 
 	convenience init() {
 		self.init(nibName: "DocumentationViewController", bundle: nil)
 	}
 
-    func loadWebScreenlet() {
-        let webScreenletConfiguration = WebScreenletConfigurationBuilder(url: "/web/westeros-hybrid/documents").addCss(localFile: "docs").addJs(localFile: "docs").load()
-        webScreenlet.configuration = webScreenletConfiguration
-        webScreenlet.load()
-        webScreenlet.delegate = self
-    }
-    
-    //MARK: CardViewController
-    override func pageWillAppear() {
-        if !loaded {
-            loadWebScreenlet()
-            loaded = true
-        }
-    }
+	// MARK: CardViewController
 
-    //MARK: WebScreenletDelegate
-    func screenlet(_ screenlet: WebScreenlet,
-                   onScriptMessageNamespace namespace: String,
-                   onScriptMessage message: String) {
-        selectedFileEntry = message
-        cardView?.moveRight()
-    }
-    
+	override func pageWillAppear() {
+		if !loaded {
+			webScreenlet?.load()
+			loaded = true
+		}
+	}
+
+	// MARK: WebScreenletDelegate
+
+	func screenlet(_ screenlet: WebScreenlet,
+				   onScriptMessageNamespace namespace: String,
+				   onScriptMessage message: String) {
+		selectedFileEntry = message
+		cardView?.moveRight()
+	}
+	
+	func screenlet(_ screenlet: WebScreenlet, onError error: NSError) {
+		print("WebScreenlet error (DocumentationViewController): \(error.debugDescription)")
+	}
 }

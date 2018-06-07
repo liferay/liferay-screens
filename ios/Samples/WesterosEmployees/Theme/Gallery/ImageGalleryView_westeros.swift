@@ -16,8 +16,7 @@ import LiferayScreens
 
 open class ImageGalleryView_westeros: ImageGalleryView_default {
 
-
-	//MARK: BaseScreenletView
+	// MARK: BaseScreenletView
 
 	override open func createProgressPresenter() -> ProgressPresenter {
 		return WesterosCardProgressPresenter(screenlet: self.screenlet)

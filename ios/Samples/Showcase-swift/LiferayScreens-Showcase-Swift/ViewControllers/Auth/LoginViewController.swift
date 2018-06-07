@@ -13,13 +13,12 @@
  */
 import UIKit
 import LiferayScreens
-
+import LRMobileSDK
 
 class LoginViewController: UIViewController, LoginScreenletDelegate {
 
-	
-	//MARK: IBOutlets
-	
+	// MARK: Outlets
+
 	@IBOutlet var loggedView: UIView!
 	@IBOutlet var loggedUsername: UILabel!
 	@IBOutlet var logginView: UIView!
@@ -29,14 +28,20 @@ class LoginViewController: UIViewController, LoginScreenletDelegate {
 			self.loginScreenlet.delegate = self
 		}
 	}
+
 	@IBOutlet weak var saveCredentialsLabel: UILabel!
 	@IBOutlet weak var forgetPasswordButton: UIButton!
 	@IBOutlet weak var signUpButton: UIButton!
 	@IBOutlet weak var loggedLabel: UILabel!
 	@IBOutlet weak var signOutButton: UIButton!
 	@IBOutlet weak var reloginButton: UIButton!
-	
+	@IBOutlet weak var basicModeSwitch: UISwitch!
+	@IBOutlet weak var cookieModeSwitch: UISwitch!
+	@IBOutlet weak var OAuth2redirectModeSwitch: UISwitch!
+	@IBOutlet weak var OAuth2UsernameAndPasswordModeSwitch: UISwitch!
+
 	//MARK: IBActions
+
 	@IBAction func signOutAction() {
 		SessionContext.currentContext?.removeStoredCredentials()
 		SessionContext.logout()
@@ -49,13 +54,13 @@ class LoginViewController: UIViewController, LoginScreenletDelegate {
 			return print("Session doesn't exist")
 		}
 
-		ctx.relogin {
+		_ = ctx.relogin {
 			guard let attributes = $0 else {
 				print("Relogin failed")
 				self.showLogged(animated: true)
 				return
 			}
-			
+
 			print("Relogin completed: \(attributes)")
 		}
 	}
@@ -64,34 +69,63 @@ class LoginViewController: UIViewController, LoginScreenletDelegate {
 		loginScreenlet.saveCredentials = sender.isOn
 	}
 
-	
+	@IBAction func onLoginModeSelected(_ sender: UISwitch) {
+
+		basicModeSwitch.isOn = false
+		cookieModeSwitch.isOn = false
+		OAuth2redirectModeSwitch.isOn = false
+		OAuth2UsernameAndPasswordModeSwitch.isOn = false
+
+		let authType = AuthType(rawValue: sender.tag)!
+
+		sender.isOn = true
+
+		switch authType {
+		case .basic:
+			loginScreenlet.authType = .basic
+		case .cookie:
+			loginScreenlet.authType = .cookie
+			loginScreenlet.cookieExpirationTime = 20
+			loginScreenlet.shouldHandleCookieExpiration = true
+		case .oauth2Redirect:
+			loginScreenlet.authType = .oauth2Redirect
+			loginScreenlet.oauth2clientId = LiferayServerContext.stringPropertyForKey("clientIdRedirect")
+			loginScreenlet.oauth2redirectURL = LiferayServerContext.stringPropertyForKey("redirectUrl")
+		case .oauth2UsernameAndPassword:
+			loginScreenlet.authType = .oauth2UsernameAndPassword
+			loginScreenlet.oauth2clientId = LiferayServerContext.stringPropertyForKey("clientId")
+			loginScreenlet.oauth2clientSecret = LiferayServerContext.stringPropertyForKey("clientSecret")
+		}
+	}
+
 	//MARK: UIViewController
-	
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		SessionContext.loadStoredCredentials()
 
+		loginScreenlet.authType = .cookie
+
 		setTranslations()
 	}
-	
+
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
 		self.navigationItem.title = "LoginScreenlet"
-		
+
 		showLogged(animated: false)
 	}
-	
+
 	override func viewWillDisappear(_ animated: Bool) {
 		super.viewWillDisappear(animated)
 		self.navigationItem.title = nil
 	}
 
-	
-	//MARK: LoginScreenletDelegate
-	
+	// MARK: LoginScreenletDelegate
+
 	func screenlet(_ screenlet: BaseScreenlet,
-			onLoginResponseUserAttributes attributes: [String:AnyObject]) {
+			onLoginResponseUserAttributes attributes: [String: AnyObject]) {
 		LiferayLogger.logDelegateMessage(args: attributes as AnyObject?)
 		showLogged(animated: true)
 	}
@@ -101,18 +135,17 @@ class LoginViewController: UIViewController, LoginScreenletDelegate {
 	}
 
 	func screenlet(_ screenlet: BaseScreenlet,
-			onCredentialsSavedUserAttributes attributes: [String:AnyObject]) {
+			onCredentialsSavedUserAttributes attributes: [String: AnyObject]) {
 		LiferayLogger.logDelegateMessage(args: attributes as AnyObject?)
 	}
 
 	func screenlet(_ screenlet: LoginScreenlet,
-			onCredentialsLoadedUserAttributes attributes: [String:AnyObject]) {
+			onCredentialsLoadedUserAttributes attributes: [String: AnyObject]) {
 		LiferayLogger.logDelegateMessage(args: attributes as AnyObject?)
 	}
 
-	
-	//MARK: Private methods
-	
+	// MARK: Private methods
+
 	fileprivate func showLogged(animated: Bool) {
 		if SessionContext.isLoggedIn {
 			loggedUsername?.text = SessionContext.currentContext?.basicAuthUsername
@@ -121,12 +154,12 @@ class LoginViewController: UIViewController, LoginScreenletDelegate {
 		UIView.animate(withDuration: animated ? 0.5 : 0.0, animations: { () -> Void in
 			self.loggedView?.alpha = SessionContext.isLoggedIn ? 1.0 : 0.0
 			self.logginView?.alpha = SessionContext.isLoggedIn ? 0.0 : 1.0
-			
+
 			if !SessionContext.isLoggedIn {
-				self.loginScreenlet.viewModel.userName = "test@liferay.com"
-				self.loginScreenlet.viewModel.password = "test"
+				self.loginScreenlet.viewModel.userName = "demo@liferay.com"
+				self.loginScreenlet.viewModel.password = "demo"
 			}
-		}) 
+		})
 	}
 
 	fileprivate func setTranslations() {
@@ -143,4 +176,3 @@ class LoginViewController: UIViewController, LoginScreenletDelegate {
 	}
 
 }
-

@@ -37,8 +37,9 @@ public class DetailMediaGalleryActivity extends AppCompatActivity implements Swi
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.gallery_detailed_default);
 
+		detailedImageView = findViewById(R.id.detailed_image);
+
 		Intent intent = getIntent();
-		detailedImageView = (ImageView) findViewById(R.id.detailed_image);
 
 		if (intent != null && intent.hasExtra("imgSrcPosition") && intent.hasExtra("allImgSrc")) {
 			allImgSrc = intent.getStringArrayExtra("allImgSrc");

@@ -16,10 +16,10 @@ import LiferayScreens
 
 open class UserProfileView: UIView {
 
-	var goBackButtonClicked: (() -> ())?
-	var signOutButtonClicked: (() -> ())?
+	var goBackButtonClicked: (() -> Void)?
+	var signOutButtonClicked: (() -> Void)?
 
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet weak var userPortraitScreenlet: UserPortraitScreenlet?
 	@IBOutlet weak var userNameLabel: UILabel?
@@ -33,7 +33,6 @@ open class UserProfileView: UIView {
 		}
 	}
 
-
 	open var user: User? {
 		didSet {
 			userPortraitScreenlet?.load(userId: user!.userId)
@@ -44,7 +43,7 @@ open class UserProfileView: UIView {
 		}
 	}
 
-	//MARK: View actions
+	// MARK: Actions
 
 	@IBAction func goBackButtonClick() {
 		goBackButtonClicked?()
@@ -52,5 +51,5 @@ open class UserProfileView: UIView {
 
 	@IBAction func signOutButtonClick() {
 		signOutButtonClicked?()
-	}	
+	}
 }

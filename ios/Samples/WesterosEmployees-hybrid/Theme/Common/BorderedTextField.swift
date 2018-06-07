@@ -1,11 +1,16 @@
-//
-//  BorderedTextField.swift
-//  WesterosBank
-//
-//  Created by jmWork on 26/04/15.
-//  Copyright (c) 2015 Liferay. All rights reserved.
-//
-
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 import UIKit
 
 class BorderedTextField: UITextField, UITextFieldDelegate {
@@ -15,7 +20,6 @@ class BorderedTextField: UITextField, UITextFieldDelegate {
 	@IBInspectable var unfocusedColor: UIColor? = .clear
 
 	fileprivate var revertTextColor = false
-
 
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
@@ -33,8 +37,8 @@ class BorderedTextField: UITextField, UITextFieldDelegate {
 		superview?.backgroundColor = self.focusedColor!
 
 		self.attributedPlaceholder = NSAttributedString(
-				string: self.placeholder!,
-				attributes: [.foregroundColor : self.unfocusedColor!])
+			string: self.placeholder!,
+			attributes: [.foregroundColor : self.unfocusedColor!])
 
 		if self.textColor == self.focusedColor! {
 			self.textColor = .black
@@ -48,8 +52,8 @@ class BorderedTextField: UITextField, UITextFieldDelegate {
 		superview?.backgroundColor = self.unfocusedColor!
 
 		self.attributedPlaceholder = NSAttributedString(
-				string: self.placeholder!,
-				attributes: [.foregroundColor : self.focusedColor!])
+			string: self.placeholder!,
+			attributes: [.foregroundColor : self.focusedColor!])
 
 		if revertTextColor {
 			self.textColor = self.focusedColor!
@@ -61,7 +65,7 @@ class BorderedTextField: UITextField, UITextFieldDelegate {
 		return parentDelegate(self.superview)?.textFieldShouldReturn?(self) ?? true
 	}
 
-	fileprivate func parentDelegate(_ view:UIView?) -> UITextFieldDelegate? {
+	fileprivate func parentDelegate(_ view: UIView?) -> UITextFieldDelegate? {
 		if view == nil {
 			return nil
 		}
@@ -70,5 +74,4 @@ class BorderedTextField: UITextField, UITextFieldDelegate {
 		}
 		return parentDelegate(view?.superview)
 	}
-
 }

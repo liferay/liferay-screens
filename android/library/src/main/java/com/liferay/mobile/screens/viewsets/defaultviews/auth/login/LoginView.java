@@ -40,7 +40,7 @@ public class LoginView extends LinearLayout implements LoginViewModel, View.OnCl
 	protected EditText passwordEditText;
 	protected Button submitButton;
 	protected LinearLayout basicAuthenticationLayout;
-	protected Button oAuthButton;
+	protected Button oAuth2Button;
 	protected ModalProgressBar progressBar;
 	private AuthenticationType authenticationType;
 	private BasicAuthMethod basicAuthMethod;
@@ -132,29 +132,25 @@ public class LoginView extends LinearLayout implements LoginViewModel, View.OnCl
 	public void onClick(View view) {
 
 		LoginScreenlet loginScreenlet = (LoginScreenlet) getScreenlet();
-		if (view.getId() == R.id.liferay_login_button) {
-			loginScreenlet.performUserAction(LoginScreenlet.BASIC_AUTH);
-		} else {
-			loginScreenlet.performUserAction(LoginScreenlet.OAUTH);
-		}
+		loginScreenlet.performUserAction(LoginScreenlet.BASIC_AUTH);
 	}
 
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		loginEditText = (EditText) findViewById(R.id.liferay_login);
-		passwordEditText = (EditText) findViewById(R.id.liferay_password);
-		progressBar = (ModalProgressBar) findViewById(R.id.liferay_progress);
+		loginEditText = findViewById(R.id.liferay_login);
+		passwordEditText = findViewById(R.id.liferay_password);
+		progressBar = findViewById(R.id.liferay_progress);
 
-		basicAuthenticationLayout = (LinearLayout) findViewById(R.id.basic_authentication_login);
+		basicAuthenticationLayout = findViewById(R.id.basic_authentication_login);
 
-		oAuthButton = (Button) findViewById(R.id.oauth_authentication_login);
-		if (oAuthButton != null) {
-			oAuthButton.setOnClickListener(this);
+		oAuth2Button = findViewById(R.id.oauth2_authentication_login);
+		if (oAuth2Button != null) {
+			oAuth2Button.setOnClickListener(this);
 		}
 
-		submitButton = (Button) findViewById(R.id.liferay_login_button);
+		submitButton = findViewById(R.id.liferay_login_button);
 		submitButton.setOnClickListener(this);
 	}
 
@@ -162,17 +158,13 @@ public class LoginView extends LinearLayout implements LoginViewModel, View.OnCl
 	protected void onAttachedToWindow() {
 		super.onAttachedToWindow();
 
-		if (oAuthButton != null) {
-			oAuthButton.setVisibility(AuthenticationType.OAUTH.equals(authenticationType) ? VISIBLE : GONE);
+		if (oAuth2Button != null) {
+			oAuth2Button.setVisibility(AuthenticationType.OAUTH2REDIRECT.equals(authenticationType) ? VISIBLE : GONE);
 		}
 
 		if (basicAuthenticationLayout != null) {
 			basicAuthenticationLayout.setVisibility(
-				AuthenticationType.OAUTH.equals(authenticationType) ? GONE : VISIBLE);
-		}
-
-		if (basicAuthMethod != null) {
-			loginEditText.setHint(getResources().getString(getLabelResourceForAuthMode()));
+				AuthenticationType.OAUTH2REDIRECT.equals(authenticationType) ? GONE : VISIBLE);
 		}
 
 		refreshLoginEditTextStyle();
@@ -180,6 +172,7 @@ public class LoginView extends LinearLayout implements LoginViewModel, View.OnCl
 
 	protected void refreshLoginEditTextStyle() {
 		if (basicAuthMethod != null) {
+			loginEditText.setHint(getResources().getString(getLabelResourceForAuthMode()));
 			loginEditText.setInputType(basicAuthMethod.getInputType());
 			loginEditText.setCompoundDrawablesWithIntrinsicBounds(
 				ContextCompat.getDrawable(getContext(), getLoginEditTextDrawableId()), null, null, null);

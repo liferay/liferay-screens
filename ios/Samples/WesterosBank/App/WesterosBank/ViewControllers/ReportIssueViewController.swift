@@ -16,10 +16,10 @@ import LiferayScreens
 
 class ReportIssueViewController: CardViewController, DDLFormScreenletDelegate {
 
-	@IBOutlet weak var screenlet: DDLFormScreenlet!
+	@IBOutlet weak var screenlet: DDLFormScreenlet?
 	@IBOutlet weak var saveButton: UIButton!
 
-	var issueRecord : DDLRecord?
+	var issueRecord: DDLRecord?
 	var editable: Bool = true
 
 	override init(card: CardView, nibName: String) {
@@ -27,7 +27,7 @@ class ReportIssueViewController: CardViewController, DDLFormScreenletDelegate {
 	}
 
 	convenience init(card: CardView) {
-		self.init(card: card, nibName:"ReportIssueViewController")
+		self.init(card: card, nibName: "ReportIssueViewController")
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -35,38 +35,44 @@ class ReportIssueViewController: CardViewController, DDLFormScreenletDelegate {
 	}
 
 	override func viewDidLoad() {
-		screenlet.delegate = self
+		screenlet?.delegate = self
 
 	}
 
 	override func cardWillAppear() {
-		screenlet.editable = editable
+		screenlet?.editable = editable
 		saveButton.isHidden = !editable
 
-
 		if let recordValue = issueRecord {
-			screenlet.recordId = recordValue.recordId!
-			screenlet.loadRecord()
+			screenlet?.recordId = recordValue.recordId!
+			screenlet?.loadRecord()
 		}
 		else {
-			screenlet.recordId = 0
+			screenlet?.recordId = 0
 
-			if screenlet.isFormLoaded {
-				screenlet.clearForm()
+			if (screenlet!.isFormLoaded) {
+				screenlet?.clearForm()
 			}
 			else {
-				screenlet.loadForm()
+				screenlet?.loadForm()
 			}
 		}
 	}
 
-	func screenlet(_ screenlet: DDLFormScreenlet,
-			onFormSubmitted record: DDLRecord) {
+	func screenlet(_ screenlet: DDLFormScreenlet, onFormSubmitted record: DDLRecord) {
 		onDone?()
 	}
 
+	func screenlet(_ screenlet: DDLFormScreenlet, onFormLoadError error: NSError) {
+		print("Load form error: \(error.debugDescription)")
+	}
+
+	func screenlet(_ screenlet: DDLFormScreenlet, onFormSubmitError error: NSError) {
+		print("Submit form error: \(error.debugDescription)")
+	}
+
 	@IBAction func saveButtonClick(_ sender: UIButton) {
-		screenlet.performAction(name: sender.restorationIdentifier!)
+		screenlet?.performAction(name: sender.restorationIdentifier!)
 	}
 
 }

@@ -14,7 +14,7 @@ public class ListBookmarksActivity extends ThemeActivity implements BookmarkList
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_list_bookmarks);
 
-		BookmarkListScreenlet bookmarkListScreenlet = (BookmarkListScreenlet) findViewById(R.id.bookmarklist_screenlet);
+		BookmarkListScreenlet bookmarkListScreenlet = findViewById(R.id.bookmarklist_screenlet);
 		bookmarkListScreenlet.setListener(this);
 	}
 

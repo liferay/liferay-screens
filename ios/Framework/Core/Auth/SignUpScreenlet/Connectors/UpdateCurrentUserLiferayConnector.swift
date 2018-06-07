@@ -69,7 +69,7 @@ open class Liferay62UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnecto
 			//FIXME
 			// Values marked with (!!) will be overwritten in the server
 			// The JSON WS API isn't able to handle this scenario correctly
-			let result = try service?.updateUser(withUserId: attributeAsId("userId"),
+			let result = try service.updateUser(withUserId: attributeAsId("userId"),
 				oldPassword: SessionContext.currentContext?.basicAuthPassword,
 				newPassword1: viewModel.password ?? "",
 				newPassword2: viewModel.password ?? "",
@@ -111,7 +111,7 @@ open class Liferay62UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnecto
 				userGroupIds: [AnyObject](),
 				serviceContext: nil)
 
-			if result?["userId"] == nil {
+			if result["userId"] == nil {
 				lastError = NSError.errorWithCause(.invalidServerResponse,
 						message: "Could not update user with this userId.")
 				resultUserAttributes = nil
@@ -140,7 +140,7 @@ open class Liferay70UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnecto
 			//FIXME
 			// Values marked with (!!) will be overwritten in the server
 			// The JSON WS API isn't able to handle this scenario correctly
-			let result = try service?.updateUser(withUserId: attributeAsId("userId"),
+			let result = try service.updateUser(withUserId: attributeAsId("userId"),
 				oldPassword: SessionContext.currentContext?.basicAuthPassword,
 				newPassword1: viewModel.password ?? "",
 				newPassword2: viewModel.password ?? "",
@@ -177,7 +177,7 @@ open class Liferay70UpdateCurrentUserConnector: UpdateCurrentUserLiferayConnecto
 				userGroupIds: [AnyObject](),
 				serviceContext: nil)
 
-			if result?["userId"] == nil {
+			if result["userId"] == nil {
 				lastError = NSError.errorWithCause(.invalidServerResponse,
 						message: "Could not update user with this userId.")
 				resultUserAttributes = nil

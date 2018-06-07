@@ -89,7 +89,7 @@ open class LoadAssetInteractor: ServerReadConnectorInteractor {
 
 	// MARK: Cache methods
 
-	override open func readFromCache(_ c: ServerConnector, result: @escaping (AnyObject?) -> Void) {
+	override open func readFromCache(_ c: ServerConnector, result: @escaping (Any?) -> Void) {
 		guard let cacheManager = SessionContext.currentContext?.cacheManager else {
 			result(nil)
 			return
@@ -124,9 +124,9 @@ open class LoadAssetInteractor: ServerReadConnectorInteractor {
 			value: asset,
 			attributes: [
 				"entryId": NSNumber(value: assetEntryId ?? 0),
-				"className": className as AnyObject? ?? "" as AnyObject,
+				"className": className ?? "",
 				"classPK": NSNumber(value: classPK ?? 0),
-				"portletItemName": portletItemName as AnyObject? ?? ""  as AnyObject
+				"portletItemName": portletItemName ?? ""
 			])
 	}
 

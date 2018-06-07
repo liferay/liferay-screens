@@ -92,6 +92,6 @@ public class WebContentStructuredDisplayView extends LinearLayout implements Web
 
 		setOrientation(LinearLayout.VERTICAL);
 
-		contentField = (TextView) findViewById(R.id.web_content_field);
+		contentField = findViewById(R.id.web_content_field);
 	}
 }

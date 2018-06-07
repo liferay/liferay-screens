@@ -16,19 +16,23 @@ import LiferayScreens
 
 class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource {
 
+	// MARK: Outlets
+
 	@IBOutlet var cardDeck: CardDeckView?
 
+	// MARK: Variables
+	
 	var signInController: SignInViewController?
 	var signUpController: SignUpViewController?
 	var forgotPasswordController: ForgotPasswordViewController?
 	var termsController: TermsViewController?
 
+	// MARK: UIViewController
 
-	//MARK: UIViewController
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		let onDone: () -> () = {
+		let onDone: () -> Void = {
 			self.dismiss(animated: true, completion: nil)
 		}
 
@@ -51,8 +55,7 @@ class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource
 		cardDeck?.cards[safe: 0]?.changeToState(.minimized)
 	}
 
-
-	//MARK: CardDeckDataSource
+	// MARK: CardDeckDataSource
 
 	func doCreateCard(_ cardDeck: CardDeckView, index: Int) -> CardView? {
 		if index == 1 {
@@ -82,8 +85,7 @@ class AuthViewController: UIViewController, CardDeckDelegate, CardDeckDataSource
 		}
 	}
 
-
-	//MARK: CardDeckDelegate
+	// MARK: CardDeckDelegate
 
 	func cardDeck(_ cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
 		//SignIn card

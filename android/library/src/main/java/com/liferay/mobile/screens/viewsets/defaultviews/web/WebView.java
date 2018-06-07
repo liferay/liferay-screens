@@ -33,7 +33,6 @@ public class WebView extends FrameLayout implements WebViewModel, ScreensWebView
 	private ProgressBar progressBar;
 	private static final String URL_LOGIN = "/c/portal/login";
 	private List<InjectableScript> scriptsToInject = new ArrayList<>();
-	private boolean isLoaded;
 
 	public WebView(Context context) {
 		super(context);
@@ -51,7 +50,7 @@ public class WebView extends FrameLayout implements WebViewModel, ScreensWebView
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		progressBar = (ProgressBar) findViewById(R.id.liferay_portlet_progress);
+		progressBar = findViewById(R.id.liferay_portlet_progress);
 	}
 
 	@Override
@@ -101,7 +100,6 @@ public class WebView extends FrameLayout implements WebViewModel, ScreensWebView
 	@Override
 	public void postUrl(String url, String body) {
 		if (webView != null) {
-			isLoaded = false;
 			webView.postUrl(url, body.getBytes());
 		}
 	}
@@ -109,7 +107,6 @@ public class WebView extends FrameLayout implements WebViewModel, ScreensWebView
 	@Override
 	public void loadUrl(String url) {
 		if (webView != null) {
-			isLoaded = false;
 			webView.loadUrl(url);
 		}
 	}
@@ -128,8 +125,8 @@ public class WebView extends FrameLayout implements WebViewModel, ScreensWebView
 
 	@Override
 	public void showFinishOperation(String actionName) {
-		throw new UnsupportedOperationException("showFinishOperation(String) is not supported."
-			+ " Use showFinishOperation(String, String) instead.");
+		throw new UnsupportedOperationException(
+			"showFinishOperation(String) is not supported." + " Use showFinishOperation(String, String) instead.");
 	}
 
 	@Override
@@ -145,24 +142,21 @@ public class WebView extends FrameLayout implements WebViewModel, ScreensWebView
 	@Override
 	public void configureView(boolean isCordovaEnabled, CordovaLifeCycleObserver observer) {
 		if (screensWebView != null) {
-			isLoaded = false;
 			return;
 		}
 
 		if (isCordovaEnabled) {
-			screensWebView = new ScreensCordovaWebView(
-				LiferayScreensContext.getActivityFromContext(getContext()), observer);
+			screensWebView =
+				new ScreensCordovaWebView(LiferayScreensContext.getActivityFromContext(getContext()), observer);
 		} else {
-			screensWebView = new ScreensNativeWebView(
-				LiferayScreensContext.getActivityFromContext(getContext()));
+			screensWebView = new ScreensNativeWebView(LiferayScreensContext.getActivityFromContext(getContext()));
 		}
 
 		screensWebView.setListener(this);
 
 		webView = screensWebView.getView();
-		webView.setLayoutParams(
-			new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-				LinearLayout.LayoutParams.MATCH_PARENT));
+		webView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+			LinearLayout.LayoutParams.MATCH_PARENT));
 
 		// Disable selection in webView
 		webView.setOnLongClickListener(new OnLongClickListener() {
@@ -198,12 +192,16 @@ public class WebView extends FrameLayout implements WebViewModel, ScreensWebView
 	}
 
 	@Override
-	public void onPageStarted() { }
+	public void onPageStarted() {
+		webView.setVisibility(GONE);
+		if (progressBar != null) {
+			progressBar.setVisibility(VISIBLE);
+		}
+	}
 
 	@Override
 	public void onPageFinished(String url) {
-		if (!isLoaded && !url.contains(URL_LOGIN)) {
-			isLoaded = true;
+		if (!url.contains(URL_LOGIN)) {
 
 			for (InjectableScript script : scriptsToInject) {
 				injectScript(script);

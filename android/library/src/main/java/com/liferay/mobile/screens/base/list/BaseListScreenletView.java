@@ -229,8 +229,8 @@ public abstract class BaseListScreenletView<E extends Parcelable, H extends Base
 		int itemLayoutId = getItemLayoutId();
 		int itemProgressLayoutId = getItemProgressLayoutId();
 
-		recyclerView = (RecyclerView) findViewById(R.id.liferay_recycler_list);
-		progressBar = (ProgressBar) findViewById(R.id.liferay_progress);
+		recyclerView = findViewById(R.id.liferay_recycler_list);
+		progressBar = findViewById(R.id.liferay_progress);
 
 		A adapter = createListAdapter(itemLayoutId, itemProgressLayoutId);
 		recyclerView.setHasFixedSize(true);

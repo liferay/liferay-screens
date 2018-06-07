@@ -27,6 +27,12 @@ open class LoginView_default: BaseScreenletView, LoginViewModel {
 	@IBOutlet open weak var authorizeButton: UIButton?
 
 	override open var progressMessages: [String: ProgressMessages] {
+		let auth = AuthTypeFromString(authType ?? "basic")
+
+		if auth == .oauth2Redirect {
+			return [:]
+		}
+
 		return [
 			BaseScreenlet.DefaultAction: [
 				.working: LocalizedString("default", key: "login-loading-message", obj: self),
@@ -97,16 +103,20 @@ open class LoginView_default: BaseScreenletView, LoginViewModel {
 
 	override open func onStartInteraction() {
 		loginButton?.isEnabled = false
-		authorizeButton?.isEnabled = false
 	}
 
-	override open func onFinishInteraction(_ result: AnyObject?, error: NSError?) {
+	override open func onFinishInteraction(_ result: Any?, error: NSError?) {
 		loginButton?.isEnabled = true
-		authorizeButton?.isEnabled = true
 	}
 
 	override open func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
+	}
+
+	// MARK: Actions
+
+	@IBAction func loginButtonClicked(_ sender: UIButton) {
+		self.userAction(name: LoginScreenlet.DefaultAction, sender: sender)
 	}
 
 	// MARK: Public methods
@@ -114,8 +124,21 @@ open class LoginView_default: BaseScreenletView, LoginViewModel {
 	open func configureAuthType() {
 		let auth = AuthTypeFromString(authType ?? "") ?? .basic
 
-		authorizeButton?.isHidden = (auth != .oAuth)
-		loginButton?.superview?.isHidden = (auth == .oAuth)
+		if auth == .oauth2Redirect {
+			showAuthorizeButton()
+		}
+		else {
+			showUserAndPasswordForm()
+		}
 	}
 
+	open func showAuthorizeButton() {
+		authorizeButton?.isHidden = false
+		loginButton?.superview?.isHidden = true
+	}
+
+	open func showUserAndPasswordForm() {
+		authorizeButton?.isHidden = true
+		loginButton?.superview?.isHidden = false
+	}
 }

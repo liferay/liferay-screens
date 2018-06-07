@@ -32,23 +32,23 @@ public class GalleryActivity extends ThemeActivity implements ImageGalleryListen
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.gallery);
 
-		imageGalleryScreenletGrid = (ImageGalleryScreenlet) findViewById(R.id.gallery_screenlet_grid);
+		imageGalleryScreenletGrid = findViewById(R.id.gallery_screenlet_grid);
 		imageGalleryScreenletGrid.setListener(this);
 
-		imageGalleryScreenletSlideShow = (ImageGalleryScreenlet) findViewById(R.id.gallery_screenlet_slideshow);
+		imageGalleryScreenletSlideShow = findViewById(R.id.gallery_screenlet_slideshow);
 		imageGalleryScreenletSlideShow.setListener(this);
 
-		imageGalleryScreenletList = (ImageGalleryScreenlet) findViewById(R.id.gallery_screenlet_list);
+		imageGalleryScreenletList = findViewById(R.id.gallery_screenlet_list);
 		imageGalleryScreenletList.setListener(this);
 		imageGalleryScreenletList.setCacheListener(this);
 
-		Button changeGalleryViewGrid = (Button) findViewById(R.id.change_gallery_view_grid);
+		Button changeGalleryViewGrid = findViewById(R.id.change_gallery_view_grid);
 		changeGalleryViewGrid.setOnClickListener(this);
 
-		Button changeGalleryViewSlideShow = (Button) findViewById(R.id.change_gallery_view_slideshow);
+		Button changeGalleryViewSlideShow = findViewById(R.id.change_gallery_view_slideshow);
 		changeGalleryViewSlideShow.setOnClickListener(this);
 
-		Button changeGalleryViewList = (Button) findViewById(R.id.change_gallery_view_list);
+		Button changeGalleryViewList = findViewById(R.id.change_gallery_view_list);
 		changeGalleryViewList.setOnClickListener(this);
 	}
 

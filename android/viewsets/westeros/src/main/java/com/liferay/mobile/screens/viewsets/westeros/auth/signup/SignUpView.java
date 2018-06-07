@@ -67,12 +67,12 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 
 		initClickableTermsAndConditions();
 
-		firstNameValidation = (TextView) findViewById(R.id.first_name_validation);
-		lastNameValidation = (TextView) findViewById(R.id.last_name_validation);
+		firstNameValidation = findViewById(R.id.first_name_validation);
+		lastNameValidation = findViewById(R.id.last_name_validation);
 		lastNameValidation.setText(R.string.last_name_cant_be_empty);
-		emailAddressValidation = (TextView) findViewById(R.id.email_address_validation);
+		emailAddressValidation = findViewById(R.id.email_address_validation);
 		emailAddressValidation.setText(R.string.email_address_cant_be_empty);
-		passwordValidation = (TextView) findViewById(R.id.password_validation);
+		passwordValidation = findViewById(R.id.password_validation);
 		passwordValidation.setText(R.string.password_cant_be_empty);
 	}
 
@@ -83,7 +83,7 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 	private boolean validFields() {
 		//TODO move to view model and interactor
 
-		CheckBox acceptTerms = (CheckBox) findViewById(R.id.sign_up_checkbox);
+		CheckBox acceptTerms = findViewById(R.id.sign_up_checkbox);
 		if (!acceptTerms.isChecked()) {
 			WesterosSnackbar.showSnackbar(LiferayScreensContext.getActivityFromContext(getContext()),
 				"You must accept the terms & conditions", R.color.colorAccent_westeros);
@@ -113,7 +113,7 @@ public class SignUpView extends com.liferay.mobile.screens.viewsets.defaultviews
 	}
 
 	private void initClickableTermsAndConditions() {
-		TextView textView = (TextView) findViewById(R.id.terms);
+		TextView textView = findViewById(R.id.terms);
 		textView.setMovementMethod(LinkMovementMethod.getInstance());
 
 		SpannableStringBuilder ssb = new SpannableStringBuilder("I accept the terms and conditions");

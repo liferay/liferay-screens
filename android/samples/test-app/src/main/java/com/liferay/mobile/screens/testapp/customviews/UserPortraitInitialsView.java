@@ -32,7 +32,7 @@ public class UserPortraitInitialsView extends UserPortraitView {
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		textView = (TextView) findViewById(R.id.user_portrait_initials_text_view);
+		textView = findViewById(R.id.user_portrait_initials_text_view);
 	}
 
 	@Override

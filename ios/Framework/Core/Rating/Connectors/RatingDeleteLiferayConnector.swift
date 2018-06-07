@@ -61,7 +61,7 @@ open class Liferay70RatingDeleteConnector: RatingDeleteLiferayConnector {
 		let service = LRScreensratingsentryService_v70(session: session)
 
 		do {
-			let result = try service?.deleteRatingsEntry(
+			let result = try service.deleteRatingsEntry(
 				withClassPK: classPK, className: className, ratingsLength: ratingsGroupCount)
 			lastError = nil
 			resultRating = RatingEntry(attributes: result as! [String: AnyObject])

@@ -80,7 +80,8 @@ public class CommentListView
 	@Override
 	protected void onFinishInflate() {
 		super.onFinishInflate();
-		emptyListTextView = (TextView) findViewById(R.id.comment_empty_list);
+
+		emptyListTextView = findViewById(R.id.comment_empty_list);
 
 		setFocusableInTouchMode(true);
 	}

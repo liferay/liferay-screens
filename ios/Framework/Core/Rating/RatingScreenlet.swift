@@ -128,7 +128,7 @@ open class RatingScreenlet: BaseScreenlet {
 		}
 	}
 
-	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
+	override open func createInteractor(name: String, sender: Any?) -> Interactor? {
 		let interactor: ServerConnectorInteractor?
 
 		switch name {
@@ -137,7 +137,7 @@ open class RatingScreenlet: BaseScreenlet {
 		case RatingScreenlet.DeleteRatingAction:
 			interactor = createDeleteRatingInteractor()
 		case RatingScreenlet.UpdateRatingAction:
-			let selectedScore = sender!.doubleValue!
+			let selectedScore = sender as! Double
 			interactor = createUpdateRatingInteractor(selectedScore)
 		default:
 			return nil
@@ -255,6 +255,10 @@ open class RatingScreenlet: BaseScreenlet {
 						onRatingError: NSError.errorWithCause(.invalidServerResponse,
 								message: "Could not update the rating."))
 			}
+		}
+
+		interactor.onFailure = {
+			self.ratingDisplayDelegate?.screenlet?(self, onRatingError: $0)
 		}
 
 		return interactor

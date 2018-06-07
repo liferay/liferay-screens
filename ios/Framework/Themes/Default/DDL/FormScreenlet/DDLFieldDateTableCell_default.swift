@@ -38,6 +38,9 @@ open class DDLFieldDateTableCell_default: DDLBaseFieldTextboxTableCell_default {
 			if fieldValue.currentValue != nil {
 				textField?.text = fieldValue.currentValueAsLabel
 			}
+			else {
+				textField?.text = ""
+			}
 		}
 	}
 
@@ -46,7 +49,7 @@ open class DDLFieldDateTableCell_default: DDLBaseFieldTextboxTableCell_default {
 	fileprivate func setFieldPresenter(_ field: DDMField) {
 
 		func onChange(_ selectedDate: Date?) {
-			field.currentValue = selectedDate as AnyObject?
+			field.currentValue = selectedDate
 			textField!.text = field.currentValueAsLabel
 
 			let fullRange = NSRange(location: 0, length: textField!.text!.count)

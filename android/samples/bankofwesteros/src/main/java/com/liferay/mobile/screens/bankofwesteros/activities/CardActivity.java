@@ -125,15 +125,15 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 
 	protected void findAndSetCardViews() {
 		//TODO move this logic to custom view
-		card1 = (ViewGroup) findViewById(R.id.card1);
+		card1 = findViewById(R.id.card1);
 		card1.setOnTouchListener(new FlingTouchListener(this, createCard1Listener()));
-		card2 = (ViewGroup) findViewById(R.id.card2);
+		card2 = findViewById(R.id.card2);
 		card2.setOnTouchListener(new FlingTouchListener(this, createCard2Listener()));
 
-		card1Subview1 = (ViewGroup) findViewById(R.id.card1_subview1);
-		card1Subview2 = (ViewGroup) findViewById(R.id.card1_subview2);
-		card2Subview1 = (ViewGroup) findViewById(R.id.card2_subview1);
-		card2Subview2 = (ViewGroup) findViewById(R.id.card2_subview2);
+		card1Subview1 = findViewById(R.id.card1_subview1);
+		card1Subview2 = findViewById(R.id.card1_subview2);
+		card2Subview1 = findViewById(R.id.card2_subview1);
+		card2Subview2 = findViewById(R.id.card2_subview2);
 
 		card1ToBackground = findAndAddListener(card1, "card1_to_background");
 		card1ToFrontView = findAndAddListener(card1, "card1_to_front_view");

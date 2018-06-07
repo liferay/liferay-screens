@@ -1,4 +1,4 @@
-#import <Cordova/CDVPlugin.h>
+#import "CDVPlugin.h"
 #import "CFCallNumber.h"
 
 @implementation CFCallNumber

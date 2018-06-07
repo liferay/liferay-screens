@@ -13,7 +13,7 @@
  */
 import UIKit
 
-open class HttpDownloadConnector: ServerConnector {
+open class HttpDownloadConnector: AsyncServerConnector {
 
 	open var url: URL
 
@@ -27,19 +27,15 @@ open class HttpDownloadConnector: ServerConnector {
 		super.init()
 	}
 
-	// MARK: ServerConnector
+	// MARK: AsyncServerConnector
 
 	override open func doRun(session: LRSession) {
 
 		let session = URLSession(configuration: .default)
 
-		let requestSemaphore = DispatchSemaphore(value: 0)
-
 		let urlRequest = NSMutableURLRequest(url: self.url)
 
-		if let auth
-			= SessionContext.currentContext?.session.authentication as? LRCookieAuthentication {
-
+		if let auth = SessionContext.currentContext?.session.authentication as? LRCookieAuthentication {
 			auth.authenticate(urlRequest)
 		}
 
@@ -59,17 +55,14 @@ open class HttpDownloadConnector: ServerConnector {
 							fileExtension: self.fileExtension(response))
 						self.resultUrl = newPathURL
 						self.lastError = nil
+						self.callOnComplete()
 					}
 					catch let error as NSError {
 						self.lastError = error
 						self.resultUrl = nil
 					}
 				}
-				requestSemaphore.signal()
-
 		}).resume()
-
-		_ = requestSemaphore.wait(timeout: .distantFuture)
 	}
 
 	// MARK: Private methods

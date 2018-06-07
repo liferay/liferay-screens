@@ -16,7 +16,6 @@ class BorderedTextField: UITextField, UITextFieldDelegate {
 
 	fileprivate var revertTextColor = false
 
-
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 
@@ -61,7 +60,7 @@ class BorderedTextField: UITextField, UITextFieldDelegate {
 		return parentDelegate(self.superview)?.textFieldShouldReturn?(self) ?? true
 	}
 
-	fileprivate func parentDelegate(_ view:UIView?) -> UITextFieldDelegate? {
+	fileprivate func parentDelegate(_ view: UIView?) -> UITextFieldDelegate? {
 		if view == nil {
 			return nil
 		}

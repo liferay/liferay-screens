@@ -38,7 +38,7 @@ class DDMField_Validation_XSD_Tests: XCTestCase {
 
 		let booleanField = fields![0] as! DDMFieldBoolean
 
-		booleanField.currentValue = true as AnyObject?
+		booleanField.currentValue = true
 
 		let expectation = self.expectation(description: "OnPostValidation must be called")
 
@@ -74,7 +74,7 @@ class DDMField_Validation_XSD_Tests: XCTestCase {
 
 		let stringField = fields![0] as! DDMFieldString
 
-		stringField.currentValue = value as AnyObject?
+		stringField.currentValue = value
 
 		XCTAssertFalse(stringField.validate())
 	}

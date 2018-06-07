@@ -14,7 +14,6 @@
 import UIKit
 import LiferayScreens
 
-
 open class UserPortraitView_westeros: UserPortraitView_default {
 
 	override open func onShow() {
@@ -27,8 +26,7 @@ open class UserPortraitView_westeros: UserPortraitView_default {
 
 	override open func loadPlaceholder(for user: User) {
 		self.portraitImage?.image = Bundle.imageInBundles(
-				name: "flat7-portrait-placeholder",
-				currentClass: type(of: self))
+			name: "flat7-portrait-placeholder",
+			currentClass: type(of: self))
 	}
-
 }

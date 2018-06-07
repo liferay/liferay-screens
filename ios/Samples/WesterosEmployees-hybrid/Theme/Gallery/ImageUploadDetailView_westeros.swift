@@ -14,7 +14,6 @@
 import UIKit
 import LiferayScreens
 
-
 open class ImageUploadDetailView_westeros: ImageUploadDetailViewBase {
 
 	open override var image: UIImage? {
@@ -23,9 +22,8 @@ open class ImageUploadDetailView_westeros: ImageUploadDetailViewBase {
 		}
 	}
 
+	// MARK: Outlets
 
-	//MARK: Outlets
-	
 	@IBOutlet weak var uploadButton: UIButton? {
 		didSet {
 			uploadButton?.layer.borderWidth = 3.0
@@ -33,8 +31,7 @@ open class ImageUploadDetailView_westeros: ImageUploadDetailViewBase {
 		}
 	}
 
-
-	//MARK: View actions
+	// MARK: Actions
 
 	@IBAction func uploadButtonClicked(_ sender: AnyObject) {
 		startUpload()

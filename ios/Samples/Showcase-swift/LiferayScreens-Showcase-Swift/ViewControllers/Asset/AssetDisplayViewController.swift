@@ -14,36 +14,32 @@
 import UIKit
 import LiferayScreens
 
-
 class AssetDisplayViewController: UIViewController, AssetDisplayScreenletDelegate {
-	
-	
-	//MARK: IBOutlet
-	
+
+	// MARK: Outlets
+
 	@IBOutlet var screenlet: AssetDisplayScreenlet! {
 		didSet {
 			screenlet.delegate = self
 			screenlet.presentingViewController = self
-			
+
 			screenlet.assetEntryId = entryId ??
 				LiferayServerContext.longPropertyForKey("assetDisplayEntryId")
 		}
 	}
-	
+
 	var entryId: Int64?
-	
-	
-	//MARK: UIViewController
-	
+
+	// MARK: UIViewController
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
 		self.screenlet?.load()
 	}
-	
-	
-	//MARK: AssetDisplayScreenletDelegate
-	
+
+	// MARK: AssetDisplayScreenletDelegate
+
 	func screenlet(_ screenlet: AssetDisplayScreenlet, onAssetResponse asset: Asset) {
 		LiferayLogger.logDelegateMessage(args: asset)
 	}
@@ -62,9 +58,9 @@ class AssetDisplayViewController: UIViewController, AssetDisplayScreenletDelegat
 		let keys = asset.attributes["object"]!.allKeys
 		if keys!.contains(where: {$0 as? String == "user"}) {
 			let userView = UserView()
-			let object = asset.attributes["object"] as! [String : AnyObject]
+			let object = asset.attributes["object"] as! [String: AnyObject]
 
-			userView.user = User(attributes: object["user"] as! [String : AnyObject])
+			userView.user = User(attributes: object["user"] as! [String: AnyObject])
 			return userView
 		}
 		return nil

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -30,7 +31,7 @@
                         <action selector="editingDidChangeAction" destination="iN0-l3-epB" eventType="editingChanged" id="6kM-1c-Xmr"/>
                     </connections>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" restorationIdentifier="add-comment" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KOW-5A-wES">
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KOW-5A-wES">
                     <rect key="frame" x="333" y="8" width="80" height="50"/>
                     <color key="backgroundColor" red="0.083623558279999996" green="0.66497266290000001" blue="0.84832382200000001" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -46,6 +47,9 @@
                             </fragment>
                         </attributedString>
                     </state>
+                    <connections>
+                        <action selector="addComment:" destination="iN0-l3-epB" eventType="touchUpInside" id="CdD-pK-rCk"/>
+                    </connections>
                 </button>
             </subviews>
             <constraints>

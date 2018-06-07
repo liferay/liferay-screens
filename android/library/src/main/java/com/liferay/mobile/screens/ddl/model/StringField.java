@@ -86,5 +86,4 @@ public class StringField extends Field<String> {
 	protected String convertToFormattedString(String value) {
 		return value;
 	}
-
 }

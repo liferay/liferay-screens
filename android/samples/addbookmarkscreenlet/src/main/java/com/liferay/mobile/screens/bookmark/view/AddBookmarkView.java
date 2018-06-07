@@ -82,10 +82,10 @@ public class AddBookmarkView extends LinearLayout implements AddBookmarkViewMode
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		urlText = (EditText) findViewById(R.id.url);
-		titleText = (EditText) findViewById(R.id.title_bookmark);
+		urlText = findViewById(R.id.url);
+		titleText = findViewById(R.id.title_bookmark);
 
-		Button addButton = (Button) findViewById(R.id.add_button);
+		Button addButton = findViewById(R.id.add_button);
 		addButton.setOnClickListener(this);
 	}
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.blogs.BlogsEntryView
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:liferay="http://schemas.android.com/apk/res-auto"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
@@ -18,8 +18,8 @@
 			android:layout_height="125dp"
 			android:layout_alignParentTop="true"
 			android:visibility="gone"
-			liferay:autoLoad="false"
-			liferay:layoutId="@layout/image_display_westeros_cover_image"
+			app:autoLoad="false"
+			app:layoutId="@layout/image_display_westeros_cover_image"
 			/>
 
 		<ProgressBar
@@ -47,7 +47,7 @@
 				android:layout_width="70dp"
 				android:layout_height="70dp"
 				android:gravity="center_vertical"
-				liferay:autoLoad="false"
+				app:autoLoad="false"
 				/>
 
 			<LinearLayout

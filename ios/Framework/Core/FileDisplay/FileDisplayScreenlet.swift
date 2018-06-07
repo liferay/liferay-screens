@@ -52,8 +52,7 @@ open class FileDisplayScreenlet: BaseScreenlet {
 	/// The file’s fully qualified class name. Since files in a Documents and Media Library are 
 	/// DLFileEntry objects, their className is com.liferay.document.library.kernel.model.DLFileEntry. 
 	/// The className and classPK attributes are required to instantiate the Screenlet.
-	@IBInspectable open var className: String =
-		AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!
+	@IBInspectable open var className: String = AssetClasses.getClassName(AssetClassNameKey_DLFileEntry)!
 
 	/// The file’s unique identifier. The className and classPK attributes are required to 
 	/// instantiate the Screenlet.
@@ -66,6 +65,10 @@ open class FileDisplayScreenlet: BaseScreenlet {
 	/// The offline mode setting. The default value is remote-first.
 	@IBInspectable open var offlinePolicy: String? = CacheStrategyType.remoteFirst.rawValue
 
+	/// Supported screenlet mime types. If the mime type not matches with the requested file mime
+	/// type, the file doesn't show in the screenlet.
+	@IBInspectable open var mimeTypes: String = ""
+
 	// MARK: Public properties
 
 	open var fileDisplayDelegate: FileDisplayScreenletDelegate? {
@@ -76,8 +79,11 @@ open class FileDisplayScreenlet: BaseScreenlet {
 		return screenletView as? FileDisplayViewModel
 	}
 
+	let DefaultFileMimeTypes = ["text/plain"]
+
 	open var supportedMimeTypes: [String] {
-		return []
+		return (mimeTypes.isEmpty) ? DefaultFileMimeTypes :
+			mimeTypes.split(separator: ",").map(String.init)
 	}
 
 	open var fileEntry: FileEntry?
@@ -90,7 +96,7 @@ open class FileDisplayScreenlet: BaseScreenlet {
 		}
 	}
 
-	override open func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
+	override open func createInteractor(name: String, sender: Any?) -> Interactor? {
 		if isActionRunning(name) {
 			cancelInteractorsForAction(name)
 		}
@@ -129,8 +135,7 @@ open class FileDisplayScreenlet: BaseScreenlet {
 			interactor = LoadAssetInteractor(screenlet: self, assetEntryId: assetEntryId)
 		}
 		else {
-			interactor = LoadAssetInteractor(
-				screenlet: self, className: self.className, classPK: self.classPK)
+			interactor = LoadAssetInteractor(screenlet: self, className: self.className, classPK: self.classPK)
 		}
 
 		interactor.cacheStrategy = CacheStrategyType(rawValue: self.offlinePolicy ?? "") ?? .remoteFirst

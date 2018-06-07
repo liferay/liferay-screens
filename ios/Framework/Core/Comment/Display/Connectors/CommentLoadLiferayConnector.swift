@@ -51,7 +51,7 @@ open class Liferay70CommentLoadConnector: CommentLoadLiferayConnector {
 		let service = LRScreenscommentService_v70(session: session)
 
 		do {
-			let result = try service?.getCommentWithCommentId(commentId)
+			let result = try service.getCommentWithCommentId(commentId)
 
 			if let result = result as? [String: AnyObject] {
 				resultComment = Comment(attributes: result)

@@ -135,13 +135,13 @@ public class SignUpView extends LinearLayout implements SignUpViewModel, View.On
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 
-		firstName = (EditText) findViewById(R.id.liferay_first_name);
-		lastName = (EditText) findViewById(R.id.liferay_last_name);
-		emailAddress = (EditText) findViewById(R.id.liferay_email_address);
-		password = (EditText) findViewById(R.id.liferay_password);
-		progressBar = (ModalProgressBar) findViewById(R.id.liferay_progress);
+		firstName = findViewById(R.id.liferay_first_name);
+		lastName = findViewById(R.id.liferay_last_name);
+		emailAddress = findViewById(R.id.liferay_email_address);
+		password = findViewById(R.id.liferay_password);
+		progressBar = findViewById(R.id.liferay_progress);
 
-		Button signUpButton = (Button) findViewById(R.id.liferay_sign_up_button);
+		Button signUpButton = findViewById(R.id.liferay_sign_up_button);
 		signUpButton.setOnClickListener(this);
 	}
 }

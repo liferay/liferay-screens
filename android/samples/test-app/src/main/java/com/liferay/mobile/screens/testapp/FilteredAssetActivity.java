@@ -18,7 +18,7 @@ public class FilteredAssetActivity extends ThemeActivity implements BaseListList
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.filtered_asset);
 
-		AssetListScreenlet assetListScreenlet = (AssetListScreenlet) findViewById(R.id.filtered_asset_list);
+		AssetListScreenlet assetListScreenlet = findViewById(R.id.filtered_asset_list);
 		assetListScreenlet.setListener(this);
 	}
 

@@ -34,7 +34,7 @@ public class SelectAssetActivity extends ThemeActivity implements AdapterView.On
 
 		setContentView(R.layout.select_asset);
 
-		ListView assetList = (ListView) findViewById(R.id.select_asset_list);
+		ListView assetList = findViewById(R.id.select_asset_list);
 		ArrayAdapter<AssetClassnameIds70> adapter =
 			new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, AssetClassnameIds70.values());
 		assetList.setAdapter(adapter);

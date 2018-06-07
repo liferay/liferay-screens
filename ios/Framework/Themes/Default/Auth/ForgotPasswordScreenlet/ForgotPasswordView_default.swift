@@ -82,7 +82,7 @@ open class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMode
 		requestPasswordButton?.isEnabled = false
 	}
 
-	override open func onFinishInteraction(_ result: AnyObject?, error: NSError?) {
+	override open func onFinishInteraction(_ result: Any?, error: NSError?) {
 		requestPasswordButton?.isEnabled = true
 
 		if let resultPasswordSent = result as? Bool {
@@ -94,4 +94,9 @@ open class ForgotPasswordView_default: BaseScreenletView, ForgotPasswordViewMode
 		return DefaultProgressPresenter()
 	}
 
+	// MARK: Actions
+
+	@IBAction func requestPasswordButtonClicked(_ sender: UIButton) {
+		self.userAction(name: ForgotPasswordScreenlet.DefaultAction, sender: sender)
+	}
 }

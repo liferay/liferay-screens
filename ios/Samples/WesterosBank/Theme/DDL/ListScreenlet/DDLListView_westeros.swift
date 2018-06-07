@@ -15,7 +15,6 @@ import UIKit
 import LiferayScreens
 import MGSwipeTableCell
 
-
 open class DDLListView_westeros: DDLListView_default, MGSwipeTableCellDelegate {
 
 	let cellId = "cell"
@@ -39,7 +38,7 @@ open class DDLListView_westeros: DDLListView_default, MGSwipeTableCellDelegate {
 		self.tableView!.register(nib, forCellReuseIdentifier: cellId)
 	}
 
-	override open func doFillLoadedCell(row: Int, cell: UITableViewCell, object:AnyObject) {
+	override open func doFillLoadedCell(row: Int, cell: UITableViewCell, object: AnyObject) {
 		if let record = object as? DDLRecord,
 			let issueCell = cell as? DDLListViewCell_westeros {
 
@@ -86,6 +85,5 @@ open class DDLListView_westeros: DDLListView_default, MGSwipeTableCellDelegate {
 
 		return true
 	}
-
 
 }

@@ -32,7 +32,7 @@
 		@[@"Files", @"AudioDisplayScreenlet", @"ImageDisplayScreenlet", @"PdfDisplayScreenlet",
 					@"VideoDisplayScreenlet"],
 		@[@"Others", @"UserPortraitScreenlet", @"RatingScreenlet", @"ImageGalleryScreenlet",
-					@"BlogDisplayScreenlet"],
+					@"BlogDisplayScreenlet", @"WebScreenlet"],
 		@[@"WebContent", @"WebContentDisplayScreenlet", @"WebContentListScreenlet"]
 	];
 

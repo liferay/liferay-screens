@@ -17,11 +17,12 @@ import org.apache.cordova.CordovaWebViewEngine;
 import org.apache.cordova.LOG;
 
 public class RemoteInjectionPlugin extends CordovaPlugin {
+
 	private static String TAG = "RemoteInjectionPlugin";
 	private static Pattern REMOTE_URL_REGEX = Pattern.compile("^http(s)?://.*");
 
 	// List of files to inject before injecting Cordova.
-	private final ArrayList<String> preInjectionFileNames = new ArrayList<String>();
+	private final ArrayList<String> preInjectionFileNames = new ArrayList<>();
 
 	protected void pluginInitialize() {
 		String pref = webView.getPreferences().getString("CRIInjectFirstFiles", "");
@@ -34,14 +35,12 @@ public class RemoteInjectionPlugin extends CordovaPlugin {
 	}
 
 	private void onMessageTypeFailure(String messageId, Object data) {
-		LOG.e(TAG,
-			messageId + " received a data instance that is not an expected type:" + data.getClass()
-				.getName());
+		LOG.e(TAG, messageId + " received a data instance that is not an expected type:" + data.getClass().getName());
 	}
 
 	@Override
 	public Object onMessage(String id, Object data) {
-		if (id.equals("onPageFinished")) {
+		if ("onPageFinished".equals(id)) {
 			if (data instanceof String) {
 				String url = (String) data;
 				if (isRemote(url)) {
@@ -59,11 +58,11 @@ public class RemoteInjectionPlugin extends CordovaPlugin {
 	 * @return true if the URL over HTTP or HTTPS
 	 */
 	private boolean isRemote(String url) {
-		return REMOTE_URL_REGEX.matcher((String) url).matches();
+		return REMOTE_URL_REGEX.matcher(url).matches();
 	}
 
 	private void injectCordova() {
-		List<String> jsPaths = new ArrayList<String>();
+		List<String> jsPaths = new ArrayList<>();
 		for (String path : preInjectionFileNames) {
 			jsPaths.add(path);
 		}
@@ -74,8 +73,7 @@ public class RemoteInjectionPlugin extends CordovaPlugin {
 		// cordova_plugins.js).  The reason for this is the WebView will attempt to load the
 		// file in the origin of the page (e.g. https://truckmover.com/plugins/plugin/plugin.js).
 		// By loading them first cordova will skip its loading process altogether.
-		jsPaths.addAll(
-			jsPathsToInject(cordova.getActivity().getResources().getAssets(), "www/plugins"));
+		jsPaths.addAll(jsPathsToInject(cordova.getActivity().getResources().getAssets(), "www/plugins"));
 
 		// Initialize the cordova plugin registry.
 		jsPaths.add("www/cordova_plugins.js");
@@ -105,7 +103,7 @@ public class RemoteInjectionPlugin extends CordovaPlugin {
 		try {
 			InputStream stream = assets.open(filePath);
 			in = new BufferedReader(new InputStreamReader(stream));
-			String str = "";
+			String str;
 
 			while ((str = in.readLine()) != null) {
 				out.append(str);

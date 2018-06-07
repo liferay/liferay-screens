@@ -28,7 +28,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	/// - Returns: Custom interactor.
 	@objc optional func screenlet(_ screenlet: BaseScreenlet,
 		customInteractorForAction: String,
-		withSender: AnyObject?) -> Interactor?
+		withSender: Any?) -> Interactor?
 
 }
 
@@ -43,7 +43,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	open static let DefaultAction = "defaultAction"
 	open static let DefaultThemeName = "default"
 
-	// MARK: IBOutlets
+	// MARK: Outlets
 
 	@IBOutlet open weak var delegate: BaseScreenletDelegate?
 
@@ -257,7 +257,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	///   - sender: Source of the event.
 	/// - Returns: False interactor ready to be started.
 	@discardableResult
-	open dynamic func performAction(name: String, sender: AnyObject? = nil) -> Bool {
+	open dynamic func performAction(name: String, sender: Any? = nil) -> Bool {
 		guard !isRunningOnInterfaceBuilder else {
 			return false
 		}
@@ -299,7 +299,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	///   - sender: Source of the event.
 	/// - Returns: Call for starting the interactor.
 	@discardableResult
-	open dynamic func onAction(name: String, interactor: Interactor, sender: AnyObject?) -> Bool {
+	open dynamic func onAction(name: String, interactor: Interactor, sender: Any?) -> Bool {
 		onStartInteraction()
 		screenletView?.onStartInteraction()
 
@@ -313,7 +313,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	open dynamic func isActionRunning(_ name: String) -> Bool {
 		var firstInteractor: Interactor? = nil
 
-		synchronized(_runningInteractors as AnyObject) {
+		synchronized(_runningInteractors) {
 			firstInteractor = self._runningInteractors[name]?.first
 		}
 
@@ -337,7 +337,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	///   - name: Action name.
 	///   - sender: Source of the event.
 	/// - Returns: Proper interactor for each use case.
-	open dynamic func createInteractor(name: String, sender: AnyObject?) -> Interactor? {
+	open dynamic func createInteractor(name: String, sender: Any?) -> Interactor? {
 		return nil
 	}
 
@@ -360,7 +360,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 
 		untrackInteractor(interactor)
 
-		let result: AnyObject? = interactor.interactionResult()
+		let result = interactor.interactionResult()
 		onFinishInteraction(result, error: error)
 		screenletView?.onFinishInteraction(result, error: error)
 		hideHUDWithMessage(getMessage(), forInteractor: interactor, withError: error)
@@ -371,7 +371,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	}
 
 	/// onFinishInteraction is called when the server response arrives
-	open dynamic func onFinishInteraction(_ result: AnyObject?, error: NSError?) {
+	open dynamic func onFinishInteraction(_ result: Any?, error: NSError?) {
 	}
 
 	// MARK: HUD methods
@@ -473,7 +473,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	}
 
 	fileprivate func trackInteractor(_ interactor: Interactor, withName name: String) {
-		synchronized(_runningInteractors as AnyObject) {
+		synchronized(_runningInteractors) {
 			var interactors = self._runningInteractors[name]
 			if interactors?.count ?? 0 == 0 {
 				interactors = [Interactor]()
@@ -487,7 +487,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 	}
 
 	fileprivate func untrackInteractor(_ interactor: Interactor) {
-		synchronized(_runningInteractors as AnyObject) {
+		synchronized(_runningInteractors) {
 			let name = interactor.actionName!
 			let interactors = self._runningInteractors[name] ?? []
 

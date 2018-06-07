@@ -84,11 +84,11 @@
 }
 
 - (void)screenlet:(UserPortraitScreenlet *)screenlet onUserPortraitUploadError:(NSError *)error {
-	LiferayLog(error);
+	LiferayLog(error.debugDescription);
 }
 
 - (void)screenlet:(UserPortraitScreenlet *)screenlet onUserPortraitError:(NSError *)error {
-	LiferayLog(error);
+	LiferayLog(error.debugDescription);
 }
 
 @end

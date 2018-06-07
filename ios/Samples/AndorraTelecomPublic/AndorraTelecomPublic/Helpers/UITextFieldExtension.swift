@@ -11,7 +11,6 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-
 import UIKit
 
 @IBDesignable
@@ -31,7 +30,7 @@ class UITextFieldExtended: UITextField {
                 view.addSubview(imageView)
                 leftView = view
             }
-            else {
+			else {
                 isImageSelected = false
                 leftViewMode = .never
             }
@@ -45,7 +44,7 @@ class UITextFieldExtended: UITextField {
         if isImageSelected == true {
             return bounds.insetBy(dx: 35 + inset, dy: 0)
         }
-        else {
+		else {
             return bounds.insetBy(dx: inset, dy: 0)
         }
     }

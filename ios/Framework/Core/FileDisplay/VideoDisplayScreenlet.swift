@@ -18,12 +18,6 @@ import Foundation
 @objc(VideoDisplayScreenlet)
 open class VideoDisplayScreenlet: FileDisplayScreenlet {
 
-	// MARK: Inspectables
-
-	/// Supported screenlet mime types. If the mime type not matches with the requested video mime
-	/// type, the video doesn't show in the screenlet.
-	@IBInspectable open var mimeTypes: String = ""
-
 	let DefaultVideoMimeTypes = ["video/mp4", "video/3gp", "video/quicktime"]
 
 	// MARK: FileDisplayScreenlet

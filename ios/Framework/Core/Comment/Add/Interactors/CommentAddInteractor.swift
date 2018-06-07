@@ -106,9 +106,9 @@ open class CommentAddInteractor: ServerWriteConnectorInteractor {
 			cacheKey,
 			"" as NSCoding,
 			[
-				"className": addCon.className as AnyObject,
+				"className": addCon.className,
 				"classPK": NSNumber(value: addCon.classPK as Int64),
-				"body": addCon.body as AnyObject
+				"body": addCon.body
 			],
 			nil)
 	}
@@ -120,9 +120,9 @@ open class CommentAddInteractor: ServerWriteConnectorInteractor {
 				key: cacheKeyUsed!,
 				value: "" as NSCoding,
 				attributes: [
-					"className": className as AnyObject,
+					"className": className,
 					"classPK": NSNumber(value: classPK as Int64),
-					"body": body as AnyObject
+					"body": body
 				],
 				onCompletion: nil)
 		}

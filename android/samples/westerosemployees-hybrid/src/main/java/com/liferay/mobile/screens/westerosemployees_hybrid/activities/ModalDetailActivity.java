@@ -29,8 +29,7 @@ public class ModalDetailActivity extends AppCompatActivity {
                         .addRawJs(R.raw.detail_js, "detail_js.js")
                         .load();
 
-		WebScreenlet webScreenlet =
-                (WebScreenlet) findViewById(R.id.portlet_blog_item);
+		WebScreenlet webScreenlet = findViewById(R.id.portlet_blog_item);
 		webScreenlet.setWebScreenletConfiguration(configuration);
 		webScreenlet.load();
 

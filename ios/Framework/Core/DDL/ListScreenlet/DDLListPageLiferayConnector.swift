@@ -62,14 +62,14 @@ open class Liferay62DDLListPageConnector: DDLListPageLiferayConnector {
 
 		do {
 			if userId == nil {
-				try service?.getDdlRecords(withDdlRecordSetId: recordSetId!,
+				try service.getDdlRecords(withDdlRecordSetId: recordSetId!,
 					locale: NSLocale.currentLocaleString,
 					start: Int32(startRow),
 					end: Int32(endRow),
 					obc: obc)
 			}
 			else {
-				try service?.getDdlRecords(withDdlRecordSetId: recordSetId!,
+				try service.getDdlRecords(withDdlRecordSetId: recordSetId!,
 					userId: userId!,
 					locale: NSLocale.currentLocaleString,
 					start: Int32(startRow),
@@ -86,10 +86,10 @@ open class Liferay62DDLListPageConnector: DDLListPageLiferayConnector {
 
 		do {
 			if userId == nil {
-				try service?.getDdlRecordsCount(withDdlRecordSetId: recordSetId!)
+				try service.getDdlRecordsCount(withDdlRecordSetId: recordSetId!)
 			}
 			else {
-				try service?.getDdlRecordsCount(withDdlRecordSetId: recordSetId!,
+				try service.getDdlRecordsCount(withDdlRecordSetId: recordSetId!,
 					userId: userId!)
 			}
 		}
@@ -113,14 +113,14 @@ open class Liferay70DDLListPageConnector: DDLListPageLiferayConnector {
 
 		do {
 			if userId == nil {
-				try service?.getDdlRecords(withDdlRecordSetId: recordSetId!,
+				try service.getDdlRecords(withDdlRecordSetId: recordSetId!,
 					locale: NSLocale.currentLocaleString,
 					start: Int32(startRow),
 					end: Int32(endRow),
 					obc: obc)
 			}
 			else {
-				try service?.getDdlRecords(withDdlRecordSetId: recordSetId!,
+				try service.getDdlRecords(withDdlRecordSetId: recordSetId!,
 					userId: userId!,
 					locale: NSLocale.currentLocaleString,
 					start: Int32(startRow),
@@ -137,10 +137,10 @@ open class Liferay70DDLListPageConnector: DDLListPageLiferayConnector {
 
 		do {
 			if userId == nil {
-				try service?.getDdlRecordsCount(withDdlRecordSetId: recordSetId!)
+				try service.getDdlRecordsCount(withDdlRecordSetId: recordSetId!)
 			}
 			else {
-				try service?.getDdlRecordsCount(withDdlRecordSetId: recordSetId!,
+				try service.getDdlRecordsCount(withDdlRecordSetId: recordSetId!,
 					userId: userId!)
 			}
 		}

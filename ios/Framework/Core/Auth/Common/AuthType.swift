@@ -16,8 +16,9 @@ import UIKit
 @objc public enum AuthType: Int {
 
 	case basic = 1
-	case oAuth = 2
-	case cookie = 3
+	case cookie = 2
+	case oauth2Redirect = 3
+	case oauth2UsernameAndPassword = 4
 
 }
 
@@ -25,10 +26,12 @@ public func StringFromAuthType(_ authType: AuthType) -> String {
 	switch authType {
 	case .basic:
 		return "basic"
-	case .oAuth:
-		return "oauth"
 	case .cookie:
 		return "cookie"
+	case .oauth2Redirect:
+		return "oauth2redirect"
+	case .oauth2UsernameAndPassword:
+		return "oauth2usernameandpassword"
 	}
 }
 
@@ -36,10 +39,12 @@ public func AuthTypeFromString(_ str: String) -> AuthType? {
 	switch str.lowercased() {
 	case "basic":
 		return .basic
-	case "oauth":
-		return .oAuth
 	case "cookie":
 		return .cookie
+	case "oauth2usernameandpassword":
+		return .oauth2UsernameAndPassword
+	case "oauth2redirect":
+		return .oauth2Redirect
 	default:
 		return nil
 	}

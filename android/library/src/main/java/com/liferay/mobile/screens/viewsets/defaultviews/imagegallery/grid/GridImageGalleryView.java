@@ -65,7 +65,7 @@ public class GridImageGalleryView
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 		recyclerView.setLayoutManager(new GridLayoutManager(getContext(), COLUMNS_SIZE));
-		FloatingActionButton uploadFAB = (FloatingActionButton) findViewById(R.id.liferay_upload_fab);
+		FloatingActionButton uploadFAB = findViewById(R.id.liferay_upload_fab);
 		if (uploadFAB != null) {
 			uploadFAB.setOnClickListener(this);
 		}

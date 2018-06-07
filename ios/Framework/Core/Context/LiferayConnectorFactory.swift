@@ -18,12 +18,12 @@ import Foundation
 public protocol LiferayConnectorFactory {
 
 	func createGetUserByEmailConnector(
-			companyId: Int64,
-			emailAddress: String) -> GetUserByEmailLiferayConnector
+		companyId: Int64,
+		emailAddress: String) -> GetUserByEmailLiferayConnector
 
 	func createGetUserByScreenNameConnector(
-			companyId: Int64,
-			screenName: String) -> GetUserByScreenNameLiferayConnector
+		companyId: Int64,
+		screenName: String) -> GetUserByScreenNameLiferayConnector
 
 	func createGetUserByUserIdConnector(userId: Int64) -> GetUserByUserIdLiferayConnector
 
@@ -40,6 +40,21 @@ public protocol LiferayConnectorFactory {
 	func createLoginByUserIdConnector(
 		userId: Int64,
 		password: String) -> GetUserByUserIdLiferayConnector
+
+	func createLoginByCookieConnector(
+		username: String,
+		password: String,
+		shouldHandleCookieExpiration: Bool,
+		cookieExpirationTime: Double) -> LoginByCookieConnector
+
+	func createLoginByOAuth2PasswordConnector(
+		username: String,
+		password: String,
+		scopes: [String],
+		clientId: String,
+		clientSecret: String) -> LoginByOAuth2UsernamePasswordConnector?
+
+	func createGetCurrentUserConnector(session: LRSession) -> GetCurrentUserConnector?
 
 	func createForgotPasswordByEmailConnector(
 		viewModel: ForgotPasswordViewModel,
@@ -100,7 +115,7 @@ public protocol LiferayConnectorFactory {
 	func createDDLFormRecordLoadConnector(_ recordId: Int64) -> DDLFormRecordLoadLiferayConnector
 
 	func createDDLFormSubmitConnector(
-		values: [String: AnyObject],
+		values: [String: Any],
 		viewModel: DDLFormViewModel?) -> DDLFormSubmitLiferayConnector
 
 	func createDDLFormUploadConnector(
@@ -229,6 +244,32 @@ open class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 		return LoginByUserIdLiferay62Connector(userId: userId, password: password)
 	}
 
+	open func createLoginByCookieConnector(
+		username: String,
+		password: String,
+		shouldHandleCookieExpiration: Bool,
+		cookieExpirationTime: Double) -> LoginByCookieConnector {
+		return LoginByCookieConnector(
+			username: username,
+			password: password,
+			shouldHandleCookieExpiration: shouldHandleCookieExpiration,
+			cookieExpirationTime: cookieExpirationTime)
+	}
+
+	open func createLoginByOAuth2PasswordConnector(
+		username: String,
+		password: String,
+		scopes: [String],
+		clientId: String,
+		clientSecret: String) -> LoginByOAuth2UsernamePasswordConnector? {
+		print("Unsupported connector in Liferay 6.2: LoginByOAuth2PasswordConnector")
+		return nil
+	}
+
+	open func createGetCurrentUserConnector(session: LRSession) -> GetCurrentUserConnector? {
+		return Liferay62GetCurrentUserConnector(session: session)
+	}
+
 	open func createForgotPasswordByEmailConnector(
 			viewModel: ForgotPasswordViewModel,
 			anonymousUsername: String,
@@ -345,7 +386,7 @@ open class Liferay62ConnectorFactory: NSObject, LiferayConnectorFactory {
 	}
 
 	open func createDDLFormSubmitConnector(
-			values: [String: AnyObject],
+			values: [String: Any],
 			viewModel: DDLFormViewModel?) -> DDLFormSubmitLiferayConnector {
 		return Liferay62DDLFormSubmitConnector(
 			values: values,
@@ -531,6 +572,36 @@ open class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 		return LoginByUserIdLiferay70Connector(userId: userId, password: password)
 	}
 
+	open func createLoginByCookieConnector(
+		username: String,
+		password: String,
+		shouldHandleCookieExpiration: Bool,
+		cookieExpirationTime: Double) -> LoginByCookieConnector {
+		return LoginByCookieConnector(
+			username: username,
+			password: password,
+			shouldHandleCookieExpiration: shouldHandleCookieExpiration,
+			cookieExpirationTime: cookieExpirationTime)
+	}
+
+	open func createLoginByOAuth2PasswordConnector(
+		username: String,
+		password: String,
+		scopes: [String],
+		clientId: String,
+		clientSecret: String) -> LoginByOAuth2UsernamePasswordConnector? {
+		return LoginByOAuth2UsernamePasswordConnector(
+			username: username,
+			password: password,
+			scopes: scopes,
+			clientId: clientId,
+			clientSecret: clientSecret)
+	}
+
+	open func createGetCurrentUserConnector(session: LRSession) -> GetCurrentUserConnector? {
+		return Liferay70GetCurrentUserConnector(session: session)
+	}
+
 	open func createForgotPasswordByEmailConnector(
 			viewModel: ForgotPasswordViewModel,
 			anonymousUsername: String,
@@ -647,7 +718,7 @@ open class Liferay70ConnectorFactory: NSObject, LiferayConnectorFactory {
 	}
 
 	open func createDDLFormSubmitConnector(
-			values: [String: AnyObject],
+			values: [String: Any],
 			viewModel: DDLFormViewModel?) -> DDLFormSubmitLiferayConnector {
 		return Liferay70DDLFormSubmitConnector(
 			values: values,

@@ -17,14 +17,12 @@ import LiferayScreens
 
 public var tourCompleted = false
 
-class HomeViewController: UIViewController, AssetListScreenletDelegate,
-	CardDeckDelegate, CardDeckDataSource {
-	
+class HomeViewController: UIViewController, AssetListScreenletDelegate, CardDeckDelegate, CardDeckDataSource {
+
 	///Flag to control if the home has been initialized
 	var homeInitialized = false
 
-
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet weak var cardDeck: CardDeckView? {
 		didSet {
@@ -53,8 +51,7 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 		}
 	}
 
-
-	//MARK: Card controllers
+	// MARK: Card controllers
 
 	var documentationViewController: DocumentationViewController? {
 		didSet {
@@ -74,15 +71,13 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 		}
 	}
 
-
-	//MARK: View actions
+	// MARK: Actions
 
 	@IBAction func userButtonClicked() {
 		performSegue(withIdentifier: "user_profile", sender: self)
 	}
 
-
-	//MARK: UIViewController
+	// MARK: UIViewController
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -100,14 +95,14 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-        
+
         if SessionContext.currentContext?.session == nil {
             SessionContext.loadStoredCredentials()
         }
-		
+
 		if !SessionContext.isLoggedIn {
 			homeInitialized = false
-			
+
 			if !tourCompleted {
 				dispatch_delayed(0.5) {
 					self.performSegue(withIdentifier: "tour", sender: nil)
@@ -119,15 +114,14 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 		}
 		else if !homeInitialized {
 			tourCompleted = true
-			
+
 			//Initialize home only once
 			initializeHome()
 			homeInitialized = true
 		}
 	}
 
-	
-	//MARK: CardDeckDataSource
+	// MARK: CardDeckDataSource
 
 	func numberOfCardsIn(_ cardDeck: CardDeckView) -> Int {
 		return 3
@@ -155,8 +149,7 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 			}
 	}
 
-
-	//MARK: CardDeckDelegate
+	// MARK: CardDeckDelegate
 
 	func cardDeck(_ cardDeck: CardDeckView, customizeCard card: CardView, atIndex index: Int) {
 		if index % 2 == 0 {
@@ -198,8 +191,7 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 		}
 	}
 
-
-	//MARK: AssetListScreenletDelegate
+	// MARK: AssetListScreenletDelegate
 
 	func screenlet(_ screenlet: AssetListScreenlet, onAssetSelected asset: Asset) {
 		if let className = AssetClasses.getClassNameFromId(asset.classNameId) {
@@ -219,23 +211,19 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 		}
 	}
 
-
-	//MARK: Private functions
+	// MARK: Private functions
 
 	fileprivate func initializeHome() {
 
 		//Load user profile
 		let userId = SessionContext.currentContext!.user.userId
-		if self.userPortraitScreenlet?.userId != userId {
-			self.userPortraitScreenlet?.load(userId: userId)
-			let firstName =
-				SessionContext.currentContext!.user.firstName
-			let lastName =
-				SessionContext.currentContext!.user.lastName
-			self.userNameLabel?.text = "\(firstName) \(lastName)"
-					.trimmingCharacters(in: .whitespacesAndNewlines)
 
-		}
+		self.userPortraitScreenlet?.load(userId: userId)
+
+		let firstName = SessionContext.currentContext!.user.firstName
+		let lastName = SessionContext.currentContext!.user.lastName
+
+		self.userNameLabel?.text = "\(firstName) \(lastName)".trimmingCharacters(in: .whitespacesAndNewlines)
 
 		self.assetListScreenlet?.loadList()
 
@@ -260,7 +248,7 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 						self.showSyncAlert(count)
 					}
 				}
-			}) 
+			})
 		})
 	}
 
@@ -289,4 +277,3 @@ class HomeViewController: UIViewController, AssetListScreenletDelegate,
 		present(alert, animated: true, completion: nil)
 	}
 }
-

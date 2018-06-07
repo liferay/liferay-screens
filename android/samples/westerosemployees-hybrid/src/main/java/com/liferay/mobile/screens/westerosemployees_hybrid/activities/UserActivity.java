@@ -31,11 +31,10 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 	}
 
 	private void bindViews() {
-		TextView userNameTextView = (TextView) findViewById(R.id.liferay_username);
+		TextView userNameTextView = findViewById(R.id.liferay_username);
 		userNameTextView.setOnClickListener(this);
 
-		UserPortraitScreenlet userPortraitScreenlet =
-                (UserPortraitScreenlet) findViewById(R.id.userscreenlet_home);
+		UserPortraitScreenlet userPortraitScreenlet = findViewById(R.id.userscreenlet_home);
 
 		userPortraitScreenlet.setOnClickListener(this);
 		userPortraitScreenlet.loadLoggedUserPortrait();
@@ -51,8 +50,7 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
     }
 
     private void loadLastChanges() {
-        WebScreenlet webScreenlet =
-                (WebScreenlet) findViewById(R.id.portlet_last_changes);
+        WebScreenlet webScreenlet = findViewById(R.id.portlet_last_changes);
 
         WebScreenletConfiguration configuration =
                 new WebScreenletConfiguration.Builder("/web/westeros-hybrid/lastchanges")

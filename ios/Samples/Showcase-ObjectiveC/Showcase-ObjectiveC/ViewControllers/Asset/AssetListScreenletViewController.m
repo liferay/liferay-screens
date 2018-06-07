@@ -41,11 +41,11 @@
 }
 
 - (void)screenlet:(AssetListScreenlet *)screenlet onAssetListError:(NSError *)error {
-	LiferayLog(error);
+	LiferayLog(error.debugDescription);
 }
 
 - (void)screenlet:(AssetListScreenlet *)screenlet onAssetSelected:(Asset *)asset {
-	LiferayLog(asset);
+	LiferayLog(asset.attributes);
 
 	[self performSegueWithIdentifier:@"assetDisplay" sender:asset];
 }

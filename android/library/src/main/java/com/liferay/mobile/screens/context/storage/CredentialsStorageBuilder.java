@@ -18,7 +18,7 @@ import android.content.Context;
 import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.auth.basic.CookieAuthentication;
-import com.liferay.mobile.android.oauth.OAuth;
+import com.liferay.mobile.android.auth.oauth2.OAuth2Authentication;
 import com.liferay.mobile.screens.base.AbstractFactory;
 import com.liferay.mobile.screens.base.FactoryProvider;
 import com.liferay.mobile.screens.context.User;
@@ -110,10 +110,11 @@ public class CredentialsStorageBuilder {
 			switch (BaseCredentialsStorageSharedPreferences.getStoredAuthenticationType(context)) {
 				case BASIC:
 					return instance.getBasicCredentialsStorageSharedPreferences();
-				case OAUTH:
-					return instance.getOAuthCredentialsStorageSharedPreferences();
 				case COOKIE:
 					return instance.getCookieCredentialsStorageSharedPreferences();
+				case OAUTH2REDIRECT:
+				case OAUTH2USERNAMEANDPASSWORD:
+					return instance.getOAuth2CredentialsStorageSharedPreferences();
 				default:
 					return new CredentialsStorageVoid();
 			}
@@ -122,8 +123,8 @@ public class CredentialsStorageBuilder {
 				return instance.getCookieCredentialsStorageSharedPreferences();
 			} else if (auth instanceof BasicAuthentication) {
 				return instance.getBasicCredentialsStorageSharedPreferences();
-			} else if (auth instanceof OAuth) {
-				return instance.getOAuthCredentialsStorageSharedPreferences();
+			} else if (auth instanceof OAuth2Authentication) {
+				return instance.getOAuth2CredentialsStorageSharedPreferences();
 			} else {
 				throw new IllegalStateException("Authentication type is not supported");
 			}

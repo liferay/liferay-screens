@@ -1,5 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:liferay="http://schemas.android.com/apk/res-auto"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	>
@@ -8,12 +8,12 @@
 		android:id="@+id/ddl_form_screenlet"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		liferay:documentFieldLayoutId="@layout/ddlfield_document_material"
-		liferay:folderId="@integer/folder_id"
-		liferay:layoutId="@layout/ddl_form_material"
-		liferay:recordSetId="@integer/ddl_recordset_id"
-		liferay:repositoryId="@integer/repository_id"
-		liferay:structureId="@integer/ddl_structure_id"
+		app:documentFieldLayoutId="@layout/ddlfield_document_material"
+		app:folderId="@integer/folder_id"
+		app:layoutId="@layout/ddl_form_material"
+		app:recordSetId="@integer/ddl_recordset_id"
+		app:repositoryId="@integer/repository_id"
+		app:structureId="@integer/ddl_structure_id"
 		/>
 
 </RelativeLayout>

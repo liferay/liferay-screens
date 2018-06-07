@@ -13,7 +13,6 @@ import com.liferay.mobile.push.Push;
 import com.liferay.mobile.screens.BuildConfig;
 import com.liferay.mobile.screens.context.LiferayPortalVersion;
 import com.liferay.mobile.screens.context.LiferayServerContext;
-import com.liferay.mobile.screens.context.OAuthAuthentication;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import org.json.JSONObject;
@@ -113,8 +112,6 @@ public abstract class PushScreensActivity extends AppCompatActivity
 
 			if (authentication instanceof BasicAuthentication) {
 				return ((BasicAuthentication) authentication).getUsername();
-			} else if (authentication instanceof OAuthAuthentication) {
-				return ((OAuthAuthentication) authentication).getToken();
 			} else {
 				LiferayLogger.e("Can't obtain a valid user from this authentication: " + authentication);
 				return "-";

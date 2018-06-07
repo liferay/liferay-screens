@@ -19,7 +19,7 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 	open var groupId: Int64?
 	open var classNameId: Int64?
 	open var portletItemName: String?
-	open var customEntryQuery: [String: AnyObject]?
+	open var customEntryQuery: [String: Any]?
 
 	// MARK: ServerConnector
 
@@ -84,19 +84,19 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 
 		var entryQuery = configureEntryQuery()
 
-		entryQuery["start"] = startRow as AnyObject?
-		entryQuery["end"] = endRow as AnyObject?
+		entryQuery["start"] = startRow
+		entryQuery["end"] = endRow
 
 		let entryQueryWrapper = LRJSONObjectWrapper(jsonObject: entryQuery)
 
-		doGetPageRows(session: session, entryQuery: entryQueryWrapper!, obc: obc)
+		doGetPageRows(session: session, entryQuery: entryQueryWrapper, obc: obc)
 	}
 
 	override open func doAddRowCountServiceCall(session: LRBatchSession) {
 		let entryQuery = configureEntryQuery()
 		let entryQueryWrapper = LRJSONObjectWrapper(jsonObject: entryQuery)
 
-		doGetRowCount(session: session, entryQuery: entryQueryWrapper!)
+		doGetRowCount(session: session, entryQuery: entryQueryWrapper)
 	}
 
 	// MARK: Public methods
@@ -111,48 +111,49 @@ open class AssetListPageLiferayConnector: PaginationLiferayConnector {
 	open func doGetRowCount(session: LRBatchSession, entryQuery: LRJSONObjectWrapper) {
 	}
 
-	open func configureEntryQuery() -> [String: AnyObject] {
+	open func configureEntryQuery() -> [String: Any] {
 		var entryQuery = (customEntryQuery != nil)
 			? customEntryQuery!
-			: [String: AnyObject]()
+			: [String: Any]()
 
-		let defaultValues = [
+		var defaultValues: [String: Any] = [
 			"classNameIds": NSNumber(value: classNameId! as Int64),
 			"groupIds": NSNumber(value: groupId! as Int64),
 			"visible": true
 		]
 
-		let finalValues = self.handleUserVisibleFlag(defaultValues)
+		if classNameId == AssetClasses.getClassNameId(AssetClassNameKey_DDLFormRecord) ||
+			classNameId == AssetClasses.getClassNameId(AssetClassNameKey_Layout) ||
+			classNameId == AssetClasses.getClassNameId(AssetClassNameKey_MBThread) ||
+			classNameId == AssetClasses.getClassNameId(AssetClassNameKey_Organization) ||
+			classNameId == AssetClasses.getClassNameId(AssetClassNameKey_Site) ||
+			classNameId == AssetClasses.getClassNameId(AssetClassNameKey_User) {
+				defaultValues = self.handleVisibleFlag(defaultValues)
+		}
 
 		// swiftlint:disable for_where
-		for (k, v) in finalValues {
+		for (k, v) in defaultValues {
 			if entryQuery[k] == nil {
 				entryQuery[k] = v
 			}
 		}
-		// swiftlint:enable for_where
 
 		return entryQuery
 	}
 
 	// MARK: Private methods
 
-	/// AssetListScreenlet only list Asset with visible attribute set to true. But User objects have it by
-	/// default in false. So this method update this attribute of entryQuery values to list
-	/// all users.
+	/// AssetListScreenlet only list Asset with visible attribute set to true. But for example User,
+	/// have it by default in true. This method update this attribute of entryQuery.
 	///
 	/// - parameter values: initial entryQuery values.
 	///
 	/// - returns: final values for entryQuery.
-	fileprivate func handleUserVisibleFlag(_ values: [String: AnyObject]) -> [String: AnyObject] {
-		if classNameId == AssetClasses.getClassNameId(AssetClassNameKey_User) {
+	fileprivate func handleVisibleFlag(_ values: [String: Any]) -> [String: Any] {
 			var newValues = values
-
-			newValues["visible"] = false as AnyObject?
+			newValues["visible"] = false
 
 			return newValues
-		}
-		return values
 	}
 }
 
@@ -163,7 +164,7 @@ open class Liferay62AssetListPageConnector: AssetListPageLiferayConnector {
 	override open func doGetEntries(_ session: LRSession, rowCount: Int32) throws -> [[String: AnyObject]]? {
 		let service = LRScreensassetentryService_v62(session: session)
 
-		return try service?.getAssetEntries(withCompanyId: LiferayServerContext.companyId,
+		return try service.getAssetEntries(withCompanyId: LiferayServerContext.companyId,
 			groupId: groupId!,
 			portletItemName: portletItemName!,
 			locale: NSLocale.currentLocaleString,
@@ -174,7 +175,7 @@ open class Liferay62AssetListPageConnector: AssetListPageLiferayConnector {
 		do {
 			//TODO add obc to screens plugin
 			let service = LRScreensassetentryService_v62(session: session)
-			try service?.getAssetEntries(withAssetEntryQuery: entryQuery,
+			try service.getAssetEntries(withAssetEntryQuery: entryQuery,
 				locale: NSLocale.currentLocaleString)
 		}
 		catch _ as NSError {
@@ -184,7 +185,7 @@ open class Liferay62AssetListPageConnector: AssetListPageLiferayConnector {
 	override open func doGetRowCount(session: LRBatchSession, entryQuery: LRJSONObjectWrapper) {
 		do {
 			let service = LRAssetEntryService_v62(session: session)
-			try service?.getEntriesCount(withEntryQuery: entryQuery)
+			try service.getEntriesCount(withEntryQuery: entryQuery)
 		}
 		catch _ as NSError {
 		}
@@ -199,7 +200,7 @@ open class Liferay70AssetListPageConnector: AssetListPageLiferayConnector {
 	override open func doGetEntries(_ session: LRSession, rowCount: Int32) throws -> [[String: AnyObject]]? {
 		let service = LRScreensassetentryService_v70(session: session)
 
-		return try service?.getAssetEntries(withCompanyId: LiferayServerContext.companyId,
+		return try service.getAssetEntries(withCompanyId: LiferayServerContext.companyId,
 			groupId: groupId!,
 			portletItemName: portletItemName!,
 			locale: NSLocale.currentLocaleString,
@@ -214,7 +215,7 @@ open class Liferay70AssetListPageConnector: AssetListPageLiferayConnector {
 		do {
 			//TODO add obc to plugin
 			let service = LRScreensassetentryService_v70(session: session)
-			try service?.getAssetEntries(withAssetEntryQuery: entryQuery,
+			try service.getAssetEntries(withAssetEntryQuery: entryQuery,
 				locale: NSLocale.currentLocaleString)
 		}
 		catch _ as NSError {
@@ -224,7 +225,7 @@ open class Liferay70AssetListPageConnector: AssetListPageLiferayConnector {
 	override open func doGetRowCount(session: LRBatchSession, entryQuery: LRJSONObjectWrapper) {
 		do {
 			let service = LRAssetEntryService_v7(session: session)
-			try service?.getEntriesCount(withEntryQuery: entryQuery)
+			try service.getEntriesCount(withEntryQuery: entryQuery)
 		}
 		catch _ as NSError {
 		}

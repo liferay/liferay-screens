@@ -16,20 +16,18 @@ import LiferayScreens
 
 class SignUpViewController: CardViewController, SignUpScreenletDelegate {
 
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet weak var screenlet: SignUpScreenlet?
 	@IBOutlet weak var signUpButton: UIButton?
 
-
-	//MARK: Init methods
+	// MARK: Initializers
 
 	convenience init() {
 		self.init(nibName: "SignUpViewController", bundle: nil)
 	}
 
-
-	//MARK: View actions
+	// MARK: Actions
 
 	@IBAction func termsButtonClicked() {
 		cardView?.moveRight()
@@ -37,12 +35,11 @@ class SignUpViewController: CardViewController, SignUpScreenletDelegate {
 
 	@IBAction func signUpButtonClicked() {
 		signUpButton?.isEnabled = false
-		screenlet?.performAction(name: "signup-action")
+		screenlet?.performAction(name: SignUpScreenlet.SignUpAction)
 	}
 
+	// MARK: UIViewController
 
-	//MARK: UIViewController
-	
 	override func viewDidLoad() {
 		self.screenlet?.delegate = self
 
@@ -52,11 +49,10 @@ class SignUpViewController: CardViewController, SignUpScreenletDelegate {
             LiferayServerContext.stringPropertyForKey("anonymousPassword")
 	}
 
-
-	//MARK: SignUpScreenletDelegate
+	// MARK: SignUpScreenletDelegate
 
 	func screenlet(_ screenlet: SignUpScreenlet,
-			onSignUpResponseUserAttributes attributes: [String:AnyObject]) {
+			onSignUpResponseUserAttributes attributes: [String: AnyObject]) {
 		signUpButton?.isEnabled = true
 		onDone?()
 	}
@@ -64,6 +60,5 @@ class SignUpViewController: CardViewController, SignUpScreenletDelegate {
 	func screenlet(_ screenlet: SignUpScreenlet, onSignUpError error: NSError) {
 		signUpButton?.isEnabled = true
 	}
-	
 
 }

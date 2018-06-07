@@ -17,7 +17,7 @@ public class AddBookmarkActivity extends ThemeActivity implements AddBookmarkLis
 		super.onCreate(state);
 		setContentView(R.layout.add_bookmark);
 
-		AddBookmarkScreenlet screenlet = (AddBookmarkScreenlet) findViewById(R.id.bookmark_screenlet);
+		AddBookmarkScreenlet screenlet = findViewById(R.id.bookmark_screenlet);
 		screenlet.setListener(this);
 		screenlet.setCustomInteractorListener(this);
 	}

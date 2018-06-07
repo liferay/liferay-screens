@@ -14,12 +14,10 @@
 import UIKit
 import LiferayScreens
 
-
 class ImageDisplayViewController: UIViewController, FileDisplayScreenletDelegate {
 
-	
-	//MARK: IBOutlet
-	
+	// MARK: Outlets
+
 	@IBOutlet var screenlet: ImageDisplayScreenlet? {
 		didSet {
 			screenlet?.delegate = self

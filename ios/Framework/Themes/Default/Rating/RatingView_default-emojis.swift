@@ -12,7 +12,6 @@
  * details.
  */
 import UIKit
-import Cosmos
 
 @objc(RatingView_default_emojis)
 open class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
@@ -50,7 +49,7 @@ open class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 			if let rating = ratingEntry {
 				emojis.forEach({
 					$0.alpha = 0.5
-					$0.restorationIdentifier = RatingScreenlet.UpdateRatingAction
+					$0.tag = 1
 					$0.addTarget(self, action: #selector(emojiClicked), for: .touchUpInside)
 				})
 
@@ -61,7 +60,7 @@ open class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 				if rating.userScore != -1 {
 					let index = rating.userScore == 1 ? emojis.count - 1 : Int(rating.userScore * Double(emojis.count))
 					emojis[index].alpha = 1.0
-					emojis[index].restorationIdentifier = RatingScreenlet.DeleteRatingAction
+					emojis[index].tag = 0
 				}
 			}
 		}
@@ -70,8 +69,7 @@ open class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 	// MARK: Internal methods
 
 	func emojiClicked(_ sender: UIButton) {
-		userAction(
-			name: sender.restorationIdentifier,
-			sender: (Double(emojis.index(of: sender)!) / Double(emojis.count)) as AnyObject?)
+		let action = sender.tag == 1 ? RatingScreenlet.UpdateRatingAction : RatingScreenlet.DeleteRatingAction
+		self.userAction(name: action, sender: (Double(emojis.index(of: sender)!) / Double(emojis.count)))
 	}
 }

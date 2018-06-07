@@ -54,6 +54,5 @@ public interface DDLFieldViewModel<T extends Field> {
 	 */
 	void setParentView(View view);
 
-
 	void setUpdateMode(boolean enabled);
 }

@@ -76,7 +76,7 @@ public func then(_ str: String, code: @escaping () -> Void, action: Action) {
 	}
 }
 
-public func eventually(_ str: String, _ code: @escaping (AnyObject?) -> Void, _ action: Action) {
+public func eventually(_ str: String, _ code: @escaping (Any?) -> Void, _ action: Action) {
 	let icons = currentIcons()
 	let indentation = currentIndentation()
 
@@ -107,7 +107,7 @@ public func eventually(_ str: String, _ code: @escaping (AnyObject?) -> Void, _ 
 
 				do {
 					try ObjCTryCatch.catch {
-						code(notif.object as AnyObject?)
+						code(notif.object)
 					}
 				}
 				catch {

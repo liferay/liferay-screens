@@ -14,13 +14,12 @@
 import UIKit
 import LiferayScreens
 
-
 open class WebContentDisplayView_book: BaseScreenletView, WebContentDisplayViewModel {
 
 	@IBOutlet weak var authorLabel: UILabel!
 	@IBOutlet weak var nameLabel: UILabel!
 
-	override open var progressMessages: [String:ProgressMessages] {
+	override open var progressMessages: [String: ProgressMessages] {
 		return [
 			BaseScreenlet.DefaultAction : [
 					.working : LocalizedString("default", key: "webcontentdisplay-loading-message", obj: self),
@@ -29,12 +28,11 @@ open class WebContentDisplayView_book: BaseScreenletView, WebContentDisplayViewM
 		]
 	}
 
-
 	override open func createProgressPresenter() -> ProgressPresenter {
 		return DefaultProgressPresenter()
 	}
 
-	//MARK: WebContentDisplayViewModel
+	// MARK: WebContentDisplayViewModel
 
 	open var htmlContent: String? {
 		get {
@@ -50,7 +48,7 @@ open class WebContentDisplayView_book: BaseScreenletView, WebContentDisplayViewM
 			authorLabel.text = recordContent?["author"]?.description
 		}
 	}
-    
+
 	open var customCssFile: String?
 
 	open var onUrlClicked: ((String) -> Bool)?

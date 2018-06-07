@@ -19,9 +19,8 @@ class BlogsViewController: CardViewController, AssetListScreenletDelegate {
 	var selectedBlogEntry: BlogsEntry?
 
 	var loaded: Bool = false
-	
 
-	//MARK: Outlets
+	// MARK: Outlets
 
 	@IBOutlet weak var assetListScreenlet: AssetListScreenlet? {
 		didSet {
@@ -31,15 +30,13 @@ class BlogsViewController: CardViewController, AssetListScreenletDelegate {
 		}
 	}
 
-
-	//MARK: Init methods
+	// MARK: Initializers
 
 	convenience init() {
 		self.init(nibName: "BlogsViewController", bundle: nil)
 	}
 
-
-	//MARK: CardViewController
+	// MARK: CardViewController
 
 	override func pageWillAppear() {
 		if !loaded {
@@ -48,8 +45,7 @@ class BlogsViewController: CardViewController, AssetListScreenletDelegate {
 		}
 	}
 
-
-	//MARK: AssetListScreenletDelegate
+	// MARK: AssetListScreenletDelegate
 
 	func screenlet(_ screenlet: AssetListScreenlet, onAssetSelected asset: Asset) {
 		self.selectedBlogEntry = BlogsEntry(attributes: asset.attributes)

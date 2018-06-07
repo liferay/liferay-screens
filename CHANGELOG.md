@@ -4,8 +4,45 @@ All notable changes to this project will be documented in this file.
 ---
 
 # Develop
+<!-- Possible categories for the changes: Bugs, New features, Refactor, Documentation, Samples, Deprecated, Contributions -->
 
-Nothing yet
+## Android
+
+## New Features
+* Add OAuth2 authentication
+
+### Refactor
+
+* Drop support for OAuth1
+* Give a pass to the code and solve minor issues
+* FormsScreenlet - Add support to upload images and videos from gallery
+* FormsScreenlet - Required fields are now marked with an asterisk (*)
+* Add Lexicon Theme
+* WebScreenlet now correctly inject the script when navigate to another page
+
+### New features
+
+* Add a new method to the sync service to know if there are items to synchronize
+
+## iOS
+
+* Drop support for OAuth1
+* Give a pass to the code and solve minor issues
+* Update Showcase-swift demo app
+* Update WesterosEmployees demo app
+* Update WesterosBank demo app
+* Update WesterosEmployees-hybrid demo app
+* Update AndorraTelecomPublic demo app
+* Update Showcase-ObjectiveC demo app
+
+### Features
+* Add OAuth2 authentication
+
+### Refactor
+
+* Remove non essentials libraries: Cosmos and Cryptoswift
+* Create AsyncServerConnector and remove the semaphores
+* Remove trigger action with identifier and UITextFieldDelegate in BaseScreenletView
 
 # 3.1.0
 
@@ -19,6 +56,8 @@ Nothing yet
 
 * Updated to Swift 4
 
+### New features
+* Add Geolocation field support
 
 ### Refactor
 * Remove swift style guide and use SwiftLint guide
@@ -201,7 +240,6 @@ Nothing yet
 
 # 2.1.0
 
-<!-- Possible categories for the changes: Bugs, New features, Refactor, Documentation, Samples, Deprecated, Contributions -->
 ## Android
 
 ### Bugs

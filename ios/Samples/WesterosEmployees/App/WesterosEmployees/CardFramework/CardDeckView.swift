@@ -14,7 +14,6 @@
 import UIKit
 import PureLayout
 
-
 ///Indicates the position for a page inside a card
 @objc open class CardPosition: NSObject {
 	let card: Int
@@ -26,9 +25,8 @@ import PureLayout
 	}
 }
 
-
 ///Delegate for customizing cards inside a CardDeck
-@objc public protocol CardDeckDelegate : NSObjectProtocol {
+@objc public protocol CardDeckDelegate: NSObjectProtocol {
 
 	///Get the title for a page in a card
 	/// - parameter titleForCard position: position for the title
@@ -53,7 +51,7 @@ import PureLayout
 	/// - returns: image for the button of the card
 	@objc optional func cardDeck(_ cardDeck: CardDeckView,
 	                       buttonImageForCardIndex index: Int) -> UIImage?
-	
+
 	///Customize visual aspects of the card
 	/// - parameters:
 	///    - customizeCard card: card to be customized
@@ -68,7 +66,7 @@ import PureLayout
 }
 
 ///Data source for card decks
-@objc public protocol CardDeckDataSource : NSObjectProtocol {
+@objc public protocol CardDeckDataSource: NSObjectProtocol {
 
 	///Get the number of cards in this deck
 	func numberOfCardsIn(_ cardDeck: CardDeckView) -> Int
@@ -105,17 +103,16 @@ open class CardDeckView: UIView, CardDelegate {
 
 	//List of cards in this deck
 	open var cards: [CardView] {
-		return self.subviews.filter{$0 is CardView}.map{$0 as! CardView}
+		return self.subviews.filter {$0 is CardView}.map {$0 as! CardView}
 	}
 
-
-	//MARK: UIView
+	// MARK: UIView
 
 	open override func willMove(toWindow newWindow: UIWindow?) {
 		super.willMove(toWindow: newWindow)
-		
+
 		self.layoutIfNeeded()
-		
+
 		if cards.isEmpty {
 			guard let source = dataSource else { return }
 			let count = source.numberOfCardsIn(self)
@@ -135,7 +132,7 @@ open class CardDeckView: UIView, CardDelegate {
 					CGFloat(count - index - 1) * initialHeight
 
 				addSubview(card)
-				
+
 				//Set constraints for this card
 				card.updateSubviewsConstraints()
 				setConstraintsForCard(card)
@@ -145,7 +142,7 @@ open class CardDeckView: UIView, CardDelegate {
 		}
 	}
 
-	//MARK: Public methods
+	// MARK: Public methods
 
 	///Method launched when a button-card is clicked.
 	///You can retrieve the card by getting the superview.
@@ -194,7 +191,7 @@ open class CardDeckView: UIView, CardDelegate {
 					bottom.forEach {
 						change($0, toState: .minimized)
 					}
-					
+
 				default:
 					break
 				}
@@ -254,7 +251,7 @@ open class CardDeckView: UIView, CardDelegate {
 			for: .touchUpInside)
 
 		let controller = dataSource?.cardDeck(self, controllerForCard: cardPosition)
-		controller?.cardView = card 
+		controller?.cardView = card
 
 		return card
 	}
@@ -266,8 +263,7 @@ open class CardDeckView: UIView, CardDelegate {
 		return CardDeckView.DefaultZPositionMultiplier * (CGFloat(index) + 1)
 	}
 
-
-	//MARK: CardDelegate
+	// MARK: CardDelegate
 
 	open func card(_ card: CardView, titleForPage page: Int) -> String? {
 		if let index = cards.index(of: card) {
@@ -280,19 +276,19 @@ open class CardDeckView: UIView, CardDelegate {
 
 	open func card(_ card: CardView, onWillMoveToPage page: Int, fromPage previousPage: Int) -> Bool {
 		if let index = cards.index(of: card) {
-			
+
 			//Notify the previous controller that its page it's going to disappear
 			card.presentingControllers[safe: previousPage]?.pageWillDisappear()
-			
+
 			if card.pageCount <= page {
 				let cardPosition = CardPosition(card: index, page: page)
 				let controller = dataSource?.cardDeck(self, controllerForCard: cardPosition)
-				
+
 				controller?.cardView = card
-				
+
 				return controller != nil
 			}
-			
+
 			//Notify the new presenting controller that its page it's appearing
 			card.presentingControllers[safe: page]?.pageWillAppear()
 

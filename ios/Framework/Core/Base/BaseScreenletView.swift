@@ -18,7 +18,7 @@ import UIKit
  */
 @objc(BaseScreenletView)
 @objcMembers
-open class BaseScreenletView: UIView, UITextFieldDelegate {
+open class BaseScreenletView: UIView {
 
 	open weak var screenlet: BaseScreenlet?
 
@@ -36,7 +36,7 @@ open class BaseScreenletView: UIView, UITextFieldDelegate {
 
 	open var themeName = "default"
 
-	internal var onPerformAction: ((String, AnyObject?) -> Bool)?
+	internal var onPerformAction: ((String, Any?) -> Bool)?
 
 	deinit {
 		onDestroy()
@@ -71,35 +71,6 @@ open class BaseScreenletView: UIView, UITextFieldDelegate {
 		else {
 			onHide()
 		}
-	}
-
-	// MARK: UITextFieldDelegate
-
-	open func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		let nextResponder = nextResponderForView(textField)
-
-		if nextResponder != textField {
-
-			switch textField.returnKeyType {
-			case .next
-			where nextResponder is UITextInputTraits:
-				if textField.canResignFirstResponder {
-					textField.resignFirstResponder()
-
-					if nextResponder.canBecomeFirstResponder {
-						nextResponder.becomeFirstResponder()
-					}
-				}
-
-			case _
-			where nextResponder is UIControl:
-				userActionWithSender(nextResponder)
-
-			default: ()
-			}
-		}
-
-		return true
 	}
 
 	// MARK: Internal methods
@@ -154,7 +125,7 @@ open class BaseScreenletView: UIView, UITextFieldDelegate {
 	 * onPreAction is invoked just before any user action is invoked.
 	 * Override this method to decide whether or not the user action should be fired.
 	 */
-	open dynamic func onPreAction(name: String, sender: AnyObject?) -> Bool {
+	open dynamic func onPreAction(name: String, sender: Any) -> Bool {
 		return true
 	}
 
@@ -168,7 +139,7 @@ open class BaseScreenletView: UIView, UITextFieldDelegate {
 	open dynamic func onStartInteraction() {
 	}
 
-	open dynamic func onFinishInteraction(_ result: AnyObject?, error: NSError?) {
+	open dynamic func onFinishInteraction(_ result: Any?, error: NSError?) {
 	}
 
 	open dynamic func createProgressPresenter() -> ProgressPresenter {
@@ -189,20 +160,11 @@ open class BaseScreenletView: UIView, UITextFieldDelegate {
 		return nil
 	}
 
-	open dynamic func userActionWithSender(_ sender: AnyObject?) {
-		if let controlSender = sender as? UIControl {
-			userAction(name: controlSender.restorationIdentifier, sender: sender)
-		}
-		else {
-			userAction(name: nil, sender: sender)
-		}
-	}
-
 	open dynamic func userAction(name: String?) {
 		userAction(name: name, sender: nil)
 	}
 
-	open dynamic func userAction(name: String?, sender: AnyObject?) {
+	open dynamic func userAction(name: String?, sender: Any?) {
 		let actionName = name ?? BaseScreenlet.DefaultAction
 
 		if onPreAction(name: actionName, sender: sender) {
@@ -214,45 +176,7 @@ open class BaseScreenletView: UIView, UITextFieldDelegate {
 
 	// MARK: Private methods
 
-	fileprivate func nextResponderForView(_ view: UIView) -> UIResponder {
-		if view.tag > 0 {
-			if let nextView = viewWithTag(view.tag + 1) {
-				return nextView
-			}
-		}
-		return view
-	}
-
-	fileprivate func addUserActionForControl(_ control: UIControl) {
-		let hasIdentifier = (control.restorationIdentifier != nil)
-
-		let userDefinedActions = control.actions(forTarget: self,
-			forControlEvent: .touchUpInside)
-		let hasUserDefinedActions = (userDefinedActions?.count ?? 0) > 0
-
-		if hasIdentifier && !hasUserDefinedActions
-				&& onSetUserActionForControl(control) {
-			control.addTarget(self,
-					action: #selector(BaseScreenletView.userActionWithSender(_:)),
-					for: .touchUpInside)
-		}
-	}
-
-	fileprivate func addDefaultDelegatesForView(_ view: UIView) {
-		if let textField = view as? UITextField {
-			if onSetDefaultDelegate(self, view: textField) {
-				textField.delegate = self
-			}
-		}
-	}
-
 	fileprivate func setUpView(_ view: UIView) {
-		if let control = view as? UIControl {
-			addUserActionForControl(control)
-		}
-
-		addDefaultDelegatesForView(view)
-
 		for subview: UIView in view.subviews {
 			setUpView(subview)
 		}
@@ -263,5 +187,4 @@ open class BaseScreenletView: UIView, UITextFieldDelegate {
 	open dynamic func changeEditable(_ editable: Bool) {
 		isUserInteractionEnabled = editable
 	}
-
 }

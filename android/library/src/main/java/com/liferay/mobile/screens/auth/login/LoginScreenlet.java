@@ -14,51 +14,52 @@
 
 package com.liferay.mobile.screens.auth.login;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.support.customtabs.CustomTabsIntent;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import com.liferay.mobile.android.auth.basic.CookieAuthentication;
-import com.liferay.mobile.android.oauth.OAuthConfig;
-import com.liferay.mobile.android.oauth.activity.OAuthActivity;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
 import com.liferay.mobile.screens.auth.login.interactor.BaseLoginInteractor;
 import com.liferay.mobile.screens.auth.login.interactor.LoginBasicInteractor;
 import com.liferay.mobile.screens.auth.login.interactor.LoginCookieInteractor;
-import com.liferay.mobile.screens.auth.login.interactor.LoginOAuthInteractor;
+import com.liferay.mobile.screens.auth.login.interactor.LoginOAuth2RedirectInteractor;
+import com.liferay.mobile.screens.auth.login.interactor.LoginOAuth2ResumeRedirectInteractor;
+import com.liferay.mobile.screens.auth.login.interactor.LoginOAuth2UsernameAndPasswordInteractor;
 import com.liferay.mobile.screens.auth.login.view.LoginViewModel;
 import com.liferay.mobile.screens.base.BaseScreenlet;
 import com.liferay.mobile.screens.context.AuthenticationType;
-import com.liferay.mobile.screens.context.LiferayScreensContext;
-import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.context.User;
-import com.squareup.okhttp.Authenticator;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static com.liferay.mobile.screens.context.storage.CredentialsStorageBuilder.StorageType;
 
 /**
  * @author Silvio Santos
  */
-public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInteractor> implements LoginListener {
+public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInteractor> implements LoginListener, LoginRedirectListener {
 
-	public static final String OAUTH = "OAUTH";
+	public static final String RESUME_REDIRECT_ACTION = "RESUME_REDIRECT_ACTION";
 	public static final String BASIC_AUTH = "BASIC_AUTH";
-	public static final int REQUEST_OAUTH_CODE = 1;
 	public static final String LOGIN_SUCCESSFUL = "com.liferay.mobile.screens.auth.login.success";
 	private LoginListener listener;
 	private BasicAuthMethod basicAuthMethod;
 	private AuthenticationType authenticationType;
 	private StorageType credentialsStorage;
-	private String oauthConsumerKey;
-	private String oauthConsumerSecret;
-	private Authenticator authenticator;
 	private boolean shouldHandleCookieExpiration;
 	private int cookieExpirationTime;
+	private List<String> oauth2Scopes;
+	private String oauth2ClientId;
+	private String oauth2ClientSecret;
+	private String oauth2RedirectUrl;
+	private CustomTabsIntent oauth2CustomTabsIntent;
 
 	public LoginScreenlet(Context context) {
 		super(context);
@@ -76,12 +77,23 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
+	public void resumeOAuth2RedirectFlow(Intent intent) {
+		performUserAction(RESUME_REDIRECT_ACTION, intent);
+	}
+
 	@Override
 	public void onLoginFailure(Exception e) {
 		getViewModel().showFailedOperation(null, e);
 
 		if (listener != null) {
 			listener.onLoginFailure(e);
+		}
+	}
+
+	@Override
+	public void onAuthenticationBrowserShown() {
+		if (listener != null) {
+			getListener().onAuthenticationBrowserShown();
 		}
 	}
 
@@ -97,28 +109,6 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 		SessionContext.removeStoredCredentials(credentialsStorage);
 		SessionContext.storeCredentials(credentialsStorage);
-	}
-
-	/**
-	 * Sends the login result depending on the result and intent.
-	 *
-	 * @param result activity result code.
-	 * @param intent activity intent with the result data.
-	 */
-	public void sendOAuthResult(int result, Intent intent) {
-		if (result == Activity.RESULT_OK) {
-			try {
-				OAuthConfig oauthConfig = (OAuthConfig) intent.getSerializableExtra(OAuthActivity.EXTRA_OAUTH_CONFIG);
-
-				BaseLoginInteractor oauthInteractor = getInteractor(OAUTH);
-				oauthInteractor.start(oauthConfig);
-			} catch (Exception e) {
-				onLoginFailure(e);
-			}
-		} else if (result == Activity.RESULT_CANCELED && intent != null) {
-			Exception exception = (Exception) intent.getSerializableExtra(OAuthActivity.EXTRA_EXCEPTION);
-			onLoginFailure(exception);
-		}
 	}
 
 	public LoginListener getListener() {
@@ -141,22 +131,6 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 		credentialsStorage = value;
 	}
 
-	public String getOAuthConsumerSecret() {
-		return oauthConsumerSecret;
-	}
-
-	public void setOAuthConsumerSecret(String value) {
-		oauthConsumerSecret = value;
-	}
-
-	public String getOAuthConsumerKey() {
-		return oauthConsumerKey;
-	}
-
-	public void setOAuthConsumerKey(String value) {
-		oauthConsumerKey = value;
-	}
-
 	public BasicAuthMethod getBasicAuthMethod() {
 		return basicAuthMethod;
 	}
@@ -167,36 +141,14 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 		getViewModel().setBasicAuthMethod(this.basicAuthMethod);
 	}
 
-	public String getOauthConsumerKey() {
-		return oauthConsumerKey;
-	}
-
-	public void setOauthConsumerKey(String oauthConsumerKey) {
-		this.oauthConsumerKey = oauthConsumerKey;
-	}
-
-	public String getOauthConsumerSecret() {
-		return oauthConsumerSecret;
-	}
-
-	public void setOauthConsumerSecret(String oauthConsumerSecret) {
-		this.oauthConsumerSecret = oauthConsumerSecret;
-	}
-
 	public AuthenticationType getAuthenticationType() {
 		return authenticationType;
 	}
 
 	public void setAuthenticationType(AuthenticationType authenticationType) {
 		this.authenticationType = authenticationType;
-	}
 
-	public Authenticator getAuthenticator() {
-		return authenticator;
-	}
-
-	public void setAuthenticator(Authenticator authenticator) {
-		this.authenticator = authenticator;
+		getViewModel().setAuthenticationType(authenticationType);
 	}
 
 	public boolean isShouldHandleCookieRefresh() {
@@ -215,6 +167,46 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 		this.cookieExpirationTime = cookieExpirationTime;
 	}
 
+	public List<String> getOauth2Scopes() {
+		return oauth2Scopes;
+	}
+
+	public void setOauth2Scopes(List<String> oauth2Scopes) {
+		this.oauth2Scopes = oauth2Scopes;
+	}
+
+	public String getOauth2ClientId() {
+		return oauth2ClientId;
+	}
+
+	public void setOauth2ClientId(String oauth2ClientId) {
+		this.oauth2ClientId = oauth2ClientId;
+	}
+
+	public String getOauth2ClientSecret() {
+		return oauth2ClientSecret;
+	}
+
+	public void setOauth2ClientSecret(String oauth2ClientSecret) {
+		this.oauth2ClientSecret = oauth2ClientSecret;
+	}
+
+	public String getOauth2RedirectUrl() {
+		return oauth2RedirectUrl;
+	}
+
+	public void setOauth2RedirectUrl(String oauth2RedirectUrl) {
+		this.oauth2RedirectUrl = oauth2RedirectUrl;
+	}
+
+	public CustomTabsIntent getOauth2CustomTabsIntent() {
+		return oauth2CustomTabsIntent;
+	}
+
+	public void setOauth2CustomTabsIntent(CustomTabsIntent oauth2CustomTabsIntent) {
+		this.oauth2CustomTabsIntent = oauth2CustomTabsIntent;
+	}
+
 	@Override
 	protected View createScreenletView(Context context, AttributeSet attributes) {
 		TypedArray typedArray = context.getTheme().obtainStyledAttributes(attributes, R.styleable.LoginScreenlet, 0, 0);
@@ -223,12 +215,22 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 		credentialsStorage = StorageType.valueOf(storeValue);
 
-		oauthConsumerKey = typedArray.getString(R.styleable.LoginScreenlet_oauthConsumerKey);
-		oauthConsumerSecret = typedArray.getString(R.styleable.LoginScreenlet_oauthConsumerSecret);
-
-		shouldHandleCookieExpiration = typedArray.getBoolean(R.styleable.LoginScreenlet_shouldHandleCookieExpiration, true);
+		shouldHandleCookieExpiration =
+			typedArray.getBoolean(R.styleable.LoginScreenlet_shouldHandleCookieExpiration, true);
 		cookieExpirationTime = typedArray.getInt(R.styleable.LoginScreenlet_cookieExpirationTime,
 			CookieAuthentication.COOKIE_EXPIRATION_TIME);
+
+		oauth2ClientId = typedArray.getString(R.styleable.LoginScreenlet_oauth2ClientId);
+		oauth2ClientSecret = typedArray.getString(R.styleable.LoginScreenlet_oauth2ClientSecret);
+		oauth2RedirectUrl = typedArray.getString(R.styleable.LoginScreenlet_oauth2Redirect);
+
+		String scopesString = typedArray.getString(R.styleable.LoginScreenlet_oauth2Scopes);
+
+		if (scopesString != null) {
+			oauth2Scopes = Arrays.asList(scopesString.split(" "));
+		} else {
+			oauth2Scopes = new ArrayList<>();
+		}
 
 		int layoutId = typedArray.getResourceId(R.styleable.LoginScreenlet_layoutId, getDefaultLayoutId());
 
@@ -241,8 +243,9 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 		loginViewModel.setAuthenticationType(authenticationType);
 
-		if (AuthenticationType.BASIC.equals(authenticationType) || AuthenticationType.COOKIE.equals(
-				authenticationType)) {
+		if (AuthenticationType.BASIC.equals(authenticationType)
+			|| AuthenticationType.COOKIE.equals(authenticationType)
+			|| AuthenticationType.OAUTH2USERNAMEANDPASSWORD.equals(authenticationType)) {
 			int basicAuthMethodId = typedArray.getInt(R.styleable.LoginScreenlet_basicAuthMethod, 0);
 
 			basicAuthMethod = BasicAuthMethod.getValue(basicAuthMethodId);
@@ -256,17 +259,16 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 	@Override
 	protected BaseLoginInteractor createInteractor(String actionName) {
+		if (RESUME_REDIRECT_ACTION.equals(actionName)) {
+			return new LoginOAuth2ResumeRedirectInteractor();
+		}
+
 		if (AuthenticationType.COOKIE.equals(authenticationType)) {
 			return new LoginCookieInteractor();
-		} else if (AuthenticationType.OAUTH.equals(authenticationType)) {
-			LoginOAuthInteractor oauthInteractor = new LoginOAuthInteractor();
-
-			OAuthConfig config =
-				new OAuthConfig(LiferayServerContext.getServer(), oauthConsumerKey, oauthConsumerSecret);
-
-			oauthInteractor.setOAuthConfig(config);
-
-			return oauthInteractor;
+		} else if (AuthenticationType.OAUTH2USERNAMEANDPASSWORD.equals(authenticationType)) {
+			return new LoginOAuth2UsernameAndPasswordInteractor();
+		} else if (AuthenticationType.OAUTH2REDIRECT.equals(authenticationType)) {
+			return new LoginOAuth2RedirectInteractor();
 		} else {
 			return new LoginBasicInteractor();
 		}
@@ -274,19 +276,22 @@ public class LoginScreenlet extends BaseScreenlet<LoginViewModel, BaseLoginInter
 
 	@Override
 	protected void onUserAction(String userActionName, BaseLoginInteractor interactor, Object... args) {
+		if (RESUME_REDIRECT_ACTION.equals(userActionName)) {
+			interactor.start(args);
+			return;
+		}
+
+		LoginViewModel viewModel = getViewModel();
 		if (AuthenticationType.COOKIE.equals(authenticationType)) {
-			LoginViewModel viewModel = getViewModel();
-			interactor.start(viewModel.getLogin(), viewModel.getPassword(), authenticator, shouldHandleCookieExpiration,
+			interactor.start(viewModel.getLogin(), viewModel.getPassword(), shouldHandleCookieExpiration,
 				cookieExpirationTime);
 		} else if (AuthenticationType.BASIC.equals(authenticationType)) {
-			LoginViewModel viewModel = getViewModel();
 			interactor.start(viewModel.getLogin(), viewModel.getPassword(), viewModel.getBasicAuthMethod());
-		} else if (AuthenticationType.OAUTH.equals(authenticationType)) {
-			LoginOAuthInteractor oauthInteractor = (LoginOAuthInteractor) interactor;
-			Intent intent = new Intent(getContext(), OAuthActivity.class);
-			intent.putExtra(OAuthActivity.EXTRA_OAUTH_CONFIG, oauthInteractor.getOAuthConfig());
-			LiferayScreensContext.getActivityFromContext(getContext())
-				.startActivityForResult(intent, REQUEST_OAUTH_CODE);
+		} else if (AuthenticationType.OAUTH2USERNAMEANDPASSWORD.equals(authenticationType)) {
+			interactor.start(viewModel.getLogin(), viewModel.getPassword(), oauth2ClientId, oauth2ClientSecret,
+				oauth2Scopes);
+		} else if (AuthenticationType.OAUTH2REDIRECT.equals(authenticationType)) {
+			interactor.start(oauth2ClientId, oauth2Scopes, oauth2RedirectUrl, oauth2CustomTabsIntent, getContext());
 		}
 	}
 }

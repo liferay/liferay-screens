@@ -14,24 +14,24 @@
 import UIKit
 import LiferayScreens
 
-
 class UserPortraitView_initials: UserPortraitView_default {
 
+	// MARK: Outlets
 
-	//MARK: Outlets
+	@IBOutlet weak var initalsLabel: UILabel?
 
-	@IBOutlet weak var initalsLabel: UILabel!
+	// MARK: UserPortraitViewModel
 
-
-	//MARK: UserPortraitViewModel
-
+	/// When the user don't have user portrait, the screenlet loads his/her initials.
+	///
+	/// - Parameter user: user information.
 	override func loadPlaceholder(for user: User) {
 		portraitImage?.image = nil
 
-		let nameInitial = String(user.firstName.characters.first!).uppercased()
-		let surnameInitial = user.lastName.isEmpty ? "" : String(user.lastName.characters.first!)
+		let nameInitial = String(user.firstName.first!).uppercased()
+		let surnameInitial = user.lastName.isEmpty ? "" : String(user.lastName.first!)
 
-		initalsLabel.text = "\(nameInitial)\(surnameInitial.uppercased())"
-		initalsLabel.isHidden = false
+		initalsLabel?.text = "\(nameInitial)\(surnameInitial.uppercased())"
+		initalsLabel?.isHidden = false
 	}
 }

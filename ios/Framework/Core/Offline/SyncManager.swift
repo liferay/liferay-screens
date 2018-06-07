@@ -30,17 +30,17 @@ import Foundation
 	@objc optional func syncManager(_ manager: SyncManager,
 		onItemSyncScreenlet screenlet: String,
 		startKey: String,
-		attributes: [String: AnyObject])
+		attributes: [String: Any])
 
 	@objc optional func syncManager(_ manager: SyncManager,
 		onItemSyncScreenlet screenlet: String,
 		completedKey: String,
-		attributes: [String: AnyObject])
+		attributes: [String: Any])
 
 	@objc optional func syncManager(_ manager: SyncManager,
 		onItemSyncScreenlet screenlet: String,
 		failedKey: String,
-		attributes: [String: AnyObject],
+		attributes: [String: Any],
 		error: NSError)
 
 	@objc optional func syncManager(_ manager: SyncManager,
@@ -52,7 +52,7 @@ import Foundation
 
 }
 
-public typealias OfflineSynchronizer = (String, [String: AnyObject]) -> (@escaping Signal) -> Void
+public typealias OfflineSynchronizer = (String, [String: Any]) -> (@escaping Signal) -> Void
 
 @objc(SyncManager)
 @objcMembers
@@ -96,16 +96,18 @@ open class SyncManager: NSObject {
 		self.cacheManager.removeAll()
 	}
 
+	open func pendingItemsToSync(_ completed: @escaping (UInt) -> Void) {
+		cacheManager.countPendingToSync(completed)
+	}
+
 	open func startSync() {
-		cacheManager.countPendingToSync { totalCount in
+		pendingItemsToSync { totalCount in
 			self.delegate?.syncManager?(self, itemsCount: totalCount)
 
 			if totalCount > 0 {
 				self.cacheManager.pendingToSync({ (screenlet, key, attributes) -> Bool in
 					self.delegate?.syncManager?(self,
-						onItemSyncScreenlet: screenlet,
-						startKey: key,
-						attributes: attributes)
+						onItemSyncScreenlet: screenlet, startKey: key, attributes: attributes)
 
 					self.enqueueSyncForScreenlet(screenlet, key, attributes)
 
@@ -118,7 +120,7 @@ open class SyncManager: NSObject {
 	open func prepareInteractorForSync(
 			_ interactor: ServerConnectorInteractor,
 			key: String,
-			attributes: [String: AnyObject],
+			attributes: [String: Any],
 			signal: @escaping Signal,
 			screenletClassName: String) {
 
@@ -149,7 +151,7 @@ open class SyncManager: NSObject {
 	fileprivate func enqueueSyncForScreenlet(
 			_ screenletName: String,
 			_ key: String,
-			_ attributes: [String: AnyObject]) {
+			_ attributes: [String: Any]) {
 
 		if let syncBuilder = synchronizers[screenletName] {
 			let synchronizer = syncBuilder(key, attributes)

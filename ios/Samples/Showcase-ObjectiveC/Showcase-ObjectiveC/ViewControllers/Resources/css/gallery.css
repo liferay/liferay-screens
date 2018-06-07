@@ -1,0 +1,7 @@
+.portlet-decorate .portlet-content {
+	border: none;
+}
+
+.taglib-header, .lfr-asset-metadata {
+	display: none;
+}

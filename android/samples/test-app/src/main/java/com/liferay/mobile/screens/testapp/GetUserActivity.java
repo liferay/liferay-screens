@@ -15,7 +15,7 @@ public class GetUserActivity extends ThemeActivity implements GetUserListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.get_user);
 
-		GetUserScreenlet screenlet = ((GetUserScreenlet) findViewById(R.id.get_user_screenlet));
+		GetUserScreenlet screenlet = findViewById(R.id.get_user_screenlet);
 		screenlet.setListener(this);
 	}
 

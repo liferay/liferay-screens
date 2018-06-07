@@ -20,6 +20,7 @@ import android.service.textservice.SpellCheckerService;
 
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.auth.basic.CookieAuthentication;
+import com.liferay.mobile.android.auth.oauth2.OAuth2Authentication;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
 import com.liferay.mobile.screens.BuildConfig;
@@ -31,6 +32,9 @@ import com.liferay.mobile.screens.context.storage.sharedPreferences.BaseCredenti
 import com.liferay.mobile.screens.context.storage.sharedPreferences.BasicCredentialsStorageSharedPreferences;
 import com.liferay.mobile.screens.context.storage.sharedPreferences.CookieCredentialsStorageSharedPreferences;
 
+import com.liferay.mobile.screens.context.storage.sharedPreferences.OAuth2CredentialsStorageSharedPreferences;
+import java.util.ArrayList;
+import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Before;
@@ -73,6 +77,25 @@ public class CredentialsStoreSharedPreferencesTest {
 
 		CookieAuthentication authentication =
 			new CookieAuthentication("authToken", "cookieHeader", "user123", "pass123", true, 1, 2);
+		Session session = new SessionImpl(LiferayServerContext.getServer(), authentication);
+
+		SessionContext.createCookieSession(session);
+		store.setAuthentication(SessionContext.getAuthentication());
+	}
+
+	private static void setOAuth2TestInDataStore(CredentialsStorage store, String clientSecret) throws JSONException {
+		store.setContext(RuntimeEnvironment.application.getApplicationContext());
+
+		JSONObject userAttributes = new JSONObject();
+		userAttributes.put("userId", 123);
+		store.setUser(new User(userAttributes));
+
+		List<String> scopes = new ArrayList<>();
+		scopes.add("scope1");
+		scopes.add("scope2");
+
+		OAuth2Authentication authentication =
+			new OAuth2Authentication("accessToken", "refreshToken", scopes, 150, "clientId", clientSecret);
 		Session session = new SessionImpl(LiferayServerContext.getServer(), authentication);
 
 		SessionContext.createCookieSession(session);
@@ -244,6 +267,45 @@ public class CredentialsStoreSharedPreferencesTest {
 			assertEquals("user123", auth.getUsername());
 			assertEquals("pass123", auth.getPassword());
 			assertEquals(123, store.getUser().getId());
+		}
+
+		@Test
+		public void shouldLoadTheStoredValuesForOAuth2Store() throws Exception {
+			OAuth2CredentialsStorageSharedPreferences store = new OAuth2CredentialsStorageSharedPreferences();
+			setOAuth2TestInDataStore(store, "clientSecret");
+			store.storeCredentials();
+
+			OAuth2Authentication savedAuth = (OAuth2Authentication) store.getAuthentication();
+			User savedUser = store.getUser();
+
+			assertTrue(store.loadStoredCredentials());
+
+			assertNotNull(store.getAuthentication());
+			assertNotNull(store.getUser());
+
+			assertNotSame(savedAuth, store.getAuthentication());
+			assertNotSame(savedUser, store.getUser());
+
+			OAuth2Authentication auth = (OAuth2Authentication) store.getAuthentication();
+
+			assertEquals("accessToken", auth.getAccessToken());
+			assertEquals("refreshToken", auth.getRefreshToken());
+			assertEquals("scope1", auth.getScope().get(0));
+			assertEquals("scope2", auth.getScope().get(1));
+			assertEquals(150, auth.getAccessTokenExpirationDate());
+			assertEquals("clientId", auth.getClientId());
+			assertEquals("clientSecret", auth.getClientSecret());
+		}
+
+		@Test
+		public void shouldLoadTheStoredValuesForOAuth2StoreWithoutClientSecret() throws Exception {
+			OAuth2CredentialsStorageSharedPreferences store = new OAuth2CredentialsStorageSharedPreferences();
+			setOAuth2TestInDataStore(store, "");
+			store.storeCredentials();
+
+			OAuth2Authentication auth = (OAuth2Authentication) store.getAuthentication();
+
+			assertEquals("", auth.getClientSecret());
 		}
 	}
 }
