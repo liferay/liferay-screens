@@ -18,9 +18,9 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-
 import android.view.View;
-import android.widget.ImageView;
+import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;
+import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordScreenlet;
 import com.liferay.mobile.screens.auth.login.LoginListener;
 import com.liferay.mobile.screens.auth.login.LoginScreenlet;
 import com.liferay.mobile.screens.cache.Cache;
@@ -32,7 +32,7 @@ import com.liferay.mobile.screens.westerosemployees_hybrid.R;
 import com.liferay.mobile.screens.westerosemployees_hybrid.utils.CardState;
 import com.liferay.mobile.screens.westerosemployees_hybrid.views.Deck;
 
-public class MainActivity extends WesterosActivity implements LoginListener {
+public class MainActivity extends WesterosActivity implements LoginListener, ForgotPasswordListener {
 
 	private Deck deck;
 
@@ -54,10 +54,13 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 	}
 
 	private void findViews() {
-		LoginScreenlet loginScreenlet = findViewById(R.id.login_screenlet);
 		deck = findViewById(R.id.deck);
 
+		LoginScreenlet loginScreenlet = findViewById(R.id.login_screenlet);
 		loginScreenlet.setListener(this);
+
+		ForgotPasswordScreenlet forgotPasswordScreenlet = findViewById(R.id.forgot_password_screenlet);
+		forgotPasswordScreenlet.setListener(this);
 	}
 
 	@Override
@@ -86,5 +89,15 @@ public class MainActivity extends WesterosActivity implements LoginListener {
 	@Override
 	public void onAuthenticationBrowserShown() {
 
+	}
+
+	@Override
+	public void onForgotPasswordRequestFailure(Exception e) {
+		WesterosSnackbar.showSnackbar(this, "Request password failed", R.color.colorAccent_westeros);
+	}
+
+	@Override
+	public void onForgotPasswordRequestSuccess(boolean passwordSent) {
+		WesterosSnackbar.showSnackbar(this, "Request password succeed!", R.color.green_westeros);
 	}
 }
