@@ -27,6 +27,7 @@ All notable changes to this project will be documented in this file.
 ### Samples
 
 * Update westerosemployees demo app
+* Update westerosemployees-hybrid demo app
 
 ## iOS
 
