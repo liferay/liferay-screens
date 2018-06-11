@@ -15,8 +15,8 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.ddm.form
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.support.design.widget.Snackbar
 import android.support.design.widget.Snackbar.LENGTH_SHORT
 import android.util.AttributeSet
@@ -35,6 +35,7 @@ import com.liferay.mobile.screens.ddm.form.model.FieldContext
 import com.liferay.mobile.screens.ddm.form.model.FormContext
 import com.liferay.mobile.screens.ddm.form.model.FormContextPage
 import com.liferay.mobile.screens.ddm.form.model.FormInstance
+import com.liferay.mobile.screens.ddm.form.view.SuccessPageActivity
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
@@ -44,7 +45,6 @@ import com.liferay.mobile.screens.util.EventBusUtil
 import com.liferay.mobile.screens.util.LiferayLogger
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.BaseDDLFieldTextView
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
-import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldSelectView
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.pager.WrapContentViewPager
 import com.liferay.mobile.sdk.apio.delegates.converter
 import com.liferay.mobile.sdk.apio.fetch
@@ -57,7 +57,6 @@ import com.squareup.okhttp.HttpUrl
 import com.squareup.otto.Subscribe
 import org.jetbrains.anko.childrenSequence
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.*
 
 /**
@@ -354,7 +353,18 @@ class DDMFormView @JvmOverloads constructor(
 
                     var message = "Form Submitted"
 
-                    if (!it.isSuccessful) {
+                    if (it.isSuccessful && !isDraft) {
+
+                        formInstance?.ddmStructure?.successPage?.let {
+
+                            if (it.enabled) {
+                                val intent = Intent(context, SuccessPageActivity::class.java)
+                                intent.putExtra("successPage", it)
+                                context.startActivity(intent)
+                            }
+                        }
+
+                    } else {
                         message = exception?.message ?: response.message()
 
                         if (message.isEmpty()) message = "Unknown Error"

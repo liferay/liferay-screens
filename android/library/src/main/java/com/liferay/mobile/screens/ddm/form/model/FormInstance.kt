@@ -76,7 +76,20 @@ data class FormInstance @JvmOverloads constructor(
                 getPages(it, locale)
             }
 
-            return DDMStructure(name, description, pages)
+            val successPage = relation["successPage"]?.let {
+                val successMap = it as Map<*, *>
+                val enabled = successMap["isEnabled"] as Boolean
+                var headline = ""
+                var text = ""
+
+                if (enabled) {
+                    headline = successMap["headline"] as String
+                    text = successMap["text"] as String
+                }
+                SuccessPage(headline, text, enabled)
+            }
+
+            return DDMStructure(name, description, pages, successPage)
         }
 
         private fun getPages(mapper: Map<String, Any>, locale: Locale): List<FormPage> {

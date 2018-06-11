@@ -14,7 +14,36 @@
 
 package com.liferay.mobile.screens.ddm.form.model
 
+import android.os.Parcel
+import android.os.Parcelable
+
 /**
  * @author Victor Oliveira
  */
-class SuccessPage(val headline: String, val text: String, val enabled: Boolean)
+
+class SuccessPage(val headline: String, val text: String, val enabled: Boolean = true) : Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readByte() != 0.toByte())
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(headline)
+        parcel.writeString(text)
+        parcel.writeByte(if (enabled) 1 else 0)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<SuccessPage> {
+        override fun createFromParcel(parcel: Parcel): SuccessPage {
+            return SuccessPage(parcel)
+        }
+
+        override fun newArray(size: Int): Array<SuccessPage?> {
+            return arrayOfNulls(size)
+        }
+    }
+}
