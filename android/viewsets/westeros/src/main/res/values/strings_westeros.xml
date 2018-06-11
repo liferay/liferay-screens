@@ -9,6 +9,7 @@
 	<string name="all_fields_required">All fields are required</string>
 	<string name="accept_terms_and_conditions">I accept the terms and conditions</string>
 	<string name="forgot_password">Forgot password?</string>
+	<string name="empty_description">Empty description</string>
 
 	<string name="AssetListScreenlet_material">asset_list_default</string>
 	<string name="DDLFormScreenlet_westeros">ddl_form_westeros</string>

@@ -31,39 +31,36 @@
 			android:id="@+id/userRatingBar"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:layout_gravity="center"
 			android:progressBackgroundTint="@color/textColorSecondary_westeros"
 			android:progressTint="?colorPrimary"
 			android:stepSize="1"
 			tools:rating="4"
 			/>
 
-		<LinearLayout
-			android:id="@+id/average_container"
+		<TextView
+			android:id="@+id/totalCountTextView"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center"
+			android:paddingBottom="8dp"
+			android:textColor="?colorPrimary"
+			tools:text="8 Ratings"
+			/>
+
+		<RatingBar
+			android:id="@+id/averageRatingBar"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			>
+			android:layout_gravity="center"
+			android:isIndicator="true"
+			android:progressBackgroundTint="@color/textColorSecondary_westeros"
+			android:progressTint="?colorPrimary"
+			android:stepSize="1"
+			tools:rating="3"
+			style="@style/Widget.AppCompat.RatingBar.Small"
+			/>
 
-			<RatingBar
-				android:id="@+id/averageRatingBar"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:isIndicator="true"
-				android:progressBackgroundTint="@color/textColorSecondary_westeros"
-				android:progressTint="?colorPrimary"
-				android:stepSize="1"
-				tools:rating="3"
-				style="@style/Widget.AppCompat.RatingBar.Small"
-				/>
-
-			<TextView
-				android:id="@+id/totalCountTextView"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:paddingLeft="10dp"
-				android:textColor="?colorPrimary"
-				tools:text="8 Ratings"
-				/>
-		</LinearLayout>
 	</LinearLayout>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.rating.StarsRatingView>

@@ -15,7 +15,8 @@ import java.util.List;
 /**
  * @author Víctor Galán Grande
  */
-public class DocsCard extends com.liferay.mobile.screens.westerosemployees.views.CommentsRatingsCard implements BaseListListener<AssetEntry> {
+public class DocsCard extends com.liferay.mobile.screens.westerosemployees.views.CommentsRatingsCard
+	implements BaseListListener<AssetEntry> {
 
 	private AssetListScreenlet docsListScreenlet;
 	private AssetDisplayScreenlet documentDisplayScreenlet;

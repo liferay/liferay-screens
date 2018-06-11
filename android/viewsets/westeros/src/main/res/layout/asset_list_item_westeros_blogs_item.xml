@@ -3,15 +3,12 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:drawableEnd="@drawable/default_arrow"
-	android:drawableRight="@drawable/default_arrow"
-	android:orientation="horizontal"
 	>
 
 	<com.liferay.mobile.screens.dlfile.display.image.ImageDisplayScreenlet
 		android:id="@+id/asset_list_document_type_image_screenlet"
-		android:layout_width="60dp"
-		android:layout_height="60dp"
+		android:layout_width="50dp"
+		android:layout_height="50dp"
 		android:layout_alignParentLeft="true"
 		android:layout_alignParentStart="true"
 		android:layout_centerVertical="true"
@@ -53,8 +50,8 @@
 		android:layout_alignParentEnd="true"
 		android:layout_alignParentRight="true"
 		android:layout_centerVertical="true"
-		android:layout_marginEnd="2dp"
-		android:layout_marginLeft="2dp"
+		android:layout_marginEnd="10dp"
+		android:layout_marginRight="10dp"
 		android:src="@drawable/default_arrow"
 		/>
 

@@ -2,9 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:drawableEnd="@drawable/default_arrow"
-	android:drawableRight="@drawable/default_arrow"
-	android:orientation="horizontal"
 	>
 
 	<ImageView
@@ -27,7 +24,7 @@
 		android:layout_toEndOf="@id/asset_list_document_type_image"
 		android:layout_toRightOf="@id/asset_list_document_type_image"
 		android:textColor="@android:color/black"
-		android:textSize="15sp"
+		android:textSize="7pt"
 		android:textStyle="bold"
 		/>
 
@@ -40,8 +37,10 @@
 		android:layout_toEndOf="@id/asset_list_document_type_image"
 		android:layout_toRightOf="@id/asset_list_document_type_image"
 		android:maxLines="2"
-		android:textColor="@android:color/black"
-		android:textSize="13sp"
+		android:text="@string/empty_description"
+		android:textColor="@android:color/darker_gray"
+		android:textSize="5pt"
+		android:textStyle="italic"
 		/>
 
 	<ImageView
@@ -50,8 +49,8 @@
 		android:layout_alignParentEnd="true"
 		android:layout_alignParentRight="true"
 		android:layout_centerVertical="true"
-		android:layout_marginEnd="2dp"
-		android:layout_marginLeft="2dp"
+		android:layout_marginEnd="20dp"
+		android:layout_marginRight="20dp"
 		android:src="@drawable/default_arrow"
 		/>
 

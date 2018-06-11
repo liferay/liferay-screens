@@ -58,8 +58,10 @@ public class SignUpCard extends Card implements View.OnClickListener, WebContent
 	@Override
 	public void onClick(View v) {
 		if (!isTermsAndConditionLoaded) {
-			SessionContext.createBasicSession(getResources().getString(R.string.liferay_anonymousApiUserName), getResources().getString(R.string.liferay_anonymousApiPassword));
+			SessionContext.createBasicSession(getResources().getString(R.string.liferay_anonymousApiUserName),
+				getResources().getString(R.string.liferay_anonymousApiPassword));
 			isTermsAndConditionLoaded = true;
+			webContentDisplayScreenlet.setCustomCssFile(R.raw.webcontent_westeros_terms);
 			webContentDisplayScreenlet.load();
 		}
 

@@ -1,28 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="liferay_server">http://screens-demo.liferay.org.es</string>
-	<string name="liferay_company_id">20116</string>
-	<string name="liferay_group_id">43734</string>
+	<string name="liferay_server">http://screens.liferay.org.es</string>
 	<integer name="liferay_portal_version">70</integer>
+	<string name="liferay_company_id">20116</string>
+	<string name="liferay_group_id">33300</string>
 
 	<!-- SigninScreenlet values -->
-	<string name="liferay_login">test@liferay.com</string>
-	<string name="liferay_password">test</string>
+	<string name="liferay_login">demo@liferay.com</string>
+	<string name="liferay_password">demo</string>
 
 	<!-- SignupScreenlet values -->
 	<string name="liferay_anonymousApiUserName">anonymous1@liferay.com</string>
 	<string name="liferay_anonymousApiPassword">anonymous1</string>
 
-	<!-- DDLFormScreenlet values -->
-	<string name="liferay_recordset_id">20593</string>
-	<string name="liferay_structure_id">20589</string>
-	<string name="liferay_recordset_fields">Title</string>
-
 	<!-- WebContentDisplayScreenlet values -->
-	<string name="liferay_article_id">44489</string>
+	<string name="liferay_article_id">39224</string>
 
 	<!-- GalleryScreenlet values -->
-	<string name="folderId">44059</string>
+	<string name="folderId">38636</string>
 
 </resources>

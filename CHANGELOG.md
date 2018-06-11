@@ -31,6 +31,10 @@ All notable changes to this project will be documented in this file.
 ### Samples
 * Update test-app demo app
 
+### Samples
+
+* Update westerosemployees demo app
+
 ## iOS
 
 * Drop support for OAuth1
