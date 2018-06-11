@@ -48,6 +48,7 @@ public class AccountSettingsActivity extends Activity implements View.OnClickLis
 
 		UserPortraitScreenlet userPortraitScreenlet = findViewById(R.id.userportrait);
 		userPortraitScreenlet.setListener(this);
+		userPortraitScreenlet.loadLoggedUserPortrait();
 	}
 
 	@Override

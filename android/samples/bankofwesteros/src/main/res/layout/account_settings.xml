@@ -27,6 +27,7 @@
 		android:layout_height="125dp"
 		android:layout_below="@id/title_account_settings"
 		android:layout_centerHorizontal="true"
+		app:autoLoad="false"
 		app:editable="true"
 		app:layoutId="@layout/userportrait_westeros"
 		/>

@@ -33,7 +33,7 @@ public class BookmarkAdapter extends BaseListAdapter<Bookmark, BookmarkAdapter.B
 		public BookmarkViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 
-			url = (TextView) view.findViewById(R.id.bookmark_url);
+			url = view.findViewById(R.id.bookmark_url);
 		}
 
 		public void bind(Bookmark entry) {

@@ -56,10 +56,10 @@ public class GetUserAdapter extends BaseAdapter {
 		}
 
 		Map.Entry<String, Object> item = getItem(position);
-		TextView keyLabel = (TextView) convertView.findViewById(R.id.keyLabel);
+		TextView keyLabel = convertView.findViewById(R.id.keyLabel);
 		keyLabel.setText(item.getKey());
 		if (item.getValue() != null) {
-			TextView keyValue = (TextView) convertView.findViewById(R.id.keyValue);
+			TextView keyValue = convertView.findViewById(R.id.keyValue);
 			keyValue.setText(item.getValue().toString());
 		}
 		return convertView;

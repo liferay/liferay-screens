@@ -14,6 +14,7 @@ package com.liferay.mobile.screens.bankofwesteros.list; /**
 
 import com.liferay.mobile.screens.bankofwesteros.R;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
+import com.liferay.mobile.screens.ddl.model.Record;
 
 /**
  * @author Javier Gamarra
@@ -23,6 +24,13 @@ public class DDLListAdapter extends com.liferay.mobile.screens.viewsets.westeros
 
 	public DDLListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
 		super(layoutId, progressLayoutId, listener);
+	}
+
+	@Override
+	protected void fillHolder(Record entry, SwipeActionsViewHolder holder) {
+		super.fillHolder(entry, holder);
+
+		holder.imageView.setImageResource(getDrawable(holder.getLayoutPosition()));
 	}
 
 	protected int getDrawable(int position) {

@@ -383,13 +383,13 @@ public class ViewPagerDDLFormView extends RecyclerViewPager
 			HorizontalViewHolder(View itemView) {
 				super(itemView);
 
-				container = (LinearLayout) itemView.findViewById(R.id.ddlfields_container);
-				submitButton = (Button) itemView.findViewById(R.id.liferay_form_submit);
+				container = itemView.findViewById(R.id.ddlfields_container);
+				submitButton = itemView.findViewById(R.id.liferay_form_submit);
 				submitButton.setOnClickListener(ViewPagerDDLFormView.this);
-				nextPageButton = (Button) itemView.findViewById(R.id.next_page_button);
+				nextPageButton = itemView.findViewById(R.id.next_page_button);
 				nextPageButton.setOnClickListener(ViewPagerDDLFormView.this);
-				pageTitleTextView = (TextView) itemView.findViewById(R.id.page_title);
-				pageNumberTextView = (TextView) itemView.findViewById(R.id.page_number);
+				pageTitleTextView = itemView.findViewById(R.id.page_title);
+				pageNumberTextView = itemView.findViewById(R.id.page_number);
 			}
 
 			void paint(final Record.Page page) {
