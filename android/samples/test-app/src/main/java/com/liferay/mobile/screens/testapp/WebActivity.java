@@ -28,7 +28,6 @@ public class WebActivity extends ThemeActivity implements WebListener {
 		if (getIntent().getStringExtra("url") != null) {
 			WebScreenletConfiguration webScreenletConfiguration =
 				new WebScreenletConfiguration.Builder(getIntent().getStringExtra("url"))
-					.addRawCss(R.raw.portletcss, "portlet.css")
 					.addLocalCss("gallery.css")
 					.addLocalJs("gallery.js")
 					.enableCordova(observer)

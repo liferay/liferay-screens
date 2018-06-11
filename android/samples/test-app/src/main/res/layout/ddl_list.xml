@@ -17,9 +17,8 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		app:autoLoad="false"
-		app:cachePolicy="REMOTE_FIRST"
-		app:labelFields="@string/liferay_recordset_fields"
 		app:recordSetId="@string/liferay_recordset_id"
+		app:userId="@string/liferay_user_id"
 		/>
 
 

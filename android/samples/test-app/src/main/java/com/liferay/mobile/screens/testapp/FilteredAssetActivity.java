@@ -16,7 +16,7 @@ public class FilteredAssetActivity extends ThemeActivity implements BaseListList
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.filtered_asset);
+		setContentView(R.layout.asset_list_portlet_item_name);
 
 		AssetListScreenlet assetListScreenlet = findViewById(R.id.filtered_asset_list);
 		assetListScreenlet.setListener(this);

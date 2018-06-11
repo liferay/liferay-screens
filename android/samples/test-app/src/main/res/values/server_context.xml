@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
 	<string name="liferay_server">http://screens.liferay.org.es</string>
 	<integer name="liferay_portal_version">70</integer>
 	<string name="liferay_company_id">20116</string>
 	<string name="liferay_group_id">20143</string>
+	<string name="liferay_parent_group_id">20152</string>
 
 	<!--LoginScreenletValues-->
 	<string name="client_id_redirect">1234</string>
@@ -13,35 +13,37 @@
 	<string name="client_secret">12345</string>
 
 	<!--SignupScreenlet values-->
-	<string name="liferay_anonymousApiUserName">demo@liferay.com</string>
-	<string name="liferay_anonymousApiPassword">demo</string>
+	<string name="liferay_anonymousApiUserName">anonymous1@liferay.com</string>
+	<string name="liferay_anonymousApiPassword">anonymous1</string>
 
 	<!--Default user & password-->
 	<string name="liferay_default_user_name">demo@liferay.com</string>
 	<string name="liferay_default_password">demo</string>
 
-	<!--DDLFormScreenlet values-->
-	<string name="liferay_structure_id">54371</string>
-	<string name="liferay_recordset_id">54375</string>
-	<string name="liferay_record_id">54385</string>
-	<string name="liferay_recordset_fields">Title</string>
+	<!--DDLFormScreenlet and DDLListScreenlet values-->
+	<string name="liferay_structure_id">29823</string>
+	<string name="liferay_recordset_id">33280</string>
+	<string name="liferay_record_id">33294</string>
+	<string name="liferay_recordset_fields">name</string>
+	<string name="liferay_user_id">20156</string>
+
 	<string name="liferay_ddm_folder_id">54469</string>
 	<string name="liferay_ddm_repository_id">20143</string>
 
-	<!--AddBookmarkScreenlet values-->
-	<string name="liferay_bookmark_folder">33583</string>
+	<!--BookmarkListScreenlet and AddBookmarkScreenlet values-->
+	<string name="liferay_bookmark_folder">0</string>
 
 	<!--WebContentDisplayScreenlet values-->
 	<string name="liferay_article_id">57343</string>
-	<string name="liferay_article_structured_structure_id">29641</string>
-	<string name="liferay_article_structured_article_id">57615</string>
-	<string name="liferay_article_structured_label_fields_first_field">Text</string>
-	<string name="liferay_article_structured_label_fields">Text,TextBox</string>
-	<string name="liferay_article_id_with_template">57615</string>
-	<string name="liferay_template_id1">33617</string>
-	<string name="liferay_template_id2">33649</string>
+	<string name="liferay_article_structured_structure_id">64601</string>
+	<string name="liferay_article_structured_article_id">64614</string>
+	<string name="liferay_article_structured_label_fields_first_field">Field1</string>
+	<string name="liferay_article_structured_label_fields">Field1,Field2</string>
+	<string name="liferay_article_id_with_template">64614</string>
+	<string name="liferay_template_id1">64609</string>
+	<string name="liferay_template_id2">64623</string>
 
-	<string name="liferay_web_content_folder_id">33591</string>
+	<string name="liferay_web_content_folder_id">0</string>
 	<string name="liferay_images_folder">54469</string>
 
 	<string name="portlet_item_name1">manual</string>
@@ -49,23 +51,23 @@
 
 	<!--CommentListScreenlet values-->
 	<string name="liferay_comment_asset_className">com.liferay.blogs.kernel.model.BlogsEntry</string>
-	<string name="liferay_comment_asset_id">33712</string>
+	<string name="liferay_comment_asset_id">57366</string>
 
 	<!--RatingScreenlet-->
-	<string name="liferay_rating_thumb_asset_id">33713</string>
-	<string name="liferay_rating_star_asset_id">33713</string>
-	<string name="liferay_rating_like_asset_id">33713</string>
-	<string name="liferay_rating_reactions_emojis_asset_id">33713</string>
+	<string name="liferay_rating_thumb_asset_id">54500</string>
+	<string name="liferay_rating_star_asset_id">54500</string>
+	<string name="liferay_rating_like_asset_id">54500</string>
+	<string name="liferay_rating_reactions_emojis_asset_id">54500</string>
 
-	<string name="liferay_image_entryId">41638</string>
-	<string name="liferay_portlet_item_name">documents</string>
-
+	<!--AssetDisplayScreenlet values-->
+	<string name="liferay_portlet_item_name">image</string>
+	<string name="liferay_image_entry_id">54500</string>
 	<string name="liferay_video_entryId">38945</string>
-	<string name="liferay_user_entryId">20169</string>
+	<string name="liferay_user_entryId">57602</string>
 
-	<!-- AssetListScreenlet values-->
+	<!--AssetListScreenlet values-->
 	<string name="default_class_name_id_user">20087</string>
 
-	<!-- PortletDisplayScreenlet values -->
-	<string name="liferay_portlet_url">/web/portletdisplay-demo/gallery</string>
+	<!--PortletDisplayScreenlet values-->
+	<string name="liferay_portlet_url">/web/guest/webscreenlet-gallery</string>
 </resources>

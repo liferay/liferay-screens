@@ -36,6 +36,7 @@ public class AssetDisplayActivity extends ThemeActivity
 			screenlet.setPortletItemName(portletItemName);
 		}
 
+		screenlet.loadAsset();
 		screenlet.setListener(this);
 		screenlet.setConfigurationListener(this);
 	}

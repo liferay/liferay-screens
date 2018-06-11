@@ -17,10 +17,15 @@ import com.liferay.mobile.screens.base.view.BaseViewModel;
 
 /**
  * @author Mounir Hallab
+ * @author Sarai Díaz García
  */
 public interface GetUserViewModel extends BaseViewModel {
 
 	String getTextValue();
 
 	void setTextValue(String textValue);
+
+	String getGetUserBy();
+
+	void setGetUserBy(String getUserBy);
 }

@@ -50,6 +50,5 @@
 		app:layoutId="@layout/webcontentdisplaystructured_example"
 		app:structureId="@string/liferay_article_structured_structure_id"
 		/>
-
-
+	
 </LinearLayout>

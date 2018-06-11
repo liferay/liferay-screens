@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.testapp.fullview.LoginFullView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.liferay.mobile.screens.testapp.fullview.LoginFullView
+	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:orientation="vertical"
-	android:padding="20dp"
+	style="@style/default_screenlet"
 	>
 
 	<EditText
 		android:id="@+id/liferay_login"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:layout_marginBottom="20dp"
-		android:hint="@string/email_address"
-		android:inputType="textEmailAddress"
+		android:layout_marginBottom="15dp"
+		android:drawableLeft="@drawable/default_mail_icon"
+		android:drawablePadding="17dp"
+		android:drawableStart="@drawable/default_mail_icon"
+		android:inputType="text"
+		android:labelFor="@+id/liferay_login"
+		android:paddingLeft="15dp"
 		/>
 
 	<Button

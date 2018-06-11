@@ -85,7 +85,12 @@ public class GetUserScreenlet extends BaseScreenlet<GetUserViewModel, GetUserInt
 
 		TypedArray typedArray =
 			context.getTheme().obtainStyledAttributes(attributes, R.styleable.GetUserScreenlet, 0, 0);
+
 		getUserBy = typedArray.getString(R.styleable.GetUserScreenlet_getUserBy);
+
+		GetUserViewModel userViewModel = (GetUserViewModel) view;
+
+		userViewModel.setGetUserBy(getUserBy);
 
 		typedArray.recycle();
 

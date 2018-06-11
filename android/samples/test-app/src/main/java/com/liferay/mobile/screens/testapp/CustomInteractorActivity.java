@@ -52,21 +52,22 @@ public class CustomInteractorActivity extends ThemeActivity
 			String login = (String) args[0];
 			String password = (String) args[1];
 
-			String username = "test";
+			String username = "demo";
 
 			if (username.equals(login) && username.equals(password)) {
 
 				SessionContext.createBasicSession(login, password);
 
 				JSONObject jsonObject = new JSONObject();
-				jsonObject.put("emailAddress", "test@liferay.com");
+				jsonObject.put("emailAddress", "demo@liferay.com");
 				jsonObject.put("userId", "0");
 				jsonObject.put("firstName", username);
 				jsonObject.put("lastName", username);
 				jsonObject.put("screenName", username);
 				return new BasicEvent(jsonObject);
 			}
-			throw new AuthenticationException("bad login");
+
+			throw new AuthenticationException("Bad login");
 		}
 	}
 }
