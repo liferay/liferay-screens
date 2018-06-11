@@ -50,6 +50,7 @@ public class IssuesActivity extends CardActivity
 	private ImageView card1ToBackgroundMenu;
 	private TextView reportIssueTitle;
 	private Button sendButton;
+	private boolean isLoaded;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -181,6 +182,10 @@ public class IssuesActivity extends CardActivity
 
 	@Override
 	protected void animateScreenAfterLoad() {
+		if (isLoaded) {
+			return;
+		}
+
 		cardHistory.offer(Card.CARD1);
 		card1ToBackgroundMenu.setImageDrawable(
 			ResourcesCompat.getDrawable(getResources(), R.drawable.icon_options_red, getTheme()));
@@ -198,6 +203,8 @@ public class IssuesActivity extends CardActivity
 				backgroundCard.setY(0);
 			}
 		});
+
+		isLoaded = true;
 	}
 
 	@Override
