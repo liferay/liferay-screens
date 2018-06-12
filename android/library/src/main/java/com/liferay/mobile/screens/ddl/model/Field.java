@@ -88,6 +88,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 		dataType = DataType.valueOf(attributes);
 		editorType = EditorType.valueOf(attributes);
+		displayStyle = getAttributeStringValue(attributes, FormFieldKeys.DISPLAY_STYLE);
 
 		name = getAttributeStringValue(attributes, FormFieldKeys.NAME);
 		label = getAttributeStringValue(attributes, FormFieldKeys.LABEL);
@@ -121,6 +122,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 		dataType = DataType.assignDataTypeFromString(in.readString());
 		editorType = EditorType.valueOfString(in.readString());
+		displayStyle = in.readString();
 
 		name = in.readString();
 		label = in.readString();
@@ -295,6 +297,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 		destination.writeString(dataType.getValue());
 		destination.writeString(editorType.getValue());
+		destination.writeString(displayStyle);
 
 		destination.writeString(name);
 		destination.writeString(label);
@@ -471,6 +474,11 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 			if ("text".equals(mapValue) && "integer".equals(attributes.get("dataType"))) {
 				return DECIMAL;
 			}
+
+			if ("text".equals(mapValue) && "multiline".equals(attributes.get("displayStyle"))) {
+				return TEXT_AREA;
+			}
+
 			return valueOfString(mapValue.toString());
 		}
 

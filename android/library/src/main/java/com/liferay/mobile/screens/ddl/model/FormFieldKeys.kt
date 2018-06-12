@@ -21,6 +21,7 @@ class FormFieldKeys {
     companion object {
         const val NAME = "name"
         const val DATA_TYPE = "dataType"
+        const val DISPLAY_STYLE = "displayStyle"
         const val TYPE = "type"
         const val LABEL = "label"
         const val TIP = "tip"
