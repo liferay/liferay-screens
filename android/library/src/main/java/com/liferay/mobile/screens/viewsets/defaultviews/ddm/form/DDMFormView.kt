@@ -74,6 +74,8 @@ class DDMFormView @JvmOverloads constructor(
 
     var formInstance: FormInstance? = null
 
+    var gson = GsonBuilder().registerTypeAdapter(Option::class.java, OptionSerializer()).create()
+
     override var screenlet: ThingScreenlet? = null
     override var thing: Thing? by converter<FormInstance> {
         formInstance = it
@@ -207,8 +209,6 @@ class DDMFormView @JvmOverloads constructor(
                     mapOf("name" to it.name, "value" to it.currentValue)
                 }
 
-                val gson = GsonBuilder().registerTypeAdapter(Option::class.java, OptionSerializer()).create()
-
                 val fieldValues = gson.toJson(fieldsList)
 
                 values["fieldValues"] = fieldValues
@@ -339,9 +339,16 @@ class DDMFormView @JvmOverloads constructor(
                 }
 
                 val fieldsList = formInstance!!
-                    .fields.map { mapOf("name" to it.name, "value" to it.currentValue?.toString()) }
+                    .fields.map {
+                        val currentValue = when(it.editorType) {
+                            Field.EditorType.RADIO -> (it.currentValue as? List<*>)?.get(0) ?: null
+                            else -> it.currentValue
+                        }
 
-                val fieldValues = Gson().toJson(fieldsList)
+                        mapOf("name" to it.name, "value" to currentValue)
+                    }
+
+                val fieldValues = gson.toJson(fieldsList)
 
                 values["fieldValues"] = fieldValues
 
