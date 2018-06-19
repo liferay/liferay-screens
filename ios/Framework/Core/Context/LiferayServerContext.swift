@@ -17,6 +17,7 @@ import Foundation
 
 	case v62 = 62
 	case v70 = 70
+	case v71 = 71
 
 }
 
