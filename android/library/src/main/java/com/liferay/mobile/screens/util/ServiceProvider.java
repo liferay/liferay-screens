@@ -35,7 +35,7 @@ public class ServiceProvider {
 			}
 		} catch (Exception e) {
 			Log.e("LiferayScreens", "Error creating the instance class");
-			return new ServiceVersionFactory62();
+			return new ServiceVersionFactory70();
 		}
 	}
 }
