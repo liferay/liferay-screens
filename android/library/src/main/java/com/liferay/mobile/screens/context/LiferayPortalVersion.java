@@ -5,7 +5,7 @@ package com.liferay.mobile.screens.context;
  */
 public enum LiferayPortalVersion {
 
-	VERSION_62(62), VERSION_70(70);
+	VERSION_62(62), VERSION_70(70), VERSION_71(71);
 
 	private final int version;
 
