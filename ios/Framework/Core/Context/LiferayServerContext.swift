@@ -191,7 +191,7 @@ open class LiferayServerContext: NSObject {
 				switch self.serverVersion {
 				case .v62:
 					return Liferay62ConnectorFactory()
-				case .v70:
+				case .v70, .v71:
 					return Liferay70ConnectorFactory()
 				}
 			}
