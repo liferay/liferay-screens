@@ -14,10 +14,12 @@ public enum LiferayPortalVersion {
 	}
 
 	public static LiferayPortalVersion fromInt(int version) {
-		if (version == 70) {
-			return VERSION_70;
-		} else {
+		if (version == 62) {
 			return VERSION_62;
+		} else if (version == 71) {
+			return VERSION_71;
+		} else {
+			return VERSION_70;
 		}
 	}
 
