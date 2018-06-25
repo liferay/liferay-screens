@@ -51,7 +51,11 @@ open class WebContent: Asset {
 			return content.asLocalized(Locale(identifier: NSLocale.currentLocaleString))
 		}
 
-		let newAttributes: [String: AnyObject]
+        var newAttributes: [String: AnyObject] = [:]
+        
+        if attributes["title"] == nil {
+            newAttributes = attributes.copyAndAdd("title", value: attributes["urlTitle"] ?? "" as AnyObject)
+        }
 
 		if let className = attributes["className"] as? String,
 			let object = attributes["object"] as? [String: AnyObject],
@@ -93,7 +97,7 @@ open class WebContent: Asset {
 			}
 		}
 		else if let content = attributes["content"] as? String {
-			newAttributes = attributes.copyAndRemove("content")
+			newAttributes = newAttributes.copyAndRemove("content")
 
 			structuredRecord = loadStructuredRecord(content, newAttributes)
 			structure = structuredRecord?.structure
