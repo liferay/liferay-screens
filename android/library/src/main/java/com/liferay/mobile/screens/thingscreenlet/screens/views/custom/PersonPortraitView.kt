@@ -22,8 +22,8 @@ import com.liferay.mobile.screens.thingscreenlet.model.Person
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
-import com.liferay.mobile.sdk.apio.delegates.converter
-import com.liferay.mobile.sdk.apio.model.Thing
+import com.liferay.apio.consumer.delegates.converter
+import com.liferay.apio.consumer.model.Thing
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 import java.nio.charset.Charset

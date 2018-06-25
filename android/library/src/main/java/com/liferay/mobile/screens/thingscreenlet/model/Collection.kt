@@ -17,10 +17,10 @@ package com.liferay.mobile.screens.thingscreenlet.model
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
-import com.liferay.mobile.sdk.apio.graph
-import com.liferay.mobile.sdk.apio.model.Relation
-import com.liferay.mobile.sdk.apio.model.Thing
-import com.liferay.mobile.sdk.apio.model.get
+import com.liferay.apio.consumer.graph
+import com.liferay.apio.consumer.model.Relation
+import com.liferay.apio.consumer.model.Thing
+import com.liferay.apio.consumer.model.get
 
 data class Collection(val members: List<Thing>?, val totalItems: Int?, val pages: Pages?) {
 	companion object {

@@ -23,8 +23,8 @@ import com.liferay.mobile.screens.thingscreenlet.screens.events.ScreenletEvents
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Row
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
-import com.liferay.mobile.sdk.apio.delegates.observeNonNull
-import com.liferay.mobile.sdk.apio.model.Thing
+import com.liferay.apio.consumer.delegates.observeNonNull
+import com.liferay.apio.consumer.model.Thing
 
 open class
 ThingViewHolder(itemView: View, listener: Listener) : RecyclerView.ViewHolder(itemView), ScreenletEvents {

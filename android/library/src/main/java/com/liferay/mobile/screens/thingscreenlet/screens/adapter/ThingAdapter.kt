@@ -22,10 +22,10 @@ import com.liferay.mobile.screens.thingscreenlet.model.Collection
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
-import com.liferay.mobile.sdk.apio.delegates.convert
-import com.liferay.mobile.sdk.apio.fetch
-import com.liferay.mobile.sdk.apio.model.Thing
-import com.squareup.okhttp.HttpUrl
+import com.liferay.apio.consumer.delegates.convert
+import com.liferay.apio.consumer.fetch
+import com.liferay.apio.consumer.model.Thing
+import okhttp3.HttpUrl
 
 class ThingAdapter(collection: Collection, val listener: Listener) :
 	Adapter<ThingViewHolder>(), ThingViewHolder.Listener {

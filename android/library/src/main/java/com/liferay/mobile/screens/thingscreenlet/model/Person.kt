@@ -18,9 +18,9 @@ import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Custom
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
-import com.liferay.mobile.sdk.apio.extensions.asDate
-import com.liferay.mobile.sdk.apio.model.Thing
-import com.liferay.mobile.sdk.apio.model.get
+import com.liferay.apio.consumer.extensions.asDate
+import com.liferay.apio.consumer.model.Thing
+import com.liferay.apio.consumer.model.get
 import java.util.*
 
 data class Person(

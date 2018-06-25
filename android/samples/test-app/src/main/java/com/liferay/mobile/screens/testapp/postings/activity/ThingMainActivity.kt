@@ -27,11 +27,11 @@ import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.events.ScreenletEvents
 import com.liferay.mobile.screens.thingscreenlet.screens.views.*
 import com.liferay.mobile.screens.util.LiferayLogger
-import com.liferay.mobile.sdk.apio.fetch
-import com.liferay.mobile.sdk.apio.model.Thing
-import com.liferay.mobile.sdk.apio.model.get
-import com.liferay.mobile.sdk.apio.model.getFormProperties
-import com.liferay.mobile.sdk.apio.performOperation
+import com.liferay.apio.consumer.fetch
+import com.liferay.apio.consumer.model.Thing
+import com.liferay.apio.consumer.model.get
+import com.liferay.apio.consumer.model.getFormProperties
+import com.liferay.apio.consumer.performOperation
 import com.squareup.okhttp.HttpUrl
 import okhttp3.Credentials
 import org.jetbrains.anko.startActivity

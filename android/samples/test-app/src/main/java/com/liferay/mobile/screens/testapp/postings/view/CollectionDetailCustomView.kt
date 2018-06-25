@@ -15,9 +15,9 @@ import com.liferay.mobile.screens.thingscreenlet.screens.adapter.ThingAdapter
 import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
-import com.liferay.mobile.sdk.apio.delegates.converter
-import com.liferay.mobile.sdk.apio.model.Thing
-import com.liferay.mobile.sdk.apio.model.containsOperation
+import com.liferay.apio.consumer.delegates.converter
+import com.liferay.apio.consumer.model.Thing
+import com.liferay.apio.consumer.model.containsOperation
 
 open class CollectionDetailCustomView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : BaseView,

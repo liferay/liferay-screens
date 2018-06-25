@@ -8,7 +8,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import com.liferay.mobile.screens.testapp.R
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
-import com.liferay.mobile.sdk.apio.performOperation
+import com.liferay.apio.consumer.performOperation
 
 class EditActivity : AppCompatActivity() {
 

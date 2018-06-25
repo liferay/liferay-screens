@@ -24,9 +24,9 @@ import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.events.ScreenletEvents
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
-import com.liferay.mobile.sdk.apio.model.Thing
-import com.liferay.mobile.sdk.apio.model.getFormProperties
-import com.liferay.mobile.sdk.apio.performOperation
+import com.liferay.apio.consumer.model.Thing
+import com.liferay.apio.consumer.model.getFormProperties
+import com.liferay.apio.consumer.performOperation
 import org.jetbrains.anko.startActivity
 
 class DetailActivity : AppCompatActivity(), ScreenletEvents {
