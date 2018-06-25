@@ -76,7 +76,8 @@ ext.libraries = [apio_consumer      : 'com.liferay.mobile:apio-consumer-android:
                  mockwebserver      : 'com.squareup.okhttp3:mockwebserver:3.9.1',
                  espresso           : 'com.android.support.test.espresso:espresso-core:3.0.1',
 		 support_multidex   : 'com.android.support:multidex:1.0.3',
-                 coroutines_android : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:0.22.5']
+                 coroutines_android : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:0.22.5',
+		 support_multidex   : 'com.android.support:multidex:1.0.3']
 
 subprojects {
 	repositories {

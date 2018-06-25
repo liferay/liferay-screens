@@ -9,6 +9,7 @@ android {
 		targetSdkVersion rootProject.ext.targetSdkVersion
 		versionCode rootProject.ext.versionCode
 		versionName rootProject.ext.versionName
+		multiDexEnabled true
 	}
 
 	buildTypes {
@@ -28,6 +29,8 @@ dependencies {
 	testImplementation libraries.junit
 	testImplementation libraries.robolectric
 	testImplementation libraries.mockito
+
+	api libraries.support_multidex
 }
 
 apply from: '../../bintray.gradle'

@@ -1,7 +1,7 @@
 package com.liferay.mobile.screens.ddm.form.model
 
-import com.liferay.mobile.sdk.apio.model.Thing
-import com.liferay.mobile.sdk.apio.model.get
+import com.liferay.apio.consumer.model.Thing
+import com.liferay.apio.consumer.model.get
 
 /**
  * @author Paulo Cruz

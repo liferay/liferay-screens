@@ -27,6 +27,13 @@ import android.widget.ScrollView
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
+import com.liferay.apio.consumer.delegates.converter
+import com.liferay.apio.consumer.fetch
+import com.liferay.apio.consumer.model.Relation
+import com.liferay.apio.consumer.model.Thing
+import com.liferay.apio.consumer.model.getOperation
+import com.liferay.apio.consumer.performOperation
+import com.liferay.apio.consumer.performOperationAndParse
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.*
@@ -37,20 +44,12 @@ import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
-
 import com.liferay.mobile.screens.util.EventBusUtil
 import com.liferay.mobile.screens.util.LiferayLogger
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.BaseDDLFieldTextView
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.pager.WrapContentViewPager
-import com.liferay.mobile.sdk.apio.delegates.converter
-import com.liferay.mobile.sdk.apio.fetch
-import com.liferay.mobile.sdk.apio.model.Relation
-import com.liferay.mobile.sdk.apio.model.Thing
-import com.liferay.mobile.sdk.apio.model.getOperation
-import com.liferay.mobile.sdk.apio.performOperation
-import com.liferay.mobile.sdk.apio.performOperationAndParse
-import com.squareup.okhttp.HttpUrl
+import okhttp3.HttpUrl
 import com.squareup.otto.Subscribe
 import org.jetbrains.anko.childrenSequence
 import java.text.SimpleDateFormat
@@ -184,10 +183,12 @@ class DDMFormView @JvmOverloads constructor(
         val formInstanceRecords = thing?.attributes?.get("formInstanceRecords") as? Relation
 
         if (formInstanceRecords != null) {
-            fetch(HttpUrl.parse(formInstanceRecords.id)) {
-                val thing = it.component1()
-                if (thing != null) {
-                    performSubmitOperation(thing, isDraft)
+            HttpUrl.parse(formInstanceRecords.id)?.let {
+                fetch(it) {
+                    val thing = it.component1()
+                    if (thing != null) {
+                        performSubmitOperation(thing, isDraft)
+                    }
                 }
             }
         } else {
@@ -406,7 +407,7 @@ class DDMFormView @JvmOverloads constructor(
                 val (response, exception) = it
 
                 response?.let {
-                    val json = Gson().fromJson<Map<String, Any>>(it.body().string(), TypeToken.getParameterized(Map::class.java, String::class.java, Any::class.java).type)
+                    val json = Gson().fromJson<Map<String, Any>>(it.body()?.string(), TypeToken.getParameterized(Map::class.java, String::class.java, Any::class.java).type)
 
                     field.setCurrentStringValue(json["@id"] as String)
                     field.moveToUploadCompleteState()
