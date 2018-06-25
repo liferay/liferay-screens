@@ -31,10 +31,7 @@ import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.*
 import com.liferay.mobile.screens.ddm.form.OptionSerializer
-import com.liferay.mobile.screens.ddm.form.model.FieldContext
-import com.liferay.mobile.screens.ddm.form.model.FormContext
-import com.liferay.mobile.screens.ddm.form.model.FormContextPage
-import com.liferay.mobile.screens.ddm.form.model.FormInstance
+import com.liferay.mobile.screens.ddm.form.model.*
 import com.liferay.mobile.screens.ddm.form.view.SuccessPageActivity
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
@@ -341,7 +338,8 @@ class DDMFormView @JvmOverloads constructor(
                 val fieldsList = formInstance!!
                     .fields.map {
                         val currentValue = when(it.editorType) {
-                            Field.EditorType.RADIO -> (it.currentValue as? List<*>)?.get(0) ?: null
+                            Field.EditorType.RADIO -> (it.currentValue as? List<*>)?.get(0)
+                            Field.EditorType.GRID -> (it.currentValue as? Grid)?.rawValues
                             else -> it.currentValue
                         }
 
@@ -449,6 +447,7 @@ class DDMFormView @JvmOverloads constructor(
             DEFAULT_LAYOUT_IDS[Field.EditorType.TEXT_AREA] = R.layout.ddlfield_text_area_default
             DEFAULT_LAYOUT_IDS[Field.EditorType.PARAGRAPH] = R.layout.ddmfield_paragrah_default
             DEFAULT_LAYOUT_IDS[Field.EditorType.DOCUMENT] = R.layout.ddlfield_document_default
+            DEFAULT_LAYOUT_IDS[Field.EditorType.GRID] = R.layout.ddmfield_grid_default
             //DEFAULT_LAYOUT_IDS.put(Field.EditorType.GEO, R.layout.ddlfield_geo_default);
         }
     }

@@ -38,6 +38,12 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<SelectableOptionsFi
 
 	protected AlertDialog alertDialog;
 
+	public void setOnValueChangedListener(DialogInterface.OnClickListener onValueChangedListener) {
+		this.onValueChangedListener = onValueChangedListener;
+	}
+
+	private DialogInterface.OnClickListener onValueChangedListener;
+
 	public DDLFieldSelectView(Context context) {
 		super(context);
 	}
@@ -115,6 +121,10 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<SelectableOptionsFi
 			public void onClick(DialogInterface dialog, int which) {
 				getField().selectOption(getField().getAvailableOptions().get(which));
 				refresh();
+
+				if (onValueChangedListener != null) {
+					onValueChangedListener.onClick(dialog, which);
+				}
 
 				if (getField().hasFormRules()) {
 					EventBusUtil.post(new Event.RequestEvaluationEvent());

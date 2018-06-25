@@ -42,6 +42,10 @@ public abstract class OptionsField<T extends Serializable> extends Field<T> {
 		}
 	}
 
+	OptionsField(ArrayList<Option> options) {
+		availableOptions = options;
+	}
+
 	OptionsField(Parcel in, ClassLoader loader) {
 		super(in, loader);
 

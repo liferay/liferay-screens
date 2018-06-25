@@ -44,8 +44,8 @@ public class SelectableOptionsField extends OptionsField<ArrayList<Option>> {
 			}
 		};
 
-	private boolean inline;
-	private boolean multiple;
+	private boolean inline = false;
+	private boolean multiple = false;
 	private DataProvider dataProvider;
 
 	public SelectableOptionsField() {
@@ -69,6 +69,10 @@ public class SelectableOptionsField extends OptionsField<ArrayList<Option>> {
 
 		setPredefinedValue(predefinedOptions);
 		setCurrentValue(predefinedOptions);
+	}
+
+	public SelectableOptionsField(ArrayList<Option> options) {
+		super(options);
 	}
 
 	protected SelectableOptionsField(Parcel in, ClassLoader loader) {

@@ -1,13 +1,17 @@
 package com.liferay.mobile.screens.ddl.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+import com.liferay.mobile.screens.asset.AssetEntry;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
 import org.json.JSONObject;
 
 /**
  * @author Victor Oliveira
  */
-public class Option implements Serializable {
+public class Option implements Serializable, Parcelable {
 
 	public String label;
 	public String name;
@@ -58,5 +62,40 @@ public class Option implements Serializable {
 		}
 
 		return super.equals(obj);
+	}
+
+	public static final Parcelable.ClassLoaderCreator<Option>
+		CREATOR = new Parcelable.ClassLoaderCreator<Option>() {
+
+		@Override
+		public Option createFromParcel(Parcel source, ClassLoader loader) {
+			return new Option(source, loader);
+		}
+
+		public Option createFromParcel(Parcel in) {
+			throw new AssertionError();
+		}
+
+		public Option[] newArray(int size) {
+			return new Option[size];
+		}
+	};
+
+	protected Option(Parcel in, ClassLoader loader) {
+		label = in.readString();
+		name = in.readString();
+		value = in.readString();
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(label);
+		dest.writeString(name);
+		dest.writeString(value);
 	}
 }
