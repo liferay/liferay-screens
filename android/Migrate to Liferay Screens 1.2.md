@@ -12,7 +12,7 @@ compile 'com.android.support:appcompat-v7:23.+'
 
 ## Offline changes
 
-* We have added 3 new callbacks in the screenlets that support offline. You don't need to do anything on them, just implement them empty when setting a listener. Like this:
+* We have added 3 new callbacks in the screenlets that support offline. You don't need to do anything on them, just implement them empty when setting a onValueChangedListener. Like this:
 
 ```java
 @Override
