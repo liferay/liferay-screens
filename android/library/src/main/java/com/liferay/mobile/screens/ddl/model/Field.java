@@ -17,6 +17,7 @@ package com.liferay.mobile.screens.ddl.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.liferay.mobile.screens.ddm.form.model.CheckboxMultipleField;
+import com.liferay.mobile.screens.ddm.form.model.GridField;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -61,6 +62,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	private String style;
 	private String displayStyle;
 	private String indexType;
+
 	public Field() {
 		super();
 	}
@@ -145,7 +147,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		visibilityExpression = in.readString();
 		ddmDataProviderInstance = in.readString();
 
-        autocomplete = (in.readInt() == 1);
+		autocomplete = (in.readInt() == 1);
 	}
 
 	@Override
@@ -184,7 +186,6 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	public String getText() {
 		return text;
 	}
-
 
 	public boolean isAutocomplete() {
 		return autocomplete;
@@ -320,8 +321,8 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		destination.writeString(visibilityExpression);
 		destination.writeString(ddmDataProviderInstance);
 
-        destination.writeInt(autocomplete ? 1 : 0);
-    }
+		destination.writeInt(autocomplete ? 1 : 0);
+	}
 
 	public List<Field> getFields() {
 		return fields;
@@ -412,6 +413,8 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 					return new DocumentField(attributes, locale, defaultLocale);
 				} else if (editor == EditorType.CHECKBOX_MULTIPLE) {
 					return new CheckboxMultipleField(attributes, locale, defaultLocale);
+				} else if (editor == EditorType.GRID) {
+					return new GridField(attributes, locale, defaultLocale);
 				} else {
 					return new StringField(attributes, locale, defaultLocale);
 				}
@@ -448,7 +451,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 			"ddm-date", "date"), NUMBER("ddm-number", "number", "numeric"), INTEGER("ddm-integer", "integer"), DECIMAL(
 			"ddm-decimal", "decimal", "double"), SELECT("select"), CHECKBOX_MULTIPLE("checkbox_multiple"), RADIO(
 			"radio"), DOCUMENT("ddm-documentlibrary", "document_library", "documentlibrary", "wcm-image"), GEO(
-			"ddm-geolocation", "geolocation"), UNSUPPORTED("");
+			"ddm-geolocation", "geolocation"), GRID("grid"), UNSUPPORTED("");
 
 		private final String[] values;
 

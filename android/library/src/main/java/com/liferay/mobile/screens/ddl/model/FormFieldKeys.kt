@@ -37,6 +37,7 @@ class FormFieldKeys {
         const val DDM_DATA_PROVIDER_INSTANCE = "ddmDataProviderInstance"
         const val PREDEFINED_VALUE = "predefinedValue"
         const val TEXT = "text"
+        const val GRID = "grid"
         const val OPTIONS = "options"
         const val VALIDATION = "validation"
         const val HAS_FORM_RULES = "hasFormRules"

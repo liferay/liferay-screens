@@ -134,6 +134,7 @@ data class FormInstance @JvmOverloads constructor(
                 val placeholder = it["placeholder"] as? String
                 val text = it["text"] as? String
                 val displayStyle = it["displayStyle"] as? String
+                val grid = it["grid"] as? Map<String, Any>
                 val options = (it["options"] as? Map<String, Any>)?.let {
                     it["member"] as? List<Map<String, Any>>
                 }
@@ -141,7 +142,7 @@ data class FormInstance @JvmOverloads constructor(
 
                 val attributes = mapKeysToAllValues(isAutocomplete, isInline, isLocalizable, isMultiple, isReadOnly,
                     isRepeatable, isRequired, isShowAsSwitcher, isShowLabel, isTransient, hasFormRules, label,
-                    predefinedValue, tip, dataType, additionalType, name, placeholder, text, displayStyle, options,
+                    predefinedValue, tip, dataType, additionalType, name, placeholder, text, displayStyle, grid, options,
                     validation)
 
 
@@ -154,8 +155,8 @@ data class FormInstance @JvmOverloads constructor(
             isMultiple: Boolean?, isReadOnly: Boolean?, isRepeatable: Boolean?, isRequired: Boolean?,
             isShowAsSwitcher: Boolean?, isShowLabel: Boolean?, isTransient: Boolean?, hasFormRules: Boolean?,
             label: String?, predefinedValue: String?, tip: String?, dataType: String?, additionalType: String?,
-            name: String?, placeholder: String?, text: String?, displayStyle: String?, options: List<Map<String, Any>>?,
-            validation: Map<String, String>): Map<String, Any?> {
+            name: String?, placeholder: String?, text: String?, displayStyle: String?, grid: Map<String, Any>?,
+            options: List<Map<String, Any>>?, validation: Map<String, String>): Map<String, Any?> {
 
             return mapOf(
                 FormFieldKeys.IS_AUTOCOMPLETE to isAutocomplete,
@@ -178,6 +179,7 @@ data class FormInstance @JvmOverloads constructor(
                 FormFieldKeys.PLACEHOLDER to placeholder,
                 FormFieldKeys.TEXT to text,
                 FormFieldKeys.DISPLAY_STYLE to displayStyle,
+                FormFieldKeys.GRID to grid,
                 FormFieldKeys.OPTIONS to options,
                 FormFieldKeys.VALIDATION to validation
             )
