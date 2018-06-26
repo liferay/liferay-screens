@@ -71,6 +71,7 @@ open class AssetClassEntry: NSObject {
 }
 
 @objc(AssetClasses)
+@objcMembers
 open class AssetClasses: NSObject {
 
 	fileprivate static var classNameEntries: [String: AssetClassEntry] = {
