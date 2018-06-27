@@ -195,6 +195,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		return readOnly;
 	}
 
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
 	public void setReadOnly(boolean readOnly) {
 		this.readOnly = readOnly;
 	}

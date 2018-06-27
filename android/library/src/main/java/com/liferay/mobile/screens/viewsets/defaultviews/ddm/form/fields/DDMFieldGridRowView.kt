@@ -39,7 +39,9 @@ open class DDMFieldGridRowView @JvmOverloads constructor(context: Context, attrs
         columnLabelEditText = findViewById(R.id.column_label_edit_text)
     }
 
-    fun setOptions(options: ArrayList<Option>) {
-        columnLabelEditText.field = SelectableOptionsField(options)
+    fun setOptions(dialogLabel: String, options: ArrayList<Option>) {
+        val selectableOptionsField = SelectableOptionsField(options)
+        selectableOptionsField.label = dialogLabel
+        columnLabelEditText.field = selectableOptionsField
     }
 }
