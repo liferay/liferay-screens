@@ -37,38 +37,6 @@
 			>
 
 			<ImageButton
-				android:id="@+id/positiveRatingButton"
-				android:layout_width="80dp"
-				android:layout_height="80dp"
-				android:background="@drawable/ripple"
-				android:contentDescription="@string/thumbs_up"
-				android:scaleType="fitXY"
-				android:src="@drawable/default_thumb_up_outline"
-				android:tag="@string/screenlet_rating_button_tag"
-				android:tint="?colorPrimary"
-				/>
-
-			<TextView
-				android:id="@+id/positiveRatingCount"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:gravity="center"
-				android:tag="@string/screenlet_rating_label_tag"
-				android:textColor="@color/textColorPrimary_default"
-				tools:text="Total: 7"
-				/>
-
-		</LinearLayout>
-
-		<LinearLayout
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:orientation="vertical"
-			android:paddingLeft="10dp"
-			>
-
-			<ImageButton
 				android:id="@+id/negativeRatingButton"
 				android:layout_width="80dp"
 				android:layout_height="80dp"
@@ -89,6 +57,38 @@
 				android:tag="@string/screenlet_rating_label_tag"
 				android:textColor="@color/textColorPrimary_default"
 				tools:text="Total: 9"
+				/>
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:orientation="vertical"
+			android:paddingLeft="10dp"
+			>
+
+			<ImageButton
+				android:id="@+id/positiveRatingButton"
+				android:layout_width="80dp"
+				android:layout_height="80dp"
+				android:background="@drawable/ripple"
+				android:contentDescription="@string/thumbs_up"
+				android:scaleType="fitXY"
+				android:src="@drawable/default_thumb_up_outline"
+				android:tag="@string/screenlet_rating_button_tag"
+				android:tint="?colorPrimary"
+				/>
+
+			<TextView
+				android:id="@+id/positiveRatingCount"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:gravity="center"
+				android:tag="@string/screenlet_rating_label_tag"
+				android:textColor="@color/textColorPrimary_default"
+				tools:text="Total: 7"
 				/>
 
 		</LinearLayout>
