@@ -30,15 +30,15 @@ public class DDLFormView extends com.liferay.mobile.screens.viewsets.defaultview
 	static {
 		LEXICON_LAYOUT_IDS.put(Field.EditorType.CHECKBOX, R.layout.ddlfield_checkbox_default);
 		LEXICON_LAYOUT_IDS.put(Field.EditorType.DATE, R.layout.ddlfield_date_lexicon);
-		LEXICON_LAYOUT_IDS.put(Field.EditorType.NUMBER, R.layout.ddlfield_number_default);
-		LEXICON_LAYOUT_IDS.put(Field.EditorType.INTEGER, R.layout.ddlfield_number_default);
-		LEXICON_LAYOUT_IDS.put(Field.EditorType.DECIMAL, R.layout.ddlfield_number_default);
-		LEXICON_LAYOUT_IDS.put(Field.EditorType.RADIO, R.layout.ddlfield_radio_default);
+		LEXICON_LAYOUT_IDS.put(Field.EditorType.NUMBER, R.layout.ddlfield_number_lexicon);
+		LEXICON_LAYOUT_IDS.put(Field.EditorType.INTEGER, R.layout.ddlfield_number_lexicon);
+		LEXICON_LAYOUT_IDS.put(Field.EditorType.DECIMAL, R.layout.ddlfield_number_lexicon);
+		LEXICON_LAYOUT_IDS.put(Field.EditorType.RADIO, R.layout.ddlfield_radio_lexicon);
 		LEXICON_LAYOUT_IDS.put(Field.EditorType.SELECT, R.layout.ddlfield_select_lexicon);
 		LEXICON_LAYOUT_IDS.put(Field.EditorType.CHECKBOX_MULTIPLE, R.layout.ddlfield_select_lexicon);
-		LEXICON_LAYOUT_IDS.put(Field.EditorType.TEXT, R.layout.ddlfield_text_default);
-		LEXICON_LAYOUT_IDS.put(Field.EditorType.TEXT_AREA, R.layout.ddlfield_text_area_default);
-		LEXICON_LAYOUT_IDS.put(Field.EditorType.PARAGRAPH, R.layout.ddlfield_text_area_default);
+		LEXICON_LAYOUT_IDS.put(Field.EditorType.TEXT, R.layout.ddlfield_text_lexicon);
+		LEXICON_LAYOUT_IDS.put(Field.EditorType.TEXT_AREA, R.layout.ddlfield_text_area_lexicon);
+		LEXICON_LAYOUT_IDS.put(Field.EditorType.PARAGRAPH, R.layout.ddlfield_text_area_lexicon);
 		LEXICON_LAYOUT_IDS.put(Field.EditorType.DOCUMENT, R.layout.ddlfield_document_lexicon);
 		LEXICON_LAYOUT_IDS.put(Field.EditorType.GEO, R.layout.ddlfield_geo_default);
 

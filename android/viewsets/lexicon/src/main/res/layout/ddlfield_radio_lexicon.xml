@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.lexicon.ddl.form.fields.DDLFieldRadioView
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/radio_group"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
+	android:orientation="vertical"
 	android:padding="@dimen/field_padding"
 	>
 
@@ -12,6 +12,13 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:visibility="gone"
+		/>
+
+	<RadioGroup
+		android:id="@+id/radio_group"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
 		/>
 
 </com.liferay.mobile.screens.viewsets.lexicon.ddl.form.fields.DDLFieldRadioView>
