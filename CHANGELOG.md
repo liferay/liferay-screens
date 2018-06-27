@@ -43,6 +43,7 @@ All notable changes to this project will be documented in this file.
 
 ### Bugs
 * Fix Crash when trying to obtain title property in WebContent model
+* Fix method not been expose in Objective-C
 
 ### Features
 * Add OAuth2 authentication
