@@ -48,9 +48,10 @@ import com.liferay.mobile.screens.util.EventBusUtil
 import com.liferay.mobile.screens.util.LiferayLogger
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.BaseDDLFieldTextView
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
+import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.pager.WrapContentViewPager
-import okhttp3.HttpUrl
 import com.squareup.otto.Subscribe
+import okhttp3.HttpUrl
 import org.jetbrains.anko.childrenSequence
 import java.text.SimpleDateFormat
 import java.util.*
@@ -63,14 +64,13 @@ class DDMFormView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : BaseView,
     ScrollView(context, attrs, defStyleAttr), DDLDocumentFieldView.UploadListener {
 
-    private val layoutIds = mutableMapOf<Field.EditorType, Int?>()
     private val ddmFieldViewPages by bindNonNull<WrapContentViewPager>(R.id.ddmfields_container)
     private val backButton by bindNonNull<Button>(R.id.liferay_form_back)
     private val nextButton by bindNonNull<Button>(R.id.liferay_form_submit)
+    private var gson = GsonBuilder().registerTypeAdapter(Option::class.java, OptionSerializer()).create()
+    private var formInstance: FormInstance? = null
 
-    var formInstance: FormInstance? = null
-
-    var gson = GsonBuilder().registerTypeAdapter(Option::class.java, OptionSerializer()).create()
+    val layoutIds = mutableMapOf<Field.EditorType, Int>()
 
     override var screenlet: ThingScreenlet? = null
     override var thing: Thing? by converter<FormInstance> {
@@ -84,6 +84,22 @@ class DDMFormView @JvmOverloads constructor(
         formInstance?.fields
 
         evaluateContext(thing)
+    }
+
+    init {
+        val themeName = ThemeUtil.getLayoutTheme(context)
+
+        for (pair in availableFields) {
+            val fieldType = pair.first
+            val fieldNamePrefix = pair.second
+
+            layoutIds[fieldType] = ThemeUtil.getLayoutIdentifier(context, fieldNamePrefix, themeName)
+        }
+    }
+
+    private fun getIdentifier(fieldNamePrefix: String, themeName: String): Int {
+        return context.resources.getIdentifier(
+            "${fieldNamePrefix}_$themeName", "layout", context.packageName)
     }
 
     override fun onFinishInflate() {
@@ -232,7 +248,7 @@ class DDMFormView @JvmOverloads constructor(
 
     private fun updatePages(formContext: FormContext) {
         (ddmFieldViewPages.adapter as DDMPagerAdapter)?.let {
-            for((index, page) in it.pages.withIndex()) {
+            for ((index, page) in it.pages.withIndex()) {
                 page.isEnabled = formContext.pages[index].isEnabled
             }
         }
@@ -240,10 +256,10 @@ class DDMFormView @JvmOverloads constructor(
 
     private fun updateFields(formContext: FormContext) {
         val fieldsContainerView =
-                ddmFieldViewPages.findViewWithTag<LinearLayout>(ddmFieldViewPages.currentItem)
+            ddmFieldViewPages.findViewWithTag<LinearLayout>(ddmFieldViewPages.currentItem)
 
         val fieldContexts =
-                formContext.pages.flatMap(FormContextPage::fields).map { Pair(it.name, it) }.toMap()
+            formContext.pages.flatMap(FormContextPage::fields).map { Pair(it.name, it) }.toMap()
 
         fieldsContainerView.childrenSequence().forEach {
             val fieldView = it
@@ -284,7 +300,7 @@ class DDMFormView @JvmOverloads constructor(
     private fun setValue(fieldContext: FieldContext, field: Field<*>) {
         if (fieldContext.isValueChanged == true) {
             fieldContext.value?.toString()?.let {
-                when(field) {
+                when (field) {
                     is SelectableOptionsField -> setSelectableFieldValues(it, field)
                     else -> setBasicFieldValue(it, field)
                 }
@@ -302,25 +318,24 @@ class DDMFormView @JvmOverloads constructor(
     }
 
     private fun setSelectableFieldValues(stringValue: String, field: SelectableOptionsField) {
-        if(stringValue.isNotEmpty()) {
+        if (stringValue.isNotEmpty()) {
             val optionValues = stringValue
-                    .removePrefix("[")
-                    .removeSuffix("]")
-                    .split(',')
+                .removePrefix("[")
+                .removeSuffix("]")
+                .split(',')
 
             field.availableOptions.filter {
                 optionValues.contains(it.value)
             }.forEach {
-                field.selectOption(it)
-            }
+                    field.selectOption(it)
+                }
         }
     }
 
     private fun setVisibility(fieldContext: FieldContext, fieldView: View) {
         if (fieldContext.isVisible != false) {
             fieldView.visibility = View.VISIBLE
-        }
-        else {
+        } else {
             fieldView.visibility = View.GONE
         }
     }
@@ -338,14 +353,14 @@ class DDMFormView @JvmOverloads constructor(
 
                 val fieldsList = formInstance!!
                     .fields.map {
-                        val currentValue = when(it.editorType) {
-                            Field.EditorType.RADIO -> (it.currentValue as? List<*>)?.get(0)
-                            Field.EditorType.GRID -> (it.currentValue as? Grid)?.rawValues
-                            else -> it.currentValue
-                        }
-
-                        mapOf("name" to it.name, "value" to currentValue)
+                    val currentValue = when (it.editorType) {
+                        Field.EditorType.RADIO -> (it.currentValue as? List<*>)?.get(0)
+                        Field.EditorType.GRID -> (it.currentValue as? Grid)?.rawValues
+                        else -> it.currentValue
                     }
+
+                    mapOf("name" to it.name, "value" to currentValue)
+                }
 
                 val fieldValues = gson.toJson(fieldsList)
 
@@ -407,7 +422,8 @@ class DDMFormView @JvmOverloads constructor(
                 val (response, exception) = it
 
                 response?.let {
-                    val json = Gson().fromJson<Map<String, Any>>(it.body()?.string(), TypeToken.getParameterized(Map::class.java, String::class.java, Any::class.java).type)
+                    val json = Gson().fromJson<Map<String, Any>>(it.body()?.string(),
+                        TypeToken.getParameterized(Map::class.java, String::class.java, Any::class.java).type)
 
                     field.setCurrentStringValue(json["@id"] as String)
                     field.moveToUploadCompleteState()
@@ -432,24 +448,22 @@ class DDMFormView @JvmOverloads constructor(
     }
 
     companion object {
-
-        val DEFAULT_LAYOUT_IDS = HashMap<Field.EditorType, Int>(1)
-
-        init {
-            DEFAULT_LAYOUT_IDS[Field.EditorType.CHECKBOX] = R.layout.ddlfield_checkbox_default
-            DEFAULT_LAYOUT_IDS[Field.EditorType.CHECKBOX_MULTIPLE] = R.layout.ddmfield_checkbox_multiple_default
-            DEFAULT_LAYOUT_IDS[Field.EditorType.DATE] = R.layout.ddlfield_date_default
-            DEFAULT_LAYOUT_IDS[Field.EditorType.NUMBER] = R.layout.ddlfield_number_default
-            DEFAULT_LAYOUT_IDS[Field.EditorType.INTEGER] = R.layout.ddlfield_number_default
-            DEFAULT_LAYOUT_IDS[Field.EditorType.DECIMAL] = R.layout.ddlfield_number_default
-            DEFAULT_LAYOUT_IDS[Field.EditorType.RADIO] = R.layout.ddlfield_radio_default
-            DEFAULT_LAYOUT_IDS[Field.EditorType.TEXT] = R.layout.ddlfield_text_default
-            DEFAULT_LAYOUT_IDS[Field.EditorType.SELECT] = R.layout.ddlfield_select_default
-            DEFAULT_LAYOUT_IDS[Field.EditorType.TEXT_AREA] = R.layout.ddlfield_text_area_default
-            DEFAULT_LAYOUT_IDS[Field.EditorType.PARAGRAPH] = R.layout.ddmfield_paragrah_default
-            DEFAULT_LAYOUT_IDS[Field.EditorType.DOCUMENT] = R.layout.ddlfield_document_default
-            DEFAULT_LAYOUT_IDS[Field.EditorType.GRID] = R.layout.ddmfield_grid_default
-            //DEFAULT_LAYOUT_IDS.put(Field.EditorType.GEO, R.layout.ddlfield_geo_default);
-        }
+        @JvmField
+        val availableFields = listOf(
+            Field.EditorType.CHECKBOX to "ddlfield_checkbox",
+            Field.EditorType.CHECKBOX_MULTIPLE to "ddmfield_checkbox_multiple",
+            Field.EditorType.DATE to "ddlfield_date",
+            Field.EditorType.NUMBER to "ddlfield_number",
+            Field.EditorType.INTEGER to "ddlfield_number",
+            Field.EditorType.DECIMAL to "ddlfield_number",
+            Field.EditorType.RADIO to "ddlfield_radio",
+            Field.EditorType.TEXT to "ddlfield_text",
+            Field.EditorType.SELECT to "ddlfield_select",
+            Field.EditorType.TEXT_AREA to "ddlfield_text_area",
+            Field.EditorType.PARAGRAPH to "ddmfield_paragrah",
+            Field.EditorType.DOCUMENT to "ddlfield_document",
+            Field.EditorType.GRID to "ddmfield_grid",
+            Field.EditorType.GEO to "ddlfield_geo"
+        )
     }
 }

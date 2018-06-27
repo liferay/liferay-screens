@@ -28,7 +28,7 @@ import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocum
 /**
  * @author Victor Oliveira
  */
-class DDMPagerAdapter(val pages: List<FormPage>, val view: DDMFormView) : PagerAdapter() {
+class DDMPagerAdapter(val pages: List<FormPage>, val ddmFormView: DDMFormView) : PagerAdapter() {
 
     override fun getCount(): Int {
         return pages.size
@@ -46,8 +46,8 @@ class DDMPagerAdapter(val pages: List<FormPage>, val view: DDMFormView) : PagerA
         val page = pages[position]
         val inflater = LayoutInflater.from(container?.context)
 
-        val view = inflater.inflate(R.layout.ddm_form_page_item, container, false)
-        val linearLayout = view.findViewById<LinearLayout>(R.id.dmm_page_container)
+        val pageItemView = inflater.inflate(R.layout.ddm_form_page_item, container, false)
+        val linearLayout = pageItemView.findViewById<LinearLayout>(R.id.dmm_page_container)
 
         linearLayout.findViewById<TextView>(R.id.headline_text_view)?.let {
             it.text = page.headline
@@ -58,11 +58,11 @@ class DDMPagerAdapter(val pages: List<FormPage>, val view: DDMFormView) : PagerA
         }
 
         for (field in page.fields) {
-            val layoutId = DDMFormView.DEFAULT_LAYOUT_IDS[field.editorType]
+            val layoutId = ddmFormView.layoutIds[field.editorType]
             val view = inflater.inflate(layoutId!!, linearLayout, false)
 
             if (view is DDLDocumentFieldView) {
-                view.setUploadListener(this.view)
+                view.setUploadListener(ddmFormView)
             }
 
             val viewModel = view as DDLFieldViewModel<*>
