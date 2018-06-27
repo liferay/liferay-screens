@@ -16,15 +16,11 @@ package com.liferay.mobile.screens.base;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -41,6 +37,7 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.util.LiferayLogger;
+import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -283,7 +280,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 			String packageName = ctx.getPackageName();
 
 			// First, get the identifier of the string key
-			String layoutNameKeyName = getClass().getSimpleName() + "_" + getLayoutTheme();
+			String layoutNameKeyName = getClass().getSimpleName() + "_" + ThemeUtil.getLayoutTheme(ctx);
 			int layoutNameKeyId = ctx.getResources().getIdentifier(layoutNameKeyName, "string", packageName);
 
 			if (layoutNameKeyId == 0) {
@@ -441,42 +438,6 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
 			LiferayLogger.e("You have supplied a string and we expected a long number", e);
 			throw e;
 		}
-	}
-
-	@NonNull
-	protected String getLayoutTheme() {
-		String result = applyTheme(getActivityTheme());
-
-		if (result == null) {
-			result = applyTheme(getApplicationTheme());
-		}
-		return result == null ? "default" : result;
-	}
-
-	private String getActivityTheme() {
-		try {
-			TypedValue outValue = new TypedValue();
-			LiferayScreensContext.getActivityFromContext(getContext())
-				.getTheme()
-				.resolveAttribute(R.attr.themeName, outValue, true);
-			return (String) outValue.string;
-		} catch (Exception e) {
-			LiferayLogger.d("Screens theme not found");
-		}
-		return null;
-	}
-
-	private String getApplicationTheme() {
-		try {
-			Context ctx = getContext().getApplicationContext();
-			String packageName = ctx.getPackageName();
-			PackageInfo packageInfo = ctx.getPackageManager().getPackageInfo(packageName, PackageManager.GET_META_DATA);
-			int applicationThemeId = packageInfo.applicationInfo.theme;
-			return getResources().getResourceEntryName(applicationThemeId);
-		} catch (Exception e) {
-			LiferayLogger.d("Screens theme not found");
-		}
-		return null;
 	}
 
 	private String applyTheme(String themeName) {
