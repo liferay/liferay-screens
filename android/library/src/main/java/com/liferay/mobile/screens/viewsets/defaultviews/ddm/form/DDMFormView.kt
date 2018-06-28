@@ -33,7 +33,7 @@ import com.liferay.apio.consumer.model.Relation
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.getOperation
 import com.liferay.apio.consumer.performOperation
-import com.liferay.apio.consumer.performOperationAndParse
+import com.liferay.apio.consumer.performParseOperation
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.*
@@ -216,7 +216,7 @@ class DDMFormView @JvmOverloads constructor(
         val operation = thing!!.getOperation("evaluate-context")
 
         operation?.let {
-            performOperationAndParse(thing.id, it.id, {
+            performParseOperation(thing.id, it.id, {
                 val values = mutableMapOf<String, Any>()
 
                 val fieldsList = formInstance!!.fields.map {
