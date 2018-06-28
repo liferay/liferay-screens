@@ -399,7 +399,7 @@ class DDMFormView @JvmOverloads constructor(
     }
 
     override fun startUploadField(field: DocumentField) {
-        val operation = thing?.getOperation("uploadFileToRootFolder")
+        val operation = thing?.getOperation("upload-file-to-root-folder")
 
         val filePath = field.currentValue.toString()
         val fileUri = Uri.parse(filePath)
