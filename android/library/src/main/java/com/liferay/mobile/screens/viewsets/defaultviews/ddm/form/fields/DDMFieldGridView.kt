@@ -34,36 +34,36 @@ import java.util.*
  */
 open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null,
     defStyleAttr: Int = 0) : LinearLayout(context, attrs, defStyleAttr), DDLFieldViewModel<GridField> {
-    private lateinit var field: GridField
+    private lateinit var gridField: GridField
     private lateinit var parentView: View
     private val labelTextView: TextView by bindNonNull(R.id.liferay_ddm_label)
     private val hintTextView: TextView by bindNonNull(R.id.liferay_ddm_hint)
     private val gridLinearLayout: LinearLayout by bindNonNull(R.id.liferay_ddm_grid)
 
     override fun getField(): GridField {
-        return field
+        return this.gridField
     }
 
     override fun setField(field: GridField) {
-        this.field = field
+        this.gridField = field
 
         setupLabelLayout()
         refresh()
     }
 
     private fun setupLabelLayout() {
-        if (field.isShowLabel && field.label.isNotEmpty()) {
-            labelTextView.text = field.label
+        if (gridField.isShowLabel && gridField.label.isNotEmpty()) {
+            labelTextView.text = gridField.label
             labelTextView.visibility = View.VISIBLE
 
-            if (this.field.isRequired) {
+            if (this.gridField.isRequired) {
                 val requiredAlert = ThemeUtil.getRequiredSpannable(context)
                 labelTextView.append(requiredAlert)
             }
         }
 
-        if (field.tip.isNotEmpty()) {
-            hintTextView.text = field.tip
+        if (gridField.tip.isNotEmpty()) {
+            hintTextView.text = gridField.tip
             hintTextView.visibility = View.VISIBLE
         }
     }
@@ -71,7 +71,7 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
     override fun refresh() {
         gridLinearLayout.removeAllViews()
 
-        field.rows.forEach { row ->
+        this.gridField.rows.forEach { row ->
 
             val inflater = LayoutInflater.from(context)
             val layoutIdentifier = ThemeUtil.getLayoutIdentifier(context, "ddmfield_grid_row")
@@ -82,15 +82,15 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
 
             val ddmFieldGridRowView = view as DDMFieldGridRowView
             ddmFieldGridRowView.rowLabelEditText.setText(row.label)
-            ddmFieldGridRowView.setOptions(row.label, field.columns as ArrayList<Option>)
+            ddmFieldGridRowView.setOptions(row.label, gridField.columns as ArrayList<Option>)
 
             ddmFieldGridRowView.columnLabelEditText.setOnValueChangedListener { dialog, which ->
-                val option = field.columns[which]
+                val option = this.gridField.columns[which]
 
-                if (field.currentValue == null) {
-                    field.currentValue = Grid(mutableMapOf(row.value to option.value))
+                if (this.gridField.currentValue == null) {
+                    this.gridField.currentValue = Grid(mutableMapOf(row.value to option.value))
                 } else {
-                    field.currentValue.rawValues[row.value] = option.value
+                    this.gridField.currentValue.rawValues[row.value] = option.value
                 }
             }
         }

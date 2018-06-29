@@ -29,8 +29,7 @@ import java.util.List;
  * @author Victor Oliveira
  */
 public class DDLFieldSelectView
-	extends com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldSelectView
-	implements DialogInterface.OnClickListener {
+	extends com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldSelectView {
 
 	public DDLFieldSelectView(Context context) {
 		super(context);
@@ -68,22 +67,7 @@ public class DDLFieldSelectView
 	}
 
 	@Override
-	public void onClick(DialogInterface dialog, int which) {
-		if (which >= 0) {
-			getField().selectOption(getField().getAvailableOptions().get(which));
-			refresh();
-		} else {
-			dialog.dismiss();
-		}
-	}
-
-	@Override
 	public void onPostValidation(boolean valid) {
 		FormViewUtil.setupTextFieldLayout(getContext(), valid, labelTextView, textEditText);
-	}
-
-	@Override
-	protected DialogInterface.OnClickListener getAlertDialogListener() {
-		return this;
 	}
 }

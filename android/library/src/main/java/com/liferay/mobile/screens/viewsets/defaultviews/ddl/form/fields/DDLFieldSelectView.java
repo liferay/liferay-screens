@@ -42,6 +42,10 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<SelectableOptionsFi
 		this.onValueChangedListener = onValueChangedListener;
 	}
 
+	public DialogInterface.OnClickListener getOnValueChangedListener() {
+		return onValueChangedListener;
+	}
+
 	private DialogInterface.OnClickListener onValueChangedListener;
 
 	public DDLFieldSelectView(Context context) {
@@ -119,15 +123,19 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<SelectableOptionsFi
 	protected DialogInterface.OnClickListener getAlertDialogListener() {
 		return new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
-				getField().selectOption(getField().getAvailableOptions().get(which));
-				refresh();
+				if (which >= 0) {
+					getField().selectOption(getField().getAvailableOptions().get(which));
+					refresh();
 
-				if (onValueChangedListener != null) {
-					onValueChangedListener.onClick(dialog, which);
-				}
+					if (onValueChangedListener != null) {
+						onValueChangedListener.onClick(dialog, which);
+					}
 
-				if (getField().hasFormRules()) {
-					EventBusUtil.post(new Event.RequestEvaluationEvent());
+					if (getField().hasFormRules()) {
+						EventBusUtil.post(new Event.RequestEvaluationEvent());
+					}
+				} else {
+					dialog.dismiss();
 				}
 			}
 		};
