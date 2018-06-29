@@ -48,8 +48,8 @@ import com.liferay.mobile.screens.util.EventBusUtil
 import com.liferay.mobile.screens.util.LiferayLogger
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.BaseDDLFieldTextView
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
-import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.pager.WrapContentViewPager
+import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil
 import com.squareup.otto.Subscribe
 import okhttp3.HttpUrl
 import org.jetbrains.anko.childrenSequence
@@ -80,8 +80,6 @@ class DDMFormView @JvmOverloads constructor(
 
         if (it.ddmStructure.pages.size == 1)
             nextButton.text = context.getString(R.string.submit)
-
-        formInstance?.fields
 
         evaluateContext(thing)
     }
@@ -219,7 +217,7 @@ class DDMFormView @JvmOverloads constructor(
             performParseOperation(thing.id, it.id, {
                 val values = mutableMapOf<String, Any>()
 
-                val fieldsList = formInstance!!.fields.map {
+                val fieldsList = formInstance!!.ddmStructure.fields.map {
                     mapOf("name" to it.name, "value" to it.currentValue)
                 }
 
@@ -351,7 +349,7 @@ class DDMFormView @JvmOverloads constructor(
                     values["isDraft"] = isDraft
                 }
 
-                val fieldsList = formInstance!!
+                val fieldsList = formInstance!!.ddmStructure
                     .fields.map {
                     val currentValue = when (it.editorType) {
                         Field.EditorType.RADIO -> (it.currentValue as? List<*>)?.get(0)

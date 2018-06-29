@@ -37,8 +37,7 @@ data class FormInstance @JvmOverloads constructor(
     val ddmStructure: DDMStructure,
     val isRequiredAuthentication: Boolean = false,
     val isRequiredCaptcha: Boolean = false,
-    val redirectURL: String? = null,
-    val fields: List<Field<*>>) {
+    val redirectURL: String? = null) {
 
     companion object {
         val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
@@ -62,7 +61,7 @@ data class FormInstance @JvmOverloads constructor(
 
             val fields = ddmStructure.pages.flatMap { it.fields }
 
-            FormInstance(name, description, defaultLanguage, ddmStructure, fields = fields)
+            FormInstance(name, description, defaultLanguage, ddmStructure)
         }
 
 

@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import kotlin.collections.CollectionsKt;
+import kotlin.jvm.functions.Function1;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -60,6 +62,12 @@ public class DDMStructure implements Parcelable {
 		this.name = name;
 		this.description = description;
 		this.pages = pages;
+		this.fields = CollectionsKt.flatMap(pages, new Function1<FormPage, Iterable<? extends Field>>() {
+			@Override
+			public Iterable<? extends Field> invoke(FormPage formPage) {
+				return formPage.getFields();
+			}
+		});
 
 		parsed = true;
 	}
