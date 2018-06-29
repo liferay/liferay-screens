@@ -86,7 +86,6 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 
 	public void setupFieldLayout() {
 		if (this.field.isShowLabel()) {
-			textEditText.setHint("");
 			if (labelTextView != null) {
 				labelTextView.setText(this.field.getLabel());
 				labelTextView.setVisibility(VISIBLE);
@@ -97,10 +96,13 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 				}
 			}
 		} else {
-			textEditText.setHint(this.field.getLabel());
 			if (labelTextView != null) {
 				labelTextView.setVisibility(GONE);
 			}
+		}
+
+		if (this.field.getPlaceHolder() != null && !this.field.getPlaceHolder().isEmpty()) {
+			textEditText.setHint(this.field.getPlaceHolder());
 		}
 	}
 

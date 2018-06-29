@@ -17,6 +17,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.text.Spannable;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
@@ -32,6 +33,7 @@ import com.liferay.mobile.screens.ddl.model.Option;
 import com.liferay.mobile.screens.ddl.model.SelectableOptionsField;
 import com.liferay.mobile.screens.thingscreenlet.screens.events.Event;
 import com.liferay.mobile.screens.util.EventBusUtil;
+import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil;
 import java.util.List;
 
 /**
@@ -66,6 +68,11 @@ public class DDLFieldRadioView extends LinearLayout
 
 			label.setText(field.getLabel());
 			label.setVisibility(VISIBLE);
+
+			if (this.field.isRequired()) {
+				Spannable requiredAlert = ThemeUtil.getRequiredSpannable(getContext());
+				label.append(requiredAlert);
+			}
 		}
 
 		if (this.field.isInline()) {
