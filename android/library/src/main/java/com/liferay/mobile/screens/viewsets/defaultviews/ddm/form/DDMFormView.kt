@@ -158,7 +158,7 @@ class DDMFormView @JvmOverloads constructor(
         val page = formInstance?.ddmStructure?.pages?.get(ddmFieldViewPages.currentItem)
 
         page?.let {
-            invalidResults = it.fields.filter { !it.isValid }.associateBy({ it }, { "Error Msg Goes Here" })
+            invalidResults = it.fields?.filter { !it.isValid }?.associateBy({ it }, { "Error Msg Goes Here" }).orEmpty()
         }
 
         return invalidResults
@@ -217,11 +217,7 @@ class DDMFormView @JvmOverloads constructor(
             performParseOperation(thing.id, it.id, {
                 val values = mutableMapOf<String, Any>()
 
-                val fieldsList = formInstance!!.ddmStructure.fields.map {
-                    mapOf("name" to it.name, "value" to it.currentValue)
-                }
-
-                val fieldValues = gson.toJson(fieldsList)
+                val fieldValues = gson.toJson(formInstance!!.fieldValues)
 
                 values["fieldValues"] = fieldValues
 
@@ -349,18 +345,7 @@ class DDMFormView @JvmOverloads constructor(
                     values["isDraft"] = isDraft
                 }
 
-                val fieldsList = formInstance!!.ddmStructure
-                    .fields.map {
-                    val currentValue = when (it.editorType) {
-                        Field.EditorType.RADIO -> (it.currentValue as? List<*>)?.get(0)
-                        Field.EditorType.GRID -> (it.currentValue as? Grid)?.rawValues
-                        else -> it.currentValue
-                    }
-
-                    mapOf("name" to it.name, "value" to currentValue)
-                }
-
-                val fieldValues = gson.toJson(fieldsList)
+                val fieldValues = gson.toJson(formInstance!!.fieldValues)
 
                 values["fieldValues"] = fieldValues
 

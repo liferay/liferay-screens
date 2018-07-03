@@ -23,7 +23,9 @@ import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
 import com.liferay.apio.consumer.model.Relation
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.get
+import java.io.Serializable
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * @author Paulo Cruz
@@ -38,6 +40,27 @@ data class FormInstance @JvmOverloads constructor(
     val isRequiredAuthentication: Boolean = false,
     val isRequiredCaptcha: Boolean = false,
     val redirectURL: String? = null) {
+
+    private val fields: List<Field<*>>
+        get() = ddmStructure.pages.flatMap { it.fields?.toList() }
+
+    val fieldValues: List<Map<String, Serializable>>
+        get() = fields.toMutableList().flatMap {
+            when(it) {
+                is RepeatableField -> it.repeatedFields
+                else -> listOf(it)
+            }
+        }.filter {
+            it.currentValue?.let {
+                when(it) {
+                    is ArrayList<*> -> it.isNotEmpty()
+                    is Grid -> it.rawValues.isNotEmpty()
+                    else -> it.toString().isNotEmpty()
+                }
+            } ?: false
+        }.map {
+            mapOf("name" to it.name, "value" to it.currentValue)
+        }
 
     companion object {
         val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
@@ -58,8 +81,6 @@ data class FormInstance @JvmOverloads constructor(
             val ddmStructure = (it["structure"] as Relation).let {
                 getStructure(it, locale)
             }
-
-            val fields = ddmStructure.pages.flatMap { it.fields }
 
             FormInstance(name, description, defaultLanguage, ddmStructure)
         }
@@ -99,7 +120,7 @@ data class FormInstance @JvmOverloads constructor(
                 val textPage = it["text"] as? String ?: ""
                 val fields = (it["fields"] as Map<String, Any>).let {
                     getFields(it, locale)
-                }
+                }.toMutableList()
 
                 FormPage(headlinePage, textPage, fields)
             })
