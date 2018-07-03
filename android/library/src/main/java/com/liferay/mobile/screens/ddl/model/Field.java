@@ -18,6 +18,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import com.liferay.mobile.screens.ddm.form.model.CheckboxMultipleField;
 import com.liferay.mobile.screens.ddm.form.model.GridField;
+import com.liferay.mobile.screens.ddm.form.model.RepeatableField;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -183,6 +185,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		return editorType;
 	}
 
+	public void setEditorType(EditorType editorType) {
+		this.editorType = editorType;
+	}
+
 	public String getText() {
 		return text;
 	}
@@ -340,7 +346,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		return attributes;
 	}
 
-	protected String getAttributeStringValue(Map<String, Object> attributes, String key) {
+	protected static String getAttributeStringValue(Map<String, Object> attributes, String key) {
 		Object value = attributes.get(key);
 		return (value != null) ? value.toString() : "";
 	}
@@ -405,43 +411,64 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 			return assignDataTypeFromString(attributeValue);
 		}
 
-		public Field createField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
+		public Field createField(Map<String, Object> attributes, Locale locale,
+								 Locale defaultLocale) {
+
+			return createField(attributes, locale, defaultLocale, false);
+		}
+
+		public Field createField(Map<String, Object> attributes, Locale locale,
+								 Locale defaultLocale, boolean repeatedField) {
+
+			Field field = null;
+
 			if (STRING.equals(this)) {
 				EditorType editor = EditorType.valueOf(attributes);
 
 				if (editor == EditorType.SELECT || editor == EditorType.RADIO) {
-					return new SelectableOptionsField(attributes, locale, defaultLocale);
+					field = new SelectableOptionsField(attributes, locale, defaultLocale);
 				} else if (editor == EditorType.DATE) {
-					return new DateField(attributes, locale, defaultLocale);
+					field = new DateField(attributes, locale, defaultLocale);
 				} else if (editor == EditorType.DOCUMENT) {
-					return new DocumentField(attributes, locale, defaultLocale);
+					field = new DocumentField(attributes, locale, defaultLocale);
 				} else if (editor == EditorType.CHECKBOX_MULTIPLE) {
-					return new CheckboxMultipleField(attributes, locale, defaultLocale);
+					field = new CheckboxMultipleField(attributes, locale, defaultLocale);
 				} else if (editor == EditorType.GRID) {
-					return new GridField(attributes, locale, defaultLocale);
+					field = new GridField(attributes, locale, defaultLocale);
 				} else {
-					return new StringField(attributes, locale, defaultLocale);
+					field = new StringField(attributes, locale, defaultLocale);
 				}
 			} else if (HTML.equals(this)) {
-				return new StringField(attributes, locale, defaultLocale);
+				field = new StringField(attributes, locale, defaultLocale);
 			} else if (BOOLEAN.equals(this)) {
-				return new BooleanField(attributes, locale, defaultLocale);
+				field = new BooleanField(attributes, locale, defaultLocale);
 			} else if (DATE.equals(this)) {
-				return new DateField(attributes, locale, defaultLocale);
+				field = new DateField(attributes, locale, defaultLocale);
 			} else if (NUMBER.equals(this)) {
-				return new NumberField(attributes, locale, defaultLocale);
+				field = new NumberField(attributes, locale, defaultLocale);
 			} else if (DOCUMENT.equals(this)) {
-				return new DocumentField(attributes, locale, defaultLocale);
+				field = new DocumentField(attributes, locale, defaultLocale);
 			} else if (IMAGE.equals(this)) {
-				return new ImageField(attributes, locale, defaultLocale);
+				field = new ImageField(attributes, locale, defaultLocale);
 			} else if (GEO.equals(this)) {
-				return new GeolocationField(attributes, locale, defaultLocale);
+				field = new GeolocationField(attributes, locale, defaultLocale);
 			} else {
 				if (EditorType.valueOf(attributes) == EditorType.PARAGRAPH) {
-					return new StringField(attributes, locale, defaultLocale);
+					field = new StringField(attributes, locale, defaultLocale);
 				}
 			}
-			return null;
+
+			if(field != null && !repeatedField) {
+				boolean repeatable = Boolean.valueOf(
+						getAttributeStringValue(attributes, FormFieldKeys.REPEATABLE));
+
+				if(repeatable) {
+					Field baseField = field;
+					field = new RepeatableField(baseField);
+				}
+			}
+
+			return field;
 		}
 
 		public String getValue() {
@@ -455,7 +482,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 			"ddm-date", "date"), NUMBER("ddm-number", "number", "numeric"), INTEGER("ddm-integer", "integer"), DECIMAL(
 			"ddm-decimal", "decimal", "double"), SELECT("select"), CHECKBOX_MULTIPLE("checkbox_multiple"), RADIO(
 			"radio"), DOCUMENT("ddm-documentlibrary", "document_library", "documentlibrary", "wcm-image"), GEO(
-			"ddm-geolocation", "geolocation"), GRID("grid"), UNSUPPORTED("");
+			"ddm-geolocation", "geolocation"), GRID("grid"), REPEATABLE("repeatable"), UNSUPPORTED("");
 
 		private final String[] values;
 
