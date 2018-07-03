@@ -24,6 +24,7 @@ import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddm.form.model.FormPage
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
+import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.fields.DDMFieldRepeatableView
 
 /**
  * @author Victor Oliveira
@@ -63,6 +64,9 @@ class DDMPagerAdapter(val pages: List<FormPage>, val ddmFormView: DDMFormView) :
 
             if (view is DDLDocumentFieldView) {
                 view.setUploadListener(ddmFormView)
+            }
+            else if(view is DDMFieldRepeatableView) {
+                view.setLayoutIds(ddmFormView.layoutIds)
             }
 
             val viewModel = view as DDLFieldViewModel<*>

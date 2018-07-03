@@ -446,7 +446,8 @@ class DDMFormView @JvmOverloads constructor(
             Field.EditorType.PARAGRAPH to "ddmfield_paragrah",
             Field.EditorType.DOCUMENT to "ddlfield_document",
             Field.EditorType.GRID to "ddmfield_grid",
-            Field.EditorType.GEO to "ddlfield_geo"
+            Field.EditorType.GEO to "ddlfield_geo",
+            Field.EditorType.REPEATABLE to "ddmfield_repeatable"
         )
     }
 }

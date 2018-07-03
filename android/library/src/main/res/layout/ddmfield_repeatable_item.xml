@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.fields.DDMFieldRepeatableItemView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/liferay_repeatable_field_remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:background="@null"
+            android:padding="0dp"
+            android:text="-"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/liferay_repeatable_field_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:background="@null"
+            android:padding="0dp"
+            android:text="+"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp"/>
+    </LinearLayout>
+
+</com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.fields.DDMFieldRepeatableItemView>
