@@ -52,10 +52,6 @@ open class WebContent: Asset {
 		}
 
         var newAttributes: [String: AnyObject] = [:]
-        
-        if attributes["title"] == nil {
-            newAttributes = attributes.copyAndAdd("title", value: attributes["urlTitle"] ?? "" as AnyObject)
-        }
 
 		if let className = attributes["className"] as? String,
 			let object = attributes["object"] as? [String: AnyObject],
@@ -89,6 +85,7 @@ open class WebContent: Asset {
 				}
 			}
 			else {
+				newAttributes = attributes
 				// basic web content
 				html = loadHtml(modelValues)
 
@@ -97,7 +94,7 @@ open class WebContent: Asset {
 			}
 		}
 		else if let content = attributes["content"] as? String {
-			newAttributes = newAttributes.copyAndRemove("content")
+			newAttributes = attributes.copyAndRemove("content")
 
 			structuredRecord = loadStructuredRecord(content, newAttributes)
 			structure = structuredRecord?.structure
@@ -110,6 +107,10 @@ open class WebContent: Asset {
 			structuredRecord = nil
 			structure = nil
 			html = nil
+		}
+
+		if newAttributes["title"] == nil {
+			newAttributes = newAttributes.copyAndAdd("title", value: attributes["urlTitle"] ?? "" as AnyObject)
 		}
 
 		super.init(attributes: newAttributes)
