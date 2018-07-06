@@ -42,7 +42,7 @@ open class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel,
 
 	@IBOutlet weak open var portraitImage: UIImageView?
 
-	@IBOutlet weak var editButton: UIButton?
+	@IBOutlet weak open var editButton: UIButton?
 
 	override open var editable: Bool {
 		didSet {

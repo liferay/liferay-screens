@@ -18,9 +18,9 @@ open class CommentAddView_default: BaseScreenletView, CommentAddViewModel {
 
 	// MARK: Outlets
 
-	@IBOutlet weak var addCommentTextField: UITextField?
+	@IBOutlet open weak var addCommentTextField: UITextField?
 
-	@IBOutlet weak var sendCommentButton: UIButton? {
+	@IBOutlet open weak var sendCommentButton: UIButton? {
 		didSet {
 			setButtonDefaultStyle(sendCommentButton)
 			updateButton()
