@@ -25,9 +25,9 @@ PODS:
     - CocoaLumberjack/Default
   - Cordova (4.5.4)
   - DTPickerPresenter (0.2.0)
-  - KeychainAccess (3.1.0)
-  - Kingfisher (4.6.3)
-  - Liferay-iOS-SDK (7.1-beta2):
+  - KeychainAccess (3.1.1)
+  - Kingfisher (4.8.0)
+  - Liferay-iOS-SDK (7.1.0):
     - AFNetworking (~> 3.0)
     - AppAuth (= 0.92)
   - MBProgressHUD (0.9.2)
@@ -94,7 +94,7 @@ DEPENDENCIES:
   - DTPickerPresenter (~> 0.2.0)
   - KeychainAccess (~> 3.0)
   - Kingfisher (~> 4.0)
-  - Liferay-iOS-SDK (~> 7.1-beta2)
+  - Liferay-iOS-SDK (~> 7.1)
   - MBProgressHUD (~> 0.9.1)
   - MDRadialProgress (~> 1.3.2)
   - Nocilla
@@ -127,9 +127,9 @@ SPEC CHECKSUMS:
   CocoaLumberjack: aa9dcab71bdf9eaf2a63bbd9ddc87863efe45457
   Cordova: 90a337977b8667a80483f559268c82062b1183da
   DTPickerPresenter: 1976573e3475534559b6ec1dad64b2ece16c966d
-  KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
-  Kingfisher: 98e6d5b5e807645743e8ed5ececd25d688d38452
-  Liferay-iOS-SDK: ab249a9bcd51c9db5ded1d7ebf9f688f6f24cb89
+  KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
+  Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
+  Liferay-iOS-SDK: cb3c1ffa9b211fd95c5ff77bd5b2cd8036bdc5b0
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MDRadialProgress: 1068574b9b4b870f64b605b07f734385bde5104d
   Nocilla: 7af7a386071150cc8aa5da4da97d060f049dd61c
