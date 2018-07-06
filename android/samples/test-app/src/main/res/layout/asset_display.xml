@@ -11,8 +11,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_centerInParent="true"
-		app:autoLoad="true"
-		app:layoutId="@layout/asset_display_default"
+		app:autoLoad="false"
 		/>
 
 </RelativeLayout>

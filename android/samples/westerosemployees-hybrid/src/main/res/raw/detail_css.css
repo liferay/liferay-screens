@@ -103,3 +103,18 @@ p {
 .img-blog {
     max-width: 100%;
 }
+
+
+/* PDF */
+
+button {
+    background-color: #E44740;
+    border-radius: 5px;
+    border: 0px;
+    box-shadow: none;
+    color: #FFF;
+    height: 40px;
+    margin-left: 5%;
+    text-align: center;
+    width: 90%;
+}

@@ -38,8 +38,8 @@ public class AddBookmarkInteractor extends BaseRemoteInteractor<AddBookmarkListe
 	private void validate(String url, long folderId) {
 		if (url == null || url.isEmpty() || !URLUtil.isValidUrl(url)) {
 			throw new IllegalArgumentException("Invalid url");
-		} else if (folderId == 0) {
-			throw new IllegalArgumentException("folderId not set");
+		} else if (folderId < 0) {
+			throw new IllegalArgumentException("Invalid folderId");
 		}
 	}
 

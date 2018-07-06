@@ -40,10 +40,9 @@ public class AssetListAdapter extends BaseListAdapter<AssetEntry, AssetListAdapt
 		public AssetListViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 
-			dateTextView = (TextView) view.findViewById(R.id.liferay_list_date);
-			titleTextView = (TextView) view.findViewById(R.id.liferay_list_title);
-			imageDisplayScreenlet =
-				(ImageDisplayScreenlet) view.findViewById(R.id.asset_list_document_type_image_screenlet);
+			dateTextView = view.findViewById(R.id.liferay_list_date);
+			titleTextView = view.findViewById(R.id.liferay_list_title);
+			imageDisplayScreenlet = view.findViewById(R.id.asset_list_document_type_image_screenlet);
 		}
 
 		public void bind(AssetEntry entry) {

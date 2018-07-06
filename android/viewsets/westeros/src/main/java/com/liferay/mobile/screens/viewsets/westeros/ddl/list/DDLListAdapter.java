@@ -18,6 +18,7 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.daimajia.swipe.SwipeLayout;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
@@ -46,7 +47,7 @@ public class DDLListAdapter extends BaseListAdapter<Record, DDLListAdapter.Swipe
 
 		if (viewType == LAYOUT_TYPE_DEFAULT) {
 			view = inflater.inflate(getLayoutId(), parent, false);
-			SwipeLayout swipe = (SwipeLayout) view.findViewById(R.id.liferay_swipe_layout);
+			SwipeLayout swipe = view.findViewById(R.id.liferay_swipe_layout);
 			swipe.setShowMode(SwipeLayout.ShowMode.LayDown);
 			swipe.setDragEdge(SwipeLayout.DragEdge.Right);
 		} else {
@@ -96,18 +97,20 @@ public class DDLListAdapter extends BaseListAdapter<Record, DDLListAdapter.Swipe
 		private final BaseListAdapterListener listener;
 		private final TextView subtitleTextView;
 		private final SwipeLayout swipeLayout;
+		public final ImageView imageView;
 
 		public SwipeActionsViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 
-			this.subtitleTextView = (TextView) view.findViewById(R.id.liferay_list_subtitle);
+			this.imageView = view.findViewById(R.id.liferay_state_list_icon);
+			this.subtitleTextView = view.findViewById(R.id.liferay_list_subtitle);
 
 			this.listener = listener;
 
 			view.setOnClickListener(this);
 			view.findViewById(R.id.liferay_list_edit).setOnClickListener(this);
 			view.findViewById(R.id.liferay_list_view).setOnClickListener(this);
-			swipeLayout = (SwipeLayout) view.findViewById(R.id.liferay_swipe_layout);
+			swipeLayout = view.findViewById(R.id.liferay_swipe_layout);
 		}
 
 		@Override

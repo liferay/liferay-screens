@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 	s.name         = 'LiferayScreens'
 	s.module_name  = 'LiferayScreens'
-	s.version      = '4.0.0-beta-1'
+	s.version      = '4.0.0'
 	s.summary      = 'A family of visual components called screenlets that are connected to the Liferay Platform used as a backend'
 	s.homepage     = 'https://www.liferay.com/liferay-screens'
 	s.license = { 
@@ -46,7 +46,7 @@ Pod::Spec.new do |s|
 	}
 	
 	# Core
-	s.dependency 'Liferay-iOS-SDK', '~> 7.1-beta2'
+	s.dependency 'Liferay-iOS-SDK', '~> 7.1'
 	s.dependency 'MBProgressHUD', '~> 0.9.1'
 	s.dependency 'SMXMLDocument', '~> 1.1'
 	s.dependency 'YapDatabase/SQLCipher', '2.9.2'

@@ -199,6 +199,8 @@
 			app:recordSetId="@string/liferay_recordset_id"
 			app:selectFieldLayoutId="@layout/ddlfield_select_westeros"
 			app:structureId="@string/liferay_structure_id"
+			app:folderId="@string/liferay_folder_id"
+			app:repositoryId="@string/liferay_group_id"
 			app:textAreaFieldLayoutId="@layout/ddlfield_text_area_westeros"
 			app:textFieldLayoutId="@layout/ddlfield_text_westeros"
 			/>

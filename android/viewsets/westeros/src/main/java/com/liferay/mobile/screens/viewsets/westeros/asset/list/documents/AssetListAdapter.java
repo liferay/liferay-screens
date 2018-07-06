@@ -1,6 +1,7 @@
 package com.liferay.mobile.screens.viewsets.westeros.asset.list.documents;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -44,9 +45,9 @@ public class AssetListAdapter extends BaseListAdapter<AssetEntry, AssetListAdapt
 		public AssetListViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 
-			titleTextView = (TextView) view.findViewById(R.id.liferay_list_title);
-			descriptionTextView = (TextView) view.findViewById(R.id.liferay_list_description);
-			documentExtensionImage = (ImageView) view.findViewById(R.id.asset_list_document_type_image);
+			titleTextView = view.findViewById(R.id.liferay_list_title);
+			descriptionTextView = view.findViewById(R.id.liferay_list_description);
+			documentExtensionImage = view.findViewById(R.id.asset_list_document_type_image);
 		}
 
 		public void bind(AssetEntry entry) {
@@ -55,7 +56,11 @@ public class AssetListAdapter extends BaseListAdapter<AssetEntry, AssetListAdapt
 			setImageForExtension(fileEntry.getExtension());
 
 			titleTextView.setText(fileEntry.getTitle());
-			descriptionTextView.setText(fileEntry.getValues().get("description").toString());
+
+			String descriptionText = fileEntry.getValues().get("description").toString();
+			if (!descriptionText.isEmpty()) {
+				descriptionTextView.setText(descriptionText);
+			}
 		}
 
 		private void setImageForExtension(String extension) {

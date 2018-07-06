@@ -26,6 +26,9 @@ import com.liferay.mobile.screens.user.GetUserScreenlet;
 import com.liferay.mobile.screens.user.R;
 import com.liferay.mobile.screens.util.LiferayLogger;
 
+import static com.liferay.mobile.screens.context.User.SCREEN_NAME;
+import static com.liferay.mobile.screens.context.User.USER_ID;
+
 /**
  * @author Mounir Hallab
  */
@@ -33,6 +36,7 @@ public class GetUserView extends LinearLayout implements GetUserViewModel, View.
 
 	private EditText textValue;
 	private BaseScreenlet screenlet;
+	private String getUserBy;
 
 	public GetUserView(Context context) {
 		super(context);
@@ -75,6 +79,15 @@ public class GetUserView extends LinearLayout implements GetUserViewModel, View.
 	}
 
 	@Override
+	protected void onAttachedToWindow() {
+		super.onAttachedToWindow();
+
+		if (getUserBy != null) {
+			textValue.setHint(getResources().getString(getLabelHint()));
+		}
+	}
+
+	@Override
 	public void onClick(View v) {
 		GetUserScreenlet screenlet = (GetUserScreenlet) getParent();
 		screenlet.performUserAction();
@@ -91,6 +104,16 @@ public class GetUserView extends LinearLayout implements GetUserViewModel, View.
 	}
 
 	@Override
+	public String getGetUserBy() {
+		return getUserBy;
+	}
+
+	@Override
+	public void setGetUserBy(String getUserBy) {
+		this.getUserBy = getUserBy;
+	}
+
+	@Override
 	public BaseScreenlet getScreenlet() {
 		return screenlet;
 	}
@@ -98,5 +121,19 @@ public class GetUserView extends LinearLayout implements GetUserViewModel, View.
 	@Override
 	public void setScreenlet(BaseScreenlet screenlet) {
 		this.screenlet = screenlet;
+	}
+
+	private int getLabelHint() {
+		if (getUserBy != null) {
+			switch (getUserBy) {
+				case SCREEN_NAME:
+					return R.string.screen_name;
+				case USER_ID:
+					return R.string.user_id;
+				default:
+					return R.string.email_address;
+			}
+		}
+		return R.string.email_address;
 	}
 }

@@ -18,6 +18,7 @@ import Foundation
 }
 
 @objc(WebScreenletConfiguration)
+@objcMembers
 public class WebScreenletConfiguration: NSObject {
 	public let url: String
 	public let scripts: [InjectableScript]

@@ -6,21 +6,18 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 import android.widget.TextView;
-
 import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.context.SessionContext;
-import com.liferay.mobile.screens.web.WebScreenletConfiguration;
+import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.web.WebListener;
 import com.liferay.mobile.screens.web.WebScreenlet;
-import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
+import com.liferay.mobile.screens.web.WebScreenletConfiguration;
 import com.liferay.mobile.screens.westerosemployees_hybrid.R;
-
 import java.util.List;
 
-
-public class UserActivity extends WesterosActivity implements View.OnClickListener,
-        BaseListListener<AssetEntry>, WebListener {
+public class UserActivity extends WesterosActivity
+	implements View.OnClickListener, BaseListListener<AssetEntry>, WebListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +32,6 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 		userNameTextView.setOnClickListener(this);
 
 		UserPortraitScreenlet userPortraitScreenlet = findViewById(R.id.userscreenlet_home);
-
 		userPortraitScreenlet.setOnClickListener(this);
 		userPortraitScreenlet.loadLoggedUserPortrait();
 
@@ -47,22 +43,21 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 		}, 1000);
 
 		userNameTextView.setText(SessionContext.getCurrentUser().getFullName());
-    }
+	}
 
-    private void loadLastChanges() {
-        WebScreenlet webScreenlet = findViewById(R.id.portlet_last_changes);
+	private void loadLastChanges() {
+		WebScreenlet webScreenlet = findViewById(R.id.portlet_last_changes);
 
-        WebScreenletConfiguration configuration =
-                new WebScreenletConfiguration.Builder("/web/westeros-hybrid/lastchanges")
-                        .addRawCss(R.raw.last_changes_portlet_css, "last_changes_portlet_css.css")
-                        .addRawJs(R.raw.last_changes_portlet_js, "last_changes_portlet_js.js")
-                        .load();
+		WebScreenletConfiguration configuration =
+			new WebScreenletConfiguration.Builder("/web/westeros-hybrid/lastchanges")
+				.addRawCss(R.raw.last_changes_portlet_css, "last_changes_portlet_css.css")
+				.addRawJs(R.raw.last_changes_portlet_js, "last_changes_portlet_js.js")
+				.load();
 
-        webScreenlet.setWebScreenletConfiguration(configuration);
-        webScreenlet.load();
-
-        webScreenlet.setListener(this);
-    }
+		webScreenlet.setWebScreenletConfiguration(configuration);
+		webScreenlet.setListener(this);
+		webScreenlet.load();
+	}
 
 	@Override
 	public void onBackPressed() {
@@ -110,11 +105,10 @@ public class UserActivity extends WesterosActivity implements View.OnClickListen
 				public void run() {
 					Intent intent = new Intent(UserActivity.this, ModalDetailActivity.class);
 					intent.putExtra("id", body);
+					intent.putExtra("latest", true);
 					startActivity(intent);
 				}
 			});
 		}
-
 	}
-
 }

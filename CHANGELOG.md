@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 # Develop
 <!-- Possible categories for the changes: Bugs, New features, Refactor, Documentation, Samples, Deprecated, Contributions -->
 
+Nothing yet
+
+# 4.0.0
+
 ## Android
 
 ## New Features
@@ -15,25 +19,35 @@ All notable changes to this project will be documented in this file.
 
 * Drop support for OAuth1
 * Give a pass to the code and solve minor issues
-* FormsScreenlet - Add support to upload images and videos from gallery
-* FormsScreenlet - Required fields are now marked with an asterisk (*)
-* Add Lexicon Theme
-* WebScreenlet now correctly inject the script when navigate to another page
+
+### Bugs
+* Fix inverted thumbs in rating screenlet
+
+### Samples
+
+* Update bankofwesteros demo app
 
 ### New features
 
 * Add a new method to the sync service to know if there are items to synchronize
+* Add Lexicon Theme
+* FormsScreenlet - Add support to upload images and videos from gallery
+* FormsScreenlet - Required fields are now marked with an asterisk (*)
+* WebScreenlet now correctly inject the script when navigate to another page
+
+### Samples
+* Update test-app demo app
+
+### Samples
+
+* Update westerosemployees demo app
+* Update westerosemployees-hybrid demo app
 
 ## iOS
 
-* Drop support for OAuth1
-* Give a pass to the code and solve minor issues
-* Update Showcase-swift demo app
-* Update WesterosEmployees demo app
-* Update WesterosBank demo app
-* Update WesterosEmployees-hybrid demo app
-* Update AndorraTelecomPublic demo app
-* Update Showcase-ObjectiveC demo app
+### Bugs
+* Fix Crash when trying to obtain title property in WebContent model
+* Fix method not been expose in Objective-C
 
 ### Features
 * Add OAuth2 authentication
@@ -43,6 +57,17 @@ All notable changes to this project will be documented in this file.
 * Remove non essentials libraries: Cosmos and Cryptoswift
 * Create AsyncServerConnector and remove the semaphores
 * Remove trigger action with identifier and UITextFieldDelegate in BaseScreenletView
+* Drop support for OAuth1
+* Give a pass to the code and solve minor issues
+
+### Samples
+
+* Update Showcase-swift demo app
+* Update WesterosEmployees demo app
+* Update WesterosBank demo app
+* Update WesterosEmployees-hybrid demo app
+* Update AndorraTelecomPublic demo app
+* Update Showcase-ObjectiveC demo app
 
 # 3.1.0
 

@@ -37,6 +37,10 @@ public class AssetListAdapter extends BaseListAdapter<AssetEntry, BaseListAdapte
 
 	@Override
 	protected void fillHolder(AssetEntry entry, ViewHolder holder) {
-		holder.textView.setText(entry.getTitle());
+		if(!entry.getTitle().isEmpty()) {
+			holder.textView.setText(entry.getTitle());
+		} else {
+			holder.textView.setText(String.valueOf(entry.getEntryId()));
+		}
 	}
 }

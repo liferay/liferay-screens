@@ -62,7 +62,7 @@
 		android:layout_marginTop="10dp"
 		app:autoLoad="false"
 		app:layoutId="@layout/asset_list_westeros_last_changes"
-		app:portletItemName="WesterosEmployeesNews"
+		app:portletItemName="LastChanges"
 		/>
 
 	<com.liferay.mobile.screens.westerosemployees.views.UserDeck

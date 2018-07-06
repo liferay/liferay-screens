@@ -19,6 +19,7 @@
 			android:layout_alignParentTop="true"
 			android:visibility="gone"
 			app:autoLoad="false"
+			app:imageScaleType="CENTER_CROP"
 			app:layoutId="@layout/image_display_westeros_cover_image"
 			/>
 

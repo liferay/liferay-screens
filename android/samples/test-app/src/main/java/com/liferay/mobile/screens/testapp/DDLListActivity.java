@@ -41,8 +41,9 @@ public class DDLListActivity extends ThemeActivity implements BaseListListener<R
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.ddl_list);
-		
+
 		screenlet = findViewById(R.id.ddl_list_screenlet);
+
 		screenlet.setListener(this);
 		screenlet.setCacheListener(this);
 	}

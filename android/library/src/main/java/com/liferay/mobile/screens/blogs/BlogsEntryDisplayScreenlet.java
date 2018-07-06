@@ -82,8 +82,8 @@ public class BlogsEntryDisplayScreenlet extends BaseScreenlet<BlogsEntryDisplayV
 		autoLoad = typedArray.getBoolean(R.styleable.BlogsEntryDisplayScreenlet_autoLoad, true);
 		entryId = typedArray.getInt(R.styleable.BlogsEntryDisplayScreenlet_entryId, 0);
 
-		className = typedArray.getString(R.styleable.AssetDisplayScreenlet_className);
-		classPK = typedArray.getInt(R.styleable.AssetDisplayScreenlet_classPK, 0);
+		className = typedArray.getString(R.styleable.BlogsEntryDisplayScreenlet_className);
+		classPK = typedArray.getInt(R.styleable.BlogsEntryDisplayScreenlet_classPK, 0);
 
 		View view = LayoutInflater.from(context).inflate(layoutId, null);
 

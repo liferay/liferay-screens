@@ -49,6 +49,6 @@ public class DDLListAdapter extends BaseListAdapter<Record, BaseListAdapter.View
 			}
 		}
 
-		holder.textView.setText(builder.toString());
+		holder.textView.setText(String.valueOf(entry.getRecordId()));
 	}
 }

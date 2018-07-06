@@ -64,7 +64,7 @@ public class DDLListAdapter extends BaseListAdapter<Record, DDLListAdapter.TwoTe
 		public TwoTextsViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 
-			this.subtitleTextView = (TextView) view.findViewById(R.id.liferay_list_subtitle);
+			this.subtitleTextView = view.findViewById(R.id.liferay_list_subtitle);
 		}
 	}
 }

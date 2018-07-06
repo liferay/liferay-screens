@@ -2,7 +2,6 @@ package com.liferay.mobile.screens.testapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
@@ -18,7 +17,7 @@ public class WebContentListActivity extends ThemeActivity implements BaseListLis
 	private WebContentListScreenlet webContentListScreenlet;
 
 	@Override
-	protected void onCreate(@Nullable Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.web_content_display_list);
 

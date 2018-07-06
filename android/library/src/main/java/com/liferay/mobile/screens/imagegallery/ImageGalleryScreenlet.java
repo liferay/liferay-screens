@@ -183,6 +183,10 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 	}
 
 	public void onPictureUriReceived(Uri pictureUri) {
+		ImageGalleryUploadInteractor imageGalleryUploadInteractor = getUploadInteractor();
+		LiferayLogger.e("We initialize the interactor to be able to send him messages, objId:"
+			+ imageGalleryUploadInteractor.toString());
+
 		int uploadDetailViewLayout = 0;
 		if (getListener() != null) {
 			boolean showed = getListener().showUploadImageView(UPLOAD_IMAGE, pictureUri, getScreenletId());
@@ -325,10 +329,6 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 	 */
 	protected void startUploadDetail(@LayoutRes int uploadDetailView, final Uri pictureUri) {
 		Context context = LiferayScreensContext.getContext();
-
-		ImageGalleryUploadInteractor imageGalleryUploadInteractor = getUploadInteractor();
-		LiferayLogger.e("We initialize the interactor to be able to send him messages, objId:"
-			+ imageGalleryUploadInteractor.toString());
 
 		View view = inflateView(uploadDetailView, context);
 

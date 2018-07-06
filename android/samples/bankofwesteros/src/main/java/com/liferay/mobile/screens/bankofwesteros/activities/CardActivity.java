@@ -327,7 +327,7 @@ public abstract class CardActivity extends Activity implements View.OnClickListe
 	}
 
 	private ImageView findAndAddListener(ViewGroup viewGroup, String tag) {
-		ImageView view = (ImageView) viewGroup.findViewWithTag(tag);
+		ImageView view = viewGroup.findViewWithTag(tag);
 		if (view != null) {
 			view.setOnClickListener(this);
 		}

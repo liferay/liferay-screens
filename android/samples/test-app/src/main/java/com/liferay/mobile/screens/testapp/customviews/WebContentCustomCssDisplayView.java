@@ -17,6 +17,7 @@ package com.liferay.mobile.screens.testapp.customviews;
 import android.content.Context;
 import android.util.AttributeSet;
 import com.liferay.mobile.screens.viewsets.defaultviews.webcontent.display.WebContentDisplayView;
+import com.liferay.mobile.screens.webcontent.WebContent;
 
 /**
  * @author Sarai Díaz García
@@ -36,7 +37,12 @@ public class WebContentCustomCssDisplayView extends WebContentDisplayView {
 		super(context, attributes, defaultStyle);
 	}
 
+	@Override
+	public void showFinishOperation(WebContent webContent, String customCSs) {
+		super.showFinishOperation(webContent, getCustomCssStyle());
+	}
+
 	public String getCustomCssStyle() {
-		return "<style>.MobileCSS {padding: 4%; width: 92%;}</style>";
+		return ".MobileCSS {padding: 4%; background:lightgrey;}";
 	}
 }

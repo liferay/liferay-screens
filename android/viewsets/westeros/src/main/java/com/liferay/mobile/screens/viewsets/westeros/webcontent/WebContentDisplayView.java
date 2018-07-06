@@ -51,7 +51,8 @@ public class WebContentDisplayView
 
 			LiferayLogger.i("article loaded: " + webContent);
 
-			String styledHtml = customCss + "<div class=\"MobileCSS\">" + webContent.getHtml() + "</div>";
+			String styledHtml =
+				"<style>" + customCss + "</style><div class=\"MobileCSS\">" + webContent.getHtml() + "</div>";
 
 			//TODO check encoding
 			webView.loadDataWithBaseURL(LiferayServerContext.getServer(), styledHtml, "text/html", "utf-8", null);

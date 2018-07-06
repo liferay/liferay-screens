@@ -40,18 +40,16 @@ public class AssetListAdapter extends BaseListAdapter<AssetEntry, AssetListAdapt
 
 		private final TextView titleTextView;
 		private final TextView descriptionTextView;
-
 		private final ImageView documentExtensionImage;
 		private final ImageDisplayScreenlet imageDisplayScreenlet;
 
 		public AssetListViewHolder(View view, BaseListAdapterListener listener) {
 			super(view, listener);
 
-			titleTextView = (TextView) view.findViewById(R.id.liferay_list_title);
-			descriptionTextView = (TextView) view.findViewById(R.id.liferay_list_description);
-			documentExtensionImage = (ImageView) view.findViewById(R.id.asset_list_document_type_image);
-			imageDisplayScreenlet =
-				(ImageDisplayScreenlet) view.findViewById(R.id.asset_list_document_type_image_screenlet);
+			titleTextView = view.findViewById(R.id.liferay_list_title);
+			descriptionTextView = view.findViewById(R.id.liferay_list_description);
+			documentExtensionImage = view.findViewById(R.id.asset_list_document_type_image);
+			imageDisplayScreenlet = view.findViewById(R.id.asset_list_document_type_image_screenlet);
 		}
 
 		public void bind(AssetEntry entry) {
@@ -88,9 +86,12 @@ public class AssetListAdapter extends BaseListAdapter<AssetEntry, AssetListAdapt
 
 		private void fillBlogImage(AssetEntry entry) {
 			BlogsEntry blogsEntry = new BlogsEntry(entry.getValues());
-			imageDisplayScreenlet.setClassPK(blogsEntry.getCoverImage());
-			imageDisplayScreenlet.setClassName("com.liferay.document.library.kernel.model.DLFileEntry");
-			imageDisplayScreenlet.load();
+
+			if (blogsEntry.getCoverImage() > 0) {
+				imageDisplayScreenlet.setClassPK(blogsEntry.getCoverImage());
+				imageDisplayScreenlet.setClassName("com.liferay.document.library.kernel.model.DLFileEntry");
+				imageDisplayScreenlet.load();
+			}
 
 			imageDisplayScreenlet.setVisibility(View.VISIBLE);
 			documentExtensionImage.setVisibility(View.GONE);

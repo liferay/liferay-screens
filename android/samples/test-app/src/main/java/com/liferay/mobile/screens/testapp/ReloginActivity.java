@@ -1,7 +1,6 @@
 package com.liferay.mobile.screens.testapp;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 import com.liferay.mobile.screens.auth.login.LoginListener;
@@ -16,7 +15,7 @@ public class ReloginActivity extends ThemeActivity implements LoginListener, Vie
 	private TextView userName;
 
 	@Override
-	protected void onCreate(@Nullable Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.relogin);
 
