@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file.
 # Develop
 <!-- Possible categories for the changes: Bugs, New features, Refactor, Documentation, Samples, Deprecated, Contributions -->
 
+Nothing yet
+
+# 4.0.0
+
 ## Android
 
 ## New Features
@@ -41,9 +45,6 @@ All notable changes to this project will be documented in this file.
 
 ## iOS
 
-* Drop support for OAuth1
-* Give a pass to the code and solve minor issues
-
 ### Bugs
 * Fix Crash when trying to obtain title property in WebContent model
 * Fix method not been expose in Objective-C
@@ -56,6 +57,8 @@ All notable changes to this project will be documented in this file.
 * Remove non essentials libraries: Cosmos and Cryptoswift
 * Create AsyncServerConnector and remove the semaphores
 * Remove trigger action with identifier and UITextFieldDelegate in BaseScreenletView
+* Drop support for OAuth1
+* Give a pass to the code and solve minor issues
 
 ### Samples
 
