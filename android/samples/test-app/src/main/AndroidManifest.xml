@@ -29,7 +29,6 @@
 		<activity android:name=".DDLListActivity"/>
 		<activity android:name=".ForgotPasswordActivity"/>
 		<activity android:name=".LoginActivity">
-
 		</activity>
 		<activity android:name=".SignUpActivity"/>
 		<activity android:name=".UserPortraitActivity"/>
@@ -56,19 +55,23 @@
 		<activity
 			android:name=".DetailMediaGalleryActivity"
 			android:theme="@style/gallery_theme"/>
-
 		<activity
 			android:name="com.liferay.mobile.android.auth.oauth2.OAuth2RedirectActivity"
 			tools:node="replace">
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW"/>
+
 				<category android:name="android.intent.category.DEFAULT"/>
 				<category android:name="android.intent.category.BROWSABLE"/>
 
 				<data android:scheme="my-app"/>
 			</intent-filter>
 		</activity>
-
+		<activity
+			android:name=".MyActivity"
+			android:label="@string/title_activity_my"
+			android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+		</activity>
 	</application>
 
 </manifest>

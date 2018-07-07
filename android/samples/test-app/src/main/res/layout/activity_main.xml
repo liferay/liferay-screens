@@ -207,6 +207,12 @@
 				style="@style/test_app_button"
 				/>
 
+			<Button
+				android:id="@+id/my_activity"
+				android:text="My Activity"
+				style="@style/test_app_button"
+				/>
+
 		</LinearLayout>
 	</ScrollView>
 </LinearLayout>

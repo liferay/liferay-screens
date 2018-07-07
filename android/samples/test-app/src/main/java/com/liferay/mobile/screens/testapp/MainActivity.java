@@ -86,6 +86,13 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		findViewById(R.id.custom_interactor).setOnClickListener(this);
 		findViewById(R.id.sync_cache).setOnClickListener(this);
 		findViewById(R.id.change_theme).setOnClickListener(this);
+
+		findViewById(R.id.my_activity).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				startActivity(new Intent(MainActivity.this, MyActivity.class));
+			}
+		});
 	}
 
 	@Override
