@@ -48,6 +48,10 @@ class GridField : Field<Grid>, Parcelable {
         parcel.writeTypedList(columns)
     }
 
+    override fun doValidate(): Boolean {
+        return currentValue.rawValues.size == this.rows.size
+    }
+
     constructor(attributes: Map<String, Any>, locale: Locale, defaultLocale: Locale) : super(attributes, locale,
         defaultLocale) {
 
