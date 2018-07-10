@@ -4,23 +4,17 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.LinearLayout
-import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.ddm.form.model.RepeatableField
-import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
-import org.jetbrains.anko.childrenSequence
 
 /**
  * @author Paulo Cruz
  */
 class DDMFieldRepeatableView @JvmOverloads constructor(
-        context: Context, attrs: AttributeSet? = null,
-        defStyleAttr: Int = 0)
-    : LinearLayout(context, attrs, defStyleAttr), DDLFieldViewModel<RepeatableField>,
-        RepeatableActionListener {
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0)
+    : LinearLayout(context, attrs, defStyleAttr), DDLFieldViewModel<RepeatableField>, RepeatableActionListener {
 
     private lateinit var field: RepeatableField
     private lateinit var parentView: View
@@ -77,9 +71,9 @@ class DDMFieldRepeatableView @JvmOverloads constructor(
         setupRepeatableFields()
     }
 
-    override fun refresh() { }
+    override fun refresh() {}
 
-    override fun onPostValidation(valid: Boolean) { }
+    override fun onPostValidation(valid: Boolean) {}
 
     override fun getParentView(): View {
         return parentView
