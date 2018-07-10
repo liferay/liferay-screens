@@ -168,7 +168,7 @@ public class DDLFieldRadioView extends LinearLayout
 		}
 
 		if (field.hasFormRules()) {
-			EventBusUtil.post(new Event.RequestEvaluationEvent());
+			EventBusUtil.post(new Event.ValueChangedEvent());
 		}
 	}
 

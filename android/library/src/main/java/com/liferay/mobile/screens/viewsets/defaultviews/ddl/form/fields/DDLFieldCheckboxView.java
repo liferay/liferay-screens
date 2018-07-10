@@ -98,7 +98,7 @@ public class DDLFieldCheckboxView extends LinearLayout
 		field.setCurrentValue(isChecked);
 
 		if (field.hasFormRules()) {
-			EventBusUtil.post(new Event.RequestEvaluationEvent());
+			EventBusUtil.post(new Event.ValueChangedEvent());
 		}
 	}
 

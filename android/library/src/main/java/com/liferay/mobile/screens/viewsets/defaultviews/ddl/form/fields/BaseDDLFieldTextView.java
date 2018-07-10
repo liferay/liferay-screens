@@ -155,14 +155,14 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 
 		labelTextView = findViewById(R.id.liferay_ddl_label);
 		textEditText = findViewById(R.id.liferay_ddl_edit_text);
-
 		textEditText.addTextChangedListener(this);
+
 		textEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
 
 			@Override
-			public void onFocusChange(View v, boolean hasFocus) {
+			public void onFocusChange(View view, boolean hasFocus) {
 				if (field != null && field.hasFormRules() && !hasFocus) {
-					EventBusUtil.post(new Event.RequestEvaluationEvent());
+					EventBusUtil.post(new Event.ValueChangedEvent(false));
 				}
 			}
 		});

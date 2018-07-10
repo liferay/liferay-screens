@@ -83,7 +83,7 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 		refresh();
 
 		if (getField().hasFormRules()) {
-			EventBusUtil.post(new Event.RequestEvaluationEvent());
+			EventBusUtil.post(new Event.ValueChangedEvent());
 		}
 	}
 

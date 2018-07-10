@@ -132,7 +132,7 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<SelectableOptionsFi
 					}
 
 					if (getField().hasFormRules()) {
-						EventBusUtil.post(new Event.RequestEvaluationEvent());
+						EventBusUtil.post(new Event.ValueChangedEvent());
 					}
 				} else {
 					dialog.dismiss();

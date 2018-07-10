@@ -430,8 +430,8 @@ class DDMFormView @JvmOverloads constructor(
     }
 
     @Subscribe
-    fun onEvent(event: Event.RequestEvaluationEvent) {
         evaluateContext(thing)
+    fun onEvent(event: Event.ValueChangedEvent) {
     }
 
     companion object {

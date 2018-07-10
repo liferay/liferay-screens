@@ -26,5 +26,5 @@ sealed class Event<T> {
 
 	class CustomEvent(val name: String, val view: BaseView? = null, val thing: Thing): Event<Unit>()
 
-	class RequestEvaluationEvent()
+	class ValueChangedEvent @JvmOverloads constructor(val autoSave: Boolean = false)
 }
