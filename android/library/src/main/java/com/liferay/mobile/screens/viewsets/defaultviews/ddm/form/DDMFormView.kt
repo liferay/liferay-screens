@@ -37,6 +37,7 @@ import com.liferay.apio.consumer.performParseOperation
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.*
+import com.liferay.mobile.screens.ddm.form.GridSerializer
 import com.liferay.mobile.screens.ddm.form.OptionSerializer
 import com.liferay.mobile.screens.ddm.form.model.*
 import com.liferay.mobile.screens.ddm.form.view.SuccessPageActivity
@@ -67,7 +68,10 @@ class DDMFormView @JvmOverloads constructor(
     private val ddmFieldViewPages by bindNonNull<WrapContentViewPager>(R.id.ddmfields_container)
     private val backButton by bindNonNull<Button>(R.id.liferay_form_back)
     private val nextButton by bindNonNull<Button>(R.id.liferay_form_submit)
-    private var gson = GsonBuilder().registerTypeAdapter(Option::class.java, OptionSerializer()).create()
+    private var gson = GsonBuilder()
+        .registerTypeAdapter(Option::class.java, OptionSerializer())
+        .registerTypeAdapter(Grid::class.java, GridSerializer())
+        .create()
     private var formInstance: FormInstance? = null
 
     val layoutIds = mutableMapOf<Field.EditorType, Int>()
