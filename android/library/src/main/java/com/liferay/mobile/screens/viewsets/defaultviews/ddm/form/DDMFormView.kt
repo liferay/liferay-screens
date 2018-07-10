@@ -430,8 +430,12 @@ class DDMFormView @JvmOverloads constructor(
     }
 
     @Subscribe
-        evaluateContext(thing)
     fun onEvent(event: Event.ValueChangedEvent) {
+        if (event.autoSave) {
+            submit(event.autoSave)
+        } else {
+            evaluateContext(thing)
+        }
     }
 
     companion object {

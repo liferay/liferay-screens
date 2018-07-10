@@ -23,12 +23,16 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.jakewharton.rxbinding.widget.RxTextView;
+import com.jakewharton.rxbinding.widget.TextViewAfterTextChangeEvent;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.thingscreenlet.screens.events.Event;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil;
+import java.util.concurrent.TimeUnit;
+import rx.functions.Action1;
 
 /**
  * @author Silvio Santos
@@ -171,6 +175,19 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 		//the ids of other DDLFields are conflicting.
 		//It is not a problem because all state is stored in Field objects.
 		textEditText.setSaveEnabled(false);
+
+		RxTextView.afterTextChangeEvents(textEditText)
+			.debounce(500, TimeUnit.MILLISECONDS)
+			.distinctUntilChanged()
+			.skip(2)
+			.subscribe(new Action1<TextViewAfterTextChangeEvent>() {
+				@Override
+				public void call(TextViewAfterTextChangeEvent textViewAfterTextChangeEvent) {
+					if (field != null) {
+						EventBusUtil.post(new Event.ValueChangedEvent(true));
+					}
+				}
+			});
 	}
 
 	protected abstract void onTextChanged(String text);
