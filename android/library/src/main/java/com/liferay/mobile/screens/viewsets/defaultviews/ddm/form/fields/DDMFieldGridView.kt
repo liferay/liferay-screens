@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.fields
 
 import android.content.Context
+import android.support.design.widget.Snackbar
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -97,6 +98,14 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
     }
 
     override fun onPostValidation(valid: Boolean) {
+        val errorText = if (valid) null else context.getString(R.string.required_value)
+
+        if (field.isShowLabel) {
+            val label = this.findViewById<TextView>(R.id.liferay_ddm_label)
+            label?.error = errorText
+        } else {
+            Snackbar.make(this, errorText.toString(), Snackbar.LENGTH_SHORT).show()
+        }
     }
 
     override fun getParentView(): View {
