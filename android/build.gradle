@@ -5,8 +5,8 @@ buildscript {
 	}
 
 	dependencies {
-		classpath 'com.android.tools.build:gradle:3.0.1'
-		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+		classpath 'com.android.tools.build:gradle:3.1.2'
+		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
 		classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
 	}
 }
@@ -15,7 +15,7 @@ ext {
 	minSdkVersion = 16
 	compileSdkVersion = 26
 	targetSdkVersion = compileSdkVersion
-	buildToolsVersion = '26.0.2'
+	buildToolsVersion = '27.0.3'
 
 	versionCode = 321
 	versionName = '4.0.0'
@@ -40,7 +40,7 @@ ext {
 	allLicenses = ["LGPL-2.1"]
 }
 
-def supportLibsVersion = '26.1.0'
+def supportLibsVersion = '27.1.1'
 
 ext.libraries = [appCompat    : 'com.android.support:appcompat-v7:' + supportLibsVersion,
                  recyclerView : 'com.android.support:recyclerview-v7:' + supportLibsVersion,
@@ -58,7 +58,8 @@ ext.libraries = [appCompat    : 'com.android.support:appcompat-v7:' + supportLib
                  robolectric  : 'org.robolectric:robolectric:3.5.1',
                  mockito      : 'org.mockito:mockito-core:2.11.0',
                  snappydb     : 'com.snappydb:snappydb-lib:0.5.2',
-                 kryo         : 'com.esotericsoftware:kryo:4.0.0']
+                 kryo         : 'com.esotericsoftware:kryo:4.0.0',
+				 json         : 'org.json:json:20140107']
 
 subprojects {
 	repositories {

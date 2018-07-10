@@ -17,6 +17,7 @@ import Foundation
 
 	case v62 = 62
 	case v70 = 70
+	case v71 = 71
 
 }
 
@@ -190,7 +191,7 @@ open class LiferayServerContext: NSObject {
 				switch self.serverVersion {
 				case .v62:
 					return Liferay62ConnectorFactory()
-				case .v70:
+				case .v70, .v71:
 					return Liferay70ConnectorFactory()
 				}
 			}
