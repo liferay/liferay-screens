@@ -29,6 +29,7 @@ interface GsonFactory {
             return GsonBuilder()
                     .registerTypeAdapter(Option::class.java, OptionSerializer())
                     .registerTypeAdapter(Grid::class.java, GridSerializer())
+                    .setDateFormat("yyyy-MM-dd")
                     .create()
         }
     }

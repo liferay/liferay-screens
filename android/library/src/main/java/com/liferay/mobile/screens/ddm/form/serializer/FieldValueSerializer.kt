@@ -54,8 +54,8 @@ class FieldValueSerializer {
             }.filter {
                 it.currentValue?.let {
                     when(it) {
-                        is List<*> -> it.isNotEmpty()
                         is Grid -> it.rawValues.isNotEmpty()
+                        is List<*> -> it.isNotEmpty()
                         else -> it.toString().isNotEmpty()
                     }
                 } ?: false
