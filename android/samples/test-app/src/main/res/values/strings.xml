@@ -79,4 +79,5 @@
 	<string name="cookie">Cookie</string>
 	<string name="oauth2_with_redirect">OAuth2 redirect</string>
 	<string name="oauth2_username_and_password">OAuth2 Username and password</string>
+	<string name="title_activity_my">MyActivity</string>
 </resources>
