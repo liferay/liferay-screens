@@ -49,11 +49,13 @@ class GridField : Field<Grid>, Parcelable {
     }
 
     override fun doValidate(): Boolean {
-        return currentValue.rawValues.size == this.rows.size
+        return currentValue?.rawValues?.let {
+            it.size == this.rows.size
+        } ?: !isRequired
     }
 
-    constructor(attributes: Map<String, Any>, locale: Locale, defaultLocale: Locale) : super(attributes, locale,
-        defaultLocale) {
+    constructor(attributes: Map<String, Any>, locale: Locale, defaultLocale: Locale) :
+            super(attributes, locale, defaultLocale) {
 
         val grid = attributes[FormFieldKeys.GRID] as Map<String, Any>
         rows = (grid["rows"] as Map<String, Any>).let {
