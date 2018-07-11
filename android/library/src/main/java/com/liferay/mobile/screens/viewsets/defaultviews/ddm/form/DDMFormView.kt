@@ -25,7 +25,6 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import com.liferay.apio.consumer.delegates.converter
 import com.liferay.apio.consumer.fetch
@@ -37,8 +36,7 @@ import com.liferay.apio.consumer.performParseOperation
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.*
-import com.liferay.mobile.screens.ddm.form.GridSerializer
-import com.liferay.mobile.screens.ddm.form.OptionSerializer
+import com.liferay.mobile.screens.ddm.form.serializer.FieldValueSerializer
 import com.liferay.mobile.screens.ddm.form.model.*
 import com.liferay.mobile.screens.ddm.form.view.SuccessPageActivity
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
@@ -68,10 +66,7 @@ class DDMFormView @JvmOverloads constructor(
     private val ddmFieldViewPages by bindNonNull<WrapContentViewPager>(R.id.ddmfields_container)
     private val backButton by bindNonNull<Button>(R.id.liferay_form_back)
     private val nextButton by bindNonNull<Button>(R.id.liferay_form_submit)
-    private var gson = GsonBuilder()
-        .registerTypeAdapter(Option::class.java, OptionSerializer())
-        .registerTypeAdapter(Grid::class.java, GridSerializer())
-        .create()
+
     private var formInstance: FormInstance? = null
 
     val layoutIds = mutableMapOf<Field.EditorType, Int>()
@@ -221,9 +216,8 @@ class DDMFormView @JvmOverloads constructor(
             performParseOperation(thing.id, it.id, {
                 val values = mutableMapOf<String, Any>()
 
-                val fieldValues = gson.toJson(formInstance!!.fieldValues)
-
-                values["fieldValues"] = fieldValues
+                val fields = formInstance!!.ddmStructure.fields
+                values["fieldValues"] = FieldValueSerializer.serialize(fields)
 
                 values
             }) {
@@ -349,9 +343,8 @@ class DDMFormView @JvmOverloads constructor(
                     values["isDraft"] = isDraft
                 }
 
-                val fieldValues = gson.toJson(formInstance!!.fieldValues)
-
-                values["fieldValues"] = fieldValues
+                val fields = formInstance!!.ddmStructure.fields
+                values["fieldValues"] = FieldValueSerializer.serialize(fields)
 
                 values
             }) {
