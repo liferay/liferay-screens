@@ -34,7 +34,7 @@ class FieldValueSerializer {
         fun serialize(fields: FieldList): String {
             return fields
                     .flatten()
-                    .removeEmpty()
+                    .removeEmptyOrTransient()
                     .mapValues()
                     .toJson()
         }
@@ -48,11 +48,13 @@ class FieldValueSerializer {
             }
         }
 
-        private fun FieldList.removeEmpty(): FieldList {
+        private fun FieldList.removeEmptyOrTransient(): FieldList {
             return filter {
+                !it.isTransient
+            }.filter {
                 it.currentValue?.let {
                     when(it) {
-                        is ArrayList<*> -> it.isNotEmpty()
+                        is List<*> -> it.isNotEmpty()
                         is Grid -> it.rawValues.isNotEmpty()
                         else -> it.toString().isNotEmpty()
                     }

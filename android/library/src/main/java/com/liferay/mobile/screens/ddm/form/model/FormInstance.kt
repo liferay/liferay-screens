@@ -64,7 +64,6 @@ data class FormInstance @JvmOverloads constructor(
             FormInstance(name, description, defaultLanguage, ddmStructure)
         }
 
-
         private fun getStructure(relation: Relation, locale: Locale): DDMStructure {
 
             val name = relation["name"] as String

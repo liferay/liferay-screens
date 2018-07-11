@@ -108,6 +108,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		ddmDataProviderInstance = getAttributeStringValue(attributes, FormFieldKeys.DDM_DATA_PROVIDER_INSTANCE);
 
 		autocomplete = Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.IS_AUTOCOMPLETE));
+		isTransient = Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.IS_TRANSIENT));
 
 		String predefinedValue = getAttributeStringValue(attributes, FormFieldKeys.PREDEFINED_VALUE);
 		this.predefinedValue = convertFromString(predefinedValue);
@@ -150,6 +151,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		ddmDataProviderInstance = in.readString();
 
 		autocomplete = (in.readInt() == 1);
+		isTransient = (in.readInt() == 1);
 	}
 
 	@Override
@@ -177,6 +179,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		return name;
 	}
 
+	protected void setName(String name) {
+	    this.name = name;
+    }
+
 	public DataType getDataType() {
 		return dataType;
 	}
@@ -185,7 +191,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		return editorType;
 	}
 
-	public void setEditorType(EditorType editorType) {
+	protected void setEditorType(EditorType editorType) {
 		this.editorType = editorType;
 	}
 
@@ -195,6 +201,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 	public boolean isAutocomplete() {
 		return autocomplete;
+	}
+
+	public boolean isTransient() {
+		return isTransient;
 	}
 
 	public boolean isReadOnly() {
@@ -332,6 +342,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		destination.writeString(ddmDataProviderInstance);
 
 		destination.writeInt(autocomplete ? 1 : 0);
+		destination.writeInt(isTransient ? 1 : 0);
 	}
 
 	public List<Field> getFields() {

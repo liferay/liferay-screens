@@ -14,6 +14,7 @@ class RepeatableField @JvmOverloads constructor(
 
     init {
         editorType = EditorType.REPEATABLE
+        name = baseField.name
     }
 
     val repeatedFields: List<Field<*>>
