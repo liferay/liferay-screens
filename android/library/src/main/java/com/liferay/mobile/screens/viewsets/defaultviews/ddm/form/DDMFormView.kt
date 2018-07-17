@@ -83,6 +83,11 @@ class DDMFormView @JvmOverloads constructor(
         evaluateContext(thing)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        (ddmFieldViewPages.adapter as DDMPagerAdapter).subscription?.unsubscribe()
+    }
+
     init {
         val themeName = ThemeUtil.getLayoutTheme(context)
 

@@ -28,6 +28,7 @@ import com.liferay.mobile.screens.ddm.form.model.Grid
 import com.liferay.mobile.screens.ddm.form.model.GridField
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil
+import rx.Observable
 import java.util.*
 
 /**
@@ -50,6 +51,10 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
 
         setupLabelLayout()
         refresh()
+    }
+
+    override fun getOnChangedValueObservable(): Observable<GridField> {
+        return Observable.empty<GridField>()
     }
 
     private fun setupLabelLayout() {

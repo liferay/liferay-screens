@@ -11,12 +11,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.jakewharton.rxbinding.widget.RxTextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.GeoLocation;
 import com.liferay.mobile.screens.ddl.model.GeolocationField;
 import com.liferay.mobile.screens.util.LiferayLocale;
 import java.text.NumberFormat;
+import rx.Observable;
+import rx.functions.Func1;
 
 /**
  * @author Víctor Galán Grande
@@ -31,6 +34,7 @@ public class DDLFieldGeoView extends LinearLayout implements DDLFieldViewModel<G
 	protected EditText latitudeEditText;
 	protected EditText longitudeEditText;
 	protected View parentView;
+	protected Observable<GeolocationField> onChangedValueObservable = Observable.empty();
 
 	public DDLFieldGeoView(Context context) {
 		super(context);
@@ -101,6 +105,11 @@ public class DDLFieldGeoView extends LinearLayout implements DDLFieldViewModel<G
 	}
 
 	@Override
+	public Observable<GeolocationField> getOnChangedValueObservable() {
+		return onChangedValueObservable;
+	}
+
+	@Override
 	public void setUpdateMode(boolean enabled) {
 		latitudeEditText.setEnabled(enabled);
 		longitudeEditText.setEnabled(enabled);
@@ -117,6 +126,16 @@ public class DDLFieldGeoView extends LinearLayout implements DDLFieldViewModel<G
 
 		latitudeEditText.addTextChangedListener(this);
 		longitudeEditText.addTextChangedListener(this);
+
+		onChangedValueObservable = RxTextView.textChanges(latitudeEditText)
+			.mergeWith(RxTextView.textChanges(longitudeEditText))
+			.distinctUntilChanged()
+			.map(new Func1<CharSequence, GeolocationField>() {
+				@Override
+				public GeolocationField call(CharSequence charSequence) {
+					return field;
+				}
+			});
 	}
 
 	@Override

@@ -81,10 +81,6 @@ public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
 		getField().setCurrentValue(calendar.getTime());
 
 		refresh();
-
-		if (getField().hasFormRules()) {
-			EventBusUtil.post(new Event.ValueChangedEvent());
-		}
 	}
 
 	protected int getDatePickerStyle() {

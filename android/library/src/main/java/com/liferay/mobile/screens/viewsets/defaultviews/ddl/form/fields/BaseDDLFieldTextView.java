@@ -28,11 +28,9 @@ import com.jakewharton.rxbinding.widget.TextViewAfterTextChangeEvent;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.Field;
-import com.liferay.mobile.screens.thingscreenlet.screens.events.Event;
-import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil;
-import java.util.concurrent.TimeUnit;
-import rx.functions.Action1;
+import rx.Observable;
+import rx.functions.Func1;
 
 /**
  * @author Silvio Santos
@@ -43,6 +41,7 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 	protected TextView labelTextView;
 	protected EditText textEditText;
 	protected View parentView;
+	private Observable<T> onChangedValueObservable = Observable.empty();
 	private T field;
 
 	public BaseDDLFieldTextView(Context context) {
@@ -161,33 +160,24 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 		textEditText = findViewById(R.id.liferay_ddl_edit_text);
 		textEditText.addTextChangedListener(this);
 
-		textEditText.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-			@Override
-			public void onFocusChange(View view, boolean hasFocus) {
-				if (field != null && field.hasFormRules() && !hasFocus) {
-					EventBusUtil.post(new Event.ValueChangedEvent(false));
-				}
-			}
-		});
-
 		//We are not saving the text view state because when state is restored,
 		//the ids of other DDLFields are conflicting.
 		//It is not a problem because all state is stored in Field objects.
 		textEditText.setSaveEnabled(false);
 
-		RxTextView.afterTextChangeEvents(textEditText)
-			.debounce(500, TimeUnit.MILLISECONDS)
+		onChangedValueObservable = RxTextView.afterTextChangeEvents(textEditText)
 			.distinctUntilChanged()
-			.skip(2)
-			.subscribe(new Action1<TextViewAfterTextChangeEvent>() {
+			.map(new Func1<TextViewAfterTextChangeEvent, T>() {
 				@Override
-				public void call(TextViewAfterTextChangeEvent textViewAfterTextChangeEvent) {
-					if (field != null) {
-						EventBusUtil.post(new Event.ValueChangedEvent(true));
-					}
+				public T call(TextViewAfterTextChangeEvent textViewAfterTextChangeEvent) {
+					return field;
 				}
 			});
+	}
+
+	@Override
+	public Observable<T> getOnChangedValueObservable() {
+		return onChangedValueObservable;
 	}
 
 	protected abstract void onTextChanged(String text);

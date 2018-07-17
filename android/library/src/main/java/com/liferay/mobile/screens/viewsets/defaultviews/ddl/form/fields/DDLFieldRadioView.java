@@ -27,14 +27,15 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import com.jakewharton.rxbinding.widget.RxRadioGroup;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.Option;
 import com.liferay.mobile.screens.ddl.model.SelectableOptionsField;
-import com.liferay.mobile.screens.thingscreenlet.screens.events.Event;
-import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil;
 import java.util.List;
+import rx.Observable;
+import rx.functions.Func1;
 
 /**
  * @author Jose Manuel Navarro
@@ -45,6 +46,7 @@ public class DDLFieldRadioView extends LinearLayout
 	protected View parentView;
 	private SelectableOptionsField field;
 	private RadioGroup radioGroup;
+	private Observable<SelectableOptionsField> onChangedValueObservable = Observable.empty();
 
 	public DDLFieldRadioView(Context context) {
 		super(context);
@@ -152,6 +154,11 @@ public class DDLFieldRadioView extends LinearLayout
 	}
 
 	@Override
+	public Observable<SelectableOptionsField> getOnChangedValueObservable() {
+		return onChangedValueObservable;
+	}
+
+	@Override
 	public void setUpdateMode(boolean enabled) {
 		setEnabled(enabled);
 	}
@@ -166,10 +173,6 @@ public class DDLFieldRadioView extends LinearLayout
 		} else {
 			field.clearOption(opt);
 		}
-
-		if (field.hasFormRules()) {
-			EventBusUtil.post(new Event.ValueChangedEvent());
-		}
 	}
 
 	@Override
@@ -179,6 +182,15 @@ public class DDLFieldRadioView extends LinearLayout
 		radioGroup = findViewById(R.id.radio_group);
 
 		setSaveEnabled(true);
+
+		onChangedValueObservable = RxRadioGroup.checkedChanges(radioGroup)
+			.distinctUntilChanged()
+			.map(new Func1<Integer, SelectableOptionsField>() {
+				@Override
+				public SelectableOptionsField call(Integer integer) {
+					return field;
+				}
+			});
 	}
 
 	private Typeface getTypeface() {

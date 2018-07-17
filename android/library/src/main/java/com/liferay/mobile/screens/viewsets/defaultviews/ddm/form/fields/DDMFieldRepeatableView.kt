@@ -1,3 +1,17 @@
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
 package com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.fields
 
 import android.content.Context
@@ -8,6 +22,9 @@ import android.widget.LinearLayout
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.ddm.form.model.RepeatableField
+import rx.Observable
+import rx.Subscriber
+import rx.Subscription
 
 /**
  * @author Paulo Cruz
@@ -24,8 +41,16 @@ class DDMFieldRepeatableView @JvmOverloads constructor(
     private val repeatableLayoutId = com.liferay.mobile.screens.R.layout.ddmfield_repeatable_item
     private var fieldLayoutId: Int = 0
 
+    private var containerSubscriber: Subscriber<in RepeatableField>? = null
+    private var subscriptionsMap = mutableMapOf<DDMFieldRepeatableItemView, Subscription>()
+    private var onChangedValueObservable = Observable.create<RepeatableField> { containerSubscriber = it }
+
     fun setLayoutIds(layoutIds: Map<Field.EditorType, Int>) {
         this.layoutIds = layoutIds
+    }
+
+    override fun getOnChangedValueObservable(): Observable<RepeatableField> {
+        return onChangedValueObservable
     }
 
     private fun setupRepeatableFields() {
@@ -35,11 +60,11 @@ class DDMFieldRepeatableView @JvmOverloads constructor(
         requestLayout()
     }
 
-    private fun createFieldView(fieldIndex: Int, repeatedField: Field<*>): View {
-        val fieldView = inflater.inflate(repeatableLayoutId!!, this, false)
+    private fun createFieldView(fieldIndex: Int, repeatedField: Field<*>): DDMFieldRepeatableItemView {
+        val fieldView = inflater.inflate(repeatableLayoutId, this, false)
 
-        (fieldView as? DDMFieldRepeatableItemView)?.let {
-            fieldView.setRepeatableItemSettings(fieldIndex, fieldLayoutId!!, this)
+        (fieldView as DDMFieldRepeatableItemView).let {
+            fieldView.setRepeatableItemSettings(fieldIndex, fieldLayoutId, this)
 
             fieldView.field = repeatedField
             addView(fieldView, fieldIndex)
@@ -50,13 +75,29 @@ class DDMFieldRepeatableView @JvmOverloads constructor(
 
     override fun onRepeatableFieldAdded(newFieldIndex: Int) {
         val repeatedField = this.field.repeat()
-        createFieldView(newFieldIndex, repeatedField)
+        val fieldView = createFieldView(newFieldIndex, repeatedField)
         requestLayout()
+
+        val subscription = fieldView.onChangedValueObservable.map { field }.subscribe({
+
+            containerSubscriber?.let {
+                if (it.isUnsubscribed) {
+                    containerSubscriber?.onNext(field)
+                }
+            }
+        })
+
+        subscriptionsMap[fieldView] = subscription
     }
 
     override fun onRepeatableFieldRemoved(fieldView: DDMFieldRepeatableItemView) {
         val removedField = fieldView.field
+
+        val subscription = subscriptionsMap.remove(fieldView)
+        subscription?.unsubscribe()
+
         this.field.remove(removedField)
+
         removeView(fieldView)
     }
 

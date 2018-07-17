@@ -26,6 +26,7 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import com.jakewharton.rxbinding.widget.RxCompoundButton;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.Option;
@@ -33,6 +34,8 @@ import com.liferay.mobile.screens.ddm.form.model.CheckboxMultipleField;
 import com.liferay.mobile.screens.thingscreenlet.screens.events.Event;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import java.util.List;
+import rx.Observable;
+import rx.functions.Func1;
 
 /**
  * @author Paulo Cruz
@@ -43,6 +46,7 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
 	protected View parentView;
 	private CheckboxMultipleField field;
 	private LinearLayout linearLayout;
+	private Observable<CheckboxMultipleField> onChangedValueObservable = Observable.empty();
 
 	public DDMFieldCheckboxMultipleView(Context context) {
 		super(context);
@@ -66,10 +70,6 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
 		} else {
 			field.clearOption(opt);
 		}
-
-		if (field.hasFormRules()) {
-			EventBusUtil.post(new Event.ValueChangedEvent());
-		}
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
 	}
 
 	@Override
-	public void setField(CheckboxMultipleField field) {
+	public void setField(final CheckboxMultipleField field) {
 		this.field = field;
 
 		if (this.field.isShowLabel()) {
@@ -99,16 +99,34 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
 		if (field.isShowAsSwitcher()) {
 			for (Option opt : availableOptions) {
 				Switch switchView = createSwitchView(opt, layoutParams);
-				linearLayout.addView(switchView);
+				addView(field, switchView);
 			}
 		} else {
 			for (Option opt : availableOptions) {
 				CheckBox checkBoxView = createCheckBoxView(opt, layoutParams);
-				linearLayout.addView(checkBoxView);
+				addView(field, checkBoxView);
 			}
 		}
 
 		refresh();
+	}
+
+	private void addView(CheckboxMultipleField field, CompoundButton switchView) {
+		linearLayout.addView(switchView);
+		onChangedValueObservable = onChangedValueObservable.mergeWith(getMappedObservable(field, switchView));
+	}
+
+	private Observable<CheckboxMultipleField> getMappedObservable(final CheckboxMultipleField field,
+		CompoundButton switchView) {
+
+		return RxCompoundButton.checkedChanges(switchView)
+			.distinctUntilChanged()
+			.map(new Func1<Boolean, CheckboxMultipleField>() {
+				@Override
+				public CheckboxMultipleField call(Boolean aBoolean) {
+					return field;
+				}
+			});
 	}
 
 	private CheckBox createCheckBoxView(Option option, LayoutParams layoutParams) {
@@ -194,6 +212,11 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
 	@Override
 	public void setParentView(View view) {
 		parentView = view;
+	}
+
+	@Override
+	public Observable<CheckboxMultipleField> getOnChangedValueObservable() {
+		return onChangedValueObservable;
 	}
 
 	@Override

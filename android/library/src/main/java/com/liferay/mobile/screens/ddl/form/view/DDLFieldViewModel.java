@@ -17,6 +17,7 @@ package com.liferay.mobile.screens.ddl.form.view;
 import android.view.View;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldRadioView;
+import rx.Observable;
 
 /**
  * @author Silvio Santos
@@ -53,6 +54,11 @@ public interface DDLFieldViewModel<T extends Field> {
 	 * Sets the parent view.
 	 */
 	void setParentView(View view);
+
+	/**
+	 * Gets on changed value observable
+	 */
+	Observable<T> getOnChangedValueObservable();
 
 	void setUpdateMode(boolean enabled);
 }
