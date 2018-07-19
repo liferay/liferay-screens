@@ -388,18 +388,25 @@ class DDMFormView @JvmOverloads constructor(
     }
 
     override fun startUploadField(field: DocumentField) {
-        field.moveToUploadInProgressState()
+        val fieldView = findViewWithTag<DDLDocumentFieldView>(field)
 
-        uploadFileToRootFolder(thing!!, field) {
-            val (remoteFile, exception) = it
+        fieldView.let {
+            field.moveToUploadInProgressState()
+            fieldView.refresh()
 
-            exception?.let {
-                field.moveToUploadFailureState()
-            } ?:
-            remoteFile?.let {
-                field.currentValue = it
+            uploadFileToRootFolder(thing!!, field) {
+                val (remoteFile, exception) = it
 
-                field.moveToUploadCompleteState()
+                exception?.let {
+                    field.moveToUploadFailureState()
+                } ?:
+                remoteFile?.let {
+                    field.currentValue = it
+
+                    field.moveToUploadCompleteState()
+                }
+
+                fieldView.refresh()
             }
         }
     }

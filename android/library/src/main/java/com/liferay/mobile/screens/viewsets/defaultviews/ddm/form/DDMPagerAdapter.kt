@@ -79,6 +79,7 @@ class DDMPagerAdapter(val pages: List<FormPage>, val ddmFormView: DDMFormView) :
 
             val viewModel = view as DDLFieldViewModel<*>
             viewModel.field = field
+            view.tag = field
 
             linearLayout.addView(view)
 
