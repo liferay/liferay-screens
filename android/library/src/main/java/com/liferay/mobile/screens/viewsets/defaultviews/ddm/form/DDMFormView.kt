@@ -55,6 +55,9 @@ import okhttp3.HttpUrl
 import org.jetbrains.anko.childrenSequence
 import java.text.SimpleDateFormat
 import java.util.*
+import android.widget.TextView
+import com.liferay.mobile.screens.context.LiferayScreensContext
+
 
 /**
  * @author Paulo Cruz
@@ -75,6 +78,10 @@ class DDMFormView @JvmOverloads constructor(
     override var screenlet: ThingScreenlet? = null
     override var thing: Thing? by converter<FormInstance> {
         formInstance = it
+
+        val activityFromContext = LiferayScreensContext.getActivityFromContext(context)
+        activityFromContext?.title = formInstance?.name
+
         val ddmPagerAdapter = DDMPagerAdapter(it.ddmStructure.pages, this)
         ddmFieldViewPages.adapter = ddmPagerAdapter
 

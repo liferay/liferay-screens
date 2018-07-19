@@ -63,6 +63,20 @@
 		<item name="android:textColorHint">@color/textColorSecondary_default</item>
 	</style>
 
+	<style name="default_text_view_title" parent="base_default_text_view">
+		<item name="android:textSize">@dimen/default_text_view_title_font_size</item>
+		<item name="android:textColor">#6b6c7e</item>
+	</style>
+
+	<style name="default_text_view_subtitle" parent="base_default_text_view">
+		<item name="android:textSize">@dimen/default_text_view_subtitle_font_size</item>
+		<item name="android:textColor">#6b6c7e</item>
+		<item name="android:textStyle">normal</item>
+		<item name="android:paddingLeft">@dimen/field_padding</item>
+		<item name="android:paddingRight">@dimen/field_padding</item>
+		<item name="android:paddingTop">0dp</item>
+	</style>
+
 	<style name="default_text_view" parent="base_default_text_view"/>
 
 	<style name="base_default_text_view" parent="android:Widget.TextView">

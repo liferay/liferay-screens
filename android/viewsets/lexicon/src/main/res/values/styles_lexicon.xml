@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="lexicon_theme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="lexicon_theme" parent="lexicon_theme.base"/>
+
+    <style name="lexicon_theme.base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary_lexicon</item>
         <item name="colorAccent">@color/colorPrimaryLight_lexicon</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark_lexicon</item>
