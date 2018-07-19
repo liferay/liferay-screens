@@ -15,8 +15,7 @@
 package com.liferay.mobile.screens.ddm.form.serializer
 
 import com.google.gson.*
-import com.liferay.mobile.screens.ddl.model.Field
-import com.liferay.mobile.screens.ddl.model.Option
+import com.liferay.mobile.screens.ddl.model.*
 import com.liferay.mobile.screens.ddm.form.model.Grid
 import com.liferay.mobile.screens.ddm.form.model.RepeatableField
 import java.lang.reflect.Type
@@ -70,6 +69,7 @@ class FieldValueSerializer {
 
         private fun Field<*>.getSubmitValue(): Any? {
             return when (editorType) {
+                Field.EditorType.DOCUMENT -> (currentValue as? DocumentRemoteFile)?.toData()
                 Field.EditorType.RADIO -> (currentValue as? List<*>)?.get(0)
                 else -> currentValue
             }

@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddm.form
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.support.design.widget.Snackbar
 import android.support.design.widget.Snackbar.LENGTH_SHORT
 import android.util.AttributeSet
@@ -24,8 +23,6 @@ import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.ScrollView
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.liferay.apio.consumer.delegates.converter
 import com.liferay.apio.consumer.fetch
 import com.liferay.apio.consumer.model.Relation
@@ -36,8 +33,12 @@ import com.liferay.apio.consumer.performParseOperation
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.*
+import com.liferay.mobile.screens.ddm.form.model.FieldContext
+import com.liferay.mobile.screens.ddm.form.model.FormContext
+import com.liferay.mobile.screens.ddm.form.model.FormContextPage
+import com.liferay.mobile.screens.ddm.form.model.FormInstance
 import com.liferay.mobile.screens.ddm.form.serializer.FieldValueSerializer
-import com.liferay.mobile.screens.ddm.form.model.*
+import com.liferay.mobile.screens.ddm.form.uploader.uploadFileToRootFolder
 import com.liferay.mobile.screens.ddm.form.view.SuccessPageActivity
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
@@ -258,7 +259,7 @@ class DDMFormView @JvmOverloads constructor(
         val fieldContexts =
             formContext.pages.flatMap(FormContextPage::fields).map { Pair(it.name, it) }.toMap()
 
-        fieldsContainerView.childrenSequence().forEach {
+        fieldsContainerView?.childrenSequence()?.forEach {
             val fieldView = it
             val fieldViewModel = fieldView as? DDLFieldViewModel<*>
             val fieldTextView = fieldView as? BaseDDLFieldTextView<*>
@@ -387,35 +388,18 @@ class DDMFormView @JvmOverloads constructor(
     }
 
     override fun startUploadField(field: DocumentField) {
-        val operation = thing?.getOperation("upload-file-to-root-folder")
+        field.moveToUploadInProgressState()
 
-        val filePath = field.currentValue.toString()
-        val fileUri = Uri.parse(filePath)
+        uploadFileToRootFolder(thing!!, field) {
+            val (remoteFile, exception) = it
 
-        val inputStream = context.contentResolver.openInputStream(fileUri)
+            exception?.let {
+                field.moveToUploadFailureState()
+            } ?:
+            remoteFile?.let {
+                field.currentValue = it
 
-        operation?.let {
-            performOperation(thing!!.id, it.id, {
-                val values = mutableMapOf<String, Any>()
-
-                val randomName = UUID.randomUUID().toString()
-                values["changeLog"] = ""
-                values["description"] = ""
-                values["name"] = randomName
-                values["title"] = randomName
-                values["binaryFile"] = inputStream
-
-                values
-            }) {
-                val (response, exception) = it
-
-                response?.let {
-                    val json = Gson().fromJson<Map<String, Any>>(it.body()?.string(),
-                        TypeToken.getParameterized(Map::class.java, String::class.java, Any::class.java).type)
-
-                    field.setCurrentStringValue(json["@id"] as String)
-                    field.moveToUploadCompleteState()
-                }
+                field.moveToUploadCompleteState()
             }
         }
     }
