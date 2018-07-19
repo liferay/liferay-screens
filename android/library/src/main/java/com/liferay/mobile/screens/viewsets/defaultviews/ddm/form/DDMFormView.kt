@@ -370,6 +370,9 @@ class DDMFormView @JvmOverloads constructor(
                             }
                         }
 
+                    } else if (it.isSuccessful && isDraft) {
+                        message = "Draft Saved"
+
                     } else {
                         message = exception?.message ?: response.message()
 
@@ -429,9 +432,9 @@ class DDMFormView @JvmOverloads constructor(
 
     @Subscribe
     fun onEvent(event: Event.ValueChangedEvent) {
-        if (event.autoSave) {
-            submit(event.autoSave)
-        } else {
+        submit(true)
+
+        if (event.hasFormRules) {
             evaluateContext(thing)
         }
     }
