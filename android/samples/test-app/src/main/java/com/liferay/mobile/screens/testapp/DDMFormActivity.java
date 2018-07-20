@@ -37,7 +37,7 @@ public class DDMFormActivity extends ThemeActivity {
         String url = "http://10.0.2.2:8080/o/api/p/form-instances/44180?embedded=structure";
         //String url = "http://10.0.2.2:8080/o/api/p/form-instances/44915?embedded=structure";
 
-        screenlet.load(url, Credentials.basic("test@liferay.com", "test"), Detail.INSTANCE);
+        screenlet.load(url, Detail.INSTANCE);
     }
 
     private void initScreenletFromIntent(Intent intent) {
