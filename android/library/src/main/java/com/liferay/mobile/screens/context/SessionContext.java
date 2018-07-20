@@ -18,6 +18,8 @@ import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.CookieSignIn;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.auth.basic.CookieAuthentication;
+import com.liferay.mobile.android.http.Headers;
+import com.liferay.mobile.android.http.Request;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
@@ -176,6 +178,19 @@ public class SessionContext {
 
 	public void setAuthenticator(String server, Authenticator authenticator) {
 		CookieSignIn.registerAuthenticatorForServer(server, authenticator);
+	}
+
+	// TODO Code improvements needed and add support to Cookie Authorization
+	public static String getCredentialsFromCurrentSession() throws Exception {
+		Authentication authentication = getAuthentication();
+
+		if(authentication != null) {
+			Request emptyRequest = new Request(null, null, null, null, 0);
+			authentication.authenticate(emptyRequest);
+			return emptyRequest.getHeaders().get(Headers.AUTHORIZATION);
+		}
+
+		return null;
 	}
 
 	private static void refreshUserAttributes(final LoginListener loginListener, final Session session,

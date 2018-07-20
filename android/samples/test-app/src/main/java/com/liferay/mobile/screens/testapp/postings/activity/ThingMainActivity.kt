@@ -49,7 +49,7 @@ class ThingMainActivity : AppCompatActivity(), ScreenletEvents {
 //		val id = "http://192.168.56.1:8080/p/blog-postings"
 		val id = "https://apiosample.wedeploy.io/p/blog-postings"
 
-		thingScreenlet.load(id, "Basic YXBpb0BsaWZlcmF5LmNvbTphcGlvZGV2cw==")
+		thingScreenlet.load(id, credentials = "Basic YXBpb0BsaWZlcmF5LmNvbTphcGlvZGV2cw==")
 
 		thingScreenlet.screenletEvents = this
 	}

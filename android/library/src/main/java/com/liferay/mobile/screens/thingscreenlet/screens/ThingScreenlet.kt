@@ -22,7 +22,10 @@ import com.github.kittinunf.result.failure
 import com.liferay.apio.consumer.delegates.observe
 import com.liferay.apio.consumer.fetch
 import com.liferay.apio.consumer.model.Thing
+import com.liferay.mobile.android.http.Headers
+import com.liferay.mobile.android.http.Request
 import com.liferay.mobile.screens.R
+import com.liferay.mobile.screens.context.SessionContext
 import com.liferay.mobile.screens.thingscreenlet.extensions.inflate
 import com.liferay.mobile.screens.thingscreenlet.model.BlogPosting
 import com.liferay.mobile.screens.thingscreenlet.model.Collection
@@ -85,8 +88,10 @@ class ThingScreenlet @JvmOverloads constructor(
 	val baseView: BaseView? get() = layout as? BaseView
 
 	@JvmOverloads
-	fun load(thingId: String, credentials: String? = null, scenario: Scenario? = null,
+	fun load(thingId: String, scenario: Scenario? = null, credentials: String? = null,
 		onComplete: ((ThingScreenlet) -> Unit)? = null) {
+
+		val credentials = credentials ?: SessionContext.getCredentialsFromCurrentSession()
 
 		HttpUrl.parse(thingId)?.let {
 			fetch(it, credentials) {
@@ -102,7 +107,6 @@ class ThingScreenlet @JvmOverloads constructor(
 				onComplete?.invoke(this)
 			}
 		}
-
 	}
 
 	private fun getLayoutIdFor(thing: Thing?): Int? {
