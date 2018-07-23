@@ -31,10 +31,9 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.Option;
 import com.liferay.mobile.screens.ddm.form.model.CheckboxMultipleField;
-import com.liferay.mobile.screens.thingscreenlet.screens.events.Event;
-import com.liferay.mobile.screens.util.EventBusUtil;
 import java.util.List;
 import rx.Observable;
+import rx.functions.Action1;
 import rx.functions.Func1;
 
 /**
@@ -117,16 +116,19 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
 	}
 
 	private Observable<CheckboxMultipleField> getMappedObservable(final CheckboxMultipleField field,
-		CompoundButton switchView) {
+		final CompoundButton switchView) {
 
-		return RxCompoundButton.checkedChanges(switchView)
-			.distinctUntilChanged()
-			.map(new Func1<Boolean, CheckboxMultipleField>() {
-				@Override
-				public CheckboxMultipleField call(Boolean aBoolean) {
-					return field;
-				}
-			});
+		return RxCompoundButton.checkedChanges(switchView).doOnNext(new Action1<Boolean>() {
+			@Override
+			public void call(Boolean aBoolean) {
+				onCheckedChanged(switchView, aBoolean);
+			}
+		}).distinctUntilChanged().map(new Func1<Boolean, CheckboxMultipleField>() {
+			@Override
+			public CheckboxMultipleField call(Boolean aBoolean) {
+				return field;
+			}
+		});
 	}
 
 	private CheckBox createCheckBoxView(Option option, LayoutParams layoutParams) {

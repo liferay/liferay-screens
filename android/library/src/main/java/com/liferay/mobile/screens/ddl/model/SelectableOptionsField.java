@@ -156,7 +156,11 @@ public class SelectableOptionsField extends OptionsField<ArrayList<Option>> {
 
 			List<Option> options = getCurrentValue();
 
-			return (options != null && !options.isEmpty());
+			if (isMultiple()) {
+				return options != null;
+			} else {
+				return (options != null && !options.isEmpty());
+			}
 
 		} else {
 			return true;
