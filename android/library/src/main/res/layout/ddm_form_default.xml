@@ -4,69 +4,97 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:layout_margin="0dp"
-	android:fillViewport="true"
 	android:padding="0dp"
 	style="@style/default_screenlet"
 	>
 
+	<ScrollView
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_above="@+id/form_footer"
+		android:layout_margin="0dp"
+		android:fillViewport="true"
+		>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			>
+
+			<com.liferay.mobile.screens.viewsets.defaultviews.ddm.pager.WrapContentViewPager
+				android:id="@+id/ddmfields_container"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				/>
+
+			<ProgressBar
+				android:id="@+id/ddmform_loading_screen_progress_bar"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:visibility="gone"
+				/>
+
+		</LinearLayout>
+
+	</ScrollView>
+
 	<LinearLayout
+		android:id="@+id/form_footer"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:background="@android:color/white"
+		android:elevation="10dp"
 		android:orientation="vertical"
 		>
 
-		<com.liferay.mobile.screens.viewsets.defaultviews.ddm.pager.WrapContentViewPager
-			android:id="@+id/ddmfields_container"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			/>
-
 		<ProgressBar
-			android:id="@+id/ddmform_loading_screen_progress_bar"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center"
+			android:id="@+id/liferay_multipage_progress"
+			android:layout_marginBottom="@dimen/multipage_progressbar_bottom_margin"
+			android:layout_marginEnd="@dimen/multipage_progressbar_padding"
+			android:layout_marginLeft="@dimen/multipage_progressbar_padding"
+			android:layout_marginRight="@dimen/multipage_progressbar_padding"
+			android:layout_marginStart="@dimen/multipage_progressbar_padding"
+			android:layout_marginTop="@dimen/multipage_progressbar_top_margin"
 			android:visibility="gone"
+			style="@style/default_progressbar"
 			/>
 
 		<LinearLayout
 			android:id="@+id/liferay_submit_container"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_marginBottom="30dp"
-			android:layout_marginLeft="30dp"
-			android:layout_marginRight="30dp"
-			android:layout_marginTop="10dp"
+			android:layout_marginBottom="12dp"
+			android:layout_marginLeft="20dp"
+			android:layout_marginRight="20dp"
 			android:orientation="horizontal"
 			android:weightSum="2"
-
 			>
 
 			<Button
 				android:id="@+id/liferay_form_back"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:layout_marginEnd="10dp"
-				android:layout_marginRight="10dp"
+				android:layout_marginEnd="20dp"
+				android:layout_marginRight="20dp"
 				android:layout_weight="1"
 				android:text="@string/back"
-				android:visibility="visible"
-				android:enabled="false"
+				android:visibility="gone"
 				/>
 
 			<Button
 				android:id="@+id/liferay_form_submit"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:layout_marginLeft="10dp"
-				android:layout_marginStart="10dp"
 				android:layout_weight="1"
 				android:text="@string/next"
 				android:visibility="visible"
 				/>
 
 		</LinearLayout>
-	</LinearLayout>
 
+	</LinearLayout>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.DDMFormView>

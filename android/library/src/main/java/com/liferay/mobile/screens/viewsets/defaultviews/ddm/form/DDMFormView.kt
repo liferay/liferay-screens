@@ -22,7 +22,8 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
-import android.widget.ScrollView
+import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import com.liferay.apio.consumer.delegates.converter
 import com.liferay.apio.consumer.fetch
 import com.liferay.apio.consumer.model.Relation
@@ -31,6 +32,7 @@ import com.liferay.apio.consumer.model.getOperation
 import com.liferay.apio.consumer.performOperation
 import com.liferay.apio.consumer.performParseOperation
 import com.liferay.mobile.screens.R
+import com.liferay.mobile.screens.context.LiferayScreensContext
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.*
 import com.liferay.mobile.screens.ddm.form.model.FieldContext
@@ -55,9 +57,6 @@ import okhttp3.HttpUrl
 import org.jetbrains.anko.childrenSequence
 import java.text.SimpleDateFormat
 import java.util.*
-import android.widget.TextView
-import com.liferay.mobile.screens.context.LiferayScreensContext
-
 
 /**
  * @author Paulo Cruz
@@ -65,13 +64,14 @@ import com.liferay.mobile.screens.context.LiferayScreensContext
  */
 class DDMFormView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : BaseView,
-    ScrollView(context, attrs, defStyleAttr), DDLDocumentFieldView.UploadListener {
+    RelativeLayout(context, attrs, defStyleAttr), DDLDocumentFieldView.UploadListener {
 
     private val ddmFieldViewPages by bindNonNull<WrapContentViewPager>(R.id.ddmfields_container)
+    private val multipageProgress by bindNonNull<ProgressBar>(R.id.liferay_multipage_progress)
     private val backButton by bindNonNull<Button>(R.id.liferay_form_back)
     private val nextButton by bindNonNull<Button>(R.id.liferay_form_submit)
 
-    private var formInstance: FormInstance? = null
+    private lateinit var formInstance: FormInstance
 
     val layoutIds = mutableMapOf<Field.EditorType, Int>()
 
@@ -80,15 +80,26 @@ class DDMFormView @JvmOverloads constructor(
         formInstance = it
 
         val activityFromContext = LiferayScreensContext.getActivityFromContext(context)
-        activityFromContext?.title = formInstance?.name
+        activityFromContext?.title = formInstance.name
 
         val ddmPagerAdapter = DDMPagerAdapter(it.ddmStructure.pages, this)
         ddmFieldViewPages.adapter = ddmPagerAdapter
+
+        if (it.ddmStructure.pages.size > 1) {
+            multipageProgress.visibility = View.VISIBLE
+            multipageProgress.progress = getFormProgress()
+        } else {
+            multipageProgress.visibility = View.GONE
+        }
 
         if (it.ddmStructure.pages.size == 1)
             nextButton.text = context.getString(R.string.submit)
 
         evaluateContext(thing)
+    }
+
+    private fun getFormProgress(): Int {
+        return (ddmFieldViewPages.currentItem + 1) * 100 / formInstance.ddmStructure.pages.size
     }
 
     override fun onDestroy() {
@@ -120,8 +131,10 @@ class DDMFormView @JvmOverloads constructor(
                 ddmFieldViewPages.currentItem = getPreviousEnabledPage().toInt()
 
                 nextButton.text = context.getString(R.string.next)
+                multipageProgress.progress = getFormProgress()
+
                 if (ddmFieldViewPages.currentItem == 0) {
-                    backButton.isEnabled = false
+                    backButton.visibility = View.GONE
                 }
             }
         })
@@ -134,7 +147,8 @@ class DDMFormView @JvmOverloads constructor(
                 if (ddmFieldViewPages.currentItem < size) {
                     ddmFieldViewPages.currentItem = getNextEnabledPage().toInt()
 
-                    backButton.isEnabled = true
+                    backButton.visibility = View.VISIBLE
+                    multipageProgress.progress = getFormProgress()
                     if (ddmFieldViewPages.currentItem == size) {
                         nextButton.text = context.getString(R.string.submit)
                     }
@@ -166,14 +180,9 @@ class DDMFormView @JvmOverloads constructor(
     }
 
     private fun getInvalidFields(): Map<Field<*>, String> {
-        var invalidResults = mapOf<Field<*>, String>()
-        val page = formInstance?.ddmStructure?.pages?.get(ddmFieldViewPages.currentItem)
+        val page = formInstance.ddmStructure.pages[ddmFieldViewPages.currentItem]
 
-        page?.let {
-            invalidResults = it.fields?.filter { !it.isValid }?.associateBy({ it }, { "Error Msg Goes Here" }).orEmpty()
-        }
-
-        return invalidResults
+        return page.fields.filter { !it.isValid }.associateBy({ it }, { "Error Msg Goes Here" })
     }
 
     /*
@@ -197,7 +206,7 @@ class DDMFormView @JvmOverloads constructor(
 
                     if (autoscroll && !scrolled) {
                         fieldView.requestFocus()
-                        smoothScrollTo(0, fieldView.top)
+//                        smoothScrollTo(0, fieldView.top)
                         scrolled = true
                     }
                 }
@@ -252,7 +261,7 @@ class DDMFormView @JvmOverloads constructor(
     }
 
     private fun updatePages(formContext: FormContext) {
-        (ddmFieldViewPages.adapter as DDMPagerAdapter)?.let {
+        (ddmFieldViewPages.adapter as DDMPagerAdapter).let {
             for ((index, page) in it.pages.withIndex()) {
                 page.isEnabled = formContext.pages[index].isEnabled
             }
@@ -378,16 +387,15 @@ class DDMFormView @JvmOverloads constructor(
                             }
                         }
 
-                    } else if (it.isSuccessful && isDraft) {
-                        message = "Draft Saved"
-
                     } else {
                         message = exception?.message ?: response.message()
 
                         if (message.isEmpty()) message = "Unknown Error"
                     }
 
-                    Snackbar.make(this, message, LENGTH_SHORT).show()
+                    if (!isDraft) {
+                        Snackbar.make(this, message, LENGTH_SHORT).show()
+                    }
 
                 } ?: LiferayLogger.d(exception?.message)
             }
@@ -406,8 +414,7 @@ class DDMFormView @JvmOverloads constructor(
 
                 exception?.let {
                     field.moveToUploadFailureState()
-                } ?:
-                remoteFile?.let {
+                } ?: remoteFile?.let {
                     field.currentValue = it
 
                     field.moveToUploadCompleteState()

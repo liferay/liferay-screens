@@ -8,6 +8,10 @@
 	<dimen name="default_edit_text_padding">10dp</dimen>
 	<dimen name="default_grid_row_padding">8dp</dimen>
 	<dimen name="default_edit_text_drawable_padding">15dp</dimen>
+	<dimen name="multipage_progressbar_height">8dp</dimen>
+	<dimen name="multipage_progressbar_padding">20dp</dimen>
+	<dimen name="multipage_progressbar_top_margin">12dp</dimen>
+	<dimen name="multipage_progressbar_bottom_margin">8dp</dimen>
 	<dimen name="field_padding">10dp</dimen>
 	<dimen name="field_radius">4dp</dimen>
 	<dimen name="field_grid_min_height">40dp</dimen>

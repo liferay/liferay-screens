@@ -35,6 +35,12 @@
 		<item name="android:background">@android:color/transparent</item>
 	</style>
 
+	<style name="default_progressbar" parent="Base.Widget.AppCompat.ProgressBar.Horizontal">
+		<item name="android:progressDrawable">@drawable/default_multipage_progressbar_drawable</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">@dimen/multipage_progressbar_height</item>
+	</style>
+
 	<style name="default_date_picker" parent="Theme.AppCompat.Light.Dialog">
 		<item name="colorPrimary">@color/colorPrimaryLight_default</item>
 		<item name="colorAccent">@color/colorPrimaryLight_default</item>
