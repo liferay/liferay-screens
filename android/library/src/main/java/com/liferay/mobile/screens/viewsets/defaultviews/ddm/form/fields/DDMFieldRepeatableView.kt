@@ -68,6 +68,16 @@ class DDMFieldRepeatableView @JvmOverloads constructor(
 
             fieldView.field = repeatedField
             addView(fieldView, fieldIndex)
+
+            val subscription = fieldView.onChangedValueObservable.map { field }.subscribe({
+                containerSubscriber?.let {
+                    if (!it.isUnsubscribed) {
+                        it.onNext(field)
+                    }
+                }
+            })
+
+            subscriptionsMap[fieldView] = subscription
         }
 
         return fieldView
@@ -75,19 +85,8 @@ class DDMFieldRepeatableView @JvmOverloads constructor(
 
     override fun onRepeatableFieldAdded(newFieldIndex: Int) {
         val repeatedField = this.field.repeat()
-        val fieldView = createFieldView(newFieldIndex, repeatedField)
+        createFieldView(newFieldIndex, repeatedField)
         requestLayout()
-
-        val subscription = fieldView.onChangedValueObservable.map { field }.subscribe({
-
-            containerSubscriber?.let {
-                if (it.isUnsubscribed) {
-                    containerSubscriber?.onNext(field)
-                }
-            }
-        })
-
-        subscriptionsMap[fieldView] = subscription
     }
 
     override fun onRepeatableFieldRemoved(fieldView: DDMFieldRepeatableItemView) {
