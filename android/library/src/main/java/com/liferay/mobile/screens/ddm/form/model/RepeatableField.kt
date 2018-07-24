@@ -14,7 +14,11 @@ class RepeatableField @JvmOverloads constructor(
 
     init {
         editorType = EditorType.REPEATABLE
+        isShowLabel = baseField.isShowLabel
+        label = baseField.label
         name = baseField.name
+
+        baseField.isShowLabel = false
     }
 
     val repeatedFields: List<Field<*>>
@@ -34,7 +38,10 @@ class RepeatableField @JvmOverloads constructor(
         val defaultLocale = baseField.defaultLocale
 
         val repeatedField = dataType.createField(attributes, currentLocale, defaultLocale, true)
+        repeatedField.isShowLabel = false
+
         siblings.add(repeatedField)
+
         return repeatedField;
     }
 
@@ -69,4 +76,5 @@ class RepeatableField @JvmOverloads constructor(
 
     override fun convertFromString(stringValue: String?): Serializable =
             baseField.currentValue as Serializable
-    }
+
+}

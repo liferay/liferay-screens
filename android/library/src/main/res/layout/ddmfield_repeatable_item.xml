@@ -5,33 +5,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp">
 
-        <Button
-            android:id="@+id/liferay_repeatable_field_remove"
+        <TextView
+            android:id="@+id/liferay_repeatable_field_label"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="0dp"
-            android:background="@null"
-            android:padding="0dp"
-            android:text="-"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20dp"
-            android:visibility="gone"/>
+            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
+            android:visibility="gone" />
 
-        <Button
-            android:id="@+id/liferay_repeatable_field_add"
+        <LinearLayout
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="0dp"
-            android:background="@null"
-            android:padding="0dp"
-            android:text="+"
-            android:textColor="@color/colorPrimary"
-            android:textSize="20dp"/>
-    </LinearLayout>
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/liferay_repeatable_field_remove"
+                android:layout_width="@dimen/repeatable_button_width"
+                android:layout_height="@dimen/repeatable_button_height"
+                android:layout_marginRight="@dimen/repeatable_button_spacing"
+                android:layout_marginEnd="@dimen/repeatable_button_spacing"
+                android:padding="0dp"
+                android:textAlignment="center"
+                android:text="@string/repeatable_remove"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/repeatable_button_font_size"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/liferay_repeatable_field_add"
+                android:layout_width="@dimen/repeatable_button_width"
+                android:layout_height="@dimen/repeatable_button_height"
+                android:padding="0dp"
+                android:textAlignment="center"
+                android:text="@string/repeatable_add"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/repeatable_button_font_size" />
+
+        </LinearLayout>
+    </RelativeLayout>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.fields.DDMFieldRepeatableItemView>

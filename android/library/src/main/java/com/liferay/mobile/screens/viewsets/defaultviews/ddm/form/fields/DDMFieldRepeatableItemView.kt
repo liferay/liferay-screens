@@ -15,11 +15,13 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.fields
 
 import android.content.Context
+import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.TextView
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
@@ -32,6 +34,9 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null,
     defStyleAttr: Int = 0)
     : LinearLayout(context, attrs, defStyleAttr), DDLFieldViewModel<Field<*>> {
+
+    private val repeatableLabel
+            by bindNonNull<TextView>(com.liferay.mobile.screens.R.id.liferay_repeatable_field_label)
 
     private val addRepeatableButton
         by bindNonNull<Button>(com.liferay.mobile.screens.R.id.liferay_repeatable_field_add)
@@ -46,6 +51,10 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
     private val isBaseField: Boolean
         get() = fieldIndex == 0
 
+    private var isShowLabel: Boolean = false
+    private lateinit var label: String
+
+    private var buttonDrawableId: Int = 0
     private var fieldLayoutId: Int = 0
     private lateinit var listener: RepeatableActionListener
     private var onChangedValueObservable = Observable.empty<Field<*>>()
@@ -54,15 +63,25 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
         return onChangedValueObservable
     }
 
-    fun setRepeatableItemSettings(fieldIndex: Int, fieldLayoutId: Int, listener: RepeatableActionListener) {
+    fun setRepeatableItemSettings(
+            fieldIndex: Int, fieldLayoutId: Int, buttonDrawableId: Int, listener: RepeatableActionListener) {
 
         this.fieldIndex = fieldIndex
         this.fieldLayoutId = fieldLayoutId
+        this.buttonDrawableId = buttonDrawableId
         this.listener = listener
     }
 
+    fun setLabelSettings(isShowLabel: Boolean, label: String) {
+        this.isShowLabel = isShowLabel
+        this.label = label
+    }
+
     private fun setupRepeatableActions() {
+        var buttonDrawable = ContextCompat.getDrawable(context, buttonDrawableId)
+
         if (!isBaseField) {
+            removeRepeatableButton.background = buttonDrawable
             removeRepeatableButton.visibility = View.VISIBLE
 
             removeRepeatableButton.setOnClickListener {
@@ -72,8 +91,17 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
             }
         }
 
+        addRepeatableButton.background = buttonDrawable
+
         addRepeatableButton.setOnClickListener {
             listener.onRepeatableFieldAdded(fieldIndex + 1)
+        }
+    }
+
+    private fun setupRepeatableLabel() {
+        if(isBaseField && isShowLabel) {
+            repeatableLabel.text = label
+            repeatableLabel.visibility = View.VISIBLE
         }
     }
 
@@ -102,6 +130,7 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
     }
 
     override fun refresh() {
+        setupRepeatableLabel()
         setupRepeatableActions()
         setupRepeatableField()
     }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="repeatable_button_height">24dp</dimen>
+    <dimen name="repeatable_button_width">24dp</dimen>
+    <dimen name="repeatable_button_spacing">8dp</dimen>
+    <dimen name="repeatable_button_font_size">16sp</dimen>
+</resources>
