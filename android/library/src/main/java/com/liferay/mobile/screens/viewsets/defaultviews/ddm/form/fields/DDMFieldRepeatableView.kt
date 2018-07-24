@@ -51,10 +51,6 @@ open class DDMFieldRepeatableView @JvmOverloads constructor(
         return R.layout.ddmfield_repeatable_item
     }
 
-    open fun getRepeatableButtonDrawableId(): Int {
-        return R.drawable.default_button_repeatable_drawable
-    }
-
     fun setLayoutIds(layoutIds: Map<Field.EditorType, Int>) {
         this.layoutIds = layoutIds
     }
@@ -75,7 +71,7 @@ open class DDMFieldRepeatableView @JvmOverloads constructor(
 
         (fieldView as DDMFieldRepeatableItemView).let {
             fieldView.setLabelSettings(field.isShowLabel, field.label)
-            fieldView.setRepeatableItemSettings(fieldIndex, fieldLayoutId, getRepeatableButtonDrawableId(), this)
+            fieldView.setRepeatableItemSettings(fieldIndex, fieldLayoutId, this)
 
             fieldView.field = repeatedField
             addView(fieldView, fieldIndex)
