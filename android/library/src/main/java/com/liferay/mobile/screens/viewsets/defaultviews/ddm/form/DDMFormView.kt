@@ -149,6 +149,7 @@ class DDMFormView @JvmOverloads constructor(
 
                     backButton.visibility = View.VISIBLE
                     multipageProgress.progress = getFormProgress()
+
                     if (ddmFieldViewPages.currentItem == size) {
                         nextButton.text = context.getString(R.string.submit)
                     }
@@ -238,7 +239,7 @@ class DDMFormView @JvmOverloads constructor(
             performParseOperation(thing.id, it.id, {
                 val values = mutableMapOf<String, Any>()
 
-                val fields = formInstance!!.ddmStructure.fields
+                val fields = formInstance.ddmStructure.fields
                 values["fieldValues"] = FieldValueSerializer.serialize(fields)
 
                 values

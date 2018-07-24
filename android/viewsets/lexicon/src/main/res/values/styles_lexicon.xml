@@ -32,9 +32,17 @@
         <item name="colorAccent">@color/colorPrimaryDark_lexicon</item>
     </style>
 
-    <style name="lexicon_button" parent="Widget.AppCompat.Button">
+    <style name="lexicon_button" parent="Widget.AppCompat.Light.ActionButton">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:background">@drawable/lexicon_button_selector</item>
+        <item name="android:padding">@dimen/field_padding</item>
+    </style>
+
+    <style name="secondary_button" parent="lexicon_button">
+        <item name="android:textColor">@color/textColorSecondary_lexicon</item>
+        <item name="android:background">@drawable/lexicon_button_secondary_selector</item>
         <item name="android:padding">@dimen/field_padding</item>
     </style>
 

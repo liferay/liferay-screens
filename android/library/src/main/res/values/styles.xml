@@ -56,6 +56,10 @@
 		<item name="android:paddingBottom">0dp</item>
 	</style>
 
+	<style name="secondary_button" parent="default_button">
+		<item name="android:padding">@dimen/field_padding</item>
+	</style>
+
 	<style name="default_edit_text" parent="base_default_edit_text"/>
 
 	<style name="base_default_edit_text" parent="android:Widget.EditText">
