@@ -44,15 +44,15 @@ class DDMPagerAdapter(val pages: List<FormPage>, val ddmFormView: DDMFormView) :
         return pages.size
     }
 
-    override fun getItemPosition(obj: Any?): Int {
+    override fun getItemPosition(obj: Any): Int {
         return pages.indexOf(obj)
     }
 
-    override fun isViewFromObject(view: View?, obj: Any?): Boolean {
+    override fun isViewFromObject(view: View, obj: Any): Boolean {
         return view == obj
     }
 
-    override fun instantiateItem(container: ViewGroup?, position: Int): Any {
+    override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val page = pages[position]
         val inflater = LayoutInflater.from(container?.context)
 
@@ -103,7 +103,7 @@ class DDMPagerAdapter(val pages: List<FormPage>, val ddmFormView: DDMFormView) :
         return linearLayout
     }
 
-    override fun setPrimaryItem(container: ViewGroup?, position: Int, instantiatedItem: Any?) {
+    override fun setPrimaryItem(container: ViewGroup, position: Int, instantiatedItem: Any) {
         super.setPrimaryItem(container, position, instantiatedItem)
 
         if (position != mCurrentPosition) {
@@ -118,7 +118,7 @@ class DDMPagerAdapter(val pages: List<FormPage>, val ddmFormView: DDMFormView) :
         }
     }
 
-    override fun destroyItem(container: ViewGroup?, position: Int, obj: Any?) {
+    override fun destroyItem(container: ViewGroup, position: Int, obj: Any) {
         container?.removeView(obj as View)
     }
 }

@@ -138,7 +138,7 @@ class DDMFormView @JvmOverloads constructor(
         })
 
         nextButton.setOnClickListener({
-            val size = ddmFieldViewPages.adapter.count - 1
+            val size = ddmFieldViewPages.adapter!!.count - 1
             val invalidFields = getInvalidFields()
 
             if (invalidFields.isEmpty()) {
