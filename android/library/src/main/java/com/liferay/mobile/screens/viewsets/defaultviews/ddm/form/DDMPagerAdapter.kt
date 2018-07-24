@@ -28,6 +28,7 @@ import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
 import com.liferay.mobile.screens.util.EventBusUtil
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.fields.DDMFieldRepeatableView
+import com.liferay.mobile.screens.viewsets.defaultviews.ddm.pager.WrapContentViewPager
 import rx.Observable
 import rx.Subscription
 import java.util.concurrent.TimeUnit
@@ -37,6 +38,7 @@ import java.util.concurrent.TimeUnit
  */
 class DDMPagerAdapter(val pages: List<FormPage>, val ddmFormView: DDMFormView) : PagerAdapter() {
     var subscription: Subscription? = null
+    private var mCurrentPosition = -1
 
     override fun getCount(): Int {
         return pages.size
@@ -96,7 +98,24 @@ class DDMPagerAdapter(val pages: List<FormPage>, val ddmFormView: DDMFormView) :
                 EventBusUtil.post(Event.ValueChangedEvent(it.hasFormRules()))
             }
 
+        ddmFormView.scrollView.scrollTo(0, 0)
+
         return linearLayout
+    }
+
+    override fun setPrimaryItem(container: ViewGroup?, position: Int, instantiatedItem: Any?) {
+        super.setPrimaryItem(container, position, instantiatedItem)
+
+        if (position != mCurrentPosition) {
+            val linearLayout = instantiatedItem as? LinearLayout
+            linearLayout?.let {
+                val pager = container as WrapContentViewPager
+                mCurrentPosition = position
+                pager.measureCurrentView(linearLayout)
+
+                ddmFormView.scrollView.scrollTo(0, 0)
+            }
+        }
     }
 
     override fun destroyItem(container: ViewGroup?, position: Int, obj: Any?) {

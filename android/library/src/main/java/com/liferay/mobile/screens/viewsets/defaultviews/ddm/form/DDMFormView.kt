@@ -20,10 +20,7 @@ import android.support.design.widget.Snackbar
 import android.support.design.widget.Snackbar.LENGTH_SHORT
 import android.util.AttributeSet
 import android.view.View
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.RelativeLayout
+import android.widget.*
 import com.liferay.apio.consumer.delegates.converter
 import com.liferay.apio.consumer.fetch
 import com.liferay.apio.consumer.model.Relation
@@ -66,6 +63,7 @@ class DDMFormView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : BaseView,
     RelativeLayout(context, attrs, defStyleAttr), DDLDocumentFieldView.UploadListener {
 
+    val scrollView by bindNonNull<ScrollView>(R.id.multipage_scroll_view)
     private val ddmFieldViewPages by bindNonNull<WrapContentViewPager>(R.id.ddmfields_container)
     private val multipageProgress by bindNonNull<ProgressBar>(R.id.liferay_multipage_progress)
     private val backButton by bindNonNull<Button>(R.id.liferay_form_back)

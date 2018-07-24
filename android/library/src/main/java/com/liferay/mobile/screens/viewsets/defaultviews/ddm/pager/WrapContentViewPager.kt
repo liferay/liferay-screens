@@ -29,25 +29,32 @@ class WrapContentViewPager : ViewPager {
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
 
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+    private var mCurrentView: View? = null
+
+    public override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         var heightMeasureSpec = heightMeasureSpec
-        val mode = View.MeasureSpec.getMode(heightMeasureSpec)
-
-        if (mode == View.MeasureSpec.UNSPECIFIED || mode == View.MeasureSpec.AT_MOST) {
+        if (mCurrentView == null) {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-
-            var height = 0
-            for (i in 0 until childCount) {
-                val child = getChildAt(i)
-                child.measure(widthMeasureSpec, View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED))
-                val childMeasuredHeight = child.measuredHeight
-                if (childMeasuredHeight > height) {
-                    height = childMeasuredHeight
-                }
-            }
-            heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY)
+            return
         }
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+
+        mCurrentView?.let { currentView ->
+
+            val makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+            currentView.measure(widthMeasureSpec, makeMeasureSpec)
+
+            val measuredHeight = currentView.measuredHeight
+
+            if (measuredHeight > 0) {
+                heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(measuredHeight, View.MeasureSpec.EXACTLY)
+                super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+            }
+        }
+    }
+
+    fun measureCurrentView(currentView: View) {
+        mCurrentView = currentView
+        requestLayout()
     }
 
     override fun onInterceptTouchEvent(event: MotionEvent): Boolean {
