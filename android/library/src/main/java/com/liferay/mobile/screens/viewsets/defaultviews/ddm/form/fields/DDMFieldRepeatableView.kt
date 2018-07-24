@@ -31,7 +31,7 @@ import rx.Subscription
 /**
  * @author Paulo Cruz
  */
-class DDMFieldRepeatableView @JvmOverloads constructor(
+open class DDMFieldRepeatableView @JvmOverloads constructor(
         context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0)
     : LinearLayout(context, attrs, defStyleAttr), DDLFieldViewModel<RepeatableField>,
         RepeatableActionListener {
@@ -47,11 +47,11 @@ class DDMFieldRepeatableView @JvmOverloads constructor(
     private var subscriptionsMap = mutableMapOf<DDMFieldRepeatableItemView, Subscription>()
     private var onChangedValueObservable = Observable.create<RepeatableField> { containerSubscriber = it }
 
-    fun getRepeatableItemLayoutId(): Int {
+    open fun getRepeatableItemLayoutId(): Int {
         return R.layout.ddmfield_repeatable_item
     }
 
-    fun getRepeatableButtonDrawableId(): Int {
+    open fun getRepeatableButtonDrawableId(): Int {
         return R.drawable.default_button_repeatable_drawable
     }
 
