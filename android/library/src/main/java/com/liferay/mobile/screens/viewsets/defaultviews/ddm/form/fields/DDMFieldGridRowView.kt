@@ -30,18 +30,18 @@ open class DDMFieldGridRowView @JvmOverloads constructor(context: Context, attrs
     defStyleAttr: Int = 0) : LinearLayout(context, attrs, defStyleAttr) {
 
     lateinit var rowLabelEditText: EditText
-    lateinit var columnLabelEditText: DDLFieldSelectView
+    lateinit var columnSelectView: DDLFieldSelectView
 
     override fun onFinishInflate() {
         super.onFinishInflate()
 
         rowLabelEditText = findViewById(R.id.row_label_edit_text)
-        columnLabelEditText = findViewById(R.id.column_label_edit_text)
+        columnSelectView = findViewById(R.id.column_label_edit_text)
     }
 
     fun setOptions(dialogLabel: String, options: ArrayList<Option>) {
         val selectableOptionsField = SelectableOptionsField(options)
         selectableOptionsField.label = dialogLabel
-        columnLabelEditText.field = selectableOptionsField
+        columnSelectView.field = selectableOptionsField
     }
 }

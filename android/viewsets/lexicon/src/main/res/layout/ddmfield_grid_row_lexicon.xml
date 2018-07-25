@@ -10,13 +10,13 @@
 	<EditText
 		android:id="@+id/row_label_edit_text"
 		android:layout_width="0dp"
-		android:layout_height="wrap_content"
 		android:layout_weight="1"
 		android:background="@drawable/default_grid_label_tinted"
 		android:editable="false"
 		android:focusable="false"
 		android:inputType="none"
 		android:ellipsize="end"
+		style="@style/default_grid_label_edit_text"
 		/>
 
 	<com.liferay.mobile.screens.viewsets.lexicon.ddl.form.fields.DDLFieldSelectView
@@ -35,7 +35,6 @@
 		<EditText
 			android:id="@+id/liferay_ddl_edit_text"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
 			android:background="@drawable/default_grid_edit_text_selector"
 			android:drawableEnd="@drawable/default_icon_select"
 			android:drawableRight="@drawable/default_icon_select"
@@ -46,6 +45,7 @@
 			android:paddingRight="@dimen/icon_padding"
 			android:hint="@string/hint_select"
 			android:ellipsize="end"
+			style="@style/lexicon_grid_edit_text"
 			/>
 
 	</com.liferay.mobile.screens.viewsets.lexicon.ddl.form.fields.DDLFieldSelectView>

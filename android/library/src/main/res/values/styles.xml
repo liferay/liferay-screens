@@ -169,4 +169,15 @@
 		<item name="android:textStyle">normal</item>
 	</style>
 
+	<style name="base_default_grid_edit_text" parent="base_default_edit_text">
+		<item name="android:textSize">@dimen/default_grid_text_view_font_size</item>
+		<item name="android:layout_height">@dimen/field_grid_min_height</item>
+		<item name="android:textColor">@color/darkerGray</item>
+		<item name="android:textColorHint">@color/darkerGray</item>
+	</style>
+
+	<style name="default_grid_label_edit_text" parent="base_default_grid_edit_text">
+		<item name="android:fontFamily">sans-serif-medium</item>
+	</style>
+
 </resources>

@@ -124,4 +124,9 @@
         <item name="android:textStyle">normal</item>
     </style>
 
+    <style name="lexicon_grid_edit_text" parent="base_default_grid_edit_text">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textColorHint">@color/textColorSecondary</item>
+    </style>
+
 </resources>

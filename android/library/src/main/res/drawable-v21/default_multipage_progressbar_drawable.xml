@@ -9,7 +9,7 @@
 		<clip>
 			<shape>
 				<corners android:radius="@dimen/multipage_progressbar_height"/>
-				<solid android:color="@android:color/darker_gray"/>
+				<solid android:color="?attr/colorAccent"/>
 			</shape>
 		</clip>
 	</item>

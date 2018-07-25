@@ -15,7 +15,9 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.fields
 
 import android.content.Context
+import android.graphics.Typeface
 import android.support.design.widget.Snackbar
+import android.support.v7.widget.TooltipCompat
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -87,10 +89,12 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
             gridLinearLayout.addView(view)
 
             val ddmFieldGridRowView = view as DDMFieldGridRowView
+
+            TooltipCompat.setTooltipText(ddmFieldGridRowView.rowLabelEditText, row.label)
             ddmFieldGridRowView.rowLabelEditText.setText(row.label)
             ddmFieldGridRowView.setOptions(row.label, gridField.columns as ArrayList<Option>)
 
-            ddmFieldGridRowView.columnLabelEditText.setOnValueChangedListener { dialog, which ->
+            ddmFieldGridRowView.columnSelectView.setOnValueChangedListener { _, which ->
                 val option = this.gridField.columns[which]
 
                 if (this.gridField.currentValue == null) {
@@ -98,6 +102,9 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
                 } else {
                     this.gridField.currentValue.rawValues[row.value] = option.value
                 }
+
+                val columnEditText = ddmFieldGridRowView.columnSelectView.textEditText
+                columnEditText.setTypeface(columnEditText.typeface, Typeface.BOLD)
             }
         }
     }

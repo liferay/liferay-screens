@@ -10,6 +10,7 @@
 	<color name="textColorTertiary_default">@color/textColorTertiary</color>
 
 	<color name="lightGray">#CDCED9</color>
+	<color name="darkerGray">#6B6C7E</color>
 	<color name="colorRequiredField">#FFFF0000</color>
 	<color name="pure_red_default">#FFFF0000</color>
 	<color name="red_default">#FFE00000</color>

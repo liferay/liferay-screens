@@ -4,6 +4,7 @@
 	<dimen name="default_screenlet_padding">50dp</dimen>
 	<dimen name="default_text_view_title_font_size">16sp</dimen>
 	<dimen name="default_text_view_subtitle_font_size">14sp</dimen>
+	<dimen name="default_grid_text_view_font_size">12sp</dimen>
 	<dimen name="default_text_view_padding">10dp</dimen>
 	<dimen name="default_edit_text_padding">10dp</dimen>
 	<dimen name="default_grid_row_padding">8dp</dimen>
