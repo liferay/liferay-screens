@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.fields.DDMFieldRepeatableItemView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -33,14 +34,16 @@
                 android:id="@+id/liferay_repeatable_field_remove"
                 android:layout_marginRight="@dimen/repeatable_button_spacing"
                 android:layout_marginEnd="@dimen/repeatable_button_spacing"
-                android:text="@string/repeatable_remove"
+                android:contentDescription="@string/repeatable_remove"
+                android:foreground="@drawable/default_button_repeatable_remove_icon"
                 android:visibility="gone"
-                style="@style/repeatable_button" />
+                style="@style/default_repeatable_button" />
 
             <Button
                 android:id="@+id/liferay_repeatable_field_add"
-                android:text="@string/repeatable_add"
-                style="@style/repeatable_button" />
+                android:contentDescription="@string/repeatable_add"
+                android:foreground="@drawable/default_button_repeatable_add_icon"
+                style="@style/default_repeatable_button" />
 
         </LinearLayout>
     </RelativeLayout>

@@ -158,11 +158,11 @@
 		<item name="android:textColor">?colorPrimaryDark</item>
 	</style>
 
-	<style name="repeatable_button" parent="Widget.AppCompat.Light.ActionButton">
+	<style name="default_repeatable_button" parent="Widget.AppCompat.Light.ActionButton">
 		<item name="android:layout_width">@dimen/repeatable_button_width</item>
 		<item name="android:layout_height">@dimen/repeatable_button_height</item>
 		<item name="android:background">@drawable/default_button_repeatable_drawable</item>
-		<item name="android:gravity">center</item>
+		<item name="android:foregroundGravity">center</item>
 		<item name="android:padding">0dp</item>
 		<item name="android:textColor">@android:color/white</item>
 		<item name="android:textSize">@dimen/repeatable_button_font_size</item>
