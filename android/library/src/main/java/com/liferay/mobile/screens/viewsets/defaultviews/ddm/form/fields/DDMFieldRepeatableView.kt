@@ -70,8 +70,10 @@ open class DDMFieldRepeatableView @JvmOverloads constructor(
         val fieldView = inflater.inflate(getRepeatableItemLayoutId(), this, false)
 
         (fieldView as DDMFieldRepeatableItemView).let {
+            val isFirstField = fieldIndex == 0
+
             fieldView.setLabelSettings(field.isShowLabel, field.label)
-            fieldView.setRepeatableItemSettings(fieldIndex, fieldLayoutId, this)
+            fieldView.setRepeatableItemSettings(isFirstField, fieldLayoutId, this)
 
             fieldView.field = repeatedField
             addView(fieldView, fieldIndex)
@@ -90,13 +92,17 @@ open class DDMFieldRepeatableView @JvmOverloads constructor(
         return fieldView
     }
 
-    override fun onRepeatableFieldAdded(newFieldIndex: Int) {
+    override fun onRepeatableFieldAdded(callerFieldView: DDMFieldRepeatableItemView) {
+        val newFieldIndex = indexOfChild(callerFieldView) + 1
         val repeatedField = this.field.repeat()
-        createFieldView(newFieldIndex, repeatedField)
+        val fieldView = createFieldView(newFieldIndex, repeatedField)
+
         requestLayout()
+        fieldView.requestFocus()
     }
 
     override fun onRepeatableFieldRemoved(fieldView: DDMFieldRepeatableItemView) {
+        val previousField = focusSearch(fieldView, FOCUS_UP)
         val removedField = fieldView.field
 
         val subscription = subscriptionsMap.remove(fieldView)
@@ -105,6 +111,8 @@ open class DDMFieldRepeatableView @JvmOverloads constructor(
         this.field.remove(removedField)
 
         removeView(fieldView)
+        requestLayout()
+        previousField.requestFocus()
     }
 
     override fun getField(): RepeatableField {

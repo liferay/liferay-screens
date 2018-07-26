@@ -48,10 +48,7 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
     private lateinit var field: Field<*>
     private lateinit var parentView: View
 
-    private var fieldIndex: Int = 0
-    private val isBaseField: Boolean
-        get() = fieldIndex == 0
-
+    private var isFirstField: Boolean = false
     private var isShowLabel: Boolean = false
     private lateinit var label: String
 
@@ -64,9 +61,9 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
     }
 
     fun setRepeatableItemSettings(
-            fieldIndex: Int, fieldLayoutId: Int, listener: RepeatableActionListener) {
+            isFirstField: Boolean, fieldLayoutId: Int, listener: RepeatableActionListener) {
 
-        this.fieldIndex = fieldIndex
+        this.isFirstField = isFirstField
         this.fieldLayoutId = fieldLayoutId
         this.listener = listener
     }
@@ -77,7 +74,7 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
     }
 
     private fun setupRepeatableActions() {
-        if (!isBaseField) {
+        if (!isFirstField) {
             removeRepeatableButton.visibility = View.VISIBLE
 
             removeRepeatableButton.setOnClickListener {
@@ -88,12 +85,12 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
         }
 
         addRepeatableButton.setOnClickListener {
-            listener.onRepeatableFieldAdded(fieldIndex + 1)
+            listener.onRepeatableFieldAdded(this)
         }
     }
 
     private fun setupRepeatableLabel() {
-        if(isBaseField && isShowLabel) {
+        if(isFirstField && isShowLabel) {
             repeatableLabel.text = label
             repeatableLabel.visibility = View.VISIBLE
 
