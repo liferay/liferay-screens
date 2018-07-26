@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
 	compileSdkVersion rootProject.ext.compileSdkVersion
@@ -48,7 +49,7 @@ dependencies {
 	}
 	api group: 'org.apache.cordova', name: 'framework', version: '6.2.3', classifier: 'debug', ext: 'aar'
 
-	api(project(':apio-consumer-android')) {
+	api('com.liferay.mobile:apio-consumer-android:0.0.5') {
 		exclude group: 'com.squareup.okhttp3', module: 'okhttp'
 	}
 
@@ -86,6 +87,7 @@ dependencies {
 	api libraries.coroutines_android
 
 	api libraries.support_multidex
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 apply from: '../bintray.gradle'

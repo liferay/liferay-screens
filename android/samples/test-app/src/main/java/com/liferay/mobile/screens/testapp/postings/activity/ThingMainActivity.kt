@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.testapp.postings.activity
 
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
@@ -23,17 +22,13 @@ import com.liferay.mobile.screens.thingscreenlet.model.Collection
 import com.liferay.mobile.screens.testapp.R
 import com.liferay.mobile.screens.thingscreenlet.model.BlogPosting
 import com.liferay.mobile.screens.thingscreenlet.model.Person
-import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
+
 import com.liferay.mobile.screens.thingscreenlet.screens.events.ScreenletEvents
 import com.liferay.mobile.screens.thingscreenlet.screens.views.*
-import com.liferay.mobile.screens.util.LiferayLogger
-import com.liferay.apio.consumer.fetch
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.get
 import com.liferay.apio.consumer.model.getFormProperties
-import com.liferay.apio.consumer.performOperation
-import com.squareup.okhttp.HttpUrl
-import okhttp3.Credentials
+import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import org.jetbrains.anko.startActivity
 
 class ThingMainActivity : AppCompatActivity(), ScreenletEvents {
@@ -46,7 +41,6 @@ class ThingMainActivity : AppCompatActivity(), ScreenletEvents {
 
 		registerScenarios()
 
-//		val id = "http://192.168.56.1:8080/p/blog-postings"
 		val id = "https://apiosample.wedeploy.io/p/blog-postings"
 
 		thingScreenlet.load(id, credentials = "Basic YXBpb0BsaWZlcmF5LmNvbTphcGlvZGV2cw==")
