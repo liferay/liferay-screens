@@ -4,12 +4,12 @@
         <layer-list>
             <item>
                 <shape android:shape="oval">
-                    <solid android:color="@android:color/darker_gray"/>
+                    <solid android:color="?attr/colorAccent"/>
                 </shape>
             </item>
             <item>
                 <shape android:shape="oval">
-                    <solid android:color="#33FFFFFF"/>
+                    <solid android:color="#66FFFFFF"/>
                 </shape>
             </item>
         </layer-list>
@@ -18,12 +18,12 @@
         <layer-list>
             <item>
                 <shape android:shape="oval">
-                    <solid android:color="@android:color/darker_gray"/>
+                    <solid android:color="?attr/colorAccent"/>
                 </shape>
             </item>
             <item>
                 <shape android:shape="oval">
-                    <solid android:color="#55FFFFFF"/>
+                    <solid android:color="#88FFFFFF"/>
                 </shape>
             </item>
         </layer-list>

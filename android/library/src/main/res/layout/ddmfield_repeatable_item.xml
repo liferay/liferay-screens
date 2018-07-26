@@ -30,19 +30,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <Button
+            <ImageButton
                 android:id="@+id/liferay_repeatable_field_remove"
                 android:layout_marginRight="@dimen/repeatable_button_spacing"
                 android:layout_marginEnd="@dimen/repeatable_button_spacing"
                 android:contentDescription="@string/repeatable_remove"
-                android:foreground="@drawable/default_button_repeatable_remove_icon"
                 android:visibility="gone"
+                app:srcCompat="@drawable/default_button_repeatable_remove_icon"
                 style="@style/default_repeatable_button" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/liferay_repeatable_field_add"
                 android:contentDescription="@string/repeatable_add"
-                android:foreground="@drawable/default_button_repeatable_add_icon"
+                app:srcCompat="@drawable/default_button_repeatable_add_icon"
                 style="@style/default_repeatable_button" />
 
         </LinearLayout>

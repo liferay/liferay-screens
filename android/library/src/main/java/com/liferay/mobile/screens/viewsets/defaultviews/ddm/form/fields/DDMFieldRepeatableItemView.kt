@@ -19,6 +19,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
@@ -39,10 +40,10 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
             by bindNonNull<TextView>(com.liferay.mobile.screens.R.id.liferay_repeatable_field_label)
 
     private val addRepeatableButton
-        by bindNonNull<Button>(com.liferay.mobile.screens.R.id.liferay_repeatable_field_add)
+        by bindNonNull<ImageButton>(com.liferay.mobile.screens.R.id.liferay_repeatable_field_add)
 
     private val removeRepeatableButton
-        by bindNonNull<Button>(com.liferay.mobile.screens.R.id.liferay_repeatable_field_remove)
+        by bindNonNull<ImageButton>(com.liferay.mobile.screens.R.id.liferay_repeatable_field_remove)
 
     private lateinit var field: Field<*>
     private lateinit var parentView: View
