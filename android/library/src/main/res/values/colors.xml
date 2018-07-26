@@ -16,6 +16,8 @@
 	<color name="red_default">#FFE00000</color>
 	<color name="clear_red_default">#FFFFDCC8</color>
 	<color name="green_default">#FF5AD427</color>
+	<color name="success_green_default">#47C464</color>
+	<color name="success_darker_green_default">#389C50</color>
 
 	<color name="colorPrimary">#FF00B8E0</color>
 	<color name="colorPrimaryLight">#DD00B8E0</color>
