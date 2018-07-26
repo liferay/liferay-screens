@@ -30,10 +30,14 @@ class FieldValueSerializer {
     companion object {
         private val gson: Gson = GsonFactory.create()
 
+        private const val EMPTY_JSON = "{}"
+        private const val EMPTY_STRING = ""
+        private val EMPTY_LIST = listOf<Any>()
+
         fun serialize(fields: FieldList): String {
             return fields
                     .flatten()
-                    .removeEmptyOrTransient()
+                    .removeTransient()
                     .mapValues()
                     .toJson()
         }
@@ -47,17 +51,9 @@ class FieldValueSerializer {
             }
         }
 
-        private fun FieldList.removeEmptyOrTransient(): FieldList {
+        private fun FieldList.removeTransient(): FieldList {
             return filter {
                 !it.isTransient
-            }.filter {
-                it.currentValue?.let {
-                    when(it) {
-                        is Grid -> it.rawValues.isNotEmpty()
-                        is List<*> -> it.isNotEmpty()
-                        else -> it.toString().isNotEmpty()
-                    }
-                } ?: false
             }
         }
 
@@ -69,10 +65,34 @@ class FieldValueSerializer {
 
         private fun Field<*>.getSubmitValue(): Any? {
             return when (editorType) {
-                Field.EditorType.DOCUMENT -> (currentValue as? DocumentRemoteFile)?.toData()
-                Field.EditorType.RADIO -> (currentValue as? List<*>)?.get(0)
-                else -> currentValue
+                Field.EditorType.CHECKBOX_MULTIPLE,
+                Field.EditorType.SELECT -> getListValue()
+                Field.EditorType.DOCUMENT -> getDocumentValue()
+                Field.EditorType.RADIO -> getRadioValue()
+                else -> getStringValue()
             }
+        }
+
+        private fun Field<*>.getDocumentValue(): Any? {
+            return (currentValue as? DocumentRemoteFile)?.toData() ?: EMPTY_JSON
+        }
+
+        private fun Field<*>.getListValue(): List<*>? {
+            return (currentValue as? List<*>) ?: EMPTY_LIST
+        }
+
+        private fun Field<*>.getRadioValue(): Any? {
+            return (currentValue as? List<*>)?.let {
+                if(it.isNotEmpty()) {
+                    it[0]
+                } else {
+                    EMPTY_STRING
+                }
+            } ?: EMPTY_STRING
+        }
+
+        private fun Field<*>.getStringValue(): Any? {
+            return currentValue ?: EMPTY_STRING
         }
 
         private fun List<Map<String, Any?>>.toJson(): String {
