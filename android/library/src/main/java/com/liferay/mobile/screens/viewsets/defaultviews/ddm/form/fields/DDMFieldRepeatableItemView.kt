@@ -18,7 +18,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -53,6 +52,7 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
     private lateinit var label: String
 
     private var fieldLayoutId: Int = 0
+    private lateinit var fieldView: DDLFieldViewModel<*>
     private lateinit var listener: RepeatableActionListener
     private var onChangedValueObservable = Observable.empty<Field<*>>()
 
@@ -108,7 +108,9 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
 
         (fieldView as? DDLFieldViewModel<*>)?.let {
             it.field = field
-            this.addView(fieldView)
+
+            this.fieldView = fieldView
+            addView(fieldView)
 
             onChangedValueObservable = onChangedValueObservable
                 .mergeWith(fieldView.onChangedValueObservable.map { field })
@@ -129,9 +131,12 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
         setupRepeatableLabel()
         setupRepeatableActions()
         setupRepeatableField()
+        fieldView?.refresh()
     }
 
-    override fun onPostValidation(valid: Boolean) {}
+    override fun onPostValidation(valid: Boolean) {
+        fieldView.onPostValidation(valid)
+    }
 
     override fun getParentView(): View {
         return parentView

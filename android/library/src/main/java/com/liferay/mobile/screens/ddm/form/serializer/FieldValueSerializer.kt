@@ -16,15 +16,12 @@ package com.liferay.mobile.screens.ddm.form.serializer
 
 import com.google.gson.*
 import com.liferay.mobile.screens.ddl.model.*
-import com.liferay.mobile.screens.ddm.form.model.Grid
-import com.liferay.mobile.screens.ddm.form.model.RepeatableField
-import java.lang.reflect.Type
+import com.liferay.mobile.screens.ddm.form.extension.FieldList
+import com.liferay.mobile.screens.ddm.form.extension.flatten
 
 /**
  * @author Paulo Cruz
  */
-typealias FieldList = List<Field<*>>
-
 class FieldValueSerializer {
 
     companion object {
@@ -40,15 +37,6 @@ class FieldValueSerializer {
                     .removeTransient()
                     .mapValues()
                     .toJson()
-        }
-
-        private fun FieldList.flatten(): FieldList {
-            return flatMap {
-                when(it) {
-                    is RepeatableField -> it.repeatedFields
-                    else -> listOf(it)
-                }
-            }
         }
 
         private fun FieldList.removeTransient(): FieldList {

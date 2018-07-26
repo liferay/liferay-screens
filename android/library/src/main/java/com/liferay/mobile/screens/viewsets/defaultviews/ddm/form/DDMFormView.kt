@@ -38,6 +38,7 @@ import com.liferay.mobile.screens.ddm.form.model.FormContextPage
 import com.liferay.mobile.screens.ddm.form.model.FormInstance
 import com.liferay.mobile.screens.ddm.form.serializer.FieldValueSerializer
 import com.liferay.mobile.screens.ddm.form.uploader.uploadFileToRootFolder
+import com.liferay.mobile.screens.ddm.form.extension.flatten
 import com.liferay.mobile.screens.ddm.form.view.SuccessPageActivity
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
@@ -181,7 +182,7 @@ class DDMFormView @JvmOverloads constructor(
     private fun getInvalidFields(): Map<Field<*>, String> {
         val page = formInstance.ddmStructure.pages[ddmFieldViewPages.currentItem]
 
-        return page.fields.filter { !it.isValid }.associateBy({ it }, { "Error Msg Goes Here" })
+        return page.fields.flatten().filter { !it.isValid }.associateBy({ it }, { "Error Msg Goes Here" })
     }
 
     /*

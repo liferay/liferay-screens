@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.fields
 
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +23,7 @@ import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.ddm.form.model.RepeatableField
+import org.jetbrains.anko.childrenSequence
 import rx.Observable
 import rx.Subscriber
 import rx.Subscription
@@ -126,9 +126,17 @@ open class DDMFieldRepeatableView @JvmOverloads constructor(
         setupRepeatableFields()
     }
 
-    override fun refresh() {}
+    override fun refresh() {
+        childrenSequence().forEach {
+            (it as? DDLFieldViewModel<*>)?.refresh()
+        }
+    }
 
-    override fun onPostValidation(valid: Boolean) {}
+    override fun onPostValidation(valid: Boolean) {
+        childrenSequence().forEach {
+            (it as? DDLFieldViewModel<*>)?.onPostValidation(valid)
+        }
+    }
 
     override fun getParentView(): View {
         return parentView
