@@ -15,6 +15,8 @@
 package com.liferay.mobile.screens.ddm.form.model;
 
 import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.liferay.mobile.screens.ddl.model.FormFieldKeys;
 import com.liferay.mobile.screens.ddl.model.SelectableOptionsField;
 import java.util.Locale;
@@ -25,10 +27,24 @@ import java.util.Map;
  */
 public class CheckboxMultipleField extends SelectableOptionsField {
 
-	private boolean isShowAsSwitcher;
+	public static final Parcelable.ClassLoaderCreator<SelectableOptionsField> CREATOR =
+		new Parcelable.ClassLoaderCreator<SelectableOptionsField>() {
 
-	public CheckboxMultipleField() {
-	}
+			@Override
+			public SelectableOptionsField createFromParcel(Parcel source, ClassLoader loader) {
+				return new CheckboxMultipleField(source, loader);
+			}
+
+			public SelectableOptionsField createFromParcel(Parcel in) {
+				throw new AssertionError();
+			}
+
+			public SelectableOptionsField[] newArray(int size) {
+				return new CheckboxMultipleField[size];
+			}
+		};
+
+	private boolean isShowAsSwitcher;
 
 	public CheckboxMultipleField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
 		super(attributes, locale, defaultLocale);
