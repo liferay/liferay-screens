@@ -76,14 +76,4 @@
 	<string name="default_class_name_id_user">20087</string>
 	<string name="latitude">latitude:</string>
 	<string name="longitude">longitude:</string>
-
-
-	<!--thingscreenlet-->
-	<string name="icon_for_person">Icon for person</string>
-	<string name="icon_for_email">Icon for email</string>
-	<string name="icon_for_birthday">Icon for birthday</string>
-	<string name="icon_for_job_title">Icon for job title</string>
-	<string name="arrow_to_indicate_clickable">Arrow to indicate clickable</string>
-	<string name="person_portrait">The portrait of this person</string>
-
 </resources>
