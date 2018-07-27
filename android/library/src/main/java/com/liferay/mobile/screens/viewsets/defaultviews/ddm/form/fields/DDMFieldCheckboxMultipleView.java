@@ -31,6 +31,7 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.Option;
 import com.liferay.mobile.screens.ddm.form.model.CheckboxMultipleField;
+import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil;
 import java.util.List;
 import rx.Observable;
 import rx.functions.Action1;
@@ -85,6 +86,10 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
 
 			label.setText(field.getLabel());
 			label.setVisibility(VISIBLE);
+
+			if (this.field.isRequired()) {
+				label.append(ThemeUtil.getRequiredSpannable(getContext()));
+			}
 		}
 
 		if (this.field.isInline()) {
