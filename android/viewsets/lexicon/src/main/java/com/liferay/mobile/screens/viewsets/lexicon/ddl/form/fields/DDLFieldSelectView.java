@@ -19,7 +19,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.util.AttributeSet;
 import com.liferay.mobile.screens.ddl.model.Option;
-import com.liferay.mobile.screens.ddl.model.SelectableOptionsField;
 import com.liferay.mobile.screens.viewsets.lexicon.R;
 import com.liferay.mobile.screens.viewsets.lexicon.util.FormViewUtil;
 import java.util.ArrayList;
@@ -61,9 +60,10 @@ public class DDLFieldSelectView
 		ArrayList<Option> currentValue = getField().getCurrentValue();
 
 		int index = (currentValue.isEmpty()) ? -1 : availableOptions.indexOf(currentValue.get(0));
-		builder.setSingleChoiceItems(labels, index, selectOptionHandler);
-		builder.setPositiveButton(android.R.string.ok, selectOptionHandler);
-		builder.setNegativeButton(android.R.string.cancel, selectOptionHandler);
+
+		builder.setSingleChoiceItems(labels, index, selectOptionHandler)
+			.setPositiveButton(android.R.string.ok, selectOptionHandler)
+			.setNegativeButton(android.R.string.cancel, selectOptionHandler);
 	}
 
 	@Override

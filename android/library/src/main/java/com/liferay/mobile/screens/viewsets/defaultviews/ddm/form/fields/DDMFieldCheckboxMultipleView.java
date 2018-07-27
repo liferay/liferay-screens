@@ -180,10 +180,10 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
 
 		if (selectedOptions != null) {
 			for (Option opt : selectedOptions) {
-				CheckBox checkBox = findViewWithTag(opt);
+				CompoundButton compoundButton = findViewWithTag(opt);
 
-				if (checkBox != null) {
-					checkBox.setChecked(true);
+				if (compoundButton != null) {
+					compoundButton.setChecked(true);
 				}
 			}
 		}

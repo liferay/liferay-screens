@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="lexicon_theme" parent="lexicon_theme.base">
-        <item name="android:fontFamily">sans-serif</item>
-    </style>
+	<style name="lexicon_theme" parent="lexicon_theme.base">
+		<item name="android:fontFamily">sans-serif</item>
+	</style>
+
+	<style name="lexicon_theme_dialog" parent="Theme.AppCompat.Light.Dialog">
+		<item name="colorAccent">@color/colorPrimaryLight_lexicon</item>
+		<item name="android:buttonBarNegativeButtonStyle">@style/lexicon_dialog_button</item>
+		<item name="android:buttonBarPositiveButtonStyle">@style/lexicon_dialog_button</item>
+	</style>
+
+	<style name="lexicon_dialog_button" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+		<item name="android:textColor">@color/colorPrimaryDark_lexicon</item>
+		<item name="fontFamily">sans-serif-medium</item>
+	</style>
 
 </resources>
