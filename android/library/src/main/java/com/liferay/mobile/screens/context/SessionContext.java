@@ -184,9 +184,10 @@ public class SessionContext {
 	public static String getCredentialsFromCurrentSession() throws Exception {
 		Authentication authentication = getAuthentication();
 
-		if(authentication != null) {
+		if (authentication != null) {
 			Request emptyRequest = new Request(null, null, null, null, 0);
 			authentication.authenticate(emptyRequest);
+
 			return emptyRequest.getHeaders().get(Headers.AUTHORIZATION);
 		}
 
