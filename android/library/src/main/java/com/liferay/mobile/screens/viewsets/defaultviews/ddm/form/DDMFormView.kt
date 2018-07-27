@@ -206,7 +206,7 @@ class DDMFormView @JvmOverloads constructor(
 
                     if (autoscroll && !scrolled) {
                         fieldView.requestFocus()
-//                        smoothScrollTo(0, fieldView.top)
+                        scrollView.smoothScrollTo(0, fieldView.top)
                         scrolled = true
                     }
                 }
