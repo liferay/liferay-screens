@@ -22,6 +22,12 @@
 			>
 
 			<Button
+				android:id="@+id/thing"
+				android:text="@string/thing_screenlet"
+				style="@style/test_app_button"
+				/>
+
+			<Button
 				android:id="@+id/login"
 				android:text="@string/login"
 				style="@style/test_app_button"

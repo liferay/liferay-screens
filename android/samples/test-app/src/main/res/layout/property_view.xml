@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.testapp.postings.activity.PropertiesView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:padding="10dp"
+	>
+
+	<TextView
+		android:id="@+id/label"
+		android:layout_width="match_parent"
+		android:layout_height="20dp"
+		android:text="text"
+		/>
+	
+	<EditText
+		android:id="@+id/value"
+		android:layout_width="match_parent"
+		android:layout_height="50dp"
+		/>
+
+</com.liferay.mobile.screens.testapp.postings.activity.PropertiesView>
