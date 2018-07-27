@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.thingscreenlet.screens.views.custom.PersonPortraitView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/image_view"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:contentDescription="@string/person_portrait"
+    />

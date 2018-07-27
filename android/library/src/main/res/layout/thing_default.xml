@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.thingscreenlet.screens.views.ThingView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/thing_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:id="@+id/thing_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView
+        android:id="@+id/thing_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+</com.liferay.mobile.screens.thingscreenlet.screens.views.ThingView>

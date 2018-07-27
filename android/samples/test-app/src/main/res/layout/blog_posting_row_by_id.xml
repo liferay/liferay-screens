@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.thingscreenlet.view.BlogPostingRowByIdView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp"
+    >
+
+    <ImageView
+        android:id="@+id/icon_blog_by_id"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:paddingLeft="16dp"
+        android:src="@drawable/ic_domain_black_24dp"
+        />
+
+    <TextView
+        android:id="@+id/headline"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="72dp"
+        android:paddingRight="16dp"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="16sp"
+        />
+
+</com.liferay.mobile.screens.thingscreenlet.view.BlogPostingRowByIdView>

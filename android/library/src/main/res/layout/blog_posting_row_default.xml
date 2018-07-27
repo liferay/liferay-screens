@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.thingscreenlet.screens.views.row.BlogPostingRowView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	>
+
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:padding="10dp"
+		>
+
+		<com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
+			android:id="@+id/creator_avatar"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			app:scenario="portrait"
+			/>
+
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerVertical="true"
+			android:layout_marginLeft="10dp"
+			android:layout_marginStart="10dp"
+			android:layout_toEndOf="@+id/creator_avatar"
+			android:layout_toLeftOf="@+id/arrow"
+			android:layout_toRightOf="@+id/creator_avatar"
+			android:layout_toStartOf="@+id/arrow"
+			android:orientation="vertical"
+			>
+
+			<TextView
+				android:id="@+id/headline"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				/>
+
+			<TextView
+				android:id="@+id/create_date"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				/>
+
+		</LinearLayout>
+
+		<ImageView
+			android:id="@+id/arrow"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentEnd="true"
+			android:layout_alignParentRight="true"
+			android:layout_centerVertical="true"
+			android:contentDescription="@string/arrow_to_indicate_clickable"
+			android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+			/>
+	</RelativeLayout>
+</com.liferay.mobile.screens.thingscreenlet.screens.views.row.BlogPostingRowView>

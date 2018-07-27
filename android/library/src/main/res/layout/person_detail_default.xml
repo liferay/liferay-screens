@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.thingscreenlet.screens.views.detail.PersonDetailView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageView
+        android:id="@+id/person_icon_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/icon_for_person"
+        android:padding="10dp"
+        android:src="@drawable/ic_account_circle_black_24dp"
+        />
+
+    <TextView
+        android:id="@+id/person_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/person_icon_name"
+        android:layout_alignTop="@+id/person_icon_name"
+        android:layout_toRightOf="@+id/person_icon_name"
+        android:gravity="center_vertical"
+        />
+
+    <ImageView
+        android:id="@+id/person_icon_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/person_icon_name"
+        android:contentDescription="@string/icon_for_email"
+        android:padding="10dp"
+        android:src="@drawable/ic_email_black_24dp"
+        />
+
+    <TextView
+        android:id="@+id/person_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/person_icon_email"
+        android:layout_alignTop="@+id/person_icon_email"
+        android:layout_below="@+id/person_icon_name"
+        android:layout_toRightOf="@+id/person_icon_email"
+        android:gravity="center_vertical"
+        />
+
+    <ImageView
+        android:id="@+id/person_icon_job_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/person_icon_email"
+        android:contentDescription="@string/icon_for_job_title"
+        android:padding="10dp"
+        android:src="@drawable/ic_domain_black_24dp"
+        />
+
+    <TextView
+        android:id="@+id/person_job_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/person_icon_job_title"
+        android:layout_alignTop="@+id/person_icon_job_title"
+        android:layout_below="@+id/person_icon_email"
+        android:layout_toRightOf="@+id/person_icon_job_title"
+        android:gravity="center_vertical"
+        />
+
+    <ImageView
+        android:id="@+id/person_icon_birth_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/person_icon_job_title"
+        android:contentDescription="@string/icon_for_birthday"
+        android:padding="10dp"
+        android:src="@drawable/ic_cake_black_24dp"
+        />
+
+    <TextView
+        android:id="@+id/person_birthDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/person_icon_birth_date"
+        android:layout_alignTop="@+id/person_icon_birth_date"
+        android:layout_below="@+id/person_icon_job_title"
+        android:layout_toRightOf="@+id/person_icon_birth_date"
+        android:gravity="center_vertical"
+        />
+
+</com.liferay.mobile.screens.thingscreenlet.screens.views.detail.PersonDetailView>

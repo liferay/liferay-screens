@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
 	compileSdkVersion rootProject.ext.compileSdkVersion
@@ -9,6 +10,7 @@ android {
 		targetSdkVersion rootProject.ext.targetSdkVersion
 		versionCode rootProject.ext.versionCode
 		versionName rootProject.ext.versionName
+		multiDexEnabled true
 	}
 
 	buildTypes {
@@ -47,6 +49,10 @@ dependencies {
 	}
 	api group: 'org.apache.cordova', name: 'framework', version: '6.2.3', classifier: 'debug', ext: 'aar'
 
+	api(libraries.apio_consumer) {
+		exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+	}
+
 	implementation libraries.appCompat
 	implementation libraries.design
 	implementation libraries.exif
@@ -68,6 +74,20 @@ dependencies {
 	testImplementation libraries.junit
 	testImplementation libraries.robolectric
 	testImplementation libraries.mockito
+
+	// thingScreenlet
+	implementation libraries.gson
+	api libraries.okhttp
+	api libraries.result
+	api libraries.anko_commons
+	api libraries.circle_image_view
+
+	implementation libraries.kotlin
+	api libraries.coroutines_core
+	api libraries.coroutines_android
+
+	api libraries.support_multidex
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 apply from: '../bintray.gradle'

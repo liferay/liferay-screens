@@ -26,6 +26,7 @@
 	<!--<color name="colorPrimaryLight">#FFC107</color>-->
 	<!--<color name="colorAccent">#FFC107</color>-->
 	<!--<color name="textColorPrimary">#FF212121</color>-->
-
+	<color name="colorPrimaryText">#212121</color>
+	<color name="colorSecondaryText">#757575</color>
 
 </resources>
