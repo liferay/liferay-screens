@@ -12,7 +12,6 @@
 	<dimen name="multipage_progressbar_height">8dp</dimen>
 	<dimen name="multipage_progressbar_padding">20dp</dimen>
 	<dimen name="multipage_progressbar_top_margin">12dp</dimen>
-	<dimen name="multipage_progressbar_bottom_margin">8dp</dimen>
 	<dimen name="field_padding">10dp</dimen>
 	<dimen name="large_field_padding">20dp</dimen>
 	<dimen name="field_radius">4dp</dimen>

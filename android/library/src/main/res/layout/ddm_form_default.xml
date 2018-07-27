@@ -53,7 +53,6 @@
 
 		<ProgressBar
 			android:id="@+id/liferay_multipage_progress"
-			android:layout_marginBottom="@dimen/multipage_progressbar_bottom_margin"
 			android:layout_marginEnd="@dimen/multipage_progressbar_padding"
 			android:layout_marginLeft="@dimen/multipage_progressbar_padding"
 			android:layout_marginRight="@dimen/multipage_progressbar_padding"
@@ -71,6 +70,7 @@
 			android:layout_marginLeft="@dimen/field_padding"
 			android:layout_marginStart="@dimen/field_padding"
 			android:layout_marginRight="@dimen/large_field_padding"
+			android:layout_marginTop="@dimen/field_padding"
 			android:layout_marginEnd="@dimen/large_field_padding"
 			android:orientation="horizontal"
 			android:weightSum="2"
