@@ -1,6 +1,5 @@
 package com.liferay.mobile.screens.ddm.form.util
 
-import com.github.kittinunf.result.Result
 import com.liferay.apio.consumer.ApioException
 import com.liferay.apio.consumer.fetch
 import com.liferay.apio.consumer.model.Operation
@@ -20,44 +19,42 @@ import okhttp3.HttpUrl
 fun submitForm(
         formThing: Thing, fields: MutableList<Field<*>>,
         currentRecordThing: Thing?, isDraft: Boolean = false,
-        onComplete: (Result<Thing, Exception>) -> Unit) {
+        onSuccess: (Thing) -> Unit, onError: (Exception) -> Unit) {
 
     val recordsRelation = formThing.attributes["formInstanceRecords"] as? Relation
 
     currentRecordThing?.let {
-        getThing(it.id) {
-            val (thing, exception) = it
-
-            exception?.let {
-                onComplete(Result.error(exception))
-            } ?: thing?.getOperation("update")?.let { operation ->
-                performSubmit(thing, operation, fields, isDraft, onComplete)
+        getThing(it.id, { thing ->
+            thing.getOperation("update")?.let { operation ->
+                performSubmit(thing, operation, fields, isDraft, onSuccess, onError)
             }
-        }
+        }, onError)
     } ?: recordsRelation?.let {
-        getThing(it.id) {
-            val (thing, exception) = it
-
-            exception?.let {
-                onComplete(Result.error(exception))
-            } ?: thing?.getOperation("create")?.let { operation ->
-                performSubmit(thing, operation, fields, isDraft, onComplete)
+        getThing(it.id, { thing ->
+            thing.getOperation("create")?.let { operation ->
+                performSubmit(thing, operation, fields, isDraft, onSuccess, onError)
             }
-        }
-    } ?: onComplete(Result.error(ApioException("No thing found")))
+        }, onError)
+    }
 }
 
-private fun getThing(thingId: String, onComplete: (Result<Thing, Exception>) -> Unit) {
+private fun getThing(thingId: String, onSuccess: (Thing) -> Unit, onError: (Exception) -> Unit) {
     HttpUrl.parse(thingId)?.let {
         fetch(it) {
-            onComplete(it)
+            val (thing, exception) = it
+
+            thing?.let {
+                onSuccess(it)
+            } ?: run {
+                onError(exception ?: ApioException("No thing found"))
+            }
         }
-    } ?: onComplete(Result.error(ApioException("No thing found")))
+    } ?: onError(ApioException("No thing found"))
 }
 
 private fun performSubmit(
         thing: Thing, operation: Operation, fields: MutableList<Field<*>>, isDraft: Boolean = false,
-        onComplete: (Result<Thing, Exception>) -> Unit) {
+        onSuccess: (Thing) -> Unit, onError: (Exception) -> Unit) {
 
     performOperation(thing.id, operation.id, {
         mapOf(
@@ -68,19 +65,22 @@ private fun performSubmit(
         val (response, exception) = it
 
         exception?.let {
-            onComplete(Result.error(exception))
+            onError(exception)
         } ?:
         response?.let {
             if(response.isSuccessful) {
-                response.toThing().let { thing ->
-                    onComplete(Result.of(thing))
+                response.toThing()?.let { thing ->
+                    onSuccess(thing)
+                } ?: run {
+                    onError(ApioException("No thing found"))
                 }
             }
             else {
+                // TODO Move error mapping to consumer
                 response.toJsonMap()?.let { json ->
                     val error = json["title"] as? String ?: "Unable to submit form"
 
-                    onComplete(Result.error(ApioException(error)))
+                    onError(ApioException(error))
                 }
             }
         }

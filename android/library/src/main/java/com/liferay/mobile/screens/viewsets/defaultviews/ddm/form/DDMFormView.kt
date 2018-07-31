@@ -22,24 +22,18 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.*
 import com.liferay.apio.consumer.delegates.converter
-import com.liferay.apio.consumer.fetch
-import com.liferay.apio.consumer.model.Relation
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.getOperation
-import com.liferay.apio.consumer.performOperation
 import com.liferay.apio.consumer.performParseOperation
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.context.LiferayScreensContext
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.*
-import com.liferay.mobile.screens.ddm.form.extension.flatten
-import com.liferay.mobile.screens.ddm.form.model.FieldContext
-import com.liferay.mobile.screens.ddm.form.model.FormContext
-import com.liferay.mobile.screens.ddm.form.model.FormContextPage
-import com.liferay.mobile.screens.ddm.form.model.FormInstance
 import com.liferay.mobile.screens.ddm.form.serializer.FieldValueSerializer
 import com.liferay.mobile.screens.ddm.form.extension.uploadFileToRootFolder
 import com.liferay.mobile.screens.ddm.form.extension.flatten
+import com.liferay.mobile.screens.ddm.form.util.submitForm
+import com.liferay.mobile.screens.ddm.form.model.*
 import com.liferay.mobile.screens.ddm.form.view.SuccessPageActivity
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
@@ -53,7 +47,6 @@ import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocum
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.pager.WrapContentViewPager
 import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil
 import com.squareup.otto.Subscribe
-import okhttp3.HttpUrl
 import org.jetbrains.anko.childrenSequence
 import java.text.SimpleDateFormat
 import java.util.*
@@ -73,6 +66,7 @@ class DDMFormView @JvmOverloads constructor(
     private val nextButton by bindNonNull<Button>(R.id.liferay_form_submit)
 
     private lateinit var formInstance: FormInstance
+    private lateinit var formInstanceRecord: FormInstanceRecord
 
     val layoutIds = mutableMapOf<Field.EditorType, Int>()
 
@@ -97,6 +91,10 @@ class DDMFormView @JvmOverloads constructor(
             nextButton.text = context.getString(R.string.submit)
 
         evaluateContext(thing)
+    }
+
+    private var currentRecordThing: Thing? by converter<FormInstanceRecord> {
+        formInstanceRecord = it
     }
 
     private fun getFormProgress(): Int {
@@ -216,33 +214,71 @@ class DDMFormView @JvmOverloads constructor(
 
     fun submit(isDraft: Boolean = false) {
         if (!AndroidUtil.isConnected(context.applicationContext) && !isDraft) {
-            val backgroundColor = ContextCompat.getColor(context, R.color.snackbar_background_connectivity_error)
-            val textColor = ContextCompat.getColor(context, android.R.color.white)
-
-            AndroidUtil.showCustomSnackbar(this, context.getString(R.string.no_internet_connection),
-                Snackbar.LENGTH_LONG, backgroundColor, textColor, R.drawable.default_error_icon)
-
+            showConnectivityErrorMessage()
             return
         }
+        
+        val thing = thing ?: throw Exception("No thing found")
+        val fields = formInstance.ddmStructure.fields
 
-        val formInstanceRecords = thing?.attributes?.get("formInstanceRecords") as? Relation
+        submitForm(thing, fields, currentRecordThing, isDraft, { recordThing ->
+            currentRecordThing = recordThing
 
-        if (formInstanceRecords != null) {
-            HttpUrl.parse(formInstanceRecords.id)?.let {
-                fetch(it) {
-                    val thing = it.component1()
-                    if (thing != null) {
-                        performSubmitOperation(thing, isDraft)
-                    }
+            if (!isDraft) {
+                val successPageEnabled = formInstance.ddmStructure.successPage?.enabled ?: false
+
+                if(successPageEnabled) {
+                    showSuccessPage(formInstance.ddmStructure.successPage)
+                }
+                else {
+                    showSuccessMessage()
                 }
             }
-        } else {
-            LiferayLogger.e("Can't submit")
-        }
+        }, { exception ->
+            showErrorMessage(exception)
+        })
+    }
+
+    private fun showConnectivityErrorMessage() {
+        val icon = R.drawable.default_error_icon
+        val message = context.getString(R.string.no_internet_connection)
+        val backgroundColor = ContextCompat.getColor(context, R.color.snackbar_background_connectivity_error)
+        val textColor = ContextCompat.getColor(context, android.R.color.white)
+
+        AndroidUtil.showCustomSnackbar(this, message, Snackbar.LENGTH_LONG, backgroundColor, textColor, icon)
+    }
+
+    private fun showErrorMessage(exception: Exception?) {
+        val icon = R.drawable.default_error_icon
+        val backgroundColor = ContextCompat.getColor(context, R.color.snackbar_background_general_error)
+        val textColor = ContextCompat.getColor(context, android.R.color.white)
+        val message =
+                exception?.message ?: context.getString(R.string.submit_failed_contact_administrator)
+
+        AndroidUtil.showCustomSnackbar(
+                this, message, Snackbar.LENGTH_LONG, backgroundColor, textColor, icon)
+    }
+
+    private fun showSuccessMessage() {
+        val icon = R.drawable.default_check_icon
+        val backgroundColor = ContextCompat.getColor(context, R.color.success_green_default)
+        val textColor = ContextCompat.getColor(context, android.R.color.white)
+        val message = context.getString(R.string.information_successfully_received)
+
+        AndroidUtil.showCustomSnackbar(
+                this, message, Snackbar.LENGTH_LONG, backgroundColor, textColor, icon)
+    }
+
+    private fun showSuccessPage(successPage: SuccessPage) {
+        val intent = Intent(context, SuccessPageActivity::class.java)
+        intent.putExtra("successPage", successPage)
+        context.startActivity(intent)
     }
 
     private fun evaluateContext(thing: Thing?) {
-        val operation = thing!!.getOperation("evaluate-context")
+        val thing = thing ?: throw Exception("No thing found")
+
+        val operation = thing.getOperation("evaluate-context")
 
         operation?.let {
             performParseOperation(thing.id, it.id, {
@@ -366,60 +402,6 @@ class DDMFormView @JvmOverloads constructor(
         }
     }
 
-    private fun performSubmitOperation(thing: Thing, isDraft: Boolean = false) {
-        val operation = thing.getOperation("create")
-
-        operation?.let {
-            performOperation(thing.id, it.id, {
-                val values = mutableMapOf<String, Any>()
-
-                if (!it.none { it.name == "isDraft" }) {
-                    values["isDraft"] = isDraft
-                }
-
-                val fields = formInstance.ddmStructure.fields
-                values["fieldValues"] = FieldValueSerializer.serialize(fields)
-
-                values
-            }) {
-                val (response, exception) = it
-
-                var message = context.getString(R.string.submit_failed_contact_administrator)
-                var color = ContextCompat.getColor(context, R.color.snackbar_background_general_error)
-                var icon = R.drawable.default_error_icon
-
-                response?.let {
-
-                    if (it.isSuccessful && !isDraft) {
-
-                        message = context.getString(R.string.information_successfully_received)
-                        color = ContextCompat.getColor(context, R.color.success_green_default)
-                        icon = R.drawable.default_check_icon
-
-                        formInstance.ddmStructure.successPage?.let {
-                            if (it.enabled) {
-                                val intent = Intent(context, SuccessPageActivity::class.java)
-                                intent.putExtra("successPage", it)
-                                context.startActivity(intent)
-                            }
-                        }
-
-                    } else {
-                        val errorMsg = exception?.message ?: response.message()
-                        if (!errorMsg.isEmpty()) message = errorMsg
-                    }
-
-                    if (!isDraft) {
-                        AndroidUtil.showCustomSnackbar(this, message, Snackbar.LENGTH_LONG, color,
-                            ContextCompat.getColor(context, android.R.color.white), icon)
-                    }
-
-                } ?: AndroidUtil.showCustomSnackbar(this, message, Snackbar.LENGTH_LONG, color,
-                    ContextCompat.getColor(context, android.R.color.white), R.drawable.default_error_icon)
-            }
-        }
-    }
-
     override fun startUploadField(field: DocumentField) {
         val fieldView = findViewWithTag<DDLDocumentFieldView>(field)
 
@@ -427,7 +409,9 @@ class DDMFormView @JvmOverloads constructor(
             field.moveToUploadInProgressState()
             fieldView.refresh()
 
-            uploadFileToRootFolder(thing!!, field) {
+            val thing = thing ?: throw Exception("No thing found")
+
+            uploadFileToRootFolder(thing, field) {
                 val (remoteFile, exception) = it
 
                 exception?.let {
