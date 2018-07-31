@@ -23,9 +23,7 @@ import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
 import com.liferay.apio.consumer.model.Relation
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.get
-import java.io.Serializable
 import java.util.*
-import kotlin.collections.ArrayList
 
 /**
  * @author Paulo Cruz

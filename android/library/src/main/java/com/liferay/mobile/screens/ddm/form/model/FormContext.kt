@@ -6,7 +6,7 @@ import com.liferay.apio.consumer.model.get
 /**
  * @author Paulo Cruz
  */
-class FormContext  @JvmOverloads constructor(
+class FormContext @JvmOverloads constructor(
     val isReadOnly: Boolean = false,
     val isShowRequiredFieldsWarning: Boolean = false,
     val isShowSubmitButton: Boolean = false,
