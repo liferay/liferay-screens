@@ -31,4 +31,6 @@
 	<color name="editColorPrimary">#F1F2F5</color>
 	<color name="editColorSecondary">#f0f5ff</color>
 	<color name="editColorTertiary">#71a2ff</color>
+
+	<color name="snackbar_background_connectivity_error">#8E8F94</color>
 </resources>

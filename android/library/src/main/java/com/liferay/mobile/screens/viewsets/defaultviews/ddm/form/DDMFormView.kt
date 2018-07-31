@@ -17,7 +17,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddm.form
 import android.content.Context
 import android.content.Intent
 import android.support.design.widget.Snackbar
-import android.support.design.widget.Snackbar.LENGTH_SHORT
+import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.View
 import android.widget.*
@@ -32,18 +32,19 @@ import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.context.LiferayScreensContext
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.*
+import com.liferay.mobile.screens.ddm.form.extension.flatten
 import com.liferay.mobile.screens.ddm.form.model.FieldContext
 import com.liferay.mobile.screens.ddm.form.model.FormContext
 import com.liferay.mobile.screens.ddm.form.model.FormContextPage
 import com.liferay.mobile.screens.ddm.form.model.FormInstance
 import com.liferay.mobile.screens.ddm.form.serializer.FieldValueSerializer
 import com.liferay.mobile.screens.ddm.form.uploader.uploadFileToRootFolder
-import com.liferay.mobile.screens.ddm.form.extension.flatten
 import com.liferay.mobile.screens.ddm.form.view.SuccessPageActivity
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
+import com.liferay.mobile.screens.util.AndroidUtil
 import com.liferay.mobile.screens.util.EventBusUtil
 import com.liferay.mobile.screens.util.LiferayLogger
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.BaseDDLFieldTextView
@@ -157,8 +158,6 @@ class DDMFormView @JvmOverloads constructor(
                 }
             } else {
                 highLightInvalidFields(invalidFields, true)
-
-                Snackbar.make(this, "Invalid", LENGTH_SHORT).show()
             }
         })
     }
@@ -215,6 +214,16 @@ class DDMFormView @JvmOverloads constructor(
     }
 
     fun submit(isDraft: Boolean = false) {
+        if (!AndroidUtil.isConnected(context.applicationContext) && !isDraft) {
+            val backgroundColor = ContextCompat.getColor(context, R.color.snackbar_background_connectivity_error)
+            val textColor = ContextCompat.getColor(context, android.R.color.white)
+
+            AndroidUtil.showCustomSnackbar(this, context.getString(R.string.no_internet_connection),
+                Snackbar.LENGTH_LONG, backgroundColor, textColor, R.drawable.default_error_icon)
+
+            return
+        }
+
         val formInstanceRecords = thing?.attributes?.get("formInstanceRecords") as? Relation
 
         if (formInstanceRecords != null) {
@@ -251,10 +260,12 @@ class DDMFormView @JvmOverloads constructor(
 
                     updatePages(formContext)
                     updateFields(formContext)
-                } ?: exception?.let {
-                    val message = it.message ?: "Unknown Error"
 
-                    Snackbar.make(this, message, LENGTH_SHORT).show()
+                } ?: exception?.let {
+
+                    val message = it.message ?: "Unknown Error"
+                    Snackbar.make(this, message, Snackbar.LENGTH_SHORT).show()
+
                 } ?: LiferayLogger.d(message)
             }
         }
@@ -378,7 +389,7 @@ class DDMFormView @JvmOverloads constructor(
 
                     if (it.isSuccessful && !isDraft) {
 
-                        formInstance?.ddmStructure?.successPage?.let {
+                        formInstance.ddmStructure.successPage?.let {
 
                             if (it.enabled) {
                                 val intent = Intent(context, SuccessPageActivity::class.java)
@@ -394,7 +405,7 @@ class DDMFormView @JvmOverloads constructor(
                     }
 
                     if (!isDraft) {
-                        Snackbar.make(this, message, LENGTH_SHORT).show()
+                        Snackbar.make(this, message, Snackbar.LENGTH_SHORT).show()
                     }
 
                 } ?: LiferayLogger.d(exception?.message)
