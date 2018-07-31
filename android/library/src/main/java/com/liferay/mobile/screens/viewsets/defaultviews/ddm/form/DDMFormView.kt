@@ -396,7 +396,7 @@ class DDMFormView @JvmOverloads constructor(
                         icon = R.drawable.default_check_icon
 
                         formInstance.ddmStructure.successPage?.let {
-                            if (false) {
+                            if (it.enabled) {
                                 val intent = Intent(context, SuccessPageActivity::class.java)
                                 intent.putExtra("successPage", it)
                                 context.startActivity(intent)
