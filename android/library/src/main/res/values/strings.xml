@@ -87,5 +87,7 @@
 	<string name="arrow_to_indicate_clickable">Arrow to indicate clickable</string>
 	<string name="person_portrait">The portrait of this person</string>
 	<string name="no_internet_connection">No internet connection. Reconnect to submit.</string>
+	<string name="information_successfully_received">Your information was successfully received.</string>
+	<string name="submit_failed_contact_administrator">Submit failed. Contact the administrator.</string>
 
 </resources>

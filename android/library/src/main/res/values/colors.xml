@@ -33,4 +33,5 @@
 	<color name="editColorTertiary">#71a2ff</color>
 
 	<color name="snackbar_background_connectivity_error">#8E8F94</color>
+	<color name="snackbar_background_general_error">#E96F6F</color>
 </resources>

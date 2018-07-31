@@ -376,22 +376,27 @@ class DDMFormView @JvmOverloads constructor(
                     values["isDraft"] = isDraft
                 }
 
-                val fields = formInstance!!.ddmStructure.fields
+                val fields = formInstance.ddmStructure.fields
                 values["fieldValues"] = FieldValueSerializer.serialize(fields)
 
                 values
             }) {
                 val (response, exception) = it
 
-                response?.let {
+                var message = context.getString(R.string.submit_failed_contact_administrator)
+                var color = ContextCompat.getColor(context, R.color.snackbar_background_general_error)
+                var icon = R.drawable.default_error_icon
 
-                    var message = "Form Submitted"
+                response?.let {
 
                     if (it.isSuccessful && !isDraft) {
 
-                        formInstance.ddmStructure.successPage?.let {
+                        message = context.getString(R.string.information_successfully_received)
+                        color = ContextCompat.getColor(context, R.color.success_green_default)
+                        icon = R.drawable.default_check_icon
 
-                            if (it.enabled) {
+                        formInstance.ddmStructure.successPage?.let {
+                            if (false) {
                                 val intent = Intent(context, SuccessPageActivity::class.java)
                                 intent.putExtra("successPage", it)
                                 context.startActivity(intent)
@@ -399,16 +404,17 @@ class DDMFormView @JvmOverloads constructor(
                         }
 
                     } else {
-                        message = exception?.message ?: response.message()
-
-                        if (message.isEmpty()) message = "Unknown Error"
+                        val errorMsg = exception?.message ?: response.message()
+                        if (!errorMsg.isEmpty()) message = errorMsg
                     }
 
                     if (!isDraft) {
-                        Snackbar.make(this, message, Snackbar.LENGTH_SHORT).show()
+                        AndroidUtil.showCustomSnackbar(this, message, Snackbar.LENGTH_LONG, color,
+                            ContextCompat.getColor(context, android.R.color.white), icon)
                     }
 
-                } ?: LiferayLogger.d(exception?.message)
+                } ?: AndroidUtil.showCustomSnackbar(this, message, Snackbar.LENGTH_LONG, color,
+                    ContextCompat.getColor(context, android.R.color.white), R.drawable.default_error_icon)
             }
         }
     }
