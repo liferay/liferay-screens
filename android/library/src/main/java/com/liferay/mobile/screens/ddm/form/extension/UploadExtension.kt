@@ -12,12 +12,10 @@
  * details.
  */
 
-package com.liferay.mobile.screens.ddm.form.uploader
+package com.liferay.mobile.screens.ddm.form.extension
 
 import android.net.Uri
 import com.github.kittinunf.result.Result
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.liferay.apio.consumer.ApioException
 import com.liferay.apio.consumer.model.Operation
 import com.liferay.apio.consumer.model.Thing
@@ -44,20 +42,15 @@ fun DDMFormView.uploadFileToRootFolder(
             onComplete(Result.error(it))
         } ?:
         response?.let {
-            val typeToken =
-                    TypeToken.getParameterized(
-                            Map::class.java, String::class.java, Any::class.java).type
-
-            val json = Gson().fromJson<Map<String, Any>>(response.body()?.string(), typeToken)
-
-            json?.let {
+            response.toJsonMap()?.let { json ->
                 if(response.isSuccessful) {
                     val fileUrl = json["@id"] as String
 
-                    onComplete(Result.of { DocumentRemoteFile(fileUrl) })
+                    onComplete(Result.of(DocumentRemoteFile(fileUrl)))
                 }
                 else {
                     val error = json["title"] as? String ?: "Unable to upload file"
+
                     onComplete(Result.error(ApioException(error)))
                 }
             }

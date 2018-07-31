@@ -38,7 +38,8 @@ import com.liferay.mobile.screens.ddm.form.model.FormContext
 import com.liferay.mobile.screens.ddm.form.model.FormContextPage
 import com.liferay.mobile.screens.ddm.form.model.FormInstance
 import com.liferay.mobile.screens.ddm.form.serializer.FieldValueSerializer
-import com.liferay.mobile.screens.ddm.form.uploader.uploadFileToRootFolder
+import com.liferay.mobile.screens.ddm.form.extension.uploadFileToRootFolder
+import com.liferay.mobile.screens.ddm.form.extension.flatten
 import com.liferay.mobile.screens.ddm.form.view.SuccessPageActivity
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
