@@ -17,6 +17,7 @@ package com.liferay.mobile.screens.thingscreenlet.delegates
 import com.liferay.apio.consumer.delegates.converters
 import com.liferay.mobile.screens.ddm.form.model.FormContext
 import com.liferay.mobile.screens.ddm.form.model.FormInstance
+import com.liferay.mobile.screens.ddm.form.model.FormInstanceRecord
 import com.liferay.mobile.screens.thingscreenlet.model.BlogPosting
 import com.liferay.mobile.screens.thingscreenlet.model.Collection
 import com.liferay.mobile.screens.thingscreenlet.model.Person
@@ -32,6 +33,7 @@ class ConverterDelegate {
             converters[Person::class.java.name] = Person.converter
             converters[FormInstance::class.java.name] = FormInstance.converter
             converters[FormContext::class.java.name] = FormContext.converter
+            converters[FormInstanceRecord::class.java.name] = FormInstanceRecord.converter
         }
     }
 }
