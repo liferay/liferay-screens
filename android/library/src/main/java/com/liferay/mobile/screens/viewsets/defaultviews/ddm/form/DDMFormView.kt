@@ -96,7 +96,7 @@ class DDMFormView @JvmOverloads constructor(
         if (it.ddmStructure.pages.size == 1)
             nextButton.text = context.getString(R.string.submit)
 
-        evaluateContext(thing)
+        evaluateContext(thing, true)
     }
 
     init {
@@ -337,7 +337,7 @@ class DDMFormView @JvmOverloads constructor(
         context.startActivity(intent)
     }
 
-    private fun evaluateContext(thing: Thing?) {
+    private fun evaluateContext(thing: Thing?, skipValidation: Boolean = false) {
         val thing = thing ?: throw Exception("No thing found")
 
         val operation = thing.getOperation("evaluate-context")
@@ -357,7 +357,7 @@ class DDMFormView @JvmOverloads constructor(
                     val formContext = FormContext.converter(it)
 
                     updatePages(formContext)
-                    updateFields(formContext)
+                    updateFields(formContext, skipValidation)
 
                 } ?: exception?.let {
 
@@ -377,7 +377,7 @@ class DDMFormView @JvmOverloads constructor(
         }
     }
 
-    private fun updateFields(formContext: FormContext) {
+    private fun updateFields(formContext: FormContext, skipValidation: Boolean = false) {
         val fieldsContainerView =
             ddmFieldViewPages.findViewWithTag<LinearLayout>(ddmFieldViewPages.currentItem)
 
@@ -401,7 +401,11 @@ class DDMFormView @JvmOverloads constructor(
                     field.isRequired = it.isRequired ?: field.isRequired
 
                     fieldTextView?.setupFieldLayout()
-                    fieldViewModel.onPostValidation(it.isValid ?: true)
+
+                    if(!skipValidation) {
+                        fieldViewModel.onPostValidation(it.isValid ?: true)
+                    }
+
                     fieldViewModel.refresh()
                 }
             }
