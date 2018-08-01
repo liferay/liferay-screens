@@ -32,6 +32,7 @@
 	<color name="editColorSecondary">#f0f5ff</color>
 	<color name="editColorTertiary">#71a2ff</color>
 
-	<color name="snackbar_background_connectivity_error">#8E8F94</color>
-	<color name="snackbar_background_general_error">#E96F6F</color>
+	<color name="midGray">#8E8F94</color>
+	<color name="lightRed">#E96F6F</color>
+	<color name="orange">#F29853</color>
 </resources>

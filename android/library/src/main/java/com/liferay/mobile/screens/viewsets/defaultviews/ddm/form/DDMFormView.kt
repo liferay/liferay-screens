@@ -16,6 +16,8 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddm.form
 
 import android.content.Context
 import android.content.Intent
+import android.support.annotation.ColorRes
+import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
@@ -29,11 +31,11 @@ import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.context.LiferayScreensContext
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.*
-import com.liferay.mobile.screens.ddm.form.serializer.FieldValueSerializer
-import com.liferay.mobile.screens.ddm.form.extension.uploadFileToRootFolder
 import com.liferay.mobile.screens.ddm.form.extension.flatten
-import com.liferay.mobile.screens.ddm.form.util.submitForm
+import com.liferay.mobile.screens.ddm.form.extension.uploadFileToRootFolder
 import com.liferay.mobile.screens.ddm.form.model.*
+import com.liferay.mobile.screens.ddm.form.serializer.FieldValueSerializer
+import com.liferay.mobile.screens.ddm.form.util.submitForm
 import com.liferay.mobile.screens.ddm.form.view.SuccessPageActivity
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
@@ -217,7 +219,7 @@ class DDMFormView @JvmOverloads constructor(
             showConnectivityErrorMessage()
             return
         }
-        
+
         val thing = thing ?: throw Exception("No thing found")
         val fields = formInstance.ddmStructure.fields
 
@@ -227,22 +229,25 @@ class DDMFormView @JvmOverloads constructor(
             if (!isDraft) {
                 val successPageEnabled = formInstance.ddmStructure.successPage?.enabled ?: false
 
-                if(successPageEnabled) {
+                if (successPageEnabled) {
                     showSuccessPage(formInstance.ddmStructure.successPage)
-                }
-                else {
+                } else {
                     showSuccessMessage()
                 }
             }
         }, { exception ->
-            showErrorMessage(exception)
+            if (!isDraft) {
+                showErrorMessage(exception)
+            }
         })
     }
 
-    private fun showConnectivityErrorMessage() {
+    private fun showConnectivityErrorMessage(@ColorRes backgroundColorResource: Int = R.color.midGray,
+        @StringRes messageStringRes: Int = R.string.no_internet_connection) {
+
         val icon = R.drawable.default_error_icon
-        val message = context.getString(R.string.no_internet_connection)
-        val backgroundColor = ContextCompat.getColor(context, R.color.snackbar_background_connectivity_error)
+        val message = context.getString(messageStringRes)
+        val backgroundColor = ContextCompat.getColor(context, backgroundColorResource)
         val textColor = ContextCompat.getColor(context, android.R.color.white)
 
         AndroidUtil.showCustomSnackbar(this, message, Snackbar.LENGTH_LONG, backgroundColor, textColor, icon)
@@ -250,13 +255,13 @@ class DDMFormView @JvmOverloads constructor(
 
     private fun showErrorMessage(exception: Exception?) {
         val icon = R.drawable.default_error_icon
-        val backgroundColor = ContextCompat.getColor(context, R.color.snackbar_background_general_error)
+        val backgroundColor = ContextCompat.getColor(context, R.color.lightRed)
         val textColor = ContextCompat.getColor(context, android.R.color.white)
         val message =
-                exception?.message ?: context.getString(R.string.submit_failed_contact_administrator)
+            exception?.message ?: context.getString(R.string.submit_failed_contact_administrator)
 
         AndroidUtil.showCustomSnackbar(
-                this, message, Snackbar.LENGTH_LONG, backgroundColor, textColor, icon)
+            this, message, Snackbar.LENGTH_LONG, backgroundColor, textColor, icon)
     }
 
     private fun showSuccessMessage() {
@@ -266,7 +271,7 @@ class DDMFormView @JvmOverloads constructor(
         val message = context.getString(R.string.information_successfully_received)
 
         AndroidUtil.showCustomSnackbar(
-                this, message, Snackbar.LENGTH_LONG, backgroundColor, textColor, icon)
+            this, message, Snackbar.LENGTH_LONG, backgroundColor, textColor, icon)
     }
 
     private fun showSuccessPage(successPage: SuccessPage) {
@@ -439,7 +444,13 @@ class DDMFormView @JvmOverloads constructor(
     fun onEvent(event: Event.ValueChangedEvent) {
         submit(true)
 
-        if (event.hasFormRules) {
+        if (event.field.hasFormRules()) {
+            if (!AndroidUtil.isConnected(context.applicationContext)) {
+                showConnectivityErrorMessage(R.color.orange, R.string.cant_load_some_fields_offline)
+
+                return
+            }
+
             evaluateContext(thing)
         }
     }

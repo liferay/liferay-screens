@@ -95,7 +95,7 @@ class DDMPagerAdapter(val pages: List<FormPage>, val ddmFormView: DDMFormView) :
             .skip(3)
             .debounce(2, TimeUnit.SECONDS)
             .subscribe {
-                EventBusUtil.post(Event.ValueChangedEvent(it.hasFormRules()))
+                EventBusUtil.post(Event.ValueChangedEvent(it))
             }
 
         ddmFormView.scrollView.scrollTo(0, 0)

@@ -18,6 +18,7 @@ import android.view.View
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
 import com.liferay.apio.consumer.model.Thing
+import com.liferay.mobile.screens.ddl.model.Field
 
 sealed class Event<T> {
 	class Click(val view: View, val thing: Thing) : Event<View.OnClickListener>()
@@ -26,5 +27,5 @@ sealed class Event<T> {
 
 	class CustomEvent(val name: String, val view: BaseView? = null, val thing: Thing): Event<Unit>()
 
-	class ValueChangedEvent constructor(val hasFormRules: Boolean)
+	class ValueChangedEvent constructor(val field: Field<*>)
 }

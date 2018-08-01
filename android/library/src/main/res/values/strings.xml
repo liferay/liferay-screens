@@ -89,5 +89,6 @@
 	<string name="no_internet_connection">No internet connection. Reconnect to submit.</string>
 	<string name="information_successfully_received">Your information was successfully received.</string>
 	<string name="submit_failed_contact_administrator">Submit failed. Contact the administrator.</string>
+	<string name="cant_load_some_fields_offline">Can’t load some fields offline. Try to reconnect.</string>
 
 </resources>
