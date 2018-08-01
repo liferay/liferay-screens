@@ -7,6 +7,7 @@ import com.liferay.apio.consumer.model.Relation
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.getOperation
 import com.liferay.apio.consumer.performOperation
+import com.liferay.apio.consumer.performParseOperation
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.ddm.form.extension.toJsonMap
 import com.liferay.mobile.screens.ddm.form.extension.toThing
@@ -56,33 +57,14 @@ private fun performSubmit(
         thing: Thing, operation: Operation, fields: MutableList<Field<*>>, isDraft: Boolean = false,
         onSuccess: (Thing) -> Unit, onError: (Exception) -> Unit) {
 
-    performOperation(thing.id, operation.id, {
+    performParseOperation(thing.id, operation.id, {
         mapOf(
             Pair("isDraft", isDraft),
             Pair("fieldValues", FieldValueSerializer.serialize(fields))
         )
     }) {
-        val (response, exception) = it
+        val (resultThing, exception) = it
 
-        exception?.let {
-            onError(exception)
-        } ?:
-        response?.let {
-            if(response.isSuccessful) {
-                response.toThing()?.let { thing ->
-                    onSuccess(thing)
-                } ?: run {
-                    onError(ApioException("No thing found"))
-                }
-            }
-            else {
-                // TODO Move error mapping to consumer
-                response.toJsonMap()?.let { json ->
-                    val error = json["title"] as? String ?: "Unable to submit form"
-
-                    onError(ApioException(error))
-                }
-            }
-        }
+        resultThing?.let(onSuccess) ?: exception?.let(onError)
     }
 }
