@@ -282,12 +282,11 @@ class DDMFormView @JvmOverloads constructor(
 
         operation?.let {
             performParseOperation(thing.id, it.id, {
-                val values = mutableMapOf<String, Any>()
-
                 val fields = formInstance.ddmStructure.fields
-                values["fieldValues"] = FieldValueSerializer.serialize(fields)
 
-                values
+                mapOf(
+                    Pair("fieldValues", FieldValueSerializer.serializeWithTransient(fields))
+                )
             }) {
                 val (thing, exception) = it
                 val message = ""
@@ -300,8 +299,7 @@ class DDMFormView @JvmOverloads constructor(
 
                 } ?: exception?.let {
 
-                    val message = it.message ?: "Unknown Error"
-                    Snackbar.make(this, message, Snackbar.LENGTH_SHORT).show()
+                    showErrorMessage(exception)
 
                 } ?: LiferayLogger.d(message)
             }

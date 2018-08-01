@@ -27,7 +27,7 @@ class FieldValueSerializer {
     companion object {
         private val gson: Gson = GsonFactory.create()
 
-        private const val EMPTY_JSON = "{}"
+        private val EMPTY_JSON = JsonObject()
         private const val EMPTY_STRING = ""
         private val EMPTY_LIST = listOf<Any>()
 
@@ -35,6 +35,13 @@ class FieldValueSerializer {
             return fields
                     .flatten()
                     .removeTransient()
+                    .mapValues()
+                    .toJson()
+        }
+
+        fun serializeWithTransient(fields: FieldList): String {
+            return fields
+                    .flatten()
                     .mapValues()
                     .toJson()
         }
