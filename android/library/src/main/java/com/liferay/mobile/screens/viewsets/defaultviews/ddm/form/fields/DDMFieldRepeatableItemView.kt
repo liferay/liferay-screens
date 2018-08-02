@@ -124,14 +124,14 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
     override fun setField(field: Field<*>) {
         this.field = field
 
-        refresh()
+        setupRepeatableLabel()
+        setupRepeatableActions()
+        setupRepeatableField()
     }
 
     override fun refresh() {
         setupRepeatableLabel()
-        setupRepeatableActions()
-        setupRepeatableField()
-        fieldView?.refresh()
+        fieldView.refresh()
     }
 
     override fun onPostValidation(valid: Boolean) {
