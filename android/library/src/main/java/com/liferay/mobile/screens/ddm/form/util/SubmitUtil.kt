@@ -43,8 +43,8 @@ private fun getThing(thingId: String, onSuccess: (Thing) -> Unit, onError: (Exce
 
             thing?.let {
                 onSuccess(it)
-            } ?: run {
-                onError(exception ?: ApioException("No thing found"))
+            } ?: exception?.let{
+                onError(it)
             }
         }
     } ?: onError(ApioException("No thing found"))
