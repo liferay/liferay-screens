@@ -57,7 +57,7 @@ class GridField : Field<Grid>, Parcelable {
     constructor(attributes: Map<String, Any>, locale: Locale, defaultLocale: Locale) :
             super(attributes, locale, defaultLocale) {
 
-        val grid = attributes[FormFieldKeys.GRID] as Map<String, Any>
+        val grid = attributes[Field.formFieldKeys.gridKey] as Map<String, Any>
         rows = (grid["rows"] as Map<String, Any>).let {
             (it["member"] as List<Map<String, String>>).mapTo(mutableListOf(), {
                 Option(it)

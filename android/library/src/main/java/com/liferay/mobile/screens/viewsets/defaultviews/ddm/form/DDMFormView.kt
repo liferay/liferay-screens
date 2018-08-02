@@ -236,6 +236,8 @@ class DDMFormView @JvmOverloads constructor(
                 }
             }
         }, { exception ->
+            LiferayLogger.e(exception.message)
+
             if (!isDraft) {
                 showErrorMessage(exception)
             }
@@ -304,9 +306,10 @@ class DDMFormView @JvmOverloads constructor(
 
                 } ?: exception?.let {
 
+                    LiferayLogger.e(message)
                     showErrorMessage(exception)
 
-                } ?: LiferayLogger.d(message)
+                } ?: LiferayLogger.e(message)
             }
         }
     }

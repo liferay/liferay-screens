@@ -17,32 +17,40 @@ package com.liferay.mobile.screens.ddl.model
 /**
  * @author Victor Oliveira
  */
-class FormFieldKeys {
-    companion object {
-        const val NAME = "name"
-        const val DATA_TYPE = "dataType"
-        const val DISPLAY_STYLE = "displayStyle"
-        const val TYPE = "type"
-        const val LABEL = "label"
-        const val TIP = "tip"
-        const val PLACEHOLDER = "placeHolder"
-        const val READ_ONLY = "readOnly"
-        const val REPEATABLE = "repeatable"
-        const val REQUIRED = "required"
-        const val SHOW_LABEL = "showLabel"
-        const val INLINE = "inline"
-        const val MULTIPLE = "multiple"
-        const val SWITCHER = "switcher"
-        const val VISIBILITY_EXPRESSION = "visibilityExpression"
-        const val DDM_DATA_PROVIDER_INSTANCE = "ddmDataProviderInstance"
-        const val PREDEFINED_VALUE = "predefinedValue"
-        const val TEXT = "text"
-        const val GRID = "grid"
-        const val OPTIONS = "options"
-        const val VALIDATION = "validation"
-        const val HAS_FORM_RULES = "hasFormRules"
-        const val IS_TRANSIENT = "isTransient"
-        const val IS_LOCALIZABLE = "isLocalizable"
-        const val IS_AUTOCOMPLETE = "isAutocomplete"
-    }
+abstract class FormFieldKeys {
+    val dataTypeKey = "dataType"
+    val ddmDataProviderInstanceKey = "ddmDataProviderInstance"
+    val displayStyleKey = "displayStyle"
+    val labelKey = "label"
+    val gridKey = "grid"
+    val hasFormRulesKey = "hasFormRules"
+    val isTransientKey = "isTransient"
+    val nameKey = "name"
+    val optionsKey = "options"
+    val placeHolderKey = "placeHolder"
+    val predefinedValueKey = "predefinedValue"
+    val switcherKey = "switcher"
+    val textKey = "text"
+    val tipKey = "tip"
+    val validationKey = "validation"
+    val visibilityExpressionKey = "visibilityExpression"
+    open val additionalTypeKey = "type"
+    open val isInlineKey = "inline"
+    open val isMultipleKey = "multiple"
+    open val isReadyOnlyKey = "readOnly"
+    open val isRepeatableKey = "repeatable"
+    open val isRequiredKey = "required"
+    open val isShowLabelKey = "showLabel"
+}
+
+class DDLFormFieldKeys : FormFieldKeys()
+
+class DDMFormFieldsKeys : FormFieldKeys() {
+    override val additionalTypeKey = "additionalType"
+    override val isInlineKey = "isInline"
+    override val isMultipleKey = "isMultiple"
+    override val isReadyOnlyKey = "isReadyOnly"
+    override val isRepeatableKey = "isRepeatable"
+    override val isRequiredKey = "isRequired"
+    override val isShowLabelKey = "isShowLabel"
 }

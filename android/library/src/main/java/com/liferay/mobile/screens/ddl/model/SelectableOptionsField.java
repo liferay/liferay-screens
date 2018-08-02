@@ -55,17 +55,17 @@ public class SelectableOptionsField extends OptionsField<ArrayList<Option>> {
 	public SelectableOptionsField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
 		super(attributes, locale, defaultLocale);
 
-		Object multipleValue = attributes.get(FormFieldKeys.MULTIPLE);
-		Object inlineValue = attributes.get(FormFieldKeys.INLINE);
+		Object multipleValue = attributes.get(Field.formFieldKeys.isMultipleKey());
+		Object inlineValue = attributes.get(Field.formFieldKeys.isInlineKey());
 
 		multiple = (multipleValue != null) ? Boolean.valueOf(multipleValue.toString()) : false;
 		inline = (inlineValue != null) ? Boolean.valueOf(inlineValue.toString()) : false;
 
-		if ("checkbox_multiple".equals(attributes.get("type"))) {
+		if ("checkbox_multiple".equals(attributes.get(Field.formFieldKeys.getAdditionalTypeKey()))) {
 			multiple = true;
 		}
 
-		ArrayList<Option> predefinedOptions = convertFromString(getAttributeStringValue(attributes, "predefinedValue"));
+		ArrayList<Option> predefinedOptions = convertFromString(getAttributeStringValue(attributes, Field.formFieldKeys.getPredefinedValueKey()));
 
 		setPredefinedValue(predefinedOptions);
 		setCurrentValue(predefinedOptions);

@@ -54,7 +54,7 @@ class DDMPagerAdapter(val pages: List<FormPage>, val ddmFormView: DDMFormView) :
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
         val page = pages[position]
-        val inflater = LayoutInflater.from(container?.context)
+        val inflater = LayoutInflater.from(container.context)
 
         val pageItemView = inflater.inflate(R.layout.ddm_form_page_item, container, false)
         val linearLayout = pageItemView.findViewById<LinearLayout>(R.id.dmm_page_container)
@@ -89,7 +89,7 @@ class DDMPagerAdapter(val pages: List<FormPage>, val ddmFormView: DDMFormView) :
         }
 
         linearLayout.tag = position
-        container?.addView(linearLayout)
+        container.addView(linearLayout)
 
         subscription = mergedObservable
             .skip(3)
@@ -119,6 +119,6 @@ class DDMPagerAdapter(val pages: List<FormPage>, val ddmFormView: DDMFormView) :
     }
 
     override fun destroyItem(container: ViewGroup, position: Int, obj: Any) {
-        container?.removeView(obj as View)
+        container.removeView(obj as View)
     }
 }

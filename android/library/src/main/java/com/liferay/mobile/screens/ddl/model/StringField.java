@@ -62,8 +62,8 @@ public class StringField extends OptionsField<String> {
 
 	private void initializeValidation(Map<String, Object> attributes) {
 		Map<String, String> validation;
-		if (attributes.get("validation") instanceof Map) {
-			 validation = (Map<String, String>) attributes.get("validation");
+		if (attributes.get(Field.formFieldKeys.getValidationKey()) instanceof Map) {
+			 validation = (Map<String, String>) attributes.get(Field.formFieldKeys.getValidationKey());
 
 		} else {
 			validation = new HashMap<>();
