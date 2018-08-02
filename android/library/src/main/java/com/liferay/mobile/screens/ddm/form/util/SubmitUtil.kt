@@ -6,11 +6,8 @@ import com.liferay.apio.consumer.model.Operation
 import com.liferay.apio.consumer.model.Relation
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.getOperation
-import com.liferay.apio.consumer.performOperation
 import com.liferay.apio.consumer.performParseOperation
 import com.liferay.mobile.screens.ddl.model.Field
-import com.liferay.mobile.screens.ddm.form.extension.toJsonMap
-import com.liferay.mobile.screens.ddm.form.extension.toThing
 import com.liferay.mobile.screens.ddm.form.serializer.FieldValueSerializer
 import okhttp3.HttpUrl
 

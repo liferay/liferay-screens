@@ -454,8 +454,8 @@ class DDMFormView @JvmOverloads constructor(
             field.availableOptions.filter {
                 optionValues.contains(it.value)
             }.forEach {
-                    field.selectOption(it)
-                }
+                field.selectOption(it)
+            }
         }
     }
 
