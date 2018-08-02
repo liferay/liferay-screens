@@ -21,7 +21,9 @@ import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 import com.liferay.apio.consumer.delegates.converter
 import com.liferay.apio.consumer.model.Thing
@@ -39,19 +41,20 @@ import com.liferay.mobile.screens.ddm.form.util.submitForm
 import com.liferay.mobile.screens.ddm.form.view.SuccessPageActivity
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
-import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.mobile.screens.util.AndroidUtil
-import com.liferay.mobile.screens.util.EventBusUtil
 import com.liferay.mobile.screens.util.LiferayLogger
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.BaseDDLFieldTextView
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
+import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.fields.DDMFieldRepeatableView
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.pager.WrapContentViewPager
 import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil
-import com.squareup.otto.Subscribe
 import org.jetbrains.anko.childrenSequence
+import rx.Observable
+import rx.Subscription
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 /**
  * @author Paulo Cruz
@@ -59,19 +62,20 @@ import java.util.*
  */
 class DDMFormView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : BaseView,
-    RelativeLayout(context, attrs, defStyleAttr), DDLDocumentFieldView.UploadListener {
+    RelativeLayout(context, attrs, defStyleAttr), DDLDocumentFieldView.UploadListener, IDDMFormView {
 
+    var subscription: Subscription? = null
     val scrollView by bindNonNull<ScrollView>(R.id.multipage_scroll_view)
     private val ddmFieldViewPages by bindNonNull<WrapContentViewPager>(R.id.ddmfields_container)
     private val multipageProgress by bindNonNull<ProgressBar>(R.id.liferay_multipage_progress)
     private val backButton by bindNonNull<Button>(R.id.liferay_form_back)
     private val nextButton by bindNonNull<Button>(R.id.liferay_form_submit)
-
+    private val layoutIds = mutableMapOf<Field.EditorType, Int>()
     private lateinit var formInstance: FormInstance
     private lateinit var formInstanceRecord: FormInstanceRecord
-
-    val layoutIds = mutableMapOf<Field.EditorType, Int>()
-
+    private var currentRecordThing: Thing? by converter<FormInstanceRecord> {
+        formInstanceRecord = it
+    }
     override var screenlet: ThingScreenlet? = null
     override var thing: Thing? by converter<FormInstance> {
         formInstance = it
@@ -95,19 +99,6 @@ class DDMFormView @JvmOverloads constructor(
         evaluateContext(thing)
     }
 
-    private var currentRecordThing: Thing? by converter<FormInstanceRecord> {
-        formInstanceRecord = it
-    }
-
-    private fun getFormProgress(): Int {
-        return (ddmFieldViewPages.currentItem + 1) * 100 / formInstance.ddmStructure.pages.size
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        (ddmFieldViewPages.adapter as DDMPagerAdapter).subscription?.unsubscribe()
-    }
-
     init {
         val themeName = ThemeUtil.getLayoutTheme(context)
 
@@ -119,9 +110,69 @@ class DDMFormView @JvmOverloads constructor(
         }
     }
 
+    override fun subscribeToValueChanged(observable: Observable<Field<*>>) {
+        subscription = observable
+            .skip(3)
+            .debounce(2, TimeUnit.SECONDS)
+            .subscribe {
+                onFieldValueChanged(it)
+            }
+    }
+
+    override fun scrollToTop() {
+        scrollView.scrollTo(0, 0)
+    }
+
+    override fun inflateField(inflater: LayoutInflater, parentView: ViewGroup, field: Field<*>): View {
+        val layoutId = layoutIds[field.editorType]
+        val view = inflater.inflate(layoutId!!, parentView, false)
+
+        if (view is DDLDocumentFieldView) {
+            view.setUploadListener(this)
+        } else if (view is DDMFieldRepeatableView) {
+            view.setLayoutIds(layoutIds)
+        }
+
+        val viewModel = view as DDLFieldViewModel<*>
+        viewModel.field = field
+        view.tag = field
+
+        return view
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        subscription?.unsubscribe()
+    }
+
     private fun getIdentifier(fieldNamePrefix: String, themeName: String): Int {
         return context.resources.getIdentifier(
             "${fieldNamePrefix}_$themeName", "layout", context.packageName)
+    }
+
+    override fun startUploadField(field: DocumentField) {
+        val fieldView = findViewWithTag<DDLDocumentFieldView>(field)
+
+        fieldView.let {
+            field.moveToUploadInProgressState()
+            fieldView.refresh()
+
+            val thing = thing ?: throw Exception("No thing found")
+
+            uploadFileToRootFolder(thing, field) {
+                val (remoteFile, exception) = it
+
+                exception?.let {
+                    field.moveToUploadFailureState()
+                } ?: remoteFile?.let {
+                    field.currentValue = it
+
+                    field.moveToUploadCompleteState()
+                }
+
+                fieldView.refresh()
+            }
+        }
     }
 
     override fun onFinishInflate() {
@@ -242,6 +293,10 @@ class DDMFormView @JvmOverloads constructor(
                 showErrorMessage(exception)
             }
         })
+    }
+
+    private fun getFormProgress(): Int {
+        return (ddmFieldViewPages.currentItem + 1) * 100 / formInstance.ddmStructure.pages.size
     }
 
     private fun showConnectivityErrorMessage(@ColorRes backgroundColorResource: Int = R.color.midGray,
@@ -408,46 +463,15 @@ class DDMFormView @JvmOverloads constructor(
         }
     }
 
-    override fun startUploadField(field: DocumentField) {
-        val fieldView = findViewWithTag<DDLDocumentFieldView>(field)
-
-        fieldView.let {
-            field.moveToUploadInProgressState()
-            fieldView.refresh()
-
-            val thing = thing ?: throw Exception("No thing found")
-
-            uploadFileToRootFolder(thing, field) {
-                val (remoteFile, exception) = it
-
-                exception?.let {
-                    field.moveToUploadFailureState()
-                } ?: remoteFile?.let {
-                    field.currentValue = it
-
-                    field.moveToUploadCompleteState()
-                }
-
-                fieldView.refresh()
-            }
-        }
-    }
-
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
-        EventBusUtil.register(this)
-    }
-
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
-        EventBusUtil.unregister(this)
+        subscription?.unsubscribe()
     }
 
-    @Subscribe
-    fun onEvent(event: Event.ValueChangedEvent) {
+    private fun onFieldValueChanged(field: Field<*>) {
         submit(true)
 
-        if (event.field.hasFormRules()) {
+        if (field.hasFormRules()) {
             if (!AndroidUtil.isConnected(context.applicationContext)) {
                 showConnectivityErrorMessage(R.color.orange, R.string.cant_load_some_fields_offline)
 

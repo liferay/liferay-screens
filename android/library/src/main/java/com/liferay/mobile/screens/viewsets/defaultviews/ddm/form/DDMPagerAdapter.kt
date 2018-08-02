@@ -26,8 +26,6 @@ import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.ddm.form.model.FormPage
 import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
 import com.liferay.mobile.screens.util.EventBusUtil
-import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
-import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.fields.DDMFieldRepeatableView
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.pager.WrapContentViewPager
 import rx.Observable
 import rx.Subscription
@@ -36,8 +34,7 @@ import java.util.concurrent.TimeUnit
 /**
  * @author Victor Oliveira
  */
-class DDMPagerAdapter(val pages: List<FormPage>, val ddmFormView: DDMFormView) : PagerAdapter() {
-    var subscription: Subscription? = null
+class DDMPagerAdapter(val pages: List<FormPage>, private val ddmFormView: IDDMFormView) : PagerAdapter() {
     private var mCurrentPosition = -1
 
     override fun getCount(): Int {
@@ -70,35 +67,19 @@ class DDMPagerAdapter(val pages: List<FormPage>, val ddmFormView: DDMFormView) :
         var mergedObservable = Observable.empty<Field<*>>()
 
         for (field in page.fields) {
-            val layoutId = ddmFormView.layoutIds[field.editorType]
-            val view = inflater.inflate(layoutId!!, linearLayout, false)
 
-            if (view is DDLDocumentFieldView) {
-                view.setUploadListener(ddmFormView)
-            } else if (view is DDMFieldRepeatableView) {
-                view.setLayoutIds(ddmFormView.layoutIds)
-            }
-
-            val viewModel = view as DDLFieldViewModel<*>
-            viewModel.field = field
-            view.tag = field
+            val view = ddmFormView.inflateField(inflater, linearLayout, field)
 
             linearLayout.addView(view)
 
-            mergedObservable = mergedObservable.mergeWith(view.onChangedValueObservable)
+            mergedObservable = mergedObservable.mergeWith((view as DDLFieldViewModel<*>).onChangedValueObservable)
         }
 
         linearLayout.tag = position
         container.addView(linearLayout)
 
-        subscription = mergedObservable
-            .skip(3)
-            .debounce(2, TimeUnit.SECONDS)
-            .subscribe {
-                EventBusUtil.post(Event.ValueChangedEvent(it))
-            }
-
-        ddmFormView.scrollView.scrollTo(0, 0)
+        ddmFormView.subscribeToValueChanged(mergedObservable)
+        ddmFormView.scrollToTop()
 
         return linearLayout
     }
@@ -113,7 +94,7 @@ class DDMPagerAdapter(val pages: List<FormPage>, val ddmFormView: DDMFormView) :
                 mCurrentPosition = position
                 pager.measureCurrentView(linearLayout)
 
-                ddmFormView.scrollView.scrollTo(0, 0)
+                ddmFormView.scrollToTop()
             }
         }
     }
