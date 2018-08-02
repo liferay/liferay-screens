@@ -42,11 +42,49 @@ class RepeatableField @JvmOverloads constructor(
 
         siblings.add(repeatedField)
 
-        return repeatedField;
+        return repeatedField
     }
 
     fun remove(field: Field<*>) {
         siblings.remove(field)
+    }
+
+    override fun convertToData(value: Serializable): String {
+        return repeatedFields.joinToString(",") {
+            it.toData()
+        }
+    }
+
+    override fun convertToFormattedString(value: Serializable): String {
+        return repeatedFields.joinToString(",") {
+            it.toFormattedString()
+        }
+    }
+
+    override fun convertFromString(stringValue: String?): Serializable {
+        return stringValue?.split(",").toString()
+    }
+
+    override fun setReadOnly(readOnly: Boolean) {
+        super.setReadOnly(readOnly)
+
+        baseField.attributes[formFieldKeys.isReadyOnlyKey] = readOnly
+    }
+
+    override fun setRequired(required: Boolean) {
+        super.setRequired(required)
+
+        baseField.attributes[formFieldKeys.isRequiredKey] = required
+    }
+
+    override fun setCurrentStringValue(value: String?) {
+        val values = value?.split(",")
+
+        if(values?.count() == repeatedFields.count()) {
+            repeatedFields.forEachIndexed { index, field ->
+                field.setCurrentStringValue(values[index])
+            }
+        }
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -68,13 +106,5 @@ class RepeatableField @JvmOverloads constructor(
             return arrayOfNulls(size)
         }
     }
-
-    //TODO: NOT NEEDED METHODS, REFACTOR TO REMOVE FROM FIELD CLASS
-    override fun convertToData(value: Serializable): String = value.toString()
-
-    override fun convertToFormattedString(value: Serializable): String = value.toString()
-
-    override fun convertFromString(stringValue: String?): Serializable =
-            baseField.currentValue as Serializable
 
 }
