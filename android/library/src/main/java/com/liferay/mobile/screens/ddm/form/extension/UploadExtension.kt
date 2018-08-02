@@ -21,6 +21,7 @@ import com.liferay.apio.consumer.model.Operation
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.getOperation
 import com.liferay.apio.consumer.performOperation
+import com.liferay.apio.consumer.performParseOperation
 import com.liferay.mobile.screens.ddl.model.DocumentField
 import com.liferay.mobile.screens.ddl.model.DocumentRemoteFile
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.DDMFormView
@@ -36,40 +37,29 @@ fun DDMFormView.uploadFileToRootFolder(
     val operation = thing.getOperation("upload-file-to-root-folder")
 
     uploadFile(thing, operation!!, field) {
-        val (response, exception) = it
+        val (resultThing, exception) = it
 
         exception?.let {
             onComplete(Result.error(it))
-        } ?:
-        response?.let {
-            response.toJsonMap()?.let { json ->
-                if(response.isSuccessful) {
-                    val fileUrl = json["@id"] as String
-
-                    onComplete(Result.of(DocumentRemoteFile(fileUrl)))
-                }
-                else {
-                    val error = json["title"] as? String ?: "Unable to upload file"
-
-                    onComplete(Result.error(ApioException(error)))
-                }
-            }
+        } ?: resultThing?.let {
+            onComplete(Result.of(DocumentRemoteFile(resultThing.id)))
         }
     }
 }
 
 private fun DDMFormView.uploadFile(
         thing: Thing, operation: Operation, field: DocumentField,
-        onComplete: (Result<Response, Exception>) -> Unit) {
+        onComplete: (Result<Thing, Exception>) -> Unit) {
 
     val filePath = field.currentValue?.toString()
 
     filePath?.let {
         val fileUri = Uri.parse(filePath)
         val fileName = fileUri.lastPathSegment
+
         val inputStream = context.contentResolver.openInputStream(fileUri)
 
-        performOperation(thing.id, operation.id, {
+        performParseOperation(thing.id, operation.id, {
             mapOf(
                 Pair("binaryFile", inputStream),
                 Pair("name", fileName),
