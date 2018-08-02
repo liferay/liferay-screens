@@ -427,34 +427,7 @@ class DDMFormView @JvmOverloads constructor(
     private fun setValue(fieldContext: FieldContext, field: Field<*>) {
         if (fieldContext.isValueChanged == true) {
             fieldContext.value?.toString()?.let {
-                when (field) {
-                    is SelectableOptionsField -> setSelectableFieldValues(it, field)
-                    else -> setBasicFieldValue(it, field)
-                }
-            }
-        }
-    }
-
-    private fun setBasicFieldValue(stringValue: String, field: Field<*>) {
-        field.currentValue = when (field.dataType) {
-            Field.DataType.BOOLEAN -> stringValue.toBoolean()
-            Field.DataType.NUMBER -> stringValue.toDouble()
-            Field.DataType.DATE -> SimpleDateFormat("MMMM dd, yyyy hh:mm:ss", Locale.US).parse(stringValue)
-            else -> stringValue
-        }
-    }
-
-    private fun setSelectableFieldValues(stringValue: String, field: SelectableOptionsField) {
-        if (stringValue.isNotEmpty()) {
-            val optionValues = stringValue
-                .removePrefix("[")
-                .removeSuffix("]")
-                .split(',')
-
-            field.availableOptions.filter {
-                optionValues.contains(it.value)
-            }.forEach {
-                field.selectOption(it)
+                field.setCurrentStringValue(it)
             }
         }
     }
