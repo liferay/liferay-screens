@@ -34,10 +34,10 @@ import com.liferay.mobile.screens.context.LiferayScreensContext
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.*
 import com.liferay.mobile.screens.ddm.form.extension.flatten
-import com.liferay.mobile.screens.ddm.form.extension.uploadFileToRootFolder
 import com.liferay.mobile.screens.ddm.form.model.*
 import com.liferay.mobile.screens.ddm.form.serializer.FieldValueSerializer
-import com.liferay.mobile.screens.ddm.form.util.submitForm
+import com.liferay.mobile.screens.ddm.form.service.APIOSubmitService
+import com.liferay.mobile.screens.ddm.form.service.APIOUploadService
 import com.liferay.mobile.screens.ddm.form.view.SuccessPageActivity
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
@@ -52,7 +52,6 @@ import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil
 import org.jetbrains.anko.childrenSequence
 import rx.Observable
 import rx.Subscription
-import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -71,6 +70,10 @@ class DDMFormView @JvmOverloads constructor(
     private val backButton by bindNonNull<Button>(R.id.liferay_form_back)
     private val nextButton by bindNonNull<Button>(R.id.liferay_form_submit)
     private val layoutIds = mutableMapOf<Field.EditorType, Int>()
+
+    private val submitService = APIOSubmitService()
+    private val uploadService = APIOUploadService()
+
     private lateinit var formInstance: FormInstance
     private lateinit var formInstanceRecord: FormInstanceRecord
     private var currentRecordThing: Thing? by converter<FormInstanceRecord> {
@@ -159,19 +162,15 @@ class DDMFormView @JvmOverloads constructor(
 
             val thing = thing ?: throw Exception("No thing found")
 
-            uploadFileToRootFolder(thing, field) {
-                val (remoteFile, exception) = it
+            uploadService.uploadFileToRootFolder(context, thing, field, {
+                field.currentValue = it
 
-                exception?.let {
-                    field.moveToUploadFailureState()
-                } ?: remoteFile?.let {
-                    field.currentValue = it
-
-                    field.moveToUploadCompleteState()
-                }
-
+                field.moveToUploadCompleteState()
                 fieldView.refresh()
-            }
+            }, {
+                field.moveToUploadFailureState()
+                fieldView.refresh()
+            })
         }
     }
 
@@ -274,7 +273,7 @@ class DDMFormView @JvmOverloads constructor(
         val thing = thing ?: throw Exception("No thing found")
         val fields = formInstance.ddmStructure.fields
 
-        submitForm(thing, fields, currentRecordThing, isDraft, { recordThing ->
+        submitService.submit(thing, currentRecordThing, fields, isDraft, { recordThing ->
             currentRecordThing = recordThing
 
             if (!isDraft) {
@@ -350,10 +349,10 @@ class DDMFormView @JvmOverloads constructor(
                     Pair("fieldValues", FieldValueSerializer.serializeWithTransient(fields))
                 )
             }) {
-                val (thing, exception) = it
+                val (resultThing, exception) = it
                 val message = ""
 
-                thing?.let {
+                resultThing?.let {
                     val formContext = FormContext.converter(it)
 
                     updatePages(formContext)
