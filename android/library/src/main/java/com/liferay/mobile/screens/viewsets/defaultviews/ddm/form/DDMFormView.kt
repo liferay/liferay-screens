@@ -36,6 +36,7 @@ import com.liferay.mobile.screens.ddl.model.*
 import com.liferay.mobile.screens.ddm.form.extension.flatten
 import com.liferay.mobile.screens.ddm.form.model.*
 import com.liferay.mobile.screens.ddm.form.serializer.FieldValueSerializer
+import com.liferay.mobile.screens.ddm.form.service.APIOEvaluateService
 import com.liferay.mobile.screens.ddm.form.service.APIOSubmitService
 import com.liferay.mobile.screens.ddm.form.service.APIOUploadService
 import com.liferay.mobile.screens.ddm.form.view.SuccessPageActivity
@@ -71,15 +72,19 @@ class DDMFormView @JvmOverloads constructor(
     private val nextButton by bindNonNull<Button>(R.id.liferay_form_submit)
     private val layoutIds = mutableMapOf<Field.EditorType, Int>()
 
+    private val evaluateService = APIOEvaluateService()
     private val submitService = APIOSubmitService()
     private val uploadService = APIOUploadService()
 
     private lateinit var formInstance: FormInstance
     private lateinit var formInstanceRecord: FormInstanceRecord
+
     private var currentRecordThing: Thing? by converter<FormInstanceRecord> {
         formInstanceRecord = it
     }
+
     override var screenlet: ThingScreenlet? = null
+
     override var thing: Thing? by converter<FormInstance> {
         formInstance = it
 
@@ -338,34 +343,16 @@ class DDMFormView @JvmOverloads constructor(
 
     private fun evaluateContext(thing: Thing?, skipValidation: Boolean = false) {
         val thing = thing ?: throw Exception("No thing found")
+        val fields = formInstance.ddmStructure.fields
 
-        val operation = thing.getOperation("evaluate-context")
+        evaluateService.evaluateContext(thing, fields, {
+            val formContext = FormContext.converter(it)
 
-        operation?.let {
-            performParseOperation(thing.id, it.id, {
-                val fields = formInstance.ddmStructure.fields
-
-                mapOf(
-                    Pair("fieldValues", FieldValueSerializer.serializeWithTransient(fields))
-                )
-            }) {
-                val (resultThing, exception) = it
-                val message = ""
-
-                resultThing?.let {
-                    val formContext = FormContext.converter(it)
-
-                    updatePages(formContext)
-                    updateFields(formContext, skipValidation)
-
-                } ?: exception?.let {
-
-                    LiferayLogger.e(message)
-                    showErrorMessage(exception)
-
-                } ?: LiferayLogger.e(message)
-            }
-        }
+            updatePages(formContext)
+            updateFields(formContext, skipValidation)
+        }, {
+            showErrorMessage(it)
+        })
     }
 
     private fun updatePages(formContext: FormContext) {
