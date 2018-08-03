@@ -387,12 +387,11 @@ class DDMFormView @JvmOverloads constructor(
                     field.isRequired = it.isRequired ?: field.isRequired
 
                     fieldTextView?.setupFieldLayout()
+                    fieldViewModel.refresh()
 
                     if(!skipValidation) {
                         fieldViewModel.onPostValidation(it.isValid ?: true)
                     }
-
-                    fieldViewModel.refresh()
                 }
             }
         }
