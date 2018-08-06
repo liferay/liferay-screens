@@ -71,6 +71,7 @@ class DDMFormView @JvmOverloads constructor(
     private val backButton by bindNonNull<Button>(R.id.liferay_form_back)
     private val nextButton by bindNonNull<Button>(R.id.liferay_form_submit)
     private val layoutIds = mutableMapOf<Field.EditorType, Int>()
+    private val dirtyFieldNames: MutableList<String> = mutableListOf()
 
     private val evaluateService = APIOEvaluateService()
     private val submitService = APIOSubmitService()
@@ -104,7 +105,7 @@ class DDMFormView @JvmOverloads constructor(
         if (it.ddmStructure.pages.size == 1)
             nextButton.text = context.getString(R.string.submit)
 
-        evaluateContext(thing, true)
+        evaluateContext(thing)
     }
 
     init {
@@ -341,7 +342,7 @@ class DDMFormView @JvmOverloads constructor(
         context.startActivity(intent)
     }
 
-    private fun evaluateContext(thing: Thing?, skipValidation: Boolean = false) {
+    private fun evaluateContext(thing: Thing?) {
         val thing = thing ?: throw Exception("No thing found")
         val fields = formInstance.ddmStructure.fields
 
@@ -349,7 +350,7 @@ class DDMFormView @JvmOverloads constructor(
             val formContext = FormContext.converter(it)
 
             updatePages(formContext)
-            updateFields(formContext, skipValidation)
+            updateFields(formContext)
         }, {
             showErrorMessage(it)
         })
@@ -363,7 +364,7 @@ class DDMFormView @JvmOverloads constructor(
         }
     }
 
-    private fun updateFields(formContext: FormContext, skipValidation: Boolean = false) {
+    private fun updateFields(formContext: FormContext) {
         val fieldsContainerView =
             ddmFieldViewPages.findViewWithTag<LinearLayout>(ddmFieldViewPages.currentItem)
 
@@ -389,7 +390,7 @@ class DDMFormView @JvmOverloads constructor(
                     fieldTextView?.setupFieldLayout()
                     fieldViewModel.refresh()
 
-                    if(!skipValidation) {
+                    if (dirtyFieldNames.contains(field.name)) {
                         fieldViewModel.onPostValidation(it.isValid ?: true)
                     }
                 }
@@ -411,6 +412,8 @@ class DDMFormView @JvmOverloads constructor(
 
     private fun setValue(fieldContext: FieldContext, field: Field<*>) {
         if (fieldContext.isValueChanged == true) {
+            addToDirtyFields(field)
+
             fieldContext.value?.toString()?.let {
                 field.setCurrentStringValue(it)
             }
@@ -431,6 +434,7 @@ class DDMFormView @JvmOverloads constructor(
     }
 
     private fun onFieldValueChanged(field: Field<*>) {
+        addToDirtyFields(field)
         submit(true)
 
         if (field.hasFormRules()) {
@@ -441,6 +445,12 @@ class DDMFormView @JvmOverloads constructor(
             }
 
             evaluateContext(thing)
+        }
+    }
+
+    private fun addToDirtyFields(field: Field<*>) {
+        if (!dirtyFieldNames.contains(field.name)) {
+            dirtyFieldNames.add(field.name)
         }
     }
 
