@@ -26,8 +26,8 @@ open class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 	// MARK: BaseScreenletView
 
 	override open func onCreated() {
-		emojis = subviews.map({ $0 as? UIButton }).flatMap({ $0 })
-		labels = subviews.map({ $0 as? UILabel }).flatMap({ $0 })
+		emojis = subviews.map({ $0 as? UIButton }).compactMap({ $0 })
+		labels = subviews.map({ $0 as? UILabel }).compactMap({ $0 })
 	}
 
 	override open func createProgressPresenter() -> ProgressPresenter {
