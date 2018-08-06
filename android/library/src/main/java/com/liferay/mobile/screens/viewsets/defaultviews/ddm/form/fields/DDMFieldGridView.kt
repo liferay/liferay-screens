@@ -26,11 +26,14 @@ import android.widget.TextView
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.Option
+import com.liferay.mobile.screens.ddl.model.SelectableOptionsField
 import com.liferay.mobile.screens.ddm.form.model.Grid
 import com.liferay.mobile.screens.ddm.form.model.GridField
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil
 import rx.Observable
+import rx.Subscriber
+import rx.Subscription
 import java.util.*
 
 /**
@@ -42,7 +45,11 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
     private lateinit var parentView: View
     private val labelTextView: TextView by bindNonNull(R.id.liferay_ddm_label)
     private val hintTextView: TextView by bindNonNull(R.id.liferay_ddm_hint)
-    private val gridLinearLayout: LinearLayout by bindNonNull(R.id.liferay_ddm_grid)
+    val gridLinearLayout: LinearLayout by bindNonNull(R.id.liferay_ddm_grid)
+
+    private var changeValeusSubscription : Subscription? = null
+    private var changeValuesSubscriber : Subscriber<in Boolean>? = null
+    private val changeValuesObservable = Observable.create<Boolean> { changeValuesSubscriber = it }
 
     override fun getField(): GridField {
         return this.gridField
@@ -78,6 +85,7 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
 
     override fun refresh() {
         gridLinearLayout.removeAllViews()
+        var observableChangeValue: Observable<SelectableOptionsField>? = null
 
         this.gridField.rows.forEach { row ->
 
@@ -105,7 +113,16 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
 
                 val columnEditText = ddmFieldGridRowView.columnSelectView.textEditText
                 columnEditText.setTypeface(columnEditText.typeface, Typeface.BOLD)
+
+                changeValuesSubscriber?.onNext(field.isValid)
             }
+        }
+
+        changeValuesObservable?.let { observable ->
+            changeValeusSubscription = observable
+                    .filter { it }
+                    .distinctUntilChanged()
+                    .subscribe(::onPostValidation)
         }
     }
 
@@ -135,4 +152,11 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
     override fun onFinishInflate() {
         super.onFinishInflate()
     }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+
+        changeValeusSubscription?.unsubscribe()
+    }
+
 }

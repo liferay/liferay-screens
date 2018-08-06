@@ -173,6 +173,8 @@ public class DDLFieldRadioView extends LinearLayout
 		} else {
 			field.clearOption(opt);
 		}
+
+		onPostValidation(getField().isValid());
 	}
 
 	@Override
