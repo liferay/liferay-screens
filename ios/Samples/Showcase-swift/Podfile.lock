@@ -27,15 +27,15 @@ PODS:
   - DTPickerPresenter (0.2.0)
   - KeychainAccess (3.1.1)
   - Kingfisher (4.8.0)
-  - Liferay-iOS-SDK (7.1-beta2):
+  - Liferay-iOS-SDK (7.1.0):
     - AFNetworking (~> 3.0)
     - AppAuth (= 0.92)
-  - LiferayScreens (3.1.0):
+  - LiferayScreens (4.0.0):
     - Cordova (~> 4.0)
     - DTPickerPresenter (~> 0.2.0)
     - KeychainAccess (~> 3.0)
     - Kingfisher (~> 4.0)
-    - Liferay-iOS-SDK (~> 7.1-beta2)
+    - Liferay-iOS-SDK (~> 7.1)
     - MBProgressHUD (~> 0.9.1)
     - MDRadialProgress (~> 1.3.2)
     - SMXMLDocument (~> 1.1)
@@ -132,8 +132,8 @@ SPEC CHECKSUMS:
   DTPickerPresenter: 1976573e3475534559b6ec1dad64b2ece16c966d
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
   Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
-  Liferay-iOS-SDK: ab249a9bcd51c9db5ded1d7ebf9f688f6f24cb89
-  LiferayScreens: 02566d538ae06bb49813ae4b0d92262a0d8a9d9f
+  Liferay-iOS-SDK: cb3c1ffa9b211fd95c5ff77bd5b2cd8036bdc5b0
+  LiferayScreens: 088c5d9f03fe272e5074fe805ff8d06836a3a421
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MDRadialProgress: 1068574b9b4b870f64b605b07f734385bde5104d
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
