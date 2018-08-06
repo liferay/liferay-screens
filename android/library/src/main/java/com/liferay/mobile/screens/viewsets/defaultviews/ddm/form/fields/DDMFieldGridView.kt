@@ -85,7 +85,6 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
 
     override fun refresh() {
         gridLinearLayout.removeAllViews()
-        var observableChangeValue: Observable<SelectableOptionsField>? = null
 
         this.gridField.rows.forEach { row ->
 
