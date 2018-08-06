@@ -4,7 +4,8 @@
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
 	android:orientation="horizontal"
-	android:paddingTop="@dimen/default_grid_row_padding"
+	android:padding="1dp"
+	android:layout_marginTop="@dimen/default_grid_row_padding"
 	>
 
 	<EditText

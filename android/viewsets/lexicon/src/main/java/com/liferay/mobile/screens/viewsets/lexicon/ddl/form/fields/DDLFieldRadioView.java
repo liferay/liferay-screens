@@ -91,4 +91,20 @@ public class DDLFieldRadioView
 
 		radioGroup = findViewById(R.id.radio_group);
 	}
+
+	@Override
+	public void onPostValidation(boolean valid) {
+		View errorContainer = findViewById(R.id.errorContainer);
+
+		if (errorContainer != null) {
+			errorContainer.setBackground(
+					valid ? null : getResources().getDrawable(R.drawable.lexicon_error_view_shape));
+		}
+
+		View errorView = findViewById(R.id.error_view);
+
+		if (errorView != null) {
+			errorView.setVisibility(valid ? GONE : VISIBLE);
+		}
+	}
 }

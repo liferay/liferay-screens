@@ -14,11 +14,26 @@
 		android:visibility="gone"
 		/>
 
-	<RadioGroup
-		android:id="@+id/radio_group"
+	<LinearLayout
+		android:id="@+id/errorContainer"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:orientation="vertical"
-		/>
+		android:orientation="vertical">
+
+		<RadioGroup
+			android:id="@+id/radio_group"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical" />
+
+		<include
+			android:id="@+id/error_view"
+			layout="@layout/error_view"
+			android:layout_marginLeft="9dp"
+			android:visibility="gone"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content" />
+
+	</LinearLayout>
 
 </com.liferay.mobile.screens.viewsets.lexicon.ddl.form.fields.DDLFieldRadioView>
