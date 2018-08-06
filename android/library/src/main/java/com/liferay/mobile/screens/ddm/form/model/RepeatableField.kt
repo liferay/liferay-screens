@@ -72,7 +72,7 @@ class RepeatableField @JvmOverloads constructor(
     }
 
     override fun doValidate(): Boolean {
-        return repeatedFields.map { it.isValid }.reduce { acc, cur -> acc || cur }
+        return repeatedFields.map { it.isValid }.reduce { acc, cur -> acc && cur }
     }
 
     override fun setRequired(required: Boolean) {
