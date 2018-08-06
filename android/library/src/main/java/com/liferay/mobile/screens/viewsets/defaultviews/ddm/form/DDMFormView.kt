@@ -391,7 +391,10 @@ class DDMFormView @JvmOverloads constructor(
                     fieldViewModel.refresh()
 
                     if (dirtyFieldNames.contains(field.name)) {
-                        fieldViewModel.onPostValidation(it.isValid ?: true)
+                        val isValid = it.isValid ?: true
+
+                        field.lastValidationResult = isValid
+                        fieldViewModel.onPostValidation(isValid)
                     }
                 }
             }
