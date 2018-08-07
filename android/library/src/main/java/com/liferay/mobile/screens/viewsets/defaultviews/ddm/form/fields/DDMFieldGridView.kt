@@ -26,7 +26,6 @@ import android.widget.TextView
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.Option
-import com.liferay.mobile.screens.ddl.model.SelectableOptionsField
 import com.liferay.mobile.screens.ddm.form.model.Grid
 import com.liferay.mobile.screens.ddm.form.model.GridField
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
@@ -47,7 +46,7 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
     private val hintTextView: TextView by bindNonNull(R.id.liferay_ddm_hint)
     val gridLinearLayout: LinearLayout by bindNonNull(R.id.liferay_ddm_grid)
 
-    private var changeValeusSubscription : Subscription? = null
+    private var changeValuesSubscription : Subscription? = null
     private var changeValuesSubscriber : Subscriber<in Boolean>? = null
     private val changeValuesObservable = Observable.create<Boolean> { changeValuesSubscriber = it }
 
@@ -59,33 +58,14 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
         this.gridField = field
 
         setupLabelLayout()
-        refresh()
+        setupFieldLayout()
     }
 
     override fun getOnChangedValueObservable(): Observable<GridField> {
         return Observable.empty<GridField>()
     }
 
-    private fun setupLabelLayout() {
-        if (gridField.isShowLabel && gridField.label.isNotEmpty()) {
-            labelTextView.text = gridField.label
-            labelTextView.visibility = View.VISIBLE
-
-            if (this.gridField.isRequired) {
-                val requiredAlert = ThemeUtil.getRequiredSpannable(context)
-                labelTextView.append(requiredAlert)
-            }
-        }
-
-        if (gridField.tip.isNotEmpty()) {
-            hintTextView.text = gridField.tip
-            hintTextView.visibility = View.VISIBLE
-        }
-    }
-
-    override fun refresh() {
-        gridLinearLayout.removeAllViews()
-
+    private fun setupFieldLayout() {
         this.gridField.rows.forEach { row ->
 
             val inflater = LayoutInflater.from(context)
@@ -118,11 +98,32 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
         }
 
         changeValuesObservable?.let { observable ->
-            changeValeusSubscription = observable
+            changeValuesSubscription = observable
                     .filter { it }
                     .distinctUntilChanged()
                     .subscribe(::onPostValidation)
         }
+    }
+
+    private fun setupLabelLayout() {
+        if (gridField.isShowLabel && gridField.label.isNotEmpty()) {
+            labelTextView.text = gridField.label
+            labelTextView.visibility = View.VISIBLE
+
+            if (this.gridField.isRequired) {
+                val requiredAlert = ThemeUtil.getRequiredSpannable(context)
+                labelTextView.append(requiredAlert)
+            }
+        }
+
+        if (gridField.tip.isNotEmpty()) {
+            hintTextView.text = gridField.tip
+            hintTextView.visibility = View.VISIBLE
+        }
+    }
+
+    override fun refresh() {
+        setupLabelLayout()
     }
 
     override fun onPostValidation(valid: Boolean) {
@@ -155,7 +156,7 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
 
-        changeValeusSubscription?.unsubscribe()
+        changeValuesSubscription?.unsubscribe()
     }
 
 }
