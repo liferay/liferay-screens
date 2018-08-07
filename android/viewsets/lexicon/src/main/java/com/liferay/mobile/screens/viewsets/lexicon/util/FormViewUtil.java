@@ -36,29 +36,12 @@ public class FormViewUtil {
 		Drawable drawable;
 
 		if (valid) {
-			drawable = context.getResources().getDrawable(R.drawable.lexicon_edit_text_drawable);
+			drawable = context.getResources().getDrawable(R.drawable.lexicon_edit_text_selector);
 		} else {
 			drawable = context.getResources().getDrawable(R.drawable.lexicon_edit_text_error_drawable);
 		}
 
 		setupBackground(drawable, view);
-	}
-
-	public static void setupTextFieldLayout(Context context, boolean valid, TextView labelTextView,
-		EditText textEditText) {
-		String errorText = null;
-
-		if (!valid) {
-			errorText = context.getResources().getString(com.liferay.mobile.screens.R.string.invalid);
-		}
-
-		if (labelTextView == null) {
-			textEditText.setError(errorText);
-		} else {
-			labelTextView.setError(errorText);
-		}
-
-		setupBackground(context, valid, textEditText);
 	}
 
 	public static int convertDpToPx(Context context, int dp) {
