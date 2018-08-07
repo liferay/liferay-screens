@@ -105,7 +105,7 @@ class DDMFormView @JvmOverloads constructor(
         if (it.ddmStructure.pages.size == 1)
             nextButton.text = context.getString(R.string.submit)
 
-        evaluateContext(thing)
+        evaluateContext()
     }
 
     init {
@@ -342,7 +342,7 @@ class DDMFormView @JvmOverloads constructor(
         context.startActivity(intent)
     }
 
-    private fun evaluateContext(thing: Thing?) {
+    private fun evaluateContext() {
         val thing = thing ?: throw Exception("No thing found")
         val fields = formInstance.ddmStructure.fields
 
@@ -365,51 +365,62 @@ class DDMFormView @JvmOverloads constructor(
     }
 
     private fun updateFields(formContext: FormContext) {
-        val fieldsContainerView =
-            ddmFieldViewPages.findViewWithTag<LinearLayout>(ddmFieldViewPages.currentItem)
+        val fieldContexts = formContext.pages.flatMap(FormContextPage::fields)
 
-        val fieldContexts =
-            formContext.pages.flatMap(FormContextPage::fields).map { Pair(it.name, it) }.toMap()
+        val fieldsMap = formInstance.ddmStructure.fields.map {
+            Pair(it.name, it)
+        }.toMap()
 
-        fieldsContainerView?.childrenSequence()?.forEach {
-            val fieldView = it
-            val fieldViewModel = fieldView as? DDLFieldViewModel<*>
-            val fieldTextView = fieldView as? BaseDDLFieldTextView<*>
+        fieldContexts.forEach { fieldContext ->
+            val field = fieldsMap[fieldContext.name]
 
-            fieldViewModel?.let {
-                val field = it.field
-
-                fieldContexts[field.name]?.let {
-                    setOptions(it, fieldView)
-                    setValue(it, field)
-                    setVisibility(it, fieldView)
-
-                    field.isReadOnly = it.isReadOnly ?: field.isReadOnly
-                    field.isRequired = it.isRequired ?: field.isRequired
-
-                    fieldTextView?.setupFieldLayout()
-                    fieldViewModel.refresh()
-
-                    if (dirtyFieldNames.contains(field.name)) {
-                        val isValid = it.isValid ?: true
-
-                        field.lastValidationResult = isValid
-                        fieldViewModel.onPostValidation(isValid)
-                    }
-                }
+            field?.let {
+                updateFieldModel(fieldContext, field)
+                updateFieldView(fieldContext, field)
             }
         }
     }
 
-    private fun setOptions(fieldContext: FieldContext, fieldViewModel: DDLFieldViewModel<*>) {
-        val optionsField = fieldViewModel.field as? OptionsField<*>
+    private fun updateFieldModel(fieldContext: FieldContext, field: Field<*>) {
+        (field as? OptionsField<*>)?.let { optionsField ->
+            setOptions(fieldContext, optionsField)
+        }
 
-        optionsField?.let {
-            val availableOptions = fieldContext.options as? List<Map<String, String>>
+        setValue(fieldContext, field)
 
-            availableOptions?.let {
-                optionsField.availableOptions = ArrayList(availableOptions.map { Option(it) })
+        field.isReadOnly = fieldContext.isReadOnly ?: field.isReadOnly
+        field.isRequired = fieldContext.isRequired ?: field.isRequired
+    }
+
+    private fun updateFieldView(fieldContext: FieldContext, field: Field<*>) {
+        val fieldsContainerView =
+                ddmFieldViewPages.findViewWithTag<LinearLayout>(ddmFieldViewPages.currentItem)
+
+        val fieldView = fieldsContainerView?.findViewWithTag<View>(field)
+
+        fieldView?.let {
+            val fieldViewModel = fieldView as? DDLFieldViewModel<*>
+            val fieldTextView = fieldView as? BaseDDLFieldTextView<*>
+
+            setVisibility(fieldContext, fieldView)
+
+            fieldTextView?.setupFieldLayout()
+            fieldViewModel?.refresh()
+
+            if (dirtyFieldNames.contains(field.name)) {
+                val isValid = fieldContext.isValid ?: true
+
+                field.lastValidationResult = isValid
+                fieldViewModel?.onPostValidation(isValid)
             }
+        }
+    }
+
+    private fun setOptions(fieldContext: FieldContext, optionsField: OptionsField<*>) {
+        val availableOptions = fieldContext.options as? List<Map<String, String>>
+
+        availableOptions?.let {
+            optionsField.availableOptions = ArrayList(availableOptions.map { Option(it) })
         }
     }
 
@@ -447,7 +458,7 @@ class DDMFormView @JvmOverloads constructor(
                 return
             }
 
-            evaluateContext(thing)
+            evaluateContext()
         }
     }
 
