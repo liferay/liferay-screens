@@ -71,6 +71,10 @@ class RepeatableField @JvmOverloads constructor(
         baseField.attributes[formFieldKeys.isReadyOnlyKey] = readOnly
     }
 
+    override fun isValid(): Boolean {
+        return doValidate()
+    }
+
     override fun doValidate(): Boolean {
         return repeatedFields.map { it.isValid }.reduce { acc, cur -> acc && cur }
     }

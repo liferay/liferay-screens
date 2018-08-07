@@ -27,7 +27,10 @@ public class DDMFieldRepeatableView
 
     @Override
     public void onPostValidation(boolean valid) {
-        View errorView = findViewById(R.id.error_view);
+        super.onPostValidation(valid);
+
+        View errorView = findViewById(R.id.error_container_view);
+
         if (errorView != null) {
             errorView.setVisibility(valid ? GONE : VISIBLE);
         }
