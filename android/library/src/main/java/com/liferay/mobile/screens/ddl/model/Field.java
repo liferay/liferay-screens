@@ -35,7 +35,7 @@ import org.w3c.dom.Element;
 public abstract class Field<T extends Serializable> implements Parcelable {
 
 	private String text;
-	//dataSourceType
+	private String dataSourceType;
 	private DataType dataType;
 	//additionalType
 	private EditorType editorType;
@@ -92,7 +92,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		ddmDataProviderInstance = getAttributeStringValue(attributes, formFieldKeys.getDdmDataProviderInstanceKey());
 
 		isTransient = Boolean.valueOf(getAttributeStringValue(attributes, formFieldKeys.isTransientKey()));
-
+		dataSourceType = getAttributeStringValue(attributes, formFieldKeys.getDataSourceTypeKey());
 
 		String predefinedValue = getAttributeStringValue(attributes, formFieldKeys.getPredefinedValueKey());
 		this.predefinedValue = convertFromString(predefinedValue);
@@ -135,6 +135,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		ddmDataProviderInstance = in.readString();
 
 		isTransient = (in.readInt() == 1);
+		dataSourceType = in.readString();
 	}
 
 	@Override
@@ -165,6 +166,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	protected void setName(String name) {
 	    this.name = name;
     }
+
+	public String getDataSourceType() {
+		return dataSourceType;
+	}
 
 	public DataType getDataType() {
 		return dataType;
@@ -325,6 +330,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		destination.writeString(ddmDataProviderInstance);
 
 		destination.writeInt(isTransient ? 1 : 0);
+		destination.writeString(dataSourceType);
 	}
 
 	public List<Field> getFields() {

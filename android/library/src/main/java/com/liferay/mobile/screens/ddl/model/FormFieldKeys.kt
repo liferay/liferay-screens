@@ -18,6 +18,7 @@ package com.liferay.mobile.screens.ddl.model
  * @author Victor Oliveira
  */
 abstract class FormFieldKeys {
+    val dataSourceTypeKey = "dataSourceType"
     val dataTypeKey = "dataType"
     val ddmDataProviderInstanceKey = "ddmDataProviderInstance"
     val displayStyleKey = "displayStyle"
