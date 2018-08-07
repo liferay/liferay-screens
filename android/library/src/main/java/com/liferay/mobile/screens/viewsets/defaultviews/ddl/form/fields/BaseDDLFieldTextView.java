@@ -133,7 +133,12 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 
 	@Override
 	public void refresh() {
-		textEditText.setText(field.toFormattedString());
+		String currentText = textEditText.getText().toString();
+		String newText = field.toFormattedString();
+
+		if (!currentText.equals(newText)) {
+			textEditText.setText(newText);
+		}
 	}
 
 	@Override
