@@ -19,7 +19,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.TextView
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.Field
@@ -29,7 +28,6 @@ import org.jetbrains.anko.childrenSequence
 import rx.Observable
 import rx.Subscriber
 import rx.Subscription
-import rx.functions.Action1
 
 /**
  * @author Paulo Cruz

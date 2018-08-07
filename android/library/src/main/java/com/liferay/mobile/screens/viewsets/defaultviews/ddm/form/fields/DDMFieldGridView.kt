@@ -48,6 +48,7 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
 
     private var changeValuesSubscription : Subscription? = null
     private var changeValuesSubscriber : Subscriber<in Boolean>? = null
+    private var changeValuesGridSubscriber : Subscriber<in GridField>? = null
     private val changeValuesObservable = Observable.create<Boolean> { changeValuesSubscriber = it }
 
     override fun getField(): GridField {
@@ -62,7 +63,9 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
     }
 
     override fun getOnChangedValueObservable(): Observable<GridField> {
-        return Observable.empty<GridField>()
+        return Observable.create<GridField> {
+            changeValuesGridSubscriber = it
+        }
     }
 
     private fun setupFieldLayout() {
@@ -94,15 +97,14 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
                 columnEditText.setTypeface(columnEditText.typeface, Typeface.BOLD)
 
                 changeValuesSubscriber?.onNext(field.isValid)
+                changeValuesGridSubscriber?.onNext(field)
             }
         }
 
-        changeValuesObservable?.let { observable ->
-            changeValuesSubscription = observable
-                    .filter { it }
-                    .distinctUntilChanged()
-                    .subscribe(::onPostValidation)
-        }
+        changeValuesSubscription = changeValuesObservable
+                .filter { it }
+                .distinctUntilChanged()
+                .subscribe(::onPostValidation)
     }
 
     private fun setupLabelLayout() {
