@@ -81,4 +81,6 @@
 	<string name="oauth2_username_and_password">OAuth2 Username and password</string>
 	<string name="thing_screenlet">Thing screenlet</string>
 	<string name="title_activity_edit">EditActivity</string>
+	<string name="user_portrait_default_text">User portrait default:</string>
+	<string name="user_portrait_default_editable_text">User portrait editable:</string>
 </resources>
