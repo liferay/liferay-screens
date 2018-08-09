@@ -21,8 +21,8 @@
 	<string name="liferay_default_password">demo</string>
 
 	<!--DDLFormScreenlet and DDLListScreenlet values-->
-	<string name="liferay_structure_id">29823</string>
-	<string name="liferay_recordset_id">33280</string>
+	<string name="liferay_structure_id">77934</string>
+	<string name="liferay_recordset_id">77938</string>
 	<string name="liferay_record_id">33294</string>
 	<string name="liferay_recordset_fields">name</string>
 	<string name="liferay_user_id">20156</string>
