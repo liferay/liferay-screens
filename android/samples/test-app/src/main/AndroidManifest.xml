@@ -47,6 +47,7 @@
 		<activity
 			android:name=".CommentsActivity"
 			android:windowSoftInputMode="adjustPan"/>
+		<activity android:name=".CommentDisplayActivity"/>
 		<activity android:name=".RatingsActivity"/>
 		<activity android:name=".AssetDisplayActivity"/>
 		<activity android:name=".ImageDisplayActivity"/>
