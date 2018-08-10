@@ -31,7 +31,7 @@ class RepeatableField @JvmOverloads constructor(
             Field::class.java.classLoader).toMutableList() as MutableList<Field<*>>
     }
 
-    fun repeat() : Field<*> {
+    fun repeatField() : Field<*> {
         val dataType = baseField.dataType
         val attributes = baseField.attributes
         val currentLocale = baseField.currentLocale
@@ -45,7 +45,7 @@ class RepeatableField @JvmOverloads constructor(
         return repeatedField
     }
 
-    fun remove(field: Field<*>) {
+    fun removeField(field: Field<*>) {
         siblings.remove(field)
     }
 

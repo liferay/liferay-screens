@@ -104,7 +104,7 @@ open class DDMFieldRepeatableView @JvmOverloads constructor(
 
     override fun onRepeatableFieldAdded(callerFieldView: DDMFieldRepeatableItemView) {
         val newFieldIndex = repeatableContainer.indexOfChild(callerFieldView) + 1
-        val repeatedField = this.field.repeat()
+        val repeatedField = this.field.repeatField()
         val fieldView = createFieldView(newFieldIndex, repeatedField)
 
         requestLayout()
@@ -122,7 +122,7 @@ open class DDMFieldRepeatableView @JvmOverloads constructor(
         val subscription = subscriptionsMap.remove(fieldView)
         subscription?.unsubscribe()
 
-        this.field.remove(removedField)
+        this.field.removeField(removedField)
 
         repeatableContainer.removeView(fieldView)
         requestLayout()
