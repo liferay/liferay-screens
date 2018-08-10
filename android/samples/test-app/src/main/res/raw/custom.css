@@ -4,3 +4,4 @@
 .MobileCSS h1, .MobileCSS h2, .MobileCSS h3 { font-size: 140%;
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-weight: 400;
     color: #00a0a2; text-align: center; }
+img { width: 100%; }
