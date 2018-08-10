@@ -25,6 +25,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.github.pwittchen.reactivenetwork.library.rx2.ReactiveNetwork
 import com.liferay.apio.consumer.delegates.converter
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.mobile.screens.R
@@ -50,6 +51,8 @@ import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocum
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.fields.DDMFieldRepeatableView
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.pager.WrapContentViewPager
 import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import org.jetbrains.anko.childrenSequence
 import rx.Observable
 import rx.Subscription
@@ -217,6 +220,16 @@ class DDMFormView @JvmOverloads constructor(
                 highLightInvalidFields(invalidFields, true)
             }
         })
+
+        ReactiveNetwork
+                .observeInternetConnectivity()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { isConnectedToInternet ->
+                    if (!isConnectedToInternet) {
+                        showConnectivityErrorMessage(R.color.orange, R.string.cant_load_some_fields_offline)
+                    }
+                }
     }
 
     private fun getPreviousEnabledPage(): Number {
