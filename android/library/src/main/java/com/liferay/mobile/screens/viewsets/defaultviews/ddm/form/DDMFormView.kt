@@ -462,15 +462,16 @@ class DDMFormView @JvmOverloads constructor(
 
     private fun onFieldValueChanged(field: Field<*>) {
         addToDirtyFields(field)
+
+        if (!AndroidUtil.isConnected(context.applicationContext)) {
+            showConnectivityErrorMessage(R.color.orange, R.string.cant_load_some_fields_offline)
+
+            return
+        }
+
         submit(true)
 
         if (field.hasFormRules()) {
-            if (!AndroidUtil.isConnected(context.applicationContext)) {
-                showConnectivityErrorMessage(R.color.orange, R.string.cant_load_some_fields_offline)
-
-                return
-            }
-
             evaluateContext()
         }
     }
