@@ -16,8 +16,7 @@ package com.liferay.mobile.screens.ddm.form.serializer
 
 import com.google.gson.*
 import com.liferay.mobile.screens.ddl.model.*
-import com.liferay.mobile.screens.ddm.form.extension.FieldList
-import com.liferay.mobile.screens.ddm.form.extension.flatten
+import com.liferay.mobile.screens.ddm.form.model.RepeatableField
 
 /**
  * @author Paulo Cruz
@@ -31,30 +30,20 @@ class FieldValueSerializer {
         private const val EMPTY_STRING = ""
         private val EMPTY_LIST = listOf<Any>()
 
-        fun serialize(fields: FieldList): String {
+        fun serialize(fields: FieldList, filter: (Field<*>) -> (Boolean) = { true }): String {
             return fields
                     .flatten()
-                    .removeTransient()
+                    .filter(filter)
                     .mapValues()
                     .toJson()
         }
 
-        fun serializeWithTransient(fields: FieldList): String {
-            return fields
-                    .flatten()
-                    .mapValues()
-                    .toJson()
-        }
-
-        private fun FieldList.removeTransient(): FieldList {
-            return filter {
-                !it.isTransient
-            }
-        }
-
-        private fun FieldList.mapValues(): List<Map<String, Any?>> {
-            return map {
-                mapOf("name" to it.name, "value" to it.getSubmitValue())
+        private fun FieldList.flatten(): FieldList {
+            return flatMap {
+                when(it) {
+                    is RepeatableField -> it.repeatedFields
+                    else -> listOf(it)
+                }
             }
         }
 
@@ -90,8 +79,16 @@ class FieldValueSerializer {
             return currentValue ?: EMPTY_STRING
         }
 
+        private fun FieldList.mapValues(): List<Map<String, Any?>> {
+            return map {
+                mapOf("name" to it.name, "value" to it.getSubmitValue())
+            }
+        }
+
         private fun List<Map<String, Any?>>.toJson(): String {
             return gson.toJson(this)
         }
     }
 }
+
+typealias FieldList = List<Field<*>>

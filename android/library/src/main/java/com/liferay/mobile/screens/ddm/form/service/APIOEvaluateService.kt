@@ -25,7 +25,7 @@ class APIOEvaluateService : IEvaluateService {
 
         performParseOperation(thingId, operationId, {
             mapOf(
-                Pair("fieldValues", FieldValueSerializer.serializeWithTransient(fields))
+                Pair("fieldValues", FieldValueSerializer.serialize(fields, { !it.isTransient }))
             )
         }) {
             val (resultThing, exception) = it
