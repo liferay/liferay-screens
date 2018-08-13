@@ -20,7 +20,7 @@
 			<com.liferay.mobile.screens.dlfile.display.image.ImageDisplayScreenlet
 				android:id="@+id/liferay_blog_image"
 				android:layout_width="match_parent"
-				android:layout_height="125dp"
+				android:layout_height="wrap_content"
 				android:layout_alignParentTop="true"
 				android:visibility="gone"
 				app:autoLoad="false"
@@ -36,8 +36,8 @@
 
 			<com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
 				android:id="@+id/user_portrait_screenlet"
-				android:layout_width="100dp"
-				android:layout_height="100dp"
+				android:layout_width="80dp"
+				android:layout_height="80dp"
 				android:layout_below="@id/liferay_blog_image"
 				app:autoLoad="false"
 				app:cachePolicy="REMOTE_FIRST"
@@ -46,13 +46,12 @@
 			<LinearLayout
 				android:id="@+id/liferay_blog_userinfo"
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"
+				android:layout_height="wrap_content"
 				android:layout_below="@id/liferay_blog_image"
-				android:layout_marginLeft="5sp"
-				android:layout_marginStart="5sp"
+				android:layout_marginLeft="5dp"
+				android:layout_marginStart="5dp"
 				android:layout_toEndOf="@id/user_portrait_screenlet"
 				android:layout_toRightOf="@id/user_portrait_screenlet"
-				android:gravity="center"
 				android:orientation="vertical"
 				>
 
@@ -60,7 +59,7 @@
 					android:id="@+id/liferay_blog_username"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:textSize="20sp"
+					android:textSize="16sp"
 					android:textStyle="bold"
 					tools:text="Demo user"
 					/>
@@ -70,7 +69,7 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:textColor="@android:color/darker_gray"
-					android:textSize="17sp"
+					android:textSize="14sp"
 					tools:text="25 Oct, 2016"
 					/>
 
@@ -80,8 +79,8 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_below="@+id/user_portrait_screenlet"
-				android:layout_marginLeft="10sp"
-				android:layout_marginRight="10sp"
+				android:layout_marginLeft="10dp"
+				android:layout_marginRight="10dp"
 				>
 
 				<TextView
@@ -109,7 +108,6 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_below="@+id/liferay_blog_subtitle"
-					android:layout_marginTop="10sp"
 					/>
 
 			</RelativeLayout>
