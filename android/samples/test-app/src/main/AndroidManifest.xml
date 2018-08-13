@@ -29,7 +29,6 @@
 		<activity android:name=".DDLListActivity"/>
 		<activity android:name=".ForgotPasswordActivity"/>
 		<activity android:name=".LoginActivity">
-
 		</activity>
 		<activity android:name=".SignUpActivity"/>
 		<activity android:name=".UserPortraitActivity"/>
@@ -48,6 +47,7 @@
 			android:name=".CommentsActivity"
 			android:windowSoftInputMode="adjustPan"/>
 		<activity android:name=".CommentDisplayActivity"/>
+		<activity android:name=".CommentAddActivity"/>
 		<activity android:name=".RatingsActivity"/>
 		<activity android:name=".AssetDisplayActivity"/>
 		<activity android:name=".ImageDisplayActivity"/>
@@ -57,19 +57,18 @@
 		<activity
 			android:name=".DetailMediaGalleryActivity"
 			android:theme="@style/gallery_theme"/>
-
 		<activity
 			android:name="com.liferay.mobile.android.auth.oauth2.OAuth2RedirectActivity"
 			tools:node="replace">
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW"/>
+
 				<category android:name="android.intent.category.DEFAULT"/>
 				<category android:name="android.intent.category.BROWSABLE"/>
 
 				<data android:scheme="my-app"/>
 			</intent-filter>
 		</activity>
-
 		<activity android:name=".postings.activity.ThingMainActivity"/>
 		<activity android:name=".postings.activity.DetailActivity"/>
 		<activity

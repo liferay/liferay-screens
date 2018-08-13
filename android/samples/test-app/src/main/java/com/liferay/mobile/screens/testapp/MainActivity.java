@@ -50,6 +50,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		//Comment
 		findViewById(R.id.comment_list).setOnClickListener(this);
 		findViewById(R.id.comment_display).setOnClickListener(this);
+		findViewById(R.id.comment_add).setOnClickListener(this);
 
 		//DDL
 		findViewById(R.id.ddl_form).setOnClickListener(this);
@@ -142,6 +143,9 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				break;
 			case R.id.comment_display:
 				start(CommentDisplayActivity.class);
+				break;
+			case R.id.comment_add:
+				start(CommentAddActivity.class);
 				break;
 			case R.id.ddl_form:
 				start(DDLFormActivity.class);
