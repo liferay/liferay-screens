@@ -35,7 +35,6 @@ import com.liferay.mobile.screens.ddl.model.DocumentField
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.ddl.model.Option
 import com.liferay.mobile.screens.ddl.model.OptionsField
-import com.liferay.mobile.screens.ddm.form.extension.flatten
 import com.liferay.mobile.screens.ddm.form.model.*
 import com.liferay.mobile.screens.ddm.form.service.APIOEvaluateService
 import com.liferay.mobile.screens.ddm.form.service.APIOSubmitService
@@ -53,7 +52,6 @@ import com.liferay.mobile.screens.viewsets.defaultviews.ddm.pager.WrapContentVie
 import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import org.jetbrains.anko.childrenSequence
 import rx.Observable
 import rx.Subscription
 import java.util.*
