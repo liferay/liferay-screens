@@ -37,8 +37,10 @@
 	<string name="ddl_form_label">DDL Form Screenlet: Shows a DDLRecord form. Allows file uploading and all DDL fields.</string>
 	<string name="asset_list_label">Asset List Screenlet: Shows a list of assets of a specific className.</string>
 	<string name="comment_list_label">Comment List Screenlet: Shows a list of comments of a specific asset.</string>
+	<string name="comment_display_label">Comment Display Screenlet: Shows a comment of a specific asset.</string>
+	<string name="comment_add_label">Comment Add Screenlet: Adds a comment for a specific asset.</string>
 	<string name="web_content_list_label">WebContent List Screenlet: Shows a list of web content of a specific folderId.</string>
-	<string name="main_activity_label">List of all the screenlets supported on version 3.0.0 of Liferay Screens.</string>
+	<string name="main_activity_label">List of all the screenlets supported on Liferay Screens.</string>
 	<string name="customizing_a_screenlet">Customizing an screenlet</string>
 	<string name="image_gallery_label">Image Gallery Screenlet: Shows a gallery of photos from a folder in Liferay.</string>
 	<string name="add_a_bookmark">Add a Bookmark</string>
@@ -46,6 +48,8 @@
 	<string name="email_address">Email Address</string>
 	<string name="sign_in">Sign In</string>
 	<string name="list_comments">Comment List</string>
+	<string name="display_comment">Comment Display</string>
+	<string name="add_comment">Comment Add</string>
 	<string name="custom_interactor">Login with custom interactor</string>
 	<string name="list_bookmarks">List Bookmarks</string>
 	<string name="portlet_display">Portlet Display</string>
@@ -81,4 +85,8 @@
 	<string name="oauth2_username_and_password">OAuth2 Username and password</string>
 	<string name="thing_screenlet">Thing screenlet</string>
 	<string name="title_activity_edit">EditActivity</string>
+	<string name="user_portrait_default_text">User portrait default:</string>
+	<string name="user_portrait_default_editable_text">User portrait editable:</string>
+	<string name="editable_comment">Editable comment:</string>
+	<string name="comment_display_non_editable">Comment display:</string>
 </resources>

@@ -21,8 +21,8 @@
 	<string name="liferay_default_password">demo</string>
 
 	<!--DDLFormScreenlet and DDLListScreenlet values-->
-	<string name="liferay_structure_id">29823</string>
-	<string name="liferay_recordset_id">33280</string>
+	<string name="liferay_structure_id">77934</string>
+	<string name="liferay_recordset_id">77938</string>
 	<string name="liferay_record_id">33294</string>
 	<string name="liferay_recordset_fields">name</string>
 	<string name="liferay_user_id">20156</string>
@@ -34,7 +34,7 @@
 	<string name="liferay_bookmark_folder">0</string>
 
 	<!--WebContentDisplayScreenlet values-->
-	<string name="liferay_article_id">57343</string>
+	<string name="liferay_article_id">78201</string>
 	<string name="liferay_article_structured_structure_id">64601</string>
 	<string name="liferay_article_structured_article_id">64614</string>
 	<string name="liferay_article_structured_label_fields_first_field">Field1</string>
@@ -43,7 +43,7 @@
 	<string name="liferay_template_id1">64609</string>
 	<string name="liferay_template_id2">64623</string>
 
-	<string name="liferay_web_content_folder_id">0</string>
+	<string name="liferay_web_content_folder_id">78209</string>
 	<string name="liferay_images_folder">54469</string>
 
 	<string name="portlet_item_name1">manual</string>
@@ -52,6 +52,7 @@
 	<!--CommentListScreenlet values-->
 	<string name="liferay_comment_asset_className">com.liferay.blogs.kernel.model.BlogsEntry</string>
 	<string name="liferay_comment_asset_id">57366</string>
+	<string name="liferay_comment_id">65139</string>
 
 	<!--RatingScreenlet-->
 	<string name="liferay_rating_thumb_asset_id">54500</string>
@@ -62,7 +63,10 @@
 	<!--AssetDisplayScreenlet values-->
 	<string name="liferay_portlet_item_name">image</string>
 	<string name="liferay_image_entry_id">54500</string>
+	<string name="liferay_blog_entry_id">78385</string>
+	<string name="liferay_audio_entry_id">78415</string>
 	<string name="liferay_video_entryId">38945</string>
+	<string name="liferay_pdf_entry_id">66978</string>
 	<string name="liferay_user_entryId">57602</string>
 
 	<!--AssetListScreenlet values-->

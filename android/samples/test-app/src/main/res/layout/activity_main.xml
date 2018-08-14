@@ -100,6 +100,18 @@
 				/>
 
 			<Button
+				android:id="@+id/comment_display"
+				android:text="@string/display_comment"
+				style="@style/test_app_button"
+				/>
+
+			<Button
+				android:id="@+id/comment_add"
+				android:text="@string/add_comment"
+				style="@style/test_app_button"
+				/>
+
+			<Button
 				android:id="@+id/ddl_form"
 				android:text="@string/ddl_form"
 				style="@style/test_app_button"
