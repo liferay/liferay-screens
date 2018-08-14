@@ -28,6 +28,12 @@
 				/>
 
 			<Button
+				android:id="@+id/ddm_form_custom"
+				android:text="@string/ddm_form_custom"
+				style="@style/test_app_button"
+				/>
+
+			<Button
 				android:id="@+id/thing"
 				android:text="@string/thing_screenlet"
 				style="@style/test_app_button"

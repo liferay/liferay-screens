@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/field_padding">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/default_text_view"
+        android:text="@string/form_instance_id"
+        android:labelFor="@id/form_instance_id_edit_text"/>
+
+    <EditText
+        android:id="@+id/form_instance_id_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        style="@style/default_edit_text"/>
+
+    <Button
+        android:id="@+id/get_form_instance_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:text="@string/get_form"/>
+
+</LinearLayout>
