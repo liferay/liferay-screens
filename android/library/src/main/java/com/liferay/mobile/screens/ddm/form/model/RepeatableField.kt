@@ -86,12 +86,37 @@ class RepeatableField @JvmOverloads constructor(
     }
 
     override fun setCurrentStringValue(value: String?) {
-        val values = value?.split(",")
+        value?.split(",")?.let { values ->
+            val newValuesCount = values.count()
+            val oldValuesCount = repeatedFields.count()
 
-        if(values?.count() == repeatedFields.count()) {
-            repeatedFields.forEachIndexed { index, field ->
-                field.setCurrentStringValue(values[index])
+            val hasFieldsAdded = newValuesCount > oldValuesCount
+            val hasFieldsRemoved = newValuesCount < oldValuesCount
+
+            if (hasFieldsAdded) {
+                repeatFields(newValuesCount - oldValuesCount)
+            } else if(hasFieldsRemoved) {
+                removeLastFields(oldValuesCount - newValuesCount)
             }
+
+            setRepeatedFieldValues(values)
+        }
+    }
+
+    private fun repeatFields(times: Int) {
+        kotlin.repeat(times) {
+            repeatField()
+        }
+    }
+
+    private fun removeLastFields(count: Int) {
+        val fieldsToRemove = siblings.takeLast(count)
+        siblings.removeAll(fieldsToRemove)
+    }
+
+    private fun setRepeatedFieldValues(values: List<String>) {
+        repeatedFields.forEachIndexed { index, field ->
+            field.setCurrentStringValue(values[index])
         }
     }
 

@@ -141,8 +141,15 @@ open class DDMFieldRepeatableView @JvmOverloads constructor(
     }
 
     override fun refresh() {
-        repeatableContainer.childrenSequence().forEach {
-            (it as? DDLFieldViewModel<*>)?.refresh()
+        val hasFieldChanges = repeatableContainer.childCount != field.repeatedFields.count()
+
+        if (hasFieldChanges) {
+            repeatableContainer.removeAllViews()
+            setupRepeatableFields()
+        } else {
+            repeatableContainer.childrenSequence().forEach {
+                (it as? DDLFieldViewModel<*>)?.refresh()
+            }
         }
     }
 
