@@ -3,7 +3,11 @@ package com.liferay.mobile.screens.testapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
+import com.liferay.apio.consumer.ApioConsumerKt;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet;
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail;
@@ -16,13 +20,19 @@ import okhttp3.Credentials;
  */
 public class DDMFormActivity extends ThemeActivity {
 
+    public static final String FORM_INSTANCE_ID_KEY = "formInstanceId";
+
     private ThingScreenlet screenlet;
+    private ProgressBar progressBar;
+
+    private long formInstanceId = 36583;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ddm_form);
 
+        progressBar = findViewById(R.id.form_progress_bar);
         screenlet = findViewById(R.id.ddm_form_screenlet);
 
         initScreenletFromIntent(getIntent());
@@ -32,18 +42,40 @@ public class DDMFormActivity extends ThemeActivity {
     protected void onResume() {
         super.onResume();
 
-        //String url = "http://192.168.50.69:8080/o/api/p/form-instances/36511?embedded=structure";
-        //String url = "http://192.168.50.127:8080/o/api/p/form-instances/40621?embedded=structure";
-        String url = "http://10.0.2.2:8080/o/api/p/form-instances/44180?embedded=structure";
-        //String url = "http://10.0.2.2:8080/o/api/p/form-instances/44915?embedded=structure";
-
-        screenlet.load(url, Detail.INSTANCE);
+        loadResource();
     }
 
     private void initScreenletFromIntent(Intent intent) {
-        //if (intent.hasExtra("formInstanceId")) {
-        //    screenlet.setFormInstanceId(intent.getLongExtra("formInstanceId", 0));
-        //}
+        if (intent.hasExtra(FORM_INSTANCE_ID_KEY)) {
+            formInstanceId = intent.getLongExtra(FORM_INSTANCE_ID_KEY, 0);
+        }
     }
+
+    private String getResourcePath() {
+        String serverUrl = getResources().getString(R.string.liferay_server);
+        String formEndpoint = "/o/api/p/form-instances/%d?embedded=structure";
+
+        return serverUrl + String.format(formEndpoint, formInstanceId);
+    }
+
+    private void loadResource() {
+        String url = getResourcePath();
+
+        progressBar.setVisibility(View.VISIBLE);
+        screenlet.setVisibility(View.GONE);
+
+        screenlet.load(url, Detail.INSTANCE, ApioConsumerKt.getCredentials(), onLoadCompleted);
+    }
+
+    private Function1<ThingScreenlet, Unit> onLoadCompleted =
+        new Function1<ThingScreenlet, Unit>() {
+            @Override
+            public Unit invoke(ThingScreenlet thingScreenlet) {
+                progressBar.setVisibility(View.GONE);
+                screenlet.setVisibility(View.VISIBLE);
+
+                return null;
+            }
+        };
 
 }
