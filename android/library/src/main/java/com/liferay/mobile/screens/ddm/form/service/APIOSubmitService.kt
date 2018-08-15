@@ -76,7 +76,7 @@ class APIOSubmitService : ISubmitService {
         performParseOperation(thing.id, operation.id, {
             mapOf(
                 Pair("isDraft", isDraft),
-                Pair("fieldValues", FieldValueSerializer.serialize(fields))
+                Pair("fieldValues", FieldValueSerializer.serialize(fields, { !it.isTransient }))
             )
         }) {
             val (resultThing, exception) = it
