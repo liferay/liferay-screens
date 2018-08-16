@@ -7,6 +7,12 @@ All notable changes to this project will be documented in this file.
 
 Nothing yet
 
+# 3.2.0
+## Android
+
+### Bug
+* Fixed oauth1 login
+
 # 3.1.0
 
 ## Android
