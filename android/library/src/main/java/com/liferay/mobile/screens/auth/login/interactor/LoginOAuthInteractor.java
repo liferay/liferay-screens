@@ -31,13 +31,15 @@ public class LoginOAuthInteractor extends BaseLoginInteractor {
 	private OAuthConfig config;
 
 	@Override
-	public BasicEvent execute(Object[] args) throws Exception {
+	public BasicEvent execute(Object... args) throws Exception {
 
-		if (config == null) {
+		OAuthConfig oAuth2Config = (OAuthConfig) args[0];
+
+		if (oAuth2Config == null) {
 			throw new IllegalArgumentException("OAuth configuration cannot be empty");
 		}
 
-		Session session = SessionContext.createOAuthSession(config);
+		Session session = SessionContext.createOAuthSession(oAuth2Config);
 		JSONObject jsonObject = ServiceProvider.getInstance().getCurrentUserConnector(session).getCurrentUser();
 
 		return new BasicEvent(jsonObject);
