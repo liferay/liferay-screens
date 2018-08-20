@@ -31,6 +31,8 @@ dependencies {
 	implementation libraries.picasso
 
 	implementation project(':liferay-material-viewset')
+
+	implementation "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 }
 
 apply from: '../../bintray.gradle'
