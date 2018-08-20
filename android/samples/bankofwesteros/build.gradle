@@ -35,5 +35,4 @@ dependencies {
 	implementation libraries.rxpermissions
 	implementation libraries.rxbinding
 	implementation libraries.rxjava
-	implementation "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 }
