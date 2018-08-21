@@ -92,5 +92,6 @@ dependencies {
 apply from: '../bintray.gradle'
 apply from: '../install.gradle'
 repositories {
+	mavenLocal()
 	mavenCentral()
 }
