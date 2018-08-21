@@ -27,6 +27,10 @@ open class LoginView_default: BaseScreenletView, LoginViewModel {
 	@IBOutlet open weak var authorizeButton: UIButton?
 
 	override open var progressMessages: [String: ProgressMessages] {
+		if authType == "oauth" {
+			return [:]
+		}
+
 		return [
 			BaseScreenlet.DefaultAction: [
 				.working: LocalizedString("default", key: "login-loading-message", obj: self),
