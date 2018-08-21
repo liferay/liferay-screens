@@ -49,7 +49,7 @@ class RepeatableField @JvmOverloads constructor(
         siblings.remove(field)
     }
 
-    override fun convertToData(value: Serializable): String {
+    override fun convertToData(value: Serializable?): String {
         return repeatedFields.joinToString(",") {
             it.toData()
         }

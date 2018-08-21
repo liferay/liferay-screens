@@ -16,6 +16,8 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddm.form
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
+import android.os.Parcelable
 import android.support.annotation.ColorRes
 import android.support.annotation.StringRes
 import android.support.design.widget.Snackbar
@@ -65,7 +67,6 @@ class DDMFormView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : BaseView,
     RelativeLayout(context, attrs, defStyleAttr), DDLDocumentFieldView.UploadListener, IDDMFormView {
 
-    var subscription: Subscription? = null
     val scrollView by bindNonNull<ScrollView>(R.id.multipage_scroll_view)
     private val ddmFieldViewPages by bindNonNull<WrapContentViewPager>(R.id.ddmfields_container)
     private val multipageProgress by bindNonNull<ProgressBar>(R.id.liferay_multipage_progress)
@@ -73,16 +74,18 @@ class DDMFormView @JvmOverloads constructor(
     private val nextButton by bindNonNull<Button>(R.id.liferay_form_submit)
     private val layoutIds = mutableMapOf<Field.EditorType, Int>()
     private val dirtyFieldNames: MutableList<String> = mutableListOf()
-
     private val evaluateService = APIOEvaluateService()
+
     private val submitService = APIOSubmitService()
+    private var subscription: Subscription? = null
     private val uploadService = APIOUploadService()
 
+    private var formInstanceRecord: FormInstanceRecord = FormInstanceRecord(null, mutableMapOf())
     private lateinit var formInstance: FormInstance
-    private lateinit var formInstanceRecord: FormInstanceRecord
 
-    private var currentRecordThing: Thing? by converter<FormInstanceRecord> {
-        formInstanceRecord = it
+    private var currentRecordThing: Thing? by converter<FormInstanceRecord> { currentRecordThing ->
+        formInstanceRecord.id = currentRecordThing.id
+        formInstanceRecord.fieldValues.putAll(currentRecordThing.fieldValues)
     }
 
     override var screenlet: ThingScreenlet? = null
@@ -106,6 +109,12 @@ class DDMFormView @JvmOverloads constructor(
         if (it.ddmStructure.pages.size == 1)
             nextButton.text = context.getString(R.string.submit)
 
+        val fieldsValues = formInstance.ddmStructure.fields.map {
+            it.name to it.toData()
+        }.toMap()
+
+        formInstanceRecord.fieldValues.putAll(fieldsValues)
+
         evaluateContext()
     }
 
@@ -126,6 +135,7 @@ class DDMFormView @JvmOverloads constructor(
             .debounce(2, TimeUnit.SECONDS)
             .subscribe {
                 onFieldValueChanged(it)
+                formInstanceRecord.fieldValues[it.name] = it.toData()
             }
     }
 
@@ -181,8 +191,30 @@ class DDMFormView @JvmOverloads constructor(
         }
     }
 
+    override fun onSaveInstanceState(): Parcelable {
+        val bundle = Bundle()
+        bundle.putParcelable("superState", super.onSaveInstanceState())
+
+        formInstanceRecord.let {
+            bundle.putParcelable("formInstanceRecord", it)
+        }
+
+        return bundle
+    }
+
+    override fun onRestoreInstanceState(state: Parcelable?) {
+        if (state is Bundle) {
+            formInstanceRecord = state.getParcelable("formInstanceRecord")
+            //TODO restore Form Record
+            super.onRestoreInstanceState(state.getParcelable("superState"))
+        } else {
+            super.onRestoreInstanceState(state)
+        }
+    }
+
     override fun onFinishInflate() {
         super.onFinishInflate()
+        isSaveEnabled = true
 
         backButton.setOnClickListener({
             if (ddmFieldViewPages.currentItem >= 1) {

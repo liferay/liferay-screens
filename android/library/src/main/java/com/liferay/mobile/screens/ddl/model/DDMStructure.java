@@ -86,6 +86,8 @@ public class DDMStructure implements Parcelable {
 		Parcelable[] array = in.readParcelableArray(Field.class.getClassLoader());
 		fields = new ArrayList(Arrays.asList(array));
 		locale = (Locale) in.readSerializable();
+		name = in.readString();
+		description = in.readString();
 	}
 
 	@Override
