@@ -4,16 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.liferay.apio.consumer.ApioConsumerKt;
-import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet;
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
-import okhttp3.Credentials;
 
 /**
  * @author Paulo Cruz
@@ -35,14 +32,9 @@ public class DDMFormActivity extends ThemeActivity {
         progressBar = findViewById(R.id.form_progress_bar);
         screenlet = findViewById(R.id.ddm_form_screenlet);
 
-        initScreenletFromIntent(getIntent());
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        loadResource();
+        if (savedInstanceState == null) {
+            loadResource();
+        }
     }
 
     private void initScreenletFromIntent(Intent intent) {
