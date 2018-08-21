@@ -252,14 +252,14 @@ class DDMFormView @JvmOverloads constructor(
         })
 
         ReactiveNetwork
-                .observeInternetConnectivity()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { isConnectedToInternet ->
-                    if (!isConnectedToInternet) {
-                        showConnectivityErrorMessage(R.color.orange, R.string.cant_load_some_fields_offline)
-                    }
+            .observeInternetConnectivity()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { isConnectedToInternet ->
+                if (!isConnectedToInternet) {
+                    showConnectivityErrorMessage(R.color.orange, R.string.cant_load_some_fields_offline)
                 }
+            }
     }
 
     private fun getPreviousEnabledPage(): Number {
@@ -437,7 +437,7 @@ class DDMFormView @JvmOverloads constructor(
 
     private fun updateFieldView(fieldContext: FieldContext, field: Field<*>) {
         val fieldsContainerView =
-                ddmFieldViewPages.findViewWithTag<LinearLayout>(ddmFieldViewPages.currentItem)
+            ddmFieldViewPages.findViewWithTag<LinearLayout>(ddmFieldViewPages.currentItem)
 
         val fieldView = fieldsContainerView?.findViewWithTag<View>(field)
 

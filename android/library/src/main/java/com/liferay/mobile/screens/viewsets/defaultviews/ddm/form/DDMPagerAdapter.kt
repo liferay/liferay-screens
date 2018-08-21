@@ -24,12 +24,8 @@ import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.ddm.form.model.FormPage
-import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
-import com.liferay.mobile.screens.util.EventBusUtil
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.pager.WrapContentViewPager
 import rx.Observable
-import rx.Subscription
-import java.util.concurrent.TimeUnit
 
 /**
  * @author Victor Oliveira
