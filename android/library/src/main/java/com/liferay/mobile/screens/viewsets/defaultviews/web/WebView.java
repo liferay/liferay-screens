@@ -1,9 +1,13 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.web;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.webkit.DownloadListener;
 import android.webkit.JavascriptInterface;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -163,6 +167,19 @@ public class WebView extends FrameLayout implements WebViewModel, ScreensWebView
 			@Override
 			public boolean onLongClick(View v) {
 				return true;
+			}
+		});
+
+		webView.setDownloadListener(new DownloadListener() {
+			@Override
+			public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype,
+				long contentLength) {
+
+				Intent intent = new Intent(Intent.ACTION_VIEW);
+				intent.setDataAndType(Uri.parse(url), mimetype);
+
+				Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
+				activity.startActivity(intent);
 			}
 		});
 
