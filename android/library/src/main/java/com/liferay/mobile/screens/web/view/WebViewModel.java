@@ -72,4 +72,9 @@ public interface WebViewModel extends BaseViewModel {
 	 * Clear the webView cache
 	 */
 	void clearCache();
+
+	/*
+	 * Grab the webView, this method has to be called after the configuration is set.
+	 */
+	WebView getWebView();
 }
