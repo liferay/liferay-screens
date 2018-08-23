@@ -19,6 +19,7 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.WebView;
 import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.screens.R;
@@ -177,6 +178,10 @@ public class WebScreenlet extends BaseScreenlet<WebViewModel, Interactor> implem
 		this.webScreenletConfiguration = webScreenletConfiguration;
 		getViewModel().configureView(webScreenletConfiguration.isCordovaEnabled(),
 			webScreenletConfiguration.getObserver());
+	}
+
+	public WebView getWebView() {
+		return getViewModel().getWebView();
 	}
 
 	@Override

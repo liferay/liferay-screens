@@ -192,6 +192,11 @@ public class WebView extends FrameLayout implements WebViewModel, ScreensWebView
 	}
 
 	@Override
+	public android.webkit.WebView getWebView() {
+		return webView;
+	}
+
+	@Override
 	public void onPageStarted() {
 		webView.setVisibility(GONE);
 		if (progressBar != null) {
