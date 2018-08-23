@@ -8,6 +8,17 @@ All notable changes to this project will be documented in this file.
 
 Nothing yet
 
+# 4.0.1
+
+## Android
+
+Update mobile-sdk dependency to 7.1.3
+
+## New Features
+* Expose WebView in WebScreenlet
+
+
+
 # 4.0.0
 
 ## Android
