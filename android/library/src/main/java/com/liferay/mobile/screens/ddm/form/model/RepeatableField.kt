@@ -82,7 +82,7 @@ class RepeatableField @JvmOverloads constructor(
     override fun setReadOnly(readOnly: Boolean) {
         super.setReadOnly(readOnly)
 
-        baseField.attributes[formFieldKeys.isReadyOnlyKey] = readOnly
+        baseField.attributes[formFieldKeys.isReadOnlyKey] = readOnly
     }
 
     override fun isValid(): Boolean {

@@ -67,7 +67,7 @@ data class FormInstance @JvmOverloads constructor(
 
             val description = relation["description"] as? String
 
-            val pages = (relation["pages"] as Map<String, Any>).let {
+            val pages = (relation["formPages"] as Map<String, Any>).let {
                 getPages(it, locale)
             }
 

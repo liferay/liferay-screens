@@ -38,7 +38,7 @@ abstract class FormFieldKeys {
     open val additionalTypeKey = "type"
     open val isInlineKey = "inline"
     open val isMultipleKey = "multiple"
-    open val isReadyOnlyKey = "readOnly"
+    open val isReadOnlyKey = "readOnly"
     open val isRepeatableKey = "repeatable"
     open val isRequiredKey = "required"
     open val isShowLabelKey = "showLabel"
@@ -48,10 +48,4 @@ class DDLFormFieldKeys : FormFieldKeys()
 
 class DDMFormFieldsKeys : FormFieldKeys() {
     override val additionalTypeKey = "additionalType"
-    override val isInlineKey = "isInline"
-    override val isMultipleKey = "isMultiple"
-    override val isReadyOnlyKey = "isReadyOnly"
-    override val isRepeatableKey = "isRepeatable"
-    override val isRequiredKey = "isRequired"
-    override val isShowLabelKey = "isShowLabel"
 }

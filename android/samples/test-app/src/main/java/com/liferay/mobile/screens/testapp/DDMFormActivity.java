@@ -22,7 +22,7 @@ public class DDMFormActivity extends ThemeActivity {
     private ThingScreenlet screenlet;
     private ProgressBar progressBar;
 
-    private long formInstanceId = 36583;
+    private long formInstanceId = 36465;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class DDMFormActivity extends ThemeActivity {
 
     private String getResourcePath() {
         String serverUrl = getResources().getString(R.string.liferay_server);
-        String formEndpoint = "/o/api/p/form-instances/%d?embedded=structure";
+        String formEndpoint = "/o/api/p/form-instance/%d?embedded=structure";
 
         return serverUrl + String.format(formEndpoint, formInstanceId);
     }
