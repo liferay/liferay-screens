@@ -30,6 +30,7 @@ import android.widget.*
 import com.github.pwittchen.reactivenetwork.library.rx2.ReactiveNetwork
 import com.liferay.apio.consumer.delegates.converter
 import com.liferay.apio.consumer.model.Thing
+import com.liferay.apio.consumer.model.getOperation
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.context.LiferayScreensContext
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
@@ -39,6 +40,7 @@ import com.liferay.mobile.screens.ddl.model.Option
 import com.liferay.mobile.screens.ddl.model.OptionsField
 import com.liferay.mobile.screens.ddm.form.model.*
 import com.liferay.mobile.screens.ddm.form.service.APIOEvaluateService
+import com.liferay.mobile.screens.ddm.form.service.APIOFetchLatestDraftService
 import com.liferay.mobile.screens.ddm.form.service.APIOSubmitService
 import com.liferay.mobile.screens.ddm.form.service.APIOUploadService
 import com.liferay.mobile.screens.ddm.form.view.SuccessPageActivity
@@ -74,18 +76,19 @@ class DDMFormView @JvmOverloads constructor(
     private val nextButton by bindNonNull<Button>(R.id.liferay_form_submit)
     private val layoutIds = mutableMapOf<Field.EditorType, Int>()
     private val dirtyFieldNames: MutableList<String> = mutableListOf()
-    private val evaluateService = APIOEvaluateService()
 
+    private val evaluateService = APIOEvaluateService()
+    private val fetchLatestDraftService = APIOFetchLatestDraftService()
     private val submitService = APIOSubmitService()
-    private var subscription: Subscription? = null
     private val uploadService = APIOUploadService()
 
-    private var formInstanceRecord: FormInstanceRecord = FormInstanceRecord(null, mutableMapOf())
+    private var subscription: Subscription? = null
+
+    private lateinit var formInstanceRecord: FormInstanceRecord
     private lateinit var formInstance: FormInstance
 
-    private var currentRecordThing: Thing? by converter<FormInstanceRecord> { currentRecordThing ->
-        formInstanceRecord.id = currentRecordThing.id
-        formInstanceRecord.fieldValues.putAll(currentRecordThing.fieldValues)
+    private var currentRecordThing: Thing? by converter<FormInstanceRecord> {
+        formInstanceRecord = it
     }
 
     override var screenlet: ThingScreenlet? = null
@@ -93,29 +96,7 @@ class DDMFormView @JvmOverloads constructor(
     override var thing: Thing? by converter<FormInstance> {
         formInstance = it
 
-        val activityFromContext = LiferayScreensContext.getActivityFromContext(context)
-        activityFromContext?.title = formInstance.name
-
-        val ddmPagerAdapter = DDMPagerAdapter(it.ddmStructure.pages, this)
-        ddmFieldViewPages.adapter = ddmPagerAdapter
-
-        if (it.ddmStructure.pages.size > 1) {
-            multipageProgress.visibility = View.VISIBLE
-            multipageProgress.progress = getFormProgress()
-        } else {
-            multipageProgress.visibility = View.GONE
-        }
-
-        if (it.ddmStructure.pages.size == 1)
-            nextButton.text = context.getString(R.string.submit)
-
-        val fieldsValues = formInstance.ddmStructure.fields.map {
-            it.name to it.toData()
-        }.toMap()
-
-        formInstanceRecord.fieldValues.putAll(fieldsValues)
-
-        evaluateContext()
+        onFormLoaded(formInstance)
     }
 
     init {
@@ -168,6 +149,42 @@ class DDMFormView @JvmOverloads constructor(
     private fun getIdentifier(fieldNamePrefix: String, themeName: String): Int {
         return context.resources.getIdentifier(
             "${fieldNamePrefix}_$themeName", "layout", context.packageName)
+    }
+
+    private fun onFormLoaded(formInstance: FormInstance) {
+        val thing = thing ?: throw Exception("No thing found")
+
+        setActivityTitle(formInstance)
+        initPageAdapter(formInstance.ddmStructure.pages)
+
+        fetchLatestDraftService.fetchLatestDraft(thing, {
+            currentRecordThing = it
+
+            updateFields(formInstanceRecord.fieldValues)
+            evaluateContext()
+        }, {
+            evaluateContext()
+        })
+    }
+
+    private fun initPageAdapter(pages: List<FormPage>) {
+        val ddmPagerAdapter = DDMPagerAdapter(pages, this)
+        ddmFieldViewPages.adapter = ddmPagerAdapter
+
+        if (pages.size > 1) {
+            multipageProgress.visibility = View.VISIBLE
+            multipageProgress.progress = getFormProgress()
+        } else {
+            multipageProgress.visibility = View.GONE
+        }
+
+        if (pages.size == 1)
+            nextButton.text = context.getString(R.string.submit)
+    }
+
+    private fun setActivityTitle(formInstance: FormInstance) {
+        val activityFromContext = LiferayScreensContext.getActivityFromContext(context)
+        activityFromContext?.title = formInstance.name
     }
 
     override fun startUploadField(field: DocumentField) {
