@@ -21,7 +21,7 @@ class FormInstanceRecord(
         parcel.readString(),
         mutableListOf()) {
 
-        parcel.readList(fieldValues, String::class.java.classLoader)
+        parcel.readList(fieldValues, FieldValue::class.java.classLoader)
     }
 
     companion object {
