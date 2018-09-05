@@ -205,7 +205,8 @@ class DDMFormView @JvmOverloads constructor(
     override fun onRestoreInstanceState(state: Parcelable?) {
         if (state is Bundle) {
             formInstanceRecord = state.getParcelable("formInstanceRecord")
-            //TODO restore Form Record
+            updateFields(formInstanceRecord.fieldValues)
+
             super.onRestoreInstanceState(state.getParcelable("superState"))
         } else {
             super.onRestoreInstanceState(state)
@@ -397,6 +398,28 @@ class DDMFormView @JvmOverloads constructor(
         }, {
             showErrorMessage(it)
         })
+    }
+
+    private fun updateFields(fieldValues: List<FieldValue>) {
+        val fieldsContainerView =
+                ddmFieldViewPages.findViewWithTag<LinearLayout>(ddmFieldViewPages.currentItem)
+
+        val fieldsMap = formInstance.ddmStructure.fields.map {
+            Pair(it.name, it)
+        }.toMap()
+
+        fieldValues.forEach { fieldValue ->
+            val field = fieldsMap[fieldValue.name]
+
+            field?.also {
+                field.setCurrentStringValue(fieldValue.value as String)
+
+                val fieldView = fieldsContainerView?.findViewWithTag<View>(field)
+                val fieldViewModel = fieldView as? DDLFieldViewModel<*>
+
+                fieldViewModel?.refresh()
+            }
+        }
     }
 
     private fun updatePages(formContext: FormContext) {
