@@ -5,22 +5,23 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.get
+import com.liferay.mobile.screens.ddl.model.Field
+import java.util.*
 
 /**
  * @author Paulo Cruz
  */
-typealias FieldValue = MutableMap<String, String>
 
 @SuppressLint("ParcelCreator")
 class FormInstanceRecord(
         var id: String? = null,
-        var fieldValues: MutableMap<String, String>) : Parcelable {
+        var fieldValues: List<FieldValue>) : Parcelable {
 
     constructor(parcel: Parcel) : this(
         parcel.readString(),
-        mutableMapOf()) {
+        mutableListOf()) {
 
-        parcel.readMap(fieldValues, String::class.java.classLoader)
+        parcel.readList(fieldValues, String::class.java.classLoader)
     }
 
     companion object {
@@ -28,21 +29,24 @@ class FormInstanceRecord(
 
             val id = it.id
 
-            val fieldValues =
-                (it["fieldValues"] as? List<FieldValue>)?.reduce { acc, fieldValue ->
-                        acc.apply { putFieldValue(fieldValue) }
-                    } ?: mutableMapOf()
+            val fieldValues = (it["fieldValues"] as? Map<String, Any>)?.let {
+                getFieldValues(it)
+            } ?: emptyList()
 
             FormInstanceRecord(id, fieldValues)
         }
 
-        private fun MutableMap<String, String>.putFieldValue(
-                mutableMap: FieldValue) {
+        private fun getFieldValues(map: Map<String, Any>): List<FieldValue> {
+            if (map["totalItems"] as Double <= 0) {
+                return mutableListOf()
+            }
 
-            val name = mutableMap["name"] ?: ""
-            val value = mutableMap["value"] ?: ""
+            return (map["member"] as List<Map<String, String>>).mapTo(mutableListOf(), {
+                val name = it["name"] ?: ""
+                val value = it["value"] ?: ""
 
-            this[name] = value
+                FieldValue(name, value)
+            })
         }
 
         object CREATOR : Parcelable.Creator<FormInstanceRecord> {

@@ -78,8 +78,7 @@ class FormContextPage(val headline: String, val text: String, val fields: List<F
                       val isEnabled: Boolean = false,
                       val isShowRequiredFieldsWarning: Boolean = false)
 
-
-class FieldContext(val name: String, val value: Any?, val errorMessage: String?,
+class FieldContext(name: String, value: Any?, val errorMessage: String?,
                    val options: List<Map<String, Any>>?, val isEvaluable: Boolean?,
                    val isReadOnly: Boolean?, val isRequired: Boolean?, val isValid: Boolean?,
-                   val isValueChanged: Boolean?, val isVisible: Boolean?)
+                   val isValueChanged: Boolean?, val isVisible: Boolean?) : FieldValue(name, value)
