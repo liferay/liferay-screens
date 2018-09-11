@@ -25,7 +25,7 @@ abstract class FormFieldKeys {
     val labelKey = "label"
     val gridKey = "grid"
     val hasFormRulesKey = "hasFormRules"
-    val isTransientKey = "isTransient"
+    val isTransientKey = "transient"
     val nameKey = "name"
     val optionsKey = "options"
     val placeHolderKey = "placeHolder"
