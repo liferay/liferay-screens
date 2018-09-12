@@ -73,15 +73,11 @@ data class FormInstance @JvmOverloads constructor(
 
             val successPage = relation["successPage"]?.let {
                 val successMap = it as Map<*, *>
-                val enabled = successMap["isEnabled"] as Boolean
-                var headline = ""
-                var text = ""
 
-                if (enabled) {
-                    headline = successMap["headline"] as String
-                    text = successMap["text"] as String
-                }
-                SuccessPage(headline, text, enabled)
+                val headline = successMap["headline"] as String
+                val text = successMap["text"] as String
+
+                SuccessPage(headline, text)
             }
 
             return DDMStructure(name, description, pages, successPage)

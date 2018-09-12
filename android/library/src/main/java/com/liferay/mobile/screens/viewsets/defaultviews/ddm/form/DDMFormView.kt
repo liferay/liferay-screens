@@ -352,11 +352,9 @@ class DDMFormView @JvmOverloads constructor(
             currentRecordThing = recordThing
 
             if (!isDraft) {
-                val successPageEnabled = formInstance.ddmStructure.successPage?.enabled ?: false
-
-                if (successPageEnabled) {
+                formInstance.ddmStructure.successPage?.let {
                     showSuccessPage(formInstance.ddmStructure.successPage)
-                } else {
+                } ?: run {
                     showSuccessMessage()
                 }
             }

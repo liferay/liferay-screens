@@ -21,16 +21,14 @@ import android.os.Parcelable
  * @author Victor Oliveira
  */
 
-class SuccessPage(val headline: String, val text: String, val enabled: Boolean = true) : Parcelable {
+class SuccessPage(val headline: String, val text: String) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
-        parcel.readString(),
-        parcel.readByte() != 0.toByte())
+        parcel.readString())
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(headline)
         parcel.writeString(text)
-        parcel.writeByte(if (enabled) 1 else 0)
     }
 
     override fun describeContents(): Int {
