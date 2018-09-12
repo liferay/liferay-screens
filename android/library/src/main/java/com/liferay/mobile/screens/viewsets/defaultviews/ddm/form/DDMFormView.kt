@@ -84,7 +84,7 @@ class DDMFormView @JvmOverloads constructor(
 
     private var subscription: Subscription? = null
 
-    private lateinit var formInstanceRecord: FormInstanceRecord
+    private var formInstanceRecord: FormInstanceRecord? = null
     private lateinit var formInstance: FormInstance
 
     private var currentRecordThing: Thing? by converter<FormInstanceRecord> {
@@ -114,9 +114,11 @@ class DDMFormView @JvmOverloads constructor(
         subscription = observable
             .skip(3)
             .debounce(2, TimeUnit.SECONDS)
-            .subscribe {
-                onFieldValueChanged(it)
-                formInstanceRecord.fieldValues[it.name] = it.toData()
+            .subscribe { field ->
+                onFieldValueChanged(field)
+                formInstanceRecord?.let {
+                    it.fieldValues[field.name] = field.toData()
+                }
             }
     }
 
@@ -160,7 +162,10 @@ class DDMFormView @JvmOverloads constructor(
         fetchLatestDraftService.fetchLatestDraft(thing, {
             currentRecordThing = it
 
-            updateFields(formInstanceRecord.fieldValues)
+            formInstanceRecord?.let {
+                updateFields(it.fieldValues)
+            }
+
             evaluateContext()
         }, {
             evaluateContext()
@@ -222,7 +227,10 @@ class DDMFormView @JvmOverloads constructor(
     override fun onRestoreInstanceState(state: Parcelable?) {
         if (state is Bundle) {
             formInstanceRecord = state.getParcelable("formInstanceRecord")
-            updateFields(formInstanceRecord.fieldValues)
+
+            formInstanceRecord?.let {
+                updateFields(it.fieldValues)
+            }
 
             super.onRestoreInstanceState(state.getParcelable("superState"))
         } else {
@@ -234,7 +242,7 @@ class DDMFormView @JvmOverloads constructor(
         super.onFinishInflate()
         isSaveEnabled = true
 
-        backButton.setOnClickListener({
+        backButton.setOnClickListener {
             if (ddmFieldViewPages.currentItem >= 1) {
                 ddmFieldViewPages.currentItem = getPreviousEnabledPage().toInt()
 
@@ -245,9 +253,9 @@ class DDMFormView @JvmOverloads constructor(
                     backButton.visibility = View.GONE
                 }
             }
-        })
+        }
 
-        nextButton.setOnClickListener({
+        nextButton.setOnClickListener {
             val size = ddmFieldViewPages.adapter!!.count - 1
             val invalidFields = getInvalidFields()
 
@@ -267,7 +275,7 @@ class DDMFormView @JvmOverloads constructor(
             } else {
                 highLightInvalidFields(invalidFields, true)
             }
-        })
+        }
 
         ReactiveNetwork
             .observeInternetConnectivity()
