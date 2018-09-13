@@ -65,13 +65,13 @@ class RepeatableField @JvmOverloads constructor(
 
     override fun convertToData(value: Serializable?): String {
         return repeatedFields.joinToString(",") {
-            it.toData()
+            it.toData() ?: ""
         }
     }
 
     override fun convertToFormattedString(value: Serializable): String {
         return repeatedFields.joinToString(",") {
-            it.toFormattedString()
+            it.toFormattedString() ?: ""
         }
     }
 
