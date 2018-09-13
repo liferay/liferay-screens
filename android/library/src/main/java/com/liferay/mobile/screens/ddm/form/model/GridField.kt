@@ -73,18 +73,21 @@ class GridField : Field<Grid>, Parcelable {
     override fun convertFromString(stringValue: String): Grid? {
         if (!stringValue.isEmpty()) {
             val str = stringValue.substring(1, stringValue.length - 1)
-            val keyValuePairs = str.split(",")
-            val map = mutableMapOf<String, String>()
 
-            keyValuePairs
-                .map { pair ->
-                    pair.split("=".toRegex())
-                }
-                .forEach { entry ->
-                    map[entry[0].trim()] = entry[1].trim()
-                }
+            if (!str.isEmpty()) {
+                val keyValuePairs = str.split(",")
+                val map = mutableMapOf<String, String>()
 
-            return Grid(map)
+                keyValuePairs
+                    .map { pair ->
+                        pair.split("=".toRegex())
+                    }
+                    .forEach { entry ->
+                        map[entry[0].trim()] = entry[1].trim()
+                    }
+
+                return Grid(map)
+            }
         }
 
         return null
