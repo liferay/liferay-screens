@@ -10,7 +10,7 @@ public class DocumentRemoteFile extends DocumentFile {
 
 	private long groupId;
 	private String uuid;
-	private int version;
+	private String version;
 	private String title;
 
 	private String url;
@@ -20,11 +20,10 @@ public class DocumentRemoteFile extends DocumentFile {
 			url = json;
 
 		} else {
-
 			JSONObject jsonObject = new JSONObject(json);
-			uuid = jsonObject.getString("uuid");
-			version = jsonObject.getInt("version");
-			groupId = jsonObject.getInt("groupId");
+			uuid = jsonObject.optString("uuid");
+			version = jsonObject.optString("version");
+			groupId = jsonObject.optInt("groupId");
 
 			// this is empty if we're retrieving the record
 			title = jsonObject.optString("title");
@@ -36,7 +35,31 @@ public class DocumentRemoteFile extends DocumentFile {
 		if (url != null) {
 			return url;
 		}
-		return "{\"groupId\":" + groupId + ", " + "\"uuid\":\"" + uuid + "\", " + "\"version\":" + version + "}";
+
+		try {
+			JSONObject jsonObject = new JSONObject();
+
+			if (groupId > 0) {
+				jsonObject.put("groupId", groupId);
+			}
+
+			if (!uuid.equals(EMPTY_STRING)) {
+				jsonObject.put("uuid", uuid);
+			}
+
+			if (!title.equals(EMPTY_STRING)) {
+				jsonObject.put("title", title);
+			}
+
+			if (!version.equals(EMPTY_STRING)) {
+				jsonObject.put("version", version);
+			}
+
+			return jsonObject.toString();
+
+		} catch (JSONException ex) {
+			return null;
+		}
 	}
 
 	@Override
@@ -52,4 +75,6 @@ public class DocumentRemoteFile extends DocumentFile {
 	public boolean isValid() {
 		return url != null || uuid != null;
 	}
+
+	private static final String EMPTY_STRING = "";
 }
