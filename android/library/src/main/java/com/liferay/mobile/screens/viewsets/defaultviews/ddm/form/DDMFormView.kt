@@ -30,7 +30,6 @@ import android.widget.*
 import com.github.pwittchen.reactivenetwork.library.rx2.ReactiveNetwork
 import com.liferay.apio.consumer.delegates.converter
 import com.liferay.apio.consumer.model.Thing
-import com.liferay.apio.consumer.model.getOperation
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.context.LiferayScreensContext
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
@@ -119,6 +118,8 @@ class DDMFormView @JvmOverloads constructor(
                 formInstanceRecord?.let {
                     it.fieldValues[field.name] = field.toData()
                 }
+            }) {
+                LiferayLogger.e(it.message)
             }
     }
 
@@ -425,7 +426,7 @@ class DDMFormView @JvmOverloads constructor(
 
     private fun updateFields(fieldValues: List<FieldValue>) {
         val fieldsContainerView =
-                ddmFieldViewPages.findViewWithTag<LinearLayout>(ddmFieldViewPages.currentItem)
+            ddmFieldViewPages.findViewWithTag<LinearLayout>(ddmFieldViewPages.currentItem)
 
         val fieldsMap = formInstance.ddmStructure.fields.map {
             Pair(it.name, it)

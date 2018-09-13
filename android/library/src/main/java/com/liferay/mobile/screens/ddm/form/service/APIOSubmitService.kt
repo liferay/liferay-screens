@@ -56,9 +56,9 @@ class APIOSubmitService : ISubmitService {
     private fun getThing(thingId: String, onSuccess: (Thing) -> Unit,
                          onError: (Exception) -> Unit) {
 
-        HttpUrl.parse(thingId)?.let {
-            fetch(it) {
-                val (thing, exception) = it
+        HttpUrl.parse(thingId)?.let { httpUrl ->
+            fetch(httpUrl) { result ->
+                val (thing, exception) = result
 
                 thing?.let {
                     onSuccess(it)
@@ -76,7 +76,7 @@ class APIOSubmitService : ISubmitService {
         performParseOperation(thing.id, operation.id, {
             mapOf(
                 Pair("isDraft", isDraft),
-                Pair("fieldValues", FieldValueSerializer.serialize(fields, { !it.isTransient }))
+                Pair("fieldValues", FieldValueSerializer.serialize(fields) { !it.isTransient })
             )
         }) {
             val (resultThing, exception) = it

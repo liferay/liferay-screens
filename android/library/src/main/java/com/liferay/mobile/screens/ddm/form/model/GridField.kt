@@ -17,7 +17,6 @@ package com.liferay.mobile.screens.ddm.form.model
 import android.os.Parcel
 import android.os.Parcelable
 import com.liferay.mobile.screens.ddl.model.Field
-import com.liferay.mobile.screens.ddl.model.FormFieldKeys
 import com.liferay.mobile.screens.ddl.model.Option
 import java.util.*
 
@@ -59,15 +58,15 @@ class GridField : Field<Grid>, Parcelable {
 
         val grid = attributes[Field.formFieldKeys.gridKey] as Map<String, Any>
         rows = (grid["rows"] as Map<String, Any>).let {
-            (it["member"] as List<Map<String, String>>).mapTo(mutableListOf(), {
+            (it["member"] as List<Map<String, String>>).mapTo(mutableListOf()) {
                 Option(it)
-            })
+            }
         }
 
         columns = (grid["columns"] as Map<String, Any>).let {
-            (it["member"] as List<Map<String, String>>).mapTo(mutableListOf(), {
+            (it["member"] as List<Map<String, String>>).mapTo(mutableListOf()) {
                 Option(it)
-            })
+            }
         }
     }
 
