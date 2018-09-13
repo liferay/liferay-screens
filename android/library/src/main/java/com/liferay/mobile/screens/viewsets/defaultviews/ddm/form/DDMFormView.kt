@@ -111,9 +111,10 @@ class DDMFormView @JvmOverloads constructor(
 
     override fun subscribeToValueChanged(observable: Observable<Field<*>>) {
         subscription = observable
+            // TODO: Remove magic number
             .skip(3)
-            .debounce(2, TimeUnit.SECONDS)
-            .subscribe { field ->
+            .debounce(4, TimeUnit.SECONDS)
+            .subscribe({ field ->
                 onFieldValueChanged(field)
                 formInstanceRecord?.let {
                     it.fieldValues[field.name] = field.toData()
