@@ -51,4 +51,5 @@ public interface ServiceVersionFactory {
 	ScreensRatingsConnector getScreensRatingsConnector(Session session);
 
 	CommentConnector getCommentConnector(Session session);
+
 }

@@ -17,7 +17,6 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.annotation.IntegerRes;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -25,16 +24,29 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.ddl.model.StringWithOptionsField;
+import com.liferay.mobile.screens.ddl.model.Option;
+import com.liferay.mobile.screens.ddl.model.SelectableOptionsField;
+import com.liferay.mobile.screens.thingscreenlet.screens.events.Event;
+import com.liferay.mobile.screens.util.EventBusUtil;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Jose Manuel Navarro
  */
-public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsField> implements View.OnClickListener {
+public class DDLFieldSelectView extends BaseDDLFieldTextView<SelectableOptionsField> implements View.OnClickListener {
 
 	protected AlertDialog alertDialog;
+
+	public void setOnValueChangedListener(DialogInterface.OnClickListener onValueChangedListener) {
+		this.onValueChangedListener = onValueChangedListener;
+	}
+
+	public DialogInterface.OnClickListener getOnValueChangedListener() {
+		return onValueChangedListener;
+	}
+
+	private DialogInterface.OnClickListener onValueChangedListener;
 
 	public DDLFieldSelectView(Context context) {
 		super(context);
@@ -93,7 +105,7 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 
 		builder.setCustomTitle(customDialogView);
 
-		final List<StringWithOptionsField.Option> availableOptions = getField().getAvailableOptions();
+		final List<Option> availableOptions = getField().getAvailableOptions();
 		String[] labels = getOptionsLabels().toArray(new String[availableOptions.size()]);
 
 		if (getField().isMultiple()) {
@@ -111,8 +123,17 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 	protected DialogInterface.OnClickListener getAlertDialogListener() {
 		return new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
-				getField().selectOption(getField().getAvailableOptions().get(which));
-				refresh();
+				if (which >= 0) {
+					getField().selectOption(getField().getAvailableOptions().get(which));
+					refresh();
+
+					if (onValueChangedListener != null) {
+						onValueChangedListener.onClick(dialog, which);
+					}
+
+				} else {
+					dialog.dismiss();
+				}
 			}
 		};
 	}
@@ -123,24 +144,24 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 
 	protected List<String> getOptionsLabels() {
 		List<String> result = new ArrayList<>();
-		for (StringWithOptionsField.Option opt : getField().getAvailableOptions()) {
+		for (Option opt : getField().getAvailableOptions()) {
 			result.add(opt.label);
 		}
 		return result;
 	}
 
 	private boolean[] getCheckedOptions() {
-		List<StringWithOptionsField.Option> availableOptions = getField().getAvailableOptions();
+		List<Option> availableOptions = getField().getAvailableOptions();
 		boolean[] checked = new boolean[availableOptions.size()];
 		for (int i = 0; i < availableOptions.size(); i++) {
-			StringWithOptionsField.Option availableOption = availableOptions.get(i);
+			Option availableOption = availableOptions.get(i);
 			checked[i] = getField().isSelected(availableOption);
 		}
 		return checked;
 	}
 
 	protected void setupMultipleChoice(AlertDialog.Builder builder,
-		final List<StringWithOptionsField.Option> availableOptions, String[] labels) {
+		final List<Option> availableOptions, String[] labels) {
 
 		final boolean[] checked = getCheckedOptions();
 		builder.setMultiChoiceItems(labels, checked, new DialogInterface.OnMultiChoiceClickListener() {
@@ -171,9 +192,9 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsFi
 		builder.setItems(labels, selectOptionHandler);
 	}
 
-	private void checkField(boolean[] checked, List<StringWithOptionsField.Option> availableOptions) {
+	private void checkField(boolean[] checked, List<Option> availableOptions) {
 		for (int i = 0; i < checked.length; i++) {
-			StringWithOptionsField.Option option = availableOptions.get(i);
+			Option option = availableOptions.get(i);
 			if (checked[i]) {
 				getField().selectOption(option);
 			} else {

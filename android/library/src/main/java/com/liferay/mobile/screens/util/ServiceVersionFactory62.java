@@ -95,4 +95,5 @@ public class ServiceVersionFactory62 implements ServiceVersionFactory {
 	public CommentConnector getCommentConnector(Session session) {
 		return null;
 	}
+
 }

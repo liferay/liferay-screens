@@ -148,6 +148,23 @@
 		<attr name="obcClassName"/>
 	</declare-styleable>
 
+	<declare-styleable name="DDMFormScreenlet">
+		<attr name="layoutId"/>
+		<attr name="cachePolicy"/>
+		<attr name="formInstanceId"/>
+		<attr name="userId"/>
+		<attr name="checkboxFieldLayoutId"/>
+		<attr format="reference" name="checkboxMultipleFieldLayoutId"/>
+		<attr name="dateFieldLayoutId"/>
+		<attr name="numberFieldLayoutId"/>
+		<attr name="radioFieldLayoutId"/>
+		<attr name="selectFieldLayoutId"/>
+		<attr name="textFieldLayoutId"/>
+		<attr name="textAreaFieldLayoutId"/>
+		<attr name="documentFieldLayoutId"/>
+		<attr name="geoFieldLayoutId"/>
+	</declare-styleable>
+
 	<declare-styleable name="ForgotPasswordScreenlet">
 		<attr name="layoutId"/>
 		<attr name="anonymousApiUserName"/>

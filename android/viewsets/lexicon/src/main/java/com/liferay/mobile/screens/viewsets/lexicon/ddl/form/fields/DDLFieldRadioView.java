@@ -17,10 +17,13 @@ package com.liferay.mobile.screens.viewsets.lexicon.ddl.form.fields;
 import android.content.Context;
 import android.support.v4.content.res.ResourcesCompat;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
-import com.liferay.mobile.screens.ddl.model.StringWithOptionsField;
+import android.widget.RadioGroup;
+import com.liferay.mobile.screens.ddl.model.Option;
+import com.liferay.mobile.screens.ddl.model.SelectableOptionsField;
 import com.liferay.mobile.screens.viewsets.lexicon.R;
 import com.liferay.mobile.screens.viewsets.lexicon.util.FormViewUtil;
 import java.util.List;
@@ -39,18 +42,20 @@ public class DDLFieldRadioView
 		super(context, attributes);
 	}
 
+	private RadioGroup radioGroup;
+
 	@Override
-	public void renderOptions(StringWithOptionsField field) {
+	public void renderOptions(SelectableOptionsField field) {
 		LayoutParams layoutParams =
 			new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
 		int margin = FormViewUtil.convertDpToPx(getContext(), 18);
 		layoutParams.setMargins(0, margin, 0, margin);
 
-		List<StringWithOptionsField.Option> availableOptions = field.getAvailableOptions();
+		List<Option> availableOptions = field.getAvailableOptions();
 
 		for (int i = 0; i < availableOptions.size(); ++i) {
-			StringWithOptionsField.Option opt = availableOptions.get(i);
+			Option opt = availableOptions.get(i);
 
 			RadioButton radioButton = new RadioButton(getContext());
 			radioButton.setLayoutParams(layoutParams);
@@ -58,20 +63,48 @@ public class DDLFieldRadioView
 			radioButton.setTag(opt);
 			radioButton.setOnCheckedChangeListener(this);
 			radioButton.setSaveEnabled(true);
-			addView(radioButton);
+			radioGroup.addView(radioButton);
 
-			boolean isLast = availableOptions.size() - 1 == i;
-			if (!isLast) {
-				LayoutParams params =
-					new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, FormViewUtil.convertDpToPx(getContext(), 1));
+			if (field.isInline()) {
+				radioButton.setGravity(Gravity.CENTER_VERTICAL);
+			} else {
+				boolean isLast = availableOptions.size() - 1 == i;
+				if (!isLast) {
+					LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+						FormViewUtil.convertDpToPx(getContext(), 1));
 
-				View separator = new View(getContext());
-				separator.setLayoutParams(params);
-				separator.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.textColorTertiary_lexicon,
-					getContext().getTheme()));
+					View separator = new View(getContext());
+					separator.setLayoutParams(params);
+					separator.setBackgroundColor(
+						ResourcesCompat.getColor(getResources(), R.color.textColorTertiary_lexicon,
+							getContext().getTheme()));
 
-				addView(separator);
+					radioGroup.addView(separator);
+				}
 			}
+		}
+	}
+
+	@Override
+	protected void onFinishInflate() {
+		super.onFinishInflate();
+
+		radioGroup = findViewById(R.id.radio_group);
+	}
+
+	@Override
+	public void onPostValidation(boolean valid) {
+		View errorContainer = findViewById(R.id.errorContainer);
+
+		if (errorContainer != null) {
+			errorContainer.setBackground(
+					valid ? null : getResources().getDrawable(R.drawable.lexicon_error_view_shape));
+		}
+
+		View errorView = findViewById(R.id.error_view);
+
+		if (errorView != null) {
+			errorView.setVisibility(valid ? GONE : VISIBLE);
 		}
 	}
 }

@@ -40,4 +40,11 @@
             />
     </FrameLayout>
 
+    <include android:id="@+id/error_view"
+        layout="@layout/error_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/error_view_margin_top"
+        android:visibility="gone" />
+
 </com.liferay.mobile.screens.viewsets.lexicon.ddl.form.fields.DDLDocumentFieldView>

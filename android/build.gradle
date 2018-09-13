@@ -1,6 +1,7 @@
 buildscript {
-	ext.kotlin_version = '1.2.50'
+	ext.kotlin_version = '1.2.61'
 	repositories {
+		mavenLocal()
 		jcenter()
 		maven { url 'https://maven.google.com' }
 		google()
@@ -45,8 +46,8 @@ ext {
 
 def supportLibsVersion = '27.1.1'
 
-ext.libraries = [apio_consumer      : 'com.liferay.mobile:apio-consumer-android:0.0.5',
-		         appCompat          : 'com.android.support:appcompat-v7:' + supportLibsVersion,
+ext.libraries = [apio_consumer      : 'com.liferay.mobile:apio-consumer-android:beta-0.0.9',
+                 appCompat          : 'com.android.support:appcompat-v7:' + supportLibsVersion,
                  recyclerView       : 'com.android.support:recyclerview-v7:' + supportLibsVersion,
                  design             : 'com.android.support:design:' + supportLibsVersion,
                  exif               : 'com.android.support:exifinterface:' + supportLibsVersion,
@@ -64,21 +65,23 @@ ext.libraries = [apio_consumer      : 'com.liferay.mobile:apio-consumer-android:
                  mockito            : 'org.mockito:mockito-core:2.11.0',
                  snappydb           : 'com.snappydb:snappydb-lib:0.5.2',
                  kryo               : 'com.esotericsoftware:kryo:4.0.0',
-				 json               : 'org.json:json:20140107',
+		 		 json               : 'org.json:json:20140107',
                  gson               : 'com.google.code.gson:gson:2.8.2',
                  okhttp             : 'com.squareup.okhttp3:okhttp:3.10.0',
                  result             : 'com.github.kittinunf.result:result:1.3.0',
                  anko_commons       : 'org.jetbrains.anko:anko-commons:0.10.4',
                  circle_image_view  : 'de.hdodenhof:circleimageview:2.2.0',
                  kotlin             : 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:' + ext.kotlin_version,
-                 coroutines_core    : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.22.5',
-                 coroutines_android : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:0.22.5',
+                 coroutines_core    : 'org.jetbrains.kotlinx:kotlinx-coroutines-core:0.26.0',
+                 coroutines_android : 'org.jetbrains.kotlinx:kotlinx-coroutines-android:0.26.0',
                  mockwebserver      : 'com.squareup.okhttp3:mockwebserver:3.9.1',
                  espresso           : 'com.android.support.test.espresso:espresso-core:3.0.1',
-				 support_multidex	: 'com.android.support:multidex:1.0.3']
+				 reactive_network   : 'com.github.pwittchen:reactivenetwork-rx2:2.1.0',
+		 		 support_multidex   : 'com.android.support:multidex:1.0.3']
 
 subprojects {
 	repositories {
+		mavenLocal()
 		maven { url 'https://maven.google.com' }
 		jcenter()
 	}

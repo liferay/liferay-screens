@@ -446,6 +446,9 @@ public class DDLFormScreenlet extends BaseScreenlet<DDLFormViewModel, Interactor
 		setFieldLayoutId(viewModel, typedArray, Field.EditorType.SELECT,
 			R.styleable.DDLFormScreenlet_selectFieldLayoutId);
 
+		setFieldLayoutId(viewModel, typedArray, Field.EditorType.CHECKBOX_MULTIPLE,
+				R.styleable.DDLFormScreenlet_selectFieldLayoutId);
+
 		setFieldLayoutId(viewModel, typedArray, Field.EditorType.TEXT, R.styleable.DDLFormScreenlet_textFieldLayoutId);
 
 		setFieldLayoutId(viewModel, typedArray, Field.EditorType.TEXT_AREA,

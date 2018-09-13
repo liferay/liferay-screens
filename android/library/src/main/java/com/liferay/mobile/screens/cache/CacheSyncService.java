@@ -1,10 +1,20 @@
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ * <p>
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ * <p>
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 package com.liferay.mobile.screens.cache;
 
 import android.app.IntentService;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import com.liferay.mobile.screens.base.interactor.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.base.interactor.event.CacheEvent;
@@ -25,6 +35,7 @@ import com.liferay.mobile.screens.rating.interactor.delete.RatingDeleteInteracto
 import com.liferay.mobile.screens.rating.interactor.update.RatingUpdateInteractor;
 import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadEvent;
 import com.liferay.mobile.screens.userportrait.interactor.upload.UserPortraitUploadInteractor;
+import com.liferay.mobile.screens.util.AndroidUtil;
 import com.liferay.mobile.screens.util.EventBusUtil;
 import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.util.LiferayLogger;
@@ -46,13 +57,9 @@ public class CacheSyncService extends IntentService {
 
 	@Override
 	protected void onHandleIntent(final Intent intent) {
-		ConnectivityManager cm =
-			(ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-
-		NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-		boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
-
-		if (isConnected && SessionContext.isLoggedIn() && SessionContext.getCurrentUser() != null) {
+		if (AndroidUtil.isConnected(getApplicationContext())
+			&& SessionContext.isLoggedIn()
+			&& SessionContext.getCurrentUser() != null) {
 
 			sync(DDLFormEvent.class, new SyncProvider<DDLFormEvent>() {
 				@Override

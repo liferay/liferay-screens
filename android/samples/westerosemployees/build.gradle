@@ -11,6 +11,7 @@ android {
 		versionName rootProject.ext.versionName
 		applicationId 'com.liferay.mobile.screens.westerosemployees'
 		testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+		multiDexEnabled true
 	}
 
 	buildTypes {
@@ -33,4 +34,6 @@ dependencies {
 	implementation libraries.rxjava
 	implementation libraries.rxbinding
 	implementation libraries.rxpermissions
+
+	api libraries.support_multidex
 }

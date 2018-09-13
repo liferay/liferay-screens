@@ -36,7 +36,7 @@ import static junit.framework.Assert.assertTrue;
  * @author Jose Manuel Navarro
  */
 @RunWith(Enclosed.class)
-public class StringWithOptionsFieldTest {
+public class SelectableOptionsFieldTest {
 
 	private static final Locale spanishLocale = new Locale("es", "ES");
 	private static final Locale usLocale = new Locale("en", "US");
@@ -70,41 +70,41 @@ public class StringWithOptionsFieldTest {
 
 		@Test
 		public void shouldClearOptionWhenOptionWasSelected() {
-			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
+			SelectableOptionsField field = new SelectableOptionsField(createParsedData(), spanishLocale, usLocale);
 
-			List<StringWithOptionsField.Option> availableOptions = field.getAvailableOptions();
+			List<SelectableOptionsField.Option> availableOptions = field.getAvailableOptions();
 
 			field.selectOption(availableOptions.get(0));
 			field.clearOption(availableOptions.get(0));
 
-			List<StringWithOptionsField.Option> selectedOptions = field.getCurrentValue();
+			List<SelectableOptionsField.Option> selectedOptions = field.getCurrentValue();
 
 			assertTrue(selectedOptions.isEmpty());
 		}
 
 		@Test
 		public void shouldDoNothingWhenNoOptionsWasSelected() {
-			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
+			SelectableOptionsField field = new SelectableOptionsField(createParsedData(), spanishLocale, usLocale);
 
-			List<StringWithOptionsField.Option> availableOptions = field.getAvailableOptions();
+			List<SelectableOptionsField.Option> availableOptions = field.getAvailableOptions();
 
 			field.clearOption(availableOptions.get(0));
 
-			List<StringWithOptionsField.Option> selectedOptions = field.getCurrentValue();
+			List<SelectableOptionsField.Option> selectedOptions = field.getCurrentValue();
 
 			assertTrue(selectedOptions.isEmpty());
 		}
 
 		@Test
 		public void shouldDoNothingOptionWhenThatOptionWasNotSelected() {
-			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
+			SelectableOptionsField field = new SelectableOptionsField(createParsedData(), spanishLocale, usLocale);
 
-			List<StringWithOptionsField.Option> availableOptions = field.getAvailableOptions();
+			List<SelectableOptionsField.Option> availableOptions = field.getAvailableOptions();
 
 			field.selectOption(availableOptions.get(0));
 			field.clearOption(availableOptions.get(1));
 
-			List<StringWithOptionsField.Option> selectedOptions = field.getCurrentValue();
+			List<SelectableOptionsField.Option> selectedOptions = field.getCurrentValue();
 
 			assertEquals(1, selectedOptions.size());
 		}
@@ -116,10 +116,10 @@ public class StringWithOptionsFieldTest {
 
 		@Test
 		public void shouldStoreEmptyArrayWhenNoAvailableOptions() {
-			StringWithOptionsField field =
-				new StringWithOptionsField(new HashMap<String, Object>(), spanishLocale, usLocale);
+			SelectableOptionsField field =
+				new SelectableOptionsField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
-			List<StringWithOptionsField.Option> result = field.getAvailableOptions();
+			List<SelectableOptionsField.Option> result = field.getAvailableOptions();
 
 			assertNotNull(result);
 			assertEquals(0, result.size());
@@ -127,19 +127,19 @@ public class StringWithOptionsFieldTest {
 
 		@Test
 		public void shouldStoreTheAvailableOptions() {
-			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
+			SelectableOptionsField field = new SelectableOptionsField(createParsedData(), spanishLocale, usLocale);
 
-			List<StringWithOptionsField.Option> result = field.getAvailableOptions();
+			List<SelectableOptionsField.Option> result = field.getAvailableOptions();
 
 			assertNotNull(result);
 			assertEquals(2, result.size());
 
-			StringWithOptionsField.Option option1 = result.get(0);
+			SelectableOptionsField.Option option1 = result.get(0);
 			assertEquals("Option 1", option1.label);
 			assertEquals("option987", option1.name);
 			assertEquals("option1", option1.value);
 
-			StringWithOptionsField.Option option2 = result.get(1);
+			SelectableOptionsField.Option option2 = result.get(1);
 			assertEquals("Option 2", option2.label);
 			assertEquals("option989", option2.name);
 			assertEquals("option2", option2.value);
@@ -152,8 +152,8 @@ public class StringWithOptionsFieldTest {
 
 		@Test
 		public void shouldReturnEmptyListWhenSelectedOptionsIsNull() {
-			StringWithOptionsField field =
-				new StringWithOptionsField(new HashMap<String, Object>(), spanishLocale, usLocale);
+			SelectableOptionsField field =
+				new SelectableOptionsField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
 			String result = field.convertToData(null);
 
@@ -163,9 +163,9 @@ public class StringWithOptionsFieldTest {
 
 		@Test
 		public void shouldReturnEmptyListWhenSelectedOptionsIsEmpty() {
-			StringWithOptionsField field =
-				new StringWithOptionsField(new HashMap<String, Object>(), spanishLocale, usLocale);
-			ArrayList<StringWithOptionsField.Option> selected = new ArrayList<>();
+			SelectableOptionsField field =
+				new SelectableOptionsField(new HashMap<String, Object>(), spanishLocale, usLocale);
+			ArrayList<SelectableOptionsField.Option> selected = new ArrayList<>();
 
 			String result = field.convertToData(selected);
 
@@ -175,13 +175,13 @@ public class StringWithOptionsFieldTest {
 
 		@Test
 		public void shouldReturnSingleItemListWhenThereIsOnlyOneSelectedOption() {
-			StringWithOptionsField field =
-				new StringWithOptionsField(new HashMap<String, Object>(), spanishLocale, usLocale);
+			SelectableOptionsField field =
+				new SelectableOptionsField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
-			StringWithOptionsField.Option option1 =
-				new StringWithOptionsField.Option("Option 1", "option987", "option1");
+			SelectableOptionsField.Option option1 =
+				new SelectableOptionsField.Option("Option 1", "option987", "option1");
 
-			ArrayList<StringWithOptionsField.Option> selected = new ArrayList<>();
+			ArrayList<SelectableOptionsField.Option> selected = new ArrayList<>();
 
 			selected.add(option1);
 
@@ -193,15 +193,15 @@ public class StringWithOptionsFieldTest {
 
 		@Test
 		public void shouldReturnItemListWhenThereAreSelectedOptions() {
-			StringWithOptionsField field =
-				new StringWithOptionsField(new HashMap<String, Object>(), spanishLocale, usLocale);
+			SelectableOptionsField field =
+				new SelectableOptionsField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
-			StringWithOptionsField.Option option1 =
-				new StringWithOptionsField.Option("Option 1", "option987", "option1");
-			StringWithOptionsField.Option option2 =
-				new StringWithOptionsField.Option("Option 2", "option989", "option2");
+			SelectableOptionsField.Option option1 =
+				new SelectableOptionsField.Option("Option 1", "option987", "option1");
+			SelectableOptionsField.Option option2 =
+				new SelectableOptionsField.Option("Option 2", "option989", "option2");
 
-			ArrayList<StringWithOptionsField.Option> selected = new ArrayList<>();
+			ArrayList<SelectableOptionsField.Option> selected = new ArrayList<>();
 
 			selected.add(option1);
 			selected.add(option2);
@@ -221,8 +221,8 @@ public class StringWithOptionsFieldTest {
 		public static class ShouldReturnNull {
 			@Test
 			public void whenNullStringIsSupplied() {
-				StringWithOptionsField field =
-					new StringWithOptionsField(new HashMap<String, Object>(), spanishLocale, usLocale);
+				SelectableOptionsField field =
+					new SelectableOptionsField(new HashMap<String, Object>(), spanishLocale, usLocale);
 
 				assertNull(field.convertFromString(null));
 			}
@@ -233,9 +233,9 @@ public class StringWithOptionsFieldTest {
 		public static class ShouldReturnEmptyList {
 			@Test
 			public void whenEmptyStringIsSupplied() {
-				StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
+				SelectableOptionsField field = new SelectableOptionsField(createParsedData(), spanishLocale, usLocale);
 
-				List<StringWithOptionsField.Option> result = field.convertFromString("");
+				List<SelectableOptionsField.Option> result = field.convertFromString("");
 
 				assertNotNull(result);
 				assertEquals(0, result.size());
@@ -243,9 +243,9 @@ public class StringWithOptionsFieldTest {
 
 			@Test
 			public void whenEmptyListStringIsSupplied() {
-				StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
+				SelectableOptionsField field = new SelectableOptionsField(createParsedData(), spanishLocale, usLocale);
 
-				List<StringWithOptionsField.Option> result = field.convertFromString("[]");
+				List<SelectableOptionsField.Option> result = field.convertFromString("[]");
 
 				assertNotNull(result);
 				assertEquals(0, result.size());
@@ -258,14 +258,14 @@ public class StringWithOptionsFieldTest {
 
 			@Test
 			public void whenOneOptionValueIsSupplied() {
-				StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
+				SelectableOptionsField field = new SelectableOptionsField(createParsedData(), spanishLocale, usLocale);
 
-				List<StringWithOptionsField.Option> result = field.convertFromString("option1");
+				List<SelectableOptionsField.Option> result = field.convertFromString("option1");
 
 				assertNotNull(result);
 				assertEquals(1, result.size());
 
-				StringWithOptionsField.Option option = result.get(0);
+				SelectableOptionsField.Option option = result.get(0);
 
 				assertEquals("Option 1", option.label);
 				assertEquals("option987", option.name);
@@ -274,14 +274,14 @@ public class StringWithOptionsFieldTest {
 
 			@Test
 			public void whenOneOptionLabelIsSupplied() {
-				StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
+				SelectableOptionsField field = new SelectableOptionsField(createParsedData(), spanishLocale, usLocale);
 
-				List<StringWithOptionsField.Option> result = field.convertFromString("Option 1");
+				List<SelectableOptionsField.Option> result = field.convertFromString("Option 1");
 
 				assertNotNull(result);
 				assertEquals(1, result.size());
 
-				StringWithOptionsField.Option option = result.get(0);
+				SelectableOptionsField.Option option = result.get(0);
 
 				assertEquals("Option 1", option.label);
 				assertEquals("option987", option.name);
@@ -290,14 +290,14 @@ public class StringWithOptionsFieldTest {
 
 			@Test
 			public void whenOneOptionValueListIsSupplied() {
-				StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
+				SelectableOptionsField field = new SelectableOptionsField(createParsedData(), spanishLocale, usLocale);
 
-				List<StringWithOptionsField.Option> result = field.convertFromString("[option1]");
+				List<SelectableOptionsField.Option> result = field.convertFromString("[option1]");
 
 				assertNotNull(result);
 				assertEquals(1, result.size());
 
-				StringWithOptionsField.Option option = result.get(0);
+				SelectableOptionsField.Option option = result.get(0);
 
 				assertEquals("Option 1", option.label);
 				assertEquals("option987", option.name);
@@ -306,14 +306,14 @@ public class StringWithOptionsFieldTest {
 
 			@Test
 			public void whenOneOptionLabelListIsSupplied() {
-				StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
+				SelectableOptionsField field = new SelectableOptionsField(createParsedData(), spanishLocale, usLocale);
 
-				List<StringWithOptionsField.Option> result = field.convertFromString("[Option 1]");
+				List<SelectableOptionsField.Option> result = field.convertFromString("[Option 1]");
 
 				assertNotNull(result);
 				assertEquals(1, result.size());
 
-				StringWithOptionsField.Option option = result.get(0);
+				SelectableOptionsField.Option option = result.get(0);
 
 				assertEquals("Option 1", option.label);
 				assertEquals("option987", option.name);
@@ -322,14 +322,14 @@ public class StringWithOptionsFieldTest {
 
 			@Test
 			public void whenOneQuotedOptionLabelListIsSupplied() {
-				StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
+				SelectableOptionsField field = new SelectableOptionsField(createParsedData(), spanishLocale, usLocale);
 
-				List<StringWithOptionsField.Option> result = field.convertFromString("[\"Option 1]\"");
+				List<SelectableOptionsField.Option> result = field.convertFromString("[\"Option 1]\"");
 
 				assertNotNull(result);
 				assertEquals(1, result.size());
 
-				StringWithOptionsField.Option option = result.get(0);
+				SelectableOptionsField.Option option = result.get(0);
 
 				assertEquals("Option 1", option.label);
 				assertEquals("option987", option.name);
@@ -344,23 +344,23 @@ public class StringWithOptionsFieldTest {
 
 		@Test
 		public void shouldReturnEmptyWhenNullSelectedOptions() {
-			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
+			SelectableOptionsField field = new SelectableOptionsField(createParsedData(), spanishLocale, usLocale);
 
 			assertEquals("", field.convertToFormattedString(null));
 		}
 
 		@Test
 		public void shouldReturnEmptyWhenEmptySelectedOptions() {
-			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
+			SelectableOptionsField field = new SelectableOptionsField(createParsedData(), spanishLocale, usLocale);
 
-			assertEquals("", field.convertToFormattedString(new ArrayList<StringWithOptionsField.Option>()));
+			assertEquals("", field.convertToFormattedString(new ArrayList<SelectableOptionsField.Option>()));
 		}
 
 		@Test
 		public void shouldReturnTheOptionLabelWhenSelectedOption() {
-			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
+			SelectableOptionsField field = new SelectableOptionsField(createParsedData(), spanishLocale, usLocale);
 
-			ArrayList<StringWithOptionsField.Option> selectedOptions = new ArrayList<>();
+			ArrayList<SelectableOptionsField.Option> selectedOptions = new ArrayList<>();
 
 			selectedOptions.add(field.getAvailableOptions().get(0));
 
@@ -408,21 +408,21 @@ public class StringWithOptionsFieldTest {
 			assertEquals(1, resultList.size());
 
 			Field resultField = resultList.get(0);
-			assertTrue(resultField instanceof StringWithOptionsField);
-			StringWithOptionsField optionsField = (StringWithOptionsField) resultField;
+			assertTrue(resultField instanceof SelectableOptionsField);
+			SelectableOptionsField optionsField = (SelectableOptionsField) resultField;
 
 			assertEquals(Field.DataType.STRING.getValue(), optionsField.getDataType().getValue());
 			assertEquals(Field.EditorType.SELECT.getValue(), optionsField.getEditorType().getValue());
 
-			List<StringWithOptionsField.Option> predefinedOptions = optionsField.getPredefinedValue();
+			List<SelectableOptionsField.Option> predefinedOptions = optionsField.getPredefinedValue();
 			assertNotNull(predefinedOptions);
 			assertEquals(1, predefinedOptions.size());
 
-			List<StringWithOptionsField.Option> selectedOptions = optionsField.getCurrentValue();
+			List<SelectableOptionsField.Option> selectedOptions = optionsField.getCurrentValue();
 			assertNotNull(selectedOptions);
 			assertEquals(1, selectedOptions.size());
 
-			StringWithOptionsField.Option selectedOption = selectedOptions.get(0);
+			SelectableOptionsField.Option selectedOption = selectedOptions.get(0);
 
 			assertEquals("Option 2", selectedOption.label);
 			assertEquals("option_2", selectedOption.name);
@@ -430,11 +430,11 @@ public class StringWithOptionsFieldTest {
 
 			assertEquals(optionsField.getCurrentValue(), optionsField.getPredefinedValue());
 
-			List<StringWithOptionsField.Option> availableOptions = optionsField.getAvailableOptions();
+			List<SelectableOptionsField.Option> availableOptions = optionsField.getAvailableOptions();
 			assertNotNull(availableOptions);
 			assertEquals(3, availableOptions.size());
 
-			StringWithOptionsField.Option option = availableOptions.get(0);
+			SelectableOptionsField.Option option = availableOptions.get(0);
 			assertEquals("Option 1", option.label);
 			assertEquals("option_1", option.name);
 			assertEquals("value 1", option.value);
@@ -459,36 +459,36 @@ public class StringWithOptionsFieldTest {
 
 		@Test
 		public void shouldStoreOptionWhenOptionIsSelected() {
-			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
+			SelectableOptionsField field = new SelectableOptionsField(createParsedData(), spanishLocale, usLocale);
 
-			List<StringWithOptionsField.Option> availableOptions = field.getAvailableOptions();
+			List<SelectableOptionsField.Option> availableOptions = field.getAvailableOptions();
 
 			field.selectOption(availableOptions.get(0));
 
-			List<StringWithOptionsField.Option> selectedOptions = field.getCurrentValue();
+			List<SelectableOptionsField.Option> selectedOptions = field.getCurrentValue();
 
 			assertEquals(1, selectedOptions.size());
 		}
 
 		@Test
 		public void shouldStoreOnlyOneOptionWhenMultipleOptionsAreSelected() {
-			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
+			SelectableOptionsField field = new SelectableOptionsField(createParsedData(), spanishLocale, usLocale);
 
-			List<StringWithOptionsField.Option> availableOptions = field.getAvailableOptions();
+			List<SelectableOptionsField.Option> availableOptions = field.getAvailableOptions();
 
 			field.selectOption(availableOptions.get(0));
 			field.selectOption(availableOptions.get(1));
 
-			List<StringWithOptionsField.Option> selectedOptions = field.getCurrentValue();
+			List<SelectableOptionsField.Option> selectedOptions = field.getCurrentValue();
 
 			assertEquals(1, selectedOptions.size());
 		}
 
 		@Test
 		public void shouldReturnEmptyListWhenNoOptionsWereSelected() {
-			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
+			SelectableOptionsField field = new SelectableOptionsField(createParsedData(), spanishLocale, usLocale);
 
-			List<StringWithOptionsField.Option> selectedOptions = field.getCurrentValue();
+			List<SelectableOptionsField.Option> selectedOptions = field.getCurrentValue();
 
 			assertTrue(selectedOptions.isEmpty());
 		}
@@ -500,16 +500,16 @@ public class StringWithOptionsFieldTest {
 
 		@Test
 		public void shouldReturnFalseWhenNoOptionWasSelected() {
-			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
+			SelectableOptionsField field = new SelectableOptionsField(createParsedData(), spanishLocale, usLocale);
 
 			assertFalse(field.isValid());
 		}
 
 		@Test
 		public void shouldReturnFalseWhenSelectionIsCleared() {
-			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
+			SelectableOptionsField field = new SelectableOptionsField(createParsedData(), spanishLocale, usLocale);
 
-			List<StringWithOptionsField.Option> availableOptions = field.getAvailableOptions();
+			List<SelectableOptionsField.Option> availableOptions = field.getAvailableOptions();
 
 			field.selectOption(availableOptions.get(0));
 			field.clearOption(availableOptions.get(0));
@@ -519,9 +519,9 @@ public class StringWithOptionsFieldTest {
 
 		@Test
 		public void shouldReturnTrueWhenOptionIsSelected() {
-			StringWithOptionsField field = new StringWithOptionsField(createParsedData(), spanishLocale, usLocale);
+			SelectableOptionsField field = new SelectableOptionsField(createParsedData(), spanishLocale, usLocale);
 
-			List<StringWithOptionsField.Option> availableOptions = field.getAvailableOptions();
+			List<SelectableOptionsField.Option> availableOptions = field.getAvailableOptions();
 
 			field.selectOption(availableOptions.get(0));
 
@@ -592,32 +592,32 @@ public class StringWithOptionsFieldTest {
 			assertEquals(1, resultList.size());
 
 			Field resultField = resultList.get(0);
-			assertTrue(resultField instanceof StringWithOptionsField);
-			StringWithOptionsField optionsField = (StringWithOptionsField) resultField;
+			assertTrue(resultField instanceof SelectableOptionsField);
+			SelectableOptionsField optionsField = (SelectableOptionsField) resultField;
 
 			assertEquals(Field.DataType.STRING.getValue(), optionsField.getDataType().getValue());
 			assertEquals(Field.EditorType.SELECT.getValue(), optionsField.getEditorType().getValue());
 
-			List<StringWithOptionsField.Option> predefinedOptions = optionsField.getPredefinedValue();
+			List<SelectableOptionsField.Option> predefinedOptions = optionsField.getPredefinedValue();
 			assertNotNull(predefinedOptions);
 			assertEquals(1, predefinedOptions.size());
 
-			List<StringWithOptionsField.Option> selectedOptions = optionsField.getCurrentValue();
+			List<SelectableOptionsField.Option> selectedOptions = optionsField.getCurrentValue();
 			assertNotNull(selectedOptions);
 			assertEquals(1, selectedOptions.size());
 
-			StringWithOptionsField.Option selectedOption = selectedOptions.get(0);
+			SelectableOptionsField.Option selectedOption = selectedOptions.get(0);
 
 			assertEquals("Option 2", selectedOption.label);
 			assertEquals("value 2", selectedOption.value);
 
 			assertEquals(optionsField.getCurrentValue(), optionsField.getPredefinedValue());
 
-			List<StringWithOptionsField.Option> availableOptions = optionsField.getAvailableOptions();
+			List<SelectableOptionsField.Option> availableOptions = optionsField.getAvailableOptions();
 			assertNotNull(availableOptions);
 			assertEquals(3, availableOptions.size());
 
-			StringWithOptionsField.Option option = availableOptions.get(0);
+			SelectableOptionsField.Option option = availableOptions.get(0);
 			assertEquals("Option 1", option.label);
 			assertEquals("value 1", option.value);
 

@@ -16,6 +16,10 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import com.liferay.mobile.screens.ddm.form.model.CheckboxMultipleField;
+import com.liferay.mobile.screens.ddm.form.model.GridField;
+import com.liferay.mobile.screens.ddm.form.model.RepeatableField;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,15 +35,19 @@ import org.w3c.dom.Element;
 public abstract class Field<T extends Serializable> implements Parcelable {
 
 	private String text;
+	private String dataSourceType;
 	private DataType dataType;
+	//additionalType
 	private EditorType editorType;
 	private String name;
 	private String label;
 	private String tip;
+	private String placeHolder;
 	private boolean readOnly;
 	private boolean repeatable;
 	private boolean required;
 	private boolean showLabel;
+	private boolean hasFormRules;
 	private T predefinedValue;
 	private T currentValue;
 	private boolean lastValidationResult = true;
@@ -50,24 +58,15 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	private List<Field> fields = new ArrayList<>();
 	private Map<String, Object> attributes = new HashMap<>();
 
+	private boolean isTransient = false;
+	private String displayStyle;
+
 	public Field() {
 		super();
 	}
 
-	public String getVisibilityExpression() {
-		return visibilityExpression;
-	}
-
-	public void setVisibilityExpression(String visibilityExpression) {
-		this.visibilityExpression = visibilityExpression;
-	}
-
 	public String getDdmDataProviderInstance() {
 		return ddmDataProviderInstance;
-	}
-
-	public void setDdmDataProviderInstance(String ddmDataProviderInstance) {
-		this.ddmDataProviderInstance = ddmDataProviderInstance;
 	}
 
 	public Field(Map<String, Object> attributes, Locale currentLocale, Locale defaultLocale) {
@@ -77,23 +76,29 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 		dataType = DataType.valueOf(attributes);
 		editorType = EditorType.valueOf(attributes);
+		displayStyle = getAttributeStringValue(attributes, formFieldKeys.getDisplayStyleKey());
 
-		name = getAttributeStringValue(attributes, "name");
-		label = getAttributeStringValue(attributes, "label");
-		tip = getAttributeStringValue(attributes, "tip");
+		name = getAttributeStringValue(attributes, formFieldKeys.getNameKey());
+		label = getAttributeStringValue(attributes, formFieldKeys.getLabelKey());
+		tip = getAttributeStringValue(attributes, formFieldKeys.getTipKey());
+		placeHolder = getAttributeStringValue(attributes, formFieldKeys.getPlaceHolderKey());
 
-		readOnly = Boolean.valueOf(getAttributeStringValue(attributes, "readOnly"));
-		repeatable = Boolean.valueOf(getAttributeStringValue(attributes, "repeatable"));
-		required = Boolean.valueOf(getAttributeStringValue(attributes, "required"));
-		showLabel = Boolean.valueOf(getAttributeStringValue(attributes, "showLabel"));
-		visibilityExpression = getAttributeStringValue(attributes, "visibilityExpression");
-		ddmDataProviderInstance = getAttributeStringValue(attributes, "ddmDataProviderInstance");
+		readOnly = Boolean.valueOf(getAttributeStringValue(attributes, formFieldKeys.isReadOnlyKey()));
+		repeatable = Boolean.valueOf(getAttributeStringValue(attributes, formFieldKeys.isRepeatableKey()));
+		required = Boolean.valueOf(getAttributeStringValue(attributes, formFieldKeys.isRequiredKey()));
+		showLabel = Boolean.valueOf(getAttributeStringValue(attributes, formFieldKeys.isShowLabelKey()));
+		hasFormRules = Boolean.valueOf(getAttributeStringValue(attributes, formFieldKeys.getHasFormRulesKey()));
+		visibilityExpression = getAttributeStringValue(attributes, formFieldKeys.getVisibilityExpressionKey());
+		ddmDataProviderInstance = getAttributeStringValue(attributes, formFieldKeys.getDdmDataProviderInstanceKey());
 
-		String predefinedValue = getAttributeStringValue(attributes, "predefinedValue");
+		isTransient = Boolean.valueOf(getAttributeStringValue(attributes, formFieldKeys.isTransientKey()));
+		dataSourceType = getAttributeStringValue(attributes, formFieldKeys.getDataSourceTypeKey());
+
+		String predefinedValue = getAttributeStringValue(attributes, formFieldKeys.getPredefinedValueKey());
 		this.predefinedValue = convertFromString(predefinedValue);
 		currentValue = this.predefinedValue;
 
-		String text = getAttributeStringValue(attributes, "text");
+		String text = getAttributeStringValue(attributes, formFieldKeys.getTextKey());
 		if (!text.isEmpty()) {
 			this.text = text;
 			currentValue = convertFromString(text);
@@ -106,15 +111,18 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 		dataType = DataType.assignDataTypeFromString(in.readString());
 		editorType = EditorType.valueOfString(in.readString());
+		displayStyle = in.readString();
 
 		name = in.readString();
 		label = in.readString();
 		tip = in.readString();
+		placeHolder = in.readString();
 
 		readOnly = (in.readInt() == 1);
 		repeatable = (in.readInt() == 1);
 		required = (in.readInt() == 1);
 		showLabel = (in.readInt() == 1);
+		hasFormRules = (in.readInt() == 1);
 
 		predefinedValue = (T) in.readSerializable();
 		currentValue = (T) in.readSerializable();
@@ -125,6 +133,9 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		lastValidationResult = (in.readInt() == 1);
 		visibilityExpression = in.readString();
 		ddmDataProviderInstance = in.readString();
+
+		isTransient = (in.readInt() == 1);
+		dataSourceType = in.readString();
 	}
 
 	@Override
@@ -152,6 +163,14 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		return name;
 	}
 
+	protected void setName(String name) {
+	    this.name = name;
+    }
+
+	public String getDataSourceType() {
+		return dataSourceType;
+	}
+
 	public DataType getDataType() {
 		return dataType;
 	}
@@ -160,12 +179,28 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		return editorType;
 	}
 
+	protected void setEditorType(EditorType editorType) {
+		this.editorType = editorType;
+	}
+
 	public String getText() {
 		return text;
 	}
 
+	public boolean isTransient() {
+		return isTransient;
+	}
+
 	public boolean isReadOnly() {
 		return readOnly;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	public void setShowLabel(boolean showLabel) {
+		this.showLabel = showLabel;
 	}
 
 	public void setReadOnly(boolean readOnly) {
@@ -178,6 +213,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 	public boolean isRequired() {
 		return required;
+	}
+
+	public void setRequired(boolean required) {
+		this.required = required;
 	}
 
 	public boolean isShowLabel() {
@@ -210,6 +249,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 	public String getTip() {
 		return tip;
+	}
+
+	public String getPlaceHolder() {
+		return placeHolder;
 	}
 
 	public T getPredefinedValue() {
@@ -248,6 +291,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		return convertToFormattedString(currentValue);
 	}
 
+	public boolean hasFormRules() {
+		return hasFormRules;
+	}
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -259,15 +306,18 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
 		destination.writeString(dataType.getValue());
 		destination.writeString(editorType.getValue());
+		destination.writeString(displayStyle);
 
 		destination.writeString(name);
 		destination.writeString(label);
 		destination.writeString(tip);
+		destination.writeString(placeHolder);
 
 		destination.writeInt(readOnly ? 1 : 0);
 		destination.writeInt(repeatable ? 1 : 0);
 		destination.writeInt(required ? 1 : 0);
 		destination.writeInt(showLabel ? 1 : 0);
+		destination.writeInt(hasFormRules ? 1 : 0);
 
 		destination.writeSerializable(predefinedValue);
 		destination.writeSerializable(currentValue);
@@ -278,6 +328,9 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		destination.writeInt(lastValidationResult ? 1 : 0);
 		destination.writeString(visibilityExpression);
 		destination.writeString(ddmDataProviderInstance);
+
+		destination.writeInt(isTransient ? 1 : 0);
+		destination.writeString(dataSourceType);
 	}
 
 	public List<Field> getFields() {
@@ -292,7 +345,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		return attributes;
 	}
 
-	protected String getAttributeStringValue(Map<String, Object> attributes, String key) {
+	protected static String getAttributeStringValue(Map<String, Object> attributes, String key) {
 		Object value = attributes.get(key);
 		return (value != null) ? value.toString() : "";
 	}
@@ -338,7 +391,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		}
 
 		public static DataType valueOf(Map<String, Object> attributes) {
-			Object mapValue = attributes.get("dataType");
+			Object mapValue = attributes.get(Field.formFieldKeys.getDataTypeKey());
 
 			if (mapValue == null) {
 				return UNSUPPORTED;
@@ -348,7 +401,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		}
 
 		public static DataType valueOf(Element element) {
-			String attributeValue = element.getAttribute("dataType");
+			String attributeValue = element.getAttribute(Field.formFieldKeys.getDataTypeKey());
 
 			if (attributeValue.isEmpty()) {
 				return UNSUPPORTED;
@@ -357,33 +410,76 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 			return assignDataTypeFromString(attributeValue);
 		}
 
-		public Field createField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
+		public Field createField(Map<String, Object> attributes, Locale locale,
+								 Locale defaultLocale) {
+
+			initFormFieldKeys(attributes);
+
+			return createField(attributes, locale, defaultLocale, false);
+		}
+
+		public void initFormFieldKeys(Map<String, Object> attributes) {
+			if (attributes.containsKey("isDDM")) {
+				Field.formFieldKeys = new DDMFormFieldsKeys();
+			} else {
+				Field.formFieldKeys = new DDLFormFieldKeys();
+			}
+		}
+
+		public Field createField(Map<String, Object> attributes, Locale locale,
+								 Locale defaultLocale, boolean repeatedField) {
+
+			initFormFieldKeys(attributes);
+
+			Field field = null;
+
 			if (STRING.equals(this)) {
 				EditorType editor = EditorType.valueOf(attributes);
 
 				if (editor == EditorType.SELECT || editor == EditorType.RADIO) {
-					return new StringWithOptionsField(attributes, locale, defaultLocale);
+					field = new SelectableOptionsField(attributes, locale, defaultLocale);
 				} else if (editor == EditorType.DATE) {
-					return new DateField(attributes, locale, defaultLocale);
+					field = new DateField(attributes, locale, defaultLocale);
+				} else if (editor == EditorType.DOCUMENT) {
+					field = new DocumentField(attributes, locale, defaultLocale);
+				} else if (editor == EditorType.CHECKBOX_MULTIPLE) {
+					field = new CheckboxMultipleField(attributes, locale, defaultLocale);
+				} else if (editor == EditorType.GRID) {
+					field = new GridField(attributes, locale, defaultLocale);
 				} else {
-					return new StringField(attributes, locale, defaultLocale);
+					field = new StringField(attributes, locale, defaultLocale);
 				}
 			} else if (HTML.equals(this)) {
-				return new StringField(attributes, locale, defaultLocale);
+				field = new StringField(attributes, locale, defaultLocale);
 			} else if (BOOLEAN.equals(this)) {
-				return new BooleanField(attributes, locale, defaultLocale);
+				field = new BooleanField(attributes, locale, defaultLocale);
 			} else if (DATE.equals(this)) {
-				return new DateField(attributes, locale, defaultLocale);
+				field = new DateField(attributes, locale, defaultLocale);
 			} else if (NUMBER.equals(this)) {
-				return new NumberField(attributes, locale, defaultLocale);
+				field = new NumberField(attributes, locale, defaultLocale);
 			} else if (DOCUMENT.equals(this)) {
-				return new DocumentField(attributes, locale, defaultLocale);
+				field = new DocumentField(attributes, locale, defaultLocale);
 			} else if (IMAGE.equals(this)) {
-				return new ImageField(attributes, locale, defaultLocale);
+				field = new ImageField(attributes, locale, defaultLocale);
 			} else if (GEO.equals(this)) {
-				return new GeolocationField(attributes, locale, defaultLocale);
+				field = new GeolocationField(attributes, locale, defaultLocale);
+			} else {
+				if (EditorType.valueOf(attributes) == EditorType.PARAGRAPH) {
+					field = new StringField(attributes, locale, defaultLocale);
+				}
 			}
-			return null;
+
+			if (field != null && !repeatedField) {
+				boolean repeatable = Boolean.valueOf(
+						getAttributeStringValue(attributes, formFieldKeys.isRepeatableKey()));
+
+				if (repeatable) {
+					Field baseField = field;
+					field = new RepeatableField(baseField);
+				}
+			}
+
+			return field;
 		}
 
 		public String getValue() {
@@ -393,11 +489,11 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	}
 
 	public enum EditorType {
-		CHECKBOX("checkbox"), TEXT("text"), TEXT_AREA("textarea", "paragraph", "ddm-text-html"), DATE("ddm-date",
-			"date"), NUMBER("ddm-number", "number", "numeric"), INTEGER("ddm-integer", "integer"), DECIMAL(
-			"ddm-decimal", "decimal"), SELECT("select", "checkbox_multiple"), RADIO("radio"), DOCUMENT(
-			"ddm-documentlibrary", "documentlibrary", "wcm-image"), GEO("ddm-geolocation", "geolocation"), UNSUPPORTED(
-			"");
+		CHECKBOX("checkbox"), TEXT("text"), TEXT_AREA("textarea", "ddm-text-html"), PARAGRAPH("paragraph"), DATE(
+			"ddm-date", "date"), NUMBER("ddm-number", "number", "numeric"), INTEGER("ddm-integer", "integer"), DECIMAL(
+			"ddm-decimal", "decimal", "double"), SELECT("select"), CHECKBOX_MULTIPLE("checkbox_multiple"), RADIO(
+			"radio"), DOCUMENT("ddm-documentlibrary", "document_library", "documentlibrary", "wcm-image"), GEO(
+			"ddm-geolocation", "geolocation"), GRID("grid"), REPEATABLE("repeatable"), UNSUPPORTED("");
 
 		private final String[] values;
 
@@ -414,15 +510,20 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		}
 
 		public static EditorType valueOf(Map<String, Object> attributes) {
-			Object mapValue = attributes.get("type");
+			Object mapValue = attributes.get(Field.formFieldKeys.getAdditionalTypeKey());
 
 			if (mapValue == null) {
 				return UNSUPPORTED;
 			}
 
-			if ("text".equals(mapValue) && "integer".equals(attributes.get("dataType"))) {
+			if ("text".equals(mapValue) && "integer".equals(attributes.get(Field.formFieldKeys.getDataTypeKey()))) {
 				return DECIMAL;
 			}
+
+			if ("text".equals(mapValue) && "multiline".equals(attributes.get(Field.formFieldKeys.getDisplayStyleKey()))) {
+				return TEXT_AREA;
+			}
+
 			return valueOfString(mapValue.toString());
 		}
 
@@ -450,4 +551,6 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 		}
 
 	}
+
+	public static FormFieldKeys formFieldKeys = new DDLFormFieldKeys();
 }

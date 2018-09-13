@@ -10,6 +10,7 @@ android {
 		versionCode rootProject.ext.versionCode
 		versionName rootProject.ext.versionName
 		applicationId "com.liferay.mobile.screens.bankofwesteros"
+		multiDexEnabled true
 	}
 
 	buildTypes {
@@ -35,4 +36,5 @@ dependencies {
 	implementation libraries.rxpermissions
 	implementation libraries.rxbinding
 	implementation libraries.rxjava
+	api libraries.support_multidex
 }

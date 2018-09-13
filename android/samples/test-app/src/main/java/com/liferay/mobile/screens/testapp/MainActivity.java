@@ -56,6 +56,10 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 		findViewById(R.id.ddl_form).setOnClickListener(this);
 		findViewById(R.id.ddl_list).setOnClickListener(this);
 
+		//DDM
+		findViewById(R.id.ddm_form).setOnClickListener(this);
+		findViewById(R.id.ddm_form_custom).setOnClickListener(this);
+
 		//Files
 		//findViewById(R.id.audio_display).setOnClickListener(this);
 		findViewById(R.id.image_display).setOnClickListener(this);
@@ -111,6 +115,12 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 				break;
 			case R.id.user_portrait:
 				start(UserPortraitActivity.class);
+				break;
+			case R.id.ddm_form:
+				start(DDMFormActivity.class);
+				break;
+			case R.id.ddm_form_custom:
+				start(DDMFormCustomActivity.class);
 				break;
 			case R.id.get_user:
 				start(GetUserActivity.class);

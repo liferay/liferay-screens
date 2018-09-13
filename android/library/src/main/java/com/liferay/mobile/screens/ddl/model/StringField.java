@@ -16,13 +16,18 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import com.liferay.mobile.screens.ddm.form.model.StringValidation;
+import com.liferay.mobile.screens.ddm.form.model.StringValidatorParser;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
 /**
  * @author Jose Manuel Navarro
  */
-public class StringField extends Field<String> {
+public class StringField extends OptionsField<String> {
+
+	private StringValidation stringValidation;
 
 	public static final Parcelable.ClassLoaderCreator<StringField> CREATOR =
 		new Parcelable.ClassLoaderCreator<StringField>() {
@@ -48,9 +53,23 @@ public class StringField extends Field<String> {
 	public StringField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
 		super(attributes, locale, defaultLocale);
 
+		initializeValidation(attributes);
+
 		if (getText() != null) {
 			setReadOnly(true);
 		}
+	}
+
+	private void initializeValidation(Map<String, Object> attributes) {
+		Map<String, String> validation;
+		if (attributes.get(Field.formFieldKeys.getValidationKey()) instanceof Map) {
+			 validation = (Map<String, String>) attributes.get(Field.formFieldKeys.getValidationKey());
+
+		} else {
+			validation = new HashMap<>();
+		}
+
+		stringValidation = new StringValidatorParser().parseStringValidation(validation);
 	}
 
 	protected StringField(Parcel source, ClassLoader loader) {
@@ -69,7 +88,7 @@ public class StringField extends Field<String> {
 			valid = !trimmedString.isEmpty();
 		}
 
-		return valid;
+		return valid && stringValidation.validate(currentValue);
 	}
 
 	@Override

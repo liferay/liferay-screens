@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.fields.DDMFieldGridRowView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:orientation="horizontal"
+	android:paddingTop="@dimen/default_grid_row_padding"
+	>
+
+	<EditText
+		android:id="@+id/row_label_edit_text"
+		android:layout_width="0dp"
+		android:layout_weight="1"
+		android:background="@drawable/default_grid_label_tinted"
+		android:editable="false"
+		android:focusable="false"
+		android:inputType="none"
+		android:ellipsize="end"
+		style="@style/default_grid_label_edit_text"
+		/>
+
+	<com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldSelectView
+		android:id="@+id/column_label_edit_text"
+		android:layout_width="0dp"
+		android:layout_height="wrap_content"
+		android:layout_weight="2">
+
+		<TextView
+			android:id="@+id/liferay_ddl_label"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:visibility="gone"
+			/>
+
+		<EditText
+			android:id="@+id/liferay_ddl_edit_text"
+			android:layout_width="match_parent"
+			android:background="@drawable/default_grid_edit_text_selector"
+			android:drawableEnd="@drawable/default_icon_select"
+			android:drawableRight="@drawable/default_icon_select"
+			android:editable="false"
+			android:focusable="false"
+			android:inputType="none"
+			android:paddingEnd="@dimen/icon_padding"
+			android:paddingRight="@dimen/icon_padding"
+			android:hint="@string/hint_select"
+			android:ellipsize="end"
+			style="@style/base_default_grid_edit_text"
+			/>
+
+	</com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldSelectView>
+
+</com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.fields.DDMFieldGridRowView>

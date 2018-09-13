@@ -20,10 +20,13 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import com.jakewharton.rxbinding.widget.RxRatingBar;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.NumberField;
+import rx.Observable;
+import rx.functions.Func1;
 
 /**
  * @author Jose Manuel Navarro
@@ -34,6 +37,7 @@ public class CustomRatingNumberView extends LinearLayout
 	protected NumberField field;
 	protected RatingBar ratingBar;
 	protected View parentView;
+	protected Observable<NumberField> onChangedValueObservable = Observable.empty();
 
 	public CustomRatingNumberView(Context context) {
 		super(context);
@@ -97,6 +101,11 @@ public class CustomRatingNumberView extends LinearLayout
 	}
 
 	@Override
+	public Observable<NumberField> getOnChangedValueObservable() {
+		return onChangedValueObservable;
+	}
+
+	@Override
 	public void setUpdateMode(boolean enabled) {
 		ratingBar.setEnabled(enabled);
 	}
@@ -123,6 +132,15 @@ public class CustomRatingNumberView extends LinearLayout
 		ratingBar = findViewById(R.id.liferay_ddl_custom_rating);
 
 		ratingBar.setOnRatingBarChangeListener(this);
+
+		onChangedValueObservable = RxRatingBar.ratingChanges(ratingBar)
+			.distinctUntilChanged()
+			.map(new Func1<Float, NumberField>() {
+				@Override
+				public NumberField call(Float aFloat) {
+					return field;
+				}
+			});
 	}
 
 	protected float ratingToValue(float score) {

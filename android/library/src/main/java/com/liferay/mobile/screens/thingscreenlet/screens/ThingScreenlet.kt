@@ -11,10 +11,11 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-
 package com.liferay.mobile.screens.thingscreenlet.screens
 
 import android.content.Context
+import android.os.Bundle
+import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
@@ -22,10 +23,9 @@ import com.github.kittinunf.result.failure
 import com.liferay.apio.consumer.delegates.observe
 import com.liferay.apio.consumer.fetch
 import com.liferay.apio.consumer.model.Thing
-import com.liferay.mobile.android.http.Headers
-import com.liferay.mobile.android.http.Request
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.context.SessionContext
+import com.liferay.mobile.screens.ddm.form.model.FormInstance
 import com.liferay.mobile.screens.thingscreenlet.extensions.inflate
 import com.liferay.mobile.screens.thingscreenlet.model.BlogPosting
 import com.liferay.mobile.screens.thingscreenlet.model.Collection
@@ -58,7 +58,8 @@ class ThingScreenlet @JvmOverloads constructor(
 		val layoutIds: MutableMap<String, MutableMap<Scenario, Int>> = mutableMapOf(
 			"BlogPosting" to BlogPosting.DEFAULT_VIEWS,
 			"Collection" to Collection.DEFAULT_VIEWS,
-			"Person" to Person.DEFAULT_VIEWS
+			"Person" to Person.DEFAULT_VIEWS,
+			"FormInstance" to FormInstance.DEFAULT_VIEWS
 		)
 	}
 
@@ -140,6 +141,31 @@ class ThingScreenlet @JvmOverloads constructor(
 		}
 		is Event.CustomEvent -> {
 			screenletEvents?.onCustomEvent(event.name,this, event.view, event.thing) as? T
+		}
+	}
+
+	override fun onFinishInflate() {
+		super.onFinishInflate()
+		isSaveEnabled = true
+	}
+
+	override fun onSaveInstanceState(): Parcelable {
+		thing?.let {
+			val bundle = Bundle()
+			bundle.putParcelable("superState", super.onSaveInstanceState())
+			bundle.putParcelable("thing", it)
+			return bundle
+		}
+
+		return super.onSaveInstanceState()
+	}
+
+	override fun onRestoreInstanceState(state: Parcelable?) {
+		if (state is Bundle) {
+			thing = state.getParcelable("thing")
+			super.onRestoreInstanceState(state.getParcelable("superState"))
+		} else {
+			super.onRestoreInstanceState(state)
 		}
 	}
 }

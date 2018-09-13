@@ -97,13 +97,17 @@ public class LiferayServerContext {
 		classFactory = factoryClass;
 	}
 
+	public static boolean isLiferay71() {
+		return LiferayPortalVersion.VERSION_71.equals(portalVersion);
+	}
+
 	public static boolean isLiferay7() {
 		return LiferayPortalVersion.VERSION_70.equals(portalVersion) || LiferayPortalVersion.VERSION_71.equals(
 			portalVersion);
 	}
 
 	public static boolean isLiferay62() {
-		return LiferayPortalVersion.VERSION_70.equals(portalVersion);
+		return LiferayPortalVersion.VERSION_62.equals(portalVersion);
 	}
 
 	public static String getVersionFactory() {

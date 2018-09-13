@@ -2,6 +2,7 @@
 <resources>
 
 	<color name="colorPrimary">@color/colorPrimary_lexicon</color>
+	<color name="colorAccent">@color/colorPrimaryLight_lexicon</color>
 	<color name="colorPrimaryLight">@color/colorPrimaryLight_lexicon</color>
 	<color name="colorPrimaryDark">@color/colorPrimaryDark_lexicon</color>
 
@@ -23,6 +24,8 @@
 	<color name="lightBlue_lexicon">#f0f5ff</color>
 	<color name="lightBlue2_lexicon">#b3cdff</color>
 	<color name="lightBlue3_lexicon">#71a2ff</color>
+
+	<color name="redError_lexicon">#da1414</color>
 
 	<color name="colorTextErrorPrimary">#feefef</color>
 	<color name="colorTextErrorSecondary">#da1414</color>

@@ -97,4 +97,5 @@ public class ServiceVersionFactory70 implements ServiceVersionFactory {
 	public CommentConnector getCommentConnector(Session session) {
 		return new CommentConnector70(session);
 	}
+
 }

@@ -10,6 +10,7 @@ android {
 		targetSdkVersion rootProject.ext.targetSdkVersion
 		versionCode rootProject.ext.versionCode
 		versionName rootProject.ext.versionName
+		vectorDrawables.useSupportLibrary = true
 		multiDexEnabled true
 	}
 
@@ -25,9 +26,6 @@ android {
 		}
 	}
 
-	buildTypes {
-		xamarin {}
-	}
 	sourceSets {
 		release {
 			java.srcDirs = ['src/debug/java']
@@ -60,6 +58,7 @@ dependencies {
 	implementation libraries.recyclerView
 	implementation libraries.gms
 	implementation libraries.picasso
+    implementation libraries.reactive_network
 	implementation libraries.rxjava
 	implementation libraries.rxpermissions
 	implementation libraries.rxbinding
@@ -92,3 +91,7 @@ dependencies {
 
 apply from: '../bintray.gradle'
 apply from: '../install.gradle'
+repositories {
+	mavenLocal()
+	mavenCentral()
+}

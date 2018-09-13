@@ -23,6 +23,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.model.DateField;
+import com.liferay.mobile.screens.thingscreenlet.screens.events.Event;
+import com.liferay.mobile.screens.util.EventBusUtil;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
