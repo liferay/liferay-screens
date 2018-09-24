@@ -54,7 +54,6 @@ dependencies {
 	}
 
 	implementation libraries.appCompat
-	implementation libraries.design
 	implementation libraries.exif
 	implementation libraries.eventbus
 	implementation libraries.recyclerView

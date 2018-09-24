@@ -32,16 +32,6 @@
 			android:visibility="gone"
 			/>
 
-		<android.support.design.widget.FloatingActionButton
-			android:id="@+id/liferay_upload_fab"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="end|bottom"
-			android:layout_margin="10dp"
-			android:src="@drawable/default_upload_icon"
-			app:backgroundTint="?colorPrimary"
-			/>
-
 	</FrameLayout>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.grid.GridImageGalleryView>

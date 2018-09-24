@@ -1,7 +1,6 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.grid;
 
 import android.content.Context;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.GridLayoutManager;
 import android.util.AttributeSet;
 import android.view.View;
@@ -13,8 +12,7 @@ import com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.BaseImageGa
  * @author Víctor Galán Grande
  */
 public class GridImageGalleryView
-	extends BaseImageGalleryView<GridImageGalleryAdapter.GridGalleryViewHolder, GridImageGalleryAdapter>
-	implements View.OnClickListener {
+	extends BaseImageGalleryView<GridImageGalleryAdapter.GridGalleryViewHolder, GridImageGalleryAdapter> {
 
 	public static final int COLUMNS_SIZE = 3;
 
@@ -39,14 +37,6 @@ public class GridImageGalleryView
 	}
 
 	@Override
-	public void onClick(View v) {
-
-		if (v.getId() == R.id.liferay_upload_fab) {
-			openMediaSelector();
-		}
-	}
-
-	@Override
 	protected GridImageGalleryAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
 		return new GridImageGalleryAdapter(itemLayoutId, itemProgressLayoutId, this);
 	}
@@ -65,10 +55,6 @@ public class GridImageGalleryView
 	protected void onFinishInflate() {
 		super.onFinishInflate();
 		recyclerView.setLayoutManager(new GridLayoutManager(getContext(), COLUMNS_SIZE));
-		FloatingActionButton uploadFAB = findViewById(R.id.liferay_upload_fab);
-		if (uploadFAB != null) {
-			uploadFAB.setOnClickListener(this);
-		}
 	}
 
 	@Override
