@@ -13,10 +13,10 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.dlfileentry.DLFileEntryService;
 import com.liferay.mobile.pushnotifications.R;
 import com.liferay.mobile.pushnotifications.activities.NotificationsActivity;
 import com.liferay.mobile.pushnotifications.download.DownloadPicture;
+import com.liferay.mobile.pushnotifications.service.v62.DLFileEntryService;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.push.AbstractPushService;
@@ -98,8 +98,9 @@ public class PushService extends AbstractPushService {
 			DLFileEntryService entryService = new DLFileEntryService(session);
 			return entryService.getFileEntryByUuidAndGroupId(uuid, groupId);
 		} else {
-			com.liferay.mobile.android.v7.dlfileentry.DLFileEntryService entryService =
-				new com.liferay.mobile.android.v7.dlfileentry.DLFileEntryService(session);
+
+			com.liferay.mobile.pushnotifications.service.v7.DLFileEntryService entryService =
+				new com.liferay.mobile.pushnotifications.service.v7.DLFileEntryService(session);
 			return entryService.getFileEntryByUuidAndGroupId(uuid, groupId);
 		}
 	}

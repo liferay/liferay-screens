@@ -1,7 +1,7 @@
 package com.liferay.mobile.screens.ddl.form.connector;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.ddmstructure.DDMStructureService;
+import com.liferay.mobile.screens.service.v62.DDMStructureService;
 import org.json.JSONObject;
 
 /**

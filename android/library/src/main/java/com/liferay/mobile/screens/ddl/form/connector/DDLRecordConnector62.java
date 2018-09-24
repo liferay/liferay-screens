@@ -2,7 +2,7 @@ package com.liferay.mobile.screens.ddl.form.connector;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.ddlrecord.DDLRecordService;
+import com.liferay.mobile.screens.service.v62.DDLRecordService;
 import org.json.JSONObject;
 
 /**

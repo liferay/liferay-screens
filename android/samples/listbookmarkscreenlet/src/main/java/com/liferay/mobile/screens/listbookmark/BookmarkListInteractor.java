@@ -1,9 +1,9 @@
 package com.liferay.mobile.screens.listbookmark;
 
-import com.liferay.mobile.android.v7.bookmarksentry.BookmarksEntryService;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractor;
 import com.liferay.mobile.screens.base.list.interactor.BaseListInteractorListener;
 import com.liferay.mobile.screens.base.list.interactor.Query;
+import com.liferay.mobile.screens.bookmark.interactor.v7.BookmarksEntryService;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import java.util.Map;
 import org.json.JSONArray;
@@ -25,7 +25,7 @@ public class BookmarkListInteractor extends BaseListInteractor<BaseListInteracto
 			return new BookmarksEntryService(getSession()).getEntries(groupId, folderId, query.getStartRow(),
 				query.getEndRow(), query.getComparatorJSONWrapper());
 		} else {
-			return new com.liferay.mobile.android.v62.bookmarksentry.BookmarksEntryService(getSession()).getEntries(
+			return new com.liferay.mobile.screens.bookmark.interactor.v62.BookmarksEntryService(getSession()).getEntries(
 				groupId, folderId, query.getStartRow(), query.getEndRow(), query.getComparatorJSONWrapper());
 		}
 	}
@@ -36,7 +36,7 @@ public class BookmarkListInteractor extends BaseListInteractor<BaseListInteracto
 		if (LiferayServerContext.isLiferay7()) {
 			return new BookmarksEntryService(getSession()).getEntriesCount(groupId, folderId);
 		} else {
-			return new com.liferay.mobile.android.v62.bookmarksentry.BookmarksEntryService(
+			return new com.liferay.mobile.screens.bookmark.interactor.v62.BookmarksEntryService(
 				getSession()).getEntriesCount(groupId, folderId);
 		}
 	}

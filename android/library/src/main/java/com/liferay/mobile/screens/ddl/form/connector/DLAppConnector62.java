@@ -3,7 +3,7 @@ package com.liferay.mobile.screens.ddl.form.connector;
 import com.liferay.mobile.android.http.file.UploadData;
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.dlapp.DLAppService;
+import com.liferay.mobile.screens.service.v62.DLAppService;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

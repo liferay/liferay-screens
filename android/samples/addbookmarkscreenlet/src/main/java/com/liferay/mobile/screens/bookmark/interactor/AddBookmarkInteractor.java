@@ -2,9 +2,9 @@ package com.liferay.mobile.screens.bookmark.interactor;
 
 import android.support.annotation.NonNull;
 import android.webkit.URLUtil;
-import com.liferay.mobile.android.v7.bookmarksentry.BookmarksEntryService;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
+import com.liferay.mobile.screens.bookmark.interactor.v62.BookmarksEntryService;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 import org.json.JSONObject;
 
@@ -49,7 +49,7 @@ public class AddBookmarkInteractor extends BaseRemoteInteractor<AddBookmarkListe
 			return new BookmarksEntryService(getSession()).addEntry(LiferayServerContext.getGroupId(), folderId, title,
 				url, "", null);
 		} else {
-			return new com.liferay.mobile.android.v62.bookmarksentry.BookmarksEntryService(getSession()).addEntry(
+			return new com.liferay.mobile.screens.bookmark.interactor.v62.BookmarksEntryService(getSession()).addEntry(
 				LiferayServerContext.getGroupId(), folderId, title, url, "", null);
 		}
 	}

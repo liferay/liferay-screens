@@ -1,8 +1,8 @@
 package com.liferay.mobile.screens.comment.connector;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v7.commentmanagerjsonws.CommentmanagerjsonwsService;
 import com.liferay.mobile.screens.comment.display.interactor.delete.CommentConnector;
+import com.liferay.mobile.screens.service.v70.CommentmanagerjsonwsService;
 
 public class CommentConnector70 implements CommentConnector {
 
