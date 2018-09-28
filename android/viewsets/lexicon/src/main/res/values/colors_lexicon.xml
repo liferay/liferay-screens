@@ -27,4 +27,7 @@
 	<color name="colorTextErrorPrimary">#feefef</color>
 	<color name="colorTextErrorSecondary">#da1414</color>
 
+	<color name="autocomplete_popup_border">#2F6b6c7e</color>
+	<color name="autocomplete_background_color">#fafafa</color>
+
 </resources>
