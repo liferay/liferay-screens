@@ -19,26 +19,26 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.liferay.apio.consumer.delegates.observeNonNull
+import com.liferay.apio.consumer.model.Thing
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.thingscreenlet.delegates.bind
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
-import com.liferay.apio.consumer.delegates.observeNonNull
-import com.liferay.apio.consumer.model.Thing
 
 class ThingView @JvmOverloads constructor(
-	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : BaseView,
-	LinearLayout(context, attrs, defStyleAttr) {
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : BaseView,
+    LinearLayout(context, attrs, defStyleAttr) {
 
-	override var screenlet: ThingScreenlet? = null
+    override var screenlet: ThingScreenlet? = null
 
-	val thingId by bind<View>(R.id.thing_id)
-	val thingType by bind<View>(R.id.thing_type)
-	val thingName by bind<View>(R.id.thing_name)
+    val thingId by bind<View>(R.id.thing_id)
+    val thingType by bind<View>(R.id.thing_type)
+    val thingName by bind<View>(R.id.thing_name)
 
-	override var thing: Thing? by observeNonNull {
-		(thingId as? TextView)?.text = it.id
-		(thingType as? TextView)?.text = it.type.joinToString()
-		(thingName as? TextView)?.text = it.name
-	}
+    override var thing: Thing? by observeNonNull {
+        (thingId as? TextView)?.text = it.id
+        (thingType as? TextView)?.text = it.type.joinToString()
+        (thingName as? TextView)?.text = it.name
+    }
 
 }

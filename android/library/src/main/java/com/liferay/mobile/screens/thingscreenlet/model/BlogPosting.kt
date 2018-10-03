@@ -14,37 +14,37 @@
 
 package com.liferay.mobile.screens.thingscreenlet.model
 
-import com.liferay.mobile.screens.R
-import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
-import com.liferay.mobile.screens.thingscreenlet.screens.views.Row
-import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
 import com.liferay.apio.consumer.extensions.asDate
 import com.liferay.apio.consumer.model.Relation
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.get
-import java.util.Date
+import com.liferay.mobile.screens.R
+import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
+import com.liferay.mobile.screens.thingscreenlet.screens.views.Row
+import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
+import java.util.*
 
 data class BlogPosting(
-	val headline: String?,
-	val alternativeHeadline: String?,
-	val articleBody: String?,
-	val creator: Relation?,
-	val createDate: Date?) {
+    val headline: String?,
+    val alternativeHeadline: String?,
+    val articleBody: String?,
+    val creator: Relation?,
+    val createDate: Date?) {
 
-	companion object {
-		val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
-			mutableMapOf(
-				Detail to R.layout.blog_posting_detail_default,
-				Row to R.layout.blog_posting_row_default
-			)
+    companion object {
+        val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
+            mutableMapOf(
+                Detail to R.layout.blog_posting_detail_default,
+                Row to R.layout.blog_posting_row_default
+            )
 
-		val converter: (Thing) -> Any = {
-			BlogPosting(
-				it["headline"] as? String,
-				it["alternativeHeadline"] as? String,
-				it["articleBody"] as? String,
-				it["creator"] as? Relation,
-				(it["dateCreated"] as? String)?.asDate())
-		}
-	}
+        val converter: (Thing) -> Any = {
+            BlogPosting(
+                it["headline"] as? String,
+                it["alternativeHeadline"] as? String,
+                it["articleBody"] as? String,
+                it["creator"] as? Relation,
+                (it["dateCreated"] as? String)?.asDate())
+        }
+    }
 }

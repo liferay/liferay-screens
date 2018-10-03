@@ -16,41 +16,41 @@ package com.liferay.mobile.screens.thingscreenlet.screens.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
+import com.liferay.apio.consumer.delegates.observeNonNull
+import com.liferay.apio.consumer.model.Thing
 import com.liferay.mobile.screens.R
+import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.events.ScreenletEvents
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Row
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
-import com.liferay.apio.consumer.delegates.observeNonNull
-import com.liferay.apio.consumer.model.Thing
 
 open class
 ThingViewHolder(itemView: View, listener: Listener) : RecyclerView.ViewHolder(itemView), ScreenletEvents {
 
-	val thingScreenlet by bindNonNull<ThingScreenlet>(R.id.thing_screenlet)
+    val thingScreenlet by bindNonNull<ThingScreenlet>(R.id.thing_screenlet)
 
-	open var thing: Thing? by observeNonNull {
-		itemView.setOnClickListener { view ->
-			listener.onClickedRow(view, it)?.onClick(itemView)
-		}
+    open var thing: Thing? by observeNonNull {
+        itemView.setOnClickListener { view ->
+            listener.onClickedRow(view, it)?.onClick(itemView)
+        }
 
-		thingScreenlet.scenario = Row
+        thingScreenlet.scenario = Row
 
-		thingScreenlet.screenletEvents = object : ScreenletEvents {
-			override fun <T : BaseView> onGetCustomLayout(screenlet: ThingScreenlet, parentView: T?, thing: Thing,
-				scenario: Scenario): Int? {
-				return listener.onLayoutRow(screenlet.baseView, thing, scenario)
-			}
-		}
+        thingScreenlet.screenletEvents = object : ScreenletEvents {
+            override fun <T : BaseView> onGetCustomLayout(screenlet: ThingScreenlet, parentView: T?, thing: Thing,
+                scenario: Scenario): Int? {
+                return listener.onLayoutRow(screenlet.baseView, thing, scenario)
+            }
+        }
 
-		thingScreenlet.thing = thing
-	}
+        thingScreenlet.thing = thing
+    }
 
-	interface Listener {
-		fun onClickedRow(view: View, thing: Thing): View.OnClickListener?
-		fun onLayoutRow(view: BaseView?, thing: Thing, scenario: Scenario): Int?
-	}
+    interface Listener {
+        fun onClickedRow(view: View, thing: Thing): View.OnClickListener?
+        fun onLayoutRow(view: BaseView?, thing: Thing, scenario: Scenario): Int?
+    }
 
 }

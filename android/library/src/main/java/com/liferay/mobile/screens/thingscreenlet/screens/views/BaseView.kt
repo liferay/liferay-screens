@@ -14,9 +14,9 @@
 
 package com.liferay.mobile.screens.thingscreenlet.screens.views
 
+import com.liferay.apio.consumer.model.Thing
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
-import com.liferay.apio.consumer.model.Thing
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.error
 
@@ -25,18 +25,18 @@ import org.jetbrains.anko.error
  */
 interface BaseView : AnkoLogger {
 
-	var screenlet: ThingScreenlet?
+    var screenlet: ThingScreenlet?
 
-	fun <T> sendEvent(event: Event<T>): T? = screenlet?.onEventFor(event)
+    fun <T> sendEvent(event: Event<T>): T? = screenlet?.onEventFor(event)
 
-	var thing: Thing?
+    var thing: Thing?
 
-	fun onDestroy() {
-		// Method called when view destroyed
-	}
+    fun onDestroy() {
+        // Method called when view destroyed
+    }
 
-	fun showError(message: String?) {
-		error { "Error loading the thing " + message }
-	}
+    fun showError(message: String?) {
+        error { "Error loading the thing " + message }
+    }
 
 }

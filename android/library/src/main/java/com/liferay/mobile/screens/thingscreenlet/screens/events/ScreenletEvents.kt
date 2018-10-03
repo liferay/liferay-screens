@@ -15,13 +15,13 @@
 package com.liferay.mobile.screens.thingscreenlet.screens.events
 
 import android.view.View
+import com.liferay.apio.consumer.model.Thing
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
-import com.liferay.apio.consumer.model.Thing
 
 interface ScreenletEvents {
-	fun <T : BaseView> onClickEvent(baseView: T, view: View, thing: Thing): View.OnClickListener? = null
+    fun <T : BaseView> onClickEvent(baseView: T, view: View, thing: Thing): View.OnClickListener? = null
 
 	fun <T : BaseView> onGetCustomLayout(
 		screenlet: ThingScreenlet, parentView: T?, thing: Thing, scenario: Scenario): Int? = null
