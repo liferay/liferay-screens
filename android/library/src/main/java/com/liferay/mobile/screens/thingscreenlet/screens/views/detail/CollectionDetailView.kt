@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.thingscreenlet.screens.views.detail
 
 import android.content.Context
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
@@ -40,6 +41,7 @@ open class CollectionDetailView @JvmOverloads constructor(
     val recyclerView by bindNonNull<RecyclerView>(R.id.collection_recycler_view)
 
     override var thing: Thing? by converter<Collection> {
+        recyclerView.addItemDecoration(DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = ThingAdapter(it, this)
     }
