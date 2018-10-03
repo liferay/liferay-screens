@@ -22,114 +22,105 @@ import com.github.kittinunf.result.failure
 import com.liferay.apio.consumer.delegates.observe
 import com.liferay.apio.consumer.fetch
 import com.liferay.apio.consumer.model.Thing
-import com.liferay.mobile.android.http.Headers
-import com.liferay.mobile.android.http.Request
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.context.SessionContext
 import com.liferay.mobile.screens.thingscreenlet.extensions.inflate
-import com.liferay.mobile.screens.thingscreenlet.model.BlogPosting
+import com.liferay.mobile.screens.thingscreenlet.model.*
 import com.liferay.mobile.screens.thingscreenlet.model.Collection
-import com.liferay.mobile.screens.thingscreenlet.model.Person
 import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
 import com.liferay.mobile.screens.thingscreenlet.screens.events.ScreenletEvents
-import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
-import com.liferay.mobile.screens.thingscreenlet.screens.views.Custom
-import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
-import com.liferay.mobile.screens.thingscreenlet.screens.views.Row
-import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
+import com.liferay.mobile.screens.thingscreenlet.screens.views.*
 import okhttp3.HttpUrl
 
 open class BaseScreenlet @JvmOverloads constructor(
-	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) :
-	FrameLayout(context, attrs, defStyleAttr) {
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) :
+    FrameLayout(context, attrs, defStyleAttr) {
 
-	var layout: View? = null
+    var layout: View? = null
 }
 
-class ThingScreenlet @JvmOverloads constructor(
-	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) :
-	BaseScreenlet(context, attrs, defStyleAttr, defStyleRes) {
+open class ThingScreenlet @JvmOverloads constructor(
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) :
+    BaseScreenlet(context, attrs, defStyleAttr, defStyleRes) {
 
-	var screenletEvents: ScreenletEvents? = null
+    open var scenario: Scenario = Detail
 
-	var scenario: Scenario = Detail
+    var screenletEvents: ScreenletEvents? = null
 
-	companion object {
-		val layoutIds: MutableMap<String, MutableMap<Scenario, Int>> = mutableMapOf(
-			"BlogPosting" to BlogPosting.DEFAULT_VIEWS,
-			"Collection" to Collection.DEFAULT_VIEWS,
-			"Person" to Person.DEFAULT_VIEWS
-		)
-	}
+    open var layoutIds: MutableMap<String, MutableMap<Scenario, Int>> = mutableMapOf(
+        "BlogPosting" to BlogPosting.DEFAULT_VIEWS,
+        "Collection" to Collection.DEFAULT_VIEWS,
+        "Person" to Person.DEFAULT_VIEWS
+    )
 
-	val layoutId: Int
+    var layoutId: Int
 
-	var thing: Thing? by observe {
+    var thing: Thing? by observe {
 
-		if (layout == null) {
-			val layoutId = getLayoutIdFor(thing = it) ?: R.layout.thing_default
+        if (layout == null) {
+            val layoutId = getLayoutIdFor(thing = it) ?: R.layout.thing_default
 
-			layout?.also {
-				baseView?.onDestroy()
-				this.removeView(it)
-			}
+            layout?.also {
+                baseView?.onDestroy()
+                this.removeView(it)
+            }
 
-			layout = this.inflate(layoutId)
+            layout = this.inflate(layoutId)
 
-			addView(layout)
+            addView(layout)
 
-			baseView?.apply {
-				screenlet = this@ThingScreenlet
-				thing = it
-			}
-		}
-	}
+            baseView?.apply {
+                screenlet = this@ThingScreenlet
+                thing = it
+            }
+        }
+    }
 
-	val baseView: BaseView? get() = layout as? BaseView
+    val baseView: BaseView? get() = layout as? BaseView
 
-	@JvmOverloads
-	fun load(thingId: String, scenario: Scenario? = null, credentials: String? = null,
-		onComplete: ((ThingScreenlet) -> Unit)? = null) {
+    @JvmOverloads
+    fun load(thingId: String, scenario: Scenario? = null, credentials: String? = null,
+        onComplete: ((ThingScreenlet) -> Unit)? = null) {
 
-		val credentials = credentials ?: SessionContext.getCredentialsFromCurrentSession()
+        val credentials = credentials ?: SessionContext.getCredentialsFromCurrentSession()
 
-		HttpUrl.parse(thingId)?.let {
-			fetch(it, credentials) {
+        HttpUrl.parse(thingId)?.let {
+            fetch(it, credentials) {
 
-				if (scenario != null) {
-					this.scenario = scenario
-				}
+                if (scenario != null) {
+                    this.scenario = scenario
+                }
 
-				thing = it.component1()
+                thing = it.component1()
 
-				it.failure { baseView?.showError(it.message) }
+                it.failure { baseView?.showError(it.message) }
 
-				onComplete?.invoke(this)
-			}
-		}
-	}
+                onComplete?.invoke(this)
+            }
+        }
+    }
 
-	private fun getLayoutIdFor(thing: Thing?): Int? {
-		if (layoutId != 0) return layoutId
+    private fun getLayoutIdFor(thing: Thing?): Int? {
+        if (layoutId != 0) return layoutId
 
-		return thing?.let {
-			onEventFor(Event.FetchLayout(thing = it, scenario = scenario))
-		}
-	}
+        return thing?.let {
+            onEventFor(Event.FetchLayout(thing = it, scenario = scenario))
+        }
+    }
 
-	init {
-		val typedArray = attrs?.let { context.theme.obtainStyledAttributes(it, R.styleable.ThingScreenlet, 0, 0) }
+    init {
+        val typedArray = attrs?.let { context.theme.obtainStyledAttributes(it, R.styleable.ThingScreenlet, 0, 0) }
 
-		layoutId = typedArray?.getResourceId(R.styleable.ThingScreenlet_layoutId, 0) ?: 0
+        layoutId = typedArray?.getResourceId(R.styleable.ThingScreenlet_layoutId, 0) ?: 0
 
-		val scenarioId = typedArray?.getString(R.styleable.ThingScreenlet_scenario) ?: ""
+        val scenarioId = typedArray?.getString(R.styleable.ThingScreenlet_scenario) ?: ""
 
-		scenario = Scenario.stringToScenario?.invoke(scenarioId) ?: when (scenarioId.toLowerCase()) {
-			"detail", "" -> Detail
-			"row" -> Row
-			else -> Custom(scenarioId)
-		}
-	}
+        scenario = Scenario.stringToScenario?.invoke(scenarioId) ?: when (scenarioId.toLowerCase()) {
+            "detail", "" -> Detail
+            "row" -> Row
+            else -> Custom(scenarioId)
+        }
+    }
 
 	@Suppress("UNCHECKED_CAST")
 	fun <T> onEventFor(event: Event<T>): T? = when (event) {
