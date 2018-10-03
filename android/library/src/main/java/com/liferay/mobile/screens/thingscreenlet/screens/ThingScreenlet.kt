@@ -110,6 +110,16 @@ open class ThingScreenlet @JvmOverloads constructor(
         }
     }
 
+    private fun getLayoutIdFromThingType(event: Event.FetchLayout): Int? {
+        for (type in event.thing.type) {
+            if (layoutIds[type] != null) {
+                return layoutIds[type]?.get(event.scenario)
+            }
+        }
+
+        return layoutIds[event.thing.type[0]]?.get(event.scenario)
+    }
+
     init {
         val typedArray = attrs?.let { context.theme.obtainStyledAttributes(it, R.styleable.ThingScreenlet, 0, 0) }
 
