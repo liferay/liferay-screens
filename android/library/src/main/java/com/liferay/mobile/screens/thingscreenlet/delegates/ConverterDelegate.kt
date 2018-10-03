@@ -15,9 +15,8 @@
 package com.liferay.mobile.screens.thingscreenlet.delegates
 
 import com.liferay.apio.consumer.delegates.converters
-import com.liferay.mobile.screens.thingscreenlet.model.BlogPosting
+import com.liferay.mobile.screens.thingscreenlet.model.*
 import com.liferay.mobile.screens.thingscreenlet.model.Collection
-import com.liferay.mobile.screens.thingscreenlet.model.Person
 
 class ConverterDelegate {
 
@@ -25,9 +24,11 @@ class ConverterDelegate {
 		@JvmStatic
 		fun initializeConverter() {
 
-			converters[BlogPosting::class.java.name] = BlogPosting.converter
-			converters[Collection::class.java.name] = Collection.converter
-			converters[Person::class.java.name] = Person.converter
-		}
-	}
+            converters[BlogPosting::class.java.name] = BlogPosting.converter
+            converters[Collection::class.java.name] = Collection.converter
+            converters[Comment::class.java.name] = Comment.converter
+            converters[Person::class.java.name] = Person.converter
+            converters[WorkflowTask::class.java.name] = WorkflowTask.converter
+        }
+    }
 }

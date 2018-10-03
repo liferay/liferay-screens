@@ -50,7 +50,9 @@ open class ThingScreenlet @JvmOverloads constructor(
     open var layoutIds: MutableMap<String, MutableMap<Scenario, Int>> = mutableMapOf(
         "BlogPosting" to BlogPosting.DEFAULT_VIEWS,
         "Collection" to Collection.DEFAULT_VIEWS,
-        "Person" to Person.DEFAULT_VIEWS
+        "Person" to Person.DEFAULT_VIEWS,
+        "WorkflowTask" to WorkflowTask.DEFAULT_VIEWS,
+        "Comment" to Comment.DEFAULT_VIEWS
     )
 
     var layoutId: Int
