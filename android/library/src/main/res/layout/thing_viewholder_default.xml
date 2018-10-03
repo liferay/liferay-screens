@@ -6,11 +6,11 @@
     android:layout_height="wrap_content"
     >
 
-    <com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
-        android:id="@+id/thing_screenlet"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:scenario="row"
-        />
+	<com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
+		android:id="@+id/thing_screenlet"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		app:scenario="row"
+		/>
 
 </FrameLayout>

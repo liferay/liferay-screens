@@ -7,7 +7,6 @@ import com.liferay.mobile.screens.auth.login.connector.CurrentUserConnector;
 import com.liferay.mobile.screens.base.interactor.event.BasicEvent;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.util.ServiceProvider;
-import com.squareup.okhttp.Authenticator;
 import org.json.JSONObject;
 
 /**

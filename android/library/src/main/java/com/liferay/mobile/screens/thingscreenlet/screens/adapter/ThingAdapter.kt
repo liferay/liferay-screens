@@ -37,7 +37,6 @@ class ThingAdapter(collection: Collection, val listener: Listener) :
 
     val totalItems = collection.totalItems
     val members = collection.members?.toMutableList() ?: mutableListOf()
-
     val nextPage = collection.pages?.next
 
     override fun onBindViewHolder(holder: ThingViewHolder, position: Int) {
