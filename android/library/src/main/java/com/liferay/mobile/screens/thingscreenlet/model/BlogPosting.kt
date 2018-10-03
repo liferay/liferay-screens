@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.thingscreenlet.model
 
 import com.liferay.apio.consumer.extensions.asDate
+import com.liferay.apio.consumer.graph
 import com.liferay.apio.consumer.model.Relation
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.get
@@ -29,7 +30,8 @@ data class BlogPosting(
     val alternativeHeadline: String?,
     val articleBody: String?,
     val creator: Relation?,
-    val createDate: Date?) {
+    val createDate: Date?,
+    val type: String?) {
 
     companion object {
         val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
@@ -39,12 +41,20 @@ data class BlogPosting(
             )
 
         val converter: (Thing) -> Any = {
-            BlogPosting(
-                it["headline"] as? String,
-                it["alternativeHeadline"] as? String,
-                it["articleBody"] as? String,
-                it["creator"] as? Relation,
-                (it["dateCreated"] as? String)?.asDate())
+
+            val headline = it["headline"] as? String
+
+            val alternativeHeadline = it["alternativeHeadline"] as? String
+
+            val articleBody = it["articleBody"] as? String
+
+            val creator = it["creator"] as? Relation
+
+            val dateCreated = (it["dateCreated"] as? String)?.asDate()
+
+            val type = graph[it.id]?.value?.type?.get(0)
+
+            BlogPosting(headline, alternativeHeadline, articleBody, creator, dateCreated, type)
         }
     }
 }
