@@ -21,6 +21,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import com.liferay.apio.consumer.ApioConsumer
+import com.liferay.apio.consumer.authenticator.ApioAuthenticator
 import com.liferay.apio.consumer.authenticator.BasicAuthenticator
 import com.liferay.apio.consumer.delegates.observe
 import com.liferay.apio.consumer.model.Thing
@@ -94,10 +95,10 @@ class ThingScreenlet @JvmOverloads constructor(
 	fun load(thingId: String, scenario: Scenario? = null, credentials: String? = null,
 		onSuccess: ((ThingScreenlet) -> Unit)? = null, onError: ((Exception) -> Unit)? = null) {
 
-		val apioConsumer = initApioConsumer(credentials)
+		ApioConsumer.setAuthenticator(getApioAuthenticator())
 
 		HttpUrl.parse(thingId)?.let {
-			apioConsumer.fetch(it, onSuccess = {
+			ApioConsumer.fetch(it, onSuccess = {
 				if (scenario != null) {
 					this.scenario = scenario
 				}
@@ -171,13 +172,12 @@ class ThingScreenlet @JvmOverloads constructor(
 		}
 	}
 
-    private fun initApioConsumer(credentials: String? = null): ApioConsumer {
+    private fun getApioAuthenticator(credentials: String? = null): ApioAuthenticator? {
         val credentials = credentials ?: SessionContext.getCredentialsFromCurrentSession()
 
-        val authenticator = credentials?.let {
+        return credentials?.let {
             BasicAuthenticator(credentials)
         }
-
-        return ApioConsumer(authenticator)
     }
+
 }
