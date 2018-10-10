@@ -46,13 +46,13 @@ class ThingAdapter(collection: Collection, val listener: Listener) :
 		} else {
 			nextPage?.let { nextPage ->
 				HttpUrl.parse(nextPage)?.let { httpUrl ->
-					ApioConsumer().fetch(httpUrl, onSuccess = { thing ->
+					ApioConsumer.fetch(httpUrl, { thing ->
 						convert<Collection>(thing)?.let {
 							val moreMembers = it.members
 							merge(members, moreMembers)
 							notifyDataSetChanged()
 						}
-					}, onError = { })
+					})
 				}
 			}
 		}
