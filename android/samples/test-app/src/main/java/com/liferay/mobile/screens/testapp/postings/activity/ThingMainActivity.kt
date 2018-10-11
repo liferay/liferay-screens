@@ -17,75 +17,74 @@ package com.liferay.mobile.screens.testapp.postings.activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
-import com.liferay.mobile.screens.thingscreenlet.model.Collection
-import com.liferay.mobile.screens.testapp.R
-import com.liferay.mobile.screens.thingscreenlet.model.BlogPosting
-import com.liferay.mobile.screens.thingscreenlet.model.Person
-
-import com.liferay.mobile.screens.thingscreenlet.screens.events.ScreenletEvents
-import com.liferay.mobile.screens.thingscreenlet.screens.views.*
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.get
+import com.liferay.mobile.screens.testapp.R
+import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
+import com.liferay.mobile.screens.thingscreenlet.model.BlogPosting
+import com.liferay.mobile.screens.thingscreenlet.model.Collection
+import com.liferay.mobile.screens.thingscreenlet.model.Person
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
+import com.liferay.mobile.screens.thingscreenlet.screens.events.ScreenletEvents
+import com.liferay.mobile.screens.thingscreenlet.screens.views.*
 import org.jetbrains.anko.startActivity
 
 class ThingMainActivity : AppCompatActivity(), ScreenletEvents {
 
-	private val thingScreenlet by bindNonNull<ThingScreenlet>(R.id.thing_screenlet_activity)
+    private val thingScreenlet by bindNonNull<ThingScreenlet>(R.id.thing_screenlet_activity)
 
-	override fun onCreate(savedInstanceState: Bundle?) {
-		super.onCreate(savedInstanceState)
-		setContentView(R.layout.thing_screenlet_activity)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.thing_screenlet_activity)
 
-		registerScenarios()
+        registerScenarios()
 
-		val id = "https://apiosample.wedeploy.io/p/blog-postings"
+        val id = "https://apiosample.wedeploy.io/p/blog-postings"
 
-		thingScreenlet.load(id, credentials = "Basic YXBpb0BsaWZlcmF5LmNvbTphcGlvZGV2cw==")
+        thingScreenlet.load(id, credentials = "Basic YXBpb0BsaWZlcmF5LmNvbTphcGlvZGV2cw==")
 
-		thingScreenlet.screenletEvents = this
-	}
+        thingScreenlet.screenletEvents = this
+    }
 
-	private fun registerScenarios() {
-		Scenario.stringToScenario = {
-			if (it == "detail-small") DetailSmall else null
-		}
+    private fun registerScenarios() {
+        Scenario.stringToScenario = {
+            if (it == "detail-small") DetailSmall else null
+        }
 
-		Person.DEFAULT_VIEWS[Custom("portrait")] = R.layout.person_portrait_custom
-		Person.DEFAULT_VIEWS[DetailSmall] = R.layout.person_detail_small
-		Person.DEFAULT_VIEWS[Detail] = R.layout.person_detail_custom
-		Person.DEFAULT_VIEWS[Custom("portrait_small")] = R.layout.person_portrait_small
-		Person.DEFAULT_VIEWS[Custom("portrait_big")] = R.layout.person_portrait_big
+        Person.DEFAULT_VIEWS[Custom("portrait")] = R.layout.person_portrait_custom
+        Person.DEFAULT_VIEWS[DetailSmall] = R.layout.person_detail_small
+        Person.DEFAULT_VIEWS[Detail] = R.layout.person_detail_custom
+        Person.DEFAULT_VIEWS[Custom("portrait_small")] = R.layout.person_portrait_small
+        Person.DEFAULT_VIEWS[Custom("portrait_big")] = R.layout.person_portrait_big
 
-		BlogPosting.DEFAULT_VIEWS[Row] = R.layout.blog_posting_row_custom
-		BlogPosting.DEFAULT_VIEWS[Detail] = R.layout.blog_posting_detail_custom
+        BlogPosting.DEFAULT_VIEWS[Row] = R.layout.blog_posting_row_custom
+        BlogPosting.DEFAULT_VIEWS[Detail] = R.layout.blog_posting_detail_custom
 
-		Collection.DEFAULT_VIEWS[Detail] = R.layout.collection_detail_custom
-	}
+        Collection.DEFAULT_VIEWS[Detail] = R.layout.collection_detail_custom
+    }
 
-	override fun <T : BaseView> onClickEvent(baseView: T, view: View, thing: Thing) = View.OnClickListener {
-		startActivity<DetailActivity>("id" to thing.id)
-	}
+    override fun <T : BaseView> onClickEvent(baseView: T, view: View, thing: Thing) = View.OnClickListener {
+        startActivity<DetailActivity>("id" to thing.id)
+    }
 
-	override fun <T : BaseView> onCustomEvent(name: String, screenlet: ThingScreenlet, parentView: T?, thing: Thing) {
-		if (name.equals("create")) {
-			val operationKey = thing.operations.keys.filter { it.contains("create") }.firstOrNull()
+    override fun <T : BaseView> onCustomEvent(name: String, screenlet: ThingScreenlet, parentView: T?, thing: Thing) {
+        if (name.equals("create")) {
+            val operationKey = thing.operations.keys.filter { it.contains("create") }.firstOrNull()
 
-			operationKey?.let {
-				val operation = thing.operations[it]
-				operation!!.form!!.getFormProperties({
-					startActivity<EditActivity>("properties" to it.map { it.name },
-						"values" to emptyMap<String, String>(), "id" to thing.id, "operation" to operation.id)
-				}, {})
-			}
-		}
-	}
+            operationKey?.let {
+                val operation = thing.operations[it]
+                operation!!.form!!.getFormProperties({
+                    startActivity<EditActivity>("properties" to it.map { it.name },
+                        "values" to emptyMap<String, String>(), "id" to thing.id, "operation" to operation.id)
+                }, {})
+            }
+        }
+    }
 
-	override fun <T : BaseView> onGetCustomLayout(screenlet: ThingScreenlet, parentView: T?, thing: Thing,
-		scenario: Scenario): Int? =
-		if (thing["headline"] == "My blog") R.layout.blog_posting_row_by_id
-		else super.onGetCustomLayout(screenlet, parentView, thing, scenario)
+    override fun <T : BaseView> onGetCustomLayout(screenlet: ThingScreenlet, parentView: T?, thing: Thing,
+        scenario: Scenario): Int? =
+        if (thing["headline"] == "My blog") R.layout.blog_posting_row_by_id
+        else super.onGetCustomLayout(screenlet, parentView, thing, scenario)
 
 }
 

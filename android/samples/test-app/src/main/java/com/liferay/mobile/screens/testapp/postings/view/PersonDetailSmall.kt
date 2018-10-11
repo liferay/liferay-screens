@@ -18,23 +18,23 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import android.widget.TextView
-import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
+import com.liferay.apio.consumer.delegates.converter
+import com.liferay.apio.consumer.model.Thing
 import com.liferay.mobile.screens.testapp.R
+import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.model.Person
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
-import com.liferay.apio.consumer.delegates.converter
-import com.liferay.apio.consumer.model.Thing
 
 class PersonDetailSmall @JvmOverloads constructor(
-	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : BaseView,
-	FrameLayout(context, attrs, defStyleAttr) {
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : BaseView,
+    FrameLayout(context, attrs, defStyleAttr) {
 
-	override var screenlet: ThingScreenlet? = null
+    override var screenlet: ThingScreenlet? = null
 
-	val name by bindNonNull<TextView>(R.id.person_name)
+    val name by bindNonNull<TextView>(R.id.person_name)
 
-	override var thing: Thing? by converter<Person> {
-		name.text = it.name
-	}
+    override var thing: Thing? by converter<Person> {
+        name.text = it.name
+    }
 }
