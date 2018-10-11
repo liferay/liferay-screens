@@ -18,23 +18,23 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.RelativeLayout
 import android.widget.TextView
-import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
-import com.liferay.mobile.screens.thingscreenlet.model.BlogPosting
-import com.liferay.mobile.screens.testapp.R
-import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
-import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.apio.consumer.delegates.converter
 import com.liferay.apio.consumer.model.Thing
+import com.liferay.mobile.screens.testapp.R
+import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
+import com.liferay.mobile.screens.thingscreenlet.model.BlogPosting
+import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
+import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 
 class BlogPostingRowByIdView @JvmOverloads constructor(
-	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : BaseView,
-	RelativeLayout(context, attrs, defStyleAttr) {
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : BaseView,
+    RelativeLayout(context, attrs, defStyleAttr) {
 
-	override var screenlet: ThingScreenlet? = null
+    override var screenlet: ThingScreenlet? = null
 
-	val headline by bindNonNull<TextView>(R.id.headline)
+    val headline by bindNonNull<TextView>(R.id.headline)
 
-	override var thing: Thing? by converter<BlogPosting> {
-		headline.text = it.headline
-	}
+    override var thing: Thing? by converter<BlogPosting> {
+        headline.text = it.headline
+    }
 }

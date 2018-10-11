@@ -20,34 +20,34 @@ import android.text.method.LinkMovementMethod
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
-import com.liferay.mobile.screens.testapp.R
-import com.liferay.mobile.screens.thingscreenlet.model.Person
-import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
-import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.apio.consumer.delegates.converter
 import com.liferay.apio.consumer.extensions.mediumFormat
 import com.liferay.apio.consumer.model.Thing
+import com.liferay.mobile.screens.testapp.R
+import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
+import com.liferay.mobile.screens.thingscreenlet.model.Person
+import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
+import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 
 class PersonDetailCustom @JvmOverloads constructor(
-	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : BaseView,
-	LinearLayout(context, attrs, defStyleAttr) {
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : BaseView,
+    LinearLayout(context, attrs, defStyleAttr) {
 
-	override var screenlet: ThingScreenlet? = null
+    override var screenlet: ThingScreenlet? = null
 
-	val avatar by bindNonNull<ThingScreenlet>(R.id.person_avatar)
-	val name by bindNonNull<TextView>(R.id.person_name)
-	val email by bindNonNull<TextView>(R.id.person_email)
-	val jobTitle by bindNonNull<TextView>(R.id.person_job_title)
-	val birthDate by bindNonNull<TextView>(R.id.person_birthDate)
+    val avatar by bindNonNull<ThingScreenlet>(R.id.person_avatar)
+    val name by bindNonNull<TextView>(R.id.person_name)
+    val email by bindNonNull<TextView>(R.id.person_email)
+    val jobTitle by bindNonNull<TextView>(R.id.person_job_title)
+    val birthDate by bindNonNull<TextView>(R.id.person_birthDate)
 
-	override var thing: Thing? by converter<Person> {
-		avatar.thing = thing
-		name.text = it.name
-		email.text = Html.fromHtml("<a href=\"mailto:${it.email}\">${it.email}</a>")
-		email.linksClickable = true
-		email.movementMethod = LinkMovementMethod.getInstance()
-		jobTitle.text = it.jobTitle
-		birthDate.text = it.birthDate?.mediumFormat()
-	}
+    override var thing: Thing? by converter<Person> {
+        avatar.thing = thing
+        name.text = it.name
+        email.text = Html.fromHtml("<a href=\"mailto:${it.email}\">${it.email}</a>")
+        email.linksClickable = true
+        email.movementMethod = LinkMovementMethod.getInstance()
+        jobTitle.text = it.jobTitle
+        birthDate.text = it.birthDate?.mediumFormat()
+    }
 }

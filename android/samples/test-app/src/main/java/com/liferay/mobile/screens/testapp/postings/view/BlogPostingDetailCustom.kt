@@ -21,78 +21,78 @@ import android.view.View
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.TextView
-import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
-import com.liferay.mobile.screens.thingscreenlet.model.BlogPosting
-import com.liferay.mobile.screens.testapp.R
-import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
-import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
-import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.apio.consumer.delegates.converter
 import com.liferay.apio.consumer.extensions.fullFormat
 import com.liferay.apio.consumer.model.Thing
+import com.liferay.mobile.screens.testapp.R
+import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
+import com.liferay.mobile.screens.thingscreenlet.model.BlogPosting
+import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
+import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
+import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 
 class BlogPostingDetailCustom @JvmOverloads constructor(
-	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : BaseView,
-	FrameLayout(context, attrs, defStyleAttr) {
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : BaseView,
+    FrameLayout(context, attrs, defStyleAttr) {
 
-	override var screenlet: ThingScreenlet? = null
+    override var screenlet: ThingScreenlet? = null
 
-	val headline by bindNonNull<TextView>(R.id.headline)
-	val alternativeHeadline by bindNonNull<TextView>(R.id.alternative_headline)
-	val creatorAvatar by bindNonNull<ThingScreenlet>(R.id.creator_avatar)
-	val creatorDetail by bindNonNull<ThingScreenlet>(R.id.creator_detail)
-	val articleBody by bindNonNull<TextView>(R.id.article_body)
-	val createDate by bindNonNull<TextView>(R.id.create_date)
-	val removeButton by bindNonNull<Button>(R.id.remove_button)
-	val updateButton by bindNonNull<Button>(R.id.update_button)
-	val by by bindNonNull<TextView>(R.id.by)
+    val headline by bindNonNull<TextView>(R.id.headline)
+    val alternativeHeadline by bindNonNull<TextView>(R.id.alternative_headline)
+    val creatorAvatar by bindNonNull<ThingScreenlet>(R.id.creator_avatar)
+    val creatorDetail by bindNonNull<ThingScreenlet>(R.id.creator_detail)
+    val articleBody by bindNonNull<TextView>(R.id.article_body)
+    val createDate by bindNonNull<TextView>(R.id.create_date)
+    val removeButton by bindNonNull<Button>(R.id.remove_button)
+    val updateButton by bindNonNull<Button>(R.id.update_button)
+    val by by bindNonNull<TextView>(R.id.by)
 
-	override var thing: Thing? by converter<BlogPosting> {
-		headline.text = it.headline
+    override var thing: Thing? by converter<BlogPosting> {
+        headline.text = it.headline
 
-		alternativeHeadline.text = it.alternativeHeadline
+        alternativeHeadline.text = it.alternativeHeadline
 
-		Html.fromHtml(it.articleBody)
-			.toString()
-			.replace("\n", "\n\n")
-			.also { articleBody.text = it }
+        Html.fromHtml(it.articleBody)
+            .toString()
+            .replace("\n", "\n\n")
+            .also { articleBody.text = it }
 
-		it.creator?.also {
-			creatorAvatar.load(it.id)
+        it.creator?.also {
+            creatorAvatar.load(it.id)
 
-			creatorAvatar.setOnClickListener { view ->
-				sendEvent(Event.Click(view, Thing(it.id, listOf("Person"), emptyMap())))?.onClick(view)
-			}
+            creatorAvatar.setOnClickListener { view ->
+                sendEvent(Event.Click(view, Thing(it.id, listOf("Person"), emptyMap())))?.onClick(view)
+            }
 
-			creatorDetail.load(it.id)
-		}
+            creatorDetail.load(it.id)
+        }
 
-		if (it.creator == null) {
-			by.visibility = View.GONE
-		}
+        if (it.creator == null) {
+            by.visibility = View.GONE
+        }
 
-		if (it.createDate == null) {
-			createDate.visibility = View.GONE
-		}
+        if (it.createDate == null) {
+            createDate.visibility = View.GONE
+        }
 
-		if (thing!!.containsOperation("delete")) {
-			removeButton.visibility = View.GONE
-		}
+        if (thing!!.containsOperation("delete")) {
+            removeButton.visibility = View.GONE
+        }
 
-		if (thing!!.containsOperation("update")) {
-			updateButton.visibility = View.GONE
-		}
+        if (thing!!.containsOperation("update")) {
+            updateButton.visibility = View.GONE
+        }
 
-		removeButton.setOnClickListener {
-			sendEvent(Event.CustomEvent("delete", this, thing!!))
-		}
+        removeButton.setOnClickListener {
+            sendEvent(Event.CustomEvent("delete", this, thing!!))
+        }
 
-		updateButton.setOnClickListener {
-			sendEvent(Event.CustomEvent("update", this, thing!!))
-		}
+        updateButton.setOnClickListener {
+            sendEvent(Event.CustomEvent("update", this, thing!!))
+        }
 
-		createDate.text = it.createDate?.fullFormat()
+        createDate.text = it.createDate?.fullFormat()
 
-	}
+    }
 
 }
