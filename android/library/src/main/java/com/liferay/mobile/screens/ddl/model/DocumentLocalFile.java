@@ -30,11 +30,10 @@ public class DocumentLocalFile extends DocumentFile {
 
 	@Override
 	public String getFileName() {
-		if(path == null) {
+		if (path == null) {
 			return "";
 		}
 
 		return AndroidUtil.getFileNameFromPath(path);
-
 	}
 }

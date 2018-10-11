@@ -1,6 +1,5 @@
 package com.liferay.mobile.screens.ddl.model;
 
-import com.liferay.mobile.screens.util.AndroidUtil;
 import java.io.Serializable;
 
 /**

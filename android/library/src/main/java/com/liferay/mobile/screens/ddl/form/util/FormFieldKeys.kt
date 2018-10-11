@@ -34,10 +34,12 @@ class FormFieldKeys {
         const val PREDEFINED_VALUE_KEY = "predefinedValue"
         const val SWITCHER_KEY = "showAsSwitcher"
         const val TEXT_KEY = "text"
-        @JvmField val TIP_KEY = arrayOf("tooltip", "tip")
+        @JvmField
+        val TIP_KEY = arrayOf("tooltip", "tip")
         const val VALIDATION_KEY = "validation"
         const val VISIBILITY_EXPRESSION_KEY = "visibilityExpression"
-        @JvmField val ADDITIONAL_TYPE_KEY = arrayOf("additionalType", "type")
+        @JvmField
+        val ADDITIONAL_TYPE_KEY = arrayOf("additionalType", "type")
         const val IS_INLINE_KEY = "inline"
         const val IS_MULTIPLE_KEY = "multiple"
         const val IS_READ_ONLY_KEY = "readOnly"
@@ -45,7 +47,8 @@ class FormFieldKeys {
         const val IS_REQUIRED_KEY = "required"
         const val IS_SHOW_LABEL_KEY = "showLabel"
 
-        @JvmStatic fun getValueFromArrayKey(attributes: Map<String, Any>, arrayKey: Array<String>) : Any? {
+        @JvmStatic
+        fun getValueFromArrayKey(attributes: Map<String, Any>, arrayKey: Array<String>): Any? {
             for (additionalType in arrayKey) {
                 val mapValue = attributes[additionalType]
 

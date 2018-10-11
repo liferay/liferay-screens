@@ -17,7 +17,6 @@ package com.liferay.mobile.screens.ddl.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.liferay.mobile.screens.ddl.form.util.FormFieldKeys;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -162,8 +161,8 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 	}
 
 	protected void setName(String name) {
-	    this.name = name;
-    }
+		this.name = name;
+	}
 
 	public String getDataSourceType() {
 		return dataSourceType;
@@ -408,14 +407,13 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 			return assignDataTypeFromString(attributeValue);
 		}
 
-		public Field createField(Map<String, Object> attributes, Locale locale,
-								 Locale defaultLocale) {
+		public Field createField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
 
 			return createField(attributes, locale, defaultLocale, false);
 		}
 
-		public Field createField(Map<String, Object> attributes, Locale locale,
-								 Locale defaultLocale, boolean repeatedField) {
+		public Field createField(Map<String, Object> attributes, Locale locale, Locale defaultLocale,
+			boolean repeatedField) {
 
 			Field field = null;
 

@@ -19,7 +19,6 @@ public class DocumentRemoteFile extends DocumentFile {
 	public DocumentRemoteFile(String json) throws JSONException {
 		if (json.startsWith("http")) {
 			url = json;
-
 		} else {
 			JSONObject jsonObject = new JSONObject(json);
 			uuid = jsonObject.optString("uuid");
@@ -62,7 +61,6 @@ public class DocumentRemoteFile extends DocumentFile {
 			}
 
 			return jsonObject.toString();
-
 		} catch (JSONException ex) {
 			return null;
 		}

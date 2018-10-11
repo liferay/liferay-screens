@@ -23,27 +23,27 @@ abstract class StringValidator(val errorMessage: String) {
     abstract fun validate(string: String): Boolean
 }
 
-class ContainsValidation(val value: String, errorMessage: String): StringValidator(errorMessage) {
+class ContainsValidation(val value: String, errorMessage: String) : StringValidator(errorMessage) {
     override fun validate(string: String): Boolean = string.contains(value)
 }
 
-class NotContainsValidation(val value: String, errorMessage: String): StringValidator(errorMessage) {
+class NotContainsValidation(val value: String, errorMessage: String) : StringValidator(errorMessage) {
     override fun validate(string: String): Boolean = !string.contains(value)
 }
 
-class IsEmailValidation(errorMessage: String): StringValidator(errorMessage) {
+class IsEmailValidation(errorMessage: String) : StringValidator(errorMessage) {
     override fun validate(string: String): Boolean = Patterns.EMAIL_ADDRESS.matcher(string).matches()
 }
 
-class IsUrlValidation(errorMessage: String): StringValidator(errorMessage) {
+class IsUrlValidation(errorMessage: String) : StringValidator(errorMessage) {
     override fun validate(string: String): Boolean = Patterns.WEB_URL.matcher(string).matches()
 }
 
-class RegexValidation(val regex: Regex, errorMessage: String): StringValidator(errorMessage) {
+class RegexValidation(val regex: Regex, errorMessage: String) : StringValidator(errorMessage) {
     override fun validate(string: String): Boolean = regex.matches(string)
 }
 
-class DummyValidation: StringValidator("") {
+class DummyValidation : StringValidator("") {
     override fun validate(string: String): Boolean = true
 }
 

@@ -164,7 +164,6 @@ public class SelectableOptionsField extends OptionsField<ArrayList<Option>> {
 			} else {
 				return (options != null && !options.isEmpty());
 			}
-
 		} else {
 			return true;
 		}
