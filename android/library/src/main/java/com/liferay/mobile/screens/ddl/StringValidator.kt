@@ -1,7 +1,21 @@
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
 package com.liferay.mobile.screens.ddl
 
 /**
- * @author Victor Oliveira
+ * @author Victor Galán Grande
  */
 import android.util.Patterns
 
@@ -40,29 +54,26 @@ class StringValidatorParser {
             return DummyValidation()
         }
 
-        val errorMessage = validationMap["error"] as? String ?: ""
-        val expression = validationMap["expression"] as? String ?: ""
+        val errorMessage = validationMap["error"] ?: ""
+        val expression = validationMap["expression"] ?: ""
 
-        if (expression.startsWith("isEmailAddress(")) {
-            return IsEmailValidation(errorMessage)
-        } else if (expression.startsWith("isURL(")) {
-            return IsUrlValidation(errorMessage)
-        } else if (expression.startsWith("contains(")) {
-            return executeRegexAndGetFirstResult("""contains\(\w+, "(\w*)"\)""", expression) {
-                ContainsValidation(it, errorMessage)
-            }
-        } else if (expression.startsWith("NOT(contains(")) {
-            return executeRegexAndGetFirstResult("""NOT\(contains\(\w+, "(\w*)"\)\)""", expression) {
-                NotContainsValidation(it, errorMessage)
-            }
-
-        } else if (expression.startsWith("match(")) {
-            return executeRegexAndGetFirstResult("""match\(\w+, "(\w*)"\)""", expression) {
-                RegexValidation(it.toRegex(), errorMessage)
-            }
+        return when {
+            expression.startsWith("isEmailAddress(") -> IsEmailValidation(errorMessage)
+            expression.startsWith("isURL(") -> IsUrlValidation(errorMessage)
+            expression.startsWith("contains(") ->
+                executeRegexAndGetFirstResult("""contains\(\w+, "(\w*)"\)""", expression) {
+                    ContainsValidation(it, errorMessage)
+                }
+            expression.startsWith("NOT(contains(") ->
+                executeRegexAndGetFirstResult("""NOT\(contains\(\w+, "(\w*)"\)\)""", expression) {
+                    NotContainsValidation(it, errorMessage)
+                }
+            expression.startsWith("match(") ->
+                executeRegexAndGetFirstResult("""match\(\w+, "(\w*)"\)""", expression) {
+                    RegexValidation(it.toRegex(), errorMessage)
+                }
+            else -> DummyValidation()
         }
-
-        return DummyValidation()
     }
 
     private fun executeRegexAndGetFirstResult(stringRegex: String, expression: String,

@@ -84,11 +84,11 @@ public class DocumentRemoteFile extends DocumentFile {
 
 	@Override
 	public String getFileName() {
-		if(title != null) {
+		if (title != null) {
 			return title;
 		}
 
-		if(url != null) {
+		if (url != null) {
 			return AndroidUtil.getFileNameFromPath(url);
 		}
 
