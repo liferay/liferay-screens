@@ -95,17 +95,17 @@ class ThingScreenlet @JvmOverloads constructor(
 	fun load(thingId: String, scenario: Scenario? = null, credentials: String? = null,
 		onSuccess: ((ThingScreenlet) -> Unit)? = null, onError: ((Exception) -> Unit)? = null) {
 
-		ApioConsumer.setAuthenticator(getApioAuthenticator())
+		ApioConsumer.setAuthenticator(getApioAuthenticator(credentials))
 
 		HttpUrl.parse(thingId)?.let {
-			ApioConsumer.fetch(it, onSuccess = {
+			ApioConsumer.fetch(it, {
 				if (scenario != null) {
 					this.scenario = scenario
 				}
 
 				thing = it
 				onSuccess?.invoke(this)
-			}, onError = {
+			}, {
 				LiferayLogger.e(it.message, it)
 				baseView?.showError(it.message)
 				onError?.invoke(it)

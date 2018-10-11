@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.testapp.postings.activity
 
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
@@ -28,7 +27,6 @@ import com.liferay.mobile.screens.thingscreenlet.screens.events.ScreenletEvents
 import com.liferay.mobile.screens.thingscreenlet.screens.views.*
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.get
-import com.liferay.apio.consumer.model.getFormProperties
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import org.jetbrains.anko.startActivity
 
