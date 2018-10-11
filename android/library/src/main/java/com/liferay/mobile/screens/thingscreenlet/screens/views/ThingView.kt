@@ -27,7 +27,7 @@ import com.liferay.apio.consumer.model.Thing
 
 class ThingView @JvmOverloads constructor(
 	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : BaseView,
-	LinearLayout(context, attrs, defStyleAttr) {
+	LinearLayout(context, attrs, defStyleAttr, defStyleRes) {
 
 	override var screenlet: ThingScreenlet? = null
 

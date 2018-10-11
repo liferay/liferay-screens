@@ -29,7 +29,7 @@ import com.liferay.apio.consumer.model.Thing
 
 class PersonDetailView @JvmOverloads constructor(
 	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : BaseView,
-	RelativeLayout(context, attrs, defStyleAttr) {
+	RelativeLayout(context, attrs, defStyleAttr, defStyleRes) {
 
 	override var screenlet: ThingScreenlet? = null
 

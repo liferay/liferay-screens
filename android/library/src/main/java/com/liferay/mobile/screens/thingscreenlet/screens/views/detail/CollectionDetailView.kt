@@ -35,7 +35,7 @@ import com.liferay.apio.consumer.model.Thing
 
 open class CollectionDetailView @JvmOverloads constructor(
 	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : BaseView,
-	FrameLayout(context, attrs, defStyleAttr), ThingAdapter.Listener {
+	FrameLayout(context, attrs, defStyleAttr, defStyleRes), ThingAdapter.Listener {
 
 	override var screenlet: ThingScreenlet? = null
 

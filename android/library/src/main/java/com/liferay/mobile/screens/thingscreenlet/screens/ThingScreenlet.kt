@@ -43,7 +43,7 @@ import okhttp3.HttpUrl
 
 open class BaseScreenlet @JvmOverloads constructor(
 	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) :
-	FrameLayout(context, attrs, defStyleAttr) {
+	FrameLayout(context, attrs, defStyleAttr, defStyleRes) {
 
 	var layout: View? = null
 }
