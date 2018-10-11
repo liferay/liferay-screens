@@ -15,8 +15,6 @@
 package com.liferay.mobile.screens.testapp.postings.view
 
 import android.content.Context
-import android.support.design.widget.Snackbar
-import android.support.design.widget.Snackbar.LENGTH_SHORT
 import android.text.Html
 import android.util.AttributeSet
 import android.view.View
@@ -33,8 +31,6 @@ import com.liferay.apio.consumer.delegates.converter
 import com.liferay.apio.consumer.extensions.fullFormat
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.containsOperation
-import com.liferay.apio.consumer.performOperation
-import kotlinx.android.synthetic.main.activity_main.view.*
 
 class BlogPostingDetailCustom @JvmOverloads constructor(
 	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : BaseView,

@@ -15,9 +15,9 @@
 package com.liferay.mobile.screens.testapp.postings.activity
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import com.liferay.apio.consumer.ApioConsumer
 import com.liferay.mobile.screens.testapp.R
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
@@ -26,7 +26,6 @@ import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.getFormProperties
-import com.liferay.apio.consumer.performOperation
 import org.jetbrains.anko.startActivity
 
 class DetailActivity : AppCompatActivity(), ScreenletEvents {
@@ -57,12 +56,11 @@ class DetailActivity : AppCompatActivity(), ScreenletEvents {
 			val values = thing.attributes.filterValues { it is String }
 
 			operation!!.form?.let {
-					it.getFormProperties {
+					it.getFormProperties({
 						startActivity<EditActivity>("properties" to it.map { it.name }, "values" to values,
 							"id" to thing.id, "operation" to operation.id)
-					}
-			} ?: performOperation(thing.id, operation.id, { emptyMap() }) {
-			}
+					}, {})
+			} ?: ApioConsumer().performOperation(thing.id, operation.id, { emptyMap() }, {}, {})
 		}
 	}
 

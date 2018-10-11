@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.testapp.postings.activity
 
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
@@ -75,9 +76,10 @@ class ThingMainActivity : AppCompatActivity(), ScreenletEvents {
 
 			operationKey?.let {
 				val operation = thing.operations[it]
-				operation!!.form!!.getFormProperties {
-					startActivity<EditActivity>("properties" to it.map { it.name }, "values" to emptyMap<String, String>(), "id" to thing.id, "operation" to operation.id)
-				}
+				operation!!.form!!.getFormProperties({
+					startActivity<EditActivity>("properties" to it.map { it.name },
+						"values" to emptyMap<String, String>(), "id" to thing.id, "operation" to operation.id)
+				}, {})
 			}
 		}
 	}
