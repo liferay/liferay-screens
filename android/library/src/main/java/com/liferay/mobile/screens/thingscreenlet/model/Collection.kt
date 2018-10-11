@@ -17,7 +17,8 @@ package com.liferay.mobile.screens.thingscreenlet.model
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
-import com.liferay.apio.consumer.graph
+import com.liferay.apio.consumer.graph.ApioGraph
+import com.liferay.apio.consumer.graph.ApioGraph.get
 import com.liferay.apio.consumer.model.Relation
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.get
@@ -31,7 +32,7 @@ data class Collection(val members: List<Thing>?, val totalItems: Int?, val pages
 
 		val converter: (Thing) -> Any = { it: Thing ->
 			val member = (it["member"] as? List<Relation>)?.mapNotNull {
-				graph[it.id]?.value
+				ApioGraph[it.id]?.value
 			}
 
 			val totalItems = (it["totalItems"] as? Double)?.toInt()
