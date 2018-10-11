@@ -17,17 +17,20 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields;
 import android.content.Context;
 import android.text.Editable;
 import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.TextWatcher;
-import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.jakewharton.rxbinding.widget.RxTextView;
+import com.jakewharton.rxbinding.widget.TextViewAfterTextChangeEvent;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.Field;
+import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil;
+import rx.Observable;
+import rx.functions.Func1;
 
 /**
  * @author Silvio Santos
@@ -38,6 +41,7 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 	protected TextView labelTextView;
 	protected EditText textEditText;
 	protected View parentView;
+	private Observable<T> onChangedValueObservable = Observable.empty();
 	private T field;
 
 	public BaseDDLFieldTextView(Context context) {
@@ -78,27 +82,31 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 	public void setField(T field) {
 		this.field = field;
 
+		setupFieldLayout();
+
+		refresh();
+	}
+
+	public void setupFieldLayout() {
 		if (this.field.isShowLabel()) {
-			textEditText.setHint("");
 			if (labelTextView != null) {
 				labelTextView.setText(this.field.getLabel());
 				labelTextView.setVisibility(VISIBLE);
 
 				if (this.field.isRequired()) {
-					Spannable requiredAlert = getRequiredSpannable();
-					if (requiredAlert != null) {
-						labelTextView.append(requiredAlert);
-					}
+					Spannable requiredAlert = ThemeUtil.getRequiredSpannable(getContext());
+					labelTextView.append(requiredAlert);
 				}
 			}
 		} else {
-			textEditText.setHint(this.field.getLabel());
 			if (labelTextView != null) {
 				labelTextView.setVisibility(GONE);
 			}
 		}
 
-		refresh();
+		if (this.field.getPlaceHolder() != null && !this.field.getPlaceHolder().isEmpty()) {
+			textEditText.setHint(this.field.getPlaceHolder());
+		}
 	}
 
 	public TextView getLabelTextView() {
@@ -125,7 +133,12 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 
 	@Override
 	public void refresh() {
-		textEditText.setText(field.toFormattedString());
+		String currentText = textEditText.getText().toString();
+		String newText = field.toFormattedString();
+
+		if (!currentText.equals(newText)) {
+			textEditText.setText(newText);
+		}
 	}
 
 	@Override
@@ -150,24 +163,27 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 
 		labelTextView = findViewById(R.id.liferay_ddl_label);
 		textEditText = findViewById(R.id.liferay_ddl_edit_text);
-
 		textEditText.addTextChangedListener(this);
 
 		//We are not saving the text view state because when state is restored,
 		//the ids of other DDLFields are conflicting.
 		//It is not a problem because all state is stored in Field objects.
 		textEditText.setSaveEnabled(false);
+
+		onChangedValueObservable = RxTextView.afterTextChangeEvents(textEditText)
+			.distinctUntilChanged()
+			.map(new Func1<TextViewAfterTextChangeEvent, T>() {
+				@Override
+				public T call(TextViewAfterTextChangeEvent textViewAfterTextChangeEvent) {
+					return field;
+				}
+			});
 	}
 
-	protected Spannable getRequiredSpannable() {
-		Spannable requiredAlert = new SpannableString(" *");
-
-		int color = getResources().getColor(R.color.colorRequiredField);
-		requiredAlert.setSpan(new ForegroundColorSpan(color), 0, requiredAlert.length(),
-			Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-		return requiredAlert;
+	@Override
+	public Observable<T> getOnChangedValueObservable() {
+		return onChangedValueObservable;
 	}
-	
+
 	protected abstract void onTextChanged(String text);
 }
