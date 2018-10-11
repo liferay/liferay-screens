@@ -2,7 +2,7 @@ package com.liferay.mobile.screens.webcontent.display.connector;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.journalarticle.JournalArticleService;
+import com.liferay.mobile.screens.service.v62.JournalArticleService;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

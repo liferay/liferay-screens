@@ -2,7 +2,7 @@ package com.liferay.mobile.screens.auth.login.connector;
 
 import com.liferay.mobile.android.service.JSONObjectWrapper;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.user.UserService;
+import com.liferay.mobile.screens.service.v62.UserService;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

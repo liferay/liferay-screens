@@ -1,7 +1,7 @@
 package com.liferay.mobile.screens.ddl.form.connector;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.ddlrecordset.DDLRecordSetService;
+import com.liferay.mobile.screens.service.v62.DDLRecordSetService;
 
 /**
  * @author Javier Gamarra

@@ -14,6 +14,8 @@
 
 package com.liferay.mobile.screens.imagegallery;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
@@ -26,6 +28,7 @@ import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity;
 import com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity.MediaStoreCallback;
+import com.liferay.mobile.screens.base.MediaStoreSelectorDialog;
 import com.liferay.mobile.screens.base.list.BaseListScreenlet;
 import com.liferay.mobile.screens.cache.Cache;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
@@ -45,6 +48,8 @@ import com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.DetailImage
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import rx.functions.Action;
+import rx.functions.Action1;
 
 /**
  * @author Víctor Galán Grande
@@ -58,6 +63,7 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 	private long repositoryId;
 	private long folderId;
 	private String[] mimeTypes;
+	private AlertDialog choseOriginDialog;
 
 	public ImageGalleryScreenlet(Context context) {
 		super(context);
@@ -102,6 +108,34 @@ public class ImageGalleryScreenlet extends BaseListScreenlet<ImageEntry, ImageGa
 	 */
 	public void load() {
 		loadPage(0);
+	}
+
+	public void startMediaSelectorAndUpload() {
+		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
+
+		Action1<Boolean> camera = new Action1<Boolean>() {
+			@Override
+			public void call(Boolean permissionsGranted) {
+				if (permissionsGranted) {
+					openCamera();
+				}
+				choseOriginDialog.dismiss();
+			}
+		};
+
+		Action1<Boolean> gallery = new Action1<Boolean>() {
+			@Override
+			public void call(Boolean permissionsGranted) {
+				if (permissionsGranted) {
+					openGallery();
+				}
+				choseOriginDialog.dismiss();
+			}
+		};
+
+		choseOriginDialog =
+			new MediaStoreSelectorDialog().createOriginDialog(activity, camera, gallery, null);
+		choseOriginDialog.show();
 	}
 
 	/**

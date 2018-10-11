@@ -46,13 +46,6 @@ public abstract class BaseImageGalleryView<H extends BaseListAdapter.ViewHolder,
 		super(context, attrs, defStyleAttr, defStyleRes);
 	}
 
-	public void openMediaSelector() {
-		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
-		choseOriginDialog =
-			new MediaStoreSelectorDialog().createOriginDialog(activity, openCamera(), openGallery(), null);
-		choseOriginDialog.show();
-	}
-
 	@Override
 	public void showStartOperation(String actionName) {
 		if (actionName.equals(LOAD_INITIAL_PAGE_ACTION)) {
@@ -131,29 +124,5 @@ public abstract class BaseImageGalleryView<H extends BaseListAdapter.ViewHolder,
 	@Override
 	public void imageUploadComplete() {
 		uploadProgressView.uploadCompleteOrError();
-	}
-
-	private Action1<Boolean> openCamera() {
-		return new Action1<Boolean>() {
-			@Override
-			public void call(Boolean result) {
-				if (result) {
-					((ImageGalleryScreenlet) getScreenlet()).openCamera();
-				}
-				choseOriginDialog.dismiss();
-			}
-		};
-	}
-
-	private Action1<Boolean> openGallery() {
-		return new Action1<Boolean>() {
-			@Override
-			public void call(Boolean result) {
-				if (result) {
-					((ImageGalleryScreenlet) getScreenlet()).openGallery();
-				}
-				choseOriginDialog.dismiss();
-			}
-		};
 	}
 }
