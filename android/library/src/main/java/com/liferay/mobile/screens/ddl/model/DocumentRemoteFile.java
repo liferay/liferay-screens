@@ -1,5 +1,6 @@
 package com.liferay.mobile.screens.ddl.model;
 
+import com.liferay.mobile.screens.util.AndroidUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -10,32 +11,89 @@ public class DocumentRemoteFile extends DocumentFile {
 
 	private long groupId;
 	private String uuid;
-	private int version;
+	private String version;
 	private String title;
 
+	private String url;
+
 	public DocumentRemoteFile(String json) throws JSONException {
-		JSONObject jsonObject = new JSONObject(json);
+		if (json.startsWith("http")) {
+			url = json;
 
-		uuid = jsonObject.getString("uuid");
-		version = jsonObject.getInt("version");
-		groupId = jsonObject.getInt("groupId");
+		} else {
+			JSONObject jsonObject = new JSONObject(json);
+			uuid = jsonObject.optString("uuid");
+			version = jsonObject.optString("version");
+			groupId = jsonObject.optInt("groupId");
 
-		// this is empty if we're retrieving the record
-		title = jsonObject.optString("title");
+			// this is empty if we're retrieving the record
+			title = jsonObject.optString("title");
+		}
+	}
+
+	public DocumentRemoteFile(String url, String title) {
+		this.url = url;
+		this.title = title;
 	}
 
 	@Override
 	public String toData() {
-		return "{\"groupId\":" + groupId + ", " + "\"uuid\":\"" + uuid + "\", " + "\"version\":" + version + "}";
+		if (url != null) {
+			return url;
+		}
+
+		try {
+			JSONObject jsonObject = new JSONObject();
+
+			if (groupId > 0) {
+				jsonObject.put("groupId", groupId);
+			}
+
+			if (!uuid.equals(EMPTY_STRING)) {
+				jsonObject.put("uuid", uuid);
+			}
+
+			if (!title.equals(EMPTY_STRING)) {
+				jsonObject.put("title", title);
+			}
+
+			if (!version.equals(EMPTY_STRING)) {
+				jsonObject.put("version", version);
+			}
+
+			return jsonObject.toString();
+
+		} catch (JSONException ex) {
+			return null;
+		}
 	}
 
 	@Override
 	public String toString() {
+		if (url != null) {
+			return url;
+		}
+
 		return title.isEmpty() ? "File in server" : title;
 	}
 
 	@Override
 	public boolean isValid() {
-		return uuid != null;
+		return url != null || uuid != null;
 	}
+
+	@Override
+	public String getFileName() {
+		if(title != null) {
+			return title;
+		}
+
+		if(url != null) {
+			return AndroidUtil.getFileNameFromPath(url);
+		}
+
+		return "";
+	}
+
+	private static final String EMPTY_STRING = "";
 }

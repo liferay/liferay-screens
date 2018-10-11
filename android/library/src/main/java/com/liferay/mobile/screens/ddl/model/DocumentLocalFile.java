@@ -1,5 +1,7 @@
 package com.liferay.mobile.screens.ddl.model;
 
+import com.liferay.mobile.screens.util.AndroidUtil;
+
 /**
  * @author Javier Gamarra
  */
@@ -24,5 +26,15 @@ public class DocumentLocalFile extends DocumentFile {
 	@Override
 	public boolean isValid() {
 		return path != null && !path.isEmpty();
+	}
+
+	@Override
+	public String getFileName() {
+		if(path == null) {
+			return "";
+		}
+
+		return AndroidUtil.getFileNameFromPath(path);
+
 	}
 }

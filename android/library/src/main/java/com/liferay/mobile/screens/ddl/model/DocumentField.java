@@ -113,7 +113,7 @@ public class DocumentField extends Field<DocumentFile> {
 
 	@Override
 	protected String convertToFormattedString(DocumentFile document) {
-		return document == null ? "" : document.toString();
+		return document == null ? "" : document.getFileName();
 	}
 
 	@Override
