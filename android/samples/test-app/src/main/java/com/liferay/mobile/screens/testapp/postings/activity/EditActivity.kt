@@ -56,7 +56,7 @@ class EditActivity : AppCompatActivity() {
             it to view.propertyValue
         }.toMap()
 
-        ApioConsumer().performOperation(thingId, operation, { fieldsValues }, {
+        ApioConsumer.performOperation(thingId, operation, { fieldsValues }, {
             Snackbar.make(container, "Success", LENGTH_SHORT).show()
         }, {
             Snackbar.make(container, "Error", LENGTH_SHORT).show()

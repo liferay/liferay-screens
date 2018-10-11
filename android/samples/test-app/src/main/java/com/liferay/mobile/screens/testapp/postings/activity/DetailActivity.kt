@@ -25,7 +25,6 @@ import com.liferay.mobile.screens.thingscreenlet.screens.events.ScreenletEvents
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
 import com.liferay.apio.consumer.model.Thing
-import com.liferay.apio.consumer.model.getFormProperties
 import org.jetbrains.anko.startActivity
 
 class DetailActivity : AppCompatActivity(), ScreenletEvents {
@@ -56,11 +55,11 @@ class DetailActivity : AppCompatActivity(), ScreenletEvents {
 			val values = thing.attributes.filterValues { it is String }
 
 			operation!!.form?.let {
-					it.getFormProperties({
-						startActivity<EditActivity>("properties" to it.map { it.name }, "values" to values,
-							"id" to thing.id, "operation" to operation.id)
-					}, {})
-			} ?: ApioConsumer().performOperation(thing.id, operation.id, { emptyMap() }, {}, {})
+				it.getFormProperties({
+					startActivity<EditActivity>("properties" to it.map { it.name }, "values" to values,
+						"id" to thing.id, "operation" to operation.id)
+				}, {})
+			} ?: ApioConsumer.performOperation(thing.id, operation.id)
 		}
 	}
 
