@@ -1,0 +1,16 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+	<item>
+		<shape>
+			<corners android:radius="@dimen/multipage_progressbar_height"/>
+			<solid android:color="@color/textColorTertiary"/>
+		</shape>
+	</item>
+	<item>
+		<clip>
+			<shape>
+				<corners android:radius="@dimen/multipage_progressbar_height"/>
+				<solid android:color="?attr/colorAccent"/>
+			</shape>
+		</clip>
+	</item>
+</layer-list>

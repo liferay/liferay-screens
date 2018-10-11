@@ -9,6 +9,7 @@
 	<string name="ForgotPasswordScreenlet_default">forgotpassword_default</string>
 	<string name="DDLFormScreenlet_default">ddl_form_default</string>
 	<string name="DDLListScreenlet_default">ddl_list_default</string>
+	<string name="DDMFormScreenlet_default">ddm_form_default</string>
 	<string name="ImageDisplayScreenlet_default">image_display_default</string>
 	<string name="PdfDisplayScreenlet_default">pdf_display_default</string>
 	<string name="UserPortraitScreenlet_default">userportrait_default</string>
@@ -85,5 +86,11 @@
 	<string name="icon_for_job_title">Icon for job title</string>
 	<string name="arrow_to_indicate_clickable">Arrow to indicate clickable</string>
 	<string name="person_portrait">The portrait of this person</string>
+	<string name="no_internet_connection">No internet connection. Reconnect to submit.</string>
+	<string name="information_successfully_received">Your information was successfully received.</string>
+	<string name="submit_failed_contact_administrator">Submit failed. Contact the administrator.</string>
+	<string name="cant_load_some_fields_offline">Can’t load some fields offline. Try to reconnect.</string>
+	<string name="synchronizing_form">Synchronizing Form</string>
+	<string name="validating_rules">Validating Rules</string>
 
 </resources>
