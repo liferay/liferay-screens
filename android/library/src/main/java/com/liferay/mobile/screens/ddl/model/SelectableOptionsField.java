@@ -16,83 +16,74 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import com.liferay.mobile.screens.ddl.form.util.FormFieldKeys;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import org.json.JSONObject;
 
 /**
  * @author Jose Manuel Navarro
  */
-public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsField.Option>> {
+public class SelectableOptionsField extends OptionsField<ArrayList<Option>> {
 
-	public static final Parcelable.ClassLoaderCreator<StringWithOptionsField> CREATOR =
-		new Parcelable.ClassLoaderCreator<StringWithOptionsField>() {
+	public static final Parcelable.ClassLoaderCreator<SelectableOptionsField> CREATOR =
+		new Parcelable.ClassLoaderCreator<SelectableOptionsField>() {
 
 			@Override
-			public StringWithOptionsField createFromParcel(Parcel source, ClassLoader loader) {
-				return new StringWithOptionsField(source, loader);
+			public SelectableOptionsField createFromParcel(Parcel source, ClassLoader loader) {
+				return new SelectableOptionsField(source, loader);
 			}
 
-			public StringWithOptionsField createFromParcel(Parcel in) {
+			public SelectableOptionsField createFromParcel(Parcel in) {
 				throw new AssertionError();
 			}
 
-			public StringWithOptionsField[] newArray(int size) {
-				return new StringWithOptionsField[size];
+			public SelectableOptionsField[] newArray(int size) {
+				return new SelectableOptionsField[size];
 			}
 		};
-	private ArrayList<Option> availableOptions;
-	private boolean multiple;
+
+	private boolean inline = false;
+	private boolean multiple = false;
 	private DataProvider dataProvider;
 
-	public StringWithOptionsField() {
+	public SelectableOptionsField() {
 		super();
 	}
 
-	public StringWithOptionsField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
+	public SelectableOptionsField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
 		super(attributes, locale, defaultLocale);
 
-		List<Map<String, String>> availableOptions = (List<Map<String, String>>) attributes.get("options");
+		Object multipleValue = attributes.get(FormFieldKeys.IS_MULTIPLE_KEY);
+		Object inlineValue = attributes.get(FormFieldKeys.IS_INLINE_KEY);
 
-		if (availableOptions == null) {
-			this.availableOptions = new ArrayList<>();
-		} else {
-			this.availableOptions = new ArrayList<>(availableOptions.size());
-
-			for (Map<String, String> optionMap : availableOptions) {
-				this.availableOptions.add(new Option(optionMap));
-			}
-		}
-
-		Object multipleValue = attributes.get("multiple");
 		multiple = (multipleValue != null) ? Boolean.valueOf(multipleValue.toString()) : false;
-		if ("checkbox_multiple".equals(attributes.get("type"))) {
+		inline = (inlineValue != null) ? Boolean.valueOf(inlineValue.toString()) : false;
+
+		Object additionalTypeKey = FormFieldKeys.getValueFromArrayKey(attributes, FormFieldKeys.ADDITIONAL_TYPE_KEY);
+		if ("checkbox_multiple".equals(additionalTypeKey)) {
 			multiple = true;
 		}
 
-		ArrayList<Option> predefinedOptions = convertFromString(getAttributeStringValue(attributes, "predefinedValue"));
+		ArrayList<Option> predefinedOptions =
+			convertFromString(getAttributeStringValue(attributes, FormFieldKeys.PREDEFINED_VALUE_KEY));
 
 		setPredefinedValue(predefinedOptions);
 		setCurrentValue(predefinedOptions);
 	}
 
-	protected StringWithOptionsField(Parcel in, ClassLoader loader) {
+	public SelectableOptionsField(ArrayList<Option> options) {
+		super(options);
+	}
+
+	protected SelectableOptionsField(Parcel in, ClassLoader loader) {
 		super(in, loader);
 
-		availableOptions = (ArrayList<Option>) in.readSerializable();
 		multiple = in.readInt() == 1;
+		inline = in.readInt() == 1;
 		dataProvider = (DataProvider) in.readSerializable();
-	}
-
-	public void setAvailableOptions(ArrayList<Option> availableOptions) {
-		this.availableOptions = availableOptions;
-	}
-
-	public List<Option> getAvailableOptions() {
-		return availableOptions;
 	}
 
 	public DataProvider getDataProvider() {
@@ -149,7 +140,6 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 	public void writeToParcel(Parcel destination, int flags) {
 		super.writeToParcel(destination, flags);
 
-		destination.writeSerializable(availableOptions);
 		destination.writeInt(multiple ? 1 : 0);
 		destination.writeSerializable(dataProvider);
 	}
@@ -159,12 +149,25 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 		return multiple;
 	}
 
+	public boolean isInline() {
+		return inline;
+	}
+
 	@Override
 	protected boolean doValidate() {
+		if (isRequired()) {
 
-		List<Option> options = getCurrentValue();
+			List<Option> options = getCurrentValue();
 
-		return (options != null && !options.isEmpty());
+			if (isMultiple()) {
+				return options != null;
+			} else {
+				return (options != null && !options.isEmpty());
+			}
+
+		} else {
+			return true;
+		}
 	}
 
 	@Override
@@ -246,34 +249,6 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 		return stringBuilder.toString();
 	}
 
-	protected Option findOptionByValue(String value) {
-		if (availableOptions == null) {
-			return null;
-		}
-
-		for (Option option : availableOptions) {
-			if (option.value.equals(value)) {
-				return option;
-			}
-		}
-
-		return null;
-	}
-
-	protected Option findOptionByLabel(String label) {
-		if (availableOptions == null) {
-			return null;
-		}
-
-		for (Option option : availableOptions) {
-			if (option.label.equals(label)) {
-				return option;
-			}
-		}
-
-		return null;
-	}
-
 	public static class DataProvider implements Serializable {
 
 		public String url;
@@ -288,60 +263,6 @@ public class StringWithOptionsField extends Field<ArrayList<StringWithOptionsFie
 			this.password = password;
 			this.name = name;
 			this.value = value;
-		}
-	}
-
-	public static class Option implements Serializable {
-
-		public String label;
-		public String name;
-		public String value;
-		public JSONObject data;
-
-		public Option() {
-			super();
-		}
-
-		public Option(Map<String, String> optionMap) {
-			this(optionMap.get("label"), optionMap.get("name"), optionMap.get("value"));
-		}
-
-		public Option(String label, String name, String value) {
-			this(label, name, value, null);
-		}
-
-		public Option(String label, String name, String value, JSONObject data) {
-			this.label = label;
-			this.name = name;
-			this.value = value;
-			this.data = data;
-		}
-
-		@Override
-		public int hashCode() {
-			int result = label != null ? label.hashCode() : 0;
-			result = 31 * result + (name != null ? name.hashCode() : 0);
-			result = 31 * result + (value != null ? value.hashCode() : 0);
-			return result;
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			if (obj == null) {
-				return false;
-			}
-
-			if (obj instanceof Option) {
-				Option opt = (Option) obj;
-
-				if (name != null) {
-					return label.equals(opt.label) && value.equals(opt.value) && name.equals(opt.name);
-				} else {
-					return label.equals(opt.label) && value.equals(opt.value);
-				}
-			}
-
-			return super.equals(obj);
 		}
 	}
 }
