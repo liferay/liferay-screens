@@ -40,13 +40,15 @@ class ThingAdapter(collection: Collection, val listener: Listener) :
 
 	val nextPage = collection.pages?.next
 
+	private val apioConsumer = ApioConsumer()
+
 	override fun onBindViewHolder(holder: ThingViewHolder, position: Int) {
 		if (members.size > position) {
 			holder.thing = members[position]
 		} else {
 			nextPage?.let { nextPage ->
 				HttpUrl.parse(nextPage)?.let { httpUrl ->
-					ApioConsumer.fetch(httpUrl, { thing ->
+					apioConsumer.fetch(httpUrl, onSuccess = { thing ->
 						convert<Collection>(thing)?.let {
 							val moreMembers = it.members
 							merge(members, moreMembers)
