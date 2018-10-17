@@ -17,6 +17,7 @@ package com.liferay.mobile.screens.thingscreenlet.screens.adapter
 import android.support.v7.widget.RecyclerView.Adapter
 import android.view.View
 import android.view.ViewGroup
+import com.github.kittinunf.result.success
 import com.liferay.apio.consumer.ApioConsumer
 import com.liferay.mobile.screens.thingscreenlet.extensions.inflate
 import com.liferay.mobile.screens.thingscreenlet.model.Collection
@@ -46,15 +47,17 @@ class ThingAdapter(collection: Collection, val listener: Listener) :
 		if (members.size > position) {
 			holder.thing = members[position]
 		} else {
-			nextPage?.let { nextPage ->
-				HttpUrl.parse(nextPage)?.let { httpUrl ->
-					apioConsumer.fetch(httpUrl, onSuccess = { thing ->
+			nextPage?.let {
+				HttpUrl.parse(it)
+			}?.let {
+				apioConsumer.fetch(it) { result ->
+					result.success { thing ->
 						convert<Collection>(thing)?.let {
 							val moreMembers = it.members
 							merge(members, moreMembers)
 							notifyDataSetChanged()
 						}
-					})
+					}
 				}
 			}
 		}
