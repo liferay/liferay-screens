@@ -45,7 +45,7 @@ ext {
 
 def supportLibsVersion = '27.1.1'
 
-ext.libraries = [apio_consumer      : 'com.liferay.mobile:apio-consumer-android:0.0.7',
+ext.libraries = [apio_consumer      : 'com.liferay.mobile:apio-consumer-android:0.0.8',
                  appCompat          : 'com.android.support:appcompat-v7:' + supportLibsVersion,
                  recyclerView       : 'com.android.support:recyclerview-v7:' + supportLibsVersion,
                  design             : 'com.android.support:design:' + supportLibsVersion,

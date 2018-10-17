@@ -56,13 +56,13 @@ class EditActivity : AppCompatActivity() {
             it to view.propertyValue
         }.toMap()
 
-        ApioConsumer().performOperation(thingId, operation, fillFields = {
-            fieldsValues
-        }, onSuccess = {
-            Snackbar.make(container, "Success", LENGTH_SHORT).show()
-        }, onError = {
-            Snackbar.make(container, "Error", LENGTH_SHORT).show()
-        })
+        ApioConsumer().performOperation(thingId, operation, fillFields = { fieldsValues }) { result ->
+            result.fold({
+                Snackbar.make(container, "Success", LENGTH_SHORT).show()
+            }, {
+                Snackbar.make(container, "Error", LENGTH_SHORT).show()
+            })
+        }
     }
 
 }
