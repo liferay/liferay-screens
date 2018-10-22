@@ -19,12 +19,12 @@ import android.support.v7.app.AppCompatActivity
 import com.liferay.mobile.screens.context.SessionContext
 import com.liferay.mobile.screens.testapp.R
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
-import com.liferay.mobile.screens.thingscreenlet.screens.WorkflowListScreenlet
+import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.events.ScreenletEvents
 
 class WorkflowListActivity : AppCompatActivity(), ScreenletEvents {
 
-    private val workflowScreenlet by bindNonNull<WorkflowListScreenlet>(R.id.workflow_screenlet)
+    private val workflowScreenlet by bindNonNull<ThingScreenlet>(R.id.workflow_screenlet)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
