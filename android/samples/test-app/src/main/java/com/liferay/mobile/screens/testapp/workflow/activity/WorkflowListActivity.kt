@@ -32,10 +32,15 @@ class WorkflowListActivity : AppCompatActivity(), ScreenletEvents {
 
         val credentials = SessionContext.getCredentialsFromCurrentSession()
 
-        val tasksUrl = workflowScreenlet.getTasksUrl()
+        val tasksUrl = resources.getString(R.string.liferay_server) + getTasksUrl()
 
         workflowScreenlet.load(tasksUrl, credentials = credentials)
 
         workflowScreenlet.screenletEvents = this
+    }
+
+    private fun getTasksUrl(): String {
+        return "/o/api/p/r/workflow-tasks/assigned-to-me?embedded=comment,blogPost"
+        //return "/o/api/p/r/workflow-tasks/assigned-to-my-roles?embedded=comment,blogPost"
     }
 }
