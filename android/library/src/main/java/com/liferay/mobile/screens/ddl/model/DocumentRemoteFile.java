@@ -84,9 +84,7 @@ public class DocumentRemoteFile extends DocumentFile {
 	public String getFileName() {
 		if (title != null) {
 			return title;
-		}
-
-		if (url != null) {
+		} else if (url != null) {
 			return AndroidUtil.getFileNameFromPath(url);
 		}
 
