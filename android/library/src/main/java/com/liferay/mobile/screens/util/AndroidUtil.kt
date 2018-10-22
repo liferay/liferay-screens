@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.util
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Uri
+import android.os.Build
 import android.support.annotation.ColorInt
 import android.support.annotation.DrawableRes
 import android.support.design.widget.Snackbar
@@ -26,6 +27,11 @@ import android.widget.TextView
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.model.DocumentLocalFile
 import java.io.InputStream
+import android.text.Html.FROM_HTML_MODE_LEGACY
+import android.os.Build.VERSION.SDK_INT
+import android.text.Html
+import android.text.Spanned
+
 
 /**
  * @author Victor Oliveira
@@ -92,5 +98,15 @@ class AndroidUtil {
 
             snackbar.show()
         }
+
+        @Suppress("DEPRECATION")
+        fun fromHtml(html: String?): Spanned {
+            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY)
+            } else {
+                Html.fromHtml(html)
+            }
+        }
+
     }
 }
