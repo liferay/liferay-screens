@@ -142,7 +142,11 @@ class ThingScreenlet @JvmOverloads constructor(
 		is Event.Click -> screenletEvents?.onClickEvent(layout as BaseView, event.view, event.thing) as? T
 		is Event.FetchLayout -> {
 			(screenletEvents?.onGetCustomLayout(this, event.view, event.thing, event.scenario)
-				?: layoutIds[event.thing.type[0]]?.get(event.scenario)) as? T
+				?: layoutIds[
+					layoutIds.keys.firstOrNull { key ->
+						event.thing.type.contains(key)
+					}
+				]?.get(event.scenario)) as? T
 		}
 		is Event.CustomEvent -> {
 			screenletEvents?.onCustomEvent(event.name,this, event.view, event.thing) as? T
