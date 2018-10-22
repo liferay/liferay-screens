@@ -6,7 +6,11 @@ All notable changes to this project will be documented in this file.
 # Develop
 <!-- Possible categories for the changes: Bugs, New features, Refactor, Documentation, Samples, Deprecated, Contributions -->
 
-Nothing yet
+## Android
+
+### New Features
+
+* DDL changes, preparing to DDMFormScreenlet
 
 # 4.0.1
 
@@ -15,15 +19,15 @@ Nothing yet
 Update mobile-sdk dependency to 7.1.3
 
 ## New Features
+
 * Expose WebView in WebScreenlet
-
-
 
 # 4.0.0
 
 ## Android
 
 ## New Features
+
 * Add OAuth2 authentication
 
 ### Refactor
@@ -32,6 +36,7 @@ Update mobile-sdk dependency to 7.1.3
 * Give a pass to the code and solve minor issues
 
 ### Bugs
+
 * Fix inverted thumbs in rating screenlet
 
 ### Samples
@@ -47,6 +52,7 @@ Update mobile-sdk dependency to 7.1.3
 * WebScreenlet now correctly inject the script when navigate to another page
 
 ### Samples
+
 * Update test-app demo app
 
 ### Samples
@@ -57,10 +63,12 @@ Update mobile-sdk dependency to 7.1.3
 ## iOS
 
 ### Bugs
+
 * Fix Crash when trying to obtain title property in WebContent model
 * Fix method not been expose in Objective-C
 
 ### Features
+
 * Add OAuth2 authentication
 
 ### Refactor
