@@ -48,15 +48,15 @@ public class DocumentRemoteFile extends DocumentFile {
 				jsonObject.put("groupId", groupId);
 			}
 
-			if (!uuid.equals(EMPTY_STRING)) {
+			if (!EMPTY_STRING.equals(uuid)) {
 				jsonObject.put("uuid", uuid);
 			}
 
-			if (!title.equals(EMPTY_STRING)) {
+			if (!EMPTY_STRING.equals(title)) {
 				jsonObject.put("title", title);
 			}
 
-			if (!version.equals(EMPTY_STRING)) {
+			if (!EMPTY_STRING.equals(version)) {
 				jsonObject.put("version", version);
 			}
 
