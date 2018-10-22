@@ -26,6 +26,7 @@ import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.apio.consumer.delegates.converter
 import com.liferay.apio.consumer.model.Thing
+import com.liferay.mobile.screens.util.AndroidUtil
 
 class BlogPostingDetailView @JvmOverloads constructor(
 	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : BaseView,
@@ -40,7 +41,7 @@ class BlogPostingDetailView @JvmOverloads constructor(
 	override var thing: Thing? by converter<BlogPosting> {
 		headline.text = it.headline
 
-		articleBody.text = it.articleBody
+		articleBody.text = AndroidUtil.fromHtml(it.articleBody)
 
 		it.creator?.also {
 			creator.load(it.id)
