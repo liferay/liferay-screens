@@ -77,15 +77,11 @@ class WorkflowTaskRowView @JvmOverloads constructor(
     }
 
     private fun getAssetName(workflowTask: WorkflowTask): String {
-        if (workflowTask.comment != null) return workflowTask.comment.type!!
-        if (workflowTask.blogPost != null) return workflowTask.blogPost.type!!
-        return "Undefined"
+        return workflowTask.comment?.type ?: workflowTask.blogPost?.type ?: "Undefined"
     }
 
     private fun getAssetTitle(workflowTask: WorkflowTask): String {
-        if (workflowTask.comment != null) return workflowTask.comment.text!!
-        if (workflowTask.blogPost != null) return workflowTask.blogPost.headline!!
-        return "Undefined"
+        return workflowTask.comment?.text ?: workflowTask.blogPost?.headline ?: "Undefined"
     }
 
     private fun getDays(expires: Date): Int {
