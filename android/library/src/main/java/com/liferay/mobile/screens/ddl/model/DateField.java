@@ -109,6 +109,6 @@ public class DateField extends Field<Date> {
 
 	@Override
 	protected String convertToFormattedString(Date value) {
-		return (value == null) ? null : DateFormat.getDateInstance(DateFormat.LONG, getCurrentLocale()).format(value);
+		return (value == null) ? "" : DateFormat.getDateInstance(DateFormat.LONG, getCurrentLocale()).format(value);
 	}
 }

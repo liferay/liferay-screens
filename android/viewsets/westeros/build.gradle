@@ -26,7 +26,7 @@ dependencies {
 
 	implementation libraries.design
 	implementation libraries.recyclerView
-
+	implementation libraries.rxjava
 	implementation 'com.daimajia.swipelayout:library:1.2.0'
 	implementation 'com.makeramen:roundedimageview:2.2.1'
 }

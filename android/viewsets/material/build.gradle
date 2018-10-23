@@ -24,7 +24,7 @@ dependencies {
 
 	api project(':liferay-screens')
 	implementation libraries.design
-
+	implementation libraries.rxjava
 	implementation libraries.recyclerView
 	implementation 'com.lsjwzh:recyclerviewpager:1.0.8'
 }

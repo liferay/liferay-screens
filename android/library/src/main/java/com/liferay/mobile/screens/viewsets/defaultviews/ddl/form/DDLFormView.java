@@ -32,13 +32,15 @@ import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.Record;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
+import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * @author Silvio Santos
  */
-public class DDLFormView extends ScrollView implements DDLFormViewModel, View.OnClickListener {
+public class DDLFormView extends ScrollView implements DDLFormViewModel, View.OnClickListener,
+	DDLDocumentFieldView.UploadListener {
 
 	private static final Map<Field.EditorType, Integer> DEFAULT_LAYOUT_IDS = new HashMap<>(16);
 
@@ -50,8 +52,10 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 		DEFAULT_LAYOUT_IDS.put(Field.EditorType.DECIMAL, R.layout.ddlfield_number_default);
 		DEFAULT_LAYOUT_IDS.put(Field.EditorType.RADIO, R.layout.ddlfield_radio_default);
 		DEFAULT_LAYOUT_IDS.put(Field.EditorType.SELECT, R.layout.ddlfield_select_default);
+		DEFAULT_LAYOUT_IDS.put(Field.EditorType.CHECKBOX_MULTIPLE, R.layout.ddlfield_select_default);
 		DEFAULT_LAYOUT_IDS.put(Field.EditorType.TEXT, R.layout.ddlfield_text_default);
 		DEFAULT_LAYOUT_IDS.put(Field.EditorType.TEXT_AREA, R.layout.ddlfield_text_area_default);
+		DEFAULT_LAYOUT_IDS.put(Field.EditorType.PARAGRAPH, R.layout.ddlfield_text_area_default);
 		DEFAULT_LAYOUT_IDS.put(Field.EditorType.DOCUMENT, R.layout.ddlfield_document_default);
 		DEFAULT_LAYOUT_IDS.put(Field.EditorType.GEO, R.layout.ddlfield_geo_default);
 	}
@@ -241,7 +245,7 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 		}
 	}
 
-	public void startUploadField(DocumentField field) {
+	public void startUpload(DocumentField field) {
 		getDDLFormScreenlet().startUpload(field);
 	}
 
@@ -273,11 +277,15 @@ public class DDLFormView extends ScrollView implements DDLFormViewModel, View.On
 	}
 
 	protected void addFieldView(Field field, int position) {
-
 		boolean containsKey = customLayoutIds.containsKey(field.getName());
 		int layoutId = containsKey ? getCustomFieldLayoutId(field.getName()) : getFieldLayoutId(field.getEditorType());
 
 		View view = LayoutInflater.from(getContext()).inflate(layoutId, this, false);
+
+		if (view instanceof DDLDocumentFieldView) {
+			((DDLDocumentFieldView) view).setUploadListener(this);
+		}
+
 		DDLFieldViewModel viewModel = (DDLFieldViewModel) view;
 
 		viewModel.setField(field);

@@ -20,9 +20,14 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import com.jakewharton.rxbinding.widget.RxCompoundButton;
+import com.jakewharton.rxbinding.widget.RxRatingBar;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.BooleanField;
+import com.liferay.mobile.screens.ddl.model.NumberField;
+import rx.Observable;
+import rx.functions.Func1;
 
 /**
  * @author Jose Manuel Navarro
@@ -33,6 +38,7 @@ public class DDLFieldCheckboxView extends LinearLayout
 	protected BooleanField field;
 	protected SwitchCompat switchCompat;
 	protected View parentView;
+	protected Observable<BooleanField> onChangedValueObservable = Observable.empty();
 
 	public DDLFieldCheckboxView(Context context) {
 		super(context);
@@ -87,6 +93,11 @@ public class DDLFieldCheckboxView extends LinearLayout
 	}
 
 	@Override
+	public Observable<BooleanField> getOnChangedValueObservable() {
+		return onChangedValueObservable;
+	}
+
+	@Override
 	public void setUpdateMode(boolean enabled) {
 		switchCompat.setEnabled(enabled);
 	}
@@ -105,5 +116,14 @@ public class DDLFieldCheckboxView extends LinearLayout
 		switchCompat = findViewById(R.id.liferay_ddl_switch);
 
 		switchCompat.setOnCheckedChangeListener(this);
+
+		onChangedValueObservable = RxCompoundButton.checkedChanges(switchCompat)
+			.distinctUntilChanged()
+			.map(new Func1<Boolean, BooleanField>() {
+				@Override
+				public BooleanField call(Boolean aBoolean) {
+					return field;
+				}
+			});
 	}
 }

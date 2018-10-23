@@ -16,6 +16,8 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import com.liferay.mobile.screens.ddl.NumberValidator;
+import com.liferay.mobile.screens.ddl.form.util.FormFieldKeys;
 import java.text.NumberFormat;
 import java.text.ParsePosition;
 import java.util.Locale;
@@ -44,6 +46,7 @@ public class NumberField extends Field<Number> {
 		};
 	private NumberFormat labelFormatter;
 	private NumberFormat defaultLabelFormatter;
+	private NumberValidator numberValidator;
 
 	public NumberField() {
 		super();
@@ -51,6 +54,13 @@ public class NumberField extends Field<Number> {
 
 	public NumberField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
 		super(attributes, locale, defaultLocale);
+
+		Object validationObj = attributes.get(FormFieldKeys.VALIDATION_KEY);
+
+		if (validationObj != null && validationObj instanceof Map) {
+			Map<String, String> validation = (Map<String, String>) validationObj;
+			numberValidator = NumberValidator.parseNumberValidator(validation);
+		}
 	}
 
 	protected NumberField(Parcel in, ClassLoader loader) {
@@ -73,6 +83,17 @@ public class NumberField extends Field<Number> {
 			value = defaultLabelFormatter.parse(stringValue, pos);
 			return stringValue.length() == pos.getIndex() ? value : null;
 		}
+	}
+
+	@Override
+	protected boolean doValidate() {
+		if (getCurrentValue() == null && isRequired()) {
+			return false;
+		} else if (getCurrentValue() != null && numberValidator != null) {
+			return numberValidator.validate(getCurrentValue());
+		}
+
+		return super.doValidate();
 	}
 
 	@Override
