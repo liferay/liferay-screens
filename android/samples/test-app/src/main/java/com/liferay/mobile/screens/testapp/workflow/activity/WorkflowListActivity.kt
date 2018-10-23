@@ -41,6 +41,5 @@ class WorkflowListActivity : AppCompatActivity(), ScreenletEvents {
 
     private fun getTasksUrl(): String {
         return "/o/api/p/r/workflow-tasks/assigned-to-me?embedded=comment,blogPost"
-        //return "/o/api/p/r/workflow-tasks/assigned-to-my-roles?embedded=comment,blogPost"
     }
 }
