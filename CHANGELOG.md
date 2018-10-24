@@ -10,7 +10,15 @@ All notable changes to this project will be documented in this file.
 
 ### New Features
 
-* DDL changes, preparing to DDMFormScreenlet
+* Create Thing Screenlet
+* FormsScreenlet - Allow developers to handle with value changes for all fields using onChangeValueObservable
+* FormsScreenlet - Show only FileName instead of the full path on DocumentField
+* Create a ModalProgressBar view
+
+### Refactor
+
+* FormsScreenlet - Create an abstract OptionsField type as a base class of fields that select options
+* Create a ThemeUtil class to help with custom themes
 
 # 4.0.1
 
