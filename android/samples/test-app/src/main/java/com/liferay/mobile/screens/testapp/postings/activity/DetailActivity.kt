@@ -59,7 +59,7 @@ class DetailActivity : AppCompatActivity(), ScreenletEvents {
                     startActivity<EditActivity>("properties" to it.map { it.name }, "values" to values,
                         "id" to thing.id, "operation" to operation.id)
                 }, {})
-            } ?: ApioConsumer.performOperation(thing.id, operation.id)
+            } ?: ApioConsumer().performOperation(thing.id, operation.id)
         }
     }
 
