@@ -26,7 +26,7 @@ All notable changes to this project will be documented in this file.
 
 Update mobile-sdk dependency to 7.1.3
 
-## New Features
+### New Features
 
 * Expose WebView in WebScreenlet
 
@@ -34,7 +34,7 @@ Update mobile-sdk dependency to 7.1.3
 
 ## Android
 
-## New Features
+### New Features
 
 * Add OAuth2 authentication
 
