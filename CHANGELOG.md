@@ -10,11 +10,12 @@ All notable changes to this project will be documented in this file.
 
 ### New Features
 
-* Create Thing Screenlet
+* Create ThingScreenlet
 * FormsScreenlet - Allow developers to handle with value changes for all fields using onChangeValueObservable
 * FormsScreenlet - Show only FileName instead of the full path on DocumentField
 * Create a ModalProgressBar view
 * Configure `detekt` for code convention and format all the project
+* Update ThingScreenlet with ApioConsumer 0.0.8 changes
 
 ### Refactor
 
