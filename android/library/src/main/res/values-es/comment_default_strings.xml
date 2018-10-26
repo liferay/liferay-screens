@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="delete_comment">Borrar comentario</string>
-	<string name="edit_comment">Editar comentario</string>
-	<string name="edited">- Editado</string>
-	<string name="empty_comments">No hay ningún comentario todavía</string>
-	<string name="send">Enviar</string>
-	<string name="type_your_comment">Escribe tu comentario</string>
+    <string name="delete_comment">Borrar comentario</string>
+    <string name="edit_comment">Editar comentario</string>
+    <string name="edited">- Editado</string>
+    <string name="empty_comments">No hay ningún comentario todavía</string>
+    <string name="send">Enviar</string>
+    <string name="type_your_comment">Escribe tu comentario</string>
 </resources>

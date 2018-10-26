@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:clickable="true"
-	android:focusable="true"
-	android:foreground="?android:selectableItemBackground"
-	>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:selectableItemBackground"
+    >
 
-	<com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet
-		android:id="@+id/comment_view"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		app:autoLoad="false"
-		app:cachePolicy="REMOTE_FIRST"
-		app:layoutId="@layout/comment_display_westeros_white"
-		/>
+    <com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet
+        android:id="@+id/comment_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:autoLoad="false"
+        app:cachePolicy="REMOTE_FIRST"
+        app:layoutId="@layout/comment_display_westeros_white"
+        />
 
 </RelativeLayout>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="replace_image">replace image</string>
-	<string name="see_password">See password</string>
-	<string name="last_name_cant_be_empty">Last name can not be empty</string>
-	<string name="email_address_cant_be_empty">Email address can not be empty</string>
-	<string name="password_cant_be_empty">Password can not be empty</string>
+    <string name="replace_image">replace image</string>
+    <string name="see_password">See password</string>
+    <string name="last_name_cant_be_empty">Last name can not be empty</string>
+    <string name="email_address_cant_be_empty">Email address can not be empty</string>
+    <string name="password_cant_be_empty">Password can not be empty</string>
 </resources>

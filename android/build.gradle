@@ -31,7 +31,7 @@ detekt {
 		path = '/Applications/IntelliJ IDEA.app/Contents'
 		codeStyleScheme = "$projectDir/ScreensCodeConvention.xml"
 		report = './library/reports'
-		mask = '*.kt,*.java'
+		mask = '*.kt,*.java,*.xml'
 	}
 }
 

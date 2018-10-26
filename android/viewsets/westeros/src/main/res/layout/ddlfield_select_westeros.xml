@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.westeros.ddl.form.DDLFieldSelectView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:orientation="vertical"
-	>
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
 
-	<RelativeLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
 
-		<EditText
-			android:id="@+id/liferay_ddl_edit_text"
-			android:hint="@string/severity"
-			style="@style/westeros_dark_edit_text"
-			/>
+        <EditText
+            android:id="@+id/liferay_ddl_edit_text"
+            android:hint="@string/severity"
+            style="@style/westeros_dark_edit_text"
+            />
 
-		<TextView
-			android:id="@+id/liferay_ddl_label"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_alignParentEnd="true"
-			android:layout_alignParentRight="true"
-			android:layout_centerVertical="true"
-			android:layout_marginLeft="@dimen/westeros_side_margin"
-			android:layout_marginRight="@dimen/westeros_side_margin"
-			android:gravity="end|center_vertical"
-			android:text="@string/severity"
-			android:textColor="@android:color/white"
-			android:textSize="18sp"
-			android:visibility="gone"
-			style="@style/westeros_text_view"
-			/>
+        <TextView
+            android:id="@+id/liferay_ddl_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/westeros_side_margin"
+            android:layout_marginRight="@dimen/westeros_side_margin"
+            android:gravity="end|center_vertical"
+            android:text="@string/severity"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:visibility="gone"
+            style="@style/westeros_text_view"
+            />
 
-	</RelativeLayout>
+    </RelativeLayout>
 
 
 </com.liferay.mobile.screens.viewsets.westeros.ddl.form.DDLFieldSelectView>

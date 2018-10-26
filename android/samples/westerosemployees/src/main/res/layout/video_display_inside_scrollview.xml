@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--Due to http://stackoverflow.com/questions/20283197/videoview-in-scrollview-issue-->
 <com.liferay.mobile.screens.viewsets.defaultviews.dlfile.display.VideoDisplayView
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
 
-	<ProgressBar
-		android:id="@+id/liferay_progress"
-		android:layout_width="50dp"
-		android:layout_height="50dp"
-		android:layout_centerInParent="true"
-		/>
+    <ProgressBar
+        android:id="@+id/liferay_progress"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        />
 
-	<TextView
-		android:id="@+id/liferay_video_message"
-		android:layout_width="match_parent"
-		android:layout_height="400dp"
-		android:layout_centerInParent="true"
-		/>
+    <TextView
+        android:id="@+id/liferay_video_message"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_centerInParent="true"
+        />
 
-	<VideoView
-		android:id="@+id/liferay_video_asset"
-		android:layout_width="match_parent"
-		android:layout_height="400dp"
-		android:layout_centerInParent="true"
-		android:background="@android:color/transparent"
-		android:visibility="gone"
-		/>
+    <VideoView
+        android:id="@+id/liferay_video_asset"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:layout_centerInParent="true"
+        android:background="@android:color/transparent"
+        android:visibility="gone"
+        />
 
 </com.liferay.mobile.screens.viewsets.defaultviews.dlfile.display.VideoDisplayView>

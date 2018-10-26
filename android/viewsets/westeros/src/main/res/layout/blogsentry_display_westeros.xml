@@ -1,128 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.blogs.BlogsEntryView
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
-	<RelativeLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
 
-		<com.liferay.mobile.screens.dlfile.display.image.ImageDisplayScreenlet
-			android:id="@+id/liferay_blog_image"
-			android:layout_width="match_parent"
-			android:layout_height="125dp"
-			android:layout_alignParentTop="true"
-			android:visibility="gone"
-			app:autoLoad="false"
-			app:imageScaleType="CENTER_CROP"
-			app:layoutId="@layout/image_display_westeros_cover_image"
-			/>
+        <com.liferay.mobile.screens.dlfile.display.image.ImageDisplayScreenlet
+            android:id="@+id/liferay_blog_image"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:layout_alignParentTop="true"
+            android:visibility="gone"
+            app:autoLoad="false"
+            app:imageScaleType="CENTER_CROP"
+            app:layoutId="@layout/image_display_westeros_cover_image"
+            />
 
-		<ProgressBar
-			android:id="@+id/liferay_progress"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_centerInParent="true"
-			android:visibility="invisible"
-			/>
+        <ProgressBar
+            android:id="@+id/liferay_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            />
 
-		<LinearLayout
-			android:id="@+id/liferay_blog_userinfo"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_below="@id/liferay_blog_image"
-			android:layout_centerHorizontal="true"
-			android:layout_marginLeft="20dp"
-			android:layout_marginRight="20dp"
-			android:layout_marginTop="20dp"
-			android:orientation="horizontal"
-			>
+        <LinearLayout
+            android:id="@+id/liferay_blog_userinfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/liferay_blog_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            >
 
-			<com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
-				android:id="@+id/user_portrait_screenlet"
-				android:layout_width="70dp"
-				android:layout_height="70dp"
-				android:gravity="center_vertical"
-				app:autoLoad="false"
-				/>
+            <com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
+                android:id="@+id/user_portrait_screenlet"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:gravity="center_vertical"
+                app:autoLoad="false"
+                />
 
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:gravity="center_vertical"
-				android:orientation="vertical"
-				>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                >
 
-				<TextView
-					android:id="@+id/liferay_blog_username"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:textColor="@android:color/white"
-					android:textSize="20sp"
-					android:textStyle="bold"
-					tools:text="Demo user"
-					/>
+                <TextView
+                    android:id="@+id/liferay_blog_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="Demo user"
+                    />
 
-				<TextView
-					android:id="@+id/liferay_blog_date"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:textColor="@android:color/white"
-					android:textSize="17sp"
-					tools:text="25 Oct, 2016"
-					/>
+                <TextView
+                    android:id="@+id/liferay_blog_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textSize="17sp"
+                    tools:text="25 Oct, 2016"
+                    />
 
-			</LinearLayout>
+            </LinearLayout>
 
-		</LinearLayout>
+        </LinearLayout>
 
 
-		<RelativeLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_below="@+id/liferay_blog_userinfo"
-			android:layout_marginLeft="10dp"
-			android:layout_marginRight="10dp"
-			android:textColor="@android:color/white"
-			>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/liferay_blog_userinfo"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textColor="@android:color/white"
+            >
 
-			<TextView
-				android:id="@+id/liferay_blog_title"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:textColor="@android:color/white"
-				android:textSize="20sp"
-				android:textStyle="bold"
-				tools:text="This is a demo title"
-				/>
+            <TextView
+                android:id="@+id/liferay_blog_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="This is a demo title"
+                />
 
-			<TextView
-				android:id="@+id/liferay_blog_subtitle"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_below="@+id/liferay_blog_title"
-				android:textColor="@android:color/white"
-				android:textSize="17sp"
-				android:visibility="gone"
-				tools:text="This is an awesome demo subtitle"
-				/>
+            <TextView
+                android:id="@+id/liferay_blog_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/liferay_blog_title"
+                android:textColor="@android:color/white"
+                android:textSize="17sp"
+                android:visibility="gone"
+                tools:text="This is an awesome demo subtitle"
+                />
 
-			<TextView
-				android:id="@+id/liferay_blog_content"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_below="@+id/liferay_blog_subtitle"
-				android:layout_marginTop="10dp"
-				android:textColor="@android:color/white"
-				/>
+            <TextView
+                android:id="@+id/liferay_blog_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/liferay_blog_subtitle"
+                android:layout_marginTop="10dp"
+                android:textColor="@android:color/white"
+                />
 
-		</RelativeLayout>
+        </RelativeLayout>
 
-	</RelativeLayout>
+    </RelativeLayout>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.blogs.BlogsEntryView>

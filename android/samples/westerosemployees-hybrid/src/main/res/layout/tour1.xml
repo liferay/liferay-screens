@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
-	<ImageView
-		android:id="@+id/tour_image"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_centerHorizontal="true"
-		android:layout_gravity="center"
-		android:layout_marginTop="50dp"
-		android:src="@drawable/tour_window"
-		/>
+    <ImageView
+        android:id="@+id/tour_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/tour_window"
+        />
 
-	<TextView
-		android:layout_above="@+id/tour_description"
-		android:gravity="center"
-		android:text="@string/issues_at_the_office"
-		android:textAllCaps="true"
-		android:textStyle="bold"
-		style="@style/westeros_tour_text"
-		/>
+    <TextView
+        android:layout_above="@+id/tour_description"
+        android:gravity="center"
+        android:text="@string/issues_at_the_office"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        style="@style/westeros_tour_text"
+        />
 
-	<TextView
-		android:id="@+id/tour_description"
-		android:layout_alignParentBottom="true"
-		android:text="@string/we_are_here_to_help"
-		android:textColor="@color/textColorSecondary_westeros"
-		style="@style/westeros_tour_text"
-		/>
+    <TextView
+        android:id="@+id/tour_description"
+        android:layout_alignParentBottom="true"
+        android:text="@string/we_are_here_to_help"
+        android:textColor="@color/textColorSecondary_westeros"
+        style="@style/westeros_tour_text"
+        />
 
 </RelativeLayout>
