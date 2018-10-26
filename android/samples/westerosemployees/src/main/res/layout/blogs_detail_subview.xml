@@ -1,79 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:background="@drawable/westeros_button_ripple"
-	android:orientation="vertical"
-	>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/westeros_button_ripple"
+    android:orientation="vertical"
+    >
 
-	<TextView
-		android:id="@+id/blogs_detail_title"
-		android:tag="title"
-		android:text="@string/blogs"
-		style="@style/westeros_card_title_white"
-		/>
+    <TextView
+        android:id="@+id/blogs_detail_title"
+        android:tag="title"
+        android:text="@string/blogs"
+        style="@style/westeros_card_title_white"
+        />
 
-	<ImageView
-		android:layout_alignParentStart="true"
-		android:src="@drawable/icon_left_white"
-		android:tag="@string/arrow_back_tag"
-		android:visibility="invisible"
-		style="@style/westeros_arrow"
-		/>
+    <ImageView
+        android:layout_alignParentStart="true"
+        android:src="@drawable/icon_left_white"
+        android:tag="@string/arrow_back_tag"
+        android:visibility="invisible"
+        style="@style/westeros_arrow"
+        />
 
-	<View
-		android:id="@+id/card_anchor"
-		android:layout_width="match_parent"
-		android:layout_height="60dp"
-		android:layout_alignParentBottom="true"
-		/>
+    <View
+        android:id="@+id/card_anchor"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        />
 
-	<ScrollView
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_above="@id/card_anchor"
-		android:layout_below="@id/blogs_detail_title"
-		android:orientation="vertical"
-		>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/card_anchor"
+        android:layout_below="@id/blogs_detail_title"
+        android:orientation="vertical"
+        >
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="vertical"
-			>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
 
-			<com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet
-				android:id="@+id/asset_display_screenlet_blog"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				app:autoLoad="false"
-				app:blogsLayoutId="@layout/blogsentry_display_westeros"
-				/>
+            <com.liferay.mobile.screens.asset.display.AssetDisplayScreenlet
+                android:id="@+id/asset_display_screenlet_blog"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:autoLoad="false"
+                app:blogsLayoutId="@layout/blogsentry_display_westeros"
+                />
 
-			<com.liferay.mobile.screens.rating.RatingScreenlet
-				android:id="@+id/rating_screenlet"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center_horizontal"
-				android:layout_marginBottom="5dp"
-				app:autoLoad="false"
-				app:layoutId="@layout/rating_star_bar_westeros_white"
-				/>
+            <com.liferay.mobile.screens.rating.RatingScreenlet
+                android:id="@+id/rating_screenlet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="5dp"
+                app:autoLoad="false"
+                app:layoutId="@layout/rating_star_bar_westeros_white"
+                />
 
-		</LinearLayout>
+        </LinearLayout>
 
-	</ScrollView>
-	<com.liferay.mobile.screens.westerosemployees.views.Deck
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		>
+    </ScrollView>
+    <com.liferay.mobile.screens.westerosemployees.views.Deck
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
-		<include
-			layout="@layout/card_comments_white"
-			/>
+        <include
+            layout="@layout/card_comments_white"
+            />
 
-	</com.liferay.mobile.screens.westerosemployees.views.Deck>
+    </com.liferay.mobile.screens.westerosemployees.views.Deck>
 </RelativeLayout>

@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="loading_article_error">Error loading article</string>
+    <string name="loading_article_error">Error loading article</string>
 </resources>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="default_theme" parent="default_theme.base">
-		<item name="android:colorPrimaryDark">@color/colorPrimaryDark_default</item>
-	</style>
+    <style name="default_theme" parent="default_theme.base">
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDark_default</item>
+    </style>
 
 </resources>

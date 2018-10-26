@@ -1,48 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.westeros.ddl.form.DDLFormView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:fillViewport="true"
-	android:theme="@style/westeros_theme"
-	style="@style/westeros_screenlet"
-	>
+    android:fillViewport="true"
+    android:theme="@style/westeros_theme"
+    style="@style/westeros_screenlet"
+    >
 
-	<RelativeLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:paddingBottom="@dimen/westeros_button_bottom_margin"
-		>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/westeros_button_bottom_margin"
+        >
 
-		<LinearLayout
-			android:id="@+id/ddlfields_container"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:layout_marginBottom="50dp"
-			android:orientation="vertical"
-			/>
+        <LinearLayout
+            android:id="@+id/ddlfields_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50dp"
+            android:orientation="vertical"
+            />
 
-		<ProgressBar
-			android:id="@+id/ddlform_loading_screen_progress_bar"
-			android:layout_width="wrap_content"
-			android:layout_height="match_parent"
-			android:layout_below="@+id/ddlfields_container"
-			android:layout_gravity="center"
-			android:visibility="invisible"
-			/>
+        <ProgressBar
+            android:id="@+id/ddlform_loading_screen_progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/ddlfields_container"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+            />
 
-		<Button
-			android:id="@+id/liferay_form_submit"
-			android:layout_alignParentBottom="true"
-			android:text="@string/send"
-			style="@style/westeros_dark_button"
-			/>
+        <Button
+            android:id="@+id/liferay_form_submit"
+            android:layout_alignParentBottom="true"
+            android:text="@string/send"
+            style="@style/westeros_dark_button"
+            />
 
-		<ProgressBar
-			android:id="@+id/ddlform_progress_bar"
-			android:layout_alignLeft="@id/liferay_form_submit"
-			android:layout_alignStart="@id/liferay_form_submit"
-			android:layout_alignTop="@id/liferay_form_submit"
-			style="@style/westeros_progress_bar"
-			/>
+        <ProgressBar
+            android:id="@+id/ddlform_progress_bar"
+            android:layout_alignLeft="@id/liferay_form_submit"
+            android:layout_alignStart="@id/liferay_form_submit"
+            android:layout_alignTop="@id/liferay_form_submit"
+            style="@style/westeros_progress_bar"
+            />
 
-	</RelativeLayout>
+    </RelativeLayout>
 
 </com.liferay.mobile.screens.viewsets.westeros.ddl.form.DDLFormView>

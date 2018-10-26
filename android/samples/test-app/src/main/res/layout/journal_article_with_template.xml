@@ -1,30 +1,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:orientation="vertical"
-	tools:context="com.liferay.mobile.screens.testapp.JournalArticleWithTemplateActivity"
-	>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.liferay.mobile.screens.testapp.JournalArticleWithTemplateActivity"
+    >
 
-	<com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet
-		android:id="@+id/journal_article_with_template_screenlet"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		app:articleId="@string/liferay_article_id_with_template"
-		app:autoLoad="false"
-		app:cachePolicy="REMOTE_FIRST"
-		app:templateId="@string/liferay_template_id1"
-		/>
+    <com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet
+        android:id="@+id/journal_article_with_template_screenlet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:articleId="@string/liferay_article_id_with_template"
+        app:autoLoad="false"
+        app:cachePolicy="REMOTE_FIRST"
+        app:templateId="@string/liferay_template_id1"
+        />
 
-	<com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet
-		android:id="@+id/journal_article_with_template_alternative"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		app:articleId="@string/liferay_article_id_with_template"
-		app:autoLoad="false"
-		app:cachePolicy="REMOTE_FIRST"
-		app:templateId="@string/liferay_template_id2"
-		/>
+    <com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet
+        android:id="@+id/journal_article_with_template_alternative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:articleId="@string/liferay_article_id_with_template"
+        app:autoLoad="false"
+        app:cachePolicy="REMOTE_FIRST"
+        app:templateId="@string/liferay_template_id2"
+        />
 
 </LinearLayout>

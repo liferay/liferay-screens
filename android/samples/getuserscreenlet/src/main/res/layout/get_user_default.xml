@@ -1,48 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.user.view.GetUserView
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical"
-	android:paddingLeft="0dp"
-	android:paddingRight="0dp"
-	android:paddingTop="20dp"
-	style="@style/default_screenlet"
-	>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="20dp"
+    style="@style/default_screenlet"
+    >
 
-	<TextView
-		android:id="@+id/textViewValue"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginLeft="20dp"
-		android:layout_marginRight="20dp"
-		android:text="@string/textViewValue"
-		/>
+    <TextView
+        android:id="@+id/textViewValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/textViewValue"
+        />
 
-	<EditText
-		android:id="@+id/textValue"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginBottom="10sp"
-		android:layout_marginLeft="20dp"
-		android:layout_marginRight="20dp"
-		android:inputType="textPersonName"
-		/>
+    <EditText
+        android:id="@+id/textValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:inputType="textPersonName"
+        />
 
-	<Button
-		android:id="@+id/getUserButton"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginBottom="10sp"
-		android:layout_marginLeft="20dp"
-		android:layout_marginRight="20dp"
-		android:text="@string/getUserButton"
-		/>
+    <Button
+        android:id="@+id/getUserButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/getUserButton"
+        />
 
-	<ListView
-		android:id="@+id/listView"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:divider="@null"
-		android:dividerHeight="0dp"
-		/>
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        />
 
 </com.liferay.mobile.screens.user.view.GetUserView>

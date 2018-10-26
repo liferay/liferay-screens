@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<integer name="userportrait_material_border_width">3</integer>
+    <integer name="userportrait_material_border_width">3</integer>
 </resources>

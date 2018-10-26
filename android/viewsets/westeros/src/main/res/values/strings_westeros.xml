@@ -1,22 +1,22 @@
 <resources>
-	<string name="save">Save</string>
-	<string name="view">View</string>
-	<string name="edit">Edit</string>
-	<string name="send">Send</string>
-	<string name="severity">Severity</string>
-	<string name="reset_password_text">We will send you a link to reset your password.\n\nThe link will be valid 24 hours</string>
-	<string name="send_password">Send Password</string>
-	<string name="all_fields_required">All fields are required</string>
-	<string name="accept_terms_and_conditions">I accept the terms and conditions</string>
-	<string name="forgot_password">Forgot password?</string>
-	<string name="empty_description">Empty description</string>
+    <string name="save">Save</string>
+    <string name="view">View</string>
+    <string name="edit">Edit</string>
+    <string name="send">Send</string>
+    <string name="severity">Severity</string>
+    <string name="reset_password_text">We will send you a link to reset your password.\n\nThe link will be valid 24 hours</string>
+    <string name="send_password">Send Password</string>
+    <string name="all_fields_required">All fields are required</string>
+    <string name="accept_terms_and_conditions">I accept the terms and conditions</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="empty_description">Empty description</string>
 
-	<string name="AssetListScreenlet_material">asset_list_default</string>
-	<string name="DDLFormScreenlet_westeros">ddl_form_westeros</string>
-	<string name="DDLListScreenlet_westeros">ddl_list_westeros</string>
-	<string name="ForgotPasswordScreenlet_westeros">forgotpassword_westeros</string>
-	<string name="LoginScreenlet_westeros">login_westeros</string>
-	<string name="SignUpScreenlet_westeros">sign_up_westeros</string>
-	<string name="UserPortraitScreenlet_westeros">userportrait_westeros</string>
-	<string name="WebContentDisplayScreenlet_westeros">webcontentdisplay_default</string>
+    <string name="AssetListScreenlet_material">asset_list_default</string>
+    <string name="DDLFormScreenlet_westeros">ddl_form_westeros</string>
+    <string name="DDLListScreenlet_westeros">ddl_list_westeros</string>
+    <string name="ForgotPasswordScreenlet_westeros">forgotpassword_westeros</string>
+    <string name="LoginScreenlet_westeros">login_westeros</string>
+    <string name="SignUpScreenlet_westeros">sign_up_westeros</string>
+    <string name="UserPortraitScreenlet_westeros">userportrait_westeros</string>
+    <string name="WebContentDisplayScreenlet_westeros">webcontentdisplay_default</string>
 </resources>

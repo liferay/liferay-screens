@@ -1,53 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.rating.LikeRatingView
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:padding="10dp"
-	style="@style/default_screenlet"
-	>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    style="@style/default_screenlet"
+    >
 
-	<ProgressBar
-		android:id="@+id/liferay_rating_progress"
-		android:layout_width="80dp"
-		android:layout_height="80dp"
-		android:layout_gravity="center"
-		android:indeterminateTint="?colorPrimary"
-		android:visibility="gone"
-		/>
+    <ProgressBar
+        android:id="@+id/liferay_rating_progress"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center"
+        android:indeterminateTint="?colorPrimary"
+        android:visibility="gone"
+        />
 
-	<LinearLayout
-		android:id="@+id/liferay_rating_content"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:orientation="vertical"
-		android:visibility="gone"
-		tools:visibility="visible"
-		>
+    <LinearLayout
+        android:id="@+id/liferay_rating_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible"
+        >
 
-		<ImageButton
-			android:id="@+id/likeRatingButton"
-			android:layout_width="80dp"
-			android:layout_height="80dp"
-			android:background="@drawable/ripple"
-			android:contentDescription="@string/thumbs_up"
-			android:scaleType="fitXY"
-			android:src="@drawable/default_thumb_up_outline"
-			android:tag="@string/screenlet_rating_button_tag"
-			android:tint="?colorPrimary"
-			/>
+        <ImageButton
+            android:id="@+id/likeRatingButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/ripple"
+            android:contentDescription="@string/thumbs_up"
+            android:scaleType="fitXY"
+            android:src="@drawable/default_thumb_up_outline"
+            android:tag="@string/screenlet_rating_button_tag"
+            android:tint="?colorPrimary"
+            />
 
-		<TextView
-			android:id="@+id/likeCountLabel"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:gravity="center"
-			android:tag="@string/screenlet_rating_label_tag"
-			android:textColor="@color/textColorPrimary_default"
-			tools:text="Total: 8"
-			/>
+        <TextView
+            android:id="@+id/likeCountLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:tag="@string/screenlet_rating_label_tag"
+            android:textColor="@color/textColorPrimary_default"
+            tools:text="Total: 8"
+            />
 
-	</LinearLayout>
+    </LinearLayout>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.rating.LikeRatingView>

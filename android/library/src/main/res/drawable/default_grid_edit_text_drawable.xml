@@ -5,7 +5,7 @@
         android:color="@color/textColorTertiary"
         android:width="1dip"/>
     <solid
-        android:color="@color/editColorPrimary" />
+        android:color="@color/editColorPrimary"/>
     <corners
         android:topRightRadius="@dimen/field_radius"
         android:bottomRightRadius="@dimen/field_radius"/>

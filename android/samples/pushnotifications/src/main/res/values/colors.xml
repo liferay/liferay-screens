@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<color name="material_primary">#009688</color>
-	<color name="material_primary_dark">#00796B</color>
-	<color name="material_primary_light">#B2DFDB</color>
-	<color name="material_accent">#FFEB3B</color>
-	<color name="material_primary_text">#212121</color>
-	<color name="material_secondary_text">#727272</color>
+    <color name="material_primary">#009688</color>
+    <color name="material_primary_dark">#00796B</color>
+    <color name="material_primary_light">#B2DFDB</color>
+    <color name="material_accent">#FFEB3B</color>
+    <color name="material_primary_text">#212121</color>
+    <color name="material_secondary_text">#727272</color>
 </resources>

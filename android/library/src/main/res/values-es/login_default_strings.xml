@@ -1,9 +1,9 @@
 <resources>
-	<string name="login">Login</string>
-	<string name="password">Contraseña</string>
-	<string name="sign_in">Iniciar sesión</string>
-	<string name="login_error">No se pudo iniciar sesión</string>
-	<string name="user_login_icon">icono usuario login</string>
-	<string name="password_icon">icono contraseña</string>
-	<string name="authorize_application">Autorizar aplicación</string>
+    <string name="login">Login</string>
+    <string name="password">Contraseña</string>
+    <string name="sign_in">Iniciar sesión</string>
+    <string name="login_error">No se pudo iniciar sesión</string>
+    <string name="user_login_icon">icono usuario login</string>
+    <string name="password_icon">icono contraseña</string>
+    <string name="authorize_application">Autorizar aplicación</string>
 </resources>

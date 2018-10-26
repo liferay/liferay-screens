@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="user_id">Id Usuario</string>
-	<string name="username">Nombre de usuario</string>
-	<string name="email_address">Email</string>
-	<string name="first_name">Nombre</string>
-	<string name="last_name">Apellidos</string>
-	<string name="sign_up">Registrarse</string>
-	<string name="sign_up_error">No se pudo registrar</string>
+    <string name="user_id">Id Usuario</string>
+    <string name="username">Nombre de usuario</string>
+    <string name="email_address">Email</string>
+    <string name="first_name">Nombre</string>
+    <string name="last_name">Apellidos</string>
+    <string name="sign_up">Registrarse</string>
+    <string name="sign_up_error">No se pudo registrar</string>
 </resources>

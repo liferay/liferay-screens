@@ -1,10 +1,10 @@
 <resources>
-	<string name="login">Login</string>
-	<string name="password">Password</string>
-	<string name="sign_in">SIGN IN</string>
-	<string name="login_error">Could not login</string>
-	<string name="user_login_icon">user login icon</string>
-	<string name="password_icon">password icon</string>
-	<string name="user_portrait">user portrait</string>
-	<string name="authorize_application">Authorize application</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="login_error">Could not login</string>
+    <string name="user_login_icon">user login icon</string>
+    <string name="password_icon">password icon</string>
+    <string name="user_portrait">user portrait</string>
+    <string name="authorize_application">Authorize application</string>
 </resources>

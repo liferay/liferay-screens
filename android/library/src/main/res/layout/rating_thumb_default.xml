@@ -1,97 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.rating.ThumbsRatingView
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:orientation="horizontal"
-	android:padding="10dp"
-	android:weightSum="2"
-	style="@style/default_screenlet"
-	>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:weightSum="2"
+    style="@style/default_screenlet"
+    >
 
-	<ProgressBar
-		android:id="@+id/liferay_rating_progress"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center"
-		android:indeterminateTint="?colorPrimary"
-		android:visibility="gone"
-		/>
+    <ProgressBar
+        android:id="@+id/liferay_rating_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateTint="?colorPrimary"
+        android:visibility="gone"
+        />
 
-	<LinearLayout
-		android:id="@+id/liferay_rating_content"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:orientation="horizontal"
-		android:visibility="gone"
-		tools:visibility="visible"
-		>
+    <LinearLayout
+        android:id="@+id/liferay_rating_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        tools:visibility="visible"
+        >
 
-		<LinearLayout
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:orientation="vertical"
-			android:paddingRight="10dp"
-			>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingRight="10dp"
+            >
 
-			<ImageButton
-				android:id="@+id/negativeRatingButton"
-				android:layout_width="80dp"
-				android:layout_height="80dp"
-				android:background="@drawable/ripple"
-				android:contentDescription="@string/thumbs_down"
-				android:scaleType="fitXY"
-				android:src="@drawable/default_thumb_down_outline"
-				android:tag="@string/screenlet_rating_button_tag"
-				android:tint="?colorPrimary"
-				tools:src="@drawable/default_thumb_down"
-				/>
+            <ImageButton
+                android:id="@+id/negativeRatingButton"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/ripple"
+                android:contentDescription="@string/thumbs_down"
+                android:scaleType="fitXY"
+                android:src="@drawable/default_thumb_down_outline"
+                android:tag="@string/screenlet_rating_button_tag"
+                android:tint="?colorPrimary"
+                tools:src="@drawable/default_thumb_down"
+                />
 
-			<TextView
-				android:id="@+id/negativeRatingCount"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:gravity="center"
-				android:tag="@string/screenlet_rating_label_tag"
-				android:textColor="@color/textColorPrimary_default"
-				tools:text="Total: 9"
-				/>
+            <TextView
+                android:id="@+id/negativeRatingCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:tag="@string/screenlet_rating_label_tag"
+                android:textColor="@color/textColorPrimary_default"
+                tools:text="Total: 9"
+                />
 
-		</LinearLayout>
+        </LinearLayout>
 
-		<LinearLayout
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:orientation="vertical"
-			android:paddingLeft="10dp"
-			>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            >
 
-			<ImageButton
-				android:id="@+id/positiveRatingButton"
-				android:layout_width="80dp"
-				android:layout_height="80dp"
-				android:background="@drawable/ripple"
-				android:contentDescription="@string/thumbs_up"
-				android:scaleType="fitXY"
-				android:src="@drawable/default_thumb_up_outline"
-				android:tag="@string/screenlet_rating_button_tag"
-				android:tint="?colorPrimary"
-				/>
+            <ImageButton
+                android:id="@+id/positiveRatingButton"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/ripple"
+                android:contentDescription="@string/thumbs_up"
+                android:scaleType="fitXY"
+                android:src="@drawable/default_thumb_up_outline"
+                android:tag="@string/screenlet_rating_button_tag"
+                android:tint="?colorPrimary"
+                />
 
-			<TextView
-				android:id="@+id/positiveRatingCount"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:gravity="center"
-				android:tag="@string/screenlet_rating_label_tag"
-				android:textColor="@color/textColorPrimary_default"
-				tools:text="Total: 7"
-				/>
+            <TextView
+                android:id="@+id/positiveRatingCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:tag="@string/screenlet_rating_label_tag"
+                android:textColor="@color/textColorPrimary_default"
+                tools:text="Total: 7"
+                />
 
-		</LinearLayout>
-	</LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.rating.ThumbsRatingView>

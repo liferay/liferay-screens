@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="default_empty_value">…</string>
-	<string name="loading_list_error">Error loading list</string>
-	<string name="list_icon">list icon</string>
-	<string name="add_icon_user_portrait_content_description">Add icon for replacing a user portrait</string>
+    <string name="default_empty_value">…</string>
+    <string name="loading_list_error">Error loading list</string>
+    <string name="list_icon">list icon</string>
+    <string name="add_icon_user_portrait_content_description">Add icon for replacing a user portrait</string>
 </resources>
