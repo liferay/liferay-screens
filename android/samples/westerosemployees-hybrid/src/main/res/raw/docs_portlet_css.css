@@ -1,41 +1,41 @@
 #wrapper {
-    padding-top: 0;
+  padding-top: 0;
 }
 
 .col-md-12 {
-    padding: 0;
+  padding: 0;
 }
 
 .portlet-decorate .portlet-content {
-    border: 0;
-    margin-top: -50px;
+  border: 0;
+  margin-top: -50px;
 }
 
 .item-doc {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
 .docs-image {
-    height: 36px;
-    margin-right: 12px;
-    width: 36px;
+  height: 36px;
+  margin-right: 12px;
+  width: 36px;
 }
 
 .name-doc {
-    font-size: 18px;
-    font-weight: 600;
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .lexicon-icon {
-    height: 12px;
-    margin-right: 0;
-    width: 12px;
+  height: 12px;
+  margin-right: 0;
+  width: 12px;
 }
 
 .separator {
-    background-color: #e0e0e6;
-    height: 1px;
-    margin-left: -10px;
-    margin-right: -10px;
-    width: 120%;
+  background-color: #e0e0e6;
+  height: 1px;
+  margin-left: -10px;
+  margin-right: -10px;
+  width: 120%;
 }

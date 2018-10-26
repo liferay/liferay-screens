@@ -1,24 +1,24 @@
 .pagination {
-    font-size: 14pt;
+  font-size: 14pt;
 }
 
 .pagination > li {
-    padding: 5px;
+  padding: 5px;
 }
 
 .pagination > li > a {
-    padding: 10px 20px;
+  padding: 10px 20px;
 }
 
 .card {
-    border: 2px solid gray;
-    box-shadow: 1px 1px 8px 0px rgba(0, 0, 0, 0.50);
+  border: 2px solid gray;
+  box-shadow: 1px 1px 8px 0px rgba(0, 0, 0, 0.50);
 }
 
 .portlet-decorate .portlet-content {
-	border: none;
+  border: none;
 }
 
 .taglib-header, .lfr-asset-metadata {
-	display: none;
+  display: none;
 }

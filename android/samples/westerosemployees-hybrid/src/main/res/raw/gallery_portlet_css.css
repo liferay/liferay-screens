@@ -1,41 +1,41 @@
 html,
 body {
-    max-width: 100%;
-    overflow-x: hidden;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 #wrapper {
-    padding-top: 0;
+  padding-top: 0;
 }
 
 .col-md-12 {
-    padding: 0;
+  padding: 0;
 }
 
 .container-fluid-1280 {
-    padding: 0 0 0 15px;
+  padding: 0 0 0 15px;
 }
 
 .portlet-decorate .portlet-content {
-    border: 0;
-    margin-top: -50px;
+  border: 0;
+  margin-top: -50px;
 }
 
 .portlet-content {
-    background: #FFF !important;
+  background: #FFF !important;
 }
 
 .row {
-    margin-left: -15px;
-    margin-right: 0;
+  margin-left: -15px;
+  margin-right: 0;
 }
 
 .item_gallery {
-    background: no-repeat center center;
-    background-size: cover;
-    float: left;
-    margin: 1.66%;
-    padding-bottom: 30%;
-    position: relative;
-    width: 30%;
+  background: no-repeat center center;
+  background-size: cover;
+  float: left;
+  margin: 1.66%;
+  padding-bottom: 30%;
+  position: relative;
+  width: 30%;
 }
