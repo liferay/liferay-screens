@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 * FormsScreenlet - Allow developers to handle with value changes for all fields using onChangeValueObservable
 * FormsScreenlet - Show only FileName instead of the full path on DocumentField
 * Create a ModalProgressBar view
+* Configure `detekt` for code convention and format all the project
 
 ### Refactor
 
