@@ -25,26 +25,26 @@ import com.liferay.mobile.screens.webcontent.WebContent;
  */
 public interface WebContentDisplayListener extends BaseCacheListener {
 
-	/**
-	 * Called when the web content’s HTML or {@link DDMStructure} is received.
-	 * The HTML is available by calling the {@link WebContent#getHtml} method.
-	 * To make some adaptations, the listener may return a modified version
-	 * of the HTML. The original HTML is rendered if the listener returns `null`.
-	 *
-	 * @param html original {@link WebContent}
-	 * @return modified or not {@link WebContent}
-	 */
-	WebContent onWebContentReceived(WebContent html);
+    /**
+     * Called when the web content’s HTML or {@link DDMStructure} is received.
+     * The HTML is available by calling the {@link WebContent#getHtml} method.
+     * To make some adaptations, the listener may return a modified version
+     * of the HTML. The original HTML is rendered if the listener returns `null`.
+     *
+     * @param html original {@link WebContent}
+     * @return modified or not {@link WebContent}
+     */
+    WebContent onWebContentReceived(WebContent html);
 
-	/**
-	 * Called when an url is clicked in the browser, return true to replace the default behaviour, false to allow the
-	 * browser to load the url
-	 */
-	boolean onUrlClicked(String url);
+    /**
+     * Called when an url is clicked in the browser, return true to replace the default behaviour, false to allow the
+     * browser to load the url
+     */
+    boolean onUrlClicked(String url);
 
-	/**
-	 * Called when something is touched in the WebContent, return true to replace the default behaviour,
-	 * false to allow the browser to keep processing the event
-	 */
-	boolean onWebContentTouched(View view, MotionEvent event);
+    /**
+     * Called when something is touched in the WebContent, return true to replace the default behaviour,
+     * false to allow the browser to keep processing the event
+     */
+    boolean onWebContentTouched(View view, MotionEvent event);
 }

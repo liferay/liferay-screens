@@ -27,64 +27,64 @@ import com.liferay.mobile.screens.westerosemployees_hybrid.views.Card;
  */
 public class FlingTouchListener implements View.OnTouchListener {
 
-	private static final float SWIPE_VELOCITY_THRESHOLD = 10f;
-	private static final float SWIPE_MOVEMENT_THRESHOLD = 100f;
+    private static final float SWIPE_VELOCITY_THRESHOLD = 10f;
+    private static final float SWIPE_MOVEMENT_THRESHOLD = 100f;
 
-	private final GestureDetector gestureDetector;
-	private final FlingListener flingListener;
-	private final int cardSizeMinimizedPx;
+    private final GestureDetector gestureDetector;
+    private final FlingListener flingListener;
+    private final int cardSizeMinimizedPx;
 
-	public FlingTouchListener(Context context, FlingListener flingListener) {
-		gestureDetector = new GestureDetector(context, new GestureDetectorListener());
-		this.flingListener = flingListener;
-		cardSizeMinimizedPx = ViewUtil.pixelFromDp(context, Card.CARD_SIZE);
-	}
+    public FlingTouchListener(Context context, FlingListener flingListener) {
+        gestureDetector = new GestureDetector(context, new GestureDetectorListener());
+        this.flingListener = flingListener;
+        cardSizeMinimizedPx = ViewUtil.pixelFromDp(context, Card.CARD_SIZE);
+    }
 
-	@Override
-	public boolean onTouch(View v, MotionEvent event) {
-		gestureDetector.onTouchEvent(event);
-		return true;
-	}
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        gestureDetector.onTouchEvent(event);
+        return true;
+    }
 
-	private class GestureDetectorListener extends GestureDetector.SimpleOnGestureListener {
+    private class GestureDetectorListener extends GestureDetector.SimpleOnGestureListener {
 
-		@Override
-		public boolean onSingleTapConfirmed(MotionEvent e) {
-			if (e.getY() >= cardSizeMinimizedPx) {
-				return true;
-			}
-			flingListener.onFling(FlingListener.Movement.TOUCH);
-			return true;
-		}
+        @Override
+        public boolean onSingleTapConfirmed(MotionEvent e) {
+            if (e.getY() >= cardSizeMinimizedPx) {
+                return true;
+            }
+            flingListener.onFling(FlingListener.Movement.TOUCH);
+            return true;
+        }
 
-		@Override
-		public boolean onDown(MotionEvent e) {
-			return true;
-		}
+        @Override
+        public boolean onDown(MotionEvent e) {
+            return true;
+        }
 
-		@Override
-		public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-			if (e1.getY() >= cardSizeMinimizedPx && e2.getY() >= cardSizeMinimizedPx) {
-				return true;
-			}
-			float swipeY = e2.getY() - e1.getY();
-			float swipeX = e2.getX() - e1.getX();
-			if (Math.abs(swipeY) > SWIPE_MOVEMENT_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
-				if (swipeY > 0) {
-					flingListener.onFling(FlingListener.Movement.DOWN);
-				} else {
-					flingListener.onFling(FlingListener.Movement.UP);
-				}
-			} else if (Math.abs(e2.getX() - e1.getX()) > SWIPE_MOVEMENT_THRESHOLD
-				&& Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-				if (swipeX > 0) {
-					flingListener.onFling(FlingListener.Movement.LEFT);
-				} else {
-					flingListener.onFling(FlingListener.Movement.RIGHT);
-				}
-			}
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            if (e1.getY() >= cardSizeMinimizedPx && e2.getY() >= cardSizeMinimizedPx) {
+                return true;
+            }
+            float swipeY = e2.getY() - e1.getY();
+            float swipeX = e2.getX() - e1.getX();
+            if (Math.abs(swipeY) > SWIPE_MOVEMENT_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
+                if (swipeY > 0) {
+                    flingListener.onFling(FlingListener.Movement.DOWN);
+                } else {
+                    flingListener.onFling(FlingListener.Movement.UP);
+                }
+            } else if (Math.abs(e2.getX() - e1.getX()) > SWIPE_MOVEMENT_THRESHOLD
+                && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
+                if (swipeX > 0) {
+                    flingListener.onFling(FlingListener.Movement.LEFT);
+                } else {
+                    flingListener.onFling(FlingListener.Movement.RIGHT);
+                }
+            }
 
-			return true;
-		}
-	}
+            return true;
+        }
+    }
 }

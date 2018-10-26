@@ -31,85 +31,85 @@ import java.util.Locale;
  * @author Silvio Santos
  */
 public class DDLFieldDateView extends BaseDDLFieldTextView<DateField>
-	implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
+    implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
 
-	protected DatePickerDialog pickerDialog;
+    protected DatePickerDialog pickerDialog;
 
-	public DDLFieldDateView(Context context) {
-		super(context);
-	}
+    public DDLFieldDateView(Context context) {
+        super(context);
+    }
 
-	public DDLFieldDateView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public DDLFieldDateView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public DDLFieldDateView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public DDLFieldDateView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	public void onClick(View view) {
-		Date date = getField().getCurrentValue();
+    @Override
+    public void onClick(View view) {
+        Date date = getField().getCurrentValue();
 
-		if (date == null) {
-			date = new Date();
-		}
+        if (date == null) {
+            date = new Date();
+        }
 
-		Calendar.getInstance().setTime(date);
+        Calendar.getInstance().setTime(date);
 
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(date);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
 
-		int year = calendar.get(Calendar.YEAR);
-		int month = calendar.get(Calendar.MONTH);
-		int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-		pickerDialog = new DatePickerDialog(getContext(), getDatePickerStyle(), this, year, month, day);
+        pickerDialog = new DatePickerDialog(getContext(), getDatePickerStyle(), this, year, month, day);
 
-		pickerDialog.show();
-	}
+        pickerDialog.show();
+    }
 
-	@Override
-	public void onDateSet(DatePicker view, int year, int month, int day) {
-		Locale locale = getResources().getConfiguration().locale;
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int day) {
+        Locale locale = getResources().getConfiguration().locale;
 
-		Calendar calendar = Calendar.getInstance(locale);
-		calendar.set(year, month, day);
+        Calendar calendar = Calendar.getInstance(locale);
+        calendar.set(year, month, day);
 
-		getField().setCurrentValue(calendar.getTime());
+        getField().setCurrentValue(calendar.getTime());
 
-		refresh();
-	}
+        refresh();
+    }
 
-	protected int getDatePickerStyle() {
-		return R.style.default_date_picker;
-	}
+    protected int getDatePickerStyle() {
+        return R.style.default_date_picker;
+    }
 
-	@Override
-	protected void onDetachedFromWindow() {
-		super.onDetachedFromWindow();
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
 
-		// Avoid WindowLeak error on orientation changes
-		if (pickerDialog != null) {
-			pickerDialog.dismiss();
-			pickerDialog = null;
-		}
-	}
+        // Avoid WindowLeak error on orientation changes
+        if (pickerDialog != null) {
+            pickerDialog.dismiss();
+            pickerDialog = null;
+        }
+    }
 
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
 
-		EditText editText = getTextEditText();
-		editText.setCursorVisible(false);
-		editText.setFocusableInTouchMode(false);
-		editText.setOnClickListener(this);
-		editText.setInputType(InputType.TYPE_NULL);
-	}
+        EditText editText = getTextEditText();
+        editText.setCursorVisible(false);
+        editText.setFocusableInTouchMode(false);
+        editText.setOnClickListener(this);
+        editText.setInputType(InputType.TYPE_NULL);
+    }
 
-	@Override
-	protected void onTextChanged(String text) {
-		//not doing anything at the moment, because field is being set
-		//using the DatePickerDialog
-	}
+    @Override
+    protected void onTextChanged(String text) {
+        //not doing anything at the moment, because field is being set
+        //using the DatePickerDialog
+    }
 }

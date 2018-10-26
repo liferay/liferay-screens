@@ -15,74 +15,73 @@ import com.liferay.mobile.screens.userportrait.UserPortraitScreenlet;
 import com.liferay.mobile.screens.westerosemployees.R;
 
 public class UserProfileActivity extends WesterosActivity
-	implements View.OnClickListener, AssetDisplayInnerScreenletListener {
+    implements View.OnClickListener, AssetDisplayInnerScreenletListener {
 
-	private TextView userNameText;
-	private TextView jobTitleText;
-	private TextView emailText;
-	private TextView screenNameText;
+    private TextView userNameText;
+    private TextView jobTitleText;
+    private TextView emailText;
+    private TextView screenNameText;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.user_display);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.user_display);
 
-		bindViews();
+        bindViews();
 
-		AssetDisplayScreenlet screenlet = findViewById(R.id.asset_display_screenlet);
-		screenlet.setClassName("com.liferay.portal.kernel.model.User");
-		screenlet.setClassPK(SessionContext.getCurrentUser().getId());
-		screenlet.setConfigurationListener(this);
-		screenlet.loadAsset();
-	}
+        AssetDisplayScreenlet screenlet = findViewById(R.id.asset_display_screenlet);
+        screenlet.setClassName("com.liferay.portal.kernel.model.User");
+        screenlet.setClassPK(SessionContext.getCurrentUser().getId());
+        screenlet.setConfigurationListener(this);
+        screenlet.loadAsset();
+    }
 
-	@Override
-	public void onConfigureChildScreenlet(AssetDisplayScreenlet screenlet, BaseScreenlet innerScreenlet,
-		AssetEntry assetEntry) {
-	}
+    @Override
+    public void onConfigureChildScreenlet(AssetDisplayScreenlet screenlet, BaseScreenlet innerScreenlet,
+        AssetEntry assetEntry) {
+    }
 
-	@Override
-	public View onRenderCustomAsset(AssetEntry assetEntry) {
-		if (assetEntry instanceof User) {
-			View view = getLayoutInflater().inflate(R.layout.user_profile, null);
-			User user = new User(assetEntry.getValues());
+    @Override
+    public View onRenderCustomAsset(AssetEntry assetEntry) {
+        if (assetEntry instanceof User) {
+            View view = getLayoutInflater().inflate(R.layout.user_profile, null);
+            User user = new User(assetEntry.getValues());
 
-			view.findViewById(R.id.sign_out_button).setOnClickListener(this);
+            view.findViewById(R.id.sign_out_button).setOnClickListener(this);
 
-			UserPortraitScreenlet userPortraitScreenlet =
-					view.findViewById(R.id.user_portrait_screenlet);
-			userNameText = view.findViewById(R.id.user_name_text);
-			jobTitleText = view.findViewById(R.id.user_job_title_text);
-			emailText = view.findViewById(R.id.user_email_text);
-			screenNameText = view.findViewById(R.id.user_screen_name_text);
+            UserPortraitScreenlet userPortraitScreenlet = view.findViewById(R.id.user_portrait_screenlet);
+            userNameText = view.findViewById(R.id.user_name_text);
+            jobTitleText = view.findViewById(R.id.user_job_title_text);
+            emailText = view.findViewById(R.id.user_email_text);
+            screenNameText = view.findViewById(R.id.user_screen_name_text);
 
-			userPortraitScreenlet.loadLoggedUserPortrait();
+            userPortraitScreenlet.loadLoggedUserPortrait();
 
-			userNameText.setText(user.getFirstName() + " " + user.getLastName());
-			jobTitleText.setText(user.getJobTitle());
-			emailText.setText(user.getEmail());
-			screenNameText.setText(user.getScreenName());
+            userNameText.setText(user.getFirstName() + " " + user.getLastName());
+            jobTitleText.setText(user.getJobTitle());
+            emailText.setText(user.getEmail());
+            screenNameText.setText(user.getScreenName());
 
-			return view;
-		}
-		return null;
-	}
+            return view;
+        }
+        return null;
+    }
 
-	@Override
-	public void onClick(View v) {
-		SessionContext.logout();
-		SessionContext.removeStoredCredentials(CredentialsStorageBuilder.StorageType.AUTO);
+    @Override
+    public void onClick(View v) {
+        SessionContext.logout();
+        SessionContext.removeStoredCredentials(CredentialsStorageBuilder.StorageType.AUTO);
 
-		Intent intent = new Intent(this, MainActivity.class);
-		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		startActivity(intent);
-		finish();
-	}
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
+    }
 
-	private void bindViews() {
-		userNameText = findViewById(R.id.user_name_text);
-		jobTitleText = findViewById(R.id.user_job_title_text);
-		emailText = findViewById(R.id.user_email_text);
-		screenNameText = findViewById(R.id.user_screen_name_text);
-	}
+    private void bindViews() {
+        userNameText = findViewById(R.id.user_name_text);
+        jobTitleText = findViewById(R.id.user_job_title_text);
+        emailText = findViewById(R.id.user_email_text);
+        screenNameText = findViewById(R.id.user_screen_name_text);
+    }
 }

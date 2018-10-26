@@ -28,38 +28,39 @@ import org.json.JSONObject;
  */
 public class DLAppService extends BaseService {
 
-	public DLAppService(Session session) {
-		super(session);
-	}
+    public DLAppService(Session session) {
+        super(session);
+    }
 
-	public JSONObject addFileEntry(long repositoryId, long folderId, String sourceFileName, String mimeType, String title, String description, String changeLog, byte[] bytes, JSONObjectWrapper serviceContext) throws Exception {
-		JSONObject _command = new JSONObject();
+    public JSONObject addFileEntry(long repositoryId, long folderId, String sourceFileName, String mimeType,
+        String title, String description, String changeLog, byte[] bytes, JSONObjectWrapper serviceContext)
+        throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("repositoryId", repositoryId);
-			_params.put("folderId", folderId);
-			_params.put("sourceFileName", checkNull(sourceFileName));
-			_params.put("mimeType", checkNull(mimeType));
-			_params.put("title", checkNull(title));
-			_params.put("description", checkNull(description));
-			_params.put("changeLog", checkNull(changeLog));
-			_params.put("bytes", toString(bytes));
-			mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
+            _params.put("repositoryId", repositoryId);
+            _params.put("folderId", folderId);
+            _params.put("sourceFileName", checkNull(sourceFileName));
+            _params.put("mimeType", checkNull(mimeType));
+            _params.put("title", checkNull(title));
+            _params.put("description", checkNull(description));
+            _params.put("changeLog", checkNull(changeLog));
+            _params.put("bytes", toString(bytes));
+            mangleWrapper(_params, "serviceContext", "com.liferay.portal.service.ServiceContext", serviceContext);
 
-			_command.put("/dlapp/add-file-entry", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/dlapp/add-file-entry", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getJSONObject(0);
-	}
+        return _result.getJSONObject(0);
+    }
 }

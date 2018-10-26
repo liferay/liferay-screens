@@ -22,27 +22,27 @@ import com.liferay.mobile.screens.ddl.model.Record;
  */
 public class DDLListAdapter extends com.liferay.mobile.screens.viewsets.westeros.ddl.list.DDLListAdapter {
 
-	public DDLListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
-		super(layoutId, progressLayoutId, listener);
-	}
+    public DDLListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
+        super(layoutId, progressLayoutId, listener);
+    }
 
-	@Override
-	protected void fillHolder(Record entry, SwipeActionsViewHolder holder) {
-		super.fillHolder(entry, holder);
+    @Override
+    protected void fillHolder(Record entry, SwipeActionsViewHolder holder) {
+        super.fillHolder(entry, holder);
 
-		holder.imageView.setImageResource(getDrawable(holder.getLayoutPosition()));
-	}
+        holder.imageView.setImageResource(getDrawable(holder.getLayoutPosition()));
+    }
 
-	protected int getDrawable(int position) {
-		//FIXME add an easier way to do this
-		int drawable = R.drawable.issue_open;
-		if (position < 1) {
-			drawable = R.drawable.issue_reject;
-		} else if (position < 2) {
-			drawable = R.drawable.done;
-		} else if (position < 3) {
-			drawable = R.drawable.issue_waiting;
-		}
-		return drawable;
-	}
+    protected int getDrawable(int position) {
+        //FIXME add an easier way to do this
+        int drawable = R.drawable.issue_open;
+        if (position < 1) {
+            drawable = R.drawable.issue_reject;
+        } else if (position < 2) {
+            drawable = R.drawable.done;
+        } else if (position < 3) {
+            drawable = R.drawable.issue_waiting;
+        }
+        return drawable;
+    }
 }

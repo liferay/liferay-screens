@@ -31,37 +31,37 @@ import java.util.Map;
  */
 public class DDLFormPagerView extends DDLFormView {
 
-	private ViewPager pager;
+    private ViewPager pager;
 
-	public DDLFormPagerView(Context context) {
-		super(context);
-	}
+    public DDLFormPagerView(Context context) {
+        super(context);
+    }
 
-	public DDLFormPagerView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public DDLFormPagerView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	@Override
-	public void showFormFields(Record record) {
-		List<Field.EditorType> editorTypes = Field.EditorType.all();
+    @Override
+    public void showFormFields(Record record) {
+        List<Field.EditorType> editorTypes = Field.EditorType.all();
 
-		Map<Field.EditorType, Integer> layoutIds = new HashMap<>();
-		for (Field.EditorType editorType : editorTypes) {
-			layoutIds.put(editorType, getFieldLayoutId(editorType));
-		}
+        Map<Field.EditorType, Integer> layoutIds = new HashMap<>();
+        for (Field.EditorType editorType : editorTypes) {
+            layoutIds.put(editorType, getFieldLayoutId(editorType));
+        }
 
-		List<Field> fields = new ArrayList<>(record.getFieldCount());
-		for (int i = 0; i < record.getFieldCount(); ++i) {
-			fields.add(record.getField(i));
-		}
+        List<Field> fields = new ArrayList<>(record.getFieldCount());
+        for (int i = 0; i < record.getFieldCount(); ++i) {
+            fields.add(record.getField(i));
+        }
 
-		pager.setAdapter(new DDLFormPagerViewAdapter(fields, layoutIds));
-	}
+        pager.setAdapter(new DDLFormPagerViewAdapter(fields, layoutIds));
+    }
 
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
 
-		pager = findViewById(R.id.liferay_pager);
-	}
+        pager = findViewById(R.id.liferay_pager);
+    }
 }

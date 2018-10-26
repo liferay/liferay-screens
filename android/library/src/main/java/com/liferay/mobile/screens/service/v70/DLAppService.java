@@ -28,165 +28,167 @@ import org.json.JSONObject;
  */
 public class DLAppService extends BaseService {
 
-	public DLAppService(Session session) {
-		super(session);
-	}
+    public DLAppService(Session session) {
+        super(session);
+    }
 
-	public JSONObject addFileEntry(long repositoryId, long folderId, String sourceFileName, String mimeType, String title, String description, String changeLog, byte[] bytes, JSONObjectWrapper serviceContext) throws Exception {
-		JSONObject _command = new JSONObject();
+    public JSONObject addFileEntry(long repositoryId, long folderId, String sourceFileName, String mimeType,
+        String title, String description, String changeLog, byte[] bytes, JSONObjectWrapper serviceContext)
+        throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("repositoryId", repositoryId);
-			_params.put("folderId", folderId);
-			_params.put("sourceFileName", checkNull(sourceFileName));
-			_params.put("mimeType", checkNull(mimeType));
-			_params.put("title", checkNull(title));
-			_params.put("description", checkNull(description));
-			_params.put("changeLog", checkNull(changeLog));
-			_params.put("bytes", toString(bytes));
-			mangleWrapper(_params, "serviceContext", "com.liferay.portal.kernel.service.ServiceContext", serviceContext);
+            _params.put("repositoryId", repositoryId);
+            _params.put("folderId", folderId);
+            _params.put("sourceFileName", checkNull(sourceFileName));
+            _params.put("mimeType", checkNull(mimeType));
+            _params.put("title", checkNull(title));
+            _params.put("description", checkNull(description));
+            _params.put("changeLog", checkNull(changeLog));
+            _params.put("bytes", toString(bytes));
+            mangleWrapper(_params, "serviceContext", "com.liferay.portal.kernel.service.ServiceContext",
+                serviceContext);
 
-			_command.put("/dlapp/add-file-entry", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/dlapp/add-file-entry", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getJSONObject(0);
-	}
+        return _result.getJSONObject(0);
+    }
 
-	public JSONObject addFileEntry(long repositoryId, long folderId, String sourceFileName, String mimeType, String title, String description, String changeLog, UploadData file, JSONObjectWrapper serviceContext) throws Exception {
-		JSONObject _command = new JSONObject();
+    public JSONObject addFileEntry(long repositoryId, long folderId, String sourceFileName, String mimeType,
+        String title, String description, String changeLog, UploadData file, JSONObjectWrapper serviceContext)
+        throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("repositoryId", repositoryId);
-			_params.put("folderId", folderId);
-			_params.put("sourceFileName", checkNull(sourceFileName));
-			_params.put("mimeType", checkNull(mimeType));
-			_params.put("title", checkNull(title));
-			_params.put("description", checkNull(description));
-			_params.put("changeLog", checkNull(changeLog));
-			_params.put("file", checkNull(file));
-			mangleWrapper(_params, "serviceContext", "com.liferay.portal.kernel.service.ServiceContext", serviceContext);
+            _params.put("repositoryId", repositoryId);
+            _params.put("folderId", folderId);
+            _params.put("sourceFileName", checkNull(sourceFileName));
+            _params.put("mimeType", checkNull(mimeType));
+            _params.put("title", checkNull(title));
+            _params.put("description", checkNull(description));
+            _params.put("changeLog", checkNull(changeLog));
+            _params.put("file", checkNull(file));
+            mangleWrapper(_params, "serviceContext", "com.liferay.portal.kernel.service.ServiceContext",
+                serviceContext);
 
-			_command.put("/dlapp/add-file-entry", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/dlapp/add-file-entry", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.upload(_command);
+        JSONArray _result = session.upload(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getJSONObject(0);
-	}
+        return _result.getJSONObject(0);
+    }
 
-	public void deleteFileEntry(long fileEntryId) throws Exception {
-		JSONObject _command = new JSONObject();
+    public void deleteFileEntry(long fileEntryId) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("fileEntryId", fileEntryId);
+            _params.put("fileEntryId", fileEntryId);
 
-			_command.put("/dlapp/delete-file-entry", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/dlapp/delete-file-entry", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		session.invoke(_command);
-	}
+        session.invoke(_command);
+    }
 
-	public JSONArray getFileEntries(long repositoryId, long folderId, JSONArray mimeTypes, int start, int end, JSONObjectWrapper obc) throws Exception {
-		JSONObject _command = new JSONObject();
+    public JSONArray getFileEntries(long repositoryId, long folderId, JSONArray mimeTypes, int start, int end,
+        JSONObjectWrapper obc) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("repositoryId", repositoryId);
-			_params.put("folderId", folderId);
-			_params.put("mimeTypes", checkNull(mimeTypes));
-			_params.put("start", start);
-			_params.put("end", end);
-			mangleWrapper(_params, "obc", "com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.kernel.repository.model.FileEntry>", obc);
+            _params.put("repositoryId", repositoryId);
+            _params.put("folderId", folderId);
+            _params.put("mimeTypes", checkNull(mimeTypes));
+            _params.put("start", start);
+            _params.put("end", end);
+            mangleWrapper(_params, "obc",
+                "com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portal.kernel.repository.model.FileEntry>",
+                obc);
 
-			_command.put("/dlapp/get-file-entries", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/dlapp/get-file-entries", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getJSONArray(0);
-	}
+        return _result.getJSONArray(0);
+    }
 
-	public Integer getFileEntriesCount(long repositoryId, long folderId, JSONArray mimeTypes) throws Exception {
-		JSONObject _command = new JSONObject();
+    public Integer getFileEntriesCount(long repositoryId, long folderId, JSONArray mimeTypes) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("repositoryId", repositoryId);
-			_params.put("folderId", folderId);
-			_params.put("mimeTypes", checkNull(mimeTypes));
+            _params.put("repositoryId", repositoryId);
+            _params.put("folderId", folderId);
+            _params.put("mimeTypes", checkNull(mimeTypes));
 
-			_command.put("/dlapp/get-file-entries-count", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/dlapp/get-file-entries-count", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getInt(0);
-	}
+        return _result.getInt(0);
+    }
 
-	public JSONObject getFileEntry(long groupId, long folderId, String title) throws Exception {
-		JSONObject _command = new JSONObject();
+    public JSONObject getFileEntry(long groupId, long folderId, String title) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("groupId", groupId);
-			_params.put("folderId", folderId);
-			_params.put("title", checkNull(title));
+            _params.put("groupId", groupId);
+            _params.put("folderId", folderId);
+            _params.put("title", checkNull(title));
 
-			_command.put("/dlapp/get-file-entry", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/dlapp/get-file-entry", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getJSONObject(0);
-	}
-
+        return _result.getJSONObject(0);
+    }
 }

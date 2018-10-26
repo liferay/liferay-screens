@@ -22,52 +22,52 @@ import java.util.HashSet;
  */
 public class RequestState {
 
-	//TODO we should add javadoc for the most important classes like this one.
+    //TODO we should add javadoc for the most important classes like this one.
 
-	private static RequestState instance;
-	private final SparseArray<HashSet<Object>> states = new SparseArray<>();
+    private static RequestState instance;
+    private final SparseArray<HashSet<Object>> states = new SparseArray<>();
 
-	public static synchronized RequestState getInstance() {
-		if (instance == null) {
-			instance = new RequestState();
-		}
+    public static synchronized RequestState getInstance() {
+        if (instance == null) {
+            instance = new RequestState();
+        }
 
-		return instance;
-	}
+        return instance;
+    }
 
-	public synchronized boolean contains(int targetScreenletId, Object state) {
-		HashSet<Object> set = states.get(targetScreenletId);
+    public synchronized boolean contains(int targetScreenletId, Object state) {
+        HashSet<Object> set = states.get(targetScreenletId);
 
-		return set != null && set.contains(state);
-	}
+        return set != null && set.contains(state);
+    }
 
-	public void clear(int targetScreenletId) {
-		states.remove(targetScreenletId);
-	}
+    public void clear(int targetScreenletId) {
+        states.remove(targetScreenletId);
+    }
 
-	public synchronized void put(int targetScreenletId, Object state) {
-		HashSet<Object> set = states.get(targetScreenletId);
+    public synchronized void put(int targetScreenletId, Object state) {
+        HashSet<Object> set = states.get(targetScreenletId);
 
-		if (set == null) {
-			set = new HashSet<>();
+        if (set == null) {
+            set = new HashSet<>();
 
-			states.put(targetScreenletId, set);
-		}
+            states.put(targetScreenletId, set);
+        }
 
-		set.add(state);
-	}
+        set.add(state);
+    }
 
-	public synchronized void remove(int targetScreenletId, Object state) {
-		HashSet<Object> set = states.get(targetScreenletId);
+    public synchronized void remove(int targetScreenletId, Object state) {
+        HashSet<Object> set = states.get(targetScreenletId);
 
-		if (set == null) {
-			return;
-		}
+        if (set == null) {
+            return;
+        }
 
-		set.remove(state);
+        set.remove(state);
 
-		if (set.isEmpty()) {
-			states.remove(targetScreenletId);
-		}
-	}
+        if (set.isEmpty()) {
+            states.remove(targetScreenletId);
+        }
+    }
 }

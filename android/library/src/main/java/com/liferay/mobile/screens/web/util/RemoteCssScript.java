@@ -19,28 +19,28 @@ package com.liferay.mobile.screens.web.util;
  */
 public class RemoteCssScript implements InjectableScript {
 
-	private String name;
-	private String content;
+    private String name;
+    private String content;
 
-	public RemoteCssScript(String name, String url) {
-		this.name = name;
-		content = "var link = document.createElement('link');"
-			+ "link.type = 'text/css';"
-			+ "link.rel = 'stylesheet';"
-			+ "link.href = '"
-			+ url
-			+ "';"
-			+ "var head = document.getElementsByTagName('head')[0];"
-			+ "head.appendChild(link);";
-	}
+    public RemoteCssScript(String name, String url) {
+        this.name = name;
+        content = "var link = document.createElement('link');"
+            + "link.type = 'text/css';"
+            + "link.rel = 'stylesheet';"
+            + "link.href = '"
+            + url
+            + "';"
+            + "var head = document.getElementsByTagName('head')[0];"
+            + "head.appendChild(link);";
+    }
 
-	@Override
-	public String getName() {
-		return name;
-	}
+    @Override
+    public String getName() {
+        return name;
+    }
 
-	@Override
-	public String getContent() {
-		return content;
-	}
+    @Override
+    public String getContent() {
+        return content;
+    }
 }

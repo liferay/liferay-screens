@@ -22,20 +22,20 @@ import com.liferay.mobile.screens.rating.AssetRating;
  */
 public interface RatingViewModel extends BaseViewModel {
 
-	/**
-	 * Called when the rating operation is succesfully finished.
-	 *
-	 * @param argument asset rating
-	 */
-	void showFinishOperation(String actionName, AssetRating argument);
+    /**
+     * Called when the rating operation is succesfully finished.
+     *
+     * @param argument asset rating
+     */
+    void showFinishOperation(String actionName, AssetRating argument);
 
-	/**
-	 * Call this method to allow rating edition.
-	 */
-	void enableEdition(boolean editable);
+    /**
+     * Call this method to allow rating edition.
+     */
+    void enableEdition(boolean editable);
 
-	/**
-	 * Number of possible rating values available for the user in the view.
-	 */
-	int getRatingsLength();
+    /**
+     * Number of possible rating values available for the user in the view.
+     */
+    int getRatingsLength();
 }

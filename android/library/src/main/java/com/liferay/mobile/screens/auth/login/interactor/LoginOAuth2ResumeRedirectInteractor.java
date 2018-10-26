@@ -15,35 +15,35 @@ import org.json.JSONObject;
 
 public class LoginOAuth2ResumeRedirectInteractor extends BaseLoginInteractor {
 
-	@Override
-	public BasicEvent execute(Object... args) throws Exception {
+    @Override
+    public BasicEvent execute(Object... args) throws Exception {
 
-		Intent redirectIntent = (Intent) args[0];
-		Context context = LiferayScreensContext.getContext();
+        Intent redirectIntent = (Intent) args[0];
+        Context context = LiferayScreensContext.getContext();
 
-		Session session = new SessionImpl(LiferayServerContext.getServer());
+        Session session = new SessionImpl(LiferayServerContext.getServer());
 
-		validate(redirectIntent);
+        validate(redirectIntent);
 
-		Session oauth2Session = OAuth2SignIn.resumeAuthorizationFlowWithIntent(context, session, redirectIntent, null);
+        Session oauth2Session = OAuth2SignIn.resumeAuthorizationFlowWithIntent(context, session, redirectIntent, null);
 
-		SessionContext.createOAuth2Session(oauth2Session);
-		CurrentUserConnector userConnector = getCurrentUserConnector(oauth2Session);
+        SessionContext.createOAuth2Session(oauth2Session);
+        CurrentUserConnector userConnector = getCurrentUserConnector(oauth2Session);
 
-		JSONObject jsonObject = userConnector.getCurrentUser();
+        JSONObject jsonObject = userConnector.getCurrentUser();
 
-		return new BasicEvent(jsonObject);
-	}
+        return new BasicEvent(jsonObject);
+    }
 
-	private void validate(Intent redirectIntent) {
-		if (redirectIntent == null) {
-			throw new IllegalArgumentException("Redirect intent can't be null");
-		} else if (redirectIntent.getData() == null) {
-			throw new IllegalArgumentException("Redirect intent data can't be null");
-		}
-	}
+    private void validate(Intent redirectIntent) {
+        if (redirectIntent == null) {
+            throw new IllegalArgumentException("Redirect intent can't be null");
+        } else if (redirectIntent.getData() == null) {
+            throw new IllegalArgumentException("Redirect intent data can't be null");
+        }
+    }
 
-	private CurrentUserConnector getCurrentUserConnector(Session session) {
-		return ServiceProvider.getInstance().getCurrentUserConnector(session);
-	}
+    private CurrentUserConnector getCurrentUserConnector(Session session) {
+        return ServiceProvider.getInstance().getCurrentUserConnector(session);
+    }
 }

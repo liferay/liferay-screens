@@ -30,63 +30,63 @@ import com.liferay.mobile.screens.util.ServiceProvider;
  */
 public class ForgotPasswordInteractor extends BaseRemoteInteractor<ForgotPasswordListener, ForgotPasswordEvent> {
 
-	@Override
-	public ForgotPasswordEvent execute(Object[] args) throws Exception {
+    @Override
+    public ForgotPasswordEvent execute(Object[] args) throws Exception {
 
-		long companyId = (long) args[0];
-		String login = (String) args[1];
-		BasicAuthMethod basicAuthMethod = (BasicAuthMethod) args[2];
-		String anonymousApiUserName = (String) args[3];
-		String anonymousApiPassword = (String) args[4];
+        long companyId = (long) args[0];
+        String login = (String) args[1];
+        BasicAuthMethod basicAuthMethod = (BasicAuthMethod) args[2];
+        String anonymousApiUserName = (String) args[3];
+        String anonymousApiPassword = (String) args[4];
 
-		validate(companyId, login, basicAuthMethod, anonymousApiUserName, anonymousApiPassword);
+        validate(companyId, login, basicAuthMethod, anonymousApiUserName, anonymousApiPassword);
 
-		Authentication authentication = new BasicAuthentication(anonymousApiUserName, anonymousApiPassword);
-		Session anonymousSession = new SessionImpl(LiferayServerContext.getServer(), authentication);
-		ForgotPasswordConnector connector = ServiceProvider.getInstance().getForgotPasswordConnector(anonymousSession);
+        Authentication authentication = new BasicAuthentication(anonymousApiUserName, anonymousApiPassword);
+        Session anonymousSession = new SessionImpl(LiferayServerContext.getServer(), authentication);
+        ForgotPasswordConnector connector = ServiceProvider.getInstance().getForgotPasswordConnector(anonymousSession);
 
-		Boolean sent = getBasicEventNew(companyId, login, basicAuthMethod, connector);
+        Boolean sent = getBasicEventNew(companyId, login, basicAuthMethod, connector);
 
-		return new ForgotPasswordEvent(sent);
-	}
+        return new ForgotPasswordEvent(sent);
+    }
 
-	@Override
-	public void onSuccess(ForgotPasswordEvent event) {
-		getListener().onForgotPasswordRequestSuccess(event.isPasswordSent());
-	}
+    @Override
+    public void onSuccess(ForgotPasswordEvent event) {
+        getListener().onForgotPasswordRequestSuccess(event.isPasswordSent());
+    }
 
-	@Override
-	public void onFailure(ForgotPasswordEvent event) {
-		getListener().onForgotPasswordRequestFailure(event.getException());
-	}
+    @Override
+    public void onFailure(ForgotPasswordEvent event) {
+        getListener().onForgotPasswordRequestFailure(event.getException());
+    }
 
-	private boolean getBasicEventNew(long companyId, String login, BasicAuthMethod basicAuthMethod,
-		ForgotPasswordConnector connector) throws Exception {
+    private boolean getBasicEventNew(long companyId, String login, BasicAuthMethod basicAuthMethod,
+        ForgotPasswordConnector connector) throws Exception {
 
-		switch (basicAuthMethod) {
-			case EMAIL:
-				return connector.sendPasswordByEmailAddress(companyId, login);
-			case USER_ID:
-				return connector.sendPasswordByUserId(Long.parseLong(login));
-			case SCREEN_NAME:
-			default:
-				return connector.sendPasswordByScreenName(companyId, login);
-		}
-	}
+        switch (basicAuthMethod) {
+            case EMAIL:
+                return connector.sendPasswordByEmailAddress(companyId, login);
+            case USER_ID:
+                return connector.sendPasswordByUserId(Long.parseLong(login));
+            case SCREEN_NAME:
+            default:
+                return connector.sendPasswordByScreenName(companyId, login);
+        }
+    }
 
-	protected void validate(long companyId, String login, BasicAuthMethod basicAuthMethod, String anonymousApiUserName,
-		String anonymousApiPassword) {
+    protected void validate(long companyId, String login, BasicAuthMethod basicAuthMethod, String anonymousApiUserName,
+        String anonymousApiPassword) {
 
-		if ((companyId <= 0) && (basicAuthMethod != BasicAuthMethod.USER_ID)) {
-			throw new IllegalArgumentException("CompanyId cannot be 0 or negative");
-		} else if (login == null) {
-			throw new IllegalArgumentException("Login cannot be empty");
-		} else if (basicAuthMethod == null) {
-			throw new IllegalArgumentException("BasicAuthMethod cannot be empty");
-		} else if (anonymousApiUserName == null) {
-			throw new IllegalArgumentException("Anonymous api user name cannot be empty");
-		} else if (anonymousApiPassword == null) {
-			throw new IllegalArgumentException("Anonymous api password cannot be empty");
-		}
-	}
+        if ((companyId <= 0) && (basicAuthMethod != BasicAuthMethod.USER_ID)) {
+            throw new IllegalArgumentException("CompanyId cannot be 0 or negative");
+        } else if (login == null) {
+            throw new IllegalArgumentException("Login cannot be empty");
+        } else if (basicAuthMethod == null) {
+            throw new IllegalArgumentException("BasicAuthMethod cannot be empty");
+        } else if (anonymousApiUserName == null) {
+            throw new IllegalArgumentException("Anonymous api user name cannot be empty");
+        } else if (anonymousApiPassword == null) {
+            throw new IllegalArgumentException("Anonymous api password cannot be empty");
+        }
+    }
 }

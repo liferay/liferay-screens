@@ -5,9 +5,9 @@ package com.liferay.mobile.screens.auth.forgotpassword.connector;
  */
 public interface ForgotPasswordConnector {
 
-	Boolean sendPasswordByEmailAddress(long companyId, String emailAddress) throws Exception;
+    Boolean sendPasswordByEmailAddress(long companyId, String emailAddress) throws Exception;
 
-	Boolean sendPasswordByScreenName(long companyId, String screenName) throws Exception;
+    Boolean sendPasswordByScreenName(long companyId, String screenName) throws Exception;
 
-	Boolean sendPasswordByUserId(long userId) throws Exception;
+    Boolean sendPasswordByUserId(long userId) throws Exception;
 }

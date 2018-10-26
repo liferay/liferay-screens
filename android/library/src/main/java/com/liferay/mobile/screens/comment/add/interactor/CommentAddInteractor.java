@@ -15,40 +15,40 @@ import org.json.JSONObject;
  */
 public class CommentAddInteractor extends BaseCacheWriteInteractor<CommentAddListener, CommentEvent> {
 
-	@Override
-	public CommentEvent execute(CommentEvent event) throws Exception {
+    @Override
+    public CommentEvent execute(CommentEvent event) throws Exception {
 
-		String className = event.getClassName();
-		long classPK = event.getClassPK();
-		String body = event.getBody();
+        String className = event.getClassName();
+        long classPK = event.getClassPK();
+        String body = event.getBody();
 
-		validate(className, classPK, body);
+        validate(className, classPK, body);
 
-		ScreensCommentConnector connector = ServiceProvider.getInstance().getScreensCommentConnector(getSession());
+        ScreensCommentConnector connector = ServiceProvider.getInstance().getScreensCommentConnector(getSession());
 
-		JSONObject jsonObject = connector.addComment(className, classPK, body);
+        JSONObject jsonObject = connector.addComment(className, classPK, body);
 
-		event.setCommentEntry(new CommentEntry(JSONUtil.toMap(jsonObject)));
-		return event;
-	}
+        event.setCommentEntry(new CommentEntry(JSONUtil.toMap(jsonObject)));
+        return event;
+    }
 
-	@Override
-	public void onSuccess(CommentEvent event) {
-		getListener().onAddCommentSuccess(event.getCommentEntry());
-	}
+    @Override
+    public void onSuccess(CommentEvent event) {
+        getListener().onAddCommentSuccess(event.getCommentEntry());
+    }
 
-	@Override
-	public void onFailure(CommentEvent event) {
-		getListener().error(event.getException(), CommentAddScreenlet.DEFAULT_ACTION);
-	}
+    @Override
+    public void onFailure(CommentEvent event) {
+        getListener().error(event.getException(), CommentAddScreenlet.DEFAULT_ACTION);
+    }
 
-	protected void validate(String className, long classPK, String body) {
-		if (body.isEmpty()) {
-			throw new IllegalArgumentException("comment body cannot be empty");
-		} else if (className.isEmpty()) {
-			throw new IllegalArgumentException("className cannot be empty");
-		} else if (classPK <= 0) {
-			throw new IllegalArgumentException("classPK must be greater than 0");
-		}
-	}
+    protected void validate(String className, long classPK, String body) {
+        if (body.isEmpty()) {
+            throw new IllegalArgumentException("comment body cannot be empty");
+        } else if (className.isEmpty()) {
+            throw new IllegalArgumentException("className cannot be empty");
+        } else if (classPK <= 0) {
+            throw new IllegalArgumentException("classPK must be greater than 0");
+        }
+    }
 }

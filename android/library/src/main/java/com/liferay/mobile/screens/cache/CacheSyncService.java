@@ -51,139 +51,139 @@ import static com.liferay.mobile.screens.rating.RatingScreenlet.DELETE_RATING_AC
  */
 public class CacheSyncService extends IntentService {
 
-	public CacheSyncService() {
-		super(CacheSyncService.class.getName());
-	}
+    public CacheSyncService() {
+        super(CacheSyncService.class.getName());
+    }
 
-	@Override
-	protected void onHandleIntent(final Intent intent) {
-		if (AndroidUtil.isConnected(getApplicationContext())
-			&& SessionContext.isLoggedIn()
-			&& SessionContext.getCurrentUser() != null) {
+    @Override
+    protected void onHandleIntent(final Intent intent) {
+        if (AndroidUtil.isConnected(getApplicationContext())
+            && SessionContext.isLoggedIn()
+            && SessionContext.getCurrentUser() != null) {
 
-			sync(DDLFormEvent.class, new SyncProvider<DDLFormEvent>() {
-				@Override
-				public DDLFormEvent getCacheEvent(DDLFormEvent event) throws Exception {
-					Record record = event.getRecord();
-					BaseCacheWriteInteractor interactor = record.getRecordId() == 0 ? new DDLFormAddRecordInteractor()
-						: new DDLFormUpdateRecordInteractor();
-					event = (DDLFormEvent) interactor.execute(event);
-					event.setCacheKey(record.getStructureId() + SEPARATOR + record.getRecordId());
-					return event;
-				}
-			});
+            sync(DDLFormEvent.class, new SyncProvider<DDLFormEvent>() {
+                @Override
+                public DDLFormEvent getCacheEvent(DDLFormEvent event) throws Exception {
+                    Record record = event.getRecord();
+                    BaseCacheWriteInteractor interactor = record.getRecordId() == 0 ? new DDLFormAddRecordInteractor()
+                        : new DDLFormUpdateRecordInteractor();
+                    event = (DDLFormEvent) interactor.execute(event);
+                    event.setCacheKey(record.getStructureId() + SEPARATOR + record.getRecordId());
+                    return event;
+                }
+            });
 
-			sync(CommentEvent.class, new SyncProvider<CommentEvent>() {
-				@Override
-				public CommentEvent getCacheEvent(CommentEvent event) throws Exception {
-					BaseCacheWriteInteractor interactor = getCommentInteractor(event);
-					event = (CommentEvent) interactor.execute(event);
-					event.setCacheKey(String.valueOf(event.getCommentId()));
-					event.setDeleted(DELETE_COMMENT_ACTION.equals(event.getActionName()));
-					return event;
-				}
+            sync(CommentEvent.class, new SyncProvider<CommentEvent>() {
+                @Override
+                public CommentEvent getCacheEvent(CommentEvent event) throws Exception {
+                    BaseCacheWriteInteractor interactor = getCommentInteractor(event);
+                    event = (CommentEvent) interactor.execute(event);
+                    event.setCacheKey(String.valueOf(event.getCommentId()));
+                    event.setDeleted(DELETE_COMMENT_ACTION.equals(event.getActionName()));
+                    return event;
+                }
 
-				@NonNull
-				private BaseCacheWriteInteractor getCommentInteractor(CommentEvent commentEvent) {
-					if (DELETE_COMMENT_ACTION.equals(commentEvent.getActionName())) {
-						return new CommentDeleteInteractor();
-					} else if (commentEvent.getCommentId() == 0) {
-						return new CommentAddInteractor();
-					} else {
-						return new CommentUpdateInteractor();
-					}
-				}
-			});
+                @NonNull
+                private BaseCacheWriteInteractor getCommentInteractor(CommentEvent commentEvent) {
+                    if (DELETE_COMMENT_ACTION.equals(commentEvent.getActionName())) {
+                        return new CommentDeleteInteractor();
+                    } else if (commentEvent.getCommentId() == 0) {
+                        return new CommentAddInteractor();
+                    } else {
+                        return new CommentUpdateInteractor();
+                    }
+                }
+            });
 
-			sync(RatingEvent.class, new SyncProvider<RatingEvent>() {
-				@Override
-				public RatingEvent getCacheEvent(RatingEvent event) throws Exception {
-					BaseCacheWriteInteractor interactor =
-						DELETE_RATING_ACTION.equals(event.getActionName()) ? new RatingDeleteInteractor()
-							: new RatingUpdateInteractor();
-					event = (RatingEvent) interactor.execute(event);
-					event.setCacheKey(event.getClassName() + SEPARATOR + event.getClassPK());
-					event.setDeleted(DELETE_RATING_ACTION.equals(event.getActionName()));
-					return event;
-				}
-			});
+            sync(RatingEvent.class, new SyncProvider<RatingEvent>() {
+                @Override
+                public RatingEvent getCacheEvent(RatingEvent event) throws Exception {
+                    BaseCacheWriteInteractor interactor =
+                        DELETE_RATING_ACTION.equals(event.getActionName()) ? new RatingDeleteInteractor()
+                            : new RatingUpdateInteractor();
+                    event = (RatingEvent) interactor.execute(event);
+                    event.setCacheKey(event.getClassName() + SEPARATOR + event.getClassPK());
+                    event.setDeleted(DELETE_RATING_ACTION.equals(event.getActionName()));
+                    return event;
+                }
+            });
 
-			sync(UserPortraitUploadEvent.class, new SyncProvider<UserPortraitUploadEvent>() {
+            sync(UserPortraitUploadEvent.class, new SyncProvider<UserPortraitUploadEvent>() {
 
-				final UserPortraitUploadInteractor interactor = new UserPortraitUploadInteractor();
+                final UserPortraitUploadInteractor interactor = new UserPortraitUploadInteractor();
 
-				@Override
-				public UserPortraitUploadEvent getCacheEvent(UserPortraitUploadEvent event) throws Exception {
-					EventBusUtil.register(this);
-					interactor.execute(event);
-					return null;
-				}
+                @Override
+                public UserPortraitUploadEvent getCacheEvent(UserPortraitUploadEvent event) throws Exception {
+                    EventBusUtil.register(this);
+                    interactor.execute(event);
+                    return null;
+                }
 
-				public void onEventMainThread(UserPortraitUploadEvent event) {
-					//event.setCacheKey(String.valueOf(event.getUserId()));
-					storeEvent(event);
-				}
-			});
+                public void onEventMainThread(UserPortraitUploadEvent event) {
+                    //event.setCacheKey(String.valueOf(event.getUserId()));
+                    storeEvent(event);
+                }
+            });
 
-			sync(DDLFormDocumentUploadEvent.class, new SyncProvider<DDLFormDocumentUploadEvent>() {
-				@Override
-				public DDLFormDocumentUploadEvent getCacheEvent(DDLFormDocumentUploadEvent event) throws Exception {
-					DDLFormDocumentUploadInteractor interactor = new DDLFormDocumentUploadInteractor();
-					EventBusUtil.register(this);
-					interactor.execute(event);
-					return null;
-				}
+            sync(DDLFormDocumentUploadEvent.class, new SyncProvider<DDLFormDocumentUploadEvent>() {
+                @Override
+                public DDLFormDocumentUploadEvent getCacheEvent(DDLFormDocumentUploadEvent event) throws Exception {
+                    DDLFormDocumentUploadInteractor interactor = new DDLFormDocumentUploadInteractor();
+                    EventBusUtil.register(this);
+                    interactor.execute(event);
+                    return null;
+                }
 
-				public void onEventMainThread(DDLFormDocumentUploadEvent event) {
-					//event.setCacheKey(event.getDocumentField());
-					storeEvent(event);
-				}
-			});
-		}
-		CacheReceiver.completeWakefulIntent(intent);
-	}
+                public void onEventMainThread(DDLFormDocumentUploadEvent event) {
+                    //event.setCacheKey(event.getDocumentField());
+                    storeEvent(event);
+                }
+            });
+        }
+        CacheReceiver.completeWakefulIntent(intent);
+    }
 
-	private void sync(Class aClass, SyncProvider syncProvider) {
-		Long groupId = LiferayServerContext.getGroupId();
-		Long userId = SessionContext.getUserId();
-		Locale locale = LiferayLocale.getDefaultLocale();
+    private void sync(Class aClass, SyncProvider syncProvider) {
+        Long groupId = LiferayServerContext.getGroupId();
+        Long userId = SessionContext.getUserId();
+        Locale locale = LiferayLocale.getDefaultLocale();
 
-		try {
-			String[] keys = Cache.findKeys(aClass, groupId, userId, locale, 0, Integer.MAX_VALUE);
-			for (String key : keys) {
+        try {
+            String[] keys = Cache.findKeys(aClass, groupId, userId, locale, 0, Integer.MAX_VALUE);
+            for (String key : keys) {
 
-				CacheEvent event = Cache.getObject(aClass, groupId, userId, key);
-				if (event.isDirty()) {
-					event = syncProvider.getCacheEvent(event);
-					if (event != null) {
-						event.setLocale(locale);
-						event.setDirty(false);
-						event.setSyncDate(new Date());
-						if (event.isDeleted()) {
-							Cache.deleteObject(event);
-						} else {
-							Cache.storeObject(event);
-						}
-					}
-				}
-			}
-		} catch (Exception e) {
-			LiferayLogger.e("Error syncing " + aClass.getSimpleName() + " resources", e);
-		}
-	}
+                CacheEvent event = Cache.getObject(aClass, groupId, userId, key);
+                if (event.isDirty()) {
+                    event = syncProvider.getCacheEvent(event);
+                    if (event != null) {
+                        event.setLocale(locale);
+                        event.setDirty(false);
+                        event.setSyncDate(new Date());
+                        if (event.isDeleted()) {
+                            Cache.deleteObject(event);
+                        } else {
+                            Cache.storeObject(event);
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            LiferayLogger.e("Error syncing " + aClass.getSimpleName() + " resources", e);
+        }
+    }
 
-	private void storeEvent(CacheEvent event) {
-		try {
-			event.setDirty(false);
-			event.setSyncDate(new Date());
-			Cache.storeObject(event);
-		} catch (Exception e) {
-			LiferayLogger.e("Error syncing " + event.getClass().getSimpleName() + " resources", e);
-		}
-	}
+    private void storeEvent(CacheEvent event) {
+        try {
+            event.setDirty(false);
+            event.setSyncDate(new Date());
+            Cache.storeObject(event);
+        } catch (Exception e) {
+            LiferayLogger.e("Error syncing " + event.getClass().getSimpleName() + " resources", e);
+        }
+    }
 
-	private interface SyncProvider<E extends CacheEvent> {
+    private interface SyncProvider<E extends CacheEvent> {
 
-		E getCacheEvent(E event) throws Exception;
-	}
+        E getCacheEvent(E event) throws Exception;
+    }
 }

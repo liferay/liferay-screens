@@ -24,59 +24,59 @@ import java.util.Map;
  */
 public class BooleanField extends Field<Boolean> {
 
-	public static final Parcelable.ClassLoaderCreator<BooleanField> CREATOR =
-		new Parcelable.ClassLoaderCreator<BooleanField>() {
+    public static final Parcelable.ClassLoaderCreator<BooleanField> CREATOR =
+        new Parcelable.ClassLoaderCreator<BooleanField>() {
 
-			@Override
-			public BooleanField createFromParcel(Parcel source, ClassLoader loader) {
-				return new BooleanField(source, loader);
-			}
+            @Override
+            public BooleanField createFromParcel(Parcel source, ClassLoader loader) {
+                return new BooleanField(source, loader);
+            }
 
-			public BooleanField createFromParcel(Parcel in) {
-				throw new AssertionError("");
-			}
+            public BooleanField createFromParcel(Parcel in) {
+                throw new AssertionError("");
+            }
 
-			public BooleanField[] newArray(int size) {
-				return new BooleanField[size];
-			}
-		};
+            public BooleanField[] newArray(int size) {
+                return new BooleanField[size];
+            }
+        };
 
-	public BooleanField() {
-		super();
-	}
+    public BooleanField() {
+        super();
+    }
 
-	public BooleanField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
-		super(attributes, locale, defaultLocale);
-	}
+    public BooleanField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
+        super(attributes, locale, defaultLocale);
+    }
 
-	protected BooleanField(Parcel in, ClassLoader classLoader) {
-		super(in, classLoader);
-	}
+    protected BooleanField(Parcel in, ClassLoader classLoader) {
+        super(in, classLoader);
+    }
 
-	@Override
-	protected Boolean convertFromString(String stringValue) {
-		if (stringValue == null) {
-			return null;
-		}
-		return Boolean.valueOf(stringValue.toLowerCase());
-	}
+    @Override
+    protected Boolean convertFromString(String stringValue) {
+        if (stringValue == null) {
+            return null;
+        }
+        return Boolean.valueOf(stringValue.toLowerCase());
+    }
 
-	@Override
-	protected String convertToData(Boolean value) {
-		if (value == null) {
-			return null;
-		}
+    @Override
+    protected String convertToData(Boolean value) {
+        if (value == null) {
+            return null;
+        }
 
-		return (value) ? "true" : "false";
-	}
+        return (value) ? "true" : "false";
+    }
 
-	@Override
-	protected String convertToFormattedString(Boolean value) {
-		//TODO localized yes/no
-		if (value == null) {
-			return null;
-		}
+    @Override
+    protected String convertToFormattedString(Boolean value) {
+        //TODO localized yes/no
+        if (value == null) {
+            return null;
+        }
 
-		return (value) ? "Yes" : "No";
-	}
+        return (value) ? "Yes" : "No";
+    }
 }

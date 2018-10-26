@@ -24,50 +24,50 @@ import com.liferay.mobile.screens.viewsets.westeros.R;
  * @author Jose Manuel Navarro
  */
 public class DDLFieldSelectView
-	extends com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldSelectView
-	implements DialogInterface.OnClickListener {
+    extends com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldSelectView
+    implements DialogInterface.OnClickListener {
 
-	public DDLFieldSelectView(Context context) {
-		super(context);
-	}
+    public DDLFieldSelectView(Context context) {
+        super(context);
+    }
 
-	public DDLFieldSelectView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public DDLFieldSelectView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public DDLFieldSelectView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public DDLFieldSelectView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	public void refresh() {
-		if (!getField().toFormattedString().isEmpty()) {
-			findViewById(R.id.liferay_ddl_label).setVisibility(View.VISIBLE);
-		}
-		getTextEditText().setText(getField().toFormattedString());
-	}
+    @Override
+    public void refresh() {
+        if (!getField().toFormattedString().isEmpty()) {
+            findViewById(R.id.liferay_ddl_label).setVisibility(View.VISIBLE);
+        }
+        getTextEditText().setText(getField().toFormattedString());
+    }
 
-	@Override
-	public void onClick(DialogInterface dialog, int which) {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
 
-		getTextEditText().setHint("");
-		findViewById(R.id.liferay_ddl_label).setVisibility(View.VISIBLE);
-		getField().selectOption(getField().getAvailableOptions().get(which));
-		refresh();
-		getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-		getTextEditText().setBackgroundResource(R.drawable.westeros_dark_edit_text_drawable);
-	}
+        getTextEditText().setHint("");
+        findViewById(R.id.liferay_ddl_label).setVisibility(View.VISIBLE);
+        getField().selectOption(getField().getAvailableOptions().get(which));
+        refresh();
+        getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        getTextEditText().setBackgroundResource(R.drawable.westeros_dark_edit_text_drawable);
+    }
 
-	@Override
-	public void onPostValidation(boolean valid) {
-		if (!valid) {
-			getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.westeros_icon_warning_white, 0);
-			getTextEditText().setBackgroundResource(R.drawable.westeros_warning_edit_text_drawable);
-		}
-	}
+    @Override
+    public void onPostValidation(boolean valid) {
+        if (!valid) {
+            getTextEditText().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.westeros_icon_warning_white, 0);
+            getTextEditText().setBackgroundResource(R.drawable.westeros_warning_edit_text_drawable);
+        }
+    }
 
-	@Override
-	protected DialogInterface.OnClickListener getAlertDialogListener() {
-		return this;
-	}
+    @Override
+    protected DialogInterface.OnClickListener getAlertDialogListener() {
+        return this;
+    }
 }

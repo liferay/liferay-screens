@@ -22,45 +22,45 @@ import com.liferay.mobile.screens.context.User;
  */
 public interface SignUpViewModel extends BaseViewModel {
 
-	/**
-	 * Gets the user email address.
-	 */
-	String getEmailAddress();
+    /**
+     * Gets the user email address.
+     */
+    String getEmailAddress();
 
-	/**
-	 * Gets the user first name.
-	 */
-	String getFirstName();
+    /**
+     * Gets the user first name.
+     */
+    String getFirstName();
 
-	/**
-	 * Gets the user last name.
-	 */
-	String getLastName();
+    /**
+     * Gets the user last name.
+     */
+    String getLastName();
 
-	/**
-	 * Gets the user password.
-	 */
-	String getPassword();
+    /**
+     * Gets the user password.
+     */
+    String getPassword();
 
-	/**
-	 * Gets the user middle name.
-	 */
-	String getMiddleName();
+    /**
+     * Gets the user middle name.
+     */
+    String getMiddleName();
 
-	/**
-	 * Gets the user screen name.
-	 */
-	String getScreenName();
+    /**
+     * Gets the user screen name.
+     */
+    String getScreenName();
 
-	/**
-	 * Gets the user job title.
-	 */
-	String getJobTitle();
+    /**
+     * Gets the user job title.
+     */
+    String getJobTitle();
 
-	/**
-	 * Called when the sign up operation is successfully completed.
-	 *
-	 * @param user {@link User}
-	 */
-	void showFinishOperation(User user);
+    /**
+     * Called when the sign up operation is successfully completed.
+     *
+     * @param user {@link User}
+     */
+    void showFinishOperation(User user);
 }

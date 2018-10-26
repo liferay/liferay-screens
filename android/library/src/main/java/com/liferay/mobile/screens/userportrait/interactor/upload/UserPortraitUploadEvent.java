@@ -9,31 +9,31 @@ import org.json.JSONObject;
  */
 public class UserPortraitUploadEvent extends CacheEvent {
 
-	private String uriPath;
+    private String uriPath;
 
-	public UserPortraitUploadEvent() {
-		super();
-	}
+    public UserPortraitUploadEvent() {
+        super();
+    }
 
-	public UserPortraitUploadEvent(Uri uriPath) {
-		this(uriPath, new JSONObject());
-	}
+    public UserPortraitUploadEvent(Uri uriPath) {
+        this(uriPath, new JSONObject());
+    }
 
-	public UserPortraitUploadEvent(Uri uriPath, JSONObject jsonObject) {
-		super(jsonObject);
+    public UserPortraitUploadEvent(Uri uriPath, JSONObject jsonObject) {
+        super(jsonObject);
 
-		this.uriPath = uriPath.toString();
-	}
+        this.uriPath = uriPath.toString();
+    }
 
-	public UserPortraitUploadEvent(Exception exception) {
-		super(exception);
-	}
+    public UserPortraitUploadEvent(Exception exception) {
+        super(exception);
+    }
 
-	public Uri getUriPath() {
-		return Uri.parse(uriPath);
-	}
+    public Uri getUriPath() {
+        return Uri.parse(uriPath);
+    }
 
-	public void setUriPath(Uri uriPath) {
-		this.uriPath = uriPath.toString();
-	}
+    public void setUriPath(Uri uriPath) {
+        this.uriPath = uriPath.toString();
+    }
 }

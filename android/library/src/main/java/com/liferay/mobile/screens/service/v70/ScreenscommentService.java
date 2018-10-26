@@ -25,124 +25,124 @@ import org.json.JSONObject;
  */
 public class ScreenscommentService extends BaseService {
 
-	public ScreenscommentService(Session session) {
-		super(session);
-	}
+    public ScreenscommentService(Session session) {
+        super(session);
+    }
 
-	public JSONArray getComments(String className, long classPK, int start, int end) throws Exception {
-		JSONObject _command = new JSONObject();
+    public JSONArray getComments(String className, long classPK, int start, int end) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("className", checkNull(className));
-			_params.put("classPK", classPK);
-			_params.put("start", start);
-			_params.put("end", end);
+            _params.put("className", checkNull(className));
+            _params.put("classPK", classPK);
+            _params.put("start", start);
+            _params.put("end", end);
 
-			_command.put("/screens.screenscomment/get-comments", _params);
-		} catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/screens.screenscomment/get-comments", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getJSONArray(0);
-	}
+        return _result.getJSONArray(0);
+    }
 
-	public JSONObject addComment(String className, long classPK, String body) throws Exception {
-		JSONObject _command = new JSONObject();
+    public JSONObject addComment(String className, long classPK, String body) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("className", checkNull(className));
-			_params.put("classPK", classPK);
-			_params.put("body", checkNull(body));
+            _params.put("className", checkNull(className));
+            _params.put("classPK", classPK);
+            _params.put("body", checkNull(body));
 
-			_command.put("/screens.screenscomment/add-comment", _params);
-		} catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/screens.screenscomment/add-comment", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getJSONObject(0);
-	}
+        return _result.getJSONObject(0);
+    }
 
-	public JSONObject getComment(long commentId) throws Exception {
-		JSONObject _command = new JSONObject();
+    public JSONObject getComment(long commentId) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("commentId", commentId);
+            _params.put("commentId", commentId);
 
-			_command.put("/screens.screenscomment/get-comment", _params);
-		} catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/screens.screenscomment/get-comment", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getJSONObject(0);
-	}
+        return _result.getJSONObject(0);
+    }
 
-	public JSONObject updateComment(long commentId, String body) throws Exception {
-		JSONObject _command = new JSONObject();
+    public JSONObject updateComment(long commentId, String body) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("commentId", commentId);
-			_params.put("body", checkNull(body));
+            _params.put("commentId", commentId);
+            _params.put("body", checkNull(body));
 
-			_command.put("/screens.screenscomment/update-comment", _params);
-		} catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/screens.screenscomment/update-comment", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getJSONObject(0);
-	}
+        return _result.getJSONObject(0);
+    }
 
-	public Integer getCommentsCount(String className, long classPK) throws Exception {
-		JSONObject _command = new JSONObject();
+    public Integer getCommentsCount(String className, long classPK) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("className", checkNull(className));
-			_params.put("classPK", classPK);
+            _params.put("className", checkNull(className));
+            _params.put("classPK", classPK);
 
-			_command.put("/screens.screenscomment/get-comments-count", _params);
-		} catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/screens.screenscomment/get-comments-count", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getInt(0);
-	}
+        return _result.getInt(0);
+    }
 }

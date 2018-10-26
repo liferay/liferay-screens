@@ -24,21 +24,21 @@ import com.liferay.mobile.screens.context.User;
  */
 public interface UserPortraitInteractorListener extends BaseCacheListener {
 
-	/**
-	 * Called when the user portrait has been successfully loaded.
-	 *
-	 * @param bitmap original user portrait
-	 * @return modified or not user portrait
-	 */
-	Bitmap onEndUserPortraitLoadRequest(Bitmap bitmap);
+    /**
+     * Called when the user portrait has been successfully loaded.
+     *
+     * @param bitmap original user portrait
+     * @return modified or not user portrait
+     */
+    Bitmap onEndUserPortraitLoadRequest(Bitmap bitmap);
 
-	/**
-	 * Called when the user portrait upload service finishes.
-	 */
-	void onUserPortraitUploaded(Long userId);
+    /**
+     * Called when the user portrait upload service finishes.
+     */
+    void onUserPortraitUploaded(Long userId);
 
-	/**
-	 * Called when the user doesn't have a portrait
-	 */
-	void onUserWithoutPortrait(User user);
+    /**
+     * Called when the user doesn't have a portrait
+     */
+    void onUserWithoutPortrait(User user);
 }

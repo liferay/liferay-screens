@@ -21,8 +21,8 @@ import com.liferay.mobile.screens.base.list.BaseListListener;
  */
 public interface BookmarkListListener extends BaseListListener<Bookmark> {
 
-	/**
-	 * Notifies the app developer when the interactor is called.
-	 */
-	void interactorCalled();
+    /**
+     * Notifies the app developer when the interactor is called.
+     */
+    void interactorCalled();
 }

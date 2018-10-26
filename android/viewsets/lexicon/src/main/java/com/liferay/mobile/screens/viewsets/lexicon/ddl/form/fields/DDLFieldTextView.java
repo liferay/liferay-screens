@@ -22,22 +22,22 @@ import com.liferay.mobile.screens.viewsets.lexicon.util.FormViewUtil;
  * @author Victor Oliveira
  */
 public class DDLFieldTextView
-	extends com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldTextView {
+    extends com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldTextView {
 
-	public DDLFieldTextView(Context context) {
-		super(context);
-	}
+    public DDLFieldTextView(Context context) {
+        super(context);
+    }
 
-	public DDLFieldTextView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public DDLFieldTextView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public DDLFieldTextView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public DDLFieldTextView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	public void onPostValidation(boolean valid) {
-		FormViewUtil.setupTextFieldLayout(getContext(), valid, labelTextView, textEditText);
-	}
+    @Override
+    public void onPostValidation(boolean valid) {
+        FormViewUtil.setupTextFieldLayout(getContext(), valid, labelTextView, textEditText);
+    }
 }

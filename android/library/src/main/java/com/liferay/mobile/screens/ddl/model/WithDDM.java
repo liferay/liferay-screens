@@ -22,7 +22,7 @@ import org.json.JSONObject;
  */
 public interface WithDDM {
 
-	DDMStructure getDDMStructure();
+    DDMStructure getDDMStructure();
 
-	void parseDDMStructure(JSONObject jsonObject) throws JSONException;
+    void parseDDMStructure(JSONObject jsonObject) throws JSONException;
 }

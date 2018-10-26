@@ -24,22 +24,22 @@ import com.liferay.mobile.screens.context.User;
  */
 public class SignUpActivity extends ThemeActivity implements SignUpListener {
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.signup);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.signup);
 
-		SignUpScreenlet screenlet = findViewById(R.id.signup_screenlet);
-		screenlet.setListener(this);
-	}
+        SignUpScreenlet screenlet = findViewById(R.id.signup_screenlet);
+        screenlet.setListener(this);
+    }
 
-	@Override
-	public void onSignUpFailure(Exception e) {
-		error(getString(R.string.signup_error), null);
-	}
+    @Override
+    public void onSignUpFailure(Exception e) {
+        error(getString(R.string.signup_error), null);
+    }
 
-	@Override
-	public void onSignUpSuccess(User user) {
-		info(getString(R.string.sign_up_success_info) + " " + user.getId());
-	}
+    @Override
+    public void onSignUpSuccess(User user) {
+        info(getString(R.string.sign_up_success_info) + " " + user.getId());
+    }
 }

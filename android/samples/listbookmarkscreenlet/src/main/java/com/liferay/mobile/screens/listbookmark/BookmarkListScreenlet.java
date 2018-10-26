@@ -26,52 +26,52 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
  */
 public class BookmarkListScreenlet extends BaseListScreenlet<Bookmark, BookmarkListInteractor> {
 
-	private long folderId;
+    private long folderId;
 
-	public BookmarkListScreenlet(Context context) {
-		super(context);
-	}
+    public BookmarkListScreenlet(Context context) {
+        super(context);
+    }
 
-	public BookmarkListScreenlet(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public BookmarkListScreenlet(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public BookmarkListScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-	}
+    public BookmarkListScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-	public BookmarkListScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
+    public BookmarkListScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
 
-	@Override
-	public void error(Exception e, String userAction) {
-		if (getListener() != null) {
-			getListener().error(e, userAction);
-		}
-	}
+    @Override
+    public void error(Exception e, String userAction) {
+        if (getListener() != null) {
+            getListener().error(e, userAction);
+        }
+    }
 
-	@Override
-	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray =
-			context.getTheme().obtainStyledAttributes(attributes, R.styleable.BookmarkListScreenlet, 0, 0);
-		groupId = typedArray.getInt(R.styleable.BookmarkListScreenlet_groupId, (int) LiferayServerContext.getGroupId());
-		folderId = typedArray.getInt(R.styleable.BookmarkListScreenlet_folderId, 0);
-		typedArray.recycle();
+    @Override
+    protected View createScreenletView(Context context, AttributeSet attributes) {
+        TypedArray typedArray =
+            context.getTheme().obtainStyledAttributes(attributes, R.styleable.BookmarkListScreenlet, 0, 0);
+        groupId = typedArray.getInt(R.styleable.BookmarkListScreenlet_groupId, (int) LiferayServerContext.getGroupId());
+        folderId = typedArray.getInt(R.styleable.BookmarkListScreenlet_folderId, 0);
+        typedArray.recycle();
 
-		return super.createScreenletView(context, attributes);
-	}
+        return super.createScreenletView(context, attributes);
+    }
 
-	@Override
-	protected void loadRows(BookmarkListInteractor interactor) {
+    @Override
+    protected void loadRows(BookmarkListInteractor interactor) {
 
-		((BookmarkListListener) getListener()).interactorCalled();
+        ((BookmarkListListener) getListener()).interactorCalled();
 
-		interactor.start(folderId, obcClassName);
-	}
+        interactor.start(folderId, obcClassName);
+    }
 
-	@Override
-	protected BookmarkListInteractor createInteractor(String actionName) {
-		return new BookmarkListInteractor();
-	}
+    @Override
+    protected BookmarkListInteractor createInteractor(String actionName) {
+        return new BookmarkListInteractor();
+    }
 }

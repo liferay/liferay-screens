@@ -13,42 +13,43 @@ import org.json.JSONArray;
  */
 public class BookmarkListInteractor extends BaseListInteractor<BaseListInteractorListener<Bookmark>, BookmarkEvent> {
 
-	@Override
-	protected JSONArray getPageRowsRequest(Query query, Object... args) throws Exception {
-		long folderId = (long) args[0];
+    @Override
+    protected JSONArray getPageRowsRequest(Query query, Object... args) throws Exception {
+        long folderId = (long) args[0];
 
-		if (args[1] != null) {
-			query.setComparator((String) args[1]);
-		}
+        if (args[1] != null) {
+            query.setComparator((String) args[1]);
+        }
 
-		if (LiferayServerContext.isLiferay7()) {
-			return new BookmarksEntryService(getSession()).getEntries(groupId, folderId, query.getStartRow(),
-				query.getEndRow(), query.getComparatorJSONWrapper());
-		} else {
-			return new com.liferay.mobile.screens.bookmark.interactor.v62.BookmarksEntryService(getSession()).getEntries(
-				groupId, folderId, query.getStartRow(), query.getEndRow(), query.getComparatorJSONWrapper());
-		}
-	}
+        if (LiferayServerContext.isLiferay7()) {
+            return new BookmarksEntryService(getSession()).getEntries(groupId, folderId, query.getStartRow(),
+                query.getEndRow(), query.getComparatorJSONWrapper());
+        } else {
+            return new com.liferay.mobile.screens.bookmark.interactor.v62.BookmarksEntryService(
+                getSession()).getEntries(groupId, folderId, query.getStartRow(), query.getEndRow(),
+                query.getComparatorJSONWrapper());
+        }
+    }
 
-	@Override
-	protected Integer getPageRowCountRequest(Object... args) throws Exception {
-		long folderId = (long) args[0];
-		if (LiferayServerContext.isLiferay7()) {
-			return new BookmarksEntryService(getSession()).getEntriesCount(groupId, folderId);
-		} else {
-			return new com.liferay.mobile.screens.bookmark.interactor.v62.BookmarksEntryService(
-				getSession()).getEntriesCount(groupId, folderId);
-		}
-	}
+    @Override
+    protected Integer getPageRowCountRequest(Object... args) throws Exception {
+        long folderId = (long) args[0];
+        if (LiferayServerContext.isLiferay7()) {
+            return new BookmarksEntryService(getSession()).getEntriesCount(groupId, folderId);
+        } else {
+            return new com.liferay.mobile.screens.bookmark.interactor.v62.BookmarksEntryService(
+                getSession()).getEntriesCount(groupId, folderId);
+        }
+    }
 
-	@Override
-	protected BookmarkEvent createEntity(Map<String, Object> stringObjectMap) {
-		Bookmark bookmark = new Bookmark(stringObjectMap);
-		return new BookmarkEvent(bookmark);
-	}
+    @Override
+    protected BookmarkEvent createEntity(Map<String, Object> stringObjectMap) {
+        Bookmark bookmark = new Bookmark(stringObjectMap);
+        return new BookmarkEvent(bookmark);
+    }
 
-	@Override
-	protected String getIdFromArgs(Object... args) {
-		return String.valueOf(args[0]);
-	}
+    @Override
+    protected String getIdFromArgs(Object... args) {
+        return String.valueOf(args[0]);
+    }
 }

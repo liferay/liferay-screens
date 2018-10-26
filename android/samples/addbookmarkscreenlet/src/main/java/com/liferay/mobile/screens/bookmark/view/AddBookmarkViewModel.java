@@ -21,31 +21,31 @@ import com.liferay.mobile.screens.base.view.BaseViewModel;
  */
 public interface AddBookmarkViewModel extends BaseViewModel {
 
-	/**
-	 * Gets the bookmark URL.
-	 *
-	 * @return bookmark URL
-	 */
-	String getURL();
+    /**
+     * Gets the bookmark URL.
+     *
+     * @return bookmark URL
+     */
+    String getURL();
 
-	/**
-	 * Sets the bookmark URL.
-	 *
-	 * @param value bookmark URL
-	 */
-	void setURL(String value);
+    /**
+     * Sets the bookmark URL.
+     *
+     * @param value bookmark URL
+     */
+    void setURL(String value);
 
-	/**
-	 * Gets the bookmark title.
-	 *
-	 * @return bookmark title
-	 */
-	String getTitle();
+    /**
+     * Gets the bookmark title.
+     *
+     * @return bookmark title
+     */
+    String getTitle();
 
-	/**
-	 * Sets the bookmark title.
-	 *
-	 * @param value bookmark title
-	 */
-	void setTitle(String value);
+    /**
+     * Sets the bookmark title.
+     *
+     * @param value bookmark title
+     */
+    void setTitle(String value);
 }

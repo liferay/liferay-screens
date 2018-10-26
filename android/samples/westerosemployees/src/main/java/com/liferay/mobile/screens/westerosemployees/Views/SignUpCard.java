@@ -15,64 +15,64 @@ import com.liferay.mobile.screens.westerosemployees.R;
  */
 public class SignUpCard extends Card implements View.OnClickListener, WebContentDisplayListener {
 
-	private WebContentDisplayScreenlet webContentDisplayScreenlet;
-	private boolean isTermsAndConditionLoaded;
+    private WebContentDisplayScreenlet webContentDisplayScreenlet;
+    private boolean isTermsAndConditionLoaded;
 
-	public SignUpCard(Context context) {
-		super(context);
-	}
+    public SignUpCard(Context context) {
+        super(context);
+    }
 
-	public SignUpCard(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public SignUpCard(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public SignUpCard(Context context, AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-	}
+    public SignUpCard(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-	public SignUpCard(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
+    public SignUpCard(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
 
-	@Override
-	public WebContent onWebContentReceived(WebContent html) {
-		SessionContext.logout();
-		return html;
-	}
+    @Override
+    public WebContent onWebContentReceived(WebContent html) {
+        SessionContext.logout();
+        return html;
+    }
 
-	@Override
-	public boolean onUrlClicked(String url) {
-		return true;
-	}
+    @Override
+    public boolean onUrlClicked(String url) {
+        return true;
+    }
 
-	@Override
-	public boolean onWebContentTouched(View view, MotionEvent event) {
-		return false;
-	}
+    @Override
+    public boolean onWebContentTouched(View view, MotionEvent event) {
+        return false;
+    }
 
-	@Override
-	public void error(Exception e, String userAction) {
+    @Override
+    public void error(Exception e, String userAction) {
 
-	}
+    }
 
-	@Override
-	public void onClick(View v) {
-		if (!isTermsAndConditionLoaded) {
-			SessionContext.createBasicSession(getResources().getString(R.string.liferay_anonymousApiUserName),
-				getResources().getString(R.string.liferay_anonymousApiPassword));
-			isTermsAndConditionLoaded = true;
-			webContentDisplayScreenlet.setCustomCssFile(R.raw.webcontent_westeros_terms);
-			webContentDisplayScreenlet.load();
-		}
+    @Override
+    public void onClick(View v) {
+        if (!isTermsAndConditionLoaded) {
+            SessionContext.createBasicSession(getResources().getString(R.string.liferay_anonymousApiUserName),
+                getResources().getString(R.string.liferay_anonymousApiPassword));
+            isTermsAndConditionLoaded = true;
+            webContentDisplayScreenlet.setCustomCssFile(R.raw.webcontent_westeros_terms);
+            webContentDisplayScreenlet.load();
+        }
 
-		goRight();
-	}
+        goRight();
+    }
 
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
 
-		findViewById(R.id.terms).setOnClickListener(this);
-		webContentDisplayScreenlet = findViewById(R.id.web_content_display_screenlet);
-	}
+        findViewById(R.id.terms).setOnClickListener(this);
+        webContentDisplayScreenlet = findViewById(R.id.web_content_display_screenlet);
+    }
 }

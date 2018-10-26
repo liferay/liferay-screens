@@ -21,22 +21,22 @@ import android.util.AttributeSet;
  * @author Silvio Santos
  */
 public class ForgotPasswordView
-	extends com.liferay.mobile.screens.viewsets.defaultviews.auth.forgotpassword.ForgotPasswordView {
+    extends com.liferay.mobile.screens.viewsets.defaultviews.auth.forgotpassword.ForgotPasswordView {
 
-	public ForgotPasswordView(Context context) {
-		super(context);
-	}
+    public ForgotPasswordView(Context context) {
+        super(context);
+    }
 
-	public ForgotPasswordView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public ForgotPasswordView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public ForgotPasswordView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public ForgotPasswordView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	protected void refreshLoginEditTextStyle() {
-		getLoginEditText().setInputType(getBasicAuthMethod().getInputType());
-	}
+    @Override
+    protected void refreshLoginEditTextStyle() {
+        getLoginEditText().setInputType(getBasicAuthMethod().getInputType());
+    }
 }

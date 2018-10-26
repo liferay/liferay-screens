@@ -5,5 +5,5 @@ package com.liferay.mobile.screens.webcontent.display.connector;
  */
 public interface ScreensJournalContentConnector {
 
-	String getJournalArticleContent(long groupId, String articleId, long templateId, String locale) throws Exception;
+    String getJournalArticleContent(long groupId, String articleId, long templateId, String locale) throws Exception;
 }

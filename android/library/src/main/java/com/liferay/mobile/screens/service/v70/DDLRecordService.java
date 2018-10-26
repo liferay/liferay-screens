@@ -27,62 +27,63 @@ import org.json.JSONObject;
  */
 public class DDLRecordService extends BaseService {
 
-	public DDLRecordService(Session session) {
-		super(session);
-	}
+    public DDLRecordService(Session session) {
+        super(session);
+    }
 
-	public JSONObject addRecord(long groupId, long recordSetId, int displayIndex, JSONObject fieldsMap, JSONObjectWrapper serviceContext) throws Exception {
-		JSONObject _command = new JSONObject();
+    public JSONObject addRecord(long groupId, long recordSetId, int displayIndex, JSONObject fieldsMap,
+        JSONObjectWrapper serviceContext) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("groupId", groupId);
-			_params.put("recordSetId", recordSetId);
-			_params.put("displayIndex", displayIndex);
-			_params.put("fieldsMap", checkNull(fieldsMap));
-			mangleWrapper(_params, "serviceContext", "com.liferay.portal.kernel.service.ServiceContext", serviceContext);
+            _params.put("groupId", groupId);
+            _params.put("recordSetId", recordSetId);
+            _params.put("displayIndex", displayIndex);
+            _params.put("fieldsMap", checkNull(fieldsMap));
+            mangleWrapper(_params, "serviceContext", "com.liferay.portal.kernel.service.ServiceContext",
+                serviceContext);
 
-			_command.put("/ddl.ddlrecord/add-record", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/ddl.ddlrecord/add-record", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getJSONObject(0);
-	}
+        return _result.getJSONObject(0);
+    }
 
-	public JSONObject updateRecord(long recordId, int displayIndex, JSONObject fieldsMap, boolean mergeFields, JSONObjectWrapper serviceContext) throws Exception {
-		JSONObject _command = new JSONObject();
+    public JSONObject updateRecord(long recordId, int displayIndex, JSONObject fieldsMap, boolean mergeFields,
+        JSONObjectWrapper serviceContext) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("recordId", recordId);
-			_params.put("displayIndex", displayIndex);
-			_params.put("fieldsMap", checkNull(fieldsMap));
-			_params.put("mergeFields", mergeFields);
-			mangleWrapper(_params, "serviceContext", "com.liferay.portal.kernel.service.ServiceContext", serviceContext);
+            _params.put("recordId", recordId);
+            _params.put("displayIndex", displayIndex);
+            _params.put("fieldsMap", checkNull(fieldsMap));
+            _params.put("mergeFields", mergeFields);
+            mangleWrapper(_params, "serviceContext", "com.liferay.portal.kernel.service.ServiceContext",
+                serviceContext);
 
-			_command.put("/ddl.ddlrecord/update-record", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/ddl.ddlrecord/update-record", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getJSONObject(0);
-	}
-
+        return _result.getJSONObject(0);
+    }
 }

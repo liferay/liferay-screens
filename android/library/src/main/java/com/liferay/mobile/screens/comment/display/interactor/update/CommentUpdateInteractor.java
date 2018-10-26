@@ -15,37 +15,37 @@ import org.json.JSONObject;
  */
 public class CommentUpdateInteractor extends BaseCacheWriteInteractor<CommentDisplayInteractorListener, CommentEvent> {
 
-	@Override
-	public CommentEvent execute(CommentEvent event) throws Exception {
-		long commentId = event.getCommentId();
-		String newBody = event.getBody();
+    @Override
+    public CommentEvent execute(CommentEvent event) throws Exception {
+        long commentId = event.getCommentId();
+        String newBody = event.getBody();
 
-		validate(commentId, newBody);
+        validate(commentId, newBody);
 
-		ScreensCommentConnector connector = ServiceProvider.getInstance().getScreensCommentConnector(getSession());
+        ScreensCommentConnector connector = ServiceProvider.getInstance().getScreensCommentConnector(getSession());
 
-		JSONObject jsonObject = connector.updateComment(commentId, newBody);
+        JSONObject jsonObject = connector.updateComment(commentId, newBody);
 
-		event.setCommentEntry(new CommentEntry(JSONUtil.toMap(jsonObject)));
-		return event;
-	}
+        event.setCommentEntry(new CommentEntry(JSONUtil.toMap(jsonObject)));
+        return event;
+    }
 
-	@Override
-	public void onSuccess(CommentEvent event) {
-		getListener().onUpdateCommentSuccess(event.getCommentEntry());
-	}
+    @Override
+    public void onSuccess(CommentEvent event) {
+        getListener().onUpdateCommentSuccess(event.getCommentEntry());
+    }
 
-	@Override
-	public void onFailure(CommentEvent event) {
-		getListener().error(event.getException(), CommentDisplayScreenlet.UPDATE_COMMENT_ACTION);
-	}
+    @Override
+    public void onFailure(CommentEvent event) {
+        getListener().error(event.getException(), CommentDisplayScreenlet.UPDATE_COMMENT_ACTION);
+    }
 
-	protected void validate(long commentId, String newBody) {
+    protected void validate(long commentId, String newBody) {
 
-		if (commentId <= 0) {
-			throw new IllegalArgumentException("commentId cannot be 0 or negative");
-		} else if (newBody.isEmpty()) {
-			throw new IllegalArgumentException("new body for comment cannot be empty");
-		}
-	}
+        if (commentId <= 0) {
+            throw new IllegalArgumentException("commentId cannot be 0 or negative");
+        } else if (newBody.isEmpty()) {
+            throw new IllegalArgumentException("new body for comment cannot be empty");
+        }
+    }
 }

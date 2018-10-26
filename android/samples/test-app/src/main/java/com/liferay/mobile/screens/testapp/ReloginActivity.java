@@ -12,61 +12,61 @@ import com.liferay.mobile.screens.context.User;
  */
 public class ReloginActivity extends ThemeActivity implements LoginListener, View.OnClickListener {
 
-	private TextView userName;
+    private TextView userName;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.relogin);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.relogin);
 
-		if (SessionContext.isLoggedIn()) {
-			userName = findViewById(R.id.user_name);
-			userName.setText(SessionContext.getCurrentUser().getLastName());
-		}
+        if (SessionContext.isLoggedIn()) {
+            userName = findViewById(R.id.user_name);
+            userName.setText(SessionContext.getCurrentUser().getLastName());
+        }
 
-		findViewById(R.id.update_user).setOnClickListener(this);
-		findViewById(R.id.relogin_button).setOnClickListener(this);
-	}
+        findViewById(R.id.update_user).setOnClickListener(this);
+        findViewById(R.id.relogin_button).setOnClickListener(this);
+    }
 
-	@Override
-	public void onClick(View v) {
-		if (v.getId() == R.id.update_user) {
-			change();
-		} else {
-			relogin();
-		}
-	}
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.update_user) {
+            change();
+        } else {
+            relogin();
+        }
+    }
 
-	public void relogin() {
-		SessionContext.relogin(this);
-	}
+    public void relogin() {
+        SessionContext.relogin(this);
+    }
 
-	@Override
-	public void onLoginSuccess(final User user) {
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				userName.setText(user.getLastName());
-				info(getString(R.string.relogin_info));
-			}
-		});
-	}
+    @Override
+    public void onLoginSuccess(final User user) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                userName.setText(user.getLastName());
+                info(getString(R.string.relogin_info));
+            }
+        });
+    }
 
-	@Override
-	public void onLoginFailure(Exception e) {
-		error(getString(R.string.relogin_error), e);
-	}
+    @Override
+    public void onLoginFailure(Exception e) {
+        error(getString(R.string.relogin_error), e);
+    }
 
-	@Override
-	public void onAuthenticationBrowserShown() {
+    @Override
+    public void onAuthenticationBrowserShown() {
 
-	}
+    }
 
-	public void change() {
-		if (SessionContext.isLoggedIn()) {
-			final User user = SessionContext.getCurrentUser();
-			user.getValues().put("lastName", "EXAMPLE_LASTNAME");
-			userName.setText(user.getLastName());
-		}
-	}
+    public void change() {
+        if (SessionContext.isLoggedIn()) {
+            final User user = SessionContext.getCurrentUser();
+            user.getValues().put("lastName", "EXAMPLE_LASTNAME");
+            userName.setText(user.getLastName());
+        }
+    }
 }

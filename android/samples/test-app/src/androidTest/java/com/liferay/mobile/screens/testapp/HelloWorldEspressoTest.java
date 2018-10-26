@@ -16,14 +16,14 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 @LargeTest
 public class HelloWorldEspressoTest {
 
-	@Rule public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule(MainActivity.class);
+    @Rule public ActivityTestRule<MainActivity> mActivityRule = new ActivityTestRule(MainActivity.class);
 
-	public HelloWorldEspressoTest() {
-		super();
-	}
+    public HelloWorldEspressoTest() {
+        super();
+    }
 
-	@Test
-	public void listGoesOverTheFold() {
-		onView(withText("Login")).check(matches(isDisplayed()));
-	}
+    @Test
+    public void listGoesOverTheFold() {
+        onView(withText("Login")).check(matches(isDisplayed()));
+    }
 }

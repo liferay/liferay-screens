@@ -27,31 +27,29 @@ import org.json.JSONObject;
  */
 public class DDMStructureService extends BaseService {
 
-	public DDMStructureService(Session session) {
-		super(session);
-	}
+    public DDMStructureService(Session session) {
+        super(session);
+    }
 
-	public JSONObject getStructure(long structureId) throws Exception {
-		JSONObject _command = new JSONObject();
+    public JSONObject getStructure(long structureId) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("structureId", structureId);
+            _params.put("structureId", structureId);
 
-			_command.put("/ddmstructure/get-structure", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/ddmstructure/get-structure", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getJSONObject(0);
-	}
-
+        return _result.getJSONObject(0);
+    }
 }

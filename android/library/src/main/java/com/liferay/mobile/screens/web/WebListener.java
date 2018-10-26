@@ -21,16 +21,16 @@ import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
  */
 public interface WebListener extends BaseCacheListener {
 
-	/**
-	 * Called when the screenlet loads the page correctly.
-	 */
-	void onPageLoaded(String url);
+    /**
+     * Called when the screenlet loads the page correctly.
+     */
+    void onPageLoaded(String url);
 
-	/**
-	 * Called when we want to notify a message from the WKWebView used in the view.
-	 *
-	 * @param namespace source namespace key.
-	 * @param body source namespace body
-	 */
-	void onScriptMessageHandler(String namespace, String body);
+    /**
+     * Called when we want to notify a message from the WKWebView used in the view.
+     *
+     * @param namespace source namespace key.
+     * @param body source namespace body
+     */
+    void onScriptMessageHandler(String namespace, String body);
 }

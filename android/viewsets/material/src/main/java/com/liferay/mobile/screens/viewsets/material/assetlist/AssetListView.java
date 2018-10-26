@@ -26,32 +26,32 @@ import com.liferay.mobile.screens.viewsets.defaultviews.asset.list.AssetListAdap
  * @author Silvio Santos
  */
 public class AssetListView extends BaseListScreenletView<AssetEntry, AssetListAdapter.ViewHolder, AssetListAdapter>
-	implements AssetListViewModel {
+    implements AssetListViewModel {
 
-	public AssetListView(Context context) {
-		super(context);
-	}
+    public AssetListView(Context context) {
+        super(context);
+    }
 
-	public AssetListView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public AssetListView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public AssetListView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public AssetListView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	protected AssetListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
-		return new AssetListAdapter(itemLayoutId, itemProgressLayoutId, this);
-	}
+    @Override
+    protected AssetListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
+        return new AssetListAdapter(itemLayoutId, itemProgressLayoutId, this);
+    }
 
-	@Override
-	protected int getItemLayoutId() {
-		return R.layout.list_item_material;
-	}
+    @Override
+    protected int getItemLayoutId() {
+        return R.layout.list_item_material;
+    }
 
-	@Override
-	protected int getItemProgressLayoutId() {
-		return R.layout.list_item_progress_material;
-	}
+    @Override
+    protected int getItemProgressLayoutId() {
+        return R.layout.list_item_progress_material;
+    }
 }

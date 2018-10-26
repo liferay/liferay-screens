@@ -23,15 +23,15 @@ import java.util.List;
  */
 public interface BaseListInteractorListener<E> extends BaseCacheListener {
 
-	/**
-	 * Called when the server call to retrieve a page of items fails.
-	 *
-	 * @param e exception
-	 */
-	void onListRowsFailure(int startRow, int endRow, Exception e);
+    /**
+     * Called when the server call to retrieve a page of items fails.
+     *
+     * @param e exception
+     */
+    void onListRowsFailure(int startRow, int endRow, Exception e);
 
-	/**
-	 * Called when the server call to retrieve a page of items succeed.
-	 */
-	void onListRowsReceived(int startRow, int endRow, List<E> entries, int rowCount);
+    /**
+     * Called when the server call to retrieve a page of items succeed.
+     */
+    void onListRowsReceived(int startRow, int endRow, List<E> entries, int rowCount);
 }

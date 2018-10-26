@@ -16,15 +16,15 @@ package com.liferay.mobile.screens.auth.login;
 
 public interface LoginRedirectListener {
 
-	/**
-	 * Called when the authentication browser is shown
-	 */
-	void onAuthenticationBrowserShown();
+    /**
+     * Called when the authentication browser is shown
+     */
+    void onAuthenticationBrowserShown();
 
-	/**
-	 * Called when an error occurs in the process.
-	 *
-	 * @param e exception
-	 */
-	void onLoginFailure(Exception e);
+    /**
+     * Called when an error occurs in the process.
+     *
+     * @param e exception
+     */
+    void onLoginFailure(Exception e);
 }

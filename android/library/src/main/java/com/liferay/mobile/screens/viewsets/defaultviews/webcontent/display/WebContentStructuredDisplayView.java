@@ -16,82 +16,82 @@ import com.liferay.mobile.screens.webcontent.display.view.WebContentDisplayViewM
  */
 public class WebContentStructuredDisplayView extends LinearLayout implements WebContentDisplayViewModel {
 
-	private BaseScreenlet screenlet;
-	private TextView contentField;
+    private BaseScreenlet screenlet;
+    private TextView contentField;
 
-	public WebContentStructuredDisplayView(Context context) {
-		super(context);
-	}
+    public WebContentStructuredDisplayView(Context context) {
+        super(context);
+    }
 
-	public WebContentStructuredDisplayView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public WebContentStructuredDisplayView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public WebContentStructuredDisplayView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public WebContentStructuredDisplayView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	public void showFinishOperation(WebContent webContent, String customCss) {
-		String value = getValueFromLabelFields(webContent);
+    @Override
+    public void showFinishOperation(WebContent webContent, String customCss) {
+        String value = getValueFromLabelFields(webContent);
 
-		if (contentField != null) {
-			contentField.setText(value);
-		}
-	}
+        if (contentField != null) {
+            contentField.setText(value);
+        }
+    }
 
-	@Override
-	public void showStartOperation(String actionName) {
+    @Override
+    public void showStartOperation(String actionName) {
 
-	}
+    }
 
-	@Override
-	public void showFinishOperation(String actionName) {
+    @Override
+    public void showFinishOperation(String actionName) {
 
-	}
+    }
 
-	@Override
-	public void showFailedOperation(String actionName, Exception e) {
+    @Override
+    public void showFailedOperation(String actionName, Exception e) {
 
-	}
+    }
 
-	@Override
-	public BaseScreenlet getScreenlet() {
-		return screenlet;
-	}
+    @Override
+    public BaseScreenlet getScreenlet() {
+        return screenlet;
+    }
 
-	@Override
-	public void setScreenlet(BaseScreenlet screenlet) {
-		this.screenlet = screenlet;
-	}
+    @Override
+    public void setScreenlet(BaseScreenlet screenlet) {
+        this.screenlet = screenlet;
+    }
 
-	protected String getValueFromLabelFields(WebContent webContent) {
-		WebContentDisplayScreenlet screenlet = (WebContentDisplayScreenlet) getScreenlet();
-		String labelFields = screenlet.getLabelFields();
+    protected String getValueFromLabelFields(WebContent webContent) {
+        WebContentDisplayScreenlet screenlet = (WebContentDisplayScreenlet) getScreenlet();
+        String labelFields = screenlet.getLabelFields();
 
-		if (labelFields.isEmpty()) {
-			return (String) webContent.getDDMStructure().getField(0).getCurrentValue();
-		}
+        if (labelFields.isEmpty()) {
+            return (String) webContent.getDDMStructure().getField(0).getCurrentValue();
+        }
 
-		StringBuilder stringBuilder = new StringBuilder("");
+        StringBuilder stringBuilder = new StringBuilder("");
 
-		for (String label : labelFields.split(",")) {
-			Field field = webContent.getDDMStructure().getFieldByName(label);
-			if (field != null) {
-				stringBuilder.append(field.getCurrentValue());
-				stringBuilder.append("\r\n");
-			}
-		}
+        for (String label : labelFields.split(",")) {
+            Field field = webContent.getDDMStructure().getFieldByName(label);
+            if (field != null) {
+                stringBuilder.append(field.getCurrentValue());
+                stringBuilder.append("\r\n");
+            }
+        }
 
-		return stringBuilder.toString();
-	}
+        return stringBuilder.toString();
+    }
 
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
 
-		setOrientation(LinearLayout.VERTICAL);
+        setOrientation(LinearLayout.VERTICAL);
 
-		contentField = findViewById(R.id.web_content_field);
-	}
+        contentField = findViewById(R.id.web_content_field);
+    }
 }

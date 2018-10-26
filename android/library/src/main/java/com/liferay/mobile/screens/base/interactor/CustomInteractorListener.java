@@ -19,10 +19,10 @@ package com.liferay.mobile.screens.base.interactor;
  */
 public interface CustomInteractorListener<I extends Interactor> {
 
-	/**
-	 * Create interactor with the given `actionName`.
-	 *
-	 * @return interactor class
-	 */
-	I createInteractor(String actionName);
+    /**
+     * Create interactor with the given `actionName`.
+     *
+     * @return interactor class
+     */
+    I createInteractor(String actionName);
 }

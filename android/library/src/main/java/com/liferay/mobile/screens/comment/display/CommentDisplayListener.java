@@ -22,9 +22,9 @@ import com.liferay.mobile.screens.comment.CommentEntry;
  */
 public interface CommentDisplayListener extends BaseCacheListener {
 
-	void onLoadCommentSuccess(CommentEntry commentEntry);
+    void onLoadCommentSuccess(CommentEntry commentEntry);
 
-	void onDeleteCommentSuccess(CommentEntry commentEntry);
+    void onDeleteCommentSuccess(CommentEntry commentEntry);
 
-	void onUpdateCommentSuccess(CommentEntry commentEntry);
+    void onUpdateCommentSuccess(CommentEntry commentEntry);
 }

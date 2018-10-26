@@ -32,124 +32,123 @@ import rx.functions.Func1;
  * @author Jose Manuel Navarro
  */
 public class CustomRatingNumberView extends LinearLayout
-	implements DDLFieldViewModel<NumberField>, RatingBar.OnRatingBarChangeListener {
+    implements DDLFieldViewModel<NumberField>, RatingBar.OnRatingBarChangeListener {
 
-	protected NumberField field;
-	protected RatingBar ratingBar;
-	protected View parentView;
-	protected Observable<NumberField> onChangedValueObservable = Observable.empty();
+    protected NumberField field;
+    protected RatingBar ratingBar;
+    protected View parentView;
+    protected Observable<NumberField> onChangedValueObservable = Observable.empty();
 
-	public CustomRatingNumberView(Context context) {
-		super(context);
-	}
+    public CustomRatingNumberView(Context context) {
+        super(context);
+    }
 
-	public CustomRatingNumberView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public CustomRatingNumberView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public CustomRatingNumberView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public CustomRatingNumberView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	public NumberField getField() {
-		return field;
-	}
+    @Override
+    public NumberField getField() {
+        return field;
+    }
 
-	@Override
-	public void setField(NumberField field) {
-		this.field = field;
+    @Override
+    public void setField(NumberField field) {
+        this.field = field;
 
-		TextView label = findViewById(R.id.liferay_ddl_label);
+        TextView label = findViewById(R.id.liferay_ddl_label);
 
-		if (this.field.isShowLabel()) {
-			label.setText(this.field.getLabel());
-			label.setVisibility(VISIBLE);
-		}
+        if (this.field.isShowLabel()) {
+            label.setText(this.field.getLabel());
+            label.setVisibility(VISIBLE);
+        }
 
-		refresh();
-	}
+        refresh();
+    }
 
-	@Override
-	public void refresh() {
-		float rating = 0;
+    @Override
+    public void refresh() {
+        float rating = 0;
 
-		if (field.getCurrentValue() != null) {
-			if (field.getEditorType() == Field.EditorType.INTEGER) {
-				rating = field.getCurrentValue().floatValue();
-			} else {
-				rating = valueToRating(field.getCurrentValue().floatValue());
-			}
-		}
+        if (field.getCurrentValue() != null) {
+            if (field.getEditorType() == Field.EditorType.INTEGER) {
+                rating = field.getCurrentValue().floatValue();
+            } else {
+                rating = valueToRating(field.getCurrentValue().floatValue());
+            }
+        }
 
-		ratingBar.setRating(rating);
-	}
+        ratingBar.setRating(rating);
+    }
 
-	@Override
-	public void onPostValidation(boolean valid) {
-		//This field is always valid because it has always a value
-	}
+    @Override
+    public void onPostValidation(boolean valid) {
+        //This field is always valid because it has always a value
+    }
 
-	@Override
-	public View getParentView() {
-		return parentView;
-	}
+    @Override
+    public View getParentView() {
+        return parentView;
+    }
 
-	@Override
-	public void setParentView(View view) {
-		parentView = view;
-	}
+    @Override
+    public void setParentView(View view) {
+        parentView = view;
+    }
 
-	@Override
-	public Observable<NumberField> getOnChangedValueObservable() {
-		return onChangedValueObservable;
-	}
+    @Override
+    public Observable<NumberField> getOnChangedValueObservable() {
+        return onChangedValueObservable;
+    }
 
-	@Override
-	public void setUpdateMode(boolean enabled) {
-		ratingBar.setEnabled(enabled);
-	}
+    @Override
+    public void setUpdateMode(boolean enabled) {
+        ratingBar.setEnabled(enabled);
+    }
 
-	@Override
-	public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-		if (!fromUser) {
-			return;
-		}
+    @Override
+    public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+        if (!fromUser) {
+            return;
+        }
 
-		if (field.getEditorType() == Field.EditorType.INTEGER) {
-			field.setCurrentValue(rating);
-		} else {
-			field.setCurrentValue(ratingToValue(rating));
-		}
-	}
+        if (field.getEditorType() == Field.EditorType.INTEGER) {
+            field.setCurrentValue(rating);
+        } else {
+            field.setCurrentValue(ratingToValue(rating));
+        }
+    }
 
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
 
-		setSaveEnabled(false);
+        setSaveEnabled(false);
 
-		ratingBar = findViewById(R.id.liferay_ddl_custom_rating);
+        ratingBar = findViewById(R.id.liferay_ddl_custom_rating);
 
-		ratingBar.setOnRatingBarChangeListener(this);
+        ratingBar.setOnRatingBarChangeListener(this);
 
-		onChangedValueObservable = RxRatingBar.ratingChanges(ratingBar)
-			.distinctUntilChanged()
-			.map(new Func1<Float, NumberField>() {
-				@Override
-				public NumberField call(Float aFloat) {
-					return field;
-				}
-			});
-	}
+        onChangedValueObservable =
+            RxRatingBar.ratingChanges(ratingBar).distinctUntilChanged().map(new Func1<Float, NumberField>() {
+                @Override
+                public NumberField call(Float aFloat) {
+                    return field;
+                }
+            });
+    }
 
-	protected float ratingToValue(float score) {
-		// normalize the number to 0..1 value
-		return (score / (float) ratingBar.getNumStars());
-	}
+    protected float ratingToValue(float score) {
+        // normalize the number to 0..1 value
+        return (score / (float) ratingBar.getNumStars());
+    }
 
-	protected float valueToRating(float ratio) {
-		// normalize the number to 0..numStars value
-		return (ratio * (float) ratingBar.getNumStars());
-	}
+    protected float valueToRating(float ratio) {
+        // normalize the number to 0..numStars value
+        return (ratio * (float) ratingBar.getNumStars());
+    }
 }
