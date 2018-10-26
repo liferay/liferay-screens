@@ -31,7 +31,7 @@ detekt {
 		path = '/Applications/IntelliJ IDEA.app/Contents'
 		codeStyleScheme = "$projectDir/ScreensCodeConvention.xml"
 		report = './library/reports'
-		mask = '*.kt,*.java,*.xml,*.css,*.js'
+		mask = '*'
 	}
 }
 
@@ -50,7 +50,7 @@ ext {
 
 	bintrayRepo = 'liferay-mobile'
 	bintrayOrg = ''
-//	    bintrayOrg = 'liferay'
+	//bintrayOrg = 'liferay'
 
 	siteUrl = 'https://github.com/liferay/liferay-screens'
 	gitUrl = 'https://github.com/liferay/liferay-screens.git'
@@ -67,7 +67,7 @@ ext {
 def supportLibsVersion = '27.1.1'
 
 ext.libraries = [apio_consumer      : 'com.liferay.mobile:apio-consumer-android:0.0.6',
-		         appCompat          : 'com.android.support:appcompat-v7:' + supportLibsVersion,
+                 appCompat          : 'com.android.support:appcompat-v7:' + supportLibsVersion,
                  recyclerView       : 'com.android.support:recyclerview-v7:' + supportLibsVersion,
                  design             : 'com.android.support:design:' + supportLibsVersion,
                  exif               : 'com.android.support:exifinterface:' + supportLibsVersion,
@@ -85,7 +85,7 @@ ext.libraries = [apio_consumer      : 'com.liferay.mobile:apio-consumer-android:
                  mockito            : 'org.mockito:mockito-core:2.11.0',
                  snappydb           : 'com.snappydb:snappydb-lib:0.5.2',
                  kryo               : 'com.esotericsoftware:kryo:4.0.0',
-				 json               : 'org.json:json:20140107',
+                 json               : 'org.json:json:20140107',
                  gson               : 'com.google.code.gson:gson:2.8.2',
                  okhttp             : 'com.squareup.okhttp3:okhttp:3.10.0',
                  circle_image_view  : 'de.hdodenhof:circleimageview:2.2.0',
