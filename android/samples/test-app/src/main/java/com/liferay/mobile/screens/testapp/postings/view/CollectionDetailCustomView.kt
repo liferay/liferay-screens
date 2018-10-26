@@ -20,31 +20,31 @@ import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.containsOperation
 
 open class CollectionDetailCustomView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : BaseView,
-    FrameLayout(context, attrs, defStyleAttr), ThingAdapter.Listener {
+	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : BaseView,
+	FrameLayout(context, attrs, defStyleAttr), ThingAdapter.Listener {
 
-    override var screenlet: ThingScreenlet? = null
+	override var screenlet: ThingScreenlet? = null
 
-    val recyclerView by bindNonNull<RecyclerView>(R.id.collection_recycler_view)
-    val addButton by bindNonNull<FloatingActionButton>(R.id.add_button)
+	val recyclerView by bindNonNull<RecyclerView>(R.id.collection_recycler_view)
+	val addButton by bindNonNull<FloatingActionButton>(R.id.add_button)
 
-    override var thing: Thing? by converter<Collection> {
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = ThingAdapter(it, this)
+	override var thing: Thing? by converter<Collection> {
+		recyclerView.layoutManager = LinearLayoutManager(context)
+		recyclerView.adapter = ThingAdapter(it, this)
 
-        if (thing!!.containsOperation("create")) {
-            addButton.visibility = View.GONE
-        }
+		if (thing!!.containsOperation("create")) {
+			addButton.visibility = View.GONE
+		}
 
-        addButton.setOnClickListener {
-            sendEvent(Event.CustomEvent("create", this, thing!!))
-        }
-    }
+		addButton.setOnClickListener {
+			sendEvent(Event.CustomEvent("create", this, thing!!))
+		}
+	}
 
-    override fun onClickedRow(view: View, thing: Thing): OnClickListener? =
-        sendEvent(Event.Click(view, thing))
+	override fun onClickedRow(view: View, thing: Thing): OnClickListener? =
+		sendEvent(Event.Click(view, thing))
 
-    override fun onLayoutRow(view: BaseView?, thing: Thing, scenario: Scenario): Int? {
-        return sendEvent(Event.FetchLayout(view, thing, scenario))
-    }
+	override fun onLayoutRow(view: BaseView?, thing: Thing, scenario: Scenario): Int? {
+		return sendEvent(Event.FetchLayout(view, thing, scenario))
+	}
 }

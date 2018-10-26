@@ -19,45 +19,45 @@ package com.liferay.mobile.screens.ddl.form.util
  */
 class FormFieldKeys {
 
-    companion object {
-        const val DATA_SOURCE_TYPE_KEY = "dataSourceType"
-        const val DATA_TYPE_KEY = "dataType"
-        const val DDM_DATA_PROVIDER_INSTANCE_KEY = "ddmDataProviderInstance"
-        const val DISPLAY_STYLE_KEY = "displayStyle"
-        const val LABEL_KEY = "label"
-        const val GRID_KEY = "grid"
-        const val HAS_FORM_RULES_KEY = "hasFormRules"
-        const val IS_TRANSIENT_KEY = "transient"
-        const val NAME_KEY = "name"
-        const val OPTIONS_KEY = "options"
-        const val PLACE_HOLDER_KEY = "placeHolder"
-        const val PREDEFINED_VALUE_KEY = "predefinedValue"
-        const val SWITCHER_KEY = "showAsSwitcher"
-        const val TEXT_KEY = "text"
-        @JvmField
-        val TIP_KEY = arrayOf("tooltip", "tip")
-        const val VALIDATION_KEY = "validation"
-        const val VISIBILITY_EXPRESSION_KEY = "visibilityExpression"
-        @JvmField
-        val ADDITIONAL_TYPE_KEY = arrayOf("additionalType", "type")
-        const val IS_INLINE_KEY = "inline"
-        const val IS_MULTIPLE_KEY = "multiple"
-        const val IS_READ_ONLY_KEY = "readOnly"
-        const val IS_REPEATABLE_KEY = "repeatable"
-        const val IS_REQUIRED_KEY = "required"
-        const val IS_SHOW_LABEL_KEY = "showLabel"
+	companion object {
+		const val DATA_SOURCE_TYPE_KEY = "dataSourceType"
+		const val DATA_TYPE_KEY = "dataType"
+		const val DDM_DATA_PROVIDER_INSTANCE_KEY = "ddmDataProviderInstance"
+		const val DISPLAY_STYLE_KEY = "displayStyle"
+		const val LABEL_KEY = "label"
+		const val GRID_KEY = "grid"
+		const val HAS_FORM_RULES_KEY = "hasFormRules"
+		const val IS_TRANSIENT_KEY = "transient"
+		const val NAME_KEY = "name"
+		const val OPTIONS_KEY = "options"
+		const val PLACE_HOLDER_KEY = "placeHolder"
+		const val PREDEFINED_VALUE_KEY = "predefinedValue"
+		const val SWITCHER_KEY = "showAsSwitcher"
+		const val TEXT_KEY = "text"
+		@JvmField
+		val TIP_KEY = arrayOf("tooltip", "tip")
+		const val VALIDATION_KEY = "validation"
+		const val VISIBILITY_EXPRESSION_KEY = "visibilityExpression"
+		@JvmField
+		val ADDITIONAL_TYPE_KEY = arrayOf("additionalType", "type")
+		const val IS_INLINE_KEY = "inline"
+		const val IS_MULTIPLE_KEY = "multiple"
+		const val IS_READ_ONLY_KEY = "readOnly"
+		const val IS_REPEATABLE_KEY = "repeatable"
+		const val IS_REQUIRED_KEY = "required"
+		const val IS_SHOW_LABEL_KEY = "showLabel"
 
-        @JvmStatic
-        fun getValueFromArrayKey(attributes: Map<String, Any>, arrayKey: Array<String>): Any? {
-            for (additionalType in arrayKey) {
-                val mapValue = attributes[additionalType]
+		@JvmStatic
+		fun getValueFromArrayKey(attributes: Map<String, Any>, arrayKey: Array<String>): Any? {
+			for (additionalType in arrayKey) {
+				val mapValue = attributes[additionalType]
 
-                if (mapValue != null) {
-                    return mapValue
-                }
-            }
+				if (mapValue != null) {
+					return mapValue
+				}
+			}
 
-            return null
-        }
-    }
+			return null
+		}
+	}
 }
