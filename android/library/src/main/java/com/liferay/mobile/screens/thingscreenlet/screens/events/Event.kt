@@ -24,5 +24,5 @@ sealed class Event<T> {
 
 	class FetchLayout(val view: BaseView? = null, val thing: Thing, val scenario: Scenario) : Event<Int>()
 
-	class CustomEvent(val name: String, val view: BaseView? = null, val thing: Thing): Event<Unit>()
+	class CustomEvent(val name: String, val view: BaseView? = null, val thing: Thing) : Event<Unit>()
 }

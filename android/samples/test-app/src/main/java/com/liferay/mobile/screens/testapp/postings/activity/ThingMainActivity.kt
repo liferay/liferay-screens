@@ -76,7 +76,8 @@ class ThingMainActivity : AppCompatActivity(), ScreenletEvents {
 			operationKey?.let {
 				val operation = thing.operations[it]
 				operation!!.form!!.getFormProperties {
-					startActivity<EditActivity>("properties" to it.map { it.name }, "values" to emptyMap<String, String>(), "id" to thing.id, "operation" to operation.id)
+					startActivity<EditActivity>("properties" to it.map { it.name },
+						"values" to emptyMap<String, String>(), "id" to thing.id, "operation" to operation.id)
 				}
 			}
 		}

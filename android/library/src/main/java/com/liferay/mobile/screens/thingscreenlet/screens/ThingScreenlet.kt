@@ -139,7 +139,7 @@ class ThingScreenlet @JvmOverloads constructor(
 				?: layoutIds[event.thing.type[0]]?.get(event.scenario)) as? T
 		}
 		is Event.CustomEvent -> {
-			screenletEvents?.onCustomEvent(event.name,this, event.view, event.thing) as? T
+			screenletEvents?.onCustomEvent(event.name, this, event.view, event.thing) as? T
 		}
 	}
 }
