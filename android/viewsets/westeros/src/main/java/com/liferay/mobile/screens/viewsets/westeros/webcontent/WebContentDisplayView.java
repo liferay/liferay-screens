@@ -27,37 +27,37 @@ import com.liferay.mobile.screens.webcontent.WebContent;
  * @author Sarai Díaz García
  */
 public class WebContentDisplayView
-	extends com.liferay.mobile.screens.viewsets.defaultviews.webcontent.display.WebContentDisplayView {
+    extends com.liferay.mobile.screens.viewsets.defaultviews.webcontent.display.WebContentDisplayView {
 
-	public WebContentDisplayView(Context context) {
-		super(context);
-	}
+    public WebContentDisplayView(Context context) {
+        super(context);
+    }
 
-	public WebContentDisplayView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public WebContentDisplayView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public WebContentDisplayView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public WebContentDisplayView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	public void showFinishOperation(WebContent webContent, String customCss) {
-		if (progressBar != null) {
-			progressBar.setVisibility(View.GONE);
-		}
-		if (webView != null) {
-			webView.setVisibility(View.VISIBLE);
+    @Override
+    public void showFinishOperation(WebContent webContent, String customCss) {
+        if (progressBar != null) {
+            progressBar.setVisibility(View.GONE);
+        }
+        if (webView != null) {
+            webView.setVisibility(View.VISIBLE);
 
-			LiferayLogger.i("article loaded: " + webContent);
+            LiferayLogger.i("article loaded: " + webContent);
 
-			String styledHtml =
-				"<style>" + customCss + "</style><div class=\"MobileCSS\">" + webContent.getHtml() + "</div>";
+            String styledHtml =
+                "<style>" + customCss + "</style><div class=\"MobileCSS\">" + webContent.getHtml() + "</div>";
 
-			//TODO check encoding
-			webView.loadDataWithBaseURL(LiferayServerContext.getServer(), styledHtml, "text/html", "utf-8", null);
-			webView.setBackgroundColor(Color.TRANSPARENT);
-			webView.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
-		}
-	}
+            //TODO check encoding
+            webView.loadDataWithBaseURL(LiferayServerContext.getServer(), styledHtml, "text/html", "utf-8", null);
+            webView.setBackgroundColor(Color.TRANSPARENT);
+            webView.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
+        }
+    }
 }

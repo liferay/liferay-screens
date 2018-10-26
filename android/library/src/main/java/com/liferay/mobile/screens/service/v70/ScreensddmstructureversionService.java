@@ -25,29 +25,29 @@ import org.json.JSONObject;
  */
 public class ScreensddmstructureversionService extends BaseService {
 
-	public ScreensddmstructureversionService(Session session) {
-		super(session);
-	}
+    public ScreensddmstructureversionService(Session session) {
+        super(session);
+    }
 
-	public JSONObject getDdmStructureVersion(long structureId) throws Exception {
-		JSONObject _command = new JSONObject();
+    public JSONObject getDdmStructureVersion(long structureId) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("structureId", structureId);
+            _params.put("structureId", structureId);
 
-			_command.put("/screens.screensddmstructureversion/get-ddm-structure-version", _params);
-		} catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/screens.screensddmstructureversion/get-ddm-structure-version", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getJSONObject(0);
-	}
+        return _result.getJSONObject(0);
+    }
 }

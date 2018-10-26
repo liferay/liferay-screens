@@ -23,18 +23,18 @@ import com.liferay.mobile.screens.context.User;
  */
 public interface UserPortraitViewModel extends BaseViewModel {
 
-	/**
-	 * Called when the user portrait has been successfully loaded.
-	 *
-	 * @param bitmap user portrait image
-	 */
-	void showFinishOperation(Bitmap bitmap);
+    /**
+     * Called when the user portrait has been successfully loaded.
+     *
+     * @param bitmap user portrait image
+     */
+    void showFinishOperation(Bitmap bitmap);
 
-	/**
-	 * Called when the placeholder has to be shown
-	 *
-	 * @param user user information to customize the placeholder
-	 */
-	void showPlaceholder(User user);
+    /**
+     * Called when the placeholder has to be shown
+     *
+     * @param user user information to customize the placeholder
+     */
+    void showPlaceholder(User user);
 }
 

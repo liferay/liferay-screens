@@ -12,28 +12,28 @@ import com.liferay.mobile.screens.bookmark.interactor.AddBookmarkListener;
  */
 public class AddBookmarkActivity extends ThemeActivity implements AddBookmarkListener, CustomInteractorListener {
 
-	@Override
-	protected void onCreate(Bundle state) {
-		super.onCreate(state);
-		setContentView(R.layout.add_bookmark);
+    @Override
+    protected void onCreate(Bundle state) {
+        super.onCreate(state);
+        setContentView(R.layout.add_bookmark);
 
-		AddBookmarkScreenlet screenlet = findViewById(R.id.bookmark_screenlet);
-		screenlet.setListener(this);
-		screenlet.setCustomInteractorListener(this);
-	}
+        AddBookmarkScreenlet screenlet = findViewById(R.id.bookmark_screenlet);
+        screenlet.setListener(this);
+        screenlet.setCustomInteractorListener(this);
+    }
 
-	@Override
-	public void onAddBookmarkFailure(Exception exception) {
-		error(getString(R.string.add_bookmark_error), exception);
-	}
+    @Override
+    public void onAddBookmarkFailure(Exception exception) {
+        error(getString(R.string.add_bookmark_error), exception);
+    }
 
-	@Override
-	public void onAddBookmarkSuccess() {
-		info(getString(R.string.bookmark_added_info));
-	}
+    @Override
+    public void onAddBookmarkSuccess() {
+        info(getString(R.string.bookmark_added_info));
+    }
 
-	@Override
-	public Interactor createInteractor(String actionName) {
-		return new AddBookmarkInteractor();
-	}
+    @Override
+    public Interactor createInteractor(String actionName) {
+        return new AddBookmarkInteractor();
+    }
 }

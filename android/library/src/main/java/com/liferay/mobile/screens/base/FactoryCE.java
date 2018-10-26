@@ -10,18 +10,18 @@ import com.liferay.mobile.screens.context.storage.sharedPreferences.OAuth2Creden
  */
 public class FactoryCE implements AbstractFactory {
 
-	@Override
-	public BasicCredentialsStorageSharedPreferences getBasicCredentialsStorageSharedPreferences() {
-		return new BasicCredentialsStorageSharedPreferences();
-	}
+    @Override
+    public BasicCredentialsStorageSharedPreferences getBasicCredentialsStorageSharedPreferences() {
+        return new BasicCredentialsStorageSharedPreferences();
+    }
 
-	@Override
-	public CredentialsStorage getCookieCredentialsStorageSharedPreferences() {
-		return new CookieCredentialsStorageSharedPreferences();
-	}
+    @Override
+    public CredentialsStorage getCookieCredentialsStorageSharedPreferences() {
+        return new CookieCredentialsStorageSharedPreferences();
+    }
 
-	@Override
-	public CredentialsStorage getOAuth2CredentialsStorageSharedPreferences() {
-		return new OAuth2CredentialsStorageSharedPreferences();
-	}
+    @Override
+    public CredentialsStorage getOAuth2CredentialsStorageSharedPreferences() {
+        return new OAuth2CredentialsStorageSharedPreferences();
+    }
 }

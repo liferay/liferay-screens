@@ -16,41 +16,41 @@ import org.json.JSONObject;
 
 public class LoginCookieInteractor extends BaseLoginInteractor {
 
-	@Override
-	public BasicEvent execute(Object... args) throws Exception {
+    @Override
+    public BasicEvent execute(Object... args) throws Exception {
 
-		String login = (String) args[0];
-		String password = (String) args[1];
-		boolean shouldHandleExpiration = (boolean) args[2];
-		int cookieExpirationTime = (int) args[3];
+        String login = (String) args[0];
+        String password = (String) args[1];
+        boolean shouldHandleExpiration = (boolean) args[2];
+        int cookieExpirationTime = (int) args[3];
 
-		validate(login, password);
+        validate(login, password);
 
-		CookieAuthentication authentication =
-			new CookieAuthentication("", "", login, password, shouldHandleExpiration, cookieExpirationTime, 0);
+        CookieAuthentication authentication =
+            new CookieAuthentication("", "", login, password, shouldHandleExpiration, cookieExpirationTime, 0);
 
-		Session session = SessionContext.createBasicSession(login, password);
-		session.setAuthentication(authentication);
+        Session session = SessionContext.createBasicSession(login, password);
+        session.setAuthentication(authentication);
 
-		Session cookieSession = CookieSignIn.signIn(session);
+        Session cookieSession = CookieSignIn.signIn(session);
 
-		SessionContext.createCookieSession(cookieSession);
-		CurrentUserConnector userConnector = getCurrentUserConnector(cookieSession);
+        SessionContext.createCookieSession(cookieSession);
+        CurrentUserConnector userConnector = getCurrentUserConnector(cookieSession);
 
-		JSONObject jsonObject = userConnector.getCurrentUser();
+        JSONObject jsonObject = userConnector.getCurrentUser();
 
-		return new BasicEvent(jsonObject);
-	}
+        return new BasicEvent(jsonObject);
+    }
 
-	protected void validate(String login, String password) {
-		if (login == null) {
-			throw new IllegalArgumentException("Login cannot be empty");
-		} else if (password == null) {
-			throw new IllegalArgumentException("Password cannot be empty");
-		}
-	}
+    protected void validate(String login, String password) {
+        if (login == null) {
+            throw new IllegalArgumentException("Login cannot be empty");
+        } else if (password == null) {
+            throw new IllegalArgumentException("Password cannot be empty");
+        }
+    }
 
-	public CurrentUserConnector getCurrentUserConnector(Session session) {
-		return ServiceProvider.getInstance().getCurrentUserConnector(session);
-	}
+    public CurrentUserConnector getCurrentUserConnector(Session session) {
+        return ServiceProvider.getInstance().getCurrentUserConnector(session);
+    }
 }

@@ -20,104 +20,104 @@ import org.json.JSONObject;
 
 public class NotificationsActivity extends PushScreensActivity implements BaseListListener<Record> {
 
-	private DDLListScreenlet ddlList;
+    private DDLListScreenlet ddlList;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_notifications);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_notifications);
 
-		if (!SessionContext.isLoggedIn()) {
-			startActivity(new Intent(this, LoginActivity.class));
-		}
+        if (!SessionContext.isLoggedIn()) {
+            startActivity(new Intent(this, LoginActivity.class));
+        }
 
-		ddlList = findViewById(R.id.ddl_list_screenlet);
-		ddlList.setListener(this);
-	}
+        ddlList = findViewById(R.id.ddl_list_screenlet);
+        ddlList.setListener(this);
+    }
 
-	@Override
-	public void onListPageFailed(int startRow, Exception e) {
+    @Override
+    public void onListPageFailed(int startRow, Exception e) {
 
-	}
+    }
 
-	@Override
-	public void onListPageReceived(int startRow, int endRow, List<Record> entries, int rowCount) {
+    @Override
+    public void onListPageReceived(int startRow, int endRow, List<Record> entries, int rowCount) {
 
-	}
+    }
 
-	@Override
-	public void onListItemSelected(Record record, View view) {
+    @Override
+    public void onListItemSelected(Record record, View view) {
 
-		loadDDLForm(record);
-	}
+        loadDDLForm(record);
+    }
 
-	@Override
-	public void error(Exception e, String userAction) {
+    @Override
+    public void error(Exception e, String userAction) {
 
-	}
+    }
 
-	@Override
-	protected Session getDefaultSession() {
-		return SessionContext.createSessionFromCurrentSession();
-	}
+    @Override
+    protected Session getDefaultSession() {
+        return SessionContext.createSessionFromCurrentSession();
+    }
 
-	@Override
-	protected void onPushNotificationReceived(final JSONObject jsonObject) {
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				LiferayLogger.d("Push notification received! " + jsonObject);
-				Snackbar.make(findViewById(android.R.id.content), "Reloading list...", Snackbar.LENGTH_SHORT).show();
-				ddlList.loadPage(0);
-			}
-		});
-	}
+    @Override
+    protected void onPushNotificationReceived(final JSONObject jsonObject) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                LiferayLogger.d("Push notification received! " + jsonObject);
+                Snackbar.make(findViewById(android.R.id.content), "Reloading list...", Snackbar.LENGTH_SHORT).show();
+                ddlList.loadPage(0);
+            }
+        });
+    }
 
-	@Override
-	protected void onErrorRegisteringPush(final String message, final Exception e) {
-		LiferayLogger.e("Error receiving push notifications: " + message, e);
-	}
+    @Override
+    protected void onErrorRegisteringPush(final String message, final Exception e) {
+        LiferayLogger.e("Error receiving push notifications: " + message, e);
+    }
 
-	@Override
-	protected String getSenderId() {
-		return getString(R.string.sender_id);
-	}
+    @Override
+    protected String getSenderId() {
+        return getString(R.string.sender_id);
+    }
 
-	private void loadDDLForm(Record element) {
-		final Long recordId = element.getRecordId();
-		final Long recordSetId = element.getRecordSetId();
+    private void loadDDLForm(Record element) {
+        final Long recordId = element.getRecordId();
+        final Long recordSetId = element.getRecordSetId();
 
-		try {
-			Session session = SessionContext.createSessionFromCurrentSession();
-			session.setCallback(getCallback(recordId, recordSetId));
+        try {
+            Session session = SessionContext.createSessionFromCurrentSession();
+            session.setCallback(getCallback(recordId, recordSetId));
 
-			new DDLRecordSetService(session).getRecordSet(recordSetId);
-		} catch (Exception e) {
-			LiferayLogger.e("error loading structure id", e);
-		}
-	}
+            new DDLRecordSetService(session).getRecordSet(recordSetId);
+        } catch (Exception e) {
+            LiferayLogger.e("error loading structure id", e);
+        }
+    }
 
-	private JSONObjectCallback getCallback(final Long recordId, final Long recordSetId) {
-		return new JSONObjectCallback() {
+    private JSONObjectCallback getCallback(final Long recordId, final Long recordSetId) {
+        return new JSONObjectCallback() {
 
-			@Override
-			public void onSuccess(JSONObject result) {
-				try {
-					Intent intent = new Intent(NotificationsActivity.this, NotificationDetailActivity.class);
-					intent.putExtra("recordId", recordId);
-					intent.putExtra("recordSetId", recordSetId);
-					intent.putExtra("structureId", result.getInt("DDMStructureId"));
+            @Override
+            public void onSuccess(JSONObject result) {
+                try {
+                    Intent intent = new Intent(NotificationsActivity.this, NotificationDetailActivity.class);
+                    intent.putExtra("recordId", recordId);
+                    intent.putExtra("recordSetId", recordSetId);
+                    intent.putExtra("structureId", result.getInt("DDMStructureId"));
 
-					startActivity(intent);
-				} catch (JSONException e) {
-					LiferayLogger.e("error parsing JSON", e);
-				}
-			}
+                    startActivity(intent);
+                } catch (JSONException e) {
+                    LiferayLogger.e("error parsing JSON", e);
+                }
+            }
 
-			@Override
-			public void onFailure(Exception e) {
-				LiferayLogger.e("error loading structure id", e);
-			}
-		};
-	}
+            @Override
+            public void onFailure(Exception e) {
+                LiferayLogger.e("error loading structure id", e);
+            }
+        };
+    }
 }

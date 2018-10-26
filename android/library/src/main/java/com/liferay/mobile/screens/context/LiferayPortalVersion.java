@@ -5,25 +5,25 @@ package com.liferay.mobile.screens.context;
  */
 public enum LiferayPortalVersion {
 
-	VERSION_62(62), VERSION_70(70), VERSION_71(71);
+    VERSION_62(62), VERSION_70(70), VERSION_71(71);
 
-	private final int version;
+    private final int version;
 
-	LiferayPortalVersion(int version) {
-		this.version = version;
-	}
+    LiferayPortalVersion(int version) {
+        this.version = version;
+    }
 
-	public static LiferayPortalVersion fromInt(int version) {
-		if (version == 62) {
-			return VERSION_62;
-		} else if (version == 71) {
-			return VERSION_71;
-		} else {
-			return VERSION_70;
-		}
-	}
+    public static LiferayPortalVersion fromInt(int version) {
+        if (version == 62) {
+            return VERSION_62;
+        } else if (version == 71) {
+            return VERSION_71;
+        } else {
+            return VERSION_70;
+        }
+    }
 
-	public int getVersion() {
-		return version;
-	}
+    public int getVersion() {
+        return version;
+    }
 }

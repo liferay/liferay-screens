@@ -30,107 +30,107 @@ import static junit.framework.Assert.assertEquals;
 @RunWith(Enclosed.class)
 public class XSDParserLocalizationTest {
 
-	private static final Locale spanishLocale = new Locale("es", "ES");
-	private static final String booleanFieldWithTranslationsXSD =
-		"<root available-locales=\"es_ES, es_AR, es, en_US, en_AU\" default-locale=\"es_ES\"> "
-			+ "<dynamic-element dataType=\"boolean\" "
-			+ "name=\"Un_booleano\" "
-			+ "readOnly=\"false\" "
-			+ "repeatable=\"false\" "
-			+ "required=\"false\" "
-			+ "showLabel=\"true\" "
-			+ "type=\"checkbox\" > "
-			+ "<meta-data locale=\"en_US\"> "
-			+ "<entry name=\"label\">"
-			+ "<![CDATA[A Boolean for 'en_US']]>"
-			+ "</entry> "
-			+ "</meta-data> "
-			+ "<meta-data locale=\"en_AU\"> "
-			+ "<entry name=\"label\">"
-			+ "<![CDATA[An austral Boolean for 'en_AU']]>"
-			+ "</entry> "
-			+ "</meta-data> "
-			+ "<meta-data locale=\"es\"> "
-			+ "<entry name=\"label\">"
-			+ "<![CDATA[Un Booleano neutro para 'es']]>"
-			+ "</entry> "
-			+ "</meta-data> "
-			+ "<meta-data locale=\"es_ES\"> "
-			+ "<entry name=\"label\">"
-			+ "<![CDATA[Un Booleano para 'es_ES']]>"
-			+ "</entry> "
-			+ "</meta-data> "
-			+ "<meta-data locale=\"es_AR\"> "
-			+ "<entry name=\"label\">"
-			+ "<![CDATA[Un boludo Booleano para 'es_AR', ché]]>"
-			+ "</entry> "
-			+ "</meta-data> "
-			+ "</dynamic-element>"
-			+ "</root>";
+    private static final Locale spanishLocale = new Locale("es", "ES");
+    private static final String booleanFieldWithTranslationsXSD =
+        "<root available-locales=\"es_ES, es_AR, es, en_US, en_AU\" default-locale=\"es_ES\"> "
+            + "<dynamic-element dataType=\"boolean\" "
+            + "name=\"Un_booleano\" "
+            + "readOnly=\"false\" "
+            + "repeatable=\"false\" "
+            + "required=\"false\" "
+            + "showLabel=\"true\" "
+            + "type=\"checkbox\" > "
+            + "<meta-data locale=\"en_US\"> "
+            + "<entry name=\"label\">"
+            + "<![CDATA[A Boolean for 'en_US']]>"
+            + "</entry> "
+            + "</meta-data> "
+            + "<meta-data locale=\"en_AU\"> "
+            + "<entry name=\"label\">"
+            + "<![CDATA[An austral Boolean for 'en_AU']]>"
+            + "</entry> "
+            + "</meta-data> "
+            + "<meta-data locale=\"es\"> "
+            + "<entry name=\"label\">"
+            + "<![CDATA[Un Booleano neutro para 'es']]>"
+            + "</entry> "
+            + "</meta-data> "
+            + "<meta-data locale=\"es_ES\"> "
+            + "<entry name=\"label\">"
+            + "<![CDATA[Un Booleano para 'es_ES']]>"
+            + "</entry> "
+            + "</meta-data> "
+            + "<meta-data locale=\"es_AR\"> "
+            + "<entry name=\"label\">"
+            + "<![CDATA[Un boludo Booleano para 'es_AR', ché]]>"
+            + "</entry> "
+            + "</meta-data> "
+            + "</dynamic-element>"
+            + "</root>";
 
-	//@Config(constants = BuildConfig.class)
-	@RunWith(RobolectricTestRunner.class)
-	public static class WhenExistingCompleteLocaleIsProvided {
-		@Test
-		public void shouldFindFullMatch() throws Exception {
-			List<Field> fields = new XSDParser().parse(booleanFieldWithTranslationsXSD, spanishLocale);
+    //@Config(constants = BuildConfig.class)
+    @RunWith(RobolectricTestRunner.class)
+    public static class WhenExistingCompleteLocaleIsProvided {
+        @Test
+        public void shouldFindFullMatch() throws Exception {
+            List<Field> fields = new XSDParser().parse(booleanFieldWithTranslationsXSD, spanishLocale);
 
-			assertEquals("Un Booleano para 'es_ES'", fields.get(0).getLabel());
-		}
-	}
+            assertEquals("Un Booleano para 'es_ES'", fields.get(0).getLabel());
+        }
+    }
 
-	//@Config(constants = BuildConfig.class)
-	@RunWith(RobolectricTestRunner.class)
-	public static class WhenNoExistingCompleteLocaleIsProvided {
-		@Test
-		public void shouldFindNeutralLanguageMatch() throws Exception {
-			List<Field> fields = new XSDParser().parse(booleanFieldWithTranslationsXSD, new Locale("es", "MX"));
+    //@Config(constants = BuildConfig.class)
+    @RunWith(RobolectricTestRunner.class)
+    public static class WhenNoExistingCompleteLocaleIsProvided {
+        @Test
+        public void shouldFindNeutralLanguageMatch() throws Exception {
+            List<Field> fields = new XSDParser().parse(booleanFieldWithTranslationsXSD, new Locale("es", "MX"));
 
-			assertEquals("Un Booleano para 'es_ES'", fields.get(0).getLabel());
-		}
+            assertEquals("Un Booleano para 'es_ES'", fields.get(0).getLabel());
+        }
 
-		@Test
-		public void shouldFindAnyLanguageMatch() throws Exception {
-			List<Field> fields = new XSDParser().parse(booleanFieldWithTranslationsXSD, new Locale("en", "GB"));
+        @Test
+        public void shouldFindAnyLanguageMatch() throws Exception {
+            List<Field> fields = new XSDParser().parse(booleanFieldWithTranslationsXSD, new Locale("en", "GB"));
 
-			assertEquals("A Boolean for 'en_US'", fields.get(0).getLabel());
-		}
+            assertEquals("A Boolean for 'en_US'", fields.get(0).getLabel());
+        }
 
-		@Test
-		public void shouldFindDefault() throws Exception {
-			List<Field> fields = new XSDParser().parse(booleanFieldWithTranslationsXSD, new Locale("fr", "FR"));
+        @Test
+        public void shouldFindDefault() throws Exception {
+            List<Field> fields = new XSDParser().parse(booleanFieldWithTranslationsXSD, new Locale("fr", "FR"));
 
-			assertEquals("Un Booleano para 'es_ES'", fields.get(0).getLabel());
-		}
-	}
+            assertEquals("Un Booleano para 'es_ES'", fields.get(0).getLabel());
+        }
+    }
 
-	//@Config(constants = BuildConfig.class)
-	@RunWith(RobolectricTestRunner.class)
-	public static class WhenExistingNeutralLanguageIsProvided {
-		@Test
-		public void shouldFindNeutralLanguageMatch() throws Exception {
-			List<Field> fields = new XSDParser().parse(booleanFieldWithTranslationsXSD, new Locale("es"));
+    //@Config(constants = BuildConfig.class)
+    @RunWith(RobolectricTestRunner.class)
+    public static class WhenExistingNeutralLanguageIsProvided {
+        @Test
+        public void shouldFindNeutralLanguageMatch() throws Exception {
+            List<Field> fields = new XSDParser().parse(booleanFieldWithTranslationsXSD, new Locale("es"));
 
-			assertEquals("Un Booleano neutro para 'es'", fields.get(0).getLabel());
-		}
-	}
+            assertEquals("Un Booleano neutro para 'es'", fields.get(0).getLabel());
+        }
+    }
 
-	//@Config(constants = BuildConfig.class)
-	@RunWith(RobolectricTestRunner.class)
-	public static class WhenNoExistingNeutralLanguageIsProvided {
-		@Test
-		public void shouldFindDefault() throws Exception {
-			List<Field> fields = new XSDParser().parse(booleanFieldWithTranslationsXSD, new Locale("fr"));
+    //@Config(constants = BuildConfig.class)
+    @RunWith(RobolectricTestRunner.class)
+    public static class WhenNoExistingNeutralLanguageIsProvided {
+        @Test
+        public void shouldFindDefault() throws Exception {
+            List<Field> fields = new XSDParser().parse(booleanFieldWithTranslationsXSD, new Locale("fr"));
 
-			String defaultMobileLocale = "es_ES";
-			assertEquals("Un Booleano para '" + defaultMobileLocale + "'", fields.get(0).getLabel());
-		}
+            String defaultMobileLocale = "es_ES";
+            assertEquals("Un Booleano para '" + defaultMobileLocale + "'", fields.get(0).getLabel());
+        }
 
-		@Test
-		public void shouldFindAnyLanguageMatch() throws Exception {
-			List<Field> fields = new XSDParser().parse(booleanFieldWithTranslationsXSD, new Locale("en"));
+        @Test
+        public void shouldFindAnyLanguageMatch() throws Exception {
+            List<Field> fields = new XSDParser().parse(booleanFieldWithTranslationsXSD, new Locale("en"));
 
-			assertEquals("A Boolean for 'en_US'", fields.get(0).getLabel());
-		}
-	}
+            assertEquals("A Boolean for 'en_US'", fields.get(0).getLabel());
+        }
+    }
 }

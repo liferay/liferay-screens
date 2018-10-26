@@ -28,54 +28,54 @@ import org.json.JSONObject;
  */
 public class JSONUtil {
 
-	private JSONUtil() {
-		super();
-	}
+    private JSONUtil() {
+        super();
+    }
 
-	public static List toList(JSONArray jsonArray) throws JSONException {
-		List<Object> list = new ArrayList<>();
+    public static List toList(JSONArray jsonArray) throws JSONException {
+        List<Object> list = new ArrayList<>();
 
-		for (int i = 0; i < jsonArray.length(); i++) {
-			list.add(fromJson(jsonArray.get(i)));
-		}
+        for (int i = 0; i < jsonArray.length(); i++) {
+            list.add(fromJson(jsonArray.get(i)));
+        }
 
-		return list;
-	}
+        return list;
+    }
 
-	public static Map<String, Object> toMap(JSONObject jsonObject) throws JSONException {
+    public static Map<String, Object> toMap(JSONObject jsonObject) throws JSONException {
 
-		Map<String, Object> map = new HashMap<>();
-		Iterator<String> keys = jsonObject.keys();
+        Map<String, Object> map = new HashMap<>();
+        Iterator<String> keys = jsonObject.keys();
 
-		while (keys.hasNext()) {
-			String key = keys.next();
-			Object object = jsonObject.get(key);
+        while (keys.hasNext()) {
+            String key = keys.next();
+            Object object = jsonObject.get(key);
 
-			map.put(key, fromJson(object));
-		}
+            map.put(key, fromJson(object));
+        }
 
-		return map;
-	}
+        return map;
+    }
 
-	public static Long castToLong(final Object o) {
-		if (o instanceof Integer) {
-			return ((Integer) o).longValue();
-		} else if (o instanceof String) {
-			return Long.valueOf((String) o);
-		} else {
-			return (Long) o;
-		}
-	}
+    public static Long castToLong(final Object o) {
+        if (o instanceof Integer) {
+            return ((Integer) o).longValue();
+        } else if (o instanceof String) {
+            return Long.valueOf((String) o);
+        } else {
+            return (Long) o;
+        }
+    }
 
-	private static Object fromJson(Object object) throws JSONException {
-		if (object == JSONObject.NULL) {
-			return null;
-		} else if (object instanceof JSONObject) {
-			return toMap((JSONObject) object);
-		} else if (object instanceof JSONArray) {
-			return toList((JSONArray) object);
-		} else {
-			return object;
-		}
-	}
+    private static Object fromJson(Object object) throws JSONException {
+        if (object == JSONObject.NULL) {
+            return null;
+        } else if (object instanceof JSONObject) {
+            return toMap((JSONObject) object);
+        } else if (object instanceof JSONArray) {
+            return toList((JSONArray) object);
+        } else {
+            return object;
+        }
+    }
 }

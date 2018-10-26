@@ -8,9 +8,9 @@ import com.liferay.mobile.screens.context.storage.sharedPreferences.BasicCredent
  */
 public interface AbstractFactory {
 
-	BasicCredentialsStorageSharedPreferences getBasicCredentialsStorageSharedPreferences();
+    BasicCredentialsStorageSharedPreferences getBasicCredentialsStorageSharedPreferences();
 
-	CredentialsStorage getCookieCredentialsStorageSharedPreferences();
+    CredentialsStorage getCookieCredentialsStorageSharedPreferences();
 
-	CredentialsStorage getOAuth2CredentialsStorageSharedPreferences();
+    CredentialsStorage getOAuth2CredentialsStorageSharedPreferences();
 }

@@ -34,122 +34,122 @@ import org.xml.sax.SAXException;
  */
 public class XSDParser extends AbstractXMLParser implements DDMStructureParser {
 
-	public List<Field> parse(String xml, Locale locale) throws SAXException {
-		try {
-			Document document = getDocument(xml);
-			return processDocument(document, locale);
-		} catch (ParserConfigurationException | IOException e) {
-			LiferayLogger.e("Error parsing form", e);
-			return null;
-		}
-	}
+    public List<Field> parse(String xml, Locale locale) throws SAXException {
+        try {
+            Document document = getDocument(xml);
+            return processDocument(document, locale);
+        } catch (ParserConfigurationException | IOException e) {
+            LiferayLogger.e("Error parsing form", e);
+            return null;
+        }
+    }
 
-	protected List<Field> processDocument(Document document, Locale locale) {
-		List<Field> result = new ArrayList<>();
+    protected List<Field> processDocument(Document document, Locale locale) {
+        List<Field> result = new ArrayList<>();
 
-		Element root = document.getDocumentElement();
+        Element root = document.getDocumentElement();
 
-		Locale defaultLocale = getDefaultDocumentLocale(root);
+        Locale defaultLocale = getDefaultDocumentLocale(root);
 
-		NodeList dynamicElementList = root.getElementsByTagName("dynamic-element");
+        NodeList dynamicElementList = root.getElementsByTagName("dynamic-element");
 
-		Field parentField = null;
+        Field parentField = null;
 
-		int len = dynamicElementList.getLength();
-		for (int i = 0; i < len; ++i) {
-			Element dynamicElement = (Element) dynamicElementList.item(i);
-			Field childField = createFormField(dynamicElement, locale, defaultLocale);
-			if (dynamicElement.getParentNode() == root) {
-				if (childField != null) {
-					result.add(childField);
-				}
-				parentField = childField;
-			} else {
-				if (childField != null) {
-					parentField.getFields().add(childField);
-				}
-			}
-		}
+        int len = dynamicElementList.getLength();
+        for (int i = 0; i < len; ++i) {
+            Element dynamicElement = (Element) dynamicElementList.item(i);
+            Field childField = createFormField(dynamicElement, locale, defaultLocale);
+            if (dynamicElement.getParentNode() == root) {
+                if (childField != null) {
+                    result.add(childField);
+                }
+                parentField = childField;
+            } else {
+                if (childField != null) {
+                    parentField.getFields().add(childField);
+                }
+            }
+        }
 
-		return result;
-	}
+        return result;
+    }
 
-	protected Field createFormField(Element dynamicElement, Locale locale, Locale defaultLocale) {
-		Field.DataType dataType = Field.DataType.valueOf(dynamicElement);
+    protected Field createFormField(Element dynamicElement, Locale locale, Locale defaultLocale) {
+        Field.DataType dataType = Field.DataType.valueOf(dynamicElement);
 
-		Map<String, Object> attributes = getAttributes(dynamicElement);
+        Map<String, Object> attributes = getAttributes(dynamicElement);
 
-		Map<String, Object> localizedMetadata = processLocalizedMetadata(dynamicElement, locale, defaultLocale);
+        Map<String, Object> localizedMetadata = processLocalizedMetadata(dynamicElement, locale, defaultLocale);
 
-		Map<String, Object> mergedMap = new HashMap<>();
+        Map<String, Object> mergedMap = new HashMap<>();
 
-		mergedMap.putAll(attributes);
-		mergedMap.putAll(localizedMetadata);
+        mergedMap.putAll(attributes);
+        mergedMap.putAll(localizedMetadata);
 
-		return dataType.createField(mergedMap, locale, defaultLocale);
-	}
+        return dataType.createField(mergedMap, locale, defaultLocale);
+    }
 
-	protected Map<String, Object> processLocalizedMetadata(Element dynamicElement, Locale locale,
-		Locale defaultLocale) {
+    protected Map<String, Object> processLocalizedMetadata(Element dynamicElement, Locale locale,
+        Locale defaultLocale) {
 
-		Map<String, Object> result = new HashMap<>();
+        Map<String, Object> result = new HashMap<>();
 
-		Element localizedMetadata = findMetadataElement(dynamicElement, locale, defaultLocale);
-		if (localizedMetadata != null) {
-			addLocalizedElement(localizedMetadata, "label", result);
-			addLocalizedElement(localizedMetadata, "predefinedValue", result);
-			addLocalizedElement(localizedMetadata, "tip", result);
-		}
+        Element localizedMetadata = findMetadataElement(dynamicElement, locale, defaultLocale);
+        if (localizedMetadata != null) {
+            addLocalizedElement(localizedMetadata, "label", result);
+            addLocalizedElement(localizedMetadata, "predefinedValue", result);
+            addLocalizedElement(localizedMetadata, "tip", result);
+        }
 
-		List<Map<String, String>> options = findOptions(dynamicElement, locale, defaultLocale);
-		if (!options.isEmpty()) {
-			result.put("options", options);
-		}
+        List<Map<String, String>> options = findOptions(dynamicElement, locale, defaultLocale);
+        if (!options.isEmpty()) {
+            result.put("options", options);
+        }
 
-		return result;
-	}
+        return result;
+    }
 
-	protected List<Map<String, String>> findOptions(Element dynamicElement, Locale locale, Locale defaultLocale) {
+    protected List<Map<String, String>> findOptions(Element dynamicElement, Locale locale, Locale defaultLocale) {
 
-		List<Element> options = getChildren(dynamicElement, "dynamic-element", "type", "option");
+        List<Element> options = getChildren(dynamicElement, "dynamic-element", "type", "option");
 
-		List<Map<String, String>> result = new ArrayList<>(options.size());
+        List<Map<String, String>> result = new ArrayList<>(options.size());
 
-		for (Element optionDynamicElement : options) {
-			Map<String, String> optionMap = new HashMap<>();
+        for (Element optionDynamicElement : options) {
+            Map<String, String> optionMap = new HashMap<>();
 
-			optionMap.put("name", optionDynamicElement.getAttribute("name"));
-			optionMap.put("value", optionDynamicElement.getAttribute("value"));
+            optionMap.put("name", optionDynamicElement.getAttribute("name"));
+            optionMap.put("value", optionDynamicElement.getAttribute("value"));
 
-			Element localizedLabelMetadata = findMetadataElement(optionDynamicElement, locale, defaultLocale);
+            Element localizedLabelMetadata = findMetadataElement(optionDynamicElement, locale, defaultLocale);
 
-			Element foundLabelElement = getChild(localizedLabelMetadata, "entry", "name", "label");
-			if (foundLabelElement != null) {
-				optionMap.put("label", foundLabelElement.getFirstChild().getNodeValue());
-			} else {
-				// use value as fallback
-				optionMap.put("label", optionDynamicElement.getAttribute("value"));
-			}
+            Element foundLabelElement = getChild(localizedLabelMetadata, "entry", "name", "label");
+            if (foundLabelElement != null) {
+                optionMap.put("label", foundLabelElement.getFirstChild().getNodeValue());
+            } else {
+                // use value as fallback
+                optionMap.put("label", optionDynamicElement.getAttribute("value"));
+            }
 
-			result.add(optionMap);
-		}
+            result.add(optionMap);
+        }
 
-		return result;
-	}
+        return result;
+    }
 
-	protected void addLocalizedElement(Element localizedMetadata, String elementName, Map<String, Object> result) {
+    protected void addLocalizedElement(Element localizedMetadata, String elementName, Map<String, Object> result) {
 
-		Element foundElement = getChild(localizedMetadata, "entry", "name", elementName);
-		if (foundElement != null) {
-			Node contentNode = foundElement.getFirstChild();
-			if (contentNode != null) {
-				result.put(elementName, contentNode.getNodeValue());
-			}
-		}
-	}
+        Element foundElement = getChild(localizedMetadata, "entry", "name", elementName);
+        if (foundElement != null) {
+            Node contentNode = foundElement.getFirstChild();
+            if (contentNode != null) {
+                result.put(elementName, contentNode.getNodeValue());
+            }
+        }
+    }
 
-	protected Element findMetadataElement(Element dynamicElement, Locale locale, Locale defaultLocale) {
+    protected Element findMetadataElement(Element dynamicElement, Locale locale, Locale defaultLocale) {
 
-		return getLocaleFallback(dynamicElement, locale, defaultLocale, "meta-data", "locale");
-	}
+        return getLocaleFallback(dynamicElement, locale, defaultLocale, "meta-data", "locale");
+    }
 }

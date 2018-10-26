@@ -26,34 +26,34 @@ import com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet;
  */
 public class WebContentDisplayCustomCssActivity extends ThemeActivity implements WebContentDisplayListener {
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.web_content_display_customcss);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.web_content_display_customcss);
 
-		WebContentDisplayScreenlet screenlet = findViewById(R.id.web_content_display_screenlet);
-		screenlet.setListener(this);
-	}
+        WebContentDisplayScreenlet screenlet = findViewById(R.id.web_content_display_screenlet);
+        screenlet.setListener(this);
+    }
 
-	@Override
-	public WebContent onWebContentReceived(WebContent html) {
-		info(getString(R.string.webcontent_received_info));
-		return null;
-	}
+    @Override
+    public WebContent onWebContentReceived(WebContent html) {
+        info(getString(R.string.webcontent_received_info));
+        return null;
+    }
 
-	@Override
-	public boolean onUrlClicked(String url) {
-		info(getString(R.string.webcontent_clicked_info) + " -> " + url);
-		return false;
-	}
+    @Override
+    public boolean onUrlClicked(String url) {
+        info(getString(R.string.webcontent_clicked_info) + " -> " + url);
+        return false;
+    }
 
-	@Override
-	public boolean onWebContentTouched(View view, MotionEvent event) {
-		return false;
-	}
+    @Override
+    public boolean onWebContentTouched(View view, MotionEvent event) {
+        return false;
+    }
 
-	@Override
-	public void error(Exception e, String userAction) {
-		error(getString(R.string.webcontent_error), e);
-	}
+    @Override
+    public void error(Exception e, String userAction) {
+        error(getString(R.string.webcontent_error), e);
+    }
 }

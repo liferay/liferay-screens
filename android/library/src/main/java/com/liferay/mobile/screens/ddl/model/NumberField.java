@@ -28,89 +28,89 @@ import java.util.Map;
  */
 public class NumberField extends Field<Number> {
 
-	public static final Parcelable.ClassLoaderCreator<NumberField> CREATOR =
-		new Parcelable.ClassLoaderCreator<NumberField>() {
+    public static final Parcelable.ClassLoaderCreator<NumberField> CREATOR =
+        new Parcelable.ClassLoaderCreator<NumberField>() {
 
-			@Override
-			public NumberField createFromParcel(Parcel source, ClassLoader loader) {
-				return new NumberField(source, loader);
-			}
+            @Override
+            public NumberField createFromParcel(Parcel source, ClassLoader loader) {
+                return new NumberField(source, loader);
+            }
 
-			public NumberField createFromParcel(Parcel in) {
-				throw new AssertionError();
-			}
+            public NumberField createFromParcel(Parcel in) {
+                throw new AssertionError();
+            }
 
-			public NumberField[] newArray(int size) {
-				return new NumberField[size];
-			}
-		};
-	private NumberFormat labelFormatter;
-	private NumberFormat defaultLabelFormatter;
-	private NumberValidator numberValidator;
+            public NumberField[] newArray(int size) {
+                return new NumberField[size];
+            }
+        };
+    private NumberFormat labelFormatter;
+    private NumberFormat defaultLabelFormatter;
+    private NumberValidator numberValidator;
 
-	public NumberField() {
-		super();
-	}
+    public NumberField() {
+        super();
+    }
 
-	public NumberField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
-		super(attributes, locale, defaultLocale);
+    public NumberField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
+        super(attributes, locale, defaultLocale);
 
-		Object validationObj = attributes.get(FormFieldKeys.VALIDATION_KEY);
+        Object validationObj = attributes.get(FormFieldKeys.VALIDATION_KEY);
 
-		if (validationObj != null && validationObj instanceof Map) {
-			Map<String, String> validation = (Map<String, String>) validationObj;
-			numberValidator = NumberValidator.parseNumberValidator(validation);
-		}
-	}
+        if (validationObj != null && validationObj instanceof Map) {
+            Map<String, String> validation = (Map<String, String>) validationObj;
+            numberValidator = NumberValidator.parseNumberValidator(validation);
+        }
+    }
 
-	protected NumberField(Parcel in, ClassLoader loader) {
-		super(in, loader);
-	}
+    protected NumberField(Parcel in, ClassLoader loader) {
+        super(in, loader);
+    }
 
-	@Override
-	protected Number convertFromString(String stringValue) {
-		if (stringValue == null || stringValue.isEmpty()) {
-			return null;
-		}
+    @Override
+    protected Number convertFromString(String stringValue) {
+        if (stringValue == null || stringValue.isEmpty()) {
+            return null;
+        }
 
-		ParsePosition pos = new ParsePosition(0);
-		Number value = getLabelFormatter().parse(stringValue, pos);
+        ParsePosition pos = new ParsePosition(0);
+        Number value = getLabelFormatter().parse(stringValue, pos);
 
-		if (stringValue.length() == pos.getIndex()) {
-			return value;
-		} else {
-			pos = new ParsePosition(0);
-			value = defaultLabelFormatter.parse(stringValue, pos);
-			return stringValue.length() == pos.getIndex() ? value : null;
-		}
-	}
+        if (stringValue.length() == pos.getIndex()) {
+            return value;
+        } else {
+            pos = new ParsePosition(0);
+            value = defaultLabelFormatter.parse(stringValue, pos);
+            return stringValue.length() == pos.getIndex() ? value : null;
+        }
+    }
 
-	@Override
-	protected boolean doValidate() {
-		if (getCurrentValue() == null && isRequired()) {
-			return false;
-		} else if (getCurrentValue() != null && numberValidator != null) {
-			return numberValidator.validate(getCurrentValue());
-		}
+    @Override
+    protected boolean doValidate() {
+        if (getCurrentValue() == null && isRequired()) {
+            return false;
+        } else if (getCurrentValue() != null && numberValidator != null) {
+            return numberValidator.validate(getCurrentValue());
+        }
 
-		return super.doValidate();
-	}
+        return super.doValidate();
+    }
 
-	@Override
-	protected String convertToData(Number value) {
-		return (value == null) ? null : value.toString();
-	}
+    @Override
+    protected String convertToData(Number value) {
+        return (value == null) ? null : value.toString();
+    }
 
-	@Override
-	protected String convertToFormattedString(Number value) {
-		return (value == null) ? "" : getLabelFormatter().format(value);
-	}
+    @Override
+    protected String convertToFormattedString(Number value) {
+        return (value == null) ? "" : getLabelFormatter().format(value);
+    }
 
-	private NumberFormat getLabelFormatter() {
-		if (labelFormatter == null || defaultLabelFormatter == null) {
-			labelFormatter = NumberFormat.getNumberInstance(getCurrentLocale());
-			defaultLabelFormatter = NumberFormat.getNumberInstance(getDefaultLocale());
-		}
-		return labelFormatter;
-	}
+    private NumberFormat getLabelFormatter() {
+        if (labelFormatter == null || defaultLabelFormatter == null) {
+            labelFormatter = NumberFormat.getNumberInstance(getCurrentLocale());
+            defaultLabelFormatter = NumberFormat.getNumberInstance(getDefaultLocale());
+        }
+        return labelFormatter;
+    }
 }

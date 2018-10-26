@@ -23,29 +23,29 @@ import com.liferay.mobile.screens.context.AuthenticationType;
  */
 public class BasicCredentialsStorageSharedPreferences extends BaseCredentialsStorageSharedPreferences {
 
-	public static final String AUTH = "auth";
-	public static final String USERNAME = "username";
-	public static final String PASSWORD = "password";
+    public static final String AUTH = "auth";
+    public static final String USERNAME = "username";
+    public static final String PASSWORD = "password";
 
-	@Override
-	protected void storeAuth(Authentication auth) {
-		BasicAuthentication basicAuth = (BasicAuthentication) auth;
-		getSharedPref().edit()
-			.putString(AUTH, AuthenticationType.BASIC.name())
-			.putString(USERNAME, basicAuth.getUsername())
-			.putString(PASSWORD, basicAuth.getPassword())
-			.apply();
-	}
+    @Override
+    protected void storeAuth(Authentication auth) {
+        BasicAuthentication basicAuth = (BasicAuthentication) auth;
+        getSharedPref().edit()
+            .putString(AUTH, AuthenticationType.BASIC.name())
+            .putString(USERNAME, basicAuth.getUsername())
+            .putString(PASSWORD, basicAuth.getPassword())
+            .apply();
+    }
 
-	@Override
-	protected Authentication loadAuth() {
-		String userName = getSharedPref().getString(USERNAME, null);
-		String password = getSharedPref().getString(PASSWORD, null);
+    @Override
+    protected Authentication loadAuth() {
+        String userName = getSharedPref().getString(USERNAME, null);
+        String password = getSharedPref().getString(PASSWORD, null);
 
-		if (userName == null || password == null) {
-			return null;
-		}
+        if (userName == null || password == null) {
+            return null;
+        }
 
-		return new BasicAuthentication(userName, password);
-	}
+        return new BasicAuthentication(userName, password);
+    }
 }

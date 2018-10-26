@@ -23,26 +23,26 @@ import com.liferay.mobile.screens.viewsets.lexicon.util.FormViewUtil;
  * @author Victor Oliveira
  */
 public class DDLFieldDateView
-	extends com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldDateView {
+    extends com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldDateView {
 
-	public DDLFieldDateView(Context context) {
-		super(context);
-	}
+    public DDLFieldDateView(Context context) {
+        super(context);
+    }
 
-	public DDLFieldDateView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public DDLFieldDateView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public DDLFieldDateView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public DDLFieldDateView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	protected int getDatePickerStyle() {
-		return R.style.lexicon_date_picker;
-	}
+    protected int getDatePickerStyle() {
+        return R.style.lexicon_date_picker;
+    }
 
-	@Override
-	public void onPostValidation(boolean valid) {
-		FormViewUtil.setupTextFieldLayout(getContext(), valid, labelTextView, textEditText);
-	}
+    @Override
+    public void onPostValidation(boolean valid) {
+        FormViewUtil.setupTextFieldLayout(getContext(), valid, labelTextView, textEditText);
+    }
 }

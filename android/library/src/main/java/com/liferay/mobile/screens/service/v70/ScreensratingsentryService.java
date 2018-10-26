@@ -25,104 +25,104 @@ import org.json.JSONObject;
  */
 public class ScreensratingsentryService extends BaseService {
 
-	public ScreensratingsentryService(Session session) {
-		super(session);
-	}
+    public ScreensratingsentryService(Session session) {
+        super(session);
+    }
 
-	public JSONObject getRatingsEntries(long classPK, String className, int ratingsLength) throws Exception {
-		JSONObject _command = new JSONObject();
+    public JSONObject getRatingsEntries(long classPK, String className, int ratingsLength) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("classPK", classPK);
-			_params.put("className", checkNull(className));
-			_params.put("ratingsLength", ratingsLength);
+            _params.put("classPK", classPK);
+            _params.put("className", checkNull(className));
+            _params.put("ratingsLength", ratingsLength);
 
-			_command.put("/screens.screensratingsentry/get-ratings-entries", _params);
-		} catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/screens.screensratingsentry/get-ratings-entries", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getJSONObject(0);
-	}
+        return _result.getJSONObject(0);
+    }
 
-	public JSONObject getRatingsEntries(long assetEntryId, int ratingsLength) throws Exception {
-		JSONObject _command = new JSONObject();
+    public JSONObject getRatingsEntries(long assetEntryId, int ratingsLength) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("assetEntryId", assetEntryId);
-			_params.put("ratingsLength", ratingsLength);
+            _params.put("assetEntryId", assetEntryId);
+            _params.put("ratingsLength", ratingsLength);
 
-			_command.put("/screens.screensratingsentry/get-ratings-entries", _params);
-		} catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/screens.screensratingsentry/get-ratings-entries", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getJSONObject(0);
-	}
+        return _result.getJSONObject(0);
+    }
 
-	public JSONObject updateRatingsEntry(long classPK, String className, double score, int ratingsLength)
-		throws Exception {
-		JSONObject _command = new JSONObject();
+    public JSONObject updateRatingsEntry(long classPK, String className, double score, int ratingsLength)
+        throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("classPK", classPK);
-			_params.put("className", checkNull(className));
-			_params.put("score", score);
-			_params.put("ratingsLength", ratingsLength);
+            _params.put("classPK", classPK);
+            _params.put("className", checkNull(className));
+            _params.put("score", score);
+            _params.put("ratingsLength", ratingsLength);
 
-			_command.put("/screens.screensratingsentry/update-ratings-entry", _params);
-		} catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/screens.screensratingsentry/update-ratings-entry", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getJSONObject(0);
-	}
+        return _result.getJSONObject(0);
+    }
 
-	public JSONObject deleteRatingsEntry(long classPK, String className, int ratingsLength) throws Exception {
-		JSONObject _command = new JSONObject();
+    public JSONObject deleteRatingsEntry(long classPK, String className, int ratingsLength) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("classPK", classPK);
-			_params.put("className", checkNull(className));
-			_params.put("ratingsLength", ratingsLength);
+            _params.put("classPK", classPK);
+            _params.put("className", checkNull(className));
+            _params.put("ratingsLength", ratingsLength);
 
-			_command.put("/screens.screensratingsentry/delete-ratings-entry", _params);
-		} catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/screens.screensratingsentry/delete-ratings-entry", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getJSONObject(0);
-	}
+        return _result.getJSONObject(0);
+    }
 }

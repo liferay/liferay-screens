@@ -16,27 +16,27 @@ import static com.liferay.mobile.screens.westerosemployees_hybrid.activities.Tou
  */
 public class SplashActivity extends Activity {
 
-	private static final int DELAY_MILLIS = 2000;
+    private static final int DELAY_MILLIS = 2000;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.splash);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.splash);
 
-		final Class destination = getDestinationActivity();
+        final Class destination = getDestinationActivity();
 
-		//TODO change to back and screen orientation aware
-		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				startActivity(new Intent(SplashActivity.this, destination));
-			}
-		}, DELAY_MILLIS);
-	}
+        //TODO change to back and screen orientation aware
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(SplashActivity.this, destination));
+            }
+        }, DELAY_MILLIS);
+    }
 
-	private Class getDestinationActivity() {
-		SharedPreferences preferences = getSharedPreferences(WESTEROS_PREFERENCES, MODE_PRIVATE);
-		boolean tourVisited = preferences.contains(TOUR_VISITED) && preferences.getBoolean(TOUR_VISITED, false);
-		return tourVisited ? MainActivity.class : TourActivity.class;
-	}
+    private Class getDestinationActivity() {
+        SharedPreferences preferences = getSharedPreferences(WESTEROS_PREFERENCES, MODE_PRIVATE);
+        boolean tourVisited = preferences.contains(TOUR_VISITED) && preferences.getBoolean(TOUR_VISITED, false);
+        return tourVisited ? MainActivity.class : TourActivity.class;
+    }
 }

@@ -28,60 +28,60 @@ import com.liferay.mobile.screens.webcontent.list.interactor.WebContentListInter
  * @author Javier Gamarra
  */
 public class WebContentListScreenlet extends BaseListScreenlet<WebContent, WebContentListInteractor>
-	implements BaseListInteractorListener<WebContent> {
+    implements BaseListInteractorListener<WebContent> {
 
-	private long folderId;
+    private long folderId;
 
-	public WebContentListScreenlet(Context context) {
-		super(context);
-	}
+    public WebContentListScreenlet(Context context) {
+        super(context);
+    }
 
-	public WebContentListScreenlet(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public WebContentListScreenlet(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public WebContentListScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-	}
+    public WebContentListScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-	public WebContentListScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
+    public WebContentListScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
 
-	@Override
-	public void error(Exception e, String userAction) {
-		if (getListener() != null) {
-			getListener().error(e, userAction);
-		}
-	}
+    @Override
+    public void error(Exception e, String userAction) {
+        if (getListener() != null) {
+            getListener().error(e, userAction);
+        }
+    }
 
-	public long getFolderId() {
-		return folderId;
-	}
+    public long getFolderId() {
+        return folderId;
+    }
 
-	public void setFolderId(long folderId) {
-		this.folderId = folderId;
-	}
+    public void setFolderId(long folderId) {
+        this.folderId = folderId;
+    }
 
-	@Override
-	protected void loadRows(WebContentListInteractor interactor) {
-		interactor.start(folderId);
-	}
+    @Override
+    protected void loadRows(WebContentListInteractor interactor) {
+        interactor.start(folderId);
+    }
 
-	@Override
-	protected WebContentListInteractor createInteractor(String actionName) {
-		return new WebContentListInteractor();
-	}
+    @Override
+    protected WebContentListInteractor createInteractor(String actionName) {
+        return new WebContentListInteractor();
+    }
 
-	@Override
-	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray =
-			context.getTheme().obtainStyledAttributes(attributes, R.styleable.WebContentListScreenlet, 0, 0);
+    @Override
+    protected View createScreenletView(Context context, AttributeSet attributes) {
+        TypedArray typedArray =
+            context.getTheme().obtainStyledAttributes(attributes, R.styleable.WebContentListScreenlet, 0, 0);
 
-		folderId = castToLong(typedArray.getString(R.styleable.WebContentListScreenlet_folderId));
+        folderId = castToLong(typedArray.getString(R.styleable.WebContentListScreenlet_folderId));
 
-		typedArray.recycle();
+        typedArray.recycle();
 
-		return super.createScreenletView(context, attributes);
-	}
+        return super.createScreenletView(context, attributes);
+    }
 }

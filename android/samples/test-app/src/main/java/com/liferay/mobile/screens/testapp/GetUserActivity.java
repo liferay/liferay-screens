@@ -10,22 +10,22 @@ import com.liferay.mobile.screens.user.GetUserScreenlet;
  */
 public class GetUserActivity extends ThemeActivity implements GetUserListener {
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.get_user);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.get_user);
 
-		GetUserScreenlet screenlet = findViewById(R.id.get_user_screenlet);
-		screenlet.setListener(this);
-	}
+        GetUserScreenlet screenlet = findViewById(R.id.get_user_screenlet);
+        screenlet.setListener(this);
+    }
 
-	@Override
-	public void onGetUserSuccess(User user) {
-		info("User received! -> " + user.getEmail());
-	}
+    @Override
+    public void onGetUserSuccess(User user) {
+        info("User received! -> " + user.getEmail());
+    }
 
-	@Override
-	public void onGetUserFailure(Exception exception) {
-		error("Could not receive user", exception);
-	}
+    @Override
+    public void onGetUserFailure(Exception exception) {
+        error("Could not receive user", exception);
+    }
 }

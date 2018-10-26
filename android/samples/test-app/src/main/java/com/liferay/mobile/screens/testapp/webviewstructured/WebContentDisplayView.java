@@ -13,28 +13,28 @@ import com.liferay.mobile.screens.webcontent.WebContent;
  */
 public class WebContentDisplayView extends WebContentStructuredDisplayView {
 
-	public WebContentDisplayView(Context context) {
-		super(context);
-	}
+    public WebContentDisplayView(Context context) {
+        super(context);
+    }
 
-	public WebContentDisplayView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public WebContentDisplayView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public WebContentDisplayView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public WebContentDisplayView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	public void showFinishOperation(WebContent webContent, String customCss) {
-		super.showFinishOperation(webContent, customCss);
+    @Override
+    public void showFinishOperation(WebContent webContent, String customCss) {
+        super.showFinishOperation(webContent, customCss);
 
-		DDMStructure ddmStructure = webContent.getDDMStructure();
+        DDMStructure ddmStructure = webContent.getDDMStructure();
 
-		TextView firstField = findViewById(R.id.web_content_first_field);
-		firstField.setText(String.valueOf(ddmStructure.getField(0).getCurrentValue()));
+        TextView firstField = findViewById(R.id.web_content_first_field);
+        firstField.setText(String.valueOf(ddmStructure.getField(0).getCurrentValue()));
 
-		TextView secondField = findViewById(R.id.web_content_second_field);
-		secondField.setText(String.valueOf(ddmStructure.getField(1).getCurrentValue()));
-	}
+        TextView secondField = findViewById(R.id.web_content_second_field);
+        secondField.setText(String.valueOf(ddmStructure.getField(1).getCurrentValue()));
+    }
 }

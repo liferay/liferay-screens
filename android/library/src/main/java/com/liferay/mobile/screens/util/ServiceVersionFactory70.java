@@ -35,66 +35,66 @@ import com.liferay.mobile.screens.webcontent.display.connector.ScreensJournalCon
  */
 public class ServiceVersionFactory70 implements ServiceVersionFactory {
 
-	public ForgotPasswordConnector getForgotPasswordConnector(Session session) {
-		return new UserConnector70(session);
-	}
+    public ForgotPasswordConnector getForgotPasswordConnector(Session session) {
+        return new UserConnector70(session);
+    }
 
-	public UserConnector getUserConnector(Session session) {
-		return new UserConnector70(session);
-	}
+    public UserConnector getUserConnector(Session session) {
+        return new UserConnector70(session);
+    }
 
-	public CurrentUserConnector getCurrentUserConnector(Session session) {
-		return new UserConnector70(session);
-	}
+    public CurrentUserConnector getCurrentUserConnector(Session session) {
+        return new UserConnector70(session);
+    }
 
-	public DLAppConnector getDLAppConnector(Session session) {
-		return new DLAppConnector70(session);
-	}
+    public DLAppConnector getDLAppConnector(Session session) {
+        return new DLAppConnector70(session);
+    }
 
-	public DDLRecordConnector getDDLRecordConnector(Session session) {
-		return new DDLRecordConnector70(session);
-	}
+    public DDLRecordConnector getDDLRecordConnector(Session session) {
+        return new DDLRecordConnector70(session);
+    }
 
-	public ScreensDDLRecordConnector getScreensDDLRecordConnector(Session session) {
-		return new ScreensDDLRecordConnector70(session);
-	}
+    public ScreensDDLRecordConnector getScreensDDLRecordConnector(Session session) {
+        return new ScreensDDLRecordConnector70(session);
+    }
 
-	public DDLRecordSetConnector getDDLRecordSetConnector(Session session) {
-		return new DDLRecordSetConnector70(session);
-	}
+    public DDLRecordSetConnector getDDLRecordSetConnector(Session session) {
+        return new DDLRecordSetConnector70(session);
+    }
 
-	public DDMStructureConnector getDDMStructureConnector(Session session) {
-		return new ScreensDDMStructureConnector70(session);
-	}
+    public DDMStructureConnector getDDMStructureConnector(Session session) {
+        return new ScreensDDMStructureConnector70(session);
+    }
 
-	public AssetEntryConnector getAssetEntryConnector(Session session) {
-		return new AssetEntryConnector70(session);
-	}
+    public AssetEntryConnector getAssetEntryConnector(Session session) {
+        return new AssetEntryConnector70(session);
+    }
 
-	public ScreensAssetEntryConnector getScreensAssetEntryConnector(Session session) {
-		return new ScreensAssetEntryConnector70(session);
-	}
+    public ScreensAssetEntryConnector getScreensAssetEntryConnector(Session session) {
+        return new ScreensAssetEntryConnector70(session);
+    }
 
-	public JournalContentConnector getJournalContentConnector(Session session) {
-		return new JournalContentConnector70(session);
-	}
+    public JournalContentConnector getJournalContentConnector(Session session) {
+        return new JournalContentConnector70(session);
+    }
 
-	public ScreensJournalContentConnector getScreensJournalContentConnector(Session session) {
-		return new ScreensJournalContentConnector70(session);
-	}
+    public ScreensJournalContentConnector getScreensJournalContentConnector(Session session) {
+        return new ScreensJournalContentConnector70(session);
+    }
 
-	@Override
-	public ScreensCommentConnector getScreensCommentConnector(Session session) {
-		return new ScreensCommentConnector70(session);
-	}
+    @Override
+    public ScreensCommentConnector getScreensCommentConnector(Session session) {
+        return new ScreensCommentConnector70(session);
+    }
 
-	@Override
-	public ScreensRatingsConnector getScreensRatingsConnector(Session session) {
-		return new ScreensRatingsConnector70(session);
-	}
+    @Override
+    public ScreensRatingsConnector getScreensRatingsConnector(Session session) {
+        return new ScreensRatingsConnector70(session);
+    }
 
-	@Override
-	public CommentConnector getCommentConnector(Session session) {
-		return new CommentConnector70(session);
-	}
+    @Override
+    public CommentConnector getCommentConnector(Session session) {
+        return new CommentConnector70(session);
+    }
 }

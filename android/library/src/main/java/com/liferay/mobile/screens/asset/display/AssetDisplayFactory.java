@@ -23,63 +23,63 @@ import java.util.Map;
  */
 public class AssetDisplayFactory {
 
-	public static BaseScreenlet getScreenlet(Context context, AssetEntry assetEntry, Map<String, Integer> layouts) {
+    public static BaseScreenlet getScreenlet(Context context, AssetEntry assetEntry, Map<String, Integer> layouts) {
 
-		if (assetEntry instanceof FileEntry || assetEntry instanceof ImageEntry) {
-			BaseFileDisplayScreenlet screenlet = getDLFileEntryScreenlet(context, assetEntry.getMimeType());
+        if (assetEntry instanceof FileEntry || assetEntry instanceof ImageEntry) {
+            BaseFileDisplayScreenlet screenlet = getDLFileEntryScreenlet(context, assetEntry.getMimeType());
 
-			if (screenlet != null) {
-				Integer layoutId = layouts.get(screenlet.getClass().getName());
+            if (screenlet != null) {
+                Integer layoutId = layouts.get(screenlet.getClass().getName());
 
-				screenlet.render(layoutId);
+                screenlet.render(layoutId);
 
-				if (assetEntry instanceof FileEntry) {
-					screenlet.setFileEntry((FileEntry) assetEntry);
-					screenlet.loadFile();
-				} else {
-					screenlet.setClassPK(((ImageEntry) assetEntry).getFileEntryId());
-					screenlet.load();
-				}
-				return screenlet;
-			}
-		} else if (assetEntry instanceof WebContent) {
-			WebContentDisplayScreenlet webContentDisplayScreenlet = new WebContentDisplayScreenlet(context);
+                if (assetEntry instanceof FileEntry) {
+                    screenlet.setFileEntry((FileEntry) assetEntry);
+                    screenlet.loadFile();
+                } else {
+                    screenlet.setClassPK(((ImageEntry) assetEntry).getFileEntryId());
+                    screenlet.load();
+                }
+                return screenlet;
+            }
+        } else if (assetEntry instanceof WebContent) {
+            WebContentDisplayScreenlet webContentDisplayScreenlet = new WebContentDisplayScreenlet(context);
 
-			Integer layoutId = layouts.get(webContentDisplayScreenlet.getClass().getName());
+            Integer layoutId = layouts.get(webContentDisplayScreenlet.getClass().getName());
 
-			webContentDisplayScreenlet.render(layoutId);
-			webContentDisplayScreenlet.onWebContentReceived((WebContent) assetEntry);
+            webContentDisplayScreenlet.render(layoutId);
+            webContentDisplayScreenlet.onWebContentReceived((WebContent) assetEntry);
 
-			return webContentDisplayScreenlet;
-		} else if (assetEntry instanceof BlogsEntry) {
-			BlogsEntryDisplayScreenlet blogsScreenlet = new BlogsEntryDisplayScreenlet(context);
+            return webContentDisplayScreenlet;
+        } else if (assetEntry instanceof BlogsEntry) {
+            BlogsEntryDisplayScreenlet blogsScreenlet = new BlogsEntryDisplayScreenlet(context);
 
-			Integer layoutId = layouts.get(blogsScreenlet.getClass().getName());
+            Integer layoutId = layouts.get(blogsScreenlet.getClass().getName());
 
-			blogsScreenlet.setBlogsEntry((BlogsEntry) assetEntry);
-			blogsScreenlet.render(layoutId);
-			blogsScreenlet.loadBlogsEntry();
+            blogsScreenlet.setBlogsEntry((BlogsEntry) assetEntry);
+            blogsScreenlet.render(layoutId);
+            blogsScreenlet.loadBlogsEntry();
 
-			return blogsScreenlet;
-		}
-		return null;
-	}
+            return blogsScreenlet;
+        }
+        return null;
+    }
 
-	private static BaseFileDisplayScreenlet getDLFileEntryScreenlet(Context context, String mimeType) {
-		if (is(mimeType, R.array.image_mime_types, context)) {
-			return new ImageDisplayScreenlet(context);
-		} else if (is(mimeType, R.array.video_mime_types, context)) {
-			return new VideoDisplayScreenlet(context);
-		} else if (is(mimeType, R.array.audio_mime_types, context)) {
-			return new AudioDisplayScreenlet(context);
-		} else if (is(mimeType, R.array.pdf_mime_types, context)) {
-			return new PdfDisplayScreenlet(context);
-		}
-		return null;
-	}
+    private static BaseFileDisplayScreenlet getDLFileEntryScreenlet(Context context, String mimeType) {
+        if (is(mimeType, R.array.image_mime_types, context)) {
+            return new ImageDisplayScreenlet(context);
+        } else if (is(mimeType, R.array.video_mime_types, context)) {
+            return new VideoDisplayScreenlet(context);
+        } else if (is(mimeType, R.array.audio_mime_types, context)) {
+            return new AudioDisplayScreenlet(context);
+        } else if (is(mimeType, R.array.pdf_mime_types, context)) {
+            return new PdfDisplayScreenlet(context);
+        }
+        return null;
+    }
 
-	private static boolean is(String mimeType, int typesIds, Context context) {
-		String[] mimeTypes = context.getResources().getStringArray(typesIds);
-		return Arrays.asList(mimeTypes).contains(mimeType);
-	}
+    private static boolean is(String mimeType, int typesIds, Context context) {
+        String[] mimeTypes = context.getResources().getStringArray(typesIds);
+        return Arrays.asList(mimeTypes).contains(mimeType);
+    }
 }

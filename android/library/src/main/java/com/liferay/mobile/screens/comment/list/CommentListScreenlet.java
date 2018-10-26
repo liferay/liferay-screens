@@ -31,159 +31,159 @@ import com.liferay.mobile.screens.comment.list.view.CommentListViewModel;
  * @author Alejandro Hernández
  */
 public class CommentListScreenlet extends BaseListScreenlet<CommentEntry, CommentListInteractor>
-	implements CommentDisplayListener, BaseListInteractorListener<CommentEntry> {
+    implements CommentDisplayListener, BaseListInteractorListener<CommentEntry> {
 
-	private CachePolicy cachePolicy;
-	private String className;
-	private long classPK;
-	private boolean editable;
+    private CachePolicy cachePolicy;
+    private String className;
+    private long classPK;
+    private boolean editable;
 
-	public CommentListScreenlet(Context context) {
-		super(context);
-	}
+    public CommentListScreenlet(Context context) {
+        super(context);
+    }
 
-	public CommentListScreenlet(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public CommentListScreenlet(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public CommentListScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-	}
+    public CommentListScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-	public CommentListScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
+    public CommentListScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
 
-	/**
-	 * Allows to add a new comment in the list.
-	 *
-	 * @param commentEntry the comment to be added.
-	 */
-	public void addNewCommentEntry(CommentEntry commentEntry) {
-		getViewModel().addNewCommentEntry(commentEntry);
-	}
+    /**
+     * Allows to add a new comment in the list.
+     *
+     * @param commentEntry the comment to be added.
+     */
+    public void addNewCommentEntry(CommentEntry commentEntry) {
+        getViewModel().addNewCommentEntry(commentEntry);
+    }
 
-	/**
-	 * Allows to remove a new comment in the list.
-	 *
-	 * @param commentEntry the comment to be removed.
-	 */
-	public void removeCommentEntry(CommentEntry commentEntry) {
-		getViewModel().removeCommentEntry(commentEntry);
-	}
+    /**
+     * Allows to remove a new comment in the list.
+     *
+     * @param commentEntry the comment to be removed.
+     */
+    public void removeCommentEntry(CommentEntry commentEntry) {
+        getViewModel().removeCommentEntry(commentEntry);
+    }
 
-	@Override
-	protected void onScreenletAttached() {
-		super.onScreenletAttached();
+    @Override
+    protected void onScreenletAttached() {
+        super.onScreenletAttached();
 
-		if (!isInEditMode()) {
-			getViewModel().allowEdition(editable);
-		}
-	}
+        if (!isInEditMode()) {
+            getViewModel().allowEdition(editable);
+        }
+    }
 
-	@Override
-	protected void loadRows(CommentListInteractor interactor) {
-		interactor.start(className, classPK);
-	}
+    @Override
+    protected void loadRows(CommentListInteractor interactor) {
+        interactor.start(className, classPK);
+    }
 
-	@Override
-	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray =
-			context.getTheme().obtainStyledAttributes(attributes, R.styleable.CommentListScreenlet, 0, 0);
+    @Override
+    protected View createScreenletView(Context context, AttributeSet attributes) {
+        TypedArray typedArray =
+            context.getTheme().obtainStyledAttributes(attributes, R.styleable.CommentListScreenlet, 0, 0);
 
-		className = typedArray.getString(R.styleable.CommentListScreenlet_className);
+        className = typedArray.getString(R.styleable.CommentListScreenlet_className);
 
-		classPK = castToLong(typedArray.getString(R.styleable.CommentListScreenlet_classPK));
+        classPK = castToLong(typedArray.getString(R.styleable.CommentListScreenlet_classPK));
 
-		editable = typedArray.getBoolean(R.styleable.CommentListScreenlet_editable, true);
+        editable = typedArray.getBoolean(R.styleable.CommentListScreenlet_editable, true);
 
-		Integer cachePolicy =
-			typedArray.getInteger(R.styleable.CommentListScreenlet_cachePolicy, CachePolicy.REMOTE_ONLY.ordinal());
-		this.cachePolicy = CachePolicy.values()[cachePolicy];
+        Integer cachePolicy =
+            typedArray.getInteger(R.styleable.CommentListScreenlet_cachePolicy, CachePolicy.REMOTE_ONLY.ordinal());
+        this.cachePolicy = CachePolicy.values()[cachePolicy];
 
-		typedArray.recycle();
+        typedArray.recycle();
 
-		return super.createScreenletView(context, attributes);
-	}
+        return super.createScreenletView(context, attributes);
+    }
 
-	@Override
-	protected void onUserAction(String actionName, CommentListInteractor interactor, Object... args) {
-	}
+    @Override
+    protected void onUserAction(String actionName, CommentListInteractor interactor, Object... args) {
+    }
 
-	@Override
-	protected CommentListInteractor createInteractor(String actionName) {
-		return new CommentListInteractor();
-	}
+    @Override
+    protected CommentListInteractor createInteractor(String actionName) {
+        return new CommentListInteractor();
+    }
 
-	@Override
-	public void error(Exception e, String userAction) {
-		if (getListener() != null) {
-			getListener().error(e, userAction);
-		}
-		if (getCommentListListener() != null) {
-			getCommentListListener().error(e, userAction);
-		}
-	}
+    @Override
+    public void error(Exception e, String userAction) {
+        if (getListener() != null) {
+            getListener().error(e, userAction);
+        }
+        if (getCommentListListener() != null) {
+            getCommentListListener().error(e, userAction);
+        }
+    }
 
-	@Override
-	public void onLoadCommentSuccess(CommentEntry commentEntry) {
-	}
+    @Override
+    public void onLoadCommentSuccess(CommentEntry commentEntry) {
+    }
 
-	@Override
-	public void onDeleteCommentSuccess(CommentEntry commentEntry) {
-		removeCommentEntry(commentEntry);
+    @Override
+    public void onDeleteCommentSuccess(CommentEntry commentEntry) {
+        removeCommentEntry(commentEntry);
 
-		if (getCommentListListener() != null) {
-			getCommentListListener().onDeleteCommentSuccess(commentEntry);
-		}
-	}
+        if (getCommentListListener() != null) {
+            getCommentListListener().onDeleteCommentSuccess(commentEntry);
+        }
+    }
 
-	@Override
-	public void onUpdateCommentSuccess(CommentEntry commentEntry) {
-		if (getCommentListListener() != null) {
-			getCommentListListener().onUpdateCommentSuccess(commentEntry);
-		}
-	}
+    @Override
+    public void onUpdateCommentSuccess(CommentEntry commentEntry) {
+        if (getCommentListListener() != null) {
+            getCommentListListener().onUpdateCommentSuccess(commentEntry);
+        }
+    }
 
-	public CachePolicy getCachePolicy() {
-		return cachePolicy;
-	}
+    public CachePolicy getCachePolicy() {
+        return cachePolicy;
+    }
 
-	public void setCachePolicy(CachePolicy cachePolicy) {
-		this.cachePolicy = cachePolicy;
-	}
+    public void setCachePolicy(CachePolicy cachePolicy) {
+        this.cachePolicy = cachePolicy;
+    }
 
-	public String getClassName() {
-		return className;
-	}
+    public String getClassName() {
+        return className;
+    }
 
-	public void setClassName(String className) {
-		this.className = className;
-	}
+    public void setClassName(String className) {
+        this.className = className;
+    }
 
-	public long getClassPK() {
-		return classPK;
-	}
+    public long getClassPK() {
+        return classPK;
+    }
 
-	public void setClassPK(long classPK) {
-		this.classPK = classPK;
-	}
+    public void setClassPK(long classPK) {
+        this.classPK = classPK;
+    }
 
-	private CommentListListener getCommentListListener() {
-		return (CommentListListener) getListener();
-	}
+    private CommentListListener getCommentListListener() {
+        return (CommentListListener) getListener();
+    }
 
-	public boolean isEditable() {
-		return editable;
-	}
+    public boolean isEditable() {
+        return editable;
+    }
 
-	public void allowEdition(boolean editable) {
-		this.editable = editable;
+    public void allowEdition(boolean editable) {
+        this.editable = editable;
 
-		getViewModel().allowEdition(editable);
-	}
+        getViewModel().allowEdition(editable);
+    }
 
-	protected CommentListViewModel getViewModel() {
-		return (CommentListViewModel) super.getViewModel();
-	}
+    protected CommentListViewModel getViewModel() {
+        return (CommentListViewModel) super.getViewModel();
+    }
 }

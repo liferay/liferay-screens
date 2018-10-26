@@ -29,48 +29,48 @@ import com.liferay.mobile.screens.viewsets.westeros.R;
  * @author Silvio Santos
  */
 public class DDLListView extends BaseListScreenletView<Record, DDLListAdapter.SwipeActionsViewHolder, DDLListAdapter>
-	implements DDLListViewModel, SwipeRefreshLayout.OnRefreshListener {
+    implements DDLListViewModel, SwipeRefreshLayout.OnRefreshListener {
 
-	private SwipeRefreshLayout swipeRefreshLayout;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
-	public DDLListView(Context context) {
-		super(context);
-	}
+    public DDLListView(Context context) {
+        super(context);
+    }
 
-	public DDLListView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public DDLListView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public DDLListView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public DDLListView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	public void onRefresh() {
-		swipeRefreshLayout.setRefreshing(false);
-		((BaseListScreenlet) getScreenlet()).loadPage(0);
-	}
+    @Override
+    public void onRefresh() {
+        swipeRefreshLayout.setRefreshing(false);
+        ((BaseListScreenlet) getScreenlet()).loadPage(0);
+    }
 
-	@Override
-	protected DDLListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
-		return new DDLListAdapter(itemLayoutId, itemProgressLayoutId, this);
-	}
+    @Override
+    protected DDLListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
+        return new DDLListAdapter(itemLayoutId, itemProgressLayoutId, this);
+    }
 
-	@Override
-	protected int getItemLayoutId() {
-		return R.layout.ddl_list_item_westeros;
-	}
+    @Override
+    protected int getItemLayoutId() {
+        return R.layout.ddl_list_item_westeros;
+    }
 
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
 
-		swipeRefreshLayout = findViewById(R.id.liferay_swipe_refresh);
-		swipeRefreshLayout.setOnRefreshListener(this);
-	}
+        swipeRefreshLayout = findViewById(R.id.liferay_swipe_refresh);
+        swipeRefreshLayout.setOnRefreshListener(this);
+    }
 
-	@Override
-	protected DividerItemDecoration getDividerDecoration() {
-		return null;
-	}
+    @Override
+    protected DividerItemDecoration getDividerDecoration() {
+        return null;
+    }
 }

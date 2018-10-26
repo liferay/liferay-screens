@@ -19,13 +19,13 @@ package com.liferay.mobile.screens.bookmark.interactor;
  */
 public interface AddBookmarkListener {
 
-	/**
-	 * Called when the bookmark didn't add correctly.
-	 */
-	void onAddBookmarkFailure(Exception exception);
+    /**
+     * Called when the bookmark didn't add correctly.
+     */
+    void onAddBookmarkFailure(Exception exception);
 
-	/**
-	 * Called when the bookmark was successfully added.
-	 */
-	void onAddBookmarkSuccess();
+    /**
+     * Called when the bookmark was successfully added.
+     */
+    void onAddBookmarkSuccess();
 }

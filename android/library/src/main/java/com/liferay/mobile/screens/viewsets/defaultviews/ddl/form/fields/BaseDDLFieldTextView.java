@@ -36,154 +36,154 @@ import rx.functions.Func1;
  * @author Silvio Santos
  */
 public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
-	implements DDLFieldViewModel<T>, TextWatcher {
+    implements DDLFieldViewModel<T>, TextWatcher {
 
-	protected TextView labelTextView;
-	protected EditText textEditText;
-	protected View parentView;
-	private Observable<T> onChangedValueObservable = Observable.empty();
-	private T field;
+    protected TextView labelTextView;
+    protected EditText textEditText;
+    protected View parentView;
+    private Observable<T> onChangedValueObservable = Observable.empty();
+    private T field;
 
-	public BaseDDLFieldTextView(Context context) {
-		super(context);
-	}
+    public BaseDDLFieldTextView(Context context) {
+        super(context);
+    }
 
-	public BaseDDLFieldTextView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public BaseDDLFieldTextView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public BaseDDLFieldTextView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public BaseDDLFieldTextView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	public void afterTextChanged(Editable editable) {
-		if (field != null) {
-			if (!field.getLastValidationResult()) {
-				field.setLastValidationResult(true);
+    @Override
+    public void afterTextChanged(Editable editable) {
+        if (field != null) {
+            if (!field.getLastValidationResult()) {
+                field.setLastValidationResult(true);
 
-				onPostValidation(true);
-			}
+                onPostValidation(true);
+            }
 
-			onTextChanged(editable.toString());
-		}
-	}
+            onTextChanged(editable.toString());
+        }
+    }
 
-	@Override
-	public void beforeTextChanged(CharSequence text, int start, int count, int after) {
-	}
+    @Override
+    public void beforeTextChanged(CharSequence text, int start, int count, int after) {
+    }
 
-	@Override
-	public T getField() {
-		return field;
-	}
+    @Override
+    public T getField() {
+        return field;
+    }
 
-	@Override
-	public void setField(T field) {
-		this.field = field;
+    @Override
+    public void setField(T field) {
+        this.field = field;
 
-		setupFieldLayout();
+        setupFieldLayout();
 
-		refresh();
-	}
+        refresh();
+    }
 
-	public void setupFieldLayout() {
-		if (this.field.isShowLabel()) {
-			if (labelTextView != null) {
-				labelTextView.setText(this.field.getLabel());
-				labelTextView.setVisibility(VISIBLE);
+    public void setupFieldLayout() {
+        if (this.field.isShowLabel()) {
+            if (labelTextView != null) {
+                labelTextView.setText(this.field.getLabel());
+                labelTextView.setVisibility(VISIBLE);
 
-				if (this.field.isRequired()) {
-					Spannable requiredAlert = ThemeUtil.getRequiredSpannable(getContext());
-					labelTextView.append(requiredAlert);
-				}
-			}
-		} else {
-			if (labelTextView != null) {
-				labelTextView.setVisibility(GONE);
-			}
-		}
+                if (this.field.isRequired()) {
+                    Spannable requiredAlert = ThemeUtil.getRequiredSpannable(getContext());
+                    labelTextView.append(requiredAlert);
+                }
+            }
+        } else {
+            if (labelTextView != null) {
+                labelTextView.setVisibility(GONE);
+            }
+        }
 
-		if (this.field.getPlaceHolder() != null && !this.field.getPlaceHolder().isEmpty()) {
-			textEditText.setHint(this.field.getPlaceHolder());
-		}
-	}
+        if (this.field.getPlaceHolder() != null && !this.field.getPlaceHolder().isEmpty()) {
+            textEditText.setHint(this.field.getPlaceHolder());
+        }
+    }
 
-	public TextView getLabelTextView() {
-		return labelTextView;
-	}
+    public TextView getLabelTextView() {
+        return labelTextView;
+    }
 
-	public EditText getTextEditText() {
-		return textEditText;
-	}
+    public EditText getTextEditText() {
+        return textEditText;
+    }
 
-	@Override
-	public View getParentView() {
-		return parentView;
-	}
+    @Override
+    public View getParentView() {
+        return parentView;
+    }
 
-	@Override
-	public void setParentView(View view) {
-		parentView = view;
-	}
+    @Override
+    public void setParentView(View view) {
+        parentView = view;
+    }
 
-	@Override
-	public void onTextChanged(CharSequence text, int start, int before, int count) {
-	}
+    @Override
+    public void onTextChanged(CharSequence text, int start, int before, int count) {
+    }
 
-	@Override
-	public void refresh() {
-		String currentText = textEditText.getText().toString();
-		String newText = field.toFormattedString();
+    @Override
+    public void refresh() {
+        String currentText = textEditText.getText().toString();
+        String newText = field.toFormattedString();
 
-		if (!currentText.equals(newText)) {
-			textEditText.setText(newText);
-		}
-	}
+        if (!currentText.equals(newText)) {
+            textEditText.setText(newText);
+        }
+    }
 
-	@Override
-	public void onPostValidation(boolean valid) {
-		String errorText = valid ? null : getResources().getString(R.string.invalid);
+    @Override
+    public void onPostValidation(boolean valid) {
+        String errorText = valid ? null : getResources().getString(R.string.invalid);
 
-		if (labelTextView == null) {
-			textEditText.setError(errorText);
-		} else {
-			labelTextView.setError(errorText);
-		}
-	}
+        if (labelTextView == null) {
+            textEditText.setError(errorText);
+        } else {
+            labelTextView.setError(errorText);
+        }
+    }
 
-	@Override
-	public void setUpdateMode(boolean enabled) {
-		textEditText.setEnabled(enabled);
-	}
+    @Override
+    public void setUpdateMode(boolean enabled) {
+        textEditText.setEnabled(enabled);
+    }
 
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
 
-		labelTextView = findViewById(R.id.liferay_ddl_label);
-		textEditText = findViewById(R.id.liferay_ddl_edit_text);
-		textEditText.addTextChangedListener(this);
+        labelTextView = findViewById(R.id.liferay_ddl_label);
+        textEditText = findViewById(R.id.liferay_ddl_edit_text);
+        textEditText.addTextChangedListener(this);
 
-		//We are not saving the text view state because when state is restored,
-		//the ids of other DDLFields are conflicting.
-		//It is not a problem because all state is stored in Field objects.
-		textEditText.setSaveEnabled(false);
+        //We are not saving the text view state because when state is restored,
+        //the ids of other DDLFields are conflicting.
+        //It is not a problem because all state is stored in Field objects.
+        textEditText.setSaveEnabled(false);
 
-		onChangedValueObservable = RxTextView.afterTextChangeEvents(textEditText)
-			.distinctUntilChanged()
-			.map(new Func1<TextViewAfterTextChangeEvent, T>() {
-				@Override
-				public T call(TextViewAfterTextChangeEvent textViewAfterTextChangeEvent) {
-					return field;
-				}
-			});
-	}
+        onChangedValueObservable = RxTextView.afterTextChangeEvents(textEditText)
+            .distinctUntilChanged()
+            .map(new Func1<TextViewAfterTextChangeEvent, T>() {
+                @Override
+                public T call(TextViewAfterTextChangeEvent textViewAfterTextChangeEvent) {
+                    return field;
+                }
+            });
+    }
 
-	@Override
-	public Observable<T> getOnChangedValueObservable() {
-		return onChangedValueObservable;
-	}
+    @Override
+    public Observable<T> getOnChangedValueObservable() {
+        return onChangedValueObservable;
+    }
 
-	protected abstract void onTextChanged(String text);
+    protected abstract void onTextChanged(String text);
 }

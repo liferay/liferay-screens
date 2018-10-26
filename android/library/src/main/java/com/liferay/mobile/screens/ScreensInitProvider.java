@@ -13,54 +13,54 @@ import com.liferay.mobile.screens.thingscreenlet.delegates.ConverterDelegate;
 
 public class ScreensInitProvider extends ContentProvider {
 
-	@Override
-	public boolean onCreate() {
-		Context context = getContext().getApplicationContext();
-		LiferayScreensContext.init(context);
+    @Override
+    public boolean onCreate() {
+        Context context = getContext().getApplicationContext();
+        LiferayScreensContext.init(context);
 
-		ConverterDelegate.initializeConverter();
-		return true;
-	}
+        ConverterDelegate.initializeConverter();
+        return true;
+    }
 
-	@Nullable
-	@Override
-	public Cursor query(@NonNull Uri uri, String[] projection, String selection, String[] selectionArgs,
-		String sortOrder) {
-		return null;
-	}
+    @Nullable
+    @Override
+    public Cursor query(@NonNull Uri uri, String[] projection, String selection, String[] selectionArgs,
+        String sortOrder) {
+        return null;
+    }
 
-	@Nullable
-	@Override
-	public String getType(@NonNull Uri uri) {
-		return null;
-	}
+    @Nullable
+    @Override
+    public String getType(@NonNull Uri uri) {
+        return null;
+    }
 
-	@Nullable
-	@Override
-	public Uri insert(@NonNull Uri uri, ContentValues values) {
-		return null;
-	}
+    @Nullable
+    @Override
+    public Uri insert(@NonNull Uri uri, ContentValues values) {
+        return null;
+    }
 
-	@Override
-	public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
-		return 0;
-	}
+    @Override
+    public int delete(@NonNull Uri uri, String selection, String[] selectionArgs) {
+        return 0;
+    }
 
-	@Override
-	public int update(@NonNull Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-		return 0;
-	}
+    @Override
+    public int update(@NonNull Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+        return 0;
+    }
 
-	@Override
-	public void attachInfo(Context context, ProviderInfo providerInfo) {
-		if (providerInfo == null) {
-			throw new NullPointerException("ScreensInitProvider ProviderInfo cannot be null.");
-		}
-		if (".screensinitprovider".equals(providerInfo.authority)) {
-			throw new IllegalStateException(
-				"Incorrect provider authority in manifest. Most likely due to a missing applicationId variable in "
-					+ "application\'s build.gradle.");
-		}
-		super.attachInfo(context, providerInfo);
-	}
+    @Override
+    public void attachInfo(Context context, ProviderInfo providerInfo) {
+        if (providerInfo == null) {
+            throw new NullPointerException("ScreensInitProvider ProviderInfo cannot be null.");
+        }
+        if (".screensinitprovider".equals(providerInfo.authority)) {
+            throw new IllegalStateException(
+                "Incorrect provider authority in manifest. Most likely due to a missing applicationId variable in "
+                    + "application\'s build.gradle.");
+        }
+        super.attachInfo(context, providerInfo);
+    }
 }

@@ -28,109 +28,106 @@ import org.json.JSONObject;
  */
 public class JournalArticleService extends BaseService {
 
-	public JournalArticleService(Session session) {
-		super(session);
-	}
+    public JournalArticleService(Session session) {
+        super(session);
+    }
 
-	public JSONObject getArticle(long groupId, String articleId) throws Exception {
-		JSONObject _command = new JSONObject();
+    public JSONObject getArticle(long groupId, String articleId) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("groupId", groupId);
-			_params.put("articleId", checkNull(articleId));
+            _params.put("groupId", groupId);
+            _params.put("articleId", checkNull(articleId));
 
-			_command.put("/journalarticle/get-article", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/journalarticle/get-article", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getJSONObject(0);
-	}
+        return _result.getJSONObject(0);
+    }
 
-	public String getArticleContent(long groupId, String articleId, String languageId, JSONObjectWrapper themeDisplay) throws Exception {
-		JSONObject _command = new JSONObject();
+    public String getArticleContent(long groupId, String articleId, String languageId, JSONObjectWrapper themeDisplay)
+        throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("groupId", groupId);
-			_params.put("articleId", checkNull(articleId));
-			_params.put("languageId", checkNull(languageId));
-			mangleWrapper(_params, "themeDisplay", "com.liferay.portal.theme.ThemeDisplay", themeDisplay);
+            _params.put("groupId", groupId);
+            _params.put("articleId", checkNull(articleId));
+            _params.put("languageId", checkNull(languageId));
+            mangleWrapper(_params, "themeDisplay", "com.liferay.portal.theme.ThemeDisplay", themeDisplay);
 
-			_command.put("/journalarticle/get-article-content", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/journalarticle/get-article-content", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getString(0);
-	}
+        return _result.getString(0);
+    }
 
-	public JSONArray getArticles(long groupId, long folderId, int start, int end, JSONObjectWrapper obc) throws Exception {
-		JSONObject _command = new JSONObject();
+    public JSONArray getArticles(long groupId, long folderId, int start, int end, JSONObjectWrapper obc)
+        throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("groupId", groupId);
-			_params.put("folderId", folderId);
-			_params.put("start", start);
-			_params.put("end", end);
-			mangleWrapper(_params, "obc", "com.liferay.portal.kernel.util.OrderByComparator", obc);
+            _params.put("groupId", groupId);
+            _params.put("folderId", folderId);
+            _params.put("start", start);
+            _params.put("end", end);
+            mangleWrapper(_params, "obc", "com.liferay.portal.kernel.util.OrderByComparator", obc);
 
-			_command.put("/journalarticle/get-articles", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/journalarticle/get-articles", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getJSONArray(0);
-	}
+        return _result.getJSONArray(0);
+    }
 
-	public Integer getArticlesCount(long groupId, long folderId) throws Exception {
-		JSONObject _command = new JSONObject();
+    public Integer getArticlesCount(long groupId, long folderId) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("groupId", groupId);
-			_params.put("folderId", folderId);
+            _params.put("groupId", groupId);
+            _params.put("folderId", folderId);
 
-			_command.put("/journalarticle/get-articles-count", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/journalarticle/get-articles-count", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getInt(0);
-	}
-
+        return _result.getInt(0);
+    }
 }

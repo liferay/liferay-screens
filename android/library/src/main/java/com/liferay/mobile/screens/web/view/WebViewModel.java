@@ -24,57 +24,57 @@ import com.liferay.mobile.screens.web.util.InjectableScript;
  */
 public interface WebViewModel extends BaseViewModel {
 
-	/**
-	 * Loads the url on the WebView using a POST request {@link WebView}
-	 *
-	 * @param url page url.
-	 * @param body body of the post request
-	 */
-	void postUrl(String url, String body);
+    /**
+     * Loads the url on the WebView using a POST request {@link WebView}
+     *
+     * @param url page url.
+     * @param body body of the post request
+     */
+    void postUrl(String url, String body);
 
-	/**
-	 * Loads the url on the WebView {@link WebView}
-	 *
-	 * @param url page url.
-	 */
-	void loadUrl(String url);
+    /**
+     * Loads the url on the WebView {@link WebView}
+     *
+     * @param url page url.
+     */
+    void loadUrl(String url);
 
-	/**
-	 * Inject script into the page loaded. This method only works when the page is loaded
-	 *
-	 * @param script {@link InjectableScript}.
-	 */
-	void injectScript(InjectableScript script);
+    /**
+     * Inject script into the page loaded. This method only works when the page is loaded
+     *
+     * @param script {@link InjectableScript}.
+     */
+    void injectScript(InjectableScript script);
 
-	/**
-	 * Add script to be injected when the page is loaded
-	 *
-	 * @param script script to be injected after the page is loaded
-	 */
-	void addScript(InjectableScript script);
+    /**
+     * Add script to be injected when the page is loaded
+     *
+     * @param script script to be injected after the page is loaded
+     */
+    void addScript(InjectableScript script);
 
-	/**
-	 * Create the WebView. Depending on the isCordovaEnabled flag it will create a normal WebView or
-	 * a Cordova WebView.
-	 *
-	 * @param isCordovaEnabled whether or not cordova is enabled in the screenlet
-	 * @param observer special object that will notify the cordova webview about the activity
-	 * lifecycle methods
-	 */
-	void configureView(boolean isCordovaEnabled, CordovaLifeCycleObserver observer);
+    /**
+     * Create the WebView. Depending on the isCordovaEnabled flag it will create a normal WebView or
+     * a Cordova WebView.
+     *
+     * @param isCordovaEnabled whether or not cordova is enabled in the screenlet
+     * @param observer special object that will notify the cordova webview about the activity
+     * lifecycle methods
+     */
+    void configureView(boolean isCordovaEnabled, CordovaLifeCycleObserver observer);
 
-	/**
-	 * Controls wether or not the scroll of the webview should be enabled
-	 */
-	void setScrollEnabled(boolean enabled);
+    /**
+     * Controls wether or not the scroll of the webview should be enabled
+     */
+    void setScrollEnabled(boolean enabled);
 
-	/**
-	 * Clear the webView cache
-	 */
-	void clearCache();
+    /**
+     * Clear the webView cache
+     */
+    void clearCache();
 
-	/*
-	 * Grab the webView, this method has to be called after the configuration is set.
-	 */
-	WebView getWebView();
+    /*
+     * Grab the webView, this method has to be called after the configuration is set.
+     */
+    WebView getWebView();
 }

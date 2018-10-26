@@ -9,13 +9,13 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 
 public class GCMBroadcastReceiver extends WakefulBroadcastReceiver {
 
-	@Override
-	public void onReceive(Context context, Intent intent) {
-		LiferayLogger.e("Push Received: " + intent.toString());
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        LiferayLogger.e("Push Received: " + intent.toString());
 
-		String message = intent.getExtras().getString("message");
-		EventBusUtil.post(new IssueEvent(message));
+        String message = intent.getExtras().getString("message");
+        EventBusUtil.post(new IssueEvent(message));
 
-		setResultCode(Activity.RESULT_OK);
-	}
+        setResultCode(Activity.RESULT_OK);
+    }
 }

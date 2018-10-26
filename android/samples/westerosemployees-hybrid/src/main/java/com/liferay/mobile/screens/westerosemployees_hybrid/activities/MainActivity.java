@@ -34,70 +34,70 @@ import com.liferay.mobile.screens.westerosemployees_hybrid.views.Deck;
 
 public class MainActivity extends WesterosActivity implements LoginListener, ForgotPasswordListener {
 
-	private Deck deck;
+    private Deck deck;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
 
-		findViews();
+        findViews();
 
-		//Load stored credentials
-		SessionContext.loadStoredCredentials(CredentialsStorageBuilder.StorageType.AUTO);
+        //Load stored credentials
+        SessionContext.loadStoredCredentials(CredentialsStorageBuilder.StorageType.AUTO);
 
-		//Move to next activity if user is logged in
-		if (SessionContext.isLoggedIn()) {
-			Cache.resync();
-			toNextActivity();
-		}
-	}
+        //Move to next activity if user is logged in
+        if (SessionContext.isLoggedIn()) {
+            Cache.resync();
+            toNextActivity();
+        }
+    }
 
-	private void findViews() {
-		deck = findViewById(R.id.deck);
+    private void findViews() {
+        deck = findViewById(R.id.deck);
 
-		LoginScreenlet loginScreenlet = findViewById(R.id.login_screenlet);
-		loginScreenlet.setListener(this);
+        LoginScreenlet loginScreenlet = findViewById(R.id.login_screenlet);
+        loginScreenlet.setListener(this);
 
-		ForgotPasswordScreenlet forgotPasswordScreenlet = findViewById(R.id.forgot_password_screenlet);
-		forgotPasswordScreenlet.setListener(this);
-	}
+        ForgotPasswordScreenlet forgotPasswordScreenlet = findViewById(R.id.forgot_password_screenlet);
+        forgotPasswordScreenlet.setListener(this);
+    }
 
-	@Override
-	public void onLoginSuccess(User user) {
-		toNextActivity();
-	}
+    @Override
+    public void onLoginSuccess(User user) {
+        toNextActivity();
+    }
 
-	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-	private void toNextActivity() {
-		View viewById = findViewById(R.id.background);
-		viewById.animate().alpha(0f).withEndAction(new Runnable() {
-			@Override
-			public void run() {
-				startActivity(new Intent(MainActivity.this, UserActivity.class));
-			}
-		});
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    private void toNextActivity() {
+        View viewById = findViewById(R.id.background);
+        viewById.animate().alpha(0f).withEndAction(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(MainActivity.this, UserActivity.class));
+            }
+        });
 
-		deck.setCardsState(CardState.HIDDEN);
-	}
+        deck.setCardsState(CardState.HIDDEN);
+    }
 
-	@Override
-	public void onLoginFailure(Exception e) {
-		WesterosSnackbar.showSnackbar(this, "Login failed!", R.color.colorAccent_westeros);
-	}
+    @Override
+    public void onLoginFailure(Exception e) {
+        WesterosSnackbar.showSnackbar(this, "Login failed!", R.color.colorAccent_westeros);
+    }
 
-	@Override
-	public void onAuthenticationBrowserShown() {
+    @Override
+    public void onAuthenticationBrowserShown() {
 
-	}
+    }
 
-	@Override
-	public void onForgotPasswordRequestFailure(Exception e) {
-		WesterosSnackbar.showSnackbar(this, "Request password failed", R.color.colorAccent_westeros);
-	}
+    @Override
+    public void onForgotPasswordRequestFailure(Exception e) {
+        WesterosSnackbar.showSnackbar(this, "Request password failed", R.color.colorAccent_westeros);
+    }
 
-	@Override
-	public void onForgotPasswordRequestSuccess(boolean passwordSent) {
-		WesterosSnackbar.showSnackbar(this, "Request password succeed!", R.color.green_westeros);
-	}
+    @Override
+    public void onForgotPasswordRequestSuccess(boolean passwordSent) {
+        WesterosSnackbar.showSnackbar(this, "Request password succeed!", R.color.green_westeros);
+    }
 }

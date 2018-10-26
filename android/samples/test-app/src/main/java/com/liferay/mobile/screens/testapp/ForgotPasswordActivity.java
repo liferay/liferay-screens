@@ -23,22 +23,22 @@ import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordScreenlet;
  */
 public class ForgotPasswordActivity extends ThemeActivity implements ForgotPasswordListener {
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.forgot_password);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.forgot_password);
 
-		ForgotPasswordScreenlet screenlet = findViewById(R.id.forgot_password_screenlet);
-		screenlet.setListener(this);
-	}
+        ForgotPasswordScreenlet screenlet = findViewById(R.id.forgot_password_screenlet);
+        screenlet.setListener(this);
+    }
 
-	@Override
-	public void onForgotPasswordRequestSuccess(boolean passwordSent) {
-		info(getString(R.string.forgot_password_info));
-	}
+    @Override
+    public void onForgotPasswordRequestSuccess(boolean passwordSent) {
+        info(getString(R.string.forgot_password_info));
+    }
 
-	@Override
-	public void onForgotPasswordRequestFailure(Exception e) {
-		error(getString(R.string.forgot_password_error), e);
-	}
+    @Override
+    public void onForgotPasswordRequestFailure(Exception e) {
+        error(getString(R.string.forgot_password_error), e);
+    }
 }
