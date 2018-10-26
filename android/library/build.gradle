@@ -60,7 +60,7 @@ dependencies {
 	implementation libraries.exif
 	implementation libraries.eventbus
 	implementation libraries.recyclerView
-	implementation (libraries.gms) {
+	implementation(libraries.gms) {
 		exclude group: 'com.android.support', module: 'support-v4'
 	}
 	implementation libraries.picasso
@@ -86,7 +86,7 @@ dependencies {
 
 	implementation libraries.kotlin
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 apply from: '../bintray.gradle'
