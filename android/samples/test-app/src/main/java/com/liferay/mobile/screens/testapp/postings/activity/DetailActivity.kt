@@ -19,6 +19,8 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.liferay.apio.consumer.ApioConsumer
 import com.liferay.apio.consumer.model.Thing
+import com.liferay.apio.consumer.model.getFormProperties
+import com.liferay.apio.consumer.performOperation
 import com.liferay.mobile.screens.testapp.R
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet

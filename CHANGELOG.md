@@ -16,6 +16,7 @@ All notable changes to this project will be documented in this file.
 * Create a ModalProgressBar view
 * Configure `detekt` for code convention and format all the project
 * Update ThingScreenlet with ApioConsumer 0.0.8 changes
+* Support workflow list with ThingScreenlet
 
 ### Refactor
 

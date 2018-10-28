@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.userportrait;
 
 import android.content.Context;
 import com.liferay.mobile.screens.BuildConfig;
-import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.userportrait.interactor.load.UserPortraitLoadInteractor;
 import com.liferay.mobile.screens.util.MockFactory;

@@ -14,13 +14,13 @@
 
 package com.liferay.mobile.screens.thingscreenlet.model
 
+import com.liferay.apio.consumer.extensions.asDate
+import com.liferay.apio.consumer.model.Thing
+import com.liferay.apio.consumer.model.get
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Custom
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
-import com.liferay.apio.consumer.extensions.asDate
-import com.liferay.apio.consumer.model.Thing
-import com.liferay.apio.consumer.model.get
 import java.util.*
 
 data class Person(

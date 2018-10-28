@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import android.widget.LinearLayout
 import com.liferay.apio.consumer.ApioConsumer
+import com.liferay.apio.consumer.performOperation
 import com.liferay.mobile.screens.testapp.R
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 

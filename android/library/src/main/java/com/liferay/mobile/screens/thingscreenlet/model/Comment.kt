@@ -14,37 +14,27 @@
 
 package com.liferay.mobile.screens.thingscreenlet.model
 
-import com.liferay.apio.consumer.cache.ThingsCache
-import com.liferay.apio.consumer.cache.ThingsCache.get
 import com.liferay.apio.consumer.graph
-import com.liferay.apio.consumer.model.Relation
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.get
-import com.liferay.mobile.screens.R
-import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
 
-data class Collection(val members: List<Thing>?, val totalItems: Int?, val pages: Pages?) {
+data class Comment(
+	val text: String?,
+	val type: String?) {
+
 	companion object {
 		val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
 			mutableMapOf(
-				Detail to R.layout.collection_detail_default
 			)
 
-		val converter: (Thing) -> Any = { it: Thing ->
-			val member = (it["member"] as? List<Relation>)?.mapNotNull {
-				ThingsCache[it.id]?.value
-			}
+		val converter: (Thing) -> Any = {
 
-			val totalItems = (it["totalItems"] as? Double)?.toInt()
+			val text = it["text"] as String
 
-			val nextPage = (it["view"] as Relation)["next"] as? String
+			val type = graph[it.id]?.value?.type?.get(0)
 
-			val pages = nextPage?.let(::Pages)
-
-			Collection(member, totalItems, pages)
+			Comment(text, type)
 		}
 	}
 }
-
-data class Pages(val next: String?)

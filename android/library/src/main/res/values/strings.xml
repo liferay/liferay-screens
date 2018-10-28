@@ -79,7 +79,7 @@
     <string name="longitude">longitude:</string>
 
 
-    <!--thingscreenlet-->
+    <!--ThingScreenlet-->
     <string name="icon_for_person">Icon for person</string>
     <string name="icon_for_email">Icon for email</string>
     <string name="icon_for_birthday">Icon for birthday</string>
@@ -93,4 +93,17 @@
     <string name="synchronizing_form">Synchronizing Form</string>
     <string name="validating_rules">Validating Rules</string>
 
+    <!--WorkflowListScreenlet-->
+    <string name="workflow_completed_text">Completed</string>
+    <string name="workflow_pending_text">Pending</string>
+    <string name="workflow_yesterday_text">Yesterday</string>
+    <string name="workflow_type_text">%1$s · %2$s</string>
+    <plurals name="workflow_due_date_after_text">
+        <item quantity="one">Pending, Due %1$d day</item>
+        <item quantity="other">Pending, Due %1$d days</item>
+    </plurals>
+    <plurals name="workflow_due_date_before_text">
+        <item quantity="one">Pending, %1$d day ago</item>
+        <item quantity="other">Pending, %1$d days ago</item>
+    </plurals>
 </resources>

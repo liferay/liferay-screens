@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.FrameLayout
 import com.liferay.apio.consumer.delegates.converter
 import com.liferay.apio.consumer.model.Thing
+import com.liferay.apio.consumer.model.containsOperation
 import com.liferay.mobile.screens.testapp.R
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.model.Collection
