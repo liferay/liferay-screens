@@ -27,14 +27,14 @@ import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 
 class BlogPostingRowByIdView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : BaseView,
-    RelativeLayout(context, attrs, defStyleAttr) {
+	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : BaseView,
+	RelativeLayout(context, attrs, defStyleAttr) {
 
-    override var screenlet: ThingScreenlet? = null
+	override var screenlet: ThingScreenlet? = null
 
-    val headline by bindNonNull<TextView>(R.id.headline)
+	val headline by bindNonNull<TextView>(R.id.headline)
 
-    override var thing: Thing? by converter<BlogPosting> {
-        headline.text = it.headline
-    }
+	override var thing: Thing? by converter<BlogPosting> {
+		headline.text = it.headline
+	}
 }

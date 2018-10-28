@@ -178,12 +178,12 @@ class ThingScreenlet @JvmOverloads constructor(
 		}
 	}
 
-    private fun getApioAuthenticator(credentials: String? = null): ApioAuthenticator? {
-        val credentials = credentials ?: SessionContext.getCredentialsFromCurrentSession()
+	private fun getApioAuthenticator(credentials: String? = null): ApioAuthenticator? {
+		val credentials = credentials ?: SessionContext.getCredentialsFromCurrentSession()
 
-        return credentials?.let {
-            BasicAuthenticator(credentials)
-        }
-    }
+		return credentials?.let {
+			BasicAuthenticator(credentials)
+		}
+	}
 
 }

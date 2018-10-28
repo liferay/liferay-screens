@@ -19,8 +19,8 @@ import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
 
 open class CollectionDetailCustomView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : BaseView,
-    FrameLayout(context, attrs, defStyleAttr), ThingAdapter.Listener {
+	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : BaseView,
+	FrameLayout(context, attrs, defStyleAttr), ThingAdapter.Listener {
 
 	override var screenlet: ThingScreenlet? = null
 

@@ -96,17 +96,17 @@ class AndroidUtil {
 				}
 			}
 
-            snackbar.show()
-        }
+			snackbar.show()
+		}
 
-        @Suppress("DEPRECATION")
-        fun fromHtml(html: String?): Spanned {
-            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY)
-            } else {
-                Html.fromHtml(html)
-            }
-        }
+		@Suppress("DEPRECATION")
+		fun fromHtml(html: String?): Spanned {
+			return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+				Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY)
+			} else {
+				Html.fromHtml(html)
+			}
+		}
 
-    }
+	}
 }
