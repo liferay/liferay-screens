@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Liferay Screens</string>
-    <string name="main_activity_label">List of all the screenlets supported on version 0.2.0 of LiferayScreens for Xamarin solutions.</string>
+    <string name="main_activity_label">List of all the screenlets supported on Liferay Screens.</string>
     <string name="login">Login</string>
     <string name="login_demo">Login demo theme</string>
     <string name="forgot_password">Forgot Password</string>

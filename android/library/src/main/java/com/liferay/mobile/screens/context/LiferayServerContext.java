@@ -103,7 +103,7 @@ public class LiferayServerContext {
     }
 
     public static boolean isLiferay62() {
-        return LiferayPortalVersion.VERSION_70.equals(portalVersion);
+        return LiferayPortalVersion.VERSION_62.equals(portalVersion);
     }
 
     public static String getVersionFactory() {
@@ -187,4 +187,5 @@ public class LiferayServerContext {
             return new HashMap<>();
         }
     }
+
 }
