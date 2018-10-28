@@ -27,7 +27,7 @@ import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 
 class PersonDetailSmall @JvmOverloads constructor(
-	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : BaseView,
+	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : BaseView,
 	FrameLayout(context, attrs, defStyleAttr) {
 
 	override var screenlet: ThingScreenlet? = null
