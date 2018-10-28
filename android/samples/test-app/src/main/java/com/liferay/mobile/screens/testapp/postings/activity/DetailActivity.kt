@@ -57,10 +57,10 @@ class DetailActivity : AppCompatActivity(), ScreenletEvents {
 			val values = thing.attributes.filterValues { it is String }
 
 			operation!!.form?.let {
-					it.getFormProperties {
-						startActivity<EditActivity>("properties" to it.map { it.name }, "values" to values,
-							"id" to thing.id, "operation" to operation.id)
-					}
+				it.getFormProperties {
+					startActivity<EditActivity>("properties" to it.map { it.name }, "values" to values,
+						"id" to thing.id, "operation" to operation.id)
+				}
 			} ?: performOperation(thing.id, operation.id, { emptyMap() }) {
 			}
 		}

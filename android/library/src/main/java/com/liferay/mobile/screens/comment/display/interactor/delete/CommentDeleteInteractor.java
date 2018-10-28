@@ -11,32 +11,32 @@ import com.liferay.mobile.screens.util.ServiceProvider;
  */
 public class CommentDeleteInteractor extends BaseCacheWriteInteractor<CommentDisplayInteractorListener, CommentEvent> {
 
-	@Override
-	public CommentEvent execute(CommentEvent event) throws Exception {
+    @Override
+    public CommentEvent execute(CommentEvent event) throws Exception {
 
-		long commentId = event.getCommentId();
+        long commentId = event.getCommentId();
 
-		validate(commentId);
+        validate(commentId);
 
-		CommentConnector connector = ServiceProvider.getInstance().getCommentConnector(getSession());
-		connector.deleteComment(commentId);
+        CommentConnector connector = ServiceProvider.getInstance().getCommentConnector(getSession());
+        connector.deleteComment(commentId);
 
-		return event;
-	}
+        return event;
+    }
 
-	@Override
-	public void onSuccess(CommentEvent event) {
-		getListener().onDeleteCommentSuccess();
-	}
+    @Override
+    public void onSuccess(CommentEvent event) {
+        getListener().onDeleteCommentSuccess();
+    }
 
-	@Override
-	public void onFailure(CommentEvent event) {
-		getListener().error(event.getException(), CommentDisplayScreenlet.DELETE_COMMENT_ACTION);
-	}
+    @Override
+    public void onFailure(CommentEvent event) {
+        getListener().error(event.getException(), CommentDisplayScreenlet.DELETE_COMMENT_ACTION);
+    }
 
-	protected void validate(long commentId) {
-		if (commentId <= 0) {
-			throw new IllegalArgumentException("commentId cannot be 0 or negative");
-		}
-	}
+    protected void validate(long commentId) {
+        if (commentId <= 0) {
+            throw new IllegalArgumentException("commentId cannot be 0 or negative");
+        }
+    }
 }

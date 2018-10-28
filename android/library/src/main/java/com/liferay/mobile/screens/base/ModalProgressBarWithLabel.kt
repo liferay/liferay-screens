@@ -28,31 +28,32 @@ import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
  * @author Victor Oliveira
  */
 class ModalProgressBarWithLabel @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0) : LinearLayout(context, attrs, defStyleAttr) {
+	defStyleAttr: Int = 0) : LinearLayout(context, attrs, defStyleAttr) {
 
-    private val progressContainer by bindNonNull<FrameLayout>(R.id.progress_modal_container)
-    private val progressLabel by bindNonNull<TextView>(R.id.progress_text_view)
+	private val progressContainer by bindNonNull<FrameLayout>(R.id.progress_modal_container)
+	private val progressLabel by bindNonNull<TextView>(R.id.progress_text_view)
 
-    init {
-        inflate(context, R.layout.progress_default, this)
-    }
+	init {
+		inflate(context, R.layout.progress_default, this)
+	}
 
-    @JvmOverloads fun show(message: String? = null) {
-        if (message.isNullOrEmpty()) {
-            progressLabel.visibility = View.GONE
-        } else {
-            progressLabel.text = message
-            progressLabel.visibility = View.VISIBLE
-        }
+	@JvmOverloads
+	fun show(message: String? = null) {
+		if (message.isNullOrEmpty()) {
+			progressLabel.visibility = View.GONE
+		} else {
+			progressLabel.text = message
+			progressLabel.visibility = View.VISIBLE
+		}
 
-        this.visibility = View.VISIBLE
-    }
+		this.visibility = View.VISIBLE
+	}
 
-    fun hide() {
-        this.visibility = View.GONE
-    }
+	fun hide() {
+		this.visibility = View.GONE
+	}
 
-    fun disableDimBackground() {
-        progressContainer.setBackgroundColor(ContextCompat.getColor(context, android.R.color.white))
-    }
+	fun disableDimBackground() {
+		progressContainer.setBackgroundColor(ContextCompat.getColor(context, android.R.color.white))
+	}
 }

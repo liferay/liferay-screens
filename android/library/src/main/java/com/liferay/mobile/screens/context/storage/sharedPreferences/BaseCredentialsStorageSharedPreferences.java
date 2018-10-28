@@ -32,144 +32,144 @@ import org.json.JSONObject;
  */
 public abstract class BaseCredentialsStorageSharedPreferences implements CredentialsStorage {
 
-	private SharedPreferences sharedPreferences;
-	private Authentication auth;
-	private User user;
+    private SharedPreferences sharedPreferences;
+    private Authentication auth;
+    private User user;
 
-	public static String getStoreName() {
-		try {
-			URL url = new URL(LiferayServerContext.getServer());
-			return "liferay-screens-" + url.getHost() + "-" + url.getPort();
-		} catch (MalformedURLException e) {
-			LiferayLogger.e("Error parsing url", e);
-		}
+    public static String getStoreName() {
+        try {
+            URL url = new URL(LiferayServerContext.getServer());
+            return "liferay-screens-" + url.getHost() + "-" + url.getPort();
+        } catch (MalformedURLException e) {
+            LiferayLogger.e("Error parsing url", e);
+        }
 
-		return "liferay-screens";
-	}
+        return "liferay-screens";
+    }
 
-	public static AuthenticationType getStoredAuthenticationType(Context context) {
-		SharedPreferences sharedPref = context.getSharedPreferences(getStoreName(), Context.MODE_PRIVATE);
-		return AuthenticationType.valueOf(sharedPref.getString("auth", AuthenticationType.VOID.name()));
-	}
+    public static AuthenticationType getStoredAuthenticationType(Context context) {
+        SharedPreferences sharedPref = context.getSharedPreferences(getStoreName(), Context.MODE_PRIVATE);
+        return AuthenticationType.valueOf(sharedPref.getString("auth", AuthenticationType.VOID.name()));
+    }
 
-	@Override
-	public void storeCredentials() {
-		if (sharedPreferences == null) {
-			throw new IllegalStateException("You need to set the context");
-		}
-		if (auth == null) {
-			throw new IllegalStateException("You need to be logged in to store the session");
-		}
-		if (user == null) {
-			throw new IllegalStateException("You need to set user attributes to store the session");
-		}
+    @Override
+    public void storeCredentials() {
+        if (sharedPreferences == null) {
+            throw new IllegalStateException("You need to set the context");
+        }
+        if (auth == null) {
+            throw new IllegalStateException("You need to be logged in to store the session");
+        }
+        if (user == null) {
+            throw new IllegalStateException("You need to set user attributes to store the session");
+        }
 
-		sharedPreferences.edit()
-			.putString("attributes", new JSONObject(user.getValues()).toString())
-			.putString("server", LiferayServerContext.getServer())
-			.putLong("groupId", LiferayServerContext.getGroupId())
-			.putLong("companyId", LiferayServerContext.getCompanyId())
-			.apply();
+        sharedPreferences.edit()
+            .putString("attributes", new JSONObject(user.getValues()).toString())
+            .putString("server", LiferayServerContext.getServer())
+            .putLong("groupId", LiferayServerContext.getGroupId())
+            .putLong("companyId", LiferayServerContext.getCompanyId())
+            .apply();
 
-		storeAuth(auth);
-	}
+        storeAuth(auth);
+    }
 
-	@Override
-	public void removeStoredCredentials() {
-		if (sharedPreferences == null) {
-			throw new IllegalStateException("You need to set the context");
-		}
+    @Override
+    public void removeStoredCredentials() {
+        if (sharedPreferences == null) {
+            throw new IllegalStateException("You need to set the context");
+        }
 
-		sharedPreferences.edit().clear().apply();
+        sharedPreferences.edit().clear().apply();
 
-		user = null;
-		auth = null;
-	}
+        user = null;
+        auth = null;
+    }
 
-	public boolean loadStoredCredentials() throws IllegalStateException {
-		return loadStoredCredentials(false);
-	}
+    public boolean loadStoredCredentials() throws IllegalStateException {
+        return loadStoredCredentials(false);
+    }
 
-	public boolean loadStoredCredentialsAndServer() throws IllegalStateException {
-		return loadStoredCredentials(true);
-	}
+    public boolean loadStoredCredentialsAndServer() throws IllegalStateException {
+        return loadStoredCredentials(true);
+    }
 
-	public boolean loadStoredCredentials(boolean shouldLoadServer) throws IllegalStateException {
-		if (sharedPreferences == null) {
-			throw new IllegalStateException("You need to set the context");
-		}
+    public boolean loadStoredCredentials(boolean shouldLoadServer) throws IllegalStateException {
+        if (sharedPreferences == null) {
+            throw new IllegalStateException("You need to set the context");
+        }
 
-		String userAttributes = sharedPreferences.getString("attributes", null);
-		String server = sharedPreferences.getString("server", null);
-		long groupId = sharedPreferences.getLong("groupId", 0);
-		long companyId = sharedPreferences.getLong("companyId", 0);
+        String userAttributes = sharedPreferences.getString("attributes", null);
+        String server = sharedPreferences.getString("server", null);
+        long groupId = sharedPreferences.getLong("groupId", 0);
+        long companyId = sharedPreferences.getLong("companyId", 0);
 
-		auth = loadAuth();
+        auth = loadAuth();
 
-		if (auth == null || server == null || userAttributes == null || groupId == 0 || companyId == 0) {
-			// nothing saved
-			return false;
-		}
+        if (auth == null || server == null || userAttributes == null || groupId == 0 || companyId == 0) {
+            // nothing saved
+            return false;
+        }
 
-		if (shouldLoadServer) {
-			LiferayServerContext.setGroupId(groupId);
-			LiferayServerContext.setCompanyId(companyId);
-		} else if (!server.equals(LiferayServerContext.getServer())
-			|| groupId != LiferayServerContext.getGroupId()
-			|| companyId != LiferayServerContext.getCompanyId()) {
+        if (shouldLoadServer) {
+            LiferayServerContext.setGroupId(groupId);
+            LiferayServerContext.setCompanyId(companyId);
+        } else if (!server.equals(LiferayServerContext.getServer())
+            || groupId != LiferayServerContext.getGroupId()
+            || companyId != LiferayServerContext.getCompanyId()) {
 
-			auth = null;
-			user = null;
+            auth = null;
+            user = null;
 
-			LiferayLogger.e("Stored credential values are not consistent with current ones");
-			removeStoredCredentials();
-			return false;
-		}
+            LiferayLogger.e("Stored credential values are not consistent with current ones");
+            removeStoredCredentials();
+            return false;
+        }
 
-		try {
-			user = new User(new JSONObject(userAttributes));
-		} catch (JSONException e) {
-			LiferayLogger.e("Stored user attributes are corrupted");
-			removeStoredCredentials();
-			return false;
-		}
+        try {
+            user = new User(new JSONObject(userAttributes));
+        } catch (JSONException e) {
+            LiferayLogger.e("Stored user attributes are corrupted");
+            removeStoredCredentials();
+            return false;
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	@Override
-	public Authentication getAuthentication() {
-		return auth;
-	}
+    @Override
+    public Authentication getAuthentication() {
+        return auth;
+    }
 
-	@Override
-	public void setAuthentication(Authentication auth) {
-		this.auth = auth;
-	}
+    @Override
+    public void setAuthentication(Authentication auth) {
+        this.auth = auth;
+    }
 
-	@Override
-	public User getUser() {
-		return user;
-	}
+    @Override
+    public User getUser() {
+        return user;
+    }
 
-	@Override
-	public void setUser(User user) {
-		this.user = user;
-	}
+    @Override
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-	@Override
-	public void setContext(Context context) {
-		if (context == null) {
-			throw new IllegalStateException("Context cannot be null");
-		}
-		sharedPreferences = context.getApplicationContext().getSharedPreferences(getStoreName(), Context.MODE_PRIVATE);
-	}
+    @Override
+    public void setContext(Context context) {
+        if (context == null) {
+            throw new IllegalStateException("Context cannot be null");
+        }
+        sharedPreferences = context.getApplicationContext().getSharedPreferences(getStoreName(), Context.MODE_PRIVATE);
+    }
 
-	protected SharedPreferences getSharedPref() {
-		return sharedPreferences;
-	}
+    protected SharedPreferences getSharedPref() {
+        return sharedPreferences;
+    }
 
-	protected abstract void storeAuth(Authentication auth);
+    protected abstract void storeAuth(Authentication auth);
 
-	protected abstract Authentication loadAuth();
+    protected abstract Authentication loadAuth();
 }

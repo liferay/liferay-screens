@@ -27,29 +27,29 @@ import com.liferay.mobile.screens.viewsets.lexicon.R;
  */
 public class FormViewUtil {
 
-	public static void setupTextFieldLayout(Context context, boolean valid, TextView labelTextView,
-		EditText textEditText) {
-		Drawable drawable;
-		String errorText = null;
+    public static void setupTextFieldLayout(Context context, boolean valid, TextView labelTextView,
+        EditText textEditText) {
+        Drawable drawable;
+        String errorText = null;
 
-		if (valid) {
-			drawable = context.getResources().getDrawable(R.drawable.lexicon_edit_text_drawable);
-		} else {
-			errorText = context.getResources().getString(com.liferay.mobile.screens.R.string.invalid);
-			drawable = context.getResources().getDrawable(R.drawable.lexicon_edit_text_error_drawable);
-		}
+        if (valid) {
+            drawable = context.getResources().getDrawable(R.drawable.lexicon_edit_text_drawable);
+        } else {
+            errorText = context.getResources().getString(com.liferay.mobile.screens.R.string.invalid);
+            drawable = context.getResources().getDrawable(R.drawable.lexicon_edit_text_error_drawable);
+        }
 
-		if (labelTextView == null) {
-			textEditText.setError(errorText);
-		} else {
-			labelTextView.setError(errorText);
-		}
+        if (labelTextView == null) {
+            textEditText.setError(errorText);
+        } else {
+            labelTextView.setError(errorText);
+        }
 
-		textEditText.setBackground(drawable);
-	}
+        textEditText.setBackground(drawable);
+    }
 
-	public static int convertDpToPx(Context context, int dp) {
-		Resources resources = context.getResources();
-		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
-	}
+    public static int convertDpToPx(Context context, int dp) {
+        Resources resources = context.getResources();
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
+    }
 }

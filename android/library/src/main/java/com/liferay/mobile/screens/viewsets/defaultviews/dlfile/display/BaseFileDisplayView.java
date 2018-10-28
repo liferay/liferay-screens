@@ -24,108 +24,108 @@ import java.io.File;
 
 public abstract class BaseFileDisplayView extends RelativeLayout implements BaseFileDisplayViewModel {
 
-	protected FileEntry fileEntry;
-	protected BaseScreenlet screenlet;
-	protected ProgressBar progressBar;
-	private File file;
+    protected FileEntry fileEntry;
+    protected BaseScreenlet screenlet;
+    protected ProgressBar progressBar;
+    private File file;
 
-	public BaseFileDisplayView(Context context) {
-		super(context);
-	}
+    public BaseFileDisplayView(Context context) {
+        super(context);
+    }
 
-	public BaseFileDisplayView(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public BaseFileDisplayView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public BaseFileDisplayView(Context context, AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-	}
+    public BaseFileDisplayView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	public BaseFileDisplayView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public BaseFileDisplayView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
 
-	@Override
-	public void showFinishOperation(FileEntry fileEntry) {
-		this.fileEntry = fileEntry;
-		file = new File(
-			getContext().getExternalCacheDir().getPath() + "/" + fileEntry.getEntryId() + "" + fileEntry.getTitle());
+    @Override
+    public void showFinishOperation(FileEntry fileEntry) {
+        this.fileEntry = fileEntry;
+        file = new File(
+            getContext().getExternalCacheDir().getPath() + "/" + fileEntry.getEntryId() + "" + fileEntry.getTitle());
 
-		if (file.exists()) {
-			loadFileEntry(file.getAbsolutePath());
-		} else {
-			downloadFileAndStoreLocally();
-		}
-	}
+        if (file.exists()) {
+            loadFileEntry(file.getAbsolutePath());
+        } else {
+            downloadFileAndStoreLocally();
+        }
+    }
 
-	@Override
+    @Override
 
-	public void showStartOperation(String actionName) {
-		progressBar.setVisibility(VISIBLE);
-	}
+    public void showStartOperation(String actionName) {
+        progressBar.setVisibility(VISIBLE);
+    }
 
-	@Override
-	public void showFinishOperation(String actionName) {
-		throw new UnsupportedOperationException(
-			"showFinishOperation(String) is not supported." + " Use showFinishOperation(FileEntry) instead.");
-	}
+    @Override
+    public void showFinishOperation(String actionName) {
+        throw new UnsupportedOperationException(
+            "showFinishOperation(String) is not supported." + " Use showFinishOperation(FileEntry) instead.");
+    }
 
-	@Override
-	public void showFailedOperation(String actionName, Exception e) {
-		progressBar.setVisibility(GONE);
-		LiferayLogger.e("Could not load file asset: " + e.getMessage());
-	}
+    @Override
+    public void showFailedOperation(String actionName, Exception e) {
+        progressBar.setVisibility(GONE);
+        LiferayLogger.e("Could not load file asset: " + e.getMessage());
+    }
 
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
 
-		progressBar = findViewById(R.id.liferay_progress);
-	}
+        progressBar = findViewById(R.id.liferay_progress);
+    }
 
-	@Override
-	public BaseScreenlet getScreenlet() {
-		return screenlet;
-	}
+    @Override
+    public BaseScreenlet getScreenlet() {
+        return screenlet;
+    }
 
-	@Override
-	public void setScreenlet(BaseScreenlet screenlet) {
-		this.screenlet = screenlet;
-	}
+    @Override
+    public void setScreenlet(BaseScreenlet screenlet) {
+        this.screenlet = screenlet;
+    }
 
-	public abstract void loadFileEntry(String url);
+    public abstract void loadFileEntry(String url);
 
-	public void renderDownloadProgress(int progress) {
-	}
+    public void renderDownloadProgress(int progress) {
+    }
 
-	private void downloadFileAndStoreLocally() {
-		String filePath = getResources().getString(R.string.liferay_server) + fileEntry.getUrl();
+    private void downloadFileAndStoreLocally() {
+        String filePath = getResources().getString(R.string.liferay_server) + fileEntry.getUrl();
 
-		Intent intent = new Intent(getContext(), DownloadService.class);
-		intent.putExtra(DownloadService.REMOTE_PATH, filePath);
-		intent.putExtra(DownloadService.LOCAL_PATH, file.getAbsolutePath());
-		intent.putExtra(DownloadService.RESULT_RECEIVER, new DownloadReceiver(new Handler()));
-		getContext().startService(intent);
-	}
+        Intent intent = new Intent(getContext(), DownloadService.class);
+        intent.putExtra(DownloadService.REMOTE_PATH, filePath);
+        intent.putExtra(DownloadService.LOCAL_PATH, file.getAbsolutePath());
+        intent.putExtra(DownloadService.RESULT_RECEIVER, new DownloadReceiver(new Handler()));
+        getContext().startService(intent);
+    }
 
-	private class DownloadReceiver extends ResultReceiver {
+    private class DownloadReceiver extends ResultReceiver {
 
-		DownloadReceiver(Handler handler) {
-			super(handler);
-		}
+        DownloadReceiver(Handler handler) {
+            super(handler);
+        }
 
-		protected void onReceiveResult(int resultCode, Bundle resultData) {
-			super.onReceiveResult(resultCode, resultData);
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+            super.onReceiveResult(resultCode, resultData);
 
-			if (resultCode == DownloadService.UPDATE_PROGRESS) {
-				int progress = resultData.getInt(DownloadService.FILE_DOWNLOAD_PROGRESS);
-				renderDownloadProgress(progress);
-			} else if (resultCode == DownloadService.FINISHED_DOWNLOAD) {
-				loadFileEntry(file.getAbsolutePath());
-			} else {
-				//TODO launch error
-			}
-		}
-	}
+            if (resultCode == DownloadService.UPDATE_PROGRESS) {
+                int progress = resultData.getInt(DownloadService.FILE_DOWNLOAD_PROGRESS);
+                renderDownloadProgress(progress);
+            } else if (resultCode == DownloadService.FINISHED_DOWNLOAD) {
+                loadFileEntry(file.getAbsolutePath());
+            } else {
+                //TODO launch error
+            }
+        }
+    }
 }

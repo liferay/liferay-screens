@@ -26,33 +26,33 @@ import com.liferay.mobile.screens.ddl.model.StringField
  * @author Victor Oliveira
  */
 open class DDLFieldTextView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0) : BaseDDLFieldTextView<StringField>(context, attrs, defStyleAttr) {
+	defStyleAttr: Int = 0) : BaseDDLFieldTextView<StringField>(context, attrs, defStyleAttr) {
 
-    override fun setField(field: StringField) {
-        super.setField(field)
+	override fun setField(field: StringField) {
+		super.setField(field)
 
-        setupAutocomplete(field)
-    }
+		setupAutocomplete(field)
+	}
 
-    private fun setupAutocomplete(field: StringField) {
-        if (textEditText is AutoCompleteTextView && field.availableOptions.isNotEmpty()) {
+	private fun setupAutocomplete(field: StringField) {
+		if (textEditText is AutoCompleteTextView && field.availableOptions.isNotEmpty()) {
 
-            val stringOptions = field.availableOptions.map {
-                it.label
-            }
+			val stringOptions = field.availableOptions.map {
+				it.label
+			}
 
-            (textEditText as AutoCompleteTextView).setAdapter(
-                    ArrayAdapter<String>(context, R.layout.simple_dropdown_item_1line, stringOptions))
-        }
-    }
+			(textEditText as AutoCompleteTextView).setAdapter(
+				ArrayAdapter<String>(context, R.layout.simple_dropdown_item_1line, stringOptions))
+		}
+	}
 
-    override fun onTextChanged(text: String) {
-        field.currentValue = text
-    }
+	override fun onTextChanged(text: String) {
+		field.currentValue = text
+	}
 
-    override fun refresh() {
-        super.refresh()
+	override fun refresh() {
+		super.refresh()
 
-        setupAutocomplete(field)
-    }
+		setupAutocomplete(field)
+	}
 }

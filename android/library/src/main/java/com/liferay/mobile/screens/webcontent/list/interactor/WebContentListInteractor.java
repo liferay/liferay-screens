@@ -14,38 +14,38 @@ import org.json.JSONArray;
  * @author Javier Gamarra
  */
 public class WebContentListInteractor
-	extends BaseListInteractor<BaseListInteractorListener<WebContent>, WebContentDisplayEvent> {
+    extends BaseListInteractor<BaseListInteractorListener<WebContent>, WebContentDisplayEvent> {
 
-	@Override
-	protected String getIdFromArgs(Object... args) {
-		long folderId = (long) args[0];
+    @Override
+    protected String getIdFromArgs(Object... args) {
+        long folderId = (long) args[0];
 
-		return String.valueOf(folderId);
-	}
+        return String.valueOf(folderId);
+    }
 
-	@Override
-	protected JSONArray getPageRowsRequest(Query query, Object... args) throws Exception {
+    @Override
+    protected JSONArray getPageRowsRequest(Query query, Object... args) throws Exception {
 
-		long folderId = (long) args[0];
+        long folderId = (long) args[0];
 
-		JournalContentConnector journalContentConnector =
-			ServiceProvider.getInstance().getJournalContentConnector(getSession());
-		return journalContentConnector.getJournalArticles(groupId, folderId, query.getStartRow(), query.getEndRow(),
-			query.getComparatorJSONWrapper());
-	}
+        JournalContentConnector journalContentConnector =
+            ServiceProvider.getInstance().getJournalContentConnector(getSession());
+        return journalContentConnector.getJournalArticles(groupId, folderId, query.getStartRow(), query.getEndRow(),
+            query.getComparatorJSONWrapper());
+    }
 
-	@Override
-	protected Integer getPageRowCountRequest(Object... args) throws Exception {
+    @Override
+    protected Integer getPageRowCountRequest(Object... args) throws Exception {
 
-		long folderId = (long) args[0];
+        long folderId = (long) args[0];
 
-		JournalContentConnector journalContentConnector =
-			ServiceProvider.getInstance().getJournalContentConnector(getSession());
-		return journalContentConnector.getJournalArticlesCount(groupId, folderId);
-	}
+        JournalContentConnector journalContentConnector =
+            ServiceProvider.getInstance().getJournalContentConnector(getSession());
+        return journalContentConnector.getJournalArticlesCount(groupId, folderId);
+    }
 
-	@Override
-	protected WebContentDisplayEvent createEntity(Map<String, Object> stringObjectMap) {
-		return new WebContentDisplayEvent(new WebContent(stringObjectMap, locale));
-	}
+    @Override
+    protected WebContentDisplayEvent createEntity(Map<String, Object> stringObjectMap) {
+        return new WebContentDisplayEvent(new WebContent(stringObjectMap, locale));
+    }
 }

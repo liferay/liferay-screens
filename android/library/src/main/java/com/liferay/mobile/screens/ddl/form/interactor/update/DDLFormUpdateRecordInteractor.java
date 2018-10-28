@@ -29,50 +29,50 @@ import org.json.JSONObject;
  */
 public class DDLFormUpdateRecordInteractor extends BaseCacheWriteInteractor<DDLFormListener, DDLFormEvent> {
 
-	@Override
-	public DDLFormEvent execute(DDLFormEvent event) throws Exception {
+    @Override
+    public DDLFormEvent execute(DDLFormEvent event) throws Exception {
 
-		Record record = event.getRecord();
+        Record record = event.getRecord();
 
-		validate(groupId, record);
+        validate(groupId, record);
 
-		JSONObject fieldsValues = new JSONObject(record.getData());
+        JSONObject fieldsValues = new JSONObject(record.getData());
 
-		final JSONObject serviceContextAttributes = new JSONObject();
-		serviceContextAttributes.put("userId", record.getCreatorUserId());
-		serviceContextAttributes.put("scopeGroupId", event.getGroupId());
+        final JSONObject serviceContextAttributes = new JSONObject();
+        serviceContextAttributes.put("userId", record.getCreatorUserId());
+        serviceContextAttributes.put("scopeGroupId", event.getGroupId());
 
-		JSONObjectWrapper serviceContextWrapper = new JSONObjectWrapper(serviceContextAttributes);
+        JSONObjectWrapper serviceContextWrapper = new JSONObjectWrapper(serviceContextAttributes);
 
-		DDLRecordConnector ddlRecordConnector = ServiceProvider.getInstance().getDDLRecordConnector(getSession());
+        DDLRecordConnector ddlRecordConnector = ServiceProvider.getInstance().getDDLRecordConnector(getSession());
 
-		JSONObject jsonObject =
-			ddlRecordConnector.updateRecord(record.getRecordId(), 0, fieldsValues, false, serviceContextWrapper);
+        JSONObject jsonObject =
+            ddlRecordConnector.updateRecord(record.getRecordId(), 0, fieldsValues, false, serviceContextWrapper);
 
-		event.setJSONObject(jsonObject);
+        event.setJSONObject(jsonObject);
 
-		return event;
-	}
+        return event;
+    }
 
-	@Override
-	public void onSuccess(DDLFormEvent event) {
-		getListener().onDDLFormRecordUpdated(event.getRecord());
-	}
+    @Override
+    public void onSuccess(DDLFormEvent event) {
+        getListener().onDDLFormRecordUpdated(event.getRecord());
+    }
 
-	@Override
-	public void onFailure(DDLFormEvent event) {
-		getListener().error(event.getException(), DDLFormScreenlet.UPDATE_RECORD_ACTION);
-	}
+    @Override
+    public void onFailure(DDLFormEvent event) {
+        getListener().error(event.getException(), DDLFormScreenlet.UPDATE_RECORD_ACTION);
+    }
 
-	protected void validate(long groupId, Record record) {
-		if (groupId <= 0) {
-			throw new IllegalArgumentException("groupId cannot be 0 or negative");
-		} else if (record == null) {
-			throw new IllegalArgumentException("record cannot be empty");
-		} else if (record.getFieldCount() == 0) {
-			throw new IllegalArgumentException("Record's fields cannot be empty");
-		} else if (record.getRecordId() <= 0) {
-			throw new IllegalArgumentException("Record's recordId cannot be 0 or negative");
-		}
-	}
+    protected void validate(long groupId, Record record) {
+        if (groupId <= 0) {
+            throw new IllegalArgumentException("groupId cannot be 0 or negative");
+        } else if (record == null) {
+            throw new IllegalArgumentException("record cannot be empty");
+        } else if (record.getFieldCount() == 0) {
+            throw new IllegalArgumentException("Record's fields cannot be empty");
+        } else if (record.getRecordId() <= 0) {
+            throw new IllegalArgumentException("Record's recordId cannot be 0 or negative");
+        }
+    }
 }

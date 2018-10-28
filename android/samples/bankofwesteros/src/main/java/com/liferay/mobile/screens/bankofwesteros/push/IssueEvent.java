@@ -5,13 +5,13 @@ package com.liferay.mobile.screens.bankofwesteros.push;
  */
 public class IssueEvent {
 
-	private final String message;
+    private final String message;
 
-	public IssueEvent(String message) {
-		this.message = message;
-	}
+    public IssueEvent(String message) {
+        this.message = message;
+    }
 
-	public String getMessage() {
-		return message;
-	}
+    public String getMessage() {
+        return message;
+    }
 }

@@ -21,9 +21,9 @@ import java.io.Serializable;
  */
 public abstract class DocumentFile implements Serializable {
 
-	public abstract String toData();
+    public abstract String toData();
 
-	public abstract boolean isValid();
+    public abstract boolean isValid();
 
-	public abstract String getFileName();
+    public abstract String getFileName();
 }

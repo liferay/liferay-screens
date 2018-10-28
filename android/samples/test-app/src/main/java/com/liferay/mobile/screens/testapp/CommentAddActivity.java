@@ -10,24 +10,24 @@ import com.liferay.mobile.screens.comment.add.CommentAddScreenlet;
  */
 public class CommentAddActivity extends ThemeActivity implements CommentAddListener {
 
-	private CommentAddScreenlet commentAddScreenlet;
+    private CommentAddScreenlet commentAddScreenlet;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.comment_add);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.comment_add);
 
-		commentAddScreenlet = findViewById(R.id.comment_add_screenlet);
-		commentAddScreenlet.setListener(this);
-	}
+        commentAddScreenlet = findViewById(R.id.comment_add_screenlet);
+        commentAddScreenlet.setListener(this);
+    }
 
-	@Override
-	public void onAddCommentSuccess(CommentEntry commentEntry) {
-		info(getString(R.string.comment_added_success));
-	}
+    @Override
+    public void onAddCommentSuccess(CommentEntry commentEntry) {
+        info(getString(R.string.comment_added_success));
+    }
 
-	@Override
-	public void error(Exception e, String userAction) {
-		error(getString(R.string.comment_error) + " " + userAction, e);
-	}
+    @Override
+    public void error(Exception e, String userAction) {
+        error(getString(R.string.comment_error) + " " + userAction, e);
+    }
 }

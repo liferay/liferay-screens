@@ -8,10 +8,10 @@ import com.squareup.leakcanary.LeakCanary;
  */
 public class TestApplication extends Application {
 
-	@Override
-	public void onCreate() {
-		super.onCreate();
+    @Override
+    public void onCreate() {
+        super.onCreate();
 
-		LeakCanary.install(this);
-	}
+        LeakCanary.install(this);
+    }
 }

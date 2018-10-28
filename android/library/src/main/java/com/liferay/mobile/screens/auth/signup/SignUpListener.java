@@ -21,17 +21,17 @@ import com.liferay.mobile.screens.context.User;
  */
 public interface SignUpListener {
 
-	/**
-	 * Called when an error occurs in the process.
-	 *
-	 * @param e exception
-	 */
-	void onSignUpFailure(Exception e);
+    /**
+     * Called when an error occurs in the process.
+     *
+     * @param e exception
+     */
+    void onSignUpFailure(Exception e);
 
-	/**
-	 * Called when sign up successfully completes. The `user` parameter
-	 * contains a set of the created user’s attributes. The supported
-	 * keys are the same as those in the portal’s  {@link User} entity.
-	 */
-	void onSignUpSuccess(User user);
+    /**
+     * Called when sign up successfully completes. The `user` parameter
+     * contains a set of the created user’s attributes. The supported
+     * keys are the same as those in the portal’s  {@link User} entity.
+     */
+    void onSignUpSuccess(User user);
 }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="rating_total">Total: %d</string>
+    <string name="rating_total">Total: %d</string>
 
-	<plurals name="rating_count">
-		<item quantity="one">%1$d rating</item>
-		<item quantity="other">%1$d ratings</item>
-	</plurals>
-	<string name="ratings_error">An error occurred during the requested operation</string>
+    <plurals name="rating_count">
+        <item quantity="one">%1$d rating</item>
+        <item quantity="other">%1$d ratings</item>
+    </plurals>
+    <string name="ratings_error">An error occurred during the requested operation</string>
 </resources>

@@ -27,32 +27,29 @@ import org.json.JSONObject;
  */
 public class DdmdataproviderinstanceService extends BaseService {
 
-	public DdmdataproviderinstanceService(Session session) {
-		super(session);
-	}
+    public DdmdataproviderinstanceService(Session session) {
+        super(session);
+    }
 
-	public JSONObject getDataProviderInstance(long dataProviderInstanceId) throws Exception {
-		JSONObject _command = new JSONObject();
+    public JSONObject getDataProviderInstance(long dataProviderInstanceId) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("dataProviderInstanceId", dataProviderInstanceId);
+            _params.put("dataProviderInstanceId", dataProviderInstanceId);
 
-			_command.put("/ddm.ddmdataproviderinstance/get-data-provider-instance", _params);
-		}
-		catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/ddm.ddmdataproviderinstance/get-data-provider-instance", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getJSONObject(0);
-	}
-
-
+        return _result.getJSONObject(0);
+    }
 }

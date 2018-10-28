@@ -34,138 +34,138 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class StringFieldTest {
 
-	private static StringField createStringField(Boolean required) throws SAXException {
-		String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> "
-			+ "<dynamic-element "
-			+ "dataType=\"string\" "
-			+ "type=\"text\" "
-			+ "required=\""
-			+ required.toString()
-			+ "\" "
-			+ "name=\"A_Text\" > "
-			+ "<meta-data locale=\"en_US\"> "
-			+ "<entry name=\"predefinedValue\"><![CDATA[default text]]></entry> "
-			+ "</meta-data> "
-			+ "</dynamic-element>"
-			+ "</root>";
+    private static StringField createStringField(Boolean required) throws SAXException {
+        String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> "
+            + "<dynamic-element "
+            + "dataType=\"string\" "
+            + "type=\"text\" "
+            + "required=\""
+            + required.toString()
+            + "\" "
+            + "name=\"A_Text\" > "
+            + "<meta-data locale=\"en_US\"> "
+            + "<entry name=\"predefinedValue\"><![CDATA[default text]]></entry> "
+            + "</meta-data> "
+            + "</dynamic-element>"
+            + "</root>";
 
-		List<Field> resultList = new XSDParser().parse(xsd, new Locale("en", "US"));
+        List<Field> resultList = new XSDParser().parse(xsd, new Locale("en", "US"));
 
-		return (StringField) resultList.get(0);
-	}
+        return (StringField) resultList.get(0);
+    }
 
-	//@Config(constants = BuildConfig.class)
-	@RunWith(RobolectricTestRunner.class)
-	public static class WhenParsingXSD {
-		@Test
-		public void shouldReturnStringFieldObject() throws Exception {
-			String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> "
-				+ "<dynamic-element "
-				+ "dataType=\"string\" "
-				+ "type=\"text\" "
-				+ "name=\"A_Text\" > "
-				+ "<meta-data locale=\"en_US\"> "
-				+ "<entry name=\"predefinedValue\"><![CDATA[default text]]></entry> "
-				+ "</meta-data> "
-				+ "</dynamic-element>"
-				+ "</root>";
+    //@Config(constants = BuildConfig.class)
+    @RunWith(RobolectricTestRunner.class)
+    public static class WhenParsingXSD {
+        @Test
+        public void shouldReturnStringFieldObject() throws Exception {
+            String xsd = "<root available-locales=\"en_US\" default-locale=\"en_US\"> "
+                + "<dynamic-element "
+                + "dataType=\"string\" "
+                + "type=\"text\" "
+                + "name=\"A_Text\" > "
+                + "<meta-data locale=\"en_US\"> "
+                + "<entry name=\"predefinedValue\"><![CDATA[default text]]></entry> "
+                + "</meta-data> "
+                + "</dynamic-element>"
+                + "</root>";
 
-			List<Field> resultList = new XSDParser().parse(xsd, new Locale("en", "US"));
+            List<Field> resultList = new XSDParser().parse(xsd, new Locale("en", "US"));
 
-			assertNotNull(resultList);
-			assertEquals(1, resultList.size());
+            assertNotNull(resultList);
+            assertEquals(1, resultList.size());
 
-			Field resultField = resultList.get(0);
-			assertTrue(resultField instanceof StringField);
-			StringField stringField = (StringField) resultField;
+            Field resultField = resultList.get(0);
+            assertTrue(resultField instanceof StringField);
+            StringField stringField = (StringField) resultField;
 
-			assertEquals(Field.DataType.STRING.getValue(), stringField.getDataType().getValue());
-			assertEquals(Field.EditorType.TEXT.getValue(), stringField.getEditorType().getValue());
-			assertEquals("A_Text", stringField.getName());
-			assertEquals("default text", stringField.getCurrentValue());
-			assertEquals(stringField.getCurrentValue(), stringField.getPredefinedValue());
-		}
-	}
+            assertEquals(Field.DataType.STRING.getValue(), stringField.getDataType().getValue());
+            assertEquals(Field.EditorType.TEXT.getValue(), stringField.getEditorType().getValue());
+            assertEquals("A_Text", stringField.getName());
+            assertEquals("default text", stringField.getCurrentValue());
+            assertEquals(stringField.getCurrentValue(), stringField.getPredefinedValue());
+        }
+    }
 
-	//@Config(constants = BuildConfig.class)
-	@RunWith(RobolectricTestRunner.class)
-	public static class WhenValidatingAndRequired {
+    //@Config(constants = BuildConfig.class)
+    @RunWith(RobolectricTestRunner.class)
+    public static class WhenValidatingAndRequired {
 
-		@Test
-		public void shouldReturnFalseWhenHasOnlyBlankSpaces() throws SAXException {
-			StringField field = createStringField(true);
+        @Test
+        public void shouldReturnFalseWhenHasOnlyBlankSpaces() throws SAXException {
+            StringField field = createStringField(true);
 
-			field.setCurrentValue("   ");
+            field.setCurrentValue("   ");
 
-			assertFalse(field.isValid());
-		}
+            assertFalse(field.isValid());
+        }
 
-		@Test
-		public void shouldReturnFalseWhenValueIsNull() throws SAXException {
-			StringField field = createStringField(true);
+        @Test
+        public void shouldReturnFalseWhenValueIsNull() throws SAXException {
+            StringField field = createStringField(true);
 
-			field.setCurrentValue(null);
+            field.setCurrentValue(null);
 
-			assertFalse(field.isValid());
-		}
+            assertFalse(field.isValid());
+        }
 
-		@Test
-		public void shouldReturnFalseWhenValueIsEmpty() throws SAXException {
-			StringField field = createStringField(true);
+        @Test
+        public void shouldReturnFalseWhenValueIsEmpty() throws SAXException {
+            StringField field = createStringField(true);
 
-			field.setCurrentValue("");
+            field.setCurrentValue("");
 
-			assertFalse(field.isValid());
-		}
+            assertFalse(field.isValid());
+        }
 
-		@Test
-		public void shouldReturnTrueWhenValueIsSet() throws SAXException {
-			StringField field = createStringField(true);
+        @Test
+        public void shouldReturnTrueWhenValueIsSet() throws SAXException {
+            StringField field = createStringField(true);
 
-			field.setCurrentValue("abc");
+            field.setCurrentValue("abc");
 
-			assertTrue(field.isValid());
-		}
-	}
+            assertTrue(field.isValid());
+        }
+    }
 
-	//@Config(constants = BuildConfig.class)
-	@RunWith(RobolectricTestRunner.class)
-	public static class WhenValidatingAndNotRequired {
+    //@Config(constants = BuildConfig.class)
+    @RunWith(RobolectricTestRunner.class)
+    public static class WhenValidatingAndNotRequired {
 
-		@Test
-		public void shouldReturnTrueWhenHasOnlyBlankSpaces() throws SAXException {
-			StringField field = createStringField(false);
+        @Test
+        public void shouldReturnTrueWhenHasOnlyBlankSpaces() throws SAXException {
+            StringField field = createStringField(false);
 
-			field.setCurrentValue("   ");
+            field.setCurrentValue("   ");
 
-			assertTrue(field.isValid());
-		}
+            assertTrue(field.isValid());
+        }
 
-		@Test
-		public void shouldReturnTrueWhenValueIsNull() throws SAXException {
-			StringField field = createStringField(false);
+        @Test
+        public void shouldReturnTrueWhenValueIsNull() throws SAXException {
+            StringField field = createStringField(false);
 
-			field.setCurrentValue(null);
+            field.setCurrentValue(null);
 
-			assertTrue(field.isValid());
-		}
+            assertTrue(field.isValid());
+        }
 
-		@Test
-		public void shouldReturnTrueWhenValueIsEmpty() throws SAXException {
-			StringField field = createStringField(false);
+        @Test
+        public void shouldReturnTrueWhenValueIsEmpty() throws SAXException {
+            StringField field = createStringField(false);
 
-			field.setCurrentValue("");
+            field.setCurrentValue("");
 
-			assertTrue(field.isValid());
-		}
+            assertTrue(field.isValid());
+        }
 
-		@Test
-		public void shouldReturnTrueWhenValueIsSet() throws SAXException {
-			StringField field = createStringField(false);
+        @Test
+        public void shouldReturnTrueWhenValueIsSet() throws SAXException {
+            StringField field = createStringField(false);
 
-			field.setCurrentValue("abc");
+            field.setCurrentValue("abc");
 
-			assertTrue(field.isValid());
-		}
-	}
+            assertTrue(field.isValid());
+        }
+    }
 }

@@ -21,13 +21,13 @@ import com.liferay.mobile.screens.thingscreenlet.model.Person
 
 class ConverterDelegate {
 
-    companion object {
-        @JvmStatic
-        fun initializeConverter() {
+	companion object {
+		@JvmStatic
+		fun initializeConverter() {
 
-            converters[BlogPosting::class.java.name] = BlogPosting.converter
-            converters[Collection::class.java.name] = Collection.converter
-            converters[Person::class.java.name] = Person.converter
-        }
-    }
+			converters[BlogPosting::class.java.name] = BlogPosting.converter
+			converters[Collection::class.java.name] = Collection.converter
+			converters[Person::class.java.name] = Person.converter
+		}
+	}
 }

@@ -24,31 +24,31 @@ import java.util.Map;
  */
 public class ImageField extends StringField implements Parcelable {
 
-	public static final ClassLoaderCreator<ImageField> CREATOR = new ClassLoaderCreator<ImageField>() {
+    public static final ClassLoaderCreator<ImageField> CREATOR = new ClassLoaderCreator<ImageField>() {
 
-		@Override
-		public ImageField createFromParcel(Parcel source, ClassLoader loader) {
-			return new ImageField(source, loader);
-		}
+        @Override
+        public ImageField createFromParcel(Parcel source, ClassLoader loader) {
+            return new ImageField(source, loader);
+        }
 
-		public ImageField createFromParcel(Parcel in) {
-			throw new AssertionError();
-		}
+        public ImageField createFromParcel(Parcel in) {
+            throw new AssertionError();
+        }
 
-		public ImageField[] newArray(int size) {
-			return new ImageField[size];
-		}
-	};
+        public ImageField[] newArray(int size) {
+            return new ImageField[size];
+        }
+    };
 
-	public ImageField() {
-		super();
-	}
+    public ImageField() {
+        super();
+    }
 
-	public ImageField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
-		super(attributes, locale, defaultLocale);
-	}
+    public ImageField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
+        super(attributes, locale, defaultLocale);
+    }
 
-	protected ImageField(Parcel in, ClassLoader loader) {
-		super(in, loader);
-	}
+    protected ImageField(Parcel in, ClassLoader loader) {
+        super(in, loader);
+    }
 }

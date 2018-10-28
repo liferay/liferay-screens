@@ -22,45 +22,45 @@ import java.util.List;
  */
 public class BaseListEvent<E> extends CacheEvent {
 
-	private List<E> entries;
-	private int rowCount;
-	private Query query;
+    private List<E> entries;
+    private int rowCount;
+    private Query query;
 
-	public BaseListEvent() {
-		super();
-	}
+    public BaseListEvent() {
+        super();
+    }
 
-	public BaseListEvent(Query query, List<E> entries, int rowCount) {
-		this.query = query;
-		this.entries = entries;
-		this.rowCount = rowCount;
-	}
+    public BaseListEvent(Query query, List<E> entries, int rowCount) {
+        this.query = query;
+        this.entries = entries;
+        this.rowCount = rowCount;
+    }
 
-	public List<E> getEntries() {
-		return entries;
-	}
+    public List<E> getEntries() {
+        return entries;
+    }
 
-	public void setEntries(List<E> entries) {
-		this.entries = entries;
-	}
+    public void setEntries(List<E> entries) {
+        this.entries = entries;
+    }
 
-	public int getStartRow() {
-		return query.getStartRow();
-	}
+    public int getStartRow() {
+        return query.getStartRow();
+    }
 
-	public int getEndRow() {
-		return query.getEndRow();
-	}
+    public int getEndRow() {
+        return query.getEndRow();
+    }
 
-	public int getRowCount() {
-		return rowCount;
-	}
+    public int getRowCount() {
+        return rowCount;
+    }
 
-	public Query getQuery() {
-		return query;
-	}
+    public Query getQuery() {
+        return query;
+    }
 
-	public void setQuery(Query query) {
-		this.query = query;
-	}
+    public void setQuery(Query query) {
+        this.query = query;
+    }
 }

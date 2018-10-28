@@ -19,13 +19,13 @@ package com.liferay.mobile.screens.westerosemployees_hybrid.views;
  */
 public interface CardListener {
 
-	/**
-	 * This method move the {@link Card} to the right (x+1 coordinate).
-	 */
-	void moveCardRight(Card card);
+    /**
+     * This method move the {@link Card} to the right (x+1 coordinate).
+     */
+    void moveCardRight(Card card);
 
-	/**
-	 * This method move the {@link Card} to the left (x-1 coordinate).
-	 */
-	void moveCardLeft(Card card);
+    /**
+     * This method move the {@link Card} to the left (x-1 coordinate).
+     */
+    void moveCardLeft(Card card);
 }

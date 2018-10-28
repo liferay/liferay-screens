@@ -26,39 +26,39 @@ import com.liferay.mobile.screens.ddl.model.StringField;
  */
 public class ParagraphFieldTextView extends BaseDDLFieldTextView<StringField> {
 
-	public ParagraphFieldTextView(Context context) {
-		super(context);
-	}
+    public ParagraphFieldTextView(Context context) {
+        super(context);
+    }
 
-	public ParagraphFieldTextView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public ParagraphFieldTextView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public ParagraphFieldTextView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public ParagraphFieldTextView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	protected void onTextChanged(String text) {
-		getField().setCurrentValue(text);
-	}
+    @Override
+    protected void onTextChanged(String text) {
+        getField().setCurrentValue(text);
+    }
 
-	@Override
-	public void setupFieldLayout() {
-		super.setupFieldLayout();
+    @Override
+    public void setupFieldLayout() {
+        super.setupFieldLayout();
 
-		textEditText.setBackground(null);
-		textEditText.setMovementMethod(LinkMovementMethod.getInstance());
-		textEditText.setInputType(textEditText.getInputType() | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
-	}
+        textEditText.setBackground(null);
+        textEditText.setMovementMethod(LinkMovementMethod.getInstance());
+        textEditText.setInputType(textEditText.getInputType() | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+    }
 
-	@Override
-	public void refresh() {
+    @Override
+    public void refresh() {
 
-		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-			textEditText.setText(Html.fromHtml(getField().getText(), Html.FROM_HTML_MODE_LEGACY));
-		} else {
-			textEditText.setText(Html.fromHtml(getField().getText()));
-		}
-	}
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            textEditText.setText(Html.fromHtml(getField().getText(), Html.FROM_HTML_MODE_LEGACY));
+        } else {
+            textEditText.setText(Html.fromHtml(getField().getText()));
+        }
+    }
 }

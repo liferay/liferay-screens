@@ -23,44 +23,44 @@ import com.liferay.mobile.screens.context.User;
  */
 public class CredentialsStorageVoid implements CredentialsStorage {
 
-	@Override
-	public void storeCredentials() {
-	}
+    @Override
+    public void storeCredentials() {
+    }
 
-	@Override
-	public void removeStoredCredentials() {
-	}
+    @Override
+    public void removeStoredCredentials() {
+    }
 
-	@Override
-	public boolean loadStoredCredentials() {
-		return false;
-	}
+    @Override
+    public boolean loadStoredCredentials() {
+        return false;
+    }
 
-	@Override
-	public boolean loadStoredCredentialsAndServer() throws IllegalStateException {
-		return false;
-	}
+    @Override
+    public boolean loadStoredCredentialsAndServer() throws IllegalStateException {
+        return false;
+    }
 
-	@Override
-	public Authentication getAuthentication() {
-		return null;
-	}
+    @Override
+    public Authentication getAuthentication() {
+        return null;
+    }
 
-	@Override
-	public void setAuthentication(Authentication auth) {
+    @Override
+    public void setAuthentication(Authentication auth) {
 
-	}
+    }
 
-	@Override
-	public User getUser() {
-		return null;
-	}
+    @Override
+    public User getUser() {
+        return null;
+    }
 
-	@Override
-	public void setUser(User user) {
-	}
+    @Override
+    public void setUser(User user) {
+    }
 
-	@Override
-	public void setContext(Context ctx) {
-	}
+    @Override
+    public void setContext(Context ctx) {
+    }
 }

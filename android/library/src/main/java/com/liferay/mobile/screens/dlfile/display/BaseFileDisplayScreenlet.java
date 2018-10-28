@@ -32,191 +32,191 @@ import com.liferay.mobile.screens.context.SessionContext;
  * @author Sarai Díaz García
  */
 public abstract class BaseFileDisplayScreenlet<V extends BaseFileDisplayViewModel>
-	extends BaseScreenlet<V, AssetDisplayInteractor> implements AssetDisplayListener {
+    extends BaseScreenlet<V, AssetDisplayInteractor> implements AssetDisplayListener {
 
-	public static final String LOAD_ASSET_ACTION = "LOAD_ASSET_ACTION";
+    public static final String LOAD_ASSET_ACTION = "LOAD_ASSET_ACTION";
 
-	public static final String STATE_ENTRY_ID = "STATE_ENTRY_ID";
-	public static final String STATE_FILE_ENTRY = "STATE_FILE_ENTRY";
-	protected boolean autoLoad;
-	protected long entryId;
-	protected long classPK;
-	protected String className = getResources().getString(R.string.liferay_class_dlfile);
-	protected AssetDisplayListener listener;
-	protected FileEntry fileEntry;
+    public static final String STATE_ENTRY_ID = "STATE_ENTRY_ID";
+    public static final String STATE_FILE_ENTRY = "STATE_FILE_ENTRY";
+    protected boolean autoLoad;
+    protected long entryId;
+    protected long classPK;
+    protected String className = getResources().getString(R.string.liferay_class_dlfile);
+    protected AssetDisplayListener listener;
+    protected FileEntry fileEntry;
 
-	public BaseFileDisplayScreenlet(Context context) {
-		super(context);
-	}
+    public BaseFileDisplayScreenlet(Context context) {
+        super(context);
+    }
 
-	public BaseFileDisplayScreenlet(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public BaseFileDisplayScreenlet(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public BaseFileDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-	}
+    public BaseFileDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-	public BaseFileDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
+    public BaseFileDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
 
-	/**
-	 * Searches the {@link FileEntry} with the given attributes ({@link #entryId} or {@link #className}
-	 * and {@link #classPK}) and loads it in the screenlet.
-	 */
-	public void load() {
-		performUserAction(LOAD_ASSET_ACTION);
-	}
+    /**
+     * Searches the {@link FileEntry} with the given attributes ({@link #entryId} or {@link #className}
+     * and {@link #classPK}) and loads it in the screenlet.
+     */
+    public void load() {
+        performUserAction(LOAD_ASSET_ACTION);
+    }
 
-	/**
-	 * Loads the {@link FileEntry} directly in the screenlet.
-	 */
-	public void loadFile() {
-		onRetrieveAssetSuccess(fileEntry);
-	}
+    /**
+     * Loads the {@link FileEntry} directly in the screenlet.
+     */
+    public void loadFile() {
+        onRetrieveAssetSuccess(fileEntry);
+    }
 
-	@Override
-	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray =
-			context.getTheme().obtainStyledAttributes(attributes, R.styleable.AssetDisplayScreenlet, 0, 0);
+    @Override
+    protected View createScreenletView(Context context, AttributeSet attributes) {
+        TypedArray typedArray =
+            context.getTheme().obtainStyledAttributes(attributes, R.styleable.AssetDisplayScreenlet, 0, 0);
 
-		int layoutId = typedArray.getResourceId(R.styleable.AssetDisplayScreenlet_layoutId, getDefaultLayoutId());
+        int layoutId = typedArray.getResourceId(R.styleable.AssetDisplayScreenlet_layoutId, getDefaultLayoutId());
 
-		autoLoad = typedArray.getBoolean(R.styleable.AssetDisplayScreenlet_autoLoad, true);
-		entryId = typedArray.getInt(R.styleable.AssetDisplayScreenlet_entryId, 0);
+        autoLoad = typedArray.getBoolean(R.styleable.AssetDisplayScreenlet_autoLoad, true);
+        entryId = typedArray.getInt(R.styleable.AssetDisplayScreenlet_entryId, 0);
 
-		className = typedArray.getString(R.styleable.AssetDisplayScreenlet_className);
-		classPK = typedArray.getInt(R.styleable.AssetDisplayScreenlet_classPK, 0);
+        className = typedArray.getString(R.styleable.AssetDisplayScreenlet_className);
+        classPK = typedArray.getInt(R.styleable.AssetDisplayScreenlet_classPK, 0);
 
-		View view = LayoutInflater.from(context).inflate(layoutId, null);
+        View view = LayoutInflater.from(context).inflate(layoutId, null);
 
-		typedArray.recycle();
+        typedArray.recycle();
 
-		return view;
-	}
+        return view;
+    }
 
-	@Override
-	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
-		fileEntry = (FileEntry) assetEntry;
-		getViewModel().showFinishOperation(fileEntry);
+    @Override
+    public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
+        fileEntry = (FileEntry) assetEntry;
+        getViewModel().showFinishOperation(fileEntry);
 
-		if (listener != null) {
-			listener.onRetrieveAssetSuccess(assetEntry);
-		}
-	}
+        if (listener != null) {
+            listener.onRetrieveAssetSuccess(assetEntry);
+        }
+    }
 
-	@Override
-	public void error(Exception e, String userAction) {
-		getViewModel().showFailedOperation(null, e);
+    @Override
+    public void error(Exception e, String userAction) {
+        getViewModel().showFailedOperation(null, e);
 
-		if (listener != null) {
-			listener.error(e, userAction);
-		}
-	}
+        if (listener != null) {
+            listener.error(e, userAction);
+        }
+    }
 
-	@Override
-	protected AssetDisplayInteractor createInteractor(String actionName) {
-		return new AssetDisplayInteractor();
-	}
+    @Override
+    protected AssetDisplayInteractor createInteractor(String actionName) {
+        return new AssetDisplayInteractor();
+    }
 
-	@Override
-	protected void onUserAction(String userActionName, AssetDisplayInteractor interactor, Object... args) {
-		if (entryId != 0) {
-			interactor.start(entryId);
-		} else {
-			interactor.start(className, classPK);
-		}
-	}
+    @Override
+    protected void onUserAction(String userActionName, AssetDisplayInteractor interactor, Object... args) {
+        if (entryId != 0) {
+            interactor.start(entryId);
+        } else {
+            interactor.start(className, classPK);
+        }
+    }
 
-	@Override
-	protected void onScreenletAttached() {
-		super.onScreenletAttached();
+    @Override
+    protected void onScreenletAttached() {
+        super.onScreenletAttached();
 
-		if (autoLoad) {
-			autoLoad();
-		}
-	}
+        if (autoLoad) {
+            autoLoad();
+        }
+    }
 
-	/**
-	 * Checks if there is a session created and if exists {@link #entryId} or {@link #className}
-	 * and {@link #classPK} attributes and then calls {@link #load()} method. If the previous condition
-	 * is not true, {@link #loadFile()} is called.
-	 */
-	protected void autoLoad() {
-		if (SessionContext.isLoggedIn() && (entryId != 0 || (className != null && classPK != 0))) {
-			load();
-		} else if (fileEntry != null) {
-			loadFile();
-		}
-	}
+    /**
+     * Checks if there is a session created and if exists {@link #entryId} or {@link #className}
+     * and {@link #classPK} attributes and then calls {@link #load()} method. If the previous condition
+     * is not true, {@link #loadFile()} is called.
+     */
+    protected void autoLoad() {
+        if (SessionContext.isLoggedIn() && (entryId != 0 || (className != null && classPK != 0))) {
+            load();
+        } else if (fileEntry != null) {
+            loadFile();
+        }
+    }
 
-	@Override
-	protected Parcelable onSaveInstanceState() {
-		Parcelable superState = super.onSaveInstanceState();
-		Bundle state = new Bundle();
-		state.putParcelable(STATE_SUPER, superState);
-		state.putLong(STATE_ENTRY_ID, entryId);
-		state.putParcelable(STATE_FILE_ENTRY, fileEntry);
-		return state;
-	}
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        Parcelable superState = super.onSaveInstanceState();
+        Bundle state = new Bundle();
+        state.putParcelable(STATE_SUPER, superState);
+        state.putLong(STATE_ENTRY_ID, entryId);
+        state.putParcelable(STATE_FILE_ENTRY, fileEntry);
+        return state;
+    }
 
-	@Override
-	protected void onRestoreInstanceState(Parcelable inState) {
-		Bundle state = (Bundle) inState;
+    @Override
+    protected void onRestoreInstanceState(Parcelable inState) {
+        Bundle state = (Bundle) inState;
 
-		entryId = state.getLong(STATE_ENTRY_ID);
-		fileEntry = state.getParcelable(STATE_FILE_ENTRY);
+        entryId = state.getLong(STATE_ENTRY_ID);
+        fileEntry = state.getParcelable(STATE_FILE_ENTRY);
 
-		Parcelable superState = state.getParcelable(STATE_SUPER);
-		super.onRestoreInstanceState(superState);
-	}
+        Parcelable superState = state.getParcelable(STATE_SUPER);
+        super.onRestoreInstanceState(superState);
+    }
 
-	public long getEntryId() {
-		return entryId;
-	}
+    public long getEntryId() {
+        return entryId;
+    }
 
-	public void setEntryId(long entryId) {
-		this.entryId = entryId;
-	}
+    public void setEntryId(long entryId) {
+        this.entryId = entryId;
+    }
 
-	public String getClassName() {
-		return className;
-	}
+    public String getClassName() {
+        return className;
+    }
 
-	public void setClassName(String className) {
-		this.className = className;
-	}
+    public void setClassName(String className) {
+        this.className = className;
+    }
 
-	public long getClassPK() {
-		return classPK;
-	}
+    public long getClassPK() {
+        return classPK;
+    }
 
-	public void setClassPK(long classPK) {
-		this.classPK = classPK;
-	}
+    public void setClassPK(long classPK) {
+        this.classPK = classPK;
+    }
 
-	public AssetDisplayListener getListener() {
-		return listener;
-	}
+    public AssetDisplayListener getListener() {
+        return listener;
+    }
 
-	public void setListener(AssetDisplayListener listener) {
-		this.listener = listener;
-	}
+    public void setListener(AssetDisplayListener listener) {
+        this.listener = listener;
+    }
 
-	public FileEntry getFileEntry() {
-		return fileEntry;
-	}
+    public FileEntry getFileEntry() {
+        return fileEntry;
+    }
 
-	public void setFileEntry(FileEntry fileEntry) {
-		this.fileEntry = fileEntry;
-	}
+    public void setFileEntry(FileEntry fileEntry) {
+        this.fileEntry = fileEntry;
+    }
 
-	public boolean getAutoLoad() {
-		return autoLoad;
-	}
+    public boolean getAutoLoad() {
+        return autoLoad;
+    }
 
-	public void setAutoLoad(boolean autoLoad) {
-		this.autoLoad = autoLoad;
-	}
+    public void setAutoLoad(boolean autoLoad) {
+        this.autoLoad = autoLoad;
+    }
 }

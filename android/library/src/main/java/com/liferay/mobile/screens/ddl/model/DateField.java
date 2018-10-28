@@ -31,84 +31,84 @@ import java.util.TimeZone;
  */
 public class DateField extends Field<Date> {
 
-	public static final Parcelable.ClassLoaderCreator<DateField> CREATOR =
-		new Parcelable.ClassLoaderCreator<DateField>() {
+    public static final Parcelable.ClassLoaderCreator<DateField> CREATOR =
+        new Parcelable.ClassLoaderCreator<DateField>() {
 
-			@Override
-			public DateField createFromParcel(Parcel source, ClassLoader loader) {
-				return new DateField(source, loader);
-			}
+            @Override
+            public DateField createFromParcel(Parcel source, ClassLoader loader) {
+                return new DateField(source, loader);
+            }
 
-			public DateField createFromParcel(Parcel in) {
-				throw new AssertionError();
-			}
+            public DateField createFromParcel(Parcel in) {
+                throw new AssertionError();
+            }
 
-			public DateField[] newArray(int size) {
-				return new DateField[size];
-			}
-		};
+            public DateField[] newArray(int size) {
+                return new DateField[size];
+            }
+        };
 
-	public DateField() {
-		super();
-	}
+    public DateField() {
+        super();
+    }
 
-	public DateField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
-		super(attributes, locale, defaultLocale);
-	}
+    public DateField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
+        super(attributes, locale, defaultLocale);
+    }
 
-	protected DateField(Parcel source, ClassLoader loader) {
-		super(source, loader);
-	}
+    protected DateField(Parcel source, ClassLoader loader) {
+        super(source, loader);
+    }
 
-	@Override
-	protected Date convertFromString(String stringValue) {
-		if (stringValue == null || stringValue.isEmpty() || stringValue.length() < 6) {
-			return null;
-		}
+    @Override
+    protected Date convertFromString(String stringValue) {
+        if (stringValue == null || stringValue.isEmpty() || stringValue.length() < 6) {
+            return null;
+        }
 
-		try {
-			int lastSeparator = stringValue.lastIndexOf('/');
+        try {
+            int lastSeparator = stringValue.lastIndexOf('/');
 
-			if (stringValue.contains("-")) {
-				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", getCurrentLocale());
-				simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
-				return simpleDateFormat.parse(stringValue);
-			} else if (lastSeparator == -1) {
-				return new Date(Long.parseLong(stringValue));
-			} else if (stringValue.length() - lastSeparator - 1 == 2) {
-				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yy", getCurrentLocale());
-				simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
-				return simpleDateFormat.parse(stringValue);
-			} else {
-				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy", getCurrentLocale());
-				simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+            if (stringValue.contains("-")) {
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", getCurrentLocale());
+                simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+                return simpleDateFormat.parse(stringValue);
+            } else if (lastSeparator == -1) {
+                return new Date(Long.parseLong(stringValue));
+            } else if (stringValue.length() - lastSeparator - 1 == 2) {
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yy", getCurrentLocale());
+                simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+                return simpleDateFormat.parse(stringValue);
+            } else {
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy", getCurrentLocale());
+                simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
 
-				return simpleDateFormat.parse(stringValue);
-			}
-		} catch (ParseException e) {
-			LiferayLogger.e("Error parsing date " + stringValue);
-		}
-		return null;
-	}
+                return simpleDateFormat.parse(stringValue);
+            }
+        } catch (ParseException e) {
+            LiferayLogger.e("Error parsing date " + stringValue);
+        }
+        return null;
+    }
 
-	@Override
-	protected String convertToData(Date value) {
-		if (value == null) {
-			return null;
-		}
+    @Override
+    protected String convertToData(Date value) {
+        if (value == null) {
+            return null;
+        }
 
-		if (LiferayServerContext.isLiferay7()) {
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", getCurrentLocale());
-			simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
+        if (LiferayServerContext.isLiferay7()) {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", getCurrentLocale());
+            simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
 
-			return simpleDateFormat.format(value);
-		}
+            return simpleDateFormat.format(value);
+        }
 
-		return Long.valueOf(value.getTime()).toString();
-	}
+        return Long.valueOf(value.getTime()).toString();
+    }
 
-	@Override
-	protected String convertToFormattedString(Date value) {
-		return (value == null) ? "" : DateFormat.getDateInstance(DateFormat.LONG, getCurrentLocale()).format(value);
-	}
+    @Override
+    protected String convertToFormattedString(Date value) {
+        return (value == null) ? "" : DateFormat.getDateInstance(DateFormat.LONG, getCurrentLocale()).format(value);
+    }
 }

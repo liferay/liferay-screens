@@ -11,33 +11,33 @@ import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
  */
 public class BookmarkAdapter extends BaseListAdapter<Bookmark, BookmarkAdapter.BookmarkViewHolder> {
 
-	public BookmarkAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
-		super(layoutId, progressLayoutId, listener);
-	}
+    public BookmarkAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
+        super(layoutId, progressLayoutId, listener);
+    }
 
-	@NonNull
-	@Override
-	public BookmarkViewHolder createViewHolder(View view, BaseListAdapterListener listener) {
-		return new BookmarkAdapter.BookmarkViewHolder(view, listener);
-	}
+    @NonNull
+    @Override
+    public BookmarkViewHolder createViewHolder(View view, BaseListAdapterListener listener) {
+        return new BookmarkAdapter.BookmarkViewHolder(view, listener);
+    }
 
-	@Override
-	protected void fillHolder(Bookmark entry, BookmarkViewHolder holder) {
-		holder.bind(entry);
-	}
+    @Override
+    protected void fillHolder(Bookmark entry, BookmarkViewHolder holder) {
+        holder.bind(entry);
+    }
 
-	public class BookmarkViewHolder extends BaseListAdapter.ViewHolder {
+    public class BookmarkViewHolder extends BaseListAdapter.ViewHolder {
 
-		private final TextView url;
+        private final TextView url;
 
-		public BookmarkViewHolder(View view, BaseListAdapterListener listener) {
-			super(view, listener);
+        public BookmarkViewHolder(View view, BaseListAdapterListener listener) {
+            super(view, listener);
 
-			url = view.findViewById(R.id.bookmark_url);
-		}
+            url = view.findViewById(R.id.bookmark_url);
+        }
 
-		public void bind(Bookmark entry) {
-			url.setText(entry.getUrl());
-		}
-	}
+        public void bind(Bookmark entry) {
+            url.setText(entry.getUrl());
+        }
+    }
 }

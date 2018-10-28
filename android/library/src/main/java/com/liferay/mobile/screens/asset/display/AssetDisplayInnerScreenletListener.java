@@ -24,19 +24,19 @@ import com.liferay.mobile.screens.base.BaseScreenlet;
 
 public interface AssetDisplayInnerScreenletListener {
 
-	/**
-	 * Configure or customize the child screenlet which
-	 * has been initialized correctly.
-	 *
-	 * @param innerScreenlet child screenlet
-	 */
-	void onConfigureChildScreenlet(AssetDisplayScreenlet screenlet, BaseScreenlet innerScreenlet,
-		AssetEntry assetEntry);
+    /**
+     * Configure or customize the child screenlet which
+     * has been initialized correctly.
+     *
+     * @param innerScreenlet child screenlet
+     */
+    void onConfigureChildScreenlet(AssetDisplayScreenlet screenlet, BaseScreenlet innerScreenlet,
+        AssetEntry assetEntry);
 
-	/**
-	 * Render a custom asset.
-	 *
-	 * @return custom view for the custom asset.
-	 */
-	View onRenderCustomAsset(AssetEntry assetEntry);
+    /**
+     * Render a custom asset.
+     *
+     * @return custom view for the custom asset.
+     */
+    View onRenderCustomAsset(AssetEntry assetEntry);
 }

@@ -23,41 +23,41 @@ import android.content.ContextWrapper;
  */
 public class LiferayScreensContext {
 
-	private static Context context;
+    private static Context context;
 
-	private LiferayScreensContext() {
-	}
+    private LiferayScreensContext() {
+    }
 
-	public static void init(Context context) {
-		LiferayScreensContext.context = context.getApplicationContext();
+    public static void init(Context context) {
+        LiferayScreensContext.context = context.getApplicationContext();
 
-		LiferayServerContext.loadFromResources(context.getResources(), context.getPackageName());
-	}
+        LiferayServerContext.loadFromResources(context.getResources(), context.getPackageName());
+    }
 
-	public static void reinit(Context context) {
-		LiferayScreensContext.context = context.getApplicationContext();
+    public static void reinit(Context context) {
+        LiferayScreensContext.context = context.getApplicationContext();
 
-		LiferayServerContext.reloadFromResources(context.getResources(), context.getPackageName());
-	}
+        LiferayServerContext.reloadFromResources(context.getResources(), context.getPackageName());
+    }
 
-	/**
-	 * Only to be used in unit tests
-	 */
-	public static void deinit() {
-		context = null;
-	}
+    /**
+     * Only to be used in unit tests
+     */
+    public static void deinit() {
+        context = null;
+    }
 
-	public static Context getContext() {
-		return context;
-	}
+    public static Context getContext() {
+        return context;
+    }
 
-	public static Activity getActivityFromContext(Context context) {
-		if (context instanceof Activity) {
-			return (Activity) context;
-		} else if (context instanceof ContextWrapper) {
-			return getActivityFromContext(((ContextWrapper) context).getBaseContext());
-		} else {
-			return null;
-		}
-	}
+    public static Activity getActivityFromContext(Context context) {
+        if (context instanceof Activity) {
+            return (Activity) context;
+        } else if (context instanceof ContextWrapper) {
+            return getActivityFromContext(((ContextWrapper) context).getBaseContext());
+        } else {
+            return null;
+        }
+    }
 }

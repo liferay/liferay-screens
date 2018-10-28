@@ -30,79 +30,79 @@ import java.util.Map;
  * @author Silvio Santos
  */
 public class AssetListScreenlet extends BaseListScreenlet<AssetEntry, AssetListInteractor>
-	implements BaseListInteractorListener<AssetEntry> {
+    implements BaseListInteractorListener<AssetEntry> {
 
-	private long classNameId;
-	private String portletItemName;
-	private HashMap<String, Object> customEntryQuery = new HashMap<>();
+    private long classNameId;
+    private String portletItemName;
+    private HashMap<String, Object> customEntryQuery = new HashMap<>();
 
-	public AssetListScreenlet(Context context) {
-		super(context);
-	}
+    public AssetListScreenlet(Context context) {
+        super(context);
+    }
 
-	public AssetListScreenlet(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public AssetListScreenlet(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public AssetListScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-	}
+    public AssetListScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-	public AssetListScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
+    public AssetListScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
 
-	public long getClassNameId() {
-		return classNameId;
-	}
+    public long getClassNameId() {
+        return classNameId;
+    }
 
-	public void setClassNameId(long classNameId) {
-		this.classNameId = classNameId;
-	}
+    public void setClassNameId(long classNameId) {
+        this.classNameId = classNameId;
+    }
 
-	public String getPortletItemName() {
-		return portletItemName;
-	}
+    public String getPortletItemName() {
+        return portletItemName;
+    }
 
-	public void setPortletItemName(String portletItemName) {
-		this.portletItemName = portletItemName;
-	}
+    public void setPortletItemName(String portletItemName) {
+        this.portletItemName = portletItemName;
+    }
 
-	public Map<String, Object> getCustomEntryQuery() {
-		return customEntryQuery;
-	}
+    public Map<String, Object> getCustomEntryQuery() {
+        return customEntryQuery;
+    }
 
-	public void setCustomEntryQuery(HashMap<String, Object> customEntryQuery) {
-		this.customEntryQuery = customEntryQuery;
-	}
+    public void setCustomEntryQuery(HashMap<String, Object> customEntryQuery) {
+        this.customEntryQuery = customEntryQuery;
+    }
 
-	@Override
-	protected void loadRows(AssetListInteractor interactor) {
-		interactor.start(classNameId, customEntryQuery, portletItemName);
-	}
+    @Override
+    protected void loadRows(AssetListInteractor interactor) {
+        interactor.start(classNameId, customEntryQuery, portletItemName);
+    }
 
-	@Override
-	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray =
-			context.getTheme().obtainStyledAttributes(attributes, R.styleable.AssetListScreenlet, 0, 0);
+    @Override
+    protected View createScreenletView(Context context, AttributeSet attributes) {
+        TypedArray typedArray =
+            context.getTheme().obtainStyledAttributes(attributes, R.styleable.AssetListScreenlet, 0, 0);
 
-		classNameId = castToLong(typedArray.getString(R.styleable.AssetListScreenlet_classNameId));
-		portletItemName = typedArray.getString(R.styleable.AssetListScreenlet_portletItemName);
+        classNameId = castToLong(typedArray.getString(R.styleable.AssetListScreenlet_classNameId));
+        portletItemName = typedArray.getString(R.styleable.AssetListScreenlet_portletItemName);
 
-		typedArray.recycle();
+        typedArray.recycle();
 
-		return super.createScreenletView(context, attributes);
-	}
+        return super.createScreenletView(context, attributes);
+    }
 
-	@Override
-	public void error(Exception e, String userAction) {
-		if (getListener() != null) {
-			getListener().error(e, userAction);
-		}
-	}
+    @Override
+    public void error(Exception e, String userAction) {
+        if (getListener() != null) {
+            getListener().error(e, userAction);
+        }
+    }
 
-	@Override
-	protected AssetListInteractor createInteractor(String actionName) {
-		return new AssetListInteractor();
-	}
+    @Override
+    protected AssetListInteractor createInteractor(String actionName) {
+        return new AssetListInteractor();
+    }
 }

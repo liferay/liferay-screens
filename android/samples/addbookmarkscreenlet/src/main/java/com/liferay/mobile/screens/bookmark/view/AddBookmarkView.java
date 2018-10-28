@@ -16,76 +16,76 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  */
 public class AddBookmarkView extends LinearLayout implements AddBookmarkViewModel, View.OnClickListener {
 
-	private EditText urlText;
-	private EditText titleText;
-	private BaseScreenlet screenlet;
+    private EditText urlText;
+    private EditText titleText;
+    private BaseScreenlet screenlet;
 
-	public AddBookmarkView(Context context) {
-		super(context);
-	}
+    public AddBookmarkView(Context context) {
+        super(context);
+    }
 
-	public AddBookmarkView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public AddBookmarkView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public AddBookmarkView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public AddBookmarkView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	public void showStartOperation(String actionName) {
+    @Override
+    public void showStartOperation(String actionName) {
 
-	}
+    }
 
-	@Override
-	public void showFinishOperation(String actionName) {
-		LiferayLogger.i("Add bookmark successful");
-	}
+    @Override
+    public void showFinishOperation(String actionName) {
+        LiferayLogger.i("Add bookmark successful");
+    }
 
-	@Override
-	public void showFailedOperation(String actionName, Exception e) {
-		LiferayLogger.e("Could not add bookmark", e);
-	}
+    @Override
+    public void showFailedOperation(String actionName, Exception e) {
+        LiferayLogger.e("Could not add bookmark", e);
+    }
 
-	@Override
-	public BaseScreenlet getScreenlet() {
-		return screenlet;
-	}
+    @Override
+    public BaseScreenlet getScreenlet() {
+        return screenlet;
+    }
 
-	@Override
-	public void setScreenlet(BaseScreenlet screenlet) {
-		this.screenlet = screenlet;
-	}
+    @Override
+    public void setScreenlet(BaseScreenlet screenlet) {
+        this.screenlet = screenlet;
+    }
 
-	public void onClick(View v) {
-		AddBookmarkScreenlet screenlet = (AddBookmarkScreenlet) getScreenlet();
+    public void onClick(View v) {
+        AddBookmarkScreenlet screenlet = (AddBookmarkScreenlet) getScreenlet();
 
-		screenlet.performUserAction();
-	}
+        screenlet.performUserAction();
+    }
 
-	public String getURL() {
-		return urlText.getText().toString();
-	}
+    public String getURL() {
+        return urlText.getText().toString();
+    }
 
-	public void setURL(String value) {
-		urlText.setText(value);
-	}
+    public void setURL(String value) {
+        urlText.setText(value);
+    }
 
-	public String getTitle() {
-		return titleText.getText().toString();
-	}
+    public String getTitle() {
+        return titleText.getText().toString();
+    }
 
-	public void setTitle(String value) {
-		titleText.setText(value);
-	}
+    public void setTitle(String value) {
+        titleText.setText(value);
+    }
 
-	protected void onFinishInflate() {
-		super.onFinishInflate();
+    protected void onFinishInflate() {
+        super.onFinishInflate();
 
-		urlText = findViewById(R.id.url);
-		titleText = findViewById(R.id.title_bookmark);
+        urlText = findViewById(R.id.url);
+        titleText = findViewById(R.id.title_bookmark);
 
-		Button addButton = findViewById(R.id.add_button);
-		addButton.setOnClickListener(this);
-	}
+        Button addButton = findViewById(R.id.add_button);
+        addButton.setOnClickListener(this);
+    }
 }

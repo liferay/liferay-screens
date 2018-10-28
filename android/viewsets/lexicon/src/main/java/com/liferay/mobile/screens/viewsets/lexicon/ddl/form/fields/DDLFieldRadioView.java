@@ -30,49 +30,49 @@ import java.util.List;
  * @author Victor Oliveira
  */
 public class DDLFieldRadioView
-	extends com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldRadioView {
+    extends com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldRadioView {
 
-	public DDLFieldRadioView(Context context) {
-		super(context);
-	}
+    public DDLFieldRadioView(Context context) {
+        super(context);
+    }
 
-	public DDLFieldRadioView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public DDLFieldRadioView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	@Override
-	public void renderOptions(SelectableOptionsField field) {
-		LayoutParams layoutParams =
-			new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+    @Override
+    public void renderOptions(SelectableOptionsField field) {
+        LayoutParams layoutParams =
+            new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-		int margin = FormViewUtil.convertDpToPx(getContext(), 18);
-		layoutParams.setMargins(0, margin, 0, margin);
+        int margin = FormViewUtil.convertDpToPx(getContext(), 18);
+        layoutParams.setMargins(0, margin, 0, margin);
 
-		List<Option> availableOptions = field.getAvailableOptions();
+        List<Option> availableOptions = field.getAvailableOptions();
 
-		for (int i = 0; i < availableOptions.size(); ++i) {
-			Option opt = availableOptions.get(i);
+        for (int i = 0; i < availableOptions.size(); ++i) {
+            Option opt = availableOptions.get(i);
 
-			RadioButton radioButton = new RadioButton(getContext());
-			radioButton.setLayoutParams(layoutParams);
-			radioButton.setText(opt.label);
-			radioButton.setTag(opt);
-			radioButton.setOnCheckedChangeListener(this);
-			radioButton.setSaveEnabled(true);
-			addView(radioButton);
+            RadioButton radioButton = new RadioButton(getContext());
+            radioButton.setLayoutParams(layoutParams);
+            radioButton.setText(opt.label);
+            radioButton.setTag(opt);
+            radioButton.setOnCheckedChangeListener(this);
+            radioButton.setSaveEnabled(true);
+            addView(radioButton);
 
-			boolean isLast = availableOptions.size() - 1 == i;
-			if (!isLast) {
-				LayoutParams params =
-					new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, FormViewUtil.convertDpToPx(getContext(), 1));
+            boolean isLast = availableOptions.size() - 1 == i;
+            if (!isLast) {
+                LayoutParams params =
+                    new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, FormViewUtil.convertDpToPx(getContext(), 1));
 
-				View separator = new View(getContext());
-				separator.setLayoutParams(params);
-				separator.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.textColorTertiary_lexicon,
-					getContext().getTheme()));
+                View separator = new View(getContext());
+                separator.setLayoutParams(params);
+                separator.setBackgroundColor(ResourcesCompat.getColor(getResources(), R.color.textColorTertiary_lexicon,
+                    getContext().getTheme()));
 
-				addView(separator);
-			}
-		}
-	}
+                addView(separator);
+            }
+        }
+    }
 }

@@ -1,19 +1,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:orientation="horizontal"
-	tools:context="com.liferay.mobile.screens.testapp.FilteredAssetActivity"
-	>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context="com.liferay.mobile.screens.testapp.FilteredAssetActivity"
+    >
 
-	<com.liferay.mobile.screens.asset.list.AssetListScreenlet
-		android:id="@+id/filtered_asset_list"
-		android:layout_width="0dp"
-		android:layout_height="wrap_content"
-		android:layout_weight="1"
-		app:groupId="@string/liferay_group_id"
-		app:portletItemName="@string/portlet_item_name2"
-		/>
+    <com.liferay.mobile.screens.asset.list.AssetListScreenlet
+        android:id="@+id/filtered_asset_list"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:groupId="@string/liferay_group_id"
+        app:portletItemName="@string/portlet_item_name2"
+        />
 
 </LinearLayout>

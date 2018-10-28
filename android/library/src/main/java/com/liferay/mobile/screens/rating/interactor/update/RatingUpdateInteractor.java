@@ -17,51 +17,51 @@ import org.json.JSONObject;
  */
 public class RatingUpdateInteractor extends BaseCacheWriteInteractor<RatingListener, RatingEvent> {
 
-	@Override
-	public RatingEvent execute(RatingEvent event) throws Exception {
+    @Override
+    public RatingEvent execute(RatingEvent event) throws Exception {
 
-		validate(event.getScore());
+        validate(event.getScore());
 
-		ScreensRatingsConnector connector = ServiceProvider.getInstance().getScreensRatingsConnector(getSession());
+        ScreensRatingsConnector connector = ServiceProvider.getInstance().getScreensRatingsConnector(getSession());
 
-		JSONObject jsonObject = connector.updateRatingsEntry(event.getClassPK(), event.getClassName(), event.getScore(),
-			event.getRatingGroupCounts());
-		event.setJSONObject(jsonObject);
-		return event;
-	}
+        JSONObject jsonObject = connector.updateRatingsEntry(event.getClassPK(), event.getClassName(), event.getScore(),
+            event.getRatingGroupCounts());
+        event.setJSONObject(jsonObject);
+        return event;
+    }
 
-	@Override
-	public void onSuccess(RatingEvent event) {
-		JSONObject result = event.getJSONObject();
-		AssetRating assetRating;
-		try {
-			assetRating = new AssetRating(result.getLong("classPK"), result.getString("className"),
-				toIntArray(result.getJSONArray("ratings")), result.getDouble("average"), result.getDouble("userScore"),
-				result.getDouble("totalScore"), result.getInt("totalCount"));
-		} catch (JSONException e) {
-			event.setException(e);
-			onFailure(event);
-			return;
-		}
-		getListener().onRatingOperationSuccess(assetRating);
-	}
+    @Override
+    public void onSuccess(RatingEvent event) {
+        JSONObject result = event.getJSONObject();
+        AssetRating assetRating;
+        try {
+            assetRating = new AssetRating(result.getLong("classPK"), result.getString("className"),
+                toIntArray(result.getJSONArray("ratings")), result.getDouble("average"), result.getDouble("userScore"),
+                result.getDouble("totalScore"), result.getInt("totalCount"));
+        } catch (JSONException e) {
+            event.setException(e);
+            onFailure(event);
+            return;
+        }
+        getListener().onRatingOperationSuccess(assetRating);
+    }
 
-	@Override
-	public void onFailure(RatingEvent event) {
-		getListener().error(event.getException(), RatingScreenlet.UPDATE_RATING_ACTION);
-	}
+    @Override
+    public void onFailure(RatingEvent event) {
+        getListener().error(event.getException(), RatingScreenlet.UPDATE_RATING_ACTION);
+    }
 
-	protected void validate(double score) throws InvalidParameterException {
-		if ((score > 1) || (score < 0)) {
-			throw new InvalidParameterException("Score " + score + " is not a double value between 0 and 1");
-		}
-	}
+    protected void validate(double score) throws InvalidParameterException {
+        if ((score > 1) || (score < 0)) {
+            throw new InvalidParameterException("Score " + score + " is not a double value between 0 and 1");
+        }
+    }
 
-	protected int[] toIntArray(JSONArray array) {
-		int[] intArray = new int[array.length()];
-		for (int i = 0; i < array.length(); i++) {
-			intArray[i] = array.optInt(i);
-		}
-		return intArray;
-	}
+    protected int[] toIntArray(JSONArray array) {
+        int[] intArray = new int[array.length()];
+        for (int i = 0; i < array.length(); i++) {
+            intArray[i] = array.optInt(i);
+        }
+        return intArray;
+    }
 }

@@ -8,14 +8,14 @@ import com.liferay.mobile.screens.service.v62.DDLRecordSetService;
  */
 public class DDLRecordSetConnector62 implements DDLRecordSetConnector {
 
-	private final DDLRecordSetService ddlRecordSetService;
+    private final DDLRecordSetService ddlRecordSetService;
 
-	public DDLRecordSetConnector62(Session session) {
-		ddlRecordSetService = new DDLRecordSetService(session);
-	}
+    public DDLRecordSetConnector62(Session session) {
+        ddlRecordSetService = new DDLRecordSetService(session);
+    }
 
-	@Override
-	public void getRecordSet(long recordSetId) throws Exception {
-		ddlRecordSetService.getRecordSet(recordSetId);
-	}
+    @Override
+    public void getRecordSet(long recordSetId) throws Exception {
+        ddlRecordSetService.getRecordSet(recordSetId);
+    }
 }

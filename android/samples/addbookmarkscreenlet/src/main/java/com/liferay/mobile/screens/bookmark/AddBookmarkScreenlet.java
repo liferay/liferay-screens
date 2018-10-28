@@ -28,91 +28,91 @@ import com.liferay.mobile.screens.bookmark.view.AddBookmarkViewModel;
  * @author Javier Gamarra
  */
 public class AddBookmarkScreenlet extends BaseScreenlet<AddBookmarkViewModel, AddBookmarkInteractor>
-	implements AddBookmarkListener {
+    implements AddBookmarkListener {
 
-	private long folderId;
-	private AddBookmarkListener listener;
+    private long folderId;
+    private AddBookmarkListener listener;
 
-	public AddBookmarkScreenlet(Context context) {
-		super(context);
-	}
+    public AddBookmarkScreenlet(Context context) {
+        super(context);
+    }
 
-	public AddBookmarkScreenlet(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public AddBookmarkScreenlet(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public AddBookmarkScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-	}
+    public AddBookmarkScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-	public AddBookmarkScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
+    public AddBookmarkScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
 
-	public void onAddBookmarkSuccess() {
-		getViewModel().showFinishOperation(null);
+    public void onAddBookmarkSuccess() {
+        getViewModel().showFinishOperation(null);
 
-		if (listener != null) {
-			listener.onAddBookmarkSuccess();
-		}
-	}
+        if (listener != null) {
+            listener.onAddBookmarkSuccess();
+        }
+    }
 
-	public void onAddBookmarkFailure(Exception e) {
-		getViewModel().showFailedOperation(null, e);
+    public void onAddBookmarkFailure(Exception e) {
+        getViewModel().showFailedOperation(null, e);
 
-		if (listener != null) {
-			listener.onAddBookmarkFailure(e);
-		}
-	}
+        if (listener != null) {
+            listener.onAddBookmarkFailure(e);
+        }
+    }
 
-	public long getFolderId() {
-		return folderId;
-	}
+    public long getFolderId() {
+        return folderId;
+    }
 
-	public void setFolderId(long folderId) {
-		this.folderId = folderId;
-	}
+    public void setFolderId(long folderId) {
+        this.folderId = folderId;
+    }
 
-	public AddBookmarkListener getListener() {
-		return listener;
-	}
+    public AddBookmarkListener getListener() {
+        return listener;
+    }
 
-	public void setListener(AddBookmarkListener listener) {
-		this.listener = listener;
-	}
+    public void setListener(AddBookmarkListener listener) {
+        this.listener = listener;
+    }
 
-	@Override
-	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray =
-			context.getTheme().obtainStyledAttributes(attributes, R.styleable.AddBookmarkScreenlet, 0, 0);
+    @Override
+    protected View createScreenletView(Context context, AttributeSet attributes) {
+        TypedArray typedArray =
+            context.getTheme().obtainStyledAttributes(attributes, R.styleable.AddBookmarkScreenlet, 0, 0);
 
-		int layoutId = typedArray.getResourceId(R.styleable.AddBookmarkScreenlet_layoutId, 0);
+        int layoutId = typedArray.getResourceId(R.styleable.AddBookmarkScreenlet_layoutId, 0);
 
-		View view = LayoutInflater.from(context).inflate(layoutId, null);
+        View view = LayoutInflater.from(context).inflate(layoutId, null);
 
-		String defaultTitle = typedArray.getString(R.styleable.AddBookmarkScreenlet_defaultTitle);
+        String defaultTitle = typedArray.getString(R.styleable.AddBookmarkScreenlet_defaultTitle);
 
-		folderId = castToLong(typedArray.getString(R.styleable.AddBookmarkScreenlet_folderId));
+        folderId = castToLong(typedArray.getString(R.styleable.AddBookmarkScreenlet_folderId));
 
-		typedArray.recycle();
+        typedArray.recycle();
 
-		AddBookmarkViewModel viewModel = (AddBookmarkViewModel) view;
-		viewModel.setTitle(defaultTitle);
+        AddBookmarkViewModel viewModel = (AddBookmarkViewModel) view;
+        viewModel.setTitle(defaultTitle);
 
-		return view;
-	}
+        return view;
+    }
 
-	@Override
-	protected AddBookmarkInteractor createInteractor(String actionName) {
-		return new AddBookmarkInteractor();
-	}
+    @Override
+    protected AddBookmarkInteractor createInteractor(String actionName) {
+        return new AddBookmarkInteractor();
+    }
 
-	@Override
-	protected void onUserAction(String userActionName, AddBookmarkInteractor interactor, Object... args) {
-		AddBookmarkViewModel viewModel = getViewModel();
-		String url = viewModel.getURL();
-		String title = viewModel.getTitle();
+    @Override
+    protected void onUserAction(String userActionName, AddBookmarkInteractor interactor, Object... args) {
+        AddBookmarkViewModel viewModel = getViewModel();
+        String url = viewModel.getURL();
+        String title = viewModel.getTitle();
 
-		interactor.start(url, title, folderId);
-	}
+        interactor.start(url, title, folderId);
+    }
 }

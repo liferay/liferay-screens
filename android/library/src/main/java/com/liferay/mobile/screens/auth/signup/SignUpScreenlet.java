@@ -36,196 +36,196 @@ import java.util.Locale;
  */
 public class SignUpScreenlet extends BaseScreenlet<SignUpViewModel, SignUpInteractor> implements SignUpListener {
 
-	private String anonymousApiPassword;
-	private String anonymousApiUserName;
-	private boolean autoLogin;
-	private long companyId;
-	private StorageType credentialsStorage;
-	private BasicAuthMethod basicAuthMethod;
-	private SignUpListener listener;
-	private LoginListener autoLoginListener;
+    private String anonymousApiPassword;
+    private String anonymousApiUserName;
+    private boolean autoLogin;
+    private long companyId;
+    private StorageType credentialsStorage;
+    private BasicAuthMethod basicAuthMethod;
+    private SignUpListener listener;
+    private LoginListener autoLoginListener;
 
-	public SignUpScreenlet(Context context) {
-		super(context);
-	}
+    public SignUpScreenlet(Context context) {
+        super(context);
+    }
 
-	public SignUpScreenlet(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public SignUpScreenlet(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public SignUpScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-	}
+    public SignUpScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-	public SignUpScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
+    public SignUpScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
 
-	@Override
-	public void onSignUpFailure(Exception e) {
-		getViewModel().showFailedOperation(null, e);
+    @Override
+    public void onSignUpFailure(Exception e) {
+        getViewModel().showFailedOperation(null, e);
 
-		if (getListener() != null) {
-			getListener().onSignUpFailure(e);
-		}
-	}
+        if (getListener() != null) {
+            getListener().onSignUpFailure(e);
+        }
+    }
 
-	@Override
-	public void onSignUpSuccess(User user) {
-		getViewModel().showFinishOperation(user);
+    @Override
+    public void onSignUpSuccess(User user) {
+        getViewModel().showFinishOperation(user);
 
-		if (autoLogin) {
-			SignUpViewModel viewModel = getViewModel();
+        if (autoLogin) {
+            SignUpViewModel viewModel = getViewModel();
 
-			String authUsername = getAuthUsernameFromUser(user);
-			String password = viewModel.getPassword();
+            String authUsername = getAuthUsernameFromUser(user);
+            String password = viewModel.getPassword();
 
-			SessionContext.createBasicSession(authUsername, password);
-			SessionContext.setCurrentUser(user);
+            SessionContext.createBasicSession(authUsername, password);
+            SessionContext.setCurrentUser(user);
 
-			if (autoLoginListener != null) {
-				autoLoginListener.onLoginSuccess(user);
-			}
+            if (autoLoginListener != null) {
+                autoLoginListener.onLoginSuccess(user);
+            }
 
-			SessionContext.storeCredentials(credentialsStorage);
-		}
+            SessionContext.storeCredentials(credentialsStorage);
+        }
 
-		if (getListener() != null) {
-			getListener().onSignUpSuccess(user);
-		}
-	}
+        if (getListener() != null) {
+            getListener().onSignUpSuccess(user);
+        }
+    }
 
-	/**
-	 * Returns the username depending on its basic auth method.
-	 *
-	 * @return screen name, userId or email depending on the chosen
-	 * basic auth method.
-	 */
-	public String getAuthUsernameFromUser(User user) {
-		switch (basicAuthMethod) {
-			case SCREEN_NAME:
-				return user.getScreenName();
-			case USER_ID:
-				return String.valueOf(user.getId());
-			case EMAIL:
-			default:
-				return user.getEmail();
-		}
-	}
+    /**
+     * Returns the username depending on its basic auth method.
+     *
+     * @return screen name, userId or email depending on the chosen
+     * basic auth method.
+     */
+    public String getAuthUsernameFromUser(User user) {
+        switch (basicAuthMethod) {
+            case SCREEN_NAME:
+                return user.getScreenName();
+            case USER_ID:
+                return String.valueOf(user.getId());
+            case EMAIL:
+            default:
+                return user.getEmail();
+        }
+    }
 
-	public String getAnonymousApiPassword() {
-		return anonymousApiPassword;
-	}
+    public String getAnonymousApiPassword() {
+        return anonymousApiPassword;
+    }
 
-	public void setAnonymousApiPassword(String value) {
-		anonymousApiPassword = value;
-	}
+    public void setAnonymousApiPassword(String value) {
+        anonymousApiPassword = value;
+    }
 
-	public String getAnonymousApiUserName() {
-		return anonymousApiUserName;
-	}
+    public String getAnonymousApiUserName() {
+        return anonymousApiUserName;
+    }
 
-	public void setAnonymousApiUserName(String value) {
-		anonymousApiUserName = value;
-	}
+    public void setAnonymousApiUserName(String value) {
+        anonymousApiUserName = value;
+    }
 
-	public boolean isAutoLogin() {
-		return autoLogin;
-	}
+    public boolean isAutoLogin() {
+        return autoLogin;
+    }
 
-	public void setAutoLogin(boolean value) {
-		autoLogin = value;
-	}
+    public void setAutoLogin(boolean value) {
+        autoLogin = value;
+    }
 
-	public long getCompanyId() {
-		return companyId;
-	}
+    public long getCompanyId() {
+        return companyId;
+    }
 
-	public void setCompanyId(long value) {
-		companyId = value;
-	}
+    public void setCompanyId(long value) {
+        companyId = value;
+    }
 
-	public SignUpListener getListener() {
-		return listener;
-	}
+    public SignUpListener getListener() {
+        return listener;
+    }
 
-	public void setListener(SignUpListener value) {
-		listener = value;
-	}
+    public void setListener(SignUpListener value) {
+        listener = value;
+    }
 
-	public LoginListener getAutoLoginListener() {
-		return autoLoginListener;
-	}
+    public LoginListener getAutoLoginListener() {
+        return autoLoginListener;
+    }
 
-	public void setAutoLoginListener(LoginListener value) {
-		autoLoginListener = value;
-	}
+    public void setAutoLoginListener(LoginListener value) {
+        autoLoginListener = value;
+    }
 
-	public StorageType getCredentialsStorage() {
-		return credentialsStorage;
-	}
+    public StorageType getCredentialsStorage() {
+        return credentialsStorage;
+    }
 
-	public void setCredentialsStorage(StorageType value) {
-		credentialsStorage = value;
-	}
+    public void setCredentialsStorage(StorageType value) {
+        credentialsStorage = value;
+    }
 
-	public BasicAuthMethod getBasicAuthMethod() {
-		return basicAuthMethod;
-	}
+    public BasicAuthMethod getBasicAuthMethod() {
+        return basicAuthMethod;
+    }
 
-	public void setBasicAuthMethod(BasicAuthMethod basicAuthMethod) {
-		this.basicAuthMethod = basicAuthMethod;
-	}
+    public void setBasicAuthMethod(BasicAuthMethod basicAuthMethod) {
+        this.basicAuthMethod = basicAuthMethod;
+    }
 
-	@Override
-	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray =
-			context.getTheme().obtainStyledAttributes(attributes, R.styleable.SignUpScreenlet, 0, 0);
+    @Override
+    protected View createScreenletView(Context context, AttributeSet attributes) {
+        TypedArray typedArray =
+            context.getTheme().obtainStyledAttributes(attributes, R.styleable.SignUpScreenlet, 0, 0);
 
-		companyId = castToLongOrUseDefault(typedArray.getString(R.styleable.SignUpScreenlet_companyId),
-			LiferayServerContext.getCompanyId());
+        companyId = castToLongOrUseDefault(typedArray.getString(R.styleable.SignUpScreenlet_companyId),
+            LiferayServerContext.getCompanyId());
 
-		anonymousApiUserName = typedArray.getString(R.styleable.SignUpScreenlet_anonymousApiUserName);
+        anonymousApiUserName = typedArray.getString(R.styleable.SignUpScreenlet_anonymousApiUserName);
 
-		anonymousApiPassword = typedArray.getString(R.styleable.SignUpScreenlet_anonymousApiPassword);
+        anonymousApiPassword = typedArray.getString(R.styleable.SignUpScreenlet_anonymousApiPassword);
 
-		autoLogin = typedArray.getBoolean(R.styleable.SignUpScreenlet_autoLogin, true);
+        autoLogin = typedArray.getBoolean(R.styleable.SignUpScreenlet_autoLogin, true);
 
-		int storageValue = typedArray.getInt(R.styleable.SignUpScreenlet_credentialsStorage, StorageType.NONE.toInt());
+        int storageValue = typedArray.getInt(R.styleable.SignUpScreenlet_credentialsStorage, StorageType.NONE.toInt());
 
-		credentialsStorage = StorageType.valueOf(storageValue);
+        credentialsStorage = StorageType.valueOf(storageValue);
 
-		autoLogin = typedArray.getBoolean(R.styleable.SignUpScreenlet_autoLogin, true);
+        autoLogin = typedArray.getBoolean(R.styleable.SignUpScreenlet_autoLogin, true);
 
-		int authMethodId = typedArray.getInt(R.styleable.SignUpScreenlet_basicAuthMethod, 0);
-		basicAuthMethod = BasicAuthMethod.getValue(authMethodId);
+        int authMethodId = typedArray.getInt(R.styleable.SignUpScreenlet_basicAuthMethod, 0);
+        basicAuthMethod = BasicAuthMethod.getValue(authMethodId);
 
-		int layoutId = typedArray.getResourceId(R.styleable.SignUpScreenlet_layoutId, getDefaultLayoutId());
+        int layoutId = typedArray.getResourceId(R.styleable.SignUpScreenlet_layoutId, getDefaultLayoutId());
 
-		typedArray.recycle();
+        typedArray.recycle();
 
-		return LayoutInflater.from(context).inflate(layoutId, null);
-	}
+        return LayoutInflater.from(context).inflate(layoutId, null);
+    }
 
-	@Override
-	protected SignUpInteractor createInteractor(String actionName) {
-		return new SignUpInteractor();
-	}
+    @Override
+    protected SignUpInteractor createInteractor(String actionName) {
+        return new SignUpInteractor();
+    }
 
-	@Override
-	protected void onUserAction(String userActionName, SignUpInteractor interactor, Object... args) {
-		SignUpViewModel viewModel = getViewModel();
+    @Override
+    protected void onUserAction(String userActionName, SignUpInteractor interactor, Object... args) {
+        SignUpViewModel viewModel = getViewModel();
 
-		String firstName = viewModel.getFirstName();
-		String middleName = viewModel.getMiddleName();
-		String lastName = viewModel.getLastName();
-		String emailAddress = viewModel.getEmailAddress();
-		String password = viewModel.getPassword();
-		String screenName = viewModel.getScreenName();
-		String jobTitle = viewModel.getJobTitle();
-		Locale locale = getResources().getConfiguration().locale;
+        String firstName = viewModel.getFirstName();
+        String middleName = viewModel.getMiddleName();
+        String lastName = viewModel.getLastName();
+        String emailAddress = viewModel.getEmailAddress();
+        String password = viewModel.getPassword();
+        String screenName = viewModel.getScreenName();
+        String jobTitle = viewModel.getJobTitle();
+        Locale locale = getResources().getConfiguration().locale;
 
-		interactor.start(companyId, firstName, middleName, lastName, emailAddress, screenName, password, jobTitle,
-			locale, anonymousApiUserName, anonymousApiPassword);
-	}
+        interactor.start(companyId, firstName, middleName, lastName, emailAddress, screenName, password, jobTitle,
+            locale, anonymousApiUserName, anonymousApiPassword);
+    }
 }

@@ -8,34 +8,34 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
  */
 public class ServiceProvider {
 
-	private static ServiceVersionFactory versionFactory;
+    private static ServiceVersionFactory versionFactory;
 
-	private ServiceProvider() {
-		super();
-	}
+    private ServiceProvider() {
+        super();
+    }
 
-	public static ServiceVersionFactory getInstance() {
-		synchronized (ServiceProvider.class) {
-			if (versionFactory == null) {
-				versionFactory = createFactory();
-			}
-		}
-		return versionFactory;
-	}
+    public static ServiceVersionFactory getInstance() {
+        synchronized (ServiceProvider.class) {
+            if (versionFactory == null) {
+                versionFactory = createFactory();
+            }
+        }
+        return versionFactory;
+    }
 
-	private static ServiceVersionFactory createFactory() {
-		try {
-			if (!LiferayServerContext.getVersionFactory().isEmpty()) {
-				return (ServiceVersionFactory) Class.forName(LiferayServerContext.getVersionFactory()).newInstance();
-			}
-			if (LiferayServerContext.isLiferay7()) {
-				return new ServiceVersionFactory70();
-			} else {
-				return new ServiceVersionFactory62();
-			}
-		} catch (Exception e) {
-			Log.e("LiferayScreens", "Error creating the instance class");
-			return new ServiceVersionFactory70();
-		}
-	}
+    private static ServiceVersionFactory createFactory() {
+        try {
+            if (!LiferayServerContext.getVersionFactory().isEmpty()) {
+                return (ServiceVersionFactory) Class.forName(LiferayServerContext.getVersionFactory()).newInstance();
+            }
+            if (LiferayServerContext.isLiferay7()) {
+                return new ServiceVersionFactory70();
+            } else {
+                return new ServiceVersionFactory62();
+            }
+        } catch (Exception e) {
+            Log.e("LiferayScreens", "Error creating the instance class");
+            return new ServiceVersionFactory70();
+        }
+    }
 }

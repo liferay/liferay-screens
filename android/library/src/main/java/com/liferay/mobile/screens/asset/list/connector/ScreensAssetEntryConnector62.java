@@ -11,30 +11,30 @@ import org.json.JSONObject;
  */
 public class ScreensAssetEntryConnector62 implements ScreensAssetEntryConnector {
 
-	private final ScreensassetentryService screensassetentryService;
+    private final ScreensassetentryService screensassetentryService;
 
-	public ScreensAssetEntryConnector62(Session session) {
-		screensassetentryService = new ScreensassetentryService(session);
-	}
+    public ScreensAssetEntryConnector62(Session session) {
+        screensassetentryService = new ScreensassetentryService(session);
+    }
 
-	@Override
-	public JSONArray getAssetEntries(JSONObjectWrapper entryQuery, String s) throws Exception {
-		return screensassetentryService.getAssetEntries(entryQuery, s);
-	}
+    @Override
+    public JSONArray getAssetEntries(JSONObjectWrapper entryQuery, String s) throws Exception {
+        return screensassetentryService.getAssetEntries(entryQuery, s);
+    }
 
-	@Override
-	public JSONArray getAssetEntries(long companyId, long groupId, String portletItemName, String s, int endRow)
-		throws Exception {
-		return screensassetentryService.getAssetEntries(companyId, groupId, portletItemName, s, endRow);
-	}
+    @Override
+    public JSONArray getAssetEntries(long companyId, long groupId, String portletItemName, String s, int endRow)
+        throws Exception {
+        return screensassetentryService.getAssetEntries(companyId, groupId, portletItemName, s, endRow);
+    }
 
-	@Override
-	public JSONObject getAssetEntry(long entryId, String language) throws Exception {
-		return null;
-	}
+    @Override
+    public JSONObject getAssetEntry(long entryId, String language) throws Exception {
+        return null;
+    }
 
-	@Override
-	public JSONObject getAssetEntry(String className, long classPK, String language) throws Exception {
-		return null;
-	}
+    @Override
+    public JSONObject getAssetEntry(String className, long classPK, String language) throws Exception {
+        return null;
+    }
 }

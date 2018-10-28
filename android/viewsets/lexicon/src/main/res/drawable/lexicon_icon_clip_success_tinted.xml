@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
-	<item android:drawable="@drawable/lexicon_icon_clip_white_background" />
-	<item>
-		<bitmap
-			android:src="@drawable/lexicon_icon_success"
-			android:gravity="center"/>
-	</item>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/lexicon_icon_clip_white_background"/>
+    <item>
+        <bitmap
+            android:src="@drawable/lexicon_icon_success"
+            android:gravity="center"/>
+    </item>
 </layer-list>

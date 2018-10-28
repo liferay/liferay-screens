@@ -24,32 +24,32 @@ import com.liferay.apio.consumer.model.get
 import java.util.*
 
 data class Person(
-    val name: String?,
-    val email: String?,
-    val jobTitle: String?,
-    val birthDate: Date?,
-    val image: String?) {
+	val name: String?,
+	val email: String?,
+	val jobTitle: String?,
+	val birthDate: Date?,
+	val image: String?) {
 
-    companion object {
-        val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
-            mutableMapOf(
-                Detail to R.layout.person_detail_default,
-                Custom("portrait") to R.layout.person_portrait_default
-            )
+	companion object {
+		val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
+			mutableMapOf(
+				Detail to R.layout.person_detail_default,
+				Custom("portrait") to R.layout.person_portrait_default
+			)
 
-        val converter: (Thing) -> Any = { it: Thing ->
+		val converter: (Thing) -> Any = { it: Thing ->
 
-            val name = it["name"] as? String
+			val name = it["name"] as? String
 
-            val email = it["email"] as? String
+			val email = it["email"] as? String
 
-            val jobTitle = it["jobTitle"] as? String
+			val jobTitle = it["jobTitle"] as? String
 
-            val birthDate = (it["birthDate"] as? String)?.asDate()
+			val birthDate = (it["birthDate"] as? String)?.asDate()
 
-            val image = it["image"] as? String
+			val image = it["image"] as? String
 
-            Person(name, email, jobTitle, birthDate, image)
-        }
-    }
+			Person(name, email, jobTitle, birthDate, image)
+		}
+	}
 }

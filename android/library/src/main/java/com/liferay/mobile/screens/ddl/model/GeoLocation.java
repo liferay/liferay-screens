@@ -22,24 +22,24 @@ import java.io.Serializable;
 
 public class GeoLocation implements Serializable {
 
-	private final double latitude;
-	private final double longitude;
+    private final double latitude;
+    private final double longitude;
 
-	public GeoLocation(double latitude, double longitude) {
-		this.latitude = latitude;
-		this.longitude = longitude;
-	}
+    public GeoLocation(double latitude, double longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 
-	public double getLatitude() {
-		return latitude;
-	}
+    public double getLatitude() {
+        return latitude;
+    }
 
-	public double getLongitude() {
-		return longitude;
-	}
+    public double getLongitude() {
+        return longitude;
+    }
 
-	@Override
-	public String toString() {
-		return "latitude=" + latitude + ", longitude=" + longitude;
-	}
+    @Override
+    public String toString() {
+        return "latitude=" + latitude + ", longitude=" + longitude;
+    }
 }

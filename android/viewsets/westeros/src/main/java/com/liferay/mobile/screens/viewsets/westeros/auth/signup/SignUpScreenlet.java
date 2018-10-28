@@ -22,48 +22,48 @@ import com.liferay.mobile.screens.auth.signup.interactor.SignUpInteractor;
  * @author Silvio Santos
  */
 public class SignUpScreenlet extends com.liferay.mobile.screens.auth.signup.SignUpScreenlet
-	implements com.liferay.mobile.screens.viewsets.westeros.auth.signup.SignUpListener {
+    implements com.liferay.mobile.screens.viewsets.westeros.auth.signup.SignUpListener {
 
-	public static final String TERMS_AND_CONDITIONS = "TERMS_AND_CONDITIONS";
-	private SignUpListener listener;
+    public static final String TERMS_AND_CONDITIONS = "TERMS_AND_CONDITIONS";
+    private SignUpListener listener;
 
-	public SignUpScreenlet(Context context) {
-		super(context);
-	}
+    public SignUpScreenlet(Context context) {
+        super(context);
+    }
 
-	public SignUpScreenlet(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public SignUpScreenlet(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public SignUpScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-	}
+    public SignUpScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-	public SignUpScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
+    public SignUpScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
 
-	public SignUpListener getListener() {
-		return listener;
-	}
+    public SignUpListener getListener() {
+        return listener;
+    }
 
-	public void setListener(SignUpListener value) {
-		listener = value;
-	}
+    public void setListener(SignUpListener value) {
+        listener = value;
+    }
 
-	@Override
-	public void onClickOnTermsAndConditions() {
-		if (listener != null) {
-			listener.onClickOnTermsAndConditions();
-		}
-	}
+    @Override
+    public void onClickOnTermsAndConditions() {
+        if (listener != null) {
+            listener.onClickOnTermsAndConditions();
+        }
+    }
 
-	@Override
-	protected void onUserAction(String userActionName, SignUpInteractor interactor, Object... args) {
-		if (TERMS_AND_CONDITIONS.equals(userActionName)) {
-			onClickOnTermsAndConditions();
-		} else {
-			super.onUserAction(userActionName, interactor, args);
-		}
-	}
+    @Override
+    protected void onUserAction(String userActionName, SignUpInteractor interactor, Object... args) {
+        if (TERMS_AND_CONDITIONS.equals(userActionName)) {
+            onClickOnTermsAndConditions();
+        } else {
+            super.onUserAction(userActionName, interactor, args);
+        }
+    }
 }

@@ -26,35 +26,35 @@ import com.liferay.mobile.screens.viewsets.R;
  */
 public class UserPortraitView extends com.liferay.mobile.screens.viewsets.defaultviews.userportrait.UserPortraitView {
 
-	public UserPortraitView(Context context) {
-		super(context);
-	}
+    public UserPortraitView(Context context) {
+        super(context);
+    }
 
-	public UserPortraitView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public UserPortraitView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public UserPortraitView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public UserPortraitView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	protected float getBorderWidth() {
-		return (float) getResources().getInteger(R.integer.userportrait_material_border_width);
-	}
+    @Override
+    protected float getBorderWidth() {
+        return (float) getResources().getInteger(R.integer.userportrait_material_border_width);
+    }
 
-	@Override
-	protected Bitmap transformBitmap(Bitmap bitmap) {
-		float borderWidth = getBorderWidth();
+    @Override
+    protected Bitmap transformBitmap(Bitmap bitmap) {
+        float borderWidth = getBorderWidth();
 
-		RectF rect = getRectF(bitmap, borderWidth);
+        RectF rect = getRectF(bitmap, borderWidth);
 
-		Bitmap finalBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        Bitmap finalBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
 
-		Canvas canvas = new Canvas(finalBitmap);
-		canvas.drawOval(rect, getPaint(bitmap));
-		canvas.drawOval(rect, getBorderPaint(borderWidth, R.color.colorPrimary_material));
+        Canvas canvas = new Canvas(finalBitmap);
+        canvas.drawOval(rect, getPaint(bitmap));
+        canvas.drawOval(rect, getBorderPaint(borderWidth, R.color.colorPrimary_material));
 
-		return finalBitmap;
-	}
+        return finalBitmap;
+    }
 }

@@ -29,58 +29,58 @@ import org.robolectric.annotation.Config;
 @RunWith(Enclosed.class)
 public class GetUserInteractorTest {
 
-	@RunWith(RobolectricTestRunner.class)
-	@Config(constants = BuildConfig.class, sdk = 23)
-	public static class WhenGetUser {
+    @RunWith(RobolectricTestRunner.class)
+    @Config(constants = BuildConfig.class, sdk = 23)
+    public static class WhenGetUser {
 
-		@Test(expected = IllegalArgumentException.class)
-		public void shouldRaiseIllegalArgumentException() throws Exception {
-			GetUserInteractor interactor = new GetUserInteractor();
+        @Test(expected = IllegalArgumentException.class)
+        public void shouldRaiseIllegalArgumentException() throws Exception {
+            GetUserInteractor interactor = new GetUserInteractor();
 
-			interactor.execute(null, "xxx");
-		}
-	}
+            interactor.execute(null, "xxx");
+        }
+    }
 
-	@RunWith(RobolectricTestRunner.class)
-	@Config(constants = BuildConfig.class, sdk = 23)
-	public static class WhenGetUserWithAttribute {
-		private GetUserInteractor interactorSpy;
-		private UserConnector serviceMock;
+    @RunWith(RobolectricTestRunner.class)
+    @Config(constants = BuildConfig.class, sdk = 23)
+    public static class WhenGetUserWithAttribute {
+        private GetUserInteractor interactorSpy;
+        private UserConnector serviceMock;
 
-		@Before
-		public void setup() {
-			interactorSpy = Mockito.spy(new GetUserInteractor());
-			serviceMock = Mockito.mock(UserConnector.class);
+        @Before
+        public void setup() {
+            interactorSpy = Mockito.spy(new GetUserInteractor());
+            serviceMock = Mockito.mock(UserConnector.class);
 
-			Mockito.doReturn(serviceMock).when(interactorSpy).getUserConnector();
-		}
+            Mockito.doReturn(serviceMock).when(interactorSpy).getUserConnector();
+        }
 
-		@Test
-		public void shouldCallGetUserByEmailAddressByDefault() throws Exception {
-			interactorSpy.execute("user", null);
+        @Test
+        public void shouldCallGetUserByEmailAddressByDefault() throws Exception {
+            interactorSpy.execute("user", null);
 
-			Mockito.verify(serviceMock).getUserByEmailAddress(0, "user");
-		}
+            Mockito.verify(serviceMock).getUserByEmailAddress(0, "user");
+        }
 
-		@Test
-		public void shouldCallGetUserByUserId() throws Exception {
-			interactorSpy.execute("1", "userId");
+        @Test
+        public void shouldCallGetUserByUserId() throws Exception {
+            interactorSpy.execute("1", "userId");
 
-			Mockito.verify(serviceMock).getUserById(1);
-		}
+            Mockito.verify(serviceMock).getUserById(1);
+        }
 
-		@Test
-		public void shouldCallGetUserByScreenName() throws Exception {
-			interactorSpy.execute("user", "screenName");
+        @Test
+        public void shouldCallGetUserByScreenName() throws Exception {
+            interactorSpy.execute("user", "screenName");
 
-			Mockito.verify(serviceMock).getUserByScreenName(0, "user");
-		}
+            Mockito.verify(serviceMock).getUserByScreenName(0, "user");
+        }
 
-		@Test
-		public void shouldCallGetUserByEmailAddress() throws Exception {
-			interactorSpy.execute("user", "emailAddress");
+        @Test
+        public void shouldCallGetUserByEmailAddress() throws Exception {
+            interactorSpy.execute("user", "emailAddress");
 
-			Mockito.verify(serviceMock).getUserByEmailAddress(0, "user");
-		}
-	}
+            Mockito.verify(serviceMock).getUserByEmailAddress(0, "user");
+        }
+    }
 }

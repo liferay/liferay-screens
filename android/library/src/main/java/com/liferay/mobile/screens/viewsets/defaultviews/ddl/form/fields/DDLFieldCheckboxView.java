@@ -33,97 +33,97 @@ import rx.functions.Func1;
  * @author Jose Manuel Navarro
  */
 public class DDLFieldCheckboxView extends LinearLayout
-	implements DDLFieldViewModel<BooleanField>, CompoundButton.OnCheckedChangeListener {
+    implements DDLFieldViewModel<BooleanField>, CompoundButton.OnCheckedChangeListener {
 
-	protected BooleanField field;
-	protected SwitchCompat switchCompat;
-	protected View parentView;
-	protected Observable<BooleanField> onChangedValueObservable = Observable.empty();
+    protected BooleanField field;
+    protected SwitchCompat switchCompat;
+    protected View parentView;
+    protected Observable<BooleanField> onChangedValueObservable = Observable.empty();
 
-	public DDLFieldCheckboxView(Context context) {
-		super(context);
-	}
+    public DDLFieldCheckboxView(Context context) {
+        super(context);
+    }
 
-	public DDLFieldCheckboxView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public DDLFieldCheckboxView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public DDLFieldCheckboxView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public DDLFieldCheckboxView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	public BooleanField getField() {
-		return field;
-	}
+    @Override
+    public BooleanField getField() {
+        return field;
+    }
 
-	@Override
-	public void setField(BooleanField field) {
-		this.field = field;
+    @Override
+    public void setField(BooleanField field) {
+        this.field = field;
 
-		if (this.field.isShowLabel()) {
-			switchCompat.setHint("");
-			switchCompat.setText(this.field.getLabel());
-		} else {
-			switchCompat.setHint(this.field.getLabel());
-			switchCompat.setText("");
-		}
+        if (this.field.isShowLabel()) {
+            switchCompat.setHint("");
+            switchCompat.setText(this.field.getLabel());
+        } else {
+            switchCompat.setHint(this.field.getLabel());
+            switchCompat.setText("");
+        }
 
-		refresh();
-	}
+        refresh();
+    }
 
-	@Override
-	public void refresh() {
-		switchCompat.setChecked(field.getCurrentValue());
-	}
+    @Override
+    public void refresh() {
+        switchCompat.setChecked(field.getCurrentValue());
+    }
 
-	@Override
-	public void onPostValidation(boolean valid) {
-		//This field is always valid because it has always a value
-	}
+    @Override
+    public void onPostValidation(boolean valid) {
+        //This field is always valid because it has always a value
+    }
 
-	@Override
-	public View getParentView() {
-		return parentView;
-	}
+    @Override
+    public View getParentView() {
+        return parentView;
+    }
 
-	@Override
-	public void setParentView(View view) {
-		parentView = view;
-	}
+    @Override
+    public void setParentView(View view) {
+        parentView = view;
+    }
 
-	@Override
-	public Observable<BooleanField> getOnChangedValueObservable() {
-		return onChangedValueObservable;
-	}
+    @Override
+    public Observable<BooleanField> getOnChangedValueObservable() {
+        return onChangedValueObservable;
+    }
 
-	@Override
-	public void setUpdateMode(boolean enabled) {
-		switchCompat.setEnabled(enabled);
-	}
+    @Override
+    public void setUpdateMode(boolean enabled) {
+        switchCompat.setEnabled(enabled);
+    }
 
-	@Override
-	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		field.setCurrentValue(isChecked);
-	}
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        field.setCurrentValue(isChecked);
+    }
 
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
 
-		setSaveEnabled(false);
+        setSaveEnabled(false);
 
-		switchCompat = findViewById(R.id.liferay_ddl_switch);
+        switchCompat = findViewById(R.id.liferay_ddl_switch);
 
-		switchCompat.setOnCheckedChangeListener(this);
+        switchCompat.setOnCheckedChangeListener(this);
 
-		onChangedValueObservable = RxCompoundButton.checkedChanges(switchCompat)
-			.distinctUntilChanged()
-			.map(new Func1<Boolean, BooleanField>() {
-				@Override
-				public BooleanField call(Boolean aBoolean) {
-					return field;
-				}
-			});
-	}
+        onChangedValueObservable = RxCompoundButton.checkedChanges(switchCompat)
+            .distinctUntilChanged()
+            .map(new Func1<Boolean, BooleanField>() {
+                @Override
+                public BooleanField call(Boolean aBoolean) {
+                    return field;
+                }
+            });
+    }
 }

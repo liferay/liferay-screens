@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="pdf_go">Go</string>
-	<string name="pdf_previous">Prev</string>
-	<string name="pdf_next">Next</string>
+    <string name="pdf_go">Go</string>
+    <string name="pdf_previous">Prev</string>
+    <string name="pdf_next">Next</string>
 </resources>

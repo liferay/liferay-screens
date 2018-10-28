@@ -21,34 +21,34 @@ import android.text.InputType;
  */
 public enum BasicAuthMethod {
 
-	EMAIL(0), SCREEN_NAME(1), USER_ID(2);
+    EMAIL(0), SCREEN_NAME(1), USER_ID(2);
 
-	private final int value;
+    private final int value;
 
-	BasicAuthMethod(int value) {
-		this.value = value;
-	}
+    BasicAuthMethod(int value) {
+        this.value = value;
+    }
 
-	public static BasicAuthMethod getValue(int value) {
-		for (BasicAuthMethod method : BasicAuthMethod.values()) {
-			if (method.value == value) {
-				return method;
-			}
-		}
+    public static BasicAuthMethod getValue(int value) {
+        for (BasicAuthMethod method : BasicAuthMethod.values()) {
+            if (method.value == value) {
+                return method;
+            }
+        }
 
-		return EMAIL;
-	}
+        return EMAIL;
+    }
 
-	public int getInputType() {
-		switch (this) {
-			case EMAIL:
-			case SCREEN_NAME:
-				return InputType.TYPE_CLASS_TEXT;
-			case USER_ID:
-				return InputType.TYPE_CLASS_NUMBER;
-			default:
-				return InputType.TYPE_NULL;
-		}
-	}
+    public int getInputType() {
+        switch (this) {
+            case EMAIL:
+            case SCREEN_NAME:
+                return InputType.TYPE_CLASS_TEXT;
+            case USER_ID:
+                return InputType.TYPE_CLASS_NUMBER;
+            default:
+                return InputType.TYPE_NULL;
+        }
+    }
 
 }

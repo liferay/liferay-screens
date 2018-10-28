@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.webcontent.display.WebContentStructuredDisplayView
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
-	<TextView
-		android:id="@+id/web_content_field"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		/>
+    <TextView
+        android:id="@+id/web_content_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
 
 </com.liferay.mobile.screens.viewsets.defaultviews.webcontent.display.WebContentStructuredDisplayView>

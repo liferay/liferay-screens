@@ -32,101 +32,101 @@ import java.util.Map;
  */
 public class GetUserScreenlet extends BaseScreenlet<GetUserViewModel, GetUserInteractor> implements GetUserListener {
 
-	protected final String[] keysToDisplay = {
-		User.USER_ID, User.SCREEN_NAME, User.FIRST_NAME, User.LAST_NAME, User.EMAIL_ADDRESS, User.LANGUAGE_ID,
-		User.EMAIL_ADDRESS_VERIFIED, User.LOCKOUT, User.AGREED_TERMS_USE
-	};
-	private GetUserListener listener;
-	private String getUserBy;
+    protected final String[] keysToDisplay = {
+        User.USER_ID, User.SCREEN_NAME, User.FIRST_NAME, User.LAST_NAME, User.EMAIL_ADDRESS, User.LANGUAGE_ID,
+        User.EMAIL_ADDRESS_VERIFIED, User.LOCKOUT, User.AGREED_TERMS_USE
+    };
+    private GetUserListener listener;
+    private String getUserBy;
 
-	public GetUserScreenlet(Context context) {
-		super(context);
-	}
+    public GetUserScreenlet(Context context) {
+        super(context);
+    }
 
-	public GetUserScreenlet(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public GetUserScreenlet(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public GetUserScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-	}
+    public GetUserScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-	public GetUserScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
+    public GetUserScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
 
-	@Override
-	public void onGetUserFailure(Exception exception) {
+    @Override
+    public void onGetUserFailure(Exception exception) {
 
-		getViewModel().showFailedOperation(null, exception);
-		setListViewAdapter(null);
+        getViewModel().showFailedOperation(null, exception);
+        setListViewAdapter(null);
 
-		if (listener != null) {
-			listener.onGetUserFailure(exception);
-		}
-	}
+        if (listener != null) {
+            listener.onGetUserFailure(exception);
+        }
+    }
 
-	@Override
-	public void onGetUserSuccess(User user) {
+    @Override
+    public void onGetUserSuccess(User user) {
 
-		getViewModel().showFinishOperation(null);
-		Map<String, Object> values = filter(user.getValues(), keysToDisplay);
-		setListViewAdapter(new GetUserAdapter(values));
+        getViewModel().showFinishOperation(null);
+        Map<String, Object> values = filter(user.getValues(), keysToDisplay);
+        setListViewAdapter(new GetUserAdapter(values));
 
-		if (listener != null) {
-			listener.onGetUserSuccess(user);
-		}
-	}
+        if (listener != null) {
+            listener.onGetUserSuccess(user);
+        }
+    }
 
-	@Override
-	protected View createScreenletView(Context context, AttributeSet attributes) {
+    @Override
+    protected View createScreenletView(Context context, AttributeSet attributes) {
 
-		View view = LayoutInflater.from(context).inflate(R.layout.get_user_default, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.get_user_default, null);
 
-		TypedArray typedArray =
-			context.getTheme().obtainStyledAttributes(attributes, R.styleable.GetUserScreenlet, 0, 0);
+        TypedArray typedArray =
+            context.getTheme().obtainStyledAttributes(attributes, R.styleable.GetUserScreenlet, 0, 0);
 
-		getUserBy = typedArray.getString(R.styleable.GetUserScreenlet_getUserBy);
+        getUserBy = typedArray.getString(R.styleable.GetUserScreenlet_getUserBy);
 
-		GetUserViewModel userViewModel = (GetUserViewModel) view;
+        GetUserViewModel userViewModel = (GetUserViewModel) view;
 
-		userViewModel.setGetUserBy(getUserBy);
+        userViewModel.setGetUserBy(getUserBy);
 
-		typedArray.recycle();
+        typedArray.recycle();
 
-		return view;
-	}
+        return view;
+    }
 
-	@Override
-	protected GetUserInteractor createInteractor(String actionName) {
-		return new GetUserInteractor();
-	}
+    @Override
+    protected GetUserInteractor createInteractor(String actionName) {
+        return new GetUserInteractor();
+    }
 
-	@Override
-	protected void onUserAction(String userActionName, GetUserInteractor interactor, Object... args) {
+    @Override
+    protected void onUserAction(String userActionName, GetUserInteractor interactor, Object... args) {
 
-		String textValue = getViewModel().getTextValue();
-		interactor.start(textValue, getUserBy);
-	}
+        String textValue = getViewModel().getTextValue();
+        interactor.start(textValue, getUserBy);
+    }
 
-	private Map<String, Object> filter(Map<String, Object> values, String[] keysToDisplay) {
-		Map<String, Object> filteredValues = new HashMap<>();
-		for (String key : keysToDisplay) {
-			filteredValues.put(key, values.get(key));
-		}
-		return filteredValues;
-	}
+    private Map<String, Object> filter(Map<String, Object> values, String[] keysToDisplay) {
+        Map<String, Object> filteredValues = new HashMap<>();
+        for (String key : keysToDisplay) {
+            filteredValues.put(key, values.get(key));
+        }
+        return filteredValues;
+    }
 
-	private void setListViewAdapter(BaseAdapter adapter) {
-		ListView listView = findViewById(R.id.listView);
-		listView.setAdapter(adapter);
-	}
+    private void setListViewAdapter(BaseAdapter adapter) {
+        ListView listView = findViewById(R.id.listView);
+        listView.setAdapter(adapter);
+    }
 
-	public GetUserListener getListener() {
-		return listener;
-	}
+    public GetUserListener getListener() {
+        return listener;
+    }
 
-	public void setListener(GetUserListener listener) {
-		this.listener = listener;
-	}
+    public void setListener(GetUserListener listener) {
+        this.listener = listener;
+    }
 }

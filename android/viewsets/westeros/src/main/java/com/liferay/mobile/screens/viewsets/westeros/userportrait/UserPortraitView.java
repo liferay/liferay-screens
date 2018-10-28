@@ -23,25 +23,25 @@ import com.liferay.mobile.screens.viewsets.westeros.R;
  */
 public class UserPortraitView extends com.liferay.mobile.screens.viewsets.defaultviews.userportrait.UserPortraitView {
 
-	public UserPortraitView(Context context) {
-		super(context);
-	}
+    public UserPortraitView(Context context) {
+        super(context);
+    }
 
-	public UserPortraitView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public UserPortraitView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public UserPortraitView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public UserPortraitView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	protected int getDefaultBorderColor() {
-		return R.color.colorPrimary_westeros;
-	}
+    @Override
+    protected int getDefaultBorderColor() {
+        return R.color.colorPrimary_westeros;
+    }
 
-	@Override
-	protected float getBorderWidth() {
-		return 1f;
-	}
+    @Override
+    protected float getBorderWidth() {
+        return 1f;
+    }
 }

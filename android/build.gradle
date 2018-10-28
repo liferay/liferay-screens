@@ -1,5 +1,6 @@
 buildscript {
 	ext.kotlin_version = '1.2.50'
+
 	repositories {
 		jcenter()
 		maven { url 'https://maven.google.com' }
@@ -11,6 +12,26 @@ buildscript {
 		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
 		classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+	}
+}
+
+plugins {
+	id 'io.gitlab.arturbosch.detekt' version '1.0.0.RC8'
+}
+
+detekt {
+	profile('main') {
+		version = '1.0.0.RC8'
+		input = "$projectDir"
+		config = './detekt.yml'
+		filters = '.*test.*,.*/resources/.*,.*/tmp/.*'
+		output = './library/reports/report.xml'
+	}
+	idea {
+		path = '/Applications/IntelliJ IDEA.app/Contents'
+		codeStyleScheme = "$projectDir/ScreensCodeConvention.xml"
+		report = './library/reports'
+		mask = '*.kt,*.java,*.xml,*.css,*.js'
 	}
 }
 
@@ -29,7 +50,7 @@ ext {
 
 	bintrayRepo = 'liferay-mobile'
 	bintrayOrg = ''
-//	    bintrayOrg = 'liferay'
+	//bintrayOrg = 'liferay'
 
 	siteUrl = 'https://github.com/liferay/liferay-screens'
 	gitUrl = 'https://github.com/liferay/liferay-screens.git'
@@ -46,7 +67,7 @@ ext {
 def supportLibsVersion = '27.1.1'
 
 ext.libraries = [apio_consumer      : 'com.liferay.mobile:apio-consumer-android:0.0.6',
-		         appCompat          : 'com.android.support:appcompat-v7:' + supportLibsVersion,
+                 appCompat          : 'com.android.support:appcompat-v7:' + supportLibsVersion,
                  recyclerView       : 'com.android.support:recyclerview-v7:' + supportLibsVersion,
                  design             : 'com.android.support:design:' + supportLibsVersion,
                  exif               : 'com.android.support:exifinterface:' + supportLibsVersion,
@@ -64,13 +85,12 @@ ext.libraries = [apio_consumer      : 'com.liferay.mobile:apio-consumer-android:
                  mockito            : 'org.mockito:mockito-core:2.11.0',
                  snappydb           : 'com.snappydb:snappydb-lib:0.5.2',
                  kryo               : 'com.esotericsoftware:kryo:4.0.0',
-				 json               : 'org.json:json:20140107',
+                 json               : 'org.json:json:20140107',
                  gson               : 'com.google.code.gson:gson:2.8.2',
                  okhttp             : 'com.squareup.okhttp3:okhttp:3.10.0',
                  circle_image_view  : 'de.hdodenhof:circleimageview:2.2.0',
                  kotlin             : 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:' + ext.kotlin_version,
                  espresso           : 'com.android.support.test.espresso:espresso-core:3.0.1']
-
 
 subprojects {
 	repositories {
@@ -78,4 +98,10 @@ subprojects {
 		maven { url 'https://maven.google.com' }
 		jcenter()
 	}
+}
+
+repositories {
+	mavenLocal()
+	maven { url 'https://maven.google.com' }
+	jcenter()
 }

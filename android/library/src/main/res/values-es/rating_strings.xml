@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<plurals name="rating_count">
-		<item quantity="one">%1$d valoración</item>
-		<item quantity="other">%1$d valoraciones</item>
-	</plurals>
-	<string name="ratings_error">Un error ocurrió durante la operación solicitada</string>
+    <plurals name="rating_count">
+        <item quantity="one">%1$d valoración</item>
+        <item quantity="other">%1$d valoraciones</item>
+    </plurals>
+    <string name="ratings_error">Un error ocurrió durante la operación solicitada</string>
 </resources>

@@ -35,3 +35,5 @@ xamarin/**/packages/
 *.user
 *.userprefs
 *.nupkg
+
+android/library/reports/

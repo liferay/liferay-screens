@@ -22,16 +22,16 @@ import com.liferay.mobile.screens.context.User;
 
 public abstract class BaseLoginInteractor extends BaseRemoteInteractor<LoginListener, BasicEvent> {
 
-	@Override
-	public void onSuccess(BasicEvent event) {
-		User user = new User(event.getJSONObject());
-		SessionContext.setCurrentUser(user);
-		getListener().onLoginSuccess(user);
-	}
+    @Override
+    public void onSuccess(BasicEvent event) {
+        User user = new User(event.getJSONObject());
+        SessionContext.setCurrentUser(user);
+        getListener().onLoginSuccess(user);
+    }
 
-	@Override
-	public void onFailure(BasicEvent e) {
-		SessionContext.logout();
-		getListener().onLoginFailure(e.getException());
-	}
+    @Override
+    public void onFailure(BasicEvent e) {
+        SessionContext.logout();
+        getListener().onLoginFailure(e.getException());
+    }
 }

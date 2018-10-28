@@ -28,81 +28,81 @@ import java.util.Map;
  */
 public class StringField extends OptionsField<String> {
 
-	private StringValidator stringValidation;
+    private StringValidator stringValidation;
 
-	public static final Parcelable.ClassLoaderCreator<StringField> CREATOR =
-		new Parcelable.ClassLoaderCreator<StringField>() {
+    public static final Parcelable.ClassLoaderCreator<StringField> CREATOR =
+        new Parcelable.ClassLoaderCreator<StringField>() {
 
-			@Override
-			public StringField createFromParcel(Parcel source, ClassLoader loader) {
-				return new StringField(source, loader);
-			}
+            @Override
+            public StringField createFromParcel(Parcel source, ClassLoader loader) {
+                return new StringField(source, loader);
+            }
 
-			public StringField createFromParcel(Parcel in) {
-				throw new AssertionError();
-			}
+            public StringField createFromParcel(Parcel in) {
+                throw new AssertionError();
+            }
 
-			public StringField[] newArray(int size) {
-				return new StringField[size];
-			}
-		};
+            public StringField[] newArray(int size) {
+                return new StringField[size];
+            }
+        };
 
-	public StringField() {
-		super();
-	}
+    public StringField() {
+        super();
+    }
 
-	public StringField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
-		super(attributes, locale, defaultLocale);
+    public StringField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
+        super(attributes, locale, defaultLocale);
 
-		initializeValidation(attributes);
+        initializeValidation(attributes);
 
-		if (getText() != null) {
-			setReadOnly(true);
-		}
-	}
+        if (getText() != null) {
+            setReadOnly(true);
+        }
+    }
 
-	private void initializeValidation(Map<String, Object> attributes) {
-		Map<String, String> validation;
-		if (attributes.get(FormFieldKeys.VALIDATION_KEY) instanceof Map) {
-			validation = (Map<String, String>) attributes.get(FormFieldKeys.VALIDATION_KEY);
-		} else {
-			validation = new HashMap<>();
-		}
+    private void initializeValidation(Map<String, Object> attributes) {
+        Map<String, String> validation;
+        if (attributes.get(FormFieldKeys.VALIDATION_KEY) instanceof Map) {
+            validation = (Map<String, String>) attributes.get(FormFieldKeys.VALIDATION_KEY);
+        } else {
+            validation = new HashMap<>();
+        }
 
-		stringValidation = new StringValidatorParser().parseStringValidation(validation);
-	}
+        stringValidation = new StringValidatorParser().parseStringValidation(validation);
+    }
 
-	protected StringField(Parcel source, ClassLoader loader) {
-		super(source, loader);
-	}
+    protected StringField(Parcel source, ClassLoader loader) {
+        super(source, loader);
+    }
 
-	@Override
-	protected boolean doValidate() {
-		boolean valid = true;
+    @Override
+    protected boolean doValidate() {
+        boolean valid = true;
 
-		String currentValue = getCurrentValue();
+        String currentValue = getCurrentValue();
 
-		if (currentValue != null && isRequired()) {
-			String trimmedString = currentValue.trim();
+        if (currentValue != null && isRequired()) {
+            String trimmedString = currentValue.trim();
 
-			valid = !trimmedString.isEmpty();
-		}
+            valid = !trimmedString.isEmpty();
+        }
 
-		return valid && stringValidation.validate(currentValue);
-	}
+        return valid && stringValidation.validate(currentValue);
+    }
 
-	@Override
-	protected String convertFromString(String stringValue) {
-		return stringValue;
-	}
+    @Override
+    protected String convertFromString(String stringValue) {
+        return stringValue;
+    }
 
-	@Override
-	protected String convertToData(String value) {
-		return value;
-	}
+    @Override
+    protected String convertToData(String value) {
+        return value;
+    }
 
-	@Override
-	protected String convertToFormattedString(String value) {
-		return value;
-	}
+    @Override
+    protected String convertToFormattedString(String value) {
+        return value;
+    }
 }

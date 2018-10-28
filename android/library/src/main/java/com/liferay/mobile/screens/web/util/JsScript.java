@@ -19,21 +19,21 @@ package com.liferay.mobile.screens.web.util;
  */
 public class JsScript implements InjectableScript {
 
-	private String name;
-	private String content;
+    private String name;
+    private String content;
 
-	public JsScript(String name, String content) {
-		this.name = name;
-		this.content = content;
-	}
+    public JsScript(String name, String content) {
+        this.name = name;
+        this.content = content;
+    }
 
-	@Override
-	public String getName() {
-		return name;
-	}
+    @Override
+    public String getName() {
+        return name;
+    }
 
-	@Override
-	public String getContent() {
-		return content;
-	}
+    @Override
+    public String getContent() {
+        return content;
+    }
 }

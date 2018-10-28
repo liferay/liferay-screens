@@ -20,88 +20,88 @@ import org.json.JSONObject;
 
 public abstract class CacheEvent extends BasicEvent {
 
-	private Locale locale;
-	private long groupId;
-	private long userId;
-	private String cacheKey;
-	private Date syncDate;
-	private boolean cached;
-	private boolean dirty;
-	private boolean deleted;
+    private Locale locale;
+    private long groupId;
+    private long userId;
+    private String cacheKey;
+    private Date syncDate;
+    private boolean cached;
+    private boolean dirty;
+    private boolean deleted;
 
-	public CacheEvent() {
-		super();
-	}
+    public CacheEvent() {
+        super();
+    }
 
-	public CacheEvent(JSONObject jsonObject) {
-		super(jsonObject);
-	}
+    public CacheEvent(JSONObject jsonObject) {
+        super(jsonObject);
+    }
 
-	public CacheEvent(Exception exception) {
-		super(exception);
-	}
+    public CacheEvent(Exception exception) {
+        super(exception);
+    }
 
-	public long getUserId() {
-		return userId;
-	}
+    public long getUserId() {
+        return userId;
+    }
 
-	public void setUserId(long userId) {
-		this.userId = userId;
-	}
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
 
-	public long getGroupId() {
-		return groupId;
-	}
+    public long getGroupId() {
+        return groupId;
+    }
 
-	public void setGroupId(long groupId) {
-		this.groupId = groupId;
-	}
+    public void setGroupId(long groupId) {
+        this.groupId = groupId;
+    }
 
-	public Locale getLocale() {
-		return locale;
-	}
+    public Locale getLocale() {
+        return locale;
+    }
 
-	public void setLocale(Locale locale) {
-		this.locale = locale;
-	}
+    public void setLocale(Locale locale) {
+        this.locale = locale;
+    }
 
-	public boolean isOnlineRequest() {
-		return !cached;
-	}
+    public boolean isOnlineRequest() {
+        return !cached;
+    }
 
-	public void setCached(boolean cached) {
-		this.cached = cached;
-	}
+    public void setCached(boolean cached) {
+        this.cached = cached;
+    }
 
-	public String getCacheKey() {
-		return cacheKey;
-	}
+    public String getCacheKey() {
+        return cacheKey;
+    }
 
-	public void setCacheKey(String cacheKey) {
-		this.cacheKey = cacheKey;
-	}
+    public void setCacheKey(String cacheKey) {
+        this.cacheKey = cacheKey;
+    }
 
-	public boolean isDirty() {
-		return dirty;
-	}
+    public boolean isDirty() {
+        return dirty;
+    }
 
-	public void setDirty(boolean dirty) {
-		this.dirty = dirty;
-	}
+    public void setDirty(boolean dirty) {
+        this.dirty = dirty;
+    }
 
-	public Date getSyncDate() {
-		return syncDate;
-	}
+    public Date getSyncDate() {
+        return syncDate;
+    }
 
-	public void setSyncDate(Date syncDate) {
-		this.syncDate = syncDate;
-	}
+    public void setSyncDate(Date syncDate) {
+        this.syncDate = syncDate;
+    }
 
-	public boolean isDeleted() {
-		return deleted;
-	}
+    public boolean isDeleted() {
+        return deleted;
+    }
 
-	public void setDeleted(boolean deleted) {
-		this.deleted = deleted;
-	}
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
 }

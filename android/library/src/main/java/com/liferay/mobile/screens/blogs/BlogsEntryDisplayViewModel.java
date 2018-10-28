@@ -22,8 +22,8 @@ import com.liferay.mobile.screens.base.view.BaseViewModel;
 
 public interface BlogsEntryDisplayViewModel extends BaseViewModel {
 
-	/**
-	 * Called when the file is ready to be displayed.
-	 */
-	void showFinishOperation(BlogsEntry blogsEntry);
+    /**
+     * Called when the file is ready to be displayed.
+     */
+    void showFinishOperation(BlogsEntry blogsEntry);
 }
