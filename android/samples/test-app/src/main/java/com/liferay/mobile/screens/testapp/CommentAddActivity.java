@@ -6,7 +6,7 @@ import com.liferay.mobile.screens.comment.add.CommentAddListener;
 import com.liferay.mobile.screens.comment.add.CommentAddScreenlet;
 
 /**
- * @author Sarai Díaz
+ * @author Sarai Díaz García
  */
 public class CommentAddActivity extends ThemeActivity implements CommentAddListener {
 

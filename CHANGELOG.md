@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
 * FormsScreenlet - Show only FileName instead of the full path on DocumentField
 * Create a ModalProgressBar view
 * Configure `detekt` for code convention and format all the project
+* Support workflow list with ThingScreenlet
 
 ### Refactor
 

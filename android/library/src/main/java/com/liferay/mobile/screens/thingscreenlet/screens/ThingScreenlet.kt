@@ -22,21 +22,14 @@ import com.github.kittinunf.result.failure
 import com.liferay.apio.consumer.delegates.observe
 import com.liferay.apio.consumer.fetch
 import com.liferay.apio.consumer.model.Thing
-import com.liferay.mobile.android.http.Headers
-import com.liferay.mobile.android.http.Request
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.context.SessionContext
 import com.liferay.mobile.screens.thingscreenlet.extensions.inflate
-import com.liferay.mobile.screens.thingscreenlet.model.BlogPosting
+import com.liferay.mobile.screens.thingscreenlet.model.*
 import com.liferay.mobile.screens.thingscreenlet.model.Collection
-import com.liferay.mobile.screens.thingscreenlet.model.Person
 import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
 import com.liferay.mobile.screens.thingscreenlet.screens.events.ScreenletEvents
-import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
-import com.liferay.mobile.screens.thingscreenlet.screens.views.Custom
-import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
-import com.liferay.mobile.screens.thingscreenlet.screens.views.Row
-import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
+import com.liferay.mobile.screens.thingscreenlet.screens.views.*
 import okhttp3.HttpUrl
 
 open class BaseScreenlet @JvmOverloads constructor(
@@ -46,23 +39,23 @@ open class BaseScreenlet @JvmOverloads constructor(
 	var layout: View? = null
 }
 
-class ThingScreenlet @JvmOverloads constructor(
+open class ThingScreenlet @JvmOverloads constructor(
 	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) :
 	BaseScreenlet(context, attrs, defStyleAttr, defStyleRes) {
 
+	open var scenario: Scenario = Detail
+
 	var screenletEvents: ScreenletEvents? = null
 
-	var scenario: Scenario = Detail
+	open var layoutIds: MutableMap<String, MutableMap<Scenario, Int>> = mutableMapOf(
+		"BlogPosting" to BlogPosting.DEFAULT_VIEWS,
+		"Collection" to Collection.DEFAULT_VIEWS,
+		"Person" to Person.DEFAULT_VIEWS,
+		"WorkflowTask" to WorkflowTask.DEFAULT_VIEWS,
+		"Comment" to Comment.DEFAULT_VIEWS
+	)
 
-	companion object {
-		val layoutIds: MutableMap<String, MutableMap<Scenario, Int>> = mutableMapOf(
-			"BlogPosting" to BlogPosting.DEFAULT_VIEWS,
-			"Collection" to Collection.DEFAULT_VIEWS,
-			"Person" to Person.DEFAULT_VIEWS
-		)
-	}
-
-	val layoutId: Int
+	var layoutId: Int
 
 	var thing: Thing? by observe {
 
@@ -115,6 +108,16 @@ class ThingScreenlet @JvmOverloads constructor(
 		return thing?.let {
 			onEventFor(Event.FetchLayout(thing = it, scenario = scenario))
 		}
+	}
+
+	private fun getLayoutIdFromThingType(event: Event.FetchLayout): Int? {
+		for (type in event.thing.type) {
+			if (layoutIds[type] != null) {
+				return layoutIds[type]?.get(event.scenario)
+			}
+		}
+
+		return layoutIds[event.thing.type[0]]?.get(event.scenario)
 	}
 
 	init {

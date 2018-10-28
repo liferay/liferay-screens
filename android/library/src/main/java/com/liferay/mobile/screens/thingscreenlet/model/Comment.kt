@@ -14,42 +14,27 @@
 
 package com.liferay.mobile.screens.thingscreenlet.model
 
-import com.liferay.apio.consumer.extensions.asDate
+import com.liferay.apio.consumer.graph
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.get
-import com.liferay.mobile.screens.R
-import com.liferay.mobile.screens.thingscreenlet.screens.views.Custom
-import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
-import java.util.*
 
-data class Person(
-	val name: String?,
-	val email: String?,
-	val jobTitle: String?,
-	val birthDate: Date?,
-	val image: String?) {
+data class Comment(
+	val text: String?,
+	val type: String?) {
 
 	companion object {
 		val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
 			mutableMapOf(
-				Detail to R.layout.person_detail_default,
-				Custom("portrait") to R.layout.person_portrait_default
 			)
 
-		val converter: (Thing) -> Any = { it: Thing ->
+		val converter: (Thing) -> Any = {
 
-			val name = it["name"] as? String
+			val text = it["text"] as String
 
-			val email = it["email"] as? String
+			val type = graph[it.id]?.value?.type?.get(0)
 
-			val jobTitle = it["jobTitle"] as? String
-
-			val birthDate = (it["birthDate"] as? String)?.asDate()
-
-			val image = it["image"] as? String
-
-			Person(name, email, jobTitle, birthDate, image)
+			Comment(text, type)
 		}
 	}
 }

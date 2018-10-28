@@ -16,15 +16,15 @@ package com.liferay.mobile.screens.thingscreenlet.screens.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
+import com.liferay.apio.consumer.delegates.observeNonNull
+import com.liferay.apio.consumer.model.Thing
 import com.liferay.mobile.screens.R
+import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.events.ScreenletEvents
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Row
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
-import com.liferay.apio.consumer.delegates.observeNonNull
-import com.liferay.apio.consumer.model.Thing
 
 open class
 ThingViewHolder(itemView: View, listener: Listener) : RecyclerView.ViewHolder(itemView), ScreenletEvents {

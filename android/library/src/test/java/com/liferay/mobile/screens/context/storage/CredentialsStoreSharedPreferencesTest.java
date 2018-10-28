@@ -16,8 +16,6 @@ package com.liferay.mobile.screens.context.storage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.service.textservice.SpellCheckerService;
-
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.auth.basic.CookieAuthentication;
 import com.liferay.mobile.android.auth.oauth2.OAuth2Authentication;
@@ -31,7 +29,6 @@ import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.context.storage.sharedPreferences.BaseCredentialsStorageSharedPreferences;
 import com.liferay.mobile.screens.context.storage.sharedPreferences.BasicCredentialsStorageSharedPreferences;
 import com.liferay.mobile.screens.context.storage.sharedPreferences.CookieCredentialsStorageSharedPreferences;
-
 import com.liferay.mobile.screens.context.storage.sharedPreferences.OAuth2CredentialsStorageSharedPreferences;
 import java.util.ArrayList;
 import java.util.List;

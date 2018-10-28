@@ -11,6 +11,7 @@ import com.liferay.mobile.screens.context.storage.CredentialsStorageBuilder;
 import com.liferay.mobile.screens.ddl.form.interactor.DDLFormEvent;
 import com.liferay.mobile.screens.testapp.fullview.LoginFullActivity;
 import com.liferay.mobile.screens.testapp.postings.activity.ThingMainActivity;
+import com.liferay.mobile.screens.testapp.workflow.activity.WorkflowListActivity;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import com.liferay.mobile.screens.viewsets.defaultviews.DefaultAnimation;
 
@@ -31,6 +32,7 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
 
         //Thing Screenlet
         findViewById(R.id.thing).setOnClickListener(this);
+        findViewById(R.id.thing_workflow).setOnClickListener(this);
 
         //User
         findViewById(R.id.login).setOnClickListener(this);
@@ -99,6 +101,9 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.thing:
                 start(ThingMainActivity.class);
+                break;
+            case R.id.thing_workflow:
+                start(WorkflowListActivity.class);
                 break;
             case R.id.sign_up:
                 start(SignUpActivity.class);

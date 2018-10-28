@@ -15,26 +15,22 @@
 package com.liferay.mobile.screens.testapp.postings.view
 
 import android.content.Context
-import android.support.design.widget.Snackbar
-import android.support.design.widget.Snackbar.LENGTH_SHORT
 import android.text.Html
 import android.util.AttributeSet
 import android.view.View
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.TextView
-import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
-import com.liferay.mobile.screens.thingscreenlet.model.BlogPosting
-import com.liferay.mobile.screens.testapp.R
-import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
-import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
-import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.apio.consumer.delegates.converter
 import com.liferay.apio.consumer.extensions.fullFormat
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.containsOperation
-import com.liferay.apio.consumer.performOperation
-import kotlinx.android.synthetic.main.activity_main.view.*
+import com.liferay.mobile.screens.testapp.R
+import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
+import com.liferay.mobile.screens.thingscreenlet.model.BlogPosting
+import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
+import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
+import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 
 class BlogPostingDetailCustom @JvmOverloads constructor(
 	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : BaseView,

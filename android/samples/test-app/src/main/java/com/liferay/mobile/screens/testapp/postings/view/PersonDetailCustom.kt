@@ -20,14 +20,14 @@ import android.text.method.LinkMovementMethod
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
-import com.liferay.mobile.screens.testapp.R
-import com.liferay.mobile.screens.thingscreenlet.model.Person
-import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
-import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.apio.consumer.delegates.converter
 import com.liferay.apio.consumer.extensions.mediumFormat
 import com.liferay.apio.consumer.model.Thing
+import com.liferay.mobile.screens.testapp.R
+import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
+import com.liferay.mobile.screens.thingscreenlet.model.Person
+import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
+import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 
 class PersonDetailCustom @JvmOverloads constructor(
 	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : BaseView,
