@@ -24,11 +24,11 @@ class ConverterDelegate {
 		@JvmStatic
 		fun initializeConverter() {
 
-            converters[BlogPosting::class.java.name] = BlogPosting.converter
-            converters[Collection::class.java.name] = Collection.converter
-            converters[Comment::class.java.name] = Comment.converter
-            converters[Person::class.java.name] = Person.converter
-            converters[WorkflowTask::class.java.name] = WorkflowTask.converter
-        }
-    }
+			converters[BlogPosting::class.java.name] = BlogPosting.converter
+			converters[Collection::class.java.name] = Collection.converter
+			converters[Comment::class.java.name] = Comment.converter
+			converters[Person::class.java.name] = Person.converter
+			converters[WorkflowTask::class.java.name] = WorkflowTask.converter
+		}
+	}
 }

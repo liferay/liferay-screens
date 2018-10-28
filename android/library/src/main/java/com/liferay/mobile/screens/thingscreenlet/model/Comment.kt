@@ -20,21 +20,21 @@ import com.liferay.apio.consumer.model.get
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
 
 data class Comment(
-    val text: String?,
-    val type: String?) {
+	val text: String?,
+	val type: String?) {
 
-    companion object {
-        val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
-            mutableMapOf(
-            )
+	companion object {
+		val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
+			mutableMapOf(
+			)
 
-        val converter: (Thing) -> Any = {
+		val converter: (Thing) -> Any = {
 
-            val text = it["text"] as String
+			val text = it["text"] as String
 
-            val type = graph[it.id]?.value?.type?.get(0)
+			val type = graph[it.id]?.value?.type?.get(0)
 
-            Comment(text, type)
-        }
-    }
+			Comment(text, type)
+		}
+	}
 }

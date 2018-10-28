@@ -25,63 +25,63 @@ import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
 import java.util.*
 
 data class WorkflowTask(
-    val completed: Boolean,
-    val dateCreated: Date?,
-    val name: String,
-    val expires: Date?,
-    val comment: Comment?,
-    val blogPost: BlogPosting?) {
+	val completed: Boolean,
+	val dateCreated: Date?,
+	val name: String,
+	val expires: Date?,
+	val comment: Comment?,
+	val blogPost: BlogPosting?) {
 
-    companion object {
-        val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
-            mutableMapOf(
-                Row to R.layout.workflow_task_row_default
-            )
+	companion object {
+		val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
+			mutableMapOf(
+				Row to R.layout.workflow_task_row_default
+			)
 
-        val converter: (Thing) -> Any = {
+		val converter: (Thing) -> Any = {
 
-            val completed = it["completed"] as Boolean
+			val completed = it["completed"] as Boolean
 
-            val dateCreated = (it["dateCreated"] as? String)?.asDate()
+			val dateCreated = (it["dateCreated"] as? String)?.asDate()
 
-            val name = it["name"] as String
+			val name = it["name"] as String
 
-            val expires = (it["expires"] as? String)?.asDate()
+			val expires = (it["expires"] as? String)?.asDate()
 
-            val comment = (it["comment"] as? Relation)?.let {
-                getComment(it)
-            }
+			val comment = (it["comment"] as? Relation)?.let {
+				getComment(it)
+			}
 
-            val blogPost = (it["blogPost"] as? Relation)?.let {
-                getBlogPost(it)
-            }
+			val blogPost = (it["blogPost"] as? Relation)?.let {
+				getBlogPost(it)
+			}
 
-            WorkflowTask(completed, dateCreated, name, expires, comment, blogPost)
-        }
+			WorkflowTask(completed, dateCreated, name, expires, comment, blogPost)
+		}
 
-        private fun getComment(it: Relation): Comment? {
-            val text = it["text"] as? String
+		private fun getComment(it: Relation): Comment? {
+			val text = it["text"] as? String
 
-            val type = graph[it.id]?.value?.type?.get(0)
+			val type = graph[it.id]?.value?.type?.get(0)
 
-            return Comment(text, type)
-        }
+			return Comment(text, type)
+		}
 
-        private fun getBlogPost(it: Relation): BlogPosting? {
+		private fun getBlogPost(it: Relation): BlogPosting? {
 
-            val headline = it["headline"] as? String
+			val headline = it["headline"] as? String
 
-            val alternativeHeadline = it["alternativeHeadline"] as? String
+			val alternativeHeadline = it["alternativeHeadline"] as? String
 
-            val articleBody = it["articleBody"] as? String
+			val articleBody = it["articleBody"] as? String
 
-            val creator = it["creator"] as? Relation
+			val creator = it["creator"] as? Relation
 
-            val dateCreated = (it["dateCreated"] as? String)?.asDate()
+			val dateCreated = (it["dateCreated"] as? String)?.asDate()
 
-            val type = graph[it.id]?.value?.type?.get(0)
+			val type = graph[it.id]?.value?.type?.get(0)
 
-            return BlogPosting(headline, alternativeHeadline, articleBody, creator, dateCreated, type)
-        }
-    }
+			return BlogPosting(headline, alternativeHeadline, articleBody, creator, dateCreated, type)
+		}
+	}
 }

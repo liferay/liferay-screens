@@ -24,22 +24,22 @@ import com.liferay.mobile.screens.thingscreenlet.screens.events.ScreenletEvents
 
 class WorkflowListActivity : AppCompatActivity(), ScreenletEvents {
 
-    private val workflowScreenlet by bindNonNull<ThingScreenlet>(R.id.workflow_screenlet)
+	private val workflowScreenlet by bindNonNull<ThingScreenlet>(R.id.workflow_screenlet)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.workflow_list_screenlet_activity)
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		setContentView(R.layout.workflow_list_screenlet_activity)
 
-        val credentials = SessionContext.getCredentialsFromCurrentSession()
+		val credentials = SessionContext.getCredentialsFromCurrentSession()
 
-        val tasksUrl = resources.getString(R.string.liferay_server) + getTasksUrl()
+		val tasksUrl = resources.getString(R.string.liferay_server) + getTasksUrl()
 
-        workflowScreenlet.load(tasksUrl, credentials = credentials)
+		workflowScreenlet.load(tasksUrl, credentials = credentials)
 
-        workflowScreenlet.screenletEvents = this
-    }
+		workflowScreenlet.screenletEvents = this
+	}
 
-    private fun getTasksUrl(): String {
-        return "/o/api/p/r/workflow-tasks/assigned-to-me?embedded=comment,blogPost"
-    }
+	private fun getTasksUrl(): String {
+		return "/o/api/p/r/workflow-tasks/assigned-to-me?embedded=comment,blogPost"
+	}
 }

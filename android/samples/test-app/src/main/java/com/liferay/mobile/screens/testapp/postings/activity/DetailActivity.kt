@@ -30,30 +30,30 @@ import org.jetbrains.anko.startActivity
 
 class DetailActivity : AppCompatActivity(), ScreenletEvents {
 
-    val thingScreenlet by bindNonNull<ThingScreenlet>(R.id.thing_screenlet_activity)
+	val thingScreenlet by bindNonNull<ThingScreenlet>(R.id.thing_screenlet_activity)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.thing_screenlet_activity)
+	override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
+		setContentView(R.layout.thing_screenlet_activity)
 
-        val id = intent.getStringExtra("id")
+		val id = intent.getStringExtra("id")
 
-        thingScreenlet.screenletEvents = this
+		thingScreenlet.screenletEvents = this
 
-        thingScreenlet.load(id, scenario = Detail)
-    }
+		thingScreenlet.load(id, scenario = Detail)
+	}
 
-    override fun <T : BaseView> onClickEvent(baseView: T, view: View, thing: Thing) = View.OnClickListener {
-        startActivity<DetailActivity>("id" to thing.id)
-    }
+	override fun <T : BaseView> onClickEvent(baseView: T, view: View, thing: Thing) = View.OnClickListener {
+		startActivity<DetailActivity>("id" to thing.id)
+	}
 
-    override fun <T : BaseView> onCustomEvent(name: String, screenlet: ThingScreenlet, parentView: T?, thing: Thing) {
-        val operationKey = thing.operations.keys.filter { it.contains(name) }.firstOrNull()
+	override fun <T : BaseView> onCustomEvent(name: String, screenlet: ThingScreenlet, parentView: T?, thing: Thing) {
+		val operationKey = thing.operations.keys.filter { it.contains(name) }.firstOrNull()
 
-        operationKey?.let {
-            val operation = thing.operations[it]
+		operationKey?.let {
+			val operation = thing.operations[it]
 
-            val values = thing.attributes.filterValues { it is String }
+			val values = thing.attributes.filterValues { it is String }
 
 			operation!!.form?.let {
 				it.getFormProperties {

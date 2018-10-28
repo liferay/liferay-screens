@@ -30,9 +30,9 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
             LiferayLogger.e("User already logged in: " + SessionContext.isLoggedIn());
         }
 
-		//Thing Screenlet
-		findViewById(R.id.thing).setOnClickListener(this);
-		findViewById(R.id.thing_workflow).setOnClickListener(this);
+        //Thing Screenlet
+        findViewById(R.id.thing).setOnClickListener(this);
+        findViewById(R.id.thing_workflow).setOnClickListener(this);
 
         //User
         findViewById(R.id.login).setOnClickListener(this);
@@ -96,107 +96,107 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
         findViewById(R.id.change_theme).setOnClickListener(this);
     }
 
-	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
-			case R.id.thing:
-				start(ThingMainActivity.class);
-				break;
-			case R.id.thing_workflow:
-				start(WorkflowListActivity.class);
-				break;
-			case R.id.sign_up:
-				start(SignUpActivity.class);
-				break;
-			case R.id.forgot_password:
-				start(ForgotPasswordActivity.class);
-				break;
-			case R.id.relogin:
-				start(ReloginActivity.class);
-				break;
-			case R.id.user_portrait:
-				start(UserPortraitActivity.class);
-				break;
-			case R.id.get_user:
-				start(GetUserActivity.class);
-				break;
-			case R.id.asset_list:
-				start(SelectAssetActivity.class);
-				break;
-			case R.id.asset_list_with_portlet_item_name:
-				start(FilteredAssetActivity.class);
-				break;
-			case R.id.asset_display:
-				Intent intentAsset = getIntentWithTheme(AssetDisplayActivity.class);
-				intentAsset.putExtra("entryId",
-					Long.valueOf(getResources().getString(R.string.liferay_image_entry_id)));
-				DefaultAnimation.startActivityWithAnimation(this, intentAsset);
-				break;
-			case R.id.asset_display_with_portlet_item_name:
-				Intent intentAssetPortletName = getIntentWithTheme(AssetDisplayActivity.class);
-				intentAssetPortletName.putExtra("portletItemName",
-					getResources().getString(R.string.liferay_portlet_item_name));
-				DefaultAnimation.startActivityWithAnimation(this, intentAssetPortletName);
-				break;
-			case R.id.user_display:
-				Intent intentUser = getIntentWithTheme(AssetDisplayActivity.class);
-				intentUser.putExtra("entryId", Long.valueOf(getResources().getString(R.string.liferay_user_entryId)));
-				DefaultAnimation.startActivityWithAnimation(this, intentUser);
-				break;
-			case R.id.comment_list:
-				start(CommentsActivity.class);
-				break;
-			case R.id.comment_display:
-				start(CommentDisplayActivity.class);
-				break;
-			case R.id.comment_add:
-				start(CommentAddActivity.class);
-				break;
-			case R.id.ddl_form:
-				start(DDLFormActivity.class);
-				break;
-			case R.id.ddl_list:
-				start(DDLListActivity.class);
-				break;
-			case R.id.image_display:
-				start(ImageDisplayActivity.class);
-				break;
-			case R.id.web_content_list:
-				start(WebContentListActivity.class);
-				break;
-			case R.id.web_content_display_screenlet:
-				start(WebContentDisplayActivity.class);
-				break;
-			case R.id.web_content_display_screenlet_structured:
-				start(WebContentDisplayStructuredActivity.class);
-				break;
-			case R.id.web_content_display_screenlet_customcss:
-				start(WebContentDisplayCustomCssActivity.class);
-				break;
-			case R.id.web_content_with_template:
-				start(JournalArticleWithTemplateActivity.class);
-				break;
-			case R.id.ratings:
-				start(RatingsActivity.class);
-				break;
-			case R.id.gallery:
-				start(GalleryActivity.class);
-				break;
-			case R.id.portlet_display:
-				Intent intentPortlet = getIntentWithTheme(WebActivity.class);
-				intentPortlet.putExtra("url", getResources().getString(R.string.liferay_portlet_url));
-				DefaultAnimation.startActivityWithAnimation(this, intentPortlet);
-				break;
-			case R.id.list_bookmarks:
-				start(ListBookmarksActivity.class);
-				break;
-			case R.id.add_bookmark:
-				start(AddBookmarkActivity.class);
-				break;
-			case R.id.login_full_screenlet:
-				start(LoginFullActivity.class);
-				break;
-			case R.id.clear_cache:
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.thing:
+                start(ThingMainActivity.class);
+                break;
+            case R.id.thing_workflow:
+                start(WorkflowListActivity.class);
+                break;
+            case R.id.sign_up:
+                start(SignUpActivity.class);
+                break;
+            case R.id.forgot_password:
+                start(ForgotPasswordActivity.class);
+                break;
+            case R.id.relogin:
+                start(ReloginActivity.class);
+                break;
+            case R.id.user_portrait:
+                start(UserPortraitActivity.class);
+                break;
+            case R.id.get_user:
+                start(GetUserActivity.class);
+                break;
+            case R.id.asset_list:
+                start(SelectAssetActivity.class);
+                break;
+            case R.id.asset_list_with_portlet_item_name:
+                start(FilteredAssetActivity.class);
+                break;
+            case R.id.asset_display:
+                Intent intentAsset = getIntentWithTheme(AssetDisplayActivity.class);
+                intentAsset.putExtra("entryId",
+                    Long.valueOf(getResources().getString(R.string.liferay_image_entry_id)));
+                DefaultAnimation.startActivityWithAnimation(this, intentAsset);
+                break;
+            case R.id.asset_display_with_portlet_item_name:
+                Intent intentAssetPortletName = getIntentWithTheme(AssetDisplayActivity.class);
+                intentAssetPortletName.putExtra("portletItemName",
+                    getResources().getString(R.string.liferay_portlet_item_name));
+                DefaultAnimation.startActivityWithAnimation(this, intentAssetPortletName);
+                break;
+            case R.id.user_display:
+                Intent intentUser = getIntentWithTheme(AssetDisplayActivity.class);
+                intentUser.putExtra("entryId", Long.valueOf(getResources().getString(R.string.liferay_user_entryId)));
+                DefaultAnimation.startActivityWithAnimation(this, intentUser);
+                break;
+            case R.id.comment_list:
+                start(CommentsActivity.class);
+                break;
+            case R.id.comment_display:
+                start(CommentDisplayActivity.class);
+                break;
+            case R.id.comment_add:
+                start(CommentAddActivity.class);
+                break;
+            case R.id.ddl_form:
+                start(DDLFormActivity.class);
+                break;
+            case R.id.ddl_list:
+                start(DDLListActivity.class);
+                break;
+            case R.id.image_display:
+                start(ImageDisplayActivity.class);
+                break;
+            case R.id.web_content_list:
+                start(WebContentListActivity.class);
+                break;
+            case R.id.web_content_display_screenlet:
+                start(WebContentDisplayActivity.class);
+                break;
+            case R.id.web_content_display_screenlet_structured:
+                start(WebContentDisplayStructuredActivity.class);
+                break;
+            case R.id.web_content_display_screenlet_customcss:
+                start(WebContentDisplayCustomCssActivity.class);
+                break;
+            case R.id.web_content_with_template:
+                start(JournalArticleWithTemplateActivity.class);
+                break;
+            case R.id.ratings:
+                start(RatingsActivity.class);
+                break;
+            case R.id.gallery:
+                start(GalleryActivity.class);
+                break;
+            case R.id.portlet_display:
+                Intent intentPortlet = getIntentWithTheme(WebActivity.class);
+                intentPortlet.putExtra("url", getResources().getString(R.string.liferay_portlet_url));
+                DefaultAnimation.startActivityWithAnimation(this, intentPortlet);
+                break;
+            case R.id.list_bookmarks:
+                start(ListBookmarksActivity.class);
+                break;
+            case R.id.add_bookmark:
+                start(AddBookmarkActivity.class);
+                break;
+            case R.id.login_full_screenlet:
+                start(LoginFullActivity.class);
+                break;
+            case R.id.clear_cache:
 
                 SessionContext.removeStoredCredentials(CredentialsStorageBuilder.StorageType.SHARED_PREFERENCES);
 

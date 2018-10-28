@@ -36,64 +36,64 @@ import java.util.concurrent.TimeUnit
 
 
 class WorkflowTaskRowView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : BaseView,
-    LinearLayout(context, attrs, defStyleAttr) {
+	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : BaseView,
+	LinearLayout(context, attrs, defStyleAttr) {
 
-    override var screenlet: ThingScreenlet? = null
+	override var screenlet: ThingScreenlet? = null
 
-    private val isPending by bindNonNull<FrameLayout>(R.id.workflow_is_pending)
-    private val assetTitle by bindNonNull<TextView>(R.id.workflow_asset_title)
-    private val dateCreated by bindNonNull<TextView>(R.id.workflow_date_created)
-    private val type by bindNonNull<TextView>(R.id.workflow_type)
-    private val status by bindNonNull<TextView>(R.id.workflow_status)
+	private val isPending by bindNonNull<FrameLayout>(R.id.workflow_is_pending)
+	private val assetTitle by bindNonNull<TextView>(R.id.workflow_asset_title)
+	private val dateCreated by bindNonNull<TextView>(R.id.workflow_date_created)
+	private val type by bindNonNull<TextView>(R.id.workflow_type)
+	private val status by bindNonNull<TextView>(R.id.workflow_status)
 
-    override var thing: Thing? by converter<WorkflowTask> {
+	override var thing: Thing? by converter<WorkflowTask> {
 
-        if (it.completed) isPending.visibility = View.INVISIBLE
+		if (it.completed) isPending.visibility = View.INVISIBLE
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            assetTitle.text = Html.fromHtml(getAssetTitle(it), Html.FROM_HTML_MODE_COMPACT)
-        } else {
-            assetTitle.text = Html.fromHtml(getAssetTitle(it))
-        }
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+			assetTitle.text = Html.fromHtml(getAssetTitle(it), Html.FROM_HTML_MODE_COMPACT)
+		} else {
+			assetTitle.text = Html.fromHtml(getAssetTitle(it))
+		}
 
-        dateCreated.text = if (it.dateCreated != null && isYesterday(it.dateCreated))
-            resources.getString(R.string.workflow_yesterday_text)
-        else it.dateCreated?.shortFormat(Locale.getDefault())
+		dateCreated.text = if (it.dateCreated != null && isYesterday(it.dateCreated))
+			resources.getString(R.string.workflow_yesterday_text)
+		else it.dateCreated?.shortFormat(Locale.getDefault())
 
-        type.text = resources.getString(R.string.workflow_type_text, it.name.capitalize(), getAssetName(it))
+		type.text = resources.getString(R.string.workflow_type_text, it.name.capitalize(), getAssetName(it))
 
-        when {
-            it.completed -> status.text = resources.getString(R.string.workflow_completed_text)
-            it.expires != null -> {
-                val days = getDays(it.expires)
+		when {
+			it.completed -> status.text = resources.getString(R.string.workflow_completed_text)
+			it.expires != null -> {
+				val days = getDays(it.expires)
 
-                if (days < 0) status.text = resources.getQuantityString(R.plurals.workflow_due_date_before_text,
-                    Math.abs(days), Math.abs(days))
-                else status.text = resources.getQuantityString(R.plurals.workflow_due_date_after_text, days, days)
-            }
-            else -> status.text = resources.getString(R.string.workflow_pending_text)
-        }
-    }
+				if (days < 0) status.text = resources.getQuantityString(R.plurals.workflow_due_date_before_text,
+					Math.abs(days), Math.abs(days))
+				else status.text = resources.getQuantityString(R.plurals.workflow_due_date_after_text, days, days)
+			}
+			else -> status.text = resources.getString(R.string.workflow_pending_text)
+		}
+	}
 
-    private fun getAssetName(workflowTask: WorkflowTask): String {
-        return workflowTask.comment?.type ?: workflowTask.blogPost?.type ?: "Undefined"
-    }
+	private fun getAssetName(workflowTask: WorkflowTask): String {
+		return workflowTask.comment?.type ?: workflowTask.blogPost?.type ?: "Undefined"
+	}
 
-    private fun getAssetTitle(workflowTask: WorkflowTask): String {
-        return workflowTask.comment?.text ?: workflowTask.blogPost?.headline ?: "Undefined"
-    }
+	private fun getAssetTitle(workflowTask: WorkflowTask): String {
+		return workflowTask.comment?.text ?: workflowTask.blogPost?.headline ?: "Undefined"
+	}
 
-    private fun getDays(expires: Date): Int {
-        val today = Calendar.getInstance().timeInMillis
-        val dueDate = expires.time
+	private fun getDays(expires: Date): Int {
+		val today = Calendar.getInstance().timeInMillis
+		val dueDate = expires.time
 
-        val diff = dueDate - today
+		val diff = dueDate - today
 
-        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS).toInt()
-    }
+		return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS).toInt()
+	}
 
-    private fun isYesterday(date: Date): Boolean {
-        return DateUtils.isToday(date.time + DateUtils.DAY_IN_MILLIS)
-    }
+	private fun isYesterday(date: Date): Boolean {
+		return DateUtils.isToday(date.time + DateUtils.DAY_IN_MILLIS)
+	}
 }

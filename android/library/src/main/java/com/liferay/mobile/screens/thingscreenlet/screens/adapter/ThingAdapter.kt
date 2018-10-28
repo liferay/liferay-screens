@@ -28,59 +28,59 @@ import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
 import okhttp3.HttpUrl
 
 class ThingAdapter(collection: Collection, val listener: Listener) :
-    Adapter<ThingViewHolder>(), ThingViewHolder.Listener {
+	Adapter<ThingViewHolder>(), ThingViewHolder.Listener {
 
-    override fun onLayoutRow(view: BaseView?, thing: Thing, scenario: Scenario) =
-        listener.onLayoutRow(view, thing, scenario)
+	override fun onLayoutRow(view: BaseView?, thing: Thing, scenario: Scenario) =
+		listener.onLayoutRow(view, thing, scenario)
 
-    override fun onClickedRow(view: View, thing: Thing): View.OnClickListener? = listener.onClickedRow(view, thing)
+	override fun onClickedRow(view: View, thing: Thing): View.OnClickListener? = listener.onClickedRow(view, thing)
 
-    val totalItems = collection.totalItems
-    val members = collection.members?.toMutableList() ?: mutableListOf()
-    val nextPage = collection.pages?.next
+	val totalItems = collection.totalItems
+	val members = collection.members?.toMutableList() ?: mutableListOf()
+	val nextPage = collection.pages?.next
 
-    override fun onBindViewHolder(holder: ThingViewHolder, position: Int) {
-        if (members.size > position) {
-            holder?.thing = members[position]
-        } else {
-            nextPage.let {
-                HttpUrl.parse(nextPage)?.let {
-                    fetch(it) {
-                        it.fold(
-                            success = {
-                                convert<Collection>(it)?.let {
-                                    val moreMembers = it.members
-                                    merge(members, moreMembers)
-                                    notifyDataSetChanged()
-                                }
-                            },
-                            failure = {}
-                        )
-                    }
-                }
+	override fun onBindViewHolder(holder: ThingViewHolder, position: Int) {
+		if (members.size > position) {
+			holder?.thing = members[position]
+		} else {
+			nextPage.let {
+				HttpUrl.parse(nextPage)?.let {
+					fetch(it) {
+						it.fold(
+							success = {
+								convert<Collection>(it)?.let {
+									val moreMembers = it.members
+									merge(members, moreMembers)
+									notifyDataSetChanged()
+								}
+							},
+							failure = {}
+						)
+					}
+				}
 
-            }
-        }
-    }
+			}
+		}
+	}
 
-    override fun getItemViewType(position: Int): Int {
-        return position
-    }
+	override fun getItemViewType(position: Int): Int {
+		return position
+	}
 
-    private fun merge(members: MutableList<Thing>, moreMembers: List<Thing>?) {
-        moreMembers?.apply { members.addAll(this) }
-    }
+	private fun merge(members: MutableList<Thing>, moreMembers: List<Thing>?) {
+		moreMembers?.apply { members.addAll(this) }
+	}
 
-    override fun getItemCount(): Int = totalItems ?: 0
+	override fun getItemCount(): Int = totalItems ?: 0
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ThingViewHolder {
-        return parent?.inflate(R.layout.thing_viewholder_default)?.let {
-            ThingViewHolder(it, this)
-        }
-    }
+	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ThingViewHolder {
+		return parent?.inflate(R.layout.thing_viewholder_default)?.let {
+			ThingViewHolder(it, this)
+		}
+	}
 
-    interface Listener {
-        fun onClickedRow(view: View, thing: Thing): View.OnClickListener?
-        fun onLayoutRow(view: BaseView?, thing: Thing, scenario: Scenario): Int?
-    }
+	interface Listener {
+		fun onClickedRow(view: View, thing: Thing): View.OnClickListener?
+		fun onLayoutRow(view: BaseView?, thing: Thing, scenario: Scenario): Int?
+	}
 }

@@ -27,17 +27,17 @@
                 style="@style/test_app_button"
                 />
 
-			<Button
-				android:id="@+id/thing_workflow"
-				android:text="@string/thing_screenlet_workflow"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/thing_workflow"
+                android:text="@string/thing_screenlet_workflow"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/login"
-				android:text="@string/login"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/login"
+                android:text="@string/login"
+                style="@style/test_app_button"
+                />
 
             <Button
                 android:id="@+id/sign_up"

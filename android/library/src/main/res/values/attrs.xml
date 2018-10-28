@@ -305,10 +305,10 @@
         <attr format="string" name="scenario"/>
     </declare-styleable>
 
-	<declare-styleable name="WorkflowListScreenlet">
-		<attr name="layoutId"/>
-		<attr name="scenario"/>
-		<attr name="tasks"/>
-	</declare-styleable>
+    <declare-styleable name="WorkflowListScreenlet">
+        <attr name="layoutId"/>
+        <attr name="scenario"/>
+        <attr name="tasks"/>
+    </declare-styleable>
 
 </resources>

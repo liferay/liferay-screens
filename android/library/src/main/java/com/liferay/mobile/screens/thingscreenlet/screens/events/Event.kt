@@ -20,9 +20,9 @@ import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
 
 sealed class Event<T> {
-    class Click(val view: View, val thing: Thing) : Event<View.OnClickListener>()
+	class Click(val view: View, val thing: Thing) : Event<View.OnClickListener>()
 
-    class FetchLayout(val view: BaseView? = null, val thing: Thing, val scenario: Scenario) : Event<Int>()
+	class FetchLayout(val view: BaseView? = null, val thing: Thing, val scenario: Scenario) : Event<Int>()
 
 	class CustomEvent(val name: String, val view: BaseView? = null, val thing: Thing) : Event<Unit>()
 }

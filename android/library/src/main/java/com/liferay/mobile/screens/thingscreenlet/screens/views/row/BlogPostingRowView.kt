@@ -28,28 +28,28 @@ import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 
 class BlogPostingRowView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : BaseView,
-    FrameLayout(context, attrs, defStyleAttr) {
+	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) : BaseView,
+	FrameLayout(context, attrs, defStyleAttr) {
 
-    override var screenlet: ThingScreenlet? = null
+	override var screenlet: ThingScreenlet? = null
 
-    val headline by bindNonNull<TextView>(R.id.headline)
-    val creator by bindNonNull<ThingScreenlet>(R.id.creator_avatar)
-    val createDate by bindNonNull<TextView>(R.id.create_date)
+	val headline by bindNonNull<TextView>(R.id.headline)
+	val creator by bindNonNull<ThingScreenlet>(R.id.creator_avatar)
+	val createDate by bindNonNull<TextView>(R.id.create_date)
 
-    override var thing: Thing? by converter<BlogPosting> {
-        headline.text = it.headline
+	override var thing: Thing? by converter<BlogPosting> {
+		headline.text = it.headline
 
-        it.creator?.also {
-            creator.load(it.id)
-        }
+		it.creator?.also {
+			creator.load(it.id)
+		}
 
-        it.createDate?.also {
-            createDate.text = it.fullFormat()
-        }
+		it.createDate?.also {
+			createDate.text = it.fullFormat()
+		}
 
-        if (it.createDate == null) {
-            createDate.visibility = GONE
-        }
-    }
+		if (it.createDate == null) {
+			createDate.visibility = GONE
+		}
+	}
 }

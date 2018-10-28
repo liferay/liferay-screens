@@ -23,26 +23,26 @@ import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
 
 data class Collection(val members: List<Thing>?, val totalItems: Int?, val pages: Pages?) {
-    companion object {
-        val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
-            mutableMapOf(
-                Detail to R.layout.collection_detail_default
-            )
+	companion object {
+		val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
+			mutableMapOf(
+				Detail to R.layout.collection_detail_default
+			)
 
-        val converter: (Thing) -> Any = { it: Thing ->
-            val member = (it["member"] as? List<Relation>)?.mapNotNull {
-                graph[it.id]?.value
-            }
+		val converter: (Thing) -> Any = { it: Thing ->
+			val member = (it["member"] as? List<Relation>)?.mapNotNull {
+				graph[it.id]?.value
+			}
 
-            val totalItems = (it["totalItems"] as? Double)?.toInt()
+			val totalItems = (it["totalItems"] as? Double)?.toInt()
 
-            val nextPage = (it["view"] as Relation)["next"] as? String
+			val nextPage = (it["view"] as Relation)["next"] as? String
 
-            val pages = nextPage?.let(::Pages)
+			val pages = nextPage?.let(::Pages)
 
-            Collection(member, totalItems, pages)
-        }
-    }
+			Collection(member, totalItems, pages)
+		}
+	}
 }
 
 data class Pages(val next: String?)
