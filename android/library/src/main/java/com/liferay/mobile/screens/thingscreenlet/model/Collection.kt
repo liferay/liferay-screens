@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.thingscreenlet.model
 
 import com.liferay.apio.consumer.cache.ThingsCache
 import com.liferay.apio.consumer.cache.ThingsCache.get
-import com.liferay.apio.consumer.graph
 import com.liferay.apio.consumer.model.Relation
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.get

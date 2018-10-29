@@ -24,7 +24,6 @@ import android.widget.TextView
 import com.liferay.apio.consumer.delegates.converter
 import com.liferay.apio.consumer.extensions.fullFormat
 import com.liferay.apio.consumer.model.Thing
-import com.liferay.apio.consumer.model.containsOperation
 import com.liferay.mobile.screens.testapp.R
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.model.BlogPosting
