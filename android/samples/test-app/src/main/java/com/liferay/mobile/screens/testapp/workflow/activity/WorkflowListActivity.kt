@@ -16,11 +16,16 @@ package com.liferay.mobile.screens.testapp.workflow.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
+import com.liferay.apio.consumer.model.Thing
 import com.liferay.mobile.screens.context.SessionContext
 import com.liferay.mobile.screens.testapp.R
+import com.liferay.mobile.screens.testapp.postings.activity.DetailActivity
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.events.ScreenletEvents
+import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
+import org.jetbrains.anko.startActivity
 
 class WorkflowListActivity : AppCompatActivity(), ScreenletEvents {
 
@@ -39,7 +44,11 @@ class WorkflowListActivity : AppCompatActivity(), ScreenletEvents {
 		workflowScreenlet.screenletEvents = this
 	}
 
-	private fun getTasksUrl(): String {
-		return "/o/api/p/r/workflow-tasks/assigned-to-me?embedded=comment,blogPost"
-	}
+    override fun <T : BaseView> onClickEvent(baseView: T, view: View, thing: Thing) = View.OnClickListener {
+        startActivity<DetailActivity>("id" to thing.id)
+    }
+
+    private fun getTasksUrl(): String {
+        return "/o/api/p/r/workflow-tasks/assigned-to-me?embedded=comment,blogPost"
+    }
 }

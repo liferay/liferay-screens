@@ -21,6 +21,7 @@ import com.liferay.apio.consumer.model.Relation
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.get
 import com.liferay.mobile.screens.R
+import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Row
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
 import java.util.*
@@ -33,11 +34,12 @@ data class WorkflowTask(
 	val comment: Comment?,
 	val blogPost: BlogPosting?) {
 
-	companion object {
-		val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
-			mutableMapOf(
-				Row to R.layout.workflow_task_row_default
-			)
+    companion object {
+        val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
+            mutableMapOf(
+                Row to R.layout.workflow_task_row_default,
+                Detail to R.layout.workflow_task_detail_default
+            )
 
 		val converter: (Thing) -> Any = {
 
