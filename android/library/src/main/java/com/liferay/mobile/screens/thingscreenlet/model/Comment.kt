@@ -14,7 +14,8 @@
 
 package com.liferay.mobile.screens.thingscreenlet.model
 
-import com.liferay.apio.consumer.graph
+import com.liferay.apio.consumer.cache.ThingsCache
+import com.liferay.apio.consumer.cache.ThingsCache.get
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.get
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
@@ -32,7 +33,7 @@ data class Comment(
 
 			val text = it["text"] as String
 
-			val type = graph[it.id]?.value?.type?.get(0)
+			val type = ThingsCache[it.id]?.value?.type?.get(0)
 
 			Comment(text, type)
 		}
