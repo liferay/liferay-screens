@@ -16,23 +16,7 @@ buildscript {
 }
 
 plugins {
-	id 'io.gitlab.arturbosch.detekt' version '1.0.0.RC8'
-}
-
-detekt {
-	profile('main') {
-		version = '1.0.0.RC8'
-		input = "$projectDir"
-		config = './detekt.yml'
-		filters = '.*test.*,.*/resources/.*,.*/tmp/.*'
-		output = './library/reports/report.xml'
-	}
-	idea {
-		path = '/Applications/IntelliJ IDEA.app/Contents'
-		codeStyleScheme = "$projectDir/ScreensCodeConvention.xml"
-		report = './library/reports'
-		mask = '*.kt,*.java,*.xml,*.css,*.js'
-	}
+	id 'io.gitlab.arturbosch.detekt' version '1.0.0.RC9.2'
 }
 
 ext {

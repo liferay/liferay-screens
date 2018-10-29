@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'io.gitlab.arturbosch.detekt'
 
 android {
 	compileSdkVersion rootProject.ext.compileSdkVersion
@@ -87,6 +88,29 @@ dependencies {
 	implementation libraries.kotlin
 
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+
+detekt {
+	toolVersion = '1.0.0.RC9.2'
+	config = files("$rootDir/detekt.yml")
+	filters = '.*test.*,.*/resources/.*,.*/tmp/.*'
+	reports {
+		xml {
+			enabled = true
+			destination = file('./reports/detekt.xml')
+		}
+		html {
+			enabled = true
+			destination = file('./reports/detekt.html')
+		}
+	}
+	idea {
+		path = '/Applications/Android Studio.app/Contents'
+		codeStyleScheme = "$rootDir/ScreensCodeConvention.xml"
+		inspectionsProfile = "$rootDir/android-studio-inspections.xml"
+		report = './reports'
+		mask = '*.kt,*.java,*.xml,*.css,*.js'
+	}
 }
 
 apply from: '../bintray.gradle'
