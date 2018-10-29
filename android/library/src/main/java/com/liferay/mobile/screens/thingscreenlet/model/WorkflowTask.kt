@@ -14,8 +14,9 @@
 
 package com.liferay.mobile.screens.thingscreenlet.model
 
+import com.liferay.apio.consumer.cache.ThingsCache
+import com.liferay.apio.consumer.cache.ThingsCache.get
 import com.liferay.apio.consumer.extensions.asDate
-import com.liferay.apio.consumer.graph
 import com.liferay.apio.consumer.model.Relation
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.get
@@ -62,7 +63,7 @@ data class WorkflowTask(
 		private fun getComment(it: Relation): Comment? {
 			val text = it["text"] as? String
 
-			val type = graph[it.id]?.value?.type?.get(0)
+			val type = ThingsCache[it.id]?.value?.type?.get(0)
 
 			return Comment(text, type)
 		}
@@ -79,7 +80,7 @@ data class WorkflowTask(
 
 			val dateCreated = (it["dateCreated"] as? String)?.asDate()
 
-			val type = graph[it.id]?.value?.type?.get(0)
+			val type = ThingsCache[it.id]?.value?.type?.get(0)
 
 			return BlogPosting(headline, alternativeHeadline, articleBody, creator, dateCreated, type)
 		}
