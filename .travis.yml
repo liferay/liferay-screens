@@ -38,5 +38,5 @@ script:
 - sh scripts/travis.sh
 - if [ "$PLATFORM" = Android ]; then
         cd android;
-        sh gradlew detektCheck;
+        sh gradlew detekt;
   fi
