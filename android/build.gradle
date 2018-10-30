@@ -82,6 +82,10 @@ subprojects {
 		maven { url 'https://maven.google.com' }
 		jcenter()
 	}
+
+	tasks.withType(Javadoc).all {
+		failOnError = false
+	}
 }
 
 repositories {
