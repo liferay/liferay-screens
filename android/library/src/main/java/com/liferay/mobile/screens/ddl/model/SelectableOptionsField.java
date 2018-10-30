@@ -113,6 +113,7 @@ public class SelectableOptionsField extends OptionsField<ArrayList<Option>> {
         }
 
         options.remove(option);
+        getCurrentValue().remove(option);
     }
 
     public boolean isSelected(Option availableOption) {

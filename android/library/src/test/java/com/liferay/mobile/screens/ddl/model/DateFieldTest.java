@@ -162,7 +162,7 @@ public class DateFieldTest {
         public void shouldReturnNullWhenNullDateIsSupplied() {
             DateField field = new DateField(new HashMap<String, Object>(), US_LOCALE, US_LOCALE);
 
-            assertNull(field.convertToFormattedString(null));
+            assertEquals("", field.convertToFormattedString(null));
         }
 
         @Test

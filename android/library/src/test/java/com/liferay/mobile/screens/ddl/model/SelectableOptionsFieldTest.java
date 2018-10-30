@@ -496,15 +496,9 @@ public class SelectableOptionsFieldTest {
     public static class WhenValidating {
 
         @Test
-        public void shouldReturnFalseWhenNoOptionWasSelected() {
-            SelectableOptionsField field = new SelectableOptionsField(createParsedData(), spanishLocale, usLocale);
-
-            assertFalse(field.isValid());
-        }
-
-        @Test
         public void shouldReturnFalseWhenSelectionIsCleared() {
             SelectableOptionsField field = new SelectableOptionsField(createParsedData(), spanishLocale, usLocale);
+            field.setRequired(true);
 
             List<Option> availableOptions = field.getAvailableOptions();
 
