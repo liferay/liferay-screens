@@ -218,6 +218,7 @@ public class RecordTest {
                 + "</dynamic-element>"
                 + "<dynamic-element dataType=\"string\" "
                 + "multiple=\"true\" "
+                + "inline=\"true\" "
                 + "name=\"A_Select\" "
                 + "type=\"select\" > "
                 + "<meta-data locale=\"en_US\"> "
