@@ -3,6 +3,7 @@ if [ "$PLATFORM" = Android ]; then
 	sh gradlew clean
 	sh gradlew assemble
 	sh gradlew liferay-screens:testDebug
+	sh gradlew detekt
 elif [ "$PLATFORM" = iOS ]; then
 	cd ios/Framework
 	pod install --repo-update
