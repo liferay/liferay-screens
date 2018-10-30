@@ -1,3 +1,5 @@
+set -e
+
 if [ "$PLATFORM" = Android ]; then
 	cd android
 	sh gradlew clean
