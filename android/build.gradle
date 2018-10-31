@@ -16,21 +16,29 @@ buildscript {
 }
 
 plugins {
-	id 'io.gitlab.arturbosch.detekt' version '1.0.0.RC8'
+	id 'io.gitlab.arturbosch.detekt' version '1.0.0.RC9.2'
 }
 
 detekt {
-	profile('main') {
-		version = '1.0.0.RC8'
-		input = "$projectDir"
-		config = './detekt.yml'
-		filters = '.*test.*,.*/resources/.*,.*/tmp/.*'
-		output = './library/reports/report.xml'
+	toolVersion = '1.0.0.RC9.2'
+	input = files("$projectDir")
+	config = files("$rootDir/detekt.yml")
+	filters = '.*test.*,.*/resources/.*,.*/tmp/.*'
+	reports {
+		xml {
+			enabled = true
+			destination = file("$projectDir/reports/detekt.xml")
+		}
+		html {
+			enabled = true
+			destination = file("$projectDir/reports/detekt.html")
+		}
 	}
 	idea {
-		path = '/Applications/IntelliJ IDEA.app/Contents'
-		codeStyleScheme = "$projectDir/ScreensCodeConvention.xml"
-		report = './library/reports'
+		path = '/Applications/Android Studio.app/Contents'
+		codeStyleScheme = "$rootDir/ScreensCodeConvention.xml"
+		inspectionsProfile = "$rootDir/android-studio-inspections.xml"
+		report = './reports'
 		mask = '*.kt,*.java,*.xml,*.css,*.js'
 	}
 }
@@ -97,6 +105,10 @@ subprojects {
 		mavenLocal()
 		maven { url 'https://maven.google.com' }
 		jcenter()
+	}
+
+	tasks.withType(Javadoc).all {
+		failOnError = false
 	}
 }
 

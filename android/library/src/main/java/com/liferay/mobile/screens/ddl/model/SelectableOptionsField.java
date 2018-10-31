@@ -113,6 +113,7 @@ public class SelectableOptionsField extends OptionsField<ArrayList<Option>> {
         }
 
         options.remove(option);
+        getCurrentValue().remove(option);
     }
 
     public boolean isSelected(Option availableOption) {
@@ -141,6 +142,7 @@ public class SelectableOptionsField extends OptionsField<ArrayList<Option>> {
         super.writeToParcel(destination, flags);
 
         destination.writeInt(multiple ? 1 : 0);
+        destination.writeInt(inline ? 1 : 0);
         destination.writeSerializable(dataProvider);
     }
 

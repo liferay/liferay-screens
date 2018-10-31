@@ -86,9 +86,11 @@ public class StringField extends OptionsField<String> {
             String trimmedString = currentValue.trim();
 
             valid = !trimmedString.isEmpty();
+
+            return valid && stringValidation.validate(currentValue);
         }
 
-        return valid && stringValidation.validate(currentValue);
+        return valid;
     }
 
     @Override
