@@ -19,11 +19,15 @@ import android.os.Parcelable;
 import com.liferay.mobile.screens.ddl.DDMStructureParser;
 import com.liferay.mobile.screens.ddl.JsonParser;
 import com.liferay.mobile.screens.ddl.XSDParser;
+import com.liferay.mobile.screens.ddm.form.model.FormPage;
+import com.liferay.mobile.screens.ddm.form.model.SuccessPage;
 import com.liferay.mobile.screens.util.LiferayLocale;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import kotlin.collections.CollectionsKt;
+import kotlin.jvm.functions.Function1;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -60,8 +64,31 @@ public class DDMStructure implements Parcelable {
     private Long classNameId;
     private String classPK;
 
+    private List<FormPage> pages;
+    private SuccessPage successPage;
+
     public DDMStructure() {
         super();
+    }
+
+    public DDMStructure(String name, String description, List<FormPage> pages) {
+        super();
+        this.name = name;
+        this.description = description;
+        this.pages = pages;
+        this.fields = CollectionsKt.flatMap(pages, new Function1<FormPage, Iterable<? extends Field>>() {
+            @Override
+            public Iterable<? extends Field> invoke(FormPage formPage) {
+                return formPage.getFields();
+            }
+        });
+
+        parsed = true;
+    }
+
+    public DDMStructure(String name, String description, List<FormPage> pages, SuccessPage successPage) {
+        this(name, description, pages);
+        this.successPage = successPage;
     }
 
     public DDMStructure(Locale locale) {
@@ -73,6 +100,8 @@ public class DDMStructure implements Parcelable {
         Parcelable[] array = in.readParcelableArray(Field.class.getClassLoader());
         fields = new ArrayList(Arrays.asList(array));
         locale = (Locale) in.readSerializable();
+        name = in.readString();
+        description = in.readString();
     }
 
     @Override
@@ -126,6 +155,14 @@ public class DDMStructure implements Parcelable {
 
     public void setLocale(Locale locale) {
         this.locale = locale;
+    }
+
+    public SuccessPage getSuccessPage() {
+        return successPage;
+    }
+
+    public List<FormPage> getPages() {
+        return pages;
     }
 
     public void parse(JSONObject jsonObject) throws JSONException {
