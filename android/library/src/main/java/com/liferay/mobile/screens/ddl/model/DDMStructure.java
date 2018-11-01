@@ -64,7 +64,7 @@ public class DDMStructure implements Parcelable {
     private Long classNameId;
     private String classPK;
 
-    private List<FormPage> pages;
+    private List<FormPage> pages = new ArrayList<>();
     private SuccessPage successPage;
 
     public DDMStructure() {
@@ -72,10 +72,10 @@ public class DDMStructure implements Parcelable {
     }
 
     public DDMStructure(String name, String description, List<FormPage> pages) {
-        super();
         this.name = name;
         this.description = description;
         this.pages = pages;
+
         this.fields = CollectionsKt.flatMap(pages, new Function1<FormPage, Iterable<? extends Field>>() {
             @Override
             public Iterable<? extends Field> invoke(FormPage formPage) {
@@ -97,17 +97,27 @@ public class DDMStructure implements Parcelable {
     }
 
     protected DDMStructure(Parcel in, ClassLoader classLoader) {
-        Parcelable[] array = in.readParcelableArray(Field.class.getClassLoader());
-        fields = new ArrayList(Arrays.asList(array));
+        Parcelable[] fieldsArray = in.readParcelableArray(Field.class.getClassLoader());
+        fields = new ArrayList(Arrays.asList(fieldsArray));
+
         locale = (Locale) in.readSerializable();
         name = in.readString();
         description = in.readString();
+
+        Parcelable[] pagesArray = in.readParcelableArray(FormPage.class.getClassLoader());
+        pages = new ArrayList(Arrays.asList(pagesArray));
+
+        successPage = in.readParcelable(SuccessPage.class.getClassLoader());
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeParcelableArray(fields.toArray(new Field[fields.size()]), flags);
         dest.writeSerializable(locale);
+        dest.writeString(name);
+        dest.writeString(description);
+        dest.writeParcelableArray(pages.toArray(new FormPage[pages.size()]), flags);
+        dest.writeParcelable(successPage, flags);
     }
 
     @Override
