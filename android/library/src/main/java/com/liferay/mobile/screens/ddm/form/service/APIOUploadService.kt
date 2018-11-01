@@ -23,7 +23,7 @@ import java.io.InputStream
 /**
  * @author Paulo Cruz
  */
-class APIOUploadService : IUploadService, BaseAPIOService() {
+class APIOUploadService : BaseAPIOService() {
 
 	fun uploadFile(formThing: Thing, field: DocumentField, inputStream: InputStream,
 		onSuccess: (DocumentRemoteFile) -> Unit,
@@ -34,7 +34,7 @@ class APIOUploadService : IUploadService, BaseAPIOService() {
 		}
 	}
 
-	override fun uploadFile(thingId: String, operationId: String, field: DocumentField, inputStream: InputStream,
+	fun uploadFile(thingId: String, operationId: String, field: DocumentField, inputStream: InputStream,
 		onSuccess: (DocumentRemoteFile) -> Unit,
 		onError: (Exception) -> Unit) {
 

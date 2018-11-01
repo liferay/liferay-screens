@@ -23,7 +23,7 @@ import com.liferay.mobile.screens.ddm.form.serializer.FieldValueSerializer
 /**
  * @author Paulo Cruz
  */
-class APIOEvaluateService : IEvaluateService, BaseAPIOService() {
+class APIOEvaluateService : BaseAPIOService() {
 
 	private val operationId = "evaluate-context"
 
@@ -35,7 +35,7 @@ class APIOEvaluateService : IEvaluateService, BaseAPIOService() {
 		} ?: onError(ThingWithoutOperationException(formThing.id, operationId))
 	}
 
-	override fun evaluateContext(thingId: String, operationId: String,
+	fun evaluateContext(thingId: String, operationId: String,
 		fields: MutableList<Field<*>>, onSuccess: (Thing) -> Unit,
 		onError: (Exception) -> Unit) {
 

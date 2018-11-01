@@ -21,11 +21,11 @@ import com.liferay.apio.consumer.model.Thing
 /**
  * @author Paulo Cruz
  */
-class APIOFetchLatestDraftService : IFetchLatestDraftService, BaseAPIOService() {
+class APIOFetchLatestDraftService : BaseAPIOService() {
 
 	private val operationId = "fetch-latest-draft"
 
-	override fun fetchLatestDraft(formThing: Thing, onSuccess: (Thing) -> Unit,
+	fun fetchLatestDraft(formThing: Thing, onSuccess: (Thing) -> Unit,
 		onError: (Exception) -> Unit) {
 
 		formThing.getOperation(operationId)?.let {

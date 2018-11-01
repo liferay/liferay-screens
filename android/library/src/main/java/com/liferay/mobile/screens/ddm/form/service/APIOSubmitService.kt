@@ -27,7 +27,7 @@ import okhttp3.HttpUrl
 /**
  * @author Paulo Cruz
  */
-class APIOSubmitService : ISubmitService, BaseAPIOService() {
+class APIOSubmitService : BaseAPIOService() {
 
 	fun submit(formThing: Thing, currentRecordThing: Thing?, fields: MutableList<Field<*>>,
 		isDraft: Boolean = false, onSuccess: (Thing) -> Unit, onError: (Exception) -> Unit) {
@@ -41,7 +41,7 @@ class APIOSubmitService : ISubmitService, BaseAPIOService() {
 		} ?: onError(ThingNotFoundException())
 	}
 
-	override fun submit(thingId: String, operationId: String,
+	fun submit(thingId: String, operationId: String,
 		fields: MutableList<Field<*>>, isDraft: Boolean,
 		onSuccess: (Thing) -> Unit, onError: (Exception) -> Unit) {
 
