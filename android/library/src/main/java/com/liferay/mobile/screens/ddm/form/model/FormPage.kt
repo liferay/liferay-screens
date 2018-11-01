@@ -14,9 +14,46 @@
 
 package com.liferay.mobile.screens.ddm.form.model
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.liferay.mobile.screens.ddl.model.Field
 
 /**
  * @author Victor Oliveira
  */
-class FormPage(val headline: String, val description: String, val fields: List<Field<*>>, var isEnabled: Boolean = true)
+class FormPage(val headline: String, val description: String, var fields: List<Field<*>> = emptyList(),
+    var isEnabled: Boolean = true) : Parcelable {
+
+    constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readString()) {
+
+        fields = (parcel.readParcelableArray(Field::class.java.classLoader) as? Array<Field<*>>)?.let {
+            it.toList()
+        } ?: emptyList()
+
+        isEnabled = parcel.readByte() != 0.toByte()
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(headline)
+        parcel.writeString(description)
+        parcel.writeParcelableArray(fields.toTypedArray(), flags)
+        parcel.writeByte(if (isEnabled) 1 else 0)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<FormPage> {
+        override fun createFromParcel(parcel: Parcel): FormPage {
+            return FormPage(parcel)
+        }
+
+        override fun newArray(size: Int): Array<FormPage?> {
+            return arrayOfNulls(size)
+        }
+    }
+
+}
