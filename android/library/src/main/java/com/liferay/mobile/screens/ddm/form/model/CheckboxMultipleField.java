@@ -44,28 +44,28 @@ public class CheckboxMultipleField extends SelectableOptionsField {
             }
         };
 
-    private boolean isShowAsSwitcher;
+    private boolean showAsSwitcher;
 
     public CheckboxMultipleField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
         super(attributes, locale, defaultLocale);
 
-        isShowAsSwitcher = Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.SWITCHER_KEY));
+        showAsSwitcher = Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.SWITCHER_KEY));
     }
 
     public CheckboxMultipleField(Parcel in, ClassLoader loader) {
         super(in, loader);
 
-        isShowAsSwitcher = in.readInt() == 1;
+        showAsSwitcher = in.readInt() == 1;
     }
 
     @Override
     public void writeToParcel(Parcel destination, int flags) {
         super.writeToParcel(destination, flags);
 
-        destination.writeInt(isShowAsSwitcher ? 1 : 0);
+        destination.writeInt(showAsSwitcher ? 1 : 0);
     }
 
-    public boolean isShowAsSwitcher() {
-        return isShowAsSwitcher;
+    public boolean showAsSwitcher() {
+        return showAsSwitcher;
     }
 }
