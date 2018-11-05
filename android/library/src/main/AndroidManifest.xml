@@ -7,9 +7,12 @@
 
     <application>
 
+        <activity
+            android:name=".ddm.form.view.SuccessPageActivity"/>
 
         <activity
             android:name=".base.MediaStoreRequestShadowActivity"/>
+
         <activity
             android:name=".viewsets.defaultviews.imagegallery.DetailImageActivity"
             android:theme="@style/gallery_theme"/>
