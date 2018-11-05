@@ -42,6 +42,11 @@ data class FormInstance(
 	val isEvaluable: Boolean = hasDataProvider || hasFormRules
 
 	companion object {
+		val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
+			mutableMapOf(
+				Detail to R.layout.ddm_form_default
+			)
+
 		val converter: (Thing) -> FormInstance = { it: Thing ->
 
 			val name = it[FormConstants.NAME] as String
