@@ -76,12 +76,9 @@ public class DDMStructure implements Parcelable {
         this.description = description;
         this.pages = pages;
 
-        this.fields = CollectionsKt.flatMap(pages, new Function1<FormPage, Iterable<? extends Field>>() {
-            @Override
-            public Iterable<? extends Field> invoke(FormPage formPage) {
-                return formPage.getFields();
-            }
-        });
+        for (FormPage page : pages) {
+            this.fields.addAll(page.getFields());
+        }
 
         parsed = true;
     }
