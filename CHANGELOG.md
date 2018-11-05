@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
 * Configure `detekt` for code convention and format all the project
 * Update ThingScreenlet with ApioConsumer 0.0.8 changes
 * Support workflow list with ThingScreenlet
+* Support Checkbox Multiple, Grid and Repeatable fields on Field model
 
 ### Refactor
 

@@ -19,11 +19,15 @@ import android.os.Parcelable;
 import com.liferay.mobile.screens.ddl.DDMStructureParser;
 import com.liferay.mobile.screens.ddl.JsonParser;
 import com.liferay.mobile.screens.ddl.XSDParser;
+import com.liferay.mobile.screens.ddm.form.model.FormPage;
+import com.liferay.mobile.screens.ddm.form.model.SuccessPage;
 import com.liferay.mobile.screens.util.LiferayLocale;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import kotlin.collections.CollectionsKt;
+import kotlin.jvm.functions.Function1;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -60,8 +64,28 @@ public class DDMStructure implements Parcelable {
     private Long classNameId;
     private String classPK;
 
+    private List<FormPage> pages = new ArrayList<>();
+    private SuccessPage successPage;
+
     public DDMStructure() {
         super();
+    }
+
+    public DDMStructure(String name, String description, List<FormPage> pages) {
+        this.name = name;
+        this.description = description;
+        this.pages = pages;
+
+        for (FormPage page : pages) {
+            this.fields.addAll(page.getFields());
+        }
+
+        parsed = true;
+    }
+
+    public DDMStructure(String name, String description, List<FormPage> pages, SuccessPage successPage) {
+        this(name, description, pages);
+        this.successPage = successPage;
     }
 
     public DDMStructure(Locale locale) {
@@ -70,15 +94,27 @@ public class DDMStructure implements Parcelable {
     }
 
     protected DDMStructure(Parcel in, ClassLoader classLoader) {
-        Parcelable[] array = in.readParcelableArray(Field.class.getClassLoader());
-        fields = new ArrayList(Arrays.asList(array));
+        Parcelable[] fieldsArray = in.readParcelableArray(Field.class.getClassLoader());
+        fields = new ArrayList(Arrays.asList(fieldsArray));
+
         locale = (Locale) in.readSerializable();
+        name = in.readString();
+        description = in.readString();
+
+        Parcelable[] pagesArray = in.readParcelableArray(FormPage.class.getClassLoader());
+        pages = new ArrayList(Arrays.asList(pagesArray));
+
+        successPage = in.readParcelable(SuccessPage.class.getClassLoader());
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeParcelableArray(fields.toArray(new Field[fields.size()]), flags);
         dest.writeSerializable(locale);
+        dest.writeString(name);
+        dest.writeString(description);
+        dest.writeParcelableArray(pages.toArray(new FormPage[pages.size()]), flags);
+        dest.writeParcelable(successPage, flags);
     }
 
     @Override
@@ -126,6 +162,14 @@ public class DDMStructure implements Parcelable {
 
     public void setLocale(Locale locale) {
         this.locale = locale;
+    }
+
+    public SuccessPage getSuccessPage() {
+        return successPage;
+    }
+
+    public List<FormPage> getPages() {
+        return pages;
     }
 
     public void parse(JSONObject jsonObject) throws JSONException {

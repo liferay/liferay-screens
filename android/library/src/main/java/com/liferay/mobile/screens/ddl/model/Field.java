@@ -17,6 +17,9 @@ package com.liferay.mobile.screens.ddl.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.liferay.mobile.screens.ddl.form.util.FormFieldKeys;
+import com.liferay.mobile.screens.ddm.form.model.CheckboxMultipleField;
+import com.liferay.mobile.screens.ddm.form.model.GridField;
+import com.liferay.mobile.screens.ddm.form.model.RepeatableField;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -426,6 +429,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
                     field = new DateField(attributes, locale, defaultLocale);
                 } else if (editor == EditorType.DOCUMENT) {
                     field = new DocumentField(attributes, locale, defaultLocale);
+                } else if (editor == EditorType.CHECKBOX_MULTIPLE) {
+                    field = new CheckboxMultipleField(attributes, locale, defaultLocale);
+                } else if (editor == EditorType.GRID) {
+                    field = new GridField(attributes, locale, defaultLocale);
                 } else {
                     field = new StringField(attributes, locale, defaultLocale);
                 }
@@ -446,6 +453,16 @@ public abstract class Field<T extends Serializable> implements Parcelable {
             } else {
                 if (EditorType.valueOf(attributes) == EditorType.PARAGRAPH) {
                     field = new StringField(attributes, locale, defaultLocale);
+                }
+            }
+
+            if (field != null && !repeatedField) {
+                boolean repeatable =
+                    Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.IS_REPEATABLE_KEY));
+
+                if (repeatable) {
+                    Field baseField = field;
+                    field = new RepeatableField(baseField);
                 }
             }
 
