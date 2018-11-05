@@ -22,22 +22,22 @@ import com.liferay.apio.consumer.model.get
  */
 class FormContext @JvmOverloads constructor(
 	val isReadOnly: Boolean = false,
-	val isShowRequiredFieldsWarning: Boolean = false,
-	val isShowSubmitButton: Boolean = false,
+	val showRequiredFieldsWarning: Boolean = false,
+	val showSubmitButton: Boolean = false,
 	val pages: List<FormContextPage>) {
 
 	companion object {
 		val converter: (Thing) -> FormContext = { it: Thing ->
 
 			val isReadOnly = it["isReadOnly"] as Boolean
-			val isShowRequiredFieldsWarning = it["isShowRequiredFieldsWarning"] as Boolean
-			val isShowSubmitButton = it["isShowSubmitButton"] as Boolean
+			val showRequiredFieldsWarning = it["isShowRequiredFieldsWarning"] as Boolean
+			val showSubmitButton = it["isShowSubmitButton"] as Boolean
 
 			val pages = (it["pages"] as Map<String, Any>).let {
 				getPages(it)
 			}
 
-			FormContext(isReadOnly, isShowRequiredFieldsWarning, isShowSubmitButton, pages)
+			FormContext(isReadOnly, showRequiredFieldsWarning, showSubmitButton, pages)
 		}
 
 		private fun getPages(mapper: Map<String, Any>): List<FormContextPage> {
@@ -52,9 +52,9 @@ class FormContext @JvmOverloads constructor(
 				}
 
 				val isEnabled = it["isEnabled"] as Boolean
-				val isShowRequiredFieldsWarning = it["isShowRequiredFieldsWarning"] as Boolean
+				val showRequiredFieldsWarning = it["isShowRequiredFieldsWarning"] as Boolean
 
-				FormContextPage(headline, text, fields, isEnabled, isShowRequiredFieldsWarning)
+				FormContextPage(headline, text, fields, isEnabled, showRequiredFieldsWarning)
 			}
 		}
 
@@ -90,7 +90,7 @@ class FormContext @JvmOverloads constructor(
 
 class FormContextPage(val headline: String, val text: String, val fields: List<FieldContext>,
 	val isEnabled: Boolean = false,
-	val isShowRequiredFieldsWarning: Boolean = false)
+	val showRequiredFieldsWarning: Boolean = false)
 
 class FieldContext(name: String, value: Any?, val errorMessage: String?,
 	val options: List<Map<String, Any>>?, val isEvaluable: Boolean?,
