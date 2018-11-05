@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields;
+package com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.fields;
 
 import android.content.Context;
 import android.text.Html;
@@ -20,6 +20,7 @@ import android.text.InputType;
 import android.text.method.LinkMovementMethod;
 import android.util.AttributeSet;
 import com.liferay.mobile.screens.ddl.model.StringField;
+import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.BaseDDLFieldTextView;
 
 /**
  * @author Victor Oliveira
