@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="repeatable_add">+</string>
+    <string name="repeatable_remove">−</string>
+</resources>
