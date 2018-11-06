@@ -34,6 +34,12 @@
                 />
 
             <Button
+                android:id="@+id/ddm_form"
+                android:text="@string/ddm_form"
+                style="@style/test_app_button"
+                />
+
+            <Button
                 android:id="@+id/login"
                 android:text="@string/login"
                 style="@style/test_app_button"

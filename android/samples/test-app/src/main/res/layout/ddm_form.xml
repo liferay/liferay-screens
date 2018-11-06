@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
+        android:id="@+id/ddm_form_screenlet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+    <com.liferay.mobile.screens.base.ModalProgressBarWithLabel
+        android:id="@+id/liferay_modal_progress"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        >
+    </com.liferay.mobile.screens.base.ModalProgressBarWithLabel>
+
+</FrameLayout>

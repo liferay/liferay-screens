@@ -29,7 +29,12 @@ All notable changes to this project will be documented in this file.
 * Create a ThemeUtil class to help with custom themes
 
 ### Bugs
+
 * Fix isLiferay62 check on LiferayServerContext
+
+### Samples
+
+* Update test-app with ThingScreenlet loading Forms
 
 # 4.0.1
 
