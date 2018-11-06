@@ -18,6 +18,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.liferay.mobile.screens.viewsets.lexicon.R;
@@ -27,25 +28,20 @@ import com.liferay.mobile.screens.viewsets.lexicon.R;
  */
 public class FormViewUtil {
 
-    public static void setupTextFieldLayout(Context context, boolean valid, TextView labelTextView,
-        EditText textEditText) {
+    public static void setupBackground(Drawable drawable, View view) {
+        view.setBackground(drawable);
+    }
+
+    public static void setupBackground(Context context, boolean valid, View view) {
         Drawable drawable;
-        String errorText = null;
 
         if (valid) {
-            drawable = context.getResources().getDrawable(R.drawable.lexicon_edit_text_drawable);
+            drawable = context.getResources().getDrawable(R.drawable.lexicon_edit_text_selector);
         } else {
-            errorText = context.getResources().getString(com.liferay.mobile.screens.R.string.invalid);
             drawable = context.getResources().getDrawable(R.drawable.lexicon_edit_text_error_drawable);
         }
 
-        if (labelTextView == null) {
-            textEditText.setError(errorText);
-        } else {
-            labelTextView.setError(errorText);
-        }
-
-        textEditText.setBackground(drawable);
+        setupBackground(drawable, view);
     }
 
     public static int convertDpToPx(Context context, int dp) {
