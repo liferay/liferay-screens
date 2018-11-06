@@ -16,6 +16,9 @@ package com.liferay.mobile.screens.viewsets.lexicon.ddl.form.fields;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
+
+import com.liferay.mobile.screens.viewsets.lexicon.R;
 import com.liferay.mobile.screens.viewsets.lexicon.util.FormViewUtil;
 
 /**
@@ -38,6 +41,11 @@ public class DDLFieldNumberView
 
     @Override
     public void onPostValidation(boolean valid) {
-        FormViewUtil.setupTextFieldLayout(getContext(), valid, labelTextView, textEditText);
+        FormViewUtil.setupBackground(getContext(), valid, textEditText);
+
+        View errorView = findViewById(R.id.error_view);
+        if (errorView != null) {
+            errorView.setVisibility(valid ? GONE : VISIBLE);
+        }
     }
 }
