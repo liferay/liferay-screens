@@ -21,6 +21,7 @@ All notable changes to this project will be documented in this file.
 * Create services to submit, evaluate, upload files and get drafts from forms using ApioConsumer
 * Support onPageRendered method on PdfDisplayView
 * Support forms with ThingScreenlet
+* Add Lexicon Theme for Form fields
 
 ### Refactor
 
