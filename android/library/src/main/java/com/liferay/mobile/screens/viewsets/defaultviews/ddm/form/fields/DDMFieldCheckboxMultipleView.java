@@ -100,13 +100,11 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
 
         List<Option> availableOptions = field.getAvailableOptions();
 
-        if (field.showAsSwitcher()) {
-            for (Option opt : availableOptions) {
+        for (Option opt : availableOptions) {
+            if (field.showAsSwitcher()) {
                 Switch switchView = createSwitchView(opt, layoutParams);
                 addView(field, switchView);
-            }
-        } else {
-            for (Option opt : availableOptions) {
+            } else {
                 CheckBox checkBoxView = createCheckBoxView(opt, layoutParams);
                 addView(field, checkBoxView);
             }
