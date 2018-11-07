@@ -169,12 +169,14 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
     }
 
     private LayoutParams calculateLayoutParams(Boolean isInline, Boolean showAsSwitcher) {
+        LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 
-        if (showAsSwitcher && !isInline) {
-            return new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-        } else {
-            return new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, 1.0f);
+        if (!showAsSwitcher || isInline) {
+            layoutParams.width = LayoutParams.WRAP_CONTENT;
+            layoutParams.weight = 1.0f;
         }
+
+        return layoutParams;
     }
 
     @Override
