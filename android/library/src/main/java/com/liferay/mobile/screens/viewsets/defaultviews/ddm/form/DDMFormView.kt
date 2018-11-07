@@ -448,7 +448,9 @@ class DDMFormView @JvmOverloads constructor(
 	}
 
 	private fun setFieldVisibility(fieldContext: FieldContext, fieldView: View) {
-		if (fieldContext.isVisible != false) {
+		val isVisible = fieldContext.isVisible ?: true
+
+		if (isVisible) {
 			fieldView.visibility = View.VISIBLE
 		} else {
 			fieldView.visibility = View.GONE

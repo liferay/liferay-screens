@@ -216,7 +216,9 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 	}
 
 	private fun setValue(fieldContext: FieldContext, field: Field<*>) {
-		if (fieldContext.isValueChanged == true) {
+		val isValueChanged = fieldContext.isValueChanged ?: false
+
+		if (isValueChanged) {
 			addToDirtyFields(field)
 
 			fieldContext.value?.toString()?.let {
