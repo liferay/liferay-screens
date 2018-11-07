@@ -53,7 +53,7 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
 	private val changeValuesObservable = Observable.create<Boolean> { changeValuesSubscriber = it }
 
 	override fun getField(): GridField {
-		return this.gridField
+		return gridField
 	}
 
 	override fun setField(field: GridField) {
@@ -70,12 +70,12 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
 	}
 
 	private fun onColumnValueChanged(which: Int, row: Option, ddmFieldGridRowView: DDMFieldGridRowView) {
-		val option = this.gridField.columns[which]
+		val option = gridField.columns[which]
 
-		if (this.gridField.currentValue == null) {
-			this.gridField.currentValue = Grid(mutableMapOf(row.value to option.value))
+		if (gridField.currentValue == null) {
+			gridField.currentValue = Grid(mutableMapOf(row.value to option.value))
 		} else {
-			this.gridField.currentValue.rawValues[row.value] = option.value
+			gridField.currentValue.rawValues[row.value] = option.value
 		}
 
 		val columnEditText = ddmFieldGridRowView.columnSelectView.textEditText
@@ -89,7 +89,7 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
 		val inflater = LayoutInflater.from(context)
 		val layoutIdentifier = ThemeUtil.getLayoutIdentifier(context, "ddmfield_grid_row")
 
-		this.gridField.rows.forEach { row ->
+		gridField.rows.forEach { row ->
 			val ddmFieldGridRowView =
 				inflater.inflate(layoutIdentifier, gridLinearLayout, false) as DDMFieldGridRowView
 
@@ -115,7 +115,7 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
 			labelTextView.text = gridField.label
 			labelTextView.visibility = View.VISIBLE
 
-			if (this.gridField.isRequired) {
+			if (gridField.isRequired) {
 				val requiredAlert = ThemeUtil.getRequiredSpannable(context)
 				labelTextView.append(requiredAlert)
 			}
@@ -136,7 +136,7 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
 		val errorText = if (valid) null else context.getString(R.string.required_value)
 
 		if (field.isShowLabel) {
-			val label = this.findViewById<TextView>(R.id.liferay_ddm_label)
+			val label = findViewById<TextView>(R.id.liferay_ddm_label)
 			label?.error = errorText
 		} else {
 			Snackbar.make(this, errorText.toString(), Snackbar.LENGTH_SHORT).show()
@@ -165,7 +165,7 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
 		gridLinearLayout.childrenSequence().mapNotNull {
 			it as? DDMFieldGridRowView
 		}.forEach { view ->
-			this.field.currentValue?.let {
+			field.currentValue?.let {
 				it[view.rowOption.value]
 			}?.let { columnValue ->
 				gridField.columns[columnValue]

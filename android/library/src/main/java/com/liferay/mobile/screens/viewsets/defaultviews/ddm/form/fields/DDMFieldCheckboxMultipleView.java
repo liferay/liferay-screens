@@ -81,22 +81,22 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
     public void setField(final CheckboxMultipleField field) {
         this.field = field;
 
-        if (this.field.isShowLabel()) {
+        if (field.isShowLabel()) {
             TextView label = findViewById(R.id.liferay_ddm_label);
 
             label.setText(field.getLabel());
             label.setVisibility(VISIBLE);
 
-            if (this.field.isRequired()) {
+            if (field.isRequired()) {
                 label.append(ThemeUtil.getRequiredSpannable(getContext()));
             }
         }
 
-        if (this.field.isInline()) {
+        if (field.isInline()) {
             linearLayout.setOrientation(HORIZONTAL);
         }
 
-        LayoutParams layoutParams = calculateLayoutParams(this.field.isInline(), this.field.showAsSwitcher());
+        LayoutParams layoutParams = calculateLayoutParams(field.isInline(), field.showAsSwitcher());
 
         List<Option> availableOptions = field.getAvailableOptions();
 
@@ -144,7 +144,7 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
         checkBoxView.setTypeface(getTypeface());
         checkBoxView.setSaveEnabled(true);
 
-        if (this.field.isInline()) {
+        if (field.isInline()) {
             checkBoxView.setGravity(Gravity.TOP);
         }
 
@@ -161,7 +161,7 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
         switchView.setTypeface(getTypeface());
         switchView.setSaveEnabled(true);
 
-        if (this.field.isInline()) {
+        if (field.isInline()) {
             switchView.setGravity(Gravity.TOP);
         }
 
@@ -203,6 +203,7 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
             List<Option> availableOptions = field.getAvailableOptions();
             Option opt = availableOptions.get(0);
             CheckBox checkBox = findViewWithTag(opt);
+
             if (checkBox != null) {
                 checkBox.setError(errorText);
             }
