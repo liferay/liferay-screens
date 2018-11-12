@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.ddl;
 
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.ddl.model.StringField;
+import com.liferay.mobile.screens.ddm.form.model.RepeatableField;
 import java.util.List;
 import java.util.Locale;
 import org.junit.Test;
@@ -99,8 +100,9 @@ public class XSDParserTest {
             assertEquals(1, resultList.size());
 
             Field resultField = resultList.get(0);
-            assertTrue(resultField instanceof StringField);
-            StringField stringField = (StringField) resultField;
+            assertTrue(resultField instanceof RepeatableField);
+            RepeatableField repeatableField = (RepeatableField) resultList.get(0);
+            StringField stringField = (StringField) repeatableField.getBaseField();
 
             assertEquals(Field.DataType.STRING.getValue(), stringField.getDataType().getValue());
             assertEquals(Field.EditorType.TEXT.getValue(), stringField.getEditorType().getValue());
@@ -110,7 +112,7 @@ public class XSDParserTest {
             assertFalse(stringField.isReadOnly());
             assertTrue(stringField.isRepeatable());
             assertFalse(stringField.isRequired());
-            assertTrue(stringField.isShowLabel());
+            assertFalse(stringField.isShowLabel());
             assertEquals("default text", stringField.getCurrentValue());
             assertEquals(stringField.getCurrentValue(), stringField.getPredefinedValue());
         }

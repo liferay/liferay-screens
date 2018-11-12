@@ -158,7 +158,7 @@ public class LoginInteractorTest {
 
             doAnswer(new Answer<Void>() {
                 @Override
-                public Void answer(InvocationOnMock invocation) throws Throwable {
+                public Void answer(InvocationOnMock invocation) {
 
                     interactorSpy.onEventMainThread(event);
 
