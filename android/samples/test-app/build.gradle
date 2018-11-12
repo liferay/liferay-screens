@@ -12,6 +12,7 @@ android {
 		versionName rootProject.ext.versionName
 		applicationId 'com.liferay.mobile.screens.testapp'
 		testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+		multiDexEnabled true
 	}
 
 	buildTypes {
