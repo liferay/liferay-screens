@@ -19,9 +19,10 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
 import com.liferay.mobile.screens.viewsets.lexicon.R;
+
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 /**
  * @author Victor Oliveira
@@ -42,6 +43,12 @@ public class FormViewUtil {
         }
 
         setupBackground(drawable, view);
+    }
+
+    public static void setupErrorView(boolean valid, View errorView) {
+        if (errorView != null) {
+            errorView.setVisibility(valid ? GONE : VISIBLE);
+        }
     }
 
     public static int convertDpToPx(Context context, int dp) {

@@ -47,10 +47,7 @@ public class DDLFieldTextView
         boolean isRepeatableField = getParent() instanceof DDMFieldRepeatableItemView;
 
         if (!isRepeatableField) {
-            View errorView = findViewById(R.id.error_view);
-            if (errorView != null) {
-                errorView.setVisibility(valid ? GONE : VISIBLE);
-            }
+            FormViewUtil.setupErrorView(valid, findViewById(R.id.error_view));
         }
     }
 }

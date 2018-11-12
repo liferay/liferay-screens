@@ -91,10 +91,6 @@ public class DDLDocumentFieldView
     @Override
     public void onPostValidation(boolean valid) {
         FormViewUtil.setupBackground(getContext(), valid, textEditText);
-
-        View errorView = findViewById(R.id.error_view);
-        if (errorView != null) {
-            errorView.setVisibility(valid ? GONE : VISIBLE);
-        }
+        FormViewUtil.setupErrorView(valid, findViewById(R.id.error_view));
     }
 }

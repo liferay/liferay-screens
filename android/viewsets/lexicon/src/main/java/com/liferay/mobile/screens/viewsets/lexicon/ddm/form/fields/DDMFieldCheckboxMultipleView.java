@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.liferay.mobile.screens.viewsets.lexicon.R;
+import com.liferay.mobile.screens.viewsets.lexicon.util.FormViewUtil;
 
 public class DDMFieldCheckboxMultipleView
     extends com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.fields.DDMFieldCheckboxMultipleView {
@@ -24,9 +25,6 @@ public class DDMFieldCheckboxMultipleView
 
     @Override
     public void onPostValidation(boolean valid) {
-        View errorView = findViewById(R.id.error_view);
-        if (errorView != null) {
-            errorView.setVisibility(valid ? GONE : VISIBLE);
-        }
+        FormViewUtil.setupErrorView(valid, findViewById(R.id.error_view));
     }
 }
