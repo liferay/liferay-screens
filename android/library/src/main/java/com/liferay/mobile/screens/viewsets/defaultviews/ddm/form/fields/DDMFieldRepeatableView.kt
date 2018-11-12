@@ -40,11 +40,11 @@ open class DDMFieldRepeatableView @JvmOverloads constructor(
 	private lateinit var field: RepeatableField
 	private lateinit var parentView: View
 	private lateinit var layoutIds: Map<Field.EditorType, Int>
+
 	private val repeatableContainer: LinearLayout by bindNonNull(R.id.container)
-
 	private val inflater = LayoutInflater.from(context)
-	private var fieldLayoutId: Int = 0
 
+	private var fieldLayoutId: Int = 0
 	private var containerSubscriber: Subscriber<in RepeatableField>? = null
 	private var subscriptionsMap = mutableMapOf<DDMFieldRepeatableItemView, Subscription>()
 	private var onChangedValueObservable = Observable.create<RepeatableField> { containerSubscriber = it }
@@ -59,47 +59,6 @@ open class DDMFieldRepeatableView @JvmOverloads constructor(
 
 	override fun getOnChangedValueObservable(): Observable<RepeatableField> {
 		return onChangedValueObservable
-	}
-
-	private fun setupRepeatableFields() {
-		field.repeatedFields.forEachIndexed { index, repeatedField ->
-			createFieldView(index, repeatedField)
-		}
-		requestLayout()
-	}
-
-	private fun createFieldView(fieldIndex: Int, repeatedField: Field<*>): DDMFieldRepeatableItemView {
-		val fieldView = inflater.inflate(getRepeatableItemLayoutId(), this, false)
-
-		(fieldView as DDMFieldRepeatableItemView).let {
-			val isFirstField = fieldIndex == 0
-
-			fieldView.setLabelSettings(field.isShowLabel, field.label)
-			fieldView.setRepeatableItemSettings(isFirstField, fieldLayoutId, this)
-
-			fieldView.field = repeatedField
-			repeatableContainer.addView(fieldView, fieldIndex)
-
-			val subscription = fieldView
-				.onChangedValueObservable
-				.map { field }
-				.doOnNext {
-					containerSubscriber?.let {
-						if (!it.isUnsubscribed) {
-							it.onNext(field)
-						}
-					}
-				}
-				.map { field.isValid }
-				.filter { it }
-				.distinctUntilChanged()
-				.doOnNext { onPostValidation(field.isValid) }
-				.subscribe()
-
-			subscriptionsMap[fieldView] = subscription
-		}
-
-		return fieldView
 	}
 
 	override fun onRepeatableFieldAdded(callerFieldView: DDMFieldRepeatableItemView) {
@@ -171,4 +130,44 @@ open class DDMFieldRepeatableView @JvmOverloads constructor(
 		this.isEnabled = enabled
 	}
 
+	private fun setupRepeatableFields() {
+		field.repeatedFields.forEachIndexed { index, repeatedField ->
+			createFieldView(index, repeatedField)
+		}
+		requestLayout()
+	}
+
+	private fun createFieldView(fieldIndex: Int, repeatedField: Field<*>): DDMFieldRepeatableItemView {
+		val fieldView = inflater.inflate(getRepeatableItemLayoutId(), this, false)
+
+		(fieldView as DDMFieldRepeatableItemView).let {
+			val isFirstField = fieldIndex == 0
+
+			fieldView.setLabelSettings(field.isShowLabel, field.label)
+			fieldView.setRepeatableItemSettings(isFirstField, fieldLayoutId, this)
+
+			fieldView.field = repeatedField
+			repeatableContainer.addView(fieldView, fieldIndex)
+
+			val subscription = fieldView
+				.onChangedValueObservable
+				.map { field }
+				.doOnNext {
+					containerSubscriber?.let {
+						if (!it.isUnsubscribed) {
+							it.onNext(field)
+						}
+					}
+				}
+				.map { field.isValid }
+				.filter { it }
+				.distinctUntilChanged()
+				.doOnNext { onPostValidation(field.isValid) }
+				.subscribe()
+
+			subscriptionsMap[fieldView] = subscription
+		}
+
+		return fieldView
+	}
 }
