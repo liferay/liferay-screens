@@ -48,7 +48,7 @@ import Foundation
 		conflictedKey: String,
 		remoteValue: AnyObject,
 		localValue: AnyObject,
-		resolve: (SyncConflictResolution) -> Void)
+		resolve: @escaping (SyncConflictResolution) -> Void)
 
 }
 

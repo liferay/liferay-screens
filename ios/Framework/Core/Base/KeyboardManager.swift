@@ -58,12 +58,12 @@ open class KeyboardManager {
 
 		NotificationCenter.default.addObserver(self,
 				selector: #selector(KeyboardManager.keyboardShown(_:)),
-				name: .UIKeyboardWillShow,
+				name: UIWindow.keyboardWillShowNotification,
 				object: nil)
 
 		NotificationCenter.default.addObserver(self,
 				selector: #selector(KeyboardManager.keyboardHidden(_:)),
-				name: .UIKeyboardWillHide,
+				name: UIWindow.keyboardWillHideNotification,
 				object: nil)
 	}
 
@@ -71,27 +71,27 @@ open class KeyboardManager {
 		self.layoutable = nil
 
 		NotificationCenter.default.removeObserver(self,
-				name: .UIKeyboardDidShow,
+				name: UIWindow.keyboardDidShowNotification,
 				object: nil)
 
 		NotificationCenter.default.removeObserver(self,
-				name: .UIKeyboardDidHide,
+				name: UIWindow.keyboardDidHideNotification,
 				object: nil)
 	}
 
 	// MARK: Private methods
 
 	@objc fileprivate func keyboardShown(_ notification: Notification?) {
-		let value = notification!.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
+		let value = notification!.userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue
 		let frame = adjustRectForCurrentOrientation(value.cgRectValue)
 
 		StaticData.currentHeight = frame.size.height
 		StaticData.visible = true
 
 		let animationDuration =
-				notification!.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! NSNumber
+			notification!.userInfo![UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber
 		let animationCurve =
-				notification!.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! NSNumber
+			notification!.userInfo![UIResponder.keyboardAnimationCurveUserInfoKey] as! NSNumber
 
 		layoutable?.layoutWhenKeyboardShown(frame.size.height,
 				animation: (time: animationDuration, curve: animationCurve))

@@ -98,7 +98,7 @@ class DDLListScreenletViewController: UIViewController, DDLListScreenletDelegate
 	}
 
 	func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-		let attrs = [NSAttributedStringKey.font : UIFont.systemFont(ofSize: 3)]
+		let attrs = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 3)]
 
 		return NSAttributedString(string: pickerData[row].name, attributes: attrs)
 	}

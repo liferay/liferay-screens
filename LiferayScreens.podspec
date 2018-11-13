@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 	s.name         = 'LiferayScreens'
 	s.module_name  = 'LiferayScreens'
-	s.version      = '4.0.0'
+	s.version      = '4.0.1'
 	s.summary      = 'A family of visual components called screenlets that are connected to the Liferay Platform used as a backend'
 	s.homepage     = 'https://www.liferay.com/liferay-screens'
 	s.license = { 
@@ -17,6 +17,7 @@ Pod::Spec.new do |s|
 		'Javier Gamarra' => 'javier.gamarra@liferay.com'
 	}
 	
+	s.swift_version = '4.2'	
 	s.platform = :ios, '9.0'
 	s.requires_arc = true
 

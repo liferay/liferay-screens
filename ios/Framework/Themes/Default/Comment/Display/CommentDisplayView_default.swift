@@ -88,11 +88,11 @@ open class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMode
 			let alertController = UIAlertController(
 				title: LocalizedString("default", key: "comment-display-warning", obj: self),
 				message: LocalizedString("default", key: "comment-display-styled", obj: self),
-				preferredStyle: UIAlertControllerStyle.alert)
+				preferredStyle: UIAlertController.Style.alert)
 
 			let dismissAction = UIAlertAction(
 				title: LocalizedString("default", key: "comment-display-dismiss", obj: self),
-				style: UIAlertActionStyle.default) { _ in
+				style: UIAlertAction.Style.default) { _ in
 					self.state = .editing
 			}
 			alertController.addAction(dismissAction)
@@ -181,11 +181,11 @@ open class CommentDisplayView_default: BaseScreenletView, CommentDisplayViewMode
 		return 110
 	}
 
-	open class func defaultAttributedTextAttributes() -> [NSAttributedStringKey: NSObject] {
+	open class func defaultAttributedTextAttributes() -> [NSAttributedString.Key: NSObject] {
 		let paragrahpStyle = NSMutableParagraphStyle()
 		paragrahpStyle.lineBreakMode = .byWordWrapping
 
-		var attributes: [NSAttributedStringKey: NSObject] = [.paragraphStyle: paragrahpStyle]
+		var attributes: [NSAttributedString.Key: NSObject] = [.paragraphStyle: paragrahpStyle]
 
 		let font = UIFont(name: "HelveticaNeue", size: 17)
 

@@ -171,7 +171,7 @@ open class DDLFormTableView: DDLFormView,
 
 					UIView.animate(withDuration: animation.time.doubleValue,
 							delay: 0,
-							options: UIViewAnimationOptions(rawValue: animation.curve.uintValue),
+							options: UIView.AnimationOptions(rawValue: animation.curve.uintValue),
 							animations: {
 								self.frame = CGRect(
 										x: self.frame.origin.x,

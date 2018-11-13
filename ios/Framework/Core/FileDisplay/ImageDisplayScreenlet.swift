@@ -31,13 +31,13 @@ open class ImageDisplayScreenlet: FileDisplayScreenlet {
 		return screenletView as? ImageDisplayViewModel
 	}
 
-	open var imageMode: UIViewContentMode = .scaleAspectFit {
+	open var imageMode: UIView.ContentMode = .scaleAspectFit {
 		didSet {
 			imageDisplayViewModel?.imageMode = imageMode
 		}
 	}
 
-	open var placeholderImageMode: UIViewContentMode = .center {
+	open var placeholderImageMode: UIView.ContentMode = .center {
 		didSet {
 			imageDisplayViewModel?.placeholderImageMode = placeholderImageMode
 		}

@@ -18,11 +18,11 @@ public protocol ImageDisplayViewModel: FileDisplayViewModel {
 
 	/// Image mode for the screenlet image. See UIViewContentMode enum for
 	/// knowing all the posible modes.
-	var imageMode: UIViewContentMode { get set }
+	var imageMode: UIView.ContentMode { get set }
 
 	/// Placeholder image to show before the asset image or if the asset not exists.
 	var placeholder: UIImage? { get set }
 
 	/// Image mode for the placeholder image.
-	var placeholderImageMode: UIViewContentMode { get set }
+	var placeholderImageMode: UIView.ContentMode { get set }
 }

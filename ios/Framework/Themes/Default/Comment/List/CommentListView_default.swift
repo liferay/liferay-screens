@@ -144,7 +144,7 @@ open class CommentListView_default: BaseListTableView, CommentListViewModel {
 
 	open func tableView(_ tableView: UITableView,
 			editActionsForRowAtIndexPath indexPath: IndexPath) -> [AnyObject]? {
-		let editRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.default,
+		let editRowAction = UITableViewRowAction(style: UITableViewRowAction.Style.default,
 				title: "Edit", handler: {_, indexPath in
 			let cell = tableView.cellForRow(at: indexPath) as? CommentTableViewCell_default
 			cell?.commentDisplayScreenlet?.editComment()
@@ -152,7 +152,7 @@ open class CommentListView_default: BaseListTableView, CommentListViewModel {
 		})
 		editRowAction.backgroundColor = UIColor(red: 0, green: 0.7216, blue: 0.8784, alpha: 1.0)
 
-		let deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.default,
+		let deleteRowAction = UITableViewRowAction(style: UITableViewRowAction.Style.default,
 				title: "Delete", handler: {_, indexPath in
 			let cell = tableView.cellForRow(at: indexPath) as? CommentTableViewCell_default
 			cell?.commentDisplayScreenlet?.deleteComment()

@@ -17,7 +17,9 @@ Update mobile-sdk dependency to 7.1.3
 ## New Features
 * Expose WebView in WebScreenlet
 
+## iOS
 
+Swift 4.2 support
 
 # 4.0.0
 

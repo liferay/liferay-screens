@@ -22,9 +22,9 @@ open class ImageDisplayView_default: BaseScreenletView, ImageDisplayViewModel {
 
 	// MARK: ImageDisplayViewModel
 
-	open var imageMode: UIViewContentMode = .scaleAspectFit
+	open var imageMode: UIView.ContentMode = .scaleAspectFit
 
-	open var placeholderImageMode: UIViewContentMode = .center
+	open var placeholderImageMode: UIView.ContentMode = .center
 
 	open var placeholder: UIImage?
 
