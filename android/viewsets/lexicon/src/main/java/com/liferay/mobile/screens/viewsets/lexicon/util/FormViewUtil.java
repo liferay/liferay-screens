@@ -29,8 +29,9 @@ import static android.view.View.VISIBLE;
  */
 public class FormViewUtil {
 
-    public static void setupBackground(Drawable drawable, View view) {
-        view.setBackground(drawable);
+    public static int convertDpToPx(Context context, int dp) {
+        Resources resources = context.getResources();
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
     }
 
     public static void setupBackground(Context context, boolean valid, View view) {
@@ -42,17 +43,12 @@ public class FormViewUtil {
             drawable = context.getResources().getDrawable(R.drawable.lexicon_edit_text_error_drawable);
         }
 
-        setupBackground(drawable, view);
+        view.setBackground(drawable);
     }
 
     public static void setupErrorView(boolean valid, View errorView) {
         if (errorView != null) {
             errorView.setVisibility(valid ? GONE : VISIBLE);
         }
-    }
-
-    public static int convertDpToPx(Context context, int dp) {
-        Resources resources = context.getResources();
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
     }
 }

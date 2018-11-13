@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
 
+import android.widget.EditText;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldSelectView;
 import com.liferay.mobile.screens.viewsets.lexicon.R;
 import com.liferay.mobile.screens.viewsets.lexicon.util.FormViewUtil;
@@ -33,23 +34,26 @@ public class DDMFieldGridView
 
         int max = getGridLinearLayout().getChildCount();
 
+        Drawable backgroundErrorDrawable =
+            getContext().getResources().getDrawable(R.drawable.lexicon_grid_row_view_error_drawable);
+
+        Drawable editTextDefaultDrawable =
+            getContext().getResources().getDrawable(R.drawable.default_grid_edit_text_selector);
+
+        Drawable editTextErrorDrawable =
+            getContext().getResources().getDrawable(R.drawable.lexicon_grid_select_error_drawable);
+
         for (int i = 0; i < max; i++) {
             DDMFieldGridRowView gridRowView = (DDMFieldGridRowView) getGridLinearLayout().getChildAt(i);
-
-            Drawable drawable;
-
-            drawable = getContext().getResources().getDrawable(R.drawable.lexicon_grid_row_view_error_drawable);
-            FormViewUtil.setupBackground(valid ? null : drawable, gridRowView);
-
-            DDLFieldSelectView columnSelectView = gridRowView.getColumnSelectView();
+            EditText columnEditText = gridRowView.getColumnSelectView().getTextEditText();
 
             if (valid) {
-                drawable = getContext().getResources().getDrawable(R.drawable.default_grid_edit_text_selector);
+                gridRowView.setBackground(null);
+                columnEditText.setBackground(editTextDefaultDrawable);
             } else {
-                drawable = getContext().getResources().getDrawable(R.drawable.lexicon_grid_select_error_drawable);
+                gridRowView.setBackground(backgroundErrorDrawable);
+                columnEditText.setBackground(editTextErrorDrawable);
             }
-
-            FormViewUtil.setupBackground(drawable, columnSelectView.getTextEditText());
         }
     }
 }
