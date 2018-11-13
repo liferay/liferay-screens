@@ -91,6 +91,4 @@
     <string name="user_portrait_default_editable_text">User portrait editable:</string>
     <string name="editable_comment">Editable comment:</string>
     <string name="comment_display_non_editable">Comment display:</string>
-    <string name="form_instance_id">Form Instance ID:</string>
-    <string name="get_form">Get Form</string>
 </resources>
