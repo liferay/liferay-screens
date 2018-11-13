@@ -51,7 +51,7 @@ class OfflineSyncViewController: UIViewController, SyncManagerDelegate {
 	func syncManager(_ manager: SyncManager,
 			onItemSyncScreenlet screenlet: String,
 			startKey: String,
-			attributes: [String: AnyObject]) {
+			attributes: [String: Any]) {
 		log.text.append("[o] Start item. screenlet=\(screenlet) " +
 			"key=\(startKey) attrs=\(attributes)\n\n")
 	}
@@ -59,7 +59,7 @@ class OfflineSyncViewController: UIViewController, SyncManagerDelegate {
 	func syncManager(_ manager: SyncManager,
 			onItemSyncScreenlet screenlet: String,
 			completedKey: String,
-			attributes: [String: AnyObject]) {
+			attributes: [String: Any]) {
 		log.text.append("[o] Item completed. screenlet=\(screenlet) " +
 			"key=\(completedKey) attrs=\(attributes)\n\n")
 	}
@@ -67,7 +67,7 @@ class OfflineSyncViewController: UIViewController, SyncManagerDelegate {
 	func syncManager(_ manager: SyncManager,
 			onItemSyncScreenlet screenlet: String,
 			failedKey: String,
-			attributes: [String: AnyObject],
+			attributes: [String: Any],
 			error: NSError) {
 		log.text.append("[o] Item failed. screenlet=\(screenlet) " +
 			"key=\(failedKey) attrs=\(attributes) error=\(error)\n\n")
