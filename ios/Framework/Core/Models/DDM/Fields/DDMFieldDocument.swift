@@ -217,7 +217,7 @@ open class DDMFieldDocument: DDMField {
 
 		switch currentValue {
 		case let image as UIImage:
-			if let imageData = UIImagePNGRepresentation(image) {
+			if let imageData = image.pngData() {
 				size = Int64(imageData.count)
 				result = InputStream(data: imageData)
 			}

@@ -60,7 +60,7 @@ extension String {
 		return found?.value ?? self
 	}
 
-	public func toHtmlTextWithAttributes(_ attributes: [NSAttributedStringKey: Any]) -> NSAttributedString? {
+	public func toHtmlTextWithAttributes(_ attributes: [NSAttributedString.Key: Any]) -> NSAttributedString? {
 
 		//Init text with default paragraph style
 		var text = "<style>p:last-of-type{ margin-bottom: 0px; padding-bottom: 0px; }</style>"

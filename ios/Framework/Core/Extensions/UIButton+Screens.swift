@@ -15,7 +15,7 @@ import UIKit
 
 extension UIButton {
 
-	public func replaceAttributedTitle(_ title: String, forState state: UIControlState) {
+	public func replaceAttributedTitle(_ title: String, forState state: UIControl.State) {
 		if let attributedTitle = self.attributedTitle(for: state) {
 			let formattedString = NSMutableAttributedString(
 					attributedString: attributedTitle)

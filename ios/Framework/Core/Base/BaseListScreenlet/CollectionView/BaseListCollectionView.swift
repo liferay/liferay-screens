@@ -262,7 +262,7 @@ open class BaseListCollectionView: BaseListView, UICollectionViewDataSource, UIC
 
 	open dynamic func doFillLoadMoreCell(_ cell: UICollectionViewCell) {
 		if cell.contentView.viewWithTag(99) == nil {
-			let loadingMoreView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+			let loadingMoreView = UIActivityIndicatorView(style: .gray)
 			loadingMoreView.center = CGPoint(
 				x: cell.contentView.bounds.width/2,
 				y: cell.contentView.bounds.height/2)

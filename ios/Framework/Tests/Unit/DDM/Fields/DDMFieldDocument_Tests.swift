@@ -142,7 +142,7 @@ class DDMFieldDocument_Tests: XCTestCase {
 		let docField = fields![0] as! DDMFieldDocument
 
 		let image = UIImage(contentsOfFile: testResourcePath("tinyImage", ext: "png"))
-		let imageBytes = UIImagePNGRepresentation(image!)
+		let imageBytes = image!.pngData()
 		let imageLength = Int64(imageBytes!.count)
 
 		docField.currentValue = image

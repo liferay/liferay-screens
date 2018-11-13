@@ -98,12 +98,12 @@ open class DDMFieldDocumentlibraryPresenterViewController_default: UIViewControl
 
 	// MARK: UIImagePickerControllerDelegate
 
-    open func imagePickerController(
-			_ picker: UIImagePickerController,
-			didFinishPickingMediaWithInfo info: [String: Any]) {
+	public func imagePickerController(
+		_ picker: UIImagePickerController,
+		didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 
-		let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
-		let selectedURL = info[UIImagePickerControllerMediaURL] as? URL
+		let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+		let selectedURL = info[UIImagePickerController.InfoKey.mediaURL] as? URL
 
 		selectedDocumentClosure?(selectedImage, selectedURL)
 

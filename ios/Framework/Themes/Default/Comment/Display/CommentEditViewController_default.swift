@@ -64,9 +64,9 @@ open class CommentEditViewController_default: UIViewController, UITextViewDelega
 
 		let notificationCenter = NotificationCenter.default
 		notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard),
-			name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+									   name: UIWindow.keyboardWillHideNotification, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard),
-			name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
+									   name: UIWindow.keyboardWillChangeFrameNotification, object: nil)
 
 		if let textView = bodyTextView, let font = textView.font {
 			textView.text = initialBody
@@ -91,13 +91,13 @@ open class CommentEditViewController_default: UIViewController, UITextViewDelega
 
 	func adjustForKeyboard(_ notification: Notification) {
 		if let keyboardScreenEndFrame =
-				(notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+			(notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
 				let scroll = scrollView {
 
 			let keyboardViewEndFrame =
 				view.convert(keyboardScreenEndFrame, from: view.window)
 
-			if notification.name == NSNotification.Name.UIKeyboardWillHide {
+			if notification.name == UIWindow.keyboardWillHideNotification {
 				scroll.contentInset = UIEdgeInsets.zero
 			}
 			else {
