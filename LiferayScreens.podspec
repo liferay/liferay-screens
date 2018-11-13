@@ -17,6 +17,7 @@ Pod::Spec.new do |s|
 		'Javier Gamarra' => 'javier.gamarra@liferay.com'
 	}
 	
+	s.swift_version = '4.2'	
 	s.platform = :ios, '9.0'
 	s.requires_arc = true
 
