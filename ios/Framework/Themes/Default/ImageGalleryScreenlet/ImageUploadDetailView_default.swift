@@ -65,13 +65,13 @@ open class ImageUploadDetailView_default: ImageUploadDetailViewBase, UITextViewD
 			NotificationCenter.default.addObserver(
 					self,
 					selector: #selector(keyboardWillShow(_:)),
-					name: NSNotification.Name.UIKeyboardWillShow,
+					name: UIWindow.keyboardWillShowNotification,
 					object: nil)
 
 			NotificationCenter.default.addObserver(
 					self,
 					selector: #selector(keyboardWillHide(_:)),
-					name: NSNotification.Name.UIKeyboardWillHide,
+					name: UIWindow.keyboardWillHideNotification,
 					object: nil)
 
 		}
@@ -80,9 +80,9 @@ open class ImageUploadDetailView_default: ImageUploadDetailViewBase, UITextViewD
 	override open func willMove(toWindow newWindow: UIWindow?) {
 
 		NotificationCenter.default.removeObserver(
-				self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+			self, name: UIWindow.keyboardWillShowNotification, object: nil)
 		NotificationCenter.default.removeObserver(
-				self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+			self, name: UIWindow.keyboardWillHideNotification, object: nil)
 	}
 
 	// MARK: Public methods
@@ -117,7 +117,7 @@ open class ImageUploadDetailView_default: ImageUploadDetailViewBase, UITextViewD
 	@objc open func keyboardWillShow(_ notification: Notification) {
 
 		let keyboardHeight =
-			(notification.userInfo![UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.height
+			(notification.userInfo![UIResponder.keyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.height
 
 		var scrollNewFrame = scroll.frame
 		scrollNewFrame.size.height = frame.height - keyboardHeight
@@ -130,7 +130,7 @@ open class ImageUploadDetailView_default: ImageUploadDetailViewBase, UITextViewD
 
 	@objc open func keyboardWillHide(_ notification: Notification) {
 		let keyboardHeight =
-			(notification.userInfo![UIKeyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.height
+			(notification.userInfo![UIResponder.keyboardFrameBeginUserInfoKey]! as AnyObject).cgRectValue.height
 
 		var scrollNewFrame = scroll.frame
 		scrollNewFrame.size.height = frame.height + keyboardHeight

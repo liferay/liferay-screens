@@ -55,7 +55,7 @@ import MobileCoreServices
 			showErrorIfAbsentKeys()
 		}
 
-		let alertMode: UIAlertControllerStyle =
+		let alertMode: UIAlertController.Style =
 				UIDevice.current.userInterfaceIdiom == .pad ? .alert : .actionSheet
 
 		let alert = UIAlertController(
@@ -112,12 +112,12 @@ import MobileCoreServices
 		viewController?.present(alert, animated: true) {}
 	}
 
-	open func imagePickerController(
+	public func imagePickerController(
 		_ picker: UIImagePickerController,
-		didFinishPickingMediaWithInfo info: [String: Any]) {
+		didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 
-		let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage
-		let selectedURL = info[UIImagePickerControllerMediaURL] as? URL
+		let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+		let selectedURL = info[UIImagePickerController.InfoKey.mediaURL] as? URL
 
 		pickerController.dismiss(animated: true) {
 			self.selectedMediaClosure?(selectedImage, selectedURL)

@@ -199,7 +199,7 @@ open class BaseListTableView: BaseListView, UITableViewDataSource, UITableViewDe
 	open func createLoadingMoreView() -> UIView? {
 		let progressView = UIView(frame: CGRect(x: 0, y: 0, width: frame.width, height: 30))
 
-		let indicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+		let indicatorView = UIActivityIndicatorView(style: .gray)
 		indicatorView.center = CGPoint(x: frame.width/2, y: indicatorView.center.y)
 		indicatorView.startAnimating()
 

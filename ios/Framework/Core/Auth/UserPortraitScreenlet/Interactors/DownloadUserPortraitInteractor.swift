@@ -163,7 +163,7 @@ class DownloadUserPortraitInteractor: ServerReadConnectorInteractor {
 					collection: ScreenletName(UserPortraitScreenlet.self),
 					key: self.mode.cacheKey) {
 				if let image = $0 {
-					outputConnector.resultData = UIImagePNGRepresentation(image)
+					outputConnector.resultData = image.pngData()
 					outputConnector.lastError = nil
 					result($0)
 				}

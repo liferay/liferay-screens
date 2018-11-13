@@ -69,7 +69,7 @@ open class UploadFileConnector: AsyncServerConnector, LRCallback, LRFileProgress
 
 	override open func doRun(session: LRSession) {
 		if inputStream == nil {
-			if let imageData = UIImagePNGRepresentation(image!) {
+			if let imageData = image!.pngData() {
 				bytesToSend = Int64(imageData.count)
 				inputStream = InputStream(data: imageData)
 			}
