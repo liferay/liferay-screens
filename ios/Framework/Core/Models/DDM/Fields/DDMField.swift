@@ -71,19 +71,19 @@ open class DDMField: NSObject, NSCoding {
 
 	open var currentLocale: Locale
 
-	internal(set) var dataType: DataType
-	internal(set) var editorType: Editor
+	var dataType: DataType
+	var editorType: Editor
 
-	internal(set) var name: String
-	internal(set) var label: String
-	internal(set) var tip: String
+	var name: String
+	var label: String
+	var tip: String
 
-	internal(set) var predefinedValue: Any?
+	var predefinedValue: Any?
 
-	internal(set) var readOnly: Bool
-	internal(set) var repeatable: Bool
-	internal(set) var required: Bool
-	internal(set) var showLabel: Bool
+	var readOnly: Bool
+	var repeatable: Bool
+	var required: Bool
+	var showLabel: Bool
 
 	public init(attributes: [String: AnyObject], locale: Locale) {
 		dataType = DataType(rawValue: valueAsString(attributes, key: "dataType")) ?? .unsupported

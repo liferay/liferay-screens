@@ -64,9 +64,9 @@ open class CommentEditViewController_default: UIViewController, UITextViewDelega
 
 		let notificationCenter = NotificationCenter.default
 		notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard),
-									   name: UIWindow.keyboardWillHideNotification, object: nil)
+			name: UIWindow.keyboardWillHideNotification, object: nil)
 		notificationCenter.addObserver(self, selector: #selector(adjustForKeyboard),
-									   name: UIWindow.keyboardWillChangeFrameNotification, object: nil)
+			name: UIWindow.keyboardWillChangeFrameNotification, object: nil)
 
 		if let textView = bodyTextView, let font = textView.font {
 			textView.text = initialBody
