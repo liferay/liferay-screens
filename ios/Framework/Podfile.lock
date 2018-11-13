@@ -25,8 +25,8 @@ PODS:
     - CocoaLumberjack/Default
   - Cordova (4.5.4)
   - DTPickerPresenter (0.2.0)
-  - KeychainAccess (3.1.1)
-  - Kingfisher (4.8.0)
+  - KeychainAccess (3.1.2)
+  - Kingfisher (4.10.1)
   - Liferay-iOS-SDK (7.1.0):
     - AFNetworking (~> 3.0)
     - AppAuth (= 0.92)
@@ -127,8 +127,8 @@ SPEC CHECKSUMS:
   CocoaLumberjack: aa9dcab71bdf9eaf2a63bbd9ddc87863efe45457
   Cordova: 90a337977b8667a80483f559268c82062b1183da
   DTPickerPresenter: 1976573e3475534559b6ec1dad64b2ece16c966d
-  KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
-  Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
+  KeychainAccess: b3816fddcf28aa29d94b10ec305cd52be14c472b
+  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
   Liferay-iOS-SDK: cb3c1ffa9b211fd95c5ff77bd5b2cd8036bdc5b0
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MDRadialProgress: 1068574b9b4b870f64b605b07f734385bde5104d
@@ -141,4 +141,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: f022a3058f52942ddf6451d1deb34125995f8904
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.3
