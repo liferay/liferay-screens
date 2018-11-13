@@ -114,7 +114,7 @@ import MobileCoreServices
 
 	public func imagePickerController(
 		_ picker: UIImagePickerController,
-		didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+		didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
 
 		let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
 		let selectedURL = info[UIImagePickerController.InfoKey.mediaURL] as? URL
