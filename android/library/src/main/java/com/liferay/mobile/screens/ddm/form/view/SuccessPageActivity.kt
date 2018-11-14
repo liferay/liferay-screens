@@ -9,19 +9,15 @@ import android.widget.TextView
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.util.FormConstants
 import com.liferay.mobile.screens.ddm.form.model.SuccessPage
+import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 
 /**
  * @author Victor Oliveira
  */
 class SuccessPageActivity : AppCompatActivity() {
 
-	private val headlineTextView: TextView by lazy {
-		findViewById<TextView>(R.id.headline_text_view)
-	}
-
-	private val textTextView: TextView by lazy {
-		findViewById<TextView>(R.id.text_text_view)
-	}
+	private val headlineTextView: TextView by bindNonNull(R.id.headline_text_view)
+	private val textTextView: TextView by bindNonNull(R.id.text_text_view)
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
