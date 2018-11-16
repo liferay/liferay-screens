@@ -107,6 +107,10 @@ public class PdfDisplayView extends BaseFileDisplayView implements View.OnClickL
         title = findViewById(R.id.liferay_asset_title);
     }
 
+    protected void onPageRendered() {
+        hideProgressBar();
+    }
+
     //TODO this should go in the screenlet class
     private void render(String url) {
         if (Build.VERSION.SDK_INT >= 21) {
@@ -158,7 +162,7 @@ public class PdfDisplayView extends BaseFileDisplayView implements View.OnClickL
         }));
         renderedPage.close();
 
-        hideProgressBar();
+        onPageRendered();
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
