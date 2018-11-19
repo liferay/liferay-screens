@@ -15,13 +15,13 @@ import Foundation
 
 open class ImageGalleryLoadInteractor: BaseListPageLoadInteractor {
 
-	open static let CacheKey = "image-gallery"
+	public static let CacheKey = "image-gallery"
 
-	open let repositoryId: Int64
+	public let repositoryId: Int64
 
-    open let folderId: Int64
+	public let folderId: Int64
 
-	open let mimeTypes: [String]
+	public let mimeTypes: [String]
 
     public init(
 			screenlet: BaseListScreenlet,

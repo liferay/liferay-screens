@@ -15,7 +15,7 @@ import UIKit
 
 open class AssetLoadByEntryIdLiferayConnector: ServerConnector, LoadAssetConnector {
 
-	open let entryId: Int64
+	public let entryId: Int64
 
 	open var resultAsset: Asset?
 

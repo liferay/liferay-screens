@@ -15,8 +15,8 @@ import UIKit
 
 open class CommentListPageLiferayConnector: PaginationLiferayConnector {
 
-	open let className: String
-	open let classPK: Int64
+	public let className: String
+	public let classPK: Int64
 
 	// MARK: Initializers
 

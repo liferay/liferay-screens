@@ -16,7 +16,7 @@ import LRMobileSDK
 
 open class ImageGalleryDeleteConnector: ServerConnector {
 
-	open let imageEntryId: Int64
+	public let imageEntryId: Int64
 
 	// MARK: Initializers
 

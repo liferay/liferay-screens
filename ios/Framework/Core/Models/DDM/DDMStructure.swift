@@ -20,8 +20,8 @@ import Foundation
 open class DDMStructure: NSObject, NSCoding {
 
 	open var fields = [DDMField]()
-	open let attributes: [String: AnyObject]
-	open let locale: Locale
+	public let attributes: [String: AnyObject]
+	public let locale: Locale
 
 	open subscript(fieldName: String) -> DDMField? {
 		return fieldBy(name: fieldName)

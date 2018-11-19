@@ -59,9 +59,9 @@ open class RatingScreenlet: BaseScreenlet {
 
 	// MARK: Static properties
 
-	open static let DeleteRatingAction = "deleteRating"
-	open static let UpdateRatingAction = "updateRating"
-	open static let LoadRatingsAction = "loadRatings"
+	public static let DeleteRatingAction = "deleteRating"
+	public static let UpdateRatingAction = "updateRating"
+	public static let LoadRatingsAction = "loadRatings"
 
 	// MARK: Inspectables
 

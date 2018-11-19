@@ -80,8 +80,8 @@ open class CommentDisplayScreenlet: BaseScreenlet {
 
 	// MARK: Static properties
 
-	open static let DeleteAction = "deleteAction"
-	open static let UpdateAction = "updateAction"
+	public static let DeleteAction = "deleteAction"
+	public static let UpdateAction = "updateAction"
 
 	// MARK: Inspectables
 

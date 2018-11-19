@@ -16,9 +16,9 @@ import Foundation
 @objc(WebContent)
 open class WebContent: Asset {
 
-	open let structure: DDMStructure?
-	open let structuredRecord: DDLRecord?
-	open let html: String?
+	public let structure: DDMStructure?
+	public let structuredRecord: DDLRecord?
+	public let html: String?
 
 	override open var debugDescription: String {
 		if let structuredRecord = structuredRecord {

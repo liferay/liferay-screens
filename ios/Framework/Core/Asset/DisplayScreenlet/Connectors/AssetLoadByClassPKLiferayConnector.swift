@@ -15,8 +15,8 @@ import UIKit
 
 open class AssetLoadByClassPKLiferayConnector: ServerConnector, LoadAssetConnector {
 
-	open let className: String
-	open let classPK: Int64
+	public let className: String
+	public let classPK: Int64
 
 	open var resultAsset: Asset?
 

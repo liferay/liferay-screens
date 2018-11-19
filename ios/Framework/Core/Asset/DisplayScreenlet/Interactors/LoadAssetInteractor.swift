@@ -20,13 +20,13 @@ public protocol LoadAssetConnector {
 
 open class LoadAssetInteractor: ServerReadConnectorInteractor {
 
-	open let assetEntryId: Int64?
+	public let assetEntryId: Int64?
 
-	open let className: String?
+	public let className: String?
 
-	open let classPK: Int64?
+	public let classPK: Int64?
 
-	open let portletItemName: String?
+	public let portletItemName: String?
 
 	open var asset: Asset?
 

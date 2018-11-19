@@ -58,8 +58,8 @@ public let AssetClassNameKey_WikiPage = "WikiPage"
 @objc(AssetClassEntry)
 open class AssetClassEntry: NSObject {
 
-	open let classNameId: Int64
-	open let className: String
+	public let classNameId: Int64
+	public let className: String
 
 	public init(_ classNameId: Int64, _ className: String) {
 		self.classNameId = classNameId

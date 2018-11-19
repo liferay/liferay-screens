@@ -17,7 +17,7 @@ import Foundation
 @objcMembers
 open class User: NSObject, NSCoding {
 
-	open let attributes: [String: AnyObject]
+	public let attributes: [String: AnyObject]
 
 	open var firstName: String {
 		return stringAttribute("firstName")

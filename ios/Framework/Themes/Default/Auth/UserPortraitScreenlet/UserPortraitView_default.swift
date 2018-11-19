@@ -34,7 +34,7 @@ private func loadPlaceholderCache(_ done: ((UIImage?) -> Void)? = nil) {
 open class UserPortraitView_default: BaseScreenletView, UserPortraitViewModel,
 	UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-	open static var defaultPlaceholder: UIImage?
+	public static var defaultPlaceholder: UIImage?
 
 	// MARK: Outlets
 

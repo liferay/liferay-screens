@@ -16,7 +16,7 @@ import UIKit
 @objc(BaseListView)
 open class BaseListView: BaseScreenletView {
 
-	open static let DefaultSection = ""
+	public static let DefaultSection = ""
 
 	open var rowCount: Int {
 		return _rowCount

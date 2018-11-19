@@ -16,8 +16,8 @@ import LRMobileSDK
 
 open class GetUserByScreenNameLiferayConnector: GetUserBaseLiferayConnector {
 
-	open let companyId: Int64
-	open let screenName: String
+	public let companyId: Int64
+	public let screenName: String
 
 	// MARK: Initializers
 

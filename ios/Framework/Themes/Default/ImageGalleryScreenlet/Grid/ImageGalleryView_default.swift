@@ -16,7 +16,7 @@ import UIKit
 @objc(ImageGalleryView_default)
 open class ImageGalleryView_default: ImageGalleryCollectionViewBase {
 
-	open static let DefaultColumns = 4
+	public static let DefaultColumns = 4
 
 	open var spacing: CGFloat = 1.0
 

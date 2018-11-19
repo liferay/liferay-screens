@@ -17,7 +17,7 @@ import Foundation
 @objcMembers
 open class Comment: NSObject, NSCoding {
 
-	open static func plainBodyToHtml(_ plainBody: String) -> String {
+	public static func plainBodyToHtml(_ plainBody: String) -> String {
 		return plainBody
 			.replacingOccurrences(of: "<", with: "&lt;")
 			.replacingOccurrences(of: ">", with: "&gt;")
@@ -29,7 +29,7 @@ open class Comment: NSObject, NSCoding {
 
 	fileprivate let AllowedTags = ["strong", "i", "b", "a"]
 
-	open let attributes: [String: AnyObject]
+	public let attributes: [String: AnyObject]
 
 	open var originalBody: String {
 		return attributes["body"]!.description

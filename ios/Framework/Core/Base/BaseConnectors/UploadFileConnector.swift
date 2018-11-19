@@ -22,8 +22,8 @@ open class UploadFileConnector: AsyncServerConnector, LRCallback, LRFileProgress
 	var bytesToSend: Int64?
 	var image: UIImage?
 
-	open let fileName: String
-	open let mimeType: String
+	public let fileName: String
+	public let mimeType: String
 	let parameter: Any?
 	let onUploadedBytes: OnProgress?
 

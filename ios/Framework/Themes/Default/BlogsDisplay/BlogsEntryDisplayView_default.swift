@@ -36,7 +36,7 @@ open class BlogsEntryDisplayView_default: BaseScreenletView, BlogsDisplayViewMod
 
 	open var headerImageHeight: CGFloat = 125.0
 
-	open let dateFormatter: DateFormatter = {
+	public let dateFormatter: DateFormatter = {
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateStyle = DateFormatter.Style.long
 		dateFormatter.locale = Locale(

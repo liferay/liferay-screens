@@ -15,10 +15,10 @@ import UIKit
 
 open class LoginCookieInteractor: ServerConnectorInteractor, LoginResult {
 
-	open let username: String
-	open let password: String
-	open let shouldHandleCookieExpiration: Bool
-	open let cookieExpirationTime: Double
+	public let username: String
+	public let password: String
+	public let shouldHandleCookieExpiration: Bool
+	public let cookieExpirationTime: Double
 
 	open var cookieSession: LRSession?
 	open var resultUserAttributes: [String: AnyObject]?

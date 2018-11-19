@@ -42,7 +42,7 @@ open class FileDisplayScreenlet: BaseScreenlet {
 
 	// MARK: Static properties
 
-	open static let LoadFileAction = "LoadFileAction"
+	public static let LoadFileAction = "LoadFileAction"
 
 	// MARK: Inspectables
 

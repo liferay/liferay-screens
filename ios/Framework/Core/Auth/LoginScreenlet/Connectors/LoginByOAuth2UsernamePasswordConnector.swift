@@ -15,11 +15,11 @@ import UIKit
 
 open class LoginByOAuth2UsernamePasswordConnector: ServerConnector {
 
-	open let username: String
-	open let password: String
-	open let scopes: [String]
-	open let clientId: String
-	open let clientSecret: String
+	public let username: String
+	public let password: String
+	public let scopes: [String]
+	public let clientId: String
+	public let clientSecret: String
 
 	open var oauth2Session: LRSession?
 

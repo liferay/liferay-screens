@@ -26,7 +26,7 @@ open class BaseScreenletView: UIView {
 
 	open var progressMessages: [String: ProgressMessages] { return [:] }
 
-	open let NoProgressMessage = ""
+	public let NoProgressMessage = ""
 
 	open var editable: Bool = true {
 		didSet {
@@ -125,7 +125,7 @@ open class BaseScreenletView: UIView {
 	 * onPreAction is invoked just before any user action is invoked.
 	 * Override this method to decide whether or not the user action should be fired.
 	 */
-	open dynamic func onPreAction(name: String, sender: Any) -> Bool {
+	open dynamic func onPreAction(name: String, sender: Any?) -> Bool {
 		return true
 	}
 

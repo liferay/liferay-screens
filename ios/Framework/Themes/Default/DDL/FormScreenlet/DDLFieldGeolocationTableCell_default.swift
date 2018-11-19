@@ -25,8 +25,8 @@ open class DDLFieldGeolocationTableCell_default: DDMFieldTableCell, UITextFieldD
 
 	// MARK: Static properties
 
-	open static let InvalidLatitude = Double(90 + 1)
-	open static let InvalidLongitude = Double(180 + 1)
+	public static let InvalidLatitude = Double(90 + 1)
+	public static let InvalidLongitude = Double(180 + 1)
 
 	// MARK: DDMFieldTableCell
 

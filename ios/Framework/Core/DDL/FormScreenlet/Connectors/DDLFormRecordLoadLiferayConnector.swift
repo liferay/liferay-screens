@@ -15,7 +15,7 @@ import UIKit
 
 open class DDLFormRecordLoadLiferayConnector: ServerConnector {
 
-	open let recordId: Int64
+	public let recordId: Int64
 
 	open var resultRecordData: [String: AnyObject]?
 	open var resultRecordAttributes: [String: AnyObject]?

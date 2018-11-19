@@ -40,8 +40,8 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 
 	// MARK: Static properties
 
-	open static let DefaultAction = "defaultAction"
-	open static let DefaultThemeName = "default"
+	public static let DefaultAction = "defaultAction"
+	public static let DefaultThemeName = "default"
 
 	// MARK: Outlets
 

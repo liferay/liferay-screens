@@ -52,7 +52,7 @@ class DDMFieldNumber_Tests: XCTestCase {
 		XCTAssertEqual(DDMField.DataType.ddmDouble, numberField.dataType)
 		XCTAssertEqual(DDMField.Editor.number, numberField.editorType)
 		XCTAssertTrue(numberField.predefinedValue is NSDecimalNumber)
-		XCTAssertEqualWithAccuracy(Float(16.05),
+		XCTAssertEqual(Float(16.05),
 			(numberField.predefinedValue as! NSDecimalNumber).floatValue, accuracy: 0.001)
 	}
 
@@ -97,7 +97,7 @@ class DDMFieldNumber_Tests: XCTestCase {
 		XCTAssertEqual(DDMField.DataType.ddmDouble, numberField.dataType)
 		XCTAssertEqual(DDMField.Editor.number, numberField.editorType)
 		XCTAssertTrue(numberField.predefinedValue is NSDecimalNumber)
-		XCTAssertEqualWithAccuracy(Float(16.05),
+		XCTAssertEqual(Float(16.05),
 			(numberField.predefinedValue as! NSDecimalNumber).floatValue, accuracy: 0.001)
 	}
 
@@ -181,7 +181,7 @@ class DDMFieldNumber_Tests: XCTestCase {
 		// It must be in en_US locale
 		XCTAssertEqual("99.98", numberField.currentValueAsString!)
 		XCTAssertTrue(numberField.currentValue is NSDecimalNumber)
-		XCTAssertEqualWithAccuracy(Float(99.98),
+		XCTAssertEqual(Float(99.98),
 			(numberField.currentValue as! NSDecimalNumber).floatValue, accuracy: 0.001)
 	}
 
@@ -213,7 +213,7 @@ class DDMFieldNumber_Tests: XCTestCase {
 		numberField.currentValueAsLabel = "16,069"
 
 		XCTAssertNotNil(numberField.currentValue)
-		XCTAssertEqualWithAccuracy(Float(16.07),
+		XCTAssertEqual(Float(16.07),
 			(numberField.currentValue! as! NSNumber).floatValue, accuracy: 0.001)
 	}
 
