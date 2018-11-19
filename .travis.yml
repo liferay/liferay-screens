@@ -27,6 +27,10 @@ podfile: ios/Framework
 before_script:
  - |
    if [ "$PLATFORM" = Android ]; then
+        brew update
+        brew tap homebrew/cask-versions
+        brew cask install java8
+        export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
         curl -L https://raw.github.com/embarkmobile/android-sdk-installer/version-2/android-sdk-installer | bash /dev/stdin --install=$COMPONENTS --accept=$LICENSES && source ~/.android-sdk-installer/env
         mkdir -p $ANDROID_HOME/licenses
         echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > $ANDROID_HOME/licenses/android-sdk-license
