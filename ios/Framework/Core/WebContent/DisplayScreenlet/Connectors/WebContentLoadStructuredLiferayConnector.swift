@@ -15,7 +15,7 @@ import UIKit
 
 open class WebContentLoadStructuredLiferayConnector: WebContentLoadBaseLiferayConnector {
 
-	open let structureId: Int64
+	public let structureId: Int64
 
 	open var resultRecord: DDLRecord?
 

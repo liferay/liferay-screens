@@ -16,9 +16,9 @@ import UIKit
 @objc(BaseListPageLoadInteractor)
 open class BaseListPageLoadInteractor: ServerReadConnectorInteractor {
 
-	open let page: Int
+	public let page: Int
 
-	open let computeRowCount: Bool
+	public let computeRowCount: Bool
 
 	open var obcClassName: String?
 

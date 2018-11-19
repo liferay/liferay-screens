@@ -16,8 +16,8 @@ import LRMobileSDK
 
 open class WebContentListPageLiferayConnector: PaginationLiferayConnector {
 
-	open let groupId: Int64
-	open let folderId: Int64
+	public let groupId: Int64
+	public let folderId: Int64
 
 	// MARK: Initializers
 

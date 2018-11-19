@@ -14,7 +14,7 @@
 
 open class GetCurrentUserConnector: ServerConnector {
 
-	open let session: LRSession
+	public let session: LRSession
 
 	open var resultUserAttributes: [String: AnyObject]?
 

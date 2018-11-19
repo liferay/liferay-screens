@@ -15,9 +15,9 @@ import UIKit
 
 open class DDLListPageLoadInteractor: BaseListPageLoadInteractor {
 
-	open let userId: Int64
+	public let userId: Int64
 
-	open let recordSetId: Int64
+	public let recordSetId: Int64
 
 	public init(
 			screenlet: BaseListScreenlet,

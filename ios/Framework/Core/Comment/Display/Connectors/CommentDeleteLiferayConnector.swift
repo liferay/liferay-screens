@@ -15,7 +15,7 @@ import UIKit
 
 open class CommentDeleteLiferayConnector: ServerConnector {
 
-	open let commentId: Int64
+	public let commentId: Int64
 
 	// MARK: Initializers
 

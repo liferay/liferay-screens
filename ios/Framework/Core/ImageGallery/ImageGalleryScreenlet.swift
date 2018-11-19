@@ -122,9 +122,9 @@ open class ImageGalleryScreenlet: BaseListScreenlet {
 
 	// MARK: Static properties
 
-	open static let DeleteImageAction = "delete-image-action"
-	open static let UploadImageAction = "upload-image-action"
-	open static let EnqueueUploadAction = "enqueue-upload-action"
+	public static let DeleteImageAction = "delete-image-action"
+	public static let UploadImageAction = "upload-image-action"
+	public static let EnqueueUploadAction = "enqueue-upload-action"
 
 	// MARK: Inspectables
 
@@ -161,7 +161,7 @@ open class ImageGalleryScreenlet: BaseListScreenlet {
 
 	open var uploadDetailViewName = "ImageUploadDetailView"
 
-	open let DefaultMimeTypes = ["image/png", "image/jpeg", "image/gif"]
+	public let DefaultMimeTypes = ["image/png", "image/jpeg", "image/gif"]
 
 	// MARK: Internal properties
 

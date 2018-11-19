@@ -20,7 +20,7 @@ import Foundation
 open class DDLRecord: NSObject, NSCoding {
 
 	open var structure: DDMStructure?
-	open let untypedValues: [DDMField]?
+	public let untypedValues: [DDMField]?
 
 	open var attributes: [String: AnyObject] = [:]
 

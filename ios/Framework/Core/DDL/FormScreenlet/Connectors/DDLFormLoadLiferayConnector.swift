@@ -16,7 +16,7 @@ import LRMobileSDK
 
 open class DDLFormLoadLiferayConnector: ServerConnector {
 
-	open let structureId: Int64
+	public let structureId: Int64
 
 	open var resultRecord: DDLRecord?
 	open var resultUserId: Int64?

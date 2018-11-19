@@ -16,7 +16,7 @@ import LRMobileSDK
 
 open class GetUserByUserIdLiferayConnector: GetUserBaseLiferayConnector {
 
-	open let userId: Int64
+	public let userId: Int64
 
 	// MARK: Initializers
 

@@ -30,7 +30,7 @@ open class PdfDisplayView_default: BaseScreenletView, FileDisplayViewModel {
 
 	open var url: URL? {
 		get {
-			return self.url
+			return webView?.url
 		}
 		set {
 			webView?.load(URLRequest(url: newValue!))

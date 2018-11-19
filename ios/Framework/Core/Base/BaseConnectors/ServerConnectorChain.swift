@@ -32,7 +32,7 @@ import UIKit
 
 	open var onNextStep: ((ServerConnector, Int) -> ServerConnector?)?
 
-	open let headConnector: ServerConnector
+	public let headConnector: ServerConnector
 	open var currentConnector: ServerConnector
 
 	// MARK: Initializers

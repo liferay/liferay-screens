@@ -20,9 +20,9 @@ open class SignUpLiferayConnector: ServerConnector {
 
 	open var resultUserAttributes: [String: AnyObject]?
 
-	open let viewModel: SignUpViewModel
-	open let anonymousUsername: String
-	open let anonymousPassword: String
+	public let viewModel: SignUpViewModel
+	public let anonymousUsername: String
+	public let anonymousPassword: String
 
 	// MARK: Initializers
 

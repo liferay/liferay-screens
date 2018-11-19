@@ -48,8 +48,8 @@ open class SignUpScreenlet: BaseScreenlet, AnonymousBasicAuthType {
 
 	// MARK: Static properties
 
-	open static let SaveSignUpAction = "saveSignUp"
-	open static let SignUpAction = "signUp"
+	public static let SaveSignUpAction = "saveSignUp"
+	public static let SignUpAction = "signUp"
 
 	// MARK: Inspectables
 

@@ -16,10 +16,10 @@ import LRMobileSDK
 
 open class RatingUpdateLiferayConnector: ServerConnector {
 
-	open let classPK: Int64
-	open let className: String
-	open let score: Double
-	open let ratingsGroupCount: Int32
+	public let classPK: Int64
+	public let className: String
+	public let score: Double
+	public let ratingsGroupCount: Int32
 
 	open var resultRating: RatingEntry?
 

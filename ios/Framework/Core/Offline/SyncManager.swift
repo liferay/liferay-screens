@@ -60,7 +60,7 @@ open class SyncManager: NSObject {
 
 	open weak var delegate: SyncManagerDelegate?
 
-	open let cacheManager: CacheManager
+	public let cacheManager: CacheManager
 
 	fileprivate let syncQueue: OperationQueue
 	fileprivate var synchronizers: [String: OfflineSynchronizer] = [:]

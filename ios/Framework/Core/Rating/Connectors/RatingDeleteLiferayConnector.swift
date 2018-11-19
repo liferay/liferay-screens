@@ -16,9 +16,9 @@ import LRMobileSDK
 
 open class RatingDeleteLiferayConnector: ServerConnector {
 
-	open let classPK: Int64
-	open let className: String
-	open let ratingsGroupCount: Int32
+	public let classPK: Int64
+	public let className: String
+	public let ratingsGroupCount: Int32
 
 	open var resultRating: RatingEntry?
 

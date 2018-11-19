@@ -16,8 +16,8 @@ import LRMobileSDK
 
 open class GetUserByEmailLiferayConnector: GetUserBaseLiferayConnector {
 
-	open let companyId: Int64
-	open let emailAddress: String
+	public let companyId: Int64
+	public let emailAddress: String
 
 	// MARK: Initializers
 

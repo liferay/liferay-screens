@@ -16,8 +16,8 @@ import YapDatabase
 
 @objc open class CacheMetadata: NSObject, NSCoding {
 
-	open let synchronized: Date?
-	open let attributes: [String: Any]
+	public let synchronized: Date?
+	public let attributes: [String: Any]
 
 	public init(synchronized: Date?, attributes: [String: Any]) {
 		self.synchronized = synchronized

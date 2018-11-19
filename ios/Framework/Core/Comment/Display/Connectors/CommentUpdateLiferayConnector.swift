@@ -15,8 +15,8 @@ import UIKit
 
 open class CommentUpdateLiferayConnector: ServerConnector {
 
-	open let commentId: Int64
-	open let body: String
+	public let commentId: Int64
+	public let body: String
 
 	open var resultComment: Comment?
 

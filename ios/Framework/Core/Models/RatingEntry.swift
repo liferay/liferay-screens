@@ -17,7 +17,7 @@ import UIKit
 @objcMembers
 open class RatingEntry: NSObject, NSCoding {
 
-	open let attributes: [String: AnyObject]
+	public let attributes: [String: AnyObject]
 
 	open var totalCount: Int {
 		return attributes["totalCount"]! as! Int

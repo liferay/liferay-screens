@@ -17,19 +17,19 @@ import Foundation
 @objcMembers
 open class SessionContext: NSObject {
 
-	open static var currentContext: SessionContext?
-	open static var challengeResolver: ChallengeBlock? {
+	public static var currentContext: SessionContext?
+	public static var challengeResolver: ChallengeBlock? {
 		didSet {
 			guard let challengeResolver = challengeResolver else { return }
 			LRCookieSignIn.registerAuthenticationChallenge(challengeResolver, forServer: LiferayServerContext.server)
 		}
 	}
-	open static var oauth2AuthorizationFlow: LROAuth2AuthorizationFlow?
+	public static var oauth2AuthorizationFlow: LROAuth2AuthorizationFlow?
 
-	open let session: LRSession
-	open let user: User
+	public let session: LRSession
+	public let user: User
 
-	open let cacheManager: CacheManager
+	public let cacheManager: CacheManager
 	open var credentialsStorage: CredentialsStorage
 
 	@available(*, deprecated: 2.0.1, message: "Use public property user")

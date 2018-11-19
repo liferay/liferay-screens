@@ -25,7 +25,7 @@ open class Interactor: NSObject {
 
 	open var lastError: NSError?
 
-	open let screenlet: BaseScreenlet?
+	public let screenlet: BaseScreenlet?
 
 	internal var cancelled = false
 

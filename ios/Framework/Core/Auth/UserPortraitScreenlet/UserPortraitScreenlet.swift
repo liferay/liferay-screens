@@ -64,8 +64,8 @@ open class UserPortraitScreenlet: BaseScreenlet {
 
 	// MARK: Static properties
 
-	open static let LoadPortrait = "loadPortrait"
-	open static let UploadPortrait = "uploadPortrait"
+	public static let LoadPortrait = "loadPortrait"
+	public static let UploadPortrait = "uploadPortrait"
 
 	// MARK: Inspectables
 

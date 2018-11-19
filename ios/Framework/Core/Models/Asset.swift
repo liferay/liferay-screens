@@ -17,9 +17,9 @@ import Foundation
 @objcMembers
 open class Asset: NSObject, NSCoding, MimeTypeable {
 
-	open let attributes: [String: AnyObject]
+	public let attributes: [String: AnyObject]
 
-	open let title: String
+	public let title: String
 
 	// MARK: MimeTypeable
 

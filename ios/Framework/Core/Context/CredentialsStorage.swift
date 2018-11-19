@@ -18,14 +18,14 @@ open class CredentialsStorage: NSObject {
 
 	public typealias LoadResult = (session: LRSession, userAttributes: [String: AnyObject])
 
-	open let credentialsStore: CredentialsStore
+	public let credentialsStore: CredentialsStore
 
 	public init(store: CredentialsStore) {
 		credentialsStore = store
 		super.init()
 	}
 
-	open static func createFromStoredAuthType() -> CredentialsStorage? {
+	public static func createFromStoredAuthType() -> CredentialsStorage? {
 		guard let authType = BaseCredentialsStoreKeyChain.storedAuthType() else {
 			return nil
 		}

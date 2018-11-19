@@ -16,9 +16,9 @@ import UIKit
 
 open class LoginOAuth2RedirectInteractor: Interactor, LoginResult {
 
-	open let redirectURL: String
-	open let scopes: [String]
-	open let clientId: String
+	public let redirectURL: String
+	public let scopes: [String]
+	public let clientId: String
 
 	open var resultUserAttributes: [String: AnyObject]?
 

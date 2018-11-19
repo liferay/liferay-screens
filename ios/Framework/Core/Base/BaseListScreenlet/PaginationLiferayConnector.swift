@@ -15,9 +15,9 @@ import UIKit
 
 open class PaginationLiferayConnector: ServerConnector {
 
-	open let startRow: Int
-	open let endRow: Int
-	open let computeRowCount: Bool
+	public let startRow: Int
+	public let endRow: Int
+	public let computeRowCount: Bool
 
 	open var obcClassName: String?
 

@@ -15,17 +15,17 @@ import UIKit
 
 open class LoginBasicInteractor: ServerConnectorInteractor, LoginResult {
 
-	open let companyId: Int64
+	public let companyId: Int64
 
-	open let screenName: String?
+	public let screenName: String?
 
-	open let emailAddress: String?
+	public let emailAddress: String?
 
-	open let userId: Int64?
+	public let userId: Int64?
 
-	open let password: String
+	public let password: String
 
-	open let authMethod: BasicAuthMethod
+	public let authMethod: BasicAuthMethod
 
 	open var resultUserAttributes: [String: AnyObject]?
 

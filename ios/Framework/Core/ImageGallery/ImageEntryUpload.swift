@@ -16,11 +16,11 @@ import Foundation
 @objc(ImageEntryUpload)
 open class ImageEntryUpload: NSObject, NSCoding {
 
-	open let image: UIImage
-	open let thumbnail: UIImage?
+	public let image: UIImage
+	public let thumbnail: UIImage?
 
-	open let title: String
-	open let notes: String
+	public let title: String
+	public let notes: String
 
 	public init(image: UIImage, thumbnail: UIImage? = nil, title: String, notes: String = "") {
 		self.image = image
