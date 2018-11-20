@@ -62,8 +62,8 @@ public class SelectableOptionsField extends OptionsField<ArrayList<Option>> {
         multiple = (multipleValue != null) ? Boolean.valueOf(multipleValue.toString()) : false;
         inline = (inlineValue != null) ? Boolean.valueOf(inlineValue.toString()) : false;
 
-        Object additionalTypeKey = FormFieldKeys.getValueFromArrayKey(attributes, FormFieldKeys.ADDITIONAL_TYPE_KEY);
-        if ("checkbox_multiple".equals(additionalTypeKey)) {
+        Object inputControlType = FormFieldKeys.getValueFromArrayKey(attributes, FormFieldKeys.INPUT_CONTROL_TYPE);
+        if ("checkbox_multiple".equals(inputControlType)) {
             multiple = true;
         }
 

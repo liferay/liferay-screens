@@ -497,7 +497,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
         }
 
         public static EditorType valueOf(Map<String, Object> attributes) {
-            Object mapValue = FormFieldKeys.getValueFromArrayKey(attributes, FormFieldKeys.ADDITIONAL_TYPE_KEY);
+            Object mapValue = FormFieldKeys.getValueFromArrayKey(attributes, FormFieldKeys.INPUT_CONTROL_TYPE);
 
             if (mapValue == null) {
                 return UNSUPPORTED;

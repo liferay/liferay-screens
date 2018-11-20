@@ -39,7 +39,7 @@ class FormFieldKeys {
 		const val VALIDATION_KEY = "validation"
 		const val VISIBILITY_EXPRESSION_KEY = "visibilityExpression"
 		@JvmField
-		val ADDITIONAL_TYPE_KEY = arrayOf("additionalType", "type")
+		val INPUT_CONTROL_TYPE = arrayOf("inputControl", "type")
 		const val IS_INLINE_KEY = "inline"
 		const val IS_MULTIPLE_KEY = "multiple"
 		const val IS_READ_ONLY_KEY = "readOnly"
@@ -49,8 +49,8 @@ class FormFieldKeys {
 
 		@JvmStatic
 		fun getValueFromArrayKey(attributes: Map<String, Any>, arrayKey: Array<String>): Any? {
-			for (additionalType in arrayKey) {
-				val mapValue = attributes[additionalType]
+			for (inputControl in arrayKey) {
+				val mapValue = attributes[inputControl]
 
 				if (mapValue != null) {
 					return mapValue
