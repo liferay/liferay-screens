@@ -362,7 +362,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
     public enum DataType {
         BOOLEAN("boolean"), STRING("string"), HTML("html"), DATE("date"), NUMBER("number"), IMAGE("image"), DOCUMENT(
-            "document-library"), GEO("geolocation"), UNSUPPORTED(null);
+            "document"), GEO("geolocation"), UNSUPPORTED(null);
 
         private final String value;
 
@@ -453,6 +453,8 @@ public abstract class Field<T extends Serializable> implements Parcelable {
             } else {
                 if (EditorType.valueOf(attributes) == EditorType.PARAGRAPH) {
                     field = new StringField(attributes, locale, defaultLocale);
+                } else if (EditorType.valueOf(attributes) == EditorType.DOCUMENT) {
+                    field = new DocumentField(attributes, locale, defaultLocale);
                 }
             }
 
@@ -479,8 +481,8 @@ public abstract class Field<T extends Serializable> implements Parcelable {
         CHECKBOX("checkbox"), TEXT("text"), TEXT_AREA("textarea", "ddm-text-html"), PARAGRAPH("paragraph"), DATE(
             "ddm-date", "date"), NUMBER("ddm-number", "number", "numeric"), INTEGER("ddm-integer", "integer"), DECIMAL(
             "ddm-decimal", "decimal", "double"), SELECT("select"), CHECKBOX_MULTIPLE("checkbox_multiple"), RADIO(
-            "radio"), DOCUMENT("ddm-documentlibrary", "document_library", "documentlibrary", "wcm-image"), GEO(
-            "ddm-geolocation", "geolocation"), GRID("grid"), REPEATABLE("repeatable"), UNSUPPORTED("");
+            "radio"), DOCUMENT("ddm-documentlibrary", "document_library", "documentlibrary", "wcm-image",
+            "document"), GEO("ddm-geolocation", "geolocation"), GRID("grid"), REPEATABLE("repeatable"), UNSUPPORTED("");
 
         private final String[] values;
 
