@@ -500,7 +500,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
             Object mapValue = FormFieldKeys.getValueFromArrayKey(attributes, FormFieldKeys.INPUT_CONTROL_TYPE);
 
             if (mapValue == null) {
-                return UNSUPPORTED;
+                mapValue = attributes.get(FormFieldKeys.DATA_TYPE_KEY);
             }
 
             if ("text".equals(mapValue) && "integer".equals(attributes.get(FormFieldKeys.DATA_TYPE_KEY))) {
@@ -509,6 +509,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
             if ("text".equals(mapValue) && "multiline".equals(attributes.get(FormFieldKeys.DISPLAY_STYLE_KEY))) {
                 return TEXT_AREA;
+            }
+
+            if (mapValue == null) {
+                return UNSUPPORTED;
             }
 
             return valueOfString(mapValue.toString());
