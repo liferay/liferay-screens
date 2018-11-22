@@ -16,9 +16,12 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
 import com.liferay.mobile.screens.ddl.StringValidator;
 import com.liferay.mobile.screens.ddl.StringValidatorParser;
 import com.liferay.mobile.screens.ddl.form.util.FormFieldKeys;
+import com.liferay.mobile.screens.util.StringUtil;
+
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -70,6 +73,7 @@ public class StringField extends OptionsField<String> {
         }
 
         stringValidation = new StringValidatorParser().parseStringValidation(validation);
+        doValidate();
     }
 
     protected StringField(Parcel source, ClassLoader loader) {
@@ -78,20 +82,17 @@ public class StringField extends OptionsField<String> {
 
     @Override
     protected boolean doValidate() {
-        boolean valid = true;
-
         String currentValue = getCurrentValue();
+        currentValue = currentValue.trim();
+        boolean hasContent = !StringUtil.isNullOrEmpty(currentValue);
 
-        if (currentValue != null && isRequired()) {
-            String trimmedString = currentValue.trim();
-
-            valid = !trimmedString.isEmpty();
-
-            return valid && stringValidation.validate(currentValue);
+        if (hasContent) {
+            return stringValidation.validate(currentValue);
         }
 
-        return valid;
+        return !isRequired();
     }
+
 
     @Override
     protected String convertFromString(String stringValue) {
@@ -107,4 +108,5 @@ public class StringField extends OptionsField<String> {
     protected String convertToFormattedString(String value) {
         return value;
     }
+
 }

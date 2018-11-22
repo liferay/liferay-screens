@@ -28,14 +28,14 @@ abstract class NumberValidator(val right: Number, val errorMessage: String) {
 		private val PATTERN: Pattern = Pattern.compile("[^0-9]+([0-9]+)$")
 
 		@JvmStatic
-		fun parseNumberValidator(validationMap: Map<String, Any>): NumberValidator {
+		fun parseNumberValidator(validationMap: Map<String, Any>, fieldName: String): NumberValidator {
 			val errorMessage = validationMap["error"] as? String ?: ""
 			val expression = validationMap["expression"] as? String ?: ""
 
 			val matcher = PATTERN.matcher(expression)
 			if (matcher.find() && matcher.groupCount() >= 1) {
 				val numberStr = matcher.group(1)
-				val operator = matcher.group(0).removeSuffix(numberStr)
+				val operator = matcher.group(0).removeSuffix(numberStr).removePrefix(fieldName)
 				val number = NumberFormat.getInstance().parse(numberStr)
 
 				return when (operator) {

@@ -20,6 +20,7 @@ import com.liferay.mobile.screens.ddl.NumberValidator;
 import com.liferay.mobile.screens.ddl.form.util.FormFieldKeys;
 import java.text.NumberFormat;
 import java.text.ParsePosition;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -57,10 +58,13 @@ public class NumberField extends Field<Number> {
 
         Object validationObj = attributes.get(FormFieldKeys.VALIDATION_KEY);
 
+        Map<String, String> validation;
         if (validationObj != null && validationObj instanceof Map) {
-            Map<String, String> validation = (Map<String, String>) validationObj;
-            numberValidator = NumberValidator.parseNumberValidator(validation);
+            validation = (Map<String, String>) validationObj;
+        } else {
+            validation = new HashMap<>();
         }
+        numberValidator = NumberValidator.parseNumberValidator(validation, getName());
     }
 
     protected NumberField(Parcel in, ClassLoader loader) {
@@ -87,13 +91,13 @@ public class NumberField extends Field<Number> {
 
     @Override
     protected boolean doValidate() {
-        if (getCurrentValue() == null && isRequired()) {
-            return false;
-        } else if (getCurrentValue() != null && numberValidator != null) {
-            return numberValidator.validate(getCurrentValue());
+        Number currentValue = getCurrentValue();
+
+        if (currentValue != null) {
+            return numberValidator.validate(currentValue);
         }
 
-        return super.doValidate();
+        return !isRequired();
     }
 
     @Override

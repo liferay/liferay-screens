@@ -54,7 +54,7 @@ class StringValidatorParser {
 			return DummyValidation()
 		}
 
-		val errorMessage = validationMap["error"] ?: ""
+		val errorMessage = validationMap["errorMessage"] ?: ""
 		val expression = validationMap["expression"] ?: ""
 
 		return when {
