@@ -19,7 +19,7 @@ package com.liferay.mobile.screens.ddl
  */
 import android.util.Patterns
 
-abstract class StringValidator(val errorMessage: String) {
+abstract class StringValidator(override val errorMessage: String) : Validator {
 	abstract fun validate(string: String): Boolean
 }
 

@@ -39,6 +39,7 @@
     <string name="screenlet_rating_label_tag">screenlet_rating_label_tag</string>
     <string name="textViewValue">Enter a value</string>
     <string name="getUserButton">Get User</string>
+    <string name="this_field_is_required">This field is required</string>
 
     <string-array name="image_mime_types">
         <item>image/png</item>

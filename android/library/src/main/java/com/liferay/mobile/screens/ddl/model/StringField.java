@@ -19,10 +19,10 @@ import android.os.Parcelable;
 
 import com.liferay.mobile.screens.ddl.StringValidator;
 import com.liferay.mobile.screens.ddl.StringValidatorParser;
-import com.liferay.mobile.screens.ddl.form.util.FormFieldKeys;
+import com.liferay.mobile.screens.util.FieldValidationState;
 import com.liferay.mobile.screens.util.StringUtil;
+import com.liferay.mobile.screens.util.ValidationUtil;
 
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -31,7 +31,7 @@ import java.util.Map;
  */
 public class StringField extends OptionsField<String> {
 
-    private StringValidator stringValidation;
+    private StringValidator stringValidator;
 
     public static final Parcelable.ClassLoaderCreator<StringField> CREATOR =
         new Parcelable.ClassLoaderCreator<StringField>() {
@@ -62,17 +62,12 @@ public class StringField extends OptionsField<String> {
         if (getText() != null) {
             setReadOnly(true);
         }
+
     }
 
     private void initializeValidation(Map<String, Object> attributes) {
-        Map<String, String> validation;
-        if (attributes.get(FormFieldKeys.VALIDATION_KEY) instanceof Map) {
-            validation = (Map<String, String>) attributes.get(FormFieldKeys.VALIDATION_KEY);
-        } else {
-            validation = new HashMap<>();
-        }
-
-        stringValidation = new StringValidatorParser().parseStringValidation(validation);
+        Map<String, String> validation = ValidationUtil.getValidationFromAttributes(attributes);
+        stringValidator = new StringValidatorParser().parseStringValidation(validation);
         doValidate();
     }
 
@@ -87,12 +82,18 @@ public class StringField extends OptionsField<String> {
         boolean hasContent = !StringUtil.isNullOrEmpty(currentValue);
 
         if (hasContent) {
-            return stringValidation.validate(currentValue);
+            setFieldValidationState(FieldValidationState.INVALID_BY_LOCAL_RULE);
+            return stringValidator.validate(currentValue);
+        }
+
+        setFieldValidationState(FieldValidationState.REQUIRED_WITHOUT_VALUE);
+
+        if (!isRequired()) {
+            setFieldValidationState(FieldValidationState.VALID);
         }
 
         return !isRequired();
     }
-
 
     @Override
     protected String convertFromString(String stringValue) {
@@ -107,6 +108,10 @@ public class StringField extends OptionsField<String> {
     @Override
     protected String convertToFormattedString(String value) {
         return value;
+    }
+
+    public StringValidator getStringValidator() {
+        return stringValidator;
     }
 
 }

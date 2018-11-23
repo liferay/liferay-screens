@@ -17,10 +17,11 @@ package com.liferay.mobile.screens.ddl.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.liferay.mobile.screens.ddl.NumberValidator;
-import com.liferay.mobile.screens.ddl.form.util.FormFieldKeys;
+import com.liferay.mobile.screens.util.FieldValidationState;
+import com.liferay.mobile.screens.util.ValidationUtil;
+
 import java.text.NumberFormat;
 import java.text.ParsePosition;
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -56,15 +57,9 @@ public class NumberField extends Field<Number> {
     public NumberField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
         super(attributes, locale, defaultLocale);
 
-        Object validationObj = attributes.get(FormFieldKeys.VALIDATION_KEY);
-
-        Map<String, String> validation;
-        if (validationObj != null && validationObj instanceof Map) {
-            validation = (Map<String, String>) validationObj;
-        } else {
-            validation = new HashMap<>();
-        }
+        Map<String, String> validation = ValidationUtil.getValidationFromAttributes(attributes);
         numberValidator = NumberValidator.parseNumberValidator(validation, getName());
+        doValidate();
     }
 
     protected NumberField(Parcel in, ClassLoader loader) {
@@ -94,7 +89,14 @@ public class NumberField extends Field<Number> {
         Number currentValue = getCurrentValue();
 
         if (currentValue != null) {
+            setFieldValidationState(FieldValidationState.INVALID_BY_LOCAL_RULE);
             return numberValidator.validate(currentValue);
+        }
+
+        setFieldValidationState(FieldValidationState.REQUIRED_WITHOUT_VALUE);
+
+        if (!isRequired()) {
+            setFieldValidationState(FieldValidationState.VALID);
         }
 
         return !isRequired();
@@ -117,4 +119,9 @@ public class NumberField extends Field<Number> {
         }
         return labelFormatter;
     }
+
+    public NumberValidator getNumberValidator() {
+        return numberValidator;
+    }
+
 }

@@ -20,7 +20,7 @@ import java.util.regex.Pattern
 /**
  * @author Victor Oliveira
  */
-abstract class NumberValidator(val right: Number, val errorMessage: String) {
+abstract class NumberValidator(val right: Number, override val errorMessage: String) : Validator {
 	abstract fun validate(left: Number): Boolean
 
 	companion object {
@@ -29,7 +29,7 @@ abstract class NumberValidator(val right: Number, val errorMessage: String) {
 
 		@JvmStatic
 		fun parseNumberValidator(validationMap: Map<String, Any>, fieldName: String): NumberValidator {
-			val errorMessage = validationMap["error"] as? String ?: ""
+			val errorMessage = validationMap["errorMessage"] as? String ?: ""
 			val expression = validationMap["expression"] as? String ?: ""
 
 			val matcher = PATTERN.matcher(expression)
