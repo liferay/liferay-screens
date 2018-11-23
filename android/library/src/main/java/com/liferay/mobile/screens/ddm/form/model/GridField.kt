@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.ddm.form.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import com.google.gson.Gson
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.ddl.form.util.FormFieldKeys
 import com.liferay.mobile.screens.ddl.model.Option
@@ -28,15 +29,19 @@ class GridField : Field<Grid>, Parcelable {
 	var rows: List<Option>
 	var columns: List<Option>
 
-	override fun convertToData(value: Grid?): String {
-		return value?.rawValues.toString()
-	}
+    override fun convertToData(value: Grid?): String {
+        return value?.rawValues.let {
+            Gson().toJson(it)
+        }.toString()
+    }
 
-	override fun convertToFormattedString(value: Grid?): String {
-		return value?.rawValues.toString()
-	}
+    override fun convertToFormattedString(value: Grid?): String {
+        return value?.rawValues.let {
+            Gson().toJson(it)
+        }.toString()
+    }
 
-	constructor(parcel: Parcel, classLoader: ClassLoader) : super(parcel, classLoader) {
+    constructor(parcel: Parcel, classLoader: ClassLoader) : super(parcel, classLoader) {
 		rows = parcel.createTypedArrayList(Option.CREATOR)
 		columns = parcel.createTypedArrayList(Option.CREATOR)
 	}
