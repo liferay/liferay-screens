@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.DDMFormView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/liferay_ddm_form_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="0dp"
+    android:padding="0dp"
+    android:saveEnabled="true"
+    style="@style/default_screenlet"
+    >
+
+    <ScrollView
+        android:id="@+id/multipage_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/form_footer"
+        android:layout_margin="0dp"
+        android:fillViewport="true"
+        >
+
+        <LinearLayout
+            android:id="@+id/ddmfields_linear_container"
+            android:backgroundTint="@color/red_default"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <com.liferay.mobile.screens.viewsets.defaultviews.ddm.pager.WrapContentViewPager
+                android:id="@+id/ddmfields_container"
+                android:backgroundTint="@android:color/holo_blue_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/form_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/white"
+        android:elevation="@dimen/field_padding"
+        android:orientation="vertical"
+        >
+
+        <ProgressBar
+            android:id="@+id/liferay_multipage_progress"
+            android:layout_marginEnd="@dimen/multipage_progressbar_padding"
+            android:layout_marginLeft="@dimen/multipage_progressbar_padding"
+            android:layout_marginRight="@dimen/multipage_progressbar_padding"
+            android:layout_marginStart="@dimen/multipage_progressbar_padding"
+            android:layout_marginTop="@dimen/multipage_progressbar_top_margin"
+            android:visibility="gone"
+            style="@style/default_progressbar"
+            />
+
+        <LinearLayout
+            android:id="@+id/liferay_submit_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="@dimen/field_padding"
+            android:layout_marginStart="@dimen/field_padding"
+            android:layout_marginRight="@dimen/large_field_padding"
+            android:layout_marginTop="@dimen/field_padding"
+            android:layout_marginEnd="@dimen/large_field_padding"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            >
+
+            <Button
+                android:id="@+id/liferay_form_back"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/field_padding"
+                android:layout_marginStart="@dimen/field_padding"
+                android:layout_marginRight="@dimen/field_padding"
+                android:layout_marginEnd="@dimen/field_padding"
+                android:layout_weight="1"
+                android:text="@string/back"
+                android:visibility="gone"
+                style="@style/secondary_button"
+                />
+
+            <Button
+                android:id="@+id/liferay_form_submit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/field_padding"
+                android:layout_marginStart="@dimen/field_padding"
+                android:layout_weight="1"
+                android:text="@string/next"
+                android:visibility="visible"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.liferay.mobile.screens.base.ModalProgressBarWithLabel
+        android:id="@+id/liferay_modal_progress"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:elevation="@dimen/field_padding"
+        >
+    </com.liferay.mobile.screens.base.ModalProgressBarWithLabel>
+
+</com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.DDMFormView>

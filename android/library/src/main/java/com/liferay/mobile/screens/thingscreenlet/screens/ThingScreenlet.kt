@@ -27,6 +27,7 @@ import com.liferay.apio.consumer.delegates.observe
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.context.SessionContext
+import com.liferay.mobile.screens.ddm.form.model.FormInstance
 import com.liferay.mobile.screens.thingscreenlet.extensions.inflate
 import com.liferay.mobile.screens.thingscreenlet.model.*
 import com.liferay.mobile.screens.thingscreenlet.model.Collection
@@ -56,7 +57,8 @@ open class ThingScreenlet @JvmOverloads constructor(
 		"Collection" to Collection.DEFAULT_VIEWS,
 		"Person" to Person.DEFAULT_VIEWS,
 		"WorkflowTask" to WorkflowTask.DEFAULT_VIEWS,
-		"Comment" to Comment.DEFAULT_VIEWS
+		"Comment" to Comment.DEFAULT_VIEWS,
+		"Form" to FormInstance.DEFAULT_VIEWS
 	)
 
 	var layoutId: Int

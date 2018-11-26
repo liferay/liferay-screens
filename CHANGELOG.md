@@ -19,7 +19,8 @@ All notable changes to this project will be documented in this file.
 * Support workflow list with ThingScreenlet
 * Support Checkbox Multiple, Grid and Repeatable fields on Field model
 * Create services to submit, evaluate, upload files and get drafts from forms using ApioConsumer
-* Support onPageRendered method on PdfDisplayViews
+* Support onPageRendered method on PdfDisplayView
+* Support forms with ThingScreenlet
 
 ### Refactor
 
