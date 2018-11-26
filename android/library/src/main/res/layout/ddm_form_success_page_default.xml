@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/large_field_padding"
+    android:background="@color/success_green_default"
+    android:gravity="center"
+    >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/default_success_icon"
+        />
+
+    <TextView
+        android:id="@+id/headline_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="27dp"
+        tools:text="Done!"
+        />
+
+    <TextView
+        android:id="@+id/text_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:textSize="@dimen/default_text_view_title_font_size"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@android:color/white"
+        android:gravity="center_horizontal"
+        tools:text="Your information was succesfully received. Thank you for filling out the form."
+        />
+
+</LinearLayout>
