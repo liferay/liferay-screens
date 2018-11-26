@@ -74,7 +74,9 @@ interface DDMFormViewContract {
 
 		fun evaluateContext(thing: Thing, fields: MutableList<Field<*>>, onComplete: (() -> Unit)? = null)
 
-		fun onFieldValueChanged(thing: Thing, formInstance: FormInstance, field: Field<*>)
+		fun onFieldValueChanged(field: Field<*>)
+
+		fun onDebounceSync(thing: Thing, formInstance: FormInstance, field: Field<*>)
 
 		fun restore(formInstanceRecord: FormInstanceRecord?, fields: MutableList<Field<*>>)
 

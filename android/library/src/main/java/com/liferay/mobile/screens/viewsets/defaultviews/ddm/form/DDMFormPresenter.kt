@@ -76,13 +76,8 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 		})
 	}
 
-	override fun onFieldValueChanged(thing: Thing, formInstance: FormInstance, field: Field<*>) {
+	override fun onDebounceSync(thing: Thing, formInstance: FormInstance, field: Field<*>) {
 		if (!field.isTransient) {
-			addToDirtyFields(field)
-
-			formInstanceRecord?.let {
-				it.fieldValues[field.name] = field.toData() ?: ""
-			}
 
 			if (!view.hasConnectivity()) {
 				view.showOfflineWarningMessage()
@@ -95,6 +90,16 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 				if (field.hasFormRules()) {
 					evaluateContext(thing, formInstance.ddmStructure.fields)
 				}
+			}
+		}
+	}
+
+	override fun onFieldValueChanged(field: Field<*>) {
+		if (!field.isTransient) {
+			addToDirtyFields(field)
+
+			formInstanceRecord?.let {
+				it.fieldValues[field.name] = field.toData() ?: ""
 			}
 		}
 	}
