@@ -362,7 +362,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
     public enum DataType {
         BOOLEAN("boolean"), STRING("string"), HTML("html"), DATE("date"), NUMBER("number"), IMAGE("image"), DOCUMENT(
-            "document-library"), GEO("geolocation"), UNSUPPORTED(null);
+            "document"), GEO("geolocation"), UNSUPPORTED(null);
 
         private final String value;
 
@@ -376,6 +376,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
                     if (stringDataType.equals(dataType.value)) {
                         return dataType;
                     }
+                }
+
+                if("document-library".equals(stringDataType)) {
+                    return DOCUMENT;
                 }
 
                 if ("".equals(stringDataType)) {
@@ -479,8 +483,8 @@ public abstract class Field<T extends Serializable> implements Parcelable {
         CHECKBOX("checkbox"), TEXT("text"), TEXT_AREA("textarea", "ddm-text-html"), PARAGRAPH("paragraph"), DATE(
             "ddm-date", "date"), NUMBER("ddm-number", "number", "numeric"), INTEGER("ddm-integer", "integer"), DECIMAL(
             "ddm-decimal", "decimal", "double"), SELECT("select"), CHECKBOX_MULTIPLE("checkbox_multiple"), RADIO(
-            "radio"), DOCUMENT("ddm-documentlibrary", "document_library", "documentlibrary", "wcm-image"), GEO(
-            "ddm-geolocation", "geolocation"), GRID("grid"), REPEATABLE("repeatable"), UNSUPPORTED("");
+            "radio"), DOCUMENT("ddm-documentlibrary", "document_library", "documentlibrary", "wcm-image",
+            "document"), GEO("ddm-geolocation", "geolocation"), GRID("grid"), REPEATABLE("repeatable"), UNSUPPORTED("");
 
         private final String[] values;
 
@@ -497,10 +501,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
         }
 
         public static EditorType valueOf(Map<String, Object> attributes) {
-            Object mapValue = FormFieldKeys.getValueFromArrayKey(attributes, FormFieldKeys.ADDITIONAL_TYPE_KEY);
+            Object mapValue = FormFieldKeys.getValueFromArrayKey(attributes, FormFieldKeys.INPUT_CONTROL_TYPE);
 
             if (mapValue == null) {
-                return UNSUPPORTED;
+                mapValue = attributes.get(FormFieldKeys.DATA_TYPE_KEY);
             }
 
             if ("text".equals(mapValue) && "integer".equals(attributes.get(FormFieldKeys.DATA_TYPE_KEY))) {
@@ -509,6 +513,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
             if ("text".equals(mapValue) && "multiline".equals(attributes.get(FormFieldKeys.DISPLAY_STYLE_KEY))) {
                 return TEXT_AREA;
+            }
+
+            if (mapValue == null) {
+                return UNSUPPORTED;
             }
 
             return valueOfString(mapValue.toString());
