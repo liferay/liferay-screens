@@ -33,7 +33,6 @@ open class DDMFieldGridRowView @JvmOverloads constructor(context: Context, attrs
 
 	lateinit var columnSelectView: DDLFieldSelectView
 	lateinit var rowLabelEditText: EditText
-
 	lateinit var rowOption: Option
 
 	override fun onFinishInflate() {

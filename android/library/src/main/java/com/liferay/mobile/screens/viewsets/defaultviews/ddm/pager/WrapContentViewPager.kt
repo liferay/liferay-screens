@@ -54,16 +54,16 @@ class WrapContentViewPager : ViewPager {
 		}
 	}
 
-	fun measureCurrentView(currentView: ViewGroup) {
-		this.currentView = currentView
-		requestLayout()
-	}
-
 	override fun onInterceptTouchEvent(event: MotionEvent): Boolean {
 		return false
 	}
 
 	override fun onTouchEvent(event: MotionEvent): Boolean {
 		return false
+	}
+
+	fun measureCurrentView(currentView: ViewGroup) {
+		this.currentView = currentView
+		requestLayout()
 	}
 }

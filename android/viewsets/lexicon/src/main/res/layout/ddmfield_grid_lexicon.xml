@@ -1,25 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.liferay.mobile.screens.viewsets.lexicon.ddl.form.fields.DDLFieldNumberView
+<com.liferay.mobile.screens.viewsets.lexicon.ddm.form.fields.DDMFieldGridView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="@dimen/field_padding"
+    android:padding="@dimen/default_edit_text_padding"
     >
 
     <TextView
-        android:id="@+id/liferay_ddl_label"
+        android:id="@+id/liferay_ddm_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:labelFor="@+id/liferay_ddl_edit_text"
         android:visibility="gone"
         />
 
-    <EditText
-        android:id="@+id/liferay_ddl_edit_text"
+    <TextView
+        android:id="@+id/liferay_ddm_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:visibility="gone"
+        />
+
+    <LinearLayout
+        android:id="@+id/liferay_ddm_grid"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         />
 
     <include
@@ -31,4 +37,4 @@
         android:visibility="gone"
         />
 
-</com.liferay.mobile.screens.viewsets.lexicon.ddl.form.fields.DDLFieldNumberView>
+</com.liferay.mobile.screens.viewsets.lexicon.ddm.form.fields.DDMFieldGridView>

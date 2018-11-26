@@ -90,6 +90,7 @@ public class DDLDocumentFieldView
 
     @Override
     public void onPostValidation(boolean valid) {
-        FormViewUtil.setupTextFieldLayout(getContext(), valid, labelTextView, textEditText);
+        FormViewUtil.setupBackground(getContext(), valid, textEditText);
+        FormViewUtil.setupErrorView(valid, findViewById(R.id.error_view));
     }
 }

@@ -44,6 +44,7 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
     implements DDLFieldViewModel<CheckboxMultipleField>, CompoundButton.OnCheckedChangeListener {
 
     protected View parentView;
+
     private CheckboxMultipleField field;
     private LinearLayout linearLayout;
     private Observable<CheckboxMultipleField> onChangedValueObservable = Observable.empty();
@@ -113,6 +114,67 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
         refresh();
     }
 
+    @Override
+    public void refresh() {
+        List<Option> selectedOptions = field.getCurrentValue();
+
+        if (selectedOptions != null) {
+            for (Option opt : selectedOptions) {
+                CompoundButton compoundButton = findViewWithTag(opt);
+
+                if (compoundButton != null) {
+                    compoundButton.setChecked(true);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onPostValidation(boolean valid) {
+        String errorText = valid ? null : getContext().getString(R.string.required_value);
+
+        if (field.isShowLabel()) {
+            TextView label = findViewById(R.id.liferay_ddm_label);
+            label.setError(errorText);
+        } else {
+            List<Option> availableOptions = field.getAvailableOptions();
+            Option opt = availableOptions.get(0);
+            CheckBox checkBox = findViewWithTag(opt);
+            if (checkBox != null) {
+                checkBox.setError(errorText);
+            }
+        }
+    }
+
+    @Override
+    public View getParentView() {
+        return parentView;
+    }
+
+    @Override
+    public void setParentView(View view) {
+        parentView = view;
+    }
+
+    @Override
+    public Observable<CheckboxMultipleField> getOnChangedValueObservable() {
+        return onChangedValueObservable;
+    }
+
+    @Override
+    public void setUpdateMode(boolean enabled) {
+        setEnabled(enabled);
+    }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+
+        linearLayout = findViewById(R.id.linear_layout_multiple_checkbox);
+
+        setSaveEnabled(true);
+    }
+
     private void addView(CheckboxMultipleField field, CompoundButton switchView) {
         linearLayout.addView(switchView);
         onChangedValueObservable = onChangedValueObservable.mergeWith(getMappedObservable(field, switchView));
@@ -177,68 +239,6 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
         }
 
         return layoutParams;
-    }
-
-    @Override
-    public void refresh() {
-        List<Option> selectedOptions = field.getCurrentValue();
-
-        if (selectedOptions != null) {
-            for (Option opt : selectedOptions) {
-                CompoundButton compoundButton = findViewWithTag(opt);
-
-                if (compoundButton != null) {
-                    compoundButton.setChecked(true);
-                }
-            }
-        }
-    }
-
-    @Override
-    public void onPostValidation(boolean valid) {
-        String errorText = valid ? null : getContext().getString(R.string.required_value);
-
-        if (field.isShowLabel()) {
-            TextView label = findViewById(R.id.liferay_ddm_label);
-            label.setError(errorText);
-        } else {
-            List<Option> availableOptions = field.getAvailableOptions();
-            Option opt = availableOptions.get(0);
-            CheckBox checkBox = findViewWithTag(opt);
-
-            if (checkBox != null) {
-                checkBox.setError(errorText);
-            }
-        }
-    }
-
-    @Override
-    public View getParentView() {
-        return parentView;
-    }
-
-    @Override
-    public void setParentView(View view) {
-        parentView = view;
-    }
-
-    @Override
-    public Observable<CheckboxMultipleField> getOnChangedValueObservable() {
-        return onChangedValueObservable;
-    }
-
-    @Override
-    public void setUpdateMode(boolean enabled) {
-        setEnabled(enabled);
-    }
-
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
-
-        linearLayout = findViewById(R.id.linear_layout_multiple_checkbox);
-
-        setSaveEnabled(true);
     }
 
     private Typeface getTypeface() {

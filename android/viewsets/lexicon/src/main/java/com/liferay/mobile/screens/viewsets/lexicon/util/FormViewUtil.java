@@ -18,38 +18,37 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.view.View;
 import com.liferay.mobile.screens.viewsets.lexicon.R;
+
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 /**
  * @author Victor Oliveira
  */
 public class FormViewUtil {
 
-    public static void setupTextFieldLayout(Context context, boolean valid, TextView labelTextView,
-        EditText textEditText) {
-        Drawable drawable;
-        String errorText = null;
-
-        if (valid) {
-            drawable = context.getResources().getDrawable(R.drawable.lexicon_edit_text_drawable);
-        } else {
-            errorText = context.getResources().getString(com.liferay.mobile.screens.R.string.invalid);
-            drawable = context.getResources().getDrawable(R.drawable.lexicon_edit_text_error_drawable);
-        }
-
-        if (labelTextView == null) {
-            textEditText.setError(errorText);
-        } else {
-            labelTextView.setError(errorText);
-        }
-
-        textEditText.setBackground(drawable);
-    }
-
     public static int convertDpToPx(Context context, int dp) {
         Resources resources = context.getResources();
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
+    }
+
+    public static void setupBackground(Context context, boolean valid, View view) {
+        Drawable drawable;
+
+        if (valid) {
+            drawable = context.getResources().getDrawable(R.drawable.lexicon_edit_text_selector);
+        } else {
+            drawable = context.getResources().getDrawable(R.drawable.lexicon_edit_text_error_drawable);
+        }
+
+        view.setBackground(drawable);
+    }
+
+    public static void setupErrorView(boolean valid, View errorView) {
+        if (errorView != null) {
+            errorView.setVisibility(valid ? GONE : VISIBLE);
+        }
     }
 }

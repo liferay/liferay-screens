@@ -12,36 +12,26 @@
  * details.
  */
 
-package com.liferay.mobile.screens.viewsets.lexicon.ddl.form.fields;
+package com.liferay.mobile.screens.viewsets.lexicon.ddm.form.fields;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
-
-import com.liferay.mobile.screens.viewsets.lexicon.R;
-import com.liferay.mobile.screens.viewsets.lexicon.util.FormViewUtil;
 
 /**
  * @author Victor Oliveira
  */
-public class DDLFieldNumberView
-    extends com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldNumberView {
+public class DDMFieldGridRowView
+    extends com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.fields.DDMFieldGridRowView {
 
-    public DDLFieldNumberView(Context context) {
+    public DDMFieldGridRowView(Context context) {
         super(context);
     }
 
-    public DDLFieldNumberView(Context context, AttributeSet attributes) {
+    public DDMFieldGridRowView(Context context, AttributeSet attributes) {
         super(context, attributes);
     }
 
-    public DDLFieldNumberView(Context context, AttributeSet attributes, int defaultStyle) {
+    public DDMFieldGridRowView(Context context, AttributeSet attributes, int defaultStyle) {
         super(context, attributes, defaultStyle);
-    }
-
-    @Override
-    public void onPostValidation(boolean valid) {
-        FormViewUtil.setupBackground(getContext(), valid, textEditText);
-        FormViewUtil.setupErrorView(valid, findViewById(R.id.error_view));
     }
 }

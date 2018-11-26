@@ -65,23 +65,25 @@ import java.util.concurrent.TimeUnit
  */
 class DDMFormView @JvmOverloads constructor(
 	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : BaseView,
-	RelativeLayout(context, attrs, defStyleAttr), DDLDocumentFieldView.UploadListener, DDMFormViewContract.DDMFormView {
+	RelativeLayout(context, attrs, defStyleAttr), DDLDocumentFieldView.UploadListener,
+	DDMFormViewContract.DDMFormView {
 
 	private val presenter = DDMFormPresenter(this)
-
 	private val layoutIds = mutableMapOf<Field.EditorType, Int>()
-	override var screenlet: ThingScreenlet? = null
-	private var subscription: CompositeSubscription = CompositeSubscription()
 
 	private val backButton by bindNonNull<Button>(R.id.liferay_form_back)
 	private val nextButton by bindNonNull<Button>(R.id.liferay_form_submit)
-
 	private val ddmFieldViewPages by bindNonNull<WrapContentViewPager>(R.id.ddmfields_container)
 	private val scrollView by bindNonNull<ScrollView>(R.id.multipage_scroll_view)
 	private val multipageProgress by bindNonNull<ProgressBar>(R.id.liferay_multipage_progress)
 	private val modalProgress by bindNonNull<ModalProgressBarWithLabel>(R.id.liferay_modal_progress)
 
+	private var subscription: CompositeSubscription = CompositeSubscription()
+
 	private lateinit var formInstance: FormInstance
+
+	override var screenlet: ThingScreenlet? = null
+
 	override var thing: Thing? by converter<FormInstance> {
 		formInstance = it
 		onFormLoaded(formInstance)

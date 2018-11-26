@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="lexicon_theme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="lexicon_theme" parent="lexicon_theme.base"/>
+
+    <style name="lexicon_theme.base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary_lexicon</item>
         <item name="colorAccent">@color/colorPrimaryLight_lexicon</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark_lexicon</item>
 
         <item name="colorControlNormal">@color/colorPrimary_lexicon</item>
         <item name="colorControlHighlight">@color/colorAccent_default</item>
-        <item name="colorControlActivated">@color/colorPrimary_lexicon</item>
+        <item name="colorControlActivated">@color/colorPrimaryLight_lexicon</item>
 
         <item name="android:textColorPrimary">@color/textColorPrimary_default</item>
         <item name="android:textColorSecondary">@color/textColorSecondary_default</item>
 
         <item name="android:textViewStyle">@style/lexicon_text_view</item>
         <item name="android:editTextStyle">@style/lexicon_edit_text</item>
+        <item name="android:autoCompleteTextViewStyle">@style/lexicon_edit_text</item>
         <item name="android:buttonStyle">@style/lexicon_button</item>
 
+        <item name="autoCompleteTextViewStyle">@style/lexicon_edit_text</item>
         <item name="editTextStyle">@style/lexicon_edit_text</item>
         <item name="buttonStyle">@style/lexicon_button</item>
+        <item name="alertDialogTheme">@style/lexicon_theme_dialog</item>
 
         <item name="themeName">lexicon_theme</item>
     </style>
@@ -28,9 +33,17 @@
         <item name="colorAccent">@color/colorPrimaryDark_lexicon</item>
     </style>
 
-    <style name="lexicon_button" parent="Widget.AppCompat.Button">
+    <style name="lexicon_button" parent="Widget.AppCompat.Light.ActionButton">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:background">@drawable/lexicon_button_selector</item>
+        <item name="android:padding">@dimen/field_padding</item>
+    </style>
+
+    <style name="secondary_button" parent="lexicon_button">
+        <item name="android:textColor">@color/textColorSecondary_lexicon</item>
+        <item name="android:background">@drawable/lexicon_button_secondary_selector</item>
         <item name="android:padding">@dimen/field_padding</item>
     </style>
 
@@ -98,7 +111,12 @@
 
     <style name="lexicon_theme_dialog" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:windowBackground">@android:color/white</item>
-        <item name="colorAccent">@color/colorPrimaryDark_lexicon</item>
+        <item name="colorAccent">@color/colorPrimaryLight_lexicon</item>
+    </style>
+
+    <style name="lexicon_grid_edit_text" parent="base_default_grid_edit_text">
+        <item name="android:textColor">@color/colorPrimaryDark_lexicon</item>
+        <item name="android:textColorHint">@color/textColorSecondary</item>
     </style>
 
 </resources>

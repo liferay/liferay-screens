@@ -33,6 +33,7 @@ import rx.Observable
  */
 class DDMPagerAdapter(val pages: List<FormPage>,
 	private val ddmFormView: DDMFormViewContract.DDMFormView) : PagerAdapter() {
+
 	private var mCurrentPosition = -1
 
 	override fun destroyItem(container: ViewGroup, position: Int, obj: Any) {

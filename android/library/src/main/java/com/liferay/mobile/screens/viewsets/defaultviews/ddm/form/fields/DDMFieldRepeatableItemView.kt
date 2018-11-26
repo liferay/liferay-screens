@@ -44,17 +44,16 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
 	private val removeRepeatableButton
 		by bindNonNull<ImageButton>(com.liferay.mobile.screens.R.id.liferay_repeatable_field_remove)
 
-	private lateinit var field: Field<*>
-	private lateinit var parentView: View
-
 	private var isFirstField: Boolean = false
 	private var isShowLabel: Boolean = false
-	private lateinit var label: String
-
 	private var fieldLayoutId: Int = 0
+	private var onChangedValueObservable = Observable.empty<Field<*>>()
+
+	private lateinit var label: String
+	private lateinit var field: Field<*>
+	private lateinit var parentView: View
 	private lateinit var fieldView: DDLFieldViewModel<*>
 	private lateinit var listener: RepeatableActionListener
-	private var onChangedValueObservable = Observable.empty<Field<*>>()
 
 	override fun getOnChangedValueObservable(): Observable<Field<*>> {
 		return onChangedValueObservable
@@ -71,6 +70,39 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
 	fun setLabelSettings(isShowLabel: Boolean, label: String) {
 		this.isShowLabel = isShowLabel
 		this.label = label
+	}
+
+	override fun getField(): Field<*> {
+		return field
+	}
+
+	override fun setField(field: Field<*>) {
+		this.field = field
+
+		setupRepeatableLabel()
+		setupRepeatableActions()
+		setupRepeatableField()
+	}
+
+	override fun refresh() {
+		setupRepeatableLabel()
+		fieldView.refresh()
+	}
+
+	override fun onPostValidation(valid: Boolean) {
+		fieldView.onPostValidation(valid)
+	}
+
+	override fun getParentView(): View {
+		return parentView
+	}
+
+	override fun setParentView(view: View) {
+		parentView = view
+	}
+
+	override fun setUpdateMode(enabled: Boolean) {
+		this.isEnabled = enabled
 	}
 
 	private fun setupRepeatableActions() {
@@ -116,39 +148,5 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
 				.mergeWith(fieldView.onChangedValueObservable.map { field })
 		}
 	}
-
-	override fun getField(): Field<*> {
-		return field
-	}
-
-	override fun setField(field: Field<*>) {
-		this.field = field
-
-		setupRepeatableLabel()
-		setupRepeatableActions()
-		setupRepeatableField()
-	}
-
-	override fun refresh() {
-		setupRepeatableLabel()
-		fieldView.refresh()
-	}
-
-	override fun onPostValidation(valid: Boolean) {
-		fieldView.onPostValidation(valid)
-	}
-
-	override fun getParentView(): View {
-		return parentView
-	}
-
-	override fun setParentView(view: View) {
-		parentView = view
-	}
-
-	override fun setUpdateMode(enabled: Boolean) {
-		this.isEnabled = enabled
-	}
-
 }
 

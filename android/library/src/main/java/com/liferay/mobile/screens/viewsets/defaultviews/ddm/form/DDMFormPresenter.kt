@@ -28,14 +28,16 @@ import java.util.*
  * @author Victor Oliveira
  */
 class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewContract.DDMFormViewPresenter {
-	private val interactor = DDMFormInteractor()
 
+	private val interactor = DDMFormInteractor()
 	private val dirtyFieldNames: MutableList<String> = mutableListOf()
+
 	private var isSyncing = false
 
 	private var currentRecordThing: Thing? by converter<FormInstanceRecord> {
 		formInstanceRecord = it
 	}
+
 	var formInstanceRecord: FormInstanceRecord? = null
 
 	override fun addToDirtyFields(field: Field<*>) {
