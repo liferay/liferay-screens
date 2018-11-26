@@ -378,6 +378,10 @@ public abstract class Field<T extends Serializable> implements Parcelable {
                     }
                 }
 
+                if("document-library".equals(stringDataType)) {
+                    return DOCUMENT;
+                }
+
                 if ("".equals(stringDataType)) {
                     return STRING;
                 }
@@ -453,8 +457,6 @@ public abstract class Field<T extends Serializable> implements Parcelable {
             } else {
                 if (EditorType.valueOf(attributes) == EditorType.PARAGRAPH) {
                     field = new StringField(attributes, locale, defaultLocale);
-                } else if (EditorType.valueOf(attributes) == EditorType.DOCUMENT) {
-                    field = new DocumentField(attributes, locale, defaultLocale);
                 }
             }
 
