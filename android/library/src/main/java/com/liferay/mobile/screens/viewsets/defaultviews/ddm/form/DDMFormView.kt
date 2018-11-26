@@ -78,7 +78,7 @@ class DDMFormView @JvmOverloads constructor(
 	private val multipageProgress by bindNonNull<ProgressBar>(R.id.liferay_multipage_progress)
 	private val modalProgress by bindNonNull<ModalProgressBarWithLabel>(R.id.liferay_modal_progress)
 
-	private var subscription: CompositeSubscription = CompositeSubscription()
+	private lateinit var subscription: Subscription
 
 	private lateinit var formInstance: FormInstance
 
@@ -252,15 +252,22 @@ class DDMFormView @JvmOverloads constructor(
 		})
 	}
 
-	override fun subscribeToValueChanged(observable: Observable<Field<*>>) {
-		val autoSaveSubscription = observable.subscribeOnChange(2) { field ->
-			thing?.let {
-				presenter.onFieldValueChanged(it, formInstance, field)
-			}
-		}
+    override fun subscribeToValueChanged(observable: Observable<Field<*>>) {
+        val autoSaveSubscription = observable.doOnNext {
+            presenter.onFieldValueChanged(it)
 
-		subscription.add(autoSaveSubscription)
-	}
+        }.debounce(2, TimeUnit.SECONDS)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({ field ->
+                thing?.let {
+                    presenter.onDebounceSync(it, formInstance, field)
+                }
+            }, {
+                LiferayLogger.e(it.message)
+            })
+
+        subscription = autoSaveSubscription
+    }
 
 	override fun updateFieldView(fieldContext: FieldContext, field: Field<*>) {
 		val fieldsContainerView = ddmFieldViewPages.currentView
@@ -416,17 +423,6 @@ class DDMFormView @JvmOverloads constructor(
 				highLightInvalidFields(invalidFields, true)
 			}
 		}
-	}
-
-	private fun Observable<Field<*>>.subscribeOnChange(
-		debounceTimeout: Long, onNext: (Field<*>) -> Unit): Subscription {
-
-		return this
-			.debounce(debounceTimeout, TimeUnit.SECONDS)
-			.observeOn(AndroidSchedulers.mainThread())
-			.subscribe(onNext) {
-				LiferayLogger.e(it.message)
-			}
 	}
 
 	private fun onFormLoaded(formInstance: FormInstance) {
