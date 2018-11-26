@@ -27,6 +27,7 @@ All notable changes to this project will be documented in this file.
 
 * FormsScreenlet - Create an abstract OptionsField type as a base class of fields that select options
 * Create a ThemeUtil class to help with custom themes
+* FormsScreenlet changes to adapt to API
 
 ### Bugs
 
