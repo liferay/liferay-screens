@@ -29,15 +29,17 @@ class GridField : Field<Grid>, Parcelable {
 	var rows: List<Option>
 	var columns: List<Option>
 
+	private val gson: Gson = Gson()
+
     override fun convertToData(value: Grid?): String {
         return value?.rawValues.let {
-            Gson().toJson(it)
+            gson.toJson(it)
         }.toString()
     }
 
     override fun convertToFormattedString(value: Grid?): String {
         return value?.rawValues.let {
-            Gson().toJson(it)
+			gson.toJson(it)
         }.toString()
     }
 
