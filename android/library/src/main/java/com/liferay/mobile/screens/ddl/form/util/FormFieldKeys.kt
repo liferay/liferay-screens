@@ -30,7 +30,8 @@ class FormFieldKeys {
 		const val IS_TRANSIENT_KEY = "transient"
 		const val NAME_KEY = "name"
 		const val OPTIONS_KEY = "options"
-		const val PLACE_HOLDER_KEY = "placeHolder"
+		@JvmField
+		val PLACEHOLDER_KEY = arrayOf("placeholder", "placeHolder")
 		const val PREDEFINED_VALUE_KEY = "predefinedValue"
 		const val SWITCHER_KEY = "showAsSwitcher"
 		const val TEXT_KEY = "text"

@@ -79,9 +79,12 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
         name = getAttributeStringValue(attributes, FormFieldKeys.NAME_KEY);
         label = getAttributeStringValue(attributes, FormFieldKeys.LABEL_KEY);
+
         Object tipValue = FormFieldKeys.getValueFromArrayKey(attributes, FormFieldKeys.TIP_KEY);
         tip = (tipValue != null) ? tipValue.toString() : "";
-        placeHolder = getAttributeStringValue(attributes, FormFieldKeys.PLACE_HOLDER_KEY);
+
+        Object placeHolderValue = FormFieldKeys.getValueFromArrayKey(attributes, FormFieldKeys.PLACEHOLDER_KEY);
+        placeHolder = (placeHolderValue != null) ? placeHolderValue.toString() : "";
 
         readOnly = Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.IS_READ_ONLY_KEY));
         repeatable = Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.IS_REPEATABLE_KEY));
