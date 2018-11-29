@@ -85,7 +85,7 @@ open class DDMFieldRepeatableView @JvmOverloads constructor(
 
 		repeatableContainer.removeView(fieldView)
 		requestLayout()
-		previousField.requestFocus()
+		previousField?.requestFocus()
 	}
 
 	override fun getField(): RepeatableField {
