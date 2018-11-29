@@ -252,10 +252,9 @@ class DDMFormView @JvmOverloads constructor(
 		})
 	}
 
-    override fun subscribeToValueChanged(observable: Observable<Field<*>>) {
-        val autoSaveSubscription = observable.doOnNext {
+	override fun subscribeToValueChanged(observable: Observable<Field<*>>) {
+        subscription = observable.doOnNext {
             presenter.onFieldValueChanged(it)
-
         }.debounce(2, TimeUnit.SECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ field ->
@@ -265,9 +264,7 @@ class DDMFormView @JvmOverloads constructor(
             }, {
                 LiferayLogger.e(it.message)
             })
-
-        subscription = autoSaveSubscription
-    }
+	}
 
 	override fun updateFieldView(fieldContext: FieldContext, field: Field<*>) {
 		val fieldsContainerView = ddmFieldViewPages.currentView
