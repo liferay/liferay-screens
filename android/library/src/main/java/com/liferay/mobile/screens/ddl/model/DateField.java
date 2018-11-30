@@ -24,7 +24,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
-import java.util.TimeZone;
 
 /**
  * @author Jose Manuel Navarro
@@ -71,18 +70,14 @@ public class DateField extends Field<Date> {
 
             if (stringValue.contains("-")) {
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", getCurrentLocale());
-                simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
                 return simpleDateFormat.parse(stringValue);
             } else if (lastSeparator == -1) {
                 return new Date(Long.parseLong(stringValue));
             } else if (stringValue.length() - lastSeparator - 1 == 2) {
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yy", getCurrentLocale());
-                simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
                 return simpleDateFormat.parse(stringValue);
             } else {
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy", getCurrentLocale());
-                simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
-
                 return simpleDateFormat.parse(stringValue);
             }
         } catch (ParseException e) {
@@ -99,7 +94,6 @@ public class DateField extends Field<Date> {
 
         if (LiferayServerContext.isLiferay7()) {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", getCurrentLocale());
-            simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
 
             return simpleDateFormat.format(value);
         }
