@@ -24,6 +24,7 @@ import android.widget.TextView
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
+import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
 import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil
 import rx.Observable
 
@@ -34,6 +35,11 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
 	context: Context, attrs: AttributeSet? = null,
 	defStyleAttr: Int = 0)
 	: LinearLayout(context, attrs, defStyleAttr), DDLFieldViewModel<Field<*>> {
+
+	lateinit var fieldView: DDLFieldViewModel<*>
+		private set
+
+	lateinit var uploadListener: DDLDocumentFieldView.UploadListener
 
 	private val repeatableLabel
 		by bindNonNull<TextView>(com.liferay.mobile.screens.R.id.liferay_repeatable_field_label)
@@ -52,7 +58,6 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
 	private lateinit var label: String
 	private lateinit var field: Field<*>
 	private lateinit var parentView: View
-	private lateinit var fieldView: DDLFieldViewModel<*>
 	private lateinit var listener: RepeatableActionListener
 
 	override fun getOnChangedValueObservable(): Observable<Field<*>> {
@@ -146,6 +151,10 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
 
 			onChangedValueObservable = onChangedValueObservable
 				.mergeWith(fieldView.onChangedValueObservable.map { field })
+		}
+
+		(fieldView as? DDLDocumentFieldView)?.let {
+			it.setUploadListener(uploadListener)
 		}
 	}
 }

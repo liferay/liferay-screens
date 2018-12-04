@@ -23,6 +23,7 @@ import com.liferay.mobile.screens.ddl.model.DocumentField
 import com.liferay.mobile.screens.ddl.model.DocumentRemoteFile
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.ddm.form.model.*
+import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.events.FormEvents
 import rx.Observable
 import java.io.InputStream
@@ -58,6 +59,8 @@ interface DDMFormViewContract {
 		fun showSuccessMessage()
 
 		fun showSuccessPage(successPage: SuccessPage)
+
+		fun startUpload(documentFieldView: DDLDocumentFieldView)
 
 		fun subscribeToValueChanged(observable: Observable<Field<*>>)
 

@@ -21,13 +21,17 @@ import android.view.View
 import android.widget.LinearLayout
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
+import com.liferay.mobile.screens.ddl.model.DocumentField
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.ddm.form.model.RepeatableField
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
+import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
+import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.DDMFormView
 import org.jetbrains.anko.childrenSequence
 import rx.Observable
 import rx.Subscriber
 import rx.Subscription
+import java.util.*
 
 /**
  * @author Paulo Cruz
@@ -35,12 +39,13 @@ import rx.Subscription
 open class DDMFieldRepeatableView @JvmOverloads constructor(
 	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0)
 	: LinearLayout(context, attrs, defStyleAttr), DDLFieldViewModel<RepeatableField>,
-	RepeatableActionListener {
+	RepeatableActionListener, DDLDocumentFieldView.UploadListener {
 
 	private lateinit var field: RepeatableField
 	private lateinit var parentView: View
 	private lateinit var layoutIds: Map<Field.EditorType, Int>
 
+	private val fieldViewsMap: MutableMap<UUID, DDLFieldViewModel<*>> = mutableMapOf()
 	private val repeatableContainer: LinearLayout by bindNonNull(R.id.container)
 	private val inflater = LayoutInflater.from(context)
 
@@ -78,12 +83,9 @@ open class DDMFieldRepeatableView @JvmOverloads constructor(
 		val previousField = focusSearch(fieldView, FOCUS_UP)
 		val removedField = fieldView.field
 
-		val subscription = subscriptionsMap.remove(fieldView)
-		subscription?.unsubscribe()
-
 		this.field.removeField(removedField)
+		removeFieldView(fieldView)
 
-		repeatableContainer.removeView(fieldView)
 		requestLayout()
 		previousField?.requestFocus()
 	}
@@ -130,6 +132,18 @@ open class DDMFieldRepeatableView @JvmOverloads constructor(
 		this.isEnabled = enabled
 	}
 
+	override fun startUpload(field: DocumentField?) {
+		field?.let {
+			fieldViewsMap[it.uuid]
+		}?.let {
+			it as? DDMFieldRepeatableItemView
+		}?.let {
+			it.fieldView as? DDLDocumentFieldView
+		}?.also {
+			(parentView as? DDMFormView)?.startUpload(it)
+		}
+	}
+
 	private fun setupRepeatableFields() {
 		field.repeatedFields.forEachIndexed { index, repeatedField ->
 			createFieldView(index, repeatedField)
@@ -143,11 +157,12 @@ open class DDMFieldRepeatableView @JvmOverloads constructor(
 		(fieldView as DDMFieldRepeatableItemView).let {
 			val isFirstField = fieldIndex == 0
 
+			fieldView.parentView = this
+			fieldView.uploadListener = this
 			fieldView.setLabelSettings(field.isShowLabel, field.label)
 			fieldView.setRepeatableItemSettings(isFirstField, fieldLayoutId, this)
 
 			fieldView.field = repeatedField
-			repeatableContainer.addView(fieldView, fieldIndex)
 
 			val subscription = fieldView
 				.onChangedValueObservable
@@ -166,8 +181,19 @@ open class DDMFieldRepeatableView @JvmOverloads constructor(
 				.subscribe()
 
 			subscriptionsMap[fieldView] = subscription
+
+			fieldViewsMap[fieldView.field.uuid] = fieldView
+			repeatableContainer.addView(fieldView, fieldIndex)
 		}
 
 		return fieldView
+	}
+
+	private fun removeFieldView(fieldView: DDMFieldRepeatableItemView) {
+		val subscription = subscriptionsMap.remove(fieldView)
+		subscription?.unsubscribe()
+
+		fieldViewsMap.remove(fieldView.field.uuid)
+		repeatableContainer.removeView(fieldView)
 	}
 }

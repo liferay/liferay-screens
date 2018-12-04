@@ -120,6 +120,7 @@ class DDMFormView @JvmOverloads constructor(
 
 		val viewModel = view as DDLFieldViewModel<*>
 		viewModel.field = field
+		viewModel.parentView = this
 		view.tag = field.name
 
 		return view
@@ -224,26 +225,31 @@ class DDMFormView @JvmOverloads constructor(
 	}
 
 	override fun startUpload(field: DocumentField) {
-		val fieldView = findViewWithTag<DDLDocumentFieldView>(field.name)
-
-		fieldView.let { ddlDocumentFieldView ->
-			field.moveToUploadInProgressState()
-			ddlDocumentFieldView.refresh()
-
-			val thing = thing ?: throw Exception("No thing found")
-
-			val inputStream = AndroidUtil.openLocalFileInputStream(context, field.currentValue as DocumentLocalFile)
-
-			presenter.uploadFile(thing, field, inputStream, {
-				field.currentValue = it
-				field.moveToUploadCompleteState()
-
-				ddlDocumentFieldView.refresh()
-			}, {
-				field.moveToUploadFailureState()
-				ddlDocumentFieldView.refresh()
-			})
+		findViewWithTag<DDLDocumentFieldView>(field.name)?.also {
+			startUpload(it)
 		}
+	}
+
+	override fun startUpload(documentFieldView: DDLDocumentFieldView) {
+		val field = documentFieldView.field
+
+		field.moveToUploadInProgressState()
+		documentFieldView.refresh()
+
+		val thing = thing ?: throw Exception("No thing found")
+
+		val inputStream = AndroidUtil.openLocalFileInputStream(context, field.currentValue as DocumentLocalFile)
+
+		presenter.uploadFile(thing, field, inputStream, {
+			field.currentValue = it
+			field.moveToUploadCompleteState()
+
+			documentFieldView.refresh()
+		}, {
+			field.moveToUploadFailureState()
+
+			documentFieldView.refresh()
+		})
 	}
 
 	override fun subscribeToValueChanged(observable: Observable<Field<*>>) {
