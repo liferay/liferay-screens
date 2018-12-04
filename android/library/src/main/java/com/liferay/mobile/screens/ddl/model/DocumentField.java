@@ -16,10 +16,11 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import java.util.Locale;
 import java.util.Map;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
@@ -105,19 +106,21 @@ public class DocumentField extends Field<DocumentFile> {
 
     @Override
     protected DocumentFile convertFromString(String string) {
-        if (string == null || string.isEmpty()) {
+	    if (string == null || string.isEmpty()) {
             return null;
         }
 
-        DocumentRemoteFile result = null;
-
         try {
-            result = new DocumentRemoteFile(string);
+	        JSONObject json = new JSONObject(string);
+
+        	if (json.keys().hasNext()) {
+		        return new DocumentRemoteFile(string);
+	        }
         } catch (JSONException e) {
-            Log.e("liferay-screens", "Can't parse the document JSON", e);
+            LiferayLogger.e("Can't parse the document JSON", e);
         }
 
-        return result;
+        return null;
     }
 
     @Override
