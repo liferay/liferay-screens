@@ -20,6 +20,7 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 import java.util.Locale;
 import java.util.Map;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
@@ -105,12 +106,20 @@ public class DocumentField extends Field<DocumentFile> {
 
     @Override
     protected DocumentFile convertFromString(String string) {
-        if (string == null || string.isEmpty()) {
+	    if (string == null || string.isEmpty()) {
             return null;
         }
 
         try {
+<<<<<<< HEAD
             return new DocumentRemoteFile(string);
+=======
+	        JSONObject json = new JSONObject(string);
+
+        	if (json.keys().hasNext()) {
+		        return new DocumentRemoteFile(string);
+	        }
+>>>>>>> MOBILE-967 Added string with json body empty validation and simplify the return for DocumentRemoteFile
         } catch (JSONException e) {
             LiferayLogger.e("Can't parse the document JSON", e);
         }
