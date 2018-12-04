@@ -58,7 +58,7 @@ public class NumberField extends Field<Number> {
         super(attributes, locale, defaultLocale);
 
         Map<String, String> validation = ValidationUtil.getValidationFromAttributes(attributes);
-        numberValidator = NumberValidator.parseNumberValidator(validation, getName());
+        numberValidator = NumberValidator.parseNumberValidator(validation);
         doValidate();
     }
 
@@ -89,17 +89,10 @@ public class NumberField extends Field<Number> {
         Number currentValue = getCurrentValue();
 
         if (currentValue != null) {
-            setFieldValidationState(FieldValidationState.INVALID_BY_LOCAL_RULE);
-            return numberValidator.validate(currentValue);
+            return checkLocalValidation(currentValue);
         }
 
-        setFieldValidationState(FieldValidationState.REQUIRED_WITHOUT_VALUE);
-
-        if (!isRequired()) {
-            setFieldValidationState(FieldValidationState.VALID);
-        }
-
-        return !isRequired();
+        return checkIsValid();
     }
 
     @Override
@@ -122,6 +115,26 @@ public class NumberField extends Field<Number> {
 
     public NumberValidator getNumberValidator() {
         return numberValidator;
+    }
+
+    private boolean checkIsValid() {
+        if (isRequired()) {
+            setFieldValidationState(FieldValidationState.REQUIRED_WITHOUT_VALUE);
+        } else {
+            setFieldValidationState(FieldValidationState.VALID);
+        }
+
+        return !isRequired();
+    }
+
+    private boolean checkLocalValidation(Number currentValue) {
+        boolean isValid = numberValidator.validate(currentValue);
+
+        if (!isValid) {
+            setFieldValidationState(FieldValidationState.INVALID_BY_LOCAL_RULE);
+        }
+
+        return isValid;
     }
 
 }

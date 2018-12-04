@@ -18,9 +18,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.liferay.mobile.screens.ddl.StringValidator;
-import com.liferay.mobile.screens.ddl.StringValidatorParser;
 import com.liferay.mobile.screens.util.FieldValidationState;
-import com.liferay.mobile.screens.util.StringUtil;
 import com.liferay.mobile.screens.util.ValidationUtil;
 
 import java.util.Locale;
@@ -65,12 +63,6 @@ public class StringField extends OptionsField<String> {
 
     }
 
-    private void initializeValidation(Map<String, Object> attributes) {
-        Map<String, String> validation = ValidationUtil.getValidationFromAttributes(attributes);
-        stringValidator = new StringValidatorParser().parseStringValidation(validation);
-        doValidate();
-    }
-
     protected StringField(Parcel source, ClassLoader loader) {
         super(source, loader);
     }
@@ -78,21 +70,12 @@ public class StringField extends OptionsField<String> {
     @Override
     protected boolean doValidate() {
         String currentValue = getCurrentValue();
-        currentValue = currentValue.trim();
-        boolean hasContent = !StringUtil.isNullOrEmpty(currentValue);
 
-        if (hasContent) {
-            setFieldValidationState(FieldValidationState.INVALID_BY_LOCAL_RULE);
-            return stringValidator.validate(currentValue);
+        if (currentValue != null && !currentValue.isEmpty()) {
+            return checkLocalValidation(currentValue);
         }
 
-        setFieldValidationState(FieldValidationState.REQUIRED_WITHOUT_VALUE);
-
-        if (!isRequired()) {
-            setFieldValidationState(FieldValidationState.VALID);
-        }
-
-        return !isRequired();
+        return checkIsValid();
     }
 
     @Override
@@ -112,6 +95,33 @@ public class StringField extends OptionsField<String> {
 
     public StringValidator getStringValidator() {
         return stringValidator;
+    }
+
+    private boolean checkIsValid() {
+        if (isRequired()) {
+            setFieldValidationState(FieldValidationState.REQUIRED_WITHOUT_VALUE);
+        } else {
+            setFieldValidationState(FieldValidationState.VALID);
+        }
+
+        return !isRequired();
+    }
+
+    private boolean checkLocalValidation(String currentValue) {
+        currentValue = currentValue.trim();
+        boolean isValid = stringValidator.validate(currentValue);
+
+        if (!isValid) {
+            setFieldValidationState(FieldValidationState.INVALID_BY_LOCAL_RULE);
+        }
+
+        return isValid;
+    }
+
+    private void initializeValidation(Map<String, Object> attributes) {
+        Map<String, String> validation = ValidationUtil.getValidationFromAttributes(attributes);
+        stringValidator = StringValidator.parseStringValidation(validation);
+        doValidate();
     }
 
 }
