@@ -21,7 +21,7 @@ public class DocumentRemoteFile extends DocumentFile {
             url = json;
         } else {
             JSONObject jsonObject = new JSONObject(json);
-            uuid = jsonObject.optString("uuid");
+            uuid = jsonObject.getString("uuid");
             version = jsonObject.optString("version");
             groupId = jsonObject.optInt("groupId");
 

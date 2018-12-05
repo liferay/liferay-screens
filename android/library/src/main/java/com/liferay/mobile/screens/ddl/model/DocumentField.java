@@ -111,11 +111,7 @@ public class DocumentField extends Field<DocumentFile> {
         }
 
         try {
-	        JSONObject json = new JSONObject(string);
-
-        	if (json.keys().hasNext()) {
-		        return new DocumentRemoteFile(string);
-	        }
+	        return new DocumentRemoteFile(string);
         } catch (JSONException e) {
             LiferayLogger.e("Can't parse the document JSON", e);
         }
