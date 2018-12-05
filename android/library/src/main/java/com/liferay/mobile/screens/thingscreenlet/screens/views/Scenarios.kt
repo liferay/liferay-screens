@@ -26,62 +26,62 @@ interface Scenario : Parcelable {
 
 @SuppressLint("ParcelCreator")
 object Detail : Scenario {
-    override fun writeToParcel(dest: Parcel?, flags: Int) {
-    }
+	override fun writeToParcel(dest: Parcel?, flags: Int) {
+	}
 
-    override fun describeContents(): Int {
-        return 0
-    }
+	override fun describeContents(): Int {
+		return 0
+	}
 
-    object CREATOR : Parcelable.Creator<Detail> {
-        override fun createFromParcel(parcel: Parcel): Detail {
-            return Detail
-        }
+	object CREATOR : Parcelable.Creator<Detail> {
+		override fun createFromParcel(parcel: Parcel): Detail {
+			return Detail
+		}
 
-        override fun newArray(size: Int): Array<Detail?> {
-            return arrayOfNulls(size)
-        }
-    }
+		override fun newArray(size: Int): Array<Detail?> {
+			return arrayOfNulls(size)
+		}
+	}
 }
 
 @SuppressLint("ParcelCreator")
 object Row : Scenario {
-    override fun writeToParcel(dest: Parcel?, flags: Int) {
-    }
+	override fun writeToParcel(dest: Parcel?, flags: Int) {
+	}
 
-    override fun describeContents(): Int {
-        return 0
-    }
+	override fun describeContents(): Int {
+		return 0
+	}
 
-    object CREATOR : Parcelable.Creator<Row> {
-        override fun createFromParcel(parcel: Parcel): Row {
-            return Row
-        }
+	object CREATOR : Parcelable.Creator<Row> {
+		override fun createFromParcel(parcel: Parcel): Row {
+			return Row
+		}
 
-        override fun newArray(size: Int): Array<Row?> {
-            return arrayOfNulls(size)
-        }
-    }
+		override fun newArray(size: Int): Array<Row?> {
+			return arrayOfNulls(size)
+		}
+	}
 }
 
 data class Custom(val name: String) : Scenario {
-    constructor(parcel: Parcel) : this(parcel.readString())
+	constructor(parcel: Parcel) : this(parcel.readString())
 
-    override fun writeToParcel(dest: Parcel?, flags: Int) {
-        dest?.writeString(name)
-    }
+	override fun writeToParcel(dest: Parcel?, flags: Int) {
+		dest?.writeString(name)
+	}
 
-    override fun describeContents(): Int {
-        return 0;
-    }
+	override fun describeContents(): Int {
+		return 0;
+	}
 
-    companion object CREATOR : Parcelable.Creator<Custom> {
-        override fun createFromParcel(parcel: Parcel): Custom {
-            return Custom(parcel)
-        }
+	companion object CREATOR : Parcelable.Creator<Custom> {
+		override fun createFromParcel(parcel: Parcel): Custom {
+			return Custom(parcel)
+		}
 
-        override fun newArray(size: Int): Array<Custom?> {
-            return arrayOfNulls(size)
-        }
-    }
+		override fun newArray(size: Int): Array<Custom?> {
+			return arrayOfNulls(size)
+		}
+	}
 }
