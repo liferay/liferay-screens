@@ -98,14 +98,14 @@ public class DateField extends Field<Date> {
         return (value == null) ? "" : DateFormat.getDateInstance(DateFormat.LONG, getCurrentLocale()).format(value);
     }
 
-	private Date convertDate(String pattern, String stringValue) {
-		try {
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, getCurrentLocale());
-			return simpleDateFormat.parse(stringValue);
-		} catch (ParseException e) {
-			LiferayLogger.e("Error parsing date " + stringValue);
-		}
+    private Date convertDate(String pattern, String stringValue) {
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, getCurrentLocale());
+            return simpleDateFormat.parse(stringValue);
+        } catch (ParseException e) {
+            LiferayLogger.e("Error parsing date " + stringValue);
+        }
 
-		return null;
-	}
+        return null;
+    }
 }
