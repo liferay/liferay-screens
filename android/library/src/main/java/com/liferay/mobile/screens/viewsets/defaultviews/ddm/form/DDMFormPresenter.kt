@@ -76,7 +76,7 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 		})
 	}
 
-	override fun onFieldValueChanged(field: Field<*>) {
+	override fun fieldModelsChanged(field: Field<*>) {
 		if (!field.isTransient) {
 			addToDirtyFields(field)
 
@@ -86,7 +86,7 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 		}
 	}
 
-    override fun onDebounceSync(thing: Thing, formInstance: FormInstance, field: Field<*>) {
+    override fun syncForm(thing: Thing, formInstance: FormInstance, field: Field<*>) {
         if (!field.isTransient) {
 
             if (!view.hasConnectivity()) {
@@ -138,7 +138,7 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 		})
 	}
 
-	override fun syncFormInstance(thing: Thing, formInstance: FormInstance) {
+	override fun loadInitialContext(thing: Thing, formInstance: FormInstance) {
 		isSyncing = true
 		view.showModalSyncFormLoading()
 
