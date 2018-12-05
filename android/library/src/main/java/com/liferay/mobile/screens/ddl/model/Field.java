@@ -20,7 +20,6 @@ import com.liferay.mobile.screens.ddl.form.util.FormFieldKeys;
 import com.liferay.mobile.screens.ddm.form.model.CheckboxMultipleField;
 import com.liferay.mobile.screens.ddm.form.model.GridField;
 import com.liferay.mobile.screens.ddm.form.model.RepeatableField;
-import com.liferay.mobile.screens.util.FieldValidationState;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -53,7 +52,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
     private T predefinedValue;
     private T currentValue;
     private boolean lastValidationResult = true;
-    private FieldValidationState fieldValidationState = FieldValidationState.VALID;
+    private ValidationState validationState = ValidationState.INVALID_BY_REQUIRED_WITHOUT_VALUE;
     private Locale currentLocale;
     private Locale defaultLocale;
     private String visibilityExpression;
@@ -143,7 +142,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
         visibilityExpression = in.readString();
         ddmDataProviderInstance = in.readString();
 
-        fieldValidationState = FieldValidationState.values()[in.readInt()];
+        validationState = ValidationState.values()[in.readInt()];
 
         isTransient = (in.readInt() == 1);
         dataSourceType = in.readString();
@@ -245,8 +244,6 @@ public abstract class Field<T extends Serializable> implements Parcelable {
 
         if (valid) {
             valid = doValidate();
-        } else if (isRequired()){
-            setFieldValidationState(FieldValidationState.REQUIRED_WITHOUT_VALUE);
         }
 
         lastValidationResult = valid;
@@ -258,12 +255,12 @@ public abstract class Field<T extends Serializable> implements Parcelable {
         return label;
     }
 
-    public FieldValidationState getFieldValidationState() {
-        return fieldValidationState;
+    public ValidationState getValidationState() {
+        return validationState;
     }
 
-    protected void setFieldValidationState(FieldValidationState value) {
-        fieldValidationState = value;
+    protected void setValidationState(ValidationState value) {
+        validationState = value;
     }
 
     public boolean getLastValidationResult() {
@@ -356,7 +353,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
         destination.writeString(visibilityExpression);
         destination.writeString(ddmDataProviderInstance);
 
-        destination.writeInt(fieldValidationState.ordinal());
+        destination.writeInt(validationState.ordinal());
 
         destination.writeInt(isTransient ? 1 : 0);
         destination.writeString(dataSourceType);
@@ -576,5 +573,9 @@ public abstract class Field<T extends Serializable> implements Parcelable {
             return values[0];
         }
 
+    }
+
+    public enum ValidationState {
+        INVALID_BY_LOCAL_RULE, INVALID_BY_REQUIRED_WITHOUT_VALUE, VALID
     }
 }

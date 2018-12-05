@@ -119,9 +119,9 @@ public class NumberField extends Field<Number> {
 
     private boolean checkIsValid() {
         if (isRequired()) {
-            setFieldValidationState(FieldValidationState.REQUIRED_WITHOUT_VALUE);
+            setValidationState(ValidationState.INVALID_BY_REQUIRED_WITHOUT_VALUE);
         } else {
-            setFieldValidationState(FieldValidationState.VALID);
+            setValidationState(ValidationState.VALID);
         }
 
         return !isRequired();
@@ -131,7 +131,7 @@ public class NumberField extends Field<Number> {
         boolean isValid = numberValidator.validate(currentValue);
 
         if (!isValid) {
-            setFieldValidationState(FieldValidationState.INVALID_BY_LOCAL_RULE);
+            setValidationState(ValidationState.INVALID_BY_LOCAL_RULE);
         }
 
         return isValid;

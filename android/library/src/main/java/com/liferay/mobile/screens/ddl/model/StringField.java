@@ -18,7 +18,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.liferay.mobile.screens.ddl.StringValidator;
-import com.liferay.mobile.screens.util.FieldValidationState;
 import com.liferay.mobile.screens.util.ValidationUtil;
 
 import java.util.Locale;
@@ -99,9 +98,9 @@ public class StringField extends OptionsField<String> {
 
     private boolean checkIsValid() {
         if (isRequired()) {
-            setFieldValidationState(FieldValidationState.REQUIRED_WITHOUT_VALUE);
+            setValidationState(ValidationState.INVALID_BY_REQUIRED_WITHOUT_VALUE);
         } else {
-            setFieldValidationState(FieldValidationState.VALID);
+            setValidationState(ValidationState.VALID);
         }
 
         return !isRequired();
@@ -112,7 +111,7 @@ public class StringField extends OptionsField<String> {
         boolean isValid = stringValidator.validate(currentValue);
 
         if (!isValid) {
-            setFieldValidationState(FieldValidationState.INVALID_BY_LOCAL_RULE);
+            setValidationState(ValidationState.INVALID_BY_LOCAL_RULE);
         }
 
         return isValid;
