@@ -65,25 +65,17 @@ public class DateField extends Field<Date> {
             return null;
         }
 
-        try {
-            int lastSeparator = stringValue.lastIndexOf('/');
+        int lastSeparator = stringValue.lastIndexOf('/');
 
-            if (stringValue.contains("-")) {
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", getCurrentLocale());
-                return simpleDateFormat.parse(stringValue);
-            } else if (lastSeparator == -1) {
-                return new Date(Long.parseLong(stringValue));
-            } else if (stringValue.length() - lastSeparator - 1 == 2) {
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yy", getCurrentLocale());
-                return simpleDateFormat.parse(stringValue);
-            } else {
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy", getCurrentLocale());
-                return simpleDateFormat.parse(stringValue);
-            }
-        } catch (ParseException e) {
-            LiferayLogger.e("Error parsing date " + stringValue);
+        if (stringValue.contains("-")) {
+            return convertDate("yyyy-MM-dd", stringValue);
+        } else if (lastSeparator == -1) {
+            return new Date(Long.parseLong(stringValue));
+        } else if (stringValue.length() - lastSeparator - 1 == 2) {
+            return convertDate("MM/dd/yy", stringValue);
+        } else {
+            return convertDate("MM/dd/yyyy", stringValue);
         }
-        return null;
     }
 
     @Override
@@ -105,4 +97,15 @@ public class DateField extends Field<Date> {
     protected String convertToFormattedString(Date value) {
         return (value == null) ? "" : DateFormat.getDateInstance(DateFormat.LONG, getCurrentLocale()).format(value);
     }
+
+	private Date convertDate(String pattern, String stringValue) {
+		try {
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, getCurrentLocale());
+			return simpleDateFormat.parse(stringValue);
+		} catch (ParseException e) {
+			LiferayLogger.e("Error parsing date " + stringValue);
+		}
+
+		return null;
+	}
 }
