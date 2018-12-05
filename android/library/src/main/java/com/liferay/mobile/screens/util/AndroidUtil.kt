@@ -32,7 +32,6 @@ import android.os.Build.VERSION.SDK_INT
 import android.text.Html
 import android.text.Spanned
 
-
 /**
  * @author Victor Oliveira
  */
