@@ -20,7 +20,6 @@ import com.liferay.mobile.screens.util.LiferayLogger;
 import java.util.Locale;
 import java.util.Map;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 /**
  * @author Javier Gamarra
