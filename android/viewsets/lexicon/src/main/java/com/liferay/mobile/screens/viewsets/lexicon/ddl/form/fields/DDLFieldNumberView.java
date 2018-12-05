@@ -43,11 +43,7 @@ public class DDLFieldNumberView
     @Override
     public void onPostValidation(boolean valid) {
         FormViewUtil.setupBackground(getContext(), valid, textEditText);
-
-        NumberField field = getField();
-
-        FormViewUtil.setupErrorView(valid, findViewById(R.id.error_view),
-            ValidationUtil.getErrorMessage(field.getFieldValidationState(), field.getNumberValidator()));
+        FormViewUtil.setupErrorView(valid, findViewById(R.id.error_view), getField().getErrorMessage());
     }
 
 }

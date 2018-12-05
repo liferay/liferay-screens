@@ -143,7 +143,7 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 
     @Override
     public void onPostValidation(boolean valid) {
-        String errorText = valid ? null : getResources().getString(R.string.invalid);
+        String errorText = valid ? null : getField().getErrorMessage();
 
         if (labelTextView == null) {
             textEditText.setError(errorText);

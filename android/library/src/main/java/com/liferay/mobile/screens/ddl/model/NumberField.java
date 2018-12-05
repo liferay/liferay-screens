@@ -16,8 +16,9 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
+import com.liferay.mobile.screens.ddl.LocalValidator;
 import com.liferay.mobile.screens.ddl.NumberValidator;
-import com.liferay.mobile.screens.util.FieldValidationState;
 import com.liferay.mobile.screens.util.ValidationUtil;
 
 import java.text.NumberFormat;
@@ -66,6 +67,12 @@ public class NumberField extends Field<Number> {
         super(in, loader);
     }
 
+    @Nullable
+    @Override
+    public LocalValidator getLocalValidator() {
+        return numberValidator;
+    }
+
     @Override
     protected Number convertFromString(String stringValue) {
         if (stringValue == null || stringValue.isEmpty()) {
@@ -111,10 +118,6 @@ public class NumberField extends Field<Number> {
             defaultLabelFormatter = NumberFormat.getNumberInstance(getDefaultLocale());
         }
         return labelFormatter;
-    }
-
-    public NumberValidator getNumberValidator() {
-        return numberValidator;
     }
 
     private boolean checkIsValid() {

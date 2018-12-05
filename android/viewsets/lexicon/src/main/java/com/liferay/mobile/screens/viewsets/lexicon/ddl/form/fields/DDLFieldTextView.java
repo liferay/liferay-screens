@@ -46,10 +46,7 @@ public class DDLFieldTextView
         FormViewUtil.setupBackground(getContext(), valid, textEditText);
 
         boolean isRepeatableField = getParent() instanceof DDMFieldRepeatableItemView;
-        StringField field = getField();
-
-        String errorMessage = ValidationUtil.getErrorMessage(field.getFieldValidationState(),
-            field.getStringValidator());
+        String errorMessage = getField().getErrorMessage();
 
         FormViewUtil.setupErrorView(valid, findViewById(R.id.error_view), errorMessage);
 

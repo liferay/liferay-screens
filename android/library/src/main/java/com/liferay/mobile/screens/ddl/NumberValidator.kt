@@ -19,8 +19,11 @@ import java.text.NumberFormat
 /**
  * @author Victor Oliveira
  */
-abstract class NumberValidator(val right: Number, override val errorMessage: String) : Validator {
+abstract class NumberValidator(val right: Number, val errorMessage: String) : LocalValidator {
     abstract fun validate(left: Number): Boolean
+    override fun getCustomErrorMessage(): String {
+        return errorMessage
+    }
 
     companion object {
 

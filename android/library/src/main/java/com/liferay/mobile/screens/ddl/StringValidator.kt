@@ -19,8 +19,11 @@ package com.liferay.mobile.screens.ddl
  */
 import android.util.Patterns
 
-abstract class StringValidator(override val errorMessage: String) : Validator {
+abstract class StringValidator(val errorMessage: String) : LocalValidator {
 	abstract fun validate(string: String): Boolean
+    override fun getCustomErrorMessage(): String {
+        return errorMessage
+    }
 
 	companion object {
 		@JvmStatic
