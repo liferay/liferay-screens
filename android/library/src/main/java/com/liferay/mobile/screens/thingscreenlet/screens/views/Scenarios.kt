@@ -25,7 +25,7 @@ interface Scenario : Parcelable {
 }
 
 @SuppressLint("ParcelCreator")
-object Detail : Scenario, Parcelable {
+object Detail : Scenario {
     override fun writeToParcel(dest: Parcel?, flags: Int) {
     }
 
@@ -45,7 +45,7 @@ object Detail : Scenario, Parcelable {
 }
 
 @SuppressLint("ParcelCreator")
-object Row : Scenario, Parcelable {
+object Row : Scenario {
     override fun writeToParcel(dest: Parcel?, flags: Int) {
     }
 
@@ -64,7 +64,7 @@ object Row : Scenario, Parcelable {
     }
 }
 
-data class Custom(val name: String) : Scenario, Parcelable {
+data class Custom(val name: String) : Scenario {
     constructor(parcel: Parcel) : this(parcel.readString())
 
     override fun writeToParcel(dest: Parcel?, flags: Int) {
