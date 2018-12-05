@@ -170,6 +170,7 @@ open class ThingScreenlet @JvmOverloads constructor(
 			val bundle = Bundle()
 			bundle.putParcelable("superState", super.onSaveInstanceState())
 			bundle.putParcelable("thing", it)
+            bundle.putParcelable("scenario", scenario)
 			return bundle
 		}
 
@@ -178,6 +179,7 @@ open class ThingScreenlet @JvmOverloads constructor(
 
 	override fun onRestoreInstanceState(state: Parcelable?) {
 		if (state is Bundle) {
+            scenario = state.getParcelable("scenario")
 			thing = state.getParcelable("thing")
 			super.onRestoreInstanceState(state.getParcelable("superState"))
 		} else {
