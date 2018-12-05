@@ -44,9 +44,9 @@ class GridField : Field<Grid>, Parcelable {
     }
 
     constructor(parcel: Parcel, classLoader: ClassLoader) : super(parcel, classLoader) {
-		rows = parcel.createTypedArrayList(Option.CREATOR)
-		columns = parcel.createTypedArrayList(Option.CREATOR)
-	}
+        rows = parcel.createTypedArrayList(Option.CREATOR)
+        columns = parcel.createTypedArrayList(Option.CREATOR)
+    }
 
 	override fun writeToParcel(parcel: Parcel, flags: Int) {
 		super.writeToParcel(parcel, flags)

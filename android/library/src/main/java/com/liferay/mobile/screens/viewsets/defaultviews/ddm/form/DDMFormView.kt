@@ -252,19 +252,19 @@ class DDMFormView @JvmOverloads constructor(
 		})
 	}
 
-	override fun subscribeToValueChanged(observable: Observable<Field<*>>) {
+    override fun subscribeToValueChanged(observable: Observable<Field<*>>) {
         subscription = observable.doOnNext {
-            presenter.onFieldValueChanged(it)
+            presenter.fieldModelsChanged(it)
         }.debounce(2, TimeUnit.SECONDS)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ field ->
-                thing?.let {
-                    presenter.onDebounceSync(it, formInstance, field)
-                }
-            }, {
-                LiferayLogger.e(it.message)
-            })
-	}
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe({ field ->
+            thing?.let {
+                presenter.syncForm(it, formInstance, field)
+            } ?: throw Exception("No thing found")
+        }, {
+            LiferayLogger.e(it.message)
+        })
+    }
 
 	override fun updateFieldView(fieldContext: FieldContext, field: Field<*>) {
 		val fieldsContainerView = ddmFieldViewPages.currentView
@@ -428,7 +428,7 @@ class DDMFormView @JvmOverloads constructor(
 		setActivityTitle(formInstance)
 		initPageAdapter(formInstance.ddmStructure.pages)
 
-		presenter.syncFormInstance(thing, formInstance)
+		presenter.loadInitialContext(thing, formInstance)
 	}
 
 	private fun restoreActionButtonsState() {
