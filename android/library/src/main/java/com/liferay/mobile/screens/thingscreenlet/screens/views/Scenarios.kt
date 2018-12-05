@@ -14,14 +14,74 @@
 
 package com.liferay.mobile.screens.thingscreenlet.screens.views
 
-interface Scenario {
+import android.annotation.SuppressLint
+import android.os.Parcel
+import android.os.Parcelable
+
+interface Scenario : Parcelable {
 	companion object {
 		var stringToScenario: ((String) -> Scenario?)? = null
 	}
 }
 
-object Detail : Scenario
+@SuppressLint("ParcelCreator")
+object Detail : Scenario, Parcelable {
+    override fun writeToParcel(dest: Parcel?, flags: Int) {
+    }
 
-object Row : Scenario
+    override fun describeContents(): Int {
+        return 0
+    }
 
-data class Custom(val name: String) : Scenario
+    object CREATOR : Parcelable.Creator<Detail> {
+        override fun createFromParcel(parcel: Parcel): Detail {
+            return Detail
+        }
+
+        override fun newArray(size: Int): Array<Detail?> {
+            return arrayOfNulls(size)
+        }
+    }
+}
+
+@SuppressLint("ParcelCreator")
+object Row : Scenario, Parcelable {
+    override fun writeToParcel(dest: Parcel?, flags: Int) {
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    object CREATOR : Parcelable.Creator<Row> {
+        override fun createFromParcel(parcel: Parcel): Row {
+            return Row
+        }
+
+        override fun newArray(size: Int): Array<Row?> {
+            return arrayOfNulls(size)
+        }
+    }
+}
+
+data class Custom(val name: String) : Scenario, Parcelable {
+    constructor(parcel: Parcel) : this(parcel.readString())
+
+    override fun writeToParcel(dest: Parcel?, flags: Int) {
+        dest?.writeString(name)
+    }
+
+    override fun describeContents(): Int {
+        return 0;
+    }
+
+    companion object CREATOR : Parcelable.Creator<Custom> {
+        override fun createFromParcel(parcel: Parcel): Custom {
+            return Custom(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Custom?> {
+            return arrayOfNulls(size)
+        }
+    }
+}
