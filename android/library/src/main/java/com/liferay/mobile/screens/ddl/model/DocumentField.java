@@ -106,12 +106,12 @@ public class DocumentField extends Field<DocumentFile> {
 
     @Override
     protected DocumentFile convertFromString(String string) {
-	    if (string == null || string.isEmpty()) {
+        if (string == null || string.isEmpty()) {
             return null;
         }
 
         try {
-	        return new DocumentRemoteFile(string);
+            return new DocumentRemoteFile(string);
         } catch (JSONException e) {
             LiferayLogger.e("Can't parse the document JSON", e);
         }

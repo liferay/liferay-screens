@@ -392,7 +392,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
                     }
                 }
 
-                if("document-library".equals(stringDataType)) {
+                if ("document-library".equals(stringDataType)) {
                     return DOCUMENT;
                 }
 
