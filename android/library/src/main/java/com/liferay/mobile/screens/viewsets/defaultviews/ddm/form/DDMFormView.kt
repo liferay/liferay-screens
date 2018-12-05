@@ -246,19 +246,19 @@ class DDMFormView @JvmOverloads constructor(
 		}
 	}
 
-    override fun subscribeToValueChanged(observable: Observable<Field<*>>) {
-        subscription = observable.doOnNext {
-            presenter.fieldModelsChanged(it)
-        }.debounce(2, TimeUnit.SECONDS)
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe({ field ->
-            thing?.let {
-                presenter.syncForm(it, formInstance, field)
-            } ?: throw Exception("No thing found")
-        }, {
-            LiferayLogger.e(it.message)
-        })
-    }
+	override fun subscribeToValueChanged(observable: Observable<Field<*>>) {
+		subscription = observable.doOnNext {
+			presenter.fieldModelsChanged(it)
+		}.debounce(2, TimeUnit.SECONDS)
+			.observeOn(AndroidSchedulers.mainThread())
+			.subscribe({ field ->
+				thing?.let {
+					presenter.syncForm(it, formInstance, field)
+				} ?: throw Exception("No thing found")
+			}, {
+				LiferayLogger.e(it.message)
+			})
+	}
 
 	override fun updateFieldView(fieldContext: FieldContext, field: Field<*>) {
 		val fieldsContainerView = ddmFieldViewPages.currentView

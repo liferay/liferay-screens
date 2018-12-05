@@ -31,22 +31,22 @@ class GridField : Field<Grid>, Parcelable {
 
 	private val gson: Gson = Gson()
 
-    override fun convertToData(value: Grid?): String {
-        return value?.rawValues.let {
-            gson.toJson(it)
-        }.toString()
-    }
-
-    override fun convertToFormattedString(value: Grid?): String {
-        return value?.rawValues.let {
+	override fun convertToData(value: Grid?): String {
+		return value?.rawValues.let {
 			gson.toJson(it)
-        }.toString()
-    }
+		}.toString()
+	}
 
-    constructor(parcel: Parcel, classLoader: ClassLoader) : super(parcel, classLoader) {
-        rows = parcel.createTypedArrayList(Option.CREATOR)
-        columns = parcel.createTypedArrayList(Option.CREATOR)
-    }
+	override fun convertToFormattedString(value: Grid?): String {
+		return value?.rawValues.let {
+			gson.toJson(it)
+		}.toString()
+	}
+
+	constructor(parcel: Parcel, classLoader: ClassLoader) : super(parcel, classLoader) {
+		rows = parcel.createTypedArrayList(Option.CREATOR)
+		columns = parcel.createTypedArrayList(Option.CREATOR)
+	}
 
 	override fun writeToParcel(parcel: Parcel, flags: Int) {
 		super.writeToParcel(parcel, flags)

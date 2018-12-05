@@ -29,7 +29,7 @@ import java.util.*
  */
 class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewContract.DDMFormViewPresenter {
 
-    private val interactor = DDMFormInteractor()
+	private val interactor = DDMFormInteractor()
 	private val dirtyFieldNames: MutableList<String> = mutableListOf()
 
 	private var isSyncing = false
@@ -86,23 +86,23 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 		}
 	}
 
-    override fun syncForm(thing: Thing, formInstance: FormInstance, field: Field<*>) {
-        if (!field.isTransient) {
+	override fun syncForm(thing: Thing, formInstance: FormInstance, field: Field<*>) {
+		if (!field.isTransient) {
 
-            if (!view.hasConnectivity()) {
-                view.showOfflineWarningMessage()
-                return
-            }
+			if (!view.hasConnectivity()) {
+				view.showOfflineWarningMessage()
+				return
+			}
 
-            if (!isSyncing) {
-                submit(thing, formInstance, true)
+			if (!isSyncing) {
+				submit(thing, formInstance, true)
 
-                if (field.hasFormRules()) {
-                    evaluateContext(thing, formInstance.ddmStructure.fields)
-                }
-            }
-        }
-    }
+				if (field.hasFormRules()) {
+					evaluateContext(thing, formInstance.ddmStructure.fields)
+				}
+			}
+		}
+	}
 
 	override fun restore(formInstanceRecord: FormInstanceRecord?, fields: MutableList<Field<*>>) {
 		formInstanceRecord?.let {
