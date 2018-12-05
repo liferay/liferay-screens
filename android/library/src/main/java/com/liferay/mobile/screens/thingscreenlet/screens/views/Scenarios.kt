@@ -72,7 +72,7 @@ data class Custom(val name: String) : Scenario {
 	}
 
 	override fun describeContents(): Int {
-		return 0;
+		return 0
 	}
 
 	companion object CREATOR : Parcelable.Creator<Custom> {
