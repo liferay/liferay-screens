@@ -93,17 +93,17 @@ class ThingMainActivity : AppCompatActivity(), ScreenletEvents {
 
 @SuppressLint("ParcelCreator")
 object DetailSmall : Scenario {
-    override fun describeContents() = 0
+	override fun describeContents() = 0
 
-    override fun writeToParcel(dest: Parcel?, flags: Int) {}
+	override fun writeToParcel(dest: Parcel?, flags: Int) {}
 
-    object CREATOR : Parcelable.Creator<DetailSmall> {
-        override fun createFromParcel(parcel: Parcel): DetailSmall {
-            return DetailSmall
-        }
+	object CREATOR : Parcelable.Creator<DetailSmall> {
+		override fun createFromParcel(parcel: Parcel): DetailSmall {
+			return DetailSmall
+		}
 
-        override fun newArray(size: Int): Array<DetailSmall?> {
-            return arrayOfNulls(size)
-        }
-    }
+		override fun newArray(size: Int): Array<DetailSmall?> {
+			return arrayOfNulls(size)
+		}
+	}
 }

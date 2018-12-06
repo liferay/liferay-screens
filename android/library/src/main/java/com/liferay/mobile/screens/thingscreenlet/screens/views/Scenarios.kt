@@ -18,7 +18,7 @@ import android.annotation.SuppressLint
 import android.os.Parcel
 import android.os.Parcelable
 
-interface Scenario : Parcelable{
+interface Scenario : Parcelable {
 	companion object {
 		var stringToScenario: ((String) -> Scenario?)? = null
 	}
@@ -28,7 +28,7 @@ interface Scenario : Parcelable{
 object Detail : Scenario {
 	override fun writeToParcel(dest: Parcel?, flags: Int) {}
 
-    override fun describeContents() = 0
+	override fun describeContents() = 0
 
 	object CREATOR : Parcelable.Creator<Detail> {
 		override fun createFromParcel(parcel: Parcel): Detail {
@@ -66,7 +66,7 @@ data class Custom(val name: String) : Scenario {
 		dest?.writeString(name)
 	}
 
-    override fun describeContents() = 0
+	override fun describeContents() = 0
 
 	companion object CREATOR : Parcelable.Creator<Custom> {
 		override fun createFromParcel(parcel: Parcel): Custom {
