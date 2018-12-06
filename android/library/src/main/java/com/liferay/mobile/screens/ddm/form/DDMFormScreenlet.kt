@@ -16,7 +16,10 @@ package com.liferay.mobile.screens.ddm.form
 
 import android.content.Context
 import android.content.res.TypedArray
+import android.os.Bundle
+import android.os.Parcelable
 import android.util.AttributeSet
+import android.view.View
 import android.widget.FrameLayout
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.util.FormConstants
@@ -29,7 +32,7 @@ import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.DDMFormView
  * @author Marcelo Mello
  */
 class DDMFormScreenlet @JvmOverloads constructor(
-        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : FrameLayout(context, attrs, defStyleAttr) {
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : FrameLayout(context, attrs, defStyleAttr) {
 
     var formInstanceId: Long
     var listener: DDMFormListener? = null
@@ -37,10 +40,10 @@ class DDMFormScreenlet @JvmOverloads constructor(
 
     init {
         val typedArray: TypedArray =
-                context.getTheme().obtainStyledAttributes(attrs, R.styleable.DDMFormScreenlet, 0, 0)
+            context.getTheme().obtainStyledAttributes(attrs, R.styleable.DDMFormScreenlet, 0, 0)
 
         formInstanceId =
-                castToLong(typedArray.getString(R.styleable.DDMFormScreenlet_formInstanceId))
+            castToLong(typedArray.getString(R.styleable.DDMFormScreenlet_formInstanceId))
 
         typedArray.recycle()
 
@@ -77,13 +80,13 @@ class DDMFormScreenlet @JvmOverloads constructor(
         if (value == null) {
             return defaultValue
         }
+
         try {
             return java.lang.Long.parseLong(value)
         } catch (e: NumberFormatException) {
             LiferayLogger.e("You have supplied a string and we expected a long number", e)
             throw e
         }
-
     }
 
 }

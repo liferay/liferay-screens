@@ -6,11 +6,11 @@
 	android:layout_height="match_parent"
 	>
 
-    <com.liferay.mobile.screens.thingscreenlet.screens.DDMFormScreenlet
+    <com.liferay.mobile.screens.ddm.form.DDMFormScreenlet
         android:id="@+id/ddm_form_screenlet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-	    app:formInstanceId="38105"
+	    app:formInstanceId="37105"
         />
 
     <com.liferay.mobile.screens.base.ModalProgressBarWithLabel
