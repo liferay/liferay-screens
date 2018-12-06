@@ -22,8 +22,8 @@ import java.lang.Exception
  */
 interface DDMFormListener {
 
-	fun onFormLoaded(formInstance: FormInstance);
+	fun onFormLoaded(formInstance: FormInstance)
 
-	fun onError(exception: Exception);
+	fun onError(exception: Exception)
 
 }
