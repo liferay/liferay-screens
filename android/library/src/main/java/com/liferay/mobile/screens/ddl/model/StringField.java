@@ -61,7 +61,6 @@ public class StringField extends OptionsField<String> {
         if (getText() != null) {
             setReadOnly(true);
         }
-
     }
 
     protected StringField(Parcel source, ClassLoader loader) {
@@ -72,8 +71,12 @@ public class StringField extends OptionsField<String> {
     protected boolean doValidate() {
         String currentValue = getCurrentValue();
 
-        if (currentValue != null && !currentValue.isEmpty()) {
-            return checkLocalValidation(currentValue);
+        if (currentValue != null) {
+            currentValue = currentValue.trim();
+
+            if (!currentValue.isEmpty()) {
+                return checkLocalValidation(currentValue);
+            }
         }
 
         return checkIsValid();
@@ -111,7 +114,6 @@ public class StringField extends OptionsField<String> {
     }
 
     private boolean checkLocalValidation(String currentValue) {
-        currentValue = currentValue.trim();
         boolean isValid = stringValidator.validate(currentValue);
 
         if (!isValid) {
@@ -126,5 +128,4 @@ public class StringField extends OptionsField<String> {
         stringValidator = StringValidator.parseStringValidation(validation);
         doValidate();
     }
-
 }
