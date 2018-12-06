@@ -16,16 +16,12 @@ package com.liferay.mobile.screens.ddm.form
 
 import android.content.Context
 import android.content.res.TypedArray
-import android.os.Bundle
-import android.os.Parcelable
 import android.util.AttributeSet
-import android.view.View
 import android.widget.FrameLayout
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.util.FormConstants
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
-import com.liferay.mobile.screens.util.LiferayLogger
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.DDMFormView
 
 /**
