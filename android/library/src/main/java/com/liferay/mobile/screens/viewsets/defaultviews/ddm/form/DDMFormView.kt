@@ -80,7 +80,7 @@ class DDMFormView @JvmOverloads constructor(
 
 	private lateinit var subscription: Subscription
 
-	private lateinit var formInstance: FormInstance
+	internal lateinit var formInstance: FormInstance
 
 	override var screenlet: ThingScreenlet? = null
 

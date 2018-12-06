@@ -148,6 +148,10 @@
         <attr name="obcClassName"/>
     </declare-styleable>
 
+	<declare-styleable name="DDMFormScreenlet">
+		<attr name="formInstanceId"/>
+	</declare-styleable>
+
     <declare-styleable name="ForgotPasswordScreenlet">
         <attr name="layoutId"/>
         <attr name="anonymousApiUserName"/>
