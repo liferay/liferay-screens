@@ -51,6 +51,7 @@ open class ThingScreenlet @JvmOverloads constructor(
 	open var scenario: Scenario = Detail
 
 	var screenletEvents: ScreenletEvents? = null
+	var savedInstanceState: Bundle? = null
 
 	open var layoutIds: MutableMap<String, MutableMap<Scenario, Int>> = mutableMapOf(
 		"BlogPosting" to BlogPosting.DEFAULT_VIEWS,
@@ -84,6 +85,7 @@ open class ThingScreenlet @JvmOverloads constructor(
 		} else {
 			baseView?.thing = it
 		}
+		savedInstanceState = null
 	}
 
 	val baseView: BaseView? get() = layout as? BaseView
@@ -179,6 +181,7 @@ open class ThingScreenlet @JvmOverloads constructor(
 
 	override fun onRestoreInstanceState(state: Parcelable?) {
 		if (state is Bundle) {
+			savedInstanceState = state
 			scenario = state.getParcelable("scenario")
 			thing = state.getParcelable("thing")
 			super.onRestoreInstanceState(state.getParcelable("superState"))
