@@ -28,28 +28,26 @@ class ThingScreenletSavedState : View.BaseSavedState {
     lateinit var thing: Thing
     lateinit var scenario: Scenario
 
-    constructor(superState: Parcelable) : super(superState)
+	constructor(superState: Parcelable) : super(superState)
 
-    internal constructor(parcel: Parcel) : super(parcel) {
-        thing = parcel.readParcelable(Thing::class.java.classLoader)
-        thing = parcel.readParcelable(Scenario::class.java.classLoader)
-    }
+	internal constructor(parcel: Parcel) : super(parcel) {
+		thing = parcel.readParcelable(Thing::class.java.classLoader)
+	}
 
-    override fun writeToParcel(out: Parcel, flags: Int) {
-        super.writeToParcel(out, flags)
-        out.writeParcelable(thing, flags)
-        out.writeParcelable(scenario, flags)
-    }
+	override fun writeToParcel(out: Parcel, flags: Int) {
+		super.writeToParcel(out, flags)
+		out.writeParcelable(thing, flags)
+	}
 
-    object CREATOR : Parcelable.Creator<ThingScreenletSavedState> {
-        override fun createFromParcel(parcel: Parcel): ThingScreenletSavedState {
-            return ThingScreenletSavedState(parcel)
-        }
+	object CREATOR : Parcelable.Creator<ThingScreenletSavedState> {
+		override fun createFromParcel(parcel: Parcel): ThingScreenletSavedState {
+			return ThingScreenletSavedState(parcel)
+		}
 
-        override fun newArray(size: Int): Array<ThingScreenletSavedState?> {
-            return arrayOfNulls(size)
-        }
-    }
+		override fun newArray(size: Int): Array<ThingScreenletSavedState?> {
+			return arrayOfNulls(size)
+		}
+	}
 
-    override fun describeContents(): Int = 0
+	override fun describeContents(): Int = 0
 }

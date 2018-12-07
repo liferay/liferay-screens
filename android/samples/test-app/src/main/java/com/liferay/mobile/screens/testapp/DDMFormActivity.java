@@ -28,46 +28,46 @@ import com.liferay.mobile.screens.ddm.form.model.FormInstance;
  */
 public class DDMFormActivity extends ThemeActivity implements DDMFormListener {
 
-	public static final String FORM_INSTANCE_ID_KEY = "FORM_INSTANCE_ID";
-	private DDMFormScreenlet screenlet;
-	private ModalProgressBarWithLabel modalProgress;
+    public static final String FORM_INSTANCE_ID_KEY = "FORM_INSTANCE_ID";
+    private DDMFormScreenlet screenlet;
+    private ModalProgressBarWithLabel modalProgress;
 
-	@Override
-	protected void onCreate(@Nullable Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.ddm_form);
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.ddm_form);
 
-		screenlet = findViewById(R.id.ddm_form_screenlet);
-		modalProgress = findViewById(R.id.liferay_modal_progress);
+        screenlet = findViewById(R.id.ddm_form_screenlet);
+        modalProgress = findViewById(R.id.liferay_modal_progress);
 
-		screenlet.setListener(this);
+        screenlet.setListener(this);
 
-		if (savedInstanceState == null) {
-			loadResource();
-		}
-	}
+        if (savedInstanceState == null) {
+            loadResource();
+        }
+    }
 
-	private void initScreenletFromIntent(Intent intent) {
-		if (intent.hasExtra(FORM_INSTANCE_ID_KEY)) {
-			screenlet.setFormInstanceId(intent.getLongExtra(FORM_INSTANCE_ID_KEY, 0));
-		}
-	}
+    private void initScreenletFromIntent(Intent intent) {
+        if (intent.hasExtra(FORM_INSTANCE_ID_KEY)) {
+            screenlet.setFormInstanceId(intent.getLongExtra(FORM_INSTANCE_ID_KEY, 0));
+        }
+    }
 
-	private void loadResource() {
-		screenlet.setVisibility(View.GONE);
-		modalProgress.show("Loading Form");
-		screenlet.load();
-	}
+    private void loadResource() {
+        screenlet.setVisibility(View.GONE);
+        modalProgress.show("Loading Form");
+        screenlet.load();
+    }
 
-	@Override
-	public void onFormLoaded(FormInstance formInstance) {
-		modalProgress.hide();
-		screenlet.setVisibility(View.VISIBLE);
-		info(getString(R.string.form_loaded_info));
-	}
+    @Override
+    public void onFormLoaded(FormInstance formInstance) {
+        modalProgress.hide();
+        screenlet.setVisibility(View.VISIBLE);
+        info(getString(R.string.form_loaded_info));
+    }
 
-	@Override
-	public void onError(Exception exception) {
-		info(getString(R.string.loading_form_error));
-	}
+    @Override
+    public void onError(Exception exception) {
+        info(getString(R.string.loading_form_error));
+    }
 }

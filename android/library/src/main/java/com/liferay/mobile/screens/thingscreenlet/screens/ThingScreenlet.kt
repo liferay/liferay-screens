@@ -39,10 +39,10 @@ import com.liferay.mobile.screens.thingscreenlet.screens.views.*
 import okhttp3.HttpUrl
 
 open class BaseScreenlet @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) :
-    FrameLayout(context, attrs, defStyleAttr) {
+	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) :
+	FrameLayout(context, attrs, defStyleAttr) {
 
-    var layout: View? = null
+	var layout: View? = null
 }
 
 open class ThingScreenlet @JvmOverloads constructor(
@@ -164,9 +164,9 @@ open class ThingScreenlet @JvmOverloads constructor(
 	}
 
 	override fun onFinishInflate() {
-        super.onFinishInflate()
-        isSaveEnabled = true
-    }
+		super.onFinishInflate()
+		isSaveEnabled = true
+	}
 
 	private fun getApioAuthenticator(credentials: String? = null): ApioAuthenticator? {
 		val credentials = credentials ?: SessionContext.getCredentialsFromCurrentSession()
@@ -176,16 +176,16 @@ open class ThingScreenlet @JvmOverloads constructor(
 		}
 	}
 
-    override fun onSaveInstanceState(): Parcelable {
-        var savedState = ThingScreenletSavedState(super.onSaveInstanceState())
+	override fun onSaveInstanceState(): Parcelable {
+		var savedState = ThingScreenletSavedState(super.onSaveInstanceState())
 
 		savedState.scenario = scenario
         thing?.let {
             savedState.thing = it
         }
 
-        return savedState
-    }
+		return savedState
+	}
 
     override fun onRestoreInstanceState(state: Parcelable?) {
         var savedState: ThingScreenletSavedState = state as ThingScreenletSavedState

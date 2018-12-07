@@ -32,61 +32,61 @@ import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.DDMFormView
  * @author Marcelo Mello
  */
 class DDMFormScreenlet @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : FrameLayout(context, attrs, defStyleAttr) {
+	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : FrameLayout(context, attrs, defStyleAttr) {
 
-    var formInstanceId: Long
-    var listener: DDMFormListener? = null
-    val screenlet: ThingScreenlet
+	var formInstanceId: Long
+	var listener: DDMFormListener? = null
+	val screenlet: ThingScreenlet
 
-    init {
-        val typedArray: TypedArray =
-            context.getTheme().obtainStyledAttributes(attrs, R.styleable.DDMFormScreenlet, 0, 0)
+	init {
+		val typedArray: TypedArray =
+			context.getTheme().obtainStyledAttributes(attrs, R.styleable.DDMFormScreenlet, 0, 0)
 
-        formInstanceId =
-            castToLong(typedArray.getString(R.styleable.DDMFormScreenlet_formInstanceId))
+		formInstanceId =
+			castToLong(typedArray.getString(R.styleable.DDMFormScreenlet_formInstanceId))
 
-        typedArray.recycle()
+		typedArray.recycle()
 
-        screenlet = ThingScreenlet(context, attrs, defStyleAttr)
-        addView(screenlet)
-    }
+		screenlet = ThingScreenlet(context, attrs, defStyleAttr)
+		addView(screenlet)
+	}
 
-    fun load() {
-        val url: String = getResourcePath()
-        screenlet.load(url, Detail, onSuccess = {
-            (it.baseView as? DDMFormView)?.let { ddmFormView ->
-                listener?.onFormLoaded(ddmFormView.formInstance)
-            }
-        }, onError = {
-            listener?.onError(it)
-        })
-    }
+	fun load() {
+		val url: String = getResourcePath()
+		screenlet.load(url, Detail, onSuccess = {
+			(it.baseView as? DDMFormView)?.let { ddmFormView ->
+				listener?.onFormLoaded(ddmFormView.formInstance)
+			}
+		}, onError = {
+			listener?.onError(it)
+		})
+	}
 
 //    protected fun onRestoreInstanceState(state: Parcelable)
 
-    /**
-     * TODO: Methods below are copied from BaseScreenlet.java class.
-     * Need to think another approach for these methods
-     */
-    protected fun castToLong(value: String?): Long {
-        return castToLongOrUseDefault(value, 0)
-    }
+	/**
+	 * TODO: Methods below are copied from BaseScreenlet.java class.
+	 * Need to think another approach for these methods
+	 */
+	protected fun castToLong(value: String?): Long {
+		return castToLongOrUseDefault(value, 0)
+	}
 
-    protected fun castToLongOrUseDefault(value: String?, defaultValue: Long): Long {
-        if (value == null) {
-            return defaultValue
-        }
+	protected fun castToLongOrUseDefault(value: String?, defaultValue: Long): Long {
+		if (value == null) {
+			return defaultValue
+		}
 
-        try {
-            return java.lang.Long.parseLong(value)
-        } catch (e: NumberFormatException) {
-            LiferayLogger.e("You have supplied a string and we expected a long number", e)
-            throw e
-        }
-    }
+		try {
+			return java.lang.Long.parseLong(value)
+		} catch (e: NumberFormatException) {
+			LiferayLogger.e("You have supplied a string and we expected a long number", e)
+			throw e
+		}
+	}
 
-    private fun getResourcePath(): String {
-        val serverUrl = getResources().getString(R.string.liferay_server)
-        return serverUrl + String.format(FormConstants.URL_TEMPLATE, formInstanceId)
-    }
+	private fun getResourcePath(): String {
+		val serverUrl = getResources().getString(R.string.liferay_server)
+		return serverUrl + String.format(FormConstants.URL_TEMPLATE, formInstanceId)
+	}
 }
