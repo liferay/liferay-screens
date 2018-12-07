@@ -53,7 +53,6 @@ class DDMFormScreenlet @JvmOverloads constructor(
 
     fun load() {
         val url: String = getResourcePath()
-
         screenlet.load(url, Detail, onSuccess = {
             (it.baseView as? DDMFormView)?.let { ddmFormView ->
                 listener?.onFormLoaded(ddmFormView.formInstance)
@@ -63,10 +62,7 @@ class DDMFormScreenlet @JvmOverloads constructor(
         })
     }
 
-    private fun getResourcePath(): String {
-        val serverUrl = getResources().getString(R.string.liferay_server)
-        return serverUrl + String.format(FormConstants.URL_TEMPLATE, formInstanceId)
-    }
+//    protected fun onRestoreInstanceState(state: Parcelable)
 
     /**
      * TODO: Methods below are copied from BaseScreenlet.java class.
@@ -89,4 +85,8 @@ class DDMFormScreenlet @JvmOverloads constructor(
         }
     }
 
+    private fun getResourcePath(): String {
+        val serverUrl = getResources().getString(R.string.liferay_server)
+        return serverUrl + String.format(FormConstants.URL_TEMPLATE, formInstanceId)
+    }
 }
