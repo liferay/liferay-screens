@@ -39,10 +39,10 @@ import com.liferay.mobile.screens.thingscreenlet.screens.views.*
 import okhttp3.HttpUrl
 
 open class BaseScreenlet @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) :
-    FrameLayout(context, attrs, defStyleAttr) {
+	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) :
+	FrameLayout(context, attrs, defStyleAttr) {
 
-    var layout: View? = null
+	var layout: View? = null
 }
 
 open class ThingScreenlet @JvmOverloads constructor(
