@@ -32,11 +32,13 @@ class ThingScreenletSavedState : View.BaseSavedState {
 
 	internal constructor(parcel: Parcel) : super(parcel) {
 		thing = parcel.readParcelable(Thing::class.java.classLoader)
+		scenario = parcel.readParcelable(Scenario::class.java.classLoader)
 	}
 
 	override fun writeToParcel(out: Parcel, flags: Int) {
 		super.writeToParcel(out, flags)
 		out.writeParcelable(thing, flags)
+		out.writeParcelable(scenario, flags)
 	}
 
 	object CREATOR : Parcelable.Creator<ThingScreenletSavedState> {
