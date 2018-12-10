@@ -16,7 +16,7 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import java.util.Locale;
 import java.util.Map;
 import org.json.JSONException;
@@ -114,7 +114,7 @@ public class DocumentField extends Field<DocumentFile> {
         try {
             result = new DocumentRemoteFile(string);
         } catch (JSONException e) {
-            Log.e("liferay-screens", "Can't parse the document JSON", e);
+            LiferayLogger.e("Can't parse the document JSON", e);
         }
 
         return result;

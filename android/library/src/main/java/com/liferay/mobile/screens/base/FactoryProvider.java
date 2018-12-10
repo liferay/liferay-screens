@@ -1,7 +1,7 @@
 package com.liferay.mobile.screens.base;
 
-import android.util.Log;
 import com.liferay.mobile.screens.context.LiferayServerContext;
+import com.liferay.mobile.screens.util.LiferayLogger;
 
 /**
  * @author Javier Gamarra
@@ -27,9 +27,9 @@ public class FactoryProvider {
         try {
             return (AbstractFactory) Class.forName(LiferayServerContext.getClassFactory()).newInstance();
         } catch (Exception e) {
-            Log.e("LiferayScreens", "Error creating the instance class, "
+            LiferayLogger.e("Error creating the instance class, "
                 + "there isn't an attribute called *factory_class* that can be instantiated. "
-                + "Are you sure that your class and package exists and it has a public empty constructor?");
+                + "Are you sure that your class and package exists and it has a public empty constructor?", e);
             return new FactoryCE();
         }
     }
