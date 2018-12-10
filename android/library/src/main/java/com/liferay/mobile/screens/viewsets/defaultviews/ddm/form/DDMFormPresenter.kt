@@ -76,13 +76,18 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 		})
 	}
 
-	override fun onFieldValueChanged(thing: Thing, formInstance: FormInstance, field: Field<*>) {
+	override fun fieldModelsChanged(field: Field<*>) {
 		if (!field.isTransient) {
 			addToDirtyFields(field)
 
 			formInstanceRecord?.let {
 				it.fieldValues[field.name] = field.toData() ?: ""
 			}
+		}
+	}
+
+	override fun syncForm(thing: Thing, formInstance: FormInstance, field: Field<*>) {
+		if (!field.isTransient) {
 
 			if (!view.hasConnectivity()) {
 				view.showOfflineWarningMessage()
@@ -133,7 +138,7 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 		})
 	}
 
-	override fun syncFormInstance(thing: Thing, formInstance: FormInstance) {
+	override fun loadInitialContext(thing: Thing, formInstance: FormInstance) {
 		isSyncing = true
 		view.showModalSyncFormLoading()
 

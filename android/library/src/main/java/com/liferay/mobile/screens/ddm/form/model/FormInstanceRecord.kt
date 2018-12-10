@@ -20,8 +20,6 @@ import android.os.Parcelable
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.get
 import com.liferay.mobile.screens.ddl.form.util.FormConstants
-import com.liferay.mobile.screens.ddl.model.Field
-import java.util.*
 
 /**
  * @author Paulo Cruz

@@ -78,7 +78,7 @@ class DDMFormView @JvmOverloads constructor(
 	private val multipageProgress by bindNonNull<ProgressBar>(R.id.liferay_multipage_progress)
 	private val modalProgress by bindNonNull<ModalProgressBarWithLabel>(R.id.liferay_modal_progress)
 
-	private var subscription: CompositeSubscription = CompositeSubscription()
+	private lateinit var subscription: Subscription
 
 	private lateinit var formInstance: FormInstance
 
@@ -253,13 +253,17 @@ class DDMFormView @JvmOverloads constructor(
 	}
 
 	override fun subscribeToValueChanged(observable: Observable<Field<*>>) {
-		val autoSaveSubscription = observable.subscribeOnChange(2) { field ->
-			thing?.let {
-				presenter.onFieldValueChanged(it, formInstance, field)
-			}
-		}
-
-		subscription.add(autoSaveSubscription)
+		subscription = observable.doOnNext {
+			presenter.fieldModelsChanged(it)
+		}.debounce(2, TimeUnit.SECONDS)
+			.observeOn(AndroidSchedulers.mainThread())
+			.subscribe({ field ->
+				thing?.let {
+					presenter.syncForm(it, formInstance, field)
+				} ?: throw Exception("No thing found")
+			}, {
+				LiferayLogger.e(it.message)
+			})
 	}
 
 	override fun updateFieldView(fieldContext: FieldContext, field: Field<*>) {
@@ -418,24 +422,13 @@ class DDMFormView @JvmOverloads constructor(
 		}
 	}
 
-	private fun Observable<Field<*>>.subscribeOnChange(
-		debounceTimeout: Long, onNext: (Field<*>) -> Unit): Subscription {
-
-		return this
-			.debounce(debounceTimeout, TimeUnit.SECONDS)
-			.observeOn(AndroidSchedulers.mainThread())
-			.subscribe(onNext) {
-				LiferayLogger.e(it.message)
-			}
-	}
-
 	private fun onFormLoaded(formInstance: FormInstance) {
 		val thing = thing ?: throw Exception("No thing found")
 
 		setActivityTitle(formInstance)
 		initPageAdapter(formInstance.ddmStructure.pages)
 
-		presenter.syncFormInstance(thing, formInstance)
+		presenter.loadInitialContext(thing, formInstance)
 	}
 
 	private fun restoreActionButtonsState() {

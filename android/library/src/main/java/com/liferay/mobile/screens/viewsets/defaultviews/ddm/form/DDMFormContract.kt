@@ -77,13 +77,15 @@ interface DDMFormViewContract {
 
 		fun evaluateContext(thing: Thing, fields: MutableList<Field<*>>, onComplete: (() -> Unit)? = null)
 
-		fun onFieldValueChanged(thing: Thing, formInstance: FormInstance, field: Field<*>)
+		fun fieldModelsChanged(field: Field<*>)
+
+		fun syncForm(thing: Thing, formInstance: FormInstance, field: Field<*>)
 
 		fun restore(formInstanceRecord: FormInstanceRecord?, fields: MutableList<Field<*>>)
 
 		fun submit(thing: Thing, formInstance: FormInstance, isDraft: Boolean = false)
 
-		fun syncFormInstance(thing: Thing, formInstance: FormInstance)
+		fun loadInitialContext(thing: Thing, formInstance: FormInstance)
 
 		fun uploadFile(
 			thing: Thing, field: DocumentField, inputStream: InputStream, onSuccess: (DocumentRemoteFile) -> Unit,
