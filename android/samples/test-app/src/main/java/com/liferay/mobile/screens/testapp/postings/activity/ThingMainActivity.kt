@@ -14,7 +14,10 @@
 
 package com.liferay.mobile.screens.testapp.postings.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Parcel
+import android.os.Parcelable
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.liferay.apio.consumer.model.Thing
@@ -88,4 +91,19 @@ class ThingMainActivity : AppCompatActivity(), ScreenletEvents {
 
 }
 
-object DetailSmall : Scenario
+@SuppressLint("ParcelCreator")
+object DetailSmall : Scenario {
+	override fun describeContents() = 0
+
+	override fun writeToParcel(dest: Parcel?, flags: Int) {}
+
+	object CREATOR : Parcelable.Creator<DetailSmall> {
+		override fun createFromParcel(parcel: Parcel): DetailSmall {
+			return DetailSmall
+		}
+
+		override fun newArray(size: Int): Array<DetailSmall?> {
+			return arrayOfNulls(size)
+		}
+	}
+}
