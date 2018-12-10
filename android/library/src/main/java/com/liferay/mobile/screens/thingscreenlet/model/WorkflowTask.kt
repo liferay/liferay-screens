@@ -14,8 +14,6 @@
 
 package com.liferay.mobile.screens.thingscreenlet.model
 
-import com.liferay.apio.consumer.cache.ThingsCache
-import com.liferay.apio.consumer.cache.ThingsCache.get
 import com.liferay.apio.consumer.extensions.asDate
 import com.liferay.apio.consumer.model.Relation
 import com.liferay.apio.consumer.model.Thing
@@ -24,22 +22,22 @@ import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Row
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
-import java.util.*
+import java.util.Date
 
 data class WorkflowTask(
 	val completed: Boolean,
 	val dateCreated: Date?,
 	val name: String,
 	val expires: Date?,
-	val comment: Comment?,
-	val blogPost: BlogPosting?) {
+	val resourceType: String?,
+	val identifier: String?) {
 
-    companion object {
-        val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
-            mutableMapOf(
-                Row to R.layout.workflow_task_row_default,
-                Detail to R.layout.workflow_task_detail_default
-            )
+	companion object {
+		val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
+			mutableMapOf(
+				Row to R.layout.workflow_task_row_default,
+				Detail to R.layout.workflow_task_detail_default
+			)
 
 		val converter: (Thing) -> Any = {
 
@@ -51,40 +49,17 @@ data class WorkflowTask(
 
 			val expires = (it["expires"] as? String)?.asDate()
 
-			val comment = (it["comment"] as? Relation)?.let {
-				getComment(it)
+			val obj = it["object"] as? Map<String, Any>
+
+			val resourceType = obj?.let {
+				it["resourceType"] as? String
 			}
 
-			val blogPost = (it["blogPost"] as? Relation)?.let {
-				getBlogPost(it)
+			val identifier = obj?.let {
+				it["identifier"] as? String
 			}
 
-			WorkflowTask(completed, dateCreated, name, expires, comment, blogPost)
-		}
-
-		private fun getComment(it: Relation): Comment? {
-			val text = it["text"] as? String
-
-			val type = ThingsCache[it.id]?.value?.type?.get(0)
-
-			return Comment(text, type)
-		}
-
-		private fun getBlogPost(it: Relation): BlogPosting? {
-
-			val headline = it["headline"] as? String
-
-			val alternativeHeadline = it["alternativeHeadline"] as? String
-
-			val articleBody = it["articleBody"] as? String
-
-			val creator = it["creator"] as? Relation
-
-			val dateCreated = (it["dateCreated"] as? String)?.asDate()
-
-			val type = ThingsCache[it.id]?.value?.type?.get(0)
-
-			return BlogPosting(headline, alternativeHeadline, articleBody, creator, dateCreated, type)
+			WorkflowTask(completed, dateCreated, name, expires, resourceType, identifier)
 		}
 	}
 }
