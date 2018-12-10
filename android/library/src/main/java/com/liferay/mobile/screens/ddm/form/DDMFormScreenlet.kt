@@ -49,7 +49,8 @@ class DDMFormScreenlet @JvmOverloads constructor(
 		addView(screenlet)
 	}
 
-	@JvmOverloads fun load(formInstanceId: Long? = this.formInstanceId) {
+	@JvmOverloads
+	fun load(formInstanceId: Long? = this.formInstanceId) {
 		formInstanceId?.also {
 			val url: String = getResourcePath(it)
 
