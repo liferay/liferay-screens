@@ -22,6 +22,7 @@ import com.liferay.mobile.screens.base.ModalProgressBarWithLabel;
 import com.liferay.mobile.screens.ddm.form.DDMFormListener;
 import com.liferay.mobile.screens.ddm.form.DDMFormScreenlet;
 import com.liferay.mobile.screens.ddm.form.model.FormInstance;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Paulo Cruz
@@ -60,14 +61,14 @@ public class DDMFormActivity extends ThemeActivity implements DDMFormListener {
     }
 
     @Override
-    public void onFormLoaded(FormInstance formInstance) {
+    public void onFormLoaded(@NotNull FormInstance formInstance) {
         modalProgress.hide();
         screenlet.setVisibility(View.VISIBLE);
         info(getString(R.string.form_loaded_info));
     }
 
     @Override
-    public void onError(Exception exception) {
+    public void onError(@NotNull Exception exception) {
         info(getString(R.string.loading_form_error));
     }
 }

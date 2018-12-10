@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -34,59 +34,37 @@ import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.DDMFormView
 class DDMFormScreenlet @JvmOverloads constructor(
 	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : FrameLayout(context, attrs, defStyleAttr) {
 
-	var formInstanceId: Long
+	var formInstanceId: Long?
 	var listener: DDMFormListener? = null
 	val screenlet: ThingScreenlet
 
 	init {
 		val typedArray: TypedArray =
-			context.getTheme().obtainStyledAttributes(attrs, R.styleable.DDMFormScreenlet, 0, 0)
+			context.theme.obtainStyledAttributes(attrs, R.styleable.DDMFormScreenlet, defStyleAttr, 0)
 
-		formInstanceId =
-			castToLong(typedArray.getString(R.styleable.DDMFormScreenlet_formInstanceId))
-
+		formInstanceId = typedArray.getString(R.styleable.DDMFormScreenlet_formInstanceId)?.toLongOrNull()
 		typedArray.recycle()
 
 		screenlet = ThingScreenlet(context, attrs, defStyleAttr)
 		addView(screenlet)
 	}
 
-	fun load() {
-		val url: String = getResourcePath()
-		screenlet.load(url, Detail, onSuccess = {
-			(it.baseView as? DDMFormView)?.let { ddmFormView ->
-				listener?.onFormLoaded(ddmFormView.formInstance)
-			}
-		}, onError = {
-			listener?.onError(it)
-		})
-	}
+	@JvmOverloads fun load(formInstanceId: Long? = this.formInstanceId) {
+		formInstanceId?.also {
+			val url: String = getResourcePath(it)
 
-//    protected fun onRestoreInstanceState(state: Parcelable)
-
-	/**
-	 * TODO: Methods below are copied from BaseScreenlet.java class.
-	 * Need to think another approach for these methods
-	 */
-	protected fun castToLong(value: String?): Long {
-		return castToLongOrUseDefault(value, 0)
-	}
-
-	protected fun castToLongOrUseDefault(value: String?, defaultValue: Long): Long {
-		if (value == null) {
-			return defaultValue
-		}
-
-		try {
-			return java.lang.Long.parseLong(value)
-		} catch (e: NumberFormatException) {
-			LiferayLogger.e("You have supplied a string and we expected a long number", e)
-			throw e
+			screenlet.load(url, Detail, onSuccess = { thingScreenlet ->
+				(thingScreenlet.baseView as? DDMFormView)?.let { ddmFormView ->
+					listener?.onFormLoaded(ddmFormView.formInstance)
+				}
+			}, onError = {
+				listener?.onError(it)
+			})
 		}
 	}
 
-	private fun getResourcePath(): String {
-		val serverUrl = getResources().getString(R.string.liferay_server)
+	private fun getResourcePath(formInstanceId: Long): String {
+		val serverUrl = resources.getString(R.string.liferay_server)
 		return serverUrl + String.format(FormConstants.URL_TEMPLATE, formInstanceId)
 	}
 }
