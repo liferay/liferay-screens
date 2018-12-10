@@ -1,6 +1,5 @@
 package com.liferay.mobile.screens.util;
 
-import android.util.Log;
 import com.liferay.mobile.screens.context.LiferayServerContext;
 
 /**
@@ -34,7 +33,7 @@ public class ServiceProvider {
                 return new ServiceVersionFactory62();
             }
         } catch (Exception e) {
-            Log.e("LiferayScreens", "Error creating the instance class");
+            LiferayLogger.e("Error creating the instance class", e);
             return new ServiceVersionFactory70();
         }
     }
