@@ -123,11 +123,11 @@ public class NumberField extends Field<Number> {
     private boolean checkIsValid() {
         if (isRequired()) {
             setValidationState(ValidationState.INVALID_BY_REQUIRED_WITHOUT_VALUE);
+            return false;
         } else {
             setValidationState(ValidationState.VALID);
+            return true;
         }
-
-        return !isRequired();
     }
 
     private boolean checkLocalValidation(Number currentValue) {
