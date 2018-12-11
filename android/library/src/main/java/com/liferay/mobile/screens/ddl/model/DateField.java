@@ -78,7 +78,7 @@ public class DateField extends Field<Date> {
         }
     }
 
-	@Override
+    @Override
     protected String convertToData(Date value) {
         if (value == null) {
             return null;
@@ -109,11 +109,11 @@ public class DateField extends Field<Date> {
         return null;
     }
 
-	private boolean isSimpleYearFormat(String stringValue, int lastSeparator) {
-		return stringValue.length() - lastSeparator - 1 == 2;
-	}
+    private boolean isSimpleYearFormat(String stringValue, int lastSeparator) {
+        return stringValue.length() - lastSeparator - 1 == 2;
+    }
 
-	private boolean isTimestampFormat(int lastSeparator) {
-		return lastSeparator == -1;
-	}
+    private boolean isTimestampFormat(int lastSeparator) {
+        return lastSeparator == -1;
+    }
 }
