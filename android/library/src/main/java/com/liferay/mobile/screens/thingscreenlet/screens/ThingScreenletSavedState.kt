@@ -25,8 +25,8 @@ import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
  */
 class ThingScreenletSavedState : View.BaseSavedState {
 
-    lateinit var thing: Thing
-    lateinit var scenario: Scenario
+	lateinit var thing: Thing
+	lateinit var scenario: Scenario
 
 	constructor(superState: Parcelable) : super(superState)
 

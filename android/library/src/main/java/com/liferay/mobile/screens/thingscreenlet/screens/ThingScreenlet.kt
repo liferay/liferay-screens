@@ -180,19 +180,19 @@ open class ThingScreenlet @JvmOverloads constructor(
 		var savedState = ThingScreenletSavedState(super.onSaveInstanceState())
 
 		savedState.scenario = scenario
-        thing?.let {
-            savedState.thing = it
-        }
+		thing?.let {
+			savedState.thing = it
+		}
 
 		return savedState
 	}
 
-    override fun onRestoreInstanceState(state: Parcelable?) {
-        var savedState = state as ThingScreenletSavedState
+	override fun onRestoreInstanceState(state: Parcelable?) {
+		var savedState = state as ThingScreenletSavedState
 		scenario = savedState.scenario
-        thing = savedState.thing
-        super.onRestoreInstanceState(state)
-    }
+		thing = savedState.thing
+		super.onRestoreInstanceState(state)
+	}
 }
 
 
