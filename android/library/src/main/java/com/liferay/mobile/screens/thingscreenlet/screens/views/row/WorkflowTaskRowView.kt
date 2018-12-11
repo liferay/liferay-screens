@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.thingscreenlet.screens.views.row
 
 import android.content.Context
 import android.os.Build
+import android.support.design.widget.Snackbar
 import android.text.Html
 import android.text.format.DateUtils
 import android.util.AttributeSet
@@ -26,12 +27,16 @@ import android.widget.TextView
 import com.liferay.apio.consumer.delegates.converter
 import com.liferay.apio.consumer.extensions.shortFormat
 import com.liferay.apio.consumer.model.Thing
+import com.liferay.apio.consumer.model.get
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.model.WorkflowTask
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
-import java.util.*
+import okhttp3.HttpUrl
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 
@@ -48,20 +53,16 @@ class WorkflowTaskRowView @JvmOverloads constructor(
 	private val status by bindNonNull<TextView>(R.id.workflow_status)
 
 	override var thing: Thing? by converter<WorkflowTask> {
+		getAssetTitle(it)
 
 		if (it.completed) isPending.visibility = View.INVISIBLE
-
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-			assetTitle.text = Html.fromHtml(getAssetTitle(it), Html.FROM_HTML_MODE_COMPACT)
-		} else {
-			assetTitle.text = Html.fromHtml(getAssetTitle(it))
-		}
 
 		dateCreated.text = if (it.dateCreated != null && isYesterday(it.dateCreated))
 			resources.getString(R.string.workflow_yesterday_text)
 		else it.dateCreated?.shortFormat(Locale.getDefault())
 
-		type.text = resources.getString(R.string.workflow_type_text, it.name.capitalize(), getAssetName(it))
+		type.text = resources.getString(R.string.workflow_type_text, it.name.capitalize(),
+			it.resourceType)
 
 		when {
 			it.completed -> status.text = resources.getString(R.string.workflow_completed_text)
@@ -76,12 +77,26 @@ class WorkflowTaskRowView @JvmOverloads constructor(
 		}
 	}
 
-	private fun getAssetName(workflowTask: WorkflowTask): String {
-		return workflowTask.comment?.type ?: workflowTask.blogPost?.type ?: "Undefined"
-	}
+	private fun getAssetTitle(workflowTask: WorkflowTask) {
 
-	private fun getAssetTitle(workflowTask: WorkflowTask): String {
-		return workflowTask.comment?.text ?: workflowTask.blogPost?.headline ?: "Undefined"
+		screenlet?.apioConsumer?.fetch(HttpUrl.parse(workflowTask.identifier!!)!!) { result ->
+			result.fold({
+				var title = ""
+
+				if (it.type.contains("BlogPosting")) {
+					title = it["headline"] as String
+				}
+
+				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+					assetTitle.text = Html.fromHtml(title, Html.FROM_HTML_MODE_COMPACT)
+				} else {
+					assetTitle.text = Html.fromHtml(title)
+				}
+			}, {
+				Snackbar.make(this, "Error", Snackbar.LENGTH_SHORT).show()
+			})
+		}
+
 	}
 
 	private fun getDays(expires: Date): Int {

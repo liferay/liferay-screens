@@ -54,6 +54,8 @@ open class ThingScreenlet @JvmOverloads constructor(
 	var screenletEvents: ScreenletEvents? = null
 	var savedInstanceState: ThingScreenletSavedState? = null
 
+	val apioConsumer = ApioConsumer(getApioAuthenticator())
+
 	open var layoutIds: MutableMap<String, MutableMap<Scenario, Int>> = mutableMapOf(
 		"BlogPosting" to BlogPosting.DEFAULT_VIEWS,
 		"Collection" to Collection.DEFAULT_VIEWS,
@@ -94,8 +96,6 @@ open class ThingScreenlet @JvmOverloads constructor(
 	@JvmOverloads
 	fun load(thingId: String, scenario: Scenario? = null, credentials: String? = null,
 		onSuccess: ((ThingScreenlet) -> Unit)? = null, onError: ((Exception) -> Unit)? = null) {
-
-		val apioConsumer = ApioConsumer(getApioAuthenticator())
 
 		HttpUrl.parse(thingId)?.let {
 			apioConsumer.fetch(it) { result ->
