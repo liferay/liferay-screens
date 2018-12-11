@@ -160,12 +160,14 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
 			val ddmFieldGridRowView =
 				inflater.inflate(layoutIdentifier, gridLinearLayout, false) as DDMFieldGridRowView
 
-			gridLinearLayout.addView(ddmFieldGridRowView)
+            ddmFieldGridRowView.columnSelectView.setUpdateMode(!gridField.isReadOnly) // TODO: Marcelo
+
+            gridLinearLayout.addView(ddmFieldGridRowView)
 
 			ddmFieldGridRowView.setOptions(row, gridField.columns)
 
 			ddmFieldGridRowView.columnSelectView.setOnValueChangedListener { _, which ->
-				onColumnValueChanged(which, row, ddmFieldGridRowView)
+                onColumnValueChanged(which, row, ddmFieldGridRowView)
 			}
 		}
 

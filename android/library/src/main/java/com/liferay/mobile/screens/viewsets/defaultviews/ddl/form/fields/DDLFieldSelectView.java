@@ -26,8 +26,6 @@ import android.widget.TextView;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.model.Option;
 import com.liferay.mobile.screens.ddl.model.SelectableOptionsField;
-import com.liferay.mobile.screens.thingscreenlet.screens.events.Event;
-import com.liferay.mobile.screens.util.EventBusUtil;
 import java.util.ArrayList;
 import java.util.List;
 

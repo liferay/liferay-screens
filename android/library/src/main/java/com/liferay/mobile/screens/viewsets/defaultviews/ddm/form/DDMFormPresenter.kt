@@ -263,6 +263,7 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 				if (!field.isTransient) {
 					field.setCurrentStringValue(fieldValue.value as String)
 				}
+
 			}
 		}
 
