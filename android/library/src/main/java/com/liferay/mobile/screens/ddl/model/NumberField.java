@@ -16,8 +16,11 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
+import com.liferay.mobile.screens.ddl.LocalValidator;
 import com.liferay.mobile.screens.ddl.NumberValidator;
-import com.liferay.mobile.screens.ddl.form.util.FormFieldKeys;
+import com.liferay.mobile.screens.util.ValidationUtil;
+
 import java.text.NumberFormat;
 import java.text.ParsePosition;
 import java.util.Locale;
@@ -55,16 +58,19 @@ public class NumberField extends Field<Number> {
     public NumberField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
         super(attributes, locale, defaultLocale);
 
-        Object validationObj = attributes.get(FormFieldKeys.VALIDATION_KEY);
-
-        if (validationObj != null && validationObj instanceof Map) {
-            Map<String, String> validation = (Map<String, String>) validationObj;
-            numberValidator = NumberValidator.parseNumberValidator(validation);
-        }
+        Map<String, String> validation = ValidationUtil.getValidationFromAttributes(attributes);
+        numberValidator = NumberValidator.parseNumberValidator(validation);
+        doValidate();
     }
 
     protected NumberField(Parcel in, ClassLoader loader) {
         super(in, loader);
+    }
+
+    @Nullable
+    @Override
+    public LocalValidator getLocalValidator() {
+        return numberValidator;
     }
 
     @Override
@@ -87,13 +93,13 @@ public class NumberField extends Field<Number> {
 
     @Override
     protected boolean doValidate() {
-        if (getCurrentValue() == null && isRequired()) {
-            return false;
-        } else if (getCurrentValue() != null && numberValidator != null) {
-            return numberValidator.validate(getCurrentValue());
+        Number currentValue = getCurrentValue();
+
+        if (currentValue != null) {
+            return checkLocalValidation(currentValue);
         }
 
-        return super.doValidate();
+        return checkIsValid();
     }
 
     @Override
@@ -113,4 +119,25 @@ public class NumberField extends Field<Number> {
         }
         return labelFormatter;
     }
+
+    private boolean checkIsValid() {
+        if (isRequired()) {
+            setValidationState(ValidationState.INVALID_BY_REQUIRED_WITHOUT_VALUE);
+            return false;
+        } else {
+            setValidationState(ValidationState.VALID);
+            return true;
+        }
+    }
+
+    private boolean checkLocalValidation(Number currentValue) {
+        boolean isValid = numberValidator.validate(currentValue);
+
+        if (!isValid) {
+            setValidationState(ValidationState.INVALID_BY_LOCAL_RULE);
+        }
+
+        return isValid;
+    }
+
 }

@@ -19,6 +19,8 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.TextView;
+
 import com.liferay.mobile.screens.viewsets.lexicon.R;
 
 import static android.view.View.GONE;
@@ -48,6 +50,14 @@ public class FormViewUtil {
 
     public static void setupErrorView(boolean valid, View errorView) {
         if (errorView != null) {
+            errorView.setVisibility(valid ? GONE : VISIBLE);
+        }
+    }
+
+    public static void setupErrorView(boolean valid, View errorView, String errorMessage) {
+        if (errorView != null) {
+            TextView textView = errorView.findViewById(R.id.message_error_view);
+            textView.setText(errorMessage);
             errorView.setVisibility(valid ? GONE : VISIBLE);
         }
     }

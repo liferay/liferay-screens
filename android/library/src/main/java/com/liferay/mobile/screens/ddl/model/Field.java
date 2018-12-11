@@ -16,10 +16,16 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
+import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
+import com.liferay.mobile.screens.ddl.LocalValidator;
+import com.liferay.mobile.screens.ddl.Validation;
 import com.liferay.mobile.screens.ddl.form.util.FormFieldKeys;
 import com.liferay.mobile.screens.ddm.form.model.CheckboxMultipleField;
 import com.liferay.mobile.screens.ddm.form.model.GridField;
 import com.liferay.mobile.screens.ddm.form.model.RepeatableField;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,12 +34,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
+import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Element;
 
 /**
  * @author Jose Manuel Navarro
  */
-public abstract class Field<T extends Serializable> implements Parcelable {
+public abstract class Field<T extends Serializable> implements Parcelable, Validation {
 
     private String text;
     private String dataSourceType;
@@ -51,6 +58,7 @@ public abstract class Field<T extends Serializable> implements Parcelable {
     private T predefinedValue;
     private T currentValue;
     private boolean lastValidationResult = true;
+    private ValidationState validationState = ValidationState.INVALID_BY_REQUIRED_WITHOUT_VALUE;
     private Locale currentLocale;
     private Locale defaultLocale;
     private String visibilityExpression;
@@ -111,6 +119,28 @@ public abstract class Field<T extends Serializable> implements Parcelable {
         }
     }
 
+    @Nullable
+    @Override
+    public LocalValidator getLocalValidator() {
+        return null;
+    }
+
+    @NotNull
+    @Override
+    public String getErrorMessage() {
+        switch (getValidationState()) {
+            case INVALID_BY_REQUIRED_WITHOUT_VALUE:
+                return LiferayScreensContext.getContext().getString(R.string.this_field_is_required);
+            case INVALID_BY_LOCAL_RULE:
+                LocalValidator localValidator = getLocalValidator();
+                if (localValidator != null) {
+                    return localValidator.getCustomErrorMessage();
+                }
+            default:
+                return LiferayScreensContext.getContext().getString(R.string.invalid);
+        }
+    }
+
     protected Field(Parcel in, ClassLoader loader) {
         Parcelable[] array = in.readParcelableArray(getClass().getClassLoader());
         fields = new ArrayList(Arrays.asList(array));
@@ -139,6 +169,8 @@ public abstract class Field<T extends Serializable> implements Parcelable {
         lastValidationResult = (in.readInt() == 1);
         visibilityExpression = in.readString();
         ddmDataProviderInstance = in.readString();
+
+        validationState = ValidationState.values()[in.readInt()];
 
         isTransient = (in.readInt() == 1);
         dataSourceType = in.readString();
@@ -251,6 +283,14 @@ public abstract class Field<T extends Serializable> implements Parcelable {
         return label;
     }
 
+    public ValidationState getValidationState() {
+        return validationState;
+    }
+
+    protected void setValidationState(ValidationState value) {
+        validationState = value;
+    }
+
     public boolean getLastValidationResult() {
         return lastValidationResult;
     }
@@ -340,6 +380,8 @@ public abstract class Field<T extends Serializable> implements Parcelable {
         destination.writeInt(lastValidationResult ? 1 : 0);
         destination.writeString(visibilityExpression);
         destination.writeString(ddmDataProviderInstance);
+
+        destination.writeInt(validationState.ordinal());
 
         destination.writeInt(isTransient ? 1 : 0);
         destination.writeString(dataSourceType);
@@ -559,5 +601,9 @@ public abstract class Field<T extends Serializable> implements Parcelable {
             return values[0];
         }
 
+    }
+
+    public enum ValidationState {
+        INVALID_BY_LOCAL_RULE, INVALID_BY_REQUIRED_WITHOUT_VALUE, VALID
     }
 }

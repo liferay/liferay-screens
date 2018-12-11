@@ -12,6 +12,7 @@
         />
 
     <TextView
+        android:id="@+id/message_error_view"
         android:layout_width="wrap_content"
         android:layout_marginLeft="@dimen/error_view_text_padding_left"
         android:layout_height="wrap_content"

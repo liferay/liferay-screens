@@ -338,7 +338,7 @@ class DDMFormView @JvmOverloads constructor(
 	private fun getInvalidFields(): Map<Field<*>, String> {
 		val page = formInstance.ddmStructure.pages[ddmFieldViewPages.currentItem]
 
-		return page.fields.filter { !it.isValid }.associateBy({ it }, { "Error Msg Goes Here" })
+		return page.fields.filter { !it.isValid }.associateBy({ it }, { it.getErrorMessage() })
 	}
 
 	private fun getNextEnabledPage(): Number {

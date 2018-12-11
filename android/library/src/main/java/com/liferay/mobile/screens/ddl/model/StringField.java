@@ -16,10 +16,12 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import android.support.annotation.Nullable;
+import com.liferay.mobile.screens.ddl.LocalValidator;
 import com.liferay.mobile.screens.ddl.StringValidator;
-import com.liferay.mobile.screens.ddl.StringValidatorParser;
-import com.liferay.mobile.screens.ddl.form.util.FormFieldKeys;
-import java.util.HashMap;
+import com.liferay.mobile.screens.util.ValidationUtil;
+
 import java.util.Locale;
 import java.util.Map;
 
@@ -28,7 +30,7 @@ import java.util.Map;
  */
 public class StringField extends OptionsField<String> {
 
-    private StringValidator stringValidation;
+    private StringValidator stringValidator;
 
     public static final Parcelable.ClassLoaderCreator<StringField> CREATOR =
         new Parcelable.ClassLoaderCreator<StringField>() {
@@ -61,36 +63,23 @@ public class StringField extends OptionsField<String> {
         }
     }
 
-    private void initializeValidation(Map<String, Object> attributes) {
-        Map<String, String> validation;
-        if (attributes.get(FormFieldKeys.VALIDATION_KEY) instanceof Map) {
-            validation = (Map<String, String>) attributes.get(FormFieldKeys.VALIDATION_KEY);
-        } else {
-            validation = new HashMap<>();
-        }
-
-        stringValidation = new StringValidatorParser().parseStringValidation(validation);
-    }
-
     protected StringField(Parcel source, ClassLoader loader) {
         super(source, loader);
     }
 
     @Override
     protected boolean doValidate() {
-        boolean valid = true;
-
         String currentValue = getCurrentValue();
 
-        if (currentValue != null && isRequired()) {
-            String trimmedString = currentValue.trim();
+        if (currentValue != null) {
+            currentValue = currentValue.trim();
 
-            valid = !trimmedString.isEmpty();
-
-            return valid && stringValidation.validate(currentValue);
+            if (!currentValue.isEmpty()) {
+                return checkLocalValidation(currentValue);
+            }
         }
 
-        return valid;
+        return checkIsValid();
     }
 
     @Override
@@ -106,5 +95,37 @@ public class StringField extends OptionsField<String> {
     @Override
     protected String convertToFormattedString(String value) {
         return value;
+    }
+
+    @Nullable
+    @Override
+    public LocalValidator getLocalValidator() {
+        return stringValidator;
+    }
+
+    private boolean checkIsValid() {
+        if (isRequired()) {
+            setValidationState(ValidationState.INVALID_BY_REQUIRED_WITHOUT_VALUE);
+        } else {
+            setValidationState(ValidationState.VALID);
+        }
+
+        return !isRequired();
+    }
+
+    private boolean checkLocalValidation(String currentValue) {
+        boolean isValid = stringValidator.validate(currentValue);
+
+        if (!isValid) {
+            setValidationState(ValidationState.INVALID_BY_LOCAL_RULE);
+        }
+
+        return isValid;
+    }
+
+    private void initializeValidation(Map<String, Object> attributes) {
+        Map<String, String> validation = ValidationUtil.getValidationFromAttributes(attributes);
+        stringValidator = StringValidator.parseStringValidation(validation);
+        doValidate();
     }
 }
