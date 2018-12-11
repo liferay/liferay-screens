@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.thingscreenlet.screens
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Parcel
 import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.View
@@ -51,6 +52,7 @@ open class ThingScreenlet @JvmOverloads constructor(
 	open var scenario: Scenario = Detail
 
 	var screenletEvents: ScreenletEvents? = null
+	var savedInstanceState: Bundle? = null
 
 	open var layoutIds: MutableMap<String, MutableMap<Scenario, Int>> = mutableMapOf(
 		"BlogPosting" to BlogPosting.DEFAULT_VIEWS,
@@ -84,6 +86,7 @@ open class ThingScreenlet @JvmOverloads constructor(
 		} else {
 			baseView?.thing = it
 		}
+		savedInstanceState = null
 	}
 
 	val baseView: BaseView? get() = layout as? BaseView
@@ -165,28 +168,6 @@ open class ThingScreenlet @JvmOverloads constructor(
 		isSaveEnabled = true
 	}
 
-	override fun onSaveInstanceState(): Parcelable {
-		thing?.let {
-			val bundle = Bundle()
-			bundle.putParcelable("superState", super.onSaveInstanceState())
-			bundle.putParcelable("thing", it)
-			bundle.putParcelable("scenario", scenario)
-			return bundle
-		}
-
-		return super.onSaveInstanceState()
-	}
-
-	override fun onRestoreInstanceState(state: Parcelable?) {
-		if (state is Bundle) {
-			scenario = state.getParcelable("scenario")
-			thing = state.getParcelable("thing")
-			super.onRestoreInstanceState(state.getParcelable("superState"))
-		} else {
-			super.onRestoreInstanceState(state)
-		}
-	}
-
 	private fun getApioAuthenticator(credentials: String? = null): ApioAuthenticator? {
 		val credentials = credentials ?: SessionContext.getCredentialsFromCurrentSession()
 
@@ -195,4 +176,23 @@ open class ThingScreenlet @JvmOverloads constructor(
 		}
 	}
 
+	override fun onSaveInstanceState(): Parcelable {
+		var savedState = ThingScreenletSavedState(super.onSaveInstanceState())
+
+		savedState.scenario = scenario
+		thing?.let {
+			savedState.thing = it
+		}
+
+		return savedState
+	}
+
+	override fun onRestoreInstanceState(state: Parcelable?) {
+		var savedState = state as ThingScreenletSavedState
+		scenario = savedState.scenario
+		thing = savedState.thing
+		super.onRestoreInstanceState(state)
+	}
 }
+
+

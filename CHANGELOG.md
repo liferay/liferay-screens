@@ -11,8 +11,8 @@ All notable changes to this project will be documented in this file.
 ### New Features
 
 * Create ThingScreenlet
-* FormsScreenlet - Allow developers to handle with value changes for all fields using onChangeValueObservable
-* FormsScreenlet - Show only FileName instead of the full path on DocumentField
+* DDMFormScreenlet - Allow developers to handle with value changes for all fields using onChangeValueObservable
+* DDMFormScreenlet - Show only FileName instead of the full path on DocumentField
 * Create a ModalProgressBar view
 * Configure `detekt` for code convention and format all the project
 * Update ThingScreenlet with ApioConsumer 0.0.8 changes
@@ -22,12 +22,13 @@ All notable changes to this project will be documented in this file.
 * Support onPageRendered method on PdfDisplayView
 * Support forms with ThingScreenlet
 * Add Lexicon Theme for Form fields
+* Add DDMFormScreenlet as a Wrapper for ThingScreenlet that handles form instances
 
 ### Refactor
 
-* FormsScreenlet - Create an abstract OptionsField type as a base class of fields that select options
+* DDMFormScreenlet - Create an abstract OptionsField type as a base class of fields that select options
 * Create a ThemeUtil class to help with custom themes
-* FormsScreenlet changes to adapt to API
+* DDMFormScreenlet changes to adapt to API
 
 ### Bugs
 
@@ -79,8 +80,8 @@ Swift 4.2 support
 
 * Add a new method to the sync service to know if there are items to synchronize
 * Add Lexicon Theme
-* FormsScreenlet - Add support to upload images and videos from gallery
-* FormsScreenlet - Required fields are now marked with an asterisk (*)
+* DDMFormScreenlet - Add support to upload images and videos from gallery
+* DDMFormScreenlet - Required fields are now marked with an asterisk (*)
 * WebScreenlet now correctly inject the script when navigate to another page
 
 ### Samples

@@ -80,13 +80,16 @@ class DDMFormView @JvmOverloads constructor(
 
 	private lateinit var subscription: Subscription
 
-	private lateinit var formInstance: FormInstance
+	internal lateinit var formInstance: FormInstance
 
 	override var screenlet: ThingScreenlet? = null
 
 	override var thing: Thing? by converter<FormInstance> {
 		formInstance = it
-		onFormLoaded(formInstance)
+
+		if (screenlet?.savedInstanceState == null) {
+			onFormLoaded(formInstance)
+		}
 	}
 
 	init {
@@ -145,6 +148,10 @@ class DDMFormView @JvmOverloads constructor(
 
 	override fun onRestoreInstanceState(state: Parcelable?) {
 		if (state is Bundle) {
+			screenlet?.thing?.also {
+				thing = it
+			}
+
 			val formInstanceRecord = state.getParcelable<FormInstanceRecord>("formInstanceRecord")
 			presenter.restore(formInstanceRecord, formInstance.ddmStructure.fields)
 
