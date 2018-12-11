@@ -10,7 +10,7 @@
         android:id="@+id/ddm_form_screenlet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:formInstanceId="37105"
+        app:formInstanceId="@string/liferay_form_instance_id"
         />
 
     <com.liferay.mobile.screens.base.ModalProgressBarWithLabel
