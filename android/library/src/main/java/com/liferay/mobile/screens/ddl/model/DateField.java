@@ -24,7 +24,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
-import java.util.TimeZone;
 
 /**
  * @author Jose Manuel Navarro
@@ -66,29 +65,17 @@ public class DateField extends Field<Date> {
             return null;
         }
 
-        try {
-            int lastSeparator = stringValue.lastIndexOf('/');
+        int lastSeparator = stringValue.lastIndexOf('/');
 
-            if (stringValue.contains("-")) {
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", getCurrentLocale());
-                simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
-                return simpleDateFormat.parse(stringValue);
-            } else if (lastSeparator == -1) {
-                return new Date(Long.parseLong(stringValue));
-            } else if (stringValue.length() - lastSeparator - 1 == 2) {
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yy", getCurrentLocale());
-                simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
-                return simpleDateFormat.parse(stringValue);
-            } else {
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy", getCurrentLocale());
-                simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
-
-                return simpleDateFormat.parse(stringValue);
-            }
-        } catch (ParseException e) {
-            LiferayLogger.e("Error parsing date " + stringValue);
+        if (stringValue.contains("-")) {
+            return convertDate("yyyy-MM-dd", stringValue);
+        } else if (isTimestampFormat(lastSeparator)) {
+            return new Date(Long.parseLong(stringValue));
+        } else if (isSimpleYearFormat(stringValue, lastSeparator)) {
+            return convertDate("MM/dd/yy", stringValue);
+        } else {
+            return convertDate("MM/dd/yyyy", stringValue);
         }
-        return null;
     }
 
     @Override
@@ -99,7 +86,6 @@ public class DateField extends Field<Date> {
 
         if (LiferayServerContext.isLiferay7()) {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd", getCurrentLocale());
-            simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
 
             return simpleDateFormat.format(value);
         }
@@ -110,5 +96,24 @@ public class DateField extends Field<Date> {
     @Override
     protected String convertToFormattedString(Date value) {
         return (value == null) ? "" : DateFormat.getDateInstance(DateFormat.LONG, getCurrentLocale()).format(value);
+    }
+
+    private Date convertDate(String pattern, String stringValue) {
+        try {
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern, getCurrentLocale());
+            return simpleDateFormat.parse(stringValue);
+        } catch (ParseException e) {
+            LiferayLogger.e("Error parsing date " + stringValue);
+        }
+
+        return null;
+    }
+
+    private boolean isSimpleYearFormat(String stringValue, int lastSeparator) {
+        return stringValue.length() - lastSeparator - 1 == 2;
+    }
+
+    private boolean isTimestampFormat(int lastSeparator) {
+        return lastSeparator == -1;
     }
 }
