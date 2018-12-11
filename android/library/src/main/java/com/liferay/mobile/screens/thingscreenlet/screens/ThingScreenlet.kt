@@ -52,7 +52,7 @@ open class ThingScreenlet @JvmOverloads constructor(
 	open var scenario: Scenario = Detail
 
 	var screenletEvents: ScreenletEvents? = null
-	var savedInstanceState: Bundle? = null
+	var savedInstanceState: ThingScreenletSavedState? = null
 
 	open var layoutIds: MutableMap<String, MutableMap<Scenario, Int>> = mutableMapOf(
 		"BlogPosting" to BlogPosting.DEFAULT_VIEWS,
@@ -187,12 +187,15 @@ open class ThingScreenlet @JvmOverloads constructor(
 		return savedState
 	}
 
-	override fun onRestoreInstanceState(state: Parcelable?) {
-		var savedState = state as ThingScreenletSavedState
-		scenario = savedState.scenario
-		thing = savedState.thing
-		super.onRestoreInstanceState(state)
-	}
+    override fun onRestoreInstanceState(state: Parcelable?) {
+        if (state is ThingScreenletSavedState) {
+            savedInstanceState = state
+            scenario = state.scenario
+            thing = state.thing
+        }
+
+        super.onRestoreInstanceState(state)
+    }
 }
 
 

@@ -69,6 +69,7 @@ public class DDMFormActivity extends ThemeActivity implements DDMFormListener {
 
     @Override
     public void onError(@NotNull Exception exception) {
+        modalProgress.hide();
         info(getString(R.string.loading_form_error));
     }
 }
