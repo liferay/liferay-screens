@@ -69,16 +69,16 @@ public class DateField extends Field<Date> {
 
         if (stringValue.contains("-")) {
             return convertDate("yyyy-MM-dd", stringValue);
-        } else if (lastSeparator == -1) {
+        } else if (isTimestampFormat(lastSeparator)) {
             return new Date(Long.parseLong(stringValue));
-        } else if (stringValue.length() - lastSeparator - 1 == 2) {
+        } else if (isSimpleYearFormat(stringValue, lastSeparator)) {
             return convertDate("MM/dd/yy", stringValue);
         } else {
             return convertDate("MM/dd/yyyy", stringValue);
         }
     }
 
-    @Override
+	@Override
     protected String convertToData(Date value) {
         if (value == null) {
             return null;
@@ -108,4 +108,12 @@ public class DateField extends Field<Date> {
 
         return null;
     }
+
+	private boolean isSimpleYearFormat(String stringValue, int lastSeparator) {
+		return stringValue.length() - lastSeparator - 1 == 2;
+	}
+
+	private boolean isTimestampFormat(int lastSeparator) {
+		return lastSeparator == -1;
+	}
 }
