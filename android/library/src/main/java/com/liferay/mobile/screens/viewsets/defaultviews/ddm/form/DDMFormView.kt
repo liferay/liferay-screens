@@ -255,7 +255,7 @@ class DDMFormView @JvmOverloads constructor(
 	override fun subscribeToValueChanged(observable: Observable<Field<*>>) {
 		subscription = observable.doOnNext {
 			presenter.fieldModelsChanged(it)
-		}.debounce(2, TimeUnit.SECONDS)
+		}.debounce(500, TimeUnit.MILLISECONDS)
 			.observeOn(AndroidSchedulers.mainThread())
 			.subscribe({ field ->
 				thing?.let {
