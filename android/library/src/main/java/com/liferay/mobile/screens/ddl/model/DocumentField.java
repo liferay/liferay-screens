@@ -27,148 +27,148 @@ import org.json.JSONObject;
  */
 public class DocumentField extends Field<DocumentFile> {
 
-	public static final Parcelable.ClassLoaderCreator<DocumentField> CREATOR =
-		new Parcelable.ClassLoaderCreator<DocumentField>() {
+    public static final Parcelable.ClassLoaderCreator<DocumentField> CREATOR =
+        new Parcelable.ClassLoaderCreator<DocumentField>() {
 
-			@Override
-			public DocumentField createFromParcel(Parcel parcel, ClassLoader classLoader) {
-				return new DocumentField(parcel, classLoader);
-			}
+            @Override
+            public DocumentField createFromParcel(Parcel parcel, ClassLoader classLoader) {
+                return new DocumentField(parcel, classLoader);
+            }
 
-			public DocumentField createFromParcel(Parcel in) {
-				throw new AssertionError();
-			}
+            public DocumentField createFromParcel(Parcel in) {
+                throw new AssertionError();
+            }
 
-			public DocumentField[] newArray(int size) {
-				return new DocumentField[size];
-			}
-		};
-	private State state = State.IDLE;
+            public DocumentField[] newArray(int size) {
+                return new DocumentField[size];
+            }
+        };
+    private State state = State.IDLE;
 
-	public DocumentField() {
-		super();
-	}
+    public DocumentField() {
+        super();
+    }
 
-	public DocumentField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
-		super(attributes, locale, defaultLocale);
-	}
+    public DocumentField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
+        super(attributes, locale, defaultLocale);
+    }
 
-	protected DocumentField(Parcel in, ClassLoader classLoader) {
-		super(in, classLoader);
-	}
+    protected DocumentField(Parcel in, ClassLoader classLoader) {
+        super(in, classLoader);
+    }
 
-	public boolean moveToUploadInProgressState() {
-		if (state == State.IDLE || state == State.FAILED || state == State.UPLOADED) {
-			state = State.UPLOADING;
-			return true;
-		}
+    public boolean moveToUploadInProgressState() {
+        if (state == State.IDLE || state == State.FAILED || state == State.UPLOADED) {
+            state = State.UPLOADING;
+            return true;
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	public boolean moveToUploadCompleteState() {
-		if (state == State.UPLOADING) {
-			state = State.UPLOADED;
-			return true;
-		}
+    public boolean moveToUploadCompleteState() {
+        if (state == State.UPLOADING) {
+            state = State.UPLOADED;
+            return true;
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	public boolean moveToUploadFailureState() {
-		if (state == State.UPLOADING) {
-			state = State.FAILED;
-			return true;
-		}
+    public boolean moveToUploadFailureState() {
+        if (state == State.UPLOADING) {
+            state = State.FAILED;
+            return true;
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	public boolean isUploaded() {
-		return (state == State.UPLOADED);
-	}
+    public boolean isUploaded() {
+        return (state == State.UPLOADED);
+    }
 
-	public boolean isUploading() {
-		return (state == State.UPLOADING);
-	}
+    public boolean isUploading() {
+        return (state == State.UPLOADING);
+    }
 
-	public boolean isUploadFailed() {
-		return (state == State.FAILED);
-	}
+    public boolean isUploadFailed() {
+        return (state == State.FAILED);
+    }
 
-	public void createLocalFile(String path) {
-		if (path == null || path.isEmpty()) {
-			return;
-		}
+    public void createLocalFile(String path) {
+        if (path == null || path.isEmpty()) {
+            return;
+        }
 
-		setCurrentValue(new DocumentLocalFile(path));
-	}
+        setCurrentValue(new DocumentLocalFile(path));
+    }
 
-	@Override
-	protected DocumentFile convertFromString(String string) {
-		if (string == null || string.isEmpty() || isEmptyJson(string)) {
-			return null;
-		}
+    @Override
+    protected DocumentFile convertFromString(String string) {
+        if (string == null || string.isEmpty() || isEmptyJson(string)) {
+            return null;
+        }
 
-		DocumentRemoteFile result = null;
+        DocumentRemoteFile result = null;
 
-		try {
-			result = new DocumentRemoteFile(string);
-		} catch (JSONException e) {
-			LiferayLogger.e("Can't parse the document JSON", e);
-		}
+        try {
+            result = new DocumentRemoteFile(string);
+        } catch (JSONException e) {
+            LiferayLogger.e("Can't parse the document JSON", e);
+        }
 
-		return result;
-	}
+        return result;
+    }
 
-	@Override
-	protected String convertToData(DocumentFile document) {
-		return document == null ? null : document.toData();
-	}
+    @Override
+    protected String convertToData(DocumentFile document) {
+        return document == null ? null : document.toData();
+    }
 
-	@Override
-	protected String convertToFormattedString(DocumentFile document) {
-		return document == null ? "" : document.getFileName();
-	}
+    @Override
+    protected String convertToFormattedString(DocumentFile document) {
+        return document == null ? "" : document.getFileName();
+    }
 
-	@Override
-	protected boolean doValidate() {
-		boolean valid = true;
+    @Override
+    protected boolean doValidate() {
+        boolean valid = true;
 
-		DocumentFile currentValue = getCurrentValue();
+        DocumentFile currentValue = getCurrentValue();
 
-		if (currentValue == null) {
-			if (isRequired()) {
-				valid = false;
-			}
-		} else {
-			if (!currentValue.isValid()) {
-				valid = false;
-			}
-		}
+        if (currentValue == null) {
+            if (isRequired()) {
+                valid = false;
+            }
+        } else {
+            if (!currentValue.isValid()) {
+                valid = false;
+            }
+        }
 
-		if (isUploading()) {
-			valid = false;
-		} else if (isUploadFailed()) {
-			valid = false;
-		}
+        if (isUploading()) {
+            valid = false;
+        } else if (isUploadFailed()) {
+            valid = false;
+        }
 
-		return valid;
-	}
+        return valid;
+    }
 
-	private boolean isEmptyJson(String stringValue) {
-		try {
-			if (new JSONObject(stringValue).keys().hasNext()) {
-				return true;
-			}
-		} catch (JSONException e) {
-			return false;
-		}
+    private boolean isEmptyJson(String stringValue) {
+        try {
+            if (new JSONObject(stringValue).keys().hasNext()) {
+                return true;
+            }
+        } catch (JSONException e) {
+            return false;
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	private enum State {
-		IDLE, UPLOADING, UPLOADED, FAILED
-	}
+    private enum State {
+        IDLE, UPLOADING, UPLOADED, FAILED
+    }
 }

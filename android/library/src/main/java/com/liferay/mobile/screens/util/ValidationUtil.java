@@ -31,5 +31,4 @@ public class ValidationUtil {
             return new HashMap<>();
         }
     }
-
 }

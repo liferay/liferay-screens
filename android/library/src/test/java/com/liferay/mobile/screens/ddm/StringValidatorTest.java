@@ -25,37 +25,36 @@ import org.junit.Test;
  */
 public class StringValidatorTest {
 
-	@Test
-	public void testNotContains() {
-		Map<String, String> map = getValidatorMap("NOT(contains(fieldName, \"myWord\"))");
-		Assert.assertTrue(StringValidator.parseStringValidation(map) instanceof StringValidator.NotContainsValidation);
+    @Test
+    public void testNotContains() {
+        Map<String, String> map = getValidatorMap("NOT(contains(fieldName, \"myWord\"))");
+        Assert.assertTrue(StringValidator.parseStringValidation(map) instanceof StringValidator.NotContainsValidation);
+    }
 
-	}
+    @Test
+    public void testContains() {
+        Map<String, String> map = getValidatorMap("contains(fieldName, \"myWord\")");
+        Assert.assertTrue(StringValidator.parseStringValidation(map) instanceof StringValidator.ContainsValidation);
+    }
 
-	@Test
-	public void testContains() {
-		Map<String, String> map = getValidatorMap("contains(fieldName, \"myWord\")");
-		Assert.assertTrue(StringValidator.parseStringValidation(map) instanceof StringValidator.ContainsValidation);
-	}
+    @Test
+    public void testIsEmailAddress() {
+        Map<String, String> map = getValidatorMap("isEmailAddress(fieldName)");
+        Assert.assertTrue(StringValidator.parseStringValidation(map) instanceof StringValidator.IsEmailValidation);
+    }
 
-	@Test
-	public void testIsEmailAddress() {
-		Map<String, String> map = getValidatorMap("isEmailAddress(fieldName)");
-		Assert.assertTrue(StringValidator.parseStringValidation(map) instanceof StringValidator.IsEmailValidation);
-	}
+    @Test
+    public void testIsURL() {
+        Map<String, String> map = getValidatorMap("isURL(fieldName)");
+        Assert.assertTrue(StringValidator.parseStringValidation(map) instanceof StringValidator.IsUrlValidation);
+    }
 
-	@Test
-	public void testIsURL() {
-		Map<String, String> map = getValidatorMap("isURL(fieldName)");
-		Assert.assertTrue(StringValidator.parseStringValidation(map) instanceof StringValidator.IsUrlValidation);
-	}
+    @NonNull
+    private Map<String, String> getValidatorMap(String expression) {
+        Map<String, String> map = new HashMap<>();
+        map.put("errorMessage", "Test Error");
+        map.put("expression", expression);
 
-	@NonNull
-	private Map<String, String> getValidatorMap(String expression) {
-		Map<String, String> map = new HashMap<>();
-		map.put("errorMessage", "Test Error");
-		map.put("expression", expression);
-
-		return map;
-	}
+        return map;
+    }
 }
