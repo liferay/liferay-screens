@@ -257,7 +257,7 @@ class DDMFormView @JvmOverloads constructor(
 		subscription = observable.doOnNext {
 			presenter.fieldModelsChanged(it)
 		}.doOnError {
-			LiferayLogger.e(it.message)
+			LiferayLogger.e(it.message, it)
 		}.debounce(500, TimeUnit.MILLISECONDS)
 			.observeOn(AndroidSchedulers.mainThread())
 			.subscribe({ field ->
@@ -265,7 +265,7 @@ class DDMFormView @JvmOverloads constructor(
 					presenter.syncForm(it, formInstance, field)
 				} ?: throw Exception("No thing found")
 			}, {
-				LiferayLogger.e(it.message)
+				LiferayLogger.e(it.message, it)
 			})
 	}
 

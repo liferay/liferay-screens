@@ -53,6 +53,12 @@ public class LiferayLogger {
         }
     }
 
+    public static void e(String message, Throwable throwable) {
+        if (loggingEnabled()) {
+            Log.e(TAG, message, throwable);
+        }
+    }
+
     private static boolean loggingEnabled() {
         return BuildConfig.DEBUG || LOGGING_ENABLED;
     }
