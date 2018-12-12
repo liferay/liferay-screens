@@ -39,7 +39,6 @@ import com.liferay.mobile.screens.thingscreenlet.model.WorkflowTask
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import okhttp3.HttpUrl
-import org.jetbrains.anko.forEachChild
 import java.util.Date
 import java.util.Locale
 
@@ -99,7 +98,7 @@ class WorkflowTaskDetailView @JvmOverloads constructor(
 
 		var transitions = it.transitions
 
-		if(transitions != null && transitions.isNotEmpty()) {
+		if (transitions != null && transitions.isNotEmpty()) {
 			createActionButtons(transitions)
 		}
 	}
