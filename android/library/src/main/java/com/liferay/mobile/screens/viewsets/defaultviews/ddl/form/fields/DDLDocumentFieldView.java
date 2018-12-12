@@ -92,11 +92,15 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
         documentField.setCurrentValue(documentRemoteFile);
         documentField.moveToUploadCompleteState();
 
+        refresh();
+
         documentFieldSubscriber.onNext(documentField);
     }
 
     public void onUploadError(Exception e) {
         getField().moveToUploadFailureState();
+
+        refresh();
 
         documentFieldSubscriber.onError(e);
     }
