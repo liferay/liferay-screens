@@ -23,6 +23,8 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import android.widget.TextView
 import com.liferay.apio.consumer.delegates.converter
 import com.liferay.apio.consumer.extensions.shortFormat
@@ -46,6 +48,9 @@ class WorkflowTaskRowView @JvmOverloads constructor(
 
 	override var screenlet: ThingScreenlet? = null
 
+	private val progressBar by bindNonNull<ProgressBar>(R.id.workflow_progress_bar)
+	private val workflowList by bindNonNull<RelativeLayout>(R.id.workflow_list_row)
+
 	private val isPending by bindNonNull<FrameLayout>(R.id.workflow_is_pending)
 	private val assetTitle by bindNonNull<TextView>(R.id.workflow_asset_title)
 	private val dateCreated by bindNonNull<TextView>(R.id.workflow_date_created)
@@ -53,6 +58,9 @@ class WorkflowTaskRowView @JvmOverloads constructor(
 	private val status by bindNonNull<TextView>(R.id.workflow_status)
 
 	override var thing: Thing? by converter<WorkflowTask> {
+		progressBar.visibility = View.VISIBLE
+		workflowList.visibility = View.GONE
+
 		getAssetTitle(it)
 
 		if (it.completed) isPending.visibility = View.INVISIBLE
@@ -78,7 +86,6 @@ class WorkflowTaskRowView @JvmOverloads constructor(
 	}
 
 	private fun getAssetTitle(workflowTask: WorkflowTask) {
-
 		screenlet?.apioConsumer?.fetch(HttpUrl.parse(workflowTask.identifier!!)!!) { result ->
 			result.fold({
 				var title = ""
@@ -92,6 +99,9 @@ class WorkflowTaskRowView @JvmOverloads constructor(
 				} else {
 					assetTitle.text = Html.fromHtml(title)
 				}
+
+				progressBar.visibility = View.GONE
+				workflowList.visibility = View.VISIBLE
 			}, {
 				Snackbar.make(this, "Error", Snackbar.LENGTH_SHORT).show()
 			})

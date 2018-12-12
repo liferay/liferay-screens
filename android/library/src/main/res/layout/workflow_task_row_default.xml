@@ -7,88 +7,98 @@
     android:padding="16dp"
     >
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
+    <ProgressBar
+        android:id="@+id/workflow_progress_bar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:visibility="gone"
+        />
+
+    <RelativeLayout
+        android:id="@+id/workflow_list_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         >
 
         <FrameLayout
             android:id="@+id/workflow_is_pending"
             android:layout_width="10dp"
             android:layout_height="10dp"
-            android:layout_gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
             android:background="@drawable/default_workflow_status_rounded"
             />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
-
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_toEndOf="@id/workflow_is_pending"
+            android:layout_toRightOf="@id/workflow_is_pending"
+            android:orientation="vertical"
             >
 
-            <TextView
-                android:id="@+id/workflow_asset_title"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8sp"
-                android:layout_marginRight="8sp"
+                android:orientation="horizontal"
+                >
+
+                <TextView
+                    android:id="@+id/workflow_asset_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8sp"
+                    android:layout_marginRight="8sp"
+                    android:ellipsize="end"
+                    android:maxEms="14"
+                    android:maxLines="1"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="16sp"
+                    tools:text="The Future of Java and How It Affects Java and Liferay Developers"
+                    />
+
+                <TextView
+                    android:id="@+id/workflow_date_created"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="12sp"
+                    tools:text="01/10/18"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/workflow_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxEms="14"
                 android:maxLines="1"
                 android:textColor="@color/textColorPrimary"
-                android:textSize="16sp"
-                tools:text="The Future of Java and How It Affects Java and Liferay Developers"
+                android:textSize="14sp"
+                tools:text="Review • Blogs Entry"
                 />
 
-            <TextView
-                android:id="@+id/workflow_date_created"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:textSize="12sp"
-                tools:text="01/10/18"
-                />
+                android:layout_marginTop="6dp"
+                >
+
+                <TextView
+                    android:id="@+id/workflow_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    tools:text="Pending"
+                    />
+
+            </RelativeLayout>
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/workflow_type"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxEms="14"
-            android:maxLines="1"
-            android:textColor="@color/textColorPrimary"
-            android:textSize="14sp"
-            tools:text="Review • Blogs Entry"
-            />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            >
-
-            <TextView
-                android:id="@+id/workflow_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="12sp"
-                tools:text="Pending"
-                />
-
-        </RelativeLayout>
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </com.liferay.mobile.screens.thingscreenlet.screens.views.row.WorkflowTaskRowView>
