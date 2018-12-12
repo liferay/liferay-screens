@@ -124,6 +124,10 @@ class WorkflowTaskDetailView @JvmOverloads constructor(
 					title = it["headline"] as String
 				}
 
+				if (it.type.contains("Comment")) {
+					title = it["text"] as String
+				}
+
 				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 					assetTitle.text = Html.fromHtml(title, Html.FROM_HTML_MODE_COMPACT)
 				} else {
