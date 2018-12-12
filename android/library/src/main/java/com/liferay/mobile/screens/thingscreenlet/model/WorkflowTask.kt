@@ -15,7 +15,6 @@
 package com.liferay.mobile.screens.thingscreenlet.model
 
 import com.liferay.apio.consumer.extensions.asDate
-import com.liferay.apio.consumer.model.Relation
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.get
 import com.liferay.mobile.screens.R
@@ -28,7 +27,7 @@ data class WorkflowTask(
 	val completed: Boolean,
 	val dateCreated: Date?,
 	val name: String,
-	val expires: Date?,
+	val dueDate: Date?,
 	val resourceType: String?,
 	val identifier: String?) {
 
@@ -47,7 +46,7 @@ data class WorkflowTask(
 
 			val name = it["name"] as String
 
-			val expires = (it["expires"] as? String)?.asDate()
+			val dueDate = (it["dueDate"] as? String)?.asDate()
 
 			val obj = it["object"] as? Map<String, Any>
 
@@ -59,7 +58,7 @@ data class WorkflowTask(
 				it["identifier"] as? String
 			}
 
-			WorkflowTask(completed, dateCreated, name, expires, resourceType, identifier)
+			WorkflowTask(completed, dateCreated, name, dueDate, resourceType, identifier)
 		}
 	}
 }

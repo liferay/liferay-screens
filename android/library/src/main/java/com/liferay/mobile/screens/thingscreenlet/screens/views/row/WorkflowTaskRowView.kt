@@ -74,8 +74,8 @@ class WorkflowTaskRowView @JvmOverloads constructor(
 
 		when {
 			it.completed -> status.text = resources.getString(R.string.workflow_completed_text)
-			it.expires != null -> {
-				val days = getDays(it.expires)
+			it.dueDate != null -> {
+				val days = getDays(it.dueDate)
 
 				if (days < 0) status.text = resources.getQuantityString(R.plurals.workflow_due_date_before_text,
 					Math.abs(days), Math.abs(days))

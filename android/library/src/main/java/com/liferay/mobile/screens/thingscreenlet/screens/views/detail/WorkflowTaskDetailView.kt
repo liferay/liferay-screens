@@ -22,11 +22,13 @@ import android.text.format.DateUtils
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.liferay.apio.consumer.delegates.converter
 import com.liferay.apio.consumer.extensions.fullFormat
+import com.liferay.apio.consumer.extensions.shortFormat
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.get
 import com.liferay.mobile.screens.R
@@ -57,6 +59,9 @@ class WorkflowTaskDetailView @JvmOverloads constructor(
 	private val isPending by bindNonNull<FrameLayout>(R.id.workflow_is_pending)
 	private val status by bindNonNull<TextView>(R.id.workflow_status)
 
+	private val linearDueDate by bindNonNull<LinearLayout>(R.id.workflow_linear_due_date)
+	private val dueDate by bindNonNull<TextView>(R.id.workflow_due_date)
+
 	override var thing: Thing? by converter<WorkflowTask> {
 		progressBar.visibility = View.VISIBLE
 		workflowDetail.visibility = View.GONE
@@ -82,7 +87,11 @@ class WorkflowTaskDetailView @JvmOverloads constructor(
 			it.completed -> status.text = resources.getString(R.string.workflow_completed_text)
 			else -> status.text = resources.getString(R.string.workflow_pending_text)
 		}
-	}
+
+		when {
+			it.dueDate != null -> dueDate.text = it.dueDate.shortFormat(Locale.getDefault())
+			else -> linearDueDate.visibility = View.GONE
+		}
 
 	private fun getAssetTitle(workflowTask: WorkflowTask) {
 		screenlet?.apioConsumer?.fetch(HttpUrl.parse(workflowTask.identifier!!)!!) { result ->

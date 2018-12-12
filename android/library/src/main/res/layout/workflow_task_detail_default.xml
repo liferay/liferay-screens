@@ -31,6 +31,7 @@
         >
 
         <LinearLayout
+            android:id="@+id/linear_workflow_details"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -124,6 +125,51 @@
                 />
 
         </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/linear_workflow_details"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:id="@+id/workflow_linear_due_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/workflow_due_date"
+                    android:textColor="@color/textColorPrimary"
+                    android:textSize="14sp"
+                    />
+
+                <TextView
+                    android:id="@+id/workflow_due_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:textSize="12sp"
+                    tools:text="28/12/18"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/workflow_actions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="vertical"
+                />
+
+        </LinearLayout>
 
     </RelativeLayout>
 

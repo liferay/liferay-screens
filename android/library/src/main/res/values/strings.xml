@@ -100,6 +100,7 @@
     <string name="workflow_yesterday_text">Yesterday</string>
     <string name="workflow_created_on">Created on</string>
     <string name="workflow_type_text">%1$s · %2$s</string>
+    <string name="workflow_due_date">Due date</string>
     <plurals name="workflow_due_date_after_text">
         <item quantity="one">Pending, Due %1$d day</item>
         <item quantity="other">Pending, Due %1$d days</item>
