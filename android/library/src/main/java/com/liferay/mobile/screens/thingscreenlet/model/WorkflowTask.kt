@@ -28,6 +28,7 @@ data class WorkflowTask(
 	val dateCreated: Date?,
 	val name: String,
 	val dueDate: Date?,
+	val transitions: List<String>?,
 	val resourceType: String?,
 	val identifier: String?) {
 
@@ -48,6 +49,8 @@ data class WorkflowTask(
 
 			val dueDate = (it["dueDate"] as? String)?.asDate()
 
+			val transitions = it["transitions"] as? List<String>
+
 			val obj = it["object"] as? Map<String, Any>
 
 			val resourceType = obj?.let {
@@ -58,7 +61,7 @@ data class WorkflowTask(
 				it["identifier"] as? String
 			}
 
-			WorkflowTask(completed, dateCreated, name, dueDate, resourceType, identifier)
+			WorkflowTask(completed, dateCreated, name, dueDate, transitions, resourceType, identifier)
 		}
 	}
 }

@@ -21,6 +21,7 @@ import android.text.Html
 import android.text.format.DateUtils
 import android.util.AttributeSet
 import android.view.View
+import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.ProgressBar
@@ -38,6 +39,7 @@ import com.liferay.mobile.screens.thingscreenlet.model.WorkflowTask
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import okhttp3.HttpUrl
+import org.jetbrains.anko.forEachChild
 import java.util.Date
 import java.util.Locale
 
@@ -61,6 +63,8 @@ class WorkflowTaskDetailView @JvmOverloads constructor(
 
 	private val linearDueDate by bindNonNull<LinearLayout>(R.id.workflow_linear_due_date)
 	private val dueDate by bindNonNull<TextView>(R.id.workflow_due_date)
+
+	private val workflowActions by bindNonNull<LinearLayout>(R.id.workflow_actions)
 
 	override var thing: Thing? by converter<WorkflowTask> {
 		progressBar.visibility = View.VISIBLE
@@ -92,6 +96,24 @@ class WorkflowTaskDetailView @JvmOverloads constructor(
 			it.dueDate != null -> dueDate.text = it.dueDate.shortFormat(Locale.getDefault())
 			else -> linearDueDate.visibility = View.GONE
 		}
+
+		var transitions = it.transitions
+
+		if(transitions != null && transitions.isNotEmpty()) {
+			createActionButtons(transitions)
+		}
+	}
+
+	private fun createActionButtons(transitions: List<String>) {
+		for (transition in transitions) {
+			val button = Button(context)
+			button.layoutParams = FrameLayout.LayoutParams(
+				FrameLayout.LayoutParams.MATCH_PARENT,
+				FrameLayout.LayoutParams.WRAP_CONTENT)
+			button.text = transition
+			workflowActions.addView(button)
+		}
+	}
 
 	private fun getAssetTitle(workflowTask: WorkflowTask) {
 		screenlet?.apioConsumer?.fetch(HttpUrl.parse(workflowTask.identifier!!)!!) { result ->

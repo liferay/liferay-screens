@@ -126,7 +126,7 @@
 
         </FrameLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/linear_workflow_details"
@@ -165,11 +165,12 @@
                 android:id="@+id/workflow_actions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
                 android:layout_marginTop="25dp"
                 android:orientation="vertical"
                 />
 
-        </LinearLayout>
+        </RelativeLayout>
 
     </RelativeLayout>
 
