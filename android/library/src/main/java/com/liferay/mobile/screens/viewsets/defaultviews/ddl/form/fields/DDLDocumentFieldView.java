@@ -36,6 +36,7 @@ import com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity.MediaStor
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
+import com.liferay.mobile.screens.ddl.model.DocumentFile;
 import com.liferay.mobile.screens.ddl.model.DocumentRemoteFile;
 import com.tbruyelle.rxpermissions.RxPermissions;
 import java.io.File;
@@ -64,6 +65,7 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
     protected AlertDialog fileDialog;
     protected Subscriber<? super DocumentField> documentFieldSubscriber;
     protected UploadListener uploadListener;
+    private Observable<DocumentField> onDocumentUploadedObservable;
 
     public DDLDocumentFieldView(Context context) {
         super(context);
@@ -265,6 +267,11 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
         };
     }
 
+    @Override
+    public Observable<DocumentField> getOnChangedValueObservable() {
+        return onDocumentUploadedObservable;
+    }
+
     private void startUpload(Uri uri) {
         getField().createLocalFile(uri.toString());
         getTextEditText().setText(uri.getPath());
@@ -273,12 +280,11 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
     }
 
     private void setupDocumentFieldObservable() {
-        onChangedValueObservable =
-            Observable.create(new Observable.OnSubscribe<DocumentField>() {
-                @Override
-                public void call(Subscriber<? super DocumentField> subscriber) {
-                    documentFieldSubscriber = subscriber;
-                }
-            });
+        onDocumentUploadedObservable = Observable.create(new Observable.OnSubscribe<DocumentField>() {
+            @Override
+            public void call(Subscriber<? super DocumentField> subscriber) {
+                documentFieldSubscriber = subscriber;
+            }
+        });
     }
 }
