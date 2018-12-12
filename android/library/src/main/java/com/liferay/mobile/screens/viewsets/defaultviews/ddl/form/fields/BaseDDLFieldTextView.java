@@ -41,7 +41,7 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
     protected TextView labelTextView;
     protected EditText textEditText;
     protected View parentView;
-    private Observable<T> onChangedValueObservable = Observable.empty();
+    protected Observable<T> onChangedValueObservable = Observable.empty();
     private T field;
 
     public BaseDDLFieldTextView(Context context) {
