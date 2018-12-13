@@ -23,7 +23,7 @@ public class DocumentRemoteFile extends DocumentFile {
         } else {
             JSONObject jsonObject = new JSONObject(json);
 
-            if (!jsonObject.keys().hasNext()) {
+            if (jsonObject.length() == 0) {
                 throw new EmptyDocumentRemoteFileException();
             }
 
