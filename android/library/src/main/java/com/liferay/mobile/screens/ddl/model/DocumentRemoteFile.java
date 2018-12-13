@@ -1,5 +1,6 @@
 package com.liferay.mobile.screens.ddl.model;
 
+import com.liferay.mobile.screens.ddl.exception.EmptyDocumentRemoteFileException;
 import com.liferay.mobile.screens.util.AndroidUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,11 +17,16 @@ public class DocumentRemoteFile extends DocumentFile {
 
     private String url;
 
-    public DocumentRemoteFile(String json) throws JSONException {
+    public DocumentRemoteFile(String json) throws EmptyDocumentRemoteFileException, JSONException {
         if (json.startsWith("http")) {
             url = json;
         } else {
             JSONObject jsonObject = new JSONObject(json);
+
+            if (!jsonObject.keys().hasNext()) {
+	            throw new EmptyDocumentRemoteFileException();
+            }
+
             uuid = jsonObject.optString("uuid");
             version = jsonObject.optString("version");
             groupId = jsonObject.optInt("groupId");
