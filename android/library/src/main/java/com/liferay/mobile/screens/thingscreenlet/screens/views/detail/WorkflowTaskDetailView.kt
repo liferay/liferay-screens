@@ -115,29 +115,31 @@ class WorkflowTaskDetailView @JvmOverloads constructor(
 	}
 
 	private fun getAssetTitle(workflowTask: WorkflowTask) {
-		screenlet?.apioConsumer?.fetch(HttpUrl.parse(workflowTask.identifier!!)!!) { result ->
-			result.fold({
-				var title = ""
+		if (workflowTask.identifier != null) {
+			screenlet?.apioConsumer?.fetch(HttpUrl.parse(workflowTask.identifier)!!) { result ->
+				result.fold({
+					var title = ""
 
-				if (it.type.contains("BlogPosting")) {
-					title = it["headline"] as String
-				}
+					if (it.type.contains("BlogPosting")) {
+						title = it["headline"] as String
+					}
 
-				if (it.type.contains("Comment")) {
-					title = it["text"] as String
-				}
+					if (it.type.contains("Comment")) {
+						title = it["text"] as String
+					}
 
-				if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-					assetTitle.text = Html.fromHtml(title, Html.FROM_HTML_MODE_COMPACT)
-				} else {
-					assetTitle.text = Html.fromHtml(title)
-				}
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+						assetTitle.text = Html.fromHtml(title, Html.FROM_HTML_MODE_COMPACT)
+					} else {
+						assetTitle.text = Html.fromHtml(title)
+					}
 
-				progressBar.visibility = View.GONE
-				workflowDetail.visibility = View.VISIBLE
-			}, {
-				Snackbar.make(this, "Error", Snackbar.LENGTH_SHORT).show()
-			})
+					progressBar.visibility = View.GONE
+					workflowDetail.visibility = View.VISIBLE
+				}, {
+					Snackbar.make(this, "Error", Snackbar.LENGTH_SHORT).show()
+				})
+			}
 		}
 	}
 
