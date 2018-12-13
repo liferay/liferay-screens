@@ -249,21 +249,15 @@ class DDMFormView @JvmOverloads constructor(
 
 		val inputStream = AndroidUtil.openLocalFileInputStream(context, field.currentValue as DocumentLocalFile)
 
-		presenter.uploadFile(thing, field, inputStream, {
-			field.currentValue = it
-			field.moveToUploadCompleteState()
-
-			documentFieldView.refresh()
-		}, {
-			field.moveToUploadFailureState()
-
-			documentFieldView.refresh()
-		})
+		presenter.uploadFile(thing, field, inputStream, documentFieldView::onUploadCompleted,
+			documentFieldView::onUploadError)
 	}
 
 	override fun subscribeToValueChanged(observable: Observable<Field<*>>) {
 		subscription = observable.doOnNext {
 			presenter.fieldModelsChanged(it)
+		}.doOnError {
+			LiferayLogger.e(it.message, it)
 		}.debounce(500, TimeUnit.MILLISECONDS)
 			.observeOn(AndroidSchedulers.mainThread())
 			.subscribe({ field ->
@@ -271,7 +265,7 @@ class DDMFormView @JvmOverloads constructor(
 					presenter.syncForm(it, formInstance, field)
 				} ?: throw Exception("No thing found")
 			}, {
-				LiferayLogger.e(it.message)
+				LiferayLogger.e(it.message, it)
 			})
 	}
 

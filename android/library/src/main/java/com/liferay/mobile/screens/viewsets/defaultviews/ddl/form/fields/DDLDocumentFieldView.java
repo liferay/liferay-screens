@@ -36,8 +36,12 @@ import com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity.MediaStor
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
+import com.liferay.mobile.screens.ddl.model.DocumentFile;
+import com.liferay.mobile.screens.ddl.model.DocumentRemoteFile;
 import com.tbruyelle.rxpermissions.RxPermissions;
 import java.io.File;
+import rx.Observable;
+import rx.Subscriber;
 import rx.functions.Action1;
 
 import static com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity.RECORD_VIDEO;
@@ -59,7 +63,9 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
     protected ProgressBar progressBar;
     protected Dialog chooseOriginDialog;
     protected AlertDialog fileDialog;
+    protected Subscriber<? super DocumentField> documentFieldSubscriber;
     protected UploadListener uploadListener;
+    private Observable<DocumentField> onDocumentUploadedObservable;
 
     public DDLDocumentFieldView(Context context) {
         super(context);
@@ -79,6 +85,24 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
             chooseOriginDialog = createOriginDialog();
             chooseOriginDialog.show();
         }
+    }
+
+    public void onUploadCompleted(DocumentRemoteFile documentRemoteFile) {
+        DocumentField documentField = getField();
+        documentField.setCurrentValue(documentRemoteFile);
+        documentField.moveToUploadCompleteState();
+
+        refresh();
+
+        documentFieldSubscriber.onNext(documentField);
+    }
+
+    public void onUploadError(Exception e) {
+        getField().moveToUploadFailureState();
+
+        refresh();
+
+        documentFieldSubscriber.onError(e);
     }
 
     @Override
@@ -129,6 +153,8 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
         super.onFinishInflate();
         progressBar = findViewById(R.id.liferay_document_progress);
         getTextEditText().setOnClickListener(this);
+
+        setupDocumentFieldObservable();
     }
 
     @Override
@@ -245,10 +271,24 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
         };
     }
 
+    @Override
+    public Observable<DocumentField> getOnChangedValueObservable() {
+        return onDocumentUploadedObservable;
+    }
+
     private void startUpload(Uri uri) {
         getField().createLocalFile(uri.toString());
         getTextEditText().setText(uri.getPath());
 
         uploadListener.startUpload(getField());
+    }
+
+    private void setupDocumentFieldObservable() {
+        onDocumentUploadedObservable = Observable.create(new Observable.OnSubscribe<DocumentField>() {
+            @Override
+            public void call(Subscriber<? super DocumentField> subscriber) {
+                documentFieldSubscriber = subscriber;
+            }
+        });
     }
 }
