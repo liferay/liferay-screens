@@ -30,6 +30,7 @@ import android.widget.TextView
 import com.liferay.apio.consumer.delegates.converter
 import com.liferay.apio.consumer.extensions.fullFormat
 import com.liferay.apio.consumer.extensions.shortFormat
+import com.liferay.apio.consumer.model.Operation
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.get
 import com.liferay.mobile.screens.R
@@ -98,18 +99,33 @@ class WorkflowTaskDetailView @JvmOverloads constructor(
 
 		var transitions = it.transitions
 
-		if (transitions != null && transitions.isNotEmpty()) {
-			createActionButtons(transitions)
+		if (transitions != null && transitions.isNotEmpty() && it.changeTransitionOperation != null) {
+			createActionButtons(transitions, it.changeTransitionOperation)
 		}
 	}
 
-	private fun createActionButtons(transitions: List<String>) {
+	private fun createActionButtons(transitions: List<String>, changeTransitionOperation: Operation) {
 		for (transition in transitions) {
 			val button = Button(context)
 			button.layoutParams = FrameLayout.LayoutParams(
 				FrameLayout.LayoutParams.MATCH_PARENT,
 				FrameLayout.LayoutParams.WRAP_CONTENT)
 			button.text = transition
+
+			button.setOnClickListener { view ->
+				changeTransitionOperation.form!!.getFormProperties { result ->
+					screenlet?.apioConsumer?.performOperation(thing!!.id, changeTransitionOperation.id,
+						fillFields = { properties ->
+							val transitionPropertyName = properties[0].name
+							mapOf<String, Any>(transitionPropertyName to transition)
+						},
+						onComplete = {
+							Snackbar.make(this, "Done!", Snackbar.LENGTH_SHORT).show()
+						}
+					)
+				}
+			}
+
 			workflowActions.addView(button)
 		}
 	}

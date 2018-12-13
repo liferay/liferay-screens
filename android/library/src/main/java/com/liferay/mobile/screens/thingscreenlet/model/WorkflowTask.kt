@@ -15,6 +15,7 @@
 package com.liferay.mobile.screens.thingscreenlet.model
 
 import com.liferay.apio.consumer.extensions.asDate
+import com.liferay.apio.consumer.model.Operation
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.get
 import com.liferay.mobile.screens.R
@@ -30,7 +31,8 @@ data class WorkflowTask(
 	val dueDate: Date?,
 	val transitions: List<String>?,
 	val resourceType: String?,
-	val identifier: String?) {
+	val identifier: String?,
+	val changeTransitionOperation: Operation?) {
 
 	companion object {
 		val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
@@ -61,7 +63,14 @@ data class WorkflowTask(
 				it["identifier"] as? String
 			}
 
-			WorkflowTask(completed, dateCreated, name, dueDate, transitions, resourceType, identifier)
+			val changeTransitionOperation = getChangeTransitionOperation(it)
+
+			WorkflowTask(completed, dateCreated, name, dueDate, transitions, resourceType, identifier,
+				changeTransitionOperation)
+		}
+
+		private fun getChangeTransitionOperation(it: Thing): Operation? {
+			return it.getOperation("_:workflow-tasks/change-transition")
 		}
 	}
 }
