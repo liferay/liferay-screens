@@ -24,7 +24,7 @@ public class DocumentRemoteFile extends DocumentFile {
             JSONObject jsonObject = new JSONObject(json);
 
             if (!jsonObject.keys().hasNext()) {
-	            throw new EmptyDocumentRemoteFileException();
+                throw new EmptyDocumentRemoteFileException();
             }
 
             uuid = jsonObject.optString("uuid");
