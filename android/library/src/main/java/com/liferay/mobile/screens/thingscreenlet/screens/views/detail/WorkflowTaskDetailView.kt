@@ -73,7 +73,6 @@ class WorkflowTaskDetailView @JvmOverloads constructor(
 		getAssetTitle(it)
 
 		assigneeImage.also {
-			assigneeProgressBar.visibility = View.VISIBLE
 			val url = resources.getString(
 				R.string.liferay_server) + "/o/api/p/my-user-account/" + SessionContext.getCurrentUser().id
 			it.load(url, onSuccess = { assigneeProgressBar.visibility = View.GONE })
@@ -97,7 +96,9 @@ class WorkflowTaskDetailView @JvmOverloads constructor(
 			else -> linearDueDate.visibility = View.GONE
 		}
 
-		var transitions = it.transitions
+		val transitions = it.transitions
+
+		workflowActions.removeAllViews()
 
 		if (transitions != null && transitions.isNotEmpty() && it.changeTransitionOperation != null) {
 			createActionButtons(transitions, it.changeTransitionOperation)
@@ -105,8 +106,10 @@ class WorkflowTaskDetailView @JvmOverloads constructor(
 	}
 
 	private fun createActionButtons(transitions: List<String>, changeTransitionOperation: Operation) {
+
 		for (transition in transitions) {
 			val button = Button(context)
+
 			button.layoutParams = FrameLayout.LayoutParams(
 				FrameLayout.LayoutParams.MATCH_PARENT,
 				FrameLayout.LayoutParams.WRAP_CONTENT)
@@ -120,7 +123,8 @@ class WorkflowTaskDetailView @JvmOverloads constructor(
 							mapOf<String, Any>(transitionPropertyName to transition)
 						},
 						onComplete = {
-							Snackbar.make(this, "Done!", Snackbar.LENGTH_SHORT).show()
+							Snackbar.make(this, "Change transition done: $transition", Snackbar.LENGTH_SHORT).show()
+							thing = it.component1()
 						}
 					)
 				}
