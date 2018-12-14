@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import com.liferay.mobile.screens.ddl.exception.EmptyDocumentRemoteFileException;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import java.util.Locale;
 import java.util.Map;
@@ -113,6 +114,8 @@ public class DocumentField extends Field<DocumentFile> {
 
         try {
             result = new DocumentRemoteFile(string);
+        } catch (EmptyDocumentRemoteFileException e) {
+            LiferayLogger.i(e.getMessage());
         } catch (JSONException e) {
             LiferayLogger.e("Can't parse the document JSON", e);
         }
