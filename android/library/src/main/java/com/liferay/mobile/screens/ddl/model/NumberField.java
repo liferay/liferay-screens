@@ -139,5 +139,4 @@ public class NumberField extends Field<Number> {
 
         return isValid;
     }
-
 }

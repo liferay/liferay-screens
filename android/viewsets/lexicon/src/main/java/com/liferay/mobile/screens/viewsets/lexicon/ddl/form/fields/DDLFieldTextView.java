@@ -54,5 +54,4 @@ public class DDLFieldTextView
             FormViewUtil.setupErrorView(valid, findViewById(R.id.error_view), errorMessage);
         }
     }
-
 }
