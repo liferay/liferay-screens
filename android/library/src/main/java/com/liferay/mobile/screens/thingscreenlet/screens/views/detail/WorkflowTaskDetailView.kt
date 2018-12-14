@@ -74,7 +74,7 @@ class WorkflowTaskDetailView @JvmOverloads constructor(
 
 		assigneeImage.also {
 			val url = resources.getString(
-				R.string.liferay_server) + "/o/api/p/my-user-account/" + SessionContext.getCurrentUser().id
+				R.string.liferay_server) + "/o/api/my-user-account/" + SessionContext.getCurrentUser().id
 			it.load(url, onSuccess = { assigneeProgressBar.visibility = View.GONE })
 		}
 
