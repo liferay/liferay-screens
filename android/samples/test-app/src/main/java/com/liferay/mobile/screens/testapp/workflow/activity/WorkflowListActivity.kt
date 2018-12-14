@@ -44,11 +44,11 @@ class WorkflowListActivity : AppCompatActivity(), ScreenletEvents {
 		workflowScreenlet.screenletEvents = this
 	}
 
-    override fun <T : BaseView> onClickEvent(baseView: T, view: View, thing: Thing) = View.OnClickListener {
-        startActivity<DetailActivity>("id" to thing.id)
-    }
+	override fun <T : BaseView> onClickEvent(baseView: T, view: View, thing: Thing) = View.OnClickListener {
+		startActivity<DetailActivity>("id" to thing.id)
+	}
 
-    private fun getTasksUrl(): String {
-        return "/o/api/p/r/workflow-tasks/assigned-to-me?embedded=comment,blogPost"
-    }
+	private fun getTasksUrl(): String {
+		return "/o/api/p/r/workflow-tasks/assigned-to-me"
+	}
 }
