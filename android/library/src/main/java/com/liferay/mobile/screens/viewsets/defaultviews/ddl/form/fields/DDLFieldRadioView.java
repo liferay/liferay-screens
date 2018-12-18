@@ -114,6 +114,7 @@ public class DDLFieldRadioView extends LinearLayout
     @Override
     public void refresh() {
         List<Option> selectedOptions = field.getCurrentValue();
+	    List<Option> availableOptions = field.getAvailableOptions();
 
         if (selectedOptions != null) {
             for (Option opt : selectedOptions) {
@@ -123,6 +124,13 @@ public class DDLFieldRadioView extends LinearLayout
                     radioButton.setChecked(true);
                 }
             }
+        }
+
+        if (availableOptions != null) {
+	        for (Option opt : availableOptions) {
+		        RadioButton radioButton = findViewWithTag(opt);
+		        radioButton.setEnabled(!field.isReadOnly());
+	        }
         }
     }
 
@@ -160,7 +168,7 @@ public class DDLFieldRadioView extends LinearLayout
 
     @Override
     public void setUpdateMode(boolean enabled) {
-        setEnabled(enabled);
+	    setEnabled(enabled);
     }
 
     @Override

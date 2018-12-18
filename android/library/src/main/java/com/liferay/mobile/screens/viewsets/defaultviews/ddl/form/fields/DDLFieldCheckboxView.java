@@ -75,6 +75,8 @@ public class DDLFieldCheckboxView extends LinearLayout
     @Override
     public void refresh() {
         switchCompat.setChecked(field.getCurrentValue());
+
+        setUpdateMode(!field.isReadOnly());
     }
 
     @Override

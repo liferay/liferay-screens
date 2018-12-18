@@ -125,6 +125,8 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
             setRightDrawable(editText, R.drawable.default_blue);
             progressBar.setVisibility(GONE);
         }
+
+        setUpdateMode(!field.isReadOnly());
     }
 
     public void setUploadListener(UploadListener uploadListener) {

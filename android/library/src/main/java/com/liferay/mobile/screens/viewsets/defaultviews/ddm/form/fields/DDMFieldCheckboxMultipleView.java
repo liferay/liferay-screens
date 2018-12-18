@@ -117,6 +117,7 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
     @Override
     public void refresh() {
         List<Option> selectedOptions = field.getCurrentValue();
+        List<Option> availableOptions = field.getAvailableOptions();
 
         if (selectedOptions != null) {
             for (Option opt : selectedOptions) {
@@ -126,6 +127,13 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
                     compoundButton.setChecked(true);
                 }
             }
+        }
+
+        if (availableOptions != null) {
+	        for (Option opt : availableOptions) {
+		        CompoundButton compoundButton = findViewWithTag(opt);
+		        compoundButton.setEnabled(!field.isReadOnly());
+	        }
         }
     }
 

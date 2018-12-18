@@ -281,7 +281,6 @@ class DDMFormView @JvmOverloads constructor(
 			setFieldVisibility(fieldContext, fieldView)
 			fieldTextView?.setupFieldLayout()
 			fieldViewModel?.let {
-                it.setUpdateMode(!field.isReadOnly)
                 it.refresh()
             }
 

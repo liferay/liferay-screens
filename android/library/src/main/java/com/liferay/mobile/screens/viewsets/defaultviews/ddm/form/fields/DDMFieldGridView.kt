@@ -109,6 +109,8 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
 		gridLinearLayout.childrenSequence().mapNotNull {
 			it as? DDMFieldGridRowView
 		}.forEach { view ->
+            view.columnSelectView.setUpdateMode(!field.isReadOnly)
+
 			field.currentValue?.let {
 				it[view.rowOption.value]
 			}?.let { columnValue ->
@@ -159,8 +161,6 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
 		this.gridField.rows.forEach { row ->
 			val ddmFieldGridRowView =
 				inflater.inflate(layoutIdentifier, gridLinearLayout, false) as DDMFieldGridRowView
-
-            ddmFieldGridRowView.columnSelectView.setUpdateMode(!gridField.isReadOnly) // TODO: Marcelo
 
             gridLinearLayout.addView(ddmFieldGridRowView)
 
