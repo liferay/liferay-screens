@@ -54,7 +54,5 @@ open class DDLFieldTextView @JvmOverloads constructor(context: Context, attrs: A
 		super.refresh()
 
 		setupAutocomplete(field)
-
-        setUpdateMode(!field.isReadOnly)
 	}
 }

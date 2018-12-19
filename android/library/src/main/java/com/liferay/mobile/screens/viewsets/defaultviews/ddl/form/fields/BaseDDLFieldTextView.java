@@ -139,8 +139,6 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
         if (!currentText.equals(newText)) {
             textEditText.setText(newText);
         }
-
-        setUpdateMode(!field.isReadOnly());
     }
 
     @Override

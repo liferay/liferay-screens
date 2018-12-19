@@ -56,7 +56,6 @@ import org.jetbrains.anko.childrenSequence
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
-import rx.subscriptions.CompositeSubscription
 import java.util.concurrent.TimeUnit
 
 /**
@@ -280,12 +279,14 @@ class DDMFormView @JvmOverloads constructor(
 
 			setFieldVisibility(fieldContext, fieldView)
 			fieldTextView?.setupFieldLayout()
+
 			fieldViewModel?.let {
                 it.refresh()
+                it.setUpdateMode(!field.isReadOnly)
             }
 
-			presenter.checkIsDirty(field, fieldContext, fieldViewModel)
-		}
+                presenter.checkIsDirty(field, fieldContext, fieldViewModel)
+            }
 	}
 
 	override fun updatePageEnabled(formContext: FormContext) {

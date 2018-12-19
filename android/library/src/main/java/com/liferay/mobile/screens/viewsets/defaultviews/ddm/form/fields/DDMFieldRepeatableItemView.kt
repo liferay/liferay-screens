@@ -108,7 +108,11 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
 
 	override fun setUpdateMode(enabled: Boolean) {
 		this.isEnabled = enabled
-	}
+        addRepeatableButton.isEnabled = enabled
+        removeRepeatableButton.isEnabled = enabled
+
+        fieldView.setUpdateMode(enabled)
+    }
 
 	private fun setupRepeatableActions() {
 		if (!isFirstField) {
