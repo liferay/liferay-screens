@@ -271,7 +271,7 @@ class DDMFormView @JvmOverloads constructor(
 	override fun updateFieldView(fieldContext: FieldContext, field: Field<*>) {
 		val fieldsContainerView = ddmFieldViewPages.currentView
 
- 		val fieldView = fieldsContainerView?.findViewWithTag<View>(field.name)
+		val fieldView = fieldsContainerView?.findViewWithTag<View>(field.name)
 
 		fieldView?.let {
 			val fieldViewModel = fieldView as? DDLFieldViewModel<*>
@@ -281,12 +281,12 @@ class DDMFormView @JvmOverloads constructor(
 			fieldTextView?.setupFieldLayout()
 
 			fieldViewModel?.let {
-                it.refresh()
-                it.setUpdateMode(!field.isReadOnly)
-            }
+				it.refresh()
+				it.setUpdateMode(!field.isReadOnly)
+			}
 
-                presenter.checkIsDirty(field, fieldContext, fieldViewModel)
-            }
+			presenter.checkIsDirty(field, fieldContext, fieldViewModel)
+		}
 	}
 
 	override fun updatePageEnabled(formContext: FormContext) {

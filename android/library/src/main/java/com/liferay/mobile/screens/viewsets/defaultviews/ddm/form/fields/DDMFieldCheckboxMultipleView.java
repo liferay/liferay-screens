@@ -163,16 +163,16 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
 
     @Override
     public void setUpdateMode(boolean enabled) {
-	    List<Option> availableOptions = field.getAvailableOptions();
+        List<Option> availableOptions = field.getAvailableOptions();
 
-	    if (availableOptions != null) {
-		    for (Option opt : availableOptions) {
-			    CompoundButton compoundButton = findViewWithTag(opt);
-			    compoundButton.setEnabled(!field.isReadOnly());
-		    }
-	    }
+        if (availableOptions != null) {
+            for (Option opt : availableOptions) {
+                CompoundButton compoundButton = findViewWithTag(opt);
+                compoundButton.setEnabled(!field.isReadOnly());
+            }
+        }
 
-	    setEnabled(enabled);
+        setEnabled(enabled);
     }
 
     @Override

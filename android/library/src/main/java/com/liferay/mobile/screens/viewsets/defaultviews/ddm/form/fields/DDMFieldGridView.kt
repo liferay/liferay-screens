@@ -98,11 +98,11 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
 	override fun setUpdateMode(enabled: Boolean) {
 		this.isEnabled = enabled
 
-        gridLinearLayout.childrenSequence().mapNotNull {
-            it as? DDMFieldGridRowView
-        }.forEach { view ->
-            view.columnSelectView.setUpdateMode(enabled)
-        }
+		gridLinearLayout.childrenSequence().mapNotNull {
+			it as? DDMFieldGridRowView
+		}.forEach { view ->
+			view.columnSelectView.setUpdateMode(enabled)
+		}
 	}
 
 	override fun onDetachedFromWindow() {
@@ -166,12 +166,12 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
 			val ddmFieldGridRowView =
 				inflater.inflate(layoutIdentifier, gridLinearLayout, false) as DDMFieldGridRowView
 
-            gridLinearLayout.addView(ddmFieldGridRowView)
+			gridLinearLayout.addView(ddmFieldGridRowView)
 
 			ddmFieldGridRowView.setOptions(row, gridField.columns)
 
 			ddmFieldGridRowView.columnSelectView.setOnValueChangedListener { _, which ->
-                onColumnValueChanged(which, row, ddmFieldGridRowView)
+				onColumnValueChanged(which, row, ddmFieldGridRowView)
 			}
 		}
 

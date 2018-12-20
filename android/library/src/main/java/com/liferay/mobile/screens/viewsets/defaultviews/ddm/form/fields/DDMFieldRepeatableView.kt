@@ -131,9 +131,9 @@ open class DDMFieldRepeatableView @JvmOverloads constructor(
 	override fun setUpdateMode(enabled: Boolean) {
 		this.isEnabled = enabled
 
-        repeatableContainer.childrenSequence().forEach {
-            (it as? DDLFieldViewModel<*>)?.setUpdateMode(enabled)
-        }
+		repeatableContainer.childrenSequence().forEach {
+			(it as? DDLFieldViewModel<*>)?.setUpdateMode(enabled)
+		}
 	}
 
 	override fun startUpload(field: DocumentField?) {
