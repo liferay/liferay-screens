@@ -36,4 +36,7 @@
     <color name="midGray">#8E8F94</color>
     <color name="lightRed">#E96F6F</color>
     <color name="orange">#F29853</color>
+
+	<color name="disabledTransparent">#88FFFFFF</color>
+	<color name="defaultTransparent">#66FFFFFF</color>
 </resources>
