@@ -165,7 +165,7 @@ public class DDLFieldRadioView extends LinearLayout
         if (availableOptions != null) {
             for (Option opt : availableOptions) {
                 RadioButton radioButton = findViewWithTag(opt);
-                radioButton.setEnabled(!field.isReadOnly());
+                radioButton.setEnabled(enabled);
             }
         }
 
