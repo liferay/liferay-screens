@@ -160,8 +160,12 @@ public class DDLFieldRadioView extends LinearLayout
 
     @Override
     public void setUpdateMode(boolean enabled) {
-        List<Option> availableOptions = field.getAvailableOptions();
+	    if (this.field.isShowLabel()) {
+		    TextView label = findViewById(R.id.liferay_ddl_label);
+		    label.setEnabled(enabled);
+	    }
 
+        List<Option> availableOptions = field.getAvailableOptions();
         if (availableOptions != null) {
             for (Option opt : availableOptions) {
                 RadioButton radioButton = findViewWithTag(opt);
