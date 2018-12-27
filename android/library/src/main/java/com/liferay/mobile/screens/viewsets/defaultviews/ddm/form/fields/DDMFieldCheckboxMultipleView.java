@@ -163,10 +163,10 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
 
     @Override
     public void setUpdateMode(boolean enabled) {
-	    if (this.field.isShowLabel()) {
-		    TextView label = findViewById(R.id.liferay_ddm_label);
-		    label.setEnabled(enabled);
-	    }
+        if (this.field.isShowLabel()) {
+            TextView label = findViewById(R.id.liferay_ddm_label);
+            label.setEnabled(enabled);
+        }
 
         List<Option> availableOptions = field.getAvailableOptions();
         if (availableOptions != null) {

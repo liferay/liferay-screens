@@ -133,8 +133,8 @@ open class DDMFieldRepeatableView @JvmOverloads constructor(
 			(it as? DDLFieldViewModel<*>)?.setUpdateMode(enabled)
 		}
 
-        this.isEnabled = enabled
-    }
+		this.isEnabled = enabled
+	}
 
 	override fun startUpload(field: DocumentField?) {
 		field?.let {

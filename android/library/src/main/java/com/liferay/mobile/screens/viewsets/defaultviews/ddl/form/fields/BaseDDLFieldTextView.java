@@ -154,10 +154,10 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 
     @Override
     public void setUpdateMode(boolean enabled) {
-	    if (this.field.isShowLabel()) {
-		    TextView label = findViewById(R.id.liferay_ddl_label);
-		    label.setEnabled(enabled);
-	    }
+        if (this.field.isShowLabel()) {
+            TextView label = findViewById(R.id.liferay_ddl_label);
+            label.setEnabled(enabled);
+        }
 
         textEditText.setEnabled(enabled);
     }
