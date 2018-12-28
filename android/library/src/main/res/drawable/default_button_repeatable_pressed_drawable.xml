@@ -7,7 +7,7 @@
     </item>
     <item>
         <shape android:shape="oval">
-            <solid android:color="@color/disabledTransparent"/>
+            <solid android:color="@color/opacity_50"/>
         </shape>
     </item>
 </layer-list>
