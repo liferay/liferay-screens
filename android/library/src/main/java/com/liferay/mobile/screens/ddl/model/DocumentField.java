@@ -14,12 +14,18 @@
 
 package com.liferay.mobile.screens.ddl.model;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
+import com.liferay.mobile.screens.R;
+import com.liferay.mobile.screens.context.LiferayScreensContext;
+import com.liferay.mobile.screens.ddl.LocalValidator;
 import com.liferay.mobile.screens.ddl.exception.EmptyDocumentRemoteFileException;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import java.util.Locale;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 
 /**
@@ -135,28 +141,36 @@ public class DocumentField extends Field<DocumentFile> {
 
     @Override
     protected boolean doValidate() {
-        boolean valid = true;
-
         DocumentFile currentValue = getCurrentValue();
-
-        if (currentValue == null) {
-            if (isRequired()) {
-                valid = false;
-            }
-        } else {
-            if (!currentValue.isValid()) {
-                valid = false;
-            }
+        if (currentValue == null && isRequired() || currentValue != null && !currentValue.isValid()) {
+            setValidationState(ValidationState.INVALID_BY_REQUIRED_WITHOUT_VALUE);
+            return false;
         }
 
-        if (isUploading()) {
-            valid = false;
-        } else if (isUploadFailed()) {
-            valid = false;
+        if (isUploading() || isUploadFailed()) {
+            setValidationState(ValidationState.INVALID_BY_LOCAL_RULE);
+            return false;
         }
-
-        return valid;
+        return true;
     }
+
+    @Nullable
+    @Override
+    public LocalValidator getLocalValidator() {
+        return documentFieldValidator;
+    }
+
+    private LocalValidator documentFieldValidator = new LocalValidator() {
+        @NotNull
+        @Override
+        public String getCustomErrorMessage() {
+            Context context = LiferayScreensContext.getContext();
+            String isUploadingErrorMsg = context.getString(R.string.uploading_document_not_finished_error);
+            String isUploadFailed = context.getString(R.string.uploading_document_error);
+
+            return (isUploading() ? isUploadingErrorMsg : isUploadFailed);
+        }
+    };
 
     private enum State {
         IDLE, UPLOADING, UPLOADED, FAILED

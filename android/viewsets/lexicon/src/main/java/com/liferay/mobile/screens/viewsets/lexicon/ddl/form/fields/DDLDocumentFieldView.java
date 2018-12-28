@@ -56,15 +56,19 @@ public class DDLDocumentFieldView
         if (field.isUploaded()) {
             setRightDrawable(editText, R.drawable.lexicon_icon_clip_success_tinted);
             progressBar.setVisibility(GONE);
+            refreshLayout(true);
         } else if (field.isUploadFailed()) {
             setRightDrawable(editText, R.drawable.lexicon_icon_cancel_error_tinted);
             progressBar.setVisibility(GONE);
+            refreshLayout(false);
         } else if (field.isUploading()) {
             setRightDrawable(editText, R.drawable.lexicon_icon_clip_white_background);
             progressBar.setVisibility(VISIBLE);
+            refreshLayout(true);
         } else {
             setRightDrawable(editText, R.drawable.lexicon_icon_clip_tinted);
             progressBar.setVisibility(GONE);
+            refreshLayout(true);
         }
     }
 
@@ -90,7 +94,12 @@ public class DDLDocumentFieldView
 
     @Override
     public void onPostValidation(boolean valid) {
+        refreshLayout(valid);
+    }
+
+    private void refreshLayout(boolean valid) {
+        String errorMessage = getField().getErrorMessage();
         FormViewUtil.setupBackground(getContext(), valid, textEditText);
-        FormViewUtil.setupErrorView(valid, findViewById(R.id.error_view));
+        FormViewUtil.setupErrorView(valid, findViewById(R.id.error_view), errorMessage);
     }
 }
