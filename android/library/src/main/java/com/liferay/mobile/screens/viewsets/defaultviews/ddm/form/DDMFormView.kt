@@ -331,17 +331,17 @@ class DDMFormView @JvmOverloads constructor(
 		return pages
 	}
 
-	private fun getInvalidFields(): Map<Field<*>, String> {
+	private fun getInvalidFields(): Map<String, Field<*>> {
 		val page = formInstance.ddmStructure.pages[ddmFieldViewPages.currentItem]
 
-		return page.fields.filter { !it.isValid }.associateBy({ it }, { it.getErrorMessage() })
+		return page.fields.asSequence().filter { !it.isValid }.associateBy({ it.name }, { it })
 	}
 
 	private fun getNextEnabledPage(): Number {
 		(ddmFieldViewPages.adapter as DDMPagerAdapter).let { ddmPagerAdapter ->
 			val dropPages = ddmFieldViewPages.currentItem + 1
 
-			return ddmPagerAdapter.pages.drop(dropPages).indexOfFirst { it.isEnabled } + dropPages
+			return ddmPagerAdapter.pages.asSequence().drop(dropPages).indexOfFirst { it.isEnabled } + dropPages
 		}
 	}
 
@@ -353,7 +353,7 @@ class DDMFormView @JvmOverloads constructor(
 		}
 	}
 
-	private fun highLightInvalidFields(fieldResults: Map<Field<*>, String>, autoscroll: Boolean) {
+	private fun highLightInvalidFields(fieldResults: Map<String, Field<*>>, autoscroll: Boolean) {
 		var scrolled = false
 
 		ddmFieldViewPages.currentView?.let { currentViewPage ->
@@ -364,7 +364,7 @@ class DDMFormView @JvmOverloads constructor(
 				val fieldViewModel = fieldView as? DDLFieldViewModel<*>
 
 				fieldViewModel?.let {
-					fieldResults[fieldViewModel.field]
+					fieldResults[fieldViewModel.field.name]
 				}?.let {
 					fieldView.clearFocus()
 					fieldViewModel.onPostValidation(false)

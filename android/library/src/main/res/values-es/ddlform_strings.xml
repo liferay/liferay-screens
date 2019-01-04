@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="back">Atrás</string>
+    <string name="next">Siguiente</string>
+    <string name="document">Documento</string>
+    <string name="photo_and_video_library">Galería de fotos \u0026 vídeos</string>
     <string name="submit">Enviar</string>
     <string name="required_value">Valor requerido</string>
     <string name="invalid">Valor inválido</string>
     <string name="open">Abrir:</string>
     <string name="take_a_photo">Sacar una foto</string>
     <string name="select_a_file">Seleccionar un fichero</string>
+    <string name="select_image_from_gallery">Seleccionar imagen de la galería</string>
+    <string name="select_video_from_gallery">Seleccionar vídeo de la galería</string>
     <string name="origin_of_file">Elige el origen del fichero</string>
     <string name="record_a_video">Grabar un video</string>
     <string name="loading_form_error">Error cargando DDLForm</string>
     <string name="uploading_document_error">Error subiendo el documento</string>
+    <string name="uploading_document_not_finished_error">La subida del archivo no ha terminado</string>
     <string name="creating_file_error">Error creando el fichero</string>
     <string name="hint_select">Seleccione una opción</string>
 </resources>

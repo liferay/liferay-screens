@@ -16,6 +16,7 @@
     <string name="record_a_video">Record a video</string>
     <string name="loading_form_error">Error loading DDLForm</string>
     <string name="uploading_document_error">Error uploading document</string>
+    <string name="uploading_document_not_finished_error">File upload not finished yet</string>
     <string name="creating_file_error">Error creating file</string>
     <string name="hint_select">Select an option</string>
 </resources>
