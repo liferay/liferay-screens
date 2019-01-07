@@ -98,6 +98,11 @@ class AndroidUtil {
 			snackbar.show()
 		}
 
+		@JvmStatic
+		fun onUpdateViewState(view: View, enabled: Boolean) {
+			view?.isEnabled = enabled
+		}
+
 		@Suppress("DEPRECATION")
 		fun fromHtml(html: String?): Spanned {
 			return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -106,6 +111,5 @@ class AndroidUtil {
 				Html.fromHtml(html)
 			}
 		}
-
 	}
 }

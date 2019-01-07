@@ -32,6 +32,8 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.Option;
 import com.liferay.mobile.screens.ddl.model.SelectableOptionsField;
+import com.liferay.mobile.screens.util.AndroidUtil;
+import com.liferay.mobile.screens.viewsets.defaultviews.util.FieldUtil;
 import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil;
 import java.util.List;
 import rx.Observable;
@@ -162,9 +164,7 @@ public class DDLFieldRadioView extends LinearLayout
     public void setUpdateMode(boolean enabled) {
         if (this.field.isShowLabel()) {
             TextView label = findViewById(R.id.liferay_ddl_label);
-            if (label != null) {
-	            label.setEnabled(enabled);
-            }
+            AndroidUtil.onUpdateViewState(label, enabled);
         }
 
         List<Option> availableOptions = field.getAvailableOptions();
