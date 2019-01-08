@@ -163,7 +163,7 @@ public class DDLFieldRadioView extends LinearLayout
     public void setUpdateMode(boolean enabled) {
         if (this.field.isShowLabel()) {
             TextView label = findViewById(R.id.liferay_ddl_label);
-            AndroidUtil.onUpdateViewState(label, enabled);
+            AndroidUtil.updateViewState(label, enabled);
         }
 
         List<Option> availableOptions = field.getAvailableOptions();
