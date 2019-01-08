@@ -29,7 +29,6 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.util.AndroidUtil;
-import com.liferay.mobile.screens.viewsets.defaultviews.util.FieldUtil;
 import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil;
 import rx.Observable;
 import rx.functions.Func1;
