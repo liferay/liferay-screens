@@ -45,5 +45,4 @@ public class DDLFieldNumberView
         FormViewUtil.setupBackground(getContext(), valid, textEditText);
         FormViewUtil.setupErrorView(valid, findViewById(R.id.error_view), getField().getErrorMessage());
     }
-
 }

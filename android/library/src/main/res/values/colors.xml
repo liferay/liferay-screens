@@ -36,4 +36,7 @@
     <color name="midGray">#8E8F94</color>
     <color name="lightRed">#E96F6F</color>
     <color name="orange">#F29853</color>
+
+    <color name="opacity_50">#88FFFFFF</color>
+    <color name="opacity_40">#66FFFFFF</color>
 </resources>

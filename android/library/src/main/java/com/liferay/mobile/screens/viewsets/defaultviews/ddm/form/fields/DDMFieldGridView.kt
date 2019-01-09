@@ -96,6 +96,17 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
 	}
 
 	override fun setUpdateMode(enabled: Boolean) {
+		field?.isShowLabel.let {
+			val label = findViewById<TextView>(R.id.liferay_ddm_label)
+			label?.isEnabled = enabled
+		}
+
+		gridLinearLayout.childrenSequence().mapNotNull {
+			it as? DDMFieldGridRowView
+		}.forEach { view ->
+			view.columnSelectView.setUpdateMode(enabled)
+		}
+
 		this.isEnabled = enabled
 	}
 

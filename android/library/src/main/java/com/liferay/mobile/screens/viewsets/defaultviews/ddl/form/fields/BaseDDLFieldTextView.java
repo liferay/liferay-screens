@@ -28,6 +28,7 @@ import com.jakewharton.rxbinding.widget.TextViewAfterTextChangeEvent;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.Field;
+import com.liferay.mobile.screens.util.AndroidUtil;
 import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil;
 import rx.Observable;
 import rx.functions.Func1;
@@ -154,6 +155,11 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
 
     @Override
     public void setUpdateMode(boolean enabled) {
+        if (this.field.isShowLabel()) {
+            TextView label = findViewById(R.id.liferay_ddl_label);
+            AndroidUtil.updateViewState(label, enabled);
+        }
+
         textEditText.setEnabled(enabled);
     }
 

@@ -52,13 +52,13 @@
         <item name="android:paddingLeft">@dimen/field_padding</item>
         <item name="android:background">@drawable/lexicon_edit_text_selector</item>
         <item name="android:drawablePadding">@dimen/default_edit_text_drawable_padding</item>
-        <item name="android:textColor">@color/colorPrimaryDark_lexicon</item>
+        <item name="android:textColor">@drawable/lexicon_label_selector</item>
         <item name="android:textColorHint">@color/textColorSecondary_lexicon</item>
         <item name="android:singleLine">true</item>
     </style>
 
     <style name="lexicon_text_view" parent="android:Widget.TextView">
-        <item name="android:textColor">@color/colorPrimaryDark_lexicon</item>
+        <item name="android:textColor">@drawable/lexicon_label_selector</item>
         <item name="android:textSize">@dimen/text_view_size</item>
         <item name="android:textStyle">bold</item>
         <item name="android:paddingBottom">@dimen/text_view_bottom_padding</item>
@@ -115,7 +115,7 @@
     </style>
 
     <style name="lexicon_grid_edit_text" parent="base_default_grid_edit_text">
-        <item name="android:textColor">@color/colorPrimaryDark_lexicon</item>
+        <item name="android:textColor">@drawable/lexicon_label_selector</item>
         <item name="android:textColorHint">@color/textColorSecondary</item>
     </style>
 

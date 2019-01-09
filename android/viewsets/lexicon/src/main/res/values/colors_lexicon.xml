@@ -17,6 +17,7 @@
     <color name="textColorPrimary_lexicon">#f1f2f5</color>
     <color name="textColorSecondary_lexicon">#6b6c7e</color>
     <color name="textColorTertiary_lexicon">#e7e7ed</color>
+    <color name="textColorDisabled_lexicon">#a7a9bc</color>
 
     <color name="colorRequiredField">#b95000</color>
     <color name="lightGray_lexicon">#cdced9</color>

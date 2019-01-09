@@ -87,7 +87,9 @@
         <item name="android:paddingTop">0dp</item>
     </style>
 
-    <style name="default_text_view" parent="base_default_text_view"/>
+    <style name="default_text_view" parent="base_default_text_view">
+        <item name="android:textColor">@drawable/default_label_selector</item>
+    </style>
 
     <style name="base_default_text_view" parent="android:Widget.TextView">
         <item name="android:paddingBottom">@dimen/default_text_view_padding</item>

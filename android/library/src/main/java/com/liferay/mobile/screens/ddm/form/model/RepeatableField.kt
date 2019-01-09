@@ -84,6 +84,10 @@ class RepeatableField @JvmOverloads constructor(
 		super.setReadOnly(readOnly)
 
 		baseField.attributes[FormFieldKeys.IS_READ_ONLY_KEY] = readOnly
+
+		repeatedFields.forEach {
+			it.isReadOnly = readOnly
+		}
 	}
 
 	override fun isValid(): Boolean {

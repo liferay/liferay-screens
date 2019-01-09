@@ -129,6 +129,10 @@ open class DDMFieldRepeatableView @JvmOverloads constructor(
 	}
 
 	override fun setUpdateMode(enabled: Boolean) {
+		repeatableContainer.childrenSequence().forEach {
+			(it as? DDLFieldViewModel<*>)?.setUpdateMode(enabled)
+		}
+
 		this.isEnabled = enabled
 	}
 

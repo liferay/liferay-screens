@@ -40,13 +40,23 @@ class AndroidUtil {
 	companion object {
 
 		@JvmStatic
-		fun getUriFromString(uriString: String): Uri {
-			return Uri.parse(uriString)
+		@Suppress("DEPRECATION")
+		fun fromHtml(html: String?): Spanned {
+			return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+				Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY)
+			} else {
+				Html.fromHtml(html)
+			}
 		}
 
 		@JvmStatic
 		fun getFileNameFromPath(uriString: String): String {
 			return getUriFromString(uriString).lastPathSegment
+		}
+
+		@JvmStatic
+		fun getUriFromString(uriString: String): Uri {
+			return Uri.parse(uriString)
 		}
 
 		@JvmStatic
@@ -98,14 +108,9 @@ class AndroidUtil {
 			snackbar.show()
 		}
 
-		@Suppress("DEPRECATION")
-		fun fromHtml(html: String?): Spanned {
-			return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-				Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY)
-			} else {
-				Html.fromHtml(html)
-			}
+		@JvmStatic
+		fun updateViewState(view: View, enabled: Boolean) {
+			view?.isEnabled = enabled
 		}
-
 	}
 }
