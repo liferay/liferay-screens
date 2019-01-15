@@ -20,6 +20,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import com.github.kittinunf.result.success
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.get
 import com.liferay.mobile.screens.testapp.R
@@ -44,7 +45,7 @@ class ThingMainActivity : AppCompatActivity(), ScreenletEvents {
 
 		val id = "https://apiosample.wedeploy.io/p/blog-postings"
 
-		thingScreenlet.load(id, credentials = "Basic YXBpb0BsaWZlcmF5LmNvbTphcGlvZGV2cw==")
+		thingScreenlet.load(id)
 
 		thingScreenlet.screenletEvents = this
 	}
@@ -71,15 +72,26 @@ class ThingMainActivity : AppCompatActivity(), ScreenletEvents {
 	}
 
 	override fun <T : BaseView> onCustomEvent(name: String, screenlet: ThingScreenlet, parentView: T?, thing: Thing) {
-		if (name.equals("create")) {
-			val operationKey = thing.operations.keys.filter { it.contains("create") }.firstOrNull()
+		if (name == "create") {
+			thing.operations.keys.firstOrNull {
+				it.contains("create")
+			}?.let {
+				thing.operations[it]
+			}?.also { operation ->
+				operation.form?.id?.let { expects ->
+					val apioConsumer = thingScreenlet.apioConsumer
 
-			operationKey?.let {
-				val operation = thing.operations[it]
-				operation!!.form!!.getFormProperties({
-					startActivity<EditActivity>("properties" to it.map { it.name },
-						"values" to emptyMap<String, String>(), "id" to thing.id, "operation" to operation.id)
-				}, {})
+					apioConsumer.getOperationForm(expects) { result ->
+						result.success {
+							startActivity<EditActivity>(
+								"properties" to it.map { it.name },
+								"values" to emptyMap<String, String>(),
+								"id" to thing.id,
+								"operation" to operation.id
+							)
+						}
+					}
+				}
 			}
 		}
 	}

@@ -17,6 +17,8 @@ package com.liferay.mobile.screens.testapp.postings.activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import com.github.kittinunf.result.failure
+import com.github.kittinunf.result.success
 import com.liferay.apio.consumer.ApioConsumer
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.mobile.screens.testapp.R
@@ -25,6 +27,7 @@ import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
 import com.liferay.mobile.screens.thingscreenlet.screens.events.ScreenletEvents
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
+import com.liferay.mobile.screens.util.LiferayLogger
 import org.jetbrains.anko.startActivity
 
 class DetailActivity : AppCompatActivity(), ScreenletEvents {
@@ -47,19 +50,32 @@ class DetailActivity : AppCompatActivity(), ScreenletEvents {
 	}
 
 	override fun <T : BaseView> onCustomEvent(name: String, screenlet: ThingScreenlet, parentView: T?, thing: Thing) {
-		val operationKey = thing.operations.keys.filter { it.contains(name) }.firstOrNull()
-
-		operationKey?.let {
-			val operation = thing.operations[it]
-
+		thing.operations.keys.firstOrNull {
+			it.contains(name)
+		}?.let {
+			thing.operations[it]
+		}?.also { operation ->
 			val values = thing.attributes.filterValues { it is String }
 
-			operation!!.form?.let {
-				it.getFormProperties({
-					startActivity<EditActivity>("properties" to it.map { it.name }, "values" to values,
-						"id" to thing.id, "operation" to operation.id)
-				}, {})
-			} ?: ApioConsumer().performOperation(thing.id, operation.id)
+			val apioConsumer = thingScreenlet.apioConsumer
+
+			operation.form?.id?.let { expects ->
+				apioConsumer.getOperationForm(expects) { result ->
+					result.success { properties ->
+						startActivity<EditActivity>(
+							"properties" to properties.map { it.name },
+							"values" to values,
+							"id" to thing.id, "operation" to operation.id
+						)
+					}
+				}
+			} ?: run {
+				apioConsumer.performOperation(thing.id, operation.id) { result ->
+					result.failure {
+						LiferayLogger.e(it.message, it)
+					}
+				}
+			}
 		}
 	}
 
