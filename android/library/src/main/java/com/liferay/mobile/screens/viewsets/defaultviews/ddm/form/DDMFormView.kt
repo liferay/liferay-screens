@@ -94,11 +94,8 @@ class DDMFormView @JvmOverloads constructor(
 	init {
 		val themeName = ThemeUtil.getLayoutTheme(context)
 
-		for (pair in availableFields) {
-			val fieldType = pair.first
-			val fieldNamePrefix = pair.second
-
-			layoutIds[fieldType] = ThemeUtil.getLayoutIdentifier(context, fieldNamePrefix, themeName)
+		availableFields.forEach { (editorType, fieldNamePrefix) ->
+			layoutIds[editorType] = ThemeUtil.getLayoutIdentifier(context, fieldNamePrefix, themeName)
 		}
 	}
 
@@ -280,9 +277,9 @@ class DDMFormView @JvmOverloads constructor(
 			setFieldVisibility(fieldContext, fieldView)
 			fieldTextView?.setupFieldLayout()
 
-			fieldViewModel?.let {
-				it.refresh()
-				it.setUpdateMode(!field.isReadOnly)
+			fieldViewModel?.apply {
+				refresh()
+				setUpdateMode(!field.isReadOnly)
 			}
 
 			presenter.checkIsDirty(field, fieldContext, fieldViewModel)
