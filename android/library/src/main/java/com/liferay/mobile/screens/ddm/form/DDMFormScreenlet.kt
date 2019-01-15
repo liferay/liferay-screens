@@ -18,19 +18,22 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.widget.FrameLayout
+import com.github.kittinunf.result.failure
+import com.github.kittinunf.result.success
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.util.FormConstants
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
-import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
+import com.liferay.mobile.screens.util.getLong
+import com.liferay.mobile.screens.util.use
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.DDMFormView
 
 /**
  * @author Marcelo Mello
  */
-class DDMFormScreenlet @JvmOverloads constructor(
-	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : FrameLayout(context, attrs, defStyleAttr) {
+class DDMFormScreenlet @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0)
+	: FrameLayout(context, attrs, defStyleAttr) {
 
-	var formInstanceId: Long?
+	var formInstanceId: Long? = null
 	var listener: DDMFormListener? = null
 	val screenlet: ThingScreenlet
 
@@ -38,8 +41,9 @@ class DDMFormScreenlet @JvmOverloads constructor(
 		val typedArray: TypedArray =
 			context.theme.obtainStyledAttributes(attrs, R.styleable.DDMFormScreenlet, defStyleAttr, 0)
 
-		formInstanceId = typedArray.getString(R.styleable.DDMFormScreenlet_formInstanceId)?.toLongOrNull()
-		typedArray.recycle()
+		typedArray.use {
+			formInstanceId = getLong(R.styleable.DDMFormScreenlet_formInstanceId)
+		}
 
 		screenlet = ThingScreenlet(context, attrs, defStyleAttr)
 		addView(screenlet)
@@ -48,15 +52,19 @@ class DDMFormScreenlet @JvmOverloads constructor(
 	@JvmOverloads
 	fun load(formInstanceId: Long? = this.formInstanceId) {
 		formInstanceId?.also {
-			val url: String = getResourcePath(it)
+			val thingId = getResourcePath(it)
 
-			screenlet.load(url, Detail, onSuccess = { thingScreenlet ->
-				(thingScreenlet.baseView as? DDMFormView)?.let { ddmFormView ->
-					listener?.onFormLoaded(ddmFormView.formInstance)
+			screenlet.load(thingId) { result ->
+				result.success { thingScreenlet ->
+					(thingScreenlet.baseView as? DDMFormView)?.let { ddmFormView ->
+						listener?.onFormLoaded(ddmFormView.formInstance)
+					}
 				}
-			}, onError = {
-				listener?.onError(it)
-			})
+
+				result.failure { exception ->
+					listener?.onError(exception)
+				}
+			}
 		}
 	}
 

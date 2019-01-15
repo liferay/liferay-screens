@@ -47,9 +47,7 @@ class ThingAdapter(collection: Collection, val listener: Listener) :
 			holder.thing = members[position]
 		} else {
 			nextPage?.let {
-				HttpUrl.parse(it)
-			}?.let {
-				apioConsumer.fetch(it) { result ->
+				apioConsumer.fetchResource(it) { result ->
 					result.success { thing ->
 						convert<Collection>(thing)?.let {
 							val moreMembers = it.members

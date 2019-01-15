@@ -15,19 +15,19 @@
 package com.liferay.mobile.screens.thingscreenlet.screens
 
 import android.content.Context
-import android.os.Bundle
-import android.os.Parcel
 import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
+import com.github.kittinunf.result.Result
+import com.github.kittinunf.result.failure
+import com.github.kittinunf.result.success
 import com.liferay.apio.consumer.ApioConsumer
-import com.liferay.apio.consumer.authenticator.ApioAuthenticator
-import com.liferay.apio.consumer.authenticator.BasicAuthenticator
+import com.liferay.apio.consumer.configuration.AcceptLanguage
+import com.liferay.apio.consumer.configuration.RequestConfiguration
 import com.liferay.apio.consumer.delegates.observe
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.mobile.screens.R
-import com.liferay.mobile.screens.context.SessionContext
 import com.liferay.mobile.screens.ddm.form.model.FormInstance
 import com.liferay.mobile.screens.thingscreenlet.extensions.inflate
 import com.liferay.mobile.screens.thingscreenlet.model.*
@@ -36,7 +36,9 @@ import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
 import com.liferay.mobile.screens.thingscreenlet.screens.events.ScreenletEvents
 import com.liferay.mobile.screens.util.LiferayLogger
 import com.liferay.mobile.screens.thingscreenlet.screens.views.*
-import okhttp3.HttpUrl
+import com.liferay.mobile.screens.util.ServiceUtil
+import com.liferay.mobile.screens.util.use
+import java.util.*
 
 open class BaseScreenlet @JvmOverloads constructor(
 	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) :
@@ -54,6 +56,8 @@ open class ThingScreenlet @JvmOverloads constructor(
 	var screenletEvents: ScreenletEvents? = null
 	var savedInstanceState: ThingScreenletSavedState? = null
 
+	val apioConsumer = ApioConsumer(ServiceUtil.getAuthHeaders())
+
 	open var layoutIds: MutableMap<String, MutableMap<Scenario, Int>> = mutableMapOf(
 		"BlogPosting" to BlogPosting.DEFAULT_VIEWS,
 		"Collection" to Collection.DEFAULT_VIEWS,
@@ -63,7 +67,7 @@ open class ThingScreenlet @JvmOverloads constructor(
 		"Form" to FormInstance.DEFAULT_VIEWS
 	)
 
-	var layoutId: Int
+	var layoutId: Int = 0
 
 	var thing: Thing? by observe {
 
@@ -92,25 +96,25 @@ open class ThingScreenlet @JvmOverloads constructor(
 	val baseView: BaseView? get() = layout as? BaseView
 
 	@JvmOverloads
-	fun load(thingId: String, scenario: Scenario? = null, credentials: String? = null,
-		onSuccess: ((ThingScreenlet) -> Unit)? = null, onError: ((Exception) -> Unit)? = null) {
+	fun load(thingId: String, scenario: Scenario? = null, locale: Locale = Locale.getDefault(),
+		onComplete: ((Result<ThingScreenlet, Exception>) -> Unit)? = null) {
 
-		val apioConsumer = ApioConsumer(getApioAuthenticator())
+		apioConsumer.fetchResource(thingId, RequestConfiguration(AcceptLanguage(locale))) { result ->
+			result.success {
+				if (scenario != null) {
+					this.scenario = scenario
+				}
 
-		HttpUrl.parse(thingId)?.let {
-			apioConsumer.fetch(it) { result ->
-				result.fold({
-					if (scenario != null) {
-						this.scenario = scenario
-					}
+				thing = it
 
-					thing = it
-					onSuccess?.invoke(this)
-				}, {
-					LiferayLogger.e(it.message, it)
-					baseView?.showError(it.message)
-					onError?.invoke(it)
-				})
+				onComplete?.invoke(Result.of { this })
+			}
+
+			result.failure {
+				LiferayLogger.e(it.message, it)
+				baseView?.showError(it.message)
+
+				onComplete?.invoke(Result.error(it))
 			}
 		}
 	}
@@ -134,16 +138,21 @@ open class ThingScreenlet @JvmOverloads constructor(
 	}
 
 	init {
-		val typedArray = attrs?.let { context.theme.obtainStyledAttributes(it, R.styleable.ThingScreenlet, 0, 0) }
+		val typedArray =
+			context.theme.obtainStyledAttributes(attrs, R.styleable.ThingScreenlet, defStyleAttr, defStyleRes)
 
-		layoutId = typedArray?.getResourceId(R.styleable.ThingScreenlet_layoutId, 0) ?: 0
+		typedArray.use {
+			layoutId = getResourceId(R.styleable.ThingScreenlet_layoutId, 0)
 
-		val scenarioId = typedArray?.getString(R.styleable.ThingScreenlet_scenario) ?: ""
-
-		scenario = Scenario.stringToScenario?.invoke(scenarioId) ?: when (scenarioId.toLowerCase()) {
-			"detail", "" -> Detail
-			"row" -> Row
-			else -> Custom(scenarioId)
+			scenario = getString(R.styleable.ThingScreenlet_scenario).let { scenarioId ->
+				Scenario.stringToScenario?.invoke(scenarioId) ?: run {
+					when (scenarioId?.toLowerCase()) {
+						"detail", "" -> Detail
+						"row" -> Row
+						else -> Custom(scenarioId)
+					}
+				}
+			}
 		}
 	}
 
@@ -166,14 +175,6 @@ open class ThingScreenlet @JvmOverloads constructor(
 	override fun onFinishInflate() {
 		super.onFinishInflate()
 		isSaveEnabled = true
-	}
-
-	private fun getApioAuthenticator(credentials: String? = null): ApioAuthenticator? {
-		val credentials = credentials ?: SessionContext.getCredentialsFromCurrentSession()
-
-		return credentials?.let {
-			BasicAuthenticator(credentials)
-		}
 	}
 
 	override fun onSaveInstanceState(): Parcelable {
