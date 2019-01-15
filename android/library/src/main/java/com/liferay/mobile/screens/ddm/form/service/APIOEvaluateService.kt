@@ -27,24 +27,23 @@ class APIOEvaluateService : BaseAPIOService() {
 
 	private val operationId = "evaluate-context"
 
-	fun evaluateContext(formThing: Thing, fields: MutableList<Field<*>>,
-		onSuccess: (Thing) -> Unit, onError: (Exception) -> Unit) {
+	fun evaluateContext(formThing: Thing, fields: MutableList<Field<*>>, onSuccess: (Thing) -> Unit,
+		onError: (Exception) -> Unit) {
 
 		formThing.getOperation(operationId)?.let { operation ->
-			evaluateContext(formThing.id, operation.id, fields, onSuccess, onError)
+			performEvaluate(formThing.id, operation.id, fields, onSuccess, onError)
 		} ?: onError(ThingWithoutOperationException(formThing.id, operationId))
 	}
 
-	fun evaluateContext(thingId: String, operationId: String,
-		fields: MutableList<Field<*>>, onSuccess: (Thing) -> Unit,
-		onError: (Exception) -> Unit) {
+	private fun performEvaluate(thingId: String, operationId: String, fields: MutableList<Field<*>>,
+		onSuccess: (Thing) -> Unit, onError: (Exception) -> Unit) {
 
-		apioConsumer.performOperation(thingId, operationId, fillFields = { _ ->
+		apioConsumer.performOperation(thingId, operationId, fillFields = {
 			mapOf(
 				Pair(FormConstants.FIELD_VALUES, FieldValueSerializer.serialize(fields))
 			)
-		}, onComplete = { result ->
+		}) { result ->
 			result.fold(onSuccess, onError)
-		})
+		}
 	}
 }

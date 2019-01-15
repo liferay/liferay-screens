@@ -55,24 +55,22 @@ class APIOSubmitService : BaseAPIOService() {
 	private fun getThing(thingId: String, onSuccess: (Thing) -> Unit,
 		onError: (Exception) -> Unit) {
 
-		HttpUrl.parse(thingId)?.let { httpUrl ->
-			apioConsumer.fetch(httpUrl, onComplete = { result ->
-				result.fold(onSuccess, onError)
-			})
-		} ?: onError(ThingNotFoundException())
+		apioConsumer.fetchResource(thingId) { result ->
+			result.fold(onSuccess, onError)
+		}
 	}
 
 	private fun performSubmit(thing: Thing, operation: Operation, fields: MutableList<Field<*>>,
 		isDraft: Boolean = false, onSuccess: (Thing) -> Unit,
 		onError: (Exception) -> Unit) {
 
-		apioConsumer.performOperation(thing.id, operation.id, fillFields = { _ ->
+		apioConsumer.performOperation(thing.id, operation.id, fillFields = {
 			mapOf(
 				Pair("isDraft", isDraft),
-				Pair(FormConstants.FIELD_VALUES, FieldValueSerializer.serialize(fields) { !it.isTransient })
+				Pair(FormConstants.FIELD_VALUES, FieldValueSerializer.serialize(fields) { field -> !field.isTransient })
 			)
-		}, onComplete = { result ->
+		}) { result ->
 			result.fold(onSuccess, onError)
-		})
+		}
 	}
 }

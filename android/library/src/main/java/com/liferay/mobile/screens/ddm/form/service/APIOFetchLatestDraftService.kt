@@ -36,9 +36,8 @@ class APIOFetchLatestDraftService : BaseAPIOService() {
 	private fun performFetch(thing: Thing, operation: Operation, onSuccess: (Thing) -> Unit,
 		onError: (Exception) -> Unit) {
 
-		apioConsumer.performOperation(thing.id, operation.id, onComplete = { result ->
+		apioConsumer.performOperation(thing.id, operation.id) { result ->
 			result.fold(onSuccess, onError)
-		})
+		}
 	}
-
 }

@@ -30,32 +30,31 @@ class APIOUploadService : BaseAPIOService() {
 		onError: (Exception) -> Unit) {
 
 		formThing.getOperation("upload-file")?.let { operation ->
-			uploadFile(formThing.id, operation.id, field, inputStream, onSuccess, onError)
+			performUpload(formThing.id, operation.id, field, inputStream, onSuccess, onError)
 		}
 	}
 
-	fun uploadFile(thingId: String, operationId: String, field: DocumentField, inputStream: InputStream,
-		onSuccess: (DocumentRemoteFile) -> Unit,
-		onError: (Exception) -> Unit) {
+	private fun performUpload(thingId: String, operationId: String, field: DocumentField, inputStream: InputStream,
+		onSuccess: (DocumentRemoteFile) -> Unit, onError: (Exception) -> Unit) {
 
 		val filePath = field.currentValue?.toString()
 
 		filePath?.also {
 			val fileName = AndroidUtil.getFileNameFromPath(filePath)
 
-			apioConsumer.performOperation(thingId, operationId, fillFields = { _ ->
+			apioConsumer.performOperation(thingId, operationId, fillFields = {
 				mapOf(
 					Pair("binaryFile", inputStream),
 					Pair("name", fileName),
 					Pair("title", fileName)
 				)
-			}, onComplete = { result ->
+			}) { result ->
 				inputStream.close()
 
 				result.fold({ thing ->
 					onSuccess(DocumentRemoteFile(thing.id, fileName))
 				}, onError)
-			})
+			}
 		}
 	}
 }
