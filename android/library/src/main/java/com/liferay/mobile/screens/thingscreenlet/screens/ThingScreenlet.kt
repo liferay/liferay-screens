@@ -96,14 +96,12 @@ open class ThingScreenlet @JvmOverloads constructor(
 	val baseView: BaseView? get() = layout as? BaseView
 
 	@JvmOverloads
-	fun load(thingId: String, scenario: Scenario? = null, locale: Locale = Locale.getDefault(),
+	fun load(thingId: String, scenario: Scenario = this.scenario, locale: Locale = Locale.getDefault(),
 		onComplete: ((Result<ThingScreenlet, Exception>) -> Unit)? = null) {
 
 		apioConsumer.fetchResource(thingId, RequestConfiguration(AcceptLanguage(locale))) { result ->
 			result.success {
-				if (scenario != null) {
-					this.scenario = scenario
-				}
+				this.scenario = scenario
 
 				thing = it
 
@@ -144,15 +142,15 @@ open class ThingScreenlet @JvmOverloads constructor(
 		typedArray.use {
 			layoutId = getResourceId(R.styleable.ThingScreenlet_layoutId, 0)
 
-			scenario = getString(R.styleable.ThingScreenlet_scenario).let { scenarioId ->
+			scenario = getString(R.styleable.ThingScreenlet_scenario)?.let { scenarioId ->
 				Scenario.stringToScenario?.invoke(scenarioId) ?: run {
-					when (scenarioId?.toLowerCase()) {
+					when (scenarioId.toLowerCase()) {
 						"detail", "" -> Detail
 						"row" -> Row
 						else -> Custom(scenarioId)
 					}
 				}
-			}
+			} ?: Detail
 		}
 	}
 
