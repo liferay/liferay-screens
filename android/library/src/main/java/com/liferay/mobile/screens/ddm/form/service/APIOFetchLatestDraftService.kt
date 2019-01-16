@@ -17,11 +17,12 @@ package com.liferay.mobile.screens.ddm.form.service
 import com.liferay.apio.consumer.exception.ThingWithoutOperationException
 import com.liferay.apio.consumer.model.Operation
 import com.liferay.apio.consumer.model.Thing
+import java.util.*
 
 /**
  * @author Paulo Cruz
  */
-class APIOFetchLatestDraftService : BaseAPIOService() {
+class APIOFetchLatestDraftService : BaseAPIOService(Locale.getDefault()) {
 
 	private val operationId = "fetch-latest-draft"
 

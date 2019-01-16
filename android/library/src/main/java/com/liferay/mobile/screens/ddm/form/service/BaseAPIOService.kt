@@ -24,9 +24,12 @@ import java.util.*
 /**
  * @author Paulo Cruz
  */
-abstract class BaseAPIOService(locale: Locale = Locale.getDefault()) {
+abstract class BaseAPIOService(locale: Locale? = null) {
 
 	@JvmField
-	val apioConsumer: ApioConsumer = ApioConsumer(*ServiceUtil.getAuthHeadersArray(), AcceptLanguage(locale))
+	val apioConsumer: ApioConsumer = ApioConsumer(
+		*ServiceUtil.getAuthHeadersArray(),
+		locale?.let { AcceptLanguage(locale) }
+	)
 
 }
