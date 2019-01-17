@@ -190,7 +190,7 @@ class DDMFormView @JvmOverloads constructor(
 		sendEvent(Event.CustomEvent(customEvent.name, this, thing))
 	}
 
-	override fun showErrorMessage(exception: Exception?) {
+	override fun showErrorMessage(exception: Throwable?) {
 		val icon = R.drawable.default_error_icon
 		val backgroundColor = ContextCompat.getColor(context, R.color.lightRed)
 		val textColor = ContextCompat.getColor(context, android.R.color.white)

@@ -27,7 +27,7 @@ class APIOFetchLatestDraftService : BaseAPIOService(Locale.getDefault()) {
 	private val operationId = "fetch-latest-draft"
 
 	fun fetchLatestDraft(formThing: Thing, onSuccess: (Thing) -> Unit,
-		onError: (Exception) -> Unit) {
+		onError: (Throwable) -> Unit) {
 
 		formThing.getOperation(operationId)?.let {
 			performFetch(formThing, it, onSuccess, onError)
@@ -35,7 +35,7 @@ class APIOFetchLatestDraftService : BaseAPIOService(Locale.getDefault()) {
 	}
 
 	private fun performFetch(thing: Thing, operation: Operation, onSuccess: (Thing) -> Unit,
-		onError: (Exception) -> Unit) {
+		onError: (Throwable) -> Unit) {
 
 		apioConsumer.performOperation(thing.id, operation.id) { result ->
 			result.fold(onSuccess, onError)

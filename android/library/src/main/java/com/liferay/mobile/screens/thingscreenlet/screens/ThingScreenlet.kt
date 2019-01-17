@@ -19,9 +19,6 @@ import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
-import com.github.kittinunf.result.Result
-import com.github.kittinunf.result.failure
-import com.github.kittinunf.result.success
 import com.liferay.apio.consumer.ApioConsumer
 import com.liferay.apio.consumer.configuration.AcceptLanguage
 import com.liferay.apio.consumer.configuration.RequestConfiguration
@@ -97,22 +94,22 @@ open class ThingScreenlet @JvmOverloads constructor(
 
 	@JvmOverloads
 	fun load(thingId: String, scenario: Scenario = this.scenario, locale: Locale = Locale.getDefault(),
-		onComplete: ((Result<ThingScreenlet, Exception>) -> Unit)? = null) {
+		onComplete: ((Result<ThingScreenlet>) -> Unit)? = null) {
 
 		apioConsumer.fetchResource(thingId, RequestConfiguration(AcceptLanguage(locale))) { result ->
-			result.success {
+			result.onSuccess {
 				this.scenario = scenario
 
 				thing = it
 
-				onComplete?.invoke(Result.of { this })
+				onComplete?.invoke(Result.success(this))
 			}
 
-			result.failure {
+			result.onFailure {
 				LiferayLogger.e(it.message, it)
 				baseView?.showError(it.message)
 
-				onComplete?.invoke(Result.error(it))
+				onComplete?.invoke(Result.failure(it))
 			}
 		}
 	}
@@ -176,7 +173,7 @@ open class ThingScreenlet @JvmOverloads constructor(
 	}
 
 	override fun onSaveInstanceState(): Parcelable {
-		var savedState = ThingScreenletSavedState(super.onSaveInstanceState())
+		val savedState = ThingScreenletSavedState(super.onSaveInstanceState())
 
 		savedState.scenario = scenario
 		thing?.let {

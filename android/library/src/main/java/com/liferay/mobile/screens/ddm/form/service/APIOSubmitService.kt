@@ -30,7 +30,7 @@ import okhttp3.HttpUrl
 class APIOSubmitService : BaseAPIOService() {
 
 	fun submit(formThing: Thing, currentRecordThing: Thing?, fields: MutableList<Field<*>>,
-		isDraft: Boolean = false, onSuccess: (Thing) -> Unit, onError: (Exception) -> Unit) {
+		isDraft: Boolean = false, onSuccess: (Thing) -> Unit, onError: (Throwable) -> Unit) {
 
 		val recordsRelation = formThing.attributes["formRecords"] as? Relation
 
@@ -41,9 +41,8 @@ class APIOSubmitService : BaseAPIOService() {
 		} ?: onError(ThingNotFoundException())
 	}
 
-	fun submit(thingId: String, operationId: String,
-		fields: MutableList<Field<*>>, isDraft: Boolean,
-		onSuccess: (Thing) -> Unit, onError: (Exception) -> Unit) {
+	fun submit(thingId: String, operationId: String, fields: MutableList<Field<*>>, isDraft: Boolean,
+		onSuccess: (Thing) -> Unit, onError: (Throwable) -> Unit) {
 
 		getThing(thingId, { thing ->
 			thing.getOperation(operationId)?.let { operation ->
@@ -53,7 +52,7 @@ class APIOSubmitService : BaseAPIOService() {
 	}
 
 	private fun getThing(thingId: String, onSuccess: (Thing) -> Unit,
-		onError: (Exception) -> Unit) {
+		onError: (Throwable) -> Unit) {
 
 		apioConsumer.fetchResource(thingId) { result ->
 			result.fold(onSuccess, onError)
@@ -61,8 +60,7 @@ class APIOSubmitService : BaseAPIOService() {
 	}
 
 	private fun performSubmit(thing: Thing, operation: Operation, fields: MutableList<Field<*>>,
-		isDraft: Boolean = false, onSuccess: (Thing) -> Unit,
-		onError: (Exception) -> Unit) {
+		isDraft: Boolean = false, onSuccess: (Thing) -> Unit, onError: (Throwable) -> Unit) {
 
 		apioConsumer.performOperation(thing.id, operation.id, fillFields = {
 			mapOf(

@@ -18,8 +18,6 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.widget.FrameLayout
-import com.github.kittinunf.result.failure
-import com.github.kittinunf.result.success
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.util.FormConstants
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
@@ -55,13 +53,13 @@ class DDMFormScreenlet @JvmOverloads constructor(context: Context, attrs: Attrib
 			val thingId = getResourcePath(it)
 
 			screenlet.load(thingId) { result ->
-				result.success { thingScreenlet ->
+				result.onSuccess { thingScreenlet ->
 					(thingScreenlet.baseView as? DDMFormView)?.let { ddmFormView ->
 						listener?.onFormLoaded(ddmFormView.formInstance)
 					}
 				}
 
-				result.failure { exception ->
+				result.onFailure { exception ->
 					listener?.onError(exception)
 				}
 			}

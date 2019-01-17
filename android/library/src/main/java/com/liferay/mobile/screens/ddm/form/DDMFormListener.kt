@@ -24,6 +24,6 @@ interface DDMFormListener {
 
 	fun onFormLoaded(formInstance: FormInstance)
 
-	fun onError(exception: Exception)
+	fun onError(exception: Throwable)
 
 }

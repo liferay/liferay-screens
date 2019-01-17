@@ -29,7 +29,7 @@ class APIOEvaluateService : BaseAPIOService(Locale.getDefault()) {
 	private val operationId = "evaluate-context"
 
 	fun evaluateContext(formThing: Thing, fields: MutableList<Field<*>>, onSuccess: (Thing) -> Unit,
-		onError: (Exception) -> Unit) {
+		onError: (Throwable) -> Unit) {
 
 		formThing.getOperation(operationId)?.let { operation ->
 			performEvaluate(formThing.id, operation.id, fields, onSuccess, onError)
@@ -37,7 +37,7 @@ class APIOEvaluateService : BaseAPIOService(Locale.getDefault()) {
 	}
 
 	private fun performEvaluate(thingId: String, operationId: String, fields: MutableList<Field<*>>,
-		onSuccess: (Thing) -> Unit, onError: (Exception) -> Unit) {
+		onSuccess: (Thing) -> Unit, onError: (Throwable) -> Unit) {
 
 		apioConsumer.performOperation(thingId, operationId, fillFields = {
 			mapOf(

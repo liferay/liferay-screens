@@ -48,7 +48,7 @@ interface DDMFormViewContract {
 
 		fun sendCustomEvent(customEvent: FormEvents, thing: Thing)
 
-		fun showErrorMessage(exception: Exception?)
+		fun showErrorMessage(exception: Throwable?)
 
 		fun showModalEvaluateContextLoading()
 
@@ -93,7 +93,7 @@ interface DDMFormViewContract {
 
 		fun uploadFile(
 			thing: Thing, field: DocumentField, inputStream: InputStream, onSuccess: (DocumentRemoteFile) -> Unit,
-			onError: (Exception) -> Unit)
+			onError: (Throwable) -> Unit)
 	}
 }
 

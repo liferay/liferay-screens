@@ -20,7 +20,6 @@ import android.os.Parcel
 import android.os.Parcelable
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import com.github.kittinunf.result.success
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.apio.consumer.model.get
 import com.liferay.mobile.screens.testapp.R
@@ -82,7 +81,7 @@ class ThingMainActivity : AppCompatActivity(), ScreenletEvents {
 					val apioConsumer = thingScreenlet.apioConsumer
 
 					apioConsumer.getOperationForm(expects) { result ->
-						result.success {
+						result.onSuccess {
 							startActivity<EditActivity>(
 								"properties" to it.map { it.name },
 								"values" to emptyMap<String, String>(),

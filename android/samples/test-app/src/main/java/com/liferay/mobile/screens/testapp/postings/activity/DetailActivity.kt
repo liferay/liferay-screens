@@ -17,9 +17,6 @@ package com.liferay.mobile.screens.testapp.postings.activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import com.github.kittinunf.result.failure
-import com.github.kittinunf.result.success
-import com.liferay.apio.consumer.ApioConsumer
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.mobile.screens.testapp.R
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
@@ -59,19 +56,20 @@ class DetailActivity : AppCompatActivity(), ScreenletEvents {
 
 			val apioConsumer = thingScreenlet.apioConsumer
 
-			operation.form?.id?.let { expects ->
+			operation.expects?.let { expects ->
 				apioConsumer.getOperationForm(expects) { result ->
-					result.success { properties ->
+					result.onSuccess { properties ->
 						startActivity<EditActivity>(
 							"properties" to properties.map { it.name },
 							"values" to values,
-							"id" to thing.id, "operation" to operation.id
+							"id" to thing.id,
+							"operation" to operation.id
 						)
 					}
 				}
 			} ?: run {
 				apioConsumer.performOperation(thing.id, operation.id) { result ->
-					result.failure {
+					result.onFailure {
 						LiferayLogger.e(it.message, it)
 					}
 				}

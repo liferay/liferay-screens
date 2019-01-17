@@ -26,8 +26,7 @@ import java.io.InputStream
 class APIOUploadService : BaseAPIOService() {
 
 	fun uploadFile(formThing: Thing, field: DocumentField, inputStream: InputStream,
-		onSuccess: (DocumentRemoteFile) -> Unit,
-		onError: (Exception) -> Unit) {
+		onSuccess: (DocumentRemoteFile) -> Unit, onError: (Throwable) -> Unit) {
 
 		formThing.getOperation("upload-file")?.let { operation ->
 			performUpload(formThing.id, operation.id, field, inputStream, onSuccess, onError)
@@ -35,7 +34,7 @@ class APIOUploadService : BaseAPIOService() {
 	}
 
 	private fun performUpload(thingId: String, operationId: String, field: DocumentField, inputStream: InputStream,
-		onSuccess: (DocumentRemoteFile) -> Unit, onError: (Exception) -> Unit) {
+		onSuccess: (DocumentRemoteFile) -> Unit, onError: (Throwable) -> Unit) {
 
 		val filePath = field.currentValue?.toString()
 
