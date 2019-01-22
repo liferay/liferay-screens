@@ -80,13 +80,9 @@ dependencies {
 	testImplementation libraries.mockito
 
 	// thingScreenlet
-	implementation libraries.gson
-	api libraries.okhttp
 	api libraries.circle_image_view
 
 	implementation libraries.kotlin
-
-	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 apply from: '../bintray.gradle'

@@ -22,7 +22,6 @@ import com.liferay.apio.consumer.model.Thing
 import com.liferay.mobile.screens.ddl.form.util.FormConstants
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.ddm.form.serializer.FieldValueSerializer
-import okhttp3.HttpUrl
 
 /**
  * @author Paulo Cruz
