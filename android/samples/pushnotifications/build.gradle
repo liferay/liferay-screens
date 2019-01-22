@@ -7,6 +7,7 @@ android {
 	defaultConfig {
 		minSdkVersion rootProject.ext.minSdkVersion
 		targetSdkVersion rootProject.ext.targetSdkVersion
+		testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
 		versionCode rootProject.ext.versionCode
 		versionName rootProject.ext.versionName
 		applicationId "com.liferay.mobile.pushnotifications"
@@ -31,6 +32,9 @@ dependencies {
 	implementation libraries.picasso
 
 	implementation project(':liferay-material-viewset')
+
+	androidTestImplementation 'com.android.support.test:runner:1.0.2'
+	androidTestImplementation 'com.android.support.test:rules:1.0.2'
 }
 
 apply from: '../../bintray.gradle'

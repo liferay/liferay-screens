@@ -40,20 +40,20 @@ dependencies {
 	implementation libraries.design
 	implementation libraries.picasso
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-	implementation 'com.android.support:cardview-v7:26.1.0'
+	implementation "com.android.support:cardview-v7:28.0.0"
 
-	implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-	debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5'
-	releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-	testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+	implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+	debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+	releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+	testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
 
 	androidTestImplementation libraries.design
 
-	androidTestImplementation 'com.android.support.test:runner:1.0.1'
-	androidTestImplementation 'com.android.support.test:rules:1.0.1'
-	androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-	androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.0.1'
-	androidTestImplementation 'com.android.support.test.espresso:espresso-idling-resource:3.0.1'
+	androidTestImplementation 'com.android.support.test:runner:1.0.2'
+	androidTestImplementation 'com.android.support.test:rules:1.0.2'
+	androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+	androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.0.2'
+	androidTestImplementation 'com.android.support.test.espresso:espresso-idling-resource:3.0.2'
 }
 
 repositories {
