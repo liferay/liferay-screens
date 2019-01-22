@@ -15,7 +15,8 @@
         android:icon="@drawable/liferay_icon"
         android:label="@string/app_name"
         android:supportsRtl="false"
-        android:theme="@style/Theme.AppCompat.Light">
+        android:theme="@style/Theme.AppCompat.Light"
+        android:usesCleartextTraffic="true">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
