@@ -45,7 +45,7 @@ detekt {
 
 ext {
 	minSdkVersion = 16
-	compileSdkVersion = 26
+	compileSdkVersion = 28
 	targetSdkVersion = compileSdkVersion
 	buildToolsVersion = '28.0.3'
 
@@ -72,7 +72,7 @@ ext {
 	allLicenses = ["LGPL-2.1"]
 }
 
-def supportLibsVersion = '27.1.1'
+def supportLibsVersion = '28.0.0'
 
 ext.libraries = [apio_consumer      : 'com.liferay.mobile:apio-consumer-android:0.0.10',
                  appCompat          : 'com.android.support:appcompat-v7:' + supportLibsVersion,
