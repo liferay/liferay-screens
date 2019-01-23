@@ -23,6 +23,7 @@ All notable changes to this project will be documented in this file.
 * Support forms with ThingScreenlet
 * Add Lexicon Theme for Form fields
 * Add DDMFormScreenlet as a Wrapper for ThingScreenlet that handles form instances
+* DDMFormScreenlet - Add support for form translations
 
 ### Refactor
 
