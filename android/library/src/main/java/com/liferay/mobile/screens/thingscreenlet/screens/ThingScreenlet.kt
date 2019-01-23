@@ -47,7 +47,7 @@ open class ThingScreenlet @JvmOverloads constructor(
 	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
 	BaseScreenlet(context, attrs, defStyleAttr) {
 
-	val apioConsumer = ApioConsumer(ServiceUtil.getAuthHeaders())
+	val apioConsumer = ApioConsumer(*ServiceUtil.getAuthHeadersArray(), AcceptLanguage(Locale.getDefault()))
 
 	open var scenario: Scenario = Detail
 
