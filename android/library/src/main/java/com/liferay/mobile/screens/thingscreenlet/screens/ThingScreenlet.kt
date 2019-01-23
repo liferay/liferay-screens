@@ -177,15 +177,15 @@ open class ThingScreenlet @JvmOverloads constructor(
 		return savedState
 	}
 
-    override fun onRestoreInstanceState(state: Parcelable?) {
-        if (state is ThingScreenletSavedState) {
-            savedInstanceState = state
-            scenario = state.scenario
-            thing = state.thing
-        }
+	override fun onRestoreInstanceState(state: Parcelable?) {
+		if (state is ThingScreenletSavedState) {
+			savedInstanceState = state
+			scenario = state.scenario
+			thing = state.thing
+		}
 
-        super.onRestoreInstanceState(state)
-    }
+		super.onRestoreInstanceState(state)
+	}
 }
 
 

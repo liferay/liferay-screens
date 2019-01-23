@@ -22,11 +22,11 @@ import com.liferay.mobile.screens.context.LiferayServerContext
  */
 class ServiceUtil {
 
-    companion object {
-        fun getAuthHeaders(): List<RequestHeader> =
-            LiferayServerContext.getAuthHeaders().entries.map { RequestHeader(it.toPair()) }
+	companion object {
+		fun getAuthHeaders(): List<RequestHeader> =
+			LiferayServerContext.getAuthHeaders().entries.map { RequestHeader(it.toPair()) }
 
-        fun getAuthHeadersArray(): Array<RequestHeader> = getAuthHeaders().toTypedArray()
-    }
+		fun getAuthHeadersArray(): Array<RequestHeader> = getAuthHeaders().toTypedArray()
+	}
 
 }
