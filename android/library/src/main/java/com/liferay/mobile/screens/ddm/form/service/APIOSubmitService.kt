@@ -22,7 +22,6 @@ import com.liferay.apio.consumer.model.Thing
 import com.liferay.mobile.screens.ddl.form.util.FormConstants
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.ddm.form.serializer.FieldValueSerializer
-import okhttp3.HttpUrl
 
 /**
  * @author Paulo Cruz
@@ -30,7 +29,7 @@ import okhttp3.HttpUrl
 class APIOSubmitService : BaseAPIOService() {
 
 	fun submit(formThing: Thing, currentRecordThing: Thing?, fields: MutableList<Field<*>>,
-		isDraft: Boolean = false, onSuccess: (Thing) -> Unit, onError: (Exception) -> Unit) {
+		isDraft: Boolean = false, onSuccess: (Thing) -> Unit, onError: (Throwable) -> Unit) {
 
 		val recordsRelation = formThing.attributes["formRecords"] as? Relation
 
@@ -43,7 +42,7 @@ class APIOSubmitService : BaseAPIOService() {
 
 	fun submit(thingId: String, operationId: String,
 		fields: MutableList<Field<*>>, isDraft: Boolean,
-		onSuccess: (Thing) -> Unit, onError: (Exception) -> Unit) {
+		onSuccess: (Thing) -> Unit, onError: (Throwable) -> Unit) {
 
 		getThing(thingId, { thing ->
 			thing.getOperation(operationId)?.let { operation ->
@@ -53,26 +52,23 @@ class APIOSubmitService : BaseAPIOService() {
 	}
 
 	private fun getThing(thingId: String, onSuccess: (Thing) -> Unit,
-		onError: (Exception) -> Unit) {
+		onError: (Throwable) -> Unit) {
 
-		HttpUrl.parse(thingId)?.let { httpUrl ->
-			apioConsumer.fetch(httpUrl, onComplete = { result ->
-				result.fold(onSuccess, onError)
-			})
-		} ?: onError(ThingNotFoundException())
+		apioConsumer.fetchResource(thingId) { result ->
+			result.fold(onSuccess, onError)
+		}
 	}
 
 	private fun performSubmit(thing: Thing, operation: Operation, fields: MutableList<Field<*>>,
-		isDraft: Boolean = false, onSuccess: (Thing) -> Unit,
-		onError: (Exception) -> Unit) {
+		isDraft: Boolean = false, onSuccess: (Thing) -> Unit, onError: (Throwable) -> Unit) {
 
-		apioConsumer.performOperation(thing.id, operation.id, fillFields = { _ ->
+		apioConsumer.performOperation(thing.id, operation.id, fillFields = {
 			mapOf(
 				Pair("isDraft", isDraft),
 				Pair(FormConstants.FIELD_VALUES, FieldValueSerializer.serialize(fields) { !it.isTransient })
 			)
-		}, onComplete = { result ->
+		}) { result ->
 			result.fold(onSuccess, onError)
-		})
+		}
 	}
 }
