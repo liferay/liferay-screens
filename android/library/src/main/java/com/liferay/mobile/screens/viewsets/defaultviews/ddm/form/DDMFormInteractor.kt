@@ -29,26 +29,26 @@ import java.io.InputStream
  */
 class DDMFormInteractor {
 	fun evaluateContext(formThing: Thing, fields: MutableList<Field<*>>,
-		onSuccess: (Thing) -> Unit, onError: (Exception) -> Unit) {
+		onSuccess: (Thing) -> Unit, onError: (Throwable) -> Unit) {
 
 		APIOEvaluateService().evaluateContext(formThing, fields, onSuccess, onError)
 	}
 
 	fun fetchLatestDraft(formThing: Thing, onSuccess: (Thing) -> Unit,
-		onError: (Exception) -> Unit) {
+		onError: (Throwable) -> Unit) {
 
 		APIOFetchLatestDraftService().fetchLatestDraft(formThing, onSuccess, onError)
 	}
 
 	fun submit(formThing: Thing, currentRecordThing: Thing?, fields: MutableList<Field<*>>,
-		isDraft: Boolean = false, onSuccess: (Thing) -> Unit, onError: (Exception) -> Unit) {
+		isDraft: Boolean = false, onSuccess: (Thing) -> Unit, onError: (Throwable) -> Unit) {
 
 		APIOSubmitService().submit(formThing, currentRecordThing, fields, isDraft, onSuccess, onError)
 	}
 
 	fun uploadFile(formThing: Thing, field: DocumentField, inputStream: InputStream,
 		onSuccess: (DocumentRemoteFile) -> Unit,
-		onError: (Exception) -> Unit) {
+		onError: (Throwable) -> Unit) {
 
 		APIOUploadService().uploadFile(formThing, field, inputStream, onSuccess, onError)
 	}

@@ -97,7 +97,7 @@ public class DDLDocumentFieldView extends BaseDDLFieldTextView<DocumentField>
         documentFieldSubscriber.onNext(documentField);
     }
 
-    public void onUploadError(Exception e) {
+    public void onUploadError(Throwable e) {
         getField().moveToUploadFailureState();
 
         refresh();
