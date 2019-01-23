@@ -47,19 +47,25 @@ class DetailActivity : AppCompatActivity(), ScreenletEvents {
 	}
 
 	override fun <T : BaseView> onCustomEvent(name: String, screenlet: ThingScreenlet, parentView: T?, thing: Thing) {
-		val operationKey = thing.operations.keys.filter { it.contains(name) }.firstOrNull()
-
-		operationKey?.let {
-			val operation = thing.operations[it]
-
+		thing.operations.keys.firstOrNull {
+			it.contains(name)
+		}.let {
+			thing.operations[it]
+		}?.let { operation ->
 			val values = thing.attributes.filterValues { it is String }
+			val apioConsumer = thingScreenlet.apioConsumer
 
-			operation!!.form?.let {
-				it.getFormProperties({
-					startActivity<EditActivity>("properties" to it.map { it.name }, "values" to values,
-						"id" to thing.id, "operation" to operation.id)
-				}, {})
-			} ?: ApioConsumer().performOperation(thing.id, operation.id)
+			operation.expects?.let { expects ->
+				apioConsumer.getOperationForm(expects) {
+					it.onSuccess { properties ->
+						startActivity<EditActivity>(
+							"properties" to properties.map { property -> property.name },
+							"values" to values,
+							"id" to thing.id, "operation" to operation.id
+						)
+					}
+				}
+			} ?: apioConsumer.performOperation(thing.id, operation.id) { }
 		}
 	}
 
