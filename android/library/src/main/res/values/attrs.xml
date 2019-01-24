@@ -150,6 +150,7 @@
 
     <declare-styleable name="DDMFormScreenlet">
         <attr name="formInstanceId"/>
+        <attr name="layoutId"/>
     </declare-styleable>
 
     <declare-styleable name="ForgotPasswordScreenlet">
