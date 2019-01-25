@@ -15,12 +15,15 @@
 package com.liferay.mobile.screens.ddm.form
 
 import android.content.Context
-import android.content.res.TypedArray
 import android.util.AttributeSet
-import android.view.View
 import android.widget.FrameLayout
 import com.liferay.mobile.screens.R
+import com.liferay.mobile.screens.ddl.form.util.FormConstants.Companion.DEFAULT_TIMEOUT
 import com.liferay.mobile.screens.ddm.form.service.APIOGetFormService
+import com.liferay.mobile.screens.util.getInt
+import com.liferay.mobile.screens.util.getLong
+import com.liferay.mobile.screens.util.getStyledAttributes
+import com.liferay.mobile.screens.util.use
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.DDMFormView
 
 /**
@@ -29,25 +32,28 @@ import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.DDMFormView
 class DDMFormScreenlet @JvmOverloads constructor(
 	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : FrameLayout(context, attrs, defStyleAttr) {
 
-	var formInstanceId: Long?
-	var layoutId: Int
+	var formInstanceId: Long? = null
+	var layoutId = R.layout.ddm_form_default
+	var syncFormTimeout = DEFAULT_TIMEOUT
 
-	var ddmFormView: DDMFormView? = null
 	var listener: DDMFormListener? = null
 
+	private var ddmFormView: DDMFormView? = null
 	private val service = APIOGetFormService()
 
 	init {
-		val typedArray: TypedArray =
-			context.theme.obtainStyledAttributes(attrs, R.styleable.DDMFormScreenlet, defStyleAttr, 0)
-
-		formInstanceId = typedArray.getString(R.styleable.DDMFormScreenlet_formInstanceId)?.toLongOrNull()
-		layoutId = typedArray.getString(R.styleable.DDMFormScreenlet_layoutId)?.toIntOrNull()
-			?: R.layout.ddm_form_default
-
-		typedArray.recycle()
+		getStyledAttributes(attrs, R.styleable.DDMFormScreenlet)?.use {
+			formInstanceId = getLong(R.styleable.DDMFormScreenlet_formInstanceId)
+			layoutId = getInt(R.styleable.DDMFormScreenlet_layoutId) ?: R.layout.ddm_form_default
+			syncFormTimeout = getLong(R.styleable.DDMFormScreenlet_syncFormTimeout) ?: DEFAULT_TIMEOUT
+		}
 
 		ddmFormView = inflate(context, layoutId, null) as DDMFormView
+
+		ddmFormView?.config?.apply {
+			syncFormTimeout = this@DDMFormScreenlet.syncFormTimeout
+		}
+
 		addView(ddmFormView)
 	}
 

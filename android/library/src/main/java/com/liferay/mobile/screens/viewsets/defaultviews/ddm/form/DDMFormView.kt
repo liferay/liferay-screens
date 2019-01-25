@@ -67,6 +67,8 @@ class DDMFormView @JvmOverloads constructor(
 	RelativeLayout(context, attrs, defStyleAttr), DDLDocumentFieldView.UploadListener,
 	DDMFormViewContract.DDMFormView {
 
+	val config = DDMFormViewConfig()
+
 	private val presenter = DDMFormPresenter(this)
 	private val layoutIds = mutableMapOf<Field.EditorType, Int>()
 
@@ -257,7 +259,7 @@ class DDMFormView @JvmOverloads constructor(
 			presenter.fieldModelsChanged(it)
 		}.doOnError {
 			LiferayLogger.e(it.message, it)
-		}.debounce(500, TimeUnit.MILLISECONDS)
+		}.debounce(config.syncFormTimeout, TimeUnit.MILLISECONDS)
 			.observeOn(AndroidSchedulers.mainThread())
 			.subscribe({ field ->
 				thing?.let {

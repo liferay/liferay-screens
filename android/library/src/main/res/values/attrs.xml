@@ -151,6 +151,7 @@
     <declare-styleable name="DDMFormScreenlet">
         <attr name="formInstanceId"/>
         <attr name="layoutId"/>
+        <attr name="syncFormTimeout"/>
     </declare-styleable>
 
     <declare-styleable name="ForgotPasswordScreenlet">
