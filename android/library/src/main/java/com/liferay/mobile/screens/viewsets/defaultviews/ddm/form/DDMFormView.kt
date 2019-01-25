@@ -67,8 +67,6 @@ class DDMFormView @JvmOverloads constructor(
 	RelativeLayout(context, attrs, defStyleAttr), DDLDocumentFieldView.UploadListener,
 	DDMFormViewContract.DDMFormView {
 
-	val config = DDMFormViewConfig()
-
 	private val presenter = DDMFormPresenter(this)
 	private val layoutIds = mutableMapOf<Field.EditorType, Int>()
 
@@ -83,6 +81,7 @@ class DDMFormView @JvmOverloads constructor(
 
 	internal lateinit var formInstance: FormInstance
 
+	override val config = DDMFormViewConfig()
 	override var screenlet: ThingScreenlet? = null
 
 	override var thing: Thing? by converter<FormInstance> {
