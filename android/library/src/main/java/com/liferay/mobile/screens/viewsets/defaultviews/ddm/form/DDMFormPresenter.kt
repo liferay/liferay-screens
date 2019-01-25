@@ -122,6 +122,8 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 	}
 
 	override fun submit(thing: Thing, formInstance: FormInstance, isDraft: Boolean) {
+		if (isDraft && !view.config.autosaveDraftEnabled) return
+
 		formInstanceState = if (isDraft) FormInstanceState.SAVING_DRAFT else FormInstanceState.SUBMITTING
 		val fields = formInstance.ddmStructure.fields
 		view.isSubmitEnabled(isDraft)

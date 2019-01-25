@@ -32,6 +32,7 @@ class DDMFormScreenlet @JvmOverloads constructor(
 	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : FrameLayout(context, attrs, defStyleAttr) {
 
 	var autoloadDraftEnabled: Boolean = true
+	var autosaveDraftEnabled: Boolean = true
 	var formInstanceId: Long? = null
 	var layoutId = R.layout.ddm_form_default
 	var syncFormTimeout = DEFAULT_TIMEOUT
@@ -44,6 +45,7 @@ class DDMFormScreenlet @JvmOverloads constructor(
 	init {
 		getStyledAttributes(attrs, R.styleable.DDMFormScreenlet)?.use {
 			autoloadDraftEnabled = getBoolean(R.styleable.DDMFormScreenlet_autoloadDraftEnabled, true)
+			autosaveDraftEnabled = getBoolean(R.styleable.DDMFormScreenlet_autosaveDraftEnabled, true)
 			formInstanceId = getLong(R.styleable.DDMFormScreenlet_formInstanceId)
 			layoutId = getInt(R.styleable.DDMFormScreenlet_layoutId, R.layout.ddm_form_default)
 			syncFormTimeout = getLong(R.styleable.DDMFormScreenlet_syncFormTimeout, DEFAULT_TIMEOUT)
@@ -53,6 +55,7 @@ class DDMFormScreenlet @JvmOverloads constructor(
 
 		ddmFormView?.config?.apply {
 			autoloadDraftEnabled = this@DDMFormScreenlet.autoloadDraftEnabled
+			autosaveDraftEnabled = this@DDMFormScreenlet.autosaveDraftEnabled
 			syncFormTimeout = this@DDMFormScreenlet.syncFormTimeout
 		}
 

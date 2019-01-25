@@ -150,6 +150,7 @@
 
     <declare-styleable name="DDMFormScreenlet">
         <attr name="autoloadDraftEnabled"/>
+        <attr name="autosaveDraftEnabled"/>
         <attr name="formInstanceId"/>
         <attr name="layoutId"/>
         <attr name="syncFormTimeout"/>
