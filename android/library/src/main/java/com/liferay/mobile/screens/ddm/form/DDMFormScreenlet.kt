@@ -20,7 +20,6 @@ import android.widget.FrameLayout
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.util.FormConstants.Companion.DEFAULT_TIMEOUT
 import com.liferay.mobile.screens.ddm.form.service.APIOGetFormService
-import com.liferay.mobile.screens.util.getInt
 import com.liferay.mobile.screens.util.getLong
 import com.liferay.mobile.screens.util.getStyledAttributes
 import com.liferay.mobile.screens.util.use
@@ -44,8 +43,8 @@ class DDMFormScreenlet @JvmOverloads constructor(
 	init {
 		getStyledAttributes(attrs, R.styleable.DDMFormScreenlet)?.use {
 			formInstanceId = getLong(R.styleable.DDMFormScreenlet_formInstanceId)
-			layoutId = getInt(R.styleable.DDMFormScreenlet_layoutId) ?: R.layout.ddm_form_default
-			syncFormTimeout = getLong(R.styleable.DDMFormScreenlet_syncFormTimeout) ?: DEFAULT_TIMEOUT
+			layoutId = getInt(R.styleable.DDMFormScreenlet_layoutId, R.layout.ddm_form_default)
+			syncFormTimeout = getLong(R.styleable.DDMFormScreenlet_syncFormTimeout, DEFAULT_TIMEOUT)
 		}
 
 		ddmFormView = inflate(context, layoutId, null) as DDMFormView
