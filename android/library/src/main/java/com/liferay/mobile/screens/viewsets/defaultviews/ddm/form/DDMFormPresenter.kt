@@ -198,6 +198,11 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 	}
 
 	private fun fetchLatestDraft(thing: Thing, fields: MutableList<Field<*>>, onComplete: (() -> Unit)?) {
+		if (!view.config.autoloadDraftEnabled) {
+			onComplete?.invoke()
+			return
+		}
+
 		interactor.fetchLatestDraft(thing, {
 			view.hideModalLoading()
 

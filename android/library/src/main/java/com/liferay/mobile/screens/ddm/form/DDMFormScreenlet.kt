@@ -31,6 +31,7 @@ import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.DDMFormView
 class DDMFormScreenlet @JvmOverloads constructor(
 	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : FrameLayout(context, attrs, defStyleAttr) {
 
+	var autoloadDraftEnabled: Boolean = true
 	var formInstanceId: Long? = null
 	var layoutId = R.layout.ddm_form_default
 	var syncFormTimeout = DEFAULT_TIMEOUT
@@ -42,6 +43,7 @@ class DDMFormScreenlet @JvmOverloads constructor(
 
 	init {
 		getStyledAttributes(attrs, R.styleable.DDMFormScreenlet)?.use {
+			autoloadDraftEnabled = getBoolean(R.styleable.DDMFormScreenlet_autoloadDraftEnabled, true)
 			formInstanceId = getLong(R.styleable.DDMFormScreenlet_formInstanceId)
 			layoutId = getInt(R.styleable.DDMFormScreenlet_layoutId, R.layout.ddm_form_default)
 			syncFormTimeout = getLong(R.styleable.DDMFormScreenlet_syncFormTimeout, DEFAULT_TIMEOUT)
@@ -50,6 +52,7 @@ class DDMFormScreenlet @JvmOverloads constructor(
 		ddmFormView = inflate(context, layoutId, null) as DDMFormView
 
 		ddmFormView?.config?.apply {
+			autoloadDraftEnabled = this@DDMFormScreenlet.autoloadDraftEnabled
 			syncFormTimeout = this@DDMFormScreenlet.syncFormTimeout
 		}
 

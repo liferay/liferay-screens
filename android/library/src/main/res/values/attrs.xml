@@ -149,6 +149,7 @@
     </declare-styleable>
 
     <declare-styleable name="DDMFormScreenlet">
+        <attr name="autoloadDraftEnabled"/>
         <attr name="formInstanceId"/>
         <attr name="layoutId"/>
         <attr name="syncFormTimeout"/>
