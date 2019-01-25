@@ -27,13 +27,13 @@ fun TypedArray.getLong(id: Int, defValue: Long): Long = getLong(id) ?: defValue
 fun TypedArray.getLong(id: Int): Long? = this.getString(id)?.toLongOrNull()
 
 fun <R> TypedArray.use(block: TypedArray.() -> R): R {
-    try {
-        return block()
-    } finally {
-        this.recycle()
-    }
+	try {
+		return block()
+	} finally {
+		this.recycle()
+	}
 }
 
 fun View.getStyledAttributes(set: AttributeSet? = null, @StyleableRes attrs: IntArray): TypedArray? {
-    return context.theme.obtainStyledAttributes(set, attrs, 0, 0)
+	return context.theme.obtainStyledAttributes(set, attrs, 0, 0)
 }

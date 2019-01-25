@@ -18,4 +18,4 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddm.form
  * @author Paulo Cruz
  */
 data class DDMFormViewConfig @JvmOverloads constructor(var autoloadDraftEnabled: Boolean = true,
-    var autosaveDraftEnabled: Boolean = true, var syncFormTimeout: Long = 500)
+	var autosaveDraftEnabled: Boolean = true, var syncFormTimeout: Long = 500)

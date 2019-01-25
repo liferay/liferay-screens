@@ -24,20 +24,20 @@ import okhttp3.HttpUrl
  */
 class APIOGetFormService : BaseAPIOService() {
 
-    fun getForm(formInstanceId: Long, serverUrl: String, onSuccess: (Thing) -> Unit,
-        onError: (Exception) -> Unit) {
+	fun getForm(formInstanceId: Long, serverUrl: String, onSuccess: (Thing) -> Unit,
+		onError: (Exception) -> Unit) {
 
-        getFormUrl(formInstanceId, serverUrl)?.let { formUrl ->
-            apioConsumer.fetch(formUrl) { result ->
-                result.fold(onSuccess, onError)
-            }
-        }
-    }
+		getFormUrl(formInstanceId, serverUrl)?.let { formUrl ->
+			apioConsumer.fetch(formUrl) { result ->
+				result.fold(onSuccess, onError)
+			}
+		}
+	}
 
-    private fun getFormUrl(formInstanceId: Long, serverUrl: String): HttpUrl? {
-        val formEndpoint = serverUrl + String.format(FormConstants.URL_TEMPLATE, formInstanceId)
+	private fun getFormUrl(formInstanceId: Long, serverUrl: String): HttpUrl? {
+		val formEndpoint = serverUrl + String.format(FormConstants.URL_TEMPLATE, formInstanceId)
 
-        return HttpUrl.parse(formEndpoint)
-    }
+		return HttpUrl.parse(formEndpoint)
+	}
 
 }
