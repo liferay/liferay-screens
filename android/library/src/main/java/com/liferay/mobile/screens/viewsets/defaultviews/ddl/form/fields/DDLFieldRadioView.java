@@ -45,6 +45,7 @@ public class DDLFieldRadioView extends LinearLayout
     implements DDLFieldViewModel<SelectableOptionsField>, CompoundButton.OnCheckedChangeListener {
 
     protected View parentView;
+    private TextView hintTextView;
     private SelectableOptionsField field;
     private RadioGroup radioGroup;
     private Observable<SelectableOptionsField> onChangedValueObservable = Observable.empty();
@@ -80,6 +81,11 @@ public class DDLFieldRadioView extends LinearLayout
 
         if (this.field.isInline()) {
             radioGroup.setOrientation(HORIZONTAL);
+        }
+
+        if (this.field.getTip() != null && !this.field.getTip().isEmpty()) {
+			hintTextView.setText(this.field.getTip());
+	        hintTextView.setVisibility(VISIBLE);
         }
 
         renderOptions(field);
@@ -196,6 +202,7 @@ public class DDLFieldRadioView extends LinearLayout
         super.onFinishInflate();
 
         radioGroup = findViewById(R.id.radio_group);
+        hintTextView = findViewById(R.id.liferay_ddm_hint);
 
         setSaveEnabled(true);
 

@@ -40,7 +40,8 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
     implements DDLFieldViewModel<T>, TextWatcher {
 
     protected TextView labelTextView;
-    protected EditText textEditText;
+	protected TextView hintTextView;
+	protected EditText textEditText;
     protected View parentView;
     private Observable<T> onChangedValueObservable = Observable.empty();
     private T field;
@@ -108,6 +109,11 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
         if (this.field.getPlaceHolder() != null && !this.field.getPlaceHolder().isEmpty()) {
             textEditText.setHint(this.field.getPlaceHolder());
         }
+
+        if (this.field.getTip() != null && !this.field.getTip().isEmpty()) {
+	        hintTextView.setText(this.field.getTip());
+	        hintTextView.setVisibility(VISIBLE);
+        }
     }
 
     public TextView getLabelTextView() {
@@ -168,6 +174,7 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
         super.onFinishInflate();
 
         labelTextView = findViewById(R.id.liferay_ddl_label);
+        hintTextView = findViewById(R.id.liferay_ddm_hint);
         textEditText = findViewById(R.id.liferay_ddl_edit_text);
         textEditText.addTextChangedListener(this);
 

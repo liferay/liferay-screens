@@ -48,6 +48,7 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
 
     private CheckboxMultipleField field;
     private LinearLayout linearLayout;
+    private TextView hintTextView;
     private Observable<CheckboxMultipleField> onChangedValueObservable = Observable.empty();
 
     public DDMFieldCheckboxMultipleView(Context context) {
@@ -110,6 +111,11 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
                 CheckBox checkBoxView = createCheckBoxView(opt, layoutParams);
                 addView(field, checkBoxView);
             }
+        }
+
+        if (this.field.getTip() != null && !this.field.getTip().isEmpty()) {
+	        hintTextView.setText(this.field.getTip());
+	        hintTextView.setVisibility(VISIBLE);
         }
 
         refresh();
@@ -185,6 +191,7 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
         super.onFinishInflate();
 
         linearLayout = findViewById(R.id.linear_layout_multiple_checkbox);
+        hintTextView = findViewById(R.id.liferay_ddm_hint);
 
         setSaveEnabled(true);
     }
