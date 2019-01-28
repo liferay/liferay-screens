@@ -9,8 +9,8 @@
     <string name="relogin_info">Relogin successful!</string>
     <string name="asset_received_info">AssetEntry received:</string>
     <string name="form_loaded_info">Form loaded!</string>
-	<string name="form_submitted_info">Form submitted!</string>
-	<string name="form_draft_saved_info">Form draft saved!</string>
+    <string name="form_submitted_info">Form submitted!</string>
+    <string name="form_draft_saved_info">Form draft saved!</string>
     <string name="record_loaded_info">Record loaded!</string>
     <string name="record_added_info">Record added!</string>
     <string name="record_updated_info">Record updated!</string>
