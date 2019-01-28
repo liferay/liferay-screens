@@ -66,7 +66,7 @@ class DDMFormView @JvmOverloads constructor(
 	RelativeLayout(context, attrs, defStyleAttr), DDLDocumentFieldView.UploadListener,
 	DDMFormViewContract.DDMFormView {
 
-    private val presenter = DDMFormPresenter(this)
+	private val presenter = DDMFormPresenter(this)
 	private val layoutIds = mutableMapOf<Field.EditorType, Int>()
 
 	private val backButton by bindNonNull<Button>(R.id.liferay_form_back)
@@ -81,10 +81,12 @@ class DDMFormView @JvmOverloads constructor(
 	internal lateinit var formInstance: FormInstance
 
 	override val config = DDMFormViewConfig()
-	
-    override var ddmFormListener: DDMFormListener
-        get() = ddmFormListener
-        set(listener) { ddmFormListener = listener }
+
+	override var ddmFormListener: DDMFormListener
+		get() = ddmFormListener
+		set(listener) {
+			ddmFormListener = listener
+		}
 
 	override var screenlet: ThingScreenlet? = null
 
@@ -193,18 +195,6 @@ class DDMFormView @JvmOverloads constructor(
 	override fun scrollToTop() {
 		scrollView.scrollTo(0, 0)
 	}
-
-//    override fun sendFormErrorEvent(exception: Exception) {
-//        listener?.onError(exception)
-//    }
-//
-//    override fun sendFormEvents(formEvents: FormEvents, property: Any?) {
-//        when (formEvents) {
-//            FormEvents.DRAFT_LOADED -> listener?.onDraftLoaded(property as? FormInstanceRecord)
-//            FormEvents.DRAFT_SAVED -> listener?.onDraftSaved(property as? FormInstanceRecord)
-//            FormEvents.SUBMIT_SUCCESS -> listener?.onFormSubmitted(property as? FormInstanceRecord)
-//        }
-//    }
 
 	override fun showErrorMessage(exception: Throwable?) {
 		val icon = R.drawable.default_error_icon

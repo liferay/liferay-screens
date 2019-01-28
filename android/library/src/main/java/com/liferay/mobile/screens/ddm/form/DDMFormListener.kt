@@ -24,7 +24,7 @@ import java.lang.Exception
  */
 interface DDMFormListener {
 
-    fun onDraftLoaded(formInstanceRecord: FormInstanceRecord?)
+	fun onDraftLoaded(formInstanceRecord: FormInstanceRecord?)
 
 	fun onError(exception: Throwable)
     
@@ -32,6 +32,6 @@ interface DDMFormListener {
 
     fun onFormLoaded(formInstance: FormInstance)
 
-    fun onFormSubmitted(formInstanceRecord: FormInstanceRecord?)
+	fun onFormSubmitted(formInstanceRecord: FormInstanceRecord?)
 
 }

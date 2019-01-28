@@ -84,8 +84,8 @@ public class DDMFormActivity extends ThemeActivity implements DDMFormListener {
 		info(getString(R.string.form_submitted_info));
 	}
 
-	@Override
-	public void onDraftLoaded(FormInstanceRecord formInstanceRecord) {
-    	info(getString(R.string.record_loaded_info));
-	}
+    @Override
+    public void onDraftLoaded(FormInstanceRecord formInstanceRecord) {
+        info(getString(R.string.record_loaded_info));
+    }
 }

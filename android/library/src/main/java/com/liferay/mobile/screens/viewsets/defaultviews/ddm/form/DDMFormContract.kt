@@ -36,8 +36,8 @@ interface DDMFormViewContract {
 	interface DDMFormView {
 
 		val config: DDMFormViewConfig
-		
-        var ddmFormListener: DDMFormListener
+
+		var ddmFormListener: DDMFormListener
 
 		fun isSubmitEnabled(isEnabled: Boolean)
 

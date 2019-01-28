@@ -72,12 +72,12 @@ class DDMFormScreenlet @JvmOverloads constructor(
 					ddmFormView.ddmFormListener?.onFormLoaded(ddmFormView.formInstance)
 				}
 			}, onError = {
-                ddmFormView?.ddmFormListener?.onError(it)
+				ddmFormView?.ddmFormListener?.onError(it)
 			})
 		}
 	}
 
-    fun setDDMFormListener(listener: DDMFormListener) {
-        ddmFormView?.ddmFormListener = listener
-    }
+	fun setDDMFormListener(listener: DDMFormListener) {
+		ddmFormView?.ddmFormListener = listener
+	}
 }

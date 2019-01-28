@@ -138,10 +138,10 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 					view.showSuccessMessage()
 				}
 				view.isSubmitEnabled(true)
-                view.ddmFormListener.onFormSubmitted(formInstanceRecord)
+				view.ddmFormListener.onFormSubmitted(formInstanceRecord)
 			} else {
-                view.ddmFormListener.onDraftSaved(formInstanceRecord)
-            }
+				view.ddmFormListener.onDraftSaved(formInstanceRecord)
+			}
 		}, { exception ->
 			LiferayLogger.e(exception.message)
 			resetFormInstanceState()
@@ -149,7 +149,7 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 			if (!isDraft) {
 				view.isSubmitEnabled(true)
 				view.showErrorMessage(exception)
-                view.ddmFormListener.onError(exception)
+				view.ddmFormListener.onError(exception)
 			}
 		})
 	}
@@ -215,7 +215,7 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 				updateFields(formInstanceRecord.fieldValues, fields)
 			}
 
-            view.ddmFormListener.onDraftLoaded(formInstanceRecord)
+			view.ddmFormListener.onDraftLoaded(formInstanceRecord)
 
 			onComplete?.invoke()
 		}, {
