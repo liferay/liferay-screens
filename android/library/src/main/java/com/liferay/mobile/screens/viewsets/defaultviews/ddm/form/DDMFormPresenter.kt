@@ -15,10 +15,12 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.ddm.form
 
 import com.liferay.apio.consumer.delegates.converter
+import com.liferay.apio.consumer.exception.ThingNotFoundException
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.*
 import com.liferay.mobile.screens.ddm.form.model.*
+import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.mobile.screens.util.LiferayLogger
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.events.FormEvents
 import java.io.InputStream
@@ -140,6 +142,8 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 				}
 				view.isSubmitEnabled(true)
 				view.sendCustomEvent(FormEvents.SUBMIT_SUCCESS, thing)
+
+				resetRecordState()
 			}
 		}, { exception ->
 			LiferayLogger.e(exception.message)
@@ -236,6 +240,19 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 
 	private fun resetFormInstanceState() {
 		formInstanceState = FormInstanceState.IDLE
+	}
+
+	private fun resetRecordState() {
+		currentRecordThing = null
+		formInstanceRecord = null
+
+		val thing = (view as? BaseView)?.thing ?: throw ThingNotFoundException()
+
+		loadInitialContext(thing, view.formInstance)
+
+		val fields = view.formInstance.ddmStructure.fields
+		val emptyValues = fields.map { FieldValue(it.name, "") }
+		updateFields(emptyValues, fields)
 	}
 
 	private fun setOptions(fieldContext: FieldContext, optionsField: OptionsField<*>) {
