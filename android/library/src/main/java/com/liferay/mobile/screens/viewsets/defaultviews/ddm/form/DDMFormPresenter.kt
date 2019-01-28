@@ -20,7 +20,6 @@ import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.*
 import com.liferay.mobile.screens.ddm.form.model.*
 import com.liferay.mobile.screens.util.LiferayLogger
-import com.liferay.mobile.screens.viewsets.defaultviews.ddm.events.FormEvents
 import java.io.InputStream
 import java.util.*
 
@@ -139,8 +138,10 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 					view.showSuccessMessage()
 				}
 				view.isSubmitEnabled(true)
-				view.sendCustomEvent(FormEvents.SUBMIT_SUCCESS, thing)
-			}
+                view.ddmFormListener.onFormSubmitted(formInstanceRecord)
+			} else {
+                view.ddmFormListener.onDraftSaved(formInstanceRecord)
+            }
 		}, { exception ->
 			LiferayLogger.e(exception.message)
 			resetFormInstanceState()
@@ -148,7 +149,7 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 			if (!isDraft) {
 				view.isSubmitEnabled(true)
 				view.showErrorMessage(exception)
-				view.sendCustomEvent(FormEvents.SUBMIT_FAILED, thing)
+                view.ddmFormListener.onError(exception)
 			}
 		})
 	}
@@ -213,6 +214,8 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 			formInstanceRecord?.let { formInstanceRecord ->
 				updateFields(formInstanceRecord.fieldValues, fields)
 			}
+
+            view.ddmFormListener.onDraftLoaded(formInstanceRecord)
 
 			onComplete?.invoke()
 		}, {

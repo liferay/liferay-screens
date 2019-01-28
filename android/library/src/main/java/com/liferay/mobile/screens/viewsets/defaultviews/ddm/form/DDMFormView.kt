@@ -37,17 +37,16 @@ import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.DocumentField
 import com.liferay.mobile.screens.ddl.model.DocumentLocalFile
 import com.liferay.mobile.screens.ddl.model.Field
+import com.liferay.mobile.screens.ddm.form.DDMFormListener
 import com.liferay.mobile.screens.ddm.form.model.*
 import com.liferay.mobile.screens.ddm.form.view.SuccessPageActivity
 import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
 import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
-import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
 import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.mobile.screens.util.AndroidUtil
 import com.liferay.mobile.screens.util.LiferayLogger
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.BaseDDLFieldTextView
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
-import com.liferay.mobile.screens.viewsets.defaultviews.ddm.events.FormEvents
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.adapters.DDMPagerAdapter
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.fields.DDMFieldRepeatableView
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.pager.WrapContentViewPager
@@ -67,7 +66,7 @@ class DDMFormView @JvmOverloads constructor(
 	RelativeLayout(context, attrs, defStyleAttr), DDLDocumentFieldView.UploadListener,
 	DDMFormViewContract.DDMFormView {
 
-	private val presenter = DDMFormPresenter(this)
+    private val presenter = DDMFormPresenter(this)
 	private val layoutIds = mutableMapOf<Field.EditorType, Int>()
 
 	private val backButton by bindNonNull<Button>(R.id.liferay_form_back)
@@ -82,6 +81,11 @@ class DDMFormView @JvmOverloads constructor(
 	internal lateinit var formInstance: FormInstance
 
 	override val config = DDMFormViewConfig()
+	
+    override var ddmFormListener: DDMFormListener
+        get() = ddmFormListener
+        set(listener) { ddmFormListener = listener }
+
 	override var screenlet: ThingScreenlet? = null
 
 	override var thing: Thing? by converter<FormInstance> {
@@ -190,9 +194,17 @@ class DDMFormView @JvmOverloads constructor(
 		scrollView.scrollTo(0, 0)
 	}
 
-	override fun sendCustomEvent(customEvent: FormEvents, thing: Thing) {
-		sendEvent(Event.CustomEvent(customEvent.name, this, thing))
-	}
+//    override fun sendFormErrorEvent(exception: Exception) {
+//        listener?.onError(exception)
+//    }
+//
+//    override fun sendFormEvents(formEvents: FormEvents, property: Any?) {
+//        when (formEvents) {
+//            FormEvents.DRAFT_LOADED -> listener?.onDraftLoaded(property as? FormInstanceRecord)
+//            FormEvents.DRAFT_SAVED -> listener?.onDraftSaved(property as? FormInstanceRecord)
+//            FormEvents.SUBMIT_SUCCESS -> listener?.onFormSubmitted(property as? FormInstanceRecord)
+//        }
+//    }
 
 	override fun showErrorMessage(exception: Throwable?) {
 		val icon = R.drawable.default_error_icon
