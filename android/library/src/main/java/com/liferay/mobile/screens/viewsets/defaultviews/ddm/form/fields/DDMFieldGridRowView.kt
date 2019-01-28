@@ -42,11 +42,18 @@ open class DDMFieldGridRowView @JvmOverloads constructor(context: Context, attrs
 		rowLabelEditText = findViewById(R.id.row_label_edit_text)
 	}
 
+	private fun setColumnTypeface(typeface: Int) {
+		columnSelectView.textEditText.setTypeface(columnSelectView.textEditText.typeface, typeface)
+	}
+
 	fun refresh() {
 		columnSelectView.refresh()
 
-		val columnEditText = columnSelectView.textEditText
-		columnEditText.setTypeface(columnEditText.typeface, Typeface.BOLD)
+		if (columnSelectView.field.currentValue.isEmpty()) {
+			setColumnTypeface(Typeface.NORMAL)
+		} else {
+			setColumnTypeface(Typeface.BOLD)
+		}
 	}
 
 	fun selectOption(option: Option) {

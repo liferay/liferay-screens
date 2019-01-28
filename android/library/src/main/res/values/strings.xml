@@ -93,6 +93,7 @@
     <string name="cant_load_some_fields_offline">Can’t load some fields offline. Try to reconnect.</string>
     <string name="synchronizing_form">Synchronizing Form</string>
     <string name="validating_rules">Validating Rules</string>
+    <string name="clear">Clear</string>
 
     <!--WorkflowListScreenlet-->
     <string name="workflow_completed_text">Completed</string>
