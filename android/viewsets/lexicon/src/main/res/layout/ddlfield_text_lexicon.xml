@@ -23,6 +23,15 @@
         android:popupBackground="@drawable/lexicon_autocomplete_popup_drawable"
         />
 
+	<TextView
+		android:id="@+id/liferay_ddm_hint"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="@dimen/default_help_text_margin"
+		android:textColor="@color/textColorHelp_lexicon"
+		android:visibility="gone"
+		/>
+
     <include
         android:id="@+id/error_view"
         layout="@layout/error_view"
