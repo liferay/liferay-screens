@@ -79,7 +79,7 @@ class DDMFormView @JvmOverloads constructor(
 
 	private lateinit var subscription: Subscription
 
-	internal lateinit var formInstance: FormInstance
+	override lateinit var formInstance: FormInstance
 
 	override val config = DDMFormViewConfig()
 	override var screenlet: ThingScreenlet? = null
