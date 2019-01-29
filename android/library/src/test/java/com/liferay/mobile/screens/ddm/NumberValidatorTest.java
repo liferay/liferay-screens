@@ -25,49 +25,49 @@ import org.junit.Test;
  */
 public class NumberValidatorTest {
 
-	@Test
-	public void testIsGreaterThan() {
-		Map<String, String> map = getValidatorMap(">");
-		Assert.assertTrue(NumberValidator.parseNumberValidator(map) instanceof NumberValidator.IsGreaterThan);
-	}
+    @Test
+    public void testIsGreaterThan() {
+        Map<String, String> map = getValidatorMap(">");
+        Assert.assertTrue(NumberValidator.parseNumberValidator(map) instanceof NumberValidator.IsGreaterThan);
+    }
 
-	@Test
-	public void testIsLessThan() {
-		Map<String, String> map = getValidatorMap("<");
-		Assert.assertTrue(NumberValidator.parseNumberValidator(map) instanceof NumberValidator.IsLessThan);
-	}
+    @Test
+    public void testIsLessThan() {
+        Map<String, String> map = getValidatorMap("<");
+        Assert.assertTrue(NumberValidator.parseNumberValidator(map) instanceof NumberValidator.IsLessThan);
+    }
 
-	@Test
-	public void testIsGreaterThanOrEqualTo() {
-		Map<String, String> map = getValidatorMap(">=");
-		Assert.assertTrue(NumberValidator.parseNumberValidator(map) instanceof NumberValidator.IsGreaterThanOrEqualTo);
-	}
+    @Test
+    public void testIsGreaterThanOrEqualTo() {
+        Map<String, String> map = getValidatorMap(">=");
+        Assert.assertTrue(NumberValidator.parseNumberValidator(map) instanceof NumberValidator.IsGreaterThanOrEqualTo);
+    }
 
-	@Test
-	public void testIsLessThanOrEqualTo() {
-		Map<String, String> map = getValidatorMap("<=");
-		Assert.assertTrue(NumberValidator.parseNumberValidator(map) instanceof NumberValidator.IsLessThanOrEqualTo);
-	}
+    @Test
+    public void testIsLessThanOrEqualTo() {
+        Map<String, String> map = getValidatorMap("<=");
+        Assert.assertTrue(NumberValidator.parseNumberValidator(map) instanceof NumberValidator.IsLessThanOrEqualTo);
+    }
 
-	@Test
-	public void testIsEqualTo() {
-		Map<String, String> map = getValidatorMap("==");
-		Assert.assertTrue(NumberValidator.parseNumberValidator(map) instanceof NumberValidator.IsEqualTo);
-	}
+    @Test
+    public void testIsEqualTo() {
+        Map<String, String> map = getValidatorMap("==");
+        Assert.assertTrue(NumberValidator.parseNumberValidator(map) instanceof NumberValidator.IsEqualTo);
+    }
 
-	@Test
-	public void testUnknown() {
-		Map<String, String> map = getValidatorMap("invalidOperator");
-		Assert.assertTrue(NumberValidator.parseNumberValidator(map) instanceof NumberValidator.Unknown);
-	}
+    @Test
+    public void testUnknown() {
+        Map<String, String> map = getValidatorMap("invalidOperator");
+        Assert.assertTrue(NumberValidator.parseNumberValidator(map) instanceof NumberValidator.Unknown);
+    }
 
-	@NonNull
-	private Map<String, String> getValidatorMap(String operator) {
-		String expression = "fieldName" + operator + "100";
+    @NonNull
+    private Map<String, String> getValidatorMap(String operator) {
+        String expression = "fieldName" + operator + "100";
 
-		Map<String, String> map = new HashMap<>();
-		map.put("errorMessage", "Test Error");
-		map.put("expression", expression);
-		return map;
-	}
+        Map<String, String> map = new HashMap<>();
+        map.put("errorMessage", "Test Error");
+        map.put("expression", expression);
+        return map;
+    }
 }
