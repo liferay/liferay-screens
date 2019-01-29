@@ -37,7 +37,7 @@ interface DDMFormViewContract {
 
 		val config: DDMFormViewConfig
 
-		var ddmFormListener: DDMFormListener
+        var ddmFormListener: DDMFormListener
 
 		fun isSubmitEnabled(isEnabled: Boolean)
 
@@ -48,6 +48,8 @@ interface DDMFormViewContract {
 		fun inflateFieldView(inflater: LayoutInflater, parentView: ViewGroup, field: Field<*>): View
 
 		fun refreshVisibleFields()
+
+        fun setDDMFormListener(listener: DDMFormListener)
 
 		fun scrollToTop()
 
