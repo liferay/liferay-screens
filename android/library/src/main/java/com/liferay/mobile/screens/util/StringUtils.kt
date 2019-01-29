@@ -19,15 +19,15 @@ package com.liferay.mobile.screens.util
  */
 class StringUtils {
 
-    companion object {
+	companion object {
 
-        /**
-         * @param value
-         * Exposing for isNullOrEmpty of Kotlin StringsKt and validate string using Java
-         */
-        @JvmStatic
-        fun isNullOrEmpty(value: String?): Boolean {
-            return value.isNullOrEmpty()
-        }
-    }
+		/**
+		 * @param value
+		 * Exposing for isNullOrEmpty of Kotlin StringsKt and validate string using Java
+		 */
+		@JvmStatic
+		fun isNullOrEmpty(value: String?): Boolean {
+			return value.isNullOrEmpty()
+		}
+	}
 }

@@ -9,7 +9,7 @@
     <dimen name="default_text_view_padding">10dp</dimen>
     <dimen name="default_edit_text_padding">10dp</dimen>
     <dimen name="default_grid_row_padding">8dp</dimen>
-	<dimen name="default_help_text_margin">4dp</dimen>
+    <dimen name="default_help_text_margin">4dp</dimen>
     <dimen name="default_edit_text_drawable_padding">15dp</dimen>
     <dimen name="multipage_progressbar_height">8dp</dimen>
     <dimen name="multipage_progressbar_padding">20dp</dimen>

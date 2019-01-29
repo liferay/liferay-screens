@@ -23,11 +23,11 @@
         android:minLines="3"
         />
 
-	<TextView
-		android:id="@+id/liferay_ddm_hint"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:visibility="gone"
-		/>
+    <TextView
+        android:id="@+id/liferay_ddm_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        />
 
 </com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldTextView>
