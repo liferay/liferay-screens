@@ -61,10 +61,10 @@ public class DDMFormActivity extends ThemeActivity implements DDMFormListener {
         screenlet.load();
     }
 
-	@Override
-	public void onDraftSaved(FormInstanceRecord formInstanceRecord) {
-		info(getString(R.string.form_draft_saved_info));
-	}
+    @Override
+    public void onDraftSaved(FormInstanceRecord formInstanceRecord) {
+        info(getString(R.string.form_draft_saved_info));
+    }
 
     @Override
     public void onFormLoaded(@NotNull FormInstance formInstance) {
@@ -79,10 +79,10 @@ public class DDMFormActivity extends ThemeActivity implements DDMFormListener {
         info(getString(R.string.loading_form_error));
     }
 
-	@Override
-	public void onFormSubmitted(FormInstanceRecord formInstanceRecord) {
-		info(getString(R.string.form_submitted_info));
-	}
+    @Override
+    public void onFormSubmitted(FormInstanceRecord formInstanceRecord) {
+        info(getString(R.string.form_submitted_info));
+    }
 
     @Override
     public void onDraftLoaded(FormInstanceRecord formInstanceRecord) {
