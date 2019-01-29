@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
@@ -12,18 +12,21 @@
  * details.
  */
 
-package com.liferay.mobile.screens.ddm.form
+package com.liferay.mobile.screens.util
 
-import com.liferay.mobile.screens.ddm.form.model.FormInstance
-import java.lang.Exception
+import com.liferay.apio.consumer.configuration.RequestHeader
+import com.liferay.mobile.screens.context.LiferayServerContext
 
 /**
- * @author Marcelo Mello
+ * @author Paulo Cruz
  */
-interface DDMFormListener {
+class ServiceUtil {
 
-	fun onFormLoaded(formInstance: FormInstance)
+	companion object {
+		fun getAuthHeaders(): List<RequestHeader> =
+			LiferayServerContext.getAuthHeaders().entries.map { RequestHeader(it.toPair()) }
 
-	fun onError(exception: Throwable)
+		fun getAuthHeadersArray(): Array<RequestHeader> = getAuthHeaders().toTypedArray()
+	}
 
 }

@@ -19,32 +19,33 @@ import com.liferay.apio.consumer.model.Thing
 import com.liferay.mobile.screens.ddl.form.util.FormConstants
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.ddm.form.serializer.FieldValueSerializer
+import java.util.Locale
 
 /**
  * @author Paulo Cruz
  */
-class APIOEvaluateService : BaseAPIOService() {
+class APIOEvaluateService : BaseAPIOService(Locale.getDefault()) {
 
 	private val operationId = "evaluate-context"
 
 	fun evaluateContext(formThing: Thing, fields: MutableList<Field<*>>,
-		onSuccess: (Thing) -> Unit, onError: (Exception) -> Unit) {
+		onSuccess: (Thing) -> Unit, onError: (Throwable) -> Unit) {
 
 		formThing.getOperation(operationId)?.let { operation ->
-			evaluateContext(formThing.id, operation.id, fields, onSuccess, onError)
+			performEvaluate(formThing.id, operation.id, fields, onSuccess, onError)
 		} ?: onError(ThingWithoutOperationException(formThing.id, operationId))
 	}
 
-	fun evaluateContext(thingId: String, operationId: String,
+	private fun performEvaluate(thingId: String, operationId: String,
 		fields: MutableList<Field<*>>, onSuccess: (Thing) -> Unit,
-		onError: (Exception) -> Unit) {
+		onError: (Throwable) -> Unit) {
 
-		apioConsumer.performOperation(thingId, operationId, fillFields = { _ ->
+		apioConsumer.performOperation(thingId, operationId, fillFields = {
 			mapOf(
 				Pair(FormConstants.FIELD_VALUES, FieldValueSerializer.serialize(fields))
 			)
-		}, onComplete = { result ->
+		}) { result ->
 			result.fold(onSuccess, onError)
-		})
+		}
 	}
 }

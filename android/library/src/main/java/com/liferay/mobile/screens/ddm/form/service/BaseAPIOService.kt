@@ -15,21 +15,20 @@
 package com.liferay.mobile.screens.ddm.form.service
 
 import com.liferay.apio.consumer.ApioConsumer
-import com.liferay.apio.consumer.authenticator.BasicAuthenticator
-import com.liferay.mobile.screens.context.SessionContext
+import com.liferay.apio.consumer.configuration.AcceptLanguage
+import com.liferay.mobile.screens.util.ServiceUtil
+import java.util.*
 
 /**
  * @author Paulo Cruz
  */
-abstract class BaseAPIOService {
+abstract class BaseAPIOService(locale: Locale? = null) {
 
 	@JvmField
-	val apioConsumer: ApioConsumer
+	val apioConsumer: ApioConsumer = ApioConsumer(
+		*ServiceUtil.getAuthHeadersArray(),
+		locale?.let { AcceptLanguage(locale) }
+	)
 
-	init {
-		val basicCredentials = SessionContext.getCredentialsFromCurrentSession()
-
-		apioConsumer = ApioConsumer(BasicAuthenticator(basicCredentials))
-	}
 
 }

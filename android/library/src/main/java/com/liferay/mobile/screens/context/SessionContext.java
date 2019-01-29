@@ -180,20 +180,6 @@ public class SessionContext {
         CookieSignIn.registerAuthenticatorForServer(server, authenticator);
     }
 
-    // TODO Code improvements needed and add support to Cookie Authorization
-    public static String getCredentialsFromCurrentSession() throws Exception {
-        Authentication authentication = getAuthentication();
-
-        if (authentication != null) {
-            Request emptyRequest = new Request(null, null, null, null, 0);
-            authentication.authenticate(emptyRequest);
-
-            return emptyRequest.getHeaders().get(Headers.AUTHORIZATION);
-        }
-
-        return null;
-    }
-
     private static void refreshUserAttributes(final LoginListener loginListener, final Session session,
         final BasicAuthMethod basicAuthMethod) {
 

@@ -15,19 +15,16 @@
 package com.liferay.mobile.screens.thingscreenlet.screens
 
 import android.content.Context
-import android.os.Bundle
-import android.os.Parcel
 import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import com.liferay.apio.consumer.ApioConsumer
-import com.liferay.apio.consumer.authenticator.ApioAuthenticator
-import com.liferay.apio.consumer.authenticator.BasicAuthenticator
+import com.liferay.apio.consumer.configuration.AcceptLanguage
+import com.liferay.apio.consumer.configuration.RequestConfiguration
 import com.liferay.apio.consumer.delegates.observe
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.mobile.screens.R
-import com.liferay.mobile.screens.context.SessionContext
 import com.liferay.mobile.screens.ddm.form.model.FormInstance
 import com.liferay.mobile.screens.thingscreenlet.extensions.inflate
 import com.liferay.mobile.screens.thingscreenlet.model.*
@@ -36,18 +33,21 @@ import com.liferay.mobile.screens.thingscreenlet.screens.events.Event
 import com.liferay.mobile.screens.thingscreenlet.screens.events.ScreenletEvents
 import com.liferay.mobile.screens.util.LiferayLogger
 import com.liferay.mobile.screens.thingscreenlet.screens.views.*
-import okhttp3.HttpUrl
+import com.liferay.mobile.screens.util.ServiceUtil
+import java.util.*
 
 open class BaseScreenlet @JvmOverloads constructor(
-	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) :
+	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
 	FrameLayout(context, attrs, defStyleAttr) {
 
 	var layout: View? = null
 }
 
 open class ThingScreenlet @JvmOverloads constructor(
-	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0, defStyleRes: Int = 0) :
-	BaseScreenlet(context, attrs, defStyleAttr, defStyleRes) {
+	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
+	BaseScreenlet(context, attrs, defStyleAttr) {
+
+	val apioConsumer = ApioConsumer(*ServiceUtil.getAuthHeadersArray(), AcceptLanguage(Locale.getDefault()))
 
 	open var scenario: Scenario = Detail
 
@@ -92,26 +92,24 @@ open class ThingScreenlet @JvmOverloads constructor(
 	val baseView: BaseView? get() = layout as? BaseView
 
 	@JvmOverloads
-	fun load(thingId: String, scenario: Scenario? = null, credentials: String? = null,
-		onSuccess: ((ThingScreenlet) -> Unit)? = null, onError: ((Exception) -> Unit)? = null) {
+	fun load(thingId: String, scenario: Scenario? = null, locale: Locale? = null,
+		onSuccess: ((ThingScreenlet) -> Unit)? = null, onError: ((Throwable) -> Unit)? = null) {
 
-		val apioConsumer = ApioConsumer(getApioAuthenticator())
+		apioConsumer.fetchResource(thingId, RequestConfiguration(
+			locale?.let { AcceptLanguage(locale) }
+		)) { result ->
+			result.fold({
+				if (scenario != null) {
+					this.scenario = scenario
+				}
 
-		HttpUrl.parse(thingId)?.let {
-			apioConsumer.fetch(it) { result ->
-				result.fold({
-					if (scenario != null) {
-						this.scenario = scenario
-					}
-
-					thing = it
-					onSuccess?.invoke(this)
-				}, {
-					LiferayLogger.e(it.message, it)
-					baseView?.showError(it.message)
-					onError?.invoke(it)
-				})
-			}
+				thing = it
+				onSuccess?.invoke(this)
+			}, {
+				LiferayLogger.e(it.message, it)
+				baseView?.showError(it.message)
+				onError?.invoke(it)
+			})
 		}
 	}
 
@@ -168,14 +166,6 @@ open class ThingScreenlet @JvmOverloads constructor(
 		isSaveEnabled = true
 	}
 
-	private fun getApioAuthenticator(credentials: String? = null): ApioAuthenticator? {
-		val credentials = credentials ?: SessionContext.getCredentialsFromCurrentSession()
-
-		return credentials?.let {
-			BasicAuthenticator(credentials)
-		}
-	}
-
 	override fun onSaveInstanceState(): Parcelable {
 		var savedState = ThingScreenletSavedState(super.onSaveInstanceState())
 
@@ -187,15 +177,15 @@ open class ThingScreenlet @JvmOverloads constructor(
 		return savedState
 	}
 
-    override fun onRestoreInstanceState(state: Parcelable?) {
-        if (state is ThingScreenletSavedState) {
-            savedInstanceState = state
-            scenario = state.scenario
-            thing = state.thing
-        }
+	override fun onRestoreInstanceState(state: Parcelable?) {
+		if (state is ThingScreenletSavedState) {
+			savedInstanceState = state
+			scenario = state.scenario
+			thing = state.thing
+		}
 
-        super.onRestoreInstanceState(state)
-    }
+		super.onRestoreInstanceState(state)
+	}
 }
 
 

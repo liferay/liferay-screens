@@ -30,11 +30,9 @@ class WorkflowListActivity : AppCompatActivity(), ScreenletEvents {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.workflow_list_screenlet_activity)
 
-		val credentials = SessionContext.getCredentialsFromCurrentSession()
-
 		val tasksUrl = resources.getString(R.string.liferay_server) + getTasksUrl()
 
-		workflowScreenlet.load(tasksUrl, credentials = credentials)
+		workflowScreenlet.load(tasksUrl)
 
 		workflowScreenlet.screenletEvents = this
 	}

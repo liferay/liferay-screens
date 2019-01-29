@@ -172,7 +172,7 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 
 	override fun uploadFile(
 		thing: Thing, field: DocumentField, inputStream: InputStream, onSuccess: (DocumentRemoteFile) -> Unit,
-		onError: (Exception) -> Unit) {
+		onError: (Throwable) -> Unit) {
 
 		interactor.uploadFile(thing, field, inputStream, onSuccess, onError)
 	}

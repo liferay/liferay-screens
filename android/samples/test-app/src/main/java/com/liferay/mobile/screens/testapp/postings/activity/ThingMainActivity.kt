@@ -44,7 +44,7 @@ class ThingMainActivity : AppCompatActivity(), ScreenletEvents {
 
 		val id = "https://apiosample.wedeploy.io/p/blog-postings"
 
-		thingScreenlet.load(id, credentials = "Basic YXBpb0BsaWZlcmF5LmNvbTphcGlvZGV2cw==")
+		thingScreenlet.load(id)
 
 		thingScreenlet.screenletEvents = this
 	}
@@ -71,15 +71,24 @@ class ThingMainActivity : AppCompatActivity(), ScreenletEvents {
 	}
 
 	override fun <T : BaseView> onCustomEvent(name: String, screenlet: ThingScreenlet, parentView: T?, thing: Thing) {
-		if (name.equals("create")) {
-			val operationKey = thing.operations.keys.filter { it.contains("create") }.firstOrNull()
-
-			operationKey?.let {
-				val operation = thing.operations[it]
-				operation!!.form!!.getFormProperties({
-					startActivity<EditActivity>("properties" to it.map { it.name },
-						"values" to emptyMap<String, String>(), "id" to thing.id, "operation" to operation.id)
-				}, {})
+		if (name == "create") {
+			thing.operations.keys.firstOrNull {
+				it.contains("create")
+			}?.let {
+				thing.operations[it]
+			}?.let { operation ->
+				operation.expects?.let { expects ->
+					thingScreenlet.apioConsumer.getOperationForm(expects) {
+						it.onSuccess { properties ->
+							startActivity<EditActivity>(
+								"properties" to properties.map { property -> property.name },
+								"values" to emptyMap<String, String>(),
+								"id" to thing.id,
+								"operation" to operation.id
+							)
+						}
+					}
+				}
 			}
 		}
 	}

@@ -17,16 +17,17 @@ package com.liferay.mobile.screens.ddm.form.service
 import com.liferay.apio.consumer.exception.ThingWithoutOperationException
 import com.liferay.apio.consumer.model.Operation
 import com.liferay.apio.consumer.model.Thing
+import java.util.Locale
 
 /**
  * @author Paulo Cruz
  */
-class APIOFetchLatestDraftService : BaseAPIOService() {
+class APIOFetchLatestDraftService : BaseAPIOService(Locale.getDefault()) {
 
 	private val operationId = "fetch-latest-draft"
 
 	fun fetchLatestDraft(formThing: Thing, onSuccess: (Thing) -> Unit,
-		onError: (Exception) -> Unit) {
+		onError: (Throwable) -> Unit) {
 
 		formThing.getOperation(operationId)?.let {
 			performFetch(formThing, it, onSuccess, onError)
@@ -34,11 +35,11 @@ class APIOFetchLatestDraftService : BaseAPIOService() {
 	}
 
 	private fun performFetch(thing: Thing, operation: Operation, onSuccess: (Thing) -> Unit,
-		onError: (Exception) -> Unit) {
+		onError: (Throwable) -> Unit) {
 
-		apioConsumer.performOperation(thing.id, operation.id, onComplete = { result ->
+		apioConsumer.performOperation(thing.id, operation.id) { result ->
 			result.fold(onSuccess, onError)
-		})
+		}
 	}
 
 }
