@@ -29,6 +29,7 @@ import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.util.AndroidUtil;
+import com.liferay.mobile.screens.util.StringUtils;
 import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil;
 import rx.Observable;
 import rx.functions.Func1;
@@ -40,6 +41,7 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
     implements DDLFieldViewModel<T>, TextWatcher {
 
     protected TextView labelTextView;
+    protected TextView hintTextView;
     protected EditText textEditText;
     protected View parentView;
     private Observable<T> onChangedValueObservable = Observable.empty();
@@ -108,6 +110,11 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
         if (this.field.getPlaceHolder() != null && !this.field.getPlaceHolder().isEmpty()) {
             textEditText.setHint(this.field.getPlaceHolder());
         }
+
+        if (!StringUtils.isNullOrEmpty(this.field.getTip())) {
+            hintTextView.setText(this.field.getTip());
+            hintTextView.setVisibility(VISIBLE);
+        }
     }
 
     public TextView getLabelTextView() {
@@ -168,6 +175,7 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
         super.onFinishInflate();
 
         labelTextView = findViewById(R.id.liferay_ddl_label);
+        hintTextView = findViewById(R.id.liferay_ddm_hint);
         textEditText = findViewById(R.id.liferay_ddl_edit_text);
         textEditText.addTextChangedListener(this);
 

@@ -18,6 +18,7 @@
         android:id="@+id/liferay_ddm_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/textColorHelp_lexicon"
         android:visibility="gone"
         />
 

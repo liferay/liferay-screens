@@ -32,6 +32,7 @@ import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.Option;
 import com.liferay.mobile.screens.ddm.form.model.CheckboxMultipleField;
 import com.liferay.mobile.screens.util.AndroidUtil;
+import com.liferay.mobile.screens.util.StringUtils;
 import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil;
 import java.util.List;
 import rx.Observable;
@@ -48,6 +49,7 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
 
     private CheckboxMultipleField field;
     private LinearLayout linearLayout;
+    private TextView hintTextView;
     private Observable<CheckboxMultipleField> onChangedValueObservable = Observable.empty();
 
     public DDMFieldCheckboxMultipleView(Context context) {
@@ -110,6 +112,11 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
                 CheckBox checkBoxView = createCheckBoxView(opt, layoutParams);
                 addView(field, checkBoxView);
             }
+        }
+
+        if (!StringUtils.isNullOrEmpty(this.field.getTip())) {
+            hintTextView.setText(this.field.getTip());
+            hintTextView.setVisibility(VISIBLE);
         }
 
         refresh();
@@ -185,6 +192,7 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
         super.onFinishInflate();
 
         linearLayout = findViewById(R.id.linear_layout_multiple_checkbox);
+        hintTextView = findViewById(R.id.liferay_ddm_hint);
 
         setSaveEnabled(true);
     }

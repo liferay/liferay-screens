@@ -19,4 +19,13 @@
         android:textSize="@dimen/text_size_dialog_title"
         />
 
+    <TextView
+        android:id="@+id/liferay_ddm_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_help_text_margin"
+        android:textColor="@color/textColorHelp_lexicon"
+        android:visibility="gone"
+        />
+
 </LinearLayout>
