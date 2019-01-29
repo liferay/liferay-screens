@@ -39,7 +39,7 @@ interface DDMFormViewContract {
 
 		var formInstance: FormInstance
 
-		var ddmFormListener: DDMFormListener
+		var ddmFormListener: DDMFormListener?
 
 		fun isSubmitEnabled(isEnabled: Boolean)
 

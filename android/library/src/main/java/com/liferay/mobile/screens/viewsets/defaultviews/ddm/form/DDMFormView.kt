@@ -80,7 +80,7 @@ class DDMFormView @JvmOverloads constructor(
 
 	override lateinit var formInstance: FormInstance
 
-	override lateinit var ddmFormListener: DDMFormListener
+	override var ddmFormListener: DDMFormListener? = null
 
 	override val config = DDMFormViewConfig()
 
