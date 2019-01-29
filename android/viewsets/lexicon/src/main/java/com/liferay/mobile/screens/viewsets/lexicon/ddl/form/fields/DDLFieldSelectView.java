@@ -65,7 +65,8 @@ public class DDLFieldSelectView
 
         builder.setSingleChoiceItems(labels, index, selectOptionHandler)
             .setPositiveButton(android.R.string.ok, selectOptionHandler)
-            .setNegativeButton(android.R.string.cancel, selectOptionHandler);
+            .setNegativeButton(android.R.string.cancel, dismissListener)
+            .setNeutralButton(R.string.clear, clearFieldListener);
     }
 
     @Override

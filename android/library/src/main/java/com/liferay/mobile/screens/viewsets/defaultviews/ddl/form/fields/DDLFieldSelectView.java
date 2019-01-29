@@ -17,6 +17,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -35,6 +36,21 @@ import java.util.List;
 public class DDLFieldSelectView extends BaseDDLFieldTextView<SelectableOptionsField> implements View.OnClickListener {
 
     protected AlertDialog alertDialog;
+
+    protected DialogInterface.OnClickListener clearFieldListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            clearField();
+            alertDialog.dismiss();
+        }
+    };
+
+    protected DialogInterface.OnClickListener dismissListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            alertDialog.dismiss();
+        }
+    };
 
     public void setOnValueChangedListener(DialogInterface.OnClickListener onValueChangedListener) {
         this.onValueChangedListener = onValueChangedListener;
@@ -157,6 +173,16 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<SelectableOptionsFi
         return checked;
     }
 
+    protected void clearField() {
+        SelectableOptionsField field = getField();
+
+        for (Option option : field.getCurrentValue()) {
+            field.clearOption(option);
+        }
+
+        refresh();
+    }
+
     protected void setupMultipleChoice(AlertDialog.Builder builder, final List<Option> availableOptions,
         String[] labels) {
 
@@ -166,6 +192,7 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<SelectableOptionsFi
                 checked[whichButton] = isChecked;
             }
         });
+
         builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -175,18 +202,18 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<SelectableOptionsFi
             }
         });
 
-        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                alertDialog.dismiss();
-            }
-        });
+        builder.setNegativeButton(android.R.string.cancel, dismissListener);
+
+        builder.setNeutralButton(R.string.clear, clearFieldListener);
     }
 
     protected void setupSingleChoice(AlertDialog.Builder builder, DialogInterface.OnClickListener selectOptionHandler,
         String[] labels) {
 
-        builder.setItems(labels, selectOptionHandler);
+        builder.setItems(labels, selectOptionHandler)
+            .setPositiveButton(android.R.string.ok, dismissListener)
+            .setNegativeButton(android.R.string.cancel, dismissListener)
+            .setNeutralButton(R.string.clear, clearFieldListener);
     }
 
     private void checkField(boolean[] checked, List<Option> availableOptions) {
