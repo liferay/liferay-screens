@@ -27,10 +27,10 @@ interface DDMFormListener {
 	fun onDraftLoaded(formInstanceRecord: FormInstanceRecord?)
 
 	fun onError(exception: Throwable)
-    
-    fun onDraftSaved(formInstanceRecord: FormInstanceRecord?)
 
-    fun onFormLoaded(formInstance: FormInstance)
+	fun onDraftSaved(formInstanceRecord: FormInstanceRecord?)
+
+	fun onFormLoaded(formInstance: FormInstance)
 
 	fun onFormSubmitted(formInstanceRecord: FormInstanceRecord?)
 

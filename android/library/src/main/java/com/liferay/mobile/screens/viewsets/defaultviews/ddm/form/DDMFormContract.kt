@@ -36,10 +36,10 @@ interface DDMFormViewContract {
 	interface DDMFormView {
 
 		val config: DDMFormViewConfig
-		
+
 		var formInstance: FormInstance
-		
-        var ddmFormListener: DDMFormListener
+
+		var ddmFormListener: DDMFormListener
 
 		fun isSubmitEnabled(isEnabled: Boolean)
 
@@ -51,7 +51,7 @@ interface DDMFormViewContract {
 
 		fun refreshVisibleFields()
 
-        fun setDDMFormListener(listener: DDMFormListener)
+		fun setDDMFormListener(listener: DDMFormListener)
 
 		fun scrollToTop()
 
