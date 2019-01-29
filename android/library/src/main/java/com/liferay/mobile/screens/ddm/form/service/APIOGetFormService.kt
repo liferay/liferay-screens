@@ -16,28 +16,25 @@ package com.liferay.mobile.screens.ddm.form.service
 
 import com.liferay.apio.consumer.model.Thing
 import com.liferay.mobile.screens.ddl.form.util.FormConstants
-import com.liferay.mobile.screens.ddm.form.model.FormInstance
-import okhttp3.HttpUrl
+import java.util.Locale
 
 /**
  * @author Paulo Cruz
  */
-class APIOGetFormService : BaseAPIOService() {
+class APIOGetFormService : BaseAPIOService(Locale.getDefault()) {
 
 	fun getForm(formInstanceId: Long, serverUrl: String, onSuccess: (Thing) -> Unit,
 		onError: (Throwable) -> Unit) {
 
-		getFormUrl(formInstanceId, serverUrl)?.let { formUrl ->
-			apioConsumer.fetch(formUrl) { result ->
-				result.fold(onSuccess, onError)
-			}
+		val formUrl = getFormUrl(formInstanceId, serverUrl)
+
+		apioConsumer.fetchResource(formUrl) { result ->
+			result.fold(onSuccess, onError)
 		}
 	}
 
-	private fun getFormUrl(formInstanceId: Long, serverUrl: String): HttpUrl? {
-		val formEndpoint = serverUrl + String.format(FormConstants.URL_TEMPLATE, formInstanceId)
-
-		return HttpUrl.parse(formEndpoint)
+	private fun getFormUrl(formInstanceId: Long, serverUrl: String): String {
+		return serverUrl + String.format(FormConstants.URL_TEMPLATE, formInstanceId)
 	}
 
 }

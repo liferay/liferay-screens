@@ -48,7 +48,7 @@ class DDMFormScreenlet @JvmOverloads constructor(
 			autoloadDraftEnabled = getBoolean(R.styleable.DDMFormScreenlet_autoloadDraftEnabled, true)
 			autosaveDraftEnabled = getBoolean(R.styleable.DDMFormScreenlet_autosaveDraftEnabled, true)
 			formInstanceId = getLongOrNull(R.styleable.DDMFormScreenlet_formInstanceId)
-			layoutId = getInt(R.styleable.DDMFormScreenlet_layoutId, R.layout.ddm_form_default)
+			layoutId = getResourceId(R.styleable.DDMFormScreenlet_layoutId, R.layout.ddm_form_default)
 			syncFormTimeout = getLong(R.styleable.DDMFormScreenlet_syncFormTimeout, DEFAULT_SYNC_TIMEOUT)
 		}
 

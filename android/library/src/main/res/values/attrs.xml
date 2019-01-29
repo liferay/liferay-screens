@@ -149,11 +149,11 @@
     </declare-styleable>
 
     <declare-styleable name="DDMFormScreenlet">
-        <attr name="autoloadDraftEnabled"/>
-        <attr name="autosaveDraftEnabled"/>
-        <attr name="formInstanceId"/>
         <attr name="layoutId"/>
-        <attr name="syncFormTimeout"/>
+        <attr format="boolean" name="autoloadDraftEnabled"/>
+        <attr format="boolean" name="autosaveDraftEnabled"/>
+        <attr format="integer" name="formInstanceId"/>
+        <attr format="integer" name="syncFormTimeout"/>
     </declare-styleable>
 
     <declare-styleable name="ForgotPasswordScreenlet">
