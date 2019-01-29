@@ -18,9 +18,10 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import com.liferay.mobile.screens.R
-import com.liferay.mobile.screens.ddl.form.util.FormConstants.Companion.DEFAULT_TIMEOUT
+import com.liferay.mobile.screens.ddl.form.util.FormConstants.Companion.DEFAULT_SYNC_TIMEOUT
 import com.liferay.mobile.screens.ddm.form.service.APIOGetFormService
 import com.liferay.mobile.screens.util.getLong
+import com.liferay.mobile.screens.util.getLongOrNull
 import com.liferay.mobile.screens.util.getStyledAttributes
 import com.liferay.mobile.screens.util.use
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.DDMFormView
@@ -35,7 +36,7 @@ class DDMFormScreenlet @JvmOverloads constructor(
 	var autosaveDraftEnabled: Boolean = true
 	var formInstanceId: Long? = null
 	var layoutId = R.layout.ddm_form_default
-	var syncFormTimeout = DEFAULT_TIMEOUT
+	var syncFormTimeout = DEFAULT_SYNC_TIMEOUT
 
 	var listener: DDMFormListener? = null
 
@@ -46,9 +47,9 @@ class DDMFormScreenlet @JvmOverloads constructor(
 		getStyledAttributes(attrs, R.styleable.DDMFormScreenlet)?.use {
 			autoloadDraftEnabled = getBoolean(R.styleable.DDMFormScreenlet_autoloadDraftEnabled, true)
 			autosaveDraftEnabled = getBoolean(R.styleable.DDMFormScreenlet_autosaveDraftEnabled, true)
-			formInstanceId = getLong(R.styleable.DDMFormScreenlet_formInstanceId)
+			formInstanceId = getLongOrNull(R.styleable.DDMFormScreenlet_formInstanceId)
 			layoutId = getInt(R.styleable.DDMFormScreenlet_layoutId, R.layout.ddm_form_default)
-			syncFormTimeout = getLong(R.styleable.DDMFormScreenlet_syncFormTimeout, DEFAULT_TIMEOUT)
+			syncFormTimeout = getLong(R.styleable.DDMFormScreenlet_syncFormTimeout, DEFAULT_SYNC_TIMEOUT)
 		}
 
 		ddmFormView = inflate(context, layoutId, null) as DDMFormView

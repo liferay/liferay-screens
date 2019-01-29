@@ -33,6 +33,6 @@ class FormConstants {
 		const val FIELDS = "fields"
 		const val FIELD_VALUES = "fieldValues"
 
-		const val DEFAULT_TIMEOUT: Long = 500
+		const val DEFAULT_SYNC_TIMEOUT: Long = 500
 	}
 }

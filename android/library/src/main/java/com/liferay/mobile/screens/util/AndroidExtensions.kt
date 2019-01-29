@@ -22,9 +22,9 @@ import android.view.View
 /**
  * @author Paulo Cruz
  */
-fun TypedArray.getLong(id: Int, defValue: Long): Long = getLong(id) ?: defValue
+fun TypedArray.getLong(id: Int, defValue: Long): Long = getLongOrNull(id) ?: defValue
 
-fun TypedArray.getLong(id: Int): Long? = this.getString(id)?.toLongOrNull()
+fun TypedArray.getLongOrNull(id: Int): Long? = this.getString(id)?.toLongOrNull()
 
 fun <R> TypedArray.use(block: TypedArray.() -> R): R {
 	try {

@@ -14,8 +14,10 @@
 
 package com.liferay.mobile.screens.viewsets.defaultviews.ddm.form
 
+import com.liferay.mobile.screens.ddl.form.util.FormConstants.Companion.DEFAULT_SYNC_TIMEOUT
+
 /**
  * @author Paulo Cruz
  */
 data class DDMFormViewConfig @JvmOverloads constructor(var autoloadDraftEnabled: Boolean = true,
-	var autosaveDraftEnabled: Boolean = true, var syncFormTimeout: Long = 500)
+	var autosaveDraftEnabled: Boolean = true, var syncFormTimeout: Long = DEFAULT_SYNC_TIMEOUT)
