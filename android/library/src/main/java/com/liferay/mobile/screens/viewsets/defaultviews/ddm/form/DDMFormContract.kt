@@ -51,6 +51,8 @@ interface DDMFormViewContract {
 
 		fun refreshVisibleFields()
 
+        fun setDDMFormListener(listener: DDMFormListener)
+
 		fun scrollToTop()
 
 		fun showErrorMessage(exception: Throwable?)

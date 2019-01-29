@@ -80,15 +80,11 @@ class DDMFormView @JvmOverloads constructor(
 
 	override lateinit var formInstance: FormInstance
 
+    override lateinit var ddmFormListener: DDMFormListener
+
 	override val config = DDMFormViewConfig()
 
-	override var ddmFormListener: DDMFormListener
-		get() = ddmFormListener
-		set(listener) {
-			ddmFormListener = listener
-		}
-
-	override var screenlet: ThingScreenlet? = null
+    override var screenlet: ThingScreenlet? = null
 
 	override var thing: Thing? by converter<FormInstance> {
 		formInstance = it
@@ -191,6 +187,10 @@ class DDMFormView @JvmOverloads constructor(
 
 		restoreActionButtonsState()
 	}
+
+    override fun setDDMFormListener(listener: DDMFormListener) {
+        ddmFormListener = listener
+    }
 
 	override fun scrollToTop() {
 		scrollView.scrollTo(0, 0)
