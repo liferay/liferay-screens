@@ -25,7 +25,7 @@ import okhttp3.HttpUrl
 class APIOGetFormService : BaseAPIOService() {
 
 	fun getForm(formInstanceId: Long, serverUrl: String, onSuccess: (Thing) -> Unit,
-		onError: (Exception) -> Unit) {
+		onError: (Throwable) -> Unit) {
 
 		getFormUrl(formInstanceId, serverUrl)?.let { formUrl ->
 			apioConsumer.fetch(formUrl) { result ->
