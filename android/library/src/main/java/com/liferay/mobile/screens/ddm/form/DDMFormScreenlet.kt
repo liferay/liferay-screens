@@ -15,13 +15,15 @@
 package com.liferay.mobile.screens.ddm.form
 
 import android.content.Context
-import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import com.liferay.mobile.screens.R
-import com.liferay.mobile.screens.ddl.form.util.FormConstants
-import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
-import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
+import com.liferay.mobile.screens.ddl.form.util.FormConstants.Companion.DEFAULT_SYNC_TIMEOUT
+import com.liferay.mobile.screens.ddm.form.service.APIOGetFormService
+import com.liferay.mobile.screens.util.getLong
+import com.liferay.mobile.screens.util.getLongOrNull
+import com.liferay.mobile.screens.util.getStyledAttributes
+import com.liferay.mobile.screens.util.use
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.DDMFormView
 
 /**
@@ -30,38 +32,50 @@ import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.DDMFormView
 class DDMFormScreenlet @JvmOverloads constructor(
 	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : FrameLayout(context, attrs, defStyleAttr) {
 
-	var formInstanceId: Long?
+	var autoloadDraftEnabled: Boolean = true
+	var autosaveDraftEnabled: Boolean = true
+	var formInstanceId: Long? = null
+	var layoutId = R.layout.ddm_form_default
+	var syncFormTimeout = DEFAULT_SYNC_TIMEOUT
+
 	var listener: DDMFormListener? = null
-	val screenlet: ThingScreenlet
+
+	private var ddmFormView: DDMFormView? = null
+	private val service = APIOGetFormService()
 
 	init {
-		val typedArray: TypedArray =
-			context.theme.obtainStyledAttributes(attrs, R.styleable.DDMFormScreenlet, defStyleAttr, 0)
+		getStyledAttributes(attrs, R.styleable.DDMFormScreenlet)?.use {
+			autoloadDraftEnabled = getBoolean(R.styleable.DDMFormScreenlet_autoloadDraftEnabled, true)
+			autosaveDraftEnabled = getBoolean(R.styleable.DDMFormScreenlet_autosaveDraftEnabled, true)
+			formInstanceId = getLongOrNull(R.styleable.DDMFormScreenlet_formInstanceId)
+			layoutId = getResourceId(R.styleable.DDMFormScreenlet_layoutId, R.layout.ddm_form_default)
+			syncFormTimeout = getLong(R.styleable.DDMFormScreenlet_syncFormTimeout, DEFAULT_SYNC_TIMEOUT)
+		}
 
-		formInstanceId = typedArray.getString(R.styleable.DDMFormScreenlet_formInstanceId)?.toLongOrNull()
-		typedArray.recycle()
+		ddmFormView = inflate(context, layoutId, null) as DDMFormView
 
-		screenlet = ThingScreenlet(context, attrs, defStyleAttr)
-		addView(screenlet)
+		ddmFormView?.config?.apply {
+			autoloadDraftEnabled = this@DDMFormScreenlet.autoloadDraftEnabled
+			autosaveDraftEnabled = this@DDMFormScreenlet.autosaveDraftEnabled
+			syncFormTimeout = this@DDMFormScreenlet.syncFormTimeout
+		}
+
+		addView(ddmFormView)
 	}
 
 	@JvmOverloads
 	fun load(formInstanceId: Long? = this.formInstanceId) {
 		formInstanceId?.also {
-			val url: String = getResourcePath(it)
+			val serverUrl = resources.getString(R.string.liferay_server)
 
-			screenlet.load(url, Detail, onSuccess = { thingScreenlet ->
-				(thingScreenlet.baseView as? DDMFormView)?.let { ddmFormView ->
+			service.getForm(formInstanceId, serverUrl, onSuccess = { thing ->
+				ddmFormView?.also { ddmFormView ->
+					ddmFormView.thing = thing
 					listener?.onFormLoaded(ddmFormView.formInstance)
 				}
 			}, onError = {
 				listener?.onError(it)
 			})
 		}
-	}
-
-	private fun getResourcePath(formInstanceId: Long): String {
-		val serverUrl = resources.getString(R.string.liferay_server)
-		return serverUrl + String.format(FormConstants.URL_TEMPLATE, formInstanceId)
 	}
 }

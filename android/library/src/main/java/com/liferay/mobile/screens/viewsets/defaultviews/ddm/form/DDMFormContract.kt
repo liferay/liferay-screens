@@ -34,6 +34,8 @@ import java.io.InputStream
 interface DDMFormViewContract {
 	interface DDMFormView {
 
+		val config: DDMFormViewConfig
+
 		fun isSubmitEnabled(isEnabled: Boolean)
 
 		fun hasConnectivity(): Boolean

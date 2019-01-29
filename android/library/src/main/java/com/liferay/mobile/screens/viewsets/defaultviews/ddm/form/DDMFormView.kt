@@ -81,6 +81,7 @@ class DDMFormView @JvmOverloads constructor(
 
 	internal lateinit var formInstance: FormInstance
 
+	override val config = DDMFormViewConfig()
 	override var screenlet: ThingScreenlet? = null
 
 	override var thing: Thing? by converter<FormInstance> {
@@ -257,7 +258,7 @@ class DDMFormView @JvmOverloads constructor(
 			presenter.fieldModelsChanged(it)
 		}.doOnError {
 			LiferayLogger.e(it.message, it)
-		}.debounce(500, TimeUnit.MILLISECONDS)
+		}.debounce(config.syncFormTimeout, TimeUnit.MILLISECONDS)
 			.observeOn(AndroidSchedulers.mainThread())
 			.subscribe({ field ->
 				thing?.let {

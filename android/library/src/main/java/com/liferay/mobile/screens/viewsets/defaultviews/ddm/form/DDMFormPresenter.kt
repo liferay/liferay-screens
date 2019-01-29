@@ -122,6 +122,8 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 	}
 
 	override fun submit(thing: Thing, formInstance: FormInstance, isDraft: Boolean) {
+		if (isDraft && !view.config.autosaveDraftEnabled) return
+
 		formInstanceState = if (isDraft) FormInstanceState.SAVING_DRAFT else FormInstanceState.SUBMITTING
 		val fields = formInstance.ddmStructure.fields
 		view.isSubmitEnabled(isDraft)
@@ -198,6 +200,11 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 	}
 
 	private fun fetchLatestDraft(thing: Thing, fields: MutableList<Field<*>>, onComplete: (() -> Unit)?) {
+		if (!view.config.autoloadDraftEnabled) {
+			onComplete?.invoke()
+			return
+		}
+
 		interactor.fetchLatestDraft(thing, {
 			view.hideModalLoading()
 
