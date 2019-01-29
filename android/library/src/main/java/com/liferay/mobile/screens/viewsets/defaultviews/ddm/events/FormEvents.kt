@@ -16,4 +16,4 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddm.events
 /**
  * @author Victor Oliveira
  */
-enum class FormEvents { SUBMIT_SUCCESS, SUBMIT_FAILED }
+enum class FormEvents { DRAFT_SAVED, SUBMIT_SUCCESS, SUBMIT_FAILED, DRAFT_LOADED }

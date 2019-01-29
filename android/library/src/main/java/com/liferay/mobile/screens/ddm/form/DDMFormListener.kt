@@ -14,7 +14,9 @@
 
 package com.liferay.mobile.screens.ddm.form
 
+import com.liferay.apio.consumer.model.Thing
 import com.liferay.mobile.screens.ddm.form.model.FormInstance
+import com.liferay.mobile.screens.ddm.form.model.FormInstanceRecord
 import java.lang.Exception
 
 /**
@@ -22,8 +24,14 @@ import java.lang.Exception
  */
 interface DDMFormListener {
 
-	fun onFormLoaded(formInstance: FormInstance)
+	fun onDraftLoaded(formInstanceRecord: FormInstanceRecord?)
 
 	fun onError(exception: Throwable)
+
+	fun onDraftSaved(formInstanceRecord: FormInstanceRecord?)
+
+	fun onFormLoaded(formInstance: FormInstance)
+
+	fun onFormSubmitted(formInstanceRecord: FormInstanceRecord?)
 
 }

@@ -38,8 +38,6 @@ class DDMFormScreenlet @JvmOverloads constructor(
 	var layoutId = R.layout.ddm_form_default
 	var syncFormTimeout = DEFAULT_SYNC_TIMEOUT
 
-	var listener: DDMFormListener? = null
-
 	private var ddmFormView: DDMFormView? = null
 	private val service = APIOGetFormService()
 
@@ -71,11 +69,15 @@ class DDMFormScreenlet @JvmOverloads constructor(
 			service.getForm(formInstanceId, serverUrl, onSuccess = { thing ->
 				ddmFormView?.also { ddmFormView ->
 					ddmFormView.thing = thing
-					listener?.onFormLoaded(ddmFormView.formInstance)
+					ddmFormView.ddmFormListener?.onFormLoaded(ddmFormView.formInstance)
 				}
 			}, onError = {
-				listener?.onError(it)
+				ddmFormView?.ddmFormListener?.onError(it)
 			})
 		}
+	}
+
+	fun setDDMFormListener(listener: DDMFormListener) {
+		ddmFormView?.ddmFormListener = listener
 	}
 }

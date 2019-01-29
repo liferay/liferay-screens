@@ -22,6 +22,7 @@ import com.liferay.mobile.screens.base.ModalProgressBarWithLabel;
 import com.liferay.mobile.screens.ddm.form.DDMFormListener;
 import com.liferay.mobile.screens.ddm.form.DDMFormScreenlet;
 import com.liferay.mobile.screens.ddm.form.model.FormInstance;
+import com.liferay.mobile.screens.ddm.form.model.FormInstanceRecord;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -41,7 +42,7 @@ public class DDMFormActivity extends ThemeActivity implements DDMFormListener {
         screenlet = findViewById(R.id.ddm_form_screenlet);
         modalProgress = findViewById(R.id.liferay_modal_progress);
 
-        screenlet.setListener(this);
+        screenlet.setDDMFormListener(this);
 
         if (savedInstanceState == null) {
             loadResource();
@@ -61,6 +62,11 @@ public class DDMFormActivity extends ThemeActivity implements DDMFormListener {
     }
 
     @Override
+    public void onDraftSaved(FormInstanceRecord formInstanceRecord) {
+        info(getString(R.string.form_draft_saved_info));
+    }
+
+    @Override
     public void onFormLoaded(@NotNull FormInstance formInstance) {
         modalProgress.hide();
         screenlet.setVisibility(View.VISIBLE);
@@ -71,5 +77,15 @@ public class DDMFormActivity extends ThemeActivity implements DDMFormListener {
     public void onError(@NotNull Throwable exception) {
         modalProgress.hide();
         info(getString(R.string.loading_form_error));
+    }
+
+    @Override
+    public void onFormSubmitted(FormInstanceRecord formInstanceRecord) {
+        info(getString(R.string.form_submitted_info));
+    }
+
+    @Override
+    public void onDraftLoaded(FormInstanceRecord formInstanceRecord) {
+        info(getString(R.string.record_loaded_info));
     }
 }

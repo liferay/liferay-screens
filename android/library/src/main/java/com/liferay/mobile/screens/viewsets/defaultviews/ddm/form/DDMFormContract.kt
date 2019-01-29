@@ -22,6 +22,7 @@ import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.DocumentField
 import com.liferay.mobile.screens.ddl.model.DocumentRemoteFile
 import com.liferay.mobile.screens.ddl.model.Field
+import com.liferay.mobile.screens.ddm.form.DDMFormListener
 import com.liferay.mobile.screens.ddm.form.model.*
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.events.FormEvents
@@ -35,8 +36,10 @@ interface DDMFormViewContract {
 	interface DDMFormView {
 
 		val config: DDMFormViewConfig
-		
+
 		var formInstance: FormInstance
+
+		var ddmFormListener: DDMFormListener
 
 		fun isSubmitEnabled(isEnabled: Boolean)
 
@@ -48,9 +51,9 @@ interface DDMFormViewContract {
 
 		fun refreshVisibleFields()
 
-		fun scrollToTop()
+		fun setDDMFormListener(listener: DDMFormListener)
 
-		fun sendCustomEvent(customEvent: FormEvents, thing: Thing)
+		fun scrollToTop()
 
 		fun showErrorMessage(exception: Throwable?)
 
