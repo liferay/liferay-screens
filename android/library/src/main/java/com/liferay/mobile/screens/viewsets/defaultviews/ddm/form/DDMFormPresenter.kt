@@ -296,7 +296,9 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 					setOptions(fieldContext, optionsField)
 				}
 
-				setValue(fieldContext, field)
+				if (fieldContext.isValueChanged ?: false) {
+					setValue(fieldContext, field)
+				}
 
 				field.isReadOnly = fieldContext.isReadOnly ?: field.isReadOnly
 				field.isRequired = fieldContext.isRequired ?: field.isRequired
