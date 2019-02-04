@@ -185,6 +185,7 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
         textEditText.setSaveEnabled(false);
 
         onChangedValueObservable = RxTextView.afterTextChangeEvents(textEditText)
+            .skip(1)
             .distinctUntilChanged()
             .map(new Func1<TextViewAfterTextChangeEvent, T>() {
                 @Override

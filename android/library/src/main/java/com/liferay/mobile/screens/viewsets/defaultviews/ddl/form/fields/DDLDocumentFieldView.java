@@ -36,7 +36,6 @@ import com.liferay.mobile.screens.base.MediaStoreRequestShadowActivity.MediaStor
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
-import com.liferay.mobile.screens.ddl.model.DocumentFile;
 import com.liferay.mobile.screens.ddl.model.DocumentRemoteFile;
 import com.tbruyelle.rxpermissions.RxPermissions;
 import java.io.File;
