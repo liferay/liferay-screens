@@ -205,21 +205,17 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
     private Observable<CheckboxMultipleField> getMappedObservable(final CheckboxMultipleField field,
         final CompoundButton switchView) {
 
-        return RxCompoundButton.checkedChanges(switchView)
-            .skip(1)
-            .doOnNext(new Action1<Boolean>() {
-                @Override
-                public void call(Boolean aBoolean) {
-                    onCheckedChanged(switchView, aBoolean);
-                }
-            })
-            .distinctUntilChanged()
-            .map(new Func1<Boolean, CheckboxMultipleField>() {
-                @Override
-                public CheckboxMultipleField call(Boolean aBoolean) {
-                    return field;
-                }
-            });
+        return RxCompoundButton.checkedChanges(switchView).skip(1).doOnNext(new Action1<Boolean>() {
+            @Override
+            public void call(Boolean aBoolean) {
+                onCheckedChanged(switchView, aBoolean);
+            }
+        }).distinctUntilChanged().map(new Func1<Boolean, CheckboxMultipleField>() {
+            @Override
+            public CheckboxMultipleField call(Boolean aBoolean) {
+                return field;
+            }
+        });
     }
 
     private CheckBox createCheckBoxView(Option option, LayoutParams layoutParams) {
