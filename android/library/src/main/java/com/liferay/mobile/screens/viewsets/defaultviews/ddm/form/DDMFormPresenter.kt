@@ -120,8 +120,8 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 		val fields = formInstance.ddmStructure.fields
 		view.isSubmitEnabled(isDraft)
 
-		interactor.submit(formInstance, formInstanceRecord, fields, isDraft, { newFormInstance ->
-			formInstanceRecord = newFormInstance
+		interactor.submit(formInstance, formInstanceRecord, fields, isDraft, { newFormInstanceRecord ->
+			formInstanceRecord = newFormInstanceRecord
 			resetFormInstanceState()
 
 			if (!isDraft) {
@@ -131,9 +131,10 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 					view.showSuccessMessage()
 				}
 				view.isSubmitEnabled(true)
-				view.ddmFormListener?.onFormSubmitted(newFormInstance)
+				view.ddmFormListener?.onFormSubmitted(newFormInstanceRecord)
+				resetRecordState()
 			} else {
-				view.ddmFormListener?.onDraftSaved(newFormInstance)
+				view.ddmFormListener?.onDraftSaved(newFormInstanceRecord)
 			}
 		}, { exception ->
 			LiferayLogger.e(exception.message)
