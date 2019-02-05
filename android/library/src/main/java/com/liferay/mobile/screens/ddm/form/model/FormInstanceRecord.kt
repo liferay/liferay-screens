@@ -17,9 +17,11 @@ package com.liferay.mobile.screens.ddm.form.model
 import android.annotation.SuppressLint
 import android.os.Parcel
 import android.os.Parcelable
-import com.liferay.apio.consumer.model.Thing
-import com.liferay.apio.consumer.model.get
 import com.liferay.mobile.screens.ddl.form.util.FormConstants
+import com.liferay.mobile.screens.util.extensions.getOptional
+import com.liferay.mobile.screens.util.extensions.getOptionalString
+import org.json.JSONArray
+import org.json.JSONObject
 
 /**
  * @author Paulo Cruz
@@ -38,28 +40,27 @@ class FormInstanceRecord(
 
 	companion object {
 		@JvmStatic
-		val converter: (Thing) -> FormInstanceRecord = { it: Thing ->
+		val converter: (JSONObject) -> FormInstanceRecord = { json: JSONObject ->
 
-			val id = it.id
+			val id = json.getString("id")
 
-			val fieldValues = (it[FormConstants.FIELD_VALUES] as? Map<String, Any>)?.let {
-				getFieldValues(it)
-			} ?: emptyList()
+			val fieldValues = getFieldValues(json.getJSONArray(FormConstants.FIELD_VALUES))
 
 			FormInstanceRecord(id, fieldValues)
 		}
 
-		private fun getFieldValues(map: Map<String, Any>): List<FieldValue> {
-			if (map["totalItems"] as Double <= 0) {
-				return mutableListOf()
+		private fun getFieldValues(jsonArray: JSONArray): List<FieldValue> {
+			val fieldValues = mutableListOf<FieldValue>()
+
+			for (i in 0 until jsonArray.length()) {
+				val fieldJSON = jsonArray.getJSONObject(i)
+				val name = fieldJSON.getOptionalString("name") ?: ""
+				val value = fieldJSON.getOptional("value")
+
+				fieldValues.add(FieldValue(name, value))
 			}
 
-			return (map["member"] as List<Map<String, String>>).mapTo(mutableListOf()) {
-				val name = it["name"] ?: ""
-				val value = it["value"] ?: ""
-
-				FieldValue(name, value)
-			}
+			return fieldValues
 		}
 
 		object CREATOR : Parcelable.Creator<FormInstanceRecord> {

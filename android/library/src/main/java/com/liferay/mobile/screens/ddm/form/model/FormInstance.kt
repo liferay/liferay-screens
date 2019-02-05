@@ -14,14 +14,17 @@
 
 package com.liferay.mobile.screens.ddm.form.model
 
-import com.liferay.apio.consumer.model.Relation
-import com.liferay.apio.consumer.model.Thing
-import com.liferay.apio.consumer.model.get
-import com.liferay.mobile.screens.R
+import android.os.Parcelable
+import com.liferay.mobile.screens.ddl.JsonParser
 import com.liferay.mobile.screens.ddl.form.util.FormConstants
 import com.liferay.mobile.screens.ddl.form.util.FormFieldKeys
 import com.liferay.mobile.screens.ddl.model.DDMStructure
 import com.liferay.mobile.screens.ddl.model.Field
+import com.liferay.mobile.screens.util.extensions.getOptionalJSONObject
+import com.liferay.mobile.screens.util.extensions.getOptionalString
+import kotlinx.android.parcel.Parcelize
+import org.json.JSONArray
+import org.json.JSONObject
 import java.util.*
 
 /**
@@ -29,31 +32,29 @@ import java.util.*
  * @author Sarai Díaz García
  * @author Victor Oliveira
  */
+@Parcelize
 data class FormInstance(
 	val name: String,
 	val description: String?,
 	val defaultLanguage: String,
 	val ddmStructure: DDMStructure,
 	val hasDataProvider: Boolean,
-	val hasFormRules: Boolean) {
+	val hasFormRules: Boolean) : Parcelable {
 
 	val isEvaluable: Boolean = hasDataProvider || hasFormRules
 
 	companion object {
+		val converter: (JSONObject) -> FormInstance = { it: JSONObject ->
 
-		val converter: (Thing) -> FormInstance = { it: Thing ->
+			val name = it.getString(FormConstants.NAME)
 
-			val name = it[FormConstants.NAME] as String
+			val description = it.getOptionalString(FormConstants.DESCRIPTION)
 
-			val description = it[FormConstants.DESCRIPTION] as? String
-
-			val defaultLanguage = it[FormConstants.DEFAULT_LANGUAGE] as String
+			val defaultLanguage = it.getString(FormConstants.DEFAULT_LANGUAGE)
 
 			val locale = Locale(defaultLanguage)
 
-			val ddmStructure = (it[FormConstants.STRUCTURE] as Relation).let {
-				getStructure(it, locale)
-			}
+			val ddmStructure = getStructure(it.getJSONObject(FormConstants.STRUCTURE), locale)
 
 			val hasDataProvider = ddmStructure.fields.any {
 				it.dataSourceType == FormConstants.DATA_PROVIDER_KEY || it.dataSourceType == FormConstants.FROM_AUTOFILL_KEY
@@ -66,21 +67,17 @@ data class FormInstance(
 			FormInstance(name, description, defaultLanguage, ddmStructure, hasDataProvider, hasFormRules)
 		}
 
-		private fun getStructure(relation: Relation, locale: Locale): DDMStructure {
+		private fun getStructure(jsonRelation: JSONObject, locale: Locale): DDMStructure {
 
-			val name = relation[FormConstants.NAME] as String
+			val name = jsonRelation.getString(FormConstants.NAME)
 
-			val description = relation[FormConstants.DESCRIPTION] as? String
+			val description = jsonRelation.getOptionalString(FormConstants.DESCRIPTION)
 
-			val pages = (relation[FormConstants.PAGES] as Map<String, Any>).let {
-				getPages(it, locale)
-			}
+			val pages = getPages(jsonRelation.getJSONArray(FormConstants.PAGES), locale)
 
-			val successPage = relation[FormConstants.SUCCESS_PAGE]?.let {
-				val successMap = it as Map<*, *>
-
-				val headline = successMap[FormConstants.HEADLINE] as String
-				val text = successMap[FormConstants.DESCRIPTION] as String
+			val successPage = jsonRelation.getOptionalJSONObject(FormConstants.SUCCESS_PAGE)?.let { jsonSuccessPage ->
+				val headline = jsonSuccessPage.getString(FormConstants.HEADLINE)
+				val text = jsonSuccessPage.getString(FormConstants.DESCRIPTION)
 
 				SuccessPage(headline, text)
 			}
@@ -88,43 +85,37 @@ data class FormInstance(
 			return DDMStructure(name, description, pages, successPage)
 		}
 
-		private fun getPages(mapper: Map<String, Any>, locale: Locale): List<FormPage> {
+		private fun getPages(jsonArrayPages: JSONArray, locale: Locale): List<FormPage> {
 
-			return (mapper["member"] as List<Map<String, Any>>).mapTo(mutableListOf()) {
+			val formPageList = mutableListOf<FormPage>()
 
-				val headlinePage = it[FormConstants.HEADLINE] as? String ?: ""
-				val textPage = it[FormConstants.TEXT] as? String ?: ""
-				val fields = (it[FormConstants.FIELDS] as Map<String, Any>).let {
-					getFields(it, locale)
-				}.toMutableList()
+			for (i in 0 until jsonArrayPages.length()) {
+				val jsonPage = jsonArrayPages.getJSONObject(i)
 
-				FormPage(headlinePage, textPage, fields)
+				val headlinePage = jsonPage.getOptionalString(FormConstants.HEADLINE) ?: ""
+				val textPage = jsonPage.getOptionalString(FormConstants.TEXT) ?: ""
+				val fields = getFields(jsonPage.getJSONArray(FormConstants.FIELDS), locale)
+
+				formPageList.add(FormPage(headlinePage, textPage, fields))
 			}
+
+			return formPageList
 		}
 
-		private fun getFields(map: Map<String, Any>, locale: Locale): List<Field<*>> {
+		private fun getFields(jsonArrayFields: JSONArray, locale: Locale): List<Field<*>> {
 
-			if (map["totalItems"] as Double <= 0) {
-				return mutableListOf()
-			}
+			val fieldList = mutableListOf<Field<*>>()
 
-			return (map["member"] as List<Map<String, Any>>).mapTo(mutableListOf()) {
+			for (i in 0 until jsonArrayFields.length()) {
+				val jsonField = jsonArrayFields.getJSONObject(i)
 
-				val dataType = it[FormFieldKeys.DATA_TYPE_KEY] as? String
-				val options = (it[FormFieldKeys.OPTIONS_KEY] as? Map<String, Any>)?.let {
-					it["member"] as? List<Map<String, Any>>
-				}
-
-				val attributes = it.toMutableMap()
-				attributes.remove(FormFieldKeys.OPTIONS_KEY)
-
-				options?.let {
-					attributes[FormFieldKeys.OPTIONS_KEY] = options
-				}
+				val dataType = jsonField.getString(FormFieldKeys.DATA_TYPE_KEY)
 
 				val fieldDataType = Field.DataType.assignDataTypeFromString(dataType)
-				fieldDataType.createField(attributes, locale, locale)
+				fieldList.add(fieldDataType.createField(JsonParser.getAttributes(jsonField), locale, locale))
 			}
+
+			return fieldList
 		}
 	}
 }

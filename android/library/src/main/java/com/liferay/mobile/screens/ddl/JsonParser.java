@@ -164,16 +164,31 @@ public class JsonParser implements DDMStructureParser {
         return result;
     }
 
-    protected Map<String, Object> getAttributes(JSONObject field) throws JSONException {
+    public static Map<String, Object> getAttributes(JSONObject field) throws JSONException {
 
         Map<String, Object> result = new HashMap<>();
         Iterator<String> it = field.keys();
         while (it.hasNext()) {
             String key = it.next();
-            result.put(key, field.get(key));
+
+            if (field.get(key) instanceof JSONArray) {
+                JSONArray jsonArray = field.getJSONArray(key);
+                result.put(key, getJSONArrayAttributes(jsonArray));
+            } else {
+                result.put(key, field.get(key));
+            }
         }
 
         return result;
+    }
+
+    public static List<Map<String, Object>> getJSONArrayAttributes(JSONArray jsonArray) throws JSONException {
+        List<Map<String, Object>> list = new ArrayList<>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            list.add(getAttributes(jsonArray.getJSONObject(i)));
+        }
+
+        return list;
     }
 
     @NonNull

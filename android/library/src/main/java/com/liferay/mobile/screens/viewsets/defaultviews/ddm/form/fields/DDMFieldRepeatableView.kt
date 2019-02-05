@@ -25,9 +25,9 @@ import com.liferay.mobile.screens.ddl.model.DocumentField
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.ddm.form.model.RepeatableField
 import com.liferay.mobile.screens.delegates.bindNonNull
+import com.liferay.mobile.screens.util.extensions.forEachChild
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.DDMFormView
-import org.jetbrains.anko.childrenSequence
 import rx.Observable
 import rx.Subscriber
 import rx.Subscription
@@ -108,14 +108,14 @@ open class DDMFieldRepeatableView @JvmOverloads constructor(
 			repeatableContainer.removeAllViews()
 			setupRepeatableFields()
 		} else {
-			repeatableContainer.childrenSequence().forEach {
+			repeatableContainer.forEachChild {
 				(it as? DDLFieldViewModel<*>)?.refresh()
 			}
 		}
 	}
 
 	override fun onPostValidation(valid: Boolean) {
-		repeatableContainer.childrenSequence().forEach {
+		repeatableContainer.forEachChild {
 			(it as? DDLFieldViewModel<*>)?.onPostValidation(valid)
 		}
 	}
@@ -129,7 +129,7 @@ open class DDMFieldRepeatableView @JvmOverloads constructor(
 	}
 
 	override fun setUpdateMode(enabled: Boolean) {
-		repeatableContainer.childrenSequence().forEach {
+		repeatableContainer.forEachChild {
 			(it as? DDLFieldViewModel<*>)?.setUpdateMode(enabled)
 		}
 

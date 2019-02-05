@@ -29,8 +29,8 @@ import com.liferay.mobile.screens.ddm.form.model.Grid
 import com.liferay.mobile.screens.ddm.form.model.GridField
 import com.liferay.mobile.screens.ddm.form.model.get
 import com.liferay.mobile.screens.delegates.bindNonNull
+import com.liferay.mobile.screens.util.extensions.forEachChild
 import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil
-import org.jetbrains.anko.childrenSequence
 import rx.Observable
 import rx.Subscriber
 import rx.Subscription
@@ -96,15 +96,14 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
 	}
 
 	override fun setUpdateMode(enabled: Boolean) {
-		field?.isShowLabel.let {
+		field.isShowLabel.let {
 			val label = findViewById<TextView>(R.id.liferay_ddm_label)
 			label?.isEnabled = enabled
 		}
 
-		gridLinearLayout.childrenSequence().mapNotNull {
-			it as? DDMFieldGridRowView
-		}.forEach { view ->
-			view.columnSelectView.setUpdateMode(enabled)
+		gridLinearLayout.forEachChild { view ->
+			val ddmFieldGridRowView = view as? DDMFieldGridRowView
+			ddmFieldGridRowView?.also { it.columnSelectView.setUpdateMode(enabled) }
 		}
 
 		this.isEnabled = enabled
@@ -117,15 +116,17 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
 	}
 
 	private fun refreshGridRows() {
-		gridLinearLayout.childrenSequence().mapNotNull {
-			it as? DDMFieldGridRowView
-		}.forEach { view ->
-			field.currentValue?.let {
-				it[view.rowOption.value]
-			}?.let { columnValue ->
-				gridField.columns[columnValue]
-			}?.run {
-				view.selectOption(this)
+		gridLinearLayout.forEachChild { view ->
+			val ddmFieldGridRowView = view as? DDMFieldGridRowView
+
+			ddmFieldGridRowView?.also { gridRowView ->
+				field.currentValue?.let { grid ->
+					grid[gridRowView.rowOption.value]
+				}?.let { columnValue ->
+					gridField.columns[columnValue]
+				}?.run {
+					gridRowView.selectOption(this)
+				}
 			}
 		}
 	}

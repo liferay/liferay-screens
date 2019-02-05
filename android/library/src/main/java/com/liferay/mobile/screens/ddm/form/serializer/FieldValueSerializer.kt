@@ -14,9 +14,10 @@
 
 package com.liferay.mobile.screens.ddm.form.serializer
 
-import com.google.gson.*
 import com.liferay.mobile.screens.ddl.model.*
 import com.liferay.mobile.screens.ddm.form.model.RepeatableField
+import org.json.JSONObject
+import org.json.JSONStringer
 
 /**
  * @author Paulo Cruz
@@ -24,9 +25,7 @@ import com.liferay.mobile.screens.ddm.form.model.RepeatableField
 class FieldValueSerializer {
 
 	companion object {
-		private val gson: Gson = GsonFactory.create()
 
-		private val EMPTY_JSON = JsonObject()
 		private const val EMPTY_STRING = ""
 		private val EMPTY_LIST = listOf<Any>()
 
@@ -58,7 +57,7 @@ class FieldValueSerializer {
 		}
 
 		private fun Field<*>.getDocumentValue(): Any? {
-			return (currentValue as? DocumentRemoteFile)?.toData() ?: EMPTY_JSON
+			return (currentValue as? DocumentRemoteFile)?.toData() ?: JSONObject()
 		}
 
 		private fun Field<*>.getListValue(): List<*>? {
@@ -86,7 +85,18 @@ class FieldValueSerializer {
 		}
 
 		private fun List<Map<String, Any?>>.toJson(): String {
-			return gson.toJson(this)
+			val jsonStringer = JSONStringer().array()
+
+			this.forEach { map ->
+				map.forEach { entry ->
+					jsonStringer.`object`()
+						.key(entry.key)
+						.value(entry.value)
+						.endObject()
+				}
+			}
+
+			return jsonStringer.endArray().toString()
 		}
 	}
 }

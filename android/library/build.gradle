@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
 	compileSdkVersion rootProject.ext.compileSdkVersion
@@ -33,6 +34,10 @@ android {
 			java.srcDirs = ['src/debug/java']
 		}
 	}
+
+	androidExtensions {
+		experimental = true
+	}
 }
 
 dependencies {
@@ -48,12 +53,6 @@ dependencies {
 		exclude group: 'com.google.android', module: 'android'
 	}
 	api group: 'org.apache.cordova', name: 'framework', version: '6.2.3', classifier: 'debug', ext: 'aar'
-
-	api(libraries.apio_consumer) {
-		exclude group: 'com.squareup.okhttp3', module: 'okhttp'
-		exclude group: 'com.android.support', module: 'appcompat-v7'
-		exclude group: 'com.android.support', module: 'recyclerview-v7'
-	}
 
 	implementation libraries.appCompat
 	implementation libraries.design
@@ -78,11 +77,6 @@ dependencies {
 	testImplementation libraries.junit
 	testImplementation libraries.robolectric
 	testImplementation libraries.mockito
-
-	// thingScreenlet
-	implementation libraries.gson
-	api libraries.okhttp
-	api libraries.circle_image_view
 
 	implementation libraries.kotlin
 

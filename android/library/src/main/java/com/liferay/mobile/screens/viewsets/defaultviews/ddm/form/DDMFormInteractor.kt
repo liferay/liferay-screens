@@ -14,42 +14,51 @@
 
 package com.liferay.mobile.screens.viewsets.defaultviews.ddm.form
 
-import com.liferay.apio.consumer.model.Thing
 import com.liferay.mobile.screens.ddl.model.DocumentField
 import com.liferay.mobile.screens.ddl.model.DocumentRemoteFile
 import com.liferay.mobile.screens.ddl.model.Field
-import com.liferay.mobile.screens.ddm.form.service.APIOEvaluateService
-import com.liferay.mobile.screens.ddm.form.service.APIOFetchLatestDraftService
-import com.liferay.mobile.screens.ddm.form.service.APIOSubmitService
-import com.liferay.mobile.screens.ddm.form.service.APIOUploadService
+import com.liferay.mobile.screens.ddm.form.model.FormContext
+import com.liferay.mobile.screens.ddm.form.model.FormInstance
+import com.liferay.mobile.screens.ddm.form.model.FormInstanceRecord
+import com.liferay.mobile.screens.ddm.form.service.openapi.*
 import java.io.InputStream
 
 /**
  * @author Victor Oliveira
  */
 class DDMFormInteractor {
-	fun evaluateContext(formThing: Thing, fields: MutableList<Field<*>>,
-		onSuccess: (Thing) -> Unit, onError: (Throwable) -> Unit) {
+	private val formService by lazy { FormServiceOpenAPI() }
 
-		APIOEvaluateService().evaluateContext(formThing, fields, onSuccess, onError)
-	}
-
-	fun fetchLatestDraft(formThing: Thing, onSuccess: (Thing) -> Unit,
+	fun getForm(formInstanceId: Long, serverUrl: String, onSuccess: (FormInstance) -> Unit,
 		onError: (Throwable) -> Unit) {
 
-		APIOFetchLatestDraftService().fetchLatestDraft(formThing, onSuccess, onError)
+		formService.getForm(formInstanceId, serverUrl, onSuccess, onError)
 	}
 
-	fun submit(formThing: Thing, currentRecordThing: Thing?, fields: MutableList<Field<*>>,
-		isDraft: Boolean = false, onSuccess: (Thing) -> Unit, onError: (Throwable) -> Unit) {
+	fun evaluateContext(formInstance: FormInstance, fields: MutableList<Field<*>>,
+		onSuccess: (FormContext) -> Unit, onError: (Throwable) -> Unit) {
 
-		APIOSubmitService().submit(formThing, currentRecordThing, fields, isDraft, onSuccess, onError)
+		formService.evaluateContext(formInstance, fields, onSuccess, onError)
 	}
 
-	fun uploadFile(formThing: Thing, field: DocumentField, inputStream: InputStream,
+	fun fetchLatestDraft(formInstance: FormInstance, onSuccess: (FormInstanceRecord) -> Unit,
+		onError: (Throwable) -> Unit) {
+
+		formService.fetchLatestDraft(formInstance, onSuccess, onError)
+	}
+
+	fun submit(formInstance: FormInstance, currentRecordThing: FormInstanceRecord?, fields: MutableList<Field<*>>,
+		isDraft: Boolean = false, onSuccess: (FormInstanceRecord) -> Unit, onError: (Throwable) -> Unit) {
+
+		currentRecordThing?.let {
+			formService.submit(formInstance, currentRecordThing, fields, isDraft, onSuccess, onError)
+		}
+	}
+
+	fun uploadFile(formInstance: FormInstance, field: DocumentField, inputStream: InputStream,
 		onSuccess: (DocumentRemoteFile) -> Unit,
 		onError: (Throwable) -> Unit) {
 
-		APIOUploadService().uploadFile(formThing, field, inputStream, onSuccess, onError)
+		formService.uploadFile(formInstance, field, inputStream, onSuccess, onError)
 	}
 }

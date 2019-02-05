@@ -8,7 +8,7 @@ buildscript {
 	}
 
 	dependencies {
-		classpath 'com.android.tools.build:gradle:3.2.1'
+		classpath 'com.android.tools.build:gradle:3.3.0'
 		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.0'
 		classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -74,8 +74,7 @@ ext {
 
 def supportLibsVersion = '27.1.1'
 
-ext.libraries = [apio_consumer      : 'com.liferay.mobile:apio-consumer-android:0.0.10',
-                 appCompat          : 'com.android.support:appcompat-v7:' + supportLibsVersion,
+ext.libraries = [appCompat          : 'com.android.support:appcompat-v7:' + supportLibsVersion,
                  recyclerView       : 'com.android.support:recyclerview-v7:' + supportLibsVersion,
                  design             : 'com.android.support:design:' + supportLibsVersion,
                  exif               : 'com.android.support:exifinterface:' + supportLibsVersion,
@@ -93,10 +92,7 @@ ext.libraries = [apio_consumer      : 'com.liferay.mobile:apio-consumer-android:
                  mockito            : 'org.mockito:mockito-core:2.11.0',
                  snappydb           : 'com.snappydb:snappydb-lib:0.5.2',
                  kryo               : 'com.esotericsoftware:kryo:4.0.0',
-                 json               : 'org.json:json:20140107',
-                 gson               : 'com.google.code.gson:gson:2.8.2',
-                 okhttp             : 'com.squareup.okhttp3:okhttp:3.10.0',
-                 circle_image_view  : 'de.hdodenhof:circleimageview:2.2.0',
+                 json               : 'org.json:json:20180813',
                  kotlin             : 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:' + ext.kotlin_version,
                  espresso           : 'com.android.support.test.espresso:espresso-core:3.0.1']
 

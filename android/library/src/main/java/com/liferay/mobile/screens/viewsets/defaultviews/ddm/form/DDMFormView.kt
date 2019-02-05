@@ -27,8 +27,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.liferay.apio.consumer.delegates.converter
-import com.liferay.apio.consumer.model.Thing
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.base.ModalProgressBarWithLabel
 import com.liferay.mobile.screens.context.LiferayScreensContext
@@ -43,13 +41,13 @@ import com.liferay.mobile.screens.ddm.form.view.SuccessPageActivity
 import com.liferay.mobile.screens.delegates.bindNonNull
 import com.liferay.mobile.screens.util.AndroidUtil
 import com.liferay.mobile.screens.util.LiferayLogger
+import com.liferay.mobile.screens.util.extensions.forEachChild
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.BaseDDLFieldTextView
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.adapters.DDMPagerAdapter
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.fields.DDMFieldRepeatableView
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.pager.WrapContentViewPager
 import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil
-import org.jetbrains.anko.childrenSequence
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
@@ -60,7 +58,7 @@ import java.util.concurrent.TimeUnit
  * @author Victor Oliveira
  */
 class DDMFormView @JvmOverloads constructor(
-	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : BaseView,
+	context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
 	RelativeLayout(context, attrs, defStyleAttr), DDLDocumentFieldView.UploadListener,
 	DDMFormViewContract.DDMFormView {
 
@@ -74,23 +72,24 @@ class DDMFormView @JvmOverloads constructor(
 	private val multipageProgress by bindNonNull<ProgressBar>(R.id.liferay_multipage_progress)
 	private val modalProgress by bindNonNull<ModalProgressBarWithLabel>(R.id.liferay_modal_progress)
 
-	private lateinit var subscription: Subscription
-
-	override lateinit var formInstance: FormInstance
+	private var subscription: Subscription? = null
 
 	override var ddmFormListener: DDMFormListener? = null
 
 	override val config = DDMFormViewConfig()
 
-	override var screenlet: ThingScreenlet? = null
+	private lateinit var _formInstance: FormInstance
 
-	override var thing: Thing? by converter<FormInstance> {
-		formInstance = it
-
-		if (screenlet?.savedInstanceState == null) {
-			onFormLoaded(formInstance)
+	override var formInstance: FormInstance? = null
+		get() = _formInstance
+		set(value) {
+			field = value
+			value?.let {
+				_formInstance = it
+				onFormLoaded(_formInstance)
+			}
 		}
-	}
+
 
 	init {
 		val themeName = ThemeUtil.getLayoutTheme(context)
@@ -133,9 +132,9 @@ class DDMFormView @JvmOverloads constructor(
 		nextButton.isEnabled = isEnabled
 	}
 
-	override fun onDestroy() {
-		super.onDestroy()
-		subscription.unsubscribe()
+	override fun onDetachedFromWindow() {
+		super.onDetachedFromWindow()
+		subscription?.unsubscribe()
 	}
 
 	override fun onFinishInflate() {
@@ -150,12 +149,9 @@ class DDMFormView @JvmOverloads constructor(
 		if (state is Bundle) {
 			val formInstanceState = FormInstanceState.valueOf(state.getString("formInstanceState"))
 			val formInstanceRecord = state.getParcelable<FormInstanceRecord>("formInstanceRecord")
+			formInstance = state.getParcelable("formInstance")
 
-			screenlet?.thing?.also {
-				thing = it
-			}
-
-			presenter.restore(formInstanceRecord, formInstance.ddmStructure.fields, formInstanceState)
+			presenter.restore(formInstanceRecord, _formInstance.ddmStructure.fields, formInstanceState)
 			super.onRestoreInstanceState(state.getParcelable("superState"))
 		} else {
 			super.onRestoreInstanceState(state)
@@ -165,6 +161,7 @@ class DDMFormView @JvmOverloads constructor(
 	override fun onSaveInstanceState(): Parcelable {
 		val bundle = Bundle()
 		bundle.putParcelable("superState", super.onSaveInstanceState())
+		bundle.putParcelable("formInstance", _formInstance)
 		bundle.putString("formInstanceState", presenter.getFormInstanceState().toString())
 
 		presenter.formInstanceRecord?.let {
@@ -175,12 +172,12 @@ class DDMFormView @JvmOverloads constructor(
 	}
 
 	override fun refreshVisibleFields() {
-		getInstantiatedPages().flatMap {
-			it.childrenSequence().asIterable()
-		}.mapNotNull {
-			it as? DDLFieldViewModel<*>
-		}.forEach {
-			it.refresh()
+		getInstantiatedPages().forEach { viewGroup ->
+			viewGroup.forEachChild { view ->
+				(view as? DDLFieldViewModel<*>).also { ddlFieldViewModel ->
+					ddlFieldViewModel?.refresh()
+				}
+			}
 		}
 
 		restoreActionButtonsState()
@@ -245,11 +242,9 @@ class DDMFormView @JvmOverloads constructor(
 		field.moveToUploadInProgressState()
 		documentFieldView.refresh()
 
-		val thing = thing ?: throw Exception("No thing found")
-
 		val inputStream = AndroidUtil.openLocalFileInputStream(context, field.currentValue as DocumentLocalFile)
 
-		presenter.uploadFile(thing, field, inputStream, documentFieldView::onUploadCompleted,
+		presenter.uploadFile(_formInstance, field, inputStream, documentFieldView::onUploadCompleted,
 			documentFieldView::onUploadError)
 	}
 
@@ -261,9 +256,7 @@ class DDMFormView @JvmOverloads constructor(
 		}.debounce(config.syncFormTimeout, TimeUnit.MILLISECONDS)
 			.observeOn(AndroidSchedulers.mainThread())
 			.subscribe({ field ->
-				thing?.let {
-					presenter.syncForm(it, formInstance, field)
-				} ?: throw Exception("No thing found")
+				presenter.syncForm(_formInstance, field)
 			}, {
 				LiferayLogger.e(it.message, it)
 			})
@@ -300,7 +293,7 @@ class DDMFormView @JvmOverloads constructor(
 
 	private fun backButtonListener() {
 		if (ddmFieldViewPages.currentItem >= 1) {
-			ddmFieldViewPages.currentItem = getPreviousEnabledPage().toInt()
+			ddmFieldViewPages.currentItem = getPreviousEnabledPage()
 
 			nextButton.text = context.getString(R.string.next)
 			multipageProgress.progress = getFormProgress()
@@ -312,11 +305,11 @@ class DDMFormView @JvmOverloads constructor(
 	}
 
 	private fun getFormProgress(): Int {
-		return (ddmFieldViewPages.currentItem + 1) * 100 / formInstance.ddmStructure.pages.size
+		return (ddmFieldViewPages.currentItem + 1) * 100 / _formInstance.ddmStructure.pages.size
 	}
 
-	private fun getInstantiatedPages(): List<View> {
-		val pages = mutableListOf<View>()
+	private fun getInstantiatedPages(): List<ViewGroup> {
+		val pages = mutableListOf<ViewGroup>()
 
 		val currentPos = ddmFieldViewPages.currentItem
 		val offset = ddmFieldViewPages.offscreenPageLimit
@@ -336,20 +329,20 @@ class DDMFormView @JvmOverloads constructor(
 	}
 
 	private fun getInvalidFields(): Map<String, Field<*>> {
-		val page = formInstance.ddmStructure.pages[ddmFieldViewPages.currentItem]
+		val page = _formInstance.ddmStructure.pages[ddmFieldViewPages.currentItem]
 
 		return page.fields.asSequence().filter { !it.isValid }.associateBy({ it.name }, { it })
 	}
 
-	private fun getNextEnabledPage(): Number {
+	private fun getNextEnabledPage(): Int {
 		(ddmFieldViewPages.adapter as DDMPagerAdapter).let { ddmPagerAdapter ->
-			val dropPages = ddmFieldViewPages.currentItem + 1
+			val currentPage = ddmFieldViewPages.currentItem + 1
 
-			return ddmPagerAdapter.pages.asSequence().drop(dropPages).indexOfFirst { it.isEnabled } + dropPages
+			return ddmPagerAdapter.pages.asSequence().drop(currentPage).indexOfFirst { it.isEnabled } + currentPage
 		}
 	}
 
-	private fun getPreviousEnabledPage(): Number {
+	private fun getPreviousEnabledPage(): Int {
 		(ddmFieldViewPages.adapter as DDMPagerAdapter).let { ddmPagerAdapter ->
 			val dropPages = ddmPagerAdapter.pages.size - ddmFieldViewPages.currentItem
 
@@ -400,7 +393,7 @@ class DDMFormView @JvmOverloads constructor(
 	}
 
 	private fun nextButtonListener(size: Int) {
-		ddmFieldViewPages.currentItem = getNextEnabledPage().toInt()
+		ddmFieldViewPages.currentItem = getNextEnabledPage()
 
 		backButton.visibility = View.VISIBLE
 		multipageProgress.progress = getFormProgress()
@@ -430,12 +423,10 @@ class DDMFormView @JvmOverloads constructor(
 	}
 
 	private fun onFormLoaded(formInstance: FormInstance) {
-		val thing = thing ?: throw Exception("No thing found")
-
 		setActivityTitle(formInstance)
 		initPageAdapter(formInstance.ddmStructure.pages)
 
-		presenter.loadInitialContext(thing, formInstance)
+		presenter.loadInitialContext(formInstance)
 	}
 
 	private fun restoreActionButtonsState() {
@@ -480,8 +471,7 @@ class DDMFormView @JvmOverloads constructor(
 		if (!AndroidUtil.isConnected(context.applicationContext)) {
 			showConnectivityErrorMessage()
 		} else {
-			val thing = thing ?: throw Exception("No thing found")
-			presenter.submit(thing, formInstance)
+			presenter.submit(_formInstance)
 		}
 	}
 
