@@ -24,6 +24,7 @@ import android.widget.TextView
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.delegates.bindNonNull
+import com.liferay.mobile.screens.util.AndroidUtil
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
 import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil
 import rx.Observable
@@ -135,15 +136,7 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
 	}
 
 	private fun setupRepeatableLabel() {
-		if (isFirstField && isShowLabel) {
-			repeatableLabel.text = label
-			repeatableLabel.visibility = View.VISIBLE
-
-			if (field.isRequired) {
-				val requiredAlert = ThemeUtil.getRequiredSpannable(context)
-				repeatableLabel.append(requiredAlert)
-			}
-		}
+		AndroidUtil.updateLabelLayout(repeatableLabel, field, context)
 	}
 
 	private fun setupRepeatableField() {
