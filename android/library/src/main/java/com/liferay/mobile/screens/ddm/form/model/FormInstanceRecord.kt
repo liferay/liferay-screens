@@ -55,7 +55,7 @@ class FormInstanceRecord(
 			for (i in 0 until jsonArray.length()) {
 				val fieldJSON = jsonArray.getJSONObject(i)
 				val name = fieldJSON.getOptionalString("name") ?: ""
-				val value = fieldJSON.getOptional("value")
+				val value = fieldJSON.getOptionalString("value") ?: ""
 
 				fieldValues.add(FieldValue(name, value))
 			}
