@@ -157,8 +157,7 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
 			this.gridField.currentValue.rawValues[row.value] = option.value
 		}
 
-		val columnEditText = ddmFieldGridRowView.columnSelectView.textEditText
-		columnEditText.setTypeface(columnEditText.typeface, Typeface.BOLD)
+		ddmFieldGridRowView.refresh()
 
 		changeValuesSubscriber?.onNext(field.isValid)
 		changeValuesGridSubscriber?.onNext(field)
@@ -176,8 +175,14 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
 
 			ddmFieldGridRowView.setOptions(row, gridField.columns)
 
-			ddmFieldGridRowView.columnSelectView.setOnValueChangedListener { _, which ->
-				onColumnValueChanged(which, row, ddmFieldGridRowView)
+			ddmFieldGridRowView.columnSelectView.apply {
+				setOnValueChangedListener { _, which ->
+					onColumnValueChanged(which, row, ddmFieldGridRowView)
+				}
+
+				setOnClearListener {
+                    ddmFieldGridRowView.refresh()
+				}
 			}
 		}
 
