@@ -181,7 +181,7 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
 				}
 
 				setOnClearListener {
-                    ddmFieldGridRowView.refresh()
+					ddmFieldGridRowView.refresh()
 				}
 			}
 		}

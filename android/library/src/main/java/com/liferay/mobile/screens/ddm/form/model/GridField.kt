@@ -30,7 +30,7 @@ class GridField : Field<Grid>, Parcelable {
 	lateinit var rows: List<Option>
 	lateinit var columns: List<Option>
 
-	internal constructor(): super()
+	internal constructor() : super()
 
 	constructor(attributes: Map<String, Any>, locale: Locale, defaultLocale: Locale) :
 		super(attributes, locale, defaultLocale) {
