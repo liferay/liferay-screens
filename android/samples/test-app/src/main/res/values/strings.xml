@@ -84,9 +84,6 @@
     <string name="cookie">Cookie</string>
     <string name="oauth2_with_redirect">OAuth2 redirect</string>
     <string name="oauth2_username_and_password">OAuth2 Username and password</string>
-    <string name="thing_screenlet">Thing Screenlet</string>
-    <string name="thing_screenlet_workflow">Workflow</string>
-    <string name="title_activity_edit">EditActivity</string>
     <string name="user_portrait_default_text">User portrait default:</string>
     <string name="user_portrait_default_editable_text">User portrait editable:</string>
     <string name="editable_comment">Editable comment:</string>

@@ -24,7 +24,7 @@ import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.DocumentField
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.ddm.form.model.RepeatableField
-import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
+import com.liferay.mobile.screens.delegates.bindNonNull
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.DDMFormView
 import org.jetbrains.anko.childrenSequence

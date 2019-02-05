@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
-import com.liferay.mobile.screens.thingscreenlet.delegates.ConverterDelegate;
 
 public class ScreensInitProvider extends ContentProvider {
 
@@ -18,7 +17,6 @@ public class ScreensInitProvider extends ContentProvider {
         Context context = getContext().getApplicationContext();
         LiferayScreensContext.init(context);
 
-        ConverterDelegate.initializeConverter();
         return true;
     }
 

@@ -23,7 +23,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.Field
-import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
+import com.liferay.mobile.screens.delegates.bindNonNull
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
 import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil
 import rx.Observable

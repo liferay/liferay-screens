@@ -21,7 +21,7 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.liferay.mobile.screens.R
-import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
+import com.liferay.mobile.screens.delegates.bindNonNull
 
 /**
  * TODO: Merge this class with ModalProgressBar

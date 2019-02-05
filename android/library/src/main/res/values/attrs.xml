@@ -308,15 +308,4 @@
         <attr name="autoLoad"/>
     </declare-styleable>
 
-    <declare-styleable name="ThingScreenlet">
-        <attr name="layoutId"/>
-        <attr format="string" name="scenario"/>
-    </declare-styleable>
-
-    <declare-styleable name="WorkflowListScreenlet">
-        <attr name="layoutId"/>
-        <attr name="scenario"/>
-        <attr name="tasks"/>
-    </declare-styleable>
-
 </resources>

@@ -40,9 +40,7 @@ import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.ddm.form.DDMFormListener
 import com.liferay.mobile.screens.ddm.form.model.*
 import com.liferay.mobile.screens.ddm.form.view.SuccessPageActivity
-import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
-import com.liferay.mobile.screens.thingscreenlet.screens.ThingScreenlet
-import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
+import com.liferay.mobile.screens.delegates.bindNonNull
 import com.liferay.mobile.screens.util.AndroidUtil
 import com.liferay.mobile.screens.util.LiferayLogger
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.BaseDDLFieldTextView

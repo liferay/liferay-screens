@@ -22,8 +22,6 @@ import com.liferay.mobile.screens.ddl.form.util.FormConstants
 import com.liferay.mobile.screens.ddl.form.util.FormFieldKeys
 import com.liferay.mobile.screens.ddl.model.DDMStructure
 import com.liferay.mobile.screens.ddl.model.Field
-import com.liferay.mobile.screens.thingscreenlet.screens.views.Detail
-import com.liferay.mobile.screens.thingscreenlet.screens.views.Scenario
 import java.util.*
 
 /**
@@ -42,10 +40,6 @@ data class FormInstance(
 	val isEvaluable: Boolean = hasDataProvider || hasFormRules
 
 	companion object {
-		val DEFAULT_VIEWS: MutableMap<Scenario, Int> =
-			mutableMapOf(
-				Detail to R.layout.ddm_form_default
-			)
 
 		val converter: (Thing) -> FormInstance = { it: Thing ->
 

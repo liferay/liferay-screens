@@ -28,7 +28,7 @@ import com.liferay.mobile.screens.ddl.model.Option
 import com.liferay.mobile.screens.ddm.form.model.Grid
 import com.liferay.mobile.screens.ddm.form.model.GridField
 import com.liferay.mobile.screens.ddm.form.model.get
-import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
+import com.liferay.mobile.screens.delegates.bindNonNull
 import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil
 import org.jetbrains.anko.childrenSequence
 import rx.Observable
