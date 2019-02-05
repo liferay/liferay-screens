@@ -31,6 +31,8 @@ import android.text.Html.FROM_HTML_MODE_LEGACY
 import android.os.Build.VERSION.SDK_INT
 import android.text.Html
 import android.text.Spanned
+import com.liferay.mobile.screens.ddl.model.Field
+import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil
 import java.io.IOException
 
 /**
@@ -107,6 +109,31 @@ class AndroidUtil {
 			}
 
 			snackbar.show()
+		}
+
+		@JvmStatic
+		fun updateHintLayout(hintTextView: TextView?, field: Field<*>) {
+			if (field.tip.isNullOrEmpty()) {
+				hintTextView?.visibility = View.GONE
+			} else {
+				hintTextView?.text = field.tip
+				hintTextView?.visibility = View.VISIBLE
+			}
+		}
+
+		@JvmStatic
+		fun updateLabelLayout(labelTextView: TextView?, field: Field<*>, context: Context) {
+			if (field.isShowLabel) {
+				labelTextView?.text = field.label
+				labelTextView?.visibility = View.VISIBLE
+
+				if (field.isRequired) {
+					val requiredAlert = ThemeUtil.getRequiredSpannable(context)
+					labelTextView?.append(requiredAlert)
+				}
+			} else {
+				labelTextView?.visibility = View.GONE
+			}
 		}
 
 		@JvmStatic
