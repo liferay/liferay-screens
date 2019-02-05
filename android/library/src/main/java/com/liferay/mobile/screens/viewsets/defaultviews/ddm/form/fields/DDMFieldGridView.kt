@@ -30,6 +30,7 @@ import com.liferay.mobile.screens.ddm.form.model.GridField
 import com.liferay.mobile.screens.ddm.form.model.get
 import com.liferay.mobile.screens.delegates.bindNonNull
 import com.liferay.mobile.screens.util.extensions.forEachChild
+import com.liferay.mobile.screens.util.AndroidUtil
 import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil
 import rx.Observable
 import rx.Subscriber
@@ -132,20 +133,8 @@ open class DDMFieldGridView @JvmOverloads constructor(context: Context, attrs: A
 	}
 
 	private fun setupLabelLayout() {
-		if (gridField.isShowLabel && gridField.label.isNotEmpty()) {
-			labelTextView.text = gridField.label
-			labelTextView.visibility = View.VISIBLE
-
-			if (this.gridField.isRequired) {
-				val requiredAlert = ThemeUtil.getRequiredSpannable(context)
-				labelTextView.append(requiredAlert)
-			}
-		}
-
-		if (gridField.tip.isNotEmpty()) {
-			hintTextView.text = gridField.tip
-			hintTextView.visibility = View.VISIBLE
-		}
+		AndroidUtil.updateLabelLayout(labelTextView, gridField, context)
+		AndroidUtil.updateHintLayout(hintTextView, gridField)
 	}
 
 	private fun onColumnValueChanged(which: Int, row: Option, ddmFieldGridRowView: DDMFieldGridRowView) {

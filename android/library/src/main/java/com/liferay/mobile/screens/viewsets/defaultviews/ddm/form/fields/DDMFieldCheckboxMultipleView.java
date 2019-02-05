@@ -85,17 +85,6 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
     public void setField(final CheckboxMultipleField field) {
         this.field = field;
 
-        if (field.isShowLabel()) {
-            TextView label = findViewById(R.id.liferay_ddm_label);
-
-            label.setText(field.getLabel());
-            label.setVisibility(VISIBLE);
-
-            if (field.isRequired()) {
-                label.append(ThemeUtil.getRequiredSpannable(getContext()));
-            }
-        }
-
         if (field.isInline()) {
             linearLayout.setOrientation(HORIZONTAL);
         }
@@ -114,11 +103,6 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
             }
         }
 
-        if (!StringUtils.isNullOrEmpty(this.field.getTip())) {
-            hintTextView.setText(this.field.getTip());
-            hintTextView.setVisibility(VISIBLE);
-        }
-
         refresh();
     }
 
@@ -135,6 +119,11 @@ public class DDMFieldCheckboxMultipleView extends LinearLayout
                 }
             }
         }
+
+        TextView labelTextView = findViewById(R.id.liferay_ddm_label);
+
+        AndroidUtil.updateHintLayout(hintTextView, field);
+        AndroidUtil.updateLabelLayout(labelTextView, field, getContext());
     }
 
     @Override

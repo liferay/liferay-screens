@@ -85,36 +85,16 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
     public void setField(T field) {
         this.field = field;
 
-        setupFieldLayout();
-
         refresh();
     }
 
     public void setupFieldLayout() {
-        if (this.field.isShowLabel()) {
-            if (labelTextView != null) {
-                labelTextView.setText(this.field.getLabel());
-                labelTextView.setVisibility(VISIBLE);
-
-                if (this.field.isRequired()) {
-                    Spannable requiredAlert = ThemeUtil.getRequiredSpannable(getContext());
-                    labelTextView.append(requiredAlert);
-                }
-            }
-        } else {
-            if (labelTextView != null) {
-                labelTextView.setVisibility(GONE);
-            }
-        }
-
-        if (this.field.getPlaceHolder() != null && !this.field.getPlaceHolder().isEmpty()) {
+        if (!StringUtils.isNullOrEmpty(this.field.getPlaceHolder())) {
             textEditText.setHint(this.field.getPlaceHolder());
         }
 
-        if (!StringUtils.isNullOrEmpty(this.field.getTip())) {
-            hintTextView.setText(this.field.getTip());
-            hintTextView.setVisibility(VISIBLE);
-        }
+        AndroidUtil.updateLabelLayout(labelTextView, field, getContext());
+        AndroidUtil.updateHintLayout(hintTextView, field);
     }
 
     public TextView getLabelTextView() {
@@ -147,6 +127,8 @@ public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
         if (!currentText.equals(newText)) {
             textEditText.setText(newText);
         }
+
+        setupFieldLayout();
     }
 
     @Override

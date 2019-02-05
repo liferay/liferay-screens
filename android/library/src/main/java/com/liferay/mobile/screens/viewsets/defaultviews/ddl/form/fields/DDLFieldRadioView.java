@@ -47,6 +47,7 @@ public class DDLFieldRadioView extends LinearLayout
 
     protected View parentView;
     private TextView hintTextView;
+    private TextView labelTextView;
     private SelectableOptionsField field;
     private RadioGroup radioGroup;
     private Observable<SelectableOptionsField> onChangedValueObservable = Observable.empty();
@@ -68,25 +69,8 @@ public class DDLFieldRadioView extends LinearLayout
     public void setField(SelectableOptionsField field) {
         this.field = field;
 
-        if (this.field.isShowLabel()) {
-            TextView label = findViewById(R.id.liferay_ddl_label);
-
-            label.setText(field.getLabel());
-            label.setVisibility(VISIBLE);
-
-            if (this.field.isRequired()) {
-                Spannable requiredAlert = ThemeUtil.getRequiredSpannable(getContext());
-                label.append(requiredAlert);
-            }
-        }
-
         if (this.field.isInline()) {
             radioGroup.setOrientation(HORIZONTAL);
-        }
-
-        if (!StringUtils.isNullOrEmpty(this.field.getTip())) {
-            hintTextView.setText(this.field.getTip());
-            hintTextView.setVisibility(VISIBLE);
         }
 
         renderOptions(field);
@@ -132,6 +116,9 @@ public class DDLFieldRadioView extends LinearLayout
                 }
             }
         }
+
+        AndroidUtil.updateHintLayout(hintTextView, field);
+        AndroidUtil.updateLabelLayout(labelTextView, field, getContext());
     }
 
     @Override
@@ -139,8 +126,7 @@ public class DDLFieldRadioView extends LinearLayout
         String errorText = valid ? null : getContext().getString(R.string.required_value);
 
         if (field.isShowLabel()) {
-            TextView label = findViewById(R.id.liferay_ddl_label);
-            label.setError(errorText);
+            labelTextView.setError(errorText);
         } else {
             List<Option> availableOptions = field.getAvailableOptions();
             Option opt = availableOptions.get(0);
@@ -169,8 +155,7 @@ public class DDLFieldRadioView extends LinearLayout
     @Override
     public void setUpdateMode(boolean enabled) {
         if (this.field.isShowLabel()) {
-            TextView label = findViewById(R.id.liferay_ddl_label);
-            AndroidUtil.updateViewState(label, enabled);
+            AndroidUtil.updateViewState(labelTextView, enabled);
         }
 
         List<Option> availableOptions = field.getAvailableOptions();
@@ -202,8 +187,9 @@ public class DDLFieldRadioView extends LinearLayout
     protected void onFinishInflate() {
         super.onFinishInflate();
 
-        radioGroup = findViewById(R.id.radio_group);
         hintTextView = findViewById(R.id.liferay_ddm_hint);
+        labelTextView = findViewById(R.id.liferay_ddl_label);
+        radioGroup = findViewById(R.id.radio_group);
 
         setSaveEnabled(true);
 
