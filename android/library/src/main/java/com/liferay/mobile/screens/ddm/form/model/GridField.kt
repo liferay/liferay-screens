@@ -27,8 +27,10 @@ import java.util.*
  * @author Victor Oliveira
  */
 class GridField : Field<Grid>, Parcelable {
-	var rows: List<Option>
-	var columns: List<Option>
+	lateinit var rows: List<Option>
+	lateinit var columns: List<Option>
+
+	internal constructor(): super()
 
 	constructor(attributes: Map<String, Any>, locale: Locale, defaultLocale: Locale) :
 		super(attributes, locale, defaultLocale) {
