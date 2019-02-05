@@ -14,9 +14,6 @@
 
 package com.liferay.mobile.screens.viewsets.defaultviews.ddm.form
 
-import com.liferay.apio.consumer.delegates.converter
-import com.liferay.apio.consumer.exception.ThingNotFoundException
-import com.liferay.apio.consumer.model.Thing
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.*
 import com.liferay.mobile.screens.ddm.form.model.*
@@ -34,9 +31,7 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 
 	private var formInstanceState = FormInstanceState.IDLE
 
-	private var currentRecordThing: Thing? by converter<FormInstanceRecord> {
-		formInstanceRecord = it
-	}
+	private var currentRecordThing: FormInstanceRecord? = null
 
 	var formInstanceRecord: FormInstanceRecord? = null
 
@@ -55,14 +50,13 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 		}
 	}
 
-	override fun evaluateContext(thing: Thing, fields: MutableList<Field<*>>, onComplete: (() -> Unit)?) {
+	override fun evaluateContext(formInstance: FormInstance, fields: MutableList<Field<*>>, onComplete: (() -> Unit)?) {
 		view.showModalEvaluateContextLoading()
 		formInstanceState = FormInstanceState.EVALUATING_CONTEXT
 
-		interactor.evaluateContext(thing, fields, {
+		interactor.evaluateContext(formInstance, fields, { formContext ->
 			view.hideModalLoading()
 
-			val formContext = FormContext.converter(it)
 			view.updatePageEnabled(formContext)
 
 			updateFields(formContext, fields)
@@ -93,7 +87,7 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 		return formInstanceState
 	}
 
-	override fun syncForm(thing: Thing, formInstance: FormInstance, field: Field<*>) {
+	override fun syncForm(formInstance: FormInstance, field: Field<*>) {
 		if (!field.isTransient) {
 
 			if (!view.hasConnectivity()) {
@@ -102,10 +96,10 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 			}
 
 			if (formInstanceState == FormInstanceState.IDLE) {
-				submit(thing, formInstance, true)
+				submit(formInstance, true)
 
 				if (field.hasFormRules()) {
-					evaluateContext(thing, formInstance.ddmStructure.fields)
+					evaluateContext(formInstance, formInstance.ddmStructure.fields)
 				}
 			}
 		}
@@ -121,14 +115,14 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 		}
 	}
 
-	override fun submit(thing: Thing, formInstance: FormInstance, isDraft: Boolean) {
+	override fun submit(formInstance: FormInstance, isDraft: Boolean) {
 		if (isDraft && !view.config.autosaveDraftEnabled) return
 
 		formInstanceState = if (isDraft) FormInstanceState.SAVING_DRAFT else FormInstanceState.SUBMITTING
 		val fields = formInstance.ddmStructure.fields
 		view.isSubmitEnabled(isDraft)
 
-		interactor.submit(thing, currentRecordThing, fields, isDraft, { recordThing ->
+		interactor.submit(formInstance, currentRecordThing, fields, isDraft, { recordThing ->
 			currentRecordThing = recordThing
 			resetFormInstanceState()
 
@@ -155,37 +149,38 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 		})
 	}
 
-	override fun loadInitialContext(thing: Thing, formInstance: FormInstance) {
+	override fun loadInitialContext(formInstance: FormInstance) {
 		view.showModalSyncFormLoading()
 		formInstanceState = FormInstanceState.SYNCING
 
 		val fields = formInstance.ddmStructure.fields
 
 		if (formInstance.hasDataProvider) {
-			fetchDataProviders(thing, fields) {
-				fetchLatestDraft(thing, fields) {
-					onCompleteFetch(thing, formInstance, fields)
+			fetchDataProviders(formInstance, fields) {
+				fetchLatestDraft(formInstance, fields) {
+					onCompleteFetch(formInstance, fields)
 				}
 			}
 		} else {
-			fetchLatestDraft(thing, fields) {
-				onCompleteFetch(thing, formInstance, fields)
+			fetchLatestDraft(formInstance, fields) {
+				onCompleteFetch(formInstance, fields)
 			}
 		}
 	}
 
 	override fun uploadFile(
-		thing: Thing, field: DocumentField, inputStream: InputStream, onSuccess: (DocumentRemoteFile) -> Unit,
+		formInstance: FormInstance, field: DocumentField, inputStream: InputStream,
+		onSuccess: (DocumentRemoteFile) -> Unit,
 		onError: (Throwable) -> Unit) {
 
-		interactor.uploadFile(thing, field, inputStream, onSuccess, onError)
+		interactor.uploadFile(formInstance, field, inputStream, onSuccess, onError)
 	}
 
-	private fun fetchDataProviders(thing: Thing, fields: MutableList<Field<*>>, onComplete: (() -> Unit)?) {
+	private fun fetchDataProviders(formInstance: FormInstance, fields: MutableList<Field<*>>,
+		onComplete: (() -> Unit)?) {
 		view.showModalEvaluateContextLoading()
 
-		interactor.evaluateContext(thing, fields, {
-			val formContext = FormContext.converter(it)
+		interactor.evaluateContext(formInstance, fields, { formContext ->
 			view.updatePageEnabled(formContext)
 
 			updateFields(formContext, fields)
@@ -201,13 +196,13 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 		})
 	}
 
-	private fun fetchLatestDraft(thing: Thing, fields: MutableList<Field<*>>, onComplete: (() -> Unit)?) {
+	private fun fetchLatestDraft(formInstance: FormInstance, fields: MutableList<Field<*>>, onComplete: (() -> Unit)?) {
 		if (!view.config.autoloadDraftEnabled) {
 			onComplete?.invoke()
 			return
 		}
 
-		interactor.fetchLatestDraft(thing, {
+		interactor.fetchLatestDraft(formInstance, {
 			view.hideModalLoading()
 
 			currentRecordThing = it
@@ -228,9 +223,9 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 		})
 	}
 
-	private fun onCompleteFetch(thing: Thing, formInstance: FormInstance, fields: MutableList<Field<*>>) {
+	private fun onCompleteFetch(formInstance: FormInstance, fields: MutableList<Field<*>>) {
 		if (formInstance.isEvaluable) {
-			evaluateContext(thing, fields) {
+			evaluateContext(formInstance, fields) {
 				resetFormInstanceState()
 			}
 		} else {
@@ -246,13 +241,13 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 		currentRecordThing = null
 		formInstanceRecord = null
 
-		val thing = (view as? BaseView)?.thing ?: throw ThingNotFoundException()
+		view.formInstance?.also {
+			loadInitialContext(it)
 
-		loadInitialContext(thing, view.formInstance)
-
-		val fields = view.formInstance.ddmStructure.fields
-		val emptyValues = fields.map { FieldValue(it.name, "") }
-		updateFields(emptyValues, fields)
+			val fields = it.ddmStructure.fields
+			val emptyValues = fields.map { field -> FieldValue(field.name, "") }
+			updateFields(emptyValues, fields)
+		}
 	}
 
 	private fun setOptions(fieldContext: FieldContext, optionsField: OptionsField<*>) {

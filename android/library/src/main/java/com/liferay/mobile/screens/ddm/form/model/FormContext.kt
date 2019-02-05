@@ -14,8 +14,11 @@
 
 package com.liferay.mobile.screens.ddm.form.model
 
-import com.liferay.apio.consumer.model.Thing
-import com.liferay.apio.consumer.model.get
+import com.liferay.mobile.screens.ddl.JsonParser
+import com.liferay.mobile.screens.util.extensions.getOptional
+import com.liferay.mobile.screens.util.extensions.getOptionalString
+import org.json.JSONArray
+import org.json.JSONObject
 
 /**
  * @author Paulo Cruz
@@ -27,63 +30,67 @@ class FormContext @JvmOverloads constructor(
 	val pages: List<FormContextPage>) {
 
 	companion object {
-		val converter: (Thing) -> FormContext = { it: Thing ->
+		val converter: (JSONObject) -> FormContext = { it: JSONObject ->
 
-			val isReadOnly = it["isReadOnly"] as Boolean
-			val showRequiredFieldsWarning = it["isShowRequiredFieldsWarning"] as Boolean
-			val showSubmitButton = it["isShowSubmitButton"] as Boolean
+			val isReadOnly = it.getBoolean("isReadOnly")
+			val showRequiredFieldsWarning = it.getBoolean("isShowRequiredFieldsWarning")
+			val showSubmitButton = it.getBoolean("isShowSubmitButton")
 
-			val pages = (it["pages"] as Map<String, Any>).let {
-				getPages(it)
-			}
+			val pages = getPages(it.getJSONArray("pages"))
 
 			FormContext(isReadOnly, showRequiredFieldsWarning, showSubmitButton, pages)
 		}
 
-		private fun getPages(mapper: Map<String, Any>): List<FormContextPage> {
+		private fun getPages(jsonArrayPages: JSONArray): List<FormContextPage> {
 
-			return (mapper["member"] as List<Map<String, Any>>).mapTo(mutableListOf()) {
+			val formContextPageList = mutableListOf<FormContextPage>()
 
-				val headline = it["headline"] as? String ?: ""
-				val text = it["text"] as? String ?: ""
+			for (i in 0 until jsonArrayPages.length()) {
+				val jsonPage = jsonArrayPages.getJSONObject(i)
 
-				val fields = (it["fields"] as Map<String, Any>).let {
-					getFields(it)
-				}
+				val headline = jsonPage.getOptionalString("headline") ?: ""
+				val text = jsonPage.getOptionalString("text") ?: ""
 
-				val isEnabled = it["isEnabled"] as Boolean
-				val showRequiredFieldsWarning = it["isShowRequiredFieldsWarning"] as Boolean
+				val fields = getFields(jsonPage.getJSONArray("fields"))
 
-				FormContextPage(headline, text, fields, isEnabled, showRequiredFieldsWarning)
+				val isEnabled = jsonPage.getBoolean("isEnabled")
+				val showRequiredFieldsWarning = jsonPage.getBoolean("isShowRequiredFieldsWarning")
+
+				formContextPageList.add(FormContextPage(headline, text, fields, isEnabled, showRequiredFieldsWarning))
 			}
+
+			return formContextPageList
 		}
 
-		private fun getFields(map: Map<String, Any>): List<FieldContext> {
+		private fun getFields(jsonArray: JSONArray): List<FieldContext> {
 
-			if (map["totalItems"] as Double <= 0) {
-				return mutableListOf()
-			}
+			val fieldList = mutableListOf<FieldContext>()
 
-			return (map["member"] as List<Map<String, Any>>).mapTo(mutableListOf()) {
+			for (i in 0 until jsonArray.length()) {
+				val jsonField = jsonArray.getJSONObject(i)
 
-				val name = it["name"] as String
-				val value = it["value"]
-				val errorMessage = it["errorMessage"] as? String
+				val name = jsonField.getString("name")
+				val value = jsonField.getOptional("value")
+				val errorMessage = jsonField.getOptionalString("errorMessage") ?: ""
 
-				val options = (it["options"] as? Map<String, Any>)?.let {
-					it["member"] as? List<Map<String, Any>>
+				val options = if (jsonField.has("options")) {
+					JsonParser.getJSONArrayAttributes(jsonField.getJSONArray("options"))
+				} else {
+					emptyList<Map<String, Any?>>()
 				}
 
-				val isEvaluable = it["isEvaluable"] as? Boolean
-				val isReadOnly = it["isReadOnly"] as? Boolean
-				val isRequired = it["isRequired"] as? Boolean
-				val isValid = it["isValid"] as? Boolean
-				val isValueChanged = it["isValueChanged"] as? Boolean
-				val isVisible = it["isVisible"] as? Boolean
+				val isEvaluable = jsonField.getBoolean("isEvaluable")
+				val isReadOnly = jsonField.getBoolean("isReadOnly")
+				val isRequired = jsonField.getBoolean("isRequired")
+				val isValid = jsonField.getBoolean("isValid")
+				val isValueChanged = jsonField.getBoolean("isValueChanged")
+				val isVisible = jsonField.getBoolean("isVisible")
 
-				FieldContext(name, value, errorMessage, options, isEvaluable, isReadOnly,
-					isRequired, isValid, isValueChanged, isVisible)
+				fieldList.add(FieldContext(name, value, errorMessage, options, isEvaluable, isReadOnly,
+					isRequired, isValid, isValueChanged, isVisible))
 			}
+
+			return fieldList
 		}
 	}
 }

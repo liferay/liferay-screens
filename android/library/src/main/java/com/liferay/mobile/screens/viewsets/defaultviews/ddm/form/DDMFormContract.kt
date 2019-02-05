@@ -17,7 +17,6 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddm.form
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.liferay.apio.consumer.model.Thing
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.DocumentField
 import com.liferay.mobile.screens.ddl.model.DocumentRemoteFile
@@ -37,7 +36,7 @@ interface DDMFormViewContract {
 
 		val config: DDMFormViewConfig
 
-		var formInstance: FormInstance
+		var formInstance: FormInstance?
 
 		var ddmFormListener: DDMFormListener?
 
@@ -82,24 +81,25 @@ interface DDMFormViewContract {
 
 		fun checkIsDirty(field: Field<*>, fieldContext: FieldContext, fieldViewModel: DDLFieldViewModel<*>?)
 
-		fun evaluateContext(thing: Thing, fields: MutableList<Field<*>>, onComplete: (() -> Unit)? = null)
+		fun evaluateContext(formInstance: FormInstance, fields: MutableList<Field<*>>, onComplete: (() -> Unit)? = null)
 
 		fun fieldModelsChanged(field: Field<*>)
 
 		fun getFormInstanceState(): FormInstanceState
 
-		fun loadInitialContext(thing: Thing, formInstance: FormInstance)
+		fun loadInitialContext(formInstance: FormInstance)
 
 		fun restore(
 			formInstanceRecord: FormInstanceRecord?, fields: MutableList<Field<*>>,
 			formInstanceState: FormInstanceState)
 
-		fun submit(thing: Thing, formInstance: FormInstance, isDraft: Boolean = false)
+		fun submit(formInstance: FormInstance, isDraft: Boolean = false)
 
-		fun syncForm(thing: Thing, formInstance: FormInstance, field: Field<*>)
+		fun syncForm(formInstance: FormInstance, field: Field<*>)
 
 		fun uploadFile(
-			thing: Thing, field: DocumentField, inputStream: InputStream, onSuccess: (DocumentRemoteFile) -> Unit,
+			formInstance: FormInstance, field: DocumentField, inputStream: InputStream,
+			onSuccess: (DocumentRemoteFile) -> Unit,
 			onError: (Throwable) -> Unit)
 	}
 }

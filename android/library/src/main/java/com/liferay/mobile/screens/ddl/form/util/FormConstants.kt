@@ -19,7 +19,6 @@ package com.liferay.mobile.screens.ddl.form.util
  */
 class FormConstants {
 	companion object {
-		const val URL_TEMPLATE = "/o/api/p/form/%d?embedded=structure"
 		const val DATA_PROVIDER_KEY: String = "data-provider"
 		const val FROM_AUTOFILL_KEY: String = "from-autofill"
 		const val NAME = "name"

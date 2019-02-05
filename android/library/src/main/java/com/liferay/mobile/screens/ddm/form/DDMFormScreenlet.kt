@@ -19,11 +19,14 @@ import android.util.AttributeSet
 import android.widget.FrameLayout
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.util.FormConstants.Companion.DEFAULT_SYNC_TIMEOUT
-import com.liferay.mobile.screens.ddm.form.service.APIOGetFormService
-import com.liferay.mobile.screens.util.getLong
-import com.liferay.mobile.screens.util.getLongOrNull
-import com.liferay.mobile.screens.util.getStyledAttributes
-import com.liferay.mobile.screens.util.use
+import com.liferay.mobile.screens.ddm.form.model.FormInstance
+import com.liferay.mobile.screens.ddm.form.service.GetFormService
+import com.liferay.mobile.screens.ddm.form.service.openapi.GetFormServiceOpenAPI
+import com.liferay.mobile.screens.util.extensions.getLong
+import com.liferay.mobile.screens.util.extensions.getLongOrNull
+import com.liferay.mobile.screens.util.extensions.getStyledAttributes
+import com.liferay.mobile.screens.util.extensions.use
+import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.DDMFormInteractor
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.DDMFormView
 
 /**
@@ -39,7 +42,7 @@ class DDMFormScreenlet @JvmOverloads constructor(
 	var syncFormTimeout = DEFAULT_SYNC_TIMEOUT
 
 	private var ddmFormView: DDMFormView? = null
-	private val service = APIOGetFormService()
+	private val service: GetFormService by lazy { GetFormServiceOpenAPI() }
 
 	init {
 		getStyledAttributes(attrs, R.styleable.DDMFormScreenlet)?.use {
@@ -63,15 +66,17 @@ class DDMFormScreenlet @JvmOverloads constructor(
 
 	@JvmOverloads
 	fun load(formInstanceId: Long? = this.formInstanceId) {
-		formInstanceId?.also {
+		this.formInstanceId = formInstanceId
+
+		formInstanceId?.also { it ->
 			val serverUrl = resources.getString(R.string.liferay_server)
 
-			service.getForm(formInstanceId, serverUrl, onSuccess = { thing ->
+			service.getForm(it, serverUrl, { formInstance ->
 				ddmFormView?.also { ddmFormView ->
-					ddmFormView.thing = thing
-					ddmFormView.ddmFormListener?.onFormLoaded(ddmFormView.formInstance)
+					ddmFormView.formInstance = formInstance
+					ddmFormView.ddmFormListener?.onFormLoaded(formInstance)
 				}
-			}, onError = {
+			}, {
 				ddmFormView?.ddmFormListener?.onError(it)
 			})
 		}
