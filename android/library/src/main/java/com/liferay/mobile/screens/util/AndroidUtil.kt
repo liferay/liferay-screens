@@ -31,6 +31,7 @@ import android.text.Html.FROM_HTML_MODE_LEGACY
 import android.os.Build.VERSION.SDK_INT
 import android.text.Html
 import android.text.Spanned
+import java.io.IOException
 
 /**
  * @author Victor Oliveira
@@ -110,7 +111,18 @@ class AndroidUtil {
 
 		@JvmStatic
 		fun updateViewState(view: View, enabled: Boolean) {
-			view?.isEnabled = enabled
+			view.isEnabled = enabled
+		}
+
+		// TODO Remove after implement OpenAPI services
+		@Throws(IOException::class)
+		fun assetJSONFile(filename: String, context: Context): String {
+			val file = context.assets.open(filename)
+			val formArray = ByteArray(file.available())
+			file.read(formArray)
+			file.close()
+
+			return String(formArray)
 		}
 	}
 }

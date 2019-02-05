@@ -1,0 +1,19 @@
+{
+  "id": 12345,
+  "draft": false,
+  "dateCreated": "2019-01-30T19:57Z",
+  "dateModified": "2019-01-30T21:21Z",
+  "fieldValues": [
+    {
+      "value": "required",
+      "name": "Text"
+    },
+    {
+      "value": "test",
+      "name": "ToBeRequired"
+    },
+    {
+      "name": "SecondPage"
+    }
+  ]
+}
