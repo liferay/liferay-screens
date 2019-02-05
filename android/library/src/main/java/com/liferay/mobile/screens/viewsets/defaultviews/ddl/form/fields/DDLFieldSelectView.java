@@ -52,14 +52,6 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<SelectableOptionsFi
         }
     };
 
-    public void setOnValueChangedListener(DialogInterface.OnClickListener onValueChangedListener) {
-        this.onValueChangedListener = onValueChangedListener;
-    }
-
-    public DialogInterface.OnClickListener getOnValueChangedListener() {
-        return onValueChangedListener;
-    }
-
     private DialogInterface.OnClickListener onValueChangedListener;
 
     public DDLFieldSelectView(Context context) {
@@ -100,6 +92,14 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<SelectableOptionsFi
         editText.setFocusableInTouchMode(false);
         editText.setOnClickListener(this);
         editText.setInputType(InputType.TYPE_NULL);
+    }
+
+    public DialogInterface.OnClickListener getOnValueChangedListener() {
+        return onValueChangedListener;
+    }
+
+    public void setOnValueChangedListener(DialogInterface.OnClickListener onValueChangedListener) {
+        this.onValueChangedListener = onValueChangedListener;
     }
 
     @Override
