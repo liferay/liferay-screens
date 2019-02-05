@@ -31,8 +31,6 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 
 	private var formInstanceState = FormInstanceState.IDLE
 
-	private var currentRecordThing: FormInstanceRecord? = null
-
 	var formInstanceRecord: FormInstanceRecord? = null
 
 	override fun addToDirtyFields(field: Field<*>) {
@@ -122,8 +120,8 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 		val fields = formInstance.ddmStructure.fields
 		view.isSubmitEnabled(isDraft)
 
-		interactor.submit(formInstance, currentRecordThing, fields, isDraft, { recordThing ->
-			currentRecordThing = recordThing
+		interactor.submit(formInstance, formInstanceRecord, fields, isDraft, { newFormInstance ->
+			formInstanceRecord = newFormInstance
 			resetFormInstanceState()
 
 			if (!isDraft) {
@@ -133,9 +131,9 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 					view.showSuccessMessage()
 				}
 				view.isSubmitEnabled(true)
-				view.ddmFormListener?.onFormSubmitted(formInstanceRecord)
+				view.ddmFormListener?.onFormSubmitted(newFormInstance)
 			} else {
-				view.ddmFormListener?.onDraftSaved(formInstanceRecord)
+				view.ddmFormListener?.onDraftSaved(newFormInstance)
 			}
 		}, { exception ->
 			LiferayLogger.e(exception.message)
@@ -202,16 +200,12 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 			return
 		}
 
-		interactor.fetchLatestDraft(formInstance, {
+		interactor.fetchLatestDraft(formInstance, { newFormRecord ->
 			view.hideModalLoading()
+			formInstanceRecord = newFormRecord
+			updateFields(newFormRecord.fieldValues, fields)
 
-			currentRecordThing = it
-
-			formInstanceRecord?.let { formInstanceRecord ->
-				updateFields(formInstanceRecord.fieldValues, fields)
-			}
-
-			view.ddmFormListener?.onDraftLoaded(formInstanceRecord)
+			view.ddmFormListener?.onDraftLoaded(newFormRecord)
 
 			onComplete?.invoke()
 		}, {
@@ -238,7 +232,6 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 	}
 
 	private fun resetRecordState() {
-		currentRecordThing = null
 		formInstanceRecord = null
 
 		view.formInstance?.also {

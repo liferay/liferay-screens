@@ -22,14 +22,14 @@ import com.liferay.mobile.screens.ddm.form.model.FormInstanceRecord
  */
 interface DDMFormListener {
 
-	fun onDraftLoaded(formInstanceRecord: FormInstanceRecord?)
+	fun onDraftLoaded(formInstanceRecord: FormInstanceRecord)
 
 	fun onError(exception: Throwable)
 
-	fun onDraftSaved(formInstanceRecord: FormInstanceRecord?)
+	fun onDraftSaved(formInstanceRecord: FormInstanceRecord)
 
 	fun onFormLoaded(formInstance: FormInstance)
 
-	fun onFormSubmitted(formInstanceRecord: FormInstanceRecord?)
+	fun onFormSubmitted(formInstanceRecord: FormInstanceRecord)
 
 }
