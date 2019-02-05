@@ -26,7 +26,7 @@ import java.io.InputStream
 /**
  * @author Victor Oliveira
  */
-class FormServiceOpenAPI: FormService {
+class FormServiceOpenAPI : FormService {
 
 	override fun evaluateContext(formInstance: FormInstance, fields: MutableList<Field<*>>,
 		onSuccess: (formContext: FormContext) -> Unit, onError: (Throwable) -> Unit) {

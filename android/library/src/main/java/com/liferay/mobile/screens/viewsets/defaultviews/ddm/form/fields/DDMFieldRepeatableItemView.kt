@@ -112,7 +112,7 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
 		removeRepeatableButton.isEnabled = enabled
 
 		if (isFirstField && isShowLabel) {
-			repeatableLabel?.isEnabled = enabled
+			repeatableLabel.isEnabled = enabled
 		}
 
 		fieldView.setUpdateMode(enabled)

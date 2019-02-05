@@ -23,6 +23,7 @@ import com.liferay.mobile.screens.ddm.form.DDMFormListener;
 import com.liferay.mobile.screens.ddm.form.DDMFormScreenlet;
 import com.liferay.mobile.screens.ddm.form.model.FormInstance;
 import com.liferay.mobile.screens.ddm.form.model.FormInstanceRecord;
+import com.liferay.mobile.screens.util.LiferayLogger;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -70,22 +71,22 @@ public class DDMFormActivity extends ThemeActivity implements DDMFormListener {
     public void onFormLoaded(@NotNull FormInstance formInstance) {
         modalProgress.hide();
         screenlet.setVisibility(View.VISIBLE);
-        info(getString(R.string.form_loaded_info));
+        LiferayLogger.d(getString(R.string.form_loaded_info));
     }
 
     @Override
     public void onError(@NotNull Throwable exception) {
         modalProgress.hide();
-        info(getString(R.string.loading_form_error));
+        LiferayLogger.e(exception.getMessage(), exception);
     }
 
     @Override
     public void onFormSubmitted(FormInstanceRecord formInstanceRecord) {
-        info(getString(R.string.form_submitted_info));
+        LiferayLogger.d(getString(R.string.form_submitted_info));
     }
 
     @Override
     public void onDraftLoaded(FormInstanceRecord formInstanceRecord) {
-        info(getString(R.string.record_loaded_info));
+        LiferayLogger.d(getString(R.string.record_loaded_info));
     }
 }

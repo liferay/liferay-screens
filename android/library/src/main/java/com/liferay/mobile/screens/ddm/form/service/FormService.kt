@@ -17,4 +17,4 @@ package com.liferay.mobile.screens.ddm.form.service
 /**
  * @author Victor Oliveira
  */
-interface FormService: EvaluateService, FetchLatestDraftService, GetFormService, SubmitService, UploadService
+interface FormService : EvaluateService, FetchLatestDraftService, GetFormService, SubmitService, UploadService
