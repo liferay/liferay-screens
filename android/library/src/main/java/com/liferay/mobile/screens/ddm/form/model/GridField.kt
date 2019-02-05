@@ -30,31 +30,6 @@ class GridField : Field<Grid>, Parcelable {
 	var rows: List<Option>
 	var columns: List<Option>
 
-	override fun convertToData(value: Grid?): String {
-		return value?.rawValues.let {
-			it?.toJSON()
-		}.toString()
-	}
-
-	override fun convertToFormattedString(value: Grid?): String {
-		return value?.rawValues.let {
-			it?.toJSON()
-		}.toString()
-	}
-
-	constructor(parcel: Parcel, classLoader: ClassLoader) : super(parcel, classLoader) {
-		rows = parcel.createTypedArrayList(Option.CREATOR)
-		columns = parcel.createTypedArrayList(Option.CREATOR)
-	}
-
-	override fun writeToParcel(parcel: Parcel, flags: Int) {
-		super.writeToParcel(parcel, flags)
-
-		parcel.writeTypedList(rows)
-		parcel.writeTypedList(columns)
-	}
-
-
 	constructor(attributes: Map<String, Any>, locale: Locale, defaultLocale: Locale) :
 		super(attributes, locale, defaultLocale) {
 
@@ -70,6 +45,23 @@ class GridField : Field<Grid>, Parcelable {
 				Option(it)
 			}
 		}
+	}
+
+	constructor(parcel: Parcel, classLoader: ClassLoader) : super(parcel, classLoader) {
+		rows = parcel.createTypedArrayList(Option.CREATOR)
+		columns = parcel.createTypedArrayList(Option.CREATOR)
+	}
+
+	override fun convertToData(value: Grid?): String {
+		return value?.rawValues.let {
+			it?.toJSON()
+		}.toString()
+	}
+
+	override fun convertToFormattedString(value: Grid?): String {
+		return value?.rawValues.let {
+			it?.toJSON()
+		}.toString()
 	}
 
 	override fun doValidate(): Boolean {
@@ -105,6 +97,13 @@ class GridField : Field<Grid>, Parcelable {
 
 	override fun describeContents(): Int {
 		return 0
+	}
+
+	override fun writeToParcel(parcel: Parcel, flags: Int) {
+		super.writeToParcel(parcel, flags)
+
+		parcel.writeTypedList(rows)
+		parcel.writeTypedList(columns)
 	}
 
 	companion object CREATOR : Parcelable.ClassLoaderCreator<GridField> {
