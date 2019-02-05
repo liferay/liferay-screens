@@ -54,11 +54,6 @@ class GridField : Field<Grid>, Parcelable {
 		parcel.writeTypedList(columns)
 	}
 
-	override fun doValidate(): Boolean {
-		return currentValue?.rawValues?.let {
-			it.size == this.rows.size
-		} ?: !isRequired
-	}
 
 	constructor(attributes: Map<String, Any>, locale: Locale, defaultLocale: Locale) :
 		super(attributes, locale, defaultLocale) {
@@ -75,6 +70,14 @@ class GridField : Field<Grid>, Parcelable {
 				Option(it)
 			}
 		}
+	}
+
+	override fun doValidate(): Boolean {
+		val rowsCompleted = currentValue?.rawValues?.let {
+			it.size == this.rows.size
+		} ?: true
+
+		return !isRequired || rowsCompleted
 	}
 
 	override fun convertFromString(stringValue: String): Grid? {
