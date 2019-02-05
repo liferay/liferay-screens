@@ -20,7 +20,6 @@ import com.liferay.apio.consumer.model.Thing
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.*
 import com.liferay.mobile.screens.ddm.form.model.*
-import com.liferay.mobile.screens.thingscreenlet.screens.views.BaseView
 import com.liferay.mobile.screens.util.LiferayLogger
 import java.io.InputStream
 import java.util.*

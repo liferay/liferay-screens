@@ -70,14 +70,6 @@
                 <data android:scheme="my-app"/>
             </intent-filter>
         </activity>
-        <activity android:name=".postings.activity.ThingMainActivity"/>
-        <activity android:name=".postings.activity.DetailActivity"/>
-        <activity android:name=".workflow.activity.WorkflowListActivity"/>
-        <activity
-            android:name=".postings.activity.EditActivity"
-            android:label="@string/title_activity_edit"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
     </application>
 
 </manifest>

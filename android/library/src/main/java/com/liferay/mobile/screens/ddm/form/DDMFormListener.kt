@@ -14,10 +14,8 @@
 
 package com.liferay.mobile.screens.ddm.form
 
-import com.liferay.apio.consumer.model.Thing
 import com.liferay.mobile.screens.ddm.form.model.FormInstance
 import com.liferay.mobile.screens.ddm.form.model.FormInstanceRecord
-import java.lang.Exception
 
 /**
  * @author Marcelo Mello

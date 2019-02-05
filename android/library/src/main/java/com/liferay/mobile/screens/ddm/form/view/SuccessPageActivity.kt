@@ -9,7 +9,7 @@ import android.widget.TextView
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.util.FormConstants
 import com.liferay.mobile.screens.ddm.form.model.SuccessPage
-import com.liferay.mobile.screens.thingscreenlet.delegates.bindNonNull
+import com.liferay.mobile.screens.delegates.bindNonNull
 
 /**
  * @author Victor Oliveira

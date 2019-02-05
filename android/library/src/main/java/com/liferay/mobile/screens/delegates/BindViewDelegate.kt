@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mobile.screens.thingscreenlet.delegates
+package com.liferay.mobile.screens.delegates
 
 import android.app.Activity
 import android.support.v7.widget.RecyclerView.ViewHolder
@@ -20,6 +20,9 @@ import android.view.View
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
+/**
+ * @author Victor Oliveira
+ */
 class ViewNotFoundException(message: String) : Throwable(message)
 
 fun <V : View> View.bind(id: Int): ReadOnlyProperty<View, V?> = bind(id) { findViewById(it) }

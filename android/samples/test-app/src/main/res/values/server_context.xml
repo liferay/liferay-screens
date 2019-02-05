@@ -75,6 +75,6 @@
     <!--PortletDisplayScreenlet values-->
     <string name="liferay_portlet_url">/web/guest/webscreenlet-gallery</string>
 
-    <!--ThingScreenlet with DDMFormView -->
+    <!-- DDMFormScreenlet -->
     <string name="liferay_form_instance_id">37105</string>
 </resources>
