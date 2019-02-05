@@ -40,11 +40,19 @@ public class DDLFieldNumberView extends BaseDDLFieldTextView<NumberField> {
     public void setField(NumberField field) {
         super.setField(field);
 
+        setupInputNumber();
+    }
+
+    @Override
+    protected void onTextChanged(String text) {
+        getField().setCurrentStringValue(text);
+    }
+
+    private void setupInputNumber() {
         switch (getField().getEditorType()) {
             case INTEGER:
                 getTextEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
                 break;
-
             case NUMBER:
             case DECIMAL:
             default:
@@ -53,10 +61,5 @@ public class DDLFieldNumberView extends BaseDDLFieldTextView<NumberField> {
                     | InputType.TYPE_NUMBER_FLAG_DECIMAL);
                 break;
         }
-    }
-
-    @Override
-    protected void onTextChanged(String text) {
-        getField().setCurrentStringValue(text);
     }
 }

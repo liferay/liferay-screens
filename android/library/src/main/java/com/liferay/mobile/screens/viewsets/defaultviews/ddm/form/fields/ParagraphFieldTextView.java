@@ -55,6 +55,7 @@ public class ParagraphFieldTextView extends BaseDDLFieldTextView<StringField> {
 
     @Override
     public void refresh() {
+        super.refresh();
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             textEditText.setText(Html.fromHtml(getField().getText(), Html.FROM_HTML_MODE_LEGACY));
