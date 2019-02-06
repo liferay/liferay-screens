@@ -67,15 +67,15 @@ data class FormInstance(
 			FormInstance(name, description, defaultLanguage, ddmStructure, hasDataProvider, hasFormRules)
 		}
 
-		private fun getStructure(jsonRelation: JSONObject, locale: Locale): DDMStructure {
+		private fun getStructure(jsonStructure: JSONObject, locale: Locale): DDMStructure {
 
-			val name = jsonRelation.getString(FormConstants.NAME)
+			val name = jsonStructure.getString(FormConstants.NAME)
 
-			val description = jsonRelation.getOptionalString(FormConstants.DESCRIPTION)
+			val description = jsonStructure.getOptionalString(FormConstants.DESCRIPTION)
 
-			val pages = getPages(jsonRelation.getJSONArray(FormConstants.PAGES), locale)
+			val pages = getPages(jsonStructure.getJSONArray(FormConstants.PAGES), locale)
 
-			val successPage = jsonRelation.getOptionalJSONObject(FormConstants.SUCCESS_PAGE)?.let { jsonSuccessPage ->
+			val successPage = jsonStructure.getOptionalJSONObject(FormConstants.SUCCESS_PAGE)?.let { jsonSuccessPage ->
 				val headline = jsonSuccessPage.getString(FormConstants.HEADLINE)
 				val text = jsonSuccessPage.getString(FormConstants.DESCRIPTION)
 

@@ -15,18 +15,14 @@
 package com.liferay.mobile.screens.util.extensions
 
 import com.squareup.okhttp.HttpUrl
-import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
 /**
  * @author Victor Oliveira
  */
-fun String.asDate(format: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.US)): Date? =
-	try {
-		format.parse(this)
-	} catch (parseException: ParseException) {
-		null
-	}
+fun String.asDate(format: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.US)): Date? {
+	return runCatching { format.parse(this) }.getOrNull()
+}
 
 fun String.asHttpUrl(): HttpUrl = HttpUrl.parse(this)
