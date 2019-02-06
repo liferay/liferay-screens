@@ -68,7 +68,7 @@ class DDMFormScreenlet @JvmOverloads constructor(
 	fun load(formInstanceId: Long? = this.formInstanceId) {
 		this.formInstanceId = formInstanceId
 
-		formInstanceId?.also { it ->
+		formInstanceId?.also {
 			val serverUrl = resources.getString(R.string.liferay_server)
 
 			service.getForm(it, serverUrl, { formInstance ->
@@ -76,8 +76,8 @@ class DDMFormScreenlet @JvmOverloads constructor(
 					ddmFormView.formInstance = formInstance
 					ddmFormView.ddmFormListener?.onFormLoaded(formInstance)
 				}
-			}, {
-				ddmFormView?.ddmFormListener?.onError(it)
+			}, { throwable ->
+				ddmFormView?.ddmFormListener?.onError(throwable)
 			})
 		}
 	}
