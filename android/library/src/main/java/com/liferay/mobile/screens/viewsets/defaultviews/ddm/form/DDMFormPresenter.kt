@@ -110,8 +110,8 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 		}
 	}
 
-	override fun restore(
-		formInstanceRecord: FormInstanceRecord?, fields: MutableList<Field<*>>, formInstanceState: FormInstanceState) {
+	override fun restore(formInstanceRecord: FormInstanceRecord?, fields: MutableList<Field<*>>,
+		formInstanceState: FormInstanceState) {
 
 		this.formInstanceState = formInstanceState
 		formInstanceRecord?.let {
@@ -174,16 +174,15 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 		}
 	}
 
-	override fun uploadFile(
-		formInstance: FormInstance, field: DocumentField, inputStream: InputStream,
-		onSuccess: (DocumentRemoteFile) -> Unit,
-		onError: (Throwable) -> Unit) {
+	override fun uploadFile(formInstance: FormInstance, field: DocumentField, inputStream: InputStream,
+		onSuccess: (DocumentRemoteFile) -> Unit, onError: (Throwable) -> Unit) {
 
 		interactor.uploadFile(formInstance, field, inputStream, onSuccess, onError)
 	}
 
 	private fun fetchDataProviders(formInstance: FormInstance, fields: MutableList<Field<*>>,
 		onComplete: (() -> Unit)?) {
+
 		view.showModalEvaluateContextLoading()
 
 		interactor.evaluateContext(formInstance, fields, { formContext ->
@@ -315,5 +314,4 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 			}
 		}
 	}
-
 }
