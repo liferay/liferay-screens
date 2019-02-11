@@ -249,9 +249,12 @@ class DDMFormView @JvmOverloads constructor(
 			documentFieldView::onUploadError)
 	}
 
+	var lastChangedField: Field<*>? = null
+
 	override fun subscribeToValueChanged(observable: Observable<Field<*>>) {
 		subscription = observable.doOnNext {
 			presenter.fieldModelsChanged(it)
+			lastChangedField = it
 		}.doOnError {
 			LiferayLogger.e(it.message, it)
 		}.debounce(config.syncFormTimeout, TimeUnit.MILLISECONDS)
@@ -372,9 +375,7 @@ class DDMFormView @JvmOverloads constructor(
 	}
 
 	private fun initPageAdapter(pages: List<FormPage>) {
-		val ddmPagerAdapter = DDMPagerAdapter(pages,
-			this)
-		ddmFieldViewPages.adapter = ddmPagerAdapter
+		ddmFieldViewPages.adapter = DDMPagerAdapter(pages, this)
 
 		if (pages.size > 1) {
 			multipageProgress.visibility = View.VISIBLE
@@ -399,20 +400,22 @@ class DDMFormView @JvmOverloads constructor(
 	}
 
 	private fun nextOrSubmitButtonListener() {
-		ddmFieldViewPages.adapter?.also {
-			val size = it.count - 1
-			val invalidFields = getInvalidFields()
+		presenter.syncForm(_formInstance, lastChangedField) {
+			ddmFieldViewPages.adapter?.also {
+				val size = it.count - 1
+				val invalidFields = getInvalidFields()
 
-			if (invalidFields.isEmpty()) {
-				val hasNext = ddmFieldViewPages.currentItem < size
+				if (invalidFields.isEmpty()) {
+					val hasNext = ddmFieldViewPages.currentItem < size
 
-				if (hasNext) {
-					nextButtonListener(size)
+					if (hasNext) {
+						nextButtonListener(size)
+					} else {
+						submitButtonListener()
+					}
 				} else {
-					submitButtonListener()
+					highLightInvalidFields(invalidFields, true)
 				}
-			} else {
-				highLightInvalidFields(invalidFields, true)
 			}
 		}
 	}
