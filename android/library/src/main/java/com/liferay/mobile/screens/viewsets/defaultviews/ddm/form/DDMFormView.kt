@@ -41,7 +41,9 @@ import com.liferay.mobile.screens.ddm.form.view.SuccessPageActivity
 import com.liferay.mobile.screens.delegates.bindNonNull
 import com.liferay.mobile.screens.util.AndroidUtil
 import com.liferay.mobile.screens.util.LiferayLogger
+import com.liferay.mobile.screens.util.extensions.firstNotNull
 import com.liferay.mobile.screens.util.extensions.forEachChild
+import com.liferay.mobile.screens.util.extensions.setVisibility
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.BaseDDLFieldTextView
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.adapters.DDMPagerAdapter
@@ -263,23 +265,17 @@ class DDMFormView @JvmOverloads constructor(
 	}
 
 	override fun updateFieldView(fieldContext: FieldContext, field: Field<*>) {
-		val fieldsContainerView = ddmFieldViewPages.currentView
+		val fieldView = getInstantiatedPages().map {
+			findViewWithTag<View>(field.name)
+		}.firstNotNull()
 
-		val fieldView = fieldsContainerView?.findViewWithTag<View>(field.name)
+		fieldView?.setVisibility(fieldContext.isVisible)
 
-		fieldView?.let {
-			val fieldViewModel = fieldView as? DDLFieldViewModel<*>
-			val fieldTextView = fieldView as? BaseDDLFieldTextView<*>
+		(fieldView as? DDLFieldViewModel<*>)?.apply {
+			refresh()
+			setUpdateMode(!field.isReadOnly)
 
-			setFieldVisibility(fieldContext, fieldView)
-			fieldTextView?.setupFieldLayout()
-
-			fieldViewModel?.let {
-				it.refresh()
-				it.setUpdateMode(!field.isReadOnly)
-			}
-
-			presenter.checkIsDirty(field, fieldContext, fieldViewModel)
+			presenter.checkIsDirty(field, fieldContext, this)
 		}
 	}
 
@@ -444,16 +440,6 @@ class DDMFormView @JvmOverloads constructor(
 	private fun setActivityTitle(formInstance: FormInstance) {
 		val activityFromContext = LiferayScreensContext.getActivityFromContext(context)
 		activityFromContext?.title = formInstance.name
-	}
-
-	private fun setFieldVisibility(fieldContext: FieldContext, fieldView: View) {
-		val isVisible = fieldContext.isVisible ?: true
-
-		if (isVisible) {
-			fieldView.visibility = View.VISIBLE
-		} else {
-			fieldView.visibility = View.GONE
-		}
 	}
 
 	private fun showConnectivityErrorMessage(@ColorRes backgroundColorResource: Int = R.color.midGray,
