@@ -20,8 +20,15 @@ import android.util.AttributeSet
 import android.view.View
 
 /**
+ * @author Paulo Cruz
  * @author Victor Oliveira
  */
+fun List<View?>.firstNotNull(): View? = this.filterNotNull().firstOrNull()
+
 fun View.getStyledAttributes(set: AttributeSet? = null, @StyleableRes attrs: IntArray): TypedArray? {
 	return context.theme.obtainStyledAttributes(set, attrs, 0, 0)
+}
+
+fun View.setVisibility(isVisible: Boolean?) {
+	visibility = if (isVisible != false) View.VISIBLE else View.GONE
 }
