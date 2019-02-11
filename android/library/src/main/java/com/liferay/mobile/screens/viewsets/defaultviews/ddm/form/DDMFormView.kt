@@ -92,7 +92,6 @@ class DDMFormView @JvmOverloads constructor(
 			}
 		}
 
-
 	init {
 		val themeName = ThemeUtil.getLayoutTheme(context)
 
