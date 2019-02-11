@@ -16,6 +16,7 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
@@ -68,6 +69,7 @@ public abstract class Field<T extends Serializable> implements Parcelable, Valid
 
     private boolean isTransient = false;
     private String displayStyle;
+    private String evaluatorErrorMessage;
 
     private UUID uuid = UUID.randomUUID();
 
@@ -129,6 +131,8 @@ public abstract class Field<T extends Serializable> implements Parcelable, Valid
     @Override
     public String getErrorMessage() {
         switch (getValidationState()) {
+            case INVALID_BY_EVALUATOR_RULE:
+                return evaluatorErrorMessage;
             case INVALID_BY_REQUIRED_WITHOUT_VALUE:
                 return LiferayScreensContext.getContext().getString(R.string.this_field_is_required);
             case INVALID_BY_LOCAL_RULE:
@@ -174,6 +178,7 @@ public abstract class Field<T extends Serializable> implements Parcelable, Valid
 
         isTransient = (in.readInt() == 1);
         dataSourceType = in.readString();
+        evaluatorErrorMessage = in.readString();
 
         uuid = (UUID) in.readSerializable();
     }
@@ -283,12 +288,19 @@ public abstract class Field<T extends Serializable> implements Parcelable, Valid
         return label;
     }
 
+    @NonNull
     public ValidationState getValidationState() {
         return validationState;
     }
 
-    protected void setValidationState(ValidationState value) {
+    public void setValidationState(ValidationState value) {
         validationState = value;
+        evaluatorErrorMessage = null;
+    }
+
+    public void setValidationState(ValidationState value, String errorMessage) {
+        validationState = value;
+        evaluatorErrorMessage = errorMessage;
     }
 
     public boolean getLastValidationResult() {
@@ -385,6 +397,7 @@ public abstract class Field<T extends Serializable> implements Parcelable, Valid
 
         destination.writeInt(isTransient ? 1 : 0);
         destination.writeString(dataSourceType);
+        destination.writeString(evaluatorErrorMessage);
 
         destination.writeSerializable(uuid);
     }
@@ -604,6 +617,6 @@ public abstract class Field<T extends Serializable> implements Parcelable, Valid
     }
 
     public enum ValidationState {
-        INVALID_BY_LOCAL_RULE, INVALID_BY_REQUIRED_WITHOUT_VALUE, VALID
+        INVALID_BY_EVALUATOR_RULE, INVALID_BY_LOCAL_RULE, INVALID_BY_REQUIRED_WITHOUT_VALUE, VALID
     }
 }
