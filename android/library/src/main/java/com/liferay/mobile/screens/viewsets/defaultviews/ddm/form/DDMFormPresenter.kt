@@ -92,21 +92,25 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 		return formInstanceState
 	}
 
-	override fun syncForm(formInstance: FormInstance, field: Field<*>) {
-		if (!field.isTransient) {
+	override fun syncForm(formInstance: FormInstance, field: Field<*>?, onComplete: (() -> Unit)?) {
+		val fieldIsTransient = field?.isTransient ?: false
+		val invalidStateForSync = formInstanceState != FormInstanceState.IDLE
 
-			if (!view.hasConnectivity()) {
-				view.showOfflineWarningMessage()
-				return
-			}
+		if (fieldIsTransient || invalidStateForSync) return
 
-			if (formInstanceState == FormInstanceState.IDLE) {
-				submit(formInstance, true)
+		if (!view.hasConnectivity()) {
+			view.showOfflineWarningMessage()
+			return
+		}
 
-				if (field.hasFormRules()) {
-					evaluateContext(formInstance, formInstance.ddmStructure.fields)
-				}
-			}
+		submit(formInstance, true)
+
+		val fieldHasRules = field?.hasFormRules() ?: false
+
+		if (fieldHasRules) {
+			evaluateContext(formInstance, formInstance.ddmStructure.fields, onComplete)
+		} else {
+			onComplete?.invoke()
 		}
 	}
 
@@ -121,7 +125,10 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 	}
 
 	override fun submit(formInstance: FormInstance, isDraft: Boolean) {
-		if (isDraft && !view.config.autosaveDraftEnabled) return
+		val autosaveDisabled = isDraft && !view.config.autosaveDraftEnabled
+		val invalidStateForSubmission = formInstanceState != FormInstanceState.IDLE
+
+		if (autosaveDisabled || invalidStateForSubmission) return
 
 		formInstanceState = if (isDraft) FormInstanceState.SAVING_DRAFT else FormInstanceState.SUBMITTING
 		val fields = formInstance.ddmStructure.fields
