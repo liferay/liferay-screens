@@ -110,8 +110,8 @@ class AndroidUtil {
 		}
 
 		@JvmStatic
-		fun updateViewState(view: View, enabled: Boolean) {
-			view.isEnabled = enabled
+		fun updateViewState(view: View?, enabled: Boolean) {
+			view?.isEnabled = enabled
 		}
 
 		// TODO Remove after implement OpenAPI services
