@@ -42,7 +42,10 @@ public class DDLFieldSelectView extends BaseDDLFieldTextView<SelectableOptionsFi
         public void onClick(DialogInterface dialog, int which) {
             clearField();
             alertDialog.dismiss();
-            onClearListener.onClear();
+
+            if (onClearListener != null) {
+                onClearListener.onClear();
+            }
         }
     };
 
