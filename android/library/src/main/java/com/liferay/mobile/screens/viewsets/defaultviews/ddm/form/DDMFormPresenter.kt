@@ -45,10 +45,10 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 
 			field.lastValidationResult = isValid
 
-			if (!isValid) {
-				field.setValidationState(Field.ValidationState.INVALID_BY_EVALUATOR_RULE, fieldContext.errorMessage)
-			} else {
+			if (isValid) {
 				field.setValidationState(Field.ValidationState.VALID)
+			} else {
+				field.setValidationState(Field.ValidationState.INVALID_BY_EVALUATOR_RULE, fieldContext.errorMessage)
 			}
 
 			fieldViewModel?.onPostValidation(isValid)
