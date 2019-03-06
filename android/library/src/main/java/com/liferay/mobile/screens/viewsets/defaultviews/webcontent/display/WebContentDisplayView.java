@@ -23,6 +23,7 @@ import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
@@ -133,10 +134,13 @@ public class WebContentDisplayView extends FrameLayout implements WebContentDisp
 
         WebContentDisplayScreenlet screenlet = (WebContentDisplayScreenlet) getScreenlet();
         if (webView != null) {
+            WebSettings webSettings = webView.getSettings();
             if (screenlet.isJavascriptEnabled()) {
-                webView.getSettings().setJavaScriptEnabled(true);
+                webSettings.setJavaScriptEnabled(true);
                 webView.setWebChromeClient(new WebChromeClient());
             }
+            webSettings.setDomStorageEnabled(true);
+            webSettings.setDatabaseEnabled(true);
             webView.setWebViewClient(getWebViewClientWithCustomHeader());
             webView.setOnTouchListener(this);
         }
