@@ -36,16 +36,12 @@ class GridField : Field<Grid>, Parcelable {
 		super(attributes, locale, defaultLocale) {
 
 		val grid = attributes[FormFieldKeys.GRID_KEY] as Map<String, Any>
-		rows = (grid["rows"] as Map<String, Any>).let {
-			(it["member"] as List<Map<String, String>>).mapTo(mutableListOf()) {
-				Option(it)
-			}
+		rows = (grid["rows"] as List<Map<String, String>>).mapTo(mutableListOf()) {
+			Option(it)
 		}
 
-		columns = (grid["columns"] as Map<String, Any>).let {
-			(it["member"] as List<Map<String, String>>).mapTo(mutableListOf()) {
-				Option(it)
-			}
+		columns = (grid["columns"] as List<Map<String, String>>).mapTo(mutableListOf()) {
+			Option(it)
 		}
 	}
 

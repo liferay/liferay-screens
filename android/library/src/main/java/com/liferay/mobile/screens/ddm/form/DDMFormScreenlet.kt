@@ -14,20 +14,22 @@
 
 package com.liferay.mobile.screens.ddm.form
 
+import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import com.liferay.mobile.screens.R
 import com.liferay.mobile.screens.ddl.form.util.FormConstants.Companion.DEFAULT_SYNC_TIMEOUT
-import com.liferay.mobile.screens.ddm.form.model.FormInstance
 import com.liferay.mobile.screens.ddm.form.service.GetFormService
 import com.liferay.mobile.screens.ddm.form.service.openapi.GetFormServiceOpenAPI
 import com.liferay.mobile.screens.util.extensions.getLong
 import com.liferay.mobile.screens.util.extensions.getLongOrNull
 import com.liferay.mobile.screens.util.extensions.getStyledAttributes
 import com.liferay.mobile.screens.util.extensions.use
-import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.DDMFormInteractor
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.DDMFormView
+import rx.Subscription
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 
 /**
  * @author Marcelo Mello
@@ -43,6 +45,7 @@ class DDMFormScreenlet @JvmOverloads constructor(
 
 	private var ddmFormView: DDMFormView? = null
 	private val service: GetFormService by lazy { GetFormServiceOpenAPI() }
+	private var subscription: Subscription? = null
 
 	init {
 		getStyledAttributes(attrs, R.styleable.DDMFormScreenlet)?.use {
@@ -64,6 +67,11 @@ class DDMFormScreenlet @JvmOverloads constructor(
 		addView(ddmFormView)
 	}
 
+	override fun onDetachedFromWindow() {
+		super.onDetachedFromWindow()
+		subscription?.unsubscribe()
+	}
+
 	@JvmOverloads
 	fun load(formInstanceId: Long? = this.formInstanceId) {
 		this.formInstanceId = formInstanceId
@@ -71,14 +79,17 @@ class DDMFormScreenlet @JvmOverloads constructor(
 		formInstanceId?.also {
 			val serverUrl = resources.getString(R.string.liferay_server)
 
-			service.getForm(it, serverUrl, { formInstance ->
-				ddmFormView?.also { ddmFormView ->
-					ddmFormView.formInstance = formInstance
-					ddmFormView.ddmFormListener?.onFormLoaded(formInstance)
+			subscription = service.getForm(formInstanceId, serverUrl)
+				.subscribeOn(Schedulers.io())
+				.observeOn(AndroidSchedulers.mainThread())
+				.subscribe({ formInstance ->
+					ddmFormView?.also { ddmFormView ->
+						ddmFormView.formInstance = formInstance
+						ddmFormView.ddmFormListener?.onFormLoaded(formInstance)
+					}
+				}) { throwable ->
+					ddmFormView?.ddmFormListener?.onError(throwable)
 				}
-			}, { throwable ->
-				ddmFormView?.ddmFormListener?.onError(throwable)
-			})
 		}
 	}
 
