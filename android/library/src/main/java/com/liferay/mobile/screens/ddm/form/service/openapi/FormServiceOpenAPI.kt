@@ -21,6 +21,7 @@ import com.liferay.mobile.screens.ddm.form.model.FormContext
 import com.liferay.mobile.screens.ddm.form.model.FormInstance
 import com.liferay.mobile.screens.ddm.form.model.FormInstanceRecord
 import com.liferay.mobile.screens.ddm.form.service.FormService
+import rx.Observable
 import java.io.InputStream
 
 /**
@@ -40,10 +41,8 @@ class FormServiceOpenAPI : FormService {
 		fetchLatestDraftService.fetchLatestDraft(formInstance, onSuccess, onError)
 	}
 
-	override fun getForm(formInstanceId: Long, serverUrl: String, onSuccess: (FormInstance) -> Unit,
-		onError: (Throwable) -> Unit) {
-
-		getFormService.getForm(formInstanceId, serverUrl, onSuccess, onError)
+	override fun getForm(formInstanceId: Long, serverUrl: String): Observable<FormInstance> {
+		return getFormService.getForm(formInstanceId, serverUrl)
 	}
 
 	override fun submit(formInstance: FormInstance, currentRecordThing: FormInstanceRecord,
@@ -70,4 +69,8 @@ class FormServiceOpenAPI : FormService {
 	private val fetchLatestDraftService by lazy { FetchLatestDraftServiceOpenAPI() }
 	private val submitService by lazy { SubmitServiceOpenAPI() }
 	private val uploadService by lazy { UploadServiceOpenAPI() }
+
+	companion object {
+		const val OPEN_API_FORM_PATH = "/o/headless-form/v1.0"
+	}
 }

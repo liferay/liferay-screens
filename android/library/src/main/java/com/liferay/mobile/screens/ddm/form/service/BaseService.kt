@@ -11,15 +11,30 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-
 package com.liferay.mobile.screens.ddm.form.service
 
-import com.liferay.mobile.screens.ddm.form.model.FormInstance
+import com.liferay.mobile.screens.context.LiferayServerContext
+import com.squareup.okhttp.Request
+import com.squareup.okhttp.Response
 import rx.Observable
+import java.util.concurrent.Callable
 
 /**
- * @author Paulo Cruz
+ * @author Victor Oliveira
  */
-interface GetFormService {
-	fun getForm(formInstanceId: Long, serverUrl: String): Observable<FormInstance>
+abstract class BaseService<T> {
+
+	inline fun execute(url: String, crossinline transformFunction: (Response) -> T): Observable<T> {
+		return rx.Observable.fromCallable(object : Callable<Response> {
+			override fun call(): Response {
+				val request = Request.Builder()
+					.url(url)
+					.build()
+
+				return LiferayServerContext.getOkHttpClient(true).newCall(request).execute()
+			}
+		}).map {
+			transformFunction(it)
+		}
+	}
 }
