@@ -170,12 +170,16 @@ public class JsonParser implements DDMStructureParser {
         Iterator<String> it = field.keys();
         while (it.hasNext()) {
             String key = it.next();
+            Object obj = field.get(key);
 
-            if (field.get(key) instanceof JSONArray) {
+            if (obj instanceof JSONArray) {
                 JSONArray jsonArray = field.getJSONArray(key);
                 result.put(key, getJSONArrayAttributes(jsonArray));
+            } else if (obj instanceof JSONObject) {
+                JSONObject jsonObject = field.getJSONObject(key);
+                result.put(key, getAttributes(jsonObject));
             } else {
-                result.put(key, field.get(key));
+                result.put(key, obj);
             }
         }
 
