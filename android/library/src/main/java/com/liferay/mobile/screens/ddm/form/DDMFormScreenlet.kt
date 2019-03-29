@@ -14,7 +14,6 @@
 
 package com.liferay.mobile.screens.ddm.form
 
-import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
@@ -28,8 +27,7 @@ import com.liferay.mobile.screens.util.extensions.getStyledAttributes
 import com.liferay.mobile.screens.util.extensions.use
 import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.DDMFormView
 import rx.Subscription
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import rx.subscriptions.Subscriptions
 
 /**
  * @author Marcelo Mello
@@ -44,8 +42,8 @@ class DDMFormScreenlet @JvmOverloads constructor(
 	var syncFormTimeout = DEFAULT_SYNC_TIMEOUT
 
 	private var ddmFormView: DDMFormView? = null
-	private val service: GetFormService by lazy { GetFormServiceOpenAPI() }
-	private var subscription: Subscription? = null
+	private val service: GetFormService by lazy { GetFormServiceOpenAPI(resources.getString(R.string.liferay_server)) }
+	private var subscription: Subscription = Subscriptions.empty()
 
 	init {
 		getStyledAttributes(attrs, R.styleable.DDMFormScreenlet)?.use {
@@ -69,7 +67,8 @@ class DDMFormScreenlet @JvmOverloads constructor(
 
 	override fun onDetachedFromWindow() {
 		super.onDetachedFromWindow()
-		subscription?.unsubscribe()
+		subscription.unsubscribe()
+		subscription = Subscriptions.empty()
 	}
 
 	@JvmOverloads
@@ -77,11 +76,7 @@ class DDMFormScreenlet @JvmOverloads constructor(
 		this.formInstanceId = formInstanceId
 
 		formInstanceId?.also {
-			val serverUrl = resources.getString(R.string.liferay_server)
-
-			subscription = service.getForm(formInstanceId, serverUrl)
-				.subscribeOn(Schedulers.io())
-				.observeOn(AndroidSchedulers.mainThread())
+			subscription = service.getForm(formInstanceId)
 				.subscribe({ formInstance ->
 					ddmFormView?.also { ddmFormView ->
 						ddmFormView.formInstance = formInstance

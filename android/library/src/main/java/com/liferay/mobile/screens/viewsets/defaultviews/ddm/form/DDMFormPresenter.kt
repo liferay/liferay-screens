@@ -18,17 +18,21 @@ import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel
 import com.liferay.mobile.screens.ddl.model.*
 import com.liferay.mobile.screens.ddm.form.model.*
 import com.liferay.mobile.screens.util.LiferayLogger
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
+import rx.subscriptions.CompositeSubscription
 import java.io.InputStream
 import java.util.*
 
 /**
  * @author Victor Oliveira
  */
-class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewContract.DDMFormViewPresenter {
+class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView,
+	serverUrl: String) : DDMFormViewContract.DDMFormViewPresenter {
 
-	private val interactor = DDMFormInteractor()
+	private val compositeSubscription = CompositeSubscription()
 	private val dirtyFieldNames: MutableList<String> = mutableListOf()
-
+	private val interactor = DDMFormInteractor(serverUrl)
 	private var formInstanceState = FormInstanceState.IDLE
 
 	var formInstanceRecord: FormInstanceRecord? = null
@@ -90,6 +94,10 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 
 	override fun getFormInstanceState(): FormInstanceState {
 		return formInstanceState
+	}
+
+	override fun onDestroy() {
+		compositeSubscription.clear()
 	}
 
 	override fun syncForm(formInstance: FormInstance, field: Field<*>?, onComplete: (() -> Unit)?) {
@@ -214,21 +222,22 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView) : DDMFormViewC
 			return
 		}
 
-		interactor.fetchLatestDraft(formInstance, { newFormRecord ->
-			view.hideModalLoading()
-			formInstanceRecord = newFormRecord
-			updateFields(newFormRecord.fieldValues, fields)
+		val subscription = interactor.fetchLatestDraft(formInstance.id)
+			.subscribe({ newFormRecord ->
+				view.hideModalLoading()
+				formInstanceRecord = newFormRecord
+				updateFields(newFormRecord.fieldValues, fields)
 
-			view.ddmFormListener?.onDraftLoaded(newFormRecord)
+				view.ddmFormListener?.onDraftLoaded(newFormRecord)
 
-			onComplete?.invoke()
-		}, {
-			LiferayLogger.e(it.message, it)
+				onComplete?.invoke()
+			}) {
+				LiferayLogger.e(it.message, it)
+				view.hideModalLoading()
+				onComplete?.invoke()
+			}
 
-			view.hideModalLoading()
-
-			onComplete?.invoke()
-		})
+		compositeSubscription.add(subscription)
 	}
 
 	private fun onCompleteFetch(formInstance: FormInstance, fields: MutableList<Field<*>>) {

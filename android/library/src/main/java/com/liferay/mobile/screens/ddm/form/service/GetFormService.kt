@@ -21,5 +21,5 @@ import rx.Observable
  * @author Paulo Cruz
  */
 interface GetFormService {
-	fun getForm(formInstanceId: Long, serverUrl: String): Observable<FormInstance>
+	fun getForm(formInstanceId: Long): Observable<FormInstance>
 }

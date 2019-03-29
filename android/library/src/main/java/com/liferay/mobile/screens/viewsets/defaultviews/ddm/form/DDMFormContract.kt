@@ -89,6 +89,8 @@ interface DDMFormViewContract {
 
 		fun loadInitialContext(formInstance: FormInstance)
 
+		fun onDestroy()
+
 		fun restore(
 			formInstanceRecord: FormInstanceRecord?, fields: MutableList<Field<*>>,
 			formInstanceState: FormInstanceState)

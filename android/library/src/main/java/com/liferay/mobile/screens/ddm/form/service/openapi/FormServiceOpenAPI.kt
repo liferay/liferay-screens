@@ -27,7 +27,7 @@ import java.io.InputStream
 /**
  * @author Victor Oliveira
  */
-class FormServiceOpenAPI : FormService {
+class FormServiceOpenAPI(private val serverUrl: String) : FormService {
 
 	override fun evaluateContext(formInstance: FormInstance, fields: MutableList<Field<*>>,
 		onSuccess: (formContext: FormContext) -> Unit, onError: (Throwable) -> Unit) {
@@ -35,14 +35,12 @@ class FormServiceOpenAPI : FormService {
 		evaluateService.evaluateContext(formInstance, fields, onSuccess, onError)
 	}
 
-	override fun fetchLatestDraft(formInstance: FormInstance, onSuccess: (FormInstanceRecord) -> Unit,
-		onError: (Throwable) -> Unit) {
-
-		fetchLatestDraftService.fetchLatestDraft(formInstance, onSuccess, onError)
+	override fun fetchLatestDraft(formInstanceId: Long): Observable<FormInstanceRecord> {
+		return fetchLatestDraftService.fetchLatestDraft(formInstanceId)
 	}
 
-	override fun getForm(formInstanceId: Long, serverUrl: String): Observable<FormInstance> {
-		return getFormService.getForm(formInstanceId, serverUrl)
+	override fun getForm(formInstanceId: Long): Observable<FormInstance> {
+		return getFormService.getForm(formInstanceId)
 	}
 
 	override fun submit(formInstance: FormInstance, currentRecordThing: FormInstanceRecord,
@@ -64,13 +62,13 @@ class FormServiceOpenAPI : FormService {
 		uploadService.uploadFile(formInstance, field, inputStream, onSuccess, onError)
 	}
 
-	private val getFormService by lazy { GetFormServiceOpenAPI() }
+	private val getFormService by lazy { GetFormServiceOpenAPI(serverUrl) }
 	private val evaluateService by lazy { EvaluateServiceOpenAPI() }
-	private val fetchLatestDraftService by lazy { FetchLatestDraftServiceOpenAPI() }
+	private val fetchLatestDraftService by lazy { FetchLatestDraftServiceOpenAPI(serverUrl) }
 	private val submitService by lazy { SubmitServiceOpenAPI() }
 	private val uploadService by lazy { UploadServiceOpenAPI() }
 
 	companion object {
-		const val OPEN_API_FORM_PATH = "/o/headless-form/v1.0"
+		const val OPEN_API_FORM_PATH = "o/headless-form/v1.0"
 	}
 }
