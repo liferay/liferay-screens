@@ -15,8 +15,6 @@
 package com.liferay.mobile.screens.ddm.form.model
 
 import com.liferay.mobile.screens.ddl.JsonParser
-import com.liferay.mobile.screens.util.extensions.getOptional
-import com.liferay.mobile.screens.util.extensions.getOptionalString
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -48,8 +46,8 @@ class FormContext @JvmOverloads constructor(
 			for (i in 0 until jsonArrayPages.length()) {
 				val jsonPage = jsonArrayPages.getJSONObject(i)
 
-				val headline = jsonPage.getOptionalString("headline") ?: ""
-				val text = jsonPage.getOptionalString("text") ?: ""
+				val headline = jsonPage.optString("headline")
+				val text = jsonPage.optString("text")
 
 				val fields = getFields(jsonPage.getJSONArray("fields"))
 
@@ -70,8 +68,8 @@ class FormContext @JvmOverloads constructor(
 				val jsonField = jsonArray.getJSONObject(i)
 
 				val name = jsonField.getString("name")
-				val value = jsonField.getOptional("value")
-				val errorMessage = jsonField.getOptionalString("errorMessage") ?: ""
+				val value = jsonField.opt("value")
+				val errorMessage = jsonField.optString("errorMessage")
 
 				val options = if (jsonField.has("options")) {
 					JsonParser.getJSONArrayAttributes(jsonField.getJSONArray("options"))

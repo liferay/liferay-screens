@@ -20,18 +20,18 @@ package com.liferay.mobile.screens.ddl.form.util
 class FormConstants {
 	companion object {
 		const val DATA_PROVIDER_KEY: String = "data-provider"
-		const val FROM_AUTOFILL_KEY: String = "from-autofill"
-		const val NAME = "name"
-		const val DESCRIPTION = "description"
 		const val DEFAULT_LANGUAGE = "defaultLanguage"
-		const val STRUCTURE = "structure"
-		const val PAGES = "formPages"
-		const val SUCCESS_PAGE = "successPage"
-		const val HEADLINE = "headline"
-		const val TEXT = "text"
+		const val DEFAULT_SYNC_TIMEOUT: Long = 500
+		const val DESCRIPTION = "description"
 		const val FIELDS = "fields"
 		const val FIELD_VALUES = "fieldValues"
-
-		const val DEFAULT_SYNC_TIMEOUT: Long = 500
+		const val FROM_AUTOFILL_KEY: String = "from-autofill"
+		const val HEADLINE = "headline"
+		const val ID = "id"
+		const val NAME = "name"
+		const val PAGES = "formPages"
+		const val STRUCTURE = "structure"
+		const val SUCCESS_PAGE = "successPage"
+		const val TEXT = "text"
 	}
 }
