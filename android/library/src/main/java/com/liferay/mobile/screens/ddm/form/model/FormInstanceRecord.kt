@@ -18,8 +18,6 @@ import android.annotation.SuppressLint
 import android.os.Parcel
 import android.os.Parcelable
 import com.liferay.mobile.screens.ddl.form.util.FormConstants
-import com.liferay.mobile.screens.util.extensions.getOptional
-import com.liferay.mobile.screens.util.extensions.getOptionalString
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -54,8 +52,8 @@ class FormInstanceRecord(
 
 			for (i in 0 until jsonArray.length()) {
 				val fieldJSON = jsonArray.getJSONObject(i)
-				val name = fieldJSON.getOptionalString("name") ?: ""
-				val value = fieldJSON.getOptionalString("value") ?: ""
+				val name = fieldJSON.optString("name")
+				val value = fieldJSON.optString("value")
 
 				fieldValues.add(FieldValue(name, value))
 			}

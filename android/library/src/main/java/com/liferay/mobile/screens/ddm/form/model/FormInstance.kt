@@ -20,8 +20,6 @@ import com.liferay.mobile.screens.ddl.form.util.FormConstants
 import com.liferay.mobile.screens.ddl.form.util.FormFieldKeys
 import com.liferay.mobile.screens.ddl.model.DDMStructure
 import com.liferay.mobile.screens.ddl.model.Field
-import com.liferay.mobile.screens.util.extensions.getOptionalJSONObject
-import com.liferay.mobile.screens.util.extensions.getOptionalString
 import kotlinx.android.parcel.Parcelize
 import org.json.JSONArray
 import org.json.JSONObject
@@ -34,6 +32,7 @@ import java.util.*
  */
 @Parcelize
 data class FormInstance(
+	val id: Long,
 	val name: String,
 	val description: String?,
 	val defaultLanguage: String,
@@ -46,9 +45,11 @@ data class FormInstance(
 	companion object {
 		val converter: (JSONObject) -> FormInstance = { it: JSONObject ->
 
+			val id = it.getLong(FormConstants.ID)
+
 			val name = it.getString(FormConstants.NAME)
 
-			val description = it.getOptionalString(FormConstants.DESCRIPTION)
+			val description = it.optString(FormConstants.DESCRIPTION, null)
 
 			val defaultLanguage = it.getString(FormConstants.DEFAULT_LANGUAGE)
 
@@ -64,18 +65,18 @@ data class FormInstance(
 				it.hasFormRules()
 			}
 
-			FormInstance(name, description, defaultLanguage, ddmStructure, hasDataProvider, hasFormRules)
+			FormInstance(id, name, description, defaultLanguage, ddmStructure, hasDataProvider, hasFormRules)
 		}
 
 		private fun getStructure(jsonStructure: JSONObject, locale: Locale): DDMStructure {
 
 			val name = jsonStructure.getString(FormConstants.NAME)
 
-			val description = jsonStructure.getOptionalString(FormConstants.DESCRIPTION)
+			val description = jsonStructure.optString(FormConstants.DESCRIPTION, null)
 
 			val pages = getPages(jsonStructure.getJSONArray(FormConstants.PAGES), locale)
 
-			val successPage = jsonStructure.getOptionalJSONObject(FormConstants.SUCCESS_PAGE)?.let { jsonSuccessPage ->
+			val successPage = jsonStructure.optJSONObject(FormConstants.SUCCESS_PAGE)?.let { jsonSuccessPage ->
 				val headline = jsonSuccessPage.getString(FormConstants.HEADLINE)
 				val text = jsonSuccessPage.getString(FormConstants.DESCRIPTION)
 
@@ -92,8 +93,8 @@ data class FormInstance(
 			for (i in 0 until jsonArrayPages.length()) {
 				val jsonPage = jsonArrayPages.getJSONObject(i)
 
-				val headlinePage = jsonPage.getOptionalString(FormConstants.HEADLINE) ?: ""
-				val textPage = jsonPage.getOptionalString(FormConstants.TEXT) ?: ""
+				val headlinePage = jsonPage.optString(FormConstants.HEADLINE)
+				val textPage = jsonPage.optString(FormConstants.TEXT)
 				val fields = getFields(jsonPage.getJSONArray(FormConstants.FIELDS), locale)
 
 				formPageList.add(FormPage(headlinePage, textPage, fields))
