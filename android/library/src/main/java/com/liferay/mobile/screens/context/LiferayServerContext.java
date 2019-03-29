@@ -119,6 +119,10 @@ public class LiferayServerContext {
     }
 
     public static OkHttpClient getOkHttpClient() {
+        return getOkHttpClient(false);
+    }
+
+    public static OkHttpClient getOkHttpClient(final boolean authenticated) {
         synchronized (LiferayServerContext.class) {
             if (okHttpClient == null) {
                 okHttpClient = new OkHttpClient();
@@ -130,9 +134,11 @@ public class LiferayServerContext {
 
                         Request.Builder newRequestBuilder = originalRequest.newBuilder();
 
-                        Request newRequest = authenticateRequestIfNeeded(newRequestBuilder);
+                        if (authenticated || SessionContext.getAuthentication() instanceof CookieAuthentication) {
+                            authenticateRequest(newRequestBuilder);
+                        }
 
-                        return chain.proceed(newRequest);
+                        return chain.proceed(newRequestBuilder.build());
                     }
                 });
             }
@@ -150,9 +156,11 @@ public class LiferayServerContext {
                 Request.Builder newRequestBuilder =
                     originalRequest.newBuilder().cacheControl(CacheControl.FORCE_NETWORK);
 
-                Request newRequest = authenticateRequestIfNeeded(newRequestBuilder);
+                if (SessionContext.getAuthentication() instanceof CookieAuthentication) {
+                    authenticateRequest(newRequestBuilder);
+                }
 
-                return chain.proceed(newRequest);
+                return chain.proceed(newRequestBuilder.build());
             }
         });
 
@@ -163,16 +171,13 @@ public class LiferayServerContext {
         return integerId == 0 ? Long.parseLong(resources.getString(stringId)) : resources.getInteger(integerId);
     }
 
-    public static Request authenticateRequestIfNeeded(Request.Builder builder) {
-        if (SessionContext.getAuthentication() instanceof CookieAuthentication) {
-
-            Map<String, String> headers = getAuthHeaders();
-            for (Map.Entry<String, String> entry : headers.entrySet()) {
-                builder.addHeader(entry.getKey(), entry.getValue());
-            }
+    public static Request.Builder authenticateRequest(Request.Builder builder) {
+        Map<String, String> headers = getAuthHeaders();
+        for (Map.Entry<String, String> entry : headers.entrySet()) {
+            builder.addHeader(entry.getKey(), entry.getValue());
         }
 
-        return builder.build();
+        return builder;
     }
 
     public static Map<String, String> getAuthHeaders() {

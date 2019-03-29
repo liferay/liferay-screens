@@ -29,10 +29,8 @@ import java.io.InputStream
 class DDMFormInteractor {
 	private val formService by lazy { FormServiceOpenAPI() }
 
-	fun getForm(formInstanceId: Long, serverUrl: String, onSuccess: (FormInstance) -> Unit,
-		onError: (Throwable) -> Unit) {
-
-		formService.getForm(formInstanceId, serverUrl, onSuccess, onError)
+	fun getForm(formInstanceId: Long, serverUrl: String) {
+		formService.getForm(formInstanceId, serverUrl)
 	}
 
 	fun evaluateContext(formInstance: FormInstance, fields: MutableList<Field<*>>,

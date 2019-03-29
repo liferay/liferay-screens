@@ -14,22 +14,25 @@
 
 package com.liferay.mobile.screens.ddm.form.service.openapi
 
-import com.liferay.mobile.screens.context.LiferayScreensContext
 import com.liferay.mobile.screens.ddm.form.model.FormInstance
+import com.liferay.mobile.screens.ddm.form.service.BaseService
 import com.liferay.mobile.screens.ddm.form.service.GetFormService
-import com.liferay.mobile.screens.util.AndroidUtil
 import org.json.JSONObject
+import rx.Observable
 
 /**
  * @author Victor Oliveira
  */
-class GetFormServiceOpenAPI : GetFormService {
-	override fun getForm(formInstanceId: Long, serverUrl: String, onSuccess: (FormInstance) -> Unit,
-		onError: (Throwable) -> Unit) {
+class GetFormServiceOpenAPI : BaseService<FormInstance>(), GetFormService {
+	override fun getForm(formInstanceId: Long, serverUrl: String): Observable<FormInstance> {
+		val url = (if (!serverUrl.endsWith('/')) "$serverUrl/" else serverUrl)
+			.plus(FormServiceOpenAPI.OPEN_API_FORM_PATH)
+			.plus("/forms/")
+			.plus(formInstanceId)
 
-		val formInstanceJSONStr = AndroidUtil.assetJSONFile("formInstance.json", LiferayScreensContext.getContext())
-		val formInstance = FormInstance.converter(JSONObject(formInstanceJSONStr))
-
-		onSuccess(formInstance)
+		return execute(url) {
+			val body = it.body().string()
+			FormInstance.converter(JSONObject(body))
+		}
 	}
 }
