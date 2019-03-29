@@ -21,16 +21,17 @@ import com.liferay.mobile.screens.ddm.form.model.FormContext
 import com.liferay.mobile.screens.ddm.form.model.FormInstance
 import com.liferay.mobile.screens.ddm.form.model.FormInstanceRecord
 import com.liferay.mobile.screens.ddm.form.service.openapi.*
+import rx.Observable
 import java.io.InputStream
 
 /**
  * @author Victor Oliveira
  */
-class DDMFormInteractor {
-	private val formService by lazy { FormServiceOpenAPI() }
+class DDMFormInteractor(private val serverUrl: String) {
+	private val formService by lazy { FormServiceOpenAPI(serverUrl) }
 
-	fun getForm(formInstanceId: Long, serverUrl: String) {
-		formService.getForm(formInstanceId, serverUrl)
+	fun getForm(formInstanceId: Long) {
+		formService.getForm(formInstanceId)
 	}
 
 	fun evaluateContext(formInstance: FormInstance, fields: MutableList<Field<*>>,
@@ -39,10 +40,8 @@ class DDMFormInteractor {
 		formService.evaluateContext(formInstance, fields, onSuccess, onError)
 	}
 
-	fun fetchLatestDraft(formInstance: FormInstance, onSuccess: (FormInstanceRecord) -> Unit,
-		onError: (Throwable) -> Unit) {
-
-		formService.fetchLatestDraft(formInstance, onSuccess, onError)
+	fun fetchLatestDraft(formInstanceId: Long): Observable<FormInstanceRecord> {
+		return formService.fetchLatestDraft(formInstanceId)
 	}
 
 	fun submit(formInstance: FormInstance, currentRecordThing: FormInstanceRecord?, fields: MutableList<Field<*>>,

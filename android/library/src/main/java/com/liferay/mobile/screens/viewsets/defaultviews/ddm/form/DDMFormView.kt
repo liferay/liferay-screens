@@ -53,6 +53,7 @@ import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil
 import rx.Observable
 import rx.Subscription
 import rx.android.schedulers.AndroidSchedulers
+import rx.subscriptions.Subscriptions
 import java.util.concurrent.TimeUnit
 
 /**
@@ -64,7 +65,7 @@ class DDMFormView @JvmOverloads constructor(
 	RelativeLayout(context, attrs, defStyleAttr), DDLDocumentFieldView.UploadListener,
 	DDMFormViewContract.DDMFormView {
 
-	private val presenter = DDMFormPresenter(this)
+	private val presenter = DDMFormPresenter(this, resources.getString(R.string.liferay_server))
 	private val layoutIds = mutableMapOf<Field.EditorType, Int>()
 
 	private val backButton by bindNonNull<Button>(R.id.liferay_form_back)
@@ -74,7 +75,7 @@ class DDMFormView @JvmOverloads constructor(
 	private val multipageProgress by bindNonNull<ProgressBar>(R.id.liferay_multipage_progress)
 	private val modalProgress by bindNonNull<ModalProgressBarWithLabel>(R.id.liferay_modal_progress)
 
-	private var subscription: Subscription? = null
+	private var subscription: Subscription = Subscriptions.empty()
 
 	override var ddmFormListener: DDMFormListener? = null
 
@@ -135,7 +136,9 @@ class DDMFormView @JvmOverloads constructor(
 
 	override fun onDetachedFromWindow() {
 		super.onDetachedFromWindow()
-		subscription?.unsubscribe()
+		subscription.unsubscribe()
+		subscription = Subscriptions.empty()
+		presenter.onDestroy()
 	}
 
 	override fun onFinishInflate() {
@@ -253,8 +256,10 @@ class DDMFormView @JvmOverloads constructor(
 
 	override fun subscribeToValueChanged(observable: Observable<Field<*>>) {
 		subscription = observable.doOnNext {
-			presenter.fieldModelsChanged(it)
-			lastChangedField = it
+			if (!it.isTransient) {
+				presenter.fieldModelsChanged(it)
+				lastChangedField = it
+			}
 		}.doOnError {
 			LiferayLogger.e(it.message, it)
 		}.debounce(config.syncFormTimeout, TimeUnit.MILLISECONDS)

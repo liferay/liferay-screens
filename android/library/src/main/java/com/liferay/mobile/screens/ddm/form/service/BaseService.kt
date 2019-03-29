@@ -17,13 +17,14 @@ import com.liferay.mobile.screens.context.LiferayServerContext
 import com.squareup.okhttp.Request
 import com.squareup.okhttp.Response
 import rx.Observable
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 import java.util.concurrent.Callable
 
 /**
  * @author Victor Oliveira
  */
 abstract class BaseService<T> {
-
 	inline fun execute(url: String, crossinline transformFunction: (Response) -> T): Observable<T> {
 		return rx.Observable.fromCallable(object : Callable<Response> {
 			override fun call(): Response {
@@ -36,5 +37,7 @@ abstract class BaseService<T> {
 		}).map {
 			transformFunction(it)
 		}
+			.subscribeOn(Schedulers.io())
+			.observeOn(AndroidSchedulers.mainThread())
 	}
 }

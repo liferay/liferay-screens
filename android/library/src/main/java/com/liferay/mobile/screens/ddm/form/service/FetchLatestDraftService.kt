@@ -14,14 +14,12 @@
 
 package com.liferay.mobile.screens.ddm.form.service
 
-import com.liferay.mobile.screens.ddm.form.model.FormInstance
 import com.liferay.mobile.screens.ddm.form.model.FormInstanceRecord
+import rx.Observable
 
 /**
  * @author Paulo Cruz
  */
 interface FetchLatestDraftService {
-
-	fun fetchLatestDraft(formInstance: FormInstance, onSuccess: (FormInstanceRecord) -> Unit,
-		onError: (Throwable) -> Unit)
+	fun fetchLatestDraft(formInstanceId: Long): Observable<FormInstanceRecord>
 }
