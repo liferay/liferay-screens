@@ -84,8 +84,8 @@ class FormContext @JvmOverloads constructor(
 				val isValueChanged = jsonField.getBoolean("isValueChanged")
 				val isVisible = jsonField.getBoolean("isVisible")
 
-				fieldList.add(FieldContext(name, value, errorMessage, options, isEvaluable, isReadOnly,
-					isRequired, isValid, isValueChanged, isVisible))
+				fieldList.add(FieldContext(name, value, errorMessage, options as List<Map<String, Any>>?, isEvaluable,
+					isReadOnly, isRequired, isValid, isValueChanged, isVisible))
 			}
 
 			return fieldList
