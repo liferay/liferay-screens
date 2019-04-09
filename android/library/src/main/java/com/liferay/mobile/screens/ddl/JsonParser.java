@@ -186,10 +186,19 @@ public class JsonParser implements DDMStructureParser {
         return result;
     }
 
-    public static List<Map<String, Object>> getJSONArrayAttributes(JSONArray jsonArray) throws JSONException {
-        List<Map<String, Object>> list = new ArrayList<>();
+    public static List<Object> getJSONArrayAttributes(JSONArray jsonArray) throws JSONException {
+        List<Object> list = new ArrayList<>();
+
         for (int i = 0; i < jsonArray.length(); i++) {
-            list.add(getAttributes(jsonArray.getJSONObject(i)));
+            Object obj = jsonArray.get(i);
+
+            if (obj instanceof JSONArray) {
+                list.add(getJSONArrayAttributes((JSONArray)obj));
+            } else if (obj instanceof JSONObject) {
+                list.add(getAttributes((JSONObject)obj));
+            } else {
+                list.add(obj);
+            }
         }
 
         return list;
