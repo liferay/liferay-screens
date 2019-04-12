@@ -31,7 +31,7 @@ class FetchLatestDraftServiceOpenAPI(
 			.plus(FormServiceOpenAPI.OPEN_API_FORM_PATH)
 			.plus("/forms/")
 			.plus(formInstanceId)
-			.plus("/fetch-latest-draft")
+			.plus("/form-records/by-latest-draft")
 
 		return execute(url) {
 			val body = it.body().string()
