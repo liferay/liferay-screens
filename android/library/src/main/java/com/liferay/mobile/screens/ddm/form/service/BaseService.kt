@@ -26,15 +26,13 @@ import java.util.concurrent.Callable
  */
 abstract class BaseService<T> {
 	inline fun execute(url: String, crossinline transformFunction: (Response) -> T): Observable<T> {
-		return rx.Observable.fromCallable(object : Callable<Response> {
-			override fun call(): Response {
-				val request = Request.Builder()
-					.url(url)
-					.build()
+		return rx.Observable.fromCallable {
+			val request = Request.Builder()
+				.url(url)
+				.build()
 
-				return LiferayServerContext.getOkHttpClient(true).newCall(request).execute()
-			}
-		}).map {
+			LiferayServerContext.getOkHttpClient(true).newCall(request).execute()
+		}.map {
 			transformFunction(it)
 		}
 			.subscribeOn(Schedulers.io())
