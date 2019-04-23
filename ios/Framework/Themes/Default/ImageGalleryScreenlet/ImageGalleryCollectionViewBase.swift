@@ -99,7 +99,7 @@ open class ImageGalleryCollectionViewBase: BaseListCollectionView, ImageGalleryV
 
 	open func indexOf(imageEntry: ImageEntry) -> Int {
 		for (_, sectionEntries) in rows {
-			if let idx = sectionEntries.index(where: { $0 as! ImageEntry == imageEntry }) {
+			if let idx = sectionEntries.firstIndex(where: { $0 as! ImageEntry == imageEntry }) {
 				return idx
 			}
 		}

@@ -31,7 +31,7 @@ class MockServer {
 	}
 
 	func stubService(_ service: NSString, withResult jsonResult: String) {
-		stubRequest("POST", "http://\(host)/api/jsonws/invoke" as LSMatcheable!)
+		stubRequest("POST", "http://\(host)/api/jsonws/invoke" as LSMatcheable)
 				.withBody(service.regex())?
 				.andReturn(200)?
 				.withBody?(jsonResult as LSHTTPBody?)

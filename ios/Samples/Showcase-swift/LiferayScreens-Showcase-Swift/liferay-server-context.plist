@@ -3,53 +3,53 @@
 <plist version="1.0">
 <dict>
 	<key>server</key>
-	<string>http://screens.liferay.org.es</string>
+	<string>http://localhost:8080</string>
 	<key>version</key>
 	<integer>70</integer>
 	<key>companyId</key>
-	<real>20116</real>
+	<real>20101</real>
 	<key>groupId</key>
-	<real>20143</real>
+	<real>20123</real>
 	<key>anonymousUsername</key>
 	<string>anonymous1@liferay.com</string>
 	<key>anonymousPassword</key>
 	<string>anonymous1</string>
 	<key>assetDisplayEntryId</key>
-	<real>54500</real>
+	<real>39742</real>
 	<key>assetDisplayPortletItemName</key>
 	<string>manual</string>
 	<key>blogDisplayClassPK</key>
-	<string>40515</string>
+	<string>39793</string>
 	<key>commentScreenletClassName</key>
-	<string>com.liferay.blogs.kernel.model.BlogsEntry</string>
+	<string>com.liferay.document.library.kernel.model.DLFileEntry</string>
 	<key>commentScreenletClassPK</key>
-	<integer>57366</integer>
+	<integer>39740</integer>
 	<key>commentId</key>
-	<integer>65105</integer>
+	<real>39776</real>
 	<key>ddlLabelField</key>
 	<string>description</string>
 	<key>ddlRecordId</key>
-	<integer>33294</integer>
+	<integer>39827</integer>
 	<key>ddlRecordSetId</key>
-	<integer>33280</integer>
+	<real>39824</real>
 	<key>ddlStructureId</key>
-	<integer>29823</integer>
+	<real>36701</real>
 	<key>imageDisplayClassPK</key>
-	<real>54612</real>
+	<real>39740</real>
 	<key>audioDisplayClassPK</key>
 	<real>57433</real>
 	<key>videoDisplayClassPK</key>
-	<integer>38943</integer>
+	<real>38943</real>
 	<key>pdfDisplayClassPK</key>
-	<integer>66976</integer>
+	<integer>39832</integer>
 	<key>fileDisplayClassPK</key>
 	<real>67025</real>
 	<key>imageGalleryFolderId</key>
-	<real>54469</real>
+	<integer>0</integer>
 	<key>imageGalleryMimeType</key>
 	<string>image/png,image/jpeg</string>
 	<key>imageGalleryRepositoryId</key>
-	<integer>20143</integer>
+	<real>20123</real>
 	<key>ratingEmojisEntryId</key>
 	<real>54500</real>
 	<key>ratingLikeEntryId</key>
@@ -61,13 +61,13 @@
 	<key>webContentDisplayArticleId</key>
 	<string>57343</string>
 	<key>webUrl</key>
-	<string>/web/guest/webscreenlet-gallery</string>
+	<string>/web/guest</string>
 	<key>clientIdRedirect</key>
-	<string>1234</string>
+	<string>id-25ed8030-56de-d117-035b-6d9116056ab</string>
 	<key>clientId</key>
-	<string>12345</string>
+	<string>id-25ed8030-56de-d117-035b-6d9116056ab</string>
 	<key>clientSecret</key>
-	<string>12345</string>
+	<string>secret-a4284e43-903e-53bc-1223-2ca3e5856fb3</string>
 	<key>redirectUrl</key>
 	<string>my-app://my-app</string>
 </dict>

@@ -92,7 +92,7 @@ open class BaseCredentialsStoreKeyChain: NSObject, CredentialsStore {
 	}
 
 	open class func storedAuthType() -> AuthType? {
-		guard let authType = try? keychain().get("auth_type") else {
+		guard let authType = ((try? keychain().get("auth_type")) as String??) else {
 			return nil
 		}
 		guard let authTypeValue = authType else {
@@ -117,11 +117,11 @@ open class BaseCredentialsStoreKeyChain: NSObject, CredentialsStore {
 
 		if shouldLoadServer {
 			if let companyId = companyId {
-				LiferayServerContext.companyId = companyId!
+				LiferayServerContext.companyId = companyId
 			}
 
 			if let groupId = groupId {
-				LiferayServerContext.groupId = groupId!
+				LiferayServerContext.groupId = groupId
 			}
 
 		}
@@ -136,15 +136,11 @@ open class BaseCredentialsStoreKeyChain: NSObject, CredentialsStore {
 			return false
 		}
 
-		if let userData = userData {
-			let json = try? JSONSerialization.jsonObject(with: userData, options: [])
+		let json = try? JSONSerialization.jsonObject(with: userData, options: [])
 
-			userAttributes = json as? [String: AnyObject]
-			authentication = loadAuth(keychain: keychain)
+		userAttributes = json as? [String: AnyObject]
+		authentication = loadAuth(keychain: keychain)
 
-			return (authentication != nil && userAttributes != nil)
-		}
-
-		return false
+		return (authentication != nil && userAttributes != nil)
 	}
 }

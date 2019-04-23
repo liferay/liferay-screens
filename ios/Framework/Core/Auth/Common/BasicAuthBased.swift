@@ -45,7 +45,7 @@ public enum BasicAuthMethod: String {
 	}
 
 	public static func fromUserName(_ userName: String) -> BasicAuthMethod {
-		if userName.index(of: "@") != nil {
+		if userName.firstIndex(of: "@") != nil {
 			return .email
 		}
 

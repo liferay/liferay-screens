@@ -70,6 +70,6 @@ open class RatingView_default_emojis: BaseScreenletView, RatingViewModel {
 
 	func emojiClicked(_ sender: UIButton) {
 		let action = sender.tag == 1 ? RatingScreenlet.UpdateRatingAction : RatingScreenlet.DeleteRatingAction
-		self.userAction(name: action, sender: (Double(emojis.index(of: sender)!) / Double(emojis.count)))
+		self.userAction(name: action, sender: (Double(emojis.firstIndex(of: sender)!) / Double(emojis.count)))
 	}
 }
