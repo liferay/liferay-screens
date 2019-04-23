@@ -169,7 +169,7 @@
 		0B2180341D6C508200A23690 /* DDMFieldString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180031D6C4F6F00A23690 /* DDMFieldString.swift */; };
 		0B2180351D6C508200A23690 /* DDMFieldStringWithOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180041D6C4F6F00A23690 /* DDMFieldStringWithOptions.swift */; };
 		0B2180361D6C508200A23690 /* DDMFieldUntyped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180051D6C4F6F00A23690 /* DDMFieldUntyped.swift */; };
-		0B2677DE1D3D1E5700FDFC5B /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
+		0B2677DE1D3D1E5700FDFC5B /* BuildFile in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
 		0B2C41541D5A3C7C00764326 /* ImageGalleryCollectionViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C41421D5A3C7C00764326 /* ImageGalleryCollectionViewBase.swift */; };
 		0B2C415F1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C414D1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift */; };
 		0B2C41631D5A3C7C00764326 /* UploadProgressView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C41511D5A3C7C00764326 /* UploadProgressView_default.xib */; };
@@ -475,7 +475,7 @@
 		0B7784611F95F60C001C9134 /* LRScreensassetentryService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E05451C6A4DB000CA3807 /* LRScreensassetentryService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784621F95F60C001C9134 /* LRScreensjournalarticleService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E055A1C6A4DF700CA3807 /* LRScreensjournalarticleService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784631F95F60C001C9134 /* LRScreensassetentryService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E05561C6A4DF700CA3807 /* LRScreensassetentryService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0B7784651F95F60C001C9134 /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
+		0B7784651F95F60C001C9134 /* BuildFile in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784661F95F60C001C9134 /* LRScreensjournalarticleService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E05491C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784671F95F60C001C9134 /* LRScreenscommentService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BFE28381D87E13300261A66 /* LRScreenscommentService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784691F95F60C001C9134 /* SignUpView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E61C71ACBFC3400862B9E /* SignUpView_default.xib */; };
@@ -692,10 +692,9 @@
 		0BF9624020694628008B56AF /* DDLFieldGeolocationTableCell_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B0F974C2062A7510078CE2F /* DDLFieldGeolocationTableCell_default.xib */; };
 		0BFE283A1D87E13300261A66 /* LRScreenscommentService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BFE28381D87E13300261A66 /* LRScreenscommentService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0BFE283B1D87E13300261A66 /* LRScreenscommentService_v70.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFE28391D87E13300261A66 /* LRScreenscommentService_v70.m */; };
-		1D551CFE3C70D566B9CCD40C /* Pods_Screens_LiferayScreensTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A041D235A8B482CF04A16CC3 /* Pods_Screens_LiferayScreensTests.framework */; };
+		506C864B79DED940C82F69DC /* Pods_Screens_LiferayScreensXamarin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA2ABB62DA78CB7A8E50C4B3 /* Pods_Screens_LiferayScreensXamarin.framework */; };
 		57CFF6071E5A495D00CB808E /* CookieCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B76FE8D1E4DADA80002D27F /* CookieCredentialsStoreKeyChain.swift */; };
 		57CFF6081E5A498000CB808E /* LoginCookieInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3699E81E4C929900B82F81 /* LoginCookieInteractor.swift */; };
-		68E67B00E025F69AD4C0BE89 /* Pods_Screens_LiferayScreensXamarin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F65ACCEE78BD2203D3A9326E /* Pods_Screens_LiferayScreensXamarin.framework */; };
 		88019FA21B8F22EE00674B00 /* webcontentdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88019FA01B8F22EE00674B00 /* webcontentdisplay-screenlet.strings */; };
 		88019FA31B8F22EE00674B00 /* webcontentdisplay-screenlet.strings in Resources */ = {isa = PBXBuildFile; fileRef = 88019FA01B8F22EE00674B00 /* webcontentdisplay-screenlet.strings */; };
 		880459ED1CA15FA400449D55 /* DDMFieldTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 880459EC1CA15FA400449D55 /* DDMFieldTableCell.swift */; };
@@ -1017,7 +1016,8 @@
 		88E7909E1C6CA3A700C90453 /* LiferayConnectorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E7909C1C6CA3A700C90453 /* LiferayConnectorFactory.swift */; };
 		88F888551B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */; };
 		88F888561B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */; };
-		CA31D39B798CAF785C1E4C98 /* Pods_Screens_LiferayScreens.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A985BA40FB0E0C4F9E8F333D /* Pods_Screens_LiferayScreens.framework */; };
+		8DEA7D0F6580AFB41ADD82AC /* Pods_Screens_LiferayScreensTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D914747DFC6A9165A311C06 /* Pods_Screens_LiferayScreensTests.framework */; };
+		BF89AE59BF6182410F875B9B /* Pods_Screens_LiferayScreens.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72A2C9C25025BB99C0BFA011 /* Pods_Screens_LiferayScreens.framework */; };
 		D62E6E612072337700CEABA4 /* LoginByOAuth2UsernamePasswordConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D48D6520722B15005C0420 /* LoginByOAuth2UsernamePasswordConnector.swift */; };
 		D62E6E622072337700CEABA4 /* LoginByOAuth2UsernamePasswordConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D48D6520722B15005C0420 /* LoginByOAuth2UsernamePasswordConnector.swift */; };
 		D62E6E632072337900CEABA4 /* LoginOAuth2UsernamePasswordInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D48D6720722B29005C0420 /* LoginOAuth2UsernamePasswordInteractor.swift */; };
@@ -1054,7 +1054,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		01D5FE271E262EBD5EF0938F /* Pods-Screens-LiferayScreens.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreens.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreens/Pods-Screens-LiferayScreens.debug.xcconfig"; sourceTree = "<group>"; };
 		0B0F974A2062A6480078CE2F /* DDLFieldGeolocationTableCell_default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DDLFieldGeolocationTableCell_default.swift; sourceTree = "<group>"; };
 		0B0F974C2062A7510078CE2F /* DDLFieldGeolocationTableCell_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DDLFieldGeolocationTableCell_default.xib; sourceTree = "<group>"; };
 		0B1063151D49E7C9001D8DE3 /* WebContentListView_default-collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WebContentListView_default-collection.swift"; sourceTree = "<group>"; };
@@ -1303,8 +1302,13 @@
 		0BF917CE1D76BFA800C86C85 /* NSDate+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Screens.swift"; sourceTree = "<group>"; };
 		0BFE28381D87E13300261A66 /* LRScreenscommentService_v70.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRScreenscommentService_v70.h; sourceTree = "<group>"; };
 		0BFE28391D87E13300261A66 /* LRScreenscommentService_v70.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRScreenscommentService_v70.m; sourceTree = "<group>"; };
-		0F2B5F21C02BDC618CF1CBD2 /* Pods-Screens-LiferayScreensXamarin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreensXamarin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreensXamarin/Pods-Screens-LiferayScreensXamarin.debug.xcconfig"; sourceTree = "<group>"; };
-		5666D5C0D85C88D6AB656F77 /* Pods-Screens-LiferayScreens.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreens.release.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreens/Pods-Screens-LiferayScreens.release.xcconfig"; sourceTree = "<group>"; };
+		274BC1DA6E21CFF10F8AD341 /* Pods-Screens-LiferayScreens.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreens.debug.xcconfig"; path = "Target Support Files/Pods-Screens-LiferayScreens/Pods-Screens-LiferayScreens.debug.xcconfig"; sourceTree = "<group>"; };
+		274CBE118553FA55211CCD4D /* Pods-Screens-LiferayScreensXamarin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreensXamarin.debug.xcconfig"; path = "Target Support Files/Pods-Screens-LiferayScreensXamarin/Pods-Screens-LiferayScreensXamarin.debug.xcconfig"; sourceTree = "<group>"; };
+		4A3D1BCA60FDC693AC4919D7 /* Pods-Screens-LiferayScreensTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreensTests.debug.xcconfig"; path = "Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4D914747DFC6A9165A311C06 /* Pods_Screens_LiferayScreensTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Screens_LiferayScreensTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		72A2C9C25025BB99C0BFA011 /* Pods_Screens_LiferayScreens.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Screens_LiferayScreens.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		745FA1FAB34C07A48A4D1271 /* Pods-Screens-LiferayScreensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreensTests.release.xcconfig"; path = "Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests.release.xcconfig"; sourceTree = "<group>"; };
+		7730B9ED18037CB0E9B2F269 /* Pods-Screens-LiferayScreens.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreens.release.xcconfig"; path = "Target Support Files/Pods-Screens-LiferayScreens/Pods-Screens-LiferayScreens.release.xcconfig"; sourceTree = "<group>"; };
 		88019FA11B8F22EE00674B00 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "en.lproj/webcontentdisplay-screenlet.strings"; sourceTree = "<group>"; };
 		880459EC1CA15FA400449D55 /* DDMFieldTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDMFieldTableCell.swift; sourceTree = "<group>"; };
 		880ACA5A1B01FBF0007AD007 /* UploadUserPortraitInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadUserPortraitInteractor.swift; sourceTree = "<group>"; };
@@ -1546,11 +1550,7 @@
 		88E7909C1C6CA3A700C90453 /* LiferayConnectorFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiferayConnectorFactory.swift; sourceTree = "<group>"; };
 		88F888541B26E3E50084B5E8 /* BasicCredentialsStoreKeyChain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicCredentialsStoreKeyChain.swift; sourceTree = "<group>"; };
 		9136B139BF9449FC75DBECA6 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9CC8AA19D478DA7FD9C187F7 /* Pods-Screens-LiferayScreensTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreensTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests.release.xcconfig"; sourceTree = "<group>"; };
-		A041D235A8B482CF04A16CC3 /* Pods_Screens_LiferayScreensTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Screens_LiferayScreensTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A985BA40FB0E0C4F9E8F333D /* Pods_Screens_LiferayScreens.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Screens_LiferayScreens.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AC9C90CA7022C44965952658 /* Pods-Screens-LiferayScreensXamarin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreensXamarin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreensXamarin/Pods-Screens-LiferayScreensXamarin.release.xcconfig"; sourceTree = "<group>"; };
-		AF6556C6EF57D7B08B4CFA7B /* Pods-Screens-LiferayScreensTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreensTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AE39010412FFFA7F4C4EF15D /* Pods-Screens-LiferayScreensXamarin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Screens-LiferayScreensXamarin.release.xcconfig"; path = "Target Support Files/Pods-Screens-LiferayScreensXamarin/Pods-Screens-LiferayScreensXamarin.release.xcconfig"; sourceTree = "<group>"; };
 		D62E6E6520725F7800CEABA4 /* LoginOAuth2RedirectInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginOAuth2RedirectInteractor.swift; sourceTree = "<group>"; };
 		D62E6E6920736A1000CEABA4 /* GetCurrentUserConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrentUserConnector.swift; sourceTree = "<group>"; };
 		D6D48D612072226F005C0420 /* OAuth2CredentialsStoreKeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth2CredentialsStoreKeyChain.swift; sourceTree = "<group>"; };
@@ -1559,7 +1559,7 @@
 		D6DC48112073AB220031DCB2 /* LoginResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResult.swift; sourceTree = "<group>"; };
 		D6F493582035A73A00730299 /* AsyncServerConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncServerConnector.swift; sourceTree = "<group>"; };
 		D6F4935A2035C44C00730299 /* LoginByCookieConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginByCookieConnector.swift; sourceTree = "<group>"; };
-		F65ACCEE78BD2203D3A9326E /* Pods_Screens_LiferayScreensXamarin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Screens_LiferayScreensXamarin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA2ABB62DA78CB7A8E50C4B3 /* Pods_Screens_LiferayScreensXamarin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Screens_LiferayScreensXamarin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1567,7 +1567,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68E67B00E025F69AD4C0BE89 /* Pods_Screens_LiferayScreensXamarin.framework in Frameworks */,
+				506C864B79DED940C82F69DC /* Pods_Screens_LiferayScreensXamarin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1575,7 +1575,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA31D39B798CAF785C1E4C98 /* Pods_Screens_LiferayScreens.framework in Frameworks */,
+				BF89AE59BF6182410F875B9B /* Pods_Screens_LiferayScreens.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1584,7 +1584,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8892C6841ACB2E3300192232 /* LiferayScreens.framework in Frameworks */,
-				1D551CFE3C70D566B9CCD40C /* Pods_Screens_LiferayScreensTests.framework in Frameworks */,
+				8DEA7D0F6580AFB41ADD82AC /* Pods_Screens_LiferayScreensTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2101,26 +2101,13 @@
 			path = List;
 			sourceTree = "<group>";
 		};
-		41ED39CCAF930C51AC7DE715 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				01D5FE271E262EBD5EF0938F /* Pods-Screens-LiferayScreens.debug.xcconfig */,
-				5666D5C0D85C88D6AB656F77 /* Pods-Screens-LiferayScreens.release.xcconfig */,
-				AF6556C6EF57D7B08B4CFA7B /* Pods-Screens-LiferayScreensTests.debug.xcconfig */,
-				9CC8AA19D478DA7FD9C187F7 /* Pods-Screens-LiferayScreensTests.release.xcconfig */,
-				0F2B5F21C02BDC618CF1CBD2 /* Pods-Screens-LiferayScreensXamarin.debug.xcconfig */,
-				AC9C90CA7022C44965952658 /* Pods-Screens-LiferayScreensXamarin.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		64425867C18F568E2864B9C1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				9136B139BF9449FC75DBECA6 /* Pods.framework */,
-				A985BA40FB0E0C4F9E8F333D /* Pods_Screens_LiferayScreens.framework */,
-				A041D235A8B482CF04A16CC3 /* Pods_Screens_LiferayScreensTests.framework */,
-				F65ACCEE78BD2203D3A9326E /* Pods_Screens_LiferayScreensXamarin.framework */,
+				72A2C9C25025BB99C0BFA011 /* Pods_Screens_LiferayScreens.framework */,
+				4D914747DFC6A9165A311C06 /* Pods_Screens_LiferayScreensTests.framework */,
+				FA2ABB62DA78CB7A8E50C4B3 /* Pods_Screens_LiferayScreensXamarin.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2740,7 +2727,7 @@
 				8892C67A1ACB2E3300192232 /* LiferayScreens */,
 				8892C6791ACB2E3300192232 /* Products */,
 				64425867C18F568E2864B9C1 /* Frameworks */,
-				41ED39CCAF930C51AC7DE715 /* Pods */,
+				EAE3D9883D5E3ECD4D781BE9 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3059,6 +3046,20 @@
 			path = Context;
 			sourceTree = "<group>";
 		};
+		EAE3D9883D5E3ECD4D781BE9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				274BC1DA6E21CFF10F8AD341 /* Pods-Screens-LiferayScreens.debug.xcconfig */,
+				7730B9ED18037CB0E9B2F269 /* Pods-Screens-LiferayScreens.release.xcconfig */,
+				4A3D1BCA60FDC693AC4919D7 /* Pods-Screens-LiferayScreensTests.debug.xcconfig */,
+				745FA1FAB34C07A48A4D1271 /* Pods-Screens-LiferayScreensTests.release.xcconfig */,
+				274CBE118553FA55211CCD4D /* Pods-Screens-LiferayScreensXamarin.debug.xcconfig */,
+				AE39010412FFFA7F4C4EF15D /* Pods-Screens-LiferayScreensXamarin.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -3075,7 +3076,7 @@
 				0B7784611F95F60C001C9134 /* LRScreensassetentryService_v62.h in Headers */,
 				0B7784621F95F60C001C9134 /* LRScreensjournalarticleService_v70.h in Headers */,
 				0B7784631F95F60C001C9134 /* LRScreensassetentryService_v70.h in Headers */,
-				0B7784651F95F60C001C9134 /* (null) in Headers */,
+				0B7784651F95F60C001C9134 /* BuildFile in Headers */,
 				0B7784661F95F60C001C9134 /* LRScreensjournalarticleService_v62.h in Headers */,
 				0B7784671F95F60C001C9134 /* LRScreenscommentService_v70.h in Headers */,
 			);
@@ -3094,7 +3095,7 @@
 				887E054D1C6A4DB000CA3807 /* LRScreensassetentryService_v62.h in Headers */,
 				887E069B1C6A4DF800CA3807 /* LRScreensjournalarticleService_v70.h in Headers */,
 				887E06971C6A4DF800CA3807 /* LRScreensassetentryService_v70.h in Headers */,
-				0B2677DE1D3D1E5700FDFC5B /* (null) in Headers */,
+				0B2677DE1D3D1E5700FDFC5B /* BuildFile in Headers */,
 				887E05511C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h in Headers */,
 				0BFE283A1D87E13300261A66 /* LRScreenscommentService_v70.h in Headers */,
 			);
@@ -3107,7 +3108,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0B7784EB1F95F60C001C9134 /* Build configuration list for PBXNativeTarget "LiferayScreensXamarin" */;
 			buildPhases = (
-				5FC2A0B5CD0399838640597D /* [CP] Check Pods Manifest.lock */,
+				5A1791E2313C652C9683073E /* [CP] Check Pods Manifest.lock */,
 				0B7783431F95F60C001C9134 /* Sources */,
 				0B7784581F95F60C001C9134 /* Frameworks */,
 				0B77845A1F95F60C001C9134 /* Headers */,
@@ -3126,7 +3127,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8892C68E1ACB2E3300192232 /* Build configuration list for PBXNativeTarget "LiferayScreens" */;
 			buildPhases = (
-				E62D4A8DB5FB2C480D64FCBA /* [CP] Check Pods Manifest.lock */,
+				F4BFFDFC7B48B2CE7AF10F21 /* [CP] Check Pods Manifest.lock */,
 				8892C6731ACB2E3300192232 /* Sources */,
 				8892C6741ACB2E3300192232 /* Frameworks */,
 				8892C6751ACB2E3300192232 /* Headers */,
@@ -3145,12 +3146,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8892C6911ACB2E3300192232 /* Build configuration list for PBXNativeTarget "LiferayScreensTests" */;
 			buildPhases = (
-				B4FD354C3B84232D7560249A /* [CP] Check Pods Manifest.lock */,
+				3155571C57CA79664EE4FC32 /* [CP] Check Pods Manifest.lock */,
 				8892C67F1ACB2E3300192232 /* Sources */,
 				8892C6801ACB2E3300192232 /* Frameworks */,
 				8892C6811ACB2E3300192232 /* Resources */,
 				881E63091ACC0CD400862B9E /* CopyFiles */,
-				78FC2601D331DD219403B728 /* [CP] Embed Pods Frameworks */,
+				1256CBA3B1DC67EDB72B24EB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -3169,7 +3170,7 @@
 			attributes = {
 				LastSwiftMigration = 0720;
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = Liferay;
 				TargetAttributes = {
 					8892C6771ACB2E3300192232 = {
@@ -3187,6 +3188,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				es,
 				de,
@@ -3521,7 +3523,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5FC2A0B5CD0399838640597D /* [CP] Check Pods Manifest.lock */ = {
+		1256CBA3B1DC67EDB72B24EB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3529,29 +3531,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Screens-LiferayScreensXamarin-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		78FC2601D331DD219403B728 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
@@ -3592,10 +3572,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Screens-LiferayScreensTests/Pods-Screens-LiferayScreensTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B4FD354C3B84232D7560249A /* [CP] Check Pods Manifest.lock */ = {
+		3155571C57CA79664EE4FC32 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3617,7 +3597,29 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E62D4A8DB5FB2C480D64FCBA /* [CP] Check Pods Manifest.lock */ = {
+		5A1791E2313C652C9683073E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Screens-LiferayScreensXamarin-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F4BFFDFC7B48B2CE7AF10F21 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -4527,7 +4529,7 @@
 /* Begin XCBuildConfiguration section */
 		0B7784EC1F95F60C001C9134 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0F2B5F21C02BDC618CF1CBD2 /* Pods-Screens-LiferayScreensXamarin.debug.xcconfig */;
+			baseConfigurationReference = 274CBE118553FA55211CCD4D /* Pods-Screens-LiferayScreensXamarin.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -4545,13 +4547,13 @@
 				PRODUCT_NAME = LiferayScreensXamarin;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		0B7784ED1F95F60C001C9134 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AC9C90CA7022C44965952658 /* Pods-Screens-LiferayScreensXamarin.release.xcconfig */;
+			baseConfigurationReference = AE39010412FFFA7F4C4EF15D /* Pods-Screens-LiferayScreensXamarin.release.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -4568,7 +4570,7 @@
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)Xamarin";
 				PRODUCT_NAME = LiferayScreensXamarin;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -4585,12 +4587,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -4620,7 +4624,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
@@ -4646,12 +4650,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -4674,7 +4680,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
@@ -4689,7 +4695,7 @@
 		};
 		8892C68F1ACB2E3300192232 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 01D5FE271E262EBD5EF0938F /* Pods-Screens-LiferayScreens.debug.xcconfig */;
+			baseConfigurationReference = 274BC1DA6E21CFF10F8AD341 /* Pods-Screens-LiferayScreens.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -4706,13 +4712,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		8892C6901ACB2E3300192232 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5666D5C0D85C88D6AB656F77 /* Pods-Screens-LiferayScreens.release.xcconfig */;
+			baseConfigurationReference = 7730B9ED18037CB0E9B2F269 /* Pods-Screens-LiferayScreens.release.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -4728,13 +4734,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
 		8892C6921ACB2E3300192232 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AF6556C6EF57D7B08B4CFA7B /* Pods-Screens-LiferayScreensTests.debug.xcconfig */;
+			baseConfigurationReference = 4A3D1BCA60FDC693AC4919D7 /* Pods-Screens-LiferayScreensTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -4747,13 +4753,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tests/LiferayScreensTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		8892C6931ACB2E3300192232 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9CC8AA19D478DA7FD9C187F7 /* Pods-Screens-LiferayScreensTests.release.xcconfig */;
+			baseConfigurationReference = 745FA1FAB34C07A48A4D1271 /* Pods-Screens-LiferayScreensTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Tests/Info.plist;
@@ -4761,7 +4767,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.liferay.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Tests/LiferayScreensTests-Bridging-Header.h";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

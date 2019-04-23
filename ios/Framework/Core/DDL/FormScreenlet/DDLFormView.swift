@@ -60,7 +60,7 @@ open class DDLFormView: BaseScreenletView, DDLFormViewModel {
 	}
 
 	open func getFieldIndex(_ field: DDMField) -> Int? {
-		return (record == nil) ? nil : record!.fields.index(of: field)
+		return (record == nil) ? nil : record!.fields.firstIndex(of: field)
 	}
 
 	// MARK: Internal methods

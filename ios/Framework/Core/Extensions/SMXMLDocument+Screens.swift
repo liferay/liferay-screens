@@ -16,7 +16,7 @@ import SMXMLDocument
 
 public extension SMXMLElement {
 
-	@objc public func deepChildWithAttribute(
+	@objc func deepChildWithAttribute(
 			_ attributeName: String,
 			value attributeValue: String) -> SMXMLElement? {
 
@@ -44,7 +44,7 @@ public extension SMXMLElement {
 
 public extension SMXMLDocument {
 
-	override public func deepChildWithAttribute(
+	override func deepChildWithAttribute(
 			_ attributeName: String,
 			value attributeValue: String) -> SMXMLElement? {
 

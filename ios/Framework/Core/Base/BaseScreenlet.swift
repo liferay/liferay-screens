@@ -491,7 +491,7 @@ public protocol BaseScreenletDelegate: NSObjectProtocol {
 			let name = interactor.actionName!
 			let interactors = self._runningInteractors[name] ?? []
 
-			if let foundIndex = interactors.index(of: interactor) {
+			if let foundIndex = interactors.firstIndex(of: interactor) {
 				self._runningInteractors[name]?.remove(at: foundIndex)
 			}
 			else {
