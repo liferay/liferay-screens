@@ -30,14 +30,10 @@ class WebScreenletViewController: UIViewController, WebScreenletDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		let url = LiferayServerContext.stringPropertyForKey("webUrl")
+		let url = "http://192.168.50.163:8080"
 
 		let configuration = WebScreenletConfigurationBuilder(url: url)
-				.set(webType: .liferayAuthenticated)
-				.enableCordova()
-				.addJs(localFile: "gallery")
-				.addCss(localFile: "gallery")
-				.addCss(localFile: "bigger_pagination")
+				.set(webType: .other)
 				.load()
 
 		screenlet?.configuration = configuration
@@ -49,6 +45,7 @@ class WebScreenletViewController: UIViewController, WebScreenletDelegate {
 
     func onWebLoad(_ screenlet: WebScreenlet, url: String) {
 
+		
     }
 
 	func screenlet(_ screenlet: WebScreenlet, onError error: NSError) {

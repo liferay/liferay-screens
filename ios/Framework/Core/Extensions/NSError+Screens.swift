@@ -49,7 +49,7 @@ public enum ScreensErrorCause: Int {
 
 public extension NSError {
 
-	public class func errorWithCause(
+	class func errorWithCause(
 			_ cause: ScreensErrorCause,
 			userInfo: [String: Any]? = nil)
 			-> NSError {
@@ -60,7 +60,7 @@ public extension NSError {
 				userInfo: userInfo)
 }
 
-	public class func errorWithCause(
+	class func errorWithCause(
 			_ cause: ScreensErrorCause,
 			message: String)
 			-> NSError {

@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 	s.name         = 'LiferayScreens'
 	s.module_name  = 'LiferayScreens'
-	s.version      = '4.0.1'
+	s.version      = '5.0.0'
 	s.summary      = 'A family of visual components called screenlets that are connected to the Liferay Platform used as a backend'
 	s.homepage     = 'https://www.liferay.com/liferay-screens'
 	s.license = { 
@@ -17,8 +17,8 @@ Pod::Spec.new do |s|
 		'Javier Gamarra' => 'javier.gamarra@liferay.com'
 	}
 	
-	s.swift_version = '4.2'	
-	s.platform = :ios, '9.0'
+	s.swift_version = '5.0'	
+	s.platform = :ios, '10.0'
 	s.requires_arc = true
 
 	s.ios.frameworks = [
@@ -51,7 +51,7 @@ Pod::Spec.new do |s|
 	s.dependency 'MBProgressHUD', '~> 0.9.1'
 	s.dependency 'SMXMLDocument', '~> 1.1'
 	s.dependency 'YapDatabase/SQLCipher', '2.9.2'
-	s.dependency 'Kingfisher', '~> 4.0'
+	s.dependency 'Kingfisher', '~> 5.2'
 
 	# Login & signup: save credentials
 	s.dependency 'KeychainAccess', '~> 3.0'

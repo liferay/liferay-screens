@@ -46,7 +46,7 @@ open class CommentListView_default: BaseListTableView, CommentListViewModel {
 	}
 
 	open func deleteComment(_ comment: Comment) {
-		let row = rows[BaseListView.DefaultSection]?.index(where: {
+		let row = rows[BaseListView.DefaultSection]?.firstIndex(where: {
 			(($0 as? Comment)?.commentId ?? 0) == comment.commentId})
 		if let row = row {
 			deleteRow(BaseListView.DefaultSection, row: row)
@@ -58,7 +58,7 @@ open class CommentListView_default: BaseListTableView, CommentListViewModel {
 	}
 
 	open func updateComment(_ comment: Comment) {
-		let row = rows[BaseListView.DefaultSection]?.index(where: {
+		let row = rows[BaseListView.DefaultSection]?.firstIndex(where: {
 			(($0 as? Comment)?.commentId ?? 0) == comment.commentId})
 		if let row = row {
 			updateRow(BaseListView.DefaultSection, row: row, element: comment)

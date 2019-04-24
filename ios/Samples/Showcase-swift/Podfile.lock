@@ -25,16 +25,16 @@ PODS:
     - CocoaLumberjack/Default
   - Cordova (4.5.4)
   - DTPickerPresenter (0.2.0)
-  - KeychainAccess (3.1.1)
-  - Kingfisher (4.8.0)
+  - KeychainAccess (3.2.0)
+  - Kingfisher (5.3.1)
   - Liferay-iOS-SDK (7.1.0):
     - AFNetworking (~> 3.0)
     - AppAuth (= 0.92)
-  - LiferayScreens (4.0.0):
+  - LiferayScreens (4.0.1):
     - Cordova (~> 4.0)
     - DTPickerPresenter (~> 0.2.0)
     - KeychainAccess (~> 3.0)
-    - Kingfisher (~> 4.0)
+    - Kingfisher (~> 5.2)
     - Liferay-iOS-SDK (~> 7.1)
     - MBProgressHUD (~> 0.9.1)
     - MDRadialProgress (~> 1.3.2)
@@ -45,8 +45,8 @@ PODS:
   - MDRadialProgress (1.3.2)
   - Reachability (3.2)
   - SMXMLDocument (1.1)
-  - SQLCipher/common (3.4.2)
-  - SQLCipher/fts (3.4.2):
+  - SQLCipher/common (4.1.0)
+  - SQLCipher/fts (4.1.0):
     - SQLCipher/common
   - TNRadioButtonGroup (0.4)
   - YapDatabase/SQLCipher (2.9.2):
@@ -130,18 +130,18 @@ SPEC CHECKSUMS:
   CocoaLumberjack: aa9dcab71bdf9eaf2a63bbd9ddc87863efe45457
   Cordova: 90a337977b8667a80483f559268c82062b1183da
   DTPickerPresenter: 1976573e3475534559b6ec1dad64b2ece16c966d
-  KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
-  Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
+  KeychainAccess: 3b1bf8a77eb4c6ea1ce9404c292e48f948954c6b
+  Kingfisher: d9e7e0b209b59b8f9873aa2f37654e81a7beea51
   Liferay-iOS-SDK: cb3c1ffa9b211fd95c5ff77bd5b2cd8036bdc5b0
-  LiferayScreens: 088c5d9f03fe272e5074fe805ff8d06836a3a421
+  LiferayScreens: 46535003375d84df6dd2e8943164087fa7923588
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MDRadialProgress: 1068574b9b4b870f64b605b07f734385bde5104d
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   SMXMLDocument: e0d9fbf726a2a0921871b492966458acb3ad9689
-  SQLCipher: f9fcf29b2e59ced7defc2a2bdd0ebe79b40d4990
+  SQLCipher: efbdb52cdbe340bcd892b1b14297df4e07241b7f
   TNRadioButtonGroup: f5fb9b545d8913bbabe6a72ea1fa6fba4d833bb6
   YapDatabase: b1e43555a34a5298e23a045be96817a5ef0da58f
 
-PODFILE CHECKSUM: 1675674d5ba4ade6289186a39151c92c3eeb9454
+PODFILE CHECKSUM: caf974bbe040462f8b12652ca8b8bacbce23a6d7
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.6.1

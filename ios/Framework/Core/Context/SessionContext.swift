@@ -32,12 +32,12 @@ open class SessionContext: NSObject {
 	public let cacheManager: CacheManager
 	open var credentialsStorage: CredentialsStorage
 
-	@available(*, deprecated: 2.0.1, message: "Use public property user")
+	@available(*, deprecated, message: "Use public property user")
 	open var userId: Int64 {
 		return user.userId
 	}
 
-	@available(*, deprecated: 2.0.1, message: "Access it throught user.attributes")
+	@available(*, deprecated, message: "Access it throught user.attributes")
 	open var userAttributes: [String: AnyObject] {
 		return user.attributes
 	}

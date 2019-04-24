@@ -28,8 +28,8 @@ open class DDMFieldDocument: DDMField {
 				"mimeType": "image/png"]
 		}
 
-		public var hashValue: Int {
-			return toInt()
+		public func hash(into hasher: inout Hasher) {
+			hasher.combine(toInt())
 		}
 
 		fileprivate func toInt() -> Int {
