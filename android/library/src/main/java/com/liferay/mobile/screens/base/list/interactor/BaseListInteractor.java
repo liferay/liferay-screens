@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.base.list.interactor;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import com.liferay.mobile.screens.base.context.RequestState;
 import com.liferay.mobile.screens.base.interactor.BaseCacheReadInteractor;
 import com.liferay.mobile.screens.cache.Cache;

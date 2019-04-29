@@ -2,8 +2,8 @@ package com.liferay.mobile.screens.testapp.postings.activity;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.widget.EditText;
 import android.widget.LinearLayout;

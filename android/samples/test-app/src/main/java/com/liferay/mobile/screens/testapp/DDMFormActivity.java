@@ -16,7 +16,7 @@ package com.liferay.mobile.screens.testapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.View;
 import com.liferay.mobile.screens.base.ModalProgressBarWithLabel;
 import com.liferay.mobile.screens.ddm.form.DDMFormListener;

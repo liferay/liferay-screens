@@ -3,8 +3,8 @@ package com.liferay.mobile.screens.viewsets.lexicon.ddl.form.fields;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import android.util.AttributeSet;
 import com.liferay.mobile.screens.viewsets.lexicon.R;
 

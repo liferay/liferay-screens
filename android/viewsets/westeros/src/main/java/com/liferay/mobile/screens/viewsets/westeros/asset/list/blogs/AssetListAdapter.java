@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.viewsets.westeros.asset.list.blogs;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
 import com.liferay.mobile.screens.asset.AssetEntry;

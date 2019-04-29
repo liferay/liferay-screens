@@ -14,7 +14,7 @@
 
 package com.liferay.mobile.screens.ddl.form.interactor.recordload;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import com.liferay.mobile.screens.base.interactor.BaseCacheReadInteractor;
 import com.liferay.mobile.screens.ddl.form.DDLFormListener;
 import com.liferay.mobile.screens.ddl.form.DDLFormScreenlet;

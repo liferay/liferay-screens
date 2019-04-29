@@ -17,7 +17,7 @@ package com.liferay.mobile.screens.westerosemployees.activities;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 import android.view.ViewPropertyAnimator;
 import android.widget.ImageView;
 import com.liferay.mobile.screens.auth.forgotpassword.ForgotPasswordListener;

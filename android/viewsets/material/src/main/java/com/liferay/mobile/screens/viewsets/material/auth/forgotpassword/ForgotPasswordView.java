@@ -15,7 +15,7 @@
 package com.liferay.mobile.screens.viewsets.material.auth.forgotpassword;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;

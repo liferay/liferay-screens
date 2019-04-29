@@ -3,7 +3,7 @@ package com.liferay.mobile.screens.cache;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import com.liferay.mobile.screens.base.interactor.event.CacheEvent;
 import com.liferay.mobile.screens.cache.executor.Executor;
 import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;

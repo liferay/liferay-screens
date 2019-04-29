@@ -3,7 +3,7 @@ package com.liferay.mobile.screens.imagegallery;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 import com.liferay.mobile.screens.imagegallery.interactor.ImageGalleryEvent;

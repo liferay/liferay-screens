@@ -3,7 +3,7 @@ package com.liferay.mobile.screens.testapp;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import com.liferay.mobile.screens.web.WebScreenletConfiguration;
 import com.liferay.mobile.screens.web.WebListener;
 import com.liferay.mobile.screens.web.WebScreenlet;

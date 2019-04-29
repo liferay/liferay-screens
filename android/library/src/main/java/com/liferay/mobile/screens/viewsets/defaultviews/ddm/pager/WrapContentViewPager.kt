@@ -15,7 +15,7 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.ddm.pager
 
 import android.content.Context
-import android.support.v4.view.ViewPager
+import androidx.viewpager.widget.ViewPager
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View

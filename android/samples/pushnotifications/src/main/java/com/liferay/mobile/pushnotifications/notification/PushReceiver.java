@@ -1,6 +1,6 @@
 package com.liferay.mobile.pushnotifications.notification;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import com.liferay.mobile.screens.push.AbstractPushReceiver;
 
 /**

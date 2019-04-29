@@ -15,7 +15,7 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.ddl.pager;
 
 import android.content.Context;
-import android.support.v4.view.ViewPager;
+import androidx.viewpager.widget.ViewPager;
 import android.util.AttributeSet;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.model.Field;

@@ -20,7 +20,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.net.Uri;
-import android.support.media.ExifInterface;
+import androidx.exifinterface.media.ExifInterface;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
 import com.liferay.mobile.screens.base.interactor.event.CacheEvent;
@@ -73,7 +73,7 @@ public class UserPortraitService extends IntentService {
 
     private static Bitmap checkOrientationAndRotate(InputStream inputStream, Bitmap bitmap) throws IOException {
         int orientation =
-            new android.support.media.ExifInterface(inputStream).getAttributeInt(ExifInterface.TAG_ORIENTATION,
+            new ExifInterface(inputStream).getAttributeInt(ExifInterface.TAG_ORIENTATION,
                 ExifInterface.ORIENTATION_NORMAL);
 
         switch (orientation) {

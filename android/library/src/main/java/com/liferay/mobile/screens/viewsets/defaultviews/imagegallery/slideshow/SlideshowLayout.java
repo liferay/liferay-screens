@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.slideshow;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import com.lsjwzh.widget.recyclerviewpager.RecyclerViewPager;
 

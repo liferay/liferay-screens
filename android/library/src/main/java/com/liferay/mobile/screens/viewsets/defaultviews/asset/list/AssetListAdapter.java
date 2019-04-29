@@ -14,7 +14,7 @@
 
 package com.liferay.mobile.screens.viewsets.defaultviews.asset.list;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.View;
 import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;

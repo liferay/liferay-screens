@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.ddl;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.util.LiferayLogger;

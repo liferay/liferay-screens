@@ -17,7 +17,7 @@ package com.liferay.mobile.pushnotifications.list;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.v4.widget.SwipeRefreshLayout;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
 import com.liferay.mobile.pushnotifications.R;
 import com.liferay.mobile.screens.base.list.BaseListScreenletView;

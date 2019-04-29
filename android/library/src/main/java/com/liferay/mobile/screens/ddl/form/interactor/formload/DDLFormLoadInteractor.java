@@ -14,7 +14,7 @@
 
 package com.liferay.mobile.screens.ddl.form.interactor.formload;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.http.Method;
 import com.liferay.mobile.android.http.Request;

@@ -16,7 +16,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.util
 
 import android.content.Context
 import android.content.pm.PackageManager
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan

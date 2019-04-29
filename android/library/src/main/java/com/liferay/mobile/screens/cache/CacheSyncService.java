@@ -15,7 +15,7 @@ package com.liferay.mobile.screens.cache;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import com.liferay.mobile.screens.base.interactor.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.base.interactor.event.CacheEvent;
 import com.liferay.mobile.screens.comment.add.interactor.CommentAddInteractor;

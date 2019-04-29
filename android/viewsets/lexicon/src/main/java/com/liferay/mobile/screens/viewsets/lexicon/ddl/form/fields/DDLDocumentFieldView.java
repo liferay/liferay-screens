@@ -18,7 +18,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Build;
-import android.support.design.widget.BottomSheetDialog;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;

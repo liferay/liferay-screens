@@ -15,17 +15,15 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields;
 
 import android.content.Context;
-import android.support.v7.widget.SwitchCompat;
+import androidx.appcompat.widget.SwitchCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import com.jakewharton.rxbinding.widget.RxCompoundButton;
-import com.jakewharton.rxbinding.widget.RxRatingBar;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.BooleanField;
-import com.liferay.mobile.screens.ddl.model.NumberField;
 import rx.Observable;
 import rx.functions.Func1;
 

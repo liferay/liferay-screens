@@ -17,11 +17,10 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Build
-import android.support.annotation.ColorInt
-import android.support.annotation.DrawableRes
-import android.support.design.widget.Snackbar
-import android.support.v4.content.ContextCompat
-import android.support.v4.graphics.drawable.DrawableCompat
+import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import android.view.View
 import android.widget.TextView
 import com.liferay.mobile.screens.R
@@ -31,6 +30,7 @@ import android.text.Html.FROM_HTML_MODE_LEGACY
 import android.os.Build.VERSION.SDK_INT
 import android.text.Html
 import android.text.Spanned
+import com.google.android.material.snackbar.Snackbar
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil
 import java.io.IOException
@@ -90,7 +90,7 @@ class AndroidUtil {
 			val snackbar = Snackbar.make(view, message, duration)
 			snackbar.view.setBackgroundColor(backgroundColor)
 
-			val textView = snackbar.view.findViewById(android.support.design.R.id.snackbar_text) as? TextView
+			val textView = snackbar.view.findViewById(com.google.android.material.R.id.snackbar_text) as? TextView
 
 			textView?.let {
 				textView.setTextColor(textColor)

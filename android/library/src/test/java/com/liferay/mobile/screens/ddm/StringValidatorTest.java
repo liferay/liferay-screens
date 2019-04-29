@@ -13,7 +13,7 @@
  */
 package com.liferay.mobile.screens.ddm;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import com.liferay.mobile.screens.ddl.StringValidator;
 import java.util.HashMap;
 import java.util.Map;

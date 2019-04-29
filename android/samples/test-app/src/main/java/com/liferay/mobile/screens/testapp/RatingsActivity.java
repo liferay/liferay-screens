@@ -2,9 +2,9 @@ package com.liferay.mobile.screens.testapp;
 
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.SwitchCompat;
+import androidx.annotation.ColorInt;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.widget.SwitchCompat;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.CompoundButton;

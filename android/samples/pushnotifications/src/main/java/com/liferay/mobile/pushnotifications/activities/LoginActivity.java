@@ -2,7 +2,7 @@ package com.liferay.mobile.pushnotifications.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.EditText;
 import com.liferay.mobile.pushnotifications.R;
 import com.liferay.mobile.screens.auth.login.LoginListener;

@@ -20,7 +20,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.net.Uri;
-import android.support.annotation.LayoutRes;
+import androidx.annotation.LayoutRes;
 import android.util.AttributeSet;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
@@ -48,7 +48,6 @@ import com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.DetailImage
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import rx.functions.Action;
 import rx.functions.Action1;
 
 /**

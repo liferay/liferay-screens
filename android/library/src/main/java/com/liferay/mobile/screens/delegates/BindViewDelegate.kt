@@ -15,7 +15,7 @@
 package com.liferay.mobile.screens.delegates
 
 import android.app.Activity
-import android.support.v7.widget.RecyclerView.ViewHolder
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import android.view.View
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
