@@ -3,7 +3,7 @@ package com.liferay.mobile.screens.auth.login.interactor;
 import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
-import android.support.customtabs.CustomTabsIntent;
+import androidx.browser.customtabs.CustomTabsIntent;
 import com.liferay.mobile.android.auth.OAuth2SignIn;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
