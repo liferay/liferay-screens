@@ -277,7 +277,7 @@ open class SessionContext: NSObject {
 
 			_ = try? srv.getCurrentUser()
 
-		case .v70, .v71:
+		case .v70, .v71, .v72:
 			let srv = LRUserService_v7(session: session)
 
 			_ = try? srv.getCurrentUser()
