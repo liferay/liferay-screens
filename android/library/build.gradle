@@ -54,11 +54,7 @@ dependencies {
 	}
 	api group: 'org.apache.cordova', name: 'framework', version: '6.2.3', classifier: 'debug', ext: 'aar'
 
-	implementation libraries.appCompat
-	implementation libraries.design
-	implementation libraries.exif
 	implementation libraries.eventbus
-	implementation libraries.recyclerView
 	implementation(libraries.gms) {
 		exclude group: 'com.android.support', module: 'support-v4'
 	}
@@ -81,6 +77,7 @@ dependencies {
 	implementation libraries.kotlin
 
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+	implementation 'com.google.android.material:material:1.0.0'
 }
 
 apply from: '../bintray.gradle'

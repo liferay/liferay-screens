@@ -10,7 +10,7 @@ android {
 		versionCode rootProject.ext.versionCode
 		versionName rootProject.ext.versionName
 		applicationId 'com.liferay.mobile.screens.westerosemployees_hybrid'
-		testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+		testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 	}
 
 	buildTypes {
@@ -29,7 +29,6 @@ dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
 	implementation project(':liferay-westeros-viewset')
 
-	implementation libraries.design
 	implementation libraries.rxbinding
 	implementation libraries.rxpermissions
 	implementation libraries.rxjava
