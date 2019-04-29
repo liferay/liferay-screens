@@ -15,7 +15,6 @@
     <string name="record_added_info">Record added!</string>
     <string name="record_updated_info">Record updated!</string>
     <string name="document_uploaded_info">Document uploaded!</string>
-    <string name="bookmark_added_info">Bookmark added!</string>
     <string name="webcontent_received_info">WebContent received!</string>
     <string name="webcontent_clicked_info">WebContent clicked!</string>
     <string name="login_success_info">Login successful!</string>

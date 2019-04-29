@@ -13,9 +13,3 @@ project(':liferay-westeros-viewset').name = 'liferay-westeros-viewset'
 include 'liferay-lexicon-viewset'
 project(':liferay-lexicon-viewset').projectDir = new File(settingsDir, '../../viewsets/lexicon')
 project(':liferay-lexicon-viewset').name = 'liferay-lexicon-viewset'
-
-include ':addbookmarkscreenlet'
-project(':addbookmarkscreenlet').projectDir = new File(settingsDir, '../../samples/addbookmarkscreenlet')
-
-include ':listbookmarkscreenlet'
-project(':listbookmarkscreenlet').projectDir = new File(settingsDir, '../../samples/listbookmarkscreenlet')

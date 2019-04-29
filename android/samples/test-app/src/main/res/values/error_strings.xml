@@ -12,7 +12,6 @@
     <string name="screenlet_error">There was an error loading screenlet</string>
     <string name="forgot_password_error">Forgot password request failed</string>
     <string name="login_screenlet_error">Login failed</string>
-    <string name="add_bookmark_error">Error adding bookmark</string>
     <string name="error_when">Error when</string>
     <string name="custom_interactor_login_error">Error logging in, try with demo/demo</string>
     <string name="failed">failed</string>

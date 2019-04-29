@@ -13,7 +13,6 @@
     <string name="record_added_info">Registro añadido!</string>
     <string name="record_updated_info">Registro actualizado!</string>
     <string name="document_uploaded_info">Documento subido!</string>
-    <string name="bookmark_added_info">Bookmark añadido!</string>
     <string name="webcontent_received_info">WebContent recibido!</string>
     <string name="webcontent_clicked_info">WebContent seleccionado!</string>
     <string name="login_success_info">Se ha iniciado sesión con éxito!</string>

@@ -80,10 +80,6 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
         //Portlet
         findViewById(R.id.portlet_display).setOnClickListener(this);
 
-        //Bookmarks
-        findViewById(R.id.list_bookmarks).setOnClickListener(this);
-        findViewById(R.id.add_bookmark).setOnClickListener(this);
-
         //Others
         findViewById(R.id.login_full_screenlet).setOnClickListener(this);
         findViewById(R.id.clear_cache).setOnClickListener(this);
@@ -180,12 +176,6 @@ public class MainActivity extends ThemeActivity implements View.OnClickListener 
                 Intent intentPortlet = getIntentWithTheme(WebActivity.class);
                 intentPortlet.putExtra("url", getResources().getString(R.string.liferay_portlet_url));
                 DefaultAnimation.startActivityWithAnimation(this, intentPortlet);
-                break;
-            case R.id.list_bookmarks:
-                start(ListBookmarksActivity.class);
-                break;
-            case R.id.add_bookmark:
-                start(AddBookmarkActivity.class);
                 break;
             case R.id.login_full_screenlet:
                 start(LoginFullActivity.class);

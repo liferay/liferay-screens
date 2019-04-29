@@ -14,12 +14,6 @@ include 'liferay-lexicon-viewset'
 project(':liferay-lexicon-viewset').projectDir = new File(settingsDir, '/viewsets/lexicon')
 project(':liferay-lexicon-viewset').name = 'liferay-lexicon-viewset'
 
-include ':addbookmarkscreenlet', ':westerosemployees-hybrid'
-project(':addbookmarkscreenlet').projectDir = new File(settingsDir, '/samples/addbookmarkscreenlet')
-
-include ':listbookmarkscreenlet'
-project(':listbookmarkscreenlet').projectDir = new File(settingsDir, '/samples/listbookmarkscreenlet')
-
 include ':test-app'
 project(':test-app').projectDir = new File(settingsDir, '/samples/test-app')
 

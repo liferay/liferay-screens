@@ -33,8 +33,6 @@ dependencies {
 	implementation project(':liferay-material-viewset')
 	implementation project(':liferay-westeros-viewset')
 	implementation project(':liferay-lexicon-viewset')
-	implementation project(':addbookmarkscreenlet')
-	implementation project(':listbookmarkscreenlet')
 	implementation project(':getuserscreenlet')
 
 	implementation libraries.design

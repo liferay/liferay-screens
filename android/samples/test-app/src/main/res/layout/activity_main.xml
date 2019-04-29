@@ -178,18 +178,6 @@
                 />
 
             <Button
-                android:id="@+id/list_bookmarks"
-                android:text="@string/list_bookmarks"
-                style="@style/test_app_button"
-                />
-
-            <Button
-                android:id="@+id/add_bookmark"
-                android:text="@string/add_a_bookmark"
-                style="@style/test_app_button"
-                />
-
-            <Button
                 android:id="@+id/login_full_screenlet"
                 android:text="@string/customizing_a_screenlet"
                 style="@style/test_app_button"

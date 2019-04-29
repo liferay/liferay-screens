@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <declare-styleable name="BookmarkListScreenlet">
-        <attr name="groupId"/>
-        <attr name="folderId"/>
-        <attr name="cachePolicy"/>
-        <attr name="obcClassName"/>
-    </declare-styleable>
-</resources>

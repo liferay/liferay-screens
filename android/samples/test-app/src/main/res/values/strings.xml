@@ -23,7 +23,6 @@
     <string name="sync_cache">Sync Cache</string>
     <string name="change_theme">Change Theme</string>
     <string name="image_gallery">Image Gallery</string>
-    <string name="list_bookmarks_label">Bookmark List Screenlet: Shows the bookmarks from a folder</string>
     <string name="portlet_label">Web Screenlet: It allows you to display any web page. It also allow customization of the web page through injection of JS and CSS files.</string>
     <string name="getuser_label">Get User Screenlet: Shows the user info given its userId, screenName or emailAddress.</string>
     <string name="webview_label">Web Content Display Screenlet: Shows the HTML of a web content given its articleId.</string>
@@ -44,7 +43,6 @@
     <string name="main_activity_label">List of all the screenlets supported on Liferay Screens.</string>
     <string name="customizing_a_screenlet">Customizing an screenlet</string>
     <string name="image_gallery_label">Image Gallery Screenlet: Shows a gallery of photos from a folder in Liferay.</string>
-    <string name="add_a_bookmark">Add a Bookmark</string>
     <string name="web_content_with_template">WebContent with template</string>
     <string name="email_address">Email Address</string>
     <string name="sign_in">Sign In</string>
@@ -52,7 +50,6 @@
     <string name="display_comment">Comment Display</string>
     <string name="add_comment">Comment Add</string>
     <string name="custom_interactor">Login with custom interactor</string>
-    <string name="list_bookmarks">List Bookmarks</string>
     <string name="portlet_display">Portlet Display</string>
     <string name="relogin">Relogin</string>
     <string name="change_surname">Change Surname</string>

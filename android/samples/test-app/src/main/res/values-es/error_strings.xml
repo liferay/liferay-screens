@@ -12,7 +12,6 @@
     <string name="screenlet_error">Ha ocurrido un error cargando el screenlet</string>
     <string name="forgot_password_error">Ha ocurrido un error al solicitar una nueva contraseña</string>
     <string name="login_screenlet_error">Ha ocurrido un error al iniciar sesión</string>
-    <string name="add_bookmark_error">Ha ocurrido un error añadiendo el bookmark</string>
     <string name="error_when">Ha ocurrido un error en</string>
     <string name="custom_interactor_login_error">Ha ocurrido un error iniciando sesión, prueba con test/test</string>
     <string name="failed"> ha fallado</string>
