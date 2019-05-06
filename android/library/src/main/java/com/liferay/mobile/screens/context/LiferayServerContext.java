@@ -99,6 +99,7 @@ public class LiferayServerContext {
 
     public static boolean isLiferay7() {
         return LiferayPortalVersion.VERSION_70.equals(portalVersion) || LiferayPortalVersion.VERSION_71.equals(
+            portalVersion) || LiferayPortalVersion.VERSION_72.equals(
             portalVersion);
     }
 
