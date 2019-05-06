@@ -13,40 +13,40 @@ import com.liferay.mobile.screens.dlfile.display.image.ImageDisplayScreenlet;
  * @author Sarai Díaz García
  */
 public class ImageDisplayActivity extends ThemeActivity
-	implements AssetDisplayListener, AdapterView.OnItemSelectedListener {
+    implements AssetDisplayListener, AdapterView.OnItemSelectedListener {
 
-	private ImageDisplayScreenlet screenlet;
+    private ImageDisplayScreenlet screenlet;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.image_display);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.image_display);
 
-		screenlet = findViewById(R.id.image_display_screenlet);
-		screenlet.load();
-		screenlet.setListener(this);
+        screenlet = findViewById(R.id.image_display_screenlet);
+        screenlet.load();
+        screenlet.setListener(this);
 
-		Spinner spinner = findViewById(R.id.spinner_scale_type);
-		spinner.setSelection(3);
-		spinner.setOnItemSelectedListener(this);
-	}
+        Spinner spinner = findViewById(R.id.spinner_scale_type);
+        spinner.setSelection(3);
+        spinner.setOnItemSelectedListener(this);
+    }
 
-	@Override
-	public void error(Exception e, String userAction) {
-		error(getString(R.string.asset_error), e);
-	}
+    @Override
+    public void error(Exception e, String userAction) {
+        error(getString(R.string.asset_error), e);
+    }
 
-	@Override
-	public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
-		info(getString(R.string.asset_received_info) + " " + assetEntry.getTitle());
-	}
+    @Override
+    public void onRetrieveAssetSuccess(AssetEntry assetEntry) {
+        info(getString(R.string.asset_received_info) + " " + assetEntry.getTitle());
+    }
 
-	@Override
-	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-		screenlet.setScaleType(ImageView.ScaleType.values()[position]);
-	}
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        screenlet.setScaleType(ImageView.ScaleType.values()[position]);
+    }
 
-	@Override
-	public void onNothingSelected(AdapterView<?> parent) {
-	}
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+    }
 }

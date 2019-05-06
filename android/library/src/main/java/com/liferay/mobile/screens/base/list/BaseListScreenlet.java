@@ -33,196 +33,196 @@ import java.util.List;
  * @author Silvio Santos
  */
 public abstract class BaseListScreenlet<E, N extends BaseListInteractor> extends BaseScreenlet<BaseListViewModel, N>
-	implements BaseListInteractorListener<E> {
+    implements BaseListInteractorListener<E> {
 
-	public static final String LOAD_INITIAL_PAGE_ACTION = "LOAD_INITIAL_PAGE_ACTION";
-	protected static final int FIRST_PAGE_SIZE = 50;
-	protected static final int PAGE_SIZE = 25;
-	protected boolean autoLoad;
-	protected int firstPageSize;
-	protected BaseListListener listener;
-	protected int pageSize;
-	protected String obcClassName;
-	private List<String> labelFields;
+    public static final String LOAD_INITIAL_PAGE_ACTION = "LOAD_INITIAL_PAGE_ACTION";
+    protected static final int FIRST_PAGE_SIZE = 50;
+    protected static final int PAGE_SIZE = 25;
+    protected boolean autoLoad;
+    protected int firstPageSize;
+    protected BaseListListener listener;
+    protected int pageSize;
+    protected String obcClassName;
+    private List<String> labelFields;
 
-	public BaseListScreenlet(Context context) {
-		super(context);
-	}
+    public BaseListScreenlet(Context context) {
+        super(context);
+    }
 
-	public BaseListScreenlet(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public BaseListScreenlet(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public BaseListScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-	}
+    public BaseListScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-	public BaseListScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
+    public BaseListScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
 
-	/**
-	 * Loads the associate page from given row.
-	 */
-	public void loadPageForRow(int row) {
-		loadPage(getPageFromRow(row));
-	}
+    /**
+     * Loads the associate page from given row.
+     */
+    public void loadPageForRow(int row) {
+        loadPage(getPageFromRow(row));
+    }
 
-	@Override
-	public void onListRowsFailure(int startRow, int endRow, Exception e) {
-		getViewModel().showFinishOperation(startRow, endRow, e);
+    @Override
+    public void onListRowsFailure(int startRow, int endRow, Exception e) {
+        getViewModel().showFinishOperation(startRow, endRow, e);
 
-		if (listener != null) {
-			listener.onListPageFailed(startRow, e);
-		}
-	}
+        if (listener != null) {
+            listener.onListPageFailed(startRow, e);
+        }
+    }
 
-	@Override
-	public void onListRowsReceived(int startRow, int endRow, List<E> entries, int rowCount) {
-		getViewModel().showFinishOperation(startRow, endRow, entries, rowCount);
+    @Override
+    public void onListRowsReceived(int startRow, int endRow, List<E> entries, int rowCount) {
+        getViewModel().showFinishOperation(startRow, endRow, entries, rowCount);
 
-		if (listener != null) {
-			listener.onListPageReceived(startRow, endRow, entries, rowCount);
-		}
-	}
+        if (listener != null) {
+            listener.onListPageReceived(startRow, endRow, entries, rowCount);
+        }
+    }
 
-	/**
-	 * Returns first row of the given page.
-	 *
-	 * @param page chosen page.
-	 * @return first row.
-	 */
-	public int getFirstRowForPage(int page) {
-		if (page == 0) {
-			return 0;
-		}
+    /**
+     * Returns first row of the given page.
+     *
+     * @param page chosen page.
+     * @return first row.
+     */
+    public int getFirstRowForPage(int page) {
+        if (page == 0) {
+            return 0;
+        }
 
-		return (firstPageSize + (page - 1) * pageSize);
-	}
+        return (firstPageSize + (page - 1) * pageSize);
+    }
 
-	/**
-	 * Returns the page where the row is from.
-	 *
-	 * @return row page.
-	 */
-	public int getPageFromRow(int row) {
-		if (row < firstPageSize) {
-			return 0;
-		}
+    /**
+     * Returns the page where the row is from.
+     *
+     * @return row page.
+     */
+    public int getPageFromRow(int row) {
+        if (row < firstPageSize) {
+            return 0;
+        }
 
-		return ((row - firstPageSize) / pageSize) + 1;
-	}
+        return ((row - firstPageSize) / pageSize) + 1;
+    }
 
-	/**
-	 * Loads the given page. If the page is 0, it loads the initial page.
-	 */
-	public void loadPage(int page) {
-		if (page == 0) {
-			getViewModel().showStartOperation(LOAD_INITIAL_PAGE_ACTION);
-		}
+    /**
+     * Loads the given page. If the page is 0, it loads the initial page.
+     */
+    public void loadPage(int page) {
+        if (page == 0) {
+            getViewModel().showStartOperation(LOAD_INITIAL_PAGE_ACTION);
+        }
 
-		int startRow = getFirstRowForPage(page);
-		int endRow = getFirstRowForPage(page + 1);
+        int startRow = getFirstRowForPage(page);
+        int endRow = getFirstRowForPage(page + 1);
 
-		try {
-			N interactor = getInteractor();
-			Query query = new Query(startRow, endRow, obcClassName);
-			interactor.setQuery(query);
-			loadRows(interactor);
-		} catch (Exception e) {
-			onListRowsFailure(startRow, endRow, e);
-		}
-	}
+        try {
+            N interactor = getInteractor();
+            Query query = new Query(startRow, endRow, obcClassName);
+            interactor.setQuery(query);
+            loadRows(interactor);
+        } catch (Exception e) {
+            onListRowsFailure(startRow, endRow, e);
+        }
+    }
 
-	public boolean isAutoLoad() {
-		return autoLoad;
-	}
+    public boolean isAutoLoad() {
+        return autoLoad;
+    }
 
-	public void setAutoLoad(boolean autoLoad) {
-		this.autoLoad = autoLoad;
-	}
+    public void setAutoLoad(boolean autoLoad) {
+        this.autoLoad = autoLoad;
+    }
 
-	public int getFirstPageSize() {
-		return firstPageSize;
-	}
+    public int getFirstPageSize() {
+        return firstPageSize;
+    }
 
-	public void setFirstPageSize(int firstPageSize) {
-		this.firstPageSize = firstPageSize;
-	}
+    public void setFirstPageSize(int firstPageSize) {
+        this.firstPageSize = firstPageSize;
+    }
 
-	public BaseListListener getListener() {
-		return listener;
-	}
+    public BaseListListener getListener() {
+        return listener;
+    }
 
-	public void setListener(BaseListListener listener) {
-		this.listener = listener;
-	}
+    public void setListener(BaseListListener listener) {
+        this.listener = listener;
+    }
 
-	public int getPageSize() {
-		return pageSize;
-	}
+    public int getPageSize() {
+        return pageSize;
+    }
 
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
 
-	public List<String> getLabelFields() {
-		return labelFields;
-	}
+    public List<String> getLabelFields() {
+        return labelFields;
+    }
 
-	public void setLabelFields(List<String> labelFields) {
-		this.labelFields = labelFields;
-	}
+    public void setLabelFields(List<String> labelFields) {
+        this.labelFields = labelFields;
+    }
 
-	protected abstract void loadRows(N interactor);
+    protected abstract void loadRows(N interactor);
 
-	@Override
-	protected View createScreenletView(Context context, AttributeSet attributes) {
+    @Override
+    protected View createScreenletView(Context context, AttributeSet attributes) {
 
-		TypedArray typedArray =
-			context.getTheme().obtainStyledAttributes(attributes, R.styleable.AssetListScreenlet, 0, 0);
+        TypedArray typedArray =
+            context.getTheme().obtainStyledAttributes(attributes, R.styleable.AssetListScreenlet, 0, 0);
 
-		int layoutId = typedArray.getResourceId(R.styleable.AssetListScreenlet_layoutId, getDefaultLayoutId());
+        int layoutId = typedArray.getResourceId(R.styleable.AssetListScreenlet_layoutId, getDefaultLayoutId());
 
-		firstPageSize = typedArray.getInteger(R.styleable.AssetListScreenlet_firstPageSize, FIRST_PAGE_SIZE);
+        firstPageSize = typedArray.getInteger(R.styleable.AssetListScreenlet_firstPageSize, FIRST_PAGE_SIZE);
 
-		pageSize = typedArray.getInteger(R.styleable.AssetListScreenlet_pageSize, PAGE_SIZE);
+        pageSize = typedArray.getInteger(R.styleable.AssetListScreenlet_pageSize, PAGE_SIZE);
 
-		autoLoad = typedArray.getBoolean(R.styleable.AssetListScreenlet_autoLoad, true);
+        autoLoad = typedArray.getBoolean(R.styleable.AssetListScreenlet_autoLoad, true);
 
-		labelFields = parse(typedArray.getString(R.styleable.AssetListScreenlet_labelFields));
+        labelFields = parse(typedArray.getString(R.styleable.AssetListScreenlet_labelFields));
 
-		obcClassName = typedArray.getString(R.styleable.AssetListScreenlet_obcClassName);
+        obcClassName = typedArray.getString(R.styleable.AssetListScreenlet_obcClassName);
 
-		typedArray.recycle();
+        typedArray.recycle();
 
-		return LayoutInflater.from(context).inflate(layoutId, null);
-	}
+        return LayoutInflater.from(context).inflate(layoutId, null);
+    }
 
-	@Override
-	protected void onScreenletAttached() {
-		super.onScreenletAttached();
+    @Override
+    protected void onScreenletAttached() {
+        super.onScreenletAttached();
 
-		if (autoLoad) {
-			//LMW-176 TODO handle when first page is already loaded
-			loadPage(0);
-		}
-	}
+        if (autoLoad) {
+            //LMW-176 TODO handle when first page is already loaded
+            loadPage(0);
+        }
+    }
 
-	@Override
-	protected void onUserAction(String userActionName, N interactor, Object... args) {
-	}
+    @Override
+    protected void onUserAction(String userActionName, N interactor, Object... args) {
+    }
 
-	private List<String> parse(String labelFields) {
-		if (labelFields == null) {
-			LiferayLogger.e("No labelFields configured");
-			labelFields = "";
-		}
+    private List<String> parse(String labelFields) {
+        if (labelFields == null) {
+            LiferayLogger.e("No labelFields configured");
+            labelFields = "";
+        }
 
-		List<String> parsedFields = new ArrayList<>();
-		for (String text : labelFields.split(",")) {
-			parsedFields.add(text.trim());
-		}
-		return parsedFields;
-	}
+        List<String> parsedFields = new ArrayList<>();
+        for (String text : labelFields.split(",")) {
+            parsedFields.add(text.trim());
+        }
+        return parsedFields;
+    }
 }

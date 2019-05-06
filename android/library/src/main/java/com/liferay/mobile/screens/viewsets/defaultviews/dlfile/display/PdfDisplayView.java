@@ -31,165 +31,169 @@ import java.io.IOException;
  */
 public class PdfDisplayView extends BaseFileDisplayView implements View.OnClickListener {
 
-	private int currentPage;
-	private Button nextPage;
-	private Button previousPage;
-	private Button goToPageButton;
-	private EditText goToPage;
-	private LinearLayout linearLayoutButtons;
-	private ImageView imagePdf;
-	private PdfRenderer renderer;
-	private ProgressBar progressBarHorizontal;
-	private TextView progressText;
-	private TextView title;
-	private Matrix matrix;
+    private int currentPage;
+    private Button nextPage;
+    private Button previousPage;
+    private Button goToPageButton;
+    private EditText goToPage;
+    private LinearLayout linearLayoutButtons;
+    private ImageView imagePdf;
+    private PdfRenderer renderer;
+    private ProgressBar progressBarHorizontal;
+    private TextView progressText;
+    private TextView title;
+    private Matrix matrix;
 
-	public PdfDisplayView(Context context) {
-		super(context);
-	}
+    public PdfDisplayView(Context context) {
+        super(context);
+    }
 
-	public PdfDisplayView(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public PdfDisplayView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public PdfDisplayView(Context context, AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-	}
+    public PdfDisplayView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	public PdfDisplayView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public PdfDisplayView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
 
-	@Override
-	public void loadFileEntry(String url) {
-		render(url);
-	}
+    @Override
+    public void loadFileEntry(String url) {
+        render(url);
+    }
 
-	@Override
-	public void renderDownloadProgress(int progress) {
-		progressText.setText(String.valueOf(progress).concat("%"));
-		progressBarHorizontal.setProgress(progress);
-	}
+    @Override
+    public void renderDownloadProgress(int progress) {
+        progressText.setText(String.valueOf(progress).concat("%"));
+        progressBarHorizontal.setProgress(progress);
+    }
 
-	@Override
-	public void onClick(View v) {
-		if (v.getId() == R.id.liferay_previous_page) {
-			changeCurrentPage(-1);
-		} else if (v.getId() == R.id.liferay_next_page) {
-			changeCurrentPage(+1);
-		} else if (v.getId() == R.id.liferay_go_to_page_submit) {
-			String number = goToPage.getText().toString();
-			if (!number.isEmpty()) {
-				changeCurrentPage(Integer.parseInt(number) - 1 - currentPage);
-				closeKeyboard(v);
-			}
-		}
-	}
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.liferay_previous_page) {
+            changeCurrentPage(-1);
+        } else if (v.getId() == R.id.liferay_next_page) {
+            changeCurrentPage(+1);
+        } else if (v.getId() == R.id.liferay_go_to_page_submit) {
+            String number = goToPage.getText().toString();
+            if (!number.isEmpty()) {
+                changeCurrentPage(Integer.parseInt(number) - 1 - currentPage);
+                closeKeyboard(v);
+            }
+        }
+    }
 
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
 
-		imagePdf = findViewById(R.id.liferay_pdf_renderer);
+        imagePdf = findViewById(R.id.liferay_pdf_renderer);
 
-		progressText = findViewById(R.id.liferay_asset_progress_number);
-		progressBarHorizontal = findViewById(R.id.liferay_asset_progress_horizontal);
+        progressText = findViewById(R.id.liferay_asset_progress_number);
+        progressBarHorizontal = findViewById(R.id.liferay_asset_progress_horizontal);
 
-		goToPage = findViewById(R.id.liferay_go_to_page);
-		goToPageButton = findViewById(R.id.liferay_go_to_page_submit);
+        goToPage = findViewById(R.id.liferay_go_to_page);
+        goToPageButton = findViewById(R.id.liferay_go_to_page_submit);
 
-		previousPage = findViewById(R.id.liferay_previous_page);
-		nextPage = findViewById(R.id.liferay_next_page);
+        previousPage = findViewById(R.id.liferay_previous_page);
+        nextPage = findViewById(R.id.liferay_next_page);
 
-		linearLayoutButtons = findViewById(R.id.liferay_linear_buttons);
+        linearLayoutButtons = findViewById(R.id.liferay_linear_buttons);
 
-		title = findViewById(R.id.liferay_asset_title);
-	}
+        title = findViewById(R.id.liferay_asset_title);
+    }
 
-	//TODO this should go in the screenlet class
-	private void render(String url) {
-		if (Build.VERSION.SDK_INT >= 21) {
-			renderInLollipop(url);
-		} else {
-			getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
-		}
-	}
+    protected void onPageRendered() {
+        hideProgressBar();
+    }
 
-	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	private void changeCurrentPage(int i) {
-		currentPage += i;
+    //TODO this should go in the screenlet class
+    private void render(String url) {
+        if (Build.VERSION.SDK_INT >= 21) {
+            renderInLollipop(url);
+        } else {
+            getContext().startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+        }
+    }
 
-		if (currentPage < 0) {
-			currentPage = 0;
-		} else if (currentPage > renderer.getPageCount() - 1) {
-			currentPage = renderer.getPageCount() - 1;
-		}
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void changeCurrentPage(int i) {
+        currentPage += i;
 
-		renderPdfPage(currentPage);
-	}
+        if (currentPage < 0) {
+            currentPage = 0;
+        } else if (currentPage > renderer.getPageCount() - 1) {
+            currentPage = renderer.getPageCount() - 1;
+        }
 
-	private void renderInLollipop(String url) {
-		previousPage.setOnClickListener(this);
-		nextPage.setOnClickListener(this);
-		goToPageButton.setOnClickListener(this);
+        renderPdfPage(currentPage);
+    }
 
-		renderPdfInImageView(url);
-	}
+    private void renderInLollipop(String url) {
+        previousPage.setOnClickListener(this);
+        nextPage.setOnClickListener(this);
+        goToPageButton.setOnClickListener(this);
 
-	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	private void renderPdfPage(int page) {
-		PdfRenderer.Page renderedPage = renderer.openPage(page);
-		Bitmap bitmap = Bitmap.createBitmap(renderedPage.getWidth(), renderedPage.getHeight(), Bitmap.Config.ARGB_8888);
-		Rect rect = new Rect(0, 0, renderedPage.getWidth(), renderedPage.getHeight());
-		renderedPage.render(bitmap, rect, matrix, PdfRenderer.Page.RENDER_MODE_FOR_PRINT);
-		imagePdf.setImageMatrix(matrix);
-		imagePdf.setImageBitmap(bitmap);
-		imagePdf.setOnTouchListener(new OnSwipeTouchListener(getContext(), new SwipeListener() {
-			@Override
-			public void onSwipeLeft() {
-				changeCurrentPage(+1);
-			}
+        renderPdfInImageView(url);
+    }
 
-			@Override
-			public void onSwipeRight() {
-				changeCurrentPage(-1);
-			}
-		}));
-		renderedPage.close();
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void renderPdfPage(int page) {
+        PdfRenderer.Page renderedPage = renderer.openPage(page);
+        Bitmap bitmap = Bitmap.createBitmap(renderedPage.getWidth(), renderedPage.getHeight(), Bitmap.Config.ARGB_8888);
+        Rect rect = new Rect(0, 0, renderedPage.getWidth(), renderedPage.getHeight());
+        renderedPage.render(bitmap, rect, matrix, PdfRenderer.Page.RENDER_MODE_FOR_PRINT);
+        imagePdf.setImageMatrix(matrix);
+        imagePdf.setImageBitmap(bitmap);
+        imagePdf.setOnTouchListener(new OnSwipeTouchListener(getContext(), new SwipeListener() {
+            @Override
+            public void onSwipeLeft() {
+                changeCurrentPage(+1);
+            }
 
-		hideProgressBar();
-	}
+            @Override
+            public void onSwipeRight() {
+                changeCurrentPage(-1);
+            }
+        }));
+        renderedPage.close();
 
-	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	private void renderPdfInImageView(String url) {
-		progressBar.setVisibility(VISIBLE);
-		try {
-			renderer = new PdfRenderer(ParcelFileDescriptor.open(new File(url), ParcelFileDescriptor.MODE_READ_ONLY));
-			matrix = imagePdf.getImageMatrix();
-			renderPdfPage(0);
-			title.setText(fileEntry.getTitle());
-		} catch (IOException e) {
-			LiferayLogger.e("Error rendering PDF", e);
-		}
-	}
+        onPageRendered();
+    }
 
-	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
-	private void hideProgressBar() {
-		linearLayoutButtons.setVisibility(VISIBLE);
-		nextPage.setEnabled(currentPage != renderer.getPageCount() - 1);
-		previousPage.setEnabled(currentPage != 0);
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void renderPdfInImageView(String url) {
+        progressBar.setVisibility(VISIBLE);
+        try {
+            renderer = new PdfRenderer(ParcelFileDescriptor.open(new File(url), ParcelFileDescriptor.MODE_READ_ONLY));
+            matrix = imagePdf.getImageMatrix();
+            renderPdfPage(0);
+            title.setText(fileEntry.getTitle());
+        } catch (IOException e) {
+            LiferayLogger.e("Error rendering PDF", e);
+        }
+    }
 
-		progressBarHorizontal.setVisibility(GONE);
-		progressBar.setVisibility(GONE);
-		progressText.setVisibility(GONE);
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void hideProgressBar() {
+        linearLayoutButtons.setVisibility(VISIBLE);
+        nextPage.setEnabled(currentPage != renderer.getPageCount() - 1);
+        previousPage.setEnabled(currentPage != 0);
 
-		title.setVisibility(VISIBLE);
-	}
+        progressBarHorizontal.setVisibility(GONE);
+        progressBar.setVisibility(GONE);
+        progressText.setVisibility(GONE);
 
-	private void closeKeyboard(View view) {
-		InputMethodManager inputManager =
-			(InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-		inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-	}
+        title.setVisibility(VISIBLE);
+    }
+
+    private void closeKeyboard(View view) {
+        InputMethodManager inputManager =
+            (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+    }
 }

@@ -6,5 +6,5 @@ import org.json.JSONObject;
  * @author Javier Gamarra
  */
 public interface DDMStructureConnector {
-	JSONObject getStructure(long structureId) throws Exception;
+    JSONObject getStructure(long structureId) throws Exception;
 }

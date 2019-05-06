@@ -7,5 +7,5 @@ import com.liferay.mobile.android.service.JSONObjectWrapper;
  */
 public interface AssetEntryConnector {
 
-	Integer getEntriesCount(JSONObjectWrapper entryQuery) throws Exception;
+    Integer getEntriesCount(JSONObjectWrapper entryQuery) throws Exception;
 }

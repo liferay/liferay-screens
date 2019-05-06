@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:orientation="vertical"
-	>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
 
-	<TextView
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_margin="10dp"
-		android:text="@string/surname"
-		/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/surname"
+        />
 
-	<TextView
-		android:id="@+id/user_name"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_margin="10dp"
-		/>
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        />
 
-	<Button
-		android:id="@+id/update_user"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_margin="10dp"
-		android:text="@string/change_surname"
-		/>
+    <Button
+        android:id="@+id/update_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/change_surname"
+        />
 
-	<Button
-		android:id="@+id/relogin_button"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_margin="10dp"
-		android:text="@string/relogin"
-		/>
+    <Button
+        android:id="@+id/relogin_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/relogin"
+        />
 
 </LinearLayout>

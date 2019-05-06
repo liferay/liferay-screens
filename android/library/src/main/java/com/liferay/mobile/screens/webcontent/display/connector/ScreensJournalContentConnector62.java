@@ -8,15 +8,15 @@ import com.liferay.mobile.screens.service.v62.ScreensjournalarticleService;
  */
 public class ScreensJournalContentConnector62 implements ScreensJournalContentConnector {
 
-	private final ScreensjournalarticleService screensJournalContent;
+    private final ScreensjournalarticleService screensJournalContent;
 
-	public ScreensJournalContentConnector62(Session session) {
-		screensJournalContent = new ScreensjournalarticleService(session);
-	}
+    public ScreensJournalContentConnector62(Session session) {
+        screensJournalContent = new ScreensjournalarticleService(session);
+    }
 
-	@Override
-	public String getJournalArticleContent(long groupId, String articleId, long templateId, String locale)
-		throws Exception {
-		return screensJournalContent.getJournalArticleContent(groupId, articleId, templateId, locale);
-	}
+    @Override
+    public String getJournalArticleContent(long groupId, String articleId, long templateId, String locale)
+        throws Exception {
+        return screensJournalContent.getJournalArticleContent(groupId, articleId, templateId, locale);
+    }
 }

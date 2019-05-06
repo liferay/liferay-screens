@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
-	<TextView
-		android:id="@+id/liferay_dialog_title"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:background="?colorPrimary"
-		android:padding="10dp"
-		android:text="@string/origin_of_file"
-		android:textColor="@android:color/white"
-		android:textSize="18sp"
-		/>
+    <TextView
+        android:id="@+id/liferay_dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?colorPrimary"
+        android:padding="10dp"
+        android:text="@string/origin_of_file"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        />
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_below="@id/liferay_dialog_title"
-		android:divider="@color/textColorSecondary"
-		android:orientation="vertical"
-		android:showDividers="middle"
-		>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/liferay_dialog_title"
+        android:divider="@color/textColorSecondary"
+        android:orientation="vertical"
+        android:showDividers="middle"
+        >
 
-		<TextView
-			android:id="@+id/liferay_dialog_select_file"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/select_a_file"
-			android:textColor="?colorPrimary"
-			android:visibility="gone"
-			style="@style/default_dialog_button"
-			/>
+        <TextView
+            android:id="@+id/liferay_dialog_select_file"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/select_a_file"
+            android:textColor="?colorPrimary"
+            android:visibility="gone"
+            style="@style/default_dialog_button"
+            />
 
-		<TextView
-			android:id="@+id/liferay_dialog_take_photo"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/take_a_photo"
-			android:visibility="gone"
-			style="@style/default_dialog_button"
-			/>
+        <TextView
+            android:id="@+id/liferay_dialog_take_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/take_a_photo"
+            android:visibility="gone"
+            style="@style/default_dialog_button"
+            />
 
-		<TextView
-			android:id="@+id/liferay_dialog_take_video"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/record_a_video"
-			android:visibility="gone"
-			style="@style/default_dialog_button"
-			/>
+        <TextView
+            android:id="@+id/liferay_dialog_take_video"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/record_a_video"
+            android:visibility="gone"
+            style="@style/default_dialog_button"
+            />
 
-	</LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>

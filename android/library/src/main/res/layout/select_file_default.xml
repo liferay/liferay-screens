@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:orientation="vertical"
-	>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
 
-	<TextView
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:background="?colorPrimary"
-		android:gravity="center_vertical"
-		android:padding="10dp"
-		android:text="@string/open"
-		android:textColor="@android:color/white"
-		android:textSize="18sp"
-		/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?colorPrimary"
+        android:gravity="center_vertical"
+        android:padding="10dp"
+        android:text="@string/open"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        />
 
-	<EditText
-		android:id="@+id/default_dialog_edit_text"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_margin="10dp"
-		android:hint=""
-		/>
+    <EditText
+        android:id="@+id/default_dialog_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint=""
+        />
 
-	<ListView
-		android:id="@+id/default_list"
-		android:layout_width="match_parent"
-		android:layout_height="0dip"
-		android:layout_weight="1"
-		/>
+    <ListView
+        android:id="@+id/default_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        />
 </LinearLayout>

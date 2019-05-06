@@ -25,33 +25,33 @@ import org.json.JSONObject;
  */
 public interface DDLFormListener extends BaseCacheListener {
 
-	/**
-	 * Called when the form definition successfully loads.
-	 */
-	void onDDLFormLoaded(Record record);
+    /**
+     * Called when the form definition successfully loads.
+     */
+    void onDDLFormLoaded(Record record);
 
-	/**
-	 * Called when the form record data successfully loads.
-	 */
-	void onDDLFormRecordLoaded(Record record, Map<String, Object> valuesAndAttributes);
+    /**
+     * Called when the form record data successfully loads.
+     */
+    void onDDLFormRecordLoaded(Record record, Map<String, Object> valuesAndAttributes);
 
-	/**
-	 * Called when the form record is successfully added.
-	 */
-	void onDDLFormRecordAdded(Record record);
+    /**
+     * Called when the form record is successfully added.
+     */
+    void onDDLFormRecordAdded(Record record);
 
-	/**
-	 * Called when the form record data successfully updates.
-	 */
-	void onDDLFormRecordUpdated(Record record);
+    /**
+     * Called when the form record data successfully updates.
+     */
+    void onDDLFormRecordUpdated(Record record);
 
-	/**
-	 * Called when a specified document field’s upload completes.
-	 */
-	void onDDLFormDocumentUploaded(DocumentField documentField, JSONObject jsonObject);
+    /**
+     * Called when a specified document field’s upload completes.
+     */
+    void onDDLFormDocumentUploaded(DocumentField documentField, JSONObject jsonObject);
 
-	/**
-	 * Called when a specified document field’s upload fails.
-	 */
-	void onDDLFormDocumentUploadFailed(DocumentField documentField, Exception e);
+    /**
+     * Called when a specified document field’s upload fails.
+     */
+    void onDDLFormDocumentUploadFailed(DocumentField documentField, Exception e);
 }

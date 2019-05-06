@@ -6,5 +6,5 @@ import org.json.JSONObject;
  * @author Javier Gamarra
  */
 public interface CurrentUserConnector {
-	JSONObject getCurrentUser() throws Exception;
+    JSONObject getCurrentUser() throws Exception;
 }

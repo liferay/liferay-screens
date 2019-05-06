@@ -1,42 +1,42 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.cordova.hellocordova"
-	version="1.0.0"
-	xmlns="http://www.w3.org/ns/widgets"
-	>
-	<feature name="Whitelist">
-		<param
-			name="android-package"
-			value="org.apache.cordova.whitelist.WhitelistPlugin"/>
-		<param
-			name="onload"
-			value="true"/>
-	</feature>
-	<name>HelloCordova</name>
-	<description>
-		A sample Apache Cordova application that responds to the deviceready event.
-	</description>
-	<author
-		email="dev@cordova.apache.org"
-		href="http://cordova.io">
-		Apache Cordova Team
-	</author>
-	<content src="http://www.google.es"/>
-	<access origin="*"/>
-	<allow-navigation href="*"/>
-	<allow-intent href="http://*/*"/>
-	<allow-intent href="https://*/*"/>
-	<allow-intent href="tel:*"/>
-	<allow-intent href="sms:*"/>
-	<allow-intent href="mailto:*"/>
-	<allow-intent href="geo:*"/>
-	<allow-intent href="market:*"/>
-	<preference
-		name="loglevel"
-		value="DEBUG"/>
+    version="1.0.0"
+    xmlns="http://www.w3.org/ns/widgets"
+    >
+    <feature name="Whitelist">
+        <param
+            name="android-package"
+            value="org.apache.cordova.whitelist.WhitelistPlugin"/>
+        <param
+            name="onload"
+            value="true"/>
+    </feature>
+    <name>HelloCordova</name>
+    <description>
+        A sample Apache Cordova application that responds to the deviceready event.
+    </description>
+    <author
+        email="dev@cordova.apache.org"
+        href="http://cordova.io">
+        Apache Cordova Team
+    </author>
+    <content src="http://www.google.es"/>
+    <access origin="*"/>
+    <allow-navigation href="*"/>
+    <allow-intent href="http://*/*"/>
+    <allow-intent href="https://*/*"/>
+    <allow-intent href="tel:*"/>
+    <allow-intent href="sms:*"/>
+    <allow-intent href="mailto:*"/>
+    <allow-intent href="geo:*"/>
+    <allow-intent href="market:*"/>
+    <preference
+        name="loglevel"
+        value="DEBUG"/>
 
-	<feature name="AToast">
-		<param
-			name="android-package"
-			value="com.helloarron.cordova.toast.AToast"/>
-	</feature>
+    <feature name="AToast">
+        <param
+            name="android-package"
+            value="com.helloarron.cordova.toast.AToast"/>
+    </feature>
 </widget>

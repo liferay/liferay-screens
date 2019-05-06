@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="liferay_server">https://demo.liferay.com/screens</string>
-	<integer name="liferay_company_id">20155</integer>
-	<integer name="liferay_group_id">20525</integer>
+    <string name="liferay_server">https://demo.liferay.com/screens</string>
+    <integer name="liferay_company_id">20155</integer>
+    <integer name="liferay_group_id">20525</integer>
 
-	<integer name="ddl_recordset_id">21862</integer>
-	<integer name="ddl_structure_id">21860</integer>
+    <integer name="ddl_recordset_id">21862</integer>
+    <integer name="ddl_structure_id">21860</integer>
 
-	<integer name="folder_id">21628</integer>
-	<integer name="repository_id">20525</integer>
+    <integer name="folder_id">21628</integer>
+    <integer name="repository_id">20525</integer>
 
-	<string name="anonymous_user">anonymous1@liferay.com</string>
-	<string name="anonymous_password">anonymous1</string>
+    <string name="anonymous_user">anonymous1@liferay.com</string>
+    <string name="anonymous_password">anonymous1</string>
 
-	<string name="default_user">push@liferay.com</string>
-	<string name="default_password">push</string>
+    <string name="default_user">push@liferay.com</string>
+    <string name="default_password">push</string>
 
-	<string name="sender_id">868241662267</string>
+    <string name="sender_id">868241662267</string>
 
 </resources>

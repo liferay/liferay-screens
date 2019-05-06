@@ -1,140 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_below="@id/liferay_dialog_title"
-		android:divider="@color/textColorSecondary"
-		android:orientation="vertical"
-		android:showDividers="middle"
-		>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/liferay_dialog_title"
+        android:divider="@color/textColorSecondary"
+        android:orientation="vertical"
+        android:showDividers="middle"
+        >
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:orientation="horizontal"
-			>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
 
-			<ImageView
-				android:layout_width="wrap_content"
-				android:layout_height="match_parent"
-				android:layout_gravity="center"
-				android:padding="@dimen/icon_padding_dialog"
-				android:src="@drawable/lexicon_icon_document"
-				/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="@dimen/icon_padding_dialog"
+                android:src="@drawable/lexicon_icon_document"
+                />
 
-			<TextView
-				android:id="@+id/liferay_dialog_select_file_form"
-				android:layout_width="match_parent"
-				android:gravity="center_vertical"
-				android:text="@string/document"
-				style="@style/lexicon_bottom_sheet_text_view"
-				/>
+            <TextView
+                android:id="@+id/liferay_dialog_select_file_form"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/document"
+                style="@style/lexicon_bottom_sheet_text_view"
+                />
 
-		</LinearLayout>
+        </LinearLayout>
 
-		<LinearLayout
-			android:id="@+id/liferay_dialog_select_gallery_video_container"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:orientation="horizontal"
-			android:visibility="gone"
-			>
+        <LinearLayout
+            android:id="@+id/liferay_dialog_select_gallery_video_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            >
 
-			<ImageView
-				android:layout_width="wrap_content"
-				android:layout_height="match_parent"
-				android:layout_gravity="center"
-				android:padding="@dimen/icon_padding_dialog"
-				android:src="@drawable/lexicon_icon_photo"
-				/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="@dimen/icon_padding_dialog"
+                android:src="@drawable/lexicon_icon_photo"
+                />
 
-			<TextView
-				android:id="@+id/liferay_dialog_select_gallery_video"
-				android:layout_width="match_parent"
-				android:gravity="center_vertical"
-				android:text="@string/select_video_from_gallery"
-				style="@style/lexicon_bottom_sheet_text_view"
-				/>
+            <TextView
+                android:id="@+id/liferay_dialog_select_gallery_video"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/select_video_from_gallery"
+                style="@style/lexicon_bottom_sheet_text_view"
+                />
 
-		</LinearLayout>
+        </LinearLayout>
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:orientation="horizontal"
-			>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
 
-			<ImageView
-				android:layout_width="wrap_content"
-				android:layout_height="match_parent"
-				android:layout_gravity="center"
-				android:padding="@dimen/icon_padding_dialog"
-				android:src="@drawable/lexicon_icon_photo"
-				/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="@dimen/icon_padding_dialog"
+                android:src="@drawable/lexicon_icon_photo"
+                />
 
-			<TextView
-				android:id="@+id/liferay_dialog_select_gallery"
-				android:layout_width="match_parent"
-				android:gravity="center_vertical"
-				android:text="@string/photo_and_video_library"
-				style="@style/lexicon_bottom_sheet_text_view"
-				/>
+            <TextView
+                android:id="@+id/liferay_dialog_select_gallery"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/photo_and_video_library"
+                style="@style/lexicon_bottom_sheet_text_view"
+                />
 
-		</LinearLayout>
+        </LinearLayout>
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:orientation="horizontal"
-			>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
 
-			<ImageView
-				android:layout_width="wrap_content"
-				android:layout_height="match_parent"
-				android:layout_gravity="center"
-				android:padding="@dimen/icon_padding_dialog"
-				android:src="@drawable/lexicon_icon_camera"
-				/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="@dimen/icon_padding_dialog"
+                android:src="@drawable/lexicon_icon_camera"
+                />
 
-			<TextView
-				android:id="@+id/liferay_dialog_take_photo_form"
-				android:layout_width="match_parent"
-				android:gravity="center_vertical"
-				android:text="@string/take_a_photo"
-				style="@style/lexicon_bottom_sheet_text_view"
-				/>
+            <TextView
+                android:id="@+id/liferay_dialog_take_photo_form"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/take_a_photo"
+                style="@style/lexicon_bottom_sheet_text_view"
+                />
 
-		</LinearLayout>
+        </LinearLayout>
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:orientation="horizontal"
-			>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
 
-			<ImageView
-				android:layout_width="wrap_content"
-				android:layout_height="match_parent"
-				android:layout_gravity="center"
-				android:padding="@dimen/icon_padding_dialog"
-				android:src="@drawable/lexicon_icon_camera"
-				/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:padding="@dimen/icon_padding_dialog"
+                android:src="@drawable/lexicon_icon_camera"
+                />
 
-			<TextView
-				android:id="@+id/liferay_dialog_take_video_form"
-				android:layout_width="match_parent"
-				android:gravity="center_vertical"
-				android:text="@string/record_a_video"
-				style="@style/lexicon_bottom_sheet_text_view"
-				/>
+            <TextView
+                android:id="@+id/liferay_dialog_take_video_form"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/record_a_video"
+                style="@style/lexicon_bottom_sheet_text_view"
+                />
 
-		</LinearLayout>
+        </LinearLayout>
 
-	</LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>

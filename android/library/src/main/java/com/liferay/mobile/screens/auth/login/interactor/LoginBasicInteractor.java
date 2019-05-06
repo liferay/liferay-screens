@@ -26,54 +26,54 @@ import org.json.JSONObject;
 
 public class LoginBasicInteractor extends BaseLoginInteractor {
 
-	@Override
-	public BasicEvent execute(Object... args) throws Exception {
+    @Override
+    public BasicEvent execute(Object... args) throws Exception {
 
-		String login = (String) args[0];
-		String password = (String) args[1];
+        String login = (String) args[0];
+        String password = (String) args[1];
 
-		BasicAuthMethod basicAuthMethod = getBasicAuthMethod(args);
+        BasicAuthMethod basicAuthMethod = getBasicAuthMethod(args);
 
-		validate(login, password, basicAuthMethod);
+        validate(login, password, basicAuthMethod);
 
-		UserConnector userConnector = getUserConnector(login, password);
+        UserConnector userConnector = getUserConnector(login, password);
 
-		JSONObject jsonObject = getUser(login, basicAuthMethod, userConnector);
+        JSONObject jsonObject = getUser(login, basicAuthMethod, userConnector);
 
-		return new BasicEvent(jsonObject);
-	}
+        return new BasicEvent(jsonObject);
+    }
 
-	private BasicAuthMethod getBasicAuthMethod(Object[] args) {
-		return args.length < 2 ? BasicAuthMethod.EMAIL : (BasicAuthMethod) args[2];
-	}
+    private BasicAuthMethod getBasicAuthMethod(Object[] args) {
+        return args.length < 2 ? BasicAuthMethod.EMAIL : (BasicAuthMethod) args[2];
+    }
 
-	protected JSONObject getUser(String login, BasicAuthMethod basicAuthMethod, UserConnector userConnector)
-		throws Exception {
-		switch (basicAuthMethod) {
-			case USER_ID:
-				return userConnector.getUserById(Long.parseLong(login));
-			case SCREEN_NAME:
-				return userConnector.getUserByScreenName(LiferayServerContext.getCompanyId(), login);
-			case EMAIL:
-			default:
-				return userConnector.getUserByEmailAddress(LiferayServerContext.getCompanyId(), login);
-		}
-	}
+    protected JSONObject getUser(String login, BasicAuthMethod basicAuthMethod, UserConnector userConnector)
+        throws Exception {
+        switch (basicAuthMethod) {
+            case USER_ID:
+                return userConnector.getUserById(Long.parseLong(login));
+            case SCREEN_NAME:
+                return userConnector.getUserByScreenName(LiferayServerContext.getCompanyId(), login);
+            case EMAIL:
+            default:
+                return userConnector.getUserByEmailAddress(LiferayServerContext.getCompanyId(), login);
+        }
+    }
 
-	protected void validate(String login, String password, BasicAuthMethod basicAuthMethod) {
-		if (login == null) {
-			throw new IllegalArgumentException("Login cannot be empty");
-		} else if (password == null) {
-			throw new IllegalArgumentException("Password cannot be empty");
-		} else if (basicAuthMethod == null) {
-			throw new IllegalArgumentException("BasicAuthMethod cannot be empty");
-		} else if (basicAuthMethod == BasicAuthMethod.USER_ID && !TextUtils.isDigitsOnly(login)) {
-			throw new IllegalArgumentException("UserId has to be a number");
-		}
-	}
+    protected void validate(String login, String password, BasicAuthMethod basicAuthMethod) {
+        if (login == null) {
+            throw new IllegalArgumentException("Login cannot be empty");
+        } else if (password == null) {
+            throw new IllegalArgumentException("Password cannot be empty");
+        } else if (basicAuthMethod == null) {
+            throw new IllegalArgumentException("BasicAuthMethod cannot be empty");
+        } else if (basicAuthMethod == BasicAuthMethod.USER_ID && !TextUtils.isDigitsOnly(login)) {
+            throw new IllegalArgumentException("UserId has to be a number");
+        }
+    }
 
-	public UserConnector getUserConnector(String login, String password) {
-		Session session = SessionContext.createBasicSession(login, password);
-		return ServiceProvider.getInstance().getUserConnector(session);
-	}
+    public UserConnector getUserConnector(String login, String password) {
+        Session session = SessionContext.createBasicSession(login, password);
+        return ServiceProvider.getInstance().getUserConnector(session);
+    }
 }

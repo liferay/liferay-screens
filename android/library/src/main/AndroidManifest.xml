@@ -1,54 +1,57 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.liferay.mobile.screens">
+    package="com.liferay.mobile.screens">
 
-	<uses-permission android:name="android.permission.INTERNET"/>
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-	<uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
-	<application>
+    <application>
 
+        <activity
+            android:name=".ddm.form.view.SuccessPageActivity"/>
 
-		<activity
-			android:name=".base.MediaStoreRequestShadowActivity"/>
-		<activity
-			android:name=".viewsets.defaultviews.imagegallery.DetailImageActivity"
-			android:theme="@style/gallery_theme"/>
+        <activity
+            android:name=".base.MediaStoreRequestShadowActivity"/>
 
-		<provider
-			android:name=".ScreensInitProvider"
-			android:authorities="${applicationId}.screensinitprovider"
-			android:enabled="true"
-			android:exported="false"/>
+        <activity
+            android:name=".viewsets.defaultviews.imagegallery.DetailImageActivity"
+            android:theme="@style/gallery_theme"/>
 
-		<receiver
-			android:name="com.liferay.mobile.screens.cache.CacheReceiver"
-			android:exported="false">
-			<intent-filter>
-				<action android:name="com.liferay.mobile.screens.auth.login.success"/>
-				<action android:name="com.liferay.mobile.screens.cache.resync"/>
-				<action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
-			</intent-filter>
-		</receiver>
+        <provider
+            android:name=".ScreensInitProvider"
+            android:authorities="${applicationId}.screensinitprovider"
+            android:enabled="true"
+            android:exported="false"/>
 
-		<service android:name=".ddl.form.service.UploadService"/>
+        <receiver
+            android:name="com.liferay.mobile.screens.cache.CacheReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.liferay.mobile.screens.auth.login.success"/>
+                <action android:name="com.liferay.mobile.screens.cache.resync"/>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+            </intent-filter>
+        </receiver>
 
-		<service android:name=".userportrait.interactor.upload.UserPortraitService"/>
-		<service android:name=".imagegallery.interactor.upload.ImageGalleryUploadService"/>
+        <service android:name=".ddl.form.service.UploadService"/>
 
-		<service android:name=".dlfile.display.DownloadService"/>
+        <service android:name=".userportrait.interactor.upload.UserPortraitService"/>
+        <service android:name=".imagegallery.interactor.upload.ImageGalleryUploadService"/>
 
-		<service
-			android:name="com.liferay.mobile.screens.cache.CacheSyncService"
-			android:exported="false"/>
+        <service android:name=".dlfile.display.DownloadService"/>
 
-		<provider
-			android:name=".base.ScreensFileProvider"
-			android:authorities="${applicationId}.screens.fileprovider"
-			android:exported="false"
-			android:grantUriPermissions="true">
-			<meta-data
-				android:name="android.support.FILE_PROVIDER_PATHS"
-				android:resource="@xml/file_paths"/>
-		</provider>
-	</application>
+        <service
+            android:name="com.liferay.mobile.screens.cache.CacheSyncService"
+            android:exported="false"/>
+
+        <provider
+            android:name=".base.ScreensFileProvider"
+            android:authorities="${applicationId}.screens.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
+    </application>
 </manifest>

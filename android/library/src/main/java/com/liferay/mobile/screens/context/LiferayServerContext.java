@@ -32,159 +32,165 @@ import java.util.Map;
  */
 public class LiferayServerContext {
 
-	private static final int MAX_SIZE = 100 * 1024 * 1024;
-	private static String server;
-	private static long companyId;
-	private static long groupId;
-	private static String classFactory;
-	private static LiferayPortalVersion portalVersion;
-	private static String versionFactory;
-	private static OkHttpClient okHttpClient;
+    private static final int MAX_SIZE = 100 * 1024 * 1024;
+    private static String server;
+    private static long companyId;
+    private static long groupId;
+    private static String classFactory;
+    private static LiferayPortalVersion portalVersion;
+    private static String versionFactory;
+    private static OkHttpClient okHttpClient;
 
-	private LiferayServerContext() {
-		super();
-	}
+    private LiferayServerContext() {
+        super();
+    }
 
-	public static void reloadFromResources(Resources resources, final String packageName) {
+    public static void reloadFromResources(Resources resources, final String packageName) {
 
-		int companyIdentifier = resources.getIdentifier("liferay_company_id", "integer", packageName);
-		int groupIdentifier = resources.getIdentifier("liferay_group_id", "integer", packageName);
+        int companyIdentifier = resources.getIdentifier("liferay_company_id", "integer", packageName);
+        int groupIdentifier = resources.getIdentifier("liferay_group_id", "integer", packageName);
 
-		companyId = getValueFromIntegerOrString(resources, R.string.liferay_company_id, companyIdentifier);
-		groupId = getValueFromIntegerOrString(resources, R.string.liferay_group_id, groupIdentifier);
-		server = resources.getString(R.string.liferay_server);
-		classFactory = resources.getString(R.string.liferay_class_factory);
-		portalVersion = LiferayPortalVersion.fromInt(resources.getInteger(R.integer.liferay_portal_version));
-		versionFactory = resources.getString(R.string.liferay_version_factory);
-	}
+        companyId = getValueFromIntegerOrString(resources, R.string.liferay_company_id, companyIdentifier);
+        groupId = getValueFromIntegerOrString(resources, R.string.liferay_group_id, groupIdentifier);
+        server = resources.getString(R.string.liferay_server);
+        classFactory = resources.getString(R.string.liferay_class_factory);
+        portalVersion = LiferayPortalVersion.fromInt(resources.getInteger(R.integer.liferay_portal_version));
+        versionFactory = resources.getString(R.string.liferay_version_factory);
+    }
 
-	public static void loadFromResources(Resources resources, final String packageName) {
+    public static void loadFromResources(Resources resources, final String packageName) {
 
-		if (companyId == 0 || groupId == 0 || server == null) {
-			reloadFromResources(resources, packageName);
-		}
-	}
+        if (companyId == 0 || groupId == 0 || server == null) {
+            reloadFromResources(resources, packageName);
+        }
+    }
 
-	public static long getCompanyId() {
-		return companyId;
-	}
+    public static long getCompanyId() {
+        return companyId;
+    }
 
-	public static void setCompanyId(long companyId) {
-		LiferayServerContext.companyId = companyId;
-	}
+    public static void setCompanyId(long companyId) {
+        LiferayServerContext.companyId = companyId;
+    }
 
-	public static long getGroupId() {
-		return groupId;
-	}
+    public static long getGroupId() {
+        return groupId;
+    }
 
-	public static void setGroupId(long groupId) {
-		LiferayServerContext.groupId = groupId;
-	}
+    public static void setGroupId(long groupId) {
+        LiferayServerContext.groupId = groupId;
+    }
 
-	public static String getServer() {
-		return server;
-	}
+    public static String getServer() {
+        return server;
+    }
 
-	public static void setServer(String server) {
-		LiferayServerContext.server = server;
-	}
+    public static void setServer(String server) {
+        LiferayServerContext.server = server;
+    }
 
-	public static String getClassFactory() {
-		return classFactory;
-	}
+    public static String getClassFactory() {
+        return classFactory;
+    }
 
-	public static void setClassFactory(String factoryClass) {
-		classFactory = factoryClass;
-	}
+    public static void setClassFactory(String factoryClass) {
+        classFactory = factoryClass;
+    }
 
-	public static boolean isLiferay7() {
-		return LiferayPortalVersion.VERSION_70.equals(portalVersion) || LiferayPortalVersion.VERSION_71.equals(
-			portalVersion);
-	}
+    public static boolean isLiferay7() {
+        return LiferayPortalVersion.VERSION_70.equals(portalVersion) || LiferayPortalVersion.VERSION_71.equals(
+            portalVersion) || LiferayPortalVersion.VERSION_72.equals(
+            portalVersion);
+    }
 
-	public static boolean isLiferay62() {
-		return LiferayPortalVersion.VERSION_70.equals(portalVersion);
-	}
+    public static boolean isLiferay62() {
+        return LiferayPortalVersion.VERSION_62.equals(portalVersion);
+    }
 
-	public static String getVersionFactory() {
-		return versionFactory;
-	}
+    public static String getVersionFactory() {
+        return versionFactory;
+    }
 
-	public static LiferayPortalVersion getPortalVersion() {
-		return portalVersion;
-	}
+    public static LiferayPortalVersion getPortalVersion() {
+        return portalVersion;
+    }
 
-	public static void setPortalVersion(LiferayPortalVersion portalVersion) {
-		LiferayServerContext.portalVersion = portalVersion;
-	}
+    public static void setPortalVersion(LiferayPortalVersion portalVersion) {
+        LiferayServerContext.portalVersion = portalVersion;
+    }
 
-	public static OkHttpClient getOkHttpClient() {
-		synchronized (LiferayServerContext.class) {
-			if (okHttpClient == null) {
-				okHttpClient = new OkHttpClient();
-				okHttpClient.setCache(new Cache(LiferayScreensContext.getContext().getCacheDir(), MAX_SIZE));
-				okHttpClient.interceptors().add(new Interceptor() {
-					@Override
-					public Response intercept(Chain chain) throws IOException {
-						Request originalRequest = chain.request();
+    public static OkHttpClient getOkHttpClient() {
+        return getOkHttpClient(false);
+    }
 
-						Request.Builder newRequestBuilder = originalRequest.newBuilder();
+    public static OkHttpClient getOkHttpClient(final boolean authenticated) {
+        synchronized (LiferayServerContext.class) {
+            if (okHttpClient == null) {
+                okHttpClient = new OkHttpClient();
+                okHttpClient.setCache(new Cache(LiferayScreensContext.getContext().getCacheDir(), MAX_SIZE));
+                okHttpClient.interceptors().add(new Interceptor() {
+                    @Override
+                    public Response intercept(Chain chain) throws IOException {
+                        Request originalRequest = chain.request();
 
-						Request newRequest = authenticateRequestIfNeeded(newRequestBuilder);
+                        Request.Builder newRequestBuilder = originalRequest.newBuilder();
 
-						return chain.proceed(newRequest);
-					}
-				});
-			}
-		}
-		return okHttpClient;
-	}
+                        if (authenticated || SessionContext.getAuthentication() instanceof CookieAuthentication) {
+                            authenticateRequest(newRequestBuilder);
+                        }
 
-	public static OkHttpClient getOkHttpClientNoCache() {
-		OkHttpClient noCacheClient = getOkHttpClient().clone();
-		noCacheClient.interceptors().add(new Interceptor() {
-			@Override
-			public Response intercept(Chain chain) throws IOException {
-				Request originalRequest = chain.request();
+                        return chain.proceed(newRequestBuilder.build());
+                    }
+                });
+            }
+        }
+        return okHttpClient;
+    }
 
-				Request.Builder newRequestBuilder =
-					originalRequest.newBuilder().cacheControl(CacheControl.FORCE_NETWORK);
+    public static OkHttpClient getOkHttpClientNoCache() {
+        OkHttpClient noCacheClient = getOkHttpClient().clone();
+        noCacheClient.interceptors().add(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request originalRequest = chain.request();
 
-				Request newRequest = authenticateRequestIfNeeded(newRequestBuilder);
+                Request.Builder newRequestBuilder =
+                    originalRequest.newBuilder().cacheControl(CacheControl.FORCE_NETWORK);
 
-				return chain.proceed(newRequest);
-			}
-		});
+                if (SessionContext.getAuthentication() instanceof CookieAuthentication) {
+                    authenticateRequest(newRequestBuilder);
+                }
 
-		return noCacheClient;
-	}
+                return chain.proceed(newRequestBuilder.build());
+            }
+        });
 
-	private static long getValueFromIntegerOrString(final Resources resources, final int stringId, int integerId) {
-		return integerId == 0 ? Long.parseLong(resources.getString(stringId)) : resources.getInteger(integerId);
-	}
+        return noCacheClient;
+    }
 
-	public static Request authenticateRequestIfNeeded(Request.Builder builder) {
-		if (SessionContext.getAuthentication() instanceof CookieAuthentication) {
+    private static long getValueFromIntegerOrString(final Resources resources, final int stringId, int integerId) {
+        return integerId == 0 ? Long.parseLong(resources.getString(stringId)) : resources.getInteger(integerId);
+    }
 
-			Map<String, String> headers = getAuthHeaders();
-			for (Map.Entry<String, String> entry : headers.entrySet()) {
-				builder.addHeader(entry.getKey(), entry.getValue());
-			}
-		}
+    public static Request.Builder authenticateRequest(Request.Builder builder) {
+        Map<String, String> headers = getAuthHeaders();
+        for (Map.Entry<String, String> entry : headers.entrySet()) {
+            builder.addHeader(entry.getKey(), entry.getValue());
+        }
 
-		return builder.build();
-	}
+        return builder;
+    }
 
-	public static Map<String, String> getAuthHeaders() {
-		try {
-			com.liferay.mobile.android.http.Request authRequest =
-				new com.liferay.mobile.android.http.Request(null, null, null, null, 0);
+    public static Map<String, String> getAuthHeaders() {
+        try {
+            com.liferay.mobile.android.http.Request authRequest =
+                new com.liferay.mobile.android.http.Request(null, null, null, null, 0);
 
-			SessionContext.getAuthentication().authenticate(authRequest);
+            SessionContext.getAuthentication().authenticate(authRequest);
 
-			return authRequest.getHeaders();
-		} catch (Exception e) {
-			return new HashMap<>();
-		}
-	}
+            return authRequest.getHeaders();
+        } catch (Exception e) {
+            return new HashMap<>();
+        }
+    }
 }

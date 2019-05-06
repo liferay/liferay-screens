@@ -8,20 +8,20 @@ import android.webkit.WebView;
 
 public interface ScreensWebView {
 
-	WebView getView();
+    WebView getView();
 
-	void setListener(ScreensWebView.Listener listener);
+    void setListener(ScreensWebView.Listener listener);
 
-	void onAttached();
+    void onAttached();
 
-	void onDetached();
+    void onDetached();
 
-	interface Listener {
+    interface Listener {
 
-		void onPageStarted();
+        void onPageStarted();
 
-		void onPageFinished(String url);
+        void onPageFinished(String url);
 
-		void onPageError(Exception e);
-	}
+        void onPageError(Exception e);
+    }
 }

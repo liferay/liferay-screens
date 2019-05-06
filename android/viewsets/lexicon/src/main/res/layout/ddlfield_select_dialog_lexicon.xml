@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:orientation="vertical"
-	>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
 
-	<TextView
-		android:id="@+id/liferay_dialog_title"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:background="@android:color/white"
-		android:paddingStart="@dimen/text_padding_dialog_title_horizontal"
-		android:paddingLeft="@dimen/text_padding_dialog_title_horizontal"
-		android:paddingEnd="@dimen/text_padding_dialog_title_horizontal"
-		android:paddingRight="@dimen/text_padding_dialog_title_horizontal"
-		android:paddingTop="@dimen/text_padding_dialog_title_top"
-		android:textColor="?colorPrimary"
-		android:textSize="@dimen/text_size_dialog_title"
-		/>
+    <TextView
+        android:id="@+id/liferay_dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:paddingStart="@dimen/text_padding_dialog_title_horizontal"
+        android:paddingLeft="@dimen/text_padding_dialog_title_horizontal"
+        android:paddingEnd="@dimen/text_padding_dialog_title_horizontal"
+        android:paddingRight="@dimen/text_padding_dialog_title_horizontal"
+        android:paddingTop="@dimen/text_padding_dialog_title_top"
+        android:textColor="?colorPrimary"
+        android:textSize="@dimen/text_size_dialog_title"
+        />
+
+    <TextView
+        android:id="@+id/liferay_ddm_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_help_text_margin"
+        android:textColor="@color/textColorHelp_lexicon"
+        android:visibility="gone"
+        />
 
 </LinearLayout>

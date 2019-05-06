@@ -9,59 +9,59 @@ import org.json.JSONObject;
  */
 public class DDLFormDocumentUploadEvent extends CacheEvent {
 
-	private DocumentField documentField;
-	private Long repositoryId;
-	private Long folderId;
-	private String filePrefix;
-	private Integer connectionTimeout;
+    private DocumentField documentField;
+    private Long repositoryId;
+    private Long folderId;
+    private String filePrefix;
+    private Integer connectionTimeout;
 
-	public DDLFormDocumentUploadEvent() {
-		super();
-	}
+    public DDLFormDocumentUploadEvent() {
+        super();
+    }
 
-	public DDLFormDocumentUploadEvent(DocumentField documentField, Long repositoryId, Long folderId, String filePrefix,
-		Integer connectionTimeout) {
-		this(documentField, repositoryId, folderId, filePrefix, connectionTimeout, new JSONObject());
-	}
+    public DDLFormDocumentUploadEvent(DocumentField documentField, Long repositoryId, Long folderId, String filePrefix,
+        Integer connectionTimeout) {
+        this(documentField, repositoryId, folderId, filePrefix, connectionTimeout, new JSONObject());
+    }
 
-	public DDLFormDocumentUploadEvent(DocumentField documentField, Long repositoryId, Long folderId, String filePrefix,
-		Integer connectionTimeout, JSONObject jsonObject) {
-		super(jsonObject);
-		this.documentField = documentField;
-		this.repositoryId = repositoryId;
-		this.folderId = folderId;
-		this.filePrefix = filePrefix;
-	}
+    public DDLFormDocumentUploadEvent(DocumentField documentField, Long repositoryId, Long folderId, String filePrefix,
+        Integer connectionTimeout, JSONObject jsonObject) {
+        super(jsonObject);
+        this.documentField = documentField;
+        this.repositoryId = repositoryId;
+        this.folderId = folderId;
+        this.filePrefix = filePrefix;
+    }
 
-	public DDLFormDocumentUploadEvent(Exception e) {
-		super(e);
-	}
+    public DDLFormDocumentUploadEvent(Exception e) {
+        super(e);
+    }
 
-	public Long getRepositoryId() {
-		return repositoryId;
-	}
+    public Long getRepositoryId() {
+        return repositoryId;
+    }
 
-	public Long getFolderId() {
-		return folderId;
-	}
+    public Long getFolderId() {
+        return folderId;
+    }
 
-	public void setDocumentField(DocumentField documentField) {
-		this.documentField = documentField;
-	}
+    public void setDocumentField(DocumentField documentField) {
+        this.documentField = documentField;
+    }
 
-	public String getFilePrefix() {
-		return filePrefix;
-	}
+    public String getFilePrefix() {
+        return filePrefix;
+    }
 
-	public DocumentField getDocumentField() {
-		return documentField;
-	}
+    public DocumentField getDocumentField() {
+        return documentField;
+    }
 
-	public Integer getConnectionTimeout() {
-		return connectionTimeout;
-	}
+    public Integer getConnectionTimeout() {
+        return connectionTimeout;
+    }
 
-	public void setConnectionTimeout(Integer connectionTimeout) {
-		this.connectionTimeout = connectionTimeout;
-	}
+    public void setConnectionTimeout(Integer connectionTimeout) {
+        this.connectionTimeout = connectionTimeout;
+    }
 }

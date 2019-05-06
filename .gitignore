@@ -29,8 +29,11 @@ android/samples/addbookmarkscreenlet/local.properties
 **/Jars/
 **/bin/
 **/obj/
+**/.vs/
 xamarin/**/packages/
 *.[Cc]ache
 *.user
 *.userprefs
 *.nupkg
+
+android/reports/

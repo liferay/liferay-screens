@@ -8,21 +8,21 @@ import java.util.Map;
  */
 public class FileEntry extends AssetEntry {
 
-	public FileEntry(Map<String, Object> map) {
-		super(map);
-	}
+    public FileEntry(Map<String, Object> map) {
+        super(map);
+    }
 
-	public String getUrl() {
-		String url = (String) values.get("url");
-		int index = url.lastIndexOf('/');
-		return url.substring(0, index);
-	}
+    public String getUrl() {
+        String url = (String) values.get("url");
+        int index = url.lastIndexOf('/');
+        return url.substring(0, index);
+    }
 
-	public Map<String, Object> getFileEntry() {
-		return (Map<String, Object>) getObject().get("fileEntry");
-	}
+    public Map<String, Object> getFileEntry() {
+        return (Map<String, Object>) getObject().get("fileEntry");
+    }
 
-	public String getExtension() {
-		return (String) getFileEntry().get("extension");
-	}
+    public String getExtension() {
+        return (String) getFileEntry().get("extension");
+    }
 }

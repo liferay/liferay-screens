@@ -14,6 +14,7 @@
 import Foundation
 
 extension Sequence {
+	
 	public func stoppableReduce<T>(_ initial: T, combine: (T, Self.Iterator.Element,
 		inout Bool) -> T) -> T {
 
@@ -31,4 +32,11 @@ extension Sequence {
 
 		return currentValue
 	}
+	
+	#if !swift(>=4.1)
+	func compactMap<T>(_ fn: (Element) throws -> T?) rethrows -> [T] {
+		return try flatMap { try fn($0).map { [$0] } ?? [] }
+	}
+	#endif
+
 }

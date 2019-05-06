@@ -30,62 +30,62 @@ import java.util.List;
  */
 public class AssetListActivity extends ThemeActivity implements BaseListListener<AssetEntry> {
 
-	private AssetListScreenlet assetListScreenlet;
-	private long classNameId;
+    private AssetListScreenlet assetListScreenlet;
+    private long classNameId;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.asset_list);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.asset_list);
 
-		classNameId = getIntent().getLongExtra("classNameId", 0);
+        classNameId = getIntent().getLongExtra("classNameId", 0);
 
-		assetListScreenlet = findViewById(R.id.asset_list_screenlet);
-		assetListScreenlet.setClassNameId(classNameId);
+        assetListScreenlet = findViewById(R.id.asset_list_screenlet);
+        assetListScreenlet.setClassNameId(classNameId);
 
-		if (classNameId == Long.parseLong(
-			LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_microblogs))
-			|| classNameId == Long.parseLong(
-			LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_organization))
-			|| classNameId == Long.parseLong(
-			LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_site))
-			|| classNameId == Long.parseLong(
-			LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_user))) {
+        if (classNameId == Long.parseLong(
+            LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_microblogs))
+            || classNameId == Long.parseLong(
+            LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_organization))
+            || classNameId == Long.parseLong(
+            LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_site))
+            || classNameId == Long.parseLong(
+            LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_user))) {
 
-			assetListScreenlet.setGroupId(Long.parseLong(getResources().getString(R.string.liferay_parent_group_id)));
-		}
+            assetListScreenlet.setGroupId(Long.parseLong(getResources().getString(R.string.liferay_parent_group_id)));
+        }
 
-		assetListScreenlet.setListener(this);
-	}
+        assetListScreenlet.setListener(this);
+    }
 
-	@Override
-	protected void onResume() {
-		super.onResume();
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-		LiferayServerContext.setGroupId(Long.parseLong(getResources().getString(R.string.liferay_group_id)));
-		assetListScreenlet.loadPage(0);
-	}
+        LiferayServerContext.setGroupId(Long.parseLong(getResources().getString(R.string.liferay_group_id)));
+        assetListScreenlet.loadPage(0);
+    }
 
-	@Override
-	public void onListPageFailed(int startRow, Exception e) {
-		error(getString(R.string.page_error), e);
-	}
+    @Override
+    public void onListPageFailed(int startRow, Exception e) {
+        error(getString(R.string.page_error), e);
+    }
 
-	@Override
-	public void onListPageReceived(int startRow, int endRow, List<AssetEntry> entries, int rowCount) {
-		info(rowCount + " " + getString(R.string.rows_received_info) + " " + startRow);
-	}
+    @Override
+    public void onListPageReceived(int startRow, int endRow, List<AssetEntry> entries, int rowCount) {
+        info(rowCount + " " + getString(R.string.rows_received_info) + " " + startRow);
+    }
 
-	@Override
-	public void onListItemSelected(AssetEntry element, View view) {
+    @Override
+    public void onListItemSelected(AssetEntry element, View view) {
 
-		Intent intent = getIntentWithTheme(AssetDisplayActivity.class);
-		intent.putExtra("entryId", Long.valueOf(element.getValues().get("entryId").toString()));
-		DefaultAnimation.startActivityWithAnimation(this, intent);
-	}
+        Intent intent = getIntentWithTheme(AssetDisplayActivity.class);
+        intent.putExtra("entryId", Long.valueOf(element.getValues().get("entryId").toString()));
+        DefaultAnimation.startActivityWithAnimation(this, intent);
+    }
 
-	@Override
-	public void error(Exception e, String userAction) {
+    @Override
+    public void error(Exception e, String userAction) {
 
-	}
+    }
 }

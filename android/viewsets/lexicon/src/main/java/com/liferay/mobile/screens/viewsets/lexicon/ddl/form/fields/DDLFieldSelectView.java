@@ -18,7 +18,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.util.AttributeSet;
-import com.liferay.mobile.screens.ddl.model.StringWithOptionsField;
+import android.view.View;
+
+import com.liferay.mobile.screens.ddl.model.Option;
 import com.liferay.mobile.screens.viewsets.lexicon.R;
 import com.liferay.mobile.screens.viewsets.lexicon.util.FormViewUtil;
 import java.util.ArrayList;
@@ -28,61 +30,48 @@ import java.util.List;
  * @author Victor Oliveira
  */
 public class DDLFieldSelectView
-	extends com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldSelectView
-	implements DialogInterface.OnClickListener {
+    extends com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldSelectView {
 
-	public DDLFieldSelectView(Context context) {
-		super(context);
-	}
+    public DDLFieldSelectView(Context context) {
+        super(context);
+    }
 
-	public DDLFieldSelectView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public DDLFieldSelectView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public DDLFieldSelectView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public DDLFieldSelectView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	protected int getAlertDialogStyle() {
-		return R.style.lexicon_theme_dialog;
-	}
+    @Override
+    protected int getAlertDialogStyle() {
+        return R.style.lexicon_theme_dialog;
+    }
 
-	@Override
-	protected int getAlertDialogLayout() {
-		return R.layout.ddlfield_select_dialog_lexicon;
-	}
+    @Override
+    protected int getAlertDialogLayout() {
+        return R.layout.ddlfield_select_dialog_lexicon;
+    }
 
-	@Override
-	protected void setupSingleChoice(AlertDialog.Builder builder, DialogInterface.OnClickListener selectOptionHandler,
-		String[] labels) {
+    @Override
+    protected void setupSingleChoice(AlertDialog.Builder builder, DialogInterface.OnClickListener selectOptionHandler,
+        String[] labels) {
 
-		List<StringWithOptionsField.Option> availableOptions = getField().getAvailableOptions();
-		ArrayList<StringWithOptionsField.Option> currentValue = getField().getCurrentValue();
+        List<Option> availableOptions = getField().getAvailableOptions();
+        ArrayList<Option> currentValue = getField().getCurrentValue();
 
-		int index = (currentValue.isEmpty()) ? -1 : availableOptions.indexOf(currentValue.get(0));
-		builder.setSingleChoiceItems(labels, index, selectOptionHandler);
-		builder.setPositiveButton(android.R.string.ok, selectOptionHandler);
-		builder.setNegativeButton(android.R.string.cancel, selectOptionHandler);
-	}
+        int index = (currentValue.isEmpty()) ? -1 : availableOptions.indexOf(currentValue.get(0));
 
-	@Override
-	public void onClick(DialogInterface dialog, int which) {
-		if (which >= 0) {
-			getField().selectOption(getField().getAvailableOptions().get(which));
-			refresh();
-		} else {
-			dialog.dismiss();
-		}
-	}
+        builder.setSingleChoiceItems(labels, index, selectOptionHandler)
+            .setPositiveButton(android.R.string.ok, selectOptionHandler)
+            .setNegativeButton(android.R.string.cancel, dismissListener)
+            .setNeutralButton(R.string.clear, clearFieldListener);
+    }
 
-	@Override
-	public void onPostValidation(boolean valid) {
-		FormViewUtil.setupTextFieldLayout(getContext(), valid, labelTextView, textEditText);
-	}
-
-	@Override
-	protected DialogInterface.OnClickListener getAlertDialogListener() {
-		return this;
-	}
+    @Override
+    public void onPostValidation(boolean valid) {
+        FormViewUtil.setupBackground(getContext(), valid, textEditText);
+        FormViewUtil.setupErrorView(valid, findViewById(R.id.error_view));
+    }
 }

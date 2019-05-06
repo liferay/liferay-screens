@@ -26,32 +26,32 @@ import com.liferay.mobile.screens.viewsets.R;
  * @author Silvio Santos
  */
 public class DDLListView extends BaseListScreenletView<Record, DDLListAdapter.TwoTextsViewHolder, DDLListAdapter>
-	implements DDLListViewModel {
+    implements DDLListViewModel {
 
-	public DDLListView(Context context) {
-		super(context);
-	}
+    public DDLListView(Context context) {
+        super(context);
+    }
 
-	public DDLListView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public DDLListView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public DDLListView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public DDLListView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	protected DDLListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
-		return new DDLListAdapter(itemLayoutId, itemProgressLayoutId, this);
-	}
+    @Override
+    protected DDLListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
+        return new DDLListAdapter(itemLayoutId, itemProgressLayoutId, this);
+    }
 
-	@Override
-	protected int getItemLayoutId() {
-		return R.layout.ddl_list_item_material;
-	}
+    @Override
+    protected int getItemLayoutId() {
+        return R.layout.ddl_list_item_material;
+    }
 
-	@Override
-	protected int getItemProgressLayoutId() {
-		return R.layout.list_item_progress_material;
-	}
+    @Override
+    protected int getItemProgressLayoutId() {
+        return R.layout.list_item_progress_material;
+    }
 }

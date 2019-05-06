@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="document">Document</string>
-	<string name="photo_and_video_library">Photo \u0026 video library</string>
-	<string name="submit">Submit</string>
-	<string name="required_value">Required value</string>
-	<string name="invalid">Invalid value</string>
-	<string name="open">Open:</string>
-	<string name="take_a_photo">Take a photo</string>
-	<string name="select_a_file">Select a file</string>
-	<string name="select_image_from_gallery">Select image from gallery</string>
-	<string name="select_video_from_gallery">Select video from gallery</string>
-	<string name="origin_of_file">Choose origin of file</string>
-	<string name="record_a_video">Record a video</string>
-	<string name="loading_form_error">Error loading DDLForm</string>
-	<string name="uploading_document_error">Error uploading document</string>
-	<string name="creating_file_error">Error creating file</string>
-	<string name="hint_select">Select an option</string>
+    <string name="back">Back</string>
+    <string name="next">Next</string>
+    <string name="document">Document</string>
+    <string name="photo_and_video_library">Photo \u0026 video library</string>
+    <string name="submit">Submit</string>
+    <string name="required_value">Required value</string>
+    <string name="invalid">Invalid value</string>
+    <string name="open">Open:</string>
+    <string name="take_a_photo">Take a photo</string>
+    <string name="select_a_file">Select a file</string>
+    <string name="select_image_from_gallery">Select image from gallery</string>
+    <string name="select_video_from_gallery">Select video from gallery</string>
+    <string name="origin_of_file">Choose origin of file</string>
+    <string name="record_a_video">Record a video</string>
+    <string name="loading_form_error">Error loading DDLForm</string>
+    <string name="uploading_document_error">Error uploading document</string>
+    <string name="uploading_document_not_finished_error">File upload not finished yet</string>
+    <string name="creating_file_error">Error creating file</string>
+    <string name="hint_select">Select an option</string>
 </resources>

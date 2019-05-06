@@ -29,58 +29,58 @@ import org.json.JSONObject;
  */
 public class DDLFormAddRecordInteractor extends BaseCacheWriteInteractor<DDLFormListener, DDLFormEvent> {
 
-	@Override
-	public DDLFormEvent execute(DDLFormEvent event) throws Exception {
+    @Override
+    public DDLFormEvent execute(DDLFormEvent event) throws Exception {
 
-		validate(event.getGroupId(), event.getRecord());
+        validate(event.getGroupId(), event.getRecord());
 
-		DDLRecordConnector ddlRecordConnector = ServiceProvider.getInstance().getDDLRecordConnector(getSession());
+        DDLRecordConnector ddlRecordConnector = ServiceProvider.getInstance().getDDLRecordConnector(getSession());
 
-		Record record = event.getRecord();
+        Record record = event.getRecord();
 
-		final JSONObject fieldsValues = new JSONObject(record.getData());
+        final JSONObject fieldsValues = new JSONObject(record.getData());
 
-		final JSONObject serviceContextAttributes = new JSONObject();
-		serviceContextAttributes.put("userId", record.getCreatorUserId());
-		serviceContextAttributes.put("scopeGroupId", event.getGroupId());
+        final JSONObject serviceContextAttributes = new JSONObject();
+        serviceContextAttributes.put("userId", record.getCreatorUserId());
+        serviceContextAttributes.put("scopeGroupId", event.getGroupId());
 
-		JSONObjectWrapper serviceContextWrapper = new JSONObjectWrapper(serviceContextAttributes);
+        JSONObjectWrapper serviceContextWrapper = new JSONObjectWrapper(serviceContextAttributes);
 
-		JSONObject jsonObject =
-			ddlRecordConnector.addRecord(event.getGroupId(), record.getRecordSetId(), 0, fieldsValues,
-				serviceContextWrapper);
+        JSONObject jsonObject =
+            ddlRecordConnector.addRecord(event.getGroupId(), record.getRecordSetId(), 0, fieldsValues,
+                serviceContextWrapper);
 
-		event.setJSONObject(jsonObject);
+        event.setJSONObject(jsonObject);
 
-		return event;
-	}
+        return event;
+    }
 
-	@Override
-	public void onSuccess(DDLFormEvent event) {
-		if (event.getJSONObject().has("recordId")) {
-			//This is opt long because we check that this key exists
-			long recordId = event.getJSONObject().optLong("recordId");
-			event.getRecord().setRecordId(recordId);
-		}
-		getListener().onDDLFormRecordAdded(event.getRecord());
-	}
+    @Override
+    public void onSuccess(DDLFormEvent event) {
+        if (event.getJSONObject().has("recordId")) {
+            //This is opt long because we check that this key exists
+            long recordId = event.getJSONObject().optLong("recordId");
+            event.getRecord().setRecordId(recordId);
+        }
+        getListener().onDDLFormRecordAdded(event.getRecord());
+    }
 
-	@Override
-	public void onFailure(DDLFormEvent event) {
-		getListener().error(event.getException(), DDLFormScreenlet.ADD_RECORD_ACTION);
-	}
+    @Override
+    public void onFailure(DDLFormEvent event) {
+        getListener().error(event.getException(), DDLFormScreenlet.ADD_RECORD_ACTION);
+    }
 
-	protected void validate(long groupId, Record record) {
-		if (groupId <= 0) {
-			throw new IllegalArgumentException("groupId cannot be 0 or negative");
-		} else if (record == null) {
-			throw new IllegalArgumentException("record cannot be empty");
-		} else if (record.getFieldCount() == 0) {
-			throw new IllegalArgumentException("Record's fields cannot be empty");
-		} else if (record.getCreatorUserId() <= 0) {
-			throw new IllegalArgumentException("Record's userId cannot be 0 or negative");
-		} else if (record.getRecordSetId() <= 0) {
-			throw new IllegalArgumentException("Record's recordSetId cannot be 0 or negative");
-		}
-	}
+    protected void validate(long groupId, Record record) {
+        if (groupId <= 0) {
+            throw new IllegalArgumentException("groupId cannot be 0 or negative");
+        } else if (record == null) {
+            throw new IllegalArgumentException("record cannot be empty");
+        } else if (record.getFieldCount() == 0) {
+            throw new IllegalArgumentException("Record's fields cannot be empty");
+        } else if (record.getCreatorUserId() <= 0) {
+            throw new IllegalArgumentException("Record's userId cannot be 0 or negative");
+        } else if (record.getRecordSetId() <= 0) {
+            throw new IllegalArgumentException("Record's recordSetId cannot be 0 or negative");
+        }
+    }
 }

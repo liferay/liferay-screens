@@ -15,15 +15,15 @@
 package com.liferay.mobile.pushnotifications.list;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.liferay.mobile.android.callback.typed.JSONObjectCallback;
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.dlfileentry.DLFileEntryService;
 import com.liferay.mobile.pushnotifications.R;
 import com.liferay.mobile.pushnotifications.download.DownloadPicture;
+import com.liferay.mobile.pushnotifications.service.v62.DLFileEntryService;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
@@ -38,108 +38,108 @@ import org.json.JSONObject;
  */
 public class DDLListAdapter extends BaseListAdapter<Record, DDLListAdapter.ImageViewHolder> {
 
-	public DDLListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
+    public DDLListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
 
-		super(layoutId, progressLayoutId, listener);
-	}
+        super(layoutId, progressLayoutId, listener);
+    }
 
-	@NonNull
-	@Override
-	public ImageViewHolder createViewHolder(View view, BaseListAdapterListener listener) {
-		return new ImageViewHolder(view, listener);
-	}
+    @NonNull
+    @Override
+    public ImageViewHolder createViewHolder(View view, BaseListAdapterListener listener) {
+        return new ImageViewHolder(view, listener);
+    }
 
-	@Override
-	protected void fillHolder(Record entry, ImageViewHolder holder) {
+    @Override
+    protected void fillHolder(Record entry, ImageViewHolder holder) {
 
-		StringBuilder builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
 
-		if (entry != null && getLabelFields() != null && !getLabelFields().isEmpty()) {
+        if (entry != null && getLabelFields() != null && !getLabelFields().isEmpty()) {
 
-			String titleField = (String) entry.getServerValue(getLabelFields().get(0));
+            String titleField = (String) entry.getServerValue(getLabelFields().get(0));
 
-			for (int i = 1; i < getLabelFields().size(); ++i) {
-				String field = getLabelFields().get(i);
-				String value = (String) entry.getServerValue(field);
-				if (value != null && !value.isEmpty()) {
-					builder.append(value);
-					builder.append(" ");
-				}
-			}
+            for (int i = 1; i < getLabelFields().size(); ++i) {
+                String field = getLabelFields().get(i);
+                String value = (String) entry.getServerValue(field);
+                if (value != null && !value.isEmpty()) {
+                    builder.append(value);
+                    builder.append(" ");
+                }
+            }
 
-			buildURL(entry, holder.imageView);
+            buildURL(entry, holder.imageView);
 
-			holder.textView.setText(titleField);
-			holder.subtitleTextView.setText(builder.toString());
-		}
-	}
+            holder.textView.setText(titleField);
+            holder.subtitleTextView.setText(builder.toString());
+        }
+    }
 
-	private void buildURL(Record entry, final ImageView imageView) {
-		try {
-			String photo = (String) entry.getServerValue("Photo");
-			if (photo != null) {
+    private void buildURL(Record entry, final ImageView imageView) {
+        try {
+            String photo = (String) entry.getServerValue("Photo");
+            if (photo != null) {
 
-				final Session session = SessionContext.createSessionFromCurrentSession();
+                final Session session = SessionContext.createSessionFromCurrentSession();
 
-				JSONObject jsonObject = new JSONObject(photo);
-				final String uuid = jsonObject.getString("uuid");
-				final Long groupId = jsonObject.getLong("groupId");
+                JSONObject jsonObject = new JSONObject(photo);
+                final String uuid = jsonObject.getString("uuid");
+                final Long groupId = jsonObject.getLong("groupId");
 
-				downloadPicture(session, uuid, groupId, imageView);
-			}
-		} catch (Exception e) {
-			LiferayLogger.e("Error loading image", e);
-		}
-	}
+                downloadPicture(session, uuid, groupId, imageView);
+            }
+        } catch (Exception e) {
+            LiferayLogger.e("Error loading image", e);
+        }
+    }
 
-	private void downloadPicture(final Session session, final String uuid, final Long groupId,
-		final ImageView imageView) throws Exception {
+    private void downloadPicture(final Session session, final String uuid, final Long groupId,
+        final ImageView imageView) throws Exception {
 
-		final Context context = LiferayScreensContext.getContext();
-		final String server = LiferayServerContext.getServer();
+        final Context context = LiferayScreensContext.getContext();
+        final String server = LiferayServerContext.getServer();
 
-		session.setCallback(new JSONObjectCallback() {
-			@Override
-			public void onSuccess(JSONObject result) {
-				try {
-					new DownloadPicture().
-						createRequest(context, result, server, 200).into(imageView);
-				} catch (Exception e) {
-					LiferayLogger.e("Error downloading picture", e);
-				}
-			}
+        session.setCallback(new JSONObjectCallback() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                try {
+                    new DownloadPicture().
+                        createRequest(context, result, server, 200).into(imageView);
+                } catch (Exception e) {
+                    LiferayLogger.e("Error downloading picture", e);
+                }
+            }
 
-			@Override
-			public void onFailure(Exception e) {
-				LiferayLogger.e("Error downloading picture", e);
-			}
-		});
+            @Override
+            public void onFailure(Exception e) {
+                LiferayLogger.e("Error downloading picture", e);
+            }
+        });
 
-		DLFileEntryService entryService = new DLFileEntryService(session);
-		entryService.getFileEntryByUuidAndGroupId(uuid, groupId);
-	}
+        DLFileEntryService entryService = new DLFileEntryService(session);
+        entryService.getFileEntryByUuidAndGroupId(uuid, groupId);
+    }
 
-	public static class ImageViewHolder extends BaseListAdapter.ViewHolder implements View.OnClickListener {
+    public static class ImageViewHolder extends BaseListAdapter.ViewHolder implements View.OnClickListener {
 
-		private final BaseListAdapterListener listener;
-		private final TextView subtitleTextView;
-		private final ImageView imageView;
+        private final BaseListAdapterListener listener;
+        private final TextView subtitleTextView;
+        private final ImageView imageView;
 
-		public ImageViewHolder(View view, BaseListAdapterListener listener) {
-			super(view, listener);
+        public ImageViewHolder(View view, BaseListAdapterListener listener) {
+            super(view, listener);
 
-			this.textView = (TextView) view.findViewById(R.id.notification_title);
-			this.subtitleTextView = (TextView) view.findViewById(R.id.notification_subtitle);
-			this.imageView = (ImageView) view.findViewById(R.id.notification_image);
+            this.textView = (TextView) view.findViewById(R.id.notification_title);
+            this.subtitleTextView = (TextView) view.findViewById(R.id.notification_subtitle);
+            this.imageView = (ImageView) view.findViewById(R.id.notification_image);
 
-			this.listener = listener;
+            this.listener = listener;
 
-			view.setOnClickListener(this);
-		}
+            view.setOnClickListener(this);
+        }
 
-		@Override
-		public void onClick(View v) {
-			listener.onItemClick(getAdapterPosition(), v);
-		}
-	}
+        @Override
+        public void onClick(View v) {
+            listener.onItemClick(getAdapterPosition(), v);
+        }
+    }
 }

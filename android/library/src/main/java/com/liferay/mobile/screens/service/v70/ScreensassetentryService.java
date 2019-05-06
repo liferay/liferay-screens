@@ -26,105 +26,105 @@ import org.json.JSONObject;
  */
 public class ScreensassetentryService extends BaseService {
 
-	public ScreensassetentryService(Session session) {
-		super(session);
-	}
+    public ScreensassetentryService(Session session) {
+        super(session);
+    }
 
-	public JSONObject getAssetEntry(String className, long classPK, String locale) throws Exception {
-		JSONObject _command = new JSONObject();
+    public JSONObject getAssetEntry(String className, long classPK, String locale) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("className", checkNull(className));
-			_params.put("classPK", classPK);
-			_params.put("locale", checkNull(locale));
+            _params.put("className", checkNull(className));
+            _params.put("classPK", classPK);
+            _params.put("locale", checkNull(locale));
 
-			_command.put("/screens.screensassetentry/get-asset-entry", _params);
-		} catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/screens.screensassetentry/get-asset-entry", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getJSONObject(0);
-	}
+        return _result.getJSONObject(0);
+    }
 
-	public JSONObject getAssetEntry(long entryId, String locale) throws Exception {
-		JSONObject _command = new JSONObject();
+    public JSONObject getAssetEntry(long entryId, String locale) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("entryId", entryId);
-			_params.put("locale", checkNull(locale));
+            _params.put("entryId", entryId);
+            _params.put("locale", checkNull(locale));
 
-			_command.put("/screens.screensassetentry/get-asset-entry", _params);
-		} catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/screens.screensassetentry/get-asset-entry", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getJSONObject(0);
-	}
+        return _result.getJSONObject(0);
+    }
 
-	public JSONArray getAssetEntries(long companyId, long groupId, String portletItemName, String locale, int max)
-		throws Exception {
-		JSONObject _command = new JSONObject();
+    public JSONArray getAssetEntries(long companyId, long groupId, String portletItemName, String locale, int max)
+        throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("companyId", companyId);
-			_params.put("groupId", groupId);
-			_params.put("portletItemName", checkNull(portletItemName));
-			_params.put("locale", checkNull(locale));
-			_params.put("max", max);
+            _params.put("companyId", companyId);
+            _params.put("groupId", groupId);
+            _params.put("portletItemName", checkNull(portletItemName));
+            _params.put("locale", checkNull(locale));
+            _params.put("max", max);
 
-			_command.put("/screens.screensassetentry/get-asset-entries", _params);
-		} catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/screens.screensassetentry/get-asset-entries", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getJSONArray(0);
-	}
+        return _result.getJSONArray(0);
+    }
 
-	public JSONArray getAssetEntries(JSONObjectWrapper assetEntryQuery, String locale) throws Exception {
-		JSONObject _command = new JSONObject();
+    public JSONArray getAssetEntries(JSONObjectWrapper assetEntryQuery, String locale) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			mangleWrapper(_params, "assetEntryQuery", "com.liferay.asset.kernel.service.persistence.AssetEntryQuery",
-				assetEntryQuery);
-			_params.put("locale", checkNull(locale));
+            mangleWrapper(_params, "assetEntryQuery", "com.liferay.asset.kernel.service.persistence.AssetEntryQuery",
+                assetEntryQuery);
+            _params.put("locale", checkNull(locale));
 
-			_command.put("/screens.screensassetentry/get-asset-entries", _params);
-		} catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/screens.screensassetentry/get-asset-entries", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getJSONArray(0);
-	}
+        return _result.getJSONArray(0);
+    }
 }

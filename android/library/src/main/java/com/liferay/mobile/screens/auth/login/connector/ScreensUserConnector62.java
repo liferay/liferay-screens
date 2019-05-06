@@ -10,28 +10,28 @@ import org.json.JSONObject;
  */
 public class ScreensUserConnector62 implements ForgotPasswordConnector, CurrentUserConnector {
 
-	private final ScreensuserService screensUserService;
+    private final ScreensuserService screensUserService;
 
-	public ScreensUserConnector62(Session session) {
-		screensUserService = new ScreensuserService(session);
-	}
+    public ScreensUserConnector62(Session session) {
+        screensUserService = new ScreensuserService(session);
+    }
 
-	@Override
-	public Boolean sendPasswordByEmailAddress(long companyId, String emailAddress) throws Exception {
-		return screensUserService.sendPasswordByEmailAddress(companyId, emailAddress);
-	}
+    @Override
+    public Boolean sendPasswordByEmailAddress(long companyId, String emailAddress) throws Exception {
+        return screensUserService.sendPasswordByEmailAddress(companyId, emailAddress);
+    }
 
-	public Boolean sendPasswordByScreenName(long companyId, String screenName) throws Exception {
-		return screensUserService.sendPasswordByScreenName(companyId, screenName);
-	}
+    public Boolean sendPasswordByScreenName(long companyId, String screenName) throws Exception {
+        return screensUserService.sendPasswordByScreenName(companyId, screenName);
+    }
 
-	@Override
-	public Boolean sendPasswordByUserId(long userId) throws Exception {
-		return screensUserService.sendPasswordByUserId(userId);
-	}
+    @Override
+    public Boolean sendPasswordByUserId(long userId) throws Exception {
+        return screensUserService.sendPasswordByUserId(userId);
+    }
 
-	@Override
-	public JSONObject getCurrentUser() throws Exception {
-		return screensUserService.getCurrentUser();
-	}
+    @Override
+    public JSONObject getCurrentUser() throws Exception {
+        return screensUserService.getCurrentUser();
+    }
 }

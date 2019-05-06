@@ -23,20 +23,20 @@ import java.util.List;
  */
 public interface BaseListListener extends BaseCacheListener {
 
-	/**
-	 * Called when the call to retrieve a page of items fails.
-	 *
-	 * @param e exception
-	 */
-	void onListPageFailed(int startRow, Exception e);
+    /**
+     * Called when the call to retrieve a page of items fails.
+     *
+     * @param e exception
+     */
+    void onListPageFailed(int startRow, Exception e);
 
-	/**.
-	 * Called when the call to retrieve a page of items succeed.
-	 */
-	void onListPageReceived(int startRow, int endRow, List entries, int rowCount);
+    /**
+     * Called when the call to retrieve a page of items succeed.
+     */
+    void onListPageReceived(int startRow, int endRow, List entries, int rowCount);
 
-	/**
-	 * Called when a list item is selected.
-	 */
-	void onListItemSelected(Object element, View view);
+    /**
+     * Called when a list item is selected.
+     */
+    void onListItemSelected(Object element, View view);
 }

@@ -25,22 +25,22 @@ import com.liferay.mobile.screens.base.list.BaseListScreenletView;
  * @author Silvio Santos
  */
 public class AssetListView extends BaseListScreenletView<AssetEntry, BaseListAdapter.ViewHolder, AssetListAdapter>
-	implements AssetListViewModel {
+    implements AssetListViewModel {
 
-	public AssetListView(Context context) {
-		super(context);
-	}
+    public AssetListView(Context context) {
+        super(context);
+    }
 
-	public AssetListView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public AssetListView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public AssetListView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public AssetListView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	protected AssetListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
-		return new AssetListAdapter(itemLayoutId, itemProgressLayoutId, this);
-	}
+    @Override
+    protected AssetListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
+        return new AssetListAdapter(itemLayoutId, itemProgressLayoutId, this);
+    }
 }

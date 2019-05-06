@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="webcontent_error">No se puede recibir la información del WebContent</string>
-	<string name="asset_error">No se puede recibir el AssetEntry</string>
-	<string name="page_error">Ha ocurrido un error en la solicitud de la página</string>
-	<string name="structureId_error">Ha ocurrido un error cargando structureId</string>
-	<string name="parse_json_error">Ha ocurrido un error parseando el JSON</string>
-	<string name="relogin_error">Ha ocurrido un error volviendo a iniciar sesión</string>
-	<string name="comment_error">Ha ocurrido un error en la acción:</string>
-	<string name="document_error">El documento no se puede subir</string>
-	<string name="signup_error">Lo sentimos, no puedes registrarte</string>
-	<string name="screenlet_error">Ha ocurrido un error cargando el screenlet</string>
-	<string name="forgot_password_error">Ha ocurrido un error al solicitar una nueva contraseña</string>
-	<string name="login_screenlet_error">Ha ocurrido un error al iniciar sesión</string>
-	<string name="add_bookmark_error">Ha ocurrido un error añadiendo el bookmark</string>
-	<string name="error_when">Ha ocurrido un error en</string>
-	<string name="custom_interactor_login_error">Ha ocurrido un error iniciando sesión, prueba con test/test</string>
-	<string name="failed"> ha fallado</string>
-	<string name="portlet_display_error">Ha ocurrido un error al cargar el contenido del portlet</string>
+    <string name="webcontent_error">No se puede recibir la información del WebContent</string>
+    <string name="asset_error">No se puede recibir el AssetEntry</string>
+    <string name="page_error">Ha ocurrido un error en la solicitud de la página</string>
+    <string name="structureId_error">Ha ocurrido un error cargando structureId</string>
+    <string name="parse_json_error">Ha ocurrido un error parseando el JSON</string>
+    <string name="relogin_error">Ha ocurrido un error volviendo a iniciar sesión</string>
+    <string name="comment_error">Ha ocurrido un error en la acción:</string>
+    <string name="document_error">El documento no se puede subir</string>
+    <string name="signup_error">Lo sentimos, no puedes registrarte</string>
+    <string name="screenlet_error">Ha ocurrido un error cargando el screenlet</string>
+    <string name="forgot_password_error">Ha ocurrido un error al solicitar una nueva contraseña</string>
+    <string name="login_screenlet_error">Ha ocurrido un error al iniciar sesión</string>
+    <string name="error_when">Ha ocurrido un error en</string>
+    <string name="custom_interactor_login_error">Ha ocurrido un error iniciando sesión, prueba con test/test</string>
+    <string name="failed"> ha fallado</string>
+    <string name="portlet_display_error">Ha ocurrido un error al cargar el contenido del portlet</string>
 </resources>

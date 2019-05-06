@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-	<declare-styleable name="AddBookmarkScreenlet">
-		<attr name="layoutId"/>
-		<attr name="folderId"/>
-		<attr format="string" name="defaultTitle"/>
-	</declare-styleable>
-</resources>

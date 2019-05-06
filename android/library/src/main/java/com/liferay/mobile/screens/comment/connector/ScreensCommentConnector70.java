@@ -7,34 +7,34 @@ import org.json.JSONObject;
 
 public class ScreensCommentConnector70 implements ScreensCommentConnector {
 
-	private ScreenscommentService screenscommentService;
+    private ScreenscommentService screenscommentService;
 
-	public ScreensCommentConnector70(Session session) {
-		screenscommentService = new ScreenscommentService(session);
-	}
+    public ScreensCommentConnector70(Session session) {
+        screenscommentService = new ScreenscommentService(session);
+    }
 
-	@Override
-	public JSONObject addComment(String className, long classPK, String body) throws Exception {
-		return screenscommentService.addComment(className, classPK, body);
-	}
+    @Override
+    public JSONObject addComment(String className, long classPK, String body) throws Exception {
+        return screenscommentService.addComment(className, classPK, body);
+    }
 
-	@Override
-	public JSONArray getComments(String className, long classPK, int startRow, int endRow) throws Exception {
-		return screenscommentService.getComments(className, classPK, startRow, endRow);
-	}
+    @Override
+    public JSONArray getComments(String className, long classPK, int startRow, int endRow) throws Exception {
+        return screenscommentService.getComments(className, classPK, startRow, endRow);
+    }
 
-	@Override
-	public Integer getCommentsCount(String className, long classPK) throws Exception {
-		return screenscommentService.getCommentsCount(className, classPK);
-	}
+    @Override
+    public Integer getCommentsCount(String className, long classPK) throws Exception {
+        return screenscommentService.getCommentsCount(className, classPK);
+    }
 
-	@Override
-	public JSONObject getComment(long commentId) throws Exception {
-		return screenscommentService.getComment(commentId);
-	}
+    @Override
+    public JSONObject getComment(long commentId) throws Exception {
+        return screenscommentService.getComment(commentId);
+    }
 
-	@Override
-	public JSONObject updateComment(long commentId, String newBody) throws Exception {
-		return screenscommentService.updateComment(commentId, newBody);
-	}
+    @Override
+    public JSONObject updateComment(long commentId, String newBody) throws Exception {
+        return screenscommentService.updateComment(commentId, newBody);
+    }
 }

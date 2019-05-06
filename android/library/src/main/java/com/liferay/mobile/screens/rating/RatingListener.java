@@ -21,8 +21,8 @@ import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
  */
 public interface RatingListener extends BaseCacheListener {
 
-	/**
-	 * Called when the operation finishes successfully and the rating is loaded.
-	 */
-	void onRatingOperationSuccess(AssetRating assetRating);
+    /**
+     * Called when the operation finishes successfully and the rating is loaded.
+     */
+    void onRatingOperationSuccess(AssetRating assetRating);
 }

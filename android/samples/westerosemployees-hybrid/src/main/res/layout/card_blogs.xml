@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.westerosemployees_hybrid.views.BlogsCard xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:background="@drawable/westeros_button_ripple"
-	android:elevation="8dp"
-	>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/westeros_button_ripple"
+    android:elevation="8dp"
+    >
 
-	<RelativeLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:orientation="vertical"
-		>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
 
-		<TextView
-			android:id="@+id/blogs_title"
-			android:tag="title"
-			android:text="@string/blogs"
-			android:textColor="@android:color/white"
-			style="@style/westeros_card_title_white"
-			/>
+        <TextView
+            android:id="@+id/blogs_title"
+            android:tag="title"
+            android:text="@string/blogs"
+            android:textColor="@android:color/white"
+            style="@style/westeros_card_title_white"
+            />
 
-		<ImageView
-			android:layout_alignParentEnd="true"
-			android:layout_alignParentRight="true"
-			android:src="@drawable/icon_down_white"
-			android:tag="@string/arrow_tag"
-			android:visibility="invisible"
-			style="@style/westeros_arrow"
-			/>
+        <ImageView
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/icon_down_white"
+            android:tag="@string/arrow_tag"
+            android:visibility="invisible"
+            style="@style/westeros_arrow"
+            />
 
-		<com.liferay.mobile.screens.web.WebScreenlet
-			android:id="@+id/portlet_blogs"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:layout_below="@id/blogs_title"
-			/>
+        <com.liferay.mobile.screens.web.WebScreenlet
+            android:id="@+id/portlet_blogs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/blogs_title"
+            />
 
-	</RelativeLayout>
+    </RelativeLayout>
 
-	<include layout="@layout/blogs_detail_subview"/>
+    <include layout="@layout/blogs_detail_subview"/>
 
 </com.liferay.mobile.screens.westerosemployees_hybrid.views.BlogsCard>

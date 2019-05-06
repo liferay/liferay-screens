@@ -7,9 +7,9 @@ import android.os.Bundle;
  */
 public class WebContentDisplayStructuredActivity extends ThemeActivity {
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.web_content_display_structured);
-	}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.web_content_display_structured);
+    }
 }

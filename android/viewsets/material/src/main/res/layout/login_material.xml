@@ -1,90 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.material.auth.login.LoginView xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:paddingLeft="40dp"
-	android:paddingRight="40dp"
-	style="@style/default_screenlet"
-	>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="40dp"
+    android:paddingRight="40dp"
+    style="@style/default_screenlet"
+    >
 
-	<LinearLayout
-		android:id="@+id/basic_authentication_login"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical"
-		>
+    <LinearLayout
+        android:id="@+id/basic_authentication_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
 
-		<LinearLayout style="@style/material_row">
+        <LinearLayout style="@style/material_row">
 
-			<ImageView
-				android:id="@+id/drawable_login"
-				android:contentDescription="@string/user_login_icon"
-				android:src="@drawable/material_email"
-				style="@style/material_icon"
-				/>
+            <ImageView
+                android:id="@+id/drawable_login"
+                android:contentDescription="@string/user_login_icon"
+                android:src="@drawable/material_email"
+                style="@style/material_icon"
+                />
 
-			<EditText
-				android:id="@+id/liferay_login"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:layout_marginTop="8dp"
-				android:inputType="text"
-				android:labelFor="@+id/liferay_login"
-				/>
+            <EditText
+                android:id="@+id/liferay_login"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:inputType="text"
+                android:labelFor="@+id/liferay_login"
+                />
 
-		</LinearLayout>
+        </LinearLayout>
 
-		<LinearLayout style="@style/material_row">
+        <LinearLayout style="@style/material_row">
 
-			<ImageView
-				android:id="@+id/drawable_password"
-				android:contentDescription="@string/password_icon"
-				android:src="@drawable/material_https"
-				style="@style/material_icon"
-				/>
+            <ImageView
+                android:id="@+id/drawable_password"
+                android:contentDescription="@string/password_icon"
+                android:src="@drawable/material_https"
+                style="@style/material_icon"
+                />
 
-			<EditText
-				android:id="@+id/liferay_password"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:layout_marginTop="8dp"
-				android:hint="@string/password"
-				android:inputType="textPassword"
-				/>
+            <EditText
+                android:id="@+id/liferay_password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                />
 
-		</LinearLayout>
+        </LinearLayout>
 
-		<FrameLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="32dp"
-			>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            >
 
-			<Button
-				android:id="@+id/liferay_login_button"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:layout_margin="10dp"
-				android:text="@string/sign_in"
-				/>
+            <Button
+                android:id="@+id/liferay_login_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:text="@string/sign_in"
+                />
 
-			<com.liferay.mobile.screens.base.ModalProgressBar
-				android:id="@+id/liferay_progress"
-				android:layout_width="wrap_content"
-				android:layout_height="match_parent"
-				android:layout_gravity="center_vertical|left"
-				android:layout_margin="10dp"
-				android:theme="@style/white_theme"
-				android:visibility="invisible"
-				app:actionViewId="@id/liferay_login_button"
-				/>
-		</FrameLayout>
-	</LinearLayout>
+            <com.liferay.mobile.screens.base.ModalProgressBar
+                android:id="@+id/liferay_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical|left"
+                android:layout_margin="10dp"
+                android:theme="@style/white_theme"
+                android:visibility="invisible"
+                app:actionViewId="@id/liferay_login_button"
+                />
+        </FrameLayout>
+    </LinearLayout>
 
-	<Button
-		android:id="@+id/oauth_authentication_login"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:text="@string/authorize_application"
-		android:visibility="gone"
-		/>
+    <Button
+        android:id="@+id/oauth_authentication_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/authorize_application"
+        android:visibility="gone"
+        />
 </com.liferay.mobile.screens.viewsets.material.auth.login.LoginView>

@@ -9,12 +9,12 @@ import org.json.JSONObject;
  */
 public interface ScreensAssetEntryConnector {
 
-	JSONArray getAssetEntries(JSONObjectWrapper entryQuery, String s) throws Exception;
+    JSONArray getAssetEntries(JSONObjectWrapper entryQuery, String s) throws Exception;
 
-	JSONArray getAssetEntries(long companyId, long groupId, String portletItemName, String s, int endRow)
-		throws Exception;
+    JSONArray getAssetEntries(long companyId, long groupId, String portletItemName, String s, int endRow)
+        throws Exception;
 
-	JSONObject getAssetEntry(long entryId, String language) throws Exception;
+    JSONObject getAssetEntry(long entryId, String language) throws Exception;
 
-	JSONObject getAssetEntry(String className, long classPK, String language) throws Exception;
+    JSONObject getAssetEntry(String className, long classPK, String language) throws Exception;
 }

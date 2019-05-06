@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string-array name="image_scale_type">
-		<item>MATRIX</item>
-		<item>FIT_XY</item>
-		<item>FIT_START</item>
-		<item>FIT_CENTER</item>
-		<item>FIT_END</item>
-		<item>CENTER</item>
-		<item>CENTER_CROP</item>
-		<item>CENTER_INSIDE</item>
-	</string-array>
+    <string-array name="image_scale_type">
+        <item>MATRIX</item>
+        <item>FIT_XY</item>
+        <item>FIT_START</item>
+        <item>FIT_CENTER</item>
+        <item>FIT_END</item>
+        <item>CENTER</item>
+        <item>CENTER_CROP</item>
+        <item>CENTER_INSIDE</item>
+    </string-array>
 </resources>

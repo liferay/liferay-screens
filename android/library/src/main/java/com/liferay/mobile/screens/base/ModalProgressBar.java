@@ -27,75 +27,75 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  */
 public class ModalProgressBar extends ProgressBar {
 
-	private int actionViewId;
+    private int actionViewId;
 
-	public ModalProgressBar(Context context) {
-		super(context);
-	}
+    public ModalProgressBar(Context context) {
+        super(context);
+    }
 
-	public ModalProgressBar(Context context, AttributeSet attributes) {
-		super(context, attributes);
+    public ModalProgressBar(Context context, AttributeSet attributes) {
+        super(context, attributes);
 
-		init(context, attributes);
-	}
+        init(context, attributes);
+    }
 
-	public ModalProgressBar(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
+    public ModalProgressBar(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
 
-		init(context, attributes);
-	}
+        init(context, attributes);
+    }
 
-	public void startProgress() {
-		setVisibility(VISIBLE);
-	}
+    public void startProgress() {
+        setVisibility(VISIBLE);
+    }
 
-	public void finishProgress() {
-		setVisibility(INVISIBLE);
-	}
+    public void finishProgress() {
+        setVisibility(INVISIBLE);
+    }
 
-	@Override
-	public void setVisibility(int v) {
-		View actionView = findActionView((View) getParent(), actionViewId);
+    @Override
+    public void setVisibility(int v) {
+        View actionView = findActionView((View) getParent(), actionViewId);
 
-		if (actionView != null) {
-			setVisibility(v, actionView);
-		} else {
-			super.setVisibility(v);
-		}
-	}
+        if (actionView != null) {
+            setVisibility(v, actionView);
+        } else {
+            super.setVisibility(v);
+        }
+    }
 
-	public void setVisibility(int visibility, View... actionViews) {
-		super.setVisibility(visibility);
+    public void setVisibility(int visibility, View... actionViews) {
+        super.setVisibility(visibility);
 
-		int len = (actionViews == null) ? 0 : actionViews.length;
+        int len = (actionViews == null) ? 0 : actionViews.length;
 
-		for (int i = 0; i < len; ++i) {
-			actionViews[i].setEnabled(visibility != VISIBLE);
-		}
-	}
+        for (int i = 0; i < len; ++i) {
+            actionViews[i].setEnabled(visibility != VISIBLE);
+        }
+    }
 
-	protected void init(Context context, AttributeSet attributes) {
-		for (int i = 0; i < attributes.getAttributeCount(); ++i) {
-			LiferayLogger.d(attributes.getAttributeName(i) + " - " + attributes.getAttributeValue(i));
-		}
-		TypedArray typedArray =
-			context.getTheme().obtainStyledAttributes(attributes, R.styleable.ModalProgressBar, 0, 0);
+    protected void init(Context context, AttributeSet attributes) {
+        for (int i = 0; i < attributes.getAttributeCount(); ++i) {
+            LiferayLogger.d(attributes.getAttributeName(i) + " - " + attributes.getAttributeValue(i));
+        }
+        TypedArray typedArray =
+            context.getTheme().obtainStyledAttributes(attributes, R.styleable.ModalProgressBar, 0, 0);
 
-		actionViewId = typedArray.getResourceId(R.styleable.ModalProgressBar_actionViewId, 0);
+        actionViewId = typedArray.getResourceId(R.styleable.ModalProgressBar_actionViewId, 0);
 
-		typedArray.recycle();
-	}
+        typedArray.recycle();
+    }
 
-	private View findActionView(View parent, int actionViewId) {
-		if (parent instanceof BaseScreenlet) {
-			return null;
-		}
+    private View findActionView(View parent, int actionViewId) {
+        if (parent instanceof BaseScreenlet) {
+            return null;
+        }
 
-		View result = parent.findViewById(actionViewId);
-		if (result != null) {
-			return result;
-		}
+        View result = parent.findViewById(actionViewId);
+        if (result != null) {
+            return result;
+        }
 
-		return findActionView((View) parent.getParent(), actionViewId);
-	}
+        return findActionView((View) parent.getParent(), actionViewId);
+    }
 }

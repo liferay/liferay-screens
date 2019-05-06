@@ -16,5 +16,5 @@ package com.liferay.mobile.screens.cache;
 
 public interface PendingItemsToSyncListener {
 
-	void getItemsCount(int totalCount);
+    void getItemsCount(int totalCount);
 }

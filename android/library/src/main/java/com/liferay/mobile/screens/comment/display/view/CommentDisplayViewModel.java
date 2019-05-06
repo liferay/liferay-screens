@@ -23,20 +23,20 @@ import com.liferay.mobile.screens.comment.display.CommentDisplayScreenlet;
  */
 public interface CommentDisplayViewModel extends BaseViewModel {
 
-	/**
-	 * Called when the `loadCommentAction` is successfully completed
-	 * and there is no need to know the {@link CommentEntry}.
-	 * See {@link CommentDisplayScreenlet#onDeleteCommentSuccess()}
-	 *
-	 * @param loadCommentAction comment action
-	 */
-	void showFinishOperation(String loadCommentAction, boolean editable);
+    /**
+     * Called when the `loadCommentAction` is successfully completed
+     * and there is no need to know the {@link CommentEntry}.
+     * See {@link CommentDisplayScreenlet#onDeleteCommentSuccess()}
+     *
+     * @param loadCommentAction comment action
+     */
+    void showFinishOperation(String loadCommentAction, boolean editable);
 
-	/**
-	 * Called when the `loadCommentAction` is successfully completed.
-	 * See {@link CommentDisplayScreenlet#onUpdateCommentSuccess(CommentEntry)}
-	 *
-	 * @param loadCommentAction comment action
-	 */
-	void showFinishOperation(String loadCommentAction, boolean editable, CommentEntry commentEntry);
+    /**
+     * Called when the `loadCommentAction` is successfully completed.
+     * See {@link CommentDisplayScreenlet#onUpdateCommentSuccess(CommentEntry)}
+     *
+     * @param loadCommentAction comment action
+     */
+    void showFinishOperation(String loadCommentAction, boolean editable, CommentEntry commentEntry);
 }

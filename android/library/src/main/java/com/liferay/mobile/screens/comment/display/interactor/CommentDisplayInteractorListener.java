@@ -22,18 +22,18 @@ import com.liferay.mobile.screens.comment.CommentEntry;
  */
 public interface CommentDisplayInteractorListener extends BaseCacheListener {
 
-	/**
-	 * Called when the screenlet successfully loads the comment.
-	 */
-	void onLoadCommentSuccess(CommentEntry commentEntry);
+    /**
+     * Called when the screenlet successfully loads the comment.
+     */
+    void onLoadCommentSuccess(CommentEntry commentEntry);
 
-	/**
-	 * Called when the screenlet successfully deletes the comment.
-	 */
-	void onDeleteCommentSuccess();
+    /**
+     * Called when the screenlet successfully deletes the comment.
+     */
+    void onDeleteCommentSuccess();
 
-	/**
-	 * Called when the screenlet successfully updates the comment.
-	 */
-	void onUpdateCommentSuccess(CommentEntry commentEntry);
+    /**
+     * Called when the screenlet successfully updates the comment.
+     */
+    void onUpdateCommentSuccess(CommentEntry commentEntry);
 }

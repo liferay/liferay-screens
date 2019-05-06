@@ -26,46 +26,48 @@ import com.liferay.mobile.screens.viewsets.westeros.R;
  * @author Silvio Santos
  */
 public class LoginView extends com.liferay.mobile.screens.viewsets.defaultviews.auth.login.LoginView
-	implements View.OnTouchListener {
+    implements View.OnTouchListener {
 
-	public LoginView(Context context) {
-		super(context);
-	}
+    public LoginView(Context context) {
+        super(context);
+    }
 
-	public LoginView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public LoginView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public LoginView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public LoginView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	public boolean onTouch(View v, MotionEvent event) {
-		if (event.getAction() == MotionEvent.ACTION_DOWN) {
-			getPasswordEditText().setTransformationMethod(null);
-			getPasswordEditText().setInputType(InputType.TYPE_CLASS_TEXT);
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            getPasswordEditText().setTransformationMethod(null);
+            getPasswordEditText().setInputType(InputType.TYPE_CLASS_TEXT);
 
-			return true;
-		}
+            return true;
+        }
 
-		if (event.getAction() == MotionEvent.ACTION_UP) {
-			getPasswordEditText().setTransformationMethod(PasswordTransformationMethod.getInstance());
-		}
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            getPasswordEditText().setTransformationMethod(PasswordTransformationMethod.getInstance());
+        }
 
-		return false;
-	}
+        return false;
+    }
 
-	@Override
-	protected void refreshLoginEditTextStyle() {
-		getLoginEditText().setInputType(getBasicAuthMethod().getInputType());
-	}
+    @Override
+    protected void refreshLoginEditTextStyle() {
+        if (getBasicAuthMethod() != null) {
+            getLoginEditText().setInputType(getBasicAuthMethod().getInputType());
+        }
+    }
 
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
 
-		final View seePassword = findViewById(R.id.liferay_see_password);
-		seePassword.setOnTouchListener(this);
-	}
+        final View seePassword = findViewById(R.id.liferay_see_password);
+        seePassword.setOnTouchListener(this);
+    }
 }

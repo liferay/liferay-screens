@@ -18,6 +18,8 @@ import com.liferay.mobile.android.auth.Authentication;
 import com.liferay.mobile.android.auth.CookieSignIn;
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.auth.basic.CookieAuthentication;
+import com.liferay.mobile.android.http.Headers;
+import com.liferay.mobile.android.http.Request;
 import com.liferay.mobile.android.service.Session;
 import com.liferay.mobile.android.service.SessionImpl;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
@@ -36,193 +38,193 @@ import java.security.AccessControlException;
  */
 public class SessionContext {
 
-	private static Session currentUserSession;
-	private static User currentUser;
+    private static Session currentUserSession;
+    private static User currentUser;
 
-	private SessionContext() {
-		super();
-	}
+    private SessionContext() {
+        super();
+    }
 
-	public static void logout() {
-		currentUserSession = null;
-		currentUser = null;
-	}
+    public static void logout() {
+        currentUserSession = null;
+        currentUser = null;
+    }
 
-	public static Session createBasicSession(String username, String password) {
-		Authentication authentication = new BasicAuthentication(username, password);
+    public static Session createBasicSession(String username, String password) {
+        Authentication authentication = new BasicAuthentication(username, password);
 
-		currentUserSession = new SessionImpl(LiferayServerContext.getServer(), authentication);
+        currentUserSession = new SessionImpl(LiferayServerContext.getServer(), authentication);
 
-		return currentUserSession;
-	}
+        return currentUserSession;
+    }
 
-	public static Session createCookieSession(Session session) {
-		Authentication cookieAuthentication = session.getAuthentication();
+    public static Session createCookieSession(Session session) {
+        Authentication cookieAuthentication = session.getAuthentication();
 
-		currentUserSession = new SessionImpl(LiferayServerContext.getServer(), cookieAuthentication);
+        currentUserSession = new SessionImpl(LiferayServerContext.getServer(), cookieAuthentication);
 
-		return currentUserSession;
-	}
+        return currentUserSession;
+    }
 
-	public static Session createOAuth2Session(Session session) {
-		Authentication oauth2Authentication = session.getAuthentication();
+    public static Session createOAuth2Session(Session session) {
+        Authentication oauth2Authentication = session.getAuthentication();
 
-		currentUserSession = new SessionImpl(LiferayServerContext.getServer(), oauth2Authentication);
+        currentUserSession = new SessionImpl(LiferayServerContext.getServer(), oauth2Authentication);
 
-		return currentUserSession;
-	}
+        return currentUserSession;
+    }
 
-	public static Session createSessionFromCurrentSession() {
-		if (currentUserSession == null) {
-			throw new IllegalStateException("You need to be logged in to get a session");
-		}
+    public static Session createSessionFromCurrentSession() {
+        if (currentUserSession == null) {
+            throw new IllegalStateException("You need to be logged in to get a session");
+        }
 
-		return new SessionImpl(LiferayServerContext.getServer(), currentUserSession.getAuthentication());
-	}
+        return new SessionImpl(LiferayServerContext.getServer(), currentUserSession.getAuthentication());
+    }
 
-	public static boolean isLoggedIn() {
-		return currentUserSession != null;
-	}
+    public static boolean isLoggedIn() {
+        return currentUserSession != null;
+    }
 
-	public static boolean hasUserInfo() {
-		return currentUserSession != null && currentUser != null;
-	}
+    public static boolean hasUserInfo() {
+        return currentUserSession != null && currentUser != null;
+    }
 
-	public static Authentication getAuthentication() {
-		return (currentUserSession == null) ? null : currentUserSession.getAuthentication();
-	}
+    public static Authentication getAuthentication() {
+        return (currentUserSession == null) ? null : currentUserSession.getAuthentication();
+    }
 
-	public static User getCurrentUser() {
-		return currentUser;
-	}
+    public static User getCurrentUser() {
+        return currentUser;
+    }
 
-	public static void setCurrentUser(User value) {
-		currentUser = value;
-	}
+    public static void setCurrentUser(User value) {
+        currentUser = value;
+    }
 
-	public static Long getUserId() {
-		return currentUser == null ? null : currentUser.getId();
-	}
+    public static Long getUserId() {
+        return currentUser == null ? null : currentUser.getId();
+    }
 
-	public static void storeCredentials(CredentialsStorageBuilder.StorageType storageType) {
-		if (!isLoggedIn()) {
-			throw new IllegalStateException("You must have a session created to store it");
-		}
+    public static void storeCredentials(CredentialsStorageBuilder.StorageType storageType) {
+        if (!isLoggedIn()) {
+            throw new IllegalStateException("You must have a session created to store it");
+        }
 
-		CredentialsStorage storage = new CredentialsStorageBuilder().setContext(LiferayScreensContext.getContext())
-			.setAuthentication(currentUserSession.getAuthentication())
-			.setUser(getCurrentUser())
-			.setStorageType(storageType)
-			.build();
+        CredentialsStorage storage = new CredentialsStorageBuilder().setContext(LiferayScreensContext.getContext())
+            .setAuthentication(currentUserSession.getAuthentication())
+            .setUser(getCurrentUser())
+            .setStorageType(storageType)
+            .build();
 
-		checkIfStorageTypeIsSupported(storageType, storage);
+        checkIfStorageTypeIsSupported(storageType, storage);
 
-		storage.storeCredentials();
-	}
+        storage.storeCredentials();
+    }
 
-	public static void removeStoredCredentials(CredentialsStorageBuilder.StorageType storageType) {
-		CredentialsStorage storage = new CredentialsStorageBuilder().setContext(LiferayScreensContext.getContext())
-			.setStorageType(storageType)
-			.build();
+    public static void removeStoredCredentials(CredentialsStorageBuilder.StorageType storageType) {
+        CredentialsStorage storage = new CredentialsStorageBuilder().setContext(LiferayScreensContext.getContext())
+            .setStorageType(storageType)
+            .build();
 
-		checkIfStorageTypeIsSupported(storageType, storage);
+        checkIfStorageTypeIsSupported(storageType, storage);
 
-		storage.removeStoredCredentials();
-	}
+        storage.removeStoredCredentials();
+    }
 
-	public static void loadStoredCredentials(CredentialsStorageBuilder.StorageType storageType,
-		boolean shouldLoadServer) throws IllegalStateException {
+    public static void loadStoredCredentials(CredentialsStorageBuilder.StorageType storageType,
+        boolean shouldLoadServer) throws IllegalStateException {
 
-		CredentialsStorage storage = new CredentialsStorageBuilder().setContext(LiferayScreensContext.getContext())
-			.setStorageType(storageType)
-			.build();
+        CredentialsStorage storage = new CredentialsStorageBuilder().setContext(LiferayScreensContext.getContext())
+            .setStorageType(storageType)
+            .build();
 
-		checkIfStorageTypeIsSupported(storageType, storage);
+        checkIfStorageTypeIsSupported(storageType, storage);
 
-		boolean loadedCredentials =
-			shouldLoadServer ? storage.loadStoredCredentialsAndServer() : storage.loadStoredCredentials();
-		if (loadedCredentials) {
-			currentUserSession = new SessionImpl(LiferayServerContext.getServer(), storage.getAuthentication());
-			currentUser = storage.getUser();
-		}
-	}
+        boolean loadedCredentials =
+            shouldLoadServer ? storage.loadStoredCredentialsAndServer() : storage.loadStoredCredentials();
+        if (loadedCredentials) {
+            currentUserSession = new SessionImpl(LiferayServerContext.getServer(), storage.getAuthentication());
+            currentUser = storage.getUser();
+        }
+    }
 
-	public static void loadStoredCredentials(CredentialsStorageBuilder.StorageType storageType)
-		throws IllegalStateException {
-		loadStoredCredentials(storageType, false);
-	}
+    public static void loadStoredCredentials(CredentialsStorageBuilder.StorageType storageType)
+        throws IllegalStateException {
+        loadStoredCredentials(storageType, false);
+    }
 
-	public static void loadStoredCredentialsAndServer(CredentialsStorageBuilder.StorageType sharedPreferences) {
-		loadStoredCredentials(sharedPreferences, true);
-	}
+    public static void loadStoredCredentialsAndServer(CredentialsStorageBuilder.StorageType sharedPreferences) {
+        loadStoredCredentials(sharedPreferences, true);
+    }
 
-	public static void relogin(LoginListener loginListener) {
-		relogin(loginListener, BasicAuthMethod.EMAIL);
-	}
+    public static void relogin(LoginListener loginListener) {
+        relogin(loginListener, BasicAuthMethod.EMAIL);
+    }
 
-	public static void relogin(LoginListener loginListener, BasicAuthMethod basicAuthMethod) {
-		if (currentUserSession == null || currentUserSession.getAuthentication() == null) {
-			loginListener.onLoginFailure(new AccessControlException("Missing user attributes"));
-		}
+    public static void relogin(LoginListener loginListener, BasicAuthMethod basicAuthMethod) {
+        if (currentUserSession == null || currentUserSession.getAuthentication() == null) {
+            loginListener.onLoginFailure(new AccessControlException("Missing user attributes"));
+        }
 
-		refreshUserAttributes(loginListener,
-			new SessionImpl(LiferayServerContext.getServer(), currentUserSession.getAuthentication()), basicAuthMethod);
-	}
+        refreshUserAttributes(loginListener,
+            new SessionImpl(LiferayServerContext.getServer(), currentUserSession.getAuthentication()), basicAuthMethod);
+    }
 
-	public void setAuthenticator(Authenticator authenticator) {
-		String server = LiferayServerContext.getServer();
-		CookieSignIn.registerAuthenticatorForServer(server, authenticator);
-	}
+    public void setAuthenticator(Authenticator authenticator) {
+        String server = LiferayServerContext.getServer();
+        CookieSignIn.registerAuthenticatorForServer(server, authenticator);
+    }
 
-	public void setAuthenticator(String server, Authenticator authenticator) {
-		CookieSignIn.registerAuthenticatorForServer(server, authenticator);
-	}
+    public void setAuthenticator(String server, Authenticator authenticator) {
+        CookieSignIn.registerAuthenticatorForServer(server, authenticator);
+    }
 
-	private static void refreshUserAttributes(final LoginListener loginListener, final Session session,
-		final BasicAuthMethod basicAuthMethod) {
+    private static void refreshUserAttributes(final LoginListener loginListener, final Session session,
+        final BasicAuthMethod basicAuthMethod) {
 
-		Executor.execute(new Runnable() {
-			@Override
-			public void run() {
-				try {
-					BasicEvent basicEvent = loginWithAuthentication(session, basicAuthMethod);
+        Executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    BasicEvent basicEvent = loginWithAuthentication(session, basicAuthMethod);
 
-					if (!basicEvent.isFailed()) {
-						User user = new User(basicEvent.getJSONObject());
-						currentUser = user;
-						loginListener.onLoginSuccess(user);
-					} else {
-						SessionContext.logout();
-						loginListener.onLoginFailure(new AccessControlException("User invalid"));
-					}
-				} catch (Exception e) {
-					loginListener.onLoginFailure(e);
-				}
-			}
-		});
-	}
+                    if (!basicEvent.isFailed()) {
+                        User user = new User(basicEvent.getJSONObject());
+                        currentUser = user;
+                        loginListener.onLoginSuccess(user);
+                    } else {
+                        SessionContext.logout();
+                        loginListener.onLoginFailure(new AccessControlException("User invalid"));
+                    }
+                } catch (Exception e) {
+                    loginListener.onLoginFailure(e);
+                }
+            }
+        });
+    }
 
-	private static BasicEvent loginWithAuthentication(Session session, BasicAuthMethod basicAuthMethod)
-		throws Exception {
+    private static BasicEvent loginWithAuthentication(Session session, BasicAuthMethod basicAuthMethod)
+        throws Exception {
 
-		Authentication authentication = session.getAuthentication();
+        Authentication authentication = session.getAuthentication();
 
-		if (authentication instanceof CookieAuthentication) {
-			CookieAuthentication cookieAuthentication = (CookieAuthentication) authentication;
-			return new LoginCookieInteractor().execute(cookieAuthentication.getUsername(),
-				cookieAuthentication.getPassword(), cookieAuthentication.shouldHandleExpiration(),
-				cookieAuthentication.getCookieExpirationTime());
-		} else {
-			BasicAuthentication basicAuthentication = (BasicAuthentication) authentication;
-			return new LoginBasicInteractor().execute(basicAuthentication.getUsername(),
-				basicAuthentication.getPassword(), basicAuthMethod);
-		}
-	}
+        if (authentication instanceof CookieAuthentication) {
+            CookieAuthentication cookieAuthentication = (CookieAuthentication) authentication;
+            return new LoginCookieInteractor().execute(cookieAuthentication.getUsername(),
+                cookieAuthentication.getPassword(), cookieAuthentication.shouldHandleExpiration(),
+                cookieAuthentication.getCookieExpirationTime());
+        } else {
+            BasicAuthentication basicAuthentication = (BasicAuthentication) authentication;
+            return new LoginBasicInteractor().execute(basicAuthentication.getUsername(),
+                basicAuthentication.getPassword(), basicAuthMethod);
+        }
+    }
 
-	private static void checkIfStorageTypeIsSupported(CredentialsStorageBuilder.StorageType storageType,
-		CredentialsStorage storage) {
-		if (storage == null) {
-			throw new UnsupportedOperationException("StorageType " + storageType + "is not supported");
-		}
-	}
+    private static void checkIfStorageTypeIsSupported(CredentialsStorageBuilder.StorageType storageType,
+        CredentialsStorage storage) {
+        if (storage == null) {
+            throw new UnsupportedOperationException("StorageType " + storageType + "is not supported");
+        }
+    }
 }

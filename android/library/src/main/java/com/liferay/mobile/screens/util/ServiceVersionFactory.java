@@ -22,33 +22,33 @@ import com.liferay.mobile.screens.webcontent.display.connector.ScreensJournalCon
  */
 public interface ServiceVersionFactory {
 
-	UserConnector getUserConnector(Session session);
+    UserConnector getUserConnector(Session session);
 
-	CurrentUserConnector getCurrentUserConnector(Session session);
+    CurrentUserConnector getCurrentUserConnector(Session session);
 
-	ForgotPasswordConnector getForgotPasswordConnector(Session session);
+    ForgotPasswordConnector getForgotPasswordConnector(Session session);
 
-	DLAppConnector getDLAppConnector(Session session);
+    DLAppConnector getDLAppConnector(Session session);
 
-	DDLRecordConnector getDDLRecordConnector(Session session);
+    DDLRecordConnector getDDLRecordConnector(Session session);
 
-	ScreensDDLRecordConnector getScreensDDLRecordConnector(Session session);
+    ScreensDDLRecordConnector getScreensDDLRecordConnector(Session session);
 
-	DDLRecordSetConnector getDDLRecordSetConnector(Session session);
+    DDLRecordSetConnector getDDLRecordSetConnector(Session session);
 
-	DDMStructureConnector getDDMStructureConnector(Session session);
+    DDMStructureConnector getDDMStructureConnector(Session session);
 
-	AssetEntryConnector getAssetEntryConnector(Session session);
+    AssetEntryConnector getAssetEntryConnector(Session session);
 
-	ScreensAssetEntryConnector getScreensAssetEntryConnector(Session session);
+    ScreensAssetEntryConnector getScreensAssetEntryConnector(Session session);
 
-	JournalContentConnector getJournalContentConnector(Session session);
+    JournalContentConnector getJournalContentConnector(Session session);
 
-	ScreensJournalContentConnector getScreensJournalContentConnector(Session session);
+    ScreensJournalContentConnector getScreensJournalContentConnector(Session session);
 
-	ScreensCommentConnector getScreensCommentConnector(Session session);
+    ScreensCommentConnector getScreensCommentConnector(Session session);
 
-	ScreensRatingsConnector getScreensRatingsConnector(Session session);
+    ScreensRatingsConnector getScreensRatingsConnector(Session session);
 
-	CommentConnector getCommentConnector(Session session);
+    CommentConnector getCommentConnector(Session session);
 }

@@ -22,18 +22,18 @@ import com.liferay.mobile.screens.dlfile.display.BaseFileDisplayViewModel;
  */
 public interface ImageDisplayViewModel extends BaseFileDisplayViewModel {
 
-	/**
-	 * Sets the {@link ImageView.ScaleType} for the image.
-	 */
-	void setScaleType(ImageView.ScaleType scaleType);
+    /**
+     * Sets the {@link ImageView.ScaleType} for the image.
+     */
+    void setScaleType(ImageView.ScaleType scaleType);
 
-	/**
-	 * Sets the placeholder image resource.
-	 */
-	void setPlaceholder(int placeholder);
+    /**
+     * Sets the placeholder image resource.
+     */
+    void setPlaceholder(int placeholder);
 
-	/**
-	 * Sets the placeholder image {@link ImageView.ScaleType}.
-	 */
-	void setPlaceholderScaleType(ImageView.ScaleType placeholderScaleType);
+    /**
+     * Sets the placeholder image {@link ImageView.ScaleType}.
+     */
+    void setPlaceholderScaleType(ImageView.ScaleType placeholderScaleType);
 }

@@ -30,131 +30,131 @@ import com.liferay.mobile.screens.context.LiferayServerContext;
  * @author Silvio Santos
  */
 public class ForgotPasswordScreenlet extends BaseScreenlet<ForgotPasswordViewModel, ForgotPasswordInteractor>
-	implements ForgotPasswordListener {
+    implements ForgotPasswordListener {
 
-	private String anonymousApiPassword;
-	private String anonymousApiUserName;
-	private long companyId;
-	private BasicAuthMethod basicAuthMethod;
-	private ForgotPasswordListener listener;
+    private String anonymousApiPassword;
+    private String anonymousApiUserName;
+    private long companyId;
+    private BasicAuthMethod basicAuthMethod;
+    private ForgotPasswordListener listener;
 
-	public ForgotPasswordScreenlet(Context context) {
-		super(context);
-	}
+    public ForgotPasswordScreenlet(Context context) {
+        super(context);
+    }
 
-	public ForgotPasswordScreenlet(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public ForgotPasswordScreenlet(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public ForgotPasswordScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-	}
+    public ForgotPasswordScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-	public ForgotPasswordScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
+    public ForgotPasswordScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
 
-	@Override
-	public void onForgotPasswordRequestFailure(Exception e) {
-		getViewModel().showFailedOperation(null, e);
+    @Override
+    public void onForgotPasswordRequestFailure(Exception e) {
+        getViewModel().showFailedOperation(null, e);
 
-		if (listener != null) {
-			listener.onForgotPasswordRequestFailure(e);
-		}
-	}
+        if (listener != null) {
+            listener.onForgotPasswordRequestFailure(e);
+        }
+    }
 
-	@Override
-	public void onForgotPasswordRequestSuccess(boolean passwordSent) {
-		getViewModel().showFinishOperation(passwordSent);
+    @Override
+    public void onForgotPasswordRequestSuccess(boolean passwordSent) {
+        getViewModel().showFinishOperation(passwordSent);
 
-		if (listener != null) {
-			listener.onForgotPasswordRequestSuccess(passwordSent);
-		}
-	}
+        if (listener != null) {
+            listener.onForgotPasswordRequestSuccess(passwordSent);
+        }
+    }
 
-	public String getAnonymousApiPassword() {
-		return anonymousApiPassword;
-	}
+    public String getAnonymousApiPassword() {
+        return anonymousApiPassword;
+    }
 
-	public void setAnonymousApiPassword(String value) {
-		anonymousApiPassword = value;
-	}
+    public void setAnonymousApiPassword(String value) {
+        anonymousApiPassword = value;
+    }
 
-	public String getAnonymousApiUserName() {
-		return anonymousApiUserName;
-	}
+    public String getAnonymousApiUserName() {
+        return anonymousApiUserName;
+    }
 
-	public void setAnonymousApiUserName(String value) {
-		anonymousApiUserName = value;
-	}
+    public void setAnonymousApiUserName(String value) {
+        anonymousApiUserName = value;
+    }
 
-	public long getCompanyId() {
-		return companyId;
-	}
+    public long getCompanyId() {
+        return companyId;
+    }
 
-	public void setCompanyId(long value) {
-		companyId = value;
-	}
+    public void setCompanyId(long value) {
+        companyId = value;
+    }
 
-	public BasicAuthMethod getBasicAuthMethod() {
-		return basicAuthMethod;
-	}
+    public BasicAuthMethod getBasicAuthMethod() {
+        return basicAuthMethod;
+    }
 
-	public void setBasicAuthMethod(BasicAuthMethod basicAuthMethod) {
-		this.basicAuthMethod = basicAuthMethod;
-		getViewModel().setBasicAuthMethod(basicAuthMethod);
-	}
+    public void setBasicAuthMethod(BasicAuthMethod basicAuthMethod) {
+        this.basicAuthMethod = basicAuthMethod;
+        getViewModel().setBasicAuthMethod(basicAuthMethod);
+    }
 
-	public ForgotPasswordListener getListener() {
-		return listener;
-	}
+    public ForgotPasswordListener getListener() {
+        return listener;
+    }
 
-	public void setListener(ForgotPasswordListener listener) {
-		this.listener = listener;
-	}
+    public void setListener(ForgotPasswordListener listener) {
+        this.listener = listener;
+    }
 
-	@Override
-	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray =
-			context.getTheme().obtainStyledAttributes(attributes, R.styleable.ForgotPasswordScreenlet, 0, 0);
+    @Override
+    protected View createScreenletView(Context context, AttributeSet attributes) {
+        TypedArray typedArray =
+            context.getTheme().obtainStyledAttributes(attributes, R.styleable.ForgotPasswordScreenlet, 0, 0);
 
-		companyId = castToLongOrUseDefault(typedArray.getString(R.styleable.ForgotPasswordScreenlet_companyId),
-			LiferayServerContext.getCompanyId());
+        companyId = castToLongOrUseDefault(typedArray.getString(R.styleable.ForgotPasswordScreenlet_companyId),
+            LiferayServerContext.getCompanyId());
 
-		anonymousApiUserName = typedArray.getString(R.styleable.ForgotPasswordScreenlet_anonymousApiUserName);
+        anonymousApiUserName = typedArray.getString(R.styleable.ForgotPasswordScreenlet_anonymousApiUserName);
 
-		anonymousApiPassword = typedArray.getString(R.styleable.ForgotPasswordScreenlet_anonymousApiPassword);
+        anonymousApiPassword = typedArray.getString(R.styleable.ForgotPasswordScreenlet_anonymousApiPassword);
 
-		int layoutId = typedArray.getResourceId(R.styleable.ForgotPasswordScreenlet_layoutId, getDefaultLayoutId());
+        int layoutId = typedArray.getResourceId(R.styleable.ForgotPasswordScreenlet_layoutId, getDefaultLayoutId());
 
-		View view = LayoutInflater.from(context).inflate(layoutId, null);
+        View view = LayoutInflater.from(context).inflate(layoutId, null);
 
-		int authMethod = typedArray.getInt(R.styleable.ForgotPasswordScreenlet_basicAuthMethod, 0);
-		basicAuthMethod = BasicAuthMethod.getValue(authMethod);
-		((ForgotPasswordViewModel) view).setBasicAuthMethod(basicAuthMethod);
+        int authMethod = typedArray.getInt(R.styleable.ForgotPasswordScreenlet_basicAuthMethod, 0);
+        basicAuthMethod = BasicAuthMethod.getValue(authMethod);
+        ((ForgotPasswordViewModel) view).setBasicAuthMethod(basicAuthMethod);
 
-		typedArray.recycle();
+        typedArray.recycle();
 
-		return view;
-	}
+        return view;
+    }
 
-	@Override
-	protected ForgotPasswordInteractor createInteractor(String actionName) {
-		return new ForgotPasswordInteractor();
-	}
+    @Override
+    protected ForgotPasswordInteractor createInteractor(String actionName) {
+        return new ForgotPasswordInteractor();
+    }
 
-	@Override
-	protected void onUserAction(String userActionName, ForgotPasswordInteractor interactor, Object... args) {
+    @Override
+    protected void onUserAction(String userActionName, ForgotPasswordInteractor interactor, Object... args) {
 
-		ForgotPasswordViewModel viewModel = getViewModel();
+        ForgotPasswordViewModel viewModel = getViewModel();
 
-		String login = viewModel.getLogin();
-		BasicAuthMethod method = viewModel.getBasicAuthMethod();
+        String login = viewModel.getLogin();
+        BasicAuthMethod method = viewModel.getBasicAuthMethod();
 
-		try {
-			interactor.start(companyId, login, method, anonymousApiUserName, anonymousApiPassword);
-		} catch (Exception e) {
-			onForgotPasswordRequestFailure(e);
-		}
-	}
+        try {
+            interactor.start(companyId, login, method, anonymousApiUserName, anonymousApiPassword);
+        } catch (Exception e) {
+            onForgotPasswordRequestFailure(e);
+        }
+    }
 }

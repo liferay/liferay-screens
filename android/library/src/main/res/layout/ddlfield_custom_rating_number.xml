@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.CustomRatingNumberView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:orientation="vertical"
-	>
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
 
-	<TextView
-		android:id="@+id/liferay_ddl_label"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:visibility="gone"
-		/>
+    <TextView
+        android:id="@+id/liferay_ddl_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        />
 
-	<RatingBar
-		android:id="@+id/liferay_ddl_custom_rating"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:numStars="5"
-		android:stepSize="1"
-		/>
+    <RatingBar
+        android:id="@+id/liferay_ddl_custom_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:stepSize="1"
+        />
 
 </com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.CustomRatingNumberView>

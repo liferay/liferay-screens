@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="webcontent_error">Could not receive WebContent information</string>
-	<string name="asset_error">Could not receive AssetEntry</string>
-	<string name="page_error">Page request failed</string>
-	<string name="structureId_error">Error loading structureId</string>
-	<string name="parse_json_error">Error parsing JSON</string>
-	<string name="relogin_error">Error relogin</string>
-	<string name="comment_error">Error comment in action:</string>
-	<string name="document_error">Document could not be uploaded</string>
-	<string name="signup_error">Sorry, could not signup!</string>
-	<string name="screenlet_error">There was an error loading screenlet</string>
-	<string name="forgot_password_error">Forgot password request failed</string>
-	<string name="login_screenlet_error">Login failed</string>
-	<string name="add_bookmark_error">Error adding bookmark</string>
-	<string name="error_when">Error when</string>
-	<string name="custom_interactor_login_error">Error logging in, try with demo/demo</string>
-	<string name="failed">failed</string>
-	<string name="portlet_display_error">Error displaying portlet content</string>
-	<string name="user_portrait_error">Error loading user portrait</string>
+    <string name="webcontent_error">Could not receive WebContent information</string>
+    <string name="asset_error">Could not receive AssetEntry</string>
+    <string name="page_error">Page request failed</string>
+    <string name="structureId_error">Error loading structureId</string>
+    <string name="parse_json_error">Error parsing JSON</string>
+    <string name="relogin_error">Error relogin</string>
+    <string name="comment_error">Error comment in action:</string>
+    <string name="document_error">Document could not be uploaded</string>
+    <string name="signup_error">Sorry, could not signup!</string>
+    <string name="screenlet_error">There was an error loading screenlet</string>
+    <string name="forgot_password_error">Forgot password request failed</string>
+    <string name="login_screenlet_error">Login failed</string>
+    <string name="error_when">Error when</string>
+    <string name="custom_interactor_login_error">Error logging in, try with demo/demo</string>
+    <string name="failed">failed</string>
+    <string name="portlet_display_error">Error displaying portlet content</string>
+    <string name="user_portrait_error">Error loading user portrait</string>
 </resources>

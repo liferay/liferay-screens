@@ -17,157 +17,170 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields;
 import android.content.Context;
 import android.text.Editable;
 import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.TextWatcher;
-import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.jakewharton.rxbinding.widget.RxTextView;
+import com.jakewharton.rxbinding.widget.TextViewAfterTextChangeEvent;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
 import com.liferay.mobile.screens.ddl.model.Field;
+import com.liferay.mobile.screens.util.AndroidUtil;
+import com.liferay.mobile.screens.util.StringUtils;
+import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil;
+import rx.Observable;
+import rx.functions.Func1;
 
 /**
  * @author Silvio Santos
  */
 public abstract class BaseDDLFieldTextView<T extends Field> extends LinearLayout
-	implements DDLFieldViewModel<T>, TextWatcher {
+    implements DDLFieldViewModel<T>, TextWatcher {
 
-	protected TextView labelTextView;
-	protected EditText textEditText;
-	protected View parentView;
-	private T field;
+    protected TextView labelTextView;
+    protected TextView hintTextView;
+    protected EditText textEditText;
+    protected View parentView;
+    private Observable<T> onChangedValueObservable = Observable.empty();
+    private T field;
 
-	public BaseDDLFieldTextView(Context context) {
-		super(context);
-	}
+    public BaseDDLFieldTextView(Context context) {
+        super(context);
+    }
 
-	public BaseDDLFieldTextView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public BaseDDLFieldTextView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public BaseDDLFieldTextView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public BaseDDLFieldTextView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	public void afterTextChanged(Editable editable) {
-		if (field != null) {
-			if (!field.getLastValidationResult()) {
-				field.setLastValidationResult(true);
+    @Override
+    public void afterTextChanged(Editable editable) {
+        if (field != null) {
+            if (!field.getLastValidationResult()) {
+                field.setLastValidationResult(true);
 
-				onPostValidation(true);
-			}
+                onPostValidation(true);
+            }
 
-			onTextChanged(editable.toString());
-		}
-	}
+            onTextChanged(editable.toString());
+        }
+    }
 
-	@Override
-	public void beforeTextChanged(CharSequence text, int start, int count, int after) {
-	}
+    @Override
+    public void beforeTextChanged(CharSequence text, int start, int count, int after) {
+    }
 
-	@Override
-	public T getField() {
-		return field;
-	}
+    @Override
+    public T getField() {
+        return field;
+    }
 
-	@Override
-	public void setField(T field) {
-		this.field = field;
+    @Override
+    public void setField(T field) {
+        this.field = field;
 
-		if (this.field.isShowLabel()) {
-			textEditText.setHint("");
-			if (labelTextView != null) {
-				labelTextView.setText(this.field.getLabel());
-				labelTextView.setVisibility(VISIBLE);
+        refresh();
+    }
 
-				if (this.field.isRequired()) {
-					Spannable requiredAlert = getRequiredSpannable();
-					if (requiredAlert != null) {
-						labelTextView.append(requiredAlert);
-					}
-				}
-			}
-		} else {
-			textEditText.setHint(this.field.getLabel());
-			if (labelTextView != null) {
-				labelTextView.setVisibility(GONE);
-			}
-		}
+    public void setupFieldLayout() {
+        if (!StringUtils.isNullOrEmpty(this.field.getPlaceHolder())) {
+            textEditText.setHint(this.field.getPlaceHolder());
+        }
 
-		refresh();
-	}
+        AndroidUtil.updateLabelLayout(labelTextView, field, getContext());
+        AndroidUtil.updateHintLayout(hintTextView, field);
+    }
 
-	public TextView getLabelTextView() {
-		return labelTextView;
-	}
+    public TextView getLabelTextView() {
+        return labelTextView;
+    }
 
-	public EditText getTextEditText() {
-		return textEditText;
-	}
+    public EditText getTextEditText() {
+        return textEditText;
+    }
 
-	@Override
-	public View getParentView() {
-		return parentView;
-	}
+    @Override
+    public View getParentView() {
+        return parentView;
+    }
 
-	@Override
-	public void setParentView(View view) {
-		parentView = view;
-	}
+    @Override
+    public void setParentView(View view) {
+        parentView = view;
+    }
 
-	@Override
-	public void onTextChanged(CharSequence text, int start, int before, int count) {
-	}
+    @Override
+    public void onTextChanged(CharSequence text, int start, int before, int count) {
+    }
 
-	@Override
-	public void refresh() {
-		textEditText.setText(field.toFormattedString());
-	}
+    @Override
+    public void refresh() {
+        String currentText = textEditText.getText().toString();
+        String newText = field.toFormattedString();
 
-	@Override
-	public void onPostValidation(boolean valid) {
-		String errorText = valid ? null : getResources().getString(R.string.invalid);
+        if (!currentText.equals(newText)) {
+            textEditText.setText(newText);
+        }
 
-		if (labelTextView == null) {
-			textEditText.setError(errorText);
-		} else {
-			labelTextView.setError(errorText);
-		}
-	}
+        setupFieldLayout();
+    }
 
-	@Override
-	public void setUpdateMode(boolean enabled) {
-		textEditText.setEnabled(enabled);
-	}
+    @Override
+    public void onPostValidation(boolean valid) {
+        String errorText = valid ? null : getField().getErrorMessage();
 
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
+        if (labelTextView == null) {
+            textEditText.setError(errorText);
+        } else {
+            labelTextView.setError(errorText);
+        }
+    }
 
-		labelTextView = findViewById(R.id.liferay_ddl_label);
-		textEditText = findViewById(R.id.liferay_ddl_edit_text);
+    @Override
+    public void setUpdateMode(boolean enabled) {
+        if (this.field.isShowLabel()) {
+            TextView label = findViewById(R.id.liferay_ddl_label);
+            AndroidUtil.updateViewState(label, enabled);
+        }
 
-		textEditText.addTextChangedListener(this);
+        textEditText.setEnabled(enabled);
+    }
 
-		//We are not saving the text view state because when state is restored,
-		//the ids of other DDLFields are conflicting.
-		//It is not a problem because all state is stored in Field objects.
-		textEditText.setSaveEnabled(false);
-	}
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
 
-	protected Spannable getRequiredSpannable() {
-		Spannable requiredAlert = new SpannableString(" *");
+        labelTextView = findViewById(R.id.liferay_ddl_label);
+        hintTextView = findViewById(R.id.liferay_ddm_hint);
+        textEditText = findViewById(R.id.liferay_ddl_edit_text);
+        textEditText.addTextChangedListener(this);
 
-		int color = getResources().getColor(R.color.colorRequiredField);
-		requiredAlert.setSpan(new ForegroundColorSpan(color), 0, requiredAlert.length(),
-			Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        //We are not saving the text view state because when state is restored,
+        //the ids of other DDLFields are conflicting.
+        //It is not a problem because all state is stored in Field objects.
+        textEditText.setSaveEnabled(false);
 
-		return requiredAlert;
-	}
-	
-	protected abstract void onTextChanged(String text);
+        onChangedValueObservable = RxTextView.afterTextChangeEvents(textEditText)
+            .skip(1)
+            .distinctUntilChanged()
+            .map(new Func1<TextViewAfterTextChangeEvent, T>() {
+                @Override
+                public T call(TextViewAfterTextChangeEvent textViewAfterTextChangeEvent) {
+                    return field;
+                }
+            });
+    }
+
+    @Override
+    public Observable<T> getOnChangedValueObservable() {
+        return onChangedValueObservable;
+    }
+
+    protected abstract void onTextChanged(String text);
 }

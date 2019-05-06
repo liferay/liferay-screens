@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:orientation="vertical"
-	android:paddingBottom="20dp"
-	android:paddingLeft="10dp"
-	android:paddingRight="10dp"
-	>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="20dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    >
 
-	<com.liferay.mobile.screens.comment.add.CommentAddScreenlet
-		android:id="@+id/comment_add_screenlet"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		app:className="@string/liferay_comment_asset_className"
-		app:classPK="@string/liferay_comment_asset_id"
-		/>
+    <com.liferay.mobile.screens.comment.add.CommentAddScreenlet
+        android:id="@+id/comment_add_screenlet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:className="@string/liferay_comment_asset_className"
+        app:classPK="@string/liferay_comment_asset_id"
+        />
 
 </LinearLayout>

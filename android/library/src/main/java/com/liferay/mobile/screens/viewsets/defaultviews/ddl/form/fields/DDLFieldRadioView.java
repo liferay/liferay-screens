@@ -17,147 +17,198 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.text.Spannable;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import com.jakewharton.rxbinding.widget.RxRadioGroup;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.ddl.form.view.DDLFieldViewModel;
-import com.liferay.mobile.screens.ddl.model.StringWithOptionsField;
+import com.liferay.mobile.screens.ddl.model.Option;
+import com.liferay.mobile.screens.ddl.model.SelectableOptionsField;
+import com.liferay.mobile.screens.util.AndroidUtil;
+import com.liferay.mobile.screens.util.StringUtils;
+import com.liferay.mobile.screens.viewsets.defaultviews.util.ThemeUtil;
 import java.util.List;
+import rx.Observable;
+import rx.functions.Func1;
 
 /**
  * @author Jose Manuel Navarro
  */
-public class DDLFieldRadioView extends RadioGroup
-	implements DDLFieldViewModel<StringWithOptionsField>, CompoundButton.OnCheckedChangeListener {
+public class DDLFieldRadioView extends LinearLayout
+    implements DDLFieldViewModel<SelectableOptionsField>, CompoundButton.OnCheckedChangeListener {
 
-	protected View parentView;
-	private StringWithOptionsField field;
+    protected View parentView;
+    private TextView hintTextView;
+    private TextView labelTextView;
+    private SelectableOptionsField field;
+    private RadioGroup radioGroup;
+    private Observable<SelectableOptionsField> onChangedValueObservable = Observable.empty();
 
-	public DDLFieldRadioView(Context context) {
-		super(context);
-	}
+    public DDLFieldRadioView(Context context) {
+        super(context);
+    }
 
-	public DDLFieldRadioView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public DDLFieldRadioView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	@Override
-	public StringWithOptionsField getField() {
-		return field;
-	}
+    @Override
+    public SelectableOptionsField getField() {
+        return field;
+    }
 
-	@Override
-	public void setField(StringWithOptionsField field) {
-		this.field = field;
+    @Override
+    public void setField(SelectableOptionsField field) {
+        this.field = field;
 
-		if (this.field.isShowLabel()) {
-			TextView label = findViewById(R.id.liferay_ddl_label);
+        if (this.field.isInline()) {
+            radioGroup.setOrientation(HORIZONTAL);
+        }
 
-			label.setText(field.getLabel());
-			label.setVisibility(VISIBLE);
-		}
+        renderOptions(field);
 
-		renderOptions(field);
+        refresh();
+    }
 
-		refresh();
-	}
+    public void renderOptions(SelectableOptionsField field) {
+        LayoutParams layoutParams =
+            new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f);
 
-	public void renderOptions(StringWithOptionsField field) {
-		LayoutParams layoutParams =
-			new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        List<Option> availableOptions = field.getAvailableOptions();
 
-		List<StringWithOptionsField.Option> availableOptions = field.getAvailableOptions();
+        for (int i = 0; i < availableOptions.size(); ++i) {
+            Option opt = availableOptions.get(i);
 
-		for (int i = 0; i < availableOptions.size(); ++i) {
-			StringWithOptionsField.Option opt = availableOptions.get(i);
+            RadioButton radioButton = new RadioButton(getContext());
+            radioButton.setLayoutParams(layoutParams);
+            radioButton.setText(opt.label);
+            radioButton.setTag(opt);
+            radioButton.setOnCheckedChangeListener(this);
+            radioButton.setTypeface(getTypeface());
+            radioButton.setSaveEnabled(true);
 
-			RadioButton radioButton = new RadioButton(getContext());
-			radioButton.setLayoutParams(layoutParams);
-			radioButton.setText(opt.label);
-			radioButton.setTag(opt);
-			radioButton.setOnCheckedChangeListener(this);
-			radioButton.setTypeface(getTypeface());
-			radioButton.setSaveEnabled(true);
-			addView(radioButton);
-		}
-	}
+            if (this.field.isInline()) {
+                radioButton.setGravity(Gravity.TOP);
+            }
 
-	@Override
-	public void refresh() {
-		List<StringWithOptionsField.Option> selectedOptions = field.getCurrentValue();
+            radioGroup.addView(radioButton);
+        }
+    }
 
-		if (selectedOptions != null) {
-			for (StringWithOptionsField.Option opt : selectedOptions) {
-				RadioButton radioButton = findViewWithTag(opt);
+    @Override
+    public void refresh() {
+        List<Option> selectedOptions = field.getCurrentValue();
 
-				if (radioButton != null) {
-					radioButton.setChecked(true);
-				}
-			}
-		}
-	}
+        if (selectedOptions != null) {
+            for (Option opt : selectedOptions) {
+                RadioButton radioButton = findViewWithTag(opt);
 
-	@Override
-	public void onPostValidation(boolean valid) {
-		String errorText = valid ? null : getContext().getString(R.string.required_value);
+                if (radioButton != null) {
+                    radioButton.setChecked(true);
+                }
+            }
+        }
 
-		if (field.isShowLabel()) {
-			TextView label = findViewById(R.id.liferay_ddl_label);
-			label.setError(errorText);
-		} else {
-			List<StringWithOptionsField.Option> availableOptions = field.getAvailableOptions();
-			StringWithOptionsField.Option opt = availableOptions.get(0);
-			RadioButton radioButton = findViewWithTag(opt);
-			if (radioButton != null) {
-				radioButton.setError(errorText);
-			}
-		}
-	}
+        AndroidUtil.updateHintLayout(hintTextView, field);
+        AndroidUtil.updateLabelLayout(labelTextView, field, getContext());
+    }
 
-	@Override
-	public View getParentView() {
-		return parentView;
-	}
+    @Override
+    public void onPostValidation(boolean valid) {
+        String errorText = valid ? null : getContext().getString(R.string.required_value);
 
-	@Override
-	public void setParentView(View view) {
-		parentView = view;
-	}
+        if (field.isShowLabel()) {
+            labelTextView.setError(errorText);
+        } else {
+            List<Option> availableOptions = field.getAvailableOptions();
+            Option opt = availableOptions.get(0);
+            RadioButton radioButton = findViewWithTag(opt);
+            if (radioButton != null) {
+                radioButton.setError(errorText);
+            }
+        }
+    }
 
-	@Override
-	public void setUpdateMode(boolean enabled) {
-		setEnabled(enabled);
-	}
+    @Override
+    public View getParentView() {
+        return parentView;
+    }
 
-	@Override
-	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		RadioButton radioButton = (RadioButton) buttonView;
+    @Override
+    public void setParentView(View view) {
+        parentView = view;
+    }
 
-		StringWithOptionsField.Option opt = (StringWithOptionsField.Option) radioButton.getTag();
-		if (isChecked) {
-			field.selectOption(opt);
-		} else {
-			field.clearOption(opt);
-		}
-	}
+    @Override
+    public Observable<SelectableOptionsField> getOnChangedValueObservable() {
+        return onChangedValueObservable;
+    }
 
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
+    @Override
+    public void setUpdateMode(boolean enabled) {
+        if (this.field.isShowLabel()) {
+            AndroidUtil.updateViewState(labelTextView, enabled);
+        }
 
-		setSaveEnabled(true);
-	}
+        List<Option> availableOptions = field.getAvailableOptions();
+        if (availableOptions != null) {
+            for (Option opt : availableOptions) {
+                RadioButton radioButton = findViewWithTag(opt);
+                radioButton.setEnabled(enabled);
+            }
+        }
 
-	private Typeface getTypeface() {
-		//FIXME replace with constructor with styles when we have the drawables
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-			return Typeface.DEFAULT;
-		}
-		return Typeface.create("sans-serif-light", Typeface.NORMAL);
-	}
+        setEnabled(enabled);
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        RadioButton radioButton = (RadioButton) buttonView;
+
+        Option opt = (Option) radioButton.getTag();
+        if (isChecked) {
+            field.selectOption(opt);
+        } else {
+            field.clearOption(opt);
+        }
+
+        onPostValidation(getField().isValid());
+    }
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+
+        hintTextView = findViewById(R.id.liferay_ddm_hint);
+        labelTextView = findViewById(R.id.liferay_ddl_label);
+        radioGroup = findViewById(R.id.radio_group);
+
+        setSaveEnabled(true);
+
+        onChangedValueObservable = RxRadioGroup.checkedChanges(radioGroup)
+            .skip(1)
+            .distinctUntilChanged()
+            .map(new Func1<Integer, SelectableOptionsField>() {
+                @Override
+                public SelectableOptionsField call(Integer integer) {
+                    return field;
+                }
+            });
+    }
+
+    private Typeface getTypeface() {
+        //FIXME replace with constructor with styles when we have the drawables
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+            return Typeface.DEFAULT;
+        }
+        return Typeface.create("sans-serif-light", Typeface.NORMAL);
+    }
 }

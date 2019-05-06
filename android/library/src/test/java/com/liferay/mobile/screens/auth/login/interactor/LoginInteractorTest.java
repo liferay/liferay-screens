@@ -42,157 +42,157 @@ import static org.mockito.Mockito.verify;
 @RunWith(Enclosed.class)
 public class LoginInteractorTest {
 
-	private static final String LOGIN_EMAIL = "test@liferay.com";
-	private static final String LOGIN_PASSWORD = "test";
-	private static final String LOGIN_SCREEN_NAME = "test_screen_name";
-	private static final long LOGIN_USER_ID = 10658;
-	private static final long companyId = LiferayServerContext.getCompanyId();
+    private static final String LOGIN_EMAIL = "test@liferay.com";
+    private static final String LOGIN_PASSWORD = "test";
+    private static final String LOGIN_SCREEN_NAME = "test_screen_name";
+    private static final long LOGIN_USER_ID = 10658;
+    private static final long companyId = LiferayServerContext.getCompanyId();
 
-	@RunWith(RobolectricTestRunner.class)
-	@Config(constants = BuildConfig.class, sdk = 23)
-	public static class WhenBasicAuthMethodIsEmail {
+    @RunWith(RobolectricTestRunner.class)
+    @Config(constants = BuildConfig.class, sdk = 23)
+    public static class WhenBasicAuthMethodIsEmail {
 
-		@Test
-		public void shouldCallGetUserByEmailService() throws Exception {
-			LoginBasicInteractor interactorSpy = MockFactory.spyLoginInteractor();
+        @Test
+        public void shouldCallGetUserByEmailService() throws Exception {
+            LoginBasicInteractor interactorSpy = MockFactory.spyLoginInteractor();
 
-			UserConnector serviceMock = MockFactory.mockUserConnector();
+            UserConnector serviceMock = MockFactory.mockUserConnector();
 
-			doReturn(serviceMock).when(interactorSpy).getUserConnector(LOGIN_EMAIL, LOGIN_PASSWORD);
+            doReturn(serviceMock).when(interactorSpy).getUserConnector(LOGIN_EMAIL, LOGIN_PASSWORD);
 
-			interactorSpy.execute(LOGIN_EMAIL, LOGIN_PASSWORD, BasicAuthMethod.EMAIL);
+            interactorSpy.execute(LOGIN_EMAIL, LOGIN_PASSWORD, BasicAuthMethod.EMAIL);
 
-			verify(serviceMock).getUserByEmailAddress(companyId, LOGIN_EMAIL);
-		}
-	}
+            verify(serviceMock).getUserByEmailAddress(companyId, LOGIN_EMAIL);
+        }
+    }
 
-	@RunWith(RobolectricTestRunner.class)
-	@Config(constants = BuildConfig.class, sdk = 23)
-	public static class WhenBasicAuthMethodIsId {
+    @RunWith(RobolectricTestRunner.class)
+    @Config(constants = BuildConfig.class, sdk = 23)
+    public static class WhenBasicAuthMethodIsId {
 
-		@Test
-		public void shouldCallGetUserByIdService() throws Exception {
-			LoginBasicInteractor interactorSpy = MockFactory.spyLoginInteractor();
+        @Test
+        public void shouldCallGetUserByIdService() throws Exception {
+            LoginBasicInteractor interactorSpy = MockFactory.spyLoginInteractor();
 
-			UserConnector serviceMock = MockFactory.mockUserConnector();
+            UserConnector serviceMock = MockFactory.mockUserConnector();
 
-			String userId = String.valueOf(LOGIN_USER_ID);
+            String userId = String.valueOf(LOGIN_USER_ID);
 
-			doReturn(serviceMock).when(interactorSpy).getUserConnector(userId, LOGIN_PASSWORD);
+            doReturn(serviceMock).when(interactorSpy).getUserConnector(userId, LOGIN_PASSWORD);
 
-			interactorSpy.execute(userId, LOGIN_PASSWORD, BasicAuthMethod.USER_ID);
+            interactorSpy.execute(userId, LOGIN_PASSWORD, BasicAuthMethod.USER_ID);
 
-			verify(serviceMock).getUserById(LOGIN_USER_ID);
-		}
-	}
+            verify(serviceMock).getUserById(LOGIN_USER_ID);
+        }
+    }
 
-	@RunWith(RobolectricTestRunner.class)
-	@Config(constants = BuildConfig.class, sdk = 23)
-	public static class WhenBasicAuthMethodIsScreenName {
+    @RunWith(RobolectricTestRunner.class)
+    @Config(constants = BuildConfig.class, sdk = 23)
+    public static class WhenBasicAuthMethodIsScreenName {
 
-		@Test
-		public void shouldCallGetUserByScreenNameService() throws Exception {
-			LoginBasicInteractor interactorSpy = MockFactory.spyLoginInteractor();
+        @Test
+        public void shouldCallGetUserByScreenNameService() throws Exception {
+            LoginBasicInteractor interactorSpy = MockFactory.spyLoginInteractor();
 
-			UserConnector serviceMock = MockFactory.mockUserConnector();
+            UserConnector serviceMock = MockFactory.mockUserConnector();
 
-			doReturn(serviceMock).when(interactorSpy).getUserConnector(LOGIN_SCREEN_NAME, LOGIN_PASSWORD);
+            doReturn(serviceMock).when(interactorSpy).getUserConnector(LOGIN_SCREEN_NAME, LOGIN_PASSWORD);
 
-			interactorSpy.execute(LOGIN_SCREEN_NAME, LOGIN_PASSWORD, BasicAuthMethod.SCREEN_NAME);
+            interactorSpy.execute(LOGIN_SCREEN_NAME, LOGIN_PASSWORD, BasicAuthMethod.SCREEN_NAME);
 
-			verify(serviceMock).getUserByScreenName(companyId, LOGIN_SCREEN_NAME);
-		}
-	}
+            verify(serviceMock).getUserByScreenName(companyId, LOGIN_SCREEN_NAME);
+        }
+    }
 
-	@RunWith(RobolectricTestRunner.class)
-	@Config(constants = BuildConfig.class, sdk = 23)
-	public static class WhenLoginMethodIsCalled {
+    @RunWith(RobolectricTestRunner.class)
+    @Config(constants = BuildConfig.class, sdk = 23)
+    public static class WhenLoginMethodIsCalled {
 
-		@Test
-		public void shouldCallValidate() throws Exception {
-			LoginBasicInteractor interactorSpy = MockFactory.spyLoginInteractor();
+        @Test
+        public void shouldCallValidate() throws Exception {
+            LoginBasicInteractor interactorSpy = MockFactory.spyLoginInteractor();
 
-			doReturn(MockFactory.mockUserConnector()).when(interactorSpy).getUserConnector(LOGIN_EMAIL, LOGIN_PASSWORD);
+            doReturn(MockFactory.mockUserConnector()).when(interactorSpy).getUserConnector(LOGIN_EMAIL, LOGIN_PASSWORD);
 
-			interactorSpy.execute(LOGIN_EMAIL, LOGIN_PASSWORD, BasicAuthMethod.EMAIL);
+            interactorSpy.execute(LOGIN_EMAIL, LOGIN_PASSWORD, BasicAuthMethod.EMAIL);
 
-			verify(interactorSpy).validate(LOGIN_EMAIL, LOGIN_PASSWORD, BasicAuthMethod.EMAIL);
-		}
-	}
+            verify(interactorSpy).validate(LOGIN_EMAIL, LOGIN_PASSWORD, BasicAuthMethod.EMAIL);
+        }
+    }
 
-	@RunWith(RobolectricTestRunner.class)
-	@Config(constants = BuildConfig.class, sdk = 23)
-	public static class WhenLoginRequestCompletes {
+    @RunWith(RobolectricTestRunner.class)
+    @Config(constants = BuildConfig.class, sdk = 23)
+    public static class WhenLoginRequestCompletes {
 
-		@Test
-		public void shouldCallListenerSuccess() throws Exception {
-			LoginListener listener = MockFactory.mockLoginListener();
-			JSONObject result = new JSONObject();
-			BasicEvent event = new BasicEvent(result);
+        @Test
+        public void shouldCallListenerSuccess() throws Exception {
+            LoginListener listener = MockFactory.mockLoginListener();
+            JSONObject result = new JSONObject();
+            BasicEvent event = new BasicEvent(result);
 
-			loginWithResponseEvent(event, listener);
+            loginWithResponseEvent(event, listener);
 
-			verify(listener).onLoginSuccess(any(User.class));
-		}
+            verify(listener).onLoginSuccess(any(User.class));
+        }
 
-		@Test
-		public void shouldCallListenerFailure() throws Exception {
-			LoginListener listener = MockFactory.mockLoginListener();
-			Exception e = new Exception();
-			BasicEvent event = new BasicEvent(e);
+        @Test
+        public void shouldCallListenerFailure() throws Exception {
+            LoginListener listener = MockFactory.mockLoginListener();
+            Exception e = new Exception();
+            BasicEvent event = new BasicEvent(e);
 
-			loginWithResponseEvent(event, listener);
+            loginWithResponseEvent(event, listener);
 
-			verify(listener).onLoginFailure(e);
-		}
+            verify(listener).onLoginFailure(e);
+        }
 
-		private void loginWithResponseEvent(final BasicEvent event, LoginListener listener) throws Exception {
+        private void loginWithResponseEvent(final BasicEvent event, LoginListener listener) throws Exception {
 
-			final LoginBasicInteractor interactorSpy = MockFactory.spyLoginInteractor();
+            final LoginBasicInteractor interactorSpy = MockFactory.spyLoginInteractor();
 
-			UserConnector serviceMock = MockFactory.mockUserConnector();
+            UserConnector serviceMock = MockFactory.mockUserConnector();
 
-			doReturn(serviceMock).when(interactorSpy).getUserConnector(LOGIN_EMAIL, LOGIN_PASSWORD);
+            doReturn(serviceMock).when(interactorSpy).getUserConnector(LOGIN_EMAIL, LOGIN_PASSWORD);
 
-			interactorSpy.onScreenletAttached(listener);
+            interactorSpy.onScreenletAttached(listener);
 
-			doAnswer(new Answer<Void>() {
-				@Override
-				public Void answer(InvocationOnMock invocation) throws Throwable {
+            doAnswer(new Answer<Void>() {
+                @Override
+                public Void answer(InvocationOnMock invocation) {
 
-					interactorSpy.onEventMainThread(event);
+                    interactorSpy.onEventMainThread(event);
 
-					return null;
-				}
-			}).when(serviceMock).getUserByEmailAddress(companyId, LOGIN_EMAIL);
+                    return null;
+                }
+            }).when(serviceMock).getUserByEmailAddress(companyId, LOGIN_EMAIL);
 
-			interactorSpy.execute(LOGIN_EMAIL, LOGIN_PASSWORD, BasicAuthMethod.EMAIL);
-		}
-	}
+            interactorSpy.execute(LOGIN_EMAIL, LOGIN_PASSWORD, BasicAuthMethod.EMAIL);
+        }
+    }
 
-	@RunWith(RobolectricTestRunner.class)
-	@Config(constants = BuildConfig.class, sdk = 23)
-	public static class WhenValidateMethodIsCalled {
+    @RunWith(RobolectricTestRunner.class)
+    @Config(constants = BuildConfig.class, sdk = 23)
+    public static class WhenValidateMethodIsCalled {
 
-		@Test(expected = IllegalArgumentException.class)
-		public void shouldRaiseExceptionOnNullLogin() {
-			LoginBasicInteractor interactorSpy = MockFactory.spyLoginInteractor();
+        @Test(expected = IllegalArgumentException.class)
+        public void shouldRaiseExceptionOnNullLogin() {
+            LoginBasicInteractor interactorSpy = MockFactory.spyLoginInteractor();
 
-			interactorSpy.validate(null, LOGIN_PASSWORD, BasicAuthMethod.EMAIL);
-		}
+            interactorSpy.validate(null, LOGIN_PASSWORD, BasicAuthMethod.EMAIL);
+        }
 
-		@Test(expected = IllegalArgumentException.class)
-		public void shouldRaiseExceptionOnNullPassword() {
-			LoginBasicInteractor interactorSpy = MockFactory.spyLoginInteractor();
+        @Test(expected = IllegalArgumentException.class)
+        public void shouldRaiseExceptionOnNullPassword() {
+            LoginBasicInteractor interactorSpy = MockFactory.spyLoginInteractor();
 
-			interactorSpy.validate(LOGIN_EMAIL, null, BasicAuthMethod.EMAIL);
-		}
+            interactorSpy.validate(LOGIN_EMAIL, null, BasicAuthMethod.EMAIL);
+        }
 
-		@Test(expected = IllegalArgumentException.class)
-		public void shouldRaiseExceptionOnNullBasicAuthMethod() {
-			LoginBasicInteractor interactorSpy = MockFactory.spyLoginInteractor();
+        @Test(expected = IllegalArgumentException.class)
+        public void shouldRaiseExceptionOnNullBasicAuthMethod() {
+            LoginBasicInteractor interactorSpy = MockFactory.spyLoginInteractor();
 
-			interactorSpy.validate(LOGIN_EMAIL, LOGIN_PASSWORD, null);
-		}
-	}
+            interactorSpy.validate(LOGIN_EMAIL, LOGIN_PASSWORD, null);
+        }
+    }
 }

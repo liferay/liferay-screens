@@ -18,11 +18,11 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Build;
-import android.support.design.widget.BottomSheetDialog;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.viewsets.lexicon.R;
@@ -32,64 +32,72 @@ import com.liferay.mobile.screens.viewsets.lexicon.util.FormViewUtil;
  * @author Victor Oliveira
  */
 public class DDLDocumentFieldView
-	extends com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView {
+    extends com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView {
 
-	public DDLDocumentFieldView(Context context) {
-		super(context);
-	}
+    public DDLDocumentFieldView(Context context) {
+        super(context);
+    }
 
-	public DDLDocumentFieldView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public DDLDocumentFieldView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public DDLDocumentFieldView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public DDLDocumentFieldView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	public void refresh() {
-		EditText editText = getTextEditText();
-		DocumentField field = getField();
+    @Override
+    public void refresh() {
+        EditText editText = getTextEditText();
+        DocumentField field = getField();
 
-		editText.setText(field.toFormattedString());
+        editText.setText(field.toFormattedString());
 
-		if (field.isUploaded()) {
-			setRightDrawable(editText, R.drawable.lexicon_icon_clip_success_tinted);
-			progressBar.setVisibility(GONE);
-		} else if (field.isUploadFailed()) {
-			setRightDrawable(editText, R.drawable.lexicon_icon_cancel_error_tinted);
-			progressBar.setVisibility(GONE);
-		} else if (field.isUploading()) {
-			setRightDrawable(editText, R.drawable.lexicon_icon_clip_white_background);
-			progressBar.setVisibility(VISIBLE);
-		} else {
-			setRightDrawable(editText, R.drawable.lexicon_icon_clip_tinted);
-			progressBar.setVisibility(GONE);
-		}
-	}
+        if (field.isUploaded()) {
+            setRightDrawable(editText, R.drawable.lexicon_icon_clip_success_tinted);
+            progressBar.setVisibility(GONE);
+            refreshLayout(true);
+        } else if (field.isUploadFailed()) {
+            setRightDrawable(editText, R.drawable.lexicon_icon_cancel_error_tinted);
+            progressBar.setVisibility(GONE);
+            refreshLayout(false);
+        } else if (field.isUploading()) {
+            setRightDrawable(editText, R.drawable.lexicon_icon_clip_white_background);
+            progressBar.setVisibility(VISIBLE);
+            refreshLayout(true);
+        } else {
+            setRightDrawable(editText, R.drawable.lexicon_icon_clip_tinted);
+            progressBar.setVisibility(GONE);
+            refreshLayout(true);
+        }
+    }
 
-	@Override
-	protected Dialog createOriginDialog() {
-		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
+    @Override
+    protected Dialog createOriginDialog() {
+        Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
 
-		LayoutInflater factory = LayoutInflater.from(activity);
-		final View customDialogView = factory.inflate(R.layout.ddlfield_select_document_dialog_lexicon, null);
+        LayoutInflater factory = LayoutInflater.from(activity);
+        final View customDialogView = factory.inflate(R.layout.ddlfield_select_document_dialog_lexicon, null);
 
-		BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(activity);
-		bottomSheetDialog.setContentView(customDialogView);
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(activity);
+        bottomSheetDialog.setContentView(customDialogView);
 
-		if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-			View view = customDialogView.findViewById(R.id.liferay_dialog_select_gallery_video_container);
-			view.setVisibility(VISIBLE);
-		}
+        View view = customDialogView.findViewById(R.id.liferay_dialog_select_gallery_video_container);
+        view.setVisibility(VISIBLE);
 
-		setupDialogListeners(activity, customDialogView);
+        setupDialogListeners(activity, customDialogView);
 
-		return bottomSheetDialog;
-	}
+        return bottomSheetDialog;
+    }
 
-	@Override
-	public void onPostValidation(boolean valid) {
-		FormViewUtil.setupTextFieldLayout(getContext(), valid, labelTextView, textEditText);
-	}
+    @Override
+    public void onPostValidation(boolean valid) {
+        refreshLayout(valid);
+    }
+
+    private void refreshLayout(boolean valid) {
+        String errorMessage = getField().getErrorMessage();
+        FormViewUtil.setupBackground(getContext(), valid, textEditText);
+        FormViewUtil.setupErrorView(valid, findViewById(R.id.error_view), errorMessage);
+    }
 }

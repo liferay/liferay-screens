@@ -26,41 +26,41 @@ import com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet;
  */
 public class WebContentDisplayActivity extends ThemeActivity implements WebContentDisplayListener {
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.web_content_display);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.web_content_display);
 
-		WebContentDisplayScreenlet screenlet = findViewById(R.id.web_content_display_screenlet);
+        WebContentDisplayScreenlet screenlet = findViewById(R.id.web_content_display_screenlet);
 
-		if (getIntent().hasExtra("articleId")) {
-			screenlet.setArticleId(getIntent().getStringExtra("articleId"));
-		}
+        if (getIntent().hasExtra("articleId")) {
+            screenlet.setArticleId(getIntent().getStringExtra("articleId"));
+        }
 
-		screenlet.setCustomCssFile(R.raw.custom);
-		screenlet.setListener(this);
-		screenlet.load();
-	}
+        screenlet.setCustomCssFile(R.raw.custom);
+        screenlet.setListener(this);
+        screenlet.load();
+    }
 
-	@Override
-	public WebContent onWebContentReceived(WebContent html) {
-		info(getString(R.string.webcontent_received_info));
-		return null;
-	}
+    @Override
+    public WebContent onWebContentReceived(WebContent html) {
+        info(getString(R.string.webcontent_received_info));
+        return null;
+    }
 
-	@Override
-	public boolean onUrlClicked(String url) {
-		info(getString(R.string.webcontent_clicked_info) + " -> " + url);
-		return false;
-	}
+    @Override
+    public boolean onUrlClicked(String url) {
+        info(getString(R.string.webcontent_clicked_info) + " -> " + url);
+        return false;
+    }
 
-	@Override
-	public boolean onWebContentTouched(View view, MotionEvent event) {
-		return false;
-	}
+    @Override
+    public boolean onWebContentTouched(View view, MotionEvent event) {
+        return false;
+    }
 
-	@Override
-	public void error(Exception e, String userAction) {
-		error(getString(R.string.webcontent_error), e);
-	}
+    @Override
+    public void error(Exception e, String userAction) {
+        error(getString(R.string.webcontent_error), e);
+    }
 }

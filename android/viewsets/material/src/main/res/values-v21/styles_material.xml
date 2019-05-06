@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="material_theme" parent="Theme.AppCompat.Light.NoActionBar">
-		<item name="android:colorAccent">@color/colorAccent_material</item>
-		<item name="colorAccent">@color/colorAccent_material</item>
+    <style name="material_theme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:colorAccent">@color/colorAccent_material</item>
+        <item name="colorAccent">@color/colorAccent_material</item>
 
-		<item name="android:colorPrimary">@color/colorPrimary_material</item>
-		<item name="colorPrimary">@color/colorPrimary_material</item>
+        <item name="android:colorPrimary">@color/colorPrimary_material</item>
+        <item name="colorPrimary">@color/colorPrimary_material</item>
 
-		<item name="android:colorPrimaryDark">@color/colorPrimaryDark_material</item>
-		<item name="colorPrimaryDark">@color/colorPrimaryDark_material</item>
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDark_material</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_material</item>
 
-		<item name="android:colorControlNormal">@color/colorPrimary_material</item>
-		<item name="android:colorControlHighlight">@color/colorAccent_material</item>
-		<item name="android:colorControlActivated">@color/colorPrimary_material</item>
+        <item name="android:colorControlNormal">@color/colorPrimary_material</item>
+        <item name="android:colorControlHighlight">@color/colorAccent_material</item>
+        <item name="android:colorControlActivated">@color/colorPrimary_material</item>
 
-		<item name="android:textColorPrimary">@color/textColorPrimary_material</item>
-		<item name="android:textColorSecondary">@color/textColorSecondary_material</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary_material</item>
+        <item name="android:textColorSecondary">@color/textColorSecondary_material</item>
 
-		<item name="android:textViewStyle">@style/material_text_view</item>
-		<item name="android:editTextStyle">@style/material_edit_text</item>
-		<item name="android:buttonStyle">@style/material_button</item>
-		<item name="editTextStyle">@style/material_edit_text</item>
-		<item name="buttonStyle">@style/material_button</item>
+        <item name="android:textViewStyle">@style/material_text_view</item>
+        <item name="android:editTextStyle">@style/material_edit_text</item>
+        <item name="android:buttonStyle">@style/material_button</item>
+        <item name="editTextStyle">@style/material_edit_text</item>
+        <item name="buttonStyle">@style/material_button</item>
 
-		<item name="android:windowContentTransitions">true</item>
-		<item name="android:windowAllowEnterTransitionOverlap">true</item>
-		<item name="android:windowAllowReturnTransitionOverlap">true</item>
-		<item name="android:windowSharedElementEnterTransition">@android:transition/explode</item>
-		<item name="android:windowSharedElementExitTransition">@android:transition/explode</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+        <item name="android:windowSharedElementEnterTransition">@android:transition/explode</item>
+        <item name="android:windowSharedElementExitTransition">@android:transition/explode</item>
 
-		<item name="themeName">material_theme</item>
-	</style>
+        <item name="themeName">material_theme</item>
+    </style>
 
-	<style name="material_button" parent="Widget.AppCompat.Button">
-		<item name="android:textColor">@android:color/white</item>
-		<item name="android:background">@drawable/material_ripple</item>
-	</style>
+    <style name="material_button" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/material_ripple</item>
+    </style>
 
-	<style name="material_edit_text" parent="Widget.AppCompat.EditText">
-		<item name="android:inputType">text</item>
-		<item name="android:textSize">16sp</item>
-		<item name="android:textColor">?android:attr/textColorPrimary</item>
-		<item name="android:textColorHint">?android:attr/textColorSecondary</item>
-	</style>
+    <style name="material_edit_text" parent="Widget.AppCompat.EditText">
+        <item name="android:inputType">text</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textColorHint">?android:attr/textColorSecondary</item>
+    </style>
 
-	<style name="material_text_view" parent="android:Widget.Material.Light.TextView">
-		<item name="android:textColor">?android:attr/textColorPrimary</item>
-	</style>
+    <style name="material_text_view" parent="android:Widget.Material.Light.TextView">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
 
 </resources>

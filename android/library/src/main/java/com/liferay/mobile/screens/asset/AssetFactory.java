@@ -15,41 +15,41 @@ import java.util.Map;
  */
 public class AssetFactory {
 
-	private AssetFactory() {
-		super();
-	}
+    private AssetFactory() {
+        super();
+    }
 
-	public static AssetEntry createInstance(Map<String, Object> map) {
+    public static AssetEntry createInstance(Map<String, Object> map) {
 
-		if (map.containsKey("object")) {
-			map.putAll((Map) map.get("object"));
+        if (map.containsKey("object")) {
+            map.putAll((Map) map.get("object"));
 
-			String stringLocale = (String) map.get("locale");
-			String className = (String) map.get("className");
+            String stringLocale = (String) map.get("locale");
+            String className = (String) map.get("className");
 
-			if (stringLocale != null) {
-				Locale locale = LiferayLocale.getLocaleWithoutDefault(stringLocale);
+            if (stringLocale != null) {
+                Locale locale = LiferayLocale.getLocaleWithoutDefault(stringLocale);
 
-				if (className.endsWith("JournalArticle")) {
-					return new WebContent(map, locale);
-				} else if (className.endsWith("DDLRecord")) {
-					return new Record(map, locale);
-				} else if (className.endsWith("DLFileEntry")) {
-					return new FileEntry(map);
-				} else if (className.endsWith("BlogsEntry")) {
-					return new BlogsEntry(map);
-				} else if (className.endsWith("User")) {
-					return new User(map);
-				}
-			}
-		}
+                if (className.endsWith("JournalArticle")) {
+                    return new WebContent(map, locale);
+                } else if (className.endsWith("DDLRecord")) {
+                    return new Record(map, locale);
+                } else if (className.endsWith("DLFileEntry")) {
+                    return new FileEntry(map);
+                } else if (className.endsWith("BlogsEntry")) {
+                    return new BlogsEntry(map);
+                } else if (className.endsWith("User")) {
+                    return new User(map);
+                }
+            }
+        }
 
-		String mimeType = (String) map.get("mimeType");
+        String mimeType = (String) map.get("mimeType");
 
-		if (mimeType.contains("image")) {
-			return new ImageEntry(map);
-		}
+        if (mimeType.contains("image")) {
+            return new ImageEntry(map);
+        }
 
-		return new AssetEntry(map);
-	}
+        return new AssetEntry(map);
+    }
 }

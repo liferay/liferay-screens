@@ -1,25 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:background="@android:color/white"
-	android:orientation="vertical"
-	>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    android:padding="20dp"
+    >
 
-	<TextView
-		android:text="@string/user_portrait_label"
-		style="@style/label"
-		/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/user_portrait_default_text"
+        />
 
-	<com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
-		android:id="@+id/user_portrait_screenlet"
-		android:layout_width="100dp"
-		android:layout_height="100dp"
-		app:autoLoad="false"
-		app:cachePolicy="REMOTE_FIRST"
-		app:editable="true"
-		app:layoutId="@layout/userportrait_initials"
-		/>
+    <com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
+        android:id="@+id/user_portrait_screenlet_default"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:autoLoad="false"
+        app:userId="0"
+        app:cachePolicy="REMOTE_FIRST"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/user_portrait_default_editable_text"
+        />
+
+    <com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
+        android:id="@+id/user_portrait_screenlet"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:autoLoad="false"
+        app:cachePolicy="REMOTE_FIRST"
+        app:editable="true"
+        />
 
 </LinearLayout>

@@ -25,80 +25,80 @@ import org.json.JSONObject;
  */
 public class ScreensjournalarticleService extends BaseService {
 
-	public ScreensjournalarticleService(Session session) {
-		super(session);
-	}
+    public ScreensjournalarticleService(Session session) {
+        super(session);
+    }
 
-	public String getJournalArticleContent(long groupId, String articleId, long ddmTemplateId, String locale)
-		throws Exception {
-		JSONObject _command = new JSONObject();
+    public String getJournalArticleContent(long groupId, String articleId, long ddmTemplateId, String locale)
+        throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("groupId", groupId);
-			_params.put("articleId", checkNull(articleId));
-			_params.put("ddmTemplateId", ddmTemplateId);
-			_params.put("locale", checkNull(locale));
+            _params.put("groupId", groupId);
+            _params.put("articleId", checkNull(articleId));
+            _params.put("ddmTemplateId", ddmTemplateId);
+            _params.put("locale", checkNull(locale));
 
-			_command.put("/screens.screensjournalarticle/get-journal-article-content", _params);
-		} catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/screens.screensjournalarticle/get-journal-article-content", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getString(0);
-	}
+        return _result.getString(0);
+    }
 
-	public String getJournalArticleContent(long classPK, long ddmTemplateId, String locale) throws Exception {
-		JSONObject _command = new JSONObject();
+    public String getJournalArticleContent(long classPK, long ddmTemplateId, String locale) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("classPK", classPK);
-			_params.put("ddmTemplateId", ddmTemplateId);
-			_params.put("locale", checkNull(locale));
+            _params.put("classPK", classPK);
+            _params.put("ddmTemplateId", ddmTemplateId);
+            _params.put("locale", checkNull(locale));
 
-			_command.put("/screens.screensjournalarticle/get-journal-article-content", _params);
-		} catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/screens.screensjournalarticle/get-journal-article-content", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getString(0);
-	}
+        return _result.getString(0);
+    }
 
-	public String getJournalArticleContent(long classPK, String locale) throws Exception {
-		JSONObject _command = new JSONObject();
+    public String getJournalArticleContent(long classPK, String locale) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("classPK", classPK);
-			_params.put("locale", checkNull(locale));
+            _params.put("classPK", classPK);
+            _params.put("locale", checkNull(locale));
 
-			_command.put("/screens.screensjournalarticle/get-journal-article-content", _params);
-		} catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/screens.screensjournalarticle/get-journal-article-content", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getString(0);
-	}
+        return _result.getString(0);
+    }
 }

@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.westeros.asset.list.lastchanges.AssetListView
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/liferay_list_screenlet"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/liferay_list_screenlet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
-	<ProgressBar
-		android:id="@+id/liferay_progress"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center"
-		android:visibility="gone"
-		/>
+    <ProgressBar
+        android:id="@+id/liferay_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        />
 
-	<android.support.v4.widget.SwipeRefreshLayout
-		android:id="@+id/liferay_swipe_refresh"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/liferay_swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
-		<android.support.v7.widget.RecyclerView
-			android:id="@+id/liferay_recycler_list"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:visibility="gone"
-			/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/liferay_recycler_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            />
 
-	</android.support.v4.widget.SwipeRefreshLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </com.liferay.mobile.screens.viewsets.westeros.asset.list.lastchanges.AssetListView>

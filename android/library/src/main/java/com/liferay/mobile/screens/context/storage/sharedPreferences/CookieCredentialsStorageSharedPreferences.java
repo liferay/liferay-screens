@@ -23,46 +23,46 @@ import com.liferay.mobile.screens.context.AuthenticationType;
  */
 public class CookieCredentialsStorageSharedPreferences extends BaseCredentialsStorageSharedPreferences {
 
-	private static final String AUTH = "auth";
-	private static final String USERNAME = "username";
-	private static final String PASSWORD = "password";
-	private static final String AUTH_TOKEN = "auth_token";
-	private static final String COOKIE_HEADER = "cookie_header";
-	private static final String SHOULD_HANDLE_EXPIRATION = "should_handle_expiration";
-	private static final String COOKIE_EXPIRATION_TIME = "cookie_expiration_time";
-	private static final String COOKIE_LAST_REFRESH = "cookie_last_refresh";
+    private static final String AUTH = "auth";
+    private static final String USERNAME = "username";
+    private static final String PASSWORD = "password";
+    private static final String AUTH_TOKEN = "auth_token";
+    private static final String COOKIE_HEADER = "cookie_header";
+    private static final String SHOULD_HANDLE_EXPIRATION = "should_handle_expiration";
+    private static final String COOKIE_EXPIRATION_TIME = "cookie_expiration_time";
+    private static final String COOKIE_LAST_REFRESH = "cookie_last_refresh";
 
-	@Override
-	protected void storeAuth(Authentication auth) {
-		CookieAuthentication cookieAuthentication = (CookieAuthentication) auth;
-		getSharedPref().edit()
-			.putString(AUTH, AuthenticationType.COOKIE.name())
-			.putString(USERNAME, cookieAuthentication.getUsername())
-			.putString(PASSWORD, cookieAuthentication.getPassword())
-			.putString(AUTH_TOKEN, cookieAuthentication.getAuthToken())
-			.putString(COOKIE_HEADER, cookieAuthentication.getCookieHeader())
-			.putBoolean(SHOULD_HANDLE_EXPIRATION, cookieAuthentication.shouldHandleExpiration())
-			.putInt(COOKIE_EXPIRATION_TIME, cookieAuthentication.getCookieExpirationTime())
-			.putLong(COOKIE_LAST_REFRESH, cookieAuthentication.getLastCookieRefresh())
-			.apply();
-	}
+    @Override
+    protected void storeAuth(Authentication auth) {
+        CookieAuthentication cookieAuthentication = (CookieAuthentication) auth;
+        getSharedPref().edit()
+            .putString(AUTH, AuthenticationType.COOKIE.name())
+            .putString(USERNAME, cookieAuthentication.getUsername())
+            .putString(PASSWORD, cookieAuthentication.getPassword())
+            .putString(AUTH_TOKEN, cookieAuthentication.getAuthToken())
+            .putString(COOKIE_HEADER, cookieAuthentication.getCookieHeader())
+            .putBoolean(SHOULD_HANDLE_EXPIRATION, cookieAuthentication.shouldHandleExpiration())
+            .putInt(COOKIE_EXPIRATION_TIME, cookieAuthentication.getCookieExpirationTime())
+            .putLong(COOKIE_LAST_REFRESH, cookieAuthentication.getLastCookieRefresh())
+            .apply();
+    }
 
-	@Override
-	protected Authentication loadAuth() {
-		String username = getSharedPref().getString(USERNAME, null);
-		String password = getSharedPref().getString(PASSWORD, null);
-		String authToken = getSharedPref().getString(AUTH_TOKEN, null);
-		String cookieHeader = getSharedPref().getString(COOKIE_HEADER, null);
-		boolean shouldHandleExpiration = getSharedPref().getBoolean(SHOULD_HANDLE_EXPIRATION, true);
-		int cookieExpirationTime =
-			getSharedPref().getInt(COOKIE_EXPIRATION_TIME, CookieAuthentication.COOKIE_EXPIRATION_TIME);
-		long lastCookieRefresh = getSharedPref().getLong(COOKIE_LAST_REFRESH, 0);
+    @Override
+    protected Authentication loadAuth() {
+        String username = getSharedPref().getString(USERNAME, null);
+        String password = getSharedPref().getString(PASSWORD, null);
+        String authToken = getSharedPref().getString(AUTH_TOKEN, null);
+        String cookieHeader = getSharedPref().getString(COOKIE_HEADER, null);
+        boolean shouldHandleExpiration = getSharedPref().getBoolean(SHOULD_HANDLE_EXPIRATION, true);
+        int cookieExpirationTime =
+            getSharedPref().getInt(COOKIE_EXPIRATION_TIME, CookieAuthentication.COOKIE_EXPIRATION_TIME);
+        long lastCookieRefresh = getSharedPref().getLong(COOKIE_LAST_REFRESH, 0);
 
-		if (username == null || password == null || authToken == null || cookieHeader == null) {
-			return null;
-		}
+        if (username == null || password == null || authToken == null || cookieHeader == null) {
+            return null;
+        }
 
-		return new CookieAuthentication(authToken, cookieHeader, username, password, shouldHandleExpiration,
-			cookieExpirationTime, lastCookieRefresh);
-	}
+        return new CookieAuthentication(authToken, cookieHeader, username, password, shouldHandleExpiration,
+            cookieExpirationTime, lastCookieRefresh);
+    }
 }

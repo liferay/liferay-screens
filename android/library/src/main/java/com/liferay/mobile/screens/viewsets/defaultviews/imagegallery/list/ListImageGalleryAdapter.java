@@ -1,7 +1,7 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.list;
 
 import android.graphics.Bitmap;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
 import com.liferay.mobile.screens.R;
@@ -14,45 +14,45 @@ import com.liferay.mobile.screens.imagegallery.model.ImageEntry;
  * @author Víctor Galán Grande
  */
 public class ListImageGalleryAdapter
-	extends BaseListAdapter<ImageEntry, ListImageGalleryAdapter.ListGalleryViewHolder> {
+    extends BaseListAdapter<ImageEntry, ListImageGalleryAdapter.ListGalleryViewHolder> {
 
-	public ListImageGalleryAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
-		super(layoutId, progressLayoutId, listener);
-	}
+    public ListImageGalleryAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
+        super(layoutId, progressLayoutId, listener);
+    }
 
-	@NonNull
-	@Override
-	public ListGalleryViewHolder createViewHolder(View view, BaseListAdapterListener listener) {
-		return new ListGalleryViewHolder(view, listener);
-	}
+    @NonNull
+    @Override
+    public ListGalleryViewHolder createViewHolder(View view, BaseListAdapterListener listener) {
+        return new ListGalleryViewHolder(view, listener);
+    }
 
-	@Override
-	protected void fillHolder(ImageEntry entry, ListGalleryViewHolder holder) {
-		holder.bind(entry);
-	}
+    @Override
+    protected void fillHolder(ImageEntry entry, ListGalleryViewHolder holder) {
+        holder.bind(entry);
+    }
 
-	public class ListGalleryViewHolder extends BaseListAdapter.ViewHolder {
+    public class ListGalleryViewHolder extends BaseListAdapter.ViewHolder {
 
-		private final ImageView imageView;
+        private final ImageView imageView;
 
-		public ListGalleryViewHolder(View view, BaseListAdapterListener listener) {
-			super(view, listener);
+        public ListGalleryViewHolder(View view, BaseListAdapterListener listener) {
+            super(view, listener);
 
-			imageView = view.findViewById(R.id.gallery_item_image);
-		}
+            imageView = view.findViewById(R.id.gallery_item_image);
+        }
 
-		public void bind(final ImageEntry entry) {
+        public void bind(final ImageEntry entry) {
 
-			Bitmap image = entry.getImage();
-			if (image != null) {
-				imageView.setImageBitmap(image);
-			} else {
-				PicassoScreens.load(entry.getThumbnailUrl())
-					.placeholder(R.drawable.default_placeholder_image)
-					.into(imageView);
-			}
+            Bitmap image = entry.getImage();
+            if (image != null) {
+                imageView.setImageBitmap(image);
+            } else {
+                PicassoScreens.load(entry.getThumbnailUrl())
+                    .placeholder(R.drawable.default_placeholder_image)
+                    .into(imageView);
+            }
 
-			this.textView.setText(entry.getTitle());
-		}
-	}
+            this.textView.setText(entry.getTitle());
+        }
+    }
 }

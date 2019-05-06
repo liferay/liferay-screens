@@ -22,8 +22,8 @@ import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
  */
 public interface AssetDisplayListener extends BaseCacheListener {
 
-	/**
-	 * Called when the screenlet loads the asset correctly.
-	 */
-	void onRetrieveAssetSuccess(AssetEntry assetEntry);
+    /**
+     * Called when the screenlet loads the asset correctly.
+     */
+    void onRetrieveAssetSuccess(AssetEntry assetEntry);
 }

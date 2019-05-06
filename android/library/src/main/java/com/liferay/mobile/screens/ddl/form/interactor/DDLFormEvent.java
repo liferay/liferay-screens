@@ -25,31 +25,31 @@ import static com.liferay.mobile.screens.cache.Cache.SEPARATOR;
  */
 public class DDLFormEvent extends ListEvent<Record> {
 
-	private Record record;
+    private Record record;
 
-	public DDLFormEvent() {
-		super();
-	}
+    public DDLFormEvent() {
+        super();
+    }
 
-	public DDLFormEvent(Record record, JSONObject jsonObject) {
-		super(jsonObject);
+    public DDLFormEvent(Record record, JSONObject jsonObject) {
+        super(jsonObject);
 
-		this.record = record;
-	}
+        this.record = record;
+    }
 
-	@Override
-	public String getListKey() {
-		long recordSetId = record.getRecordSetId();
-		long recordId = record.getRecordId();
-		return recordSetId + SEPARATOR + recordId;
-	}
+    @Override
+    public String getListKey() {
+        long recordSetId = record.getRecordSetId();
+        long recordId = record.getRecordId();
+        return recordSetId + SEPARATOR + recordId;
+    }
 
-	@Override
-	public Record getModel() {
-		return getRecord();
-	}
+    @Override
+    public Record getModel() {
+        return getRecord();
+    }
 
-	public Record getRecord() {
-		return record;
-	}
+    public Record getRecord() {
+        return record;
+    }
 }

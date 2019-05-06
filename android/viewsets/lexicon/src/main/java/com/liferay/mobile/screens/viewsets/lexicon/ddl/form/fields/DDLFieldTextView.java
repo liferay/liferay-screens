@@ -16,28 +16,42 @@ package com.liferay.mobile.screens.viewsets.lexicon.ddl.form.fields;
 
 import android.content.Context;
 import android.util.AttributeSet;
+
+import com.liferay.mobile.screens.ddl.model.StringField;
+import com.liferay.mobile.screens.util.ValidationUtil;
+import com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.fields.DDMFieldRepeatableItemView;
+import com.liferay.mobile.screens.viewsets.lexicon.R;
 import com.liferay.mobile.screens.viewsets.lexicon.util.FormViewUtil;
 
 /**
  * @author Victor Oliveira
  */
 public class DDLFieldTextView
-	extends com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldTextView {
+    extends com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldTextView {
 
-	public DDLFieldTextView(Context context) {
-		super(context);
-	}
+    public DDLFieldTextView(Context context) {
+        super(context);
+    }
 
-	public DDLFieldTextView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public DDLFieldTextView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public DDLFieldTextView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public DDLFieldTextView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	public void onPostValidation(boolean valid) {
-		FormViewUtil.setupTextFieldLayout(getContext(), valid, labelTextView, textEditText);
-	}
+    @Override
+    public void onPostValidation(boolean valid) {
+        FormViewUtil.setupBackground(getContext(), valid, textEditText);
+
+        boolean isRepeatableField = getParent() instanceof DDMFieldRepeatableItemView;
+        String errorMessage = getField().getErrorMessage();
+
+        FormViewUtil.setupErrorView(valid, findViewById(R.id.error_view), errorMessage);
+
+        if (!isRepeatableField) {
+            FormViewUtil.setupErrorView(valid, findViewById(R.id.error_view), errorMessage);
+        }
+    }
 }

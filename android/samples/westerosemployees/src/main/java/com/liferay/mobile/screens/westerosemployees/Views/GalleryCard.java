@@ -25,151 +25,153 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 /**
  * @author Víctor Galán Grande
  */
-public class GalleryCard extends com.liferay.mobile.screens.westerosemployees.views.CommentsRatingsCard implements ImageGalleryListener {
+public class GalleryCard extends com.liferay.mobile.screens.westerosemployees.views.CommentsRatingsCard
+    implements ImageGalleryListener {
 
-	private ImageGalleryScreenlet imageGalleryScreenlet;
-	private BaseDetailUploadView uploadDetailView;
-	private com.liferay.mobile.screens.westerosemployees.views.Card uploadImageCard;
-	private AssetDisplayScreenlet imageAssetDisplayScreenlet;
+    private ImageGalleryScreenlet imageGalleryScreenlet;
+    private BaseDetailUploadView uploadDetailView;
+    private com.liferay.mobile.screens.westerosemployees.views.Card uploadImageCard;
+    private AssetDisplayScreenlet imageAssetDisplayScreenlet;
 
-	private boolean loaded;
+    private boolean loaded;
 
-	public GalleryCard(Context context) {
-		super(context);
-	}
+    public GalleryCard(Context context) {
+        super(context);
+    }
 
-	public GalleryCard(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public GalleryCard(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public GalleryCard(Context context, AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-	}
+    public GalleryCard(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-	public GalleryCard(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
+    public GalleryCard(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
 
-	@Override
-	public ViewPropertyAnimator setState(CardState state) {
-		if (!loaded && state.equals(CardState.NORMAL)) {
-			loaded = true;
-			imageGalleryScreenlet.loadPage(0);
-		}
+    @Override
+    public ViewPropertyAnimator setState(CardState state) {
+        if (!loaded && state.equals(CardState.NORMAL)) {
+            loaded = true;
+            imageGalleryScreenlet.loadPage(0);
+        }
 
-		return super.setState(state);
-	}
+        return super.setState(state);
+    }
 
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
 
-		imageGalleryScreenlet = findViewById(R.id.gallery_screenlet);
-		imageGalleryScreenlet.setListener(this);
+        imageGalleryScreenlet = findViewById(R.id.gallery_screenlet);
+        imageGalleryScreenlet.setListener(this);
 
-		uploadDetailView = findViewById(R.id.upload_detail_view);
-		uploadImageCard = findViewById(R.id.upload_image_card);
+        uploadDetailView = findViewById(R.id.upload_detail_view);
+        uploadImageCard = findViewById(R.id.upload_image_card);
 
-		imageAssetDisplayScreenlet = findViewById(R.id.asset_display_screenlet_image);
+        imageAssetDisplayScreenlet = findViewById(R.id.asset_display_screenlet_image);
 
-		Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
-		RxPermissions rxPermissions = new RxPermissions(activity);
+        Activity activity = LiferayScreensContext.getActivityFromContext(getContext());
+        RxPermissions rxPermissions = new RxPermissions(activity);
 
-		RxView.clicks(findViewById(R.id.gallery_button))
-			.compose(rxPermissions.ensure(WRITE_EXTERNAL_STORAGE))
-			.subscribe(openGallery());
+        RxView.clicks(findViewById(R.id.gallery_button))
+            .compose(rxPermissions.ensure(WRITE_EXTERNAL_STORAGE))
+            .subscribe(openGallery());
 
-		RxView.clicks(findViewById(R.id.camera_button))
-			.compose(rxPermissions.ensure(CAMERA, WRITE_EXTERNAL_STORAGE))
-			.subscribe(openCamera());
+        RxView.clicks(findViewById(R.id.camera_button))
+            .compose(rxPermissions.ensure(CAMERA, WRITE_EXTERNAL_STORAGE))
+            .subscribe(openCamera());
 
-		RxView.clicks(findViewById(R.id.upoad_button)).subscribe(new Action1<Void>() {
-			@Override
-			public void call(Void aVoid) {
-				uploadDetailView.finishActivityAndStartUpload(uploadDetailView.getTitle(),
-					uploadDetailView.getDescription(), "");
-			}
-		});
-	}
+        RxView.clicks(findViewById(R.id.upoad_button)).subscribe(new Action1<Void>() {
+            @Override
+            public void call(Void aVoid) {
+                uploadDetailView.finishActivityAndStartUpload(uploadDetailView.getTitle(),
+                    uploadDetailView.getDescription(), "");
+            }
+        });
+    }
 
-	@Override
-	public void onImageEntryDeleted(long imageEntryId) {
+    @Override
+    public void onImageEntryDeleted(long imageEntryId) {
 
-	}
+    }
 
-	@Override
-	public void onImageUploadStarted(Uri pictureUri, String title, String description, String changelog) {
-		uploadImageCard.goLeft();
-		uploadImageCard.setState(CardState.MINIMIZED);
-	}
+    @Override
+    public void onImageUploadStarted(Uri pictureUri, String title, String description, String changelog) {
+        uploadImageCard.goLeft();
+        uploadImageCard.setState(CardState.MINIMIZED);
+    }
 
-	@Override
-	public void onImageUploadProgress(int totalBytes, int totalBytesSent) {
+    @Override
+    public void onImageUploadProgress(int totalBytes, int totalBytesSent) {
 
-	}
+    }
 
-	@Override
-	public void onImageUploadEnd(ImageEntry entry) {
+    @Override
+    public void onImageUploadEnd(ImageEntry entry) {
 
-	}
+    }
 
-	@Override
-	public boolean showUploadImageView(String actionName, Uri pictureUri, int screenletId) {
-		uploadDetailView.initializeUploadView(actionName, pictureUri, screenletId);
-		uploadImageCard.goRight();
+    @Override
+    public boolean showUploadImageView(String actionName, Uri pictureUri, int screenletId) {
+        uploadDetailView.initializeUploadView(actionName, pictureUri, screenletId);
+        uploadImageCard.goRight();
 
-		return true;
-	}
+        return true;
+    }
 
-	@Override
-	public int provideImageUploadDetailView() {
-		return 0;
-	}
+    @Override
+    public int provideImageUploadDetailView() {
+        return 0;
+    }
 
-	@Override
-	public void onListPageFailed(int startRow, Exception e) {
+    @Override
+    public void onListPageFailed(int startRow, Exception e) {
 
-	}
+    }
 
-	@Override
-	public void onListPageReceived(int startRow, int endRow, List<ImageEntry> entries, int rowCount) {
+    @Override
+    public void onListPageReceived(int startRow, int endRow, List<ImageEntry> entries, int rowCount) {
 
-	}
+    }
 
-	@Override
-	public void onListItemSelected(ImageEntry imageEntry, View view) {
+    @Override
+    public void onListItemSelected(ImageEntry imageEntry, View view) {
 
-		imageAssetDisplayScreenlet.load(imageEntry);
+        imageAssetDisplayScreenlet.load(imageEntry);
 
-		initializeRatingsAndComments("com.liferay.document.library.kernel.model.DLFileEntry", imageEntry.getFileEntryId());
+        initializeRatingsAndComments("com.liferay.document.library.kernel.model.DLFileEntry",
+            imageEntry.getFileEntryId());
 
-		cardListener.moveCardRight(this);
-	}
+        cardListener.moveCardRight(this);
+    }
 
-	@Override
-	public void error(Exception e, String userAction) {
+    @Override
+    public void error(Exception e, String userAction) {
 
-	}
+    }
 
-	private Action1<Boolean> openGallery() {
-		return new Action1<Boolean>() {
-			@Override
-			public void call(Boolean permissionAccepted) {
-				if (permissionAccepted) {
-					imageGalleryScreenlet.openGallery();
-				}
-			}
-		};
-	}
+    private Action1<Boolean> openGallery() {
+        return new Action1<Boolean>() {
+            @Override
+            public void call(Boolean permissionAccepted) {
+                if (permissionAccepted) {
+                    imageGalleryScreenlet.openGallery();
+                }
+            }
+        };
+    }
 
-	private Action1<Boolean> openCamera() {
-		return new Action1<Boolean>() {
-			@Override
-			public void call(Boolean permissionAccepted) {
-				if (permissionAccepted) {
-					imageGalleryScreenlet.openCamera();
-				}
-			}
-		};
-	}
+    private Action1<Boolean> openCamera() {
+        return new Action1<Boolean>() {
+            @Override
+            public void call(Boolean permissionAccepted) {
+                if (permissionAccepted) {
+                    imageGalleryScreenlet.openCamera();
+                }
+            }
+        };
+    }
 }

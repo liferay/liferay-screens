@@ -15,8 +15,8 @@ package com.liferay.mobile.screens.user.view;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.EditText;
@@ -34,106 +34,106 @@ import static com.liferay.mobile.screens.context.User.USER_ID;
  */
 public class GetUserView extends LinearLayout implements GetUserViewModel, View.OnClickListener {
 
-	private EditText textValue;
-	private BaseScreenlet screenlet;
-	private String getUserBy;
+    private EditText textValue;
+    private BaseScreenlet screenlet;
+    private String getUserBy;
 
-	public GetUserView(Context context) {
-		super(context);
-	}
+    public GetUserView(Context context) {
+        super(context);
+    }
 
-	public GetUserView(Context context, @Nullable AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public GetUserView(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public GetUserView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-	}
+    public GetUserView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-	public GetUserView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public GetUserView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
 
-	@Override
-	public void showStartOperation(String actionName) {
-	}
+    @Override
+    public void showStartOperation(String actionName) {
+    }
 
-	@Override
-	public void showFinishOperation(String actionName) {
-		LiferayLogger.i("Get user successful");
-	}
+    @Override
+    public void showFinishOperation(String actionName) {
+        LiferayLogger.i("Get user successful");
+    }
 
-	@Override
-	public void showFailedOperation(String actionName, Exception e) {
-		LiferayLogger.e("Could not get user", e);
-	}
+    @Override
+    public void showFailedOperation(String actionName, Exception e) {
+        LiferayLogger.e("Could not get user", e);
+    }
 
-	protected void onFinishInflate() {
-		super.onFinishInflate();
+    protected void onFinishInflate() {
+        super.onFinishInflate();
 
-		textValue = findViewById(R.id.textValue);
+        textValue = findViewById(R.id.textValue);
 
-		View getUserButton = findViewById(R.id.getUserButton);
-		getUserButton.setOnClickListener(this);
-	}
+        View getUserButton = findViewById(R.id.getUserButton);
+        getUserButton.setOnClickListener(this);
+    }
 
-	@Override
-	protected void onAttachedToWindow() {
-		super.onAttachedToWindow();
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
 
-		if (getUserBy != null) {
-			textValue.setHint(getResources().getString(getLabelHint()));
-		}
-	}
+        if (getUserBy != null) {
+            textValue.setHint(getResources().getString(getLabelHint()));
+        }
+    }
 
-	@Override
-	public void onClick(View v) {
-		GetUserScreenlet screenlet = (GetUserScreenlet) getParent();
-		screenlet.performUserAction();
-	}
+    @Override
+    public void onClick(View v) {
+        GetUserScreenlet screenlet = (GetUserScreenlet) getParent();
+        screenlet.performUserAction();
+    }
 
-	@Override
-	public String getTextValue() {
-		return textValue.getText().toString();
-	}
+    @Override
+    public String getTextValue() {
+        return textValue.getText().toString();
+    }
 
-	@Override
-	public void setTextValue(String textValue) {
-		this.textValue.setText(textValue);
-	}
+    @Override
+    public void setTextValue(String textValue) {
+        this.textValue.setText(textValue);
+    }
 
-	@Override
-	public String getGetUserBy() {
-		return getUserBy;
-	}
+    @Override
+    public String getGetUserBy() {
+        return getUserBy;
+    }
 
-	@Override
-	public void setGetUserBy(String getUserBy) {
-		this.getUserBy = getUserBy;
-	}
+    @Override
+    public void setGetUserBy(String getUserBy) {
+        this.getUserBy = getUserBy;
+    }
 
-	@Override
-	public BaseScreenlet getScreenlet() {
-		return screenlet;
-	}
+    @Override
+    public BaseScreenlet getScreenlet() {
+        return screenlet;
+    }
 
-	@Override
-	public void setScreenlet(BaseScreenlet screenlet) {
-		this.screenlet = screenlet;
-	}
+    @Override
+    public void setScreenlet(BaseScreenlet screenlet) {
+        this.screenlet = screenlet;
+    }
 
-	private int getLabelHint() {
-		if (getUserBy != null) {
-			switch (getUserBy) {
-				case SCREEN_NAME:
-					return R.string.screen_name;
-				case USER_ID:
-					return R.string.user_id;
-				default:
-					return R.string.email_address;
-			}
-		}
-		return R.string.email_address;
-	}
+    private int getLabelHint() {
+        if (getUserBy != null) {
+            switch (getUserBy) {
+                case SCREEN_NAME:
+                    return R.string.screen_name;
+                case USER_ID:
+                    return R.string.user_id;
+                default:
+                    return R.string.email_address;
+            }
+        }
+        return R.string.email_address;
+    }
 }

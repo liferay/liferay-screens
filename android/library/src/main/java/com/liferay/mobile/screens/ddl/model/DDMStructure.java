@@ -1,3 +1,17 @@
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
 package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
@@ -5,11 +19,15 @@ import android.os.Parcelable;
 import com.liferay.mobile.screens.ddl.DDMStructureParser;
 import com.liferay.mobile.screens.ddl.JsonParser;
 import com.liferay.mobile.screens.ddl.XSDParser;
+import com.liferay.mobile.screens.ddm.form.model.FormPage;
+import com.liferay.mobile.screens.ddm.form.model.SuccessPage;
 import com.liferay.mobile.screens.util.LiferayLocale;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import kotlin.collections.CollectionsKt;
+import kotlin.jvm.functions.Function1;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -18,153 +36,193 @@ import org.json.JSONObject;
  */
 public class DDMStructure implements Parcelable {
 
-	public static final Parcelable.ClassLoaderCreator<DDMStructure> CREATOR = new ClassLoaderCreator<DDMStructure>() {
-		@Override
-		public DDMStructure createFromParcel(Parcel source, ClassLoader classLoader) {
-			return new DDMStructure(source, classLoader);
-		}
+    public static final Parcelable.ClassLoaderCreator<DDMStructure> CREATOR = new ClassLoaderCreator<DDMStructure>() {
+        @Override
+        public DDMStructure createFromParcel(Parcel source, ClassLoader classLoader) {
+            return new DDMStructure(source, classLoader);
+        }
 
-		@Override
-		public DDMStructure createFromParcel(Parcel in) {
-			throw new AssertionError();
-		}
+        @Override
+        public DDMStructure createFromParcel(Parcel in) {
+            throw new AssertionError();
+        }
 
-		@Override
-		public DDMStructure[] newArray(int size) {
-			return new DDMStructure[size];
-		}
-	};
+        @Override
+        public DDMStructure[] newArray(int size) {
+            return new DDMStructure[size];
+        }
+    };
 
-	protected List<Field> fields = new ArrayList<>();
-	protected Locale locale = Locale.US;
-	protected boolean parsed;
+    protected List<Field> fields = new ArrayList<>();
+    protected Locale locale = Locale.US;
+    protected boolean parsed;
 
-	private String description;
-	private String name;
-	private String structureKey;
-	private String structureId;
-	private Long classNameId;
-	private String classPK;
+    private String description;
+    private String name;
+    private String structureKey;
+    private String structureId;
+    private Long classNameId;
+    private String classPK;
 
-	public DDMStructure() {
-		super();
-	}
+    private List<FormPage> pages = new ArrayList<>();
+    private SuccessPage successPage;
 
-	public DDMStructure(Locale locale) {
-		this.locale = locale;
-		parsed = false;
-	}
+    public DDMStructure() {
+        super();
+    }
 
-	protected DDMStructure(Parcel in, ClassLoader classLoader) {
-		Parcelable[] array = in.readParcelableArray(Field.class.getClassLoader());
-		fields = new ArrayList(Arrays.asList(array));
-		locale = (Locale) in.readSerializable();
-	}
+    public DDMStructure(String name, String description, List<FormPage> pages) {
+        this.name = name;
+        this.description = description;
+        this.pages = pages;
 
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeParcelableArray(fields.toArray(new Field[fields.size()]), flags);
-		dest.writeSerializable(locale);
-	}
+        for (FormPage page : pages) {
+            this.fields.addAll(page.getFields());
+        }
 
-	@Override
-	public int describeContents() {
-		return 0;
-	}
+        parsed = true;
+    }
 
-	public Field getField(int index) {
-		return fields.get(index);
-	}
+    public DDMStructure(String name, String description, List<FormPage> pages, SuccessPage successPage) {
+        this(name, description, pages);
+        this.successPage = successPage;
+    }
 
-	public int getFieldCount() {
-		return fields.size();
-	}
+    public DDMStructure(Locale locale) {
+        this.locale = locale;
+        parsed = false;
+    }
 
-	public boolean isParsed() {
-		return parsed;
-	}
+    protected DDMStructure(Parcel in, ClassLoader classLoader) {
+        Parcelable[] fieldsArray = in.readParcelableArray(Field.class.getClassLoader());
+        fields = new ArrayList(Arrays.asList(fieldsArray));
 
-	public Field getFieldByName(String fieldName) {
-		if (fieldName == null) {
-			return null;
-		}
+        locale = (Locale) in.readSerializable();
+        name = in.readString();
+        description = in.readString();
 
-		for (Field f : fields) {
-			if (fieldName.equals(f.getName())) {
-				return f;
-			}
-		}
+        Parcelable[] pagesArray = in.readParcelableArray(FormPage.class.getClassLoader());
+        pages = new ArrayList(Arrays.asList(pagesArray));
 
-		return null;
-	}
+        successPage = in.readParcelable(SuccessPage.class.getClassLoader());
+    }
 
-	public List<Field> getFields() {
-		return fields;
-	}
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelableArray(fields.toArray(new Field[fields.size()]), flags);
+        dest.writeSerializable(locale);
+        dest.writeString(name);
+        dest.writeString(description);
+        dest.writeParcelableArray(pages.toArray(new FormPage[pages.size()]), flags);
+        dest.writeParcelable(successPage, flags);
+    }
 
-	public void setFields(List<Field> fields) {
-		this.fields = fields;
-	}
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
-	public Locale getLocale() {
-		return locale;
-	}
+    public Field getField(int index) {
+        return fields.get(index);
+    }
 
-	public void setLocale(Locale locale) {
-		this.locale = locale;
-	}
+    public int getFieldCount() {
+        return fields.size();
+    }
 
-	public void parse(JSONObject jsonObject) throws JSONException {
-		description = parseString(jsonObject, "descriptionCurrentValue");
-		name = parseString(jsonObject, "nameCurrentValue");
-		structureKey = parseString(jsonObject, "structureKey");
-		structureId = parseString(jsonObject, "structureId");
+    public boolean isParsed() {
+        return parsed;
+    }
 
-		classNameId = jsonObject.has("classNameId") ? jsonObject.getLong("classNameId") : 0;
-		classPK = "com.liferay.dynamic.data.mapping.model.DDMStructure";
+    public Field getFieldByName(String fieldName) {
+        if (fieldName == null) {
+            return null;
+        }
 
-		if (jsonObject.has("xsd")) {
-			parse(jsonObject.getString("xsd"), new XSDParser());
-		} else {
-			parse(jsonObject.getString("definition"), new JsonParser());
-		}
-		parsed = true;
-	}
+        for (Field f : fields) {
+            if (fieldName.equals(f.getName())) {
+                return f;
+            }
+        }
 
-	private String parseString(JSONObject jsonObject, String key) throws JSONException {
-		return jsonObject.has(key) ? jsonObject.getString(key) : "";
-	}
+        return null;
+    }
 
-	protected void parse(String content, DDMStructureParser parser) {
-		try {
-			Locale locale = this.locale == null ? LiferayLocale.getDefaultLocale() : this.locale;
-			fields = parser.parse(content, locale);
-		} catch (Exception e) {
-			fields = new ArrayList<>();
-		}
-	}
+    public List<Field> getFields() {
+        return fields;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setFields(List<Field> fields) {
+        this.fields = fields;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public Locale getLocale() {
+        return locale;
+    }
 
-	public String getStructureKey() {
-		return structureKey;
-	}
+    public void setLocale(Locale locale) {
+        this.locale = locale;
+    }
 
-	public String getStructureId() {
-		return structureId;
-	}
+    public SuccessPage getSuccessPage() {
+        return successPage;
+    }
 
-	public Long getClassNameId() {
-		return classNameId;
-	}
+    public List<FormPage> getPages() {
+        return pages;
+    }
 
-	public String getClassPK() {
-		return classPK;
-	}
+    public void parse(JSONObject jsonObject) throws JSONException {
+        description = parseString(jsonObject, "descriptionCurrentValue");
+        name = parseString(jsonObject, "nameCurrentValue");
+        structureKey = parseString(jsonObject, "structureKey");
+        structureId = parseString(jsonObject, "structureId");
+
+        classNameId = jsonObject.has("classNameId") ? jsonObject.getLong("classNameId") : 0;
+        classPK = "com.liferay.dynamic.data.mapping.model.DDMStructure";
+
+        if (jsonObject.has("xsd")) {
+            parse(jsonObject.getString("xsd"), new XSDParser());
+        } else {
+            parse(jsonObject.getString("definition"), new JsonParser());
+        }
+        parsed = true;
+    }
+
+    private String parseString(JSONObject jsonObject, String key) throws JSONException {
+        return jsonObject.has(key) ? jsonObject.getString(key) : "";
+    }
+
+    protected void parse(String content, DDMStructureParser parser) {
+        try {
+            Locale locale = this.locale == null ? LiferayLocale.getDefaultLocale() : this.locale;
+            fields = parser.parse(content, locale);
+        } catch (Exception e) {
+            fields = new ArrayList<>();
+        }
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getStructureKey() {
+        return structureKey;
+    }
+
+    public String getStructureId() {
+        return structureId;
+    }
+
+    public Long getClassNameId() {
+        return classNameId;
+    }
+
+    public String getClassPK() {
+        return classPK;
+    }
 }

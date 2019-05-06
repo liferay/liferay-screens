@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.liferay.mobile.pushnotifications">
+    package="com.liferay.mobile.pushnotifications">
 
-	<uses-permission android:name="android.permission.WAKE_LOCK"/>
-	<uses-permission android:name="android.permission.CAMERA"/>
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
 
-	<application
-		android:allowBackup="true"
-		android:icon="@drawable/liferay_glyph"
-		android:label="@string/app"
-		android:supportsRtl="false"
-		android:theme="@style/material_theme">
-		<activity
-			android:name=".activities.LoginActivity"
-			android:label="@string/push_example">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN"/>
-				<category android:name="android.intent.category.LAUNCHER"/>
-			</intent-filter>
-		</activity>
-		<activity
-			android:name=".activities.NotificationsActivity"
-			android:label="@string/notifications_activity"/>
-		<activity
-			android:name=".activities.NotificationDetailActivity"
-			android:label="@string/notification_detail"/>
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/liferay_glyph"
+        android:label="@string/app"
+        android:supportsRtl="false"
+        android:theme="@style/material_theme">
+        <activity
+            android:name=".activities.LoginActivity"
+            android:label="@string/push_example">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.NotificationsActivity"
+            android:label="@string/notifications_activity"/>
+        <activity
+            android:name=".activities.NotificationDetailActivity"
+            android:label="@string/notification_detail"/>
 
-		<receiver
-			android:name=".notification.PushReceiver"
-			android:permission="com.google.android.c2dm.permission.SEND">
-			<intent-filter>
-				<action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+        <receiver
+            android:name=".notification.PushReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
 
-				<category android:name="com.liferay.mobile.push"/>
-			</intent-filter>
-		</receiver>
+                <category android:name="com.liferay.mobile.push"/>
+            </intent-filter>
+        </receiver>
 
-		<service android:name=".notification.PushService"/>
+        <service android:name=".notification.PushService"/>
 
-	</application>
+    </application>
 
 </manifest>

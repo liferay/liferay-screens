@@ -19,8 +19,8 @@ package com.liferay.mobile.screens.viewsets.westeros.auth.signup;
  */
 public interface SignUpListener extends com.liferay.mobile.screens.auth.signup.SignUpListener {
 
-	/**
-	 * Called when the user clicks on the terms and contidions link.
-	 */
-	void onClickOnTermsAndConditions();
+    /**
+     * Called when the user clicks on the terms and contidions link.
+     */
+    void onClickOnTermsAndConditions();
 }

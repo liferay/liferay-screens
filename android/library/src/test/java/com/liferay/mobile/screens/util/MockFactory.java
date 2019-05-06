@@ -27,19 +27,19 @@ import static org.mockito.Mockito.spy;
  */
 public class MockFactory {
 
-	public static UserPortraitScreenlet mockUserPortraitScreenlet() {
-		return mock(UserPortraitScreenlet.class);
-	}
+    public static UserPortraitScreenlet mockUserPortraitScreenlet() {
+        return mock(UserPortraitScreenlet.class);
+    }
 
-	public static LoginListener mockLoginListener() {
-		return mock(LoginListener.class);
-	}
+    public static LoginListener mockLoginListener() {
+        return mock(LoginListener.class);
+    }
 
-	public static UserConnector mockUserConnector() {
-		return mock(UserConnector.class);
-	}
+    public static UserConnector mockUserConnector() {
+        return mock(UserConnector.class);
+    }
 
-	public static LoginBasicInteractor spyLoginInteractor() {
-		return spy(new LoginBasicInteractor());
-	}
+    public static LoginBasicInteractor spyLoginInteractor() {
+        return spy(new LoginBasicInteractor());
+    }
 }

@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.ddl.pager.DDLFormPagerView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:fillViewport="true"
-	>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    >
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical"
-		>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
 
-		<android.support.v4.view.ViewPager
-			android:id="@+id/liferay_pager"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:padding="10dp"
-			/>
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/liferay_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            />
 
-		<ProgressBar
-			android:id="@+id/ddlform_loading_screen_progress_bar"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:visibility="invisible"
-			/>
+        <ProgressBar
+            android:id="@+id/ddlform_loading_screen_progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+            />
 
-		<Button
-			android:id="@+id/liferay_form_submit"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:text="@string/submit"
-			android:visibility="gone"
-			/>
+        <Button
+            android:id="@+id/liferay_form_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/submit"
+            android:visibility="gone"
+            />
 
-	</LinearLayout>
+    </LinearLayout>
 </com.liferay.mobile.screens.viewsets.defaultviews.ddl.pager.DDLFormPagerView>

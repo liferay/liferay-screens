@@ -21,31 +21,31 @@ import android.animation.Animator;
  */
 public abstract class EndAnimationListener implements Animator.AnimatorListener {
 
-	/**
-	 * Notifies the end of the animation. This callback is not invoked
-	 * for animations with repeat count set to INFINITE.
-	 */
-	public abstract void onAnimationEnd(Animator animator);
+    /**
+     * Notifies the end of the animation. This callback is not invoked
+     * for animations with repeat count set to INFINITE.
+     */
+    public abstract void onAnimationEnd(Animator animator);
 
-	/**
-	 * Notifies the start of the animation.
-	 */
-	public void onAnimationStart(Animator animation) {
+    /**
+     * Notifies the start of the animation.
+     */
+    public void onAnimationStart(Animator animation) {
 
-	}
+    }
 
-	/**
-	 * Notifies the cancellation of the animation. This callback is not invoked
-	 * for animations with repeat count set to INFINITE.
-	 */
-	public void onAnimationCancel(Animator animation) {
+    /**
+     * Notifies the cancellation of the animation. This callback is not invoked
+     * for animations with repeat count set to INFINITE.
+     */
+    public void onAnimationCancel(Animator animation) {
 
-	}
+    }
 
-	/**
-	 * Notifies the repetition of the animation.
-	 */
-	public void onAnimationRepeat(Animator animation) {
+    /**
+     * Notifies the repetition of the animation.
+     */
+    public void onAnimationRepeat(Animator animation) {
 
-	}
+    }
 }

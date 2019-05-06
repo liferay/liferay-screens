@@ -24,10 +24,9 @@ dependencies {
 
 	api project(':liferay-screens')
 
-	implementation libraries.design
-	implementation libraries.recyclerView
 	implementation 'com.lsjwzh:recyclerviewpager:1.0.8'
-
+	implementation 'com.google.android.material:material:1.0.0'
+	implementation libraries.rxjava
 }
 
 apply from: '../../bintray.gradle'

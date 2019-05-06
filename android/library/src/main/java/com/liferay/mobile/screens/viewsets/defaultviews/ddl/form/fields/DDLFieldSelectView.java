@@ -17,7 +17,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.annotation.IntegerRes;
+import android.graphics.Typeface;
 import android.text.InputType;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -25,160 +25,222 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.liferay.mobile.screens.R;
-import com.liferay.mobile.screens.ddl.model.StringWithOptionsField;
+import com.liferay.mobile.screens.ddl.model.Option;
+import com.liferay.mobile.screens.ddl.model.SelectableOptionsField;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * @author Jose Manuel Navarro
  */
-public class DDLFieldSelectView extends BaseDDLFieldTextView<StringWithOptionsField> implements View.OnClickListener {
+public class DDLFieldSelectView extends BaseDDLFieldTextView<SelectableOptionsField> implements View.OnClickListener {
 
-	protected AlertDialog alertDialog;
+    protected AlertDialog alertDialog;
 
-	public DDLFieldSelectView(Context context) {
-		super(context);
-	}
+    protected DialogInterface.OnClickListener clearFieldListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            clearField();
+            alertDialog.dismiss();
 
-	public DDLFieldSelectView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+            if (onClearListener != null) {
+                onClearListener.onClear();
+            }
+        }
+    };
 
-	public DDLFieldSelectView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    protected DialogInterface.OnClickListener dismissListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            alertDialog.dismiss();
+        }
+    };
 
-	@Override
-	public void onClick(View view) {
-		createAlertDialog();
-		alertDialog.show();
-	}
+    private OnClearListener onClearListener;
+    private DialogInterface.OnClickListener onValueChangedListener;
 
-	@Override
-	protected void onDetachedFromWindow() {
-		super.onDetachedFromWindow();
+    public DDLFieldSelectView(Context context) {
+        super(context);
+    }
 
-		// Avoid WindowLeak error on orientation changes
-		if (alertDialog != null) {
-			alertDialog.dismiss();
-			alertDialog = null;
-		}
-	}
+    public DDLFieldSelectView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
+    public DDLFieldSelectView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-		EditText editText = getTextEditText();
-		editText.setCursorVisible(false);
-		editText.setFocusableInTouchMode(false);
-		editText.setOnClickListener(this);
-		editText.setInputType(InputType.TYPE_NULL);
-	}
+    @Override
+    public void onClick(View view) {
+        createAlertDialog();
+        alertDialog.show();
+    }
 
-	@Override
-	protected void onTextChanged(String text) {
-	}
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
 
-	protected void createAlertDialog() {
+        // Avoid WindowLeak error on orientation changes
+        if (alertDialog != null) {
+            alertDialog.dismiss();
+            alertDialog = null;
+        }
+    }
 
-		AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), getAlertDialogStyle());
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
 
-		LayoutInflater factory = LayoutInflater.from(getContext());
-		final View customDialogView = factory.inflate(getAlertDialogLayout(), null);
-		TextView title = customDialogView.findViewById(R.id.liferay_dialog_title);
-		title.setText(getField().getLabel());
+        EditText editText = getTextEditText();
+        editText.setCursorVisible(false);
+        editText.setFocusableInTouchMode(false);
+        editText.setOnClickListener(this);
+        editText.setInputType(InputType.TYPE_NULL);
+    }
 
-		DialogInterface.OnClickListener selectOptionHandler = getAlertDialogListener();
+    public OnClearListener getOnClearListener() {
+        return onClearListener;
+    }
 
-		builder.setCustomTitle(customDialogView);
+    public void setOnClearListener(OnClearListener onClearListener) {
+        this.onClearListener = onClearListener;
+    }
 
-		final List<StringWithOptionsField.Option> availableOptions = getField().getAvailableOptions();
-		String[] labels = getOptionsLabels().toArray(new String[availableOptions.size()]);
+    public DialogInterface.OnClickListener getOnValueChangedListener() {
+        return onValueChangedListener;
+    }
 
-		if (getField().isMultiple()) {
-			setupMultipleChoice(builder, availableOptions, labels);
-		} else {
-			setupSingleChoice(builder, selectOptionHandler, labels);
-		}
-		alertDialog = builder.create();
-	}
+    public void setOnValueChangedListener(DialogInterface.OnClickListener onValueChangedListener) {
+        this.onValueChangedListener = onValueChangedListener;
+    }
 
-	protected int getAlertDialogLayout() {
-		return R.layout.ddlfield_select_dialog_default;
-	}
+    @Override
+    protected void onTextChanged(String text) {
+    }
 
-	protected DialogInterface.OnClickListener getAlertDialogListener() {
-		return new DialogInterface.OnClickListener() {
-			public void onClick(DialogInterface dialog, int which) {
-				getField().selectOption(getField().getAvailableOptions().get(which));
-				refresh();
-			}
-		};
-	}
+    protected void createAlertDialog() {
 
-	protected int getAlertDialogStyle() {
-		return R.style.default_theme_dialog;
-	}
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), getAlertDialogStyle());
 
-	protected List<String> getOptionsLabels() {
-		List<String> result = new ArrayList<>();
-		for (StringWithOptionsField.Option opt : getField().getAvailableOptions()) {
-			result.add(opt.label);
-		}
-		return result;
-	}
+        LayoutInflater factory = LayoutInflater.from(getContext());
+        final View customDialogView = factory.inflate(getAlertDialogLayout(), null);
+        TextView title = customDialogView.findViewById(R.id.liferay_dialog_title);
+        title.setText(getField().getLabel());
 
-	private boolean[] getCheckedOptions() {
-		List<StringWithOptionsField.Option> availableOptions = getField().getAvailableOptions();
-		boolean[] checked = new boolean[availableOptions.size()];
-		for (int i = 0; i < availableOptions.size(); i++) {
-			StringWithOptionsField.Option availableOption = availableOptions.get(i);
-			checked[i] = getField().isSelected(availableOption);
-		}
-		return checked;
-	}
+        DialogInterface.OnClickListener selectOptionHandler = getAlertDialogListener();
 
-	protected void setupMultipleChoice(AlertDialog.Builder builder,
-		final List<StringWithOptionsField.Option> availableOptions, String[] labels) {
+        builder.setCustomTitle(customDialogView);
 
-		final boolean[] checked = getCheckedOptions();
-		builder.setMultiChoiceItems(labels, checked, new DialogInterface.OnMultiChoiceClickListener() {
-			public void onClick(DialogInterface dialog, int whichButton, boolean isChecked) {
-				checked[whichButton] = isChecked;
-			}
-		});
-		builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				checkField(checked, availableOptions);
-				refresh();
-				alertDialog.dismiss();
-			}
-		});
+        final List<Option> availableOptions = getField().getAvailableOptions();
+        String[] labels = getOptionsLabels().toArray(new String[availableOptions.size()]);
 
-		builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				alertDialog.dismiss();
-			}
-		});
-	}
+        if (getField().isMultiple()) {
+            setupMultipleChoice(builder, availableOptions, labels);
+        } else {
+            setupSingleChoice(builder, selectOptionHandler, labels);
+        }
+        alertDialog = builder.create();
+    }
 
-	protected void setupSingleChoice(AlertDialog.Builder builder,
-		DialogInterface.OnClickListener selectOptionHandler, String[] labels) {
+    protected int getAlertDialogLayout() {
+        return R.layout.ddlfield_select_dialog_default;
+    }
 
-		builder.setItems(labels, selectOptionHandler);
-	}
+    protected DialogInterface.OnClickListener getAlertDialogListener() {
+        return new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                if (which >= 0) {
+                    getField().selectOption(getField().getAvailableOptions().get(which));
+                    refresh();
 
-	private void checkField(boolean[] checked, List<StringWithOptionsField.Option> availableOptions) {
-		for (int i = 0; i < checked.length; i++) {
-			StringWithOptionsField.Option option = availableOptions.get(i);
-			if (checked[i]) {
-				getField().selectOption(option);
-			} else {
-				getField().clearOption(option);
-			}
-		}
-	}
+                    if (onValueChangedListener != null) {
+                        onValueChangedListener.onClick(dialog, which);
+                    }
+                } else {
+                    dialog.dismiss();
+                }
+            }
+        };
+    }
+
+    protected int getAlertDialogStyle() {
+        return R.style.default_theme_dialog;
+    }
+
+    protected List<String> getOptionsLabels() {
+        List<String> result = new ArrayList<>();
+        for (Option opt : getField().getAvailableOptions()) {
+            result.add(opt.label);
+        }
+        return result;
+    }
+
+    private boolean[] getCheckedOptions() {
+        List<Option> availableOptions = getField().getAvailableOptions();
+        boolean[] checked = new boolean[availableOptions.size()];
+        for (int i = 0; i < availableOptions.size(); i++) {
+            Option availableOption = availableOptions.get(i);
+            checked[i] = getField().isSelected(availableOption);
+        }
+        return checked;
+    }
+
+    protected void clearField() {
+        SelectableOptionsField field = getField();
+
+        for (Option option : field.getCurrentValue()) {
+            field.clearOption(option);
+        }
+
+        refresh();
+    }
+
+    protected void setupMultipleChoice(AlertDialog.Builder builder, final List<Option> availableOptions,
+        String[] labels) {
+
+        final boolean[] checked = getCheckedOptions();
+        builder.setMultiChoiceItems(labels, checked, new DialogInterface.OnMultiChoiceClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton, boolean isChecked) {
+                checked[whichButton] = isChecked;
+            }
+        });
+
+        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                checkField(checked, availableOptions);
+                refresh();
+                alertDialog.dismiss();
+            }
+        });
+
+        builder.setNegativeButton(android.R.string.cancel, dismissListener);
+
+        builder.setNeutralButton(R.string.clear, clearFieldListener);
+    }
+
+    protected void setupSingleChoice(AlertDialog.Builder builder, DialogInterface.OnClickListener selectOptionHandler,
+        String[] labels) {
+
+        builder.setItems(labels, selectOptionHandler)
+            .setPositiveButton(android.R.string.ok, dismissListener)
+            .setNegativeButton(android.R.string.cancel, dismissListener)
+            .setNeutralButton(R.string.clear, clearFieldListener);
+    }
+
+    private void checkField(boolean[] checked, List<Option> availableOptions) {
+        for (int i = 0; i < checked.length; i++) {
+            Option option = availableOptions.get(i);
+            if (checked[i]) {
+                getField().selectOption(option);
+            } else {
+                getField().clearOption(option);
+            }
+        }
+    }
+
+    public interface OnClearListener {
+        void onClear();
+    }
 }

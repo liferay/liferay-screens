@@ -45,194 +45,194 @@ import static org.junit.Assert.assertNotNull;
 @RunWith(Enclosed.class)
 public class SessionContextTest {
 
-	@RunWith(RobolectricTestRunner.class)
-	@Config(constants = BuildConfig.class, sdk = 23)
-	public static class WhenCreateSession {
+    @RunWith(RobolectricTestRunner.class)
+    @Config(constants = BuildConfig.class, sdk = 23)
+    public static class WhenCreateSession {
 
-		private Session session;
+        private Session session;
 
-		@Before
-		public void setUp() {
-			session = SessionContext.createBasicSession("username", "password");
-			assertNotNull(session);
-		}
+        @Before
+        public void setUp() {
+            session = SessionContext.createBasicSession("username", "password");
+            assertNotNull(session);
+        }
 
-		@Test
-		public void shouldCreateTheRightSession() throws Exception {
-			assertTrue(session.getAuthentication() instanceof BasicAuthentication);
+        @Test
+        public void shouldCreateTheRightSession() throws Exception {
+            assertTrue(session.getAuthentication() instanceof BasicAuthentication);
 
-			BasicAuthentication auth = (BasicAuthentication) session.getAuthentication();
+            BasicAuthentication auth = (BasicAuthentication) session.getAuthentication();
 
-			assertEquals("username", auth.getUsername());
-			assertEquals("password", auth.getPassword());
-			assertTrue(SessionContext.isLoggedIn());
-		}
+            assertEquals("username", auth.getUsername());
+            assertEquals("password", auth.getPassword());
+            assertTrue(SessionContext.isLoggedIn());
+        }
 
-		@Test
-		public void shouldCreateASessionFromCurrentSession() throws Exception {
-			Session secondSession = SessionContext.createSessionFromCurrentSession();
+        @Test
+        public void shouldCreateASessionFromCurrentSession() throws Exception {
+            Session secondSession = SessionContext.createSessionFromCurrentSession();
 
-			assertNotNull(secondSession);
+            assertNotNull(secondSession);
 
-			BasicAuthentication auth1 = (BasicAuthentication) session.getAuthentication();
-			BasicAuthentication auth2 = (BasicAuthentication) secondSession.getAuthentication();
+            BasicAuthentication auth1 = (BasicAuthentication) session.getAuthentication();
+            BasicAuthentication auth2 = (BasicAuthentication) secondSession.getAuthentication();
 
-			assertEquals(auth1.getUsername(), auth2.getUsername());
-			assertEquals(auth1.getPassword(), auth2.getPassword());
+            assertEquals(auth1.getUsername(), auth2.getUsername());
+            assertEquals(auth1.getPassword(), auth2.getPassword());
 
-			assertNotSame(session, secondSession);
-		}
+            assertNotSame(session, secondSession);
+        }
 
-		@Test
-		public void shouldReturnTheBasicAuthentication() throws Exception {
-			BasicAuthentication auth = (BasicAuthentication) SessionContext.getAuthentication();
+        @Test
+        public void shouldReturnTheBasicAuthentication() throws Exception {
+            BasicAuthentication auth = (BasicAuthentication) SessionContext.getAuthentication();
 
-			assertNotNull(auth);
-			assertSame(session.getAuthentication(), auth);
+            assertNotNull(auth);
+            assertSame(session.getAuthentication(), auth);
 
-			assertEquals("username", auth.getUsername());
-			assertEquals("password", auth.getPassword());
-		}
-	}
+            assertEquals("username", auth.getUsername());
+            assertEquals("password", auth.getPassword());
+        }
+    }
 
-	@RunWith(RobolectricTestRunner.class)
-	@Config(constants = BuildConfig.class, sdk = 23)
-	public static class WhenLogout {
+    @RunWith(RobolectricTestRunner.class)
+    @Config(constants = BuildConfig.class, sdk = 23)
+    public static class WhenLogout {
 
-		@Before
-		public void setUp() {
-			SessionContext.createBasicSession("username", "password");
-			SessionContext.logout();
-		}
+        @Before
+        public void setUp() {
+            SessionContext.createBasicSession("username", "password");
+            SessionContext.logout();
+        }
 
-		@Test
-		public void shouldClearTheSession() throws Exception {
-			assertFalse(SessionContext.isLoggedIn());
-		}
+        @Test
+        public void shouldClearTheSession() throws Exception {
+            assertFalse(SessionContext.isLoggedIn());
+        }
 
-		@Test(expected = IllegalStateException.class)
-		public void shouldNotAllowToCreateASessionFromCurrentSession() throws Exception {
-			SessionContext.createSessionFromCurrentSession();
-		}
-	}
+        @Test(expected = IllegalStateException.class)
+        public void shouldNotAllowToCreateASessionFromCurrentSession() throws Exception {
+            SessionContext.createSessionFromCurrentSession();
+        }
+    }
 
-	@RunWith(RobolectricTestRunner.class)
-	@Config(constants = BuildConfig.class, sdk = 23)
-	public static class WhenSettingUserAttributes {
+    @RunWith(RobolectricTestRunner.class)
+    @Config(constants = BuildConfig.class, sdk = 23)
+    public static class WhenSettingUserAttributes {
 
-		@Before
-		public void setUp() throws JSONException {
-			SessionContext.createBasicSession("username", "password");
-			SessionContext.setCurrentUser(new User(new JSONObject().put("userId", 123)));
-		}
+        @Before
+        public void setUp() throws JSONException {
+            SessionContext.createBasicSession("username", "password");
+            SessionContext.setCurrentUser(new User(new JSONObject().put("userId", 123)));
+        }
 
-		@Test
-		public void shouldReturnTheUserObject() throws Exception {
-			assertNotNull(SessionContext.getCurrentUser());
-		}
+        @Test
+        public void shouldReturnTheUserObject() throws Exception {
+            assertNotNull(SessionContext.getCurrentUser());
+        }
 
-		@Test
-		public void userObjectShouldContainTheUserAttributes() throws Exception {
-			assertEquals(123, SessionContext.getCurrentUser().getId());
-		}
+        @Test
+        public void userObjectShouldContainTheUserAttributes() throws Exception {
+            assertEquals(123, SessionContext.getCurrentUser().getId());
+        }
 
-		@Test
-		public void shouldClearUserWhenSessionIsCleared() throws Exception {
-			SessionContext.logout();
-			assertNull(SessionContext.getCurrentUser());
-		}
-	}
+        @Test
+        public void shouldClearUserWhenSessionIsCleared() throws Exception {
+            SessionContext.logout();
+            assertNull(SessionContext.getCurrentUser());
+        }
+    }
 
-	@RunWith(RobolectricTestRunner.class)
-	@Config(constants = BuildConfig.class, sdk = 23)
-	public static class WhenStoreSessionInSharedPreferences {
+    @RunWith(RobolectricTestRunner.class)
+    @Config(constants = BuildConfig.class, sdk = 23)
+    public static class WhenStoreSessionInSharedPreferences {
 
-		@Test(expected = IllegalStateException.class)
-		public void shouldRaiseExceptionWhenContextIsNotPresent() throws Exception {
-			LiferayScreensContext.deinit();
+        @Test(expected = IllegalStateException.class)
+        public void shouldRaiseExceptionWhenContextIsNotPresent() throws Exception {
+            LiferayScreensContext.deinit();
 
-			SessionContext.createBasicSession("user123", "pass123");
-			SessionContext.setCurrentUser(new User(new JSONObject().put("userId", 123)));
+            SessionContext.createBasicSession("user123", "pass123");
+            SessionContext.setCurrentUser(new User(new JSONObject().put("userId", 123)));
 
-			SessionContext.storeCredentials(SHARED_PREFERENCES);
-		}
+            SessionContext.storeCredentials(SHARED_PREFERENCES);
+        }
 
-		@Test(expected = IllegalStateException.class)
-		public void shouldRaiseExceptionWhenSessionIsNotPresent() throws Exception {
-			Context ctx = RuntimeEnvironment.application.getApplicationContext();
-			LiferayScreensContext.init(ctx);
+        @Test(expected = IllegalStateException.class)
+        public void shouldRaiseExceptionWhenSessionIsNotPresent() throws Exception {
+            Context ctx = RuntimeEnvironment.application.getApplicationContext();
+            LiferayScreensContext.init(ctx);
 
-			SessionContext.logout();
-			SessionContext.setCurrentUser(new User(new JSONObject().put("userId", 123)));
+            SessionContext.logout();
+            SessionContext.setCurrentUser(new User(new JSONObject().put("userId", 123)));
 
-			SessionContext.storeCredentials(SHARED_PREFERENCES);
-		}
+            SessionContext.storeCredentials(SHARED_PREFERENCES);
+        }
 
-		@Test(expected = IllegalStateException.class)
-		public void shouldRaiseExceptionWhenUserAttributesAreNotPresent() throws Exception {
-			Context ctx = RuntimeEnvironment.application.getApplicationContext();
-			LiferayScreensContext.init(ctx);
+        @Test(expected = IllegalStateException.class)
+        public void shouldRaiseExceptionWhenUserAttributesAreNotPresent() throws Exception {
+            Context ctx = RuntimeEnvironment.application.getApplicationContext();
+            LiferayScreensContext.init(ctx);
 
-			SessionContext.logout(); // to clean user
-			SessionContext.createBasicSession("user123", "pass123");
+            SessionContext.logout(); // to clean user
+            SessionContext.createBasicSession("user123", "pass123");
 
-			SessionContext.storeCredentials(SHARED_PREFERENCES);
-		}
+            SessionContext.storeCredentials(SHARED_PREFERENCES);
+        }
 
-		@Test
-		public void shouldStoreBasicCredentialsInSharedPreferences() throws Exception {
-			SessionContext.createBasicSession("user123", "pass123");
+        @Test
+        public void shouldStoreBasicCredentialsInSharedPreferences() throws Exception {
+            SessionContext.createBasicSession("user123", "pass123");
 
-			Context ctx = RuntimeEnvironment.application.getApplicationContext();
-			LiferayScreensContext.init(ctx);
+            Context ctx = RuntimeEnvironment.application.getApplicationContext();
+            LiferayScreensContext.init(ctx);
 
-			JSONObject userAttributes = new JSONObject().put("userId", 123);
-			User user = new User(userAttributes);
+            JSONObject userAttributes = new JSONObject().put("userId", 123);
+            User user = new User(userAttributes);
 
-			SessionContext.setCurrentUser(user);
+            SessionContext.setCurrentUser(user);
 
-			SessionContext.storeCredentials(SHARED_PREFERENCES);
+            SessionContext.storeCredentials(SHARED_PREFERENCES);
 
-			String sharedPreferencesName = BaseCredentialsStorageSharedPreferences.getStoreName();
-			SharedPreferences sharedPref = ctx.getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE);
+            String sharedPreferencesName = BaseCredentialsStorageSharedPreferences.getStoreName();
+            SharedPreferences sharedPref = ctx.getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE);
 
-			assertEquals(LiferayServerContext.getServer(), sharedPref.getString("server", "not-present"));
-			assertEquals(LiferayServerContext.getGroupId(), sharedPref.getLong("groupId", 0));
-			assertEquals(LiferayServerContext.getCompanyId(), sharedPref.getLong("companyId", 0));
-			assertEquals("{\"userId\":123}", sharedPref.getString("attributes", "not-present"));
+            assertEquals(LiferayServerContext.getServer(), sharedPref.getString("server", "not-present"));
+            assertEquals(LiferayServerContext.getGroupId(), sharedPref.getLong("groupId", 0));
+            assertEquals(LiferayServerContext.getCompanyId(), sharedPref.getLong("companyId", 0));
+            assertEquals("{\"userId\":123}", sharedPref.getString("attributes", "not-present"));
 
-			assertEquals("user123", sharedPref.getString("username", "not-present"));
-			assertEquals("pass123", sharedPref.getString("password", "not-present"));
-		}
+            assertEquals("user123", sharedPref.getString("username", "not-present"));
+            assertEquals("pass123", sharedPref.getString("password", "not-present"));
+        }
 
-		@Test
-		public void shouldLoadBasicCredentials() throws Exception {
-			SessionContext.createBasicSession("user123", "pass123");
+        @Test
+        public void shouldLoadBasicCredentials() throws Exception {
+            SessionContext.createBasicSession("user123", "pass123");
 
-			Context ctx = RuntimeEnvironment.application.getApplicationContext();
-			LiferayScreensContext.init(ctx);
+            Context ctx = RuntimeEnvironment.application.getApplicationContext();
+            LiferayScreensContext.init(ctx);
 
-			JSONObject userAttributes = new JSONObject().put("userId", 123);
-			User user = new User(userAttributes);
+            JSONObject userAttributes = new JSONObject().put("userId", 123);
+            User user = new User(userAttributes);
 
-			SessionContext.setCurrentUser(user);
+            SessionContext.setCurrentUser(user);
 
-			SessionContext.storeCredentials(SHARED_PREFERENCES);
-			SessionContext.logout();
-			SessionContext.loadStoredCredentials(SHARED_PREFERENCES);
+            SessionContext.storeCredentials(SHARED_PREFERENCES);
+            SessionContext.logout();
+            SessionContext.loadStoredCredentials(SHARED_PREFERENCES);
 
-			String sharedPreferencesName = BaseCredentialsStorageSharedPreferences.getStoreName();
-			SharedPreferences sharedPref = ctx.getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE);
+            String sharedPreferencesName = BaseCredentialsStorageSharedPreferences.getStoreName();
+            SharedPreferences sharedPref = ctx.getSharedPreferences(sharedPreferencesName, Context.MODE_PRIVATE);
 
-			assertEquals(sharedPref.getString("server", "not-present"), LiferayServerContext.getServer());
-			assertEquals(sharedPref.getLong("groupId", 0), LiferayServerContext.getGroupId());
-			assertEquals(sharedPref.getLong("companyId", 0), LiferayServerContext.getCompanyId());
-			assertEquals("{\"userId\":123}", sharedPref.getString("attributes", "not-present"));
+            assertEquals(sharedPref.getString("server", "not-present"), LiferayServerContext.getServer());
+            assertEquals(sharedPref.getLong("groupId", 0), LiferayServerContext.getGroupId());
+            assertEquals(sharedPref.getLong("companyId", 0), LiferayServerContext.getCompanyId());
+            assertEquals("{\"userId\":123}", sharedPref.getString("attributes", "not-present"));
 
-			BasicAuthentication auth = (BasicAuthentication) SessionContext.getAuthentication();
+            BasicAuthentication auth = (BasicAuthentication) SessionContext.getAuthentication();
 
-			assertEquals("user123", auth.getUsername());
-			assertEquals("pass123", auth.getPassword());
-		}
-	}
+            assertEquals("user123", auth.getUsername());
+            assertEquals("pass123", auth.getPassword());
+        }
+    }
 }

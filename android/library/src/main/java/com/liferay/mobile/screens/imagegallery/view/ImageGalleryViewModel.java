@@ -23,29 +23,29 @@ import com.liferay.mobile.screens.imagegallery.model.ImageEntry;
  */
 public interface ImageGalleryViewModel extends BaseListViewModel<ImageEntry> {
 
-	/**
-	 * Deletes an {@link ImageEntry} with its `imageEntryId`.
-	 */
-	void deleteImage(long imageEntryId);
+    /**
+     * Deletes an {@link ImageEntry} with its `imageEntryId`.
+     */
+    void deleteImage(long imageEntryId);
 
-	/**
-	 * Adds an {@link ImageEntry}.
-	 */
-	void addImage(ImageEntry imageEntry);
+    /**
+     * Adds an {@link ImageEntry}.
+     */
+    void addImage(ImageEntry imageEntry);
 
-	/**
-	 * Called when an {@link ImageEntry} is prepared for upload.
-	 */
-	void imageUploadStart(Uri pictureUri);
+    /**
+     * Called when an {@link ImageEntry} is prepared for upload.
+     */
+    void imageUploadStart(Uri pictureUri);
 
-	/**
-	 * Retrieves constantly the progress until the picture is successfully uploaded.
-	 * This method retrieves the bytes sent and the total.
-	 */
-	void imageUploadProgress(int bytesSent, int totalBytes);
+    /**
+     * Retrieves constantly the progress until the picture is successfully uploaded.
+     * This method retrieves the bytes sent and the total.
+     */
+    void imageUploadProgress(int bytesSent, int totalBytes);
 
-	/**
-	 * Called when the {@link ImageEntry} was successfully uploaded.
-	 */
-	void imageUploadComplete();
+    /**
+     * Called when the {@link ImageEntry} was successfully uploaded.
+     */
+    void imageUploadComplete();
 }

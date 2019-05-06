@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/default_grid_edit_text_pressed_drawable" android:state_pressed="true"/>
+    <item android:drawable="@drawable/default_grid_edit_text_pressed_drawable" android:state_focused="true"/>
+    <item android:drawable="@drawable/default_grid_edit_text_drawable"/>
+</selector>

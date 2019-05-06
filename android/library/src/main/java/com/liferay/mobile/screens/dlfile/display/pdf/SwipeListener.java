@@ -19,13 +19,13 @@ package com.liferay.mobile.screens.dlfile.display.pdf;
  */
 public interface SwipeListener {
 
-	/**
-	 * Called when the user makes a swipe to the right.
-	 */
-	void onSwipeRight();
+    /**
+     * Called when the user makes a swipe to the right.
+     */
+    void onSwipeRight();
 
-	/**
-	 * Called when the user makes a swipe to the left.
-	 */
-	void onSwipeLeft();
+    /**
+     * Called when the user makes a swipe to the left.
+     */
+    void onSwipeLeft();
 }

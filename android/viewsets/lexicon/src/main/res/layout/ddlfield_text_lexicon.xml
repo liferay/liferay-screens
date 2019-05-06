@@ -1,25 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.lexicon.ddl.form.fields.DDLFieldTextView
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:orientation="vertical"
-	android:padding="@dimen/field_padding"
-	>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/field_padding"
+    >
 
-	<TextView
-		android:id="@+id/liferay_ddl_label"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:labelFor="@+id/liferay_ddl_edit_text"
-		android:visibility="gone"
-		/>
+    <TextView
+        android:id="@+id/liferay_ddl_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:labelFor="@+id/liferay_ddl_edit_text"
+        android:visibility="gone"
+        />
 
-	<EditText
-		android:id="@+id/liferay_ddl_edit_text"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:inputType="text"
-		/>
+    <AutoCompleteTextView
+        android:id="@+id/liferay_ddl_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:popupBackground="@drawable/lexicon_autocomplete_popup_drawable"
+        />
+
+    <TextView
+        android:id="@+id/liferay_ddm_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_help_text_margin"
+        android:textColor="@color/textColorHelp_lexicon"
+        android:visibility="gone"
+        />
+
+    <include
+        android:id="@+id/error_view"
+        layout="@layout/error_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/error_view_margin_top"
+        android:visibility="gone"
+        />
 
 </com.liferay.mobile.screens.viewsets.lexicon.ddl.form.fields.DDLFieldTextView>

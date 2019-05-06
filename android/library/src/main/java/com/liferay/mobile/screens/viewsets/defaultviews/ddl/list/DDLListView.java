@@ -26,22 +26,22 @@ import com.liferay.mobile.screens.ddl.model.Record;
  * @author Silvio Santos
  */
 public class DDLListView extends BaseListScreenletView<Record, BaseListAdapter.ViewHolder, DDLListAdapter>
-	implements DDLListViewModel {
+    implements DDLListViewModel {
 
-	public DDLListView(Context context) {
-		super(context);
-	}
+    public DDLListView(Context context) {
+        super(context);
+    }
 
-	public DDLListView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public DDLListView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public DDLListView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public DDLListView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	protected DDLListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
-		return new DDLListAdapter(itemLayoutId, itemProgressLayoutId, this);
-	}
+    @Override
+    protected DDLListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
+        return new DDLListAdapter(itemLayoutId, itemProgressLayoutId, this);
+    }
 }

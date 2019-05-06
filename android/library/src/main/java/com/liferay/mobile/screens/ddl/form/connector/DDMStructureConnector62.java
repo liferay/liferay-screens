@@ -1,7 +1,7 @@
 package com.liferay.mobile.screens.ddl.form.connector;
 
 import com.liferay.mobile.android.service.Session;
-import com.liferay.mobile.android.v62.ddmstructure.DDMStructureService;
+import com.liferay.mobile.screens.service.v62.DDMStructureService;
 import org.json.JSONObject;
 
 /**
@@ -9,16 +9,16 @@ import org.json.JSONObject;
  */
 public class DDMStructureConnector62 implements DDMStructureConnector {
 
-	private final DDMStructureService ddmStructureService;
+    private final DDMStructureService ddmStructureService;
 
-	public DDMStructureConnector62(Session session) {
-		ddmStructureService = new DDMStructureService(session);
-	}
+    public DDMStructureConnector62(Session session) {
+        ddmStructureService = new DDMStructureService(session);
+    }
 
-	@Override
-	public JSONObject getStructure(long structureId) throws Exception {
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("ddmStructure", ddmStructureService.getStructure(structureId));
-		return jsonObject;
-	}
+    @Override
+    public JSONObject getStructure(long structureId) throws Exception {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("ddmStructure", ddmStructureService.getStructure(structureId));
+        return jsonObject;
+    }
 }

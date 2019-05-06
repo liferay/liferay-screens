@@ -23,19 +23,19 @@ import com.liferay.mobile.screens.base.interactor.listener.BaseCacheListener;
  */
 public interface UserPortraitListener extends BaseCacheListener {
 
-	/**
-	 * Called when an image is received from the server. You can then apply
-	 * image filters (grayscale, for example) and return the new image.
-	 * You can return `null` or the original image supplied as the argument
-	 * if you don’t want to modify it.
-	 *
-	 * @param bitmap original user portrait
-	 * @return modified or not user portrait
-	 */
-	Bitmap onUserPortraitLoadReceived(Bitmap bitmap);
+    /**
+     * Called when an image is received from the server. You can then apply
+     * image filters (grayscale, for example) and return the new image.
+     * You can return `null` or the original image supplied as the argument
+     * if you don’t want to modify it.
+     *
+     * @param bitmap original user portrait
+     * @return modified or not user portrait
+     */
+    Bitmap onUserPortraitLoadReceived(Bitmap bitmap);
 
-	/**
-	 * Called when the user portrait upload service finishes.
-	 */
-	void onUserPortraitUploaded();
+    /**
+     * Called when the user portrait upload service finishes.
+     */
+    void onUserPortraitUploaded();
 }

@@ -1,212 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:orientation="vertical"
-	>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
 
-	<TextView
-		android:text="@string/main_activity_label"
-		style="@style/label"
-		/>
+    <TextView
+        android:text="@string/main_activity_label"
+        style="@style/label"
+        />
 
-	<ScrollView
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="vertical"
-			>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
 
-			<Button
-				android:id="@+id/login"
-				android:text="@string/login"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/ddm_form"
+                android:text="@string/ddm_form"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/sign_up"
-				android:text="@string/signup"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/login"
+                android:text="@string/login"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/forgot_password"
-				android:text="@string/forgot_password"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/sign_up"
+                android:text="@string/signup"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/relogin"
-				android:text="@string/relogin"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/forgot_password"
+                android:text="@string/forgot_password"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/user_portrait"
-				android:text="@string/user_portrait"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/relogin"
+                android:text="@string/relogin"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/get_user"
-				android:text="@string/get_user"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/user_portrait"
+                android:text="@string/user_portrait"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/asset_list"
-				android:text="@string/asset_list"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/get_user"
+                android:text="@string/get_user"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/asset_list_with_portlet_item_name"
-				android:text="@string/asset_list_portlet_item_name"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/asset_list"
+                android:text="@string/asset_list"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/asset_display"
-				android:text="@string/asset_display"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/asset_list_with_portlet_item_name"
+                android:text="@string/asset_list_portlet_item_name"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/asset_display_with_portlet_item_name"
-				android:text="@string/asset_display_with_portlet_item_name"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/asset_display"
+                android:text="@string/asset_display"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/user_display"
-				android:text="@string/user_display"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/asset_display_with_portlet_item_name"
+                android:text="@string/asset_display_with_portlet_item_name"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/comment_list"
-				android:text="@string/list_comments"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/user_display"
+                android:text="@string/user_display"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/ddl_form"
-				android:text="@string/ddl_form"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/comment_list"
+                android:text="@string/list_comments"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/ddl_list"
-				android:text="@string/ddl_list"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/comment_display"
+                android:text="@string/display_comment"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/image_display"
-				android:text="@string/image_display"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/comment_add"
+                android:text="@string/add_comment"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/web_content_list"
-				android:text="@string/webview_list"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/ddl_form"
+                android:text="@string/ddl_form"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/web_content_display_screenlet"
-				android:text="@string/webview"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/ddl_list"
+                android:text="@string/ddl_list"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/web_content_display_screenlet_structured"
-				android:text="@string/webview_structured"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/image_display"
+                android:text="@string/image_display"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/web_content_display_screenlet_customcss"
-				android:text="@string/webview_customcss"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/web_content_list"
+                android:text="@string/webview_list"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/web_content_with_template"
-				android:text="@string/web_content_with_template"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/web_content_display_screenlet"
+                android:text="@string/webview"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/ratings"
-				android:text="@string/ratings"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/web_content_display_screenlet_structured"
+                android:text="@string/webview_structured"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/gallery"
-				android:text="@string/image_gallery"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/web_content_display_screenlet_customcss"
+                android:text="@string/webview_customcss"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/portlet_display"
-				android:text="@string/portlet_display"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/web_content_with_template"
+                android:text="@string/web_content_with_template"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/list_bookmarks"
-				android:text="@string/list_bookmarks"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/ratings"
+                android:text="@string/ratings"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/add_bookmark"
-				android:text="@string/add_a_bookmark"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/gallery"
+                android:text="@string/image_gallery"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/login_full_screenlet"
-				android:text="@string/customizing_a_screenlet"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/portlet_display"
+                android:text="@string/portlet_display"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/clear_cache"
-				android:text="@string/clear_cache_and_login"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/login_full_screenlet"
+                android:text="@string/customizing_a_screenlet"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/clear_cache_forms"
-				android:text="@string/clear_cache_forms"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/clear_cache"
+                android:text="@string/clear_cache_and_login"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/custom_interactor"
-				android:text="@string/custom_interactor"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/clear_cache_forms"
+                android:text="@string/clear_cache_forms"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/sync_cache"
-				android:text="@string/sync_cache"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/custom_interactor"
+                android:text="@string/custom_interactor"
+                style="@style/test_app_button"
+                />
 
-			<Button
-				android:id="@+id/change_theme"
-				android:text="@string/change_theme"
-				style="@style/test_app_button"
-				/>
+            <Button
+                android:id="@+id/sync_cache"
+                android:text="@string/sync_cache"
+                style="@style/test_app_button"
+                />
 
-		</LinearLayout>
-	</ScrollView>
+            <Button
+                android:id="@+id/change_theme"
+                android:text="@string/change_theme"
+                style="@style/test_app_button"
+                />
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

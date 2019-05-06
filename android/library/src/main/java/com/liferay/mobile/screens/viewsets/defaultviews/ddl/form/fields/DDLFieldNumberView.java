@@ -24,39 +24,42 @@ import com.liferay.mobile.screens.ddl.model.NumberField;
  */
 public class DDLFieldNumberView extends BaseDDLFieldTextView<NumberField> {
 
-	public DDLFieldNumberView(Context context) {
-		super(context);
-	}
+    public DDLFieldNumberView(Context context) {
+        super(context);
+    }
 
-	public DDLFieldNumberView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public DDLFieldNumberView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public DDLFieldNumberView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public DDLFieldNumberView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	public void setField(NumberField field) {
-		super.setField(field);
+    @Override
+    public void setField(NumberField field) {
+        super.setField(field);
 
-		switch (getField().getEditorType()) {
-			case INTEGER:
-				getTextEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
-				break;
+        setupInputNumber();
+    }
 
-			case NUMBER:
-			case DECIMAL:
-			default:
-				getTextEditText().setInputType(InputType.TYPE_CLASS_NUMBER
-					| InputType.TYPE_NUMBER_FLAG_SIGNED
-					| InputType.TYPE_NUMBER_FLAG_DECIMAL);
-				break;
-		}
-	}
+    @Override
+    protected void onTextChanged(String text) {
+        getField().setCurrentStringValue(text);
+    }
 
-	@Override
-	protected void onTextChanged(String text) {
-		getField().setCurrentStringValue(text);
-	}
+    private void setupInputNumber() {
+        switch (getField().getEditorType()) {
+            case INTEGER:
+                getTextEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
+                break;
+            case NUMBER:
+            case DECIMAL:
+            default:
+                getTextEditText().setInputType(InputType.TYPE_CLASS_NUMBER
+                    | InputType.TYPE_NUMBER_FLAG_SIGNED
+                    | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+                break;
+        }
+    }
 }

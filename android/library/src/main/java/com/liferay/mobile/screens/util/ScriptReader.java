@@ -25,44 +25,44 @@ import java.io.InputStreamReader;
 
 public class ScriptReader {
 
-	private Context context;
+    private Context context;
 
-	public ScriptReader(Context context) {
-		this.context = context;
-	}
+    public ScriptReader(Context context) {
+        this.context = context;
+    }
 
-	public String readScriptContent(int fileId) {
-		try {
-			InputStream in = context.getResources().openRawResource(fileId);
-			return getFileContent(in);
-		} catch (Exception e) {
-			return "";
-		}
-	}
+    public String readScriptContent(int fileId) {
+        try {
+            InputStream in = context.getResources().openRawResource(fileId);
+            return getFileContent(in);
+        } catch (Exception e) {
+            return "";
+        }
+    }
 
-	public String readScriptContent(String filename) {
-		try {
-			InputStream in = context.getResources().getAssets().open(filename);
-			return getFileContent(in);
-		} catch (Exception e) {
-			return "";
-		}
-	}
+    public String readScriptContent(String filename) {
+        try {
+            InputStream in = context.getResources().getAssets().open(filename);
+            return getFileContent(in);
+        } catch (Exception e) {
+            return "";
+        }
+    }
 
-	private String getFileContent(InputStream inputStream) throws Exception {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-		StringBuilder fileContent = new StringBuilder();
-		String line = reader.readLine();
+    private String getFileContent(InputStream inputStream) throws Exception {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+        StringBuilder fileContent = new StringBuilder();
+        String line = reader.readLine();
 
-		while (line != null) {
-			if (!line.startsWith("//")) {
-				fileContent.append(line);
-			}
-			line = reader.readLine();
-		}
+        while (line != null) {
+            if (!line.startsWith("//")) {
+                fileContent.append(line);
+            }
+            line = reader.readLine();
+        }
 
-		reader.close();
+        reader.close();
 
-		return fileContent.toString();
-	}
+        return fileContent.toString();
+    }
 }

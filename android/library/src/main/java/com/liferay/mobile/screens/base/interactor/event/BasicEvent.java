@@ -19,57 +19,57 @@ import org.json.JSONObject;
 
 public class BasicEvent implements Serializable {
 
-	private String actionName;
-	private JSONObject jsonObject;
-	private int targetScreenletId;
-	private Exception exception;
+    private String actionName;
+    private JSONObject jsonObject;
+    private int targetScreenletId;
+    private Exception exception;
 
-	public BasicEvent() {
-		super();
-	}
+    public BasicEvent() {
+        super();
+    }
 
-	public BasicEvent(JSONObject jsonObject) {
-		super();
-		this.jsonObject = jsonObject;
-	}
+    public BasicEvent(JSONObject jsonObject) {
+        super();
+        this.jsonObject = jsonObject;
+    }
 
-	public BasicEvent(Exception exception) {
-		this.exception = exception;
-	}
+    public BasicEvent(Exception exception) {
+        this.exception = exception;
+    }
 
-	public Exception getException() {
-		return exception;
-	}
+    public Exception getException() {
+        return exception;
+    }
 
-	public void setException(Exception exception) {
-		this.exception = exception;
-	}
+    public void setException(Exception exception) {
+        this.exception = exception;
+    }
 
-	public boolean isFailed() {
-		return exception != null;
-	}
+    public boolean isFailed() {
+        return exception != null;
+    }
 
-	public int getTargetScreenletId() {
-		return targetScreenletId;
-	}
+    public int getTargetScreenletId() {
+        return targetScreenletId;
+    }
 
-	public void setTargetScreenletId(int targetScreenletId) {
-		this.targetScreenletId = targetScreenletId;
-	}
+    public void setTargetScreenletId(int targetScreenletId) {
+        this.targetScreenletId = targetScreenletId;
+    }
 
-	public JSONObject getJSONObject() {
-		return jsonObject;
-	}
+    public JSONObject getJSONObject() {
+        return jsonObject;
+    }
 
-	public void setJSONObject(JSONObject jsonObject) {
-		this.jsonObject = jsonObject;
-	}
+    public void setJSONObject(JSONObject jsonObject) {
+        this.jsonObject = jsonObject;
+    }
 
-	public String getActionName() {
-		return actionName;
-	}
+    public String getActionName() {
+        return actionName;
+    }
 
-	public void setActionName(String actionName) {
-		this.actionName = actionName;
-	}
+    public void setActionName(String actionName) {
+        this.actionName = actionName;
+    }
 }

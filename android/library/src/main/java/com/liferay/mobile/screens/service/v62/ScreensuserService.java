@@ -25,95 +25,95 @@ import org.json.JSONObject;
  */
 public class ScreensuserService extends BaseService {
 
-	public ScreensuserService(Session session) {
-		super(session);
-	}
+    public ScreensuserService(Session session) {
+        super(session);
+    }
 
-	public JSONObject getCurrentUser() throws Exception {
-		JSONObject _command = new JSONObject();
+    public JSONObject getCurrentUser() throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_command.put("/screens-web.screensuser/get-current-user", _params);
-		} catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/screens-web.screensuser/get-current-user", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getJSONObject(0);
-	}
+        return _result.getJSONObject(0);
+    }
 
-	public Boolean sendPasswordByEmailAddress(long companyId, String emailAddress) throws Exception {
-		JSONObject _command = new JSONObject();
+    public Boolean sendPasswordByEmailAddress(long companyId, String emailAddress) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("companyId", companyId);
-			_params.put("emailAddress", checkNull(emailAddress));
+            _params.put("companyId", companyId);
+            _params.put("emailAddress", checkNull(emailAddress));
 
-			_command.put("/screens-web.screensuser/send-password-by-email-address", _params);
-		} catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/screens-web.screensuser/send-password-by-email-address", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getBoolean(0);
-	}
+        return _result.getBoolean(0);
+    }
 
-	public Boolean sendPasswordByScreenName(long companyId, String screenName) throws Exception {
-		JSONObject _command = new JSONObject();
+    public Boolean sendPasswordByScreenName(long companyId, String screenName) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("companyId", companyId);
-			_params.put("screenName", checkNull(screenName));
+            _params.put("companyId", companyId);
+            _params.put("screenName", checkNull(screenName));
 
-			_command.put("/screens-web.screensuser/send-password-by-screen-name", _params);
-		} catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/screens-web.screensuser/send-password-by-screen-name", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getBoolean(0);
-	}
+        return _result.getBoolean(0);
+    }
 
-	public Boolean sendPasswordByUserId(long userId) throws Exception {
-		JSONObject _command = new JSONObject();
+    public Boolean sendPasswordByUserId(long userId) throws Exception {
+        JSONObject _command = new JSONObject();
 
-		try {
-			JSONObject _params = new JSONObject();
+        try {
+            JSONObject _params = new JSONObject();
 
-			_params.put("userId", userId);
+            _params.put("userId", userId);
 
-			_command.put("/screens-web.screensuser/send-password-by-user-id", _params);
-		} catch (JSONException _je) {
-			throw new Exception(_je);
-		}
+            _command.put("/screens-web.screensuser/send-password-by-user-id", _params);
+        } catch (JSONException _je) {
+            throw new Exception(_je);
+        }
 
-		JSONArray _result = session.invoke(_command);
+        JSONArray _result = session.invoke(_command);
 
-		if (_result == null) {
-			return null;
-		}
+        if (_result == null) {
+            return null;
+        }
 
-		return _result.getBoolean(0);
-	}
+        return _result.getBoolean(0);
+    }
 }

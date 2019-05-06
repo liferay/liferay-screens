@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="arrow">row arrow</string>
-	<string name="delete_comment">Delete comment</string>
-	<string name="edit_comment">Edit comment</string>
-	<string name="edited">- Edited</string>
-	<string name="empty_comments">There are no comments yet</string>
-	<string name="send">Send</string>
-	<string name="type_your_comment">Type your comment</string>
+    <string name="arrow">row arrow</string>
+    <string name="delete_comment">Delete comment</string>
+    <string name="edit_comment">Edit comment</string>
+    <string name="edited">- Edited</string>
+    <string name="empty_comments">There are no comments yet</string>
+    <string name="send">Send</string>
+    <string name="type_your_comment">Type your comment</string>
 </resources>

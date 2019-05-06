@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:orientation="vertical"
-	>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
 
-	<TextView
-		android:text="@string/ddl_form_label"
-		style="@style/label"
-		/>
+    <TextView
+        android:text="@string/ddl_form_label"
+        style="@style/label"
+        />
 
-	<com.liferay.mobile.screens.ddl.form.DDLFormScreenlet
-		android:id="@+id/ddl_form_screenlet"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_marginTop="0dp"
-		android:paddingTop="0dp"
-		app:autoLoad="false"
-		app:cachePolicy="REMOTE_FIRST"
-		app:filePrefix="jre"
-		app:folderId="@string/liferay_ddm_folder_id"
-		app:groupId="@string/liferay_ddm_repository_id"
-		app:recordId="@string/liferay_record_id"
-		app:recordSetId="@string/liferay_recordset_id"
-		app:repositoryId="@string/liferay_ddm_repository_id"
-		app:structureId="@string/liferay_structure_id"
-		/>
+    <com.liferay.mobile.screens.ddl.form.DDLFormScreenlet
+        android:id="@+id/ddl_form_screenlet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="0dp"
+        android:paddingTop="0dp"
+        app:autoLoad="false"
+        app:cachePolicy="REMOTE_FIRST"
+        app:filePrefix="jre"
+        app:folderId="@string/liferay_ddm_folder_id"
+        app:groupId="@string/liferay_ddm_repository_id"
+        app:recordId="@string/liferay_record_id"
+        app:recordSetId="@string/liferay_recordset_id"
+        app:repositoryId="@string/liferay_ddm_repository_id"
+        app:structureId="@string/liferay_structure_id"
+        />
 
 </LinearLayout>

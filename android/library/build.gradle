@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
 	compileSdkVersion rootProject.ext.compileSdkVersion
@@ -9,6 +11,7 @@ android {
 		targetSdkVersion rootProject.ext.targetSdkVersion
 		versionCode rootProject.ext.versionCode
 		versionName rootProject.ext.versionName
+		vectorDrawables.useSupportLibrary = true
 	}
 
 	buildTypes {
@@ -31,6 +34,10 @@ android {
 			java.srcDirs = ['src/debug/java']
 		}
 	}
+
+	androidExtensions {
+		experimental = true
+	}
 }
 
 dependencies {
@@ -47,12 +54,10 @@ dependencies {
 	}
 	api group: 'org.apache.cordova', name: 'framework', version: '6.2.3', classifier: 'debug', ext: 'aar'
 
-	implementation libraries.appCompat
-	implementation libraries.design
-	implementation libraries.exif
 	implementation libraries.eventbus
-	implementation libraries.recyclerView
-	implementation libraries.gms
+	implementation(libraries.gms) {
+		exclude group: 'com.android.support', module: 'support-v4'
+	}
 	implementation libraries.picasso
 	implementation libraries.rxjava
 	implementation libraries.rxpermissions
@@ -68,6 +73,13 @@ dependencies {
 	testImplementation libraries.junit
 	testImplementation libraries.robolectric
 	testImplementation libraries.mockito
+
+	implementation libraries.kotlin
+
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+	implementation 'com.google.android.material:material:1.0.0'
+	implementation group: 'com.squareup.okhttp', name: 'okhttp', version: '2.7.5'
+	implementation 'androidx.browser:browser:1.0.0'
 }
 
 apply from: '../bintray.gradle'

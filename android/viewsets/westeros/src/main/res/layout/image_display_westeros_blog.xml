@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.dlfile.display.ImageDisplayView
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 
-	<ProgressBar
-		android:id="@+id/liferay_progress"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_centerInParent="true"
-		android:visibility="invisible"
-		/>
+    <ProgressBar
+        android:id="@+id/liferay_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        />
 
-	<com.makeramen.roundedimageview.RoundedImageView
-		android:id="@+id/liferay_image_asset"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_centerInParent="true"
-		android:scaleType="centerCrop"
-		android:visibility="visible"
-		app:riv_corner_radius="35dp"
-		/>
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/liferay_image_asset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:scaleType="centerCrop"
+        android:visibility="visible"
+        app:riv_corner_radius="35dp"
+        />
 
 </com.liferay.mobile.screens.viewsets.defaultviews.dlfile.display.ImageDisplayView>

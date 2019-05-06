@@ -9,5 +9,5 @@ import java.util.Locale;
  */
 public interface DDMStructureParser {
 
-	List<Field> parse(String content, Locale locale) throws Exception;
+    List<Field> parse(String content, Locale locale) throws Exception;
 }

@@ -22,31 +22,31 @@ import com.liferay.mobile.screens.webcontent.WebContent;
  */
 public class WebContentDisplayEvent extends ListEvent<WebContent> {
 
-	private WebContent webContent;
+    private WebContent webContent;
 
-	public WebContentDisplayEvent() {
-		super();
-	}
+    public WebContentDisplayEvent() {
+        super();
+    }
 
-	public WebContentDisplayEvent(String html) {
-		webContent = new WebContent(html);
-	}
+    public WebContentDisplayEvent(String html) {
+        webContent = new WebContent(html);
+    }
 
-	public WebContentDisplayEvent(WebContent webContent) {
-		this.webContent = webContent;
-	}
+    public WebContentDisplayEvent(WebContent webContent) {
+        this.webContent = webContent;
+    }
 
-	@Override
-	public String getListKey() {
-		return webContent.getArticleId();
-	}
+    @Override
+    public String getListKey() {
+        return webContent.getArticleId();
+    }
 
-	@Override
-	public WebContent getModel() {
-		return webContent;
-	}
+    @Override
+    public WebContent getModel() {
+        return webContent;
+    }
 
-	public WebContent getWebContent() {
-		return webContent;
-	}
+    public WebContent getWebContent() {
+        return webContent;
+    }
 }

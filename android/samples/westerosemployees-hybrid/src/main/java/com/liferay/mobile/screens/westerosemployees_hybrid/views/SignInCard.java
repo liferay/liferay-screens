@@ -11,32 +11,32 @@ import com.liferay.mobile.screens.westerosemployees_hybrid.R;
  * @author Víctor Galán Grande
  */
 public class SignInCard extends Card implements View.OnClickListener {
-	public SignInCard(Context context) {
-		super(context);
-	}
+    public SignInCard(Context context) {
+        super(context);
+    }
 
-	public SignInCard(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public SignInCard(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public SignInCard(Context context, AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-	}
+    public SignInCard(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-	public SignInCard(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
+    public SignInCard(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
 
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
-		findViewById(R.id.liferay_forgot_link).setOnClickListener(this);
-		((TextView) findViewById(R.id.liferay_login)).setText(getResources().getString(R.string.liferay_login));
-		((TextView) findViewById(R.id.liferay_password)).setText(getResources().getString(R.string.liferay_password));
-	}
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        findViewById(R.id.liferay_forgot_link).setOnClickListener(this);
+        ((TextView) findViewById(R.id.liferay_login)).setText(getResources().getString(R.string.liferay_login));
+        ((TextView) findViewById(R.id.liferay_password)).setText(getResources().getString(R.string.liferay_password));
+    }
 
-	@Override
-	public void onClick(View v) {
-		goRight();
-	}
+    @Override
+    public void onClick(View v) {
+        goRight();
+    }
 }

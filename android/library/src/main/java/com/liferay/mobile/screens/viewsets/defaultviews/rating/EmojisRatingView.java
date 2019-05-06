@@ -14,41 +14,41 @@ import static com.liferay.mobile.screens.rating.RatingScreenlet.UPDATE_RATING_AC
  */
 public class EmojisRatingView extends BaseRatingView implements View.OnClickListener {
 
-	public static final String[] EMOJIS = new String[] {
-		"\uD83D\uDE1C", "\uD83D\uDE01", "\uD83D\uDE02", "\uD83D\uDE0E"
-	};
+    public static final String[] EMOJIS = new String[] {
+        "\uD83D\uDE1C", "\uD83D\uDE01", "\uD83D\uDE02", "\uD83D\uDE0E"
+    };
 
-	public EmojisRatingView(Context context) {
-		super(context);
-	}
+    public EmojisRatingView(Context context) {
+        super(context);
+    }
 
-	public EmojisRatingView(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public EmojisRatingView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public EmojisRatingView(Context context, AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-	}
+    public EmojisRatingView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-	public EmojisRatingView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
+    public EmojisRatingView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
 
-	@Override
-	protected void setButton(View textView) {
-		textView.setAlpha(1);
-	}
+    @Override
+    protected void setButton(View textView) {
+        textView.setAlpha(1);
+    }
 
-	@Override
-	protected void setEmptyState(TextView textView, View view, int rating, AssetRating assetRating) {
-		textView.setText(String.valueOf(rating));
-		view.setAlpha(0.4f);
-		((TextView) view).setText(EMOJIS[views.indexOf(view)]);
-	}
+    @Override
+    protected void setEmptyState(TextView textView, View view, int rating, AssetRating assetRating) {
+        textView.setText(String.valueOf(rating));
+        view.setAlpha(0.4f);
+        ((TextView) view).setText(EMOJIS[views.indexOf(view)]);
+    }
 
-	@Override
-	protected void clicked(double score, double userScore) {
-		String action = score == userScore ? DELETE_RATING_ACTION : UPDATE_RATING_ACTION;
-		getScreenlet().performUserAction(action, score);
-	}
+    @Override
+    protected void clicked(double score, double userScore) {
+        String action = score == userScore ? DELETE_RATING_ACTION : UPDATE_RATING_ACTION;
+        getScreenlet().performUserAction(action, score);
+    }
 }

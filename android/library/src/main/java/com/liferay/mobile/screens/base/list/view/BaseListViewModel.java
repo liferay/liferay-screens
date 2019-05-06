@@ -22,22 +22,22 @@ import java.util.List;
  */
 public interface BaseListViewModel<E> extends BaseViewModel {
 
-	/**
-	 * Called this method when the request has been finished successfully.
-	 *
-	 * @param startRow first position
-	 * @param endRow last position
-	 * @param entries list of entries
-	 * @param rowCount total count
-	 */
-	void showFinishOperation(int startRow, int endRow, List<E> entries, int rowCount);
+    /**
+     * Called this method when the request has been finished successfully.
+     *
+     * @param startRow first position
+     * @param endRow last position
+     * @param entries list of entries
+     * @param rowCount total count
+     */
+    void showFinishOperation(int startRow, int endRow, List<E> entries, int rowCount);
 
-	/**
-	 * Called this method when the request has been failed.
-	 *
-	 * @param startRow first position
-	 * @param endRow last position
-	 * @param e exception
-	 */
-	void showFinishOperation(int startRow, int endRow, Exception e);
+    /**
+     * Called this method when the request has been failed.
+     *
+     * @param startRow first position
+     * @param endRow last position
+     * @param e exception
+     */
+    void showFinishOperation(int startRow, int endRow, Exception e);
 }

@@ -21,31 +21,31 @@ import de.greenrobot.event.EventBus;
  */
 public class EventBusUtil {
 
-	private static EventBus bus;
+    private static EventBus bus;
 
-	private EventBusUtil() {
-		super();
-	}
+    private EventBusUtil() {
+        super();
+    }
 
-	public static void post(Object event) {
-		getInstance().post(event);
-	}
+    public static void post(Object event) {
+        getInstance().post(event);
+    }
 
-	public static void register(Object object) {
-		if (!getInstance().isRegistered(object)) {
-			getInstance().register(object);
-		}
-	}
+    public static void register(Object object) {
+        if (!getInstance().isRegistered(object)) {
+            getInstance().register(object);
+        }
+    }
 
-	public static void unregister(Object object) {
-		getInstance().unregister(object);
-	}
+    public static void unregister(Object object) {
+        getInstance().unregister(object);
+    }
 
-	protected static EventBus getInstance() {
-		if (bus == null) {
-			bus = new EventBus();
-		}
+    protected static EventBus getInstance() {
+        if (bus == null) {
+            bus = new EventBus();
+        }
 
-		return bus;
-	}
+        return bus;
+    }
 }

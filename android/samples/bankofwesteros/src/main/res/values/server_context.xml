@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<string name="liferay_server">http://screens.liferay.org.es</string>
-	<integer name="liferay_portal_version">70</integer>
-	<string name="liferay_company_id">20116</string>
-	<string name="liferay_group_id">20143</string>
+    <string name="liferay_server">http://screens.liferay.org.es</string>
+    <integer name="liferay_portal_version">70</integer>
+    <string name="liferay_company_id">20116</string>
+    <string name="liferay_group_id">20143</string>
 
-	<!-- LoginScreenlet values -->
-	<string name="liferay_login">demo@liferay.com</string>
-	<string name="liferay_password">demo</string>
+    <!-- LoginScreenlet values -->
+    <string name="liferay_login">demo@liferay.com</string>
+    <string name="liferay_password">demo</string>
 
-	<!-- SignupScreenlet values -->
-	<string name="liferay_anonymousApiUserName">anonymous1@liferay.com</string>
-	<string name="liferay_anonymousApiPassword">anonymous1</string>
+    <!-- SignupScreenlet values -->
+    <string name="liferay_anonymousApiUserName">anonymous1@liferay.com</string>
+    <string name="liferay_anonymousApiPassword">anonymous1</string>
 
-	<!-- DDLFormScreenlet values -->
-	<string name="liferay_recordset_id">67530</string>
-	<string name="liferay_structure_id">29817</string>
-	<string name="liferay_recordset_fields">title</string>
-	<string name="liferay_folder_id">54469</string>
+    <!-- DDLFormScreenlet values -->
+    <string name="liferay_recordset_id">67530</string>
+    <string name="liferay_structure_id">29817</string>
+    <string name="liferay_recordset_fields">title</string>
+    <string name="liferay_folder_id">54469</string>
 
 </resources>

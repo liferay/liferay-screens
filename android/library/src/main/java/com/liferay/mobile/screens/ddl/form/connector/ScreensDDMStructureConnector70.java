@@ -6,14 +6,14 @@ import org.json.JSONObject;
 
 public class ScreensDDMStructureConnector70 implements DDMStructureConnector {
 
-	private final ScreensddmstructureversionService screensddmstructurelayoutService;
+    private final ScreensddmstructureversionService screensddmstructurelayoutService;
 
-	public ScreensDDMStructureConnector70(Session session) {
-		screensddmstructurelayoutService = new ScreensddmstructureversionService(session);
-	}
+    public ScreensDDMStructureConnector70(Session session) {
+        screensddmstructurelayoutService = new ScreensddmstructureversionService(session);
+    }
 
-	@Override
-	public JSONObject getStructure(long structureId) throws Exception {
-		return screensddmstructurelayoutService.getDdmStructureVersion(structureId);
-	}
+    @Override
+    public JSONObject getStructure(long structureId) throws Exception {
+        return screensddmstructurelayoutService.getDdmStructureVersion(structureId);
+    }
 }

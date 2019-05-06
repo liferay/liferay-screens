@@ -12,16 +12,16 @@ import org.apache.cordova.engine.SystemWebViewEngine;
 
 public class ScreensCordovaWebViewClient extends SystemWebViewClient {
 
-	public ScreensCordovaWebViewClient(SystemWebViewEngine parentEngine) {
-		super(parentEngine);
-	}
+    public ScreensCordovaWebViewClient(SystemWebViewEngine parentEngine) {
+        super(parentEngine);
+    }
 
-	@Override
-	public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-		if (error.getPrimaryError() == SslError.SSL_EXPIRED) {
-			handler.cancel();
-		} else {
-			handler.proceed();
-		}
-	}
+    @Override
+    public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+        if (error.getPrimaryError() == SslError.SSL_EXPIRED) {
+            handler.cancel();
+        } else {
+            handler.proceed();
+        }
+    }
 }

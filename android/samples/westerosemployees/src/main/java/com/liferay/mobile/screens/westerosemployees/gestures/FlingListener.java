@@ -19,14 +19,14 @@ package com.liferay.mobile.screens.westerosemployees.gestures;
  */
 public interface FlingListener {
 
-	/**
-	 * Notified of a fling event when it occurs.
-	 *
-	 * @param movement {@link Movement} type
-	 */
-	void onFling(Movement movement);
+    /**
+     * Notified of a fling event when it occurs.
+     *
+     * @param movement {@link Movement} type
+     */
+    void onFling(Movement movement);
 
-	enum Movement {
-		UP, LEFT, RIGHT, DOWN, TOUCH
-	}
+    enum Movement {
+        UP, LEFT, RIGHT, DOWN, TOUCH
+    }
 }

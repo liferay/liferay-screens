@@ -9,9 +9,9 @@ import com.liferay.mobile.screens.testapp.ThemeActivity;
  */
 public class LoginFullActivity extends ThemeActivity {
 
-	@Override
-	protected void onCreate(Bundle state) {
-		super.onCreate(state);
-		setContentView(R.layout.login_full_layout);
-	}
+    @Override
+    protected void onCreate(Bundle state) {
+        super.onCreate(state);
+        setContentView(R.layout.login_full_layout);
+    }
 }

@@ -17,42 +17,48 @@ package com.liferay.mobile.screens.ddl.form.view;
 import android.view.View;
 import com.liferay.mobile.screens.ddl.model.Field;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLFieldRadioView;
+import rx.Observable;
 
 /**
  * @author Silvio Santos
  */
 public interface DDLFieldViewModel<T extends Field> {
 
-	/**
-	 * Returns the DDL field.
-	 */
-	T getField();
+    /**
+     * Returns the DDL field.
+     */
+    T getField();
 
-	/**
-	 * Sets a DDL field.
-	 */
-	void setField(T field);
+    /**
+     * Sets a DDL field.
+     */
+    void setField(T field);
 
-	/**
-	 * Call this method for refreshing the DDL field.
-	 */
-	void refresh();
+    /**
+     * Call this method for refreshing the DDL field.
+     */
+    void refresh();
 
-	/**
-	 * Called with the validation result.
-	 * For example, see {@link DDLFieldRadioView#onPostValidation(boolean)}
-	 */
-	void onPostValidation(boolean valid);
+    /**
+     * Called with the validation result.
+     * For example, see {@link DDLFieldRadioView#onPostValidation(boolean)}
+     */
+    void onPostValidation(boolean valid);
 
-	/**
-	 * Gets the parent view.
-	 */
-	View getParentView();
+    /**
+     * Gets the parent view.
+     */
+    View getParentView();
 
-	/**
-	 * Sets the parent view.
-	 */
-	void setParentView(View view);
+    /**
+     * Sets the parent view.
+     */
+    void setParentView(View view);
 
-	void setUpdateMode(boolean enabled);
+    /**
+     * Gets on changed value observable
+     */
+    Observable<T> getOnChangedValueObservable();
+
+    void setUpdateMode(boolean enabled);
 }

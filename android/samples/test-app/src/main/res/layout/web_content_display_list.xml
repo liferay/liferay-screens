@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:background="@android:color/white"
-	android:orientation="vertical"
-	>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    >
 
-	<TextView
-		android:text="@string/web_content_list_label"
-		style="@style/label"
-		/>
+    <TextView
+        android:text="@string/web_content_list_label"
+        style="@style/label"
+        />
 
-	<com.liferay.mobile.screens.webcontent.list.WebContentListScreenlet
-		android:id="@+id/web_content_list_screenlet"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		app:cachePolicy="REMOTE_FIRST"
-		app:folderId="@string/liferay_web_content_folder_id"
-		app:labelFields="Text"
-		/>
+    <com.liferay.mobile.screens.webcontent.list.WebContentListScreenlet
+        android:id="@+id/web_content_list_screenlet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cachePolicy="REMOTE_FIRST"
+        app:folderId="@string/liferay_web_content_folder_id"
+        app:labelFields="Text"
+        />
 
 </LinearLayout>

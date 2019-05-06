@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.testapp.postings.view.CollectionDetailCustomView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/collection_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="15dp"
+            android:paddingTop="15dp"
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:src="@drawable/ic_add"
+            android:layout_margin="16dp"
+            app:layout_anchorGravity="bottom|right|end"
+            />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</com.liferay.mobile.screens.testapp.postings.view.CollectionDetailCustomView>

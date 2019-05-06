@@ -17,48 +17,48 @@ import org.json.JSONObject;
  */
 public class CommentLoadInteractor extends BaseCacheReadInteractor<CommentDisplayInteractorListener, CommentEvent> {
 
-	@Override
-	public CommentEvent execute(Object... args) throws Exception {
+    @Override
+    public CommentEvent execute(Object... args) throws Exception {
 
-		long commentId = (long) args[0];
+        long commentId = (long) args[0];
 
-		validate(commentId);
+        validate(commentId);
 
-		ScreensCommentConnector connector = ServiceProvider.getInstance().getScreensCommentConnector(getSession());
-		JSONObject jsonObject = connector.getComment(commentId);
-		return new CommentEvent(jsonObject);
-	}
+        ScreensCommentConnector connector = ServiceProvider.getInstance().getScreensCommentConnector(getSession());
+        JSONObject jsonObject = connector.getComment(commentId);
+        return new CommentEvent(jsonObject);
+    }
 
-	@Override
-	public void onSuccess(CommentEvent event) {
-		Map<String, Object> map;
+    @Override
+    public void onSuccess(CommentEvent event) {
+        Map<String, Object> map;
 
-		try {
-			map = JSONUtil.toMap(event.getJSONObject());
-		} catch (JSONException e) {
-			event.setException(e);
-			onFailure(event);
-			return;
-		}
+        try {
+            map = JSONUtil.toMap(event.getJSONObject());
+        } catch (JSONException e) {
+            event.setException(e);
+            onFailure(event);
+            return;
+        }
 
-		CommentEntry commentEntry = new CommentEntry(map);
-		getListener().onLoadCommentSuccess(commentEntry);
-	}
+        CommentEntry commentEntry = new CommentEntry(map);
+        getListener().onLoadCommentSuccess(commentEntry);
+    }
 
-	@Override
-	public void onFailure(CommentEvent event) {
-		getListener().error(event.getException(), CommentDisplayScreenlet.LOAD_COMMENT_ACTION);
-	}
+    @Override
+    public void onFailure(CommentEvent event) {
+        getListener().error(event.getException(), CommentDisplayScreenlet.LOAD_COMMENT_ACTION);
+    }
 
-	@Override
-	protected String getIdFromArgs(Object... args) {
-		long commentId = (long) args[0];
-		return String.valueOf(commentId);
-	}
+    @Override
+    protected String getIdFromArgs(Object... args) {
+        long commentId = (long) args[0];
+        return String.valueOf(commentId);
+    }
 
-	private void validate(long commentId) {
-		if (commentId <= 0) {
-			throw new IllegalArgumentException("commentId cannot be 0 or negative");
-		}
-	}
+    private void validate(long commentId) {
+        if (commentId <= 0) {
+            throw new IllegalArgumentException("commentId cannot be 0 or negative");
+        }
+    }
 }

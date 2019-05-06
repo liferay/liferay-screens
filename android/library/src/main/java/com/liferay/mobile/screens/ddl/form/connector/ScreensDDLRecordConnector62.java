@@ -11,36 +11,36 @@ import org.json.JSONObject;
  */
 public class ScreensDDLRecordConnector62 implements ScreensDDLRecordConnector {
 
-	private final ScreensddlrecordService ddlRecordService;
+    private final ScreensddlrecordService ddlRecordService;
 
-	public ScreensDDLRecordConnector62(Session session) {
-		ddlRecordService = new ScreensddlrecordService(session);
-	}
+    public ScreensDDLRecordConnector62(Session session) {
+        ddlRecordService = new ScreensddlrecordService(session);
+    }
 
-	@Override
-	public JSONArray getDdlRecords(long recordSetId, long userId, String s, int startRow, int endRow,
-		JSONObjectWrapper obc) throws Exception {
-		return ddlRecordService.getDdlRecords(recordSetId, userId, s, startRow, endRow, obc);
-	}
+    @Override
+    public JSONArray getDdlRecords(long recordSetId, long userId, String s, int startRow, int endRow,
+        JSONObjectWrapper obc) throws Exception {
+        return ddlRecordService.getDdlRecords(recordSetId, userId, s, startRow, endRow, obc);
+    }
 
-	@Override
-	public JSONArray getDdlRecords(long recordSetId, String s, int startRow, int endRow, JSONObjectWrapper obc)
-		throws Exception {
-		return ddlRecordService.getDdlRecords(recordSetId, s, startRow, endRow, obc);
-	}
+    @Override
+    public JSONArray getDdlRecords(long recordSetId, String s, int startRow, int endRow, JSONObjectWrapper obc)
+        throws Exception {
+        return ddlRecordService.getDdlRecords(recordSetId, s, startRow, endRow, obc);
+    }
 
-	@Override
-	public Integer getDdlRecordsCount(long recordSetId, long userId) throws Exception {
-		return ddlRecordService.getDdlRecordsCount(recordSetId, userId);
-	}
+    @Override
+    public Integer getDdlRecordsCount(long recordSetId, long userId) throws Exception {
+        return ddlRecordService.getDdlRecordsCount(recordSetId, userId);
+    }
 
-	@Override
-	public Integer getDdlRecordsCount(long recordSetId) throws Exception {
-		return ddlRecordService.getDdlRecordsCount(recordSetId);
-	}
+    @Override
+    public Integer getDdlRecordsCount(long recordSetId) throws Exception {
+        return ddlRecordService.getDdlRecordsCount(recordSetId);
+    }
 
-	@Override
-	public JSONObject getDdlRecord(long recordId, String s) throws Exception {
-		return ddlRecordService.getDdlRecord(recordId, s);
-	}
+    @Override
+    public JSONObject getDdlRecord(long recordId, String s) throws Exception {
+        return ddlRecordService.getDdlRecord(recordId, s);
+    }
 }

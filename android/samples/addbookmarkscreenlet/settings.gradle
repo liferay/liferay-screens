@@ -1,3 +1,0 @@
-include 'liferay-screens'
-project(':liferay-screens').projectDir = new File(settingsDir, '../../library')
-project(':liferay-screens').name = 'liferay-screens'

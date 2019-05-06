@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/liferay_list_title"
-	style="@style/default_list_item"
-	/>
+    android:id="@+id/liferay_list_title"
+    style="@style/default_list_item"
+    />

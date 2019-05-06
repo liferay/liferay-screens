@@ -23,48 +23,48 @@ import com.liferay.mobile.screens.dlfile.display.BaseFileDisplayScreenlet;
  */
 public class VideoDisplayScreenlet extends BaseFileDisplayScreenlet implements VideoDisplayListener {
 
-	public VideoDisplayScreenlet(Context context) {
-		super(context);
-	}
+    public VideoDisplayScreenlet(Context context) {
+        super(context);
+    }
 
-	public VideoDisplayScreenlet(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public VideoDisplayScreenlet(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public VideoDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-	}
+    public VideoDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-	public VideoDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
+    public VideoDisplayScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
 
-	@Override
-	public void onVideoPrepared() {
-		if (listener != null) {
-			getListener().onVideoPrepared();
-		}
-	}
+    @Override
+    public void onVideoPrepared() {
+        if (listener != null) {
+            getListener().onVideoPrepared();
+        }
+    }
 
-	@Override
-	public void onVideoError(Exception e) {
-		if (listener != null) {
-			getListener().onVideoError(e);
-		}
-	}
+    @Override
+    public void onVideoError(Exception e) {
+        if (listener != null) {
+            getListener().onVideoError(e);
+        }
+    }
 
-	@Override
-	public void onVideoCompleted() {
-		if (listener != null) {
-			getListener().onVideoCompleted();
-		}
-	}
+    @Override
+    public void onVideoCompleted() {
+        if (listener != null) {
+            getListener().onVideoCompleted();
+        }
+    }
 
-	public VideoDisplayListener getListener() {
-		return (VideoDisplayListener) listener;
-	}
+    public VideoDisplayListener getListener() {
+        return (VideoDisplayListener) listener;
+    }
 
-	public void setListener(VideoDisplayListener listener) {
-		this.listener = listener;
-	}
+    public void setListener(VideoDisplayListener listener) {
+        this.listener = listener;
+    }
 }

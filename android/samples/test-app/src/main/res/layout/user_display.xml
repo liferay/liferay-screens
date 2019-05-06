@@ -1,98 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:id="@+id/user_display"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:paddingBottom="@dimen/activity_vertical_margin"
-	android:paddingLeft="@dimen/activity_horizontal_margin"
-	android:paddingRight="@dimen/activity_horizontal_margin"
-	android:paddingTop="@dimen/activity_vertical_margin"
-	>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_display"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    >
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical"
-		>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
 
-		<TextView
-			android:id="@+id/liferay_user_greeting"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:gravity="center"
-			android:textSize="25sp"
-			android:textStyle="italic|bold"
-			tools:text="Welcome!"
-			/>
+        <TextView
+            android:id="@+id/liferay_user_greeting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textStyle="italic|bold"
+            tools:text="Welcome!"
+            />
 
-		<com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
-			android:id="@+id/user_portrait_screenlet"
-			android:layout_width="100dp"
-			android:layout_height="100dp"
-			android:layout_gravity="center"
-			app:autoLoad="false"
-			app:cachePolicy="REMOTE_FIRST"
-			app:editable="false"
-			/>
+        <com.liferay.mobile.screens.userportrait.UserPortraitScreenlet
+            android:id="@+id/user_portrait_screenlet"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            app:autoLoad="false"
+            app:cachePolicy="REMOTE_FIRST"
+            app:editable="false"
+            />
 
-		<TextView
-			android:id="@+id/liferay_user_name"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:gravity="center"
-			android:textSize="20sp"
-			android:textStyle="bold"
-			tools:text="Demo user"
-			/>
+        <TextView
+            android:id="@+id/liferay_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="Demo user"
+            />
 
-		<TextView
-			android:id="@+id/liferay_user_jobtitle"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:gravity="center"
-			android:textColor="@android:color/darker_gray"
-			android:textSize="17sp"
-			tools:text="Software Engineer"
-			/>
+        <TextView
+            android:id="@+id/liferay_user_jobtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="17sp"
+            tools:text="Software Engineer"
+            />
 
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="10sp"
-			android:text="@string/email"
-			android:textColor="@color/colorPrimaryDark_westeros"
-			android:textSize="16sp"
-			/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:text="@string/email"
+            android:textColor="@color/colorPrimaryDark_westeros"
+            android:textSize="16sp"
+            />
 
-		<TextView
-			android:id="@+id/liferay_user_email"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:textSize="20sp"
-			tools:text="pedro.muriel@liferay.com"
-			/>
+        <TextView
+            android:id="@+id/liferay_user_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            tools:text="pedro.muriel@liferay.com"
+            />
 
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="10sp"
-			android:text="@string/nickname"
-			android:textColor="@color/colorPrimaryDark_westeros"
-			android:textSize="16sp"
-			/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:text="@string/nickname"
+            android:textColor="@color/colorPrimaryDark_westeros"
+            android:textSize="16sp"
+            />
 
-		<TextView
-			android:id="@+id/liferay_user_nickname"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:textSize="20sp"
-			tools:text="pedromuriel"
-			/>
+        <TextView
+            android:id="@+id/liferay_user_nickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            tools:text="pedromuriel"
+            />
 
-	</LinearLayout>
+    </LinearLayout>
 
 </ScrollView>
 

@@ -10,21 +10,21 @@ import android.os.Bundle;
 
 public interface CordovaLifeCycleListener {
 
-	void onActivityResult(int requestCode, int resultCode, Intent data);
+    void onActivityResult(int requestCode, int resultCode, Intent data);
 
-	void onPause();
+    void onPause();
 
-	void onStop();
+    void onStop();
 
-	void onStart();
+    void onStart();
 
-	void onResume();
+    void onResume();
 
-	void onDestroy();
+    void onDestroy();
 
-	void onSaveInstanceState(Bundle outState);
+    void onSaveInstanceState(Bundle outState);
 
-	void onConfigurationChanged(Configuration newConfig);
+    void onConfigurationChanged(Configuration newConfig);
 
-	void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults);
+    void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults);
 }

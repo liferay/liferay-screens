@@ -21,8 +21,8 @@ import com.liferay.mobile.screens.base.view.BaseViewModel;
  */
 public interface BaseFileDisplayViewModel extends BaseViewModel {
 
-	/**
-	 * Called when the file is ready to be displayed.
-	 */
-	void showFinishOperation(FileEntry fileEntry);
+    /**
+     * Called when the file is ready to be displayed.
+     */
+    void showFinishOperation(FileEntry fileEntry);
 }

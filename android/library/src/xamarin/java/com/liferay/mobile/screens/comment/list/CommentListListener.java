@@ -22,13 +22,13 @@ import com.liferay.mobile.screens.comment.CommentEntry;
  */
 public interface CommentListListener extends BaseListListener {
 
-	/**
-	 * Called when the screenlet successfully deletes the comment.
-	 */
-	void onDeleteCommentSuccess(CommentEntry commentEntry);
+    /**
+     * Called when the screenlet successfully deletes the comment.
+     */
+    void onDeleteCommentSuccess(CommentEntry commentEntry);
 
-	/**
-	 * Called when the screenlet successfully updates the comment.
-	 */
-	void onUpdateCommentSuccess(CommentEntry commentEntry);
+    /**
+     * Called when the screenlet successfully updates the comment.
+     */
+    void onUpdateCommentSuccess(CommentEntry commentEntry);
 }

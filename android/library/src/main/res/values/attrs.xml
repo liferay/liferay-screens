@@ -1,303 +1,311 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<attr format="string" name="themeName"/>
-	<attr format="string" name="anonymousApiUserName"/>
-	<attr format="string" name="anonymousApiPassword"/>
-	<attr format="boolean" name="autoLoad"/>
-	<attr format="string" name="folderId"/>
-	<attr format="string" name="locale"/>
-	<attr format="enum" name="basicAuthMethod">
-		<enum name="email" value="0"/>
-		<enum name="screen_name" value="1"/>
-		<enum name="user_id" value="2"/>
-	</attr>
-	<attr format="enum" name="loginMode">
-		<enum name="basic" value="0"/>
-		<enum name="cookie" value="1"/>
-		<enum name="oauth2Redirect" value="2"/>
-		<enum name="oauth2UsernameAndPassword" value="3"/>
-	</attr>
-	<attr format="enum" name="credentialsStorage">
-		<enum name="none" value="0"/>
-		<enum name="auto" value="1"/>
-		<enum name="shared_preferences" value="2"/>
-	</attr>
-	<attr format="enum" name="cachePolicy">
-		<enum name="REMOTE_ONLY" value="0"/>
-		<enum name="CACHE_ONLY" value="1"/>
-		<enum name="CACHE_FIRST" value="2"/>
-		<enum name="REMOTE_FIRST" value="3"/>
-	</attr>
-	<attr format="enum" name="imageScaleType">
-		<enum name="MATRIX" value="0"/>
-		<enum name="FIT_XY" value="1"/>
-		<enum name="FIT_START" value="2"/>
-		<enum name="FIT_CENTER" value="3"/>
-		<enum name="FIT_END" value="4"/>
-		<enum name="CENTER" value="5"/>
-		<enum name="CENTER_CROP" value="6"/>
-		<enum name="CENTER_INSIDE" value="7"/>
-	</attr>
-	<attr format="enum" name="placeholderScaleType">
-		<enum name="MATRIX" value="0"/>
-		<enum name="FIT_XY" value="1"/>
-		<enum name="FIT_START" value="2"/>
-		<enum name="FIT_CENTER" value="3"/>
-		<enum name="FIT_END" value="4"/>
-		<enum name="CENTER" value="5"/>
-		<enum name="CENTER_CROP" value="6"/>
-		<enum name="CENTER_INSIDE" value="7"/>
-	</attr>
+    <attr format="string" name="themeName"/>
+    <attr format="string" name="anonymousApiUserName"/>
+    <attr format="string" name="anonymousApiPassword"/>
+    <attr format="boolean" name="autoLoad"/>
+    <attr format="string" name="folderId"/>
+    <attr format="string" name="locale"/>
+    <attr format="enum" name="basicAuthMethod">
+        <enum name="email" value="0"/>
+        <enum name="screen_name" value="1"/>
+        <enum name="user_id" value="2"/>
+    </attr>
+    <attr format="enum" name="loginMode">
+        <enum name="basic" value="0"/>
+        <enum name="cookie" value="1"/>
+        <enum name="oauth2Redirect" value="2"/>
+        <enum name="oauth2UsernameAndPassword" value="3"/>
+    </attr>
+    <attr format="enum" name="credentialsStorage">
+        <enum name="none" value="0"/>
+        <enum name="auto" value="1"/>
+        <enum name="shared_preferences" value="2"/>
+    </attr>
+    <attr format="enum" name="cachePolicy">
+        <enum name="REMOTE_ONLY" value="0"/>
+        <enum name="CACHE_ONLY" value="1"/>
+        <enum name="CACHE_FIRST" value="2"/>
+        <enum name="REMOTE_FIRST" value="3"/>
+    </attr>
+    <attr format="enum" name="imageScaleType">
+        <enum name="MATRIX" value="0"/>
+        <enum name="FIT_XY" value="1"/>
+        <enum name="FIT_START" value="2"/>
+        <enum name="FIT_CENTER" value="3"/>
+        <enum name="FIT_END" value="4"/>
+        <enum name="CENTER" value="5"/>
+        <enum name="CENTER_CROP" value="6"/>
+        <enum name="CENTER_INSIDE" value="7"/>
+    </attr>
+    <attr format="enum" name="placeholderScaleType">
+        <enum name="MATRIX" value="0"/>
+        <enum name="FIT_XY" value="1"/>
+        <enum name="FIT_START" value="2"/>
+        <enum name="FIT_CENTER" value="3"/>
+        <enum name="FIT_END" value="4"/>
+        <enum name="CENTER" value="5"/>
+        <enum name="CENTER_CROP" value="6"/>
+        <enum name="CENTER_INSIDE" value="7"/>
+    </attr>
 
-	<attr format="string" name="companyId"/>
-	<attr format="string" name="groupId"/>
-	<attr format="reference" name="layoutId"/>
-	<attr format="string" name="recordSetId"/>
-	<attr format="string" name="userId"/>
-	<attr format="integer" name="firstPageSize"/>
-	<attr format="integer" name="pageSize"/>
-	<attr format="string" name="labelFields"/>
-	<attr format="string" name="structureId"/>
-	<attr format="string" name="classPK"/>
-	<attr format="string" name="className"/>
-	<attr format="boolean" name="editable"/>
-	<attr format="string" name="obcClassName"/>
-	<attr format="string" name="entryId"/>
-	<attr format="string" name="portletItemName"/>
+    <attr format="string" name="companyId"/>
+    <attr format="string" name="groupId"/>
+    <attr format="reference" name="layoutId"/>
+    <attr format="string" name="recordSetId"/>
+    <attr format="string" name="userId"/>
+    <attr format="integer" name="firstPageSize"/>
+    <attr format="integer" name="pageSize"/>
+    <attr format="string" name="labelFields"/>
+    <attr format="string" name="structureId"/>
+    <attr format="string" name="classPK"/>
+    <attr format="string" name="className"/>
+    <attr format="boolean" name="editable"/>
+    <attr format="string" name="obcClassName"/>
+    <attr format="string" name="entryId"/>
+    <attr format="string" name="portletItemName"/>
 
-	<declare-styleable name="CacheScreenlet">
-		<attr name="groupId"/>
-		<attr name="cachePolicy"/>
-		<attr name="userId"/>
-		<attr name="locale"/>
-	</declare-styleable>
+    <declare-styleable name="CacheScreenlet">
+        <attr name="groupId"/>
+        <attr name="cachePolicy"/>
+        <attr name="userId"/>
+        <attr name="locale"/>
+    </declare-styleable>
 
-	<declare-styleable name="AssetListScreenlet">
-		<attr name="layoutId"/>
-		<attr name="autoLoad"/>
-		<attr name="groupId"/>
-		<attr name="cachePolicy"/>
-		<attr name="portletItemName"/>
-		<attr format="string" name="classNameId"/>
-		<attr name="firstPageSize"/>
-		<attr name="pageSize"/>
-		<attr name="labelFields"/>
-		<attr name="obcClassName"/>
-	</declare-styleable>
+    <declare-styleable name="AssetListScreenlet">
+        <attr name="layoutId"/>
+        <attr name="autoLoad"/>
+        <attr name="groupId"/>
+        <attr name="cachePolicy"/>
+        <attr name="portletItemName"/>
+        <attr format="string" name="classNameId"/>
+        <attr name="firstPageSize"/>
+        <attr name="pageSize"/>
+        <attr name="labelFields"/>
+        <attr name="obcClassName"/>
+    </declare-styleable>
 
-	<declare-styleable name="CommentAddScreenlet">
-		<attr name="layoutId"/>
-		<attr name="classPK"/>
-		<attr name="className"/>
-	</declare-styleable>
+    <declare-styleable name="CommentAddScreenlet">
+        <attr name="layoutId"/>
+        <attr name="classPK"/>
+        <attr name="className"/>
+    </declare-styleable>
 
-	<declare-styleable name="CommentDisplayScreenlet">
-		<attr name="layoutId"/>
-		<attr name="autoLoad"/>
-		<attr name="cachePolicy"/>
-		<attr format="string" name="commentId"/>
-		<attr name="editable"/>
-	</declare-styleable>
+    <declare-styleable name="CommentDisplayScreenlet">
+        <attr name="layoutId"/>
+        <attr name="autoLoad"/>
+        <attr name="cachePolicy"/>
+        <attr format="string" name="commentId"/>
+        <attr name="editable"/>
+    </declare-styleable>
 
-	<declare-styleable name="CommentListScreenlet">
-		<attr name="layoutId"/>
-		<attr name="autoLoad"/>
-		<attr name="cachePolicy"/>
-		<attr name="classPK"/>
-		<attr name="className"/>
-		<attr name="firstPageSize"/>
-		<attr name="pageSize"/>
-		<attr name="labelFields"/>
-		<attr name="editable"/>
-	</declare-styleable>
+    <declare-styleable name="CommentListScreenlet">
+        <attr name="layoutId"/>
+        <attr name="autoLoad"/>
+        <attr name="cachePolicy"/>
+        <attr name="classPK"/>
+        <attr name="className"/>
+        <attr name="firstPageSize"/>
+        <attr name="pageSize"/>
+        <attr name="labelFields"/>
+        <attr name="editable"/>
+    </declare-styleable>
 
-	<declare-styleable name="DDLFormScreenlet">
-		<attr name="layoutId"/>
-		<attr name="groupId"/>
-		<attr format="boolean" name="autoScrollOnValidation"/>
-		<attr name="structureId"/>
-		<attr format="string" name="recordId"/>
-		<attr name="recordSetId"/>
-		<attr name="userId"/>
-		<attr name="autoLoad"/>
-		<attr name="cachePolicy"/>
-		<attr format="string" name="filePrefix"/>
-		<attr format="string" name="repositoryId"/>
-		<attr name="folderId"/>
-		<attr format="boolean" name="updateEnabled"/>
-		<attr format="reference" name="checkboxFieldLayoutId"/>
-		<attr format="reference" name="dateFieldLayoutId"/>
-		<attr format="reference" name="numberFieldLayoutId"/>
-		<attr format="reference" name="radioFieldLayoutId"/>
-		<attr format="reference" name="selectFieldLayoutId"/>
-		<attr format="reference" name="textFieldLayoutId"/>
-		<attr format="reference" name="textAreaFieldLayoutId"/>
-		<attr format="reference" name="documentFieldLayoutId"/>
-		<attr format="reference" name="geoFieldLayoutId"/>
-	</declare-styleable>
+    <declare-styleable name="DDLFormScreenlet">
+        <attr name="layoutId"/>
+        <attr name="groupId"/>
+        <attr format="boolean" name="autoScrollOnValidation"/>
+        <attr name="structureId"/>
+        <attr format="string" name="recordId"/>
+        <attr name="recordSetId"/>
+        <attr name="userId"/>
+        <attr name="autoLoad"/>
+        <attr name="cachePolicy"/>
+        <attr format="string" name="filePrefix"/>
+        <attr format="string" name="repositoryId"/>
+        <attr name="folderId"/>
+        <attr format="boolean" name="updateEnabled"/>
+        <attr format="reference" name="checkboxFieldLayoutId"/>
+        <attr format="reference" name="dateFieldLayoutId"/>
+        <attr format="reference" name="numberFieldLayoutId"/>
+        <attr format="reference" name="radioFieldLayoutId"/>
+        <attr format="reference" name="selectFieldLayoutId"/>
+        <attr format="reference" name="textFieldLayoutId"/>
+        <attr format="reference" name="textAreaFieldLayoutId"/>
+        <attr format="reference" name="documentFieldLayoutId"/>
+        <attr format="reference" name="geoFieldLayoutId"/>
+    </declare-styleable>
 
-	<declare-styleable name="DDLListScreenlet">
-		<attr name="layoutId"/>
-		<attr name="autoLoad"/>
-		<attr name="recordSetId"/>
-		<attr name="userId"/>
-		<attr name="cachePolicy"/>
-		<attr name="firstPageSize"/>
-		<attr name="pageSize"/>
-		<attr name="labelFields"/>
-		<attr name="obcClassName"/>
-	</declare-styleable>
+    <declare-styleable name="DDLListScreenlet">
+        <attr name="layoutId"/>
+        <attr name="autoLoad"/>
+        <attr name="recordSetId"/>
+        <attr name="userId"/>
+        <attr name="cachePolicy"/>
+        <attr name="firstPageSize"/>
+        <attr name="pageSize"/>
+        <attr name="labelFields"/>
+        <attr name="obcClassName"/>
+    </declare-styleable>
 
-	<declare-styleable name="ForgotPasswordScreenlet">
-		<attr name="layoutId"/>
-		<attr name="anonymousApiUserName"/>
-		<attr name="anonymousApiPassword"/>
-		<attr name="basicAuthMethod"/>
-		<attr name="companyId"/>
-	</declare-styleable>
+    <declare-styleable name="DDMFormScreenlet">
+        <attr name="layoutId"/>
+        <attr format="boolean" name="autoloadDraftEnabled"/>
+        <attr format="boolean" name="autosaveDraftEnabled"/>
+        <attr format="integer" name="formInstanceId"/>
+        <attr format="integer" name="syncFormTimeout"/>
+    </declare-styleable>
 
-	<declare-styleable name="LoginScreenlet">
-		<attr name="layoutId"/>
-		<attr name="basicAuthMethod"/>
-		<attr name="companyId"/>
-		<attr name="credentialsStorage"/>
-		<attr name="loginMode"/>
-		<attr format="boolean" name="shouldHandleCookieExpiration"/>
-		<attr format="integer" name="cookieExpirationTime"/>
-		<attr format="string" name="oauth2ClientId"/>
-		<attr format="string" name="oauth2ClientSecret"/>
-		<attr format="string" name="oauth2Scopes"/>
-		<attr format="string" name="oauth2Redirect"/>
-	</declare-styleable>
+    <declare-styleable name="ForgotPasswordScreenlet">
+        <attr name="layoutId"/>
+        <attr name="anonymousApiUserName"/>
+        <attr name="anonymousApiPassword"/>
+        <attr name="basicAuthMethod"/>
+        <attr name="companyId"/>
+    </declare-styleable>
 
-	<declare-styleable name="SignUpScreenlet">
-		<attr name="layoutId"/>
-		<attr name="companyId"/>
-		<attr name="anonymousApiUserName"/>
-		<attr name="anonymousApiPassword"/>
-		<attr format="boolean" name="autoLogin"/>
-		<attr name="credentialsStorage"/>
-		<attr name="basicAuthMethod"/>
-	</declare-styleable>
+    <declare-styleable name="LoginScreenlet">
+        <attr name="layoutId"/>
+        <attr name="basicAuthMethod"/>
+        <attr name="companyId"/>
+        <attr name="credentialsStorage"/>
+        <attr name="loginMode"/>
+        <attr format="boolean" name="shouldHandleCookieExpiration"/>
+        <attr format="integer" name="cookieExpirationTime"/>
+        <attr format="string" name="oauth2ClientId"/>
+        <attr format="string" name="oauth2ClientSecret"/>
+        <attr format="string" name="oauth2Scopes"/>
+        <attr format="string" name="oauth2Redirect"/>
+    </declare-styleable>
 
-	<declare-styleable name="WebContentDisplayScreenlet">
-		<attr name="layoutId"/>
-		<attr name="autoLoad"/>
-		<attr name="groupId"/>
-		<attr name="cachePolicy"/>
-		<attr format="string" name="templateId"/>
-		<attr name="structureId"/>
-		<attr format="boolean" name="javascriptEnabled"/>
-		<attr format="string" name="articleId"/>
-		<attr name="labelFields"/>
-	</declare-styleable>
+    <declare-styleable name="SignUpScreenlet">
+        <attr name="layoutId"/>
+        <attr name="companyId"/>
+        <attr name="anonymousApiUserName"/>
+        <attr name="anonymousApiPassword"/>
+        <attr format="boolean" name="autoLogin"/>
+        <attr name="credentialsStorage"/>
+        <attr name="basicAuthMethod"/>
+    </declare-styleable>
 
-	<declare-styleable name="WebContentListScreenlet">
-		<attr name="layoutId"/>
-		<attr name="autoLoad"/>
-		<attr name="folderId"/>
-		<attr name="groupId"/>
-		<attr name="cachePolicy"/>
-		<attr name="firstPageSize"/>
-		<attr name="pageSize"/>
-		<attr name="labelFields"/>
-		<attr name="obcClassName"/>
-	</declare-styleable>
+    <declare-styleable name="WebContentDisplayScreenlet">
+        <attr name="layoutId"/>
+        <attr name="autoLoad"/>
+        <attr name="groupId"/>
+        <attr name="cachePolicy"/>
+        <attr format="string" name="templateId"/>
+        <attr name="structureId"/>
+        <attr format="boolean" name="javascriptEnabled"/>
+        <attr format="string" name="articleId"/>
+        <attr name="labelFields"/>
+    </declare-styleable>
 
-	<declare-styleable name="UserPortraitScreenlet">
-		<attr name="layoutId"/>
-		<attr name="autoLoad"/>
-		<attr name="cachePolicy"/>
-		<attr format="boolean" name="male"/>
-		<attr format="string" name="portraitId"/>
-		<attr format="string" name="uuid"/>
-		<attr name="userId"/>
-		<attr name="editable"/>
-	</declare-styleable>
+    <declare-styleable name="WebContentListScreenlet">
+        <attr name="layoutId"/>
+        <attr name="autoLoad"/>
+        <attr name="folderId"/>
+        <attr name="groupId"/>
+        <attr name="cachePolicy"/>
+        <attr name="firstPageSize"/>
+        <attr name="pageSize"/>
+        <attr name="labelFields"/>
+        <attr name="obcClassName"/>
+    </declare-styleable>
 
-	<declare-styleable name="ImageGalleryScreenlet">
-		<attr name="repositoryId"/>
-		<attr name="folderId"/>
-		<attr name="cachePolicy"/>
-		<attr name="pageSize"/>
-		<attr name="firstPageSize"/>
-		<attr format="string" name="mimeTypes"/>
-	</declare-styleable>
+    <declare-styleable name="UserPortraitScreenlet">
+        <attr name="layoutId"/>
+        <attr name="autoLoad"/>
+        <attr name="cachePolicy"/>
+        <attr format="boolean" name="male"/>
+        <attr format="string" name="portraitId"/>
+        <attr format="string" name="uuid"/>
+        <attr name="userId"/>
+        <attr name="editable"/>
+    </declare-styleable>
 
-	<declare-styleable name="ModalProgressBar">
-		<attr format="reference" name="actionViewId"/>
-	</declare-styleable>
+    <declare-styleable name="ImageGalleryScreenlet">
+        <attr name="repositoryId"/>
+        <attr name="folderId"/>
+        <attr name="cachePolicy"/>
+        <attr name="pageSize"/>
+        <attr name="firstPageSize"/>
+        <attr format="string" name="mimeTypes"/>
+    </declare-styleable>
 
-	<declare-styleable name="RatingScreenlet">
-		<attr name="layoutId"/>
-		<attr name="autoLoad"/>
-		<attr name="editable"/>
-		<attr name="className"/>
-		<attr name="classPK"/>
-		<attr name="entryId"/>
-	</declare-styleable>
+    <declare-styleable name="ModalProgressBar">
+        <attr format="reference" name="actionViewId"/>
+    </declare-styleable>
 
-	<declare-styleable name="AssetDisplayScreenlet">
-		<attr name="layoutId"/>
-		<attr name="autoLoad"/>
-		<attr name="entryId"/>
-		<attr name="className"/>
-		<attr name="classPK"/>
-		<attr name="portletItemName"/>
-		<attr format="reference" name="imagelayoutId"/>
-		<attr format="reference" name="videolayoutId"/>
-		<attr format="reference" name="audiolayoutId"/>
-		<attr format="reference" name="pdflayoutId"/>
-		<attr format="reference" name="blogsLayoutId"/>
-		<attr format="reference" name="webDisplayLayoutId"/>
-	</declare-styleable>
+    <declare-styleable name="RatingScreenlet">
+        <attr name="layoutId"/>
+        <attr name="autoLoad"/>
+        <attr name="editable"/>
+        <attr name="className"/>
+        <attr name="classPK"/>
+        <attr name="entryId"/>
+    </declare-styleable>
 
-	<declare-styleable name="ImageDisplayScreenlet">
-		<attr name="layoutId"/>
-		<attr name="autoLoad"/>
-		<attr name="entryId"/>
-		<attr name="className"/>
-		<attr name="classPK"/>
-		<attr name="imageScaleType"/>
-		<attr name="placeholderScaleType"/>
-		<attr format="reference" name="placeholder"/>
-	</declare-styleable>
+    <declare-styleable name="AssetDisplayScreenlet">
+        <attr name="layoutId"/>
+        <attr name="autoLoad"/>
+        <attr name="entryId"/>
+        <attr name="className"/>
+        <attr name="classPK"/>
+        <attr name="portletItemName"/>
+        <attr format="reference" name="imagelayoutId"/>
+        <attr format="reference" name="videolayoutId"/>
+        <attr format="reference" name="audiolayoutId"/>
+        <attr format="reference" name="pdflayoutId"/>
+        <attr format="reference" name="blogsLayoutId"/>
+        <attr format="reference" name="webDisplayLayoutId"/>
+    </declare-styleable>
 
-	<declare-styleable name="VideoDisplayScreenlet">
-		<attr name="layoutId"/>
-		<attr name="autoLoad"/>
-		<attr name="entryId"/>
-		<attr name="className"/>
-		<attr name="classPK"/>
-	</declare-styleable>
+    <declare-styleable name="ImageDisplayScreenlet">
+        <attr name="layoutId"/>
+        <attr name="autoLoad"/>
+        <attr name="entryId"/>
+        <attr name="className"/>
+        <attr name="classPK"/>
+        <attr name="imageScaleType"/>
+        <attr name="placeholderScaleType"/>
+        <attr format="reference" name="placeholder"/>
+    </declare-styleable>
 
-	<declare-styleable name="AudioDisplayScreenlet">
-		<attr name="layoutId"/>
-		<attr name="autoLoad"/>
-		<attr name="entryId"/>
-		<attr name="className"/>
-		<attr name="classPK"/>
-	</declare-styleable>
+    <declare-styleable name="VideoDisplayScreenlet">
+        <attr name="layoutId"/>
+        <attr name="autoLoad"/>
+        <attr name="entryId"/>
+        <attr name="className"/>
+        <attr name="classPK"/>
+    </declare-styleable>
 
-	<declare-styleable name="PdfDisplayScreenlet">
-		<attr name="layoutId"/>
-		<attr name="autoLoad"/>
-		<attr name="entryId"/>
-		<attr name="className"/>
-		<attr name="classPK"/>
-	</declare-styleable>
+    <declare-styleable name="AudioDisplayScreenlet">
+        <attr name="layoutId"/>
+        <attr name="autoLoad"/>
+        <attr name="entryId"/>
+        <attr name="className"/>
+        <attr name="classPK"/>
+    </declare-styleable>
 
-	<declare-styleable name="BlogsEntryDisplayScreenlet">
-		<attr name="layoutId"/>
-		<attr name="autoLoad"/>
-		<attr name="entryId"/>
-		<attr name="className"/>
-		<attr name="classPK"/>
-	</declare-styleable>
+    <declare-styleable name="PdfDisplayScreenlet">
+        <attr name="layoutId"/>
+        <attr name="autoLoad"/>
+        <attr name="entryId"/>
+        <attr name="className"/>
+        <attr name="classPK"/>
+    </declare-styleable>
 
-	<declare-styleable name="WebScreenlet">
-		<attr name="layoutId"/>
-		<attr name="autoLoad"/>
-	</declare-styleable>
+    <declare-styleable name="BlogsEntryDisplayScreenlet">
+        <attr name="layoutId"/>
+        <attr name="autoLoad"/>
+        <attr name="entryId"/>
+        <attr name="className"/>
+        <attr name="classPK"/>
+    </declare-styleable>
+
+    <declare-styleable name="WebScreenlet">
+        <attr name="layoutId"/>
+        <attr name="autoLoad"/>
+    </declare-styleable>
 
 </resources>

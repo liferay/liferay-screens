@@ -1,3 +1,17 @@
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
 package com.liferay.mobile.screens.ddl.model;
 
 import java.io.Serializable;
@@ -8,24 +22,24 @@ import java.io.Serializable;
 
 public class GeoLocation implements Serializable {
 
-	private final double latitude;
-	private final double longitude;
+    private final double latitude;
+    private final double longitude;
 
-	public GeoLocation(double latitude, double longitude) {
-		this.latitude = latitude;
-		this.longitude = longitude;
-	}
+    public GeoLocation(double latitude, double longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
 
-	public double getLatitude() {
-		return latitude;
-	}
+    public double getLatitude() {
+        return latitude;
+    }
 
-	public double getLongitude() {
-		return longitude;
-	}
+    public double getLongitude() {
+        return longitude;
+    }
 
-	@Override
-	public String toString() {
-		return "latitude=" + latitude + ", longitude=" + longitude;
-	}
+    @Override
+    public String toString() {
+        return "latitude=" + latitude + ", longitude=" + longitude;
+    }
 }

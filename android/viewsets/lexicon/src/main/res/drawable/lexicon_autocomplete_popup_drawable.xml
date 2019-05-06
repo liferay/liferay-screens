@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle"
+    >
+    <solid android:color="@color/autocomplete_background_color"/>
+    <corners android:radius="@dimen/field_radius"/>
+    <stroke
+        android:color="@color/autocomplete_popup_border"
+        android:width="1dip"/>
+</shape>

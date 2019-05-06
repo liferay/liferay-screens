@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:orientation="vertical"
-	>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
 
-	<TextView
-		android:text="@string/webview_structured_label"
-		style="@style/label"
-		/>
+    <TextView
+        android:text="@string/webview_structured_label"
+        style="@style/label"
+        />
 
-	<com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		app:articleId="@string/liferay_article_structured_article_id"
-		app:cachePolicy="REMOTE_FIRST"
-		app:labelFields="@string/liferay_article_structured_label_fields"
-		app:layoutId="@layout/webcontentdisplay_structured_default"
-		app:structureId="@string/liferay_article_structured_structure_id"
-		/>
+    <com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:articleId="@string/liferay_article_structured_article_id"
+        app:cachePolicy="REMOTE_FIRST"
+        app:labelFields="@string/liferay_article_structured_label_fields"
+        app:layoutId="@layout/webcontentdisplay_structured_default"
+        app:structureId="@string/liferay_article_structured_structure_id"
+        />
 
-	<TextView
-		android:text="@string/webview_structured_label_first_field"
-		style="@style/label"
-		/>
+    <TextView
+        android:text="@string/webview_structured_label_first_field"
+        style="@style/label"
+        />
 
-	<com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		app:articleId="@string/liferay_article_structured_article_id"
-		app:cachePolicy="REMOTE_FIRST"
-		app:labelFields="@string/liferay_article_structured_label_fields_first_field"
-		app:layoutId="@layout/webcontentdisplay_structured_default"
-		app:structureId="@string/liferay_article_structured_structure_id"
-		/>
+    <com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:articleId="@string/liferay_article_structured_article_id"
+        app:cachePolicy="REMOTE_FIRST"
+        app:labelFields="@string/liferay_article_structured_label_fields_first_field"
+        app:layoutId="@layout/webcontentdisplay_structured_default"
+        app:structureId="@string/liferay_article_structured_structure_id"
+        />
 
-	<TextView
-		android:text="@string/webview_structured_label_example"
-		style="@style/label"
-		/>
+    <TextView
+        android:text="@string/webview_structured_label_example"
+        style="@style/label"
+        />
 
-	<com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		app:articleId="@string/liferay_article_structured_article_id"
-		app:cachePolicy="REMOTE_FIRST"
-		app:labelFields="@string/liferay_article_structured_label_fields_first_field"
-		app:layoutId="@layout/webcontentdisplaystructured_example"
-		app:structureId="@string/liferay_article_structured_structure_id"
-		/>
-	
+    <com.liferay.mobile.screens.webcontent.display.WebContentDisplayScreenlet
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:articleId="@string/liferay_article_structured_article_id"
+        app:cachePolicy="REMOTE_FIRST"
+        app:labelFields="@string/liferay_article_structured_label_fields_first_field"
+        app:layoutId="@layout/webcontentdisplaystructured_example"
+        app:structureId="@string/liferay_article_structured_structure_id"
+        />
+
 </LinearLayout>

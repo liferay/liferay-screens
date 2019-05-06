@@ -40,4 +40,22 @@
             />
     </FrameLayout>
 
+    <TextView
+        android:id="@+id/liferay_ddm_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_help_text_margin"
+        android:textColor="@color/textColorHelp_lexicon"
+        android:visibility="gone"
+        />
+
+    <include
+        android:id="@+id/error_view"
+        layout="@layout/error_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/error_view_margin_top"
+        android:visibility="gone"
+        />
+
 </com.liferay.mobile.screens.viewsets.lexicon.ddl.form.fields.DDLDocumentFieldView>

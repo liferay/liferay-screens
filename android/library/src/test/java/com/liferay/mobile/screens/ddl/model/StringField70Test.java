@@ -34,173 +34,173 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class StringField70Test {
 
-	private static StringField createStringField(Boolean required) {
+    private static StringField createStringField(Boolean required) {
 
-		String json = "{\"availableLanguageIds\": [ \"en_US\"], "
-			+ "\"defaultLanguageId\": \"en_US\", "
-			+ "\"fields\": [ "
-			+ "{"
-			+ "            \"label\": {"
-			+ "                \"en_US\": \"Title\""
-			+ "            },"
-			+ "            \"predefinedValue\": {"
-			+ "                \"en_US\": \"\""
-			+ "            },"
-			+ "            \"style\": {"
-			+ "                \"en_US\": \"\""
-			+ "            },"
-			+ "            \"tip\": {"
-			+ "                \"en_US\": \"\""
-			+ "            },"
-			+ "            \"dataType\": \"string\","
-			+ "            \"indexType\": \"keyword\","
-			+ "            \"localizable\": true,"
-			+ "            \"name\": \"Title\","
-			+ "            \"readOnly\": false,"
-			+ "            \"repeatable\": false,"
-			+ "            \"required\": "
-			+ required
-			+ ","
-			+ "            \"showLabel\": true,"
-			+ "            \"type\": \"text\""
-			+ "        }"
-			+ "]}";
+        String json = "{\"availableLanguageIds\": [ \"en_US\"], "
+            + "\"defaultLanguageId\": \"en_US\", "
+            + "\"fields\": [ "
+            + "{"
+            + "            \"label\": {"
+            + "                \"en_US\": \"Title\""
+            + "            },"
+            + "            \"predefinedValue\": {"
+            + "                \"en_US\": \"\""
+            + "            },"
+            + "            \"style\": {"
+            + "                \"en_US\": \"\""
+            + "            },"
+            + "            \"tip\": {"
+            + "                \"en_US\": \"\""
+            + "            },"
+            + "            \"dataType\": \"string\","
+            + "            \"indexType\": \"keyword\","
+            + "            \"localizable\": true,"
+            + "            \"name\": \"Title\","
+            + "            \"readOnly\": false,"
+            + "            \"repeatable\": false,"
+            + "            \"required\": "
+            + required
+            + ","
+            + "            \"showLabel\": true,"
+            + "            \"type\": \"text\""
+            + "        }"
+            + "]}";
 
-		List<Field> resultList = new JsonParser().parse(json, new Locale("en", "US"));
+        List<Field> resultList = new JsonParser().parse(json, new Locale("en", "US"));
 
-		return (StringField) resultList.get(0);
-	}
+        return (StringField) resultList.get(0);
+    }
 
-	//@Config(constants = BuildConfig.class)
-	@RunWith(RobolectricTestRunner.class)
-	public static class WhenParsingXSD {
-		@Test
-		public void shouldReturnStringFieldObject() throws Exception {
+    //@Config(constants = BuildConfig.class)
+    @RunWith(RobolectricTestRunner.class)
+    public static class WhenParsingXSD {
+        @Test
+        public void shouldReturnStringFieldObject() throws Exception {
 
-			String json = "{\"availableLanguageIds\": [ \"en_US\"], "
-				+ "\"defaultLanguageId\": \"en_US\", "
-				+ "\"fields\": [ "
-				+ "{"
-				+ "            \"label\": {"
-				+ "                \"en_US\": \"Title\""
-				+ "            },"
-				+ "            \"predefinedValue\": {"
-				+ "                \"en_US\": \"default text\""
-				+ "            },"
-				+ "            \"style\": {"
-				+ "                \"en_US\": \"\""
-				+ "            },"
-				+ "            \"tip\": {"
-				+ "                \"en_US\": \"\""
-				+ "            },"
-				+ "            \"dataType\": \"string\","
-				+ "            \"indexType\": \"keyword\","
-				+ "            \"localizable\": true,"
-				+ "            \"name\": \"A_Text\","
-				+ "            \"readOnly\": false,"
-				+ "            \"repeatable\": false,"
-				+ "            \"required\": true,"
-				+ "            \"showLabel\": true,"
-				+ "            \"type\": \"text\""
-				+ "        }"
-				+ "]}";
+            String json = "{\"availableLanguageIds\": [ \"en_US\"], "
+                + "\"defaultLanguageId\": \"en_US\", "
+                + "\"fields\": [ "
+                + "{"
+                + "            \"label\": {"
+                + "                \"en_US\": \"Title\""
+                + "            },"
+                + "            \"predefinedValue\": {"
+                + "                \"en_US\": \"default text\""
+                + "            },"
+                + "            \"style\": {"
+                + "                \"en_US\": \"\""
+                + "            },"
+                + "            \"tip\": {"
+                + "                \"en_US\": \"\""
+                + "            },"
+                + "            \"dataType\": \"string\","
+                + "            \"indexType\": \"keyword\","
+                + "            \"localizable\": true,"
+                + "            \"name\": \"A_Text\","
+                + "            \"readOnly\": false,"
+                + "            \"repeatable\": false,"
+                + "            \"required\": true,"
+                + "            \"showLabel\": true,"
+                + "            \"type\": \"text\""
+                + "        }"
+                + "]}";
 
-			List<Field> resultList = new JsonParser().parse(json, new Locale("en", "US"));
+            List<Field> resultList = new JsonParser().parse(json, new Locale("en", "US"));
 
-			assertNotNull(resultList);
-			assertEquals(1, resultList.size());
+            assertNotNull(resultList);
+            assertEquals(1, resultList.size());
 
-			Field resultField = resultList.get(0);
-			assertTrue(resultField instanceof StringField);
-			StringField stringField = (StringField) resultField;
+            Field resultField = resultList.get(0);
+            assertTrue(resultField instanceof StringField);
+            StringField stringField = (StringField) resultField;
 
-			assertEquals(Field.DataType.STRING.getValue(), stringField.getDataType().getValue());
-			assertEquals(Field.EditorType.TEXT.getValue(), stringField.getEditorType().getValue());
-			assertEquals("A_Text", stringField.getName());
-			assertEquals("default text", stringField.getCurrentValue());
-			assertEquals(stringField.getCurrentValue(), stringField.getPredefinedValue());
-		}
-	}
+            assertEquals(Field.DataType.STRING.getValue(), stringField.getDataType().getValue());
+            assertEquals(Field.EditorType.TEXT.getValue(), stringField.getEditorType().getValue());
+            assertEquals("A_Text", stringField.getName());
+            assertEquals("default text", stringField.getCurrentValue());
+            assertEquals(stringField.getCurrentValue(), stringField.getPredefinedValue());
+        }
+    }
 
-	//@Config(constants = BuildConfig.class)
-	@RunWith(RobolectricTestRunner.class)
-	public static class WhenValidatingAndRequired {
+    //@Config(constants = BuildConfig.class)
+    @RunWith(RobolectricTestRunner.class)
+    public static class WhenValidatingAndRequired {
 
-		@Test
-		public void shouldReturnFalseWhenHasOnlyBlankSpaces() throws SAXException {
-			StringField field = createStringField(true);
+        @Test
+        public void shouldReturnFalseWhenHasOnlyBlankSpaces() throws SAXException {
+            StringField field = createStringField(true);
 
-			field.setCurrentValue("   ");
+            field.setCurrentValue("   ");
 
-			assertFalse(field.isValid());
-		}
+            assertFalse(field.isValid());
+        }
 
-		@Test
-		public void shouldReturnFalseWhenValueIsNull() throws SAXException {
-			StringField field = createStringField(true);
+        @Test
+        public void shouldReturnFalseWhenValueIsNull() throws SAXException {
+            StringField field = createStringField(true);
 
-			field.setCurrentValue(null);
+            field.setCurrentValue(null);
 
-			assertFalse(field.isValid());
-		}
+            assertFalse(field.isValid());
+        }
 
-		@Test
-		public void shouldReturnFalseWhenValueIsEmpty() throws SAXException {
-			StringField field = createStringField(true);
+        @Test
+        public void shouldReturnFalseWhenValueIsEmpty() throws SAXException {
+            StringField field = createStringField(true);
 
-			field.setCurrentValue("");
+            field.setCurrentValue("");
 
-			assertFalse(field.isValid());
-		}
+            assertFalse(field.isValid());
+        }
 
-		@Test
-		public void shouldReturnTrueWhenValueIsSet() throws SAXException {
-			StringField field = createStringField(true);
+        @Test
+        public void shouldReturnTrueWhenValueIsSet() throws SAXException {
+            StringField field = createStringField(true);
 
-			field.setCurrentValue("abc");
+            field.setCurrentValue("abc");
 
-			assertTrue(field.isValid());
-		}
-	}
+            assertTrue(field.isValid());
+        }
+    }
 
-	//@Config(constants = BuildConfig.class)
-	@RunWith(RobolectricTestRunner.class)
-	public static class WhenValidatingAndNotRequired {
+    //@Config(constants = BuildConfig.class)
+    @RunWith(RobolectricTestRunner.class)
+    public static class WhenValidatingAndNotRequired {
 
-		@Test
-		public void shouldReturnTrueWhenHasOnlyBlankSpaces() throws SAXException {
-			StringField field = createStringField(false);
+        @Test
+        public void shouldReturnTrueWhenHasOnlyBlankSpaces() throws SAXException {
+            StringField field = createStringField(false);
 
-			field.setCurrentValue("   ");
+            field.setCurrentValue("   ");
 
-			assertTrue(field.isValid());
-		}
+            assertTrue(field.isValid());
+        }
 
-		@Test
-		public void shouldReturnTrueWhenValueIsNull() throws SAXException {
-			StringField field = createStringField(false);
+        @Test
+        public void shouldReturnTrueWhenValueIsNull() throws SAXException {
+            StringField field = createStringField(false);
 
-			field.setCurrentValue(null);
+            field.setCurrentValue(null);
 
-			assertTrue(field.isValid());
-		}
+            assertTrue(field.isValid());
+        }
 
-		@Test
-		public void shouldReturnTrueWhenValueIsEmpty() throws SAXException {
-			StringField field = createStringField(false);
+        @Test
+        public void shouldReturnTrueWhenValueIsEmpty() throws SAXException {
+            StringField field = createStringField(false);
 
-			field.setCurrentValue("");
+            field.setCurrentValue("");
 
-			assertTrue(field.isValid());
-		}
+            assertTrue(field.isValid());
+        }
 
-		@Test
-		public void shouldReturnTrueWhenValueIsSet() throws SAXException {
-			StringField field = createStringField(false);
+        @Test
+        public void shouldReturnTrueWhenValueIsSet() throws SAXException {
+            StringField field = createStringField(false);
 
-			field.setCurrentValue("abc");
+            field.setCurrentValue("abc");
 
-			assertTrue(field.isValid());
-		}
-	}
+            assertTrue(field.isValid());
+        }
+    }
 }

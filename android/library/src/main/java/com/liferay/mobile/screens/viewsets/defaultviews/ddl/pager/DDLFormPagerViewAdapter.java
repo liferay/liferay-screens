@@ -15,7 +15,7 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.ddl.pager;
 
 import android.content.Context;
-import android.support.v4.view.PagerAdapter;
+import androidx.viewpager.widget.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,46 +29,46 @@ import java.util.Map;
  */
 public class DDLFormPagerViewAdapter extends PagerAdapter {
 
-	private final List<Field> fields;
-	private final Map<Field.EditorType, Integer> layoutIds;
+    private final List<Field> fields;
+    private final Map<Field.EditorType, Integer> layoutIds;
 
-	public DDLFormPagerViewAdapter(List<Field> fields, Map<Field.EditorType, Integer> layoutIds) {
+    public DDLFormPagerViewAdapter(List<Field> fields, Map<Field.EditorType, Integer> layoutIds) {
 
-		this.fields = fields;
-		this.layoutIds = layoutIds;
-	}
+        this.fields = fields;
+        this.layoutIds = layoutIds;
+    }
 
-	@Override
-	public int getCount() {
-		return fields.size();
-	}
+    @Override
+    public int getCount() {
+        return fields.size();
+    }
 
-	@Override
-	public Object instantiateItem(ViewGroup container, int position) {
-		Context context = container.getContext();
+    @Override
+    public Object instantiateItem(ViewGroup container, int position) {
+        Context context = container.getContext();
 
-		Field field = fields.get(position);
-		Field.EditorType type = field.getEditorType();
-		int layoutId = layoutIds.get(type);
+        Field field = fields.get(position);
+        Field.EditorType type = field.getEditorType();
+        int layoutId = layoutIds.get(type);
 
-		LayoutInflater inflater = LayoutInflater.from(context);
-		View view = inflater.inflate(layoutId, container, false);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(layoutId, container, false);
 
-		DDLFieldViewModel viewModel = (DDLFieldViewModel) view;
-		viewModel.setField(field);
+        DDLFieldViewModel viewModel = (DDLFieldViewModel) view;
+        viewModel.setField(field);
 
-		container.addView(view);
+        container.addView(view);
 
-		return view;
-	}
+        return view;
+    }
 
-	@Override
-	public void destroyItem(ViewGroup container, int position, Object object) {
-		container.removeView((View) object);
-	}
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        container.removeView((View) object);
+    }
 
-	@Override
-	public boolean isViewFromObject(View view, Object object) {
-		return view.equals(object);
-	}
+    @Override
+    public boolean isViewFromObject(View view, Object object) {
+        return view.equals(object);
+    }
 }

@@ -32,54 +32,54 @@ import org.json.JSONObject;
  */
 public class DDLListInteractor extends BaseListInteractor<BaseListInteractorListener<Record>, DDLFormEvent> {
 
-	protected void validate(long recordSetId, int startRow, int endRow, Locale locale) {
-		super.validate(startRow, endRow, locale);
+    protected void validate(long recordSetId, int startRow, int endRow, Locale locale) {
+        super.validate(startRow, endRow, locale);
 
-		if (recordSetId <= 0) {
-			throw new IllegalArgumentException("ddlRecordSetId cannot be 0 or negative");
-		}
-	}
+        if (recordSetId <= 0) {
+            throw new IllegalArgumentException("ddlRecordSetId cannot be 0 or negative");
+        }
+    }
 
-	@Override
-	protected JSONArray getPageRowsRequest(Query query, Object... args) throws Exception {
-		long recordSetId = (long) args[0];
-		long userId = (long) args[1];
+    @Override
+    protected JSONArray getPageRowsRequest(Query query, Object... args) throws Exception {
+        long recordSetId = (long) args[0];
+        long userId = (long) args[1];
 
-		validate(recordSetId, query.getStartRow(), query.getEndRow(), locale);
+        validate(recordSetId, query.getStartRow(), query.getEndRow(), locale);
 
-		ScreensDDLRecordConnector ddlRecordService =
-			ServiceProvider.getInstance().getScreensDDLRecordConnector(getSession());
-		int startRow = query.getStartRow();
-		int endRow = query.getEndRow();
-		String localeString = locale.toString();
+        ScreensDDLRecordConnector ddlRecordService =
+            ServiceProvider.getInstance().getScreensDDLRecordConnector(getSession());
+        int startRow = query.getStartRow();
+        int endRow = query.getEndRow();
+        String localeString = locale.toString();
 
-		return userId != 0 ? ddlRecordService.getDdlRecords(recordSetId, userId, localeString, startRow, endRow,
-			query.getComparatorJSONWrapper())
-			: ddlRecordService.getDdlRecords(recordSetId, localeString, startRow, endRow,
-				query.getComparatorJSONWrapper());
-	}
+        return userId != 0 ? ddlRecordService.getDdlRecords(recordSetId, userId, localeString, startRow, endRow,
+            query.getComparatorJSONWrapper())
+            : ddlRecordService.getDdlRecords(recordSetId, localeString, startRow, endRow,
+                query.getComparatorJSONWrapper());
+    }
 
-	@Override
-	protected Integer getPageRowCountRequest(Object... args) throws Exception {
-		long recordSetId = (long) args[0];
-		long userId = (long) args[1];
+    @Override
+    protected Integer getPageRowCountRequest(Object... args) throws Exception {
+        long recordSetId = (long) args[0];
+        long userId = (long) args[1];
 
-		validate(recordSetId, query.getStartRow(), query.getEndRow(), locale);
+        validate(recordSetId, query.getStartRow(), query.getEndRow(), locale);
 
-		ScreensDDLRecordConnector ddlRecordService =
-			ServiceProvider.getInstance().getScreensDDLRecordConnector(getSession());
+        ScreensDDLRecordConnector ddlRecordService =
+            ServiceProvider.getInstance().getScreensDDLRecordConnector(getSession());
 
-		return userId != 0 ? ddlRecordService.getDdlRecordsCount(recordSetId, userId)
-			: ddlRecordService.getDdlRecordsCount(recordSetId);
-	}
+        return userId != 0 ? ddlRecordService.getDdlRecordsCount(recordSetId, userId)
+            : ddlRecordService.getDdlRecordsCount(recordSetId);
+    }
 
-	@Override
-	protected DDLFormEvent createEntity(Map<String, Object> stringObjectMap) {
-		return new DDLFormEvent(new Record(stringObjectMap, locale), new JSONObject(stringObjectMap));
-	}
+    @Override
+    protected DDLFormEvent createEntity(Map<String, Object> stringObjectMap) {
+        return new DDLFormEvent(new Record(stringObjectMap, locale), new JSONObject(stringObjectMap));
+    }
 
-	@Override
-	protected String getIdFromArgs(Object... args) {
-		return String.valueOf(args[0]);
-	}
+    @Override
+    protected String getIdFromArgs(Object... args) {
+        return String.valueOf(args[0]);
+    }
 }

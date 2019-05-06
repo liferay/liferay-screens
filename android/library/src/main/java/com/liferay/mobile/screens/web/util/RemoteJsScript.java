@@ -19,28 +19,28 @@ package com.liferay.mobile.screens.web.util;
  */
 public class RemoteJsScript implements InjectableScript {
 
-	private String name;
-	private String content;
+    private String name;
+    private String content;
 
-	public RemoteJsScript(String name, String url) {
-		this.name = name;
-		content = "var script = document.createElement('script');"
-			+ "script.language = 'javascript';"
-			+ "script.type = 'text/javascript';"
-			+ "script.src = '"
-			+ url
-			+ "';"
-			+ "var body = document.getElementsByTagName('body')[0];"
-			+ "body.appendChild(script);";
-	}
+    public RemoteJsScript(String name, String url) {
+        this.name = name;
+        content = "var script = document.createElement('script');"
+            + "script.language = 'javascript';"
+            + "script.type = 'text/javascript';"
+            + "script.src = '"
+            + url
+            + "';"
+            + "var body = document.getElementsByTagName('body')[0];"
+            + "body.appendChild(script);";
+    }
 
-	@Override
-	public String getName() {
-		return name;
-	}
+    @Override
+    public String getName() {
+        return name;
+    }
 
-	@Override
-	public String getContent() {
-		return content;
-	}
+    @Override
+    public String getContent() {
+        return content;
+    }
 }

@@ -21,73 +21,73 @@ import java.util.Iterator;
  * @author Javier Gamarra
  */
 public class UserPortraitUploadInteractor
-	extends BaseCacheWriteInteractor<UserPortraitInteractorListener, UserPortraitUploadEvent> {
+    extends BaseCacheWriteInteractor<UserPortraitInteractorListener, UserPortraitUploadEvent> {
 
-	@Override
-	public void online(UserPortraitUploadEvent event) throws Exception {
-		decorateEvent(event, false);
-		execute(event);
-	}
+    @Override
+    public void online(UserPortraitUploadEvent event) throws Exception {
+        decorateEvent(event, false);
+        execute(event);
+    }
 
-	@Override
-	public UserPortraitUploadEvent execute(UserPortraitUploadEvent event) {
+    @Override
+    public UserPortraitUploadEvent execute(UserPortraitUploadEvent event) {
 
-		Context context = LiferayScreensContext.getContext();
-		Intent intent = new Intent(context, UserPortraitService.class);
-		intent.putExtra("pictureUri", event.getUriPath());
-		intent.putExtra("actionName", event.getActionName());
-		intent.putExtra("userId", event.getUserId());
-		intent.putExtra("groupId", event.getGroupId());
-		intent.putExtra("locale", event.getLocale());
-		intent.putExtra("targetScreenletId", getTargetScreenletId());
-		intent.putExtra("actionName", getActionName());
+        Context context = LiferayScreensContext.getContext();
+        Intent intent = new Intent(context, UserPortraitService.class);
+        intent.putExtra("pictureUri", event.getUriPath());
+        intent.putExtra("actionName", event.getActionName());
+        intent.putExtra("userId", event.getUserId());
+        intent.putExtra("groupId", event.getGroupId());
+        intent.putExtra("locale", event.getLocale());
+        intent.putExtra("targetScreenletId", getTargetScreenletId());
+        intent.putExtra("actionName", getActionName());
 
-		context.startService(intent);
-		return null;
-	}
+        context.startService(intent);
+        return null;
+    }
 
-	@Override
-	public void onSuccess(UserPortraitUploadEvent event) {
+    @Override
+    public void onSuccess(UserPortraitUploadEvent event) {
 
-		User oldLoggedUser = SessionContext.getCurrentUser();
+        User oldLoggedUser = SessionContext.getCurrentUser();
 
-		User user = new User(event.getJSONObject());
+        User user = new User(event.getJSONObject());
 
-		if (oldLoggedUser != null && user.getId() == oldLoggedUser.getId()) {
-			SessionContext.setCurrentUser(user);
-		}
+        if (oldLoggedUser != null && user.getId() == oldLoggedUser.getId()) {
+            SessionContext.setCurrentUser(user);
+        }
 
-		Uri userPortraitUri = new UserPortraitUriBuilder().getUserPortraitUri(LiferayServerContext.getServer(), true,
-			user.getPortraitId(), user.getUuid());
-		invalidateUrl(userPortraitUri);
+        Uri userPortraitUri = new UserPortraitUriBuilder().getUserPortraitUri(LiferayServerContext.getServer(), true,
+            user.getPortraitId(), user.getUuid());
+        invalidateUrl(userPortraitUri);
 
-		getListener().onUserPortraitUploaded(oldLoggedUser == null ? null : oldLoggedUser.getId());
-	}
+        getListener().onUserPortraitUploaded(oldLoggedUser == null ? null : oldLoggedUser.getId());
+    }
 
-	@Override
-	public void onFailure(UserPortraitUploadEvent event) {
-		getListener().error(event.getException(), UserPortraitScreenlet.UPLOAD_PORTRAIT);
-	}
+    @Override
+    public void onFailure(UserPortraitUploadEvent event) {
+        getListener().error(event.getException(), UserPortraitScreenlet.UPLOAD_PORTRAIT);
+    }
 
-	private void invalidateUrl(Uri userPortraitURL) {
-		try {
-			Context context = LiferayScreensContext.getContext();
+    private void invalidateUrl(Uri userPortraitURL) {
+        try {
+            Context context = LiferayScreensContext.getContext();
 
-			UserPortraitUriBuilder userPortraitUriBuilder = new UserPortraitUriBuilder();
-			OkHttpClient okHttpClient = userPortraitUriBuilder.getUserPortraitClient(context);
+            UserPortraitUriBuilder userPortraitUriBuilder = new UserPortraitUriBuilder();
+            OkHttpClient okHttpClient = userPortraitUriBuilder.getUserPortraitClient(context);
 
-			com.squareup.okhttp.Cache cache = okHttpClient.getCache();
-			Iterator<String> urls = cache.urls();
-			while (urls.hasNext()) {
-				String url = urls.next();
-				if (url.equals(userPortraitURL.toString())) {
-					urls.remove();
-				}
-			}
+            com.squareup.okhttp.Cache cache = okHttpClient.getCache();
+            Iterator<String> urls = cache.urls();
+            while (urls.hasNext()) {
+                String url = urls.next();
+                if (url.equals(userPortraitURL.toString())) {
+                    urls.remove();
+                }
+            }
 
-			Picasso.with(context).invalidate(userPortraitURL);
-		} catch (IOException e) {
-			LiferayLogger.e("Error invalidating cache", e);
-		}
-	}
+            Picasso.with(context).invalidate(userPortraitURL);
+        } catch (IOException e) {
+            LiferayLogger.e("Error invalidating cache", e);
+        }
+    }
 }

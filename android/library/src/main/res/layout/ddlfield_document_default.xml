@@ -1,47 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:orientation="vertical"
-	android:padding="10dp"
-	>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp"
+    >
 
-	<TextView
-		android:id="@+id/liferay_ddl_label"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:visibility="gone"
-		/>
+    <TextView
+        android:id="@+id/liferay_ddl_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        />
 
-	<FrameLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
 
-		<EditText
-			android:id="@+id/liferay_ddl_edit_text"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:clickable="true"
-			android:drawableRight="@drawable/default_blue_tinted"
-			android:editable="false"
-			android:focusable="false"
-			android:inputType="none"
-			android:labelFor="@+id/liferay_ddl_edit_text"
-			android:paddingBottom="5dp"
-			android:paddingLeft="5dp"
-			android:paddingRight="5dp"
-			android:paddingTop="5dp"
-			/>
+        <EditText
+            android:id="@+id/liferay_ddl_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:drawableRight="@drawable/default_blue_tinted"
+            android:editable="false"
+            android:focusable="false"
+            android:inputType="none"
+            android:labelFor="@+id/liferay_ddl_edit_text"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="5dp"
+            />
 
-		<ProgressBar
-			android:id="@+id/liferay_document_progress"
-			android:layout_width="wrap_content"
-			android:layout_height="match_parent"
-			android:layout_gravity="end|center_vertical"
-			android:visibility="invisible"
-			/>
-	</FrameLayout>
+        <ProgressBar
+            android:id="@+id/liferay_document_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end|center_vertical"
+            android:visibility="invisible"
+            />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/liferay_ddm_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        />
 
 </com.liferay.mobile.screens.viewsets.defaultviews.ddl.form.fields.DDLDocumentFieldView>

@@ -1,30 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<color name="colorPrimary">@color/colorPrimary_lexicon</color>
-	<color name="colorPrimaryLight">@color/colorPrimaryLight_lexicon</color>
-	<color name="colorPrimaryDark">@color/colorPrimaryDark_lexicon</color>
+    <color name="colorPrimary">@color/colorPrimary_lexicon</color>
+    <color name="colorAccent">@color/colorPrimaryLight_lexicon</color>
+    <color name="colorPrimaryLight">@color/colorPrimaryLight_lexicon</color>
+    <color name="colorPrimaryDark">@color/colorPrimaryDark_lexicon</color>
 
-	<color name="textColorPrimary">@color/textColorPrimary_lexicon</color>
-	<color name="textColorSecondary">@color/textColorSecondary_lexicon</color>
-	<color name="textColorTertiary">@color/textColorTertiary_lexicon</color>
+    <color name="textColorPrimary">@color/textColorPrimary_lexicon</color>
+    <color name="textColorSecondary">@color/textColorSecondary_lexicon</color>
+    <color name="textColorTertiary">@color/textColorTertiary_lexicon</color>
 
-	<color name="colorPrimary_lexicon">#393a4a</color>
-	<color name="colorPrimaryLight_lexicon">#0b5fff</color>
-	<color name="colorPrimaryDark_lexicon">#272833</color>
+    <color name="colorPrimary_lexicon">#393a4a</color>
+    <color name="colorPrimaryLight_lexicon">#0b5fff</color>
+    <color name="colorPrimaryDark_lexicon">#272833</color>
 
-	<color name="textColorPrimary_lexicon">#f1f2f5</color>
-	<color name="textColorSecondary_lexicon">#6b6c7e</color>
-	<color name="textColorTertiary_lexicon">#e7e7ed</color>
+    <color name="textColorPrimary_lexicon">#f1f2f5</color>
+    <color name="textColorSecondary_lexicon">#6b6c7e</color>
+    <color name="textColorTertiary_lexicon">#e7e7ed</color>
+    <color name="textColorDisabled_lexicon">#a7a9bc</color>
+    <color name="textColorHelp_lexicon">#6b6c7e</color>
 
-	<color name="colorRequiredField">#b95000</color>
-	<color name="lightGray_lexicon">#cdced9</color>
+    <color name="colorRequiredField">#b95000</color>
+    <color name="lightGray_lexicon">#cdced9</color>
 
-	<color name="lightBlue_lexicon">#f0f5ff</color>
-	<color name="lightBlue2_lexicon">#b3cdff</color>
-	<color name="lightBlue3_lexicon">#71a2ff</color>
+    <color name="lightBlue_lexicon">#f0f5ff</color>
+    <color name="lightBlue2_lexicon">#b3cdff</color>
+    <color name="lightBlue3_lexicon">#71a2ff</color>
 
-	<color name="colorTextErrorPrimary">#feefef</color>
-	<color name="colorTextErrorSecondary">#da1414</color>
+    <color name="redError_lexicon">#da1414</color>
+
+    <color name="colorTextErrorPrimary">#feefef</color>
+    <color name="colorTextErrorSecondary">#da1414</color>
+
+    <color name="autocomplete_popup_border">#2F6b6c7e</color>
+    <color name="autocomplete_background_color">#fafafa</color>
 
 </resources>

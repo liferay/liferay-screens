@@ -15,7 +15,7 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.auth.forgotpassword;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
@@ -34,130 +34,130 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  */
 public class ForgotPasswordView extends LinearLayout implements ForgotPasswordViewModel, View.OnClickListener {
 
-	protected EditText loginEditText;
-	protected ModalProgressBar progressBar;
-	private BasicAuthMethod basicAuthMethod;
-	private BaseScreenlet screenlet;
+    protected EditText loginEditText;
+    protected ModalProgressBar progressBar;
+    private BasicAuthMethod basicAuthMethod;
+    private BaseScreenlet screenlet;
 
-	public ForgotPasswordView(Context context) {
-		super(context);
-	}
+    public ForgotPasswordView(Context context) {
+        super(context);
+    }
 
-	public ForgotPasswordView(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public ForgotPasswordView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public ForgotPasswordView(Context context, AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-	}
+    public ForgotPasswordView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-	@Override
-	public BasicAuthMethod getBasicAuthMethod() {
-		return basicAuthMethod;
-	}
+    @Override
+    public BasicAuthMethod getBasicAuthMethod() {
+        return basicAuthMethod;
+    }
 
-	public void setBasicAuthMethod(BasicAuthMethod basicAuthMethod) {
-		this.basicAuthMethod = basicAuthMethod;
+    public void setBasicAuthMethod(BasicAuthMethod basicAuthMethod) {
+        this.basicAuthMethod = basicAuthMethod;
 
-		refreshLoginEditTextStyle();
-	}
+        refreshLoginEditTextStyle();
+    }
 
-	@Override
-	public String getLogin() {
-		return loginEditText.getText().toString();
-	}
+    @Override
+    public String getLogin() {
+        return loginEditText.getText().toString();
+    }
 
-	@Override
-	public void showStartOperation(String actionName) {
-		progressBar.startProgress();
-	}
+    @Override
+    public void showStartOperation(String actionName) {
+        progressBar.startProgress();
+    }
 
-	@Override
-	public void showFinishOperation(String actionName) {
-		throw new AssertionError("Use showFinishOperation(passwordSent) instead");
-	}
+    @Override
+    public void showFinishOperation(String actionName) {
+        throw new AssertionError("Use showFinishOperation(passwordSent) instead");
+    }
 
-	@Override
-	public void showFinishOperation(boolean passwordSent) {
-		progressBar.finishProgress();
+    @Override
+    public void showFinishOperation(boolean passwordSent) {
+        progressBar.finishProgress();
 
-		String msg = getResources().getString(R.string.password_sent) + " " + getResources().getString(
-			R.string.check_your_inbox);
+        String msg = getResources().getString(R.string.password_sent) + " " + getResources().getString(
+            R.string.check_your_inbox);
 
-		LiferayLogger.i(msg);
-	}
+        LiferayLogger.i(msg);
+    }
 
-	@Override
-	public void showFailedOperation(String actionName, Exception e) {
-		progressBar.finishProgress();
+    @Override
+    public void showFailedOperation(String actionName, Exception e) {
+        progressBar.finishProgress();
 
-		LiferayLogger.e("Could not send password", e);
-	}
+        LiferayLogger.e("Could not send password", e);
+    }
 
-	@Override
-	public BaseScreenlet getScreenlet() {
-		return screenlet;
-	}
+    @Override
+    public BaseScreenlet getScreenlet() {
+        return screenlet;
+    }
 
-	@Override
-	public void setScreenlet(BaseScreenlet screenlet) {
-		this.screenlet = screenlet;
-	}
+    @Override
+    public void setScreenlet(BaseScreenlet screenlet) {
+        this.screenlet = screenlet;
+    }
 
-	@Override
-	public void onClick(View view) {
-		ForgotPasswordScreenlet screenlet = (ForgotPasswordScreenlet) getScreenlet();
+    @Override
+    public void onClick(View view) {
+        ForgotPasswordScreenlet screenlet = (ForgotPasswordScreenlet) getScreenlet();
 
-		screenlet.performUserAction();
-	}
+        screenlet.performUserAction();
+    }
 
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
 
-		loginEditText = findViewById(R.id.liferay_forgot_login);
-		progressBar = findViewById(R.id.liferay_progress);
+        loginEditText = findViewById(R.id.liferay_forgot_login);
+        progressBar = findViewById(R.id.liferay_progress);
 
-		Button requestButton = findViewById(R.id.liferay_forgot_button);
-		requestButton.setOnClickListener(this);
-	}
+        Button requestButton = findViewById(R.id.liferay_forgot_button);
+        requestButton.setOnClickListener(this);
+    }
 
-	@Override
-	protected void onAttachedToWindow() {
-		super.onAttachedToWindow();
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
 
-		refreshLoginEditTextStyle();
-	}
+        refreshLoginEditTextStyle();
+    }
 
-	protected void refreshLoginEditTextStyle() {
-		if (basicAuthMethod != null) {
-			loginEditText.setInputType(basicAuthMethod.getInputType());
-		}
-		loginEditText.setCompoundDrawablesWithIntrinsicBounds(
-			ContextCompat.getDrawable(getContext(), getLoginEditTextDrawableId()), null, null, null);
-		loginEditText.setHint(getLoginEditTextLabel());
-	}
+    protected void refreshLoginEditTextStyle() {
+        if (basicAuthMethod != null) {
+            loginEditText.setInputType(basicAuthMethod.getInputType());
+        }
+        loginEditText.setCompoundDrawablesWithIntrinsicBounds(
+            ContextCompat.getDrawable(getContext(), getLoginEditTextDrawableId()), null, null, null);
+        loginEditText.setHint(getLoginEditTextLabel());
+    }
 
-	protected int getLoginEditTextLabel() {
-		if (BasicAuthMethod.SCREEN_NAME.equals(basicAuthMethod)) {
-			return R.string.screen_name;
-		} else if (BasicAuthMethod.USER_ID.equals(basicAuthMethod)) {
-			return R.string.user_id;
-		}
-		return R.string.email_address;
-	}
+    protected int getLoginEditTextLabel() {
+        if (BasicAuthMethod.SCREEN_NAME.equals(basicAuthMethod)) {
+            return R.string.screen_name;
+        } else if (BasicAuthMethod.USER_ID.equals(basicAuthMethod)) {
+            return R.string.user_id;
+        }
+        return R.string.email_address;
+    }
 
-	protected int getLoginEditTextDrawableId() {
-		if (BasicAuthMethod.USER_ID.equals(basicAuthMethod)) {
-			return R.drawable.default_user_icon;
-		} else if (BasicAuthMethod.EMAIL.equals(basicAuthMethod)) {
-			return R.drawable.default_mail_icon;
-		}
+    protected int getLoginEditTextDrawableId() {
+        if (BasicAuthMethod.USER_ID.equals(basicAuthMethod)) {
+            return R.drawable.default_user_icon;
+        } else if (BasicAuthMethod.EMAIL.equals(basicAuthMethod)) {
+            return R.drawable.default_mail_icon;
+        }
 
-		return R.drawable.default_user_icon;
-	}
+        return R.drawable.default_user_icon;
+    }
 
-	protected EditText getLoginEditText() {
-		return loginEditText;
-	}
+    protected EditText getLoginEditText() {
+        return loginEditText;
+    }
 }

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.fields.DDMFieldRepeatableItemView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="6dp"
+        >
+
+        <TextView
+            android:id="@+id/liferay_repeatable_field_label"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
+            android:layout_marginEnd="16dp"
+            android:visibility="gone"
+            />
+
+        <LinearLayout
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageButton
+                android:id="@+id/liferay_repeatable_field_remove"
+                android:layout_marginRight="@dimen/repeatable_button_spacing"
+                android:layout_marginEnd="@dimen/repeatable_button_spacing"
+                android:contentDescription="@string/repeatable_remove"
+                android:visibility="gone"
+                app:srcCompat="@drawable/default_button_repeatable_remove_icon"
+                style="@style/default_repeatable_button"
+                />
+
+            <ImageButton
+                android:id="@+id/liferay_repeatable_field_add"
+                android:contentDescription="@string/repeatable_add"
+                app:srcCompat="@drawable/default_button_repeatable_add_icon"
+                style="@style/default_repeatable_button"
+                />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.fields.DDMFieldRepeatableItemView>

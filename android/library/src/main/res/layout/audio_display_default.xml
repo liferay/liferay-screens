@@ -1,66 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.dlfile.display.AudioDisplayView
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"
-	android:background="@color/textColorSecondary_default"
-	>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/textColorSecondary_default"
+    >
 
-	<FrameLayout
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:orientation="vertical"
-			>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            >
 
-			<TextView
-				android:id="@+id/liferay_audio_title"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:gravity="center"
-				android:textSize="20sp"
-				/>
+            <TextView
+                android:id="@+id/liferay_audio_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="20sp"
+                />
 
-			<ImageView
-				android:id="@+id/liferay_audio_image_background"
-				android:layout_width="150dp"
-				android:layout_height="150dp"
-				android:layout_gravity="center"
-				android:contentDescription="@string/audio_player_background"
-				android:scaleType="fitCenter"
-				android:src="@drawable/default_audio_background"
-				android:tint="@android:color/black"
-				/>
+            <ImageView
+                android:id="@+id/liferay_audio_image_background"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/audio_player_background"
+                android:scaleType="fitCenter"
+                android:src="@drawable/default_audio_background"
+                android:tint="@android:color/black"
+                />
 
-			<ProgressBar
-				android:id="@+id/liferay_progress"
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_gravity="center"
-				android:visibility="invisible"
-				/>
+            <ProgressBar
+                android:id="@+id/liferay_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="invisible"
+                />
 
-			<TextView
-				android:id="@+id/liferay_audio_message"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:gravity="center"
-				/>
+            <TextView
+                android:id="@+id/liferay_audio_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                />
 
-		</LinearLayout>
+        </LinearLayout>
 
-		<VideoView
-			android:id="@+id/liferay_audio_asset"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:background="@android:color/transparent"
-			/>
+        <VideoView
+            android:id="@+id/liferay_audio_asset"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            />
 
-	</FrameLayout>
+    </FrameLayout>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.dlfile.display.AudioDisplayView>

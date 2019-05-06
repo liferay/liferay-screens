@@ -5,19 +5,19 @@ import org.json.JSONObject;
 
 public abstract class ListEvent<E> extends CacheEvent {
 
-	public ListEvent() {
-		super();
-	}
+    public ListEvent() {
+        super();
+    }
 
-	public ListEvent(JSONObject jsonObject) {
-		super(jsonObject);
-	}
+    public ListEvent(JSONObject jsonObject) {
+        super(jsonObject);
+    }
 
-	public ListEvent(Exception e) {
-		super(e);
-	}
+    public ListEvent(Exception e) {
+        super(e);
+    }
 
-	public abstract String getListKey();
+    public abstract String getListKey();
 
-	public abstract E getModel();
+    public abstract E getModel();
 }

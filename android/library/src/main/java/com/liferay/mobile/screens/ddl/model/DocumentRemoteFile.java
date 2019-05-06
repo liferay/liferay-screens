@@ -1,5 +1,7 @@
 package com.liferay.mobile.screens.ddl.model;
 
+import com.liferay.mobile.screens.ddl.exception.EmptyDocumentRemoteFileException;
+import com.liferay.mobile.screens.util.AndroidUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -8,34 +10,92 @@ import org.json.JSONObject;
  */
 public class DocumentRemoteFile extends DocumentFile {
 
-	private long groupId;
-	private String uuid;
-	private int version;
-	private String title;
+    private long groupId;
+    private String uuid;
+    private String version;
+    private String title;
 
-	public DocumentRemoteFile(String json) throws JSONException {
-		JSONObject jsonObject = new JSONObject(json);
+    private String url;
 
-		uuid = jsonObject.getString("uuid");
-		version = jsonObject.getInt("version");
-		groupId = jsonObject.getInt("groupId");
+    public DocumentRemoteFile(String json) throws EmptyDocumentRemoteFileException, JSONException {
+        if (json.startsWith("http")) {
+            url = json;
+        } else {
+            JSONObject jsonObject = new JSONObject(json);
 
-		// this is empty if we're retrieving the record
-		title = jsonObject.optString("title");
-	}
+            if (jsonObject.length() == 0) {
+                throw new EmptyDocumentRemoteFileException();
+            }
 
-	@Override
-	public String toData() {
-		return "{\"groupId\":" + groupId + ", " + "\"uuid\":\"" + uuid + "\", " + "\"version\":" + version + "}";
-	}
+            uuid = jsonObject.optString("uuid");
+            version = jsonObject.optString("version");
+            groupId = jsonObject.optInt("groupId");
 
-	@Override
-	public String toString() {
-		return title.isEmpty() ? "File in server" : title;
-	}
+            // this is empty if we're retrieving the record
+            title = jsonObject.optString("title");
+        }
+    }
 
-	@Override
-	public boolean isValid() {
-		return uuid != null;
-	}
+    public DocumentRemoteFile(String url, String title) {
+        this.url = url;
+        this.title = title;
+    }
+
+    @Override
+    public String toData() {
+        if (url != null) {
+            return url;
+        }
+
+        try {
+            JSONObject jsonObject = new JSONObject();
+
+            if (groupId > 0) {
+                jsonObject.put("groupId", groupId);
+            }
+
+            if (!EMPTY_STRING.equals(uuid)) {
+                jsonObject.put("uuid", uuid);
+            }
+
+            if (!EMPTY_STRING.equals(title)) {
+                jsonObject.put("title", title);
+            }
+
+            if (!EMPTY_STRING.equals(version)) {
+                jsonObject.put("version", version);
+            }
+
+            return jsonObject.toString();
+        } catch (JSONException ex) {
+            return null;
+        }
+    }
+
+    @Override
+    public String toString() {
+        if (url != null) {
+            return url;
+        }
+
+        return title.isEmpty() ? "File in server" : title;
+    }
+
+    @Override
+    public boolean isValid() {
+        return url != null || uuid != null;
+    }
+
+    @Override
+    public String getFileName() {
+        if (title != null) {
+            return title;
+        } else if (url != null) {
+            return AndroidUtil.getFileNameFromPath(url);
+        }
+
+        return "";
+    }
+
+    private static final String EMPTY_STRING = "";
 }

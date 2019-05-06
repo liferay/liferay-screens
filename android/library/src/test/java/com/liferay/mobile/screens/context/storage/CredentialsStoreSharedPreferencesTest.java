@@ -16,8 +16,6 @@ package com.liferay.mobile.screens.context.storage;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.service.textservice.SpellCheckerService;
-
 import com.liferay.mobile.android.auth.basic.BasicAuthentication;
 import com.liferay.mobile.android.auth.basic.CookieAuthentication;
 import com.liferay.mobile.android.auth.oauth2.OAuth2Authentication;
@@ -31,7 +29,6 @@ import com.liferay.mobile.screens.context.User;
 import com.liferay.mobile.screens.context.storage.sharedPreferences.BaseCredentialsStorageSharedPreferences;
 import com.liferay.mobile.screens.context.storage.sharedPreferences.BasicCredentialsStorageSharedPreferences;
 import com.liferay.mobile.screens.context.storage.sharedPreferences.CookieCredentialsStorageSharedPreferences;
-
 import com.liferay.mobile.screens.context.storage.sharedPreferences.OAuth2CredentialsStorageSharedPreferences;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,255 +54,255 @@ import static junit.framework.Assert.assertTrue;
 @RunWith(Enclosed.class)
 public class CredentialsStoreSharedPreferencesTest {
 
-	private static void setBasicTestDataInStore(CredentialsStorage store) throws JSONException {
-		store.setContext(RuntimeEnvironment.application.getApplicationContext());
+    private static void setBasicTestDataInStore(CredentialsStorage store) throws JSONException {
+        store.setContext(RuntimeEnvironment.application.getApplicationContext());
 
-		JSONObject userAttributes = new JSONObject();
-		userAttributes.put("userId", 123);
-		store.setUser(new User(userAttributes));
+        JSONObject userAttributes = new JSONObject();
+        userAttributes.put("userId", 123);
+        store.setUser(new User(userAttributes));
 
-		SessionContext.createBasicSession("user123", "pass123");
-		store.setAuthentication(SessionContext.getAuthentication());
-	}
+        SessionContext.createBasicSession("user123", "pass123");
+        store.setAuthentication(SessionContext.getAuthentication());
+    }
 
-	private static void setCookieTestDataInStore(CredentialsStorage store) throws JSONException {
-		store.setContext(RuntimeEnvironment.application.getApplicationContext());
+    private static void setCookieTestDataInStore(CredentialsStorage store) throws JSONException {
+        store.setContext(RuntimeEnvironment.application.getApplicationContext());
 
-		JSONObject userAttributes = new JSONObject();
-		userAttributes.put("userId", 123);
-		store.setUser(new User(userAttributes));
-
-		CookieAuthentication authentication =
-			new CookieAuthentication("authToken", "cookieHeader", "user123", "pass123", true, 1, 2);
-		Session session = new SessionImpl(LiferayServerContext.getServer(), authentication);
+        JSONObject userAttributes = new JSONObject();
+        userAttributes.put("userId", 123);
+        store.setUser(new User(userAttributes));
+
+        CookieAuthentication authentication =
+            new CookieAuthentication("authToken", "cookieHeader", "user123", "pass123", true, 1, 2);
+        Session session = new SessionImpl(LiferayServerContext.getServer(), authentication);
 
-		SessionContext.createCookieSession(session);
-		store.setAuthentication(SessionContext.getAuthentication());
-	}
+        SessionContext.createCookieSession(session);
+        store.setAuthentication(SessionContext.getAuthentication());
+    }
 
-	private static void setOAuth2TestInDataStore(CredentialsStorage store, String clientSecret) throws JSONException {
-		store.setContext(RuntimeEnvironment.application.getApplicationContext());
+    private static void setOAuth2TestInDataStore(CredentialsStorage store, String clientSecret) throws JSONException {
+        store.setContext(RuntimeEnvironment.application.getApplicationContext());
 
-		JSONObject userAttributes = new JSONObject();
-		userAttributes.put("userId", 123);
-		store.setUser(new User(userAttributes));
+        JSONObject userAttributes = new JSONObject();
+        userAttributes.put("userId", 123);
+        store.setUser(new User(userAttributes));
 
-		List<String> scopes = new ArrayList<>();
-		scopes.add("scope1");
-		scopes.add("scope2");
+        List<String> scopes = new ArrayList<>();
+        scopes.add("scope1");
+        scopes.add("scope2");
 
-		OAuth2Authentication authentication =
-			new OAuth2Authentication("accessToken", "refreshToken", scopes, 150, "clientId", clientSecret);
-		Session session = new SessionImpl(LiferayServerContext.getServer(), authentication);
+        OAuth2Authentication authentication =
+            new OAuth2Authentication("accessToken", "refreshToken", scopes, 150, "clientId", clientSecret);
+        Session session = new SessionImpl(LiferayServerContext.getServer(), authentication);
 
-		SessionContext.createCookieSession(session);
-		store.setAuthentication(SessionContext.getAuthentication());
-	}
+        SessionContext.createCookieSession(session);
+        store.setAuthentication(SessionContext.getAuthentication());
+    }
 
-	@RunWith(RobolectricTestRunner.class)
-	@Config(constants = BuildConfig.class, sdk = 23)
-	public static class WhenStoreCredentials {
+    @RunWith(RobolectricTestRunner.class)
+    @Config(constants = BuildConfig.class, sdk = 23)
+    public static class WhenStoreCredentials {
 
-		@Before
-		public void setUp() {
-			LiferayScreensContext.reinit(RuntimeEnvironment.application);
-		}
-
-		@Test(expected = IllegalStateException.class)
-		public void shouldRaiseExceptionWhenContextIsNotPresent() throws Exception {
-			BasicCredentialsStorageSharedPreferences store = new BasicCredentialsStorageSharedPreferences();
-			setBasicTestDataInStore(store);
+        @Before
+        public void setUp() {
+            LiferayScreensContext.reinit(RuntimeEnvironment.application);
+        }
+
+        @Test(expected = IllegalStateException.class)
+        public void shouldRaiseExceptionWhenContextIsNotPresent() throws Exception {
+            BasicCredentialsStorageSharedPreferences store = new BasicCredentialsStorageSharedPreferences();
+            setBasicTestDataInStore(store);
 
-			store.setContext(null);
+            store.setContext(null);
 
-			store.storeCredentials();
-		}
+            store.storeCredentials();
+        }
 
-		@Test(expected = IllegalStateException.class)
-		public void shouldRaiseExceptionWhenSessionIsNotPresent() throws Exception {
-			BasicCredentialsStorageSharedPreferences store = new BasicCredentialsStorageSharedPreferences();
-			setBasicTestDataInStore(store);
+        @Test(expected = IllegalStateException.class)
+        public void shouldRaiseExceptionWhenSessionIsNotPresent() throws Exception {
+            BasicCredentialsStorageSharedPreferences store = new BasicCredentialsStorageSharedPreferences();
+            setBasicTestDataInStore(store);
 
-			store.setAuthentication(null);
+            store.setAuthentication(null);
 
-			store.storeCredentials();
-		}
+            store.storeCredentials();
+        }
 
-		@Test(expected = IllegalStateException.class)
-		public void shouldRaiseExceptionWhenUserAttributesAreNotPresent() throws Exception {
-			BasicCredentialsStorageSharedPreferences store = new BasicCredentialsStorageSharedPreferences();
-			setBasicTestDataInStore(store);
+        @Test(expected = IllegalStateException.class)
+        public void shouldRaiseExceptionWhenUserAttributesAreNotPresent() throws Exception {
+            BasicCredentialsStorageSharedPreferences store = new BasicCredentialsStorageSharedPreferences();
+            setBasicTestDataInStore(store);
 
-			store.setUser(null);
+            store.setUser(null);
 
-			store.storeCredentials();
-		}
+            store.storeCredentials();
+        }
 
-		@Test
-		public void shouldStoreTheCredentialsInSharedPreferences() throws Exception {
-			BasicCredentialsStorageSharedPreferences store = new BasicCredentialsStorageSharedPreferences();
-			setBasicTestDataInStore(store);
-			store.storeCredentials();
+        @Test
+        public void shouldStoreTheCredentialsInSharedPreferences() throws Exception {
+            BasicCredentialsStorageSharedPreferences store = new BasicCredentialsStorageSharedPreferences();
+            setBasicTestDataInStore(store);
+            store.storeCredentials();
 
-			SharedPreferences sharedPref = RuntimeEnvironment.application.getApplicationContext()
-				.getSharedPreferences(BaseCredentialsStorageSharedPreferences.getStoreName(), Context.MODE_PRIVATE);
+            SharedPreferences sharedPref = RuntimeEnvironment.application.getApplicationContext()
+                .getSharedPreferences(BaseCredentialsStorageSharedPreferences.getStoreName(), Context.MODE_PRIVATE);
 
-			assertEquals("user123", sharedPref.getString("username", "not-present"));
-			assertEquals("pass123", sharedPref.getString("password", "not-present"));
-			assertEquals(LiferayServerContext.getServer(), sharedPref.getString("server", "not-present"));
-			assertEquals(LiferayServerContext.getGroupId(), sharedPref.getLong("groupId", 0));
-			assertEquals(LiferayServerContext.getCompanyId(), sharedPref.getLong("companyId", 0));
+            assertEquals("user123", sharedPref.getString("username", "not-present"));
+            assertEquals("pass123", sharedPref.getString("password", "not-present"));
+            assertEquals(LiferayServerContext.getServer(), sharedPref.getString("server", "not-present"));
+            assertEquals(LiferayServerContext.getGroupId(), sharedPref.getLong("groupId", 0));
+            assertEquals(LiferayServerContext.getCompanyId(), sharedPref.getLong("companyId", 0));
 
-			assertEquals("{\"userId\":123}", sharedPref.getString("attributes", "not-present"));
-		}
-	}
+            assertEquals("{\"userId\":123}", sharedPref.getString("attributes", "not-present"));
+        }
+    }
 
-	@RunWith(RobolectricTestRunner.class)
-	@Config(constants = BuildConfig.class, sdk = 23)
-	public static class WhenRemoveStoredCredentials {
+    @RunWith(RobolectricTestRunner.class)
+    @Config(constants = BuildConfig.class, sdk = 23)
+    public static class WhenRemoveStoredCredentials {
 
-		@Before
-		public void setUp() {
-			LiferayScreensContext.reinit(RuntimeEnvironment.application);
-		}
+        @Before
+        public void setUp() {
+            LiferayScreensContext.reinit(RuntimeEnvironment.application);
+        }
 
-		@Test
-		public void shouldRemoveTheStoredCredentials() throws Exception {
-			BasicCredentialsStorageSharedPreferences store = new BasicCredentialsStorageSharedPreferences();
-			setBasicTestDataInStore(store);
-			store.storeCredentials();
-
-			store.removeStoredCredentials();
+        @Test
+        public void shouldRemoveTheStoredCredentials() throws Exception {
+            BasicCredentialsStorageSharedPreferences store = new BasicCredentialsStorageSharedPreferences();
+            setBasicTestDataInStore(store);
+            store.storeCredentials();
+
+            store.removeStoredCredentials();
 
-			SharedPreferences sharedPref = RuntimeEnvironment.application.getApplicationContext()
-				.getSharedPreferences(BaseCredentialsStorageSharedPreferences.getStoreName(), Context.MODE_PRIVATE);
+            SharedPreferences sharedPref = RuntimeEnvironment.application.getApplicationContext()
+                .getSharedPreferences(BaseCredentialsStorageSharedPreferences.getStoreName(), Context.MODE_PRIVATE);
 
-			assertFalse(sharedPref.contains("username"));
-		}
-	}
+            assertFalse(sharedPref.contains("username"));
+        }
+    }
 
-	@RunWith(RobolectricTestRunner.class)
-	@Config(constants = BuildConfig.class, sdk = 23)
-	public static class WhenLoadingStoredCredentials {
+    @RunWith(RobolectricTestRunner.class)
+    @Config(constants = BuildConfig.class, sdk = 23)
+    public static class WhenLoadingStoredCredentials {
 
-		@Before
-		public void setUp() {
-			LiferayScreensContext.reinit(RuntimeEnvironment.application);
-		}
+        @Before
+        public void setUp() {
+            LiferayScreensContext.reinit(RuntimeEnvironment.application);
+        }
 
-		@Test
-		public void shouldNotLoadWhenCredentialsAreNotStored() {
-			BasicCredentialsStorageSharedPreferences store = new BasicCredentialsStorageSharedPreferences();
-			store.setContext(RuntimeEnvironment.application.getApplicationContext());
-			store.removeStoredCredentials();
+        @Test
+        public void shouldNotLoadWhenCredentialsAreNotStored() {
+            BasicCredentialsStorageSharedPreferences store = new BasicCredentialsStorageSharedPreferences();
+            store.setContext(RuntimeEnvironment.application.getApplicationContext());
+            store.removeStoredCredentials();
 
-			assertFalse(store.loadStoredCredentials());
-		}
+            assertFalse(store.loadStoredCredentials());
+        }
 
-		@Test
-		public void shouldRaiseExceptionIfStoredCredentialsAreNotConsistent() throws Exception {
-			BasicCredentialsStorageSharedPreferences store = new BasicCredentialsStorageSharedPreferences();
-			setBasicTestDataInStore(store);
-			store.storeCredentials();
+        @Test
+        public void shouldRaiseExceptionIfStoredCredentialsAreNotConsistent() throws Exception {
+            BasicCredentialsStorageSharedPreferences store = new BasicCredentialsStorageSharedPreferences();
+            setBasicTestDataInStore(store);
+            store.storeCredentials();
 
-			// Don't recreate the store object because SharedPreferences are mocked by
-			// Robolectric and it uses an in-memory store
+            // Don't recreate the store object because SharedPreferences are mocked by
+            // Robolectric and it uses an in-memory store
 
-			LiferayServerContext.setServer("http://otherhost.com");
+            LiferayServerContext.setServer("http://otherhost.com");
 
-			assertFalse(store.loadStoredCredentials());
-		}
+            assertFalse(store.loadStoredCredentials());
+        }
 
-		@Test
-		public void shouldLoadTheStoredValues() throws Exception {
-			BasicCredentialsStorageSharedPreferences store = new BasicCredentialsStorageSharedPreferences();
-			setBasicTestDataInStore(store);
-			store.storeCredentials();
+        @Test
+        public void shouldLoadTheStoredValues() throws Exception {
+            BasicCredentialsStorageSharedPreferences store = new BasicCredentialsStorageSharedPreferences();
+            setBasicTestDataInStore(store);
+            store.storeCredentials();
 
-			BasicAuthentication savedAuth = (BasicAuthentication) store.getAuthentication();
-			User savedUser = store.getUser();
+            BasicAuthentication savedAuth = (BasicAuthentication) store.getAuthentication();
+            User savedUser = store.getUser();
 
-			assertTrue(store.loadStoredCredentials());
+            assertTrue(store.loadStoredCredentials());
 
-			assertNotNull(store.getAuthentication());
-			assertNotNull(store.getUser());
+            assertNotNull(store.getAuthentication());
+            assertNotNull(store.getUser());
 
-			assertNotSame(savedAuth, store.getAuthentication());
-			assertNotSame(savedUser, store.getUser());
+            assertNotSame(savedAuth, store.getAuthentication());
+            assertNotSame(savedUser, store.getUser());
 
-			BasicAuthentication auth = (BasicAuthentication) store.getAuthentication();
+            BasicAuthentication auth = (BasicAuthentication) store.getAuthentication();
 
-			assertEquals("user123", auth.getUsername());
-			assertEquals("pass123", auth.getPassword());
-			assertEquals(123, store.getUser().getId());
-		}
+            assertEquals("user123", auth.getUsername());
+            assertEquals("pass123", auth.getPassword());
+            assertEquals(123, store.getUser().getId());
+        }
 
-		@Test
-		public void shouldLoadTheStoredValuesForCookieStore() throws Exception {
-			CookieCredentialsStorageSharedPreferences store = new CookieCredentialsStorageSharedPreferences();
-			setCookieTestDataInStore(store);
-			store.storeCredentials();
+        @Test
+        public void shouldLoadTheStoredValuesForCookieStore() throws Exception {
+            CookieCredentialsStorageSharedPreferences store = new CookieCredentialsStorageSharedPreferences();
+            setCookieTestDataInStore(store);
+            store.storeCredentials();
 
-			CookieAuthentication savedAuth = (CookieAuthentication) store.getAuthentication();
-			User savedUser = store.getUser();
+            CookieAuthentication savedAuth = (CookieAuthentication) store.getAuthentication();
+            User savedUser = store.getUser();
 
-			assertTrue(store.loadStoredCredentials());
+            assertTrue(store.loadStoredCredentials());
 
-			assertNotNull(store.getAuthentication());
-			assertNotNull(store.getUser());
+            assertNotNull(store.getAuthentication());
+            assertNotNull(store.getUser());
 
-			assertNotSame(savedAuth, store.getAuthentication());
-			assertNotSame(savedUser, store.getUser());
+            assertNotSame(savedAuth, store.getAuthentication());
+            assertNotSame(savedUser, store.getUser());
 
-			CookieAuthentication auth = (CookieAuthentication) store.getAuthentication();
+            CookieAuthentication auth = (CookieAuthentication) store.getAuthentication();
 
-			assertEquals("authToken", auth.getAuthToken());
-			assertEquals("cookieHeader", auth.getCookieHeader());
-			assertEquals(true, auth.shouldHandleExpiration());
-			assertEquals(1, auth.getCookieExpirationTime());
-			assertEquals(2, auth.getLastCookieRefresh());
-			assertEquals("user123", auth.getUsername());
-			assertEquals("pass123", auth.getPassword());
-			assertEquals(123, store.getUser().getId());
-		}
+            assertEquals("authToken", auth.getAuthToken());
+            assertEquals("cookieHeader", auth.getCookieHeader());
+            assertEquals(true, auth.shouldHandleExpiration());
+            assertEquals(1, auth.getCookieExpirationTime());
+            assertEquals(2, auth.getLastCookieRefresh());
+            assertEquals("user123", auth.getUsername());
+            assertEquals("pass123", auth.getPassword());
+            assertEquals(123, store.getUser().getId());
+        }
 
-		@Test
-		public void shouldLoadTheStoredValuesForOAuth2Store() throws Exception {
-			OAuth2CredentialsStorageSharedPreferences store = new OAuth2CredentialsStorageSharedPreferences();
-			setOAuth2TestInDataStore(store, "clientSecret");
-			store.storeCredentials();
+        @Test
+        public void shouldLoadTheStoredValuesForOAuth2Store() throws Exception {
+            OAuth2CredentialsStorageSharedPreferences store = new OAuth2CredentialsStorageSharedPreferences();
+            setOAuth2TestInDataStore(store, "clientSecret");
+            store.storeCredentials();
 
-			OAuth2Authentication savedAuth = (OAuth2Authentication) store.getAuthentication();
-			User savedUser = store.getUser();
+            OAuth2Authentication savedAuth = (OAuth2Authentication) store.getAuthentication();
+            User savedUser = store.getUser();
 
-			assertTrue(store.loadStoredCredentials());
+            assertTrue(store.loadStoredCredentials());
 
-			assertNotNull(store.getAuthentication());
-			assertNotNull(store.getUser());
+            assertNotNull(store.getAuthentication());
+            assertNotNull(store.getUser());
 
-			assertNotSame(savedAuth, store.getAuthentication());
-			assertNotSame(savedUser, store.getUser());
+            assertNotSame(savedAuth, store.getAuthentication());
+            assertNotSame(savedUser, store.getUser());
 
-			OAuth2Authentication auth = (OAuth2Authentication) store.getAuthentication();
+            OAuth2Authentication auth = (OAuth2Authentication) store.getAuthentication();
 
-			assertEquals("accessToken", auth.getAccessToken());
-			assertEquals("refreshToken", auth.getRefreshToken());
-			assertEquals("scope1", auth.getScope().get(0));
-			assertEquals("scope2", auth.getScope().get(1));
-			assertEquals(150, auth.getAccessTokenExpirationDate());
-			assertEquals("clientId", auth.getClientId());
-			assertEquals("clientSecret", auth.getClientSecret());
-		}
+            assertEquals("accessToken", auth.getAccessToken());
+            assertEquals("refreshToken", auth.getRefreshToken());
+            assertEquals("scope1", auth.getScope().get(0));
+            assertEquals("scope2", auth.getScope().get(1));
+            assertEquals(150, auth.getAccessTokenExpirationDate());
+            assertEquals("clientId", auth.getClientId());
+            assertEquals("clientSecret", auth.getClientSecret());
+        }
 
-		@Test
-		public void shouldLoadTheStoredValuesForOAuth2StoreWithoutClientSecret() throws Exception {
-			OAuth2CredentialsStorageSharedPreferences store = new OAuth2CredentialsStorageSharedPreferences();
-			setOAuth2TestInDataStore(store, "");
-			store.storeCredentials();
+        @Test
+        public void shouldLoadTheStoredValuesForOAuth2StoreWithoutClientSecret() throws Exception {
+            OAuth2CredentialsStorageSharedPreferences store = new OAuth2CredentialsStorageSharedPreferences();
+            setOAuth2TestInDataStore(store, "");
+            store.storeCredentials();
 
-			OAuth2Authentication auth = (OAuth2Authentication) store.getAuthentication();
+            OAuth2Authentication auth = (OAuth2Authentication) store.getAuthentication();
 
-			assertEquals("", auth.getClientSecret());
-		}
-	}
+            assertEquals("", auth.getClientSecret());
+        }
+    }
 }

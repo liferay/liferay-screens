@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="error_view_height">24dp</dimen>
+    <dimen name="error_view_image_size">16dp</dimen>
+    <dimen name="error_view_text_padding_left">8dp</dimen>
+    <dimen name="error_view_text_size">14sp</dimen>
+    <dimen name="error_view_margin_top">4dp</dimen>
     <dimen name="field_edit_drawable_right">42dp</dimen>
     <dimen name="field_min_height">40dp</dimen>
     <dimen name="field_radius">4dp</dimen>

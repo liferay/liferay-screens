@@ -139,7 +139,7 @@ import WebKit
 
 		let fullScript = jsPaths
 			.map { Bundle.main.path(forResource: $0, ofType: nil) }
-			.flatMap { $0 }
+			.compactMap { $0 }
 			.map { try! String(contentsOfFile: $0) }
 			.joined(separator: "\n")
 

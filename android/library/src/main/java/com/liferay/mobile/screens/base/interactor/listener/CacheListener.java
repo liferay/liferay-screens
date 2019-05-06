@@ -16,21 +16,21 @@ package com.liferay.mobile.screens.base.interactor.listener;
 
 public interface CacheListener {
 
-	/**
-	 * Called when a resource is being loaded from cache.
-	 */
-	void loadingFromCache(boolean success);
+    /**
+     * Called when a resource is being loaded from cache.
+     */
+    void loadingFromCache(boolean success);
 
-	/**
-	 * Called when it's trying to retrieve the resource throught internet conection.
-	 *
-	 * @param triedInCache true if before trying it from server, it has been tried from cache
-	 * @param e exception
-	 */
-	void retrievingOnline(boolean triedInCache, Exception e);
+    /**
+     * Called when it's trying to retrieve the resource throught internet conection.
+     *
+     * @param triedInCache true if before trying it from server, it has been tried from cache
+     * @param e exception
+     */
+    void retrievingOnline(boolean triedInCache, Exception e);
 
-	/**
-	 * Called when a resource is being stored from cache.
-	 */
-	void storingToCache(Object object);
+    /**
+     * Called when a resource is being stored from cache.
+     */
+    void storingToCache(Object object);
 }

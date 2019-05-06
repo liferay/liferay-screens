@@ -15,7 +15,7 @@
 package com.liferay.mobile.screens.viewsets.material.auth.forgotpassword;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import com.liferay.mobile.screens.auth.BasicAuthMethod;
@@ -25,44 +25,44 @@ import com.liferay.mobile.screens.viewsets.R;
  * @author Silvio Santos
  */
 public class ForgotPasswordView
-	extends com.liferay.mobile.screens.viewsets.defaultviews.auth.forgotpassword.ForgotPasswordView {
+    extends com.liferay.mobile.screens.viewsets.defaultviews.auth.forgotpassword.ForgotPasswordView {
 
-	protected ImageView drawableLogin;
+    protected ImageView drawableLogin;
 
-	public ForgotPasswordView(Context context) {
-		super(context);
-	}
+    public ForgotPasswordView(Context context) {
+        super(context);
+    }
 
-	public ForgotPasswordView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public ForgotPasswordView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public ForgotPasswordView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public ForgotPasswordView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
 
-		drawableLogin = findViewById(R.id.drawable_login);
-		drawableLogin.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorPrimary_material));
-	}
+        drawableLogin = findViewById(R.id.drawable_login);
+        drawableLogin.setColorFilter(ContextCompat.getColor(getContext(), R.color.colorPrimary_material));
+    }
 
-	@Override
-	protected void refreshLoginEditTextStyle() {
-		getLoginEditText().setInputType(getBasicAuthMethod().getInputType());
-		drawableLogin.setImageResource(getLoginEditTextDrawableId());
-	}
+    @Override
+    protected void refreshLoginEditTextStyle() {
+        getLoginEditText().setInputType(getBasicAuthMethod().getInputType());
+        drawableLogin.setImageResource(getLoginEditTextDrawableId());
+    }
 
-	@Override
-	protected int getLoginEditTextDrawableId() {
-		if (BasicAuthMethod.USER_ID.equals(getBasicAuthMethod())) {
-			return R.drawable.material_account_box;
-		} else if (BasicAuthMethod.EMAIL.equals(getBasicAuthMethod())) {
-			return R.drawable.material_email;
-		}
+    @Override
+    protected int getLoginEditTextDrawableId() {
+        if (BasicAuthMethod.USER_ID.equals(getBasicAuthMethod())) {
+            return R.drawable.material_account_box;
+        } else if (BasicAuthMethod.EMAIL.equals(getBasicAuthMethod())) {
+            return R.drawable.material_email;
+        }
 
-		return R.drawable.material_account_box;
-	}
+        return R.drawable.material_account_box;
+    }
 }

@@ -16,7 +16,7 @@ package com.liferay.mobile.screens.testapp;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
+import com.google.android.material.snackbar.Snackbar;
 import android.view.View;
 import com.liferay.mobile.screens.base.interactor.listener.CacheListener;
 import com.liferay.mobile.screens.context.SessionContext;
@@ -29,51 +29,51 @@ import com.liferay.mobile.screens.util.LiferayLogger;
  */
 public class UserPortraitActivity extends ThemeActivity implements UserPortraitListener, CacheListener {
 
-	private UserPortraitScreenlet screenlet;
+    private UserPortraitScreenlet screenlet;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.user_portrait);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.user_portrait);
 
-		screenlet = findViewById(R.id.user_portrait_screenlet);
-		screenlet.setUserId(SessionContext.getUserId());
-		screenlet.setListener(this);
-		screenlet.setCacheListener(this);
-		screenlet.loadLoggedUserPortrait();
-	}
+        screenlet = findViewById(R.id.user_portrait_screenlet);
+        screenlet.setUserId(SessionContext.getUserId());
+        screenlet.setListener(this);
+        screenlet.setCacheListener(this);
+        screenlet.loadLoggedUserPortrait();
+    }
 
-	@Override
-	public Bitmap onUserPortraitLoadReceived(Bitmap bitmap) {
-		info(getString(R.string.user_portrait_info));
-		LiferayLogger.i("Bitmap received with width " + bitmap.getWidth() + " and height " + bitmap.getHeight());
-		return null;
-	}
+    @Override
+    public Bitmap onUserPortraitLoadReceived(Bitmap bitmap) {
+        info(getString(R.string.user_portrait_info));
+        LiferayLogger.i("Bitmap received with width " + bitmap.getWidth() + " and height " + bitmap.getHeight());
+        return null;
+    }
 
-	@Override
-	public void onUserPortraitUploaded() {
+    @Override
+    public void onUserPortraitUploaded() {
 
-	}
+    }
 
-	@Override
-	public void loadingFromCache(boolean success) {
-		View content = findViewById(android.R.id.content);
-		Snackbar.make(content, getString(R.string.loading_cache_info) + " " + success, Snackbar.LENGTH_SHORT).show();
-	}
+    @Override
+    public void loadingFromCache(boolean success) {
+        View content = findViewById(android.R.id.content);
+        Snackbar.make(content, getString(R.string.loading_cache_info) + " " + success, Snackbar.LENGTH_SHORT).show();
+    }
 
-	@Override
-	public void retrievingOnline(boolean triedInCache, Exception e) {
+    @Override
+    public void retrievingOnline(boolean triedInCache, Exception e) {
 
-	}
+    }
 
-	@Override
-	public void storingToCache(Object object) {
-		View content = findViewById(android.R.id.content);
-		Snackbar.make(content, getString(R.string.storing_cache_info), Snackbar.LENGTH_SHORT).show();
-	}
+    @Override
+    public void storingToCache(Object object) {
+        View content = findViewById(android.R.id.content);
+        Snackbar.make(content, getString(R.string.storing_cache_info), Snackbar.LENGTH_SHORT).show();
+    }
 
-	@Override
-	public void error(Exception e, String userAction) {
-		error(getString(R.string.user_portrait_error), e);
-	}
+    @Override
+    public void error(Exception e, String userAction) {
+        error(getString(R.string.user_portrait_error), e);
+    }
 }

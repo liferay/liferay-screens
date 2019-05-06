@@ -16,7 +16,6 @@ package com.liferay.mobile.screens.userportrait;
 
 import android.content.Context;
 import com.liferay.mobile.screens.BuildConfig;
-import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.context.SessionContext;
 import com.liferay.mobile.screens.userportrait.interactor.load.UserPortraitLoadInteractor;
 import com.liferay.mobile.screens.util.MockFactory;
@@ -36,62 +35,62 @@ import org.robolectric.annotation.Config;
 @RunWith(Enclosed.class)
 public class UserPortraitInteractorTest {
 
-	@RunWith(RobolectricTestRunner.class)
-	@Config(constants = BuildConfig.class, sdk = 23)
-	public static class WhenLoadingFromPortraitId {
+    @RunWith(RobolectricTestRunner.class)
+    @Config(constants = BuildConfig.class, sdk = 23)
+    public static class WhenLoadingFromPortraitId {
 
-		@Before
-		public void setUp() {
-			Context ctx = RuntimeEnvironment.application.getApplicationContext();
-			SessionContext.logout();
-			//LiferayScreensContext.init(ctx);
-		}
+        @Before
+        public void setUp() {
+            Context ctx = RuntimeEnvironment.application.getApplicationContext();
+            SessionContext.logout();
+            //LiferayScreensContext.init(ctx);
+        }
 
-		@Test
-		public void shouldRaiseInvalidArgumentWhenSessionIsNull() {
-			UserPortraitLoadInteractor interactor = new UserPortraitLoadInteractor();
+        @Test
+        public void shouldRaiseInvalidArgumentWhenSessionIsNull() {
+            UserPortraitLoadInteractor interactor = new UserPortraitLoadInteractor();
 
-			try {
-				interactor.execute( 123L);
-			} catch (Exception e) {
-				Assert.assertEquals("You need to be logged in to get a session", e.getMessage());
-			}
-		}
+            try {
+                interactor.execute(123L);
+            } catch (Exception e) {
+                Assert.assertEquals("You need to be logged in to get a session", e.getMessage());
+            }
+        }
 
-		@Test
-		public void shouldRaiseInvalidArgumentWhenPortraitIdIsZero() {
-			UserPortraitLoadInteractor interactor = new UserPortraitLoadInteractor();
-			interactor.onScreenletAttached(MockFactory.mockUserPortraitScreenlet());
+        @Test
+        public void shouldRaiseInvalidArgumentWhenPortraitIdIsZero() {
+            UserPortraitLoadInteractor interactor = new UserPortraitLoadInteractor();
+            interactor.onScreenletAttached(MockFactory.mockUserPortraitScreenlet());
 
-			try {
-				interactor.execute(true, 0L, "xxx");
-			} catch (Exception e) {
-				Assert.assertEquals("portraitId cannot be empty", e.getMessage());
-			}
-		}
+            try {
+                interactor.execute(true, 0L, "xxx");
+            } catch (Exception e) {
+                Assert.assertEquals("portraitId cannot be empty", e.getMessage());
+            }
+        }
 
-		@Test
-		public void shouldRaiseInvalidArgumentWhenUUIDIsNull() {
-			UserPortraitLoadInteractor interactor = new UserPortraitLoadInteractor();
-			interactor.onScreenletAttached(MockFactory.mockUserPortraitScreenlet());
+        @Test
+        public void shouldRaiseInvalidArgumentWhenUUIDIsNull() {
+            UserPortraitLoadInteractor interactor = new UserPortraitLoadInteractor();
+            interactor.onScreenletAttached(MockFactory.mockUserPortraitScreenlet());
 
-			try {
-				interactor.execute(true, 123L, null);
-			} catch (Exception e) {
-				Assert.assertEquals("userId cannot be empty", e.getMessage());
-			}
-		}
+            try {
+                interactor.execute(true, 123L, null);
+            } catch (Exception e) {
+                Assert.assertEquals("userId cannot be empty", e.getMessage());
+            }
+        }
 
-		@Test
-		public void shouldRaiseInvalidArgumentWhenUUIDIsEmpty() {
-			UserPortraitLoadInteractor interactor = new UserPortraitLoadInteractor();
-			interactor.onScreenletAttached(MockFactory.mockUserPortraitScreenlet());
+        @Test
+        public void shouldRaiseInvalidArgumentWhenUUIDIsEmpty() {
+            UserPortraitLoadInteractor interactor = new UserPortraitLoadInteractor();
+            interactor.onScreenletAttached(MockFactory.mockUserPortraitScreenlet());
 
-			try {
-				interactor.execute(true, 123L, "");
-			} catch (Exception e) {
-				Assert.assertEquals("userId cannot be empty", e.getMessage());
-			}
-		}
-	}
+            try {
+                interactor.execute(true, 123L, "");
+            } catch (Exception e) {
+                Assert.assertEquals("userId cannot be empty", e.getMessage());
+            }
+        }
+    }
 }

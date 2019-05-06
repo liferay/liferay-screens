@@ -21,45 +21,45 @@ import org.robolectric.annotation.Config;
 @Config(constants = BuildConfig.class, sdk = 23)
 public class CredentialsStoreBuilderTest {
 
-	@Before
-	public void setUp() {
-		LiferayScreensContext.reinit(RuntimeEnvironment.application);
-	}
+    @Before
+    public void setUp() {
+        LiferayScreensContext.reinit(RuntimeEnvironment.application);
+    }
 
-	@Test
-	public void shouldCreateAVoidStorageWithNONEType() {
-		Context context = RuntimeEnvironment.application.getApplicationContext();
+    @Test
+    public void shouldCreateAVoidStorageWithNONEType() {
+        Context context = RuntimeEnvironment.application.getApplicationContext();
 
-		CredentialsStorage storage = new CredentialsStorageBuilder().setContext(context)
-			.setStorageType(CredentialsStorageBuilder.StorageType.NONE)
-			.build();
+        CredentialsStorage storage = new CredentialsStorageBuilder().setContext(context)
+            .setStorageType(CredentialsStorageBuilder.StorageType.NONE)
+            .build();
 
-		Assert.assertTrue(storage instanceof CredentialsStorageVoid);
-	}
+        Assert.assertTrue(storage instanceof CredentialsStorageVoid);
+    }
 
-	@Test
-	public void shouldCreateASharedPreferencesWithAutoTypeAndBasicAuth() {
-		Authentication authentication = new BasicAuthentication("test", "test");
-		Context context = RuntimeEnvironment.application.getApplicationContext();
+    @Test
+    public void shouldCreateASharedPreferencesWithAutoTypeAndBasicAuth() {
+        Authentication authentication = new BasicAuthentication("test", "test");
+        Context context = RuntimeEnvironment.application.getApplicationContext();
 
-		CredentialsStorage storage = new CredentialsStorageBuilder().setContext(context)
-			.setAuthentication(authentication)
-			.setStorageType(CredentialsStorageBuilder.StorageType.AUTO)
-			.build();
+        CredentialsStorage storage = new CredentialsStorageBuilder().setContext(context)
+            .setAuthentication(authentication)
+            .setStorageType(CredentialsStorageBuilder.StorageType.AUTO)
+            .build();
 
-		Assert.assertTrue(storage instanceof BasicCredentialsStorageSharedPreferences);
-	}
+        Assert.assertTrue(storage instanceof BasicCredentialsStorageSharedPreferences);
+    }
 
-	@Test
-	public void shouldCreateASharedPreferencesWithSharedPreferencesTypeAndBasicAuth() {
-		Authentication authentication = new BasicAuthentication("test", "test");
-		Context context = RuntimeEnvironment.application.getApplicationContext();
+    @Test
+    public void shouldCreateASharedPreferencesWithSharedPreferencesTypeAndBasicAuth() {
+        Authentication authentication = new BasicAuthentication("test", "test");
+        Context context = RuntimeEnvironment.application.getApplicationContext();
 
-		CredentialsStorage storage = new CredentialsStorageBuilder().setContext(context)
-			.setAuthentication(authentication)
-			.setStorageType(CredentialsStorageBuilder.StorageType.SHARED_PREFERENCES)
-			.build();
+        CredentialsStorage storage = new CredentialsStorageBuilder().setContext(context)
+            .setAuthentication(authentication)
+            .setStorageType(CredentialsStorageBuilder.StorageType.SHARED_PREFERENCES)
+            .build();
 
-		Assert.assertTrue(storage instanceof BasicCredentialsStorageSharedPreferences);
-	}
+        Assert.assertTrue(storage instanceof BasicCredentialsStorageSharedPreferences);
+    }
 }

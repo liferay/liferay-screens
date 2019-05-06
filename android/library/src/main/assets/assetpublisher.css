@@ -1,12 +1,12 @@
 * {
-    font-size: 14pt;
+  font-size: 14pt;
 }
 
 a {
-    font-weight: bold;
-    color: #ee783C;
+  font-weight: bold;
+  color: #ee783C;
 }
 
 .portlet-title-text {
-    text-decoration: line-through;
+  text-decoration: line-through;
 }

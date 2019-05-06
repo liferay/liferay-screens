@@ -25,24 +25,24 @@ import com.liferay.mobile.screens.webcontent.WebContent;
 
 public class WebContentCustomCssDisplayView extends WebContentDisplayView {
 
-	public WebContentCustomCssDisplayView(Context context) {
-		super(context);
-	}
+    public WebContentCustomCssDisplayView(Context context) {
+        super(context);
+    }
 
-	public WebContentCustomCssDisplayView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public WebContentCustomCssDisplayView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public WebContentCustomCssDisplayView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public WebContentCustomCssDisplayView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	public void showFinishOperation(WebContent webContent, String customCSs) {
-		super.showFinishOperation(webContent, getCustomCssStyle());
-	}
+    @Override
+    public void showFinishOperation(WebContent webContent, String customCSs) {
+        super.showFinishOperation(webContent, getCustomCssStyle());
+    }
 
-	public String getCustomCssStyle() {
-		return ".MobileCSS {padding: 4%; background:lightgrey;}";
-	}
+    public String getCustomCssStyle() {
+        return ".MobileCSS {padding: 4%; background:lightgrey;}";
+    }
 }

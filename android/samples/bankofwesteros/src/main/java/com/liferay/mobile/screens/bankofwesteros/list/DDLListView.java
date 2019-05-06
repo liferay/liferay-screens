@@ -15,7 +15,7 @@
 package com.liferay.mobile.screens.bankofwesteros.list;
 
 import android.content.Context;
-import android.support.v4.widget.SwipeRefreshLayout;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
 import com.liferay.mobile.screens.ddl.list.view.DDLListViewModel;
 
@@ -24,22 +24,22 @@ import com.liferay.mobile.screens.ddl.list.view.DDLListViewModel;
  * @author Silvio Santos
  */
 public class DDLListView extends com.liferay.mobile.screens.viewsets.westeros.ddl.list.DDLListView
-	implements DDLListViewModel, SwipeRefreshLayout.OnRefreshListener {
+    implements DDLListViewModel, SwipeRefreshLayout.OnRefreshListener {
 
-	public DDLListView(Context context) {
-		super(context);
-	}
+    public DDLListView(Context context) {
+        super(context);
+    }
 
-	public DDLListView(Context context, AttributeSet attributes) {
-		super(context, attributes);
-	}
+    public DDLListView(Context context, AttributeSet attributes) {
+        super(context, attributes);
+    }
 
-	public DDLListView(Context context, AttributeSet attributes, int defaultStyle) {
-		super(context, attributes, defaultStyle);
-	}
+    public DDLListView(Context context, AttributeSet attributes, int defaultStyle) {
+        super(context, attributes, defaultStyle);
+    }
 
-	@Override
-	protected DDLListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
-		return new DDLListAdapter(itemLayoutId, itemProgressLayoutId, this);
-	}
+    @Override
+    protected DDLListAdapter createListAdapter(int itemLayoutId, int itemProgressLayoutId) {
+        return new DDLListAdapter(itemLayoutId, itemProgressLayoutId, this);
+    }
 }

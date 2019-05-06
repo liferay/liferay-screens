@@ -29,58 +29,58 @@ import com.liferay.mobile.screens.ddl.model.Record;
  * @author Silvio Santos
  */
 public class DDLListScreenlet extends BaseListScreenlet<Record, DDLListInteractor>
-	implements BaseListInteractorListener<Record> {
+    implements BaseListInteractorListener<Record> {
 
-	private long recordSetId;
+    private long recordSetId;
 
-	public DDLListScreenlet(Context context) {
-		super(context);
-	}
+    public DDLListScreenlet(Context context) {
+        super(context);
+    }
 
-	public DDLListScreenlet(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public DDLListScreenlet(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public DDLListScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-	}
+    public DDLListScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-	public DDLListScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
+    public DDLListScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
 
-	public long getRecordSetId() {
-		return recordSetId;
-	}
+    public long getRecordSetId() {
+        return recordSetId;
+    }
 
-	public void setRecordSetId(long recordSetId) {
-		this.recordSetId = recordSetId;
-	}
+    public void setRecordSetId(long recordSetId) {
+        this.recordSetId = recordSetId;
+    }
 
-	@Override
-	public void error(Exception e, String userAction) {
-		if (getListener() != null) {
-			getListener().error(e, userAction);
-		}
-	}
+    @Override
+    public void error(Exception e, String userAction) {
+        if (getListener() != null) {
+            getListener().error(e, userAction);
+        }
+    }
 
-	@Override
-	protected void loadRows(DDLListInteractor interactor) {
-		interactor.start(recordSetId, userId);
-	}
+    @Override
+    protected void loadRows(DDLListInteractor interactor) {
+        interactor.start(recordSetId, userId);
+    }
 
-	@Override
-	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray =
-			context.getTheme().obtainStyledAttributes(attributes, R.styleable.DDLListScreenlet, 0, 0);
-		recordSetId = castToLong(typedArray.getString(R.styleable.DDLListScreenlet_recordSetId));
-		typedArray.recycle();
+    @Override
+    protected View createScreenletView(Context context, AttributeSet attributes) {
+        TypedArray typedArray =
+            context.getTheme().obtainStyledAttributes(attributes, R.styleable.DDLListScreenlet, 0, 0);
+        recordSetId = castToLong(typedArray.getString(R.styleable.DDLListScreenlet_recordSetId));
+        typedArray.recycle();
 
-		return super.createScreenletView(context, attributes);
-	}
+        return super.createScreenletView(context, attributes);
+    }
 
-	@Override
-	protected DDLListInteractor createInteractor(String actionName) {
-		return new DDLListInteractor();
-	}
+    @Override
+    protected DDLListInteractor createInteractor(String actionName) {
+        return new DDLListInteractor();
+    }
 }

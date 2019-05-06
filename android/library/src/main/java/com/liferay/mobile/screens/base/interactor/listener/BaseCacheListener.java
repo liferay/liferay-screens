@@ -19,11 +19,11 @@ package com.liferay.mobile.screens.base.interactor.listener;
  */
 public interface BaseCacheListener {
 
-	/**
-	 * Catch the exception and the user action if there was an error.
-	 *
-	 * @param e exception
-	 */
-	//TODO Error propagating event instead of the exception
-	void error(Exception e, String userAction);
+    /**
+     * Catch the exception and the user action if there was an error.
+     *
+     * @param e exception
+     */
+    //TODO Error propagating event instead of the exception
+    void error(Exception e, String userAction);
 }

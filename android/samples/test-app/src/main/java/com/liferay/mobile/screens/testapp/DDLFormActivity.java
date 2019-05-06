@@ -28,73 +28,73 @@ import org.json.JSONObject;
  */
 public class DDLFormActivity extends ThemeActivity implements DDLFormListener {
 
-	private static final String STATE_LOADED = "STATE_LOADED";
-	private DDLFormScreenlet screenlet;
-	private boolean loaded;
+    private static final String STATE_LOADED = "STATE_LOADED";
+    private DDLFormScreenlet screenlet;
+    private boolean loaded;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.ddl_form);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.ddl_form);
 
-		screenlet = findViewById(R.id.ddl_form_screenlet);
-		screenlet.setListener(this);
-	}
+        screenlet = findViewById(R.id.ddl_form_screenlet);
+        screenlet.setListener(this);
+    }
 
-	@Override
-	protected void onResume() {
-		super.onResume();
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-		if (!loaded) {
-			screenlet.load();
-		}
-	}
+        if (!loaded) {
+            screenlet.load();
+        }
+    }
 
-	@Override
-	public void onDDLFormLoaded(Record record) {
-		loaded = true;
-		info(getString(R.string.form_loaded_info));
-	}
+    @Override
+    public void onDDLFormLoaded(Record record) {
+        loaded = true;
+        info(getString(R.string.form_loaded_info));
+    }
 
-	@Override
-	public void onDDLFormRecordLoaded(Record record, Map<String, Object> valuesAndAttributes) {
-		info(getString(R.string.record_loaded_info));
-	}
+    @Override
+    public void onDDLFormRecordLoaded(Record record, Map<String, Object> valuesAndAttributes) {
+        info(getString(R.string.record_loaded_info));
+    }
 
-	@Override
-	public void onDDLFormRecordAdded(Record record) {
-		info(getString(R.string.record_added_info));
-	}
+    @Override
+    public void onDDLFormRecordAdded(Record record) {
+        info(getString(R.string.record_added_info));
+    }
 
-	@Override
-	public void onDDLFormRecordUpdated(Record record) {
-		info(getString(R.string.record_updated_info));
-	}
+    @Override
+    public void onDDLFormRecordUpdated(Record record) {
+        info(getString(R.string.record_updated_info));
+    }
 
-	@Override
-	public void onDDLFormDocumentUploaded(DocumentField documentField, JSONObject jsonObject) {
-		info(getString(R.string.document_uploaded_info));
-	}
+    @Override
+    public void onDDLFormDocumentUploaded(DocumentField documentField, JSONObject jsonObject) {
+        info(getString(R.string.document_uploaded_info));
+    }
 
-	@Override
-	public void onDDLFormDocumentUploadFailed(DocumentField documentField, Exception e) {
-		error(getString(R.string.document_error), e);
-	}
+    @Override
+    public void onDDLFormDocumentUploadFailed(DocumentField documentField, Exception e) {
+        error(getString(R.string.document_error), e);
+    }
 
-	@Override
-	public void error(Exception e, String userAction) {
-		error(userAction + getString(R.string.failed), e);
-	}
+    @Override
+    public void error(Exception e, String userAction) {
+        error(userAction + getString(R.string.failed), e);
+    }
 
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		outState.putBoolean(STATE_LOADED, loaded);
-	}
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(STATE_LOADED, loaded);
+    }
 
-	@Override
-	protected void onRestoreInstanceState(Bundle savedInstanceState) {
-		super.onRestoreInstanceState(savedInstanceState);
-		loaded = savedInstanceState.getBoolean(STATE_LOADED);
-	}
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        loaded = savedInstanceState.getBoolean(STATE_LOADED);
+    }
 }

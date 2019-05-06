@@ -1,66 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.liferay.mobile.screens.viewsets.defaultviews.rating.StarsRatingView
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	android:orientation="vertical"
-	android:padding="10dp"
-	style="@style/default_screenlet"
-	>
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp"
+    style="@style/default_screenlet"
+    >
 
-	<ProgressBar
-		android:id="@+id/liferay_rating_progress"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center"
-		android:indeterminateTint="?colorPrimary"
-		android:visibility="gone"
-		/>
+    <ProgressBar
+        android:id="@+id/liferay_rating_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateTint="?colorPrimary"
+        android:visibility="gone"
+        />
 
-	<LinearLayout
-		android:id="@+id/liferay_rating_content"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:orientation="vertical"
-		android:visibility="gone"
-		tools:visibility="visible"
-		>
+    <LinearLayout
+        android:id="@+id/liferay_rating_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible"
+        >
 
-		<RatingBar
-			android:id="@+id/userRatingBar"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:progressBackgroundTint="@color/textColorSecondary_westeros"
-			android:progressTint="?colorPrimary"
-			android:stepSize="1"
-			tools:rating="4"
-			/>
+        <RatingBar
+            android:id="@+id/userRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:progressBackgroundTint="@color/textColorSecondary_westeros"
+            android:progressTint="?colorPrimary"
+            android:stepSize="1"
+            tools:rating="4"
+            />
 
-		<TextView
-			android:id="@+id/totalCountTextView"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:gravity="center"
-			android:paddingBottom="8dp"
-			android:textColor="?colorPrimary"
-			tools:text="8 Ratings"
-			/>
+        <TextView
+            android:id="@+id/totalCountTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="8dp"
+            android:textColor="?colorPrimary"
+            tools:text="8 Ratings"
+            />
 
-		<RatingBar
-			android:id="@+id/averageRatingBar"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="center"
-			android:isIndicator="true"
-			android:progressBackgroundTint="@color/textColorSecondary_westeros"
-			android:progressTint="?colorPrimary"
-			android:stepSize="1"
-			tools:rating="3"
-			style="@style/Widget.AppCompat.RatingBar.Small"
-			/>
+        <RatingBar
+            android:id="@+id/averageRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:isIndicator="true"
+            android:progressBackgroundTint="@color/textColorSecondary_westeros"
+            android:progressTint="?colorPrimary"
+            android:stepSize="1"
+            tools:rating="3"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            />
 
-	</LinearLayout>
+    </LinearLayout>
 
 </com.liferay.mobile.screens.viewsets.defaultviews.rating.StarsRatingView>

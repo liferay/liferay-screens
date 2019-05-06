@@ -8,20 +8,20 @@ import com.liferay.mobile.screens.asset.display.AssetDisplayListener;
 
 public interface VideoDisplayListener extends AssetDisplayListener {
 
-	/**
-	 * Called when the video is ready to be displayed.
-	 */
-	void onVideoPrepared();
+    /**
+     * Called when the video is ready to be displayed.
+     */
+    void onVideoPrepared();
 
-	/**
-	 * Called when there is an error displaying the video.
-	 *
-	 * @param e exception error
-	 */
-	void onVideoError(Exception e);
+    /**
+     * Called when there is an error displaying the video.
+     *
+     * @param e exception error
+     */
+    void onVideoError(Exception e);
 
-	/**
-	 * Called when the video is completed.
-	 */
-	void onVideoCompleted();
+    /**
+     * Called when the video is completed.
+     */
+    void onVideoCompleted();
 }

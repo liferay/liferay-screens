@@ -23,25 +23,25 @@ import com.liferay.mobile.screens.imagegallery.model.ImageEntry;
  */
 public interface ImageGalleryInteractorListener extends BaseListInteractorListener<ImageEntry> {
 
-	/**
-	 * Called when an item in the list is deleted.
-	 */
-	void onImageEntryDeleted(long imageEntryId);
+    /**
+     * Called when an item in the list is deleted.
+     */
+    void onImageEntryDeleted(long imageEntryId);
 
-	/**
-	 * Called when the item was successfully uploaded.
-	 */
-	void onPictureUploaded(ImageEntry entry);
+    /**
+     * Called when the item was successfully uploaded.
+     */
+    void onPictureUploaded(ImageEntry entry);
 
-	/**
-	 * Retrieves constantly the progress until the picture is successfully uploaded.
-	 * This method retrieves the bytes sent and the total.
-	 */
-	void onPictureUploadProgress(int totalBytes, int totalBytesSent);
+    /**
+     * Retrieves constantly the progress until the picture is successfully uploaded.
+     * This method retrieves the bytes sent and the total.
+     */
+    void onPictureUploadProgress(int totalBytes, int totalBytesSent);
 
-	/**
-	 * Called only once when user fill the upload form.
-	 * This method retrieves the picture path, title, description and changelog.
-	 */
-	void onPictureUploadInformationReceived(Uri pictureUri, String title, String description, String changelog);
+    /**
+     * Called only once when user fill the upload form.
+     * This method retrieves the picture path, title, description and changelog.
+     */
+    void onPictureUploadInformationReceived(Uri pictureUri, String title, String description, String changelog);
 }

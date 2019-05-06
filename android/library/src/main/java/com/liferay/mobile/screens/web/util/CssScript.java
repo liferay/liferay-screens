@@ -19,27 +19,27 @@ package com.liferay.mobile.screens.web.util;
  */
 public class CssScript implements InjectableScript {
 
-	private String name;
-	private String content;
+    private String name;
+    private String content;
 
-	public CssScript(String name, String css) {
-		this.name = name;
-		content = "var style = document.createElement('style');"
-			+ "style.type = 'text/css';"
-			+ "style.innerHTML = '"
-			+ css.replace("\n", "")
-			+ "';"
-			+ "var head = document.getElementsByTagName('head')[0];"
-			+ "head.appendChild(style);";
-	}
+    public CssScript(String name, String css) {
+        this.name = name;
+        content = "var style = document.createElement('style');"
+            + "style.type = 'text/css';"
+            + "style.innerHTML = '"
+            + css.replace("\n", "")
+            + "';"
+            + "var head = document.getElementsByTagName('head')[0];"
+            + "head.appendChild(style);";
+    }
 
-	@Override
-	public String getName() {
-		return name;
-	}
+    @Override
+    public String getName() {
+        return name;
+    }
 
-	@Override
-	public String getContent() {
-		return content;
-	}
+    @Override
+    public String getContent() {
+        return content;
+    }
 }

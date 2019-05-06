@@ -1,92 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="material_theme" parent="Theme.AppCompat.Light.NoActionBar">
-		<item name="colorAccent">@color/colorAccent_material</item>
-		<item name="colorPrimary">@color/colorPrimary_material</item>
-		<item name="colorPrimaryDark">@color/colorPrimaryDark_material</item>
+    <style name="material_theme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">@color/colorAccent_material</item>
+        <item name="colorPrimary">@color/colorPrimary_material</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark_material</item>
 
-		<item name="colorControlNormal">@color/colorPrimary_material</item>
-		<item name="colorControlHighlight">@color/colorAccent_material</item>
-		<item name="colorControlActivated">@color/colorPrimary_material</item>
+        <item name="colorControlNormal">@color/colorPrimary_material</item>
+        <item name="colorControlHighlight">@color/colorAccent_material</item>
+        <item name="colorControlActivated">@color/colorPrimary_material</item>
 
-		<item name="android:textColorPrimary">@color/textColorPrimary_material</item>
-		<item name="android:textColorSecondary">@color/textColorSecondary_material</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary_material</item>
+        <item name="android:textColorSecondary">@color/textColorSecondary_material</item>
 
-		<item name="android:textViewStyle">@style/material_text_view</item>
-		<item name="android:editTextStyle">@style/material_edit_text</item>
-		<item name="android:buttonStyle">@style/material_button</item>
-		<item name="editTextStyle">@style/material_edit_text</item>
-		<item name="buttonStyle">@style/material_button</item>
+        <item name="android:textViewStyle">@style/material_text_view</item>
+        <item name="android:editTextStyle">@style/material_edit_text</item>
+        <item name="android:buttonStyle">@style/material_button</item>
+        <item name="editTextStyle">@style/material_edit_text</item>
+        <item name="buttonStyle">@style/material_button</item>
 
-		<item name="themeName">material_theme</item>
-	</style>
+        <item name="themeName">material_theme</item>
+    </style>
 
-	<style name="material_date_picker" parent="Theme.AppCompat.Light.Dialog">
-		<item name="colorPrimary">@color/colorPrimary_material</item>
-		<item name="colorAccent">@color/colorPrimary_material</item>
-	</style>
+    <style name="material_date_picker" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/colorPrimary_material</item>
+        <item name="colorAccent">@color/colorPrimary_material</item>
+    </style>
 
-	<style name="material_button" parent="Widget.AppCompat.Button">
-		<item name="android:textColor">@android:color/white</item>
-		<item name="android:background">@drawable/material_ripple</item>
-		<item name="android:padding">10dp</item>
-	</style>
+    <style name="material_button" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@drawable/material_ripple</item>
+        <item name="android:padding">10dp</item>
+    </style>
 
-	<style name="material_edit_text" parent="Widget.AppCompat.EditText">
-		<item name="android:inputType">text</item>
-		<item name="android:textSize">16sp</item>
-		<item name="android:textColor">?android:attr/textColorPrimary</item>
-		<item name="android:textColorHint">?android:attr/textColorSecondary</item>
-	</style>
+    <style name="material_edit_text" parent="Widget.AppCompat.EditText">
+        <item name="android:inputType">text</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textColorHint">?android:attr/textColorSecondary</item>
+    </style>
 
-	<style name="material_text_view" parent="android:Widget.TextView">
-		<item name="android:textColor">?android:attr/textColorPrimary</item>
-	</style>
+    <style name="material_text_view" parent="android:Widget.TextView">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+    </style>
 
-	<style name="material_list_item">
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">wrap_content</item>
-		<item name="android:minHeight">52dp</item>
-		<item name="android:paddingLeft">16dp</item>
-		<item name="android:paddingRight">16dp</item>
-		<item name="android:layout_gravity">center_vertical</item>
-	</style>
+    <style name="material_list_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">52dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
 
-	<style name="material_list_item_icon">
-		<item name="android:src">@drawable/material_tinted_list_icon</item>
-	</style>
+    <style name="material_list_item_icon">
+        <item name="android:src">@drawable/material_tinted_list_icon</item>
+    </style>
 
-	<style name="material_list_item_title">
-		<item name="android:padding">0dp</item>
-		<item name="android:textSize">16sp</item>
-		<item name="android:paddingLeft">10dp</item>
-		<item name="android:gravity">bottom</item>
-		<item name="android:layout_weight">1</item>
-	</style>
+    <style name="material_list_item_title">
+        <item name="android:padding">0dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:gravity">bottom</item>
+        <item name="android:layout_weight">1</item>
+    </style>
 
-	<style name="material_list_item_subtitle">
-		<item name="android:padding">0dp</item>
-		<item name="android:textSize">12sp</item>
-		<item name="android:paddingLeft">10dp</item>
-		<item name="android:gravity">top</item>
-		<item name="android:layout_weight">1</item>
-	</style>
+    <style name="material_list_item_subtitle">
+        <item name="android:padding">0dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:gravity">top</item>
+        <item name="android:layout_weight">1</item>
+    </style>
 
-	<style name="material_row">
-		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_height">48dp</item>
-		<item name="android:layout_marginBottom">8dp</item>
-		<item name="android:orientation">horizontal</item>
-		<item name="android:paddingLeft">10dp</item>
-		<item name="android:paddingRight">10dp</item>
-	</style>
+    <style name="material_row">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+    </style>
 
-	<style name="material_icon">
-		<item name="android:layout_width">24dp</item>
-		<item name="android:layout_height">24dp</item>
-		<item name="android:layout_margin">12dp</item>
-	</style>
+    <style name="material_icon">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:layout_margin">12dp</item>
+    </style>
 
 
 </resources>

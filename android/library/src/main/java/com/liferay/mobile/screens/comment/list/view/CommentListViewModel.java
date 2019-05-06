@@ -22,18 +22,18 @@ import com.liferay.mobile.screens.comment.CommentEntry;
  */
 public interface CommentListViewModel extends BaseListViewModel<CommentEntry> {
 
-	/**
-	 * Allows the edition mode in comment list.
-	 */
-	void allowEdition(boolean editable);
+    /**
+     * Allows the edition mode in comment list.
+     */
+    void allowEdition(boolean editable);
 
-	/**
-	 * Adds a new comment to the list.
-	 */
-	void addNewCommentEntry(CommentEntry commentEntry);
+    /**
+     * Adds a new comment to the list.
+     */
+    void addNewCommentEntry(CommentEntry commentEntry);
 
-	/**
-	 * Removes one comment from the list.
-	 */
-	void removeCommentEntry(CommentEntry commentEntry);
+    /**
+     * Removes one comment from the list.
+     */
+    void removeCommentEntry(CommentEntry commentEntry);
 }

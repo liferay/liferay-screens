@@ -1,7 +1,7 @@
 <resources>
-	<string name="push_example">Liferay Push Example</string>
-	<string name="notifications_activity">List of Notifications</string>
-	<string name="notification_detail">Detail of a notification</string>
-	<string name="app">Liferay Push Example</string>
-	<string name="liferay_screens_icon">Liferay Screens icon</string>
+    <string name="push_example">Liferay Push Example</string>
+    <string name="notifications_activity">List of Notifications</string>
+    <string name="notification_detail">Detail of a notification</string>
+    <string name="app">Liferay Push Example</string>
+    <string name="liferay_screens_icon">Liferay Screens icon</string>
 </resources>

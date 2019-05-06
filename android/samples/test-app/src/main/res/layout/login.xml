@@ -1,91 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:orientation="vertical"
-	>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
 
-	<TextView
-		android:text="@string/login_label"
-		style="@style/label"
-		/>
+    <TextView
+        android:text="@string/login_label"
+        style="@style/label"
+        />
 
-	<FrameLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		>
-		<com.liferay.mobile.screens.auth.login.LoginScreenlet
-			android:id="@+id/login_screenlet"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			app:basicAuthMethod="email"
-			app:credentialsStorage="shared_preferences"
-			app:loginMode="basic"
-			/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <com.liferay.mobile.screens.auth.login.LoginScreenlet
+            android:id="@+id/login_screenlet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:basicAuthMethod="email"
+            app:credentialsStorage="shared_preferences"
+            app:loginMode="basic"
+            />
 
-		<com.liferay.mobile.screens.auth.login.LoginScreenlet
-			android:id="@+id/login_screenlet_redirect"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:visibility="gone"
-			app:basicAuthMethod="email"
-			app:credentialsStorage="shared_preferences"
-			app:loginMode="oauth2Redirect"
-			/>
+        <com.liferay.mobile.screens.auth.login.LoginScreenlet
+            android:id="@+id/login_screenlet_redirect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:basicAuthMethod="email"
+            app:credentialsStorage="shared_preferences"
+            app:loginMode="oauth2Redirect"
+            />
 
-	</FrameLayout>
+    </FrameLayout>
 
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:gravity="center"
-		android:orientation="vertical"
-		android:padding="20dp"
-		>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp"
+        >
 
-		<RadioGroup
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:layout_gravity="center_horizontal"
-			android:checkedButton="@id/radio_basic"
-			>
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:checkedButton="@id/radio_basic"
+            >
 
-			<RadioButton
-				android:id="@+id/radio_basic"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:onClick="onClick"
-				android:tag="0"
-				android:text="@string/basic"
-				/>
+            <RadioButton
+                android:id="@+id/radio_basic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="onClick"
+                android:tag="0"
+                android:text="@string/basic"
+                />
 
-			<RadioButton
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:onClick="onClick"
-				android:tag="1"
-				android:text="@string/cookie"
-				/>
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="onClick"
+                android:tag="1"
+                android:text="@string/cookie"
+                />
 
-			<RadioButton
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:onClick="onClick"
-				android:tag="2"
-				android:text="@string/oauth2_with_redirect"
-				/>
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="onClick"
+                android:tag="2"
+                android:text="@string/oauth2_with_redirect"
+                />
 
-			<RadioButton
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:onClick="onClick"
-				android:tag="3"
-				android:text="@string/oauth2_username_and_password"
-				/>
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="onClick"
+                android:tag="3"
+                android:text="@string/oauth2_username_and_password"
+                />
 
-		</RadioGroup>
+        </RadioGroup>
 
-	</LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

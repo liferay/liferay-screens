@@ -30,97 +30,97 @@ import com.liferay.mobile.screens.comment.display.interactor.CommentEvent;
  * @author Alejandro Hernández
  */
 public class CommentAddScreenlet extends BaseScreenlet<CommentAddViewModel, CommentAddInteractor>
-	implements CommentAddListener {
+    implements CommentAddListener {
 
-	private CommentAddListener listener;
-	private String className;
-	private long classPK;
+    private CommentAddListener listener;
+    private String className;
+    private long classPK;
 
-	public CommentAddScreenlet(Context context) {
-		super(context);
-	}
+    public CommentAddScreenlet(Context context) {
+        super(context);
+    }
 
-	public CommentAddScreenlet(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public CommentAddScreenlet(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public CommentAddScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
-		super(context, attrs, defStyleAttr);
-	}
+    public CommentAddScreenlet(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
-	public CommentAddScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-		super(context, attrs, defStyleAttr, defStyleRes);
-	}
+    public CommentAddScreenlet(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+    }
 
-	@Override
-	protected View createScreenletView(Context context, AttributeSet attributes) {
-		TypedArray typedArray =
-			context.getTheme().obtainStyledAttributes(attributes, R.styleable.CommentAddScreenlet, 0, 0);
+    @Override
+    protected View createScreenletView(Context context, AttributeSet attributes) {
+        TypedArray typedArray =
+            context.getTheme().obtainStyledAttributes(attributes, R.styleable.CommentAddScreenlet, 0, 0);
 
-		className = typedArray.getString(R.styleable.CommentAddScreenlet_className);
+        className = typedArray.getString(R.styleable.CommentAddScreenlet_className);
 
-		classPK = castToLong(typedArray.getString(R.styleable.CommentAddScreenlet_classPK));
+        classPK = castToLong(typedArray.getString(R.styleable.CommentAddScreenlet_classPK));
 
-		int layoutId = typedArray.getResourceId(R.styleable.CommentAddScreenlet_layoutId, getDefaultLayoutId());
+        int layoutId = typedArray.getResourceId(R.styleable.CommentAddScreenlet_layoutId, getDefaultLayoutId());
 
-		typedArray.recycle();
+        typedArray.recycle();
 
-		return LayoutInflater.from(context).inflate(layoutId, null);
-	}
+        return LayoutInflater.from(context).inflate(layoutId, null);
+    }
 
-	@Override
-	protected CommentAddInteractor createInteractor(String actionName) {
-		return new CommentAddInteractor();
-	}
+    @Override
+    protected CommentAddInteractor createInteractor(String actionName) {
+        return new CommentAddInteractor();
+    }
 
-	@Override
-	protected void onUserAction(String userActionName, CommentAddInteractor interactor, Object... args) {
-		String body = (String) args[0];
+    @Override
+    protected void onUserAction(String userActionName, CommentAddInteractor interactor, Object... args) {
+        String body = (String) args[0];
 
-		interactor.start(new CommentEvent(0, className, classPK, body));
-	}
+        interactor.start(new CommentEvent(0, className, classPK, body));
+    }
 
-	@Override
-	public void error(Exception e, String userAction) {
+    @Override
+    public void error(Exception e, String userAction) {
 
-		getViewModel().showFailedOperation(null, e);
+        getViewModel().showFailedOperation(null, e);
 
-		if (getListener() != null) {
-			getListener().error(e, userAction);
-		}
-	}
+        if (getListener() != null) {
+            getListener().error(e, userAction);
+        }
+    }
 
-	@Override
-	public void onAddCommentSuccess(CommentEntry commentEntry) {
+    @Override
+    public void onAddCommentSuccess(CommentEntry commentEntry) {
 
-		getViewModel().showFinishOperation(null);
+        getViewModel().showFinishOperation(null);
 
-		if (getListener() != null) {
-			getListener().onAddCommentSuccess(commentEntry);
-		}
-	}
+        if (getListener() != null) {
+            getListener().onAddCommentSuccess(commentEntry);
+        }
+    }
 
-	public CommentAddListener getListener() {
-		return listener;
-	}
+    public CommentAddListener getListener() {
+        return listener;
+    }
 
-	public void setListener(CommentAddListener listener) {
-		this.listener = listener;
-	}
+    public void setListener(CommentAddListener listener) {
+        this.listener = listener;
+    }
 
-	public String getClassName() {
-		return className;
-	}
+    public String getClassName() {
+        return className;
+    }
 
-	public void setClassName(String className) {
-		this.className = className;
-	}
+    public void setClassName(String className) {
+        this.className = className;
+    }
 
-	public long getClassPK() {
-		return classPK;
-	}
+    public long getClassPK() {
+        return classPK;
+    }
 
-	public void setClassPK(long classPK) {
-		this.classPK = classPK;
-	}
+    public void setClassPK(long classPK) {
+        this.classPK = classPK;
+    }
 }

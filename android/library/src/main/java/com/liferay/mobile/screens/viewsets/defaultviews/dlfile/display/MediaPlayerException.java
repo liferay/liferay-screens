@@ -8,25 +8,25 @@ import android.media.MediaPlayer;
 
 public class MediaPlayerException extends Exception {
 
-	/**
-	 * The type of error and an ex
-	 *
-	 * @see {@link MediaPlayer.OnErrorListener}
-	 */
-	private final int what;
-	private final int extra;
+    /**
+     * The type of error and an ex
+     *
+     * @see {@link MediaPlayer.OnErrorListener}
+     */
+    private final int what;
+    private final int extra;
 
-	public MediaPlayerException(int what, int extra) {
-		super("MediaPlayer error what: " + what + " extra: " + extra);
-		this.what = what;
-		this.extra = extra;
-	}
+    public MediaPlayerException(int what, int extra) {
+        super("MediaPlayer error what: " + what + " extra: " + extra);
+        this.what = what;
+        this.extra = extra;
+    }
 
-	public int getWhat() {
-		return what;
-	}
+    public int getWhat() {
+        return what;
+    }
 
-	public int getExtra() {
-		return extra;
-	}
+    public int getExtra() {
+        return extra;
+    }
 }

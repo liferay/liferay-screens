@@ -23,21 +23,21 @@ import com.liferay.mobile.screens.context.User;
  */
 public interface CredentialsStorage {
 
-	void storeCredentials();
+    void storeCredentials();
 
-	void removeStoredCredentials();
+    void removeStoredCredentials();
 
-	boolean loadStoredCredentials() throws IllegalStateException;
+    boolean loadStoredCredentials() throws IllegalStateException;
 
-	boolean loadStoredCredentialsAndServer() throws IllegalStateException;
+    boolean loadStoredCredentialsAndServer() throws IllegalStateException;
 
-	Authentication getAuthentication();
+    Authentication getAuthentication();
 
-	void setAuthentication(Authentication auth);
+    void setAuthentication(Authentication auth);
 
-	User getUser();
+    User getUser();
 
-	void setUser(User user);
+    void setUser(User user);
 
-	void setContext(Context ctx);
+    void setContext(Context ctx);
 }

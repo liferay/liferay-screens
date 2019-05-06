@@ -19,17 +19,17 @@ package com.liferay.mobile.screens.web.util;
  */
 public interface InjectableScript {
 
-	/**
-	 * Get the name of the script. Useful for debugging purposes
-	 *
-	 * @return name of the script
-	 */
-	String getName();
+    /**
+     * Get the name of the script. Useful for debugging purposes
+     *
+     * @return name of the script
+     */
+    String getName();
 
-	/**
-	 * Get file content.
-	 *
-	 * @return javascript content.
-	 */
-	String getContent();
+    /**
+     * Get file content.
+     *
+     * @return javascript content.
+     */
+    String getContent();
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="gallery_uploading_one">Uploading image…</string>
-	<string name="gallery_uploading_several">Uploading image 1 from %1$d…</string>
-	<string name="upload_detail_cancel_button">Cancel</string>
-	<string name="upload_detail_upload_button">Upload</string>
-	<string name="detail_upload_title">Title</string>
-	<string name="detail_upload_description">Description</string>
+    <string name="gallery_uploading_one">Uploading image…</string>
+    <string name="gallery_uploading_several">Uploading image 1 from %1$d…</string>
+    <string name="upload_detail_cancel_button">Cancel</string>
+    <string name="upload_detail_upload_button">Upload</string>
+    <string name="detail_upload_title">Title</string>
+    <string name="detail_upload_description">Description</string>
 </resources>

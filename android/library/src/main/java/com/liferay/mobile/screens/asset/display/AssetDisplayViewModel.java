@@ -22,15 +22,15 @@ import com.liferay.mobile.screens.base.view.BaseViewModel;
  */
 public interface AssetDisplayViewModel extends BaseViewModel {
 
-	/**
-	 * Called when inner screenlet is ready to be displayed.
-	 *
-	 * @param view screenlet or custom view.
-	 */
-	void showFinishOperation(View view);
+    /**
+     * Called when inner screenlet is ready to be displayed.
+     *
+     * @param view screenlet or custom view.
+     */
+    void showFinishOperation(View view);
 
-	/**
-	 * Removes the created screenlet inside {@link AssetDisplayScreenlet}.
-	 */
-	void removeInnerScreenlet();
+    /**
+     * Removes the created screenlet inside {@link AssetDisplayScreenlet}.
+     */
+    void removeInnerScreenlet();
 }

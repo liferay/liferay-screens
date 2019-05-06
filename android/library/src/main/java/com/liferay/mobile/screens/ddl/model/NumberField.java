@@ -16,6 +16,11 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import androidx.annotation.Nullable;
+import com.liferay.mobile.screens.ddl.LocalValidator;
+import com.liferay.mobile.screens.ddl.NumberValidator;
+import com.liferay.mobile.screens.util.ValidationUtil;
+
 import java.text.NumberFormat;
 import java.text.ParsePosition;
 import java.util.Locale;
@@ -26,70 +31,112 @@ import java.util.Map;
  */
 public class NumberField extends Field<Number> {
 
-	public static final Parcelable.ClassLoaderCreator<NumberField> CREATOR =
-		new Parcelable.ClassLoaderCreator<NumberField>() {
+    public static final Parcelable.ClassLoaderCreator<NumberField> CREATOR =
+        new Parcelable.ClassLoaderCreator<NumberField>() {
 
-			@Override
-			public NumberField createFromParcel(Parcel source, ClassLoader loader) {
-				return new NumberField(source, loader);
-			}
+            @Override
+            public NumberField createFromParcel(Parcel source, ClassLoader loader) {
+                return new NumberField(source, loader);
+            }
 
-			public NumberField createFromParcel(Parcel in) {
-				throw new AssertionError();
-			}
+            public NumberField createFromParcel(Parcel in) {
+                throw new AssertionError();
+            }
 
-			public NumberField[] newArray(int size) {
-				return new NumberField[size];
-			}
-		};
-	private NumberFormat labelFormatter;
-	private NumberFormat defaultLabelFormatter;
+            public NumberField[] newArray(int size) {
+                return new NumberField[size];
+            }
+        };
+    private NumberFormat labelFormatter;
+    private NumberFormat defaultLabelFormatter;
+    private NumberValidator numberValidator;
 
-	public NumberField() {
-		super();
-	}
+    public NumberField() {
+        super();
+    }
 
-	public NumberField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
-		super(attributes, locale, defaultLocale);
-	}
+    public NumberField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
+        super(attributes, locale, defaultLocale);
 
-	protected NumberField(Parcel in, ClassLoader loader) {
-		super(in, loader);
-	}
+        Map<String, String> validation = ValidationUtil.getValidationFromAttributes(attributes);
+        numberValidator = NumberValidator.parseNumberValidator(validation);
+        doValidate();
+    }
 
-	@Override
-	protected Number convertFromString(String stringValue) {
-		if (stringValue == null || stringValue.isEmpty()) {
-			return null;
-		}
+    protected NumberField(Parcel in, ClassLoader loader) {
+        super(in, loader);
+    }
 
-		ParsePosition pos = new ParsePosition(0);
-		Number value = getLabelFormatter().parse(stringValue, pos);
+    @Nullable
+    @Override
+    public LocalValidator getLocalValidator() {
+        return numberValidator;
+    }
 
-		if (stringValue.length() == pos.getIndex()) {
-			return value;
-		} else {
-			pos = new ParsePosition(0);
-			value = defaultLabelFormatter.parse(stringValue, pos);
-			return stringValue.length() == pos.getIndex() ? value : null;
-		}
-	}
+    @Override
+    protected Number convertFromString(String stringValue) {
+        if (stringValue == null || stringValue.isEmpty()) {
+            return null;
+        }
 
-	@Override
-	protected String convertToData(Number value) {
-		return (value == null) ? null : value.toString();
-	}
+        ParsePosition pos = new ParsePosition(0);
+        Number value = getLabelFormatter().parse(stringValue, pos);
 
-	@Override
-	protected String convertToFormattedString(Number value) {
-		return (value == null) ? "" : getLabelFormatter().format(value);
-	}
+        if (stringValue.length() == pos.getIndex()) {
+            return value;
+        } else {
+            pos = new ParsePosition(0);
+            value = defaultLabelFormatter.parse(stringValue, pos);
+            return stringValue.length() == pos.getIndex() ? value : null;
+        }
+    }
 
-	private NumberFormat getLabelFormatter() {
-		if (labelFormatter == null || defaultLabelFormatter == null) {
-			labelFormatter = NumberFormat.getNumberInstance(getCurrentLocale());
-			defaultLabelFormatter = NumberFormat.getNumberInstance(getDefaultLocale());
-		}
-		return labelFormatter;
-	}
+    @Override
+    protected boolean doValidate() {
+        Number currentValue = getCurrentValue();
+
+        if (currentValue != null) {
+            return checkLocalValidation(currentValue);
+        }
+
+        return checkIsValid();
+    }
+
+    @Override
+    protected String convertToData(Number value) {
+        return (value == null) ? null : value.toString();
+    }
+
+    @Override
+    protected String convertToFormattedString(Number value) {
+        return (value == null) ? "" : getLabelFormatter().format(value);
+    }
+
+    private NumberFormat getLabelFormatter() {
+        if (labelFormatter == null || defaultLabelFormatter == null) {
+            labelFormatter = NumberFormat.getNumberInstance(getCurrentLocale());
+            defaultLabelFormatter = NumberFormat.getNumberInstance(getDefaultLocale());
+        }
+        return labelFormatter;
+    }
+
+    private boolean checkIsValid() {
+        if (isRequired()) {
+            setValidationState(ValidationState.INVALID_BY_REQUIRED_WITHOUT_VALUE);
+            return false;
+        } else {
+            setValidationState(ValidationState.VALID);
+            return true;
+        }
+    }
+
+    private boolean checkLocalValidation(Number currentValue) {
+        boolean isValid = numberValidator.validate(currentValue);
+
+        if (!isValid) {
+            setValidationState(ValidationState.INVALID_BY_LOCAL_RULE);
+        }
+
+        return isValid;
+    }
 }

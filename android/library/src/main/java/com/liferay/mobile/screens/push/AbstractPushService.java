@@ -12,27 +12,27 @@ import org.json.JSONObject;
  */
 public abstract class AbstractPushService extends IntentService {
 
-	private final GoogleServices googleService = new GoogleServices();
+    private final GoogleServices googleService = new GoogleServices();
 
-	public AbstractPushService() {
-		super(AbstractPushService.class.getSimpleName());
-	}
+    public AbstractPushService() {
+        super(AbstractPushService.class.getSimpleName());
+    }
 
-	public void onHandleIntent(Intent intent) {
-		try {
-			JSONObject json = this.googleService.getPushNotification(this, intent);
+    public void onHandleIntent(Intent intent) {
+        try {
+            JSONObject json = this.googleService.getPushNotification(this, intent);
 
-			//BusUtil.post(json);
+            //BusUtil.post(json);
 
-			processJSONNotification(json);
+            processJSONNotification(json);
 
-			AbstractPushReceiver.completeWakefulIntent(intent);
-		} catch (Exception exception) {
-			BusUtil.post(exception);
-		}
-	}
+            AbstractPushReceiver.completeWakefulIntent(intent);
+        } catch (Exception exception) {
+            BusUtil.post(exception);
+        }
+    }
 
-	protected abstract void processJSONNotification(JSONObject json) throws JSONException;
+    protected abstract void processJSONNotification(JSONObject json) throws JSONException;
 }
 
 

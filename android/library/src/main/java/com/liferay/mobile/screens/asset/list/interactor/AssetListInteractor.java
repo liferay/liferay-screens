@@ -43,143 +43,143 @@ import org.json.JSONObject;
  */
 public class AssetListInteractor extends BaseListInteractor<BaseListInteractorListener<AssetEntry>, AssetEvent> {
 
-	public BaseListEvent<AssetEvent> execute(Query query, Object... args) throws Exception {
+    public BaseListEvent<AssetEvent> execute(Query query, Object... args) throws Exception {
 
-		if (notRequestingRightNow(query)) {
+        if (notRequestingRightNow(query)) {
 
-			long classNameId = (long) args[0];
-			HashMap<String, Object> customEntryQuery = (HashMap<String, Object>) args[1];
-			String portletItemName = (String) args[2];
+            long classNameId = (long) args[0];
+            HashMap<String, Object> customEntryQuery = (HashMap<String, Object>) args[1];
+            String portletItemName = (String) args[2];
 
-			validate(query.getStartRow(), query.getEndRow(), locale, portletItemName, classNameId);
+            validate(query.getStartRow(), query.getEndRow(), locale, portletItemName, classNameId);
 
-			JSONArray jsonArray = getEntries(query, classNameId, customEntryQuery, portletItemName);
-			int rowCount = getCount(classNameId, customEntryQuery, portletItemName, jsonArray);
+            JSONArray jsonArray = getEntries(query, classNameId, customEntryQuery, portletItemName);
+            int rowCount = getCount(classNameId, customEntryQuery, portletItemName, jsonArray);
 
-			List<AssetEvent> entries = new ArrayList<>();
+            List<AssetEvent> entries = new ArrayList<>();
 
-			for (int i = 0; i < jsonArray.length(); i++) {
-				JSONObject jsonObject = jsonArray.getJSONObject(i);
-				entries.add(createEntity(JSONUtil.toMap(jsonObject)));
-			}
-			return new BaseListEvent<>(query, entries, rowCount);
-		}
-		return null;
-	}
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                entries.add(createEntity(JSONUtil.toMap(jsonObject)));
+            }
+            return new BaseListEvent<>(query, entries, rowCount);
+        }
+        return null;
+    }
 
-	private JSONArray getEntries(Query query, long classNameId, Map<String, Object> customEntryQuery,
-		String portletItemName) throws Exception {
-		if (portletItemName == null) {
+    private JSONArray getEntries(Query query, long classNameId, Map<String, Object> customEntryQuery,
+        String portletItemName) throws Exception {
+        if (portletItemName == null) {
 
-			ScreensAssetEntryConnector connector =
-				ServiceProvider.getInstance().getScreensAssetEntryConnector(getSession());
-			JSONObject entryQueryAttributes = configureEntryQuery(groupId, classNameId, customEntryQuery);
-			entryQueryAttributes.put("start", query.getStartRow());
-			entryQueryAttributes.put("end", query.getEndRow());
+            ScreensAssetEntryConnector connector =
+                ServiceProvider.getInstance().getScreensAssetEntryConnector(getSession());
+            JSONObject entryQueryAttributes = configureEntryQuery(groupId, classNameId, customEntryQuery);
+            entryQueryAttributes.put("start", query.getStartRow());
+            entryQueryAttributes.put("end", query.getEndRow());
 
-			JSONObjectWrapper entryQuery = new JSONObjectWrapper(entryQueryAttributes);
+            JSONObjectWrapper entryQuery = new JSONObjectWrapper(entryQueryAttributes);
 
-			return connector.getAssetEntries(entryQuery, locale.toString());
-		} else {
-			ScreensAssetEntryConnector connector =
-				ServiceProvider.getInstance().getScreensAssetEntryConnector(getSession());
-			return connector.getAssetEntries(LiferayServerContext.getCompanyId(), groupId, portletItemName,
-				locale.toString(), query.getEndRow());
-		}
-	}
+            return connector.getAssetEntries(entryQuery, locale.toString());
+        } else {
+            ScreensAssetEntryConnector connector =
+                ServiceProvider.getInstance().getScreensAssetEntryConnector(getSession());
+            return connector.getAssetEntries(LiferayServerContext.getCompanyId(), groupId, portletItemName,
+                locale.toString(), query.getEndRow());
+        }
+    }
 
-	private int getCount(long classNameId, Map<String, Object> customEntryQuery, String portletItemName,
-		JSONArray jsonArray) throws Exception {
-		if (portletItemName == null) {
-			JSONObject entryQueryParams = configureEntryQuery(groupId, classNameId, customEntryQuery);
-			JSONObjectWrapper entryQuery = new JSONObjectWrapper(entryQueryParams);
-			AssetEntryConnector connector = ServiceProvider.getInstance().getAssetEntryConnector(getSession());
-			return connector.getEntriesCount(entryQuery);
-		} else {
-			return jsonArray.length();
-		}
-	}
+    private int getCount(long classNameId, Map<String, Object> customEntryQuery, String portletItemName,
+        JSONArray jsonArray) throws Exception {
+        if (portletItemName == null) {
+            JSONObject entryQueryParams = configureEntryQuery(groupId, classNameId, customEntryQuery);
+            JSONObjectWrapper entryQuery = new JSONObjectWrapper(entryQueryParams);
+            AssetEntryConnector connector = ServiceProvider.getInstance().getAssetEntryConnector(getSession());
+            return connector.getEntriesCount(entryQuery);
+        } else {
+            return jsonArray.length();
+        }
+    }
 
-	@Override
-	protected JSONArray getPageRowsRequest(Query query, Object... args) throws Exception {
-		throw new AssertionError("Should not be called!");
-	}
+    @Override
+    protected JSONArray getPageRowsRequest(Query query, Object... args) throws Exception {
+        throw new AssertionError("Should not be called!");
+    }
 
-	@Override
-	protected Integer getPageRowCountRequest(Object... args) throws Exception {
-		throw new AssertionError("Should not be called!");
-	}
+    @Override
+    protected Integer getPageRowCountRequest(Object... args) throws Exception {
+        throw new AssertionError("Should not be called!");
+    }
 
-	@Override
-	protected AssetEvent createEntity(Map<String, Object> stringObjectMap) {
-		return new AssetEvent(AssetFactory.createInstance(stringObjectMap));
-	}
+    @Override
+    protected AssetEvent createEntity(Map<String, Object> stringObjectMap) {
+        return new AssetEvent(AssetFactory.createInstance(stringObjectMap));
+    }
 
-	@Override
-	protected String getIdFromArgs(Object... args) {
-		long classNameId = (long) args[0];
-		String portletItemName = (String) args[2];
+    @Override
+    protected String getIdFromArgs(Object... args) {
+        long classNameId = (long) args[0];
+        String portletItemName = (String) args[2];
 
-		return portletItemName == null ? String.valueOf(classNameId) : portletItemName;
-	}
+        return portletItemName == null ? String.valueOf(classNameId) : portletItemName;
+    }
 
-	protected JSONObject configureEntryQuery(long groupId, long classNameId, Map<String, Object> customEntryQuery)
-		throws JSONException {
+    protected JSONObject configureEntryQuery(long groupId, long classNameId, Map<String, Object> customEntryQuery)
+        throws JSONException {
 
-		JSONObject entryQueryParams = customEntryQuery == null ? new JSONObject() : new JSONObject(customEntryQuery);
+        JSONObject entryQueryParams = customEntryQuery == null ? new JSONObject() : new JSONObject(customEntryQuery);
 
-		if (!entryQueryParams.has("classNameIds")) {
-			entryQueryParams.put("classNameIds", classNameId);
-		}
-		if (!entryQueryParams.has("groupIds")) {
-			entryQueryParams.put("groupIds", groupId);
-		}
-		if (!entryQueryParams.has("visible")) {
-			entryQueryParams.put("visible", true);
-		}
+        if (!entryQueryParams.has("classNameIds")) {
+            entryQueryParams.put("classNameIds", classNameId);
+        }
+        if (!entryQueryParams.has("groupIds")) {
+            entryQueryParams.put("groupIds", groupId);
+        }
+        if (!entryQueryParams.has("visible")) {
+            entryQueryParams.put("visible", true);
+        }
 
-		if (classNameId == Long.parseLong(
-			LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_ddl_form_record))
-			|| classNameId == Long.parseLong(
-			LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_layout))
-			|| classNameId == Long.parseLong(
-			LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_mb_thread))
-			|| classNameId == Long.parseLong(
-			LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_organization))
-			|| classNameId == Long.parseLong(
-			LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_site))
-			|| classNameId == Long.parseLong(
-			LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_user))) {
-			
-			handleVisibleFlag(classNameId, entryQueryParams);
-		}
+        if (classNameId == Long.parseLong(
+            LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_ddl_form_record))
+            || classNameId == Long.parseLong(
+            LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_layout))
+            || classNameId == Long.parseLong(
+            LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_mb_thread))
+            || classNameId == Long.parseLong(
+            LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_organization))
+            || classNameId == Long.parseLong(
+            LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_site))
+            || classNameId == Long.parseLong(
+            LiferayScreensContext.getContext().getResources().getString(R.string.default_class_name_id_user))) {
 
-		return entryQueryParams;
-	}
+            handleVisibleFlag(classNameId, entryQueryParams);
+        }
 
-	protected void validate(int startRow, int endRow, Locale locale, String portletItemName, long classNameId) {
+        return entryQueryParams;
+    }
 
-		if (groupId <= 0) {
-			throw new IllegalArgumentException("GroupId cannot be 0 or negative");
-		} else if (portletItemName == null && classNameId <= 0) {
-			throw new IllegalArgumentException("ClassNameId cannot be 0 or negative");
-		}
+    protected void validate(int startRow, int endRow, Locale locale, String portletItemName, long classNameId) {
 
-		super.validate(startRow, endRow, locale);
-	}
+        if (groupId <= 0) {
+            throw new IllegalArgumentException("GroupId cannot be 0 or negative");
+        } else if (portletItemName == null && classNameId <= 0) {
+            throw new IllegalArgumentException("ClassNameId cannot be 0 or negative");
+        }
 
-	/**
-	 * AssetListScreenlet only list Asset with visible attribute set to true. But for example User,
-	 * have it by default in true. This method update this attribute of entryQuery.
-	 *
-	 * @param classNameId identifier of the asset’s class name.
-	 * @param entryQueryParams initial entryQuery parameters.
-	 * @return final entryQuery parameters.
-	 * @throws JSONException when can't parse the result
-	 */
-	private JSONObject handleVisibleFlag(long classNameId, JSONObject entryQueryParams) throws JSONException {
-		entryQueryParams.put("visible", false);
+        super.validate(startRow, endRow, locale);
+    }
 
-		return entryQueryParams;
-	}
+    /**
+     * AssetListScreenlet only list Asset with visible attribute set to true. But for example User,
+     * have it by default in true. This method update this attribute of entryQuery.
+     *
+     * @param classNameId identifier of the asset’s class name.
+     * @param entryQueryParams initial entryQuery parameters.
+     * @return final entryQuery parameters.
+     * @throws JSONException when can't parse the result
+     */
+    private JSONObject handleVisibleFlag(long classNameId, JSONObject entryQueryParams) throws JSONException {
+        entryQueryParams.put("visible", false);
+
+        return entryQueryParams;
+    }
 }

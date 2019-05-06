@@ -16,74 +16,116 @@ package com.liferay.mobile.screens.ddl.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import androidx.annotation.Nullable;
+import com.liferay.mobile.screens.ddl.LocalValidator;
+import com.liferay.mobile.screens.ddl.StringValidator;
+import com.liferay.mobile.screens.util.ValidationUtil;
+
 import java.util.Locale;
 import java.util.Map;
 
 /**
  * @author Jose Manuel Navarro
  */
-public class StringField extends Field<String> {
+public class StringField extends OptionsField<String> {
 
-	public static final Parcelable.ClassLoaderCreator<StringField> CREATOR =
-		new Parcelable.ClassLoaderCreator<StringField>() {
+    private StringValidator stringValidator;
 
-			@Override
-			public StringField createFromParcel(Parcel source, ClassLoader loader) {
-				return new StringField(source, loader);
-			}
+    public static final Parcelable.ClassLoaderCreator<StringField> CREATOR =
+        new Parcelable.ClassLoaderCreator<StringField>() {
 
-			public StringField createFromParcel(Parcel in) {
-				throw new AssertionError();
-			}
+            @Override
+            public StringField createFromParcel(Parcel source, ClassLoader loader) {
+                return new StringField(source, loader);
+            }
 
-			public StringField[] newArray(int size) {
-				return new StringField[size];
-			}
-		};
+            public StringField createFromParcel(Parcel in) {
+                throw new AssertionError();
+            }
 
-	public StringField() {
-		super();
-	}
+            public StringField[] newArray(int size) {
+                return new StringField[size];
+            }
+        };
 
-	public StringField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
-		super(attributes, locale, defaultLocale);
+    public StringField() {
+        super();
+    }
 
-		if (getText() != null) {
-			setReadOnly(true);
-		}
-	}
+    public StringField(Map<String, Object> attributes, Locale locale, Locale defaultLocale) {
+        super(attributes, locale, defaultLocale);
 
-	protected StringField(Parcel source, ClassLoader loader) {
-		super(source, loader);
-	}
+        initializeValidation(attributes);
 
-	@Override
-	protected boolean doValidate() {
-		boolean valid = true;
+        if (getText() != null) {
+            setReadOnly(true);
+        }
+    }
 
-		String currentValue = getCurrentValue();
+    protected StringField(Parcel source, ClassLoader loader) {
+        super(source, loader);
+    }
 
-		if (currentValue != null && isRequired()) {
-			String trimmedString = currentValue.trim();
+    @Override
+    protected boolean doValidate() {
+        String currentValue = getCurrentValue();
 
-			valid = !trimmedString.isEmpty();
-		}
+        if (currentValue != null) {
+            currentValue = currentValue.trim();
 
-		return valid;
-	}
+            if (!currentValue.isEmpty()) {
+                return checkLocalValidation(currentValue);
+            }
+        }
 
-	@Override
-	protected String convertFromString(String stringValue) {
-		return stringValue;
-	}
+        return checkIsValid();
+    }
 
-	@Override
-	protected String convertToData(String value) {
-		return value;
-	}
+    @Override
+    protected String convertFromString(String stringValue) {
+        return stringValue;
+    }
 
-	@Override
-	protected String convertToFormattedString(String value) {
-		return value;
-	}
+    @Override
+    protected String convertToData(String value) {
+        return value;
+    }
+
+    @Override
+    protected String convertToFormattedString(String value) {
+        return value;
+    }
+
+    @Nullable
+    @Override
+    public LocalValidator getLocalValidator() {
+        return stringValidator;
+    }
+
+    private boolean checkIsValid() {
+        if (isRequired()) {
+            setValidationState(ValidationState.INVALID_BY_REQUIRED_WITHOUT_VALUE);
+        } else {
+            setValidationState(ValidationState.VALID);
+        }
+
+        return !isRequired();
+    }
+
+    private boolean checkLocalValidation(String currentValue) {
+        boolean isValid = stringValidator.validate(currentValue);
+
+        if (!isValid) {
+            setValidationState(ValidationState.INVALID_BY_LOCAL_RULE);
+        }
+
+        return isValid;
+    }
+
+    private void initializeValidation(Map<String, Object> attributes) {
+        Map<String, String> validation = ValidationUtil.getValidationFromAttributes(attributes);
+        stringValidator = StringValidator.parseStringValidation(validation);
+        doValidate();
+    }
 }

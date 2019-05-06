@@ -22,38 +22,44 @@ import com.liferay.mobile.screens.BuildConfig;
  */
 public class LiferayLogger {
 
-	private static final boolean LOGGING_ENABLED = true;
-	private static final String TAG = "LiferayScreens";
+    private static final boolean LOGGING_ENABLED = true;
+    private static final String TAG = "LiferayScreens";
 
-	private LiferayLogger() {
-		super();
-	}
+    private LiferayLogger() {
+        super();
+    }
 
-	public static void d(String message) {
-		if (loggingEnabled()) {
-			Log.d(TAG, message);
-		}
-	}
+    public static void d(String message) {
+        if (loggingEnabled()) {
+            Log.d(TAG, message);
+        }
+    }
 
-	public static void i(String message) {
-		if (loggingEnabled()) {
-			Log.i(TAG, message);
-		}
-	}
+    public static void i(String message) {
+        if (loggingEnabled()) {
+            Log.i(TAG, message);
+        }
+    }
 
-	public static void e(String message) {
-		if (loggingEnabled()) {
-			Log.e(TAG, message);
-		}
-	}
+    public static void e(String message) {
+        if (loggingEnabled()) {
+            Log.e(TAG, message);
+        }
+    }
 
-	public static void e(String message, Exception e) {
-		if (loggingEnabled()) {
-			Log.e(TAG, message, e);
-		}
-	}
+    public static void e(String message, Exception e) {
+        if (loggingEnabled()) {
+            Log.e(TAG, message, e);
+        }
+    }
 
-	private static boolean loggingEnabled() {
-		return BuildConfig.DEBUG || LOGGING_ENABLED;
-	}
+    public static void e(String message, Throwable throwable) {
+        if (loggingEnabled()) {
+            Log.e(TAG, message, throwable);
+        }
+    }
+
+    private static boolean loggingEnabled() {
+        return BuildConfig.DEBUG || LOGGING_ENABLED;
+    }
 }

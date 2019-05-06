@@ -14,7 +14,7 @@
 
 package com.liferay.mobile.screens.viewsets.defaultviews.asset.list;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.view.View;
 import com.liferay.mobile.screens.asset.AssetEntry;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
@@ -25,22 +25,22 @@ import com.liferay.mobile.screens.base.list.BaseListAdapterListener;
  */
 public class AssetListAdapter extends BaseListAdapter<AssetEntry, BaseListAdapter.ViewHolder> {
 
-	public AssetListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
-		super(layoutId, progressLayoutId, listener);
-	}
+    public AssetListAdapter(int layoutId, int progressLayoutId, BaseListAdapterListener listener) {
+        super(layoutId, progressLayoutId, listener);
+    }
 
-	@NonNull
-	@Override
-	public ViewHolder createViewHolder(View view, BaseListAdapterListener listener) {
-		return new ViewHolder(view, listener);
-	}
+    @NonNull
+    @Override
+    public ViewHolder createViewHolder(View view, BaseListAdapterListener listener) {
+        return new ViewHolder(view, listener);
+    }
 
-	@Override
-	protected void fillHolder(AssetEntry entry, ViewHolder holder) {
-		if(!entry.getTitle().isEmpty()) {
-			holder.textView.setText(entry.getTitle());
-		} else {
-			holder.textView.setText(String.valueOf(entry.getEntryId()));
-		}
-	}
+    @Override
+    protected void fillHolder(AssetEntry entry, ViewHolder holder) {
+        if (!entry.getTitle().isEmpty()) {
+            holder.textView.setText(entry.getTitle());
+        } else {
+            holder.textView.setText(String.valueOf(entry.getEntryId()));
+        }
+    }
 }

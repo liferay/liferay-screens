@@ -8,6 +8,10 @@ All notable changes to this project will be documented in this file.
 
 Nothing yet
 
+# 5.0.0
+
+Update to Liferay 7.2
+
 # 4.0.1
 
 ## Android
