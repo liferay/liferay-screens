@@ -18,11 +18,11 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Build;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.ddl.model.DocumentField;
 import com.liferay.mobile.screens.viewsets.lexicon.R;
@@ -82,10 +82,8 @@ public class DDLDocumentFieldView
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(activity);
         bottomSheetDialog.setContentView(customDialogView);
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            View view = customDialogView.findViewById(R.id.liferay_dialog_select_gallery_video_container);
-            view.setVisibility(VISIBLE);
-        }
+        View view = customDialogView.findViewById(R.id.liferay_dialog_select_gallery_video_container);
+        view.setVisibility(VISIBLE);
 
         setupDialogListeners(activity, customDialogView);
 
