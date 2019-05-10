@@ -17,15 +17,65 @@ package com.liferay.mobile.screens.ddm.form.service.openapi
 import com.liferay.mobile.screens.ddl.model.DocumentField
 import com.liferay.mobile.screens.ddl.model.DocumentRemoteFile
 import com.liferay.mobile.screens.ddm.form.model.FormInstance
+import com.liferay.mobile.screens.ddm.form.service.BaseService
 import com.liferay.mobile.screens.ddm.form.service.UploadService
+import com.liferay.mobile.screens.util.AndroidUtil
+import com.liferay.mobile.screens.util.JSONUtil
+import com.squareup.okhttp.MediaType
+import com.squareup.okhttp.MultipartBuilder
+import com.squareup.okhttp.RequestBody
+import org.json.JSONObject
+import rx.Observable
+import java.io.ByteArrayOutputStream
 import java.io.InputStream
+import java.net.URLConnection
 
 /**
  * @author Victor Oliveira
  */
-class UploadServiceOpenAPI : UploadService {
-	override fun uploadFile(formInstance: FormInstance, field: DocumentField, inputStream: InputStream,
-		onSuccess: (DocumentRemoteFile) -> Unit, onError: (Throwable) -> Unit) {
-		TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+class UploadServiceOpenAPI(serverUrl: String) : UploadService, BaseService<DocumentRemoteFile>(serverUrl) {
+	override fun uploadFile(formInstance: FormInstance, field: DocumentField, inputStream: InputStream)
+		: Observable<DocumentRemoteFile> {
+
+		val filePath = field.currentValue?.toString()
+
+		return filePath?.let {
+			val fileName = AndroidUtil.getFileNameFromPath(filePath)
+			val multipartBuilder = MultipartBuilder().type(MultipartBuilder.FORM)
+
+			val byteArray = getByteArrayFromInputStream(inputStream)
+			val contentType = getContentType(filePath, inputStream)
+			val body = RequestBody.create(MediaType.parse(contentType), byteArray)
+
+			val mediaForm = JSONObject().put("title", fileName)
+
+			multipartBuilder.addFormDataPart("file", fileName, body)
+			multipartBuilder.addFormDataPart("formDocument", mediaForm.toString())
+
+			val url = "${getBaseUrl()}/forms/${formInstance.id}/form-document"
+
+			return execute(url, POST, multipartBuilder.build()) {
+				response -> DocumentRemoteFile(response.body().string())
+			}
+
+		} ?: Observable.empty()
+	}
+
+	private fun getByteArrayFromInputStream(inputStream: InputStream): ByteArray {
+		val byteBuffer = ByteArrayOutputStream()
+
+		inputStream.use { input ->
+			byteBuffer.use { output ->
+				input.copyTo(output)
+			}
+		}
+
+		return byteBuffer.toByteArray()
+	}
+
+	private fun getContentType(name: String, inputStream: InputStream): String {
+		return URLConnection.guessContentTypeFromStream(inputStream)
+			?: URLConnection.guessContentTypeFromName(name)
+			?: "application/*"
 	}
 }

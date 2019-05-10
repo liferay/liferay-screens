@@ -14,24 +14,36 @@
 
 package com.liferay.mobile.screens.ddm.form.service.openapi
 
-import com.liferay.mobile.screens.context.LiferayScreensContext
+import com.liferay.mobile.screens.ddl.form.util.FormConstants
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.ddm.form.model.FormContext
 import com.liferay.mobile.screens.ddm.form.model.FormInstance
+import com.liferay.mobile.screens.ddm.form.serializer.FieldValueSerializer
+import com.liferay.mobile.screens.ddm.form.service.BaseService
 import com.liferay.mobile.screens.ddm.form.service.EvaluateService
-import com.liferay.mobile.screens.util.AndroidUtil
+import com.squareup.okhttp.MediaType
+import com.squareup.okhttp.RequestBody
 import org.json.JSONObject
+import rx.Observable
 
 /**
  * @author Victor Oliveira
  */
-class EvaluateServiceOpenAPI : EvaluateService {
-	override fun evaluateContext(formInstance: FormInstance, fields: MutableList<Field<*>>,
-		onSuccess: (formContext: FormContext) -> Unit, onError: (Throwable) -> Unit) {
+class EvaluateServiceOpenAPI(serverUrl : String) : BaseService<FormContext>(serverUrl), EvaluateService {
 
-		val formContextStr = AndroidUtil.assetJSONFile("formContext.json", LiferayScreensContext.getContext())
-		val formContext = FormContext.converter(JSONObject(formContextStr))
+	override fun evaluateContext(formInstance: FormInstance, fields: MutableList<Field<*>>) : Observable<FormContext> {
+		val url = "${getBaseUrl()}/forms/${formInstance.id}/evaluate-context"
+			.plus("")
 
-		onSuccess(formContext)
+		val jsonBody = JSONObject()
+
+		jsonBody.put(FormConstants.FIELD_VALUES, FieldValueSerializer.serialize(fields) { !it.isTransient })
+
+		val requestBody = RequestBody.create(JSON_MEDIA_TYPE, jsonBody.toString())
+
+		return execute(url, POST, requestBody) {
+			val body = it.body().string()
+			FormContext.converter(JSONObject(body))
+		}
 	}
 }

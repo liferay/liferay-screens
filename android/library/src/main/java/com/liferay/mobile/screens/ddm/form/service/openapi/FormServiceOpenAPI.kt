@@ -27,12 +27,11 @@ import java.io.InputStream
 /**
  * @author Victor Oliveira
  */
-class FormServiceOpenAPI(private val serverUrl: String) : FormService {
+class FormServiceOpenAPI(serverUrl: String) : FormService {
 
-	override fun evaluateContext(formInstance: FormInstance, fields: MutableList<Field<*>>,
-		onSuccess: (formContext: FormContext) -> Unit, onError: (Throwable) -> Unit) {
+	override fun evaluateContext(formInstance: FormInstance, fields: MutableList<Field<*>>) : Observable<FormContext> {
 
-		evaluateService.evaluateContext(formInstance, fields, onSuccess, onError)
+		return evaluateService.evaluateContext(formInstance, fields)
 	}
 
 	override fun fetchLatestDraft(formInstanceId: Long): Observable<FormInstanceRecord> {
@@ -43,32 +42,21 @@ class FormServiceOpenAPI(private val serverUrl: String) : FormService {
 		return getFormService.getForm(formInstanceId)
 	}
 
-	override fun submit(formInstance: FormInstance, currentRecordThing: FormInstanceRecord,
-		fields: MutableList<Field<*>>, isDraft: Boolean, onSuccess: (FormInstanceRecord) -> Unit,
-		onError: (Throwable) -> Unit) {
+	override fun submit(formInstance: FormInstance, formInstanceRecord: FormInstanceRecord?,
+		fields: MutableList<Field<*>>, isDraft: Boolean): Observable<FormInstanceRecord> {
 
-		submitService.submit(formInstance, currentRecordThing, fields, isDraft, onSuccess, onError)
+		return submitService.submit(formInstance, formInstanceRecord, fields, isDraft)
 	}
 
-	override fun submit(formInstanceId: String, operationId: String, fields: MutableList<Field<*>>, isDraft: Boolean,
-		onSuccess: (FormInstanceRecord) -> Unit, onError: (Throwable) -> Unit) {
+	override fun uploadFile(formInstance: FormInstance, field: DocumentField, inputStream: InputStream)
+		: Observable<DocumentRemoteFile> {
 
-		submitService.submit(formInstanceId, operationId, fields, isDraft, onSuccess, onError)
-	}
-
-	override fun uploadFile(formInstance: FormInstance, field: DocumentField, inputStream: InputStream,
-		onSuccess: (DocumentRemoteFile) -> Unit, onError: (Throwable) -> Unit) {
-
-		uploadService.uploadFile(formInstance, field, inputStream, onSuccess, onError)
+		return uploadService.uploadFile(formInstance, field, inputStream)
 	}
 
 	private val getFormService by lazy { GetFormServiceOpenAPI(serverUrl) }
-	private val evaluateService by lazy { EvaluateServiceOpenAPI() }
+	private val evaluateService by lazy { EvaluateServiceOpenAPI(serverUrl) }
 	private val fetchLatestDraftService by lazy { FetchLatestDraftServiceOpenAPI(serverUrl) }
-	private val submitService by lazy { SubmitServiceOpenAPI() }
-	private val uploadService by lazy { UploadServiceOpenAPI() }
-
-	companion object {
-		const val OPEN_API_FORM_PATH = "o/headless-form/v1.0"
-	}
+	private val submitService by lazy { SubmitServiceOpenAPI(serverUrl) }
+	private val uploadService by lazy { UploadServiceOpenAPI(serverUrl) }
 }
