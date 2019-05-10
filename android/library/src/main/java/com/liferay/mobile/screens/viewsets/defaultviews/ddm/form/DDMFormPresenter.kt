@@ -63,7 +63,7 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView,
 		view.showModalEvaluateContextLoading()
 		formInstanceState = FormInstanceState.EVALUATING_CONTEXT
 
-		interactor.evaluateContext(formInstance, fields, { formContext ->
+		val subscription = interactor.evaluateContext(formInstance, fields).subscribe({ formContext ->
 			view.hideModalLoading()
 
 			view.updatePageEnabled(formContext)
@@ -71,7 +71,7 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView,
 			updateFields(formContext, fields)
 			onComplete?.invoke()
 			resetFormInstanceState()
-		}, {
+		}) {
 			LiferayLogger.e(it.message)
 
 			view.hideModalLoading()
@@ -79,7 +79,9 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView,
 
 			onComplete?.invoke()
 			resetFormInstanceState()
-		})
+		}
+
+		compositeSubscription.add(subscription)
 	}
 
 	override fun fieldModelsChanged(field: Field<*>) {
@@ -192,7 +194,14 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView,
 	override fun uploadFile(formInstance: FormInstance, field: DocumentField, inputStream: InputStream,
 		onSuccess: (DocumentRemoteFile) -> Unit, onError: (Throwable) -> Unit) {
 
-		interactor.uploadFile(formInstance, field, inputStream, onSuccess, onError)
+		val subscription = interactor.uploadFile(formInstance, field, inputStream)
+			.subscribe({
+				onSuccess(it)
+			}) {
+				onError(it)
+			}
+
+		compositeSubscription.add(subscription)
 	}
 
 	private fun fetchDataProviders(formInstance: FormInstance, fields: MutableList<Field<*>>,
@@ -200,20 +209,22 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView,
 
 		view.showModalEvaluateContextLoading()
 
-		interactor.evaluateContext(formInstance, fields, { formContext ->
+		val subscription = interactor.evaluateContext(formInstance, fields).subscribe({ formContext ->
 			view.updatePageEnabled(formContext)
 
 			updateFields(formContext, fields)
 
 			onComplete?.invoke()
-		}, {
+		}) {
 			LiferayLogger.e(it.message)
 
 			view.hideModalLoading()
 			view.showErrorMessage(it)
 
 			onComplete?.invoke()
-		})
+		}
+
+		compositeSubscription.add(subscription)
 	}
 
 	private fun fetchLatestDraft(formInstance: FormInstance, fields: MutableList<Field<*>>, onComplete: (() -> Unit)?) {
@@ -319,7 +330,7 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView,
 					setOptions(fieldContext, optionsField)
 				}
 
-				if (fieldContext.isValueChanged ?: false) {
+				if (fieldContext.isValueChanged == true) {
 					setValue(fieldContext, field)
 				}
 

@@ -34,28 +34,23 @@ class DDMFormInteractor(private val serverUrl: String) {
 		formService.getForm(formInstanceId)
 	}
 
-	fun evaluateContext(formInstance: FormInstance, fields: MutableList<Field<*>>,
-		onSuccess: (FormContext) -> Unit, onError: (Throwable) -> Unit) {
-
-		formService.evaluateContext(formInstance, fields, onSuccess, onError)
+	fun evaluateContext(formInstance: FormInstance, fields: MutableList<Field<*>>): Observable<FormContext> {
+		return formService.evaluateContext(formInstance, fields)
 	}
 
 	fun fetchLatestDraft(formInstanceId: Long): Observable<FormInstanceRecord> {
 		return formService.fetchLatestDraft(formInstanceId)
 	}
 
-	fun submit(formInstance: FormInstance, currentRecordThing: FormInstanceRecord?, fields: MutableList<Field<*>>,
-		isDraft: Boolean = false, onSuccess: (FormInstanceRecord) -> Unit, onError: (Throwable) -> Unit) {
+	fun submit(formInstance: FormInstance, formInstanceRecord: FormInstanceRecord?, fields: MutableList<Field<*>>,
+		isDraft: Boolean = false): Observable<FormInstanceRecord> {
 
-		currentRecordThing?.let {
-			formService.submit(formInstance, currentRecordThing, fields, isDraft, onSuccess, onError)
-		}
+		return formService.submit(formInstance, formInstanceRecord, fields, isDraft)
 	}
 
-	fun uploadFile(formInstance: FormInstance, field: DocumentField, inputStream: InputStream,
-		onSuccess: (DocumentRemoteFile) -> Unit,
-		onError: (Throwable) -> Unit) {
+	fun uploadFile(formInstance: FormInstance, field: DocumentField, inputStream: InputStream)
+		: Observable<DocumentRemoteFile> {
 
-		formService.uploadFile(formInstance, field, inputStream, onSuccess, onError)
+		return formService.uploadFile(formInstance, field, inputStream)
 	}
 }
