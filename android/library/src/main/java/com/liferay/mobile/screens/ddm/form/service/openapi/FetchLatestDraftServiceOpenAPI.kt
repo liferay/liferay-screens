@@ -23,15 +23,11 @@ import rx.Observable
 /**
  * @author Victor Oliveira
  */
-class FetchLatestDraftServiceOpenAPI(
-	private val serverUrl: String) : BaseService<FormInstanceRecord>(), FetchLatestDraftService {
+class FetchLatestDraftServiceOpenAPI(serverUrl: String) :
+	BaseService<FormInstanceRecord>(serverUrl), FetchLatestDraftService {
 
 	override fun fetchLatestDraft(formInstanceId: Long): Observable<FormInstanceRecord> {
-		val url = (if (!serverUrl.endsWith('/')) "$serverUrl/" else serverUrl)
-			.plus(FormServiceOpenAPI.OPEN_API_FORM_PATH)
-			.plus("/forms/")
-			.plus(formInstanceId)
-			.plus("/form-records/by-latest-draft")
+		val url = "${getBaseUrl()}/forms/$formInstanceId/form-records/by-latest-draft"
 
 		return execute(url) {
 			val body = it.body().string()

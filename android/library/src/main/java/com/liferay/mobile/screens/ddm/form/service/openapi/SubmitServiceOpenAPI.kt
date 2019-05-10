@@ -14,23 +14,43 @@
 
 package com.liferay.mobile.screens.ddm.form.service.openapi
 
+import com.liferay.mobile.screens.ddl.form.util.FormConstants
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.ddm.form.model.FormInstance
 import com.liferay.mobile.screens.ddm.form.model.FormInstanceRecord
+import com.liferay.mobile.screens.ddm.form.serializer.FieldValueSerializer
+import com.liferay.mobile.screens.ddm.form.service.BaseService
 import com.liferay.mobile.screens.ddm.form.service.SubmitService
+import com.squareup.okhttp.MediaType
+import com.squareup.okhttp.RequestBody
+import org.json.JSONObject
+import rx.Observable
 
 /**
  * @author Victor Oliveira
  */
-class SubmitServiceOpenAPI : SubmitService {
-	override fun submit(formInstanceId: String, operationId: String, fields: MutableList<Field<*>>, isDraft: Boolean,
-		onSuccess: (FormInstanceRecord) -> Unit, onError: (Throwable) -> Unit) {
-		TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-	}
+class SubmitServiceOpenAPI(serverUrl: String) : BaseService<FormInstanceRecord>(serverUrl), SubmitService {
+	override fun submit(formInstance: FormInstance, formInstanceRecord: FormInstanceRecord?,
+		fields: MutableList<Field<*>>, isDraft: Boolean) : Observable<FormInstanceRecord> {
 
-	override fun submit(formInstance: FormInstance, currentRecordThing: FormInstanceRecord,
-		fields: MutableList<Field<*>>, isDraft: Boolean, onSuccess: (FormInstanceRecord) -> Unit,
-		onError: (Throwable) -> Unit) {
-		TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+		var method = POST
+		var url = "${getBaseUrl()}/forms/${formInstance.id}/form-records"
+
+		formInstanceRecord?.let {
+			method = PUT
+			url = "${getBaseUrl()}/form-records/${formInstanceRecord.id}"
+		}
+
+		val jsonBody = JSONObject()
+
+		jsonBody.put("draft", isDraft)
+		jsonBody.put(FormConstants.FIELD_VALUES, FieldValueSerializer.serialize(fields) { !it.isTransient })
+
+		val requestBody = RequestBody.create(JSON_MEDIA_TYPE, jsonBody.toString())
+
+		return execute(url, method, requestBody) {
+			val body = it.body().string()
+			FormInstanceRecord.converter(JSONObject(body))
+		}
 	}
 }

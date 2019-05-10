@@ -23,12 +23,9 @@ import rx.Observable
 /**
  * @author Victor Oliveira
  */
-class GetFormServiceOpenAPI(private val serverUrl: String) : BaseService<FormInstance>(), GetFormService {
+class GetFormServiceOpenAPI(serverUrl: String) : BaseService<FormInstance>(serverUrl), GetFormService {
 	override fun getForm(formInstanceId: Long): Observable<FormInstance> {
-		val url = (if (!serverUrl.endsWith('/')) "$serverUrl/" else serverUrl)
-			.plus(FormServiceOpenAPI.OPEN_API_FORM_PATH)
-			.plus("/forms/")
-			.plus(formInstanceId)
+		val url = "${getBaseUrl()}/forms/$formInstanceId"
 
 		return execute(url) {
 			val body = it.body().string()
