@@ -18,6 +18,9 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.liferay.mobile.screens.ddl.model.Field
 import com.liferay.mobile.screens.ddl.form.util.FormFieldKeys
+import com.liferay.mobile.screens.util.JSONUtil
+import org.json.JSONArray
+import org.json.JSONException
 import java.io.Serializable
 
 /**
@@ -28,6 +31,7 @@ class RepeatableField @JvmOverloads constructor(
 	private var siblings: MutableList<Field<*>> = mutableListOf()) : Field<Serializable>() {
 
 	init {
+		dataType = baseField.dataType
 		editorType = EditorType.REPEATABLE
 		isShowLabel = baseField.isShowLabel
 		label = baseField.label
@@ -105,20 +109,32 @@ class RepeatableField @JvmOverloads constructor(
 	}
 
 	override fun setCurrentStringValue(value: String?) {
-		value?.split(",")?.let { values ->
-			val newValuesCount = values.count()
-			val oldValuesCount = repeatedFields.count()
+		value?.also {
+			var fieldValue = it
 
-			val hasFieldsAdded = newValuesCount > oldValuesCount
-			val hasFieldsRemoved = newValuesCount < oldValuesCount
-
-			if (hasFieldsAdded) {
-				repeatFields(newValuesCount - oldValuesCount)
-			} else if (hasFieldsRemoved) {
-				removeLastFields(oldValuesCount - newValuesCount)
+			if (dataType == DataType.DOCUMENT) {
+				fieldValue = "[$it]"
 			}
 
-			setRepeatedFieldValues(values)
+			val fieldValues = try {
+				JSONUtil.toStringList(JSONArray(fieldValue))
+			} catch (e: JSONException) {
+				fieldValue.split(",").toList()
+			}
+
+			updateNumberOfFields(fieldValues.size, repeatedFields.count())
+			setRepeatedFieldValues(fieldValues)
+		}
+	}
+
+	private fun updateNumberOfFields(newValuesCount: Int, oldValuesCount: Int) {
+		val hasFieldsAdded = newValuesCount > oldValuesCount
+		val hasFieldsRemoved = newValuesCount < oldValuesCount
+
+		if (hasFieldsAdded) {
+			repeatFields(newValuesCount - oldValuesCount)
+		} else if (hasFieldsRemoved) {
+			removeLastFields(oldValuesCount - newValuesCount)
 		}
 	}
 

@@ -30,11 +30,11 @@ class FormContext @JvmOverloads constructor(
 	companion object {
 		val converter: (JSONObject) -> FormContext = { it: JSONObject ->
 
-			val isReadOnly = it.getBoolean("isReadOnly")
-			val showRequiredFieldsWarning = it.getBoolean("isShowRequiredFieldsWarning")
-			val showSubmitButton = it.getBoolean("isShowSubmitButton")
+			val isReadOnly = it.getBoolean("readOnly")
+			val showRequiredFieldsWarning = it.getBoolean("showRequiredFieldsWarning")
+			val showSubmitButton = it.getBoolean("showSubmitButton")
 
-			val pages = getPages(it.getJSONArray("pages"))
+			val pages = getPages(it.getJSONArray("formPageContexts"))
 
 			FormContext(isReadOnly, showRequiredFieldsWarning, showSubmitButton, pages)
 		}
@@ -49,10 +49,10 @@ class FormContext @JvmOverloads constructor(
 				val headline = jsonPage.optString("headline")
 				val text = jsonPage.optString("text")
 
-				val fields = getFields(jsonPage.getJSONArray("fields"))
+				val fields = getFields(jsonPage.getJSONArray("formFieldContexts"))
 
-				val isEnabled = jsonPage.getBoolean("isEnabled")
-				val showRequiredFieldsWarning = jsonPage.getBoolean("isShowRequiredFieldsWarning")
+				val isEnabled = jsonPage.getBoolean("enabled")
+				val showRequiredFieldsWarning = jsonPage.getBoolean("showRequiredFieldsWarning")
 
 				formContextPageList.add(FormContextPage(headline, text, fields, isEnabled, showRequiredFieldsWarning))
 			}
@@ -77,12 +77,12 @@ class FormContext @JvmOverloads constructor(
 					emptyList<Map<String, Any?>>()
 				}
 
-				val isEvaluable = jsonField.getBoolean("isEvaluable")
-				val isReadOnly = jsonField.getBoolean("isReadOnly")
-				val isRequired = jsonField.getBoolean("isRequired")
-				val isValid = jsonField.getBoolean("isValid")
-				val isValueChanged = jsonField.getBoolean("isValueChanged")
-				val isVisible = jsonField.getBoolean("isVisible")
+				val isEvaluable = jsonField.getBoolean("evaluable")
+				val isReadOnly = jsonField.getBoolean("readOnly")
+				val isRequired = jsonField.getBoolean("required")
+				val isValid = jsonField.getBoolean("valid")
+				val isValueChanged = jsonField.getBoolean("valueChanged")
+				val isVisible = jsonField.getBoolean("visible")
 
 				fieldList.add(FieldContext(name, value, errorMessage, options as List<Map<String, Any>>?, isEvaluable,
 					isReadOnly, isRequired, isValid, isValueChanged, isVisible))

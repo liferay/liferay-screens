@@ -42,6 +42,16 @@ public class JSONUtil {
         return list;
     }
 
+    public static List<String> toStringList(JSONArray jsonArray) throws JSONException {
+        List<String> list = new ArrayList<>();
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            list.add(jsonArray.get(i).toString());
+        }
+
+        return list;
+    }
+
     public static Map<String, Object> toMap(JSONObject jsonObject) throws JSONException {
 
         Map<String, Object> map = new HashMap<>();

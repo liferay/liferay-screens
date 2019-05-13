@@ -27,9 +27,10 @@ class FormFieldKeys {
 		const val LABEL_KEY = "label"
 		const val GRID_KEY = "grid"
 		const val HAS_FORM_RULES_KEY = "hasFormRules"
-		const val IS_TRANSIENT_KEY = "transient"
+		const val IS_IMMUTABLE = "immutable"
 		const val NAME_KEY = "name"
-		const val OPTIONS_KEY = "options"
+		@JvmField
+		val OPTIONS_KEY = arrayOf("options", "formFieldOptions")
 		@JvmField
 		val PLACEHOLDER_KEY = arrayOf("placeholder", "placeHolder")
 		const val PREDEFINED_VALUE_KEY = "predefinedValue"

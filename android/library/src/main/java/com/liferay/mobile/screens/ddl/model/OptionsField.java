@@ -45,7 +45,7 @@ public abstract class OptionsField<T extends Serializable> extends Field<T> {
         super(attributes, locale, defaultLocale);
 
         List<Map<String, String>> availableOptions =
-            (List<Map<String, String>>) attributes.get(FormFieldKeys.OPTIONS_KEY);
+            (List<Map<String, String>>) FormFieldKeys.getValueFromArrayKey(attributes, FormFieldKeys.OPTIONS_KEY);
 
         if (availableOptions == null) {
             this.availableOptions = new ArrayList<>();
