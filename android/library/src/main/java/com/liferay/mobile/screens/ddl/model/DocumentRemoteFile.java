@@ -1,6 +1,5 @@
 package com.liferay.mobile.screens.ddl.model;
 
-import com.liferay.mobile.screens.ddl.exception.EmptyDocumentRemoteFileException;
 import com.liferay.mobile.screens.util.AndroidUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,35 +9,26 @@ import org.json.JSONObject;
  */
 public class DocumentRemoteFile extends DocumentFile {
 
+    private String contentUrl;
+    private String encodingFormat;
+    private long fileEntryId;
     private long groupId;
+    private long sizeInBytes;
+    private String title;
+    private String url;
     private String uuid;
     private String version;
-    private String title;
 
-    private String url;
-
-    public DocumentRemoteFile(String json) throws EmptyDocumentRemoteFileException, JSONException {
+    public DocumentRemoteFile(String json) throws JSONException {
         if (json.startsWith("http")) {
             url = json;
         } else {
             JSONObject jsonObject = new JSONObject(json);
 
-            if (jsonObject.length() == 0) {
-                throw new EmptyDocumentRemoteFileException();
+            if (jsonObject.length() > 0) {
+                fillObject(jsonObject);
             }
-
-            uuid = jsonObject.optString("uuid");
-            version = jsonObject.optString("version");
-            groupId = jsonObject.optInt("groupId");
-
-            // this is empty if we're retrieving the record
-            title = jsonObject.optString("title");
         }
-    }
-
-    public DocumentRemoteFile(String url, String title) {
-        this.url = url;
-        this.title = title;
     }
 
     @Override
@@ -50,21 +40,14 @@ public class DocumentRemoteFile extends DocumentFile {
         try {
             JSONObject jsonObject = new JSONObject();
 
-            if (groupId > 0) {
-                jsonObject.put("groupId", groupId);
-            }
-
-            if (!EMPTY_STRING.equals(uuid)) {
-                jsonObject.put("uuid", uuid);
-            }
-
-            if (!EMPTY_STRING.equals(title)) {
-                jsonObject.put("title", title);
-            }
-
-            if (!EMPTY_STRING.equals(version)) {
-                jsonObject.put("version", version);
-            }
+            putIfExists("contentUrl", contentUrl, jsonObject);
+            putIfExists("encodingFormat", encodingFormat, jsonObject);
+            putIfExists("fileEntryId", fileEntryId, jsonObject);
+            putIfExists("groupId", groupId, jsonObject);
+            putIfExists("sizeInBytes", sizeInBytes, jsonObject);
+            putIfExists("title", title, jsonObject);
+            putIfExists("uuid", uuid, jsonObject);
+            putIfExists("version", version, jsonObject);
 
             return jsonObject.toString();
         } catch (JSONException ex) {
@@ -95,6 +78,29 @@ public class DocumentRemoteFile extends DocumentFile {
         }
 
         return "";
+    }
+
+    private void fillObject(JSONObject jsonObject) {
+        contentUrl = jsonObject.optString("contentUrl");
+        encodingFormat = jsonObject.optString("encodingFormat");
+        fileEntryId = jsonObject.optLong("id", 0);
+        groupId = jsonObject.optInt("groupId", jsonObject.optInt("siteId"));
+        sizeInBytes = jsonObject.optLong("sizeInBytes", 0);
+        title = jsonObject.optString("title");
+        uuid = jsonObject.optString("uuid");
+        version = jsonObject.optString("version");
+    }
+
+    private void putIfExists(String key, String value, JSONObject jsonObject) throws JSONException {
+        if (!EMPTY_STRING.equals(value)) {
+            jsonObject.put(key, value);
+        }
+    }
+
+    private void putIfExists(String key, long value, JSONObject jsonObject) throws JSONException {
+        if (value > 0) {
+            jsonObject.put(key, value);
+        }
     }
 
     private static final String EMPTY_STRING = "";

@@ -23,8 +23,8 @@ class FormConstants {
 		const val DEFAULT_LANGUAGE = "defaultLanguage"
 		const val DEFAULT_SYNC_TIMEOUT: Long = 500
 		const val DESCRIPTION = "description"
-		const val FIELDS = "fields"
-		const val FIELD_VALUES = "fieldValues"
+		const val FIELDS = "formFields"
+		const val FIELD_VALUES = "formFieldValues"
 		const val FROM_AUTOFILL_KEY: String = "from-autofill"
 		const val HEADLINE = "headline"
 		const val ID = "id"
