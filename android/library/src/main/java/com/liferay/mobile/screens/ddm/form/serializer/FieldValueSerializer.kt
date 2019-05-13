@@ -53,14 +53,18 @@ class FieldValueSerializer {
 			return when (editorType) {
 				Field.EditorType.CHECKBOX_MULTIPLE,
 				Field.EditorType.SELECT -> getListValue()
-				Field.EditorType.DOCUMENT -> JSONObject(getDocumentValue())
+				Field.EditorType.DOCUMENT -> {
+					getDocumentValue()?.let {
+						JSONObject(it)
+					} ?: ""
+				}
 				Field.EditorType.RADIO -> getRadioValue()
 				else -> getStringValue()
 			}
 		}
 
-		private fun Field<*>.getDocumentValue(): String {
-			return (currentValue as? DocumentRemoteFile)?.toData() ?: ""
+		private fun Field<*>.getDocumentValue(): String? {
+			return (currentValue as? DocumentRemoteFile)?.toData()
 		}
 
 		private fun Field<*>.getListValue(): List<*>? {

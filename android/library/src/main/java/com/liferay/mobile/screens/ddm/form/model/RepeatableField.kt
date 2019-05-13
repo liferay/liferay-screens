@@ -123,7 +123,13 @@ class RepeatableField @JvmOverloads constructor(
 			}
 
 			updateNumberOfFields(fieldValues.size, repeatedFields.count())
-			setRepeatedFieldValues(fieldValues)
+
+			if (fieldValues.isNotEmpty()) {
+				setRepeatedFieldValues(fieldValues)
+			} else {
+				baseField.currentValue = null
+				baseField.setCurrentStringValue(null)
+			}
 		}
 	}
 
@@ -139,7 +145,7 @@ class RepeatableField @JvmOverloads constructor(
 	}
 
 	private fun repeatFields(times: Int) {
-		kotlin.repeat(times) {
+		repeat(times) {
 			repeatField()
 		}
 	}

@@ -97,7 +97,7 @@ interface DDMFormViewContract {
 
 		fun submit(formInstance: FormInstance, isDraft: Boolean = false)
 
-		fun syncForm(formInstance: FormInstance, field: Field<*>? = null, onComplete: (() -> Unit)? = null)
+		fun syncForm(formInstance: FormInstance, field: Field<*>? = null, isDraft: Boolean, onComplete: (() -> Unit)? = null)
 
 		fun uploadFile(
 			formInstance: FormInstance, field: DocumentField, inputStream: InputStream,
