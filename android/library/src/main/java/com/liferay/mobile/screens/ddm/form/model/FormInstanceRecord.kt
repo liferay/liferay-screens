@@ -42,23 +42,29 @@ class FormInstanceRecord(
 
 			val id = json.getString("id")
 
-			val fieldValues = getFieldValues(json.getJSONArray(FormConstants.FIELD_VALUES))
+			val fieldValues = getFieldValues(json.optJSONArray(FormConstants.FIELD_VALUES) ?: JSONArray())
 
 			FormInstanceRecord(id, fieldValues)
 		}
 
 		private fun getFieldValues(jsonArray: JSONArray): List<FieldValue> {
-			val fieldValues = mutableListOf<FieldValue>()
+			val fieldValues = mutableMapOf<String, String>()
 
 			for (i in 0 until jsonArray.length()) {
 				val fieldJSON = jsonArray.getJSONObject(i)
 				val name = fieldJSON.optString("name")
-				val value = fieldJSON.optString("value")
+				var value = fieldJSON.optString("value")
 
-				fieldValues.add(FieldValue(name, value))
+				fieldValues[name]?.also {
+					value = "$it,$value"
+				}
+
+				fieldValues[name] = value
 			}
 
-			return fieldValues
+			return fieldValues.map {
+				FieldValue(it.key, it.value)
+			}
 		}
 
 		object CREATOR : Parcelable.Creator<FormInstanceRecord> {
