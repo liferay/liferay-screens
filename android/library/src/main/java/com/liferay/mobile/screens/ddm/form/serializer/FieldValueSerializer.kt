@@ -15,9 +15,13 @@
 package com.liferay.mobile.screens.ddm.form.serializer
 
 import com.liferay.mobile.screens.ddl.model.*
+import com.liferay.mobile.screens.ddm.form.model.Grid
 import com.liferay.mobile.screens.ddm.form.model.RepeatableField
+import org.json.JSONArray
 import org.json.JSONObject
-import org.json.JSONStringer
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 /**
  * @author Paulo Cruz
@@ -29,12 +33,11 @@ class FieldValueSerializer {
 		private const val EMPTY_STRING = ""
 		private val EMPTY_LIST = listOf<Any>()
 
-		fun serialize(fields: FieldList, filter: (Field<*>) -> (Boolean) = { true }): String {
+		fun serialize(fields: FieldList, filter: (Field<*>) -> (Boolean) = { true }): JSONArray {
 			return fields
 				.flatten()
 				.filter(filter)
 				.mapValues()
-				.toJson()
 		}
 
 		private fun FieldList.flatten(): FieldList {
@@ -50,14 +53,14 @@ class FieldValueSerializer {
 			return when (editorType) {
 				Field.EditorType.CHECKBOX_MULTIPLE,
 				Field.EditorType.SELECT -> getListValue()
-				Field.EditorType.DOCUMENT -> getDocumentValue()
+				Field.EditorType.DOCUMENT -> JSONObject(getDocumentValue())
 				Field.EditorType.RADIO -> getRadioValue()
 				else -> getStringValue()
 			}
 		}
 
-		private fun Field<*>.getDocumentValue(): Any? {
-			return (currentValue as? DocumentRemoteFile)?.toData() ?: JSONObject()
+		private fun Field<*>.getDocumentValue(): String {
+			return (currentValue as? DocumentRemoteFile)?.toData() ?: ""
 		}
 
 		private fun Field<*>.getListValue(): List<*>? {
@@ -78,25 +81,50 @@ class FieldValueSerializer {
 			return currentValue ?: EMPTY_STRING
 		}
 
-		private fun FieldList.mapValues(): List<Map<String, Any?>> {
-			return map {
-				mapOf("name" to it.name, "value" to it.getSubmitValue())
+		private fun FieldList.mapValues(): JSONArray {
+			val jsonArray = JSONArray()
+
+			this.forEach {
+				val json = JSONObject()
+
+				json.put("name", it.name)
+				json.put("value", getSerializedValue(it.getSubmitValue()))
+
+				jsonArray.put(json)
 			}
+
+			return jsonArray
 		}
 
-		private fun List<Map<String, Any?>>.toJson(): String {
-			val jsonStringer = JSONStringer().array()
+		private fun getGridValues(map: MutableMap<String, String>) : String {
+			val json = JSONObject()
 
-			this.forEach { map ->
-				map.forEach { entry ->
-					jsonStringer.`object`()
-						.key(entry.key)
-						.value(entry.value)
-						.endObject()
+			map.forEach { (key, value) ->
+				json.put(key, value)
+			}
+
+			return json.toString()
+		}
+
+		private fun getOptionList(list: List<*>): String {
+			val array = JSONArray()
+			list.forEach {
+				if (it is Option) {
+					array.put(it.value)
 				}
 			}
 
-			return jsonStringer.endArray().toString()
+			return array.toString()
+		}
+
+		private fun getSerializedValue(value: Any?): String {
+			return when (value) {
+				is Option -> value.value
+				is Grid -> getGridValues(value.rawValues)
+				is Date -> SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(value)
+				is List<*> -> getOptionList(value)
+				else -> value.toString()
+			}
 		}
 	}
 }
