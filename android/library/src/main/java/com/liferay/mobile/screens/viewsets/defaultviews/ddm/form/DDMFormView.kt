@@ -265,7 +265,7 @@ class DDMFormView @JvmOverloads constructor(
 		}.debounce(config.syncFormTimeout, TimeUnit.MILLISECONDS)
 			.observeOn(AndroidSchedulers.mainThread())
 			.subscribe({ field ->
-				presenter.syncForm(_formInstance, field)
+				presenter.syncForm(_formInstance, field, true)
 			}, {
 				LiferayLogger.e(it.message, it)
 			})
@@ -405,14 +405,17 @@ class DDMFormView @JvmOverloads constructor(
 	}
 
 	private fun nextOrSubmitButtonListener() {
-		presenter.syncForm(_formInstance, lastChangedField) {
+		var size = 0
+		val hasNext = ddmFieldViewPages.adapter?.let {
+			size = it.count - 1
+			ddmFieldViewPages.currentItem < size
+		} ?: false
+
+		presenter.syncForm(_formInstance, lastChangedField, hasNext) {
 			ddmFieldViewPages.adapter?.also {
-				val size = it.count - 1
 				val invalidFields = getInvalidFields()
 
 				if (invalidFields.isEmpty()) {
-					val hasNext = ddmFieldViewPages.currentItem < size
-
 					if (hasNext) {
 						nextButtonListener(size)
 					} else {

@@ -102,7 +102,7 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView,
 		compositeSubscription.clear()
 	}
 
-	override fun syncForm(formInstance: FormInstance, field: Field<*>?, onComplete: (() -> Unit)?) {
+	override fun syncForm(formInstance: FormInstance, field: Field<*>?, isDraft: Boolean,  onComplete: (() -> Unit)?) {
 		val fieldIsTransient = field?.isTransient ?: false
 		val invalidStateForSync = formInstanceState != FormInstanceState.IDLE
 
@@ -113,9 +113,13 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView,
 			return
 		}
 
-		submit(formInstance, true)
+		var fieldHasRules = field?.hasFormRules() ?: false
 
-		val fieldHasRules = field?.hasFormRules() ?: false
+		if (isDraft) {
+			submit(formInstance, isDraft)
+		} else {
+			fieldHasRules = formInstance.hasFormRules
+		}
 
 		if (fieldHasRules) {
 			evaluateContext(formInstance, formInstance.ddmStructure.fields, onComplete)
@@ -144,32 +148,35 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView,
 		val fields = formInstance.ddmStructure.fields
 		view.isSubmitEnabled(isDraft)
 
-		interactor.submit(formInstance, formInstanceRecord, fields, isDraft, { newFormInstanceRecord ->
-			formInstanceRecord = newFormInstanceRecord
-			resetFormInstanceState()
+		val subscription = interactor.submit(formInstance, formInstanceRecord, fields, isDraft)
+			.subscribe({ newFormInstanceRecord ->
+				resetFormInstanceState()
+				formInstanceRecord = newFormInstanceRecord
 
-			if (!isDraft) {
-				formInstance.ddmStructure.successPage?.let {
-					view.showSuccessPage(formInstance.ddmStructure.successPage)
-				} ?: run {
-					view.showSuccessMessage()
+				if (!isDraft) {
+					formInstance.ddmStructure.successPage?.let {
+						view.showSuccessPage(formInstance.ddmStructure.successPage)
+					} ?: run {
+						view.showSuccessMessage()
+					}
+					view.isSubmitEnabled(true)
+					view.ddmFormListener?.onFormSubmitted(newFormInstanceRecord)
+					resetRecordState()
+				} else {
+					view.ddmFormListener?.onDraftSaved(newFormInstanceRecord)
 				}
-				view.isSubmitEnabled(true)
-				view.ddmFormListener?.onFormSubmitted(newFormInstanceRecord)
-				resetRecordState()
-			} else {
-				view.ddmFormListener?.onDraftSaved(newFormInstanceRecord)
-			}
-		}, { exception ->
-			LiferayLogger.e(exception.message)
-			resetFormInstanceState()
+			}){ throwable ->
+				LiferayLogger.e(throwable.message)
+				resetFormInstanceState()
 
-			if (!isDraft) {
-				view.isSubmitEnabled(true)
-				view.showErrorMessage(exception)
-				view.ddmFormListener?.onError(exception)
+				if (!isDraft) {
+					view.isSubmitEnabled(true)
+					view.showErrorMessage(throwable)
+					view.ddmFormListener?.onError(throwable)
+				}
 			}
-		})
+
+		compositeSubscription.add(subscription)
 	}
 
 	override fun loadInitialContext(formInstance: FormInstance) {
