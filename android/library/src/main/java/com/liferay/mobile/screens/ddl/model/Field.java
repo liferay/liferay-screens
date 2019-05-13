@@ -107,7 +107,7 @@ public abstract class Field<T extends Serializable> implements Parcelable, Valid
         visibilityExpression = getAttributeStringValue(attributes, FormFieldKeys.VISIBILITY_EXPRESSION_KEY);
         ddmDataProviderInstance = getAttributeStringValue(attributes, FormFieldKeys.DDM_DATA_PROVIDER_INSTANCE_KEY);
 
-        isTransient = Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.IS_TRANSIENT_KEY));
+        isTransient = Boolean.valueOf(getAttributeStringValue(attributes, FormFieldKeys.IS_IMMUTABLE));
         dataSourceType = getAttributeStringValue(attributes, FormFieldKeys.DATA_SOURCE_TYPE_KEY);
 
         String predefinedValue = getAttributeStringValue(attributes, FormFieldKeys.PREDEFINED_VALUE_KEY);
@@ -218,6 +218,10 @@ public abstract class Field<T extends Serializable> implements Parcelable, Valid
 
     public DataType getDataType() {
         return dataType;
+    }
+
+    public void setDataType(DataType dataType) {
+        this.dataType = dataType;
     }
 
     public EditorType getEditorType() {
@@ -523,10 +527,6 @@ public abstract class Field<T extends Serializable> implements Parcelable, Valid
                 field = new ImageField(attributes, locale, defaultLocale);
             } else if (GEO.equals(this)) {
                 field = new GeolocationField(attributes, locale, defaultLocale);
-            } else {
-                if (EditorType.valueOf(attributes) == EditorType.PARAGRAPH) {
-                    field = new StringField(attributes, locale, defaultLocale);
-                }
             }
 
             if (field != null && !repeatableChild) {
