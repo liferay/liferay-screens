@@ -102,7 +102,7 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView,
 		compositeSubscription.clear()
 	}
 
-	override fun syncForm(formInstance: FormInstance, field: Field<*>?, isDraft: Boolean,  onComplete: (() -> Unit)?) {
+	override fun syncForm(formInstance: FormInstance, field: Field<*>?, isDraft: Boolean, onComplete: (() -> Unit)?) {
 		val fieldIsTransient = field?.isTransient ?: false
 		val invalidStateForSync = formInstanceState != FormInstanceState.IDLE
 
@@ -165,7 +165,7 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView,
 				} else {
 					view.ddmFormListener?.onDraftSaved(newFormInstanceRecord)
 				}
-			}){ throwable ->
+			}) { throwable ->
 				LiferayLogger.e(throwable.message)
 				resetFormInstanceState()
 

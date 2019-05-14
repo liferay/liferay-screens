@@ -72,9 +72,8 @@ public class UserPortraitService extends IntentService {
     }
 
     private static Bitmap checkOrientationAndRotate(InputStream inputStream, Bitmap bitmap) throws IOException {
-        int orientation =
-            new ExifInterface(inputStream).getAttributeInt(ExifInterface.TAG_ORIENTATION,
-                ExifInterface.ORIENTATION_NORMAL);
+        int orientation = new ExifInterface(inputStream).getAttributeInt(ExifInterface.TAG_ORIENTATION,
+            ExifInterface.ORIENTATION_NORMAL);
 
         switch (orientation) {
             case ExifInterface.ORIENTATION_ROTATE_90:
