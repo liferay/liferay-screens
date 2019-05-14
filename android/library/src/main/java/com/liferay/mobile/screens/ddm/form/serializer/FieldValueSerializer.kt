@@ -54,9 +54,7 @@ class FieldValueSerializer {
 				Field.EditorType.CHECKBOX_MULTIPLE,
 				Field.EditorType.SELECT -> getListValue()
 				Field.EditorType.DOCUMENT -> {
-					getDocumentValue()?.let {
-						JSONObject(it)
-					} ?: ""
+					getDocumentValue()?.let { JSONObject(it) } ?: ""
 				}
 				Field.EditorType.RADIO -> getRadioValue()
 				else -> getStringValue()
@@ -100,7 +98,7 @@ class FieldValueSerializer {
 			return jsonArray
 		}
 
-		private fun getGridValues(map: MutableMap<String, String>) : String {
+		private fun getGridValues(map: MutableMap<String, String>): String {
 			val json = JSONObject()
 
 			map.forEach { (key, value) ->

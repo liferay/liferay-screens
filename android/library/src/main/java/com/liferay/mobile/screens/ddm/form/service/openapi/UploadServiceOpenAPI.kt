@@ -54,8 +54,8 @@ class UploadServiceOpenAPI(serverUrl: String) : UploadService, BaseService<Docum
 
 			val url = "${getBaseUrl()}/forms/${formInstance.id}/form-document"
 
-			return execute(url, POST, multipartBuilder.build()) {
-				response -> DocumentRemoteFile(response.body().string())
+			return execute(url, POST, multipartBuilder.build()) { response ->
+				DocumentRemoteFile(response.body().string())
 			}
 
 		} ?: Observable.empty()

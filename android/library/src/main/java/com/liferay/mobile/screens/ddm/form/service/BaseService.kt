@@ -69,7 +69,7 @@ abstract class BaseService<T>(private val serverUrl: String) {
 interface FormService : EvaluateService, FetchLatestDraftService, GetFormService, SubmitService, UploadService
 
 interface EvaluateService {
-	fun evaluateContext(formInstance: FormInstance, fields: MutableList<Field<*>>) : Observable<FormContext>
+	fun evaluateContext(formInstance: FormInstance, fields: MutableList<Field<*>>): Observable<FormContext>
 }
 
 interface FetchLatestDraftService {
@@ -82,7 +82,7 @@ interface GetFormService {
 
 interface SubmitService {
 	fun submit(formInstance: FormInstance, formInstanceRecord: FormInstanceRecord?, fields: MutableList<Field<*>>,
-		isDraft: Boolean = false) : Observable<FormInstanceRecord>
+		isDraft: Boolean = false): Observable<FormInstanceRecord>
 }
 
 interface UploadService {

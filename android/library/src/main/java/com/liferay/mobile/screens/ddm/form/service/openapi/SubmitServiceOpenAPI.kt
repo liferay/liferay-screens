@@ -31,7 +31,7 @@ import rx.Observable
  */
 class SubmitServiceOpenAPI(serverUrl: String) : BaseService<FormInstanceRecord>(serverUrl), SubmitService {
 	override fun submit(formInstance: FormInstance, formInstanceRecord: FormInstanceRecord?,
-		fields: MutableList<Field<*>>, isDraft: Boolean) : Observable<FormInstanceRecord> {
+		fields: MutableList<Field<*>>, isDraft: Boolean): Observable<FormInstanceRecord> {
 
 		var method = POST
 		var url = "${getBaseUrl()}/forms/${formInstance.id}/form-records"
