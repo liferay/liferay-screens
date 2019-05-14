@@ -29,11 +29,10 @@ import rx.Observable
 /**
  * @author Victor Oliveira
  */
-class EvaluateServiceOpenAPI(serverUrl : String) : BaseService<FormContext>(serverUrl), EvaluateService {
+class EvaluateServiceOpenAPI(serverUrl: String) : BaseService<FormContext>(serverUrl), EvaluateService {
 
-	override fun evaluateContext(formInstance: FormInstance, fields: MutableList<Field<*>>) : Observable<FormContext> {
+	override fun evaluateContext(formInstance: FormInstance, fields: MutableList<Field<*>>): Observable<FormContext> {
 		val url = "${getBaseUrl()}/forms/${formInstance.id}/evaluate-context"
-			.plus("")
 
 		val jsonBody = JSONObject()
 

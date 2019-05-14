@@ -29,7 +29,7 @@ import java.io.InputStream
  */
 class FormServiceOpenAPI(serverUrl: String) : FormService {
 
-	override fun evaluateContext(formInstance: FormInstance, fields: MutableList<Field<*>>) : Observable<FormContext> {
+	override fun evaluateContext(formInstance: FormInstance, fields: MutableList<Field<*>>): Observable<FormContext> {
 
 		return evaluateService.evaluateContext(formInstance, fields)
 	}
