@@ -151,11 +151,10 @@ class DDMFormView @JvmOverloads constructor(
 
 	override fun onRestoreInstanceState(state: Parcelable?) {
 		if (state is Bundle) {
-			val formInstanceState = FormInstanceState.valueOf(state.getString("formInstanceState"))
 			val formInstanceRecord = state.getParcelable<FormInstanceRecord>("formInstanceRecord")
 			formInstance = state.getParcelable("formInstance")
 
-			presenter.restore(formInstanceRecord, _formInstance.ddmStructure.fields, formInstanceState)
+			presenter.restore(formInstanceRecord, _formInstance.ddmStructure.fields)
 			super.onRestoreInstanceState(state.getParcelable("superState"))
 		} else {
 			super.onRestoreInstanceState(state)
@@ -166,7 +165,6 @@ class DDMFormView @JvmOverloads constructor(
 		val bundle = Bundle()
 		bundle.putParcelable("superState", super.onSaveInstanceState())
 		bundle.putParcelable("formInstance", _formInstance)
-		bundle.putString("formInstanceState", presenter.getFormInstanceState().toString())
 
 		presenter.formInstanceRecord?.let {
 			bundle.putParcelable("formInstanceRecord", it)
