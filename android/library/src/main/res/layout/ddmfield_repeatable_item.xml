@@ -13,19 +13,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="6dp"
-        android:layout_marginBottom="6dp"
         >
-
-        <TextView
-            android:id="@+id/liferay_repeatable_field_label"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="16dp"
-            android:layout_marginEnd="16dp"
-            android:visibility="gone"
-            />
 
         <LinearLayout
             android:layout_alignParentEnd="true"

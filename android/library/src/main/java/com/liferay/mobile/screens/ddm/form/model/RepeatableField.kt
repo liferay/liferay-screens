@@ -36,8 +36,6 @@ class RepeatableField @JvmOverloads constructor(
 		isShowLabel = baseField.isShowLabel
 		label = baseField.label
 		name = baseField.name
-
-		baseField.isShowLabel = false
 	}
 
 	val repeatedFields: List<Field<*>>
