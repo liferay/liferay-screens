@@ -38,32 +38,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/liferay_dialog_select_gallery_video_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:padding="@dimen/icon_padding_dialog"
-                android:src="@drawable/lexicon_icon_photo"
-                />
-
-            <TextView
-                android:id="@+id/liferay_dialog_select_gallery_video"
-                android:layout_width="match_parent"
-                android:gravity="center_vertical"
-                android:text="@string/select_video_from_gallery"
-                style="@style/lexicon_bottom_sheet_text_view"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
