@@ -51,6 +51,8 @@ public class DDLDocumentFieldView
         EditText editText = getTextEditText();
         DocumentField field = getField();
 
+        setupFieldLayout();
+
         editText.setText(field.toFormattedString());
 
         if (field.isUploaded()) {
