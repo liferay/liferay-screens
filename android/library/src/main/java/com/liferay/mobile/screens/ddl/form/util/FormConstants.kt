@@ -31,7 +31,7 @@ class FormConstants {
 		const val NAME = "name"
 		const val PAGES = "formPages"
 		const val STRUCTURE = "structure"
-		const val SUCCESS_PAGE = "successPage"
+		const val SUCCESS_PAGE = "formSuccessPage"
 		const val TEXT = "text"
 	}
 }
