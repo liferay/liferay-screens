@@ -33,7 +33,6 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView,
 	private val compositeSubscription = CompositeSubscription()
 	private val dirtyFieldNames: MutableList<String> = mutableListOf()
 	private val interactor = DDMFormInteractor(serverUrl)
-	private var formInstanceState = FormInstanceState.IDLE
 
 	var formInstanceRecord: FormInstanceRecord? = null
 
@@ -61,7 +60,6 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView,
 
 	override fun evaluateContext(formInstance: FormInstance, fields: MutableList<Field<*>>, onComplete: (() -> Unit)?) {
 		view.showModalEvaluateContextLoading()
-		formInstanceState = FormInstanceState.EVALUATING_CONTEXT
 
 		val subscription = interactor.evaluateContext(formInstance, fields).subscribe({ formContext ->
 			view.hideModalLoading()
@@ -70,7 +68,6 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView,
 
 			updateFields(formContext, fields)
 			onComplete?.invoke()
-			resetFormInstanceState()
 		}) {
 			LiferayLogger.e(it.message)
 
@@ -78,7 +75,6 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView,
 			view.showErrorMessage(it)
 
 			onComplete?.invoke()
-			resetFormInstanceState()
 		}
 
 		compositeSubscription.add(subscription)
@@ -94,19 +90,12 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView,
 		}
 	}
 
-	override fun getFormInstanceState(): FormInstanceState {
-		return formInstanceState
-	}
-
 	override fun onDestroy() {
 		compositeSubscription.clear()
 	}
 
 	override fun syncForm(formInstance: FormInstance, field: Field<*>?, isDraft: Boolean, onComplete: (() -> Unit)?) {
-		val fieldIsTransient = field?.isTransient ?: false
-		val invalidStateForSync = formInstanceState != FormInstanceState.IDLE
-
-		if (fieldIsTransient || invalidStateForSync) return
+		if (field?.isTransient == true) return
 
 		if (!view.hasConnectivity()) {
 			view.showOfflineWarningMessage()
@@ -128,10 +117,7 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView,
 		}
 	}
 
-	override fun restore(formInstanceRecord: FormInstanceRecord?, fields: MutableList<Field<*>>,
-		formInstanceState: FormInstanceState) {
-
-		this.formInstanceState = formInstanceState
+	override fun restore(formInstanceRecord: FormInstanceRecord?, fields: MutableList<Field<*>>) {
 		formInstanceRecord?.let {
 			this.formInstanceRecord = it
 			updateFields(it.fieldValues, fields)
@@ -139,18 +125,13 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView,
 	}
 
 	override fun submit(formInstance: FormInstance, isDraft: Boolean) {
-		val autosaveDisabled = isDraft && !view.config.autosaveDraftEnabled
-		val invalidStateForSubmission = formInstanceState != FormInstanceState.IDLE
+		if (isDraft && !view.config.autosaveDraftEnabled) return
 
-		if (autosaveDisabled || invalidStateForSubmission) return
-
-		formInstanceState = if (isDraft) FormInstanceState.SAVING_DRAFT else FormInstanceState.SUBMITTING
 		val fields = formInstance.ddmStructure.fields
 		view.isSubmitEnabled(isDraft)
 
 		val subscription = interactor.submit(formInstance, formInstanceRecord, fields, isDraft)
 			.subscribe({ newFormInstanceRecord ->
-				resetFormInstanceState()
 				formInstanceRecord = newFormInstanceRecord
 
 				if (!isDraft) {
@@ -167,7 +148,6 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView,
 				}
 			}) { throwable ->
 				LiferayLogger.e(throwable.message)
-				resetFormInstanceState()
 
 				if (!isDraft) {
 					view.isSubmitEnabled(true)
@@ -181,7 +161,6 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView,
 
 	override fun loadInitialContext(formInstance: FormInstance) {
 		view.showModalSyncFormLoading()
-		formInstanceState = FormInstanceState.SYNCING
 
 		val fields = formInstance.ddmStructure.fields
 
@@ -260,16 +239,8 @@ class DDMFormPresenter(val view: DDMFormViewContract.DDMFormView,
 
 	private fun onCompleteFetch(formInstance: FormInstance, fields: MutableList<Field<*>>) {
 		if (formInstance.isEvaluable) {
-			evaluateContext(formInstance, fields) {
-				resetFormInstanceState()
-			}
-		} else {
-			resetFormInstanceState()
+			evaluateContext(formInstance, fields)
 		}
-	}
-
-	private fun resetFormInstanceState() {
-		formInstanceState = FormInstanceState.IDLE
 	}
 
 	private fun resetRecordState() {
