@@ -82,9 +82,6 @@ public class DDLDocumentFieldView
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(activity);
         bottomSheetDialog.setContentView(customDialogView);
 
-        View view = customDialogView.findViewById(R.id.liferay_dialog_select_gallery_video_container);
-        view.setVisibility(VISIBLE);
-
         setupDialogListeners(activity, customDialogView);
 
         return bottomSheetDialog;
