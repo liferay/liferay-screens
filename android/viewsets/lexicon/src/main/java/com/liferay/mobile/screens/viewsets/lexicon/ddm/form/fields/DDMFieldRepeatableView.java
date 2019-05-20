@@ -27,7 +27,5 @@ public class DDMFieldRepeatableView
     @Override
     public void onPostValidation(boolean valid) {
         super.onPostValidation(valid);
-
-        FormViewUtil.setupErrorView(valid, findViewById(R.id.error_container_view));
     }
 }

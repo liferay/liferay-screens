@@ -42,9 +42,6 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
 
 	lateinit var uploadListener: DDLDocumentFieldView.UploadListener
 
-	private val repeatableLabel
-		by bindNonNull<TextView>(com.liferay.mobile.screens.R.id.liferay_repeatable_field_label)
-
 	private val addRepeatableButton
 		by bindNonNull<ImageButton>(com.liferay.mobile.screens.R.id.liferay_repeatable_field_add)
 
@@ -85,13 +82,11 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
 	override fun setField(field: Field<*>) {
 		this.field = field
 
-		setupRepeatableLabel()
 		setupRepeatableActions()
 		setupRepeatableField()
 	}
 
 	override fun refresh() {
-		setupRepeatableLabel()
 		fieldView.refresh()
 	}
 
@@ -112,10 +107,6 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
 		addRepeatableButton.isEnabled = enabled
 		removeRepeatableButton.isEnabled = enabled
 
-		if (isFirstField && isShowLabel) {
-			repeatableLabel.isEnabled = enabled
-		}
-
 		fieldView.setUpdateMode(enabled)
 	}
 
@@ -133,10 +124,6 @@ class DDMFieldRepeatableItemView @JvmOverloads constructor(
 		addRepeatableButton.setOnClickListener {
 			listener.onRepeatableFieldAdded(this)
 		}
-	}
-
-	private fun setupRepeatableLabel() {
-		AndroidUtil.updateLabelLayout(repeatableLabel, field, context)
 	}
 
 	private fun setupRepeatableField() {
