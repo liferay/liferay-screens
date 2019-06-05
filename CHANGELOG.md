@@ -8,6 +8,13 @@ All notable changes to this project will be documented in this file.
 
 Nothing yet
 
+# 5.0.1
+
+## Android
+
+### Bugs
+* Fix error on DDMFormScreenlet load
+
 # 5.0.0
 
 Update to Liferay 7.2
