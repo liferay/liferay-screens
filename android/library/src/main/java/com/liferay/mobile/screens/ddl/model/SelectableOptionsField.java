@@ -19,6 +19,7 @@ import android.os.Parcelable;
 import com.liferay.mobile.screens.ddl.form.util.FormFieldKeys;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -96,13 +97,24 @@ public class SelectableOptionsField extends OptionsField<ArrayList<Option>> {
 
     @Override
     public ArrayList<Option> getCurrentValue() {
-        ArrayList<Option> options = super.getCurrentValue();
+        ArrayList<Option> options = _getOptions();
 
         if (options == null) {
             options = new ArrayList<>();
         }
 
         return options;
+    }
+
+    private ArrayList<Option> _getOptions() {
+        Object currentValue = super.getCurrentValueString();
+        if (currentValue instanceof String) {
+            String value = (String) currentValue;
+            ArrayList<Option> options = new ArrayList<>();
+            options.add(new Option(value, value, value));
+            return options;
+        }
+        return super.getCurrentValue();
     }
 
     public void clearOption(Option option) {

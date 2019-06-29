@@ -70,8 +70,13 @@ public class WebContent extends AssetEntry implements WithDDM, Parcelable {
                 List<Field> fields = contentParser.parseContent(ddmStructure, content);
 
                 ddmStructure.setFields(fields);
-                if (ddmStructure.getFieldCount() > 0) {
-                    html = (String) ddmStructure.getField(0).getCurrentValue();
+                html = "";
+                if (ddmStructure.getFieldCount() == 1) {
+                    Field field = ddmStructure.getField(0);
+
+                    if (Field.DataType.HTML.equals(field.getDataType())) {
+                        html = (String) field.getCurrentValue();
+                    }
                 }
             } else {
                 FieldParser fieldParser = new FieldParser();

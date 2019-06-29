@@ -335,6 +335,10 @@ public abstract class Field<T extends Serializable> implements Parcelable, Valid
         return currentValue;
     }
 
+    public Object getCurrentValueString() {
+        return currentValue;
+    }
+
     public void setCurrentValue(T value) {
         currentValue = value;
     }
