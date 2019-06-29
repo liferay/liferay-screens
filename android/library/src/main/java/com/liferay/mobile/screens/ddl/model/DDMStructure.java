@@ -109,11 +109,11 @@ public class DDMStructure implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeParcelableArray(fields.toArray(new Field[fields.size()]), flags);
+        dest.writeParcelableArray(fields.toArray(new Field[0]), flags);
         dest.writeSerializable(locale);
         dest.writeString(name);
         dest.writeString(description);
-        dest.writeParcelableArray(pages.toArray(new FormPage[pages.size()]), flags);
+        dest.writeParcelableArray(pages.toArray(new FormPage[0]), flags);
         dest.writeParcelable(successPage, flags);
     }
 

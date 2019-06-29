@@ -36,7 +36,7 @@ public class WebContentDisplayCustomCssActivity extends ThemeActivity implements
     }
 
     @Override
-    public WebContent onWebContentReceived(WebContent html) {
+    public WebContent onWebContentReceived(WebContent webContent) {
         info(getString(R.string.webcontent_received_info));
         return null;
     }

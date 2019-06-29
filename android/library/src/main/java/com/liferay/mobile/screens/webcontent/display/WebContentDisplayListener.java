@@ -31,10 +31,10 @@ public interface WebContentDisplayListener extends BaseCacheListener {
      * To make some adaptations, the listener may return a modified version
      * of the HTML. The original HTML is rendered if the listener returns `null`.
      *
-     * @param html original {@link WebContent}
+     * @param webContent original {@link WebContent}
      * @return modified or not {@link WebContent}
      */
-    WebContent onWebContentReceived(WebContent html);
+    WebContent onWebContentReceived(WebContent webContent);
 
     /**
      * Called when an url is clicked in the browser, return true to replace the default behaviour, false to allow the

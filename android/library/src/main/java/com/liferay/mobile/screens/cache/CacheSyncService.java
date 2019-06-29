@@ -15,7 +15,6 @@ package com.liferay.mobile.screens.cache;
 
 import android.app.IntentService;
 import android.content.Intent;
-import androidx.annotation.NonNull;
 import com.liferay.mobile.screens.base.interactor.BaseCacheWriteInteractor;
 import com.liferay.mobile.screens.base.interactor.event.CacheEvent;
 import com.liferay.mobile.screens.comment.add.interactor.CommentAddInteractor;
@@ -83,7 +82,6 @@ public class CacheSyncService extends IntentService {
                     return event;
                 }
 
-                @NonNull
                 private BaseCacheWriteInteractor getCommentInteractor(CommentEvent commentEvent) {
                     if (DELETE_COMMENT_ACTION.equals(commentEvent.getActionName())) {
                         return new CommentDeleteInteractor();

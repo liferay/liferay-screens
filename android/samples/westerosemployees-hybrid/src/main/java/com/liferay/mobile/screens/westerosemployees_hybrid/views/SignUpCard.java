@@ -36,9 +36,9 @@ public class SignUpCard extends Card implements View.OnClickListener, WebContent
     }
 
     @Override
-    public WebContent onWebContentReceived(WebContent html) {
+    public WebContent onWebContentReceived(WebContent webContent) {
         SessionContext.logout();
-        return html;
+        return webContent;
     }
 
     @Override

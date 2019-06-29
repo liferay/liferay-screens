@@ -31,8 +31,8 @@ public class JournalArticleWithTemplateActivity extends ThemeActivity implements
     }
 
     @Override
-    public WebContent onWebContentReceived(WebContent html) {
-        return html;
+    public WebContent onWebContentReceived(WebContent webContent) {
+        return webContent;
     }
 
     @Override
