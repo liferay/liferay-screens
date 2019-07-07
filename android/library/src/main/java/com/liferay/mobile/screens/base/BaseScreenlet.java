@@ -228,7 +228,7 @@ public abstract class BaseScreenlet<V extends BaseViewModel, I extends Interacto
         this.userId = (userAttribute == 0 ? (userId == null ? 0 : userId) : userAttribute);
 
         String localeAttribute = typedArray.getString(R.styleable.CacheScreenlet_locale);
-        locale = localeAttribute == null ? new Locale(LiferayLocale.getDefaultSupportedLocale())
+        locale = localeAttribute == null ? LiferayLocale.getDefaultLocale()
             : new Locale(localeAttribute);
 
         Integer cachePolicyAttribute =
