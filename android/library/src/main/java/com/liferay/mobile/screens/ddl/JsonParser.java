@@ -139,8 +139,13 @@ public class JsonParser implements DDMStructureParser {
             return field.getString(supportedLocale);
         }
 
+        String name = formLocale.toString();
+
         // Final fallback (a4, b3): find default metadata
-        return field.getString(formLocale.toString());
+        if (field.has(name)) {
+            return field.getString(name);
+        }
+        return null;
     }
 
     protected List<Map<String, String>> findOptions(JSONObject field, Locale locale, Locale defaultLocale)
