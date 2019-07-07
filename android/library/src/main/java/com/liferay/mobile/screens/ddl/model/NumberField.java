@@ -49,7 +49,7 @@ public class NumberField extends Field<Number> {
         };
     private NumberFormat labelFormatter;
     private NumberFormat defaultLabelFormatter;
-    private NumberValidator numberValidator;
+    private transient NumberValidator numberValidator;
 
     public NumberField() {
         super();

@@ -71,7 +71,7 @@ public abstract class Field<T extends Serializable> implements Parcelable, Valid
     private String displayStyle;
     private String evaluatorErrorMessage;
 
-    private UUID uuid = UUID.randomUUID();
+    private transient UUID uuid = UUID.randomUUID();
 
     public Field() {
         super();

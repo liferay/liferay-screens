@@ -157,7 +157,7 @@ public class DocumentField extends Field<DocumentFile> {
         return documentFieldValidator;
     }
 
-    private LocalValidator documentFieldValidator = new LocalValidator() {
+    private transient LocalValidator documentFieldValidator = new LocalValidator() {
         @NotNull
         @Override
         public String getCustomErrorMessage() {

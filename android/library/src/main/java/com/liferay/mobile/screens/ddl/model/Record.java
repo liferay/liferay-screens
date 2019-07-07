@@ -325,6 +325,13 @@ public class Record extends AssetEntry implements WithDDM, Parcelable {
         private final List<Field> fields;
         private final int number;
 
+        public Page() {
+            this.title = null;
+            this.description = null;
+            this.fields = new ArrayList<>();
+            this.number = 0;
+        }
+
         public Page(int number, String title, String description, List<Field> fields) {
             this.number = number;
             this.title = title;
