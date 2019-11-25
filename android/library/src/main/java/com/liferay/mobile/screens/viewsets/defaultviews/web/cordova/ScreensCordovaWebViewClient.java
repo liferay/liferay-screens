@@ -27,7 +27,7 @@ public class ScreensCordovaWebViewClient extends SystemWebViewClient {
 			|| sslError.hasError(SslError.SSL_UNTRUSTED)) {
 			sslErrorHandler.cancel();
 		} else {
-			super.onReceivedSslError(webView, sslErrorHandler, sslError);
+			sslErrorHandler.proceed();
 		}
 	}
 }

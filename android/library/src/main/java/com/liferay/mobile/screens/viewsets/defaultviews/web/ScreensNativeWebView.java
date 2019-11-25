@@ -94,7 +94,7 @@ public class ScreensNativeWebView extends WebViewClient implements ScreensWebVie
             || sslError.hasError(SslError.SSL_UNTRUSTED)) {
             sslErrorHandler.cancel();
         } else {
-            super.onReceivedSslError(this.webView, sslErrorHandler, sslError);
+            sslErrorHandler.proceed();
         }
     }
 }
