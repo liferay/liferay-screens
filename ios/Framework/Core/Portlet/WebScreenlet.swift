@@ -164,7 +164,11 @@ open class WebScreenlet: BaseScreenlet {
 		let username = SessionContext.currentContext?.basicAuthUsername ?? ""
 		let password = SessionContext.currentContext?.basicAuthPassword ?? ""
 
-		let urlEscaped = url.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+		let characterSet = NSMutableCharacterSet()
+		characterSet.formUnion(with: .alphanumerics)
+		characterSet.addCharacters(in: "*-._")
+
+		let urlEscaped = url.addingPercentEncoding(withAllowedCharacters: characterSet as CharacterSet)
 
 		return html.replacingOccurrences(of: "<webUrl>", with: urlEscaped!)
 			.replacingOccurrences(of: "<login>", with: username)
