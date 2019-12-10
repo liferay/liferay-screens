@@ -8,7 +8,7 @@ buildscript {
 	}
 
 	dependencies {
-		classpath 'com.android.tools.build:gradle:3.4.1'
+		classpath 'com.android.tools.build:gradle:3.5.3'
 		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
 		classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -49,15 +49,15 @@ ext {
 	targetSdkVersion = compileSdkVersion
 	buildToolsVersion = '28.0.3'
 
-	versionCode = 503
-	versionName = '5.0.3'
+	versionCode = 504
+	versionName = '5.0.4'
 
 	publishedGroupId = 'com.liferay.mobile'
 	libraryName = 'Liferay Screens for Android'
 	libraryDescription = 'Liferay Screens for Android includes the component (screenlets) library and a sample project'
 
 	bintrayRepo = 'liferay-mobile'
-//	bintrayOrg = 'liferay'
+	bintrayOrg = 'liferay'
 
 	siteUrl = 'https://github.com/liferay/liferay-screens'
 	gitUrl = 'https://github.com/liferay/liferay-screens.git'
