@@ -17,7 +17,7 @@ package com.liferay.mobile.screens.ddl.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import androidx.annotation.Nullable;
+import android.support.annotation.Nullable;
 import com.liferay.mobile.screens.ddl.LocalValidator;
 import com.liferay.mobile.screens.ddl.StringValidator;
 import com.liferay.mobile.screens.util.ValidationUtil;

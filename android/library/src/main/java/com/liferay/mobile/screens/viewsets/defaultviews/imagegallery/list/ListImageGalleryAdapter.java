@@ -1,7 +1,7 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.list;
 
 import android.graphics.Bitmap;
-import androidx.annotation.NonNull;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
 import com.liferay.mobile.screens.R;

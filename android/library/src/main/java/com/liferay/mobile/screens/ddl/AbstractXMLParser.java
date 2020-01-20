@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.ddl;
 
-import androidx.annotation.Nullable;
+import android.support.annotation.Nullable;
 import com.liferay.mobile.screens.util.LiferayLocale;
 import com.liferay.mobile.screens.util.LiferayLogger;
 import java.io.IOException;

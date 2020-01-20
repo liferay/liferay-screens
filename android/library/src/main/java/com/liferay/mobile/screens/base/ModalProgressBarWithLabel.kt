@@ -14,7 +14,7 @@
 package com.liferay.mobile.screens.base
 
 import android.content.Context
-import androidx.core.content.ContextCompat
+import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout

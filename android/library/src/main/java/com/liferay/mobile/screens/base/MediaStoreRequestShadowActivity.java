@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
 import android.provider.MediaStore;
-import androidx.core.content.FileProvider;
+import android.support.v4.content.FileProvider;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.util.FileUtil;
 import java.io.File;

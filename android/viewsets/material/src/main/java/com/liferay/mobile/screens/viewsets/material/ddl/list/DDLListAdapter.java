@@ -14,7 +14,7 @@
 
 package com.liferay.mobile.screens.viewsets.material.ddl.list;
 
-import androidx.annotation.NonNull;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;

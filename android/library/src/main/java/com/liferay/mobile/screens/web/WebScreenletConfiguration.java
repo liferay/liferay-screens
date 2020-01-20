@@ -14,7 +14,7 @@
 
 package com.liferay.mobile.screens.web;
 
-import androidx.core.util.Pair;
+import android.support.v4.util.Pair;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import com.liferay.mobile.screens.util.ScriptReader;
 import com.liferay.mobile.screens.viewsets.defaultviews.web.cordova.CordovaLifeCycleObserver;

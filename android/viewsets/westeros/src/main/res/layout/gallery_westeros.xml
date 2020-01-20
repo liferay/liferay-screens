@@ -20,13 +20,13 @@
             android:visibility="gone"
             />
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/liferay_swipe_refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >
 
-            <androidx.recyclerview.widget.RecyclerView
+            <android.support.v7.widget.RecyclerView
                 android:id="@+id/liferay_recycler_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -37,7 +37,7 @@
                 android:visibility="gone"
                 />
 
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </android.support.v4.widget.SwipeRefreshLayout>
 
     </FrameLayout>
 

@@ -15,7 +15,7 @@
 package com.liferay.mobile.screens.util.extensions
 
 import android.content.res.TypedArray
-import androidx.annotation.StyleableRes
+import android.support.annotation.StyleableRes
 import android.util.AttributeSet
 import android.view.View
 

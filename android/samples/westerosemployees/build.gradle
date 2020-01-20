@@ -33,6 +33,4 @@ dependencies {
 	implementation libraries.rxjava
 	implementation libraries.rxbinding
 	implementation libraries.rxpermissions
-	implementation 'androidx.appcompat:appcompat:1.0.2'
-	implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha04'
 }

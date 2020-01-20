@@ -3,7 +3,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.rating;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.os.Build;
-import androidx.core.content.ContextCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;

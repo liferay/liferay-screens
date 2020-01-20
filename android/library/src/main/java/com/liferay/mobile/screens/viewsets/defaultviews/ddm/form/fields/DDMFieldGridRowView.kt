@@ -16,7 +16,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.ddm.form.fields
 
 import android.content.Context
 import android.graphics.Typeface
-import androidx.appcompat.widget.TooltipCompat
+import android.support.v7.widget.TooltipCompat
 import android.util.AttributeSet
 import android.widget.*
 import com.liferay.mobile.screens.R

@@ -66,6 +66,7 @@ dependencies {
 	implementation libraries.rxjava
 	implementation libraries.rxpermissions
 	implementation libraries.rxbinding
+	implementation group: 'com.squareup.okhttp', name: 'okhttp', version: '2.7.5'
 
 	implementation 'com.lsjwzh:recyclerviewpager:1.0.8'
 
@@ -73,6 +74,7 @@ dependencies {
 		exclude group: 'com.esotericsoftware.kryo', module: 'kryo'
 	}
 	implementation libraries.kryo
+	implementation 'com.android.support:customtabs:27.1.1'
 
 	testImplementation libraries.junit
 	testImplementation libraries.robolectric

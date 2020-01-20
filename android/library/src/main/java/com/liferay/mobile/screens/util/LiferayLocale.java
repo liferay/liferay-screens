@@ -3,7 +3,7 @@ package com.liferay.mobile.screens.util;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
-import androidx.annotation.Nullable;
+import android.support.annotation.Nullable;
 import android.view.ContextThemeWrapper;
 import com.liferay.mobile.screens.context.LiferayScreensContext;
 import java.util.Locale;

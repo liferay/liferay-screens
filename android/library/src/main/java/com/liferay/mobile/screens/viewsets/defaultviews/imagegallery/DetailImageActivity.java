@@ -2,7 +2,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.imagegallery;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.liferay.mobile.screens.R;

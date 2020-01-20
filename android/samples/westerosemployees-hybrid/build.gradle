@@ -33,6 +33,4 @@ dependencies {
 	implementation libraries.rxbinding
 	implementation libraries.rxpermissions
 	implementation libraries.rxjava
-	implementation 'androidx.fragment:fragment:1.0.0'
-	implementation 'androidx.appcompat:appcompat:1.0.2'
 }

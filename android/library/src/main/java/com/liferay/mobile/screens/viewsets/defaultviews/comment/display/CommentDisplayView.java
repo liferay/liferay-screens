@@ -4,7 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import androidx.core.content.ContextCompat;
+import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.util.AttributeSet;
 import android.view.View;

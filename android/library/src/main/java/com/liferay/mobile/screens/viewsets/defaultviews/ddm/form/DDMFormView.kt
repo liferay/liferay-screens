@@ -18,10 +18,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
-import androidx.annotation.ColorRes
-import androidx.annotation.StringRes
-import com.google.android.material.snackbar.Snackbar
-import androidx.core.content.ContextCompat
+import android.support.annotation.ColorRes
+import android.support.annotation.StringRes
+import android.support.design.widget.Snackbar
+import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View

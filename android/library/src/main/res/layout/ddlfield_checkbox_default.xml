@@ -6,7 +6,7 @@
     android:orientation="vertical"
     >
 
-    <androidx.appcompat.widget.SwitchCompat
+    <android.support.v7.widget.SwitchCompat
         android:id="@+id/liferay_ddl_switch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -2,7 +2,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.grid;
 
 import android.graphics.Canvas;
 import android.graphics.Rect;
-import androidx.recyclerview.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDecoration;
 

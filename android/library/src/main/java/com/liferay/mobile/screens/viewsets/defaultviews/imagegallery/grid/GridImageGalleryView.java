@@ -1,8 +1,9 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.grid;
 
 import android.content.Context;
-import androidx.recyclerview.widget.GridLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.util.AttributeSet;
+import android.view.View;
 import com.liferay.mobile.screens.R;
 import com.liferay.mobile.screens.viewsets.defaultviews.ddl.list.DividerItemDecoration;
 import com.liferay.mobile.screens.viewsets.defaultviews.imagegallery.BaseImageGalleryView;

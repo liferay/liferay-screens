@@ -1,8 +1,8 @@
 package com.liferay.mobile.screens.viewsets.lexicon.ddm.form.fields;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
 import com.liferay.mobile.screens.viewsets.lexicon.R;

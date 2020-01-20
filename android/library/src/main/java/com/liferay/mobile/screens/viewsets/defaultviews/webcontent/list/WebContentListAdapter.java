@@ -1,6 +1,6 @@
 package com.liferay.mobile.screens.viewsets.defaultviews.webcontent.list;
 
-import androidx.annotation.NonNull;
+import android.support.annotation.NonNull;
 import android.view.View;
 import com.liferay.mobile.screens.base.list.BaseListAdapter;
 import com.liferay.mobile.screens.base.list.BaseListAdapterListener;

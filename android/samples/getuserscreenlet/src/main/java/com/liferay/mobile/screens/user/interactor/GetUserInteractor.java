@@ -13,7 +13,7 @@
  */
 package com.liferay.mobile.screens.user.interactor;
 
-import androidx.annotation.NonNull;
+import android.support.annotation.NonNull;
 import com.liferay.mobile.screens.auth.login.connector.UserConnector;
 import com.liferay.mobile.screens.base.interactor.BaseRemoteInteractor;
 import com.liferay.mobile.screens.base.interactor.event.BasicEvent;

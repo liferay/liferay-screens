@@ -3,7 +3,7 @@ package com.liferay.mobile.screens.viewsets.defaultviews.imagegallery;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
-import androidx.annotation.RequiresApi;
+import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.TextView;

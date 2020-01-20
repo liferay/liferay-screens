@@ -2,7 +2,7 @@ package com.liferay.mobile.pushnotifications.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import com.google.android.material.snackbar.Snackbar;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import com.liferay.mobile.android.callback.typed.JSONObjectCallback;
 import com.liferay.mobile.android.service.Session;

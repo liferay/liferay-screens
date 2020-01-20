@@ -16,7 +16,7 @@ package com.liferay.mobile.screens.testapp;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import com.google.android.material.snackbar.Snackbar;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import com.liferay.mobile.screens.base.interactor.listener.CacheListener;
 import com.liferay.mobile.screens.context.SessionContext;

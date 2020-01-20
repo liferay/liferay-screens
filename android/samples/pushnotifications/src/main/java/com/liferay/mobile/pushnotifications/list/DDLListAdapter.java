@@ -15,7 +15,7 @@
 package com.liferay.mobile.pushnotifications.list;
 
 import android.content.Context;
-import androidx.annotation.NonNull;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;

@@ -15,7 +15,7 @@
 package com.liferay.mobile.screens.bankofwesteros.list;
 
 import android.content.Context;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
 import com.liferay.mobile.screens.ddl.list.view.DDLListViewModel;
 

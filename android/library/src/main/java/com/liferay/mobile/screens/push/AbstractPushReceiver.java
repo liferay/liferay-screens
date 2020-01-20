@@ -3,8 +3,8 @@ package com.liferay.mobile.screens.push;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import androidx.annotation.NonNull;
-import androidx.legacy.content.WakefulBroadcastReceiver;
+import android.support.annotation.NonNull;
+import android.support.v4.content.WakefulBroadcastReceiver;
 
 /**
  * @author Javier Gamarra

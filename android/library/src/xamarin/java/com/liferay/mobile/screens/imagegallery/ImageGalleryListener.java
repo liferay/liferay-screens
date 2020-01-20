@@ -15,7 +15,7 @@
 package com.liferay.mobile.screens.imagegallery;
 
 import android.net.Uri;
-import androidx.annotation.LayoutRes;
+import android.support.annotation.LayoutRes;
 import com.liferay.mobile.screens.base.list.BaseListListener;
 import com.liferay.mobile.screens.imagegallery.BaseDetailUploadView;
 import com.liferay.mobile.screens.imagegallery.model.ImageEntry;

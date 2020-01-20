@@ -29,8 +29,6 @@ dependencies {
 	implementation libraries.rxjava
 	implementation 'com.daimajia.swipelayout:library:1.2.0'
 	implementation 'com.makeramen:roundedimageview:2.2.1'
-	implementation 'com.google.android.material:material:1.0.0'
-	implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha04'
 }
 
 apply from: '../../bintray.gradle'
