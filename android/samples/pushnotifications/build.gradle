@@ -26,6 +26,8 @@ android {
 
 dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
+	implementation libraries.appCompat
+	implementation libraries.design
 	implementation libraries.picasso
 
 	implementation project(':liferay-material-viewset')

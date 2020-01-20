@@ -71,7 +71,14 @@ ext {
 	allLicenses = ["LGPL-2.1"]
 }
 
-ext.libraries = [junit              : 'junit:junit:4.12',
+def supportLibsVersion = '27.1.1'
+
+ext.libraries = [appCompat          : 'com.android.support:appcompat-v7:' + supportLibsVersion,
+                 recyclerView       : 'com.android.support:recyclerview-v7:' + supportLibsVersion,
+                 design             : 'com.android.support:design:' + supportLibsVersion,
+                 exif               : 'com.android.support:exifinterface:' + supportLibsVersion,
+                 support_annotations: 'com.android.support:support-annotations:' + supportLibsVersion,
+                 junit              : 'junit:junit:4.12',
                  gms                : 'com.google.android.gms:play-services-gcm:9.0.2',
                  sdk                : 'com.liferay.mobile:liferay-android-sdk-core:7.2.0',
                  push               : 'com.liferay.mobile:liferay-push:1.2.1',
@@ -104,5 +111,4 @@ repositories {
 	mavenLocal()
 	maven { url 'https://maven.google.com' }
 	jcenter()
-	google()
 }

@@ -23,6 +23,7 @@ dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
 
 	implementation project(':liferay-screens')
+	implementation libraries.design
 
 	testImplementation libraries.junit
 	testImplementation libraries.robolectric

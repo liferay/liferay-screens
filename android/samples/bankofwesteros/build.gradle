@@ -30,6 +30,8 @@ dependencies {
 	implementation project(':liferay-screens')
 	implementation project(':liferay-westeros-viewset')
 
+	implementation libraries.appCompat
+	implementation libraries.recyclerView
 	implementation libraries.rxpermissions
 	implementation libraries.rxbinding
 	implementation libraries.rxjava
