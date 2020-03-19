@@ -7,9 +7,9 @@
 	<key>version</key>
 	<integer>70</integer>
 	<key>companyId</key>
-	<real>20101</real>
+	<integer>20097</integer>
 	<key>groupId</key>
-	<real>20123</real>
+	<real>20121</real>
 	<key>anonymousUsername</key>
 	<string>anonymous1@liferay.com</string>
 	<key>anonymousPassword</key>
@@ -49,7 +49,7 @@
 	<key>imageGalleryMimeType</key>
 	<string>image/png,image/jpeg</string>
 	<key>imageGalleryRepositoryId</key>
-	<real>20123</real>
+	<real>20121</real>
 	<key>ratingEmojisEntryId</key>
 	<real>54500</real>
 	<key>ratingLikeEntryId</key>

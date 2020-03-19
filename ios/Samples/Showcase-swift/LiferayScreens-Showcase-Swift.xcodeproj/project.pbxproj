@@ -13,9 +13,6 @@
 		0B24399C1DAD314D009DA1E4 /* BlogDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B24399E1DAD314D009DA1E4 /* BlogDisplayScreenlet.storyboard */; };
 		0B2439A21DAD318A009DA1E4 /* ImageDisplayScreenlet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B2439A41DAD318A009DA1E4 /* ImageDisplayScreenlet.storyboard */; };
 		0B3B9AC3209AF94500EC2975 /* ImageGalleryScreenletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AC2209AF94500EC2975 /* ImageGalleryScreenletController.swift */; };
-		0B4460821F16427A007D12E5 /* config.xml in Resources */ = {isa = PBXBuildFile; fileRef = 0B4460811F16427A007D12E5 /* config.xml */; };
-		0B4460891F177BD4007D12E5 /* www in Resources */ = {isa = PBXBuildFile; fileRef = 0B4460881F177BD4007D12E5 /* www */; };
-		0B44608C1F177CDE007D12E5 /* NetworkActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B44608A1F177CDE007D12E5 /* NetworkActivityIndicator.m */; };
 		0B4C27571E41FF9700F6B01D /* AssetDisplayScreenletWithPortletItemName.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B4C27551E41FF9700F6B01D /* AssetDisplayScreenletWithPortletItemName.storyboard */; };
 		0B4C27591E42007E00F6B01D /* AssetDisplayWithPortletItemNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C27581E42007E00F6B01D /* AssetDisplayWithPortletItemNameViewController.swift */; };
 		0B54FB771DACC95500E0EE0C /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B54FB761DACC95500E0EE0C /* UserView.swift */; };
@@ -68,9 +65,6 @@
 		0BCAD3CA1DD5F51B00BB89EA /* AudioDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCAD3C91DD5F51B00BB89EA /* AudioDisplayViewController.swift */; };
 		0BCAD3CC1DD5F57A00BB89EA /* VideoDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCAD3CB1DD5F57A00BB89EA /* VideoDisplayViewController.swift */; };
 		0BCAD3CE1DD5F59D00BB89EA /* PdfDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCAD3CD1DD5F59D00BB89EA /* PdfDisplayViewController.swift */; };
-		0BFD32431F30634700017DCA /* CDVWKProcessPoolFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFD323E1F30634700017DCA /* CDVWKProcessPoolFactory.m */; };
-		0BFD32441F30634700017DCA /* CDVWKWebViewEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFD32401F30634700017DCA /* CDVWKWebViewEngine.m */; };
-		0BFD32451F30634700017DCA /* CDVWKWebViewUIDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BFD32421F30634700017DCA /* CDVWKWebViewUIDelegate.m */; };
 		3F58D91A37B3E56FEBE9F91C /* Pods_LiferayScreens_Showcase_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A74FE1283FF956CECE925088 /* Pods_LiferayScreens_Showcase_Swift.framework */; };
 		881B74411B9EEDED00EA64ED /* OfflineSyncViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881B74401B9EEDED00EA64ED /* OfflineSyncViewController.swift */; };
 		88CC3AFC1CC153D900E0AEB7 /* WebContentDisplayView_book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CC3AF81CC153D900E0AEB7 /* WebContentDisplayView_book.swift */; };
@@ -97,10 +91,6 @@
 		0B24399D1DAD314D009DA1E4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/BlogDisplayScreenlet.storyboard; sourceTree = "<group>"; };
 		0B2439A31DAD318A009DA1E4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/ImageDisplayScreenlet.storyboard; sourceTree = "<group>"; };
 		0B3B9AC2209AF94500EC2975 /* ImageGalleryScreenletController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryScreenletController.swift; sourceTree = "<group>"; };
-		0B4460811F16427A007D12E5 /* config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
-		0B4460881F177BD4007D12E5 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
-		0B44608A1F177CDE007D12E5 /* NetworkActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkActivityIndicator.m; sourceTree = "<group>"; };
-		0B44608B1F177CDE007D12E5 /* NetworkActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkActivityIndicator.h; sourceTree = "<group>"; };
 		0B4C27561E41FF9700F6B01D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/AssetDisplayScreenletWithPortletItemName.storyboard; sourceTree = "<group>"; };
 		0B4C27581E42007E00F6B01D /* AssetDisplayWithPortletItemNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDisplayWithPortletItemNameViewController.swift; sourceTree = "<group>"; };
 		0B54FB761DACC95500E0EE0C /* UserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
@@ -153,12 +143,6 @@
 		0BCAD3C91DD5F51B00BB89EA /* AudioDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioDisplayViewController.swift; sourceTree = "<group>"; };
 		0BCAD3CB1DD5F57A00BB89EA /* VideoDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoDisplayViewController.swift; sourceTree = "<group>"; };
 		0BCAD3CD1DD5F59D00BB89EA /* PdfDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PdfDisplayViewController.swift; sourceTree = "<group>"; };
-		0BFD323D1F30634700017DCA /* CDVWKProcessPoolFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVWKProcessPoolFactory.h; sourceTree = "<group>"; };
-		0BFD323E1F30634700017DCA /* CDVWKProcessPoolFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVWKProcessPoolFactory.m; sourceTree = "<group>"; };
-		0BFD323F1F30634700017DCA /* CDVWKWebViewEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVWKWebViewEngine.h; sourceTree = "<group>"; };
-		0BFD32401F30634700017DCA /* CDVWKWebViewEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVWKWebViewEngine.m; sourceTree = "<group>"; };
-		0BFD32411F30634700017DCA /* CDVWKWebViewUIDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDVWKWebViewUIDelegate.h; sourceTree = "<group>"; };
-		0BFD32421F30634700017DCA /* CDVWKWebViewUIDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDVWKWebViewUIDelegate.m; sourceTree = "<group>"; };
 		395704178D2021CEAB337ACA /* Pods-LiferayScreens-Showcase-Swift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LiferayScreens-Showcase-Swift.debug.xcconfig"; path = "Target Support Files/Pods-LiferayScreens-Showcase-Swift/Pods-LiferayScreens-Showcase-Swift.debug.xcconfig"; sourceTree = "<group>"; };
 		869461C649CEAF0B480B4E18 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		881B74401B9EEDED00EA64ED /* OfflineSyncViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfflineSyncViewController.swift; sourceTree = "<group>"; };
@@ -413,19 +397,6 @@
 			name = Web;
 			sourceTree = "<group>";
 		};
-		0BFD323C1F30634700017DCA /* cordova-plugin-wkwebview-engine */ = {
-			isa = PBXGroup;
-			children = (
-				0BFD323D1F30634700017DCA /* CDVWKProcessPoolFactory.h */,
-				0BFD323E1F30634700017DCA /* CDVWKProcessPoolFactory.m */,
-				0BFD323F1F30634700017DCA /* CDVWKWebViewEngine.h */,
-				0BFD32401F30634700017DCA /* CDVWKWebViewEngine.m */,
-				0BFD32411F30634700017DCA /* CDVWKWebViewUIDelegate.h */,
-				0BFD32421F30634700017DCA /* CDVWKWebViewUIDelegate.m */,
-			);
-			path = "cordova-plugin-wkwebview-engine";
-			sourceTree = "<group>";
-		};
 		60B16FBC5A2A2AF96AD3C2E8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -462,11 +433,6 @@
 		88DE2A631AD3DDE600714701 = {
 			isa = PBXGroup;
 			children = (
-				0B4460881F177BD4007D12E5 /* www */,
-				0B4460811F16427A007D12E5 /* config.xml */,
-				0BFD323C1F30634700017DCA /* cordova-plugin-wkwebview-engine */,
-				0B44608A1F177CDE007D12E5 /* NetworkActivityIndicator.m */,
-				0B44608B1F177CDE007D12E5 /* NetworkActivityIndicator.h */,
 				88DE2A6E1AD3DDE600714701 /* Showcase-Swift */,
 				88DE2A6D1AD3DDE600714701 /* Products */,
 				7DB46C4F3F611AF0BE2E0C21 /* Frameworks */,
@@ -608,11 +574,9 @@
 				0B2439A21DAD318A009DA1E4 /* ImageDisplayScreenlet.storyboard in Resources */,
 				0B7077091F331535001A0158 /* bigger_pagination.css in Resources */,
 				88DE2A771AD3DDE600714701 /* Main.storyboard in Resources */,
-				0B4460821F16427A007D12E5 /* config.xml in Resources */,
 				0BC700D61EB20915006DD475 /* WebScreenlet.storyboard in Resources */,
 				0B54FB791DACC97000E0EE0C /* UserView.xib in Resources */,
 				88CC3B071CC158E300E0AEB7 /* BookTableViewCell.xib in Resources */,
-				0B4460891F177BD4007D12E5 /* www in Resources */,
 				0B6148141DABF0AF004FAC7C /* WebContentListScreenlet.storyboard in Resources */,
 				0B54FB981DACE9BF00E0EE0C /* AssetListScreenlet.storyboard in Resources */,
 				0B147A171E78030800EDE7B7 /* FileDisplayScreenlet.storyboard in Resources */,
@@ -664,14 +628,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-LiferayScreens-Showcase-Swift/Pods-LiferayScreens-Showcase-Swift-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
-				"${BUILT_PRODUCTS_DIR}/Cordova/Cordova.framework",
 				"${BUILT_PRODUCTS_DIR}/DTPickerPresenter/DTPickerPresenter.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -686,13 +647,10 @@
 				"${BUILT_PRODUCTS_DIR}/YapDatabase/YapDatabase.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppAuth.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cordova.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DTPickerPresenter.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
@@ -721,10 +679,7 @@
 				0B6148071DABE2B0004FAC7C /* SignUpScreenletViewController.swift in Sources */,
 				0B24399B1DAD3120009DA1E4 /* ImageDisplayViewController.swift in Sources */,
 				0B6148061DABE2B0004FAC7C /* LoginViewController.swift in Sources */,
-				0BFD32451F30634700017DCA /* CDVWKWebViewUIDelegate.m in Sources */,
 				88CC3B061CC158E300E0AEB7 /* BookTableViewCell.swift in Sources */,
-				0B44608C1F177CDE007D12E5 /* NetworkActivityIndicator.m in Sources */,
-				0BFD32431F30634700017DCA /* CDVWKProcessPoolFactory.m in Sources */,
 				881B74411B9EEDED00EA64ED /* OfflineSyncViewController.swift in Sources */,
 				88CC3AFE1CC153D900E0AEB7 /* WebContentListView_book.swift in Sources */,
 				0B54FB7F1DACD17500E0EE0C /* AssetListScreenletViewController.swift in Sources */,
@@ -742,7 +697,6 @@
 				0B61480B1DABE86F004FAC7C /* WebContentDisplayScreenletViewController.swift in Sources */,
 				0B54FB7D1DACCFDF00E0EE0C /* AssetTypesViewController.swift in Sources */,
 				0B6147FA1DABC86E004FAC7C /* LiferayLogger.swift in Sources */,
-				0BFD32441F30634700017DCA /* CDVWKWebViewEngine.m in Sources */,
 				0B54FBD11DAD1A9B00E0EE0C /* DDLFormScreenletViewController.swift in Sources */,
 				0B54FBC11DAD004300E0EE0C /* UserPortraitScreenletViewController.swift in Sources */,
 				0B54FBAC1DACF1C100E0EE0C /* BlogDisplayScreenletViewController.swift in Sources */,

@@ -60,8 +60,4 @@ Pod::Spec.new do |s|
 	s.dependency 'DTPickerPresenter', '~> 0.2.0'
 	s.dependency 'TNRadioButtonGroup', '~> 0.4'
 	s.dependency 'MDRadialProgress', '~> 1.3.2'
-
-	# Cordova integration
-	s.dependency 'Cordova', '~> 4.0'
-
 end

@@ -30,10 +30,9 @@ class WebScreenletViewController: UIViewController, WebScreenletDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
-		let url = "http://192.168.50.163:8080"
+		let url = "/web/guest"
 
 		let configuration = WebScreenletConfigurationBuilder(url: url)
-				.set(webType: .other)
 				.load()
 
 		screenlet?.configuration = configuration

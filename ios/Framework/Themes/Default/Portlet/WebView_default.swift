@@ -61,20 +61,12 @@ open class WebView_default: BaseScreenletView, WebViewModel {
 			}
 		}
 
-		if cordovaEnabled {
-			screensWebView = ScreensCordovaWebView(
-					jsCallHandler: jsCallHandler,
-					jsErrorHandler: jsErrorHandler,
-					onPageLoadFinished: onPageLoadFinished)
-		}
-		else {
-			screensWebView = ScreensWKWebView(
-					jsCallHandler: jsCallHandler,
-					jsErrorHandler: jsErrorHandler,
-					onPageLoadFinished: onPageLoadFinished)
+        screensWebView = ScreensWKWebView(
+                jsCallHandler: jsCallHandler,
+                jsErrorHandler: jsErrorHandler,
+                onPageLoadFinished: onPageLoadFinished)
 
-			(screensWebView as? ScreensWKWebView)?.viewController = screenlet?.presentingViewController
-		}
+        (screensWebView as? ScreensWKWebView)?.viewController = screenlet?.presentingViewController
 
 		addWebView()
 	}

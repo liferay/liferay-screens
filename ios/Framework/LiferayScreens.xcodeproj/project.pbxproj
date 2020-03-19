@@ -96,8 +96,6 @@
 		0B139A831EB9EE1E00628D24 /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 0B139A821EB9EE1E00628D24 /* default.css */; };
 		0B147A191E78047C00EDE7B7 /* FileDisplayView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B147A181E78047C00EDE7B7 /* FileDisplayView_default.swift */; };
 		0B147A1B1E78049F00EDE7B7 /* FileDisplayView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B147A1A1E78049F00EDE7B7 /* FileDisplayView_default.xib */; };
-		0B1527341F2F8BFD00B60188 /* ScreensBridgePlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B1527321F2F8BFD00B60188 /* ScreensBridgePlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0B1527351F2F8BFD00B60188 /* ScreensBridgePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1527331F2F8BFD00B60188 /* ScreensBridgePlugin.m */; };
 		0B1F30E61DA240460053424E /* UserPortrait_connector_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1F30E41DA23FB40053424E /* UserPortrait_connector_Test.swift */; };
 		0B1F30E81DA240F20053424E /* tinyImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0B1F30E71DA240F20053424E /* tinyImage.png */; };
 		0B217FB51D6C4E6F00A23690 /* AssetDisplayBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FA61D6C4E6F00A23690 /* AssetDisplayBuilder.swift */; };
@@ -169,7 +167,7 @@
 		0B2180341D6C508200A23690 /* DDMFieldString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180031D6C4F6F00A23690 /* DDMFieldString.swift */; };
 		0B2180351D6C508200A23690 /* DDMFieldStringWithOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180041D6C4F6F00A23690 /* DDMFieldStringWithOptions.swift */; };
 		0B2180361D6C508200A23690 /* DDMFieldUntyped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180051D6C4F6F00A23690 /* DDMFieldUntyped.swift */; };
-		0B2677DE1D3D1E5700FDFC5B /* BuildFile in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
+		0B2677DE1D3D1E5700FDFC5B /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
 		0B2C41541D5A3C7C00764326 /* ImageGalleryCollectionViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C41421D5A3C7C00764326 /* ImageGalleryCollectionViewBase.swift */; };
 		0B2C415F1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C414D1D5A3C7C00764326 /* ImageUploadDetailViewController_default.swift */; };
 		0B2C41631D5A3C7C00764326 /* UploadProgressView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C41511D5A3C7C00764326 /* UploadProgressView_default.xib */; };
@@ -190,7 +188,6 @@
 		0B3B9ABF209AF8C900EC2975 /* ImageGalleryUploadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AB3209AF8C800EC2975 /* ImageGalleryUploadInteractor.swift */; };
 		0B3B9AC0209AF8C900EC2975 /* SyncManager+ImageGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AB4209AF8C800EC2975 /* SyncManager+ImageGallery.swift */; };
 		0B3B9AC1209AF8C900EC2975 /* UploadProgressViewBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3B9AB5209AF8C800EC2975 /* UploadProgressViewBase.swift */; };
-		0B4460851F176668007D12E5 /* ScreensCordovaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4460841F176668007D12E5 /* ScreensCordovaViewController.swift */; };
 		0B4C27521E40F83300F6B01D /* AssetLoadByPortletItemNameLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C27511E40F83300F6B01D /* AssetLoadByPortletItemNameLiferayConnector.swift */; };
 		0B5619FA1E7A7D3E00FDF397 /* WKWebView+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5619F91E7A7D3E00FDF397 /* WKWebView+Screens.swift */; };
 		0B5B5E571D5869BB0007D4B1 /* MediaSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5B5E561D5869BB0007D4B1 /* MediaSelector.swift */; };
@@ -239,7 +236,6 @@
 		0B7783631F95F60C001C9134 /* UserPortraitView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61C91ACBFC3400862B9E /* UserPortraitView_default.swift */; };
 		0B7783651F95F60C001C9134 /* ImageGalleryView_default-list.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBEDA221D5B230700F8CB31 /* ImageGalleryView_default-list.swift */; };
 		0B7783661F95F60C001C9134 /* DDMTypedValuesXMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FF81D6C4F6F00A23690 /* DDMTypedValuesXMLParser.swift */; };
-		0B7783671F95F60C001C9134 /* ScreensBridgePlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B1527331F2F8BFD00B60188 /* ScreensBridgePlugin.m */; };
 		0B7783681F95F60C001C9134 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887F0D081B999CD90007AECE /* CacheManager.swift */; };
 		0B7783691F95F60C001C9134 /* WebContentListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88AF68321CBFF58700097014 /* WebContentListPageLoadInteractor.swift */; };
 		0B77836A1F95F60C001C9134 /* CredentialsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DC31E11ACC18F10078C961 /* CredentialsStorage.swift */; };
@@ -342,7 +338,6 @@
 		0B7783D41F95F60C001C9134 /* WebContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB5032B1D37C04A00ABD6B3 /* WebContent.swift */; };
 		0B7783D51F95F60C001C9134 /* WebScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC700CF1EB207B1006DD475 /* WebScreenlet.swift */; };
 		0B7783D61F95F60C001C9134 /* ScreensWKUIDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA1CEDE1F4C64CE0079DD4B /* ScreensWKUIDelegate.swift */; };
-		0B7783D71F95F60C001C9134 /* ScreensCordovaWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBE45701F1D0B8100812015 /* ScreensCordovaWebView.swift */; };
 		0B7783D81F95F60C001C9134 /* DDLFieldNumberTableCell_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61D71ACBFC3400862B9E /* DDLFieldNumberTableCell_default.swift */; };
 		0B7783D91F95F60C001C9134 /* LRScreensjournalarticleService_v70.m in Sources */ = {isa = PBXBuildFile; fileRef = 887E055B1C6A4DF700CA3807 /* LRScreensjournalarticleService_v70.m */; };
 		0B7783DA1F95F60C001C9134 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2180171D6C4FEF00A23690 /* User.swift */; };
@@ -420,7 +415,6 @@
 		0B7784251F95F60C001C9134 /* DDLListPageLoadInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 881E61651ACBEE0B00862B9E /* DDLListPageLoadInteractor.swift */; };
 		0B7784261F95F60C001C9134 /* DDLFormSubmitLiferayConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B844C01C73D8F7007A447D /* DDLFormSubmitLiferayConnector.swift */; };
 		0B7784271F95F60C001C9134 /* PdfDisplayView_default.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FDB1D6C4E9500A23690 /* PdfDisplayView_default.swift */; };
-		0B7784281F95F60C001C9134 /* ScreensCordovaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4460841F176668007D12E5 /* ScreensCordovaViewController.swift */; };
 		0B7784291F95F60C001C9134 /* WKWebView+Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5619F91E7A7D3E00FDF397 /* WKWebView+Screens.swift */; };
 		0B77842A1F95F60C001C9134 /* CommentDisplayScreenlet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF9178F1D76BE6900C86C85 /* CommentDisplayScreenlet.swift */; };
 		0B77842B1F95F60C001C9134 /* AssetClassNameIds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B217FAF1D6C4E6F00A23690 /* AssetClassNameIds.swift */; };
@@ -469,13 +463,12 @@
 		0B77845B1F95F60C001C9134 /* LRScreensratingsentryService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 889125AF1D547A10006AFA08 /* LRScreensratingsentryService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B77845C1F95F60C001C9134 /* LRScreensddlrecordService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B2C41641D5A3CF400764326 /* LRScreensddlrecordService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B77845D1F95F60C001C9134 /* LRScreensuserService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E054B1C6A4DB000CA3807 /* LRScreensuserService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0B77845E1F95F60C001C9134 /* ScreensBridgePlugin.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B1527321F2F8BFD00B60188 /* ScreensBridgePlugin.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B77845F1F95F60C001C9134 /* LRScreensddlrecordService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BCB4FAF1D37C08B0023E2CA /* LRScreensddlrecordService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784601F95F60C001C9134 /* LiferayScreens.h in Headers */ = {isa = PBXBuildFile; fileRef = 8892C67D1ACB2E3300192232 /* LiferayScreens.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784611F95F60C001C9134 /* LRScreensassetentryService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E05451C6A4DB000CA3807 /* LRScreensassetentryService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784621F95F60C001C9134 /* LRScreensjournalarticleService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E055A1C6A4DF700CA3807 /* LRScreensjournalarticleService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784631F95F60C001C9134 /* LRScreensassetentryService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E05561C6A4DF700CA3807 /* LRScreensassetentryService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0B7784651F95F60C001C9134 /* BuildFile in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
+		0B7784651F95F60C001C9134 /* (null) in Headers */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784661F95F60C001C9134 /* LRScreensjournalarticleService_v62.h in Headers */ = {isa = PBXBuildFile; fileRef = 887E05491C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784671F95F60C001C9134 /* LRScreenscommentService_v70.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BFE28381D87E13300261A66 /* LRScreenscommentService_v70.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0B7784691F95F60C001C9134 /* SignUpView_default.xib in Resources */ = {isa = PBXBuildFile; fileRef = 881E61C71ACBFC3400862B9E /* SignUpView_default.xib */; };
@@ -623,7 +616,6 @@
 		0BB5032D1D37C04A00ABD6B3 /* DDLRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB503191D37C04A00ABD6B3 /* DDLRecord.swift */; };
 		0BB5033D1D37C04A00ABD6B3 /* WebContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB5032B1D37C04A00ABD6B3 /* WebContent.swift */; };
 		0BB503961D38D74100ABD6B3 /* DDLRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB503191D37C04A00ABD6B3 /* DDLRecord.swift */; };
-		0BBE45711F1D0B8100812015 /* ScreensCordovaWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBE45701F1D0B8100812015 /* ScreensCordovaWebView.swift */; };
 		0BBE45731F1D0BC200812015 /* ScreensWKWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBE45721F1D0BC200812015 /* ScreensWKWebView.swift */; };
 		0BBE45751F1D0BFB00812015 /* ScreensWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBE45741F1D0BFB00812015 /* ScreensWebView.swift */; };
 		0BBEDA1A1D5B22FF00F8CB31 /* ImageGallerySlideshowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBEDA151D5B22FF00F8CB31 /* ImageGallerySlideshowCell.swift */; };
@@ -1061,8 +1053,6 @@
 		0B139A821EB9EE1E00628D24 /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
 		0B147A181E78047C00EDE7B7 /* FileDisplayView_default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDisplayView_default.swift; sourceTree = "<group>"; };
 		0B147A1A1E78049F00EDE7B7 /* FileDisplayView_default.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FileDisplayView_default.xib; sourceTree = "<group>"; };
-		0B1527321F2F8BFD00B60188 /* ScreensBridgePlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreensBridgePlugin.h; sourceTree = "<group>"; };
-		0B1527331F2F8BFD00B60188 /* ScreensBridgePlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreensBridgePlugin.m; sourceTree = "<group>"; };
 		0B1F30E41DA23FB40053424E /* UserPortrait_connector_Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPortrait_connector_Test.swift; sourceTree = "<group>"; };
 		0B1F30E71DA240F20053424E /* tinyImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tinyImage.png; sourceTree = "<group>"; };
 		0B217FA61D6C4E6F00A23690 /* AssetDisplayBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetDisplayBuilder.swift; sourceTree = "<group>"; };
@@ -1139,7 +1129,6 @@
 		0B3B9AB3209AF8C800EC2975 /* ImageGalleryUploadInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGalleryUploadInteractor.swift; sourceTree = "<group>"; };
 		0B3B9AB4209AF8C800EC2975 /* SyncManager+ImageGallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncManager+ImageGallery.swift"; sourceTree = "<group>"; };
 		0B3B9AB5209AF8C800EC2975 /* UploadProgressViewBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadProgressViewBase.swift; sourceTree = "<group>"; };
-		0B4460841F176668007D12E5 /* ScreensCordovaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreensCordovaViewController.swift; sourceTree = "<group>"; };
 		0B4C27511E40F83300F6B01D /* AssetLoadByPortletItemNameLiferayConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetLoadByPortletItemNameLiferayConnector.swift; sourceTree = "<group>"; };
 		0B5619F91E7A7D3E00FDF397 /* WKWebView+Screens.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebView+Screens.swift"; sourceTree = "<group>"; };
 		0B5B5E541D5868B80007D4B1 /* BaseListCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseListCollectionView.swift; sourceTree = "<group>"; };
@@ -1249,7 +1238,6 @@
 		0BB503181D37C04A00ABD6B3 /* Asset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
 		0BB503191D37C04A00ABD6B3 /* DDLRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DDLRecord.swift; sourceTree = "<group>"; };
 		0BB5032B1D37C04A00ABD6B3 /* WebContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebContent.swift; sourceTree = "<group>"; };
-		0BBE45701F1D0B8100812015 /* ScreensCordovaWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreensCordovaWebView.swift; sourceTree = "<group>"; };
 		0BBE45721F1D0BC200812015 /* ScreensWKWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreensWKWebView.swift; sourceTree = "<group>"; };
 		0BBE45741F1D0BFB00812015 /* ScreensWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreensWebView.swift; sourceTree = "<group>"; };
 		0BBEDA151D5B22FF00F8CB31 /* ImageGallerySlideshowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGallerySlideshowCell.swift; sourceTree = "<group>"; };
@@ -1841,17 +1829,6 @@
 			path = Interactors;
 			sourceTree = "<group>";
 		};
-		0B4460831F176655007D12E5 /* cordova */ = {
-			isa = PBXGroup;
-			children = (
-				0B4460841F176668007D12E5 /* ScreensCordovaViewController.swift */,
-				0BBE45701F1D0B8100812015 /* ScreensCordovaWebView.swift */,
-				0B1527321F2F8BFD00B60188 /* ScreensBridgePlugin.h */,
-				0B1527331F2F8BFD00B60188 /* ScreensBridgePlugin.m */,
-			);
-			path = cordova;
-			sourceTree = "<group>";
-		};
 		0B5B5E531D5868B80007D4B1 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1939,7 +1916,6 @@
 		0BC700C91EB20795006DD475 /* WebScreenlet */ = {
 			isa = PBXGroup;
 			children = (
-				0B4460831F176655007D12E5 /* cordova */,
 				0BC700CA1EB20795006DD475 /* WebView_default.swift */,
 				0BC700CB1EB20795006DD475 /* WebView_default.xib */,
 				0BBE45721F1D0BC200812015 /* ScreensWKWebView.swift */,
@@ -3056,7 +3032,6 @@
 				274CBE118553FA55211CCD4D /* Pods-Screens-LiferayScreensXamarin.debug.xcconfig */,
 				AE39010412FFFA7F4C4EF15D /* Pods-Screens-LiferayScreensXamarin.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -3070,13 +3045,12 @@
 				0B77845B1F95F60C001C9134 /* LRScreensratingsentryService_v70.h in Headers */,
 				0B77845C1F95F60C001C9134 /* LRScreensddlrecordService_v62.h in Headers */,
 				0B77845D1F95F60C001C9134 /* LRScreensuserService_v62.h in Headers */,
-				0B77845E1F95F60C001C9134 /* ScreensBridgePlugin.h in Headers */,
 				0B77845F1F95F60C001C9134 /* LRScreensddlrecordService_v70.h in Headers */,
 				0B7784601F95F60C001C9134 /* LiferayScreens.h in Headers */,
 				0B7784611F95F60C001C9134 /* LRScreensassetentryService_v62.h in Headers */,
 				0B7784621F95F60C001C9134 /* LRScreensjournalarticleService_v70.h in Headers */,
 				0B7784631F95F60C001C9134 /* LRScreensassetentryService_v70.h in Headers */,
-				0B7784651F95F60C001C9134 /* BuildFile in Headers */,
+				0B7784651F95F60C001C9134 /* (null) in Headers */,
 				0B7784661F95F60C001C9134 /* LRScreensjournalarticleService_v62.h in Headers */,
 				0B7784671F95F60C001C9134 /* LRScreenscommentService_v70.h in Headers */,
 			);
@@ -3089,13 +3063,12 @@
 				889125B11D547A10006AFA08 /* LRScreensratingsentryService_v70.h in Headers */,
 				0B2C41661D5A3CF400764326 /* LRScreensddlrecordService_v62.h in Headers */,
 				887E05531C6A4DB000CA3807 /* LRScreensuserService_v62.h in Headers */,
-				0B1527341F2F8BFD00B60188 /* ScreensBridgePlugin.h in Headers */,
 				0BCB4FB11D37C08B0023E2CA /* LRScreensddlrecordService_v70.h in Headers */,
 				8892C67E1ACB2E3300192232 /* LiferayScreens.h in Headers */,
 				887E054D1C6A4DB000CA3807 /* LRScreensassetentryService_v62.h in Headers */,
 				887E069B1C6A4DF800CA3807 /* LRScreensjournalarticleService_v70.h in Headers */,
 				887E06971C6A4DF800CA3807 /* LRScreensassetentryService_v70.h in Headers */,
-				0B2677DE1D3D1E5700FDFC5B /* BuildFile in Headers */,
+				0B2677DE1D3D1E5700FDFC5B /* (null) in Headers */,
 				887E05511C6A4DB000CA3807 /* LRScreensjournalarticleService_v62.h in Headers */,
 				0BFE283A1D87E13300261A66 /* LRScreenscommentService_v70.h in Headers */,
 			);
@@ -3686,7 +3659,6 @@
 				0B7783631F95F60C001C9134 /* UserPortraitView_default.swift in Sources */,
 				0B7783651F95F60C001C9134 /* ImageGalleryView_default-list.swift in Sources */,
 				0B7783661F95F60C001C9134 /* DDMTypedValuesXMLParser.swift in Sources */,
-				0B7783671F95F60C001C9134 /* ScreensBridgePlugin.m in Sources */,
 				0B7783681F95F60C001C9134 /* CacheManager.swift in Sources */,
 				0B7783691F95F60C001C9134 /* WebContentListPageLoadInteractor.swift in Sources */,
 				0B77836A1F95F60C001C9134 /* CredentialsStorage.swift in Sources */,
@@ -3794,7 +3766,6 @@
 				0B7783D41F95F60C001C9134 /* WebContent.swift in Sources */,
 				0B7783D51F95F60C001C9134 /* WebScreenlet.swift in Sources */,
 				0B7783D61F95F60C001C9134 /* ScreensWKUIDelegate.swift in Sources */,
-				0B7783D71F95F60C001C9134 /* ScreensCordovaWebView.swift in Sources */,
 				0B7783D81F95F60C001C9134 /* DDLFieldNumberTableCell_default.swift in Sources */,
 				0B7783D91F95F60C001C9134 /* LRScreensjournalarticleService_v70.m in Sources */,
 				0B7783DA1F95F60C001C9134 /* User.swift in Sources */,
@@ -3882,7 +3853,6 @@
 				0B7784261F95F60C001C9134 /* DDLFormSubmitLiferayConnector.swift in Sources */,
 				0B7784271F95F60C001C9134 /* PdfDisplayView_default.swift in Sources */,
 				0BA6AC62205A8D0900BB83D4 /* AsyncServerConnector.swift in Sources */,
-				0B7784281F95F60C001C9134 /* ScreensCordovaViewController.swift in Sources */,
 				0B7784291F95F60C001C9134 /* WKWebView+Screens.swift in Sources */,
 				0B77842A1F95F60C001C9134 /* CommentDisplayScreenlet.swift in Sources */,
 				0B77842B1F95F60C001C9134 /* AssetClassNameIds.swift in Sources */,
@@ -3975,7 +3945,6 @@
 				881E62301ACBFC3400862B9E /* UserPortraitView_default.swift in Sources */,
 				0BBEDA261D5B230700F8CB31 /* ImageGalleryView_default-list.swift in Sources */,
 				0B2180081D6C4F6F00A23690 /* DDMTypedValuesXMLParser.swift in Sources */,
-				0B1527351F2F8BFD00B60188 /* ScreensBridgePlugin.m in Sources */,
 				887F0D0A1B999CD90007AECE /* CacheManager.swift in Sources */,
 				88AF68381CBFF58700097014 /* WebContentListPageLoadInteractor.swift in Sources */,
 				88DC31E21ACC18F10078C961 /* CredentialsStorage.swift in Sources */,
@@ -4084,7 +4053,6 @@
 				0BB5033D1D37C04A00ABD6B3 /* WebContent.swift in Sources */,
 				0BC700D11EB207B1006DD475 /* WebScreenlet.swift in Sources */,
 				0BA1CEDF1F4C64CE0079DD4B /* ScreensWKUIDelegate.swift in Sources */,
-				0BBE45711F1D0B8100812015 /* ScreensCordovaWebView.swift in Sources */,
 				881E623C1ACBFC3400862B9E /* DDLFieldNumberTableCell_default.swift in Sources */,
 				0BA6F481204977E50008624B /* DDMFieldGeolocation.swift in Sources */,
 				887E069C1C6A4DF800CA3807 /* LRScreensjournalarticleService_v70.m in Sources */,
@@ -4171,7 +4139,6 @@
 				881E61861ACBEE0B00862B9E /* DDLListPageLoadInteractor.swift in Sources */,
 				88B844C61C73D8F7007A447D /* DDLFormSubmitLiferayConnector.swift in Sources */,
 				0B217FE31D6C4E9500A23690 /* PdfDisplayView_default.swift in Sources */,
-				0B4460851F176668007D12E5 /* ScreensCordovaViewController.swift in Sources */,
 				0B5619FA1E7A7D3E00FDF397 /* WKWebView+Screens.swift in Sources */,
 				0BF917A41D76BE6900C86C85 /* CommentDisplayScreenlet.swift in Sources */,
 				0B217FBB1D6C4E6F00A23690 /* AssetClassNameIds.swift in Sources */,
