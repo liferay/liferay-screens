@@ -49,8 +49,8 @@ ext {
 	targetSdkVersion = compileSdkVersion
 	buildToolsVersion = '30.0.2'
 
-	versionCode = 504
-	versionName = '5.0.4'
+	versionCode = 510
+	versionName = '5.1.0'
 
 	publishedGroupId = 'com.liferay.mobile'
 	libraryName = 'Liferay Screens for Android'
@@ -73,7 +73,7 @@ ext {
 
 ext.libraries = [junit              : 'junit:junit:4.12',
                  gms                : 'com.google.android.gms:play-services-gcm:9.0.2',
-                 sdk                : 'com.liferay.mobile:liferay-android-sdk-core:7.2.0',
+                 sdk                : 'com.liferay.mobile:liferay-android-sdk-core:7.3.0',
                  push               : 'com.liferay.mobile:liferay-push:1.2.1',
                  eventbus           : 'de.greenrobot:eventbus:2.4.0',
                  picasso            : 'com.squareup.picasso:picasso:2.5.2',
