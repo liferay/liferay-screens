@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
+        android:usesCleartextTraffic="true"
         android:name=".TestApplication"
         android:allowBackup="true"
         android:icon="@drawable/liferay_icon"
