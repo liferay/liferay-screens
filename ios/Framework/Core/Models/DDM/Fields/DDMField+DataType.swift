@@ -68,7 +68,7 @@ extension DDMField {
 					return DDMFieldDate_v62(
 						attributes: attributes,
 						locale: locale)
-				case .v70, .v71, .v72:
+				case .v70, .v71, .v72, .v73:
 					return DDMFieldDate_v70(
 						attributes: attributes,
 						locale: locale)
