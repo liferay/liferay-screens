@@ -23,7 +23,7 @@ class SuccessPageActivity : AppCompatActivity() {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.ddm_form_success_page_default)
 
-		val successPage = intent.extras[FormConstants.SUCCESS_PAGE] as? SuccessPage
+		val successPage = intent.extras?.get(FormConstants.SUCCESS_PAGE) as? SuccessPage
 
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 			val window = window

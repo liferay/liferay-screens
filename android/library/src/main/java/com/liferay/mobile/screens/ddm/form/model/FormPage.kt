@@ -25,8 +25,8 @@ class FormPage(val headline: String, val description: String, var fields: List<F
 	var isEnabled: Boolean = true) : Parcelable {
 
 	constructor(parcel: Parcel) : this(
-		parcel.readString(),
-		parcel.readString()) {
+		parcel.readString() ?: "",
+		parcel.readString() ?: "") {
 
 		fields = (parcel.readParcelableArray(Field::class.java.classLoader) as? Array<Field<*>>)?.let {
 			it.toList()

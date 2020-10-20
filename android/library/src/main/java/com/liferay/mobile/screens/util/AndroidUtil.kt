@@ -54,7 +54,7 @@ class AndroidUtil {
 
 		@JvmStatic
 		fun getFileNameFromPath(uriString: String): String {
-			return getUriFromString(uriString).lastPathSegment
+			return getUriFromString(uriString).lastPathSegment ?: ""
 		}
 
 		@JvmStatic
@@ -68,7 +68,7 @@ class AndroidUtil {
 				Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
 
 			connectivityManager?.let {
-				return it.activeNetworkInfo != null && it.activeNetworkInfo.isConnectedOrConnecting
+				return it.activeNetworkInfo?.isConnected ?: false
 			}
 
 			return false
@@ -78,7 +78,7 @@ class AndroidUtil {
 		fun openLocalFileInputStream(applicationContext: Context, documentLocalFile: DocumentLocalFile): InputStream {
 			val fileUri = AndroidUtil.getUriFromString(documentLocalFile.toString())
 
-			return applicationContext.contentResolver.openInputStream(fileUri)
+			return applicationContext.contentResolver.openInputStream(fileUri)!!
 		}
 
 		@JvmStatic

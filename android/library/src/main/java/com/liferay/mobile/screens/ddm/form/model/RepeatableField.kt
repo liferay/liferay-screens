@@ -42,10 +42,10 @@ class RepeatableField @JvmOverloads constructor(
 		get() = listOf(baseField) + siblings
 
 	constructor(parcel: Parcel)
-		: this(parcel.readParcelable(Field::class.java.classLoader) as Field<*>) {
+		: this(parcel.readParcelable<Field<*>>(Field::class.java.classLoader) as Field<*>) {
 
 		siblings = parcel.readParcelableArray(
-			Field::class.java.classLoader).toMutableList() as MutableList<Field<*>>
+			Field::class.java.classLoader)?.toMutableList() as MutableList<Field<*>>
 	}
 
 	fun repeatField(): Field<*> {

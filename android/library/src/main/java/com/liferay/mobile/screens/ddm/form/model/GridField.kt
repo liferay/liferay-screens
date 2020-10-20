@@ -22,6 +22,7 @@ import com.liferay.mobile.screens.ddl.model.Option
 import com.liferay.mobile.screens.util.JSONUtil
 import com.liferay.mobile.screens.util.extensions.toJSON
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * @author Victor Oliveira
@@ -46,8 +47,8 @@ class GridField : Field<Grid>, Parcelable {
 	}
 
 	constructor(parcel: Parcel, classLoader: ClassLoader) : super(parcel, classLoader) {
-		rows = parcel.createTypedArrayList(Option.CREATOR)
-		columns = parcel.createTypedArrayList(Option.CREATOR)
+		rows = parcel.createTypedArrayList(Option.CREATOR) ?: ArrayList()
+		columns = parcel.createTypedArrayList(Option.CREATOR) ?: ArrayList()
 	}
 
 	override fun convertToData(value: Grid?): String {

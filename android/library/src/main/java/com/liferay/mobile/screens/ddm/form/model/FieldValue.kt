@@ -22,7 +22,7 @@ import android.os.Parcelable
  */
 open class FieldValue(val name: String, var value: Any?) : Parcelable {
 	constructor(parcel: Parcel) : this(
-		parcel.readString(),
+		parcel.readString() ?: "",
 		parcel.readValue(String::class.java.classLoader))
 
 	override fun writeToParcel(parcel: Parcel, flags: Int) {
