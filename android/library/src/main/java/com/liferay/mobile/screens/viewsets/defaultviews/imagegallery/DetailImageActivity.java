@@ -49,9 +49,6 @@ public class DetailImageActivity extends AppCompatActivity implements SwipeListe
                 Toast.makeText(DetailImageActivity.this, imgSrc, Toast.LENGTH_SHORT).show();
             }
 
-            imgSrcPosition = intent.getIntExtra("imgSrcPosition", -1);
-            String imgSrc = allImgSrc[imgSrcPosition];
-            Picasso.with(getApplicationContext()).load(imgSrc).into(detailedImageView);
         }
 
         detailedImageView.setOnTouchListener(new OnSwipeTouchListener(this, this));
