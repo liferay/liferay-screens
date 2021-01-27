@@ -98,7 +98,7 @@ open class WebContentDisplayView_default: BaseScreenletView, WebContentDisplayVi
 						decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
 
 		if navigationAction.navigationType == WKNavigationType.linkActivated {
-			let webViewNotHandleLink = onUrlClicked?(webView.url?.absoluteString ?? "") ?? false
+			let webViewNotHandleLink = onUrlClicked?(navigationAction.request.url?.absoluteString ?? "") ?? false
 
 			if webViewNotHandleLink {
 				decisionHandler(.cancel)
