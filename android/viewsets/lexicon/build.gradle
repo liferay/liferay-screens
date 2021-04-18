@@ -29,5 +29,4 @@ dependencies {
 	implementation libraries.rxjava
 }
 
-apply from: '../../bintray.gradle'
 apply from: '../../install.gradle'

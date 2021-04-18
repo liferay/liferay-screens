@@ -2,14 +2,12 @@ buildscript {
 	ext.kotlin_version = '1.3.31'
 
 	repositories {
-		jcenter()
-		maven { url 'https://maven.google.com' }
+		mavenCentral()
 		google()
 	}
 
 	dependencies {
 		classpath 'com.android.tools.build:gradle:4.1.0'
-		classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
 		classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 	}
@@ -56,9 +54,6 @@ ext {
 	libraryName = 'Liferay Screens for Android'
 	libraryDescription = 'Liferay Screens for Android includes the component (screenlets) library and a sample project'
 
-	bintrayRepo = 'liferay-mobile'
-	bintrayOrg = 'liferay'
-
 	siteUrl = 'https://github.com/liferay/liferay-screens'
 	gitUrl = 'https://github.com/liferay/liferay-screens.git'
 
@@ -92,6 +87,7 @@ subprojects {
 	repositories {
 		mavenLocal()
 		maven { url 'https://maven.google.com' }
+		mavenCentral()
 		jcenter()
 	}
 
@@ -103,6 +99,7 @@ subprojects {
 repositories {
 	mavenLocal()
 	maven { url 'https://maven.google.com' }
+	mavenCentral()
 	jcenter()
 	google()
 }
