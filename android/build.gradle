@@ -7,7 +7,7 @@ buildscript {
 	}
 
 	dependencies {
-		classpath 'com.android.tools.build:gradle:4.1.0'
+		classpath 'com.android.tools.build:gradle:4.1.3'
 		classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 	}
@@ -47,8 +47,8 @@ ext {
 	targetSdkVersion = compileSdkVersion
 	buildToolsVersion = '30.0.2'
 
-	versionCode = 504
-	versionName = '5.0.4'
+	versionCode = 505
+	versionName = '5.0.5'
 
 	publishedGroupId = 'com.liferay.mobile'
 	libraryName = 'Liferay Screens for Android'
